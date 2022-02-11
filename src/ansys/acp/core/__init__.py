@@ -21,8 +21,12 @@ Then add the import within this module to enable:
 
 """
 
-__version__ = "0.1.0.dev0"
+try:
+    import importlib.metadata as importlib_metadata
+except ModuleNotFoundError:
+    import importlib_metadata
 
-from .other_module import Complex
+__version__ = importlib_metadata.version(__name__.replace(".", "-"))
 
-__all__ = ["Complex"]
+
+__all__ = ["__version__"]

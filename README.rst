@@ -53,4 +53,4 @@ TODO: You can feel free to include this at the README level or in CONTRIBUTING.m
 
 License
 -------
-``PyACP`` is licensed under the MIT license. Please see the `LICENSE <https://github.com/pyansys/pyacp/raw/master/LICENSE>` for more details.
+``PyACP`` is licensed under the MIT license. Please see the `LICENSE <https://github.com/pyansys/pyacp/raw/master/LICENSE>`_ for more details.

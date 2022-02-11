@@ -1,25 +1,18 @@
 [build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
-[project]
-name = "ansys-product-library"
-authors = [{name = "ANSYS, Inc."}] # this is required
+[tool.poetry]
+name = "ansys-acp-core"
+version = "0.0.dev0"
 
-# You can change the name. The email group works.
-maintainers = [{name = "PyAnsys developers", email = "pyansys.support@ansys.com"}]
+description = "Python library for ACP - Ansys Composite PrepPost"
 readme = "README.rst"
-description = "Template PyAnsys library"
-license = {file = "LICENSE"}
+homepage = "https://github.com/pyansys/template/"
 
-# The version is automatically parsed from 'ansys/product/library/__init__.py'
-dynamic = ["version"]
-
-# Include all install requirements here.
-dependencies = []
-
-# Plan on supporting only the currently supported versions of Python
-requires-python = ">=3.7"
+authors = ["Ansys, Inc."] # this is required
+maintainers = ["PyAnsys developers <pyansys.support@ansys.com>"] # You can change the name. The email group works.
+license = "MIT"
 
 # Less than critical but helpful
 classifiers = [
@@ -29,26 +22,26 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
-[project.optional-dependencies]
-docs = [
-    "sphinx",
-    "numpydoc>=1.2",
-    "pyansys_sphinx_theme>=0.2.0",
-    "sphinx-copybutton",
+packages = [
+    { include = "ansys", from = "src" },
 ]
 
-style = [
-    "codespell==2.1.0",
-    "flake8==3.9.2",
-]
+[tool.poetry.dependencies]
+python = ">=3.7" # Plan on supporting only the currently supported versions of Python
+importlib-metadata = {version = "^4.0", python = "<3.8"}
 
-test = [
-    "pytest",
-    "pytest-cov",
-]
+Sphinx =  {version="^4.4", optional=true}
+numpydoc =  {version="^1.2", optional=true}
+pyansys_sphinx_theme =  {version="^0.2", optional=true}
+sphinx-copybutton =  {version="^0.4", optional=true}
 
-[project.urls]
-Source = "https://github.com/pyansys/template/"
+codespell = {version="^2.1", optional=true}
+flake8 = {version="^3.9", optional=true}
 
-[tool.flit.module]
-name = "ansys.acp.core"
+pytest = {version="^7.0", optional=true}
+pytest-cov = {version="^3.0", optional=true}
+
+[tool.poetry.extras]
+docs = ["Sphinx", "numpydoc", "pyansys_sphinx_theme", "sphinx-copybutton"]
+style = ["codespell", "flake8"]
+test = ["pytest", "pytest-cov"]

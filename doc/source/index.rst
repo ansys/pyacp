@@ -15,7 +15,7 @@
 Code Examples
 ~~~~~~~~~~~~~
 Here's a quick preview for how Python code looks using the
-``pyansys-product-library``.  For more examples, click the links at the
+``pyansys-acp-core``.  For more examples, click the links at the
 top of the page to see function, method, and class documentation.
 
 
@@ -32,4 +32,3 @@ Rendered Python Code
    ... else:
    ...     print("Negative number")
    Positive number
-
