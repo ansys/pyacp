@@ -29,5 +29,5 @@ repos:
     language: python
     types: [python]
     require_serial: true
-    exclude: "^(doc/)"
+    exclude: "^(doc/)|(tests/)"
     args: []

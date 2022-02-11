@@ -29,6 +29,7 @@ packages = [
 [tool.poetry.dependencies]
 python = ">=3.7" # Plan on supporting only the currently supported versions of Python
 importlib-metadata = {version = "^4.0", python = "<3.8"}
+ansys-api-acp = { git = "https://github.com/ansys/ansys-api-acp-private.git" , branch = "main" }
 
 Sphinx =  {version = "^4.4", optional = true}
 numpydoc =  {version = "^1.2", optional = true}
@@ -38,8 +39,27 @@ pre-commit = {version = "^2.17.0", optional = true}
 mypy = {version = "^0.931", optional = true}
 pytest = {version = "^7.0", optional = true}
 pytest-cov = {version = "^3.0", optional = true}
+grpcio-health-checking = {version = "^1.43.0", optional = true}
 
 [tool.poetry.extras]
 docs = ["Sphinx", "numpydoc", "pyansys_sphinx_theme", "sphinx-copybutton"]
 pre-commit = ["pre-commit", "mypy"]
-test = ["pytest", "pytest-cov"]
+test = ["pytest", "pytest-cov", "grpcio-health-checking"]
+
+[tool.black]
+line-length = 100
+target-version = ['py37']
+
+[tool.pydocstyle]
+convention = "numpy"
+
+[tool.mypy]
+python_version = 3.7
+strict = true
+
+[[tool.mypy.overrides]]
+module = [
+    "grpc.*",
+    "grpc_health.*",
+]
+ignore_missing_imports = true
