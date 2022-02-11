@@ -12,7 +12,7 @@ on:
 
 jobs:
   style:
-    name: Style Check
+    name: Pre-commit Check
     runs-on: ubuntu-latest
 
     steps:
@@ -22,17 +22,13 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Install style requirements
+      - name: Install pre-commit requirements
         run: |
-          pip install .[style] --disable-pip-version-check
+          pip install .[pre-commit] --disable-pip-version-check
 
-      - name: Codespell
+      - name: Run pre-commit
         run: |
-          make codespell
-
-      - name: flake8
-        run: |
-          make flake8
+          pre-commit run --all-files || ( git status --short ; git diff ; exit 1 )
 
   main:
     name: Build and Testing
