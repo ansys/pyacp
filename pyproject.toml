@@ -38,7 +38,6 @@ numpydoc =  {version = "^1.2", optional = true}
 pyansys_sphinx_theme =  {version = "^0.2", optional = true}
 sphinx-copybutton =  {version = "^0.4", optional = true}
 pre-commit = {version = "^2.17.0", optional = true}
-nbstripout = {version = "^0.5.0", optional = true}
 mypy = {version = "^0.931", optional = true}
 pytest = {version = "^7.0", optional = true}
 pytest-cov = {version = "^3.0", optional = true}
@@ -48,7 +47,7 @@ ipykernel = {version = "^6.9.0", optional = true}
 docs = ["Sphinx", "numpydoc", "pyansys_sphinx_theme", "sphinx-copybutton"]
 pre-commit = ["pre-commit", "mypy"]
 test = ["pytest", "pytest-cov", "grpcio-health-checking"]
-examples = ["ipykernel", "nbstripout"]
+examples = ["ipykernel"]
 
 [tool.black]
 line-length = 100

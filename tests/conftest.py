@@ -82,8 +82,6 @@ def _grpc_server_exe(request):
 
 def _stop_grpc_server(server):
     """Terminate the gRPC server."""
-    server.stdout.write("\n====SERVER RESTART====\n")
-    server.stderr.write("\n====SERVER RESTART====\n")
     server.close()
 
 

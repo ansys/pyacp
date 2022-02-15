@@ -4,9 +4,8 @@ import os
 import pathlib
 import socket
 import subprocess
+import weakref
 from contextlib import closing
-from dataclasses import dataclass
-from functools import lru_cache
 from typing import Any
 from typing import Optional
 from typing import TextIO
@@ -28,47 +27,62 @@ _FILE = Union[str, pathlib.Path]
 
 
 class ServerProtocol(Protocol):
-    def close(self) -> None:
-        ...
-
-    @property
-    def channel(self) -> grpc.Channel:
-        ...
-
     def __enter__(self) -> ServerProtocol:
         ...
 
     def __exit__(self, *exc: Any) -> None:
         ...
 
+    def close(self) -> None:
+        ...
+
+    @property
+    def closed(self) -> bool:
+        ...
+
     def check(self, timeout: Optional[float] = None) -> bool:
         ...
 
-
-@dataclass(frozen=True)
-class LocalAcpServer:
-    process: subprocess.Popen[str]
-    port: int
-    stdout: TextIO
-    stderr: TextIO
-
-    def close(self) -> None:
-        self.process.terminate()
-        self.process.wait()
-        self.stdout.close()
-        self.stderr.close()
-
-    # Can be replaced by 'cached_property' for Python 3.8+
-    @property  # type: ignore
-    @lru_cache(maxsize=1)
+    @property
     def channel(self) -> grpc.Channel:
-        return grpc.insecure_channel(f"localhost:{self.port}")
+        ...
+
+
+class LocalAcpServer:
+    def __init__(self, process: subprocess.Popen[str], port: int, stdout: TextIO, stderr: TextIO):
+        self._process = process
+        self._port = port
+        self._stdout = stdout
+        self._stderr = stderr
+        self._channel: Optional[grpc.Channel] = None
+
+        self._finalizer = weakref.finalize(
+            self,
+            self._finalize_impl,
+            process=self._process,
+            stdout=self._stdout,
+            stderr=self._stderr,
+        )
+
+    @staticmethod
+    def _finalize_impl(process: subprocess.Popen[str], stdout: TextIO, stderr: TextIO) -> None:
+        process.terminate()
+        process.wait()
+        stdout.close()
+        stderr.close()
 
     def __enter__(self) -> LocalAcpServer:
         return self
 
     def __exit__(self, *exc: Any) -> None:
         self.close()
+
+    def close(self) -> None:
+        self._finalizer()
+
+    @property
+    def closed(self) -> bool:
+        return not self._finalizer.alive
 
     def check(self, timeout: Optional[float] = None) -> bool:
         try:
@@ -82,8 +96,16 @@ class LocalAcpServer:
             pass
         return False
 
-    def __del__(self) -> None:
-        self.close()
+    @property
+    def channel(self) -> grpc.Channel:
+        if self.closed:
+            raise RuntimeError(
+                "Cannot open channel to the server, since it has already been closed."
+            )
+        if self._channel is not None:
+            return self._channel
+        self._channel = grpc.insecure_channel(f"localhost:{self._port}")
+        return self._channel
 
 
 def launch_acp(
@@ -91,7 +113,7 @@ def launch_acp(
     port: Optional[int] = None,
     stdout_file: _FILE = os.devnull,
     stderr_file: _FILE = os.devnull,
-) -> LocalAcpServer:
+) -> ServerProtocol:
     if port is None:
         port = _find_free_port()
     stdout = open(stdout_file, mode="w", encoding="utf-8")
@@ -105,7 +127,8 @@ def launch_acp(
         stderr=stderr,
         text=True,
     )
-    return LocalAcpServer(process=process, port=port, stdout=stdout, stderr=stderr)
+    server = LocalAcpServer(process=process, port=port, stdout=stdout, stderr=stderr)
+    return server
 
 
 def _find_free_port() -> int:
