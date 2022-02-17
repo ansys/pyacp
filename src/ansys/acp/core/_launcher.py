@@ -127,8 +127,7 @@ def launch_acp(
         stderr=stderr,
         text=True,
     )
-    server = LocalAcpServer(process=process, port=port, stdout=stdout, stderr=stderr)
-    return server
+    return LocalAcpServer(process=process, port=port, stdout=stdout, stderr=stderr)
 
 
 def _find_free_port() -> int:

@@ -9,6 +9,8 @@ from ansys.api.acp.v0.base_pb2 import ResourcePath
 from ansys.api.acp.v0.model_pb2 import LoadModelRequest
 from ansys.api.acp.v0.model_pb2 import ModelRequest
 from ansys.api.acp.v0.model_pb2 import PutModelRequest
+from ansys.api.acp.v0.model_pb2 import SaveModelRequest
+from ansys.api.acp.v0.model_pb2 import UpdateModelRequest
 from ansys.api.acp.v0.model_pb2_grpc import ModelStub
 
 from ._launcher import ServerProtocol
@@ -28,8 +30,9 @@ class Model:
 
     @classmethod
     def from_file(cls, path: _PATH, server: ServerProtocol) -> "Model":
-        # TODO: implement
-        path_str = str(path)
+        # Send absolute paths to the server, since its CWD may not match
+        # the Python CWD.
+        path_str = os.path.abspath(path)
         request = LoadModelRequest(filename=path_str)
         response = ModelStub(server.channel).LoadFromFile(request)
         return cls(resource_path=response.info.resource_path.value, server=server)
@@ -57,6 +60,21 @@ class Model:
                 "name": res.info.name,
                 "version": res.info.version,
             }
+
+    def update(self, *, relations_only: bool = False) -> None:
+        self._model_stub.Update(
+            UpdateModelRequest(
+                resource_path=self._get_pb_resource_path(), relations_only=relations_only
+            )
+        )
+
+    def save(self, path: _PATH) -> None:
+        # TODO: make naming of 'path' / 'filename' consistent across all interfaces.
+        self._model_stub.SaveToFile(
+            SaveModelRequest(
+                resource_path=self._get_pb_resource_path(), filename=os.path.abspath(path)
+            )
+        )
 
     def _get_pb_resource_path(self) -> ResourcePath:
         return ResourcePath(value=self._resource_path)

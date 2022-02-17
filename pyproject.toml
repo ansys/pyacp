@@ -8,7 +8,7 @@ version = "0.0.dev0"
 
 description = "Python library for ACP - Ansys Composite PrepPost"
 readme = "README.rst"
-homepage = "https://github.com/pyansys/template/"
+homepage = "https://github.com/pyansys/pyacp/"
 
 authors = ["Ansys, Inc."] # this is required
 maintainers = ["PyAnsys developers <pyansys.support@ansys.com>"] # You can change the name. The email group works.
