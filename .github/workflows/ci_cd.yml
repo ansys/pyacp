@@ -110,55 +110,55 @@ jobs:
           path: doc/build/latex/*.pdf
           retention-days: 7
 
-  Release:
-    if: contains(github.ref, 'refs/tags')
-    needs: [main, style, docs]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.9
+  # Release:
+  #   if: contains(github.ref, 'refs/tags')
+  #   needs: [main, style, docs]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v1
+  #       with:
+  #         python-version: 3.9
 
-      - uses: actions/checkout@v2
+  #     - uses: actions/checkout@v2
 
-      - uses: actions/download-artifact@v2
-        with:
-          name: ansys-acp-core-wheel
+  #     - uses: actions/download-artifact@v2
+  #       with:
+  #         name: ansys-acp-core-wheel
 
-      - uses: actions/download-artifact@v2
-        with:
-          name: Documentation-pdf
+  #     - uses: actions/download-artifact@v2
+  #       with:
+  #         name: Documentation-pdf
 
-      - uses: actions/download-artifact@v2
-        with:
-          name: Documentation-html
-          path: ~/html
+  #     - uses: actions/download-artifact@v2
+  #       with:
+  #         name: Documentation-html
+  #         path: ~/html
 
-      # list current directory
-      - name: List directory structure
-        run: ls -R
+  #     # list current directory
+  #     - name: List directory structure
+  #       run: ls -R
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.5
-        with:
-          BRANCH: gh-pages
-          FOLDER: ~/html
-          CLEAN: true
+  #     - name: Deploy
+  #       uses: JamesIves/github-pages-deploy-action@4.1.5
+  #       with:
+  #         BRANCH: gh-pages
+  #         FOLDER: ~/html
+  #         CLEAN: true
 
-      # note how we use the PyPI tokens
-      - name: Upload to Azure PyPi (disabled)
-        run: |
-          pip install twine
-          # twine upload --skip-existing ./**/*.whl
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+  #     # note how we use the PyPI tokens
+  #     - name: Upload to Azure PyPi (disabled)
+  #       run: |
+  #         pip install twine
+  #         # twine upload --skip-existing ./**/*.whl
+  #       env:
+  #         TWINE_USERNAME: __token__
+  #         TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            ./**/*.whl
-            ./**/*.zip
-            ./**/*.pdf
+  #     - name: Release
+  #       uses: softprops/action-gh-release@v1
+  #       with:
+  #         files: |
+  #           ./**/*.whl
+  #           ./**/*.zip
+  #           ./**/*.pdf
