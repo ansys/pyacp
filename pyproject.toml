@@ -46,7 +46,7 @@ ipykernel = {version = "^6.9.0", optional = true}
 [tool.poetry.extras]
 docs = ["Sphinx", "numpydoc", "pyansys_sphinx_theme", "sphinx-copybutton"]
 pre-commit = ["pre-commit", "mypy"]
-test = ["pytest", "pytest-cov", "grpcio-health-checking"]
+test = ["pytest", "pytest-cov"]
 examples = ["ipykernel"]
 
 [tool.black]

@@ -25,11 +25,12 @@ jobs:
       - name: Install pre-commit requirements
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
-          pip install .[pre-commit] --disable-pip-version-check
+          pip install poetry
+          poetry install -E pre-commit
 
       - name: Run pre-commit
         run: |
-          pre-commit run --all-files || ( git status --short ; git diff ; exit 1 )
+          poetry run pre-commit run --all-files || ( git status --short ; git diff ; exit 1 )
 
   main:
     name: Build and Testing
@@ -82,17 +83,18 @@ jobs:
       - name: Install library, with docs extra
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
-          pip install .[docs]
+          pip install poetry
+          poetry install -E docs
 
       - name: Build HTML
         run: |
-          make -C doc html SPHINXOPTS="-W"
+          poetry run make -C doc html SPHINXOPTS="-W"
 
       - name: Build PDF Documentation
         run: |
           sudo apt update
           sudo apt-get install -y texlive-latex-extra latexmk
-          make -C doc latexpdf
+          poetry run make -C doc latexpdf
 
       - name: Upload HTML Documentation
         uses: actions/upload-artifact@v2
