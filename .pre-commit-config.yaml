@@ -16,11 +16,16 @@ repos:
   rev: v2.1.0
   hooks:
   - id: codespell
-- repo: https://github.com/pycqa/pydocstyle
-  rev: 6.1.1
+# - repo: https://github.com/pycqa/pydocstyle
+#   rev: 6.1.1
+#   hooks:
+#   - id: pydocstyle
+#     additional_dependencies: [toml]
+- repo: https://github.com/kynan/nbstripout
+  rev: 0.5.0
   hooks:
-  - id: pydocstyle
-    additional_dependencies: [toml]
+  - id: nbstripout
+    args: ["--extra-keys", "metadata.interpreter metadata.kernelspec metadata.language_info"]
 - repo: local
   hooks:
   - id: mypy
