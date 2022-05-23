@@ -4,9 +4,13 @@ import os
 import pathlib
 import socket
 import subprocess
+import sys
+import time
 import weakref
 from contextlib import closing
+from types import MappingProxyType
 from typing import Any
+from typing import Mapping
 from typing import Optional
 from typing import TextIO
 from typing import Union
@@ -21,31 +25,69 @@ from grpc_health.v1.health_pb2 import HealthCheckRequest
 from grpc_health.v1.health_pb2 import HealthCheckResponse
 from grpc_health.v1.health_pb2_grpc import HealthStub
 
-__all__ = ["launch_acp", "LocalAcpServer"]
+from ansys.api.acp.v0.base_pb2 import Empty
+from ansys.api.acp.v0.control_pb2_grpc import ControlStub
+
+__all__ = [
+    "launch_acp",
+    "launch_acp_docker",
+    "check_server",
+    "shutdown_server",
+    "wait_for_server" "LocalAcpServer",
+    "RemoteAcpServer",
+]
 
 _FILE = Union[str, pathlib.Path]
 
 
 class ServerProtocol(Protocol):
-    def __enter__(self) -> ServerProtocol:
-        ...
-
-    def __exit__(self, *exc: Any) -> None:
-        ...
-
-    def close(self) -> None:
-        ...
-
-    @property
-    def closed(self) -> bool:
-        ...
-
-    def check(self, timeout: Optional[float] = None) -> bool:
-        ...
-
     @property
     def channel(self) -> grpc.Channel:
         ...
+
+
+def check_server(server: ServerProtocol, timeout: Optional[float] = None) -> bool:
+    try:
+        res = HealthStub(server.channel).Check(
+            request=HealthCheckRequest(),
+            timeout=timeout,
+        )
+        if res.status == HealthCheckResponse.ServingStatus.SERVING:
+            return True
+    except grpc.RpcError:
+        pass
+    return False
+
+
+def wait_for_server(server: ServerProtocol, timeout: float) -> None:
+    start_time = time.time()
+    while time.time() - start_time <= timeout:
+        if check_server(server, timeout=timeout / 3.0):
+            break
+        else:
+            # Try again until the timeout is reached. We add a small
+            # delay s.t. the server isn't bombarded with requests.
+            time.sleep(timeout / 100)
+    else:
+        raise RuntimeError(f"The gRPC server is not serving requests after {timeout}s.")
+
+
+def shutdown_server(server: ServerProtocol) -> None:
+    ControlStub(server.channel).ShutdownServer(request=Empty())
+
+
+class RemoteAcpServer:
+    def __init__(self, hostname: str, port: int):
+        self._hostname = hostname
+        self._port = port
+        self._channel = None
+
+    @property
+    def channel(self) -> grpc.Channel:
+        # TODO: implement secure channel
+        if self._channel is None:
+            self._channel = grpc.insecure_channel(f"{self._hostname}:{self._port}")
+        return self._channel
 
 
 class LocalAcpServer:
@@ -84,18 +126,6 @@ class LocalAcpServer:
     def closed(self) -> bool:
         return not self._finalizer.alive
 
-    def check(self, timeout: Optional[float] = None) -> bool:
-        try:
-            res = HealthStub(self.channel).Check(
-                request=HealthCheckRequest(),
-                timeout=timeout,
-            )
-            if res.status == HealthCheckResponse.ServingStatus.SERVING:
-                return True
-        except grpc.RpcError:
-            pass
-        return False
-
     @property
     def channel(self) -> grpc.Channel:
         if self.closed:
@@ -123,6 +153,42 @@ def launch_acp(
             binary_path,
             f"--server-address=0.0.0.0:{port}",
         ],
+        stdout=stdout,
+        stderr=stderr,
+        text=True,
+    )
+    return LocalAcpServer(process=process, port=port, stdout=stdout, stderr=stderr)
+
+
+def launch_acp_docker(
+    *,
+    image_name: str = "ghcr.io/pyansys/pyacp-private:latest",
+    license_server: str,
+    mount_directories: Mapping[str, str] = MappingProxyType({}),
+    port: Optional[int] = None,
+    stdout_file: _FILE = os.devnull,
+    stderr_file: _FILE = os.devnull,
+) -> ServerProtocol:
+    if port is None:
+        port = _find_free_port()
+    stdout = open(stdout_file, mode="w", encoding="utf-8")
+    stderr = open(stderr_file, mode="w", encoding="utf-8")
+    cmd = ["docker", "run"]
+    for source_dir, target_dir in mount_directories.items():
+        cmd += ["-v", f"/{pathlib.Path(source_dir).as_posix().replace(':', '')}:{target_dir}"]
+    if sys.platform == "linux":
+        cmd += ["-u", f"{os.getuid()}:{os.getgid()}"]
+    cmd += [
+        "-p",
+        f"{port}:50051/tcp",
+        "-e",
+        f"ANSYSLMD_LICENSE_FILE={license_server}",
+        "-e",
+        "HOME=/home/container",
+        image_name,
+    ]
+    process = subprocess.Popen(
+        cmd,
         stdout=stdout,
         stderr=stderr,
         text=True,

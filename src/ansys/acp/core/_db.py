@@ -6,8 +6,8 @@ from ansys.api.acp.v0.model_pb2 import ListModelsRequest
 from ansys.api.acp.v0.model_pb2 import ModelRequest
 from ansys.api.acp.v0.model_pb2_grpc import ModelStub
 
-from ._launcher import ServerProtocol
 from ._model import Model
+from ._server import ServerProtocol
 from ._typing_helper import PATH as _PATH
 
 

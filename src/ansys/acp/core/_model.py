@@ -21,12 +21,12 @@ from ansys.api.acp.v0.modeling_group_pb2 import ListModelingGroupsRequest
 from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
 
 from ._data_objects.model import Model as _ModelData
-from ._launcher import ServerProtocol
 from ._modeling_group import ModelingGroup
 from ._property_helper import grpc_data_getter
 from ._property_helper import grpc_data_property
 from ._property_helper import grpc_data_setter
 from ._resource_paths import join as _rp_join
+from ._server import ServerProtocol
 from ._typing_helper import PATH as _PATH
 
 
