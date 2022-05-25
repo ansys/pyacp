@@ -144,6 +144,28 @@ def launch_acp(
     stdout_file: _FILE = os.devnull,
     stderr_file: _FILE = os.devnull,
 ) -> ServerProtocol:
+    """Launch a local ACP server.
+
+    Launch the ``acp_grpcserver`` executable on the local machine.
+
+    Parameters
+    ----------
+    binary_path :
+        Path to the ``acp_grpcserver`` executable.
+    port :
+        Port on which the server should listen to gRPC calls. If no port
+        is given, a free port will be chosen automatically.
+    stdout_file :
+        Path of the file to which the server output is written.
+    stderr_file :
+        Path of the file to which the server error log is written.
+
+    Returns
+    -------
+    :
+        Server object which can be used to control the server, and
+        instantiate objects on the server.
+    """
     if port is None:
         port = _find_free_port()
     stdout = open(stdout_file, mode="w", encoding="utf-8")
