@@ -110,6 +110,14 @@ jobs:
           path: doc/build/latex/*.pdf
           retention-days: 7
 
+      - name: Deploy Documentation
+        if: github.ref == 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: doc/build/html
+          clean: true
+
   # Release:
   #   if: contains(github.ref, 'refs/tags')
   #   needs: [main, style, docs]
