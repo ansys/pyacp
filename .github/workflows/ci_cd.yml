@@ -89,6 +89,7 @@ jobs:
       - name: Build HTML
         run: |
           poetry run make -C doc html SPHINXOPTS="-W"
+          touch doc/build/html/.nojekyll
 
       - name: Build PDF Documentation
         run: |
