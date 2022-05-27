@@ -50,6 +50,18 @@ class _IgnorableEntity(str, Enum):
 
 
 class Model:
+    """Defines an ACP Model.
+
+    Wrapper for accessing an ACP Model residing on a server.
+
+    Parameters
+    ----------
+    resource_path :
+        The Resource Path identifying the Model.
+    server :
+        The ACP server on which the model resides.
+    """
+
     COLLECTION_LABEL = "models"
 
     # TODO: make resource_path have a non-str type?
@@ -102,6 +114,10 @@ class Model:
         setattr(self._data_object, name, value)
 
     name = grpc_data_property("name")
+    """The name of the model"""
+
+    # TODO: document further properties, or autogenerate docstring from .proto files.
+
     use_nodal_thicknesses = grpc_data_property("use_nodal_thicknesses")
     draping_offset_correction = grpc_data_property("draping_offset_correction")
     angle_tolerance = grpc_data_property("angle_tolerance")

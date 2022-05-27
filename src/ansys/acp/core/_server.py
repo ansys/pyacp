@@ -191,6 +191,7 @@ def launch_acp_docker(
     stdout_file: _FILE = os.devnull,
     stderr_file: _FILE = os.devnull,
 ) -> ServerProtocol:
+    """Launch an ACP server locally in a Docker container."""
     if port is None:
         port = _find_free_port()
     stdout = open(stdout_file, mode="w", encoding="utf-8")
@@ -221,8 +222,10 @@ def launch_acp_docker(
 def _find_free_port() -> int:
     """Find a free port on localhost.
 
-    Note that there is a race condition between finding the free port
-    here, and binding to it from the gRPC server.
+    .. note::
+
+        There is no guarantee that the port is *still* free when it is
+        used by the calling code.
     """
     with closing(socket.socket()) as sock:
         sock.bind(("", 0))  # bind to a free port
