@@ -37,23 +37,33 @@ Sphinx =  {version = "^4.4", optional = true}
 pyansys_sphinx_theme =  {version = "^0.2", optional = true}
 sphinx-copybutton =  {version = "^0.4", optional = true}
 sphinx-tabs = {version = "^3.3.1", optional = true}
-
+numpydoc = {version = "^1.3.1", optional = true}
 pre-commit = {version = "^2.17.0", optional = true}
 mypy = {version = "^0.931", optional = true}
-
 pytest = {version = "^7.0", optional = true}
 pytest-cov = {version = "^3.0", optional = true}
-
 ipykernel = {version = "^6.9.0", optional = true}
 types-protobuf = {version = "^3.19.12", optional = true}
 jupyter = {version = "^1.0.0", optional = true}
 notebook = {version = "^6.4.11", optional = true}
-
 twine = {version = ">=3.8", optional = true}
-numpydoc = {version = "^1.3.1", optional = true}
 
 [tool.poetry.extras]
-docs = ["Sphinx", "pyansys_sphinx_theme", "sphinx-copybutton", "sphinx_tabs", "numpydoc"]
+all = [
+    "Sphinx",
+    "pyansys_sphinx_theme",
+    "sphinx-copybutton",
+    "sphinx_tabs",
+    "numpydoc",
+    "pre-commit",
+    "mypy",
+    "types-protobuf",
+    "ipykernel",
+    "jupyter",
+    "notebook",
+    "twine",
+]
+docs = ["Sphinx", "pyansys_sphinx_theme", "sphinx-copybutton", "sphinx-tabs", "numpydoc"]
 pre-commit = ["pre-commit", "mypy", "types-protobuf"]
 test = ["pytest", "pytest-cov"]
 examples = ["ipykernel", "jupyter", "notebook"]

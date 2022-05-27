@@ -149,7 +149,7 @@ You will need to follow these steps:
 
     .. code:: bash
 
-        poetry install --extras "docs test examples pre-commit build"
+        poetry install --extras all
 
 4. Activate your development virtual environment with:
 
