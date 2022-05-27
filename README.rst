@@ -31,7 +31,7 @@ Alternatively, clone and install in development mode with:
 
 Documentation
 -------------
-TODO: Include a link to the full sphinx documentation.  For example `PyAnsys <https://docs.pyansys.com/>`_
+Full sphinx documentation at https://dev.acp.docs.pyansys.com.
 
 
 Usage
