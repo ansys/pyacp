@@ -41,12 +41,31 @@ _FILE = Union[str, pathlib.Path]
 
 
 class ServerProtocol(Protocol):
+    """Interface definition for ACP gRPC servers."""
+
     @property
     def channel(self) -> grpc.Channel:
         ...
 
 
 def check_server(server: ServerProtocol, timeout: Optional[float] = None) -> bool:
+    """Check if the server responds to health check requests.
+
+    Send a single health check request to the server, and check if it
+    responds.
+
+    Parameters
+    ----------
+    server :
+        The server to which the request is sent.
+    timeout :
+        Optional time in seconds to allow for the server to respond.
+
+    Returns
+    -------
+    :
+        If the server responds, ``True``, otherwise ``False``.
+    """
     try:
         res = HealthStub(server.channel).Check(
             request=HealthCheckRequest(),
@@ -60,6 +79,23 @@ def check_server(server: ServerProtocol, timeout: Optional[float] = None) -> boo
 
 
 def wait_for_server(server: ServerProtocol, timeout: float) -> None:
+    """Wait for the server to respond.
+
+    Repeatedly sends a health check request to the server, returning
+    as soon as the server responds.
+
+    Parameters
+    ----------
+    server :
+        The server to which the requests are sent.
+    timeout :
+        Wait time before raising an exception.
+
+    Raises
+    ------
+    RuntimeError :
+        In case the server still has not responded after ``timeout`` seconds.
+    """
     start_time = time.time()
     while time.time() - start_time <= timeout:
         if check_server(server, timeout=timeout / 3.0):
@@ -73,9 +109,17 @@ def wait_for_server(server: ServerProtocol, timeout: float) -> None:
 
 
 def shutdown_server(server: ServerProtocol) -> None:
+    """Shut down an ACP server via its Control interface.
+
+    Parameters
+    ----------
+    server :
+        The server to shut down.
+    """
     ControlStub(server.channel).ShutdownServer(request=Empty())
 
 
+# NOTE: Currently unused, but could be used with manually starting a server.
 class RemoteAcpServer:
     def __init__(self, hostname: str, port: int):
         self._hostname = hostname
@@ -91,6 +135,27 @@ class RemoteAcpServer:
 
 
 class LocalAcpServer:
+    """Manages an ACP server running on the local machine.
+
+    Wrapper for ACP servers which run as a process on the local machine.
+    This class takes care of terminating the process when the object is
+    either destroyed, or before Python exits (unless it is a hard crash
+    / kill).
+    Can be used as a context manager, to terminate the process when
+    exiting the context.
+
+    Parameters
+    ----------
+    process :
+        The process which is executing the ACP server.
+    port :
+        The port (on localhost) on which the ACP server listens to requests.
+    stdout :
+        Open file handle to which the process output is being written.
+    stderr :
+        Open file handle to which the process error is being written.
+    """
+
     def __init__(self, process: subprocess.Popen[str], port: int, stdout: TextIO, stderr: TextIO):
         self._process = process
         self._port = port
@@ -191,7 +256,33 @@ def launch_acp_docker(
     stdout_file: _FILE = os.devnull,
     stderr_file: _FILE = os.devnull,
 ) -> ServerProtocol:
-    """Launch an ACP server locally in a Docker container."""
+    """Launch an ACP server locally in a Docker container.
+
+    Use ``docker run`` to locally start an ACP Docker container.
+
+    Parameters
+    ----------
+    image_name :
+        The name of the Docker image to launch.
+    license_server :
+        The ``ANSYSLMD_LICENSE_FILE`` environment variable that is passed
+        to the Docker container.
+    mount_directories :
+        Local directories which should be mounted to the Docker container.
+        The keys contain the path in the context of the host, and the
+        values are the paths as they should appear inside the container.
+    stdout_file :
+        Path (on the host) to which the output of ``docker run`` is redirected.
+    stderr_file :
+        Path (on the host) where the standard error of ``docker run`` is
+        redirected.
+
+    Returns
+    -------
+    :
+        Server object which can be used to control the server, and
+        instantiate objects on the server.
+    """
     if port is None:
         port = _find_free_port()
     stdout = open(stdout_file, mode="w", encoding="utf-8")
