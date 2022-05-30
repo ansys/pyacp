@@ -1,0 +1,37 @@
+﻿ansys.acp.core.LocalAcpServer
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: LocalAcpServer
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      LocalAcpServer.close
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+      LocalAcpServer.channel
+      
+      
+      LocalAcpServer.closed
+      
+   
+   

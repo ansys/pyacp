@@ -1,0 +1,6 @@
+active\_model
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: DB.active_model

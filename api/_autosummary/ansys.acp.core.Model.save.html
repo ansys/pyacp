@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>save &#8212; ansys-acp-core 0.0.dev0 documentation</title>
+    
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    
+        <link href="../../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="update" href="ansys.acp.core.Model.update.html" />
+    <link rel="prev" title="from_file" href="ansys.acp.core.Model.from_file.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><style>
+    .navbar-light {
+        background-color: black !important;
+    }
+</style>
+
+<div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="https://docs.pyansys.com/">
+  <img src="../../_static/pyansys-logo-black-cropped.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon" >
+      <i class="fas fa-bars" style="color:#fff; font-size:28px;"></i>
+    </span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  API Reference
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/pyansys/pyacp-private" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+    
+        <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../../index.html">PyACP</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >API Reference</a> » </li>
+          <li class="nav-item nav-item-2"><a href="../tree_items.html" >ACP Objects</a> » </li>
+          <li class="nav-item nav-item-3"><a href="ansys.acp.core.Model.html" accesskey="U">ansys.acp.core.Model</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">save</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../server.html">
+   Server Management
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ansys.acp.core.launch_acp.html">
+     launch_acp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ansys.acp.core.launch_acp_docker.html">
+     launch_acp_docker
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ansys.acp.core.check_server.html">
+     check_server
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ansys.acp.core.shutdown_server.html">
+     shutdown_server
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ansys.acp.core.wait_for_server.html">
+     wait_for_server
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="ansys.acp.core.LocalAcpServer.html">
+     ansys.acp.core.LocalAcpServer
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.LocalAcpServer.close.html">
+       close
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.LocalAcpServer.channel.html">
+       channel
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.LocalAcpServer.closed.html">
+       closed
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="ansys.acp.core.RemoteAcpServer.html">
+     ansys.acp.core.RemoteAcpServer
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.RemoteAcpServer.channel.html">
+       channel
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../db.html">
+   Database
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="ansys.acp.core.DB.html">
+     ansys.acp.core.DB
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.DB.clear.html">
+       clear
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.DB.import_model.html">
+       import_model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.DB.active_model.html">
+       active_model
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../tree_items.html">
+   ACP Objects
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="ansys.acp.core.Model.html">
+     ansys.acp.core.Model
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.create_modeling_group.html">
+       create_modeling_group
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.from_fe_file.html">
+       from_fe_file
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.from_file.html">
+       from_file
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       save
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.update.html">
+       update
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.angle_tolerance.html">
+       angle_tolerance
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.draping_offset_correction.html">
+       draping_offset_correction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.minimum_analysis_ply_thickness.html">
+       minimum_analysis_ply_thickness
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.modeling_groups.html">
+       modeling_groups
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.name.html">
+       name
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.relative_thickness_tolerance.html">
+       relative_thickness_tolerance
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.use_default_section_tolerances.html">
+       use_default_section_tolerances
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html">
+       use_nodal_thicknesses
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="ansys.acp.core.ModelingGroup.html">
+     ansys.acp.core.ModelingGroup
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ModelingGroup.name.html">
+       name
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="save">
+<h1>save<a class="headerlink" href="#save" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="ansys.acp.core.Model.save">
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.save" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.12)"><em>Union</em></a><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.12)"><em>os.PathLike</em></a><em>]</em>) – </p></li>
+<li><p><strong>save_cache</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+              </div>
+              
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright (c) 2022 ANSYS, Inc. All rights reserved.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

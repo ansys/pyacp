@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
     
   <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
@@ -41,7 +42,7 @@
     <script src="_static/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Generate APIs Documentation" href="class_documentation.html" />
+    <link rel="next" title="API Reference" href="api/index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -88,8 +89,8 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="class_documentation.html">
-  Generate APIs Documentation
+ <a class="reference internal nav-link" href="api/index.html">
+  API Reference
  </a>
 </li>
 
@@ -104,7 +105,7 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/pyansys/pyacp" rel="noopener" target="_blank" title="GitHub">
+          <a class="nav-link" href="https://github.com/pyansys/pyacp-private" rel="noopener" target="_blank" title="GitHub">
             <span><i class="fab fa-github-square"></i></span>
             <label class="sr-only">GitHub</label>
           </a>
@@ -170,8 +171,8 @@
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#project-overview">
-   Project Overview
+  <a class="reference internal nav-link" href="#overview">
+   Overview
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -185,30 +186,62 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#usage">
-   Usage
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#testing">
-   Testing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#license">
-   License
+  <a class="reference internal nav-link" href="#getting-started">
+   Getting Started
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#code-examples">
-     Code Examples
+    <a class="reference internal nav-link" href="#launching-acp-locally">
+     Launching ACP locally
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#launching-acp-in-a-docker-container">
+     Launching ACP in a Docker container
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-usage">
+     Basic Usage
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rendered-python-code">
-   Rendered Python Code
+  <a class="reference internal nav-link" href="#development-setup">
+   Development Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Installation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing">
+     Testing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pre-commit-hooks">
+     Pre-commit hooks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Documentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distribution">
+     Distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#license">
+   License
   </a>
  </li>
 </ul>
@@ -232,71 +265,161 @@
               
               <div>
                 
-  <section id="pyacp">
+  <div class="toctree-wrapper compound">
+</div>
+<section id="pyacp">
 <h1>PyACP<a class="headerlink" href="#pyacp" title="Permalink to this headline">¶</a></h1>
-<p>TODO: badges</p>
-<section id="project-overview">
-<h2>Project Overview<a class="headerlink" href="#project-overview" title="Permalink to this headline">¶</a></h2>
-<p>TODO: Provide a description of your PyAnsys Python library.</p>
+<p><a class="reference external" href="https://docs.pyansys.com/"><img alt="PyAnsys" src="https://img.shields.io/badge/Py-Ansys-ffc107.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAABDklEQVQ4jWNgoDfg5mD8vE7q/3bpVyskbW0sMRUwofHD7Dh5OBkZGBgW7/3W2tZpa2tLQEOyOzeEsfumlK2tbVpaGj4N6jIs1lpsDAwMJ278sveMY2BgCA0NFRISwqkhyQ1q/Nyd3zg4OBgYGNjZ2ePi4rB5loGBhZnhxTLJ/9ulv26Q4uVk1NXV/f///////69du4Zdg78lx//t0v+3S88rFISInD59GqIH2esIJ8G9O2/XVwhjzpw5EAam1xkkBJn/bJX+v1365hxxuCAfH9+3b9/+////48cPuNehNsS7cDEzMTAwMMzb+Q2u4dOnT2vWrMHu9ZtzxP9vl/69RVpCkBlZ3N7enoDXBwEAAA+YYitOilMVAAAAAElFTkSuQmCC" /></a> <a class="reference external" href="https://pypi.org/project/ansys-acp-core"><img alt="Python" src="https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue" /></a> <a class="reference external" href="https://pypi.org/project/ansys-acp-core"><img alt="PyPI" src="https://img.shields.io/pypi/v/pyacp.svg?logo=python&amp;logoColor=white" /></a> <a class="reference external" href="https://github.com/pyansys/pyacp-private/actions/workflows/ci_cd.yml"><img alt="GH-CI" src="https://github.com/pyansys/pyacp-private/actions/workflows/ci_cd.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/pyansys/pyacp-private"><img alt="Codecov" src="https://codecov.io/gh/pyansys/pyacp-private/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/MIT"><img alt="MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a> <a class="reference external" href="https://github.com/psf/black"><img alt="Black" src="https://img.shields.io/badge/code%20style-black-000000.svg?style=flat" /></a></p>
+<p>A Python client for Ansys Composite PrepPost (ACP).</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>TODO: Include installation directions.  Note that this README will be
-included in your PyPI package, so be sure to include <code class="docutils literal notranslate"><span class="pre">pip</span></code>
-directions along with developer installation directions.  For example.</p>
-<p>Install &lt;PyAnsys Library&gt; with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ansys</span><span class="o">-&lt;</span><span class="n">product</span><span class="o">/</span><span class="n">service</span><span class="o">&gt;-&lt;</span><span class="n">library</span><span class="o">&gt;</span>
+<p>Install PyACP with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyansys</span><span class="o">/</span><span class="n">pyacp</span><span class="o">-</span><span class="n">private</span>
 </pre></div>
 </div>
-<p>Alternatively, clone and install in development mode with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyansys</span><span class="o">/</span>
-<span class="n">cd</span> <span class="o">&lt;</span><span class="n">PyAnsys</span><span class="o">-</span><span class="n">Library</span><span class="o">&gt;</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
-</pre></div>
-</div>
+<p>For installing PyACP in development mode, see the <a class="reference internal" href="#development-setup">Development Setup</a> instructions below.</p>
 </section>
 <section id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
-<p>Full sphinx documentation at <a class="reference external" href="https://dev.acp.docs.pyansys.com">https://dev.acp.docs.pyansys.com</a>.</p>
+<p>The PyACP documentation can be viewed online at <a class="reference external" href="https://dev.acp.docs.pyansys.com">https://dev.acp.docs.pyansys.com</a>.</p>
 </section>
-<section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>TODO: It’s best to provide a sample code or even a figure demonstrating the usage of your library.  For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ansys.</span><span class="o">&lt;</span><span class="n">product</span><span class="o">/</span><span class="n">service</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">library</span><span class="o">&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">my_object</span><span class="o">.&lt;</span><span class="n">library</span><span class="o">&gt;</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">my_object</span><span class="o">.</span><span class="n">foo</span><span class="p">()</span>
-<span class="go">&#39;bar&#39;</span>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<section id="launching-acp-locally">
+<h3>Launching ACP locally<a class="headerlink" href="#launching-acp-locally" title="Permalink to this headline">¶</a></h3>
+<p>You can launch the ACP server locally by using <code class="docutils literal notranslate"><span class="pre">launch_acp</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">launch_acp</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="n">launch_acp</span><span class="p">(</span><span class="n">server_bin</span><span class="o">=</span><span class="s2">&quot;&lt;PATH_TO_ACP_GRPCSERVER&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;PATH_TO_ACP_GRPCSERVER&gt;</span></code> is the location of the <code class="docutils literal notranslate"><span class="pre">acp_grpcserver</span></code> executable
+in your Ansys installation. For example, <code class="docutils literal notranslate"><span class="pre">r&quot;C:\Program</span> <span class="pre">Files\ANSYS</span> <span class="pre">Inc\v231\ACP\acp_grpcserver.exe&quot;</span></code>.</p>
+</section>
+<section id="launching-acp-in-a-docker-container">
+<h3>Launching ACP in a Docker container<a class="headerlink" href="#launching-acp-in-a-docker-container" title="Permalink to this headline">¶</a></h3>
+<p>Alternatively, you can use Docker to run the ACP server. After installing Docker on your
+machine, you can use <code class="docutils literal notranslate"><span class="pre">launch_acp_docker</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">launch_acp_docker</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="n">launch_acp_docker</span><span class="p">(</span><span class="n">license_server</span><span class="o">=</span><span class="s2">&quot;&lt;LICENSE_SERVER&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">&lt;LICENSE_SERVER&gt;</span></code> is the address of your license server, e.g. <code class="docutils literal notranslate"><span class="pre">1055&#64;my.licenseserver.com</span></code></p>
+<p>Optionally, you can mount a local directory in the Docker container. This will give the container
+access to the files in this directory.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="o">=</span> <span class="n">launch_acp_docker</span><span class="p">(</span>
+    <span class="n">license_server</span><span class="o">=</span><span class="s2">&quot;&lt;LICENSE_SERVER&gt;&quot;</span><span class="p">,</span>
+    <span class="n">mount_directories</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;&lt;LOCAL_DIRECTORY&gt;&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/container/mounted_data&quot;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;LOCAL_DIRECTORY&gt;</span></code> is the path to the mounted directory on your machine, and
+<code class="docutils literal notranslate"><span class="pre">/home/container/mounted_data</span></code> is the path under which the container will see these files.</p>
+</section>
+<section id="basic-usage">
+<h3>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h3>
+<p>Once the server is running, we can start working with PyACP. For example, to load an ACP
+Model from an existing file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;&lt;MODEL_PATH&gt;&quot;</span><span class="p">,</span> <span class="n">server</span><span class="o">=</span><span class="n">server</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;ACP Model&#39;</span>
 </pre></div>
 </div>
 </section>
+</section>
+<section id="development-setup">
+<h2>Development Setup<a class="headerlink" href="#development-setup" title="Permalink to this headline">¶</a></h2>
+<section id="id1">
+<h3>Installation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Installing PyACP in developer mode allows you to modify the source and enhance it. Before contributing to the project,
+please refer to the <a class="reference external" href="https://dev.docs.pyansys.com/">PyAnsys Developer’s guide</a>.</p>
+<p>You will need to follow these steps:</p>
+<ol class="arabic">
+<li><p>Start by cloning this repository, and entering the newly created directory:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/pyansys/pyacp-private
+<span class="nb">cd</span> pyacp-private
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Make sure you have the latest version of poetry:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m pip install pipx
+pipx ensurepath
+pipx install poetry
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install the project and all its development dependencies using poetry. This also takes care of
+creating a new virtual environment:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry install --extras all
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Activate your development virtual environment with:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry shell
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</section>
 <section id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
-<p>TODO: You can feel free to include this at the README level or in CONTRIBUTING.md</p>
+<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<p>The PyACP test suite uses <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a>. You can run it with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest --license-server<span class="o">=</span>&lt;YOUR_LICENSE_SERVER&gt;
+</pre></div>
+</div>
+</section>
+<section id="pre-commit-hooks">
+<h3>Pre-commit hooks<a class="headerlink" href="#pre-commit-hooks" title="Permalink to this headline">¶</a></h3>
+<p>Style and linter checks are run through the <a class="reference external" href="https://pre-commit.com/">pre-commit</a> tool. You can run these checks with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit run --all-files
+</pre></div>
+</div>
+<p>We also recommend installing pre-commit into your repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit install
+</pre></div>
+</div>
+<p>This will run the pre-commit hooks on the changed files before every <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>. If you ever
+need to create a commit without running the hooks, you can skip them with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-n</span></code>.</p>
+</section>
+<section id="id2">
+<h3>Documentation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>The documentation can be built locally using <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>.</p>
+<p>On Linux &amp; MacOS:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make -C doc html
+</pre></div>
+</div>
+<p>On Windows:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">cd</span> doc; .\make.bat html
+</pre></div>
+</div>
+<p>The generated HTML files can be viewed with the browser of your choice.</p>
+</section>
+<section id="distribution">
+<h3>Distribution<a class="headerlink" href="#distribution" title="Permalink to this headline">¶</a></h3>
+<p>The following commands can be used to build and check the PyACP package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry build
+twine check dist/*
+</pre></div>
+</div>
+<p>This creates both a source distribution, and a wheel file.</p>
+</section>
 </section>
 <section id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">PyACP</span></code> is licensed under the MIT license. Please see the <a class="reference external" href="https://github.com/pyansys/pyacp/raw/master/LICENSE">LICENSE</a> for more details.</p>
-<div class="toctree-wrapper compound">
-</div>
-<section id="code-examples">
-<h3>Code Examples<a class="headerlink" href="#code-examples" title="Permalink to this headline">¶</a></h3>
-<p>Here’s a quick preview for how Python code looks using the
-<code class="docutils literal notranslate"><span class="pre">pyansys-acp-core</span></code>.  For more examples, click the links at the
-top of the page to see function, method, and class documentation.</p>
-</section>
-</section>
-<section id="rendered-python-code">
-<h2>Rendered Python Code<a class="headerlink" href="#rendered-python-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">num</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Positive number&quot;</span><span class="p">)</span>
-<span class="gp">... </span><span class="k">elif</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Zero&quot;</span><span class="p">)</span>
-<span class="gp">... </span><span class="k">else</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Negative number&quot;</span><span class="p">)</span>
-<span class="go">Positive number</span>
-</pre></div>
-</div>
+<p><code class="docutils literal notranslate"><span class="pre">PyACP</span></code> is licensed under the MIT license. Please see the <a class="reference external" href="https://github.com/pyansys/pyacp-private/raw/main/LICENSE">LICENSE</a> for more details.</p>
 </section>
 </section>
 

@@ -1,0 +1,6 @@
+﻿wait\_for\_server
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autofunction:: wait_for_server

@@ -1,0 +1,32 @@
+﻿ansys.acp.core.ModelingGroup
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ModelingGroup
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ModelingGroup.name
+      
+   
+   

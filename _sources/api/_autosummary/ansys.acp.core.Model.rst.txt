@@ -1,0 +1,68 @@
+﻿ansys.acp.core.Model
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Model
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Model.create_modeling_group
+      
+      
+      Model.from_fe_file
+      
+      
+      Model.from_file
+      
+      
+      Model.save
+      
+      
+      Model.update
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Model.angle_tolerance
+      
+      
+      Model.draping_offset_correction
+      
+      
+      Model.minimum_analysis_ply_thickness
+      
+      
+      Model.modeling_groups
+      
+      
+      Model.name
+      
+      
+      Model.relative_thickness_tolerance
+      
+      
+      Model.use_default_section_tolerances
+      
+      
+      Model.use_nodal_thicknesses
+      
+   
+   

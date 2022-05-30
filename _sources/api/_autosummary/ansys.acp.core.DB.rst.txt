@@ -1,0 +1,37 @@
+﻿ansys.acp.core.DB
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: DB
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      DB.clear
+      
+      
+      DB.import_model
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+      DB.active_model
+      
+   
+   
