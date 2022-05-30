@@ -16,7 +16,7 @@ html_theme = "pyansys_sphinx_theme"
 
 # specify the location of your github repo
 html_theme_options = {
-    "github_url": "https://github.com/pyansys/pyacp",
+    "github_url": "https://github.com/pyansys/pyacp-private",
     "show_prev_next": False,
     "show_breadcrumbs": True,
     "additional_breadcrumbs": [("PyAnsys", "https://docs.pyansys.com/")],
@@ -27,10 +27,15 @@ html_short_title = "PyACP"
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
-    "numpydoc",
     "sphinx.ext.intersphinx",
+    "sphinx.ext.autodoc.typehints",
+    "sphinx.ext.napoleon",
+    "numpydoc",
     "sphinx_copybutton",
+    "sphinx_tabs.tabs",
 ]
+
+autodoc_typehints = "description"
 
 # Intersphinx mapping
 intersphinx_mapping = {
@@ -53,14 +58,14 @@ numpydoc_validate = True
 numpydoc_validation_checks = {
     "GL06",  # Found unknown section
     "GL07",  # Sections are in the wrong order.
-    "GL08",  # The object does not have a docstring
+    # "GL08",  # The object does not have a docstring
     "GL09",  # Deprecation warning should precede extended summary
     "GL10",  # reST directives {directives} must be followed by two colons
     "SS01",  # No summary found
     "SS02",  # Summary does not start with a capital letter
-    # "SS03", # Summary does not end with a period
+    "SS03",  # Summary does not end with a period
     "SS04",  # Summary contains heading whitespaces
-    # "SS05", # Summary must start with infinitive verb, not third person
+    "SS05",  # Summary must start with infinitive verb, not third person
     "RT02",  # The first line of the Returns section should contain only the
     # type, unless multiple values are being returned"
 }
