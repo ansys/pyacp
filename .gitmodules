@@ -1,3 +1,0 @@
-[submodule "tests/acp_tests_common"]
-	path = tests/acp_tests_common
-	url = https://github.com/ansys/acp-tests-common.git
