@@ -66,7 +66,7 @@ all = [
     "pytest-cov"
 ]
 docs = ["Sphinx", "pyansys_sphinx_theme", "sphinx-copybutton", "sphinx-tabs", "numpydoc"]
-pre-commit = ["pre-commit", "mypy", "types-protobuf"]
+pre-commit = ["pre-commit", "mypy", "types-protobuf", "pytest"]
 test = ["pytest", "pytest-cov"]
 examples = ["ipykernel", "jupyter", "notebook"]
 build = ["twine"]
@@ -81,6 +81,7 @@ convention = "numpy"
 [tool.mypy]
 python_version = 3.7
 strict = true
+mypy_path = "$MYPY_CONFIG_FILE_DIR/src"
 
 [[tool.mypy.overrides]]
 module = [

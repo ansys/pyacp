@@ -13,7 +13,6 @@ from typing import Any
 from typing import Mapping
 from typing import Optional
 from typing import TextIO
-from typing import Union
 
 try:
     from typing import Protocol
@@ -28,6 +27,8 @@ from grpc_health.v1.health_pb2_grpc import HealthStub
 from ansys.api.acp.v0.base_pb2 import Empty
 from ansys.api.acp.v0.control_pb2_grpc import ControlStub
 
+from ._typing_helper import PATH as _PATH
+
 __all__ = [
     "launch_acp",
     "launch_acp_docker",
@@ -36,8 +37,6 @@ __all__ = [
     "wait_for_server" "LocalAcpServer",
     "RemoteAcpServer",
 ]
-
-_FILE = Union[str, pathlib.Path]
 
 
 class ServerProtocol(Protocol):
@@ -204,10 +203,10 @@ class LocalAcpServer:
 
 
 def launch_acp(
-    binary_path: _FILE,
+    binary_path: _PATH,
     port: Optional[int] = None,
-    stdout_file: _FILE = os.devnull,
-    stderr_file: _FILE = os.devnull,
+    stdout_file: _PATH = os.devnull,
+    stderr_file: _PATH = os.devnull,
 ) -> ServerProtocol:
     """Launch a local ACP server.
 
@@ -253,8 +252,8 @@ def launch_acp_docker(
     license_server: str,
     mount_directories: Mapping[str, str] = MappingProxyType({}),
     port: Optional[int] = None,
-    stdout_file: _FILE = os.devnull,
-    stderr_file: _FILE = os.devnull,
+    stdout_file: _PATH = os.devnull,
+    stderr_file: _PATH = os.devnull,
 ) -> ServerProtocol:
     """Launch an ACP server locally in a Docker container.
 

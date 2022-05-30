@@ -2,20 +2,30 @@
 import os
 import pathlib
 import tempfile
+from dataclasses import dataclass
+from typing import Any
+from typing import Callable
+from typing import Dict
+from typing import Generator
+from typing import List
 
 import pytest
+from ansys.acp.core import launch_acp
 from ansys.acp.core import launch_acp_docker
 from ansys.acp.core import shutdown_server
 from ansys.acp.core import wait_for_server
+from ansys.acp.core._server import ServerProtocol
+from ansys.acp.core._typing_helper import PATH
 
 __all__ = [
     "pytest_addoption",
+    "model_data_dir_server",
+    "model_data_dir_host",
+    "convert_temp_path",
     "grpc_server",
     "check_grpc_server_before_run",
-    # "grpc_channel",
-    # "model_data_dir",
-    # "model_stub",
-    "clear_models_before_run",  # TODO: add back
+    "db_kwargs",
+    # "clear_models_before_run",  # TODO: add back
 ]
 
 TEST_ROOT_DIR = pathlib.Path(__file__).parent
@@ -23,15 +33,16 @@ TEST_ROOT_DIR = pathlib.Path(__file__).parent
 SERVER_BIN_OPTION_KEY = "--server-bin"
 LICENSE_SERVER_OPTION_KEY = "--license-server"
 NO_SERVER_LOGS_OPTION_KEY = "--no-server-log-files"
+SERVER_STARTUP_TIMEOUT = 30.0
 
 # Add pytest command-line options
-def pytest_addoption(parser):
+def pytest_addoption(parser: pytest.Parser) -> None:
     """Add command-line options to pytest."""
-    # parser.addoption(
-    #     SERVER_BIN_OPTION_KEY,
-    #     action="store",
-    #     help="Path of the gRPC server executable",
-    # )
+    parser.addoption(
+        SERVER_BIN_OPTION_KEY,
+        action="store",
+        help="Path of the gRPC server executable",
+    )
     parser.addoption(
         LICENSE_SERVER_OPTION_KEY,
         action="store",
@@ -44,37 +55,108 @@ def pytest_addoption(parser):
     )
 
 
-@pytest.fixture(scope="session")
-def _server_log_stdout(request):
-    if request.config.getoption(NO_SERVER_LOGS_OPTION_KEY):
-        return os.devnull
-    return TEST_ROOT_DIR / "server_log_out.txt"
+@dataclass
+class _Config:
+    server_launcher: Callable[[], ServerProtocol]
+    temp_path_converter: Callable[[PATH], str]
+    model_data_dir_server: pathlib.PurePath
 
 
 @pytest.fixture(scope="session")
-def _server_log_stderr(request):
+def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _Config:
+    """Parse test options and set up server handling."""
+    server_bin = request.config.getoption(SERVER_BIN_OPTION_KEY)
+    license_server = request.config.getoption(LICENSE_SERVER_OPTION_KEY)
+
+    if bool(server_bin) == bool(license_server):
+        raise ValueError(
+            f"Exactly one of '{SERVER_BIN_OPTION_KEY}' or '{LICENSE_SERVER_OPTION_KEY}' must be specified."
+        )
+
     if request.config.getoption(NO_SERVER_LOGS_OPTION_KEY):
-        return os.devnull
-    return TEST_ROOT_DIR / "server_log_err.txt"
+        server_log_stdout: PATH = os.devnull
+        server_log_stderr: PATH = os.devnull
+    else:
+        server_log_stdout = TEST_ROOT_DIR / "server_log_out.txt"
+        server_log_stderr = TEST_ROOT_DIR / "server_log_err.txt"
+
+    if server_bin:
+        # Run the ACP server directly, with the provided binary.
+        # This assumes that licensing is already configured on the host.
+
+        _model_data_dir_server: pathlib.PurePath = pathlib.Path(model_data_dir_host)
+
+        def _convert_temp_path(external_path: PATH) -> str:
+            return str(external_path)
+
+        def _launch_server() -> ServerProtocol:
+            return launch_acp(
+                binary_path=server_bin,
+                stdout_file=server_log_stdout,
+                stderr_file=server_log_stderr,
+            )
+
+    else:
+        # If no binary is provided, use the Docker container for running
+        # the ACP server.
+        _model_data_dir_server = pathlib.PurePosixPath("/home/container/mounted_data")
+
+        def _convert_temp_path(external_path: PATH) -> str:
+            base_tmp_path = pathlib.PurePosixPath("/tmp")
+            relative_external_path = (
+                pathlib.Path(external_path).relative_to(tempfile.gettempdir()).as_posix()
+            )
+            return str(base_tmp_path / relative_external_path)
+
+        def _launch_server() -> ServerProtocol:
+            tmp_dir = tempfile.gettempdir()
+            return launch_acp_docker(
+                license_server=license_server,
+                mount_directories={
+                    str(model_data_dir_host): str(_model_data_dir_server),
+                    tmp_dir: _convert_temp_path(tmp_dir),
+                },
+                stdout_file=server_log_stdout,
+                stderr_file=server_log_stderr,
+            )
+
+    return _Config(
+        server_launcher=_launch_server,
+        temp_path_converter=_convert_temp_path,
+        model_data_dir_server=_model_data_dir_server,
+    )
 
 
-def _get_option_required(request, option_name):
-    option_value = request.config.getoption(option_name)
-    assert option_value, f"The '{option_name}' option must be specified."
-    return option_value
+@pytest.fixture(scope="session")
+def model_data_dir_host() -> pathlib.Path:
+    """Test data path, in the host filesystem."""
+    res_path = (TEST_ROOT_DIR / "acp_tests_common" / "data").resolve()
+    assert res_path.is_dir(), f"Could not find data directory at '{res_path}'."
+    return res_path
 
 
-# gRPC server handling
+@pytest.fixture(scope="session")
+def model_data_dir_server(_test_config: _Config) -> pathlib.PurePath:
+    """Test data path, in the server filesystem."""
+    return _test_config.model_data_dir_server
+
+
+@pytest.fixture(scope="session")
+def convert_temp_path(_test_config: _Config) -> Callable[[PATH], str]:
+    """Convert temporary paths from the host to the server filesystem."""
+    return _test_config.temp_path_converter
 
 
 @pytest.fixture
-def grpc_server(_grpc_server_list):
+def grpc_server(_grpc_server_list: List[ServerProtocol]) -> Generator[ServerProtocol, None, None]:
     """Provide the currently active gRPC server."""
     yield _grpc_server_list[0]
 
 
 @pytest.fixture(scope="session")
-def _grpc_server_list(_start_grpc_server):
+def _grpc_server_list(
+    _start_grpc_server: Callable[[], ServerProtocol]
+) -> Generator[List[ServerProtocol], None, None]:
     """Start and terminate the grpc server.
 
     This fixture yields a one-element list containing the server resources.
@@ -85,104 +167,42 @@ def _grpc_server_list(_start_grpc_server):
     """
     res = [_start_grpc_server()]
     try:
-        _wait_for_server(res[0])
+        wait_for_server(res[0], timeout=SERVER_STARTUP_TIMEOUT)
         yield res
     finally:
-        _stop_grpc_server(res[0])
+        shutdown_server(res[0])
 
 
 @pytest.fixture(scope="session")
-def _start_grpc_server(
-    request,
-    model_data_dir_external,
-    model_data_dir,
-    convert_temp_path,
-    _server_log_stdout,
-    _server_log_stderr,
-):
+def _start_grpc_server(_test_config: _Config) -> Callable[[], ServerProtocol]:
     """Start the gRPC server."""
-
-    def inner():
-        tmp_dir = tempfile.gettempdir()
-        return launch_acp_docker(
-            license_server=_get_option_required(request, LICENSE_SERVER_OPTION_KEY),
-            mount_directories={
-                model_data_dir_external: model_data_dir,
-                tmp_dir: convert_temp_path(tmp_dir),
-            },
-            stdout_file=_server_log_stdout,
-            stderr_file=_server_log_stderr,
-        )
-
-    return inner
-
-
-# @pytest.fixture(scope="session")
-# def _grpc_server_exe(request):
-#     """Provide the path to the grpc server executable."""
-#     res_path = _get_option_required(request, SERVER_BIN_OPTION_KEY)
-#     assert pathlib.Path(
-#         res_path
-#     ).is_file(), f"Could not find acp_grpcserver executable at '{res_path}'."
-#     return res_path
-
-
-def _stop_grpc_server(server):
-    """Terminate the gRPC server."""
-    shutdown_server(server)
-
-
-def _wait_for_server(server, timeout=30.0):
-    """Wait for the server to start, by calling the health-check endpoint."""
-    wait_for_server(server, timeout=timeout)
+    return _test_config.server_launcher
 
 
 @pytest.fixture
-def _restart_grpc_server(_grpc_server_list, _start_grpc_server):
-    def inner():
-        _stop_grpc_server(_grpc_server_list[0])
+def _restart_grpc_server(
+    _grpc_server_list: List[ServerProtocol], _start_grpc_server: Callable[[], ServerProtocol]
+) -> Callable[[], None]:
+    def inner() -> None:
+        shutdown_server(_grpc_server_list[0])
         _grpc_server_list[0] = _start_grpc_server()
-        _wait_for_server(_grpc_server_list[0])
+        wait_for_server(_grpc_server_list[0], timeout=SERVER_STARTUP_TIMEOUT)
 
     return inner
 
 
 @pytest.fixture(autouse=True)
-def check_grpc_server_before_run(grpc_server, _restart_grpc_server):
+def check_grpc_server_before_run(
+    grpc_server: ServerProtocol, _restart_grpc_server: Callable[[], None]
+) -> Generator[None, None, None]:
     """Check if the server still responds before running each test, otherwise restart it."""
     try:
-        _wait_for_server(grpc_server, timeout=1)
+        wait_for_server(grpc_server, timeout=1.0)
     except RuntimeError:
         _restart_grpc_server()
     yield
 
 
-@pytest.fixture(scope="session")
-def model_data_dir_external(request):
-    """Provides the path to the ACP test model data directory."""
-    res_path = (TEST_ROOT_DIR / "acp_tests_common" / "data").resolve()
-    assert res_path.is_dir(), f"Could not find data directory at '{res_path}'."
-    return res_path
-
-
-@pytest.fixture(scope="session")
-def model_data_dir(request):
-    """Provides the path to the ACP test model data directory."""
-    return pathlib.PurePosixPath("/home/container/mounted_data")
-
-
-@pytest.fixture(scope="session")
-def convert_temp_path():
-    def inner(external_path) -> str:
-        base_tmp_path = pathlib.PurePosixPath("/tmp")
-        relative_external_path = (
-            pathlib.Path(external_path).relative_to(tempfile.gettempdir()).as_posix()
-        )
-        return str(base_tmp_path / relative_external_path)
-
-    return inner
-
-
 @pytest.fixture
-def db_kwargs(grpc_server):
+def db_kwargs(grpc_server: ServerProtocol) -> Dict[str, Any]:
     return {"server": grpc_server}
