@@ -1,18 +1,15 @@
 from __future__ import annotations
 
+from contextlib import closing
 import os
 import pathlib
 import socket
 import subprocess
 import sys
 import time
-import weakref
-from contextlib import closing
 from types import MappingProxyType
-from typing import Any
-from typing import Mapping
-from typing import Optional
-from typing import TextIO
+from typing import Any, Mapping, Optional, TextIO
+import weakref
 
 try:
     from typing import Protocol
@@ -20,8 +17,7 @@ except ImportError:
     from typing_extensions import Protocol  # type: ignore
 
 import grpc
-from grpc_health.v1.health_pb2 import HealthCheckRequest
-from grpc_health.v1.health_pb2 import HealthCheckResponse
+from grpc_health.v1.health_pb2 import HealthCheckRequest, HealthCheckResponse
 from grpc_health.v1.health_pb2_grpc import HealthStub
 
 from ansys.api.acp.v0.base_pb2 import Empty

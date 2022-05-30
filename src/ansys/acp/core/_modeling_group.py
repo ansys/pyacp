@@ -1,10 +1,7 @@
-from typing import Any
-from typing import Optional
+from typing import Any, Optional
 
-from ansys.api.acp.v0.base_pb2 import BasicInfo
-from ansys.api.acp.v0.base_pb2 import ResourcePath
-from ansys.api.acp.v0.modeling_group_pb2 import ModelingGroupRequest
-from ansys.api.acp.v0.modeling_group_pb2 import PutModelingGroupRequest
+from ansys.api.acp.v0.base_pb2 import BasicInfo, ResourcePath
+from ansys.api.acp.v0.modeling_group_pb2 import ModelingGroupRequest, PutModelingGroupRequest
 from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
 
 from ._data_objects.modeling_group import ModelingGroup as _ModelingGroupData

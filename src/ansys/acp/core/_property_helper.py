@@ -4,8 +4,7 @@ via gRPC Put / Get calls.
 """
 from __future__ import annotations
 
-from typing import Any
-from typing import Callable
+from typing import Any, Callable
 
 try:
     from typing import Protocol
