@@ -63,7 +63,7 @@ jobs:
           twine check dist/*
 
       - name: Install library, with test extra
-        run: pip install $(echo dist/*)[test]
+        run: pip install $(echo dist/*.whl)[test]
 
       - name: Login in Github Container registry
         uses: docker/login-action@v1
