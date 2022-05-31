@@ -54,8 +54,8 @@ jobs:
       - name: Create wheel
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
-          pip install build
-          python -m build --wheel
+          pip install poetry
+          poetry build
 
       - name: Validate wheel
         run: |

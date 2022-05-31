@@ -151,6 +151,8 @@ You will need to follow these steps:
 
         poetry install --extras all
 
+   This step installs pyACP in an editable mode (no build step is needed, no re-install when changing the code).
+
 4. Activate your development virtual environment with:
 
     .. code:: bash
@@ -159,7 +161,7 @@ You will need to follow these steps:
 
 .. TODO: If we add tox, add instructions on its use here.
 
-.. 5. Verify your development installation by running:
+.. 6. Verify your development installation by running:
 
 ..     .. code:: bash
 
@@ -223,7 +225,12 @@ The following commands can be used to build and check the PyACP package:
     poetry build
     twine check dist/*
 
-This creates both a source distribution, and a wheel file.
+This creates both a source distribution, and a wheel file. An alternative is 
+          
+.. code:: bash
+
+    pip install build
+    python -m build --wheel
 
 License
 -------
