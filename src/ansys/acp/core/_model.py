@@ -89,7 +89,11 @@ class Model:
         if self._data_object is None:
             raise RuntimeError("Cannot create PUT request, the data_object is uninitialized.")
         request = ModelInfo(
-            info=BasicInfo(resource_path=self._get_pb_resource_path(), name=self._data_object.name),
+            info=BasicInfo(
+                resource_path=self._get_pb_resource_path(),
+                name=self._data_object.name,
+                version=self._data_object.version,
+            ),
             modeling_properties=ModelInfo.ModelingProperties(
                 use_nodal_thicknesses=self._data_object.use_nodal_thicknesses,
                 draping_offset_correction=self._data_object.draping_offset_correction,

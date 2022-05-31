@@ -34,7 +34,11 @@ class ModelingGroup:
         if self._data_object is None:
             raise RuntimeError("Cannot create PUT request, the data_object is uninitialized.")
         request = PutModelingGroupRequest(
-            info=BasicInfo(resource_path=self._get_pb_resource_path(), name=self._data_object.name)
+            info=BasicInfo(
+                resource_path=self._get_pb_resource_path(),
+                name=self._data_object.name,
+                version=self._data_object.version,
+            )
         )
         self._stub.Put(request)
 

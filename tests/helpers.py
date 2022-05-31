@@ -1,8 +1,7 @@
-import os
-import warnings
 from contextlib import contextmanager
-from typing import Any
-from typing import TypeVar
+import os
+from typing import Any, TypeVar
+import warnings
 
 IS_PYACP = True
 

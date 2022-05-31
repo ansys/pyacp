@@ -1,7 +1,7 @@
 from typing import Any, Optional
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath
-from ansys.api.acp.v0.model_pb2 import ListModelsRequest, ModelRequest
+from ansys.api.acp.v0.model_pb2 import DeleteModelRequest, ListModelsRequest
 from ansys.api.acp.v0.model_pb2_grpc import ModelStub
 
 from ._model import Model
@@ -68,4 +68,4 @@ class DB:
         for model in model_stub.List(
             ListModelsRequest(collection_path=CollectionPath(value=Model.COLLECTION_LABEL))
         ).models:
-            model_stub.Delete(ModelRequest(resource_path=model.info.resource_path))
+            model_stub.Delete(DeleteModelRequest(info=model.info))
