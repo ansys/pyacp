@@ -51,19 +51,19 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Create wheel
+      - name: Create source and wheel packages
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
-          pip install build
-          python -m build --wheel
+          pip install poetry
+          poetry build
 
-      - name: Validate wheel
+      - name: Validate packages
         run: |
           pip install twine
           twine check dist/*
 
       - name: Install library, with test extra
-        run: pip install $(echo dist/*)[test]
+        run: pip install $(echo dist/*.whl)[test]
 
       - name: Login in Github Container registry
         uses: docker/login-action@v1
