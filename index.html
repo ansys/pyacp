@@ -364,6 +364,7 @@ creating a new virtual environment:</p>
 </pre></div>
 </div>
 </div></blockquote>
+<p>This step installs pyACP in an editable mode (no build step is needed, no re-install when changing the code).</p>
 </li>
 <li><p>Activate your development virtual environment with:</p>
 <blockquote>
@@ -414,7 +415,11 @@ need to create a commit without running the hooks, you can skip them with <code 
 twine check dist/*
 </pre></div>
 </div>
-<p>This creates both a source distribution, and a wheel file.</p>
+<p>This creates both a source distribution, and a wheel file. An alternative is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install build
+python -m build --wheel
+</pre></div>
+</div>
 </section>
 </section>
 <section id="license">
