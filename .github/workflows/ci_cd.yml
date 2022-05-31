@@ -57,7 +57,7 @@ jobs:
           pip install poetry
           poetry build
 
-      - name: Validate wheel
+      - name: Validate packages
         run: |
           pip install twine
           twine check dist/*
