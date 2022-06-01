@@ -124,7 +124,7 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
 @pytest.fixture(scope="session")
 def model_data_dir_host() -> pathlib.Path:
     """Test data path, in the host filesystem."""
-    res_path = (TEST_ROOT_DIR / "acp_tests_common" / "data").resolve()
+    res_path = (TEST_ROOT_DIR / "data").resolve()
     assert res_path.is_dir(), f"Could not find data directory at '{res_path}'."
     return res_path
 

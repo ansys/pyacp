@@ -88,8 +88,7 @@ convention = "numpy"
 
 [tool.mypy]
 python_version = 3.7
-strict = true
-mypy_path = "$MYPY_CONFIG_FILE_DIR/src"
+mypy_path = "$MYPY_CONFIG_FILE_DIR/src:$MYPY_CONFIG_FILE_DIR/tests"
 
 [[tool.mypy.overrides]]
 module = [
