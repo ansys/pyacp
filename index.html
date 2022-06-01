@@ -9,8 +9,9 @@
     <title>PyACP &#8212; ansys-acp-core 0.0.dev0 documentation</title>
     
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +21,13 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/pyansys_sphinx_theme.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     
         <link href="_static/css/breadcrumbs.css" rel="stylesheet">
@@ -50,7 +48,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -100,20 +98,20 @@
       
     </div>
 
+    
     <div id="navbar-end">
       
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/pyansys/pyacp-private" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/pyansys/pyacp-private" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
       
     </div>
+    
   </div>
 </div>
     </nav>
@@ -146,7 +144,8 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
@@ -154,6 +153,9 @@
     
   </div>
 </nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -164,7 +166,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -268,14 +270,14 @@
   <div class="toctree-wrapper compound">
 </div>
 <section id="pyacp">
-<h1>PyACP<a class="headerlink" href="#pyacp" title="Permalink to this headline">¶</a></h1>
+<h1>PyACP<a class="headerlink" href="#pyacp" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://docs.pyansys.com/"><img alt="PyAnsys" src="https://img.shields.io/badge/Py-Ansys-ffc107.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAABDklEQVQ4jWNgoDfg5mD8vE7q/3bpVyskbW0sMRUwofHD7Dh5OBkZGBgW7/3W2tZpa2tLQEOyOzeEsfumlK2tbVpaGj4N6jIs1lpsDAwMJ278sveMY2BgCA0NFRISwqkhyQ1q/Nyd3zg4OBgYGNjZ2ePi4rB5loGBhZnhxTLJ/9ulv26Q4uVk1NXV/f///////69du4Zdg78lx//t0v+3S88rFISInD59GqIH2esIJ8G9O2/XVwhjzpw5EAam1xkkBJn/bJX+v1365hxxuCAfH9+3b9/+////48cPuNehNsS7cDEzMTAwMMzb+Q2u4dOnT2vWrMHu9ZtzxP9vl/69RVpCkBlZ3N7enoDXBwEAAA+YYitOilMVAAAAAElFTkSuQmCC" /></a> <a class="reference external" href="https://pypi.org/project/ansys-acp-core"><img alt="Python" src="https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue" /></a> <a class="reference external" href="https://pypi.org/project/ansys-acp-core"><img alt="PyPI" src="https://img.shields.io/pypi/v/pyacp.svg?logo=python&amp;logoColor=white" /></a> <a class="reference external" href="https://github.com/pyansys/pyacp-private/actions/workflows/ci_cd.yml"><img alt="GH-CI" src="https://github.com/pyansys/pyacp-private/actions/workflows/ci_cd.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/pyansys/pyacp-private"><img alt="Codecov" src="https://codecov.io/gh/pyansys/pyacp-private/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/MIT"><img alt="MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a> <a class="reference external" href="https://github.com/psf/black"><img alt="Black" src="https://img.shields.io/badge/code%20style-black-000000.svg?style=flat" /></a></p>
 <p>A Python client for Ansys Composite PrepPost (ACP).</p>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
 </section>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h2>
 <p>Install PyACP with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyansys</span><span class="o">/</span><span class="n">pyacp</span><span class="o">-</span><span class="n">private</span>
 </pre></div>
@@ -283,13 +285,13 @@
 <p>For installing PyACP in development mode, see the <a class="reference internal" href="#development-setup">Development Setup</a> instructions below.</p>
 </section>
 <section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">#</a></h2>
 <p>The PyACP documentation can be viewed online at <a class="reference external" href="https://dev.acp.docs.pyansys.com">https://dev.acp.docs.pyansys.com</a>.</p>
 </section>
 <section id="getting-started">
-<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">#</a></h2>
 <section id="launching-acp-locally">
-<h3>Launching ACP locally<a class="headerlink" href="#launching-acp-locally" title="Permalink to this headline">¶</a></h3>
+<h3>Launching ACP locally<a class="headerlink" href="#launching-acp-locally" title="Permalink to this headline">#</a></h3>
 <p>You can launch the ACP server locally by using <code class="docutils literal notranslate"><span class="pre">launch_acp</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">launch_acp</span>
 
@@ -300,7 +302,7 @@
 in your Ansys installation. For example, <code class="docutils literal notranslate"><span class="pre">r&quot;C:\Program</span> <span class="pre">Files\ANSYS</span> <span class="pre">Inc\v231\ACP\acp_grpcserver.exe&quot;</span></code>.</p>
 </section>
 <section id="launching-acp-in-a-docker-container">
-<h3>Launching ACP in a Docker container<a class="headerlink" href="#launching-acp-in-a-docker-container" title="Permalink to this headline">¶</a></h3>
+<h3>Launching ACP in a Docker container<a class="headerlink" href="#launching-acp-in-a-docker-container" title="Permalink to this headline">#</a></h3>
 <p>Alternatively, you can use Docker to run the ACP server. After installing Docker on your
 machine, you can use <code class="docutils literal notranslate"><span class="pre">launch_acp_docker</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">launch_acp_docker</span>
@@ -321,7 +323,7 @@ access to the files in this directory.</p>
 <code class="docutils literal notranslate"><span class="pre">/home/container/mounted_data</span></code> is the path under which the container will see these files.</p>
 </section>
 <section id="basic-usage">
-<h3>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h3>
+<h3>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">#</a></h3>
 <p>Once the server is running, we can start working with PyACP. For example, to load an ACP
 Model from an existing file:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">Model</span>
@@ -333,9 +335,9 @@ Model from an existing file:</p>
 </section>
 </section>
 <section id="development-setup">
-<h2>Development Setup<a class="headerlink" href="#development-setup" title="Permalink to this headline">¶</a></h2>
+<h2>Development Setup<a class="headerlink" href="#development-setup" title="Permalink to this headline">#</a></h2>
 <section id="id1">
-<h3>Installation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>Installation<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>Installing PyACP in developer mode allows you to modify the source and enhance it. Before contributing to the project,
 please refer to the <a class="reference external" href="https://dev.docs.pyansys.com/">PyAnsys Developer’s guide</a>.</p>
 <p>You will need to follow these steps:</p>
@@ -376,14 +378,14 @@ creating a new virtual environment:</p>
 </ol>
 </section>
 <section id="testing">
-<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">#</a></h3>
 <p>The PyACP test suite uses <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a>. You can run it with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest --license-server<span class="o">=</span>&lt;YOUR_LICENSE_SERVER&gt;
 </pre></div>
 </div>
 </section>
 <section id="pre-commit-hooks">
-<h3>Pre-commit hooks<a class="headerlink" href="#pre-commit-hooks" title="Permalink to this headline">¶</a></h3>
+<h3>Pre-commit hooks<a class="headerlink" href="#pre-commit-hooks" title="Permalink to this headline">#</a></h3>
 <p>Style and linter checks are run through the <a class="reference external" href="https://pre-commit.com/">pre-commit</a> tool. You can run these checks with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit run --all-files
 </pre></div>
@@ -396,7 +398,7 @@ creating a new virtual environment:</p>
 need to create a commit without running the hooks, you can skip them with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-n</span></code>.</p>
 </section>
 <section id="id2">
-<h3>Documentation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>Documentation<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>The documentation can be built locally using <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>.</p>
 <p>On Linux &amp; MacOS:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make -C doc html
@@ -409,7 +411,7 @@ need to create a commit without running the hooks, you can skip them with <code 
 <p>The generated HTML files can be viewed with the browser of your choice.</p>
 </section>
 <section id="distribution">
-<h3>Distribution<a class="headerlink" href="#distribution" title="Permalink to this headline">¶</a></h3>
+<h3>Distribution<a class="headerlink" href="#distribution" title="Permalink to this headline">#</a></h3>
 <p>The following commands can be used to build and check the PyACP package:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry build
 twine check dist/*
@@ -423,7 +425,7 @@ python -m build --wheel
 </section>
 </section>
 <section id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">PyACP</span></code> is licensed under the MIT license. Please see the <a class="reference external" href="https://github.com/pyansys/pyacp-private/raw/main/LICENSE">LICENSE</a> for more details.</p>
 </section>
 </section>
@@ -438,7 +440,8 @@ python -m build --wheel
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
   <div class="container">
     
