@@ -1,34 +1,29 @@
 from enum import Enum
-from typing import Any
-from typing import Iterable
-from typing import Optional
-from typing import Tuple
-from typing import Union
+from typing import Any, Iterable, Optional, Tuple, Union
 
-from ansys.api.acp.v0.base_pb2 import BasicInfo
-from ansys.api.acp.v0.base_pb2 import CollectionPath
-from ansys.api.acp.v0.base_pb2 import ResourcePath
+from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath, ResourcePath
+from ansys.api.acp.v0.model_pb2 import (
+    LoadFEModelRequest,
+    LoadModelRequest,
+    ModelInfo,
+    ModelRequest,
+    SaveModelRequest,
+    UpdateModelRequest,
+)
 from ansys.api.acp.v0.model_pb2 import Format as _pb_Format
-from ansys.api.acp.v0.model_pb2 import LoadFEModelRequest
-from ansys.api.acp.v0.model_pb2 import LoadModelRequest
-from ansys.api.acp.v0.model_pb2 import ModelInfo
-from ansys.api.acp.v0.model_pb2 import ModelRequest
-from ansys.api.acp.v0.model_pb2 import SaveModelRequest
-from ansys.api.acp.v0.model_pb2 import UpdateModelRequest
 from ansys.api.acp.v0.model_pb2_grpc import ModelStub
-from ansys.api.acp.v0.modeling_group_pb2 import CreateModelingGroupRequest
-from ansys.api.acp.v0.modeling_group_pb2 import ListModelingGroupsRequest
+from ansys.api.acp.v0.modeling_group_pb2 import (
+    CreateModelingGroupRequest,
+    ListModelingGroupsRequest,
+)
 from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
 
 from ._data_objects.model import Model as _ModelData
 from ._modeling_group import ModelingGroup
-from ._property_helper import grpc_data_getter
-from ._property_helper import grpc_data_property
-from ._property_helper import grpc_data_setter
+from ._property_helper import grpc_data_getter, grpc_data_property, grpc_data_setter
 from ._resource_paths import join as _rp_join
 from ._server import ServerProtocol
 from ._typing_helper import PATH as _PATH
-
 
 __all__ = ["Model"]
 

@@ -1,9 +1,7 @@
-from typing import Any
-from typing import Optional
+from typing import Any, Optional
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath
-from ansys.api.acp.v0.model_pb2 import ListModelsRequest
-from ansys.api.acp.v0.model_pb2 import ModelRequest
+from ansys.api.acp.v0.model_pb2 import ListModelsRequest, ModelRequest
 from ansys.api.acp.v0.model_pb2_grpc import ModelStub
 
 from ._model import Model

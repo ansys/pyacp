@@ -1,19 +1,13 @@
 """Pytest configuration file for ansys-acp-core tests."""
+from dataclasses import dataclass
 import os
 import pathlib
 import tempfile
-from dataclasses import dataclass
-from typing import Any
-from typing import Callable
-from typing import Dict
-from typing import Generator
-from typing import List
+from typing import Any, Callable, Dict, Generator, List
 
 import pytest
-from ansys.acp.core import launch_acp
-from ansys.acp.core import launch_acp_docker
-from ansys.acp.core import shutdown_server
-from ansys.acp.core import wait_for_server
+
+from ansys.acp.core import launch_acp, launch_acp_docker, shutdown_server, wait_for_server
 from ansys.acp.core._server import ServerProtocol
 from ansys.acp.core._typing_helper import PATH
 

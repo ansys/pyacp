@@ -1,8 +1,9 @@
 """Sphinx documentation configuration file."""
 from datetime import datetime
 
-from ansys.acp.core import __version__
 from pyansys_sphinx_theme import pyansys_logo_black
+
+from ansys.acp.core import __version__
 
 # Project information
 project = "ansys-acp-core"
