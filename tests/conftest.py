@@ -7,7 +7,7 @@ from typing import Any, Callable, Dict, Generator, List
 
 import pytest
 
-from ansys.acp.core import launch_acp, launch_acp_docker, shutdown_server, wait_for_server
+from ansys.acp.core import DB, launch_acp, launch_acp_docker, shutdown_server, wait_for_server
 from ansys.acp.core._server import ServerProtocol
 from ansys.acp.core._typing_helper import PATH
 
@@ -19,7 +19,7 @@ __all__ = [
     "grpc_server",
     "check_grpc_server_before_run",
     "db_kwargs",
-    # "clear_models_before_run",  # TODO: add back
+    "clear_models_before_run",
 ]
 
 TEST_ROOT_DIR = pathlib.Path(__file__).parent
@@ -200,3 +200,9 @@ def check_grpc_server_before_run(
 @pytest.fixture
 def db_kwargs(grpc_server: ServerProtocol) -> Dict[str, Any]:
     return {"server": grpc_server}
+
+
+@pytest.fixture(autouse=True)
+def clear_models_before_run(grpc_server):
+    """Delete all existing models before the test is executed."""
+    DB(grpc_server).clear()
