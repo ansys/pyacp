@@ -1,6 +1,0 @@
-close
-=====
-
-.. currentmodule:: ansys.acp.core
-
-.. automethod:: LocalAcpServer.close

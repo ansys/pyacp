@@ -1,5 +1,5 @@
-﻿launch\_acp
-===========
+﻿ansys.acp.core.launch\_acp
+==========================
 
 .. currentmodule:: ansys.acp.core
 

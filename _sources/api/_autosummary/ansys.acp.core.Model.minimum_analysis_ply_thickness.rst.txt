@@ -1,6 +1,0 @@
-minimum\_analysis\_ply\_thickness
-=================================
-
-.. currentmodule:: ansys.acp.core
-
-.. autoproperty:: Model.minimum_analysis_ply_thickness

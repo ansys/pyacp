@@ -6,17 +6,15 @@
 .. autoclass:: LocalAcpServer
 
    
+   .. automethod:: __init__
 
    
    .. rubric:: Methods
 
    .. autosummary::
-      :toctree:
    
-      
-      
-      LocalAcpServer.close
-      
+      ~LocalAcpServer.__init__
+      ~LocalAcpServer.close
    
    
 
@@ -25,13 +23,8 @@
    .. rubric:: Attributes
 
    .. autosummary::
-      :toctree:
    
-      
-      LocalAcpServer.channel
-      
-      
-      LocalAcpServer.closed
-      
+      ~LocalAcpServer.channel
+      ~LocalAcpServer.closed
    
    

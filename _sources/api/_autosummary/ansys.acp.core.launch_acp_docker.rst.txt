@@ -1,5 +1,5 @@
-﻿launch\_acp\_docker
-===================
+﻿ansys.acp.core.launch\_acp\_docker
+==================================
 
 .. currentmodule:: ansys.acp.core
 

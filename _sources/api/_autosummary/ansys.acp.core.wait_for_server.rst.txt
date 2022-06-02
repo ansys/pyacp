@@ -1,5 +1,5 @@
-﻿wait\_for\_server
-=================
+﻿ansys.acp.core.wait\_for\_server
+================================
 
 .. currentmodule:: ansys.acp.core
 

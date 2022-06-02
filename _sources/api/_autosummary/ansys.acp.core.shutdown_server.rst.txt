@@ -1,5 +1,5 @@
-﻿shutdown\_server
-================
+﻿ansys.acp.core.shutdown\_server
+===============================
 
 .. currentmodule:: ansys.acp.core
 

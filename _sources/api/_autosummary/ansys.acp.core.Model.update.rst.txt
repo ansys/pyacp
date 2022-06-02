@@ -1,6 +1,0 @@
-update
-======
-
-.. currentmodule:: ansys.acp.core
-
-.. automethod:: Model.update

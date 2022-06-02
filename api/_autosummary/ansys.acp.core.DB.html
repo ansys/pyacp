@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>ansys.acp.core.DB &#8212; ansys-acp-core 0.0.dev0 documentation</title>
+    <title>ansys.acp.core.DB &#8212; PyACP</title>
     
     
   <!-- Loaded before other Sphinx assets -->
@@ -23,8 +23,8 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/pyansys_sphinx_theme.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
@@ -38,9 +38,10 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="clear" href="ansys.acp.core.DB.clear.html" />
+    <link rel="next" title="ACP Objects" href="../tree_items.html" />
     <link rel="prev" title="Database" href="../db.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -67,7 +68,7 @@
     
     
 
-<a class="navbar-brand" href="https://docs.pyansys.com/">
+<a class="navbar-brand" href="https://www.ansys.com/">
   <img src="../../_static/pyansys-logo-black-cropped.png" class="logo" alt="logo">
 </a>
 
@@ -168,72 +169,38 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="ansys.acp.core.launch_acp.html">
-     launch_acp
+     ansys.acp.core.launch_acp
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ansys.acp.core.launch_acp_docker.html">
-     launch_acp_docker
+     ansys.acp.core.launch_acp_docker
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ansys.acp.core.check_server.html">
-     check_server
+     ansys.acp.core.check_server
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ansys.acp.core.shutdown_server.html">
-     shutdown_server
+     ansys.acp.core.shutdown_server
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ansys.acp.core.wait_for_server.html">
-     wait_for_server
+     ansys.acp.core.wait_for_server
     </a>
    </li>
-   <li class="toctree-l2 has-children">
+   <li class="toctree-l2">
     <a class="reference internal" href="ansys.acp.core.LocalAcpServer.html">
      ansys.acp.core.LocalAcpServer
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.LocalAcpServer.close.html">
-       close
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.LocalAcpServer.channel.html">
-       channel
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.LocalAcpServer.closed.html">
-       closed
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toctree-l2 has-children">
+   <li class="toctree-l2">
     <a class="reference internal" href="ansys.acp.core.RemoteAcpServer.html">
      ansys.acp.core.RemoteAcpServer
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-    <label for="toctree-checkbox-3">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.RemoteAcpServer.channel.html">
-       channel
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -241,38 +208,16 @@
   <a class="reference internal" href="../db.html">
    Database
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2 current active has-children">
+   <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      ansys.acp.core.DB
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-    <label for="toctree-checkbox-5">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.DB.clear.html">
-       clear
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.DB.import_model.html">
-       import_model
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.DB.active_model.html">
-       active_model
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -280,105 +225,21 @@
   <a class="reference internal" href="../tree_items.html">
    ACP Objects
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
-   <li class="toctree-l2 has-children">
+   <li class="toctree-l2">
     <a class="reference internal" href="ansys.acp.core.Model.html">
      ansys.acp.core.Model
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-    <label for="toctree-checkbox-7">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.create_modeling_group.html">
-       create_modeling_group
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.from_fe_file.html">
-       from_fe_file
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.from_file.html">
-       from_file
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.save.html">
-       save
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.update.html">
-       update
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.angle_tolerance.html">
-       angle_tolerance
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.draping_offset_correction.html">
-       draping_offset_correction
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.minimum_analysis_ply_thickness.html">
-       minimum_analysis_ply_thickness
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.modeling_groups.html">
-       modeling_groups
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.name.html">
-       name
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.relative_thickness_tolerance.html">
-       relative_thickness_tolerance
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.use_default_section_tolerances.html">
-       use_default_section_tolerances
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html">
-       use_nodal_thicknesses
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toctree-l2 has-children">
+   <li class="toctree-l2">
     <a class="reference internal" href="ansys.acp.core.ModelingGroup.html">
      ansys.acp.core.ModelingGroup
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-    <label for="toctree-checkbox-8">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.ModelingGroup.name.html">
-       name
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -432,6 +293,16 @@
 <dd class="field-odd"><p><strong>server</strong> (<em>ansys.acp.core._server.ServerProtocol</em>) – The ACP gRPC server to which the <code class="docutils literal notranslate"><span class="pre">DB</span></code> connects.</p>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ansys.acp.core.DB.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.DB.__init__" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>server</strong> (<em>ansys.acp.core._server.ServerProtocol</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -439,10 +310,13 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DB.clear.html#ansys.acp.core.DB.clear" title="ansys.acp.core.DB.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DB.clear</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ansys.acp.core.DB.__init__" title="ansys.acp.core.DB.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(server)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</p></td>
 <td><p>Close all models currently loaded on the server.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DB.import_model.html#ansys.acp.core.DB.import_model" title="ansys.acp.core.DB.import_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DB.import_model</span></code></a>(*[, name, format])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">import_model</span></code>(*[, name, format])</p></td>
 <td><p>Load an ACP model from a file.</p></td>
 </tr>
 </tbody>
@@ -454,7 +328,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DB.active_model.html#ansys.acp.core.DB.active_model" title="ansys.acp.core.DB.active_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DB.active_model</span></code></a></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">active_model</span></code></p></td>
 <td><p></p></td>
 </tr>
 </tbody>

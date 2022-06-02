@@ -1,6 +1,0 @@
-modeling\_groups
-================
-
-.. currentmodule:: ansys.acp.core
-
-.. autoproperty:: Model.modeling_groups
