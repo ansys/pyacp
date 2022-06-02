@@ -104,7 +104,7 @@ jobs:
 
       - name: Build HTML
         run: |
-          poetry run make -C doc html SPHINXOPTS="-W"
+          poetry run make -C doc html SPHINXOPTS="-W --keep-going"
           touch doc/build/html/.nojekyll
           echo "dev.acp.docs.pyansys.com" >> doc/build/html/CNAME
 
