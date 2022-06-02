@@ -1,7 +1,7 @@
 """Sphinx documentation configuration file."""
 from datetime import datetime
 
-from pyansys_sphinx_theme import pyansys_logo_black
+from ansys_sphinx_theme import ansys_favicon, pyansys_logo_black
 
 from ansys.acp.core import __version__
 
@@ -13,7 +13,7 @@ release = version = __version__
 
 # use the default pyansys logo
 html_logo = pyansys_logo_black
-html_theme = "pyansys_sphinx_theme"
+html_theme = "ansys_sphinx_theme"
 
 # specify the location of your github repo
 html_theme_options = {
@@ -22,7 +22,7 @@ html_theme_options = {
     "show_breadcrumbs": True,
     "additional_breadcrumbs": [("PyAnsys", "https://docs.pyansys.com/")],
 }
-html_short_title = "PyACP"
+html_title = html_short_title = "PyACP"
 
 # Sphinx extensions
 extensions = [
@@ -34,6 +34,7 @@ extensions = [
     "numpydoc",
     "sphinx_copybutton",
     "sphinx_tabs.tabs",
+    "ansys_sphinx_theme",
 ]
 
 autodoc_typehints = "description"
@@ -71,6 +72,8 @@ numpydoc_validation_checks = {
     # type, unless multiple values are being returned"
 }
 
+# Favicon
+html_favicon = ansys_favicon
 
 # static path
 html_static_path = ["_static"]
