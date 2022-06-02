@@ -12,7 +12,10 @@ on:
   workflow_dispatch:
     inputs:
       api_branch:
-        description: 'Branch of the ansys-api-acp-private repository used during the build.'
+        description: "Branch of the 'ansys-api-acp-private' repository used during the build."
+        required: false
+      docker_image_suffix:
+        description: "Suffix of the 'pyacp-private' docker image used for testing. For example, ':latest', or '@sha256:<hash>' (without quotes)."
         required: false
 
 jobs:
@@ -103,10 +106,11 @@ jobs:
       - name: Unit testing
         working-directory: tests
         run: |
-          docker pull ghcr.io/pyansys/pyacp-private:latest
-          pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files
+          docker pull $IMAGE_NAME
+          pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
+          IMAGE_NAME: 'ghcr.io/pyansys/pyacp-private${{ github.event.inputs.docker_image_suffix }}'
 
       - name: Upload wheel
         uses: actions/upload-artifact@v2
