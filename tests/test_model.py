@@ -3,9 +3,7 @@ import pathlib
 import tempfile
 
 from ansys.acp.core import DB
-from helpers import check_property
-from helpers import relpath_if_possible
-from helpers import suppress_for_pyacp
+from helpers import check_property, relpath_if_possible, suppress_for_pyacp
 
 
 def test_unittest(db_kwargs, model_data_dir_server, convert_temp_path):
