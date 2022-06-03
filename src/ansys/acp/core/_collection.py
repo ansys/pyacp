@@ -25,6 +25,27 @@ class Collection(Generic[ValueT]):
                 return self._constructor(obj.resource_path.value)
         raise KeyError(f"No object with ID '{key}' found.")
 
+    # def __setitem__(self, key: str, value: ValueT) -> None:
+    #     raise NotImplementedError()
+
+    # def update(self, other=(), /, **kwds):
+    #     raise NotImplementedError()
+
+    # def setdefault(self, key, default=None):
+    #     raise NotImplementedError()
+
+    def __delitem__(self, key: str) -> None:
+        raise NotImplementedError()
+
+    def clear(self) -> None:
+        raise NotImplementedError()
+
+    # def pop(self, key):
+    #     raise NotImplementedError()
+
+    # def popitem(self, key):
+    #     raise NotImplementedError()
+
     def values(self) -> Iterator[ValueT]:
         return (self._constructor(obj.resource_path.value) for obj in self._list_method())
 
