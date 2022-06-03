@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Iterable, Optional, Tuple, Union
+from typing import Any, Iterable, Optional, Sequence, Union
 
 from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath, ResourcePath
 from ansys.api.acp.v0.model_pb2 import (
@@ -18,7 +18,9 @@ from ansys.api.acp.v0.modeling_group_pb2 import (
 )
 from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
 
+from ._collection import Collection
 from ._data_objects.model import Model as _ModelData
+from ._log import LOGGER
 from ._modeling_group import ModelingGroup
 from ._property_helper import grpc_data_getter, grpc_data_property, grpc_data_setter
 from ._resource_paths import join as _rp_join
@@ -71,9 +73,11 @@ class Model:
 
     def _get(self) -> None:
         request = ModelRequest(resource_path=self._get_pb_resource_path())
+        LOGGER.debug("Model Get request.")
         reply = self._stub.Get(request)
         self._data_object = _ModelData(
             name=reply.info.name,
+            id="",
             version=reply.info.version,
             use_nodal_thicknesses=reply.modeling_properties.use_nodal_thicknesses,
             draping_offset_correction=reply.modeling_properties.draping_offset_correction,
@@ -85,7 +89,6 @@ class Model:
 
     def _put(self) -> None:
         # TODO: add all other properties
-        # TODO: add version to Put request
         if self._data_object is None:
             raise RuntimeError("Cannot create PUT request, the data_object is uninitialized.")
         request = ModelInfo(
@@ -103,6 +106,7 @@ class Model:
                 minimum_analysis_ply_thickness=self._data_object.minimum_analysis_ply_thickness,
             ),
         )
+        LOGGER.debug("Model Put request.")
         self._stub.Put(request)
         # TODO: update local cache with Put response
 
@@ -205,14 +209,27 @@ class Model:
         return ModelingGroup(resource_path=reply.info.resource_path.value, server=self._server)
 
     @property
-    def modeling_groups(self) -> Tuple[ModelingGroup, ...]:
+    def modeling_groups(self) -> Collection[ModelingGroup]:
+        return Collection(
+            self._list_modeling_groups,
+            lambda resource_path_str: ModelingGroup(
+                resource_path=resource_path_str, server=self._server
+            ),
+        )
+
+    def _list_modeling_groups(self) -> Sequence[BasicInfo]:
+        # TODO: if all collections create this request in the same way,
+        # this should go into the Collection or an adjacent class.
+        #
+        # There should be some way to invert the dependency here, since
+        # we probably don't want to implement e.g. ModelingGroup logic
+        # in the model (but importing the 'ModelingGroup' class may be
+        # a necessary evil..).
         collection_path = CollectionPath(
             value=_rp_join(self._resource_path, ModelingGroup.COLLECTION_LABEL)
         )
         stub = ModelingGroupStub(self._server.channel)
         request = ListModelingGroupsRequest(collection_path=collection_path)
+        LOGGER.debug("ModelingGroup List request.")
         reply = stub.List(request)
-        return tuple(
-            ModelingGroup(resource_path=mg.info.resource_path.value, server=self._server)
-            for mg in reply.modeling_groups
-        )
+        return [mg.info for mg in reply.modeling_groups]

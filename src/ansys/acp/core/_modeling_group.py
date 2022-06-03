@@ -5,6 +5,7 @@ from ansys.api.acp.v0.modeling_group_pb2 import ModelingGroupRequest, PutModelin
 from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
 
 from ._data_objects.modeling_group import ModelingGroup as _ModelingGroupData
+from ._log import LOGGER
 from ._property_helper import grpc_data_property
 from ._server import ServerProtocol
 
@@ -24,9 +25,11 @@ class ModelingGroup:
         return ResourcePath(value=self._resource_path)
 
     def _get(self) -> None:
+        LOGGER.debug("ModelingGroup Get request.")
         reply = self._stub.Get(ModelingGroupRequest(resource_path=self._get_pb_resource_path()))
         self._data_object = _ModelingGroupData(
             name=reply.info.name,
+            id=reply.info.id,
             version=reply.info.version,
         )
 
@@ -40,6 +43,7 @@ class ModelingGroup:
                 version=self._data_object.version,
             )
         )
+        LOGGER.debug("ModelingGroup Put request.")
         self._stub.Put(request)
 
     def _get_data_attribute(self, name: str) -> Any:
@@ -49,3 +53,4 @@ class ModelingGroup:
         setattr(self._data_object, name, value)
 
     name = grpc_data_property("name")
+    id = grpc_data_property("id")
