@@ -38,7 +38,7 @@ class Collection(Generic[ValueT]):
         return key in list(self)
 
     def __len__(self) -> int:
-        return len(list(self))
+        return len(self._list_method())
 
     def get(self, key: str, default: Optional[ValueT] = None) -> Optional[ValueT]:
         try:
