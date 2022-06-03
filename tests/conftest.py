@@ -7,7 +7,7 @@ from typing import Any, Callable, Dict, Generator, List
 
 import pytest
 
-from ansys.acp.core import DB, launch_acp, launch_acp_docker, shutdown_server, wait_for_server
+from ansys.acp.core import Client, launch_acp, launch_acp_docker, shutdown_server, wait_for_server
 from ansys.acp.core._server import ServerProtocol
 from ansys.acp.core._typing_helper import PATH
 
@@ -205,4 +205,4 @@ def db_kwargs(grpc_server: ServerProtocol) -> Dict[str, Any]:
 @pytest.fixture(autouse=True)
 def clear_models_before_run(grpc_server):
     """Delete all existing models before the test is executed."""
-    DB(grpc_server).clear()
+    Client(server=grpc_server).clear()

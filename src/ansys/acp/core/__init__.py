@@ -3,7 +3,7 @@ try:
 except ModuleNotFoundError:
     import importlib_metadata  # type: ignore
 
-from ._db import DB
+from ._client import Client
 from ._model import Model
 from ._modeling_group import ModelingGroup
 from ._server import (
@@ -30,5 +30,5 @@ __all__ = [
     "RemoteAcpServer",
     "Model",
     "ModelingGroup",
-    "DB",
+    "Client",
 ]

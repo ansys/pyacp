@@ -6,4 +6,4 @@ Database
 .. autosummary::
     :toctree: _autosummary
 
-    DB
+    Client
