@@ -9,5 +9,5 @@ and attributes.
     :maxdepth: 2
 
     server
-    db
+    client
     tree_items

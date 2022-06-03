@@ -10,10 +10,10 @@ def test_unittest(grpc_server, model_data_dir_server, convert_temp_path):
     """
     Test basic properties of the model object
     """
-    db = Client(server=grpc_server)
+    client = Client(server=grpc_server)
 
     input_file_path = model_data_dir_server / "ACP-Pre.h5"
-    model = db.import_model(name="kiteboard", path=input_file_path, format="ansys:h5")
+    model = client.import_model(name="kiteboard", path=input_file_path, format="ansys:h5")
 
     with suppress_for_pyacp():
         assert model.unit_system.type == "mks"
@@ -53,9 +53,9 @@ def test_unittest(grpc_server, model_data_dir_server, convert_temp_path):
         save_path = convert_temp_path(pathlib.Path(tmp_dir) / "test_model_serialization.acph5")
         model.save(save_path, save_cache=True)
 
-        db.clear()
+        client.clear()
 
-        model = db.import_model(path=save_path)
+        model = client.import_model(path=save_path)
 
         with suppress_for_pyacp():
             assert model.unit_system.type == "mks"
