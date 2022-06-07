@@ -52,7 +52,8 @@ twine = {version = ">=3.8", optional = true}
 all = [
     "Sphinx",
     "ansys-sphinx-theme",
-    "sphinx_tabs",
+    "sphinx-copybutton",
+    "sphinx-tabs",
     "numpydoc",
     "pre-commit",
     "mypy",

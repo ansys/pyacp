@@ -1,5 +1,5 @@
-from ansys.acp.core._db import DB
+from ansys.acp.core._client import Client
 
 IS_PYACP = True
 
-__all__ = ("DB",)
+__all__ = ("Client",)

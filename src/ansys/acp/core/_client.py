@@ -8,30 +8,24 @@ from ._model import Model
 from ._server import ServerProtocol
 from ._typing_helper import PATH as _PATH
 
-__all__ = ["DB"]
+__all__ = ["Client"]
 
 
-class DB:
+class Client:
     """Top-level controller for the models loaded in a server.
 
     Parameters
     ----------
     server :
-        The ACP gRPC server to which the ``DB`` connects.
+        The ACP gRPC server to which the ``Client`` connects.
     """
 
     def __init__(self, server: ServerProtocol):
         self._server = server
-        self._active_model: Optional[Model] = None
-
-    # TODO: Do we need this?
-    @property
-    def active_model(self) -> Optional[Model]:
-        return self._active_model
 
     def import_model(
         self, *, name: Optional[str] = None, path: _PATH, format: str = "acp:h5", **kwargs: Any
-    ) -> None:  # TODO: maybe return the model?
+    ) -> Model:
         """Load an ACP model from a file.
 
         Parameters
@@ -42,6 +36,11 @@ class DB:
             Path of the file to be loaded.
         format :
             Format of the file to be loaded. Can be one of (TODO: list options).
+
+        Returns
+        -------
+        :
+            The loaded ``Model`` instance.
         """
         if format == "acp:h5":
             if kwargs:
@@ -52,11 +51,9 @@ class DB:
             model = Model.from_file(path=path, server=self._server)
         else:
             model = Model.from_fe_file(path=path, server=self._server, format=format, **kwargs)
-        # TODO: Since we don't limit the names to be unique, is it necessary to expose setting
-        # the name here?
         if name is not None:
             model.name = name
-        self._active_model = model
+        return model
 
     def clear(self) -> None:
         """Close all models currently loaded on the server.

@@ -2,20 +2,18 @@ import os
 import pathlib
 import tempfile
 
-from ansys.acp.core import DB
+from ansys.acp.core import Client
 from helpers import check_property, relpath_if_possible, suppress_for_pyacp
 
 
-def test_unittest(db_kwargs, model_data_dir_server, convert_temp_path):
+def test_unittest(grpc_server, model_data_dir_server, convert_temp_path):
     """
     Test basic properties of the model object
     """
-    db = DB(**db_kwargs)
-    db.clear()
+    client = Client(server=grpc_server)
 
     input_file_path = model_data_dir_server / "ACP-Pre.h5"
-    db.import_model(name="kiteboard", path=input_file_path, format="ansys:h5")
-    model = db.active_model
+    model = client.import_model(name="kiteboard", path=input_file_path, format="ansys:h5")
 
     with suppress_for_pyacp():
         assert model.unit_system.type == "mks"
@@ -55,12 +53,10 @@ def test_unittest(db_kwargs, model_data_dir_server, convert_temp_path):
         save_path = convert_temp_path(pathlib.Path(tmp_dir) / "test_model_serialization.acph5")
         model.save(save_path, save_cache=True)
 
-        db.clear()
+        client.clear()
 
-        # TODO: originally used db.open(save_path)
-        db.import_model(path=save_path)
+        model = client.import_model(path=save_path)
 
-        model = db.active_model
         with suppress_for_pyacp():
             assert model.unit_system.type == "mks"
 
