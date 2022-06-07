@@ -193,6 +193,21 @@ jobs:
           folder: doc/build/html
           clean: true
 
+      - name: Install OS packages for PDF build
+        run: |
+          sudo apt update
+          sudo apt install zip pandoc libgl1-mesa-glx xvfb texlive-latex-extra latexmk
+
+      - name: Build PDF Documentation
+        working-directory: doc
+        run: make pdf
+
+      - name: Upload PDF Documentation
+        uses: actions/upload-artifact@v2
+        with:
+          name: Documentation-pdf
+          path: doc/build/latex/pymapdl*.pdf
+          retention-days: 7
 
   # Release:
   #   if: contains(github.ref, 'refs/tags')
