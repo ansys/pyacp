@@ -6,4 +6,5 @@ __all__ = ["Resource"]
 @dataclass
 class Resource:
     name: str
+    id: str
     version: int

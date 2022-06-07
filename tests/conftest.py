@@ -1,9 +1,11 @@
 """Pytest configuration file for ansys-acp-core tests."""
+from contextlib import contextmanager
 from dataclasses import dataclass
 import os
 import pathlib
+import shutil
 import tempfile
-from typing import Any, Callable, Dict, Generator, List
+from typing import Callable, Generator, List
 
 import pytest
 
@@ -18,8 +20,8 @@ __all__ = [
     "convert_temp_path",
     "grpc_server",
     "check_grpc_server_before_run",
-    "db_kwargs",
     "clear_models_before_run",
+    "load_model_from_tempfile",
 ]
 
 TEST_ROOT_DIR = pathlib.Path(__file__).parent
@@ -197,12 +199,22 @@ def check_grpc_server_before_run(
     yield
 
 
-@pytest.fixture
-def db_kwargs(grpc_server: ServerProtocol) -> Dict[str, Any]:
-    return {"server": grpc_server}
-
-
 @pytest.fixture(autouse=True)
 def clear_models_before_run(grpc_server):
     """Delete all existing models before the test is executed."""
     Client(server=grpc_server).clear()
+
+
+@pytest.fixture
+def load_model_from_tempfile(model_data_dir_host, grpc_server, convert_temp_path):
+    @contextmanager
+    def inner(relative_file_path="minimal_complete_model.acph5", format="acp:h5"):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            dest_path = pathlib.Path(tmp_dir) / os.path.basename(relative_file_path)
+            source_path = model_data_dir_host / relative_file_path
+            shutil.copyfile(source_path, dest_path)
+
+            client = Client(server=grpc_server)
+            yield client.import_model(path=convert_temp_path(dest_path), format=format)
+
+    return inner
