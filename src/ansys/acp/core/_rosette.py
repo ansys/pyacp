@@ -1,7 +1,7 @@
 from typing import Any, Optional
 
 from ansys.api.acp.v0.base_pb2 import BasicInfo, ResourcePath
-from ansys.api.acp.v0.rosette_pb2 import RosetteRequest, PutRosetteRequest
+from ansys.api.acp.v0.rosette_pb2 import PutRosetteRequest, RosetteRequest
 from ansys.api.acp.v0.rosette_pb2_grpc import RosetteStub
 
 from ._data_objects.rosette import Rosette as _RosetteData

@@ -10,7 +10,8 @@ from ansys.api.acp.v0.model_pb2 import (
     SaveModelRequest,
     UpdateModelRequest,
 )
-#ModelingGroup
+
+# ModelingGroup
 from ansys.api.acp.v0.model_pb2 import Format as _pb_Format
 from ansys.api.acp.v0.model_pb2_grpc import ModelStub
 from ansys.api.acp.v0.modeling_group_pb2 import (
@@ -18,20 +19,18 @@ from ansys.api.acp.v0.modeling_group_pb2 import (
     ListModelingGroupsRequest,
 )
 from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
-#Rosette
-from ansys.api.acp.v0.rosette_pb2 import (
-    CreateRosetteRequest,
-    ListRosettesRequest,
-)
+
+# Rosette
+from ansys.api.acp.v0.rosette_pb2 import CreateRosetteRequest, ListRosettesRequest
 from ansys.api.acp.v0.rosette_pb2_grpc import RosetteStub
 
 from ._collection import Collection
 from ._data_objects.model import Model as _ModelData
 from ._log import LOGGER
 from ._modeling_group import ModelingGroup
-from ._rosette import Rosette
 from ._property_helper import grpc_data_getter, grpc_data_property, grpc_data_setter
 from ._resource_paths import join as _rp_join
+from ._rosette import Rosette
 from ._server import ServerProtocol
 from ._typing_helper import PATH as _PATH
 
@@ -242,10 +241,10 @@ class Model:
         reply = stub.List(request)
         return [mg.info for mg in reply.modeling_groups]
 
-    #------------------------------------------------
-    #ROSETTE
+    # ------------------------------------------------
+    # ROSETTE
 
-    #Todo: implement helper functions which are independent of the object type.
+    # Todo: implement helper functions which are independent of the object type.
     def create_rosette(self, name: str) -> Rosette:
         collection_path = CollectionPath(
             value=_rp_join(self._resource_path, Rosette.COLLECTION_LABEL)
@@ -259,9 +258,7 @@ class Model:
     def rosettes(self) -> Collection[Rosette]:
         return Collection(
             self._list_rosettes,
-            lambda resource_path_str: Rosette(
-                resource_path=resource_path_str, server=self._server
-            ),
+            lambda resource_path_str: Rosette(resource_path=resource_path_str, server=self._server),
         )
 
     def _list_rosettes(self) -> Sequence[BasicInfo]:
