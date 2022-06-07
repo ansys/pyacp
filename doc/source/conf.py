@@ -44,7 +44,6 @@ extensions = [
     "sphinx.ext.napoleon",
     "numpydoc",
     "sphinx_copybutton",
-    "sphinx_tabs.tabs",
     "ansys_sphinx_theme",
 ]
 
