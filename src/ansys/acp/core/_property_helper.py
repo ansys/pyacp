@@ -11,18 +11,6 @@ try:
 except ImportError:
     from typing_extensions import Protocol  # type: ignore
 
-from google.protobuf.message import Message
-
-
-class ResourceStub(Protocol):
-    """Interface definition for ACP Resource service stubs."""
-
-    def Get(self, request: Message) -> Message:
-        ...
-
-    def Put(self, request: Message) -> Message:
-        ...
-
 
 class ResourceProtocol(Protocol):
     """
