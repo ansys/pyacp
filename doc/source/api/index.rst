@@ -1,6 +1,5 @@
-*************
 API Reference
-*************
+=============
 
 This section describes the API of the public PyACP classes, functions,
 and attributes.
