@@ -205,7 +205,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Documentation-pdf
-          path: doc/build/latex/pymapdl*.pdf
+          path: doc/build/latex/ansys-acp-core.pdf
           retention-days: 7
 
   # Release:
