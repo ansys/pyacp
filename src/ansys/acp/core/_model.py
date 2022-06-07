@@ -244,6 +244,8 @@ class Model:
 
     #------------------------------------------------
     #ROSETTE
+
+    #Todo: implement helper functions which are independent of the object type.
     def create_rosette(self, name: str) -> Rosette:
         collection_path = CollectionPath(
             value=_rp_join(self._resource_path, Rosette.COLLECTION_LABEL)
