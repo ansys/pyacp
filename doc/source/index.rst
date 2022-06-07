@@ -13,4 +13,5 @@ PyACP Documentation |version|
     :hidden:
     :maxdepth: 3
 
+    PyACP <self>
     api/index
