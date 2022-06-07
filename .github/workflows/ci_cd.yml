@@ -199,8 +199,7 @@ jobs:
           sudo apt install zip pandoc libgl1-mesa-glx xvfb texlive-latex-extra latexmk
 
       - name: Build PDF Documentation
-        working-directory: doc
-        run: make pdf
+        run: poetry run make -C doc pdf
 
       - name: Upload PDF Documentation
         uses: actions/upload-artifact@v2
