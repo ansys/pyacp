@@ -3,10 +3,14 @@
     Provide any documentation specific to your online documentation
     here.
 
+=============================
+PyACP Documentation |version|
+=============================
+
+.. include:: ../../README.rst
+
 .. toctree::
     :hidden:
     :maxdepth: 3
 
     api/index
-
-.. include:: ../../README.rst
