@@ -24,6 +24,7 @@
    .. autosummary::
    
       ~ModelingGroup.COLLECTION_LABEL
+      ~ModelingGroup.id
       ~ModelingGroup.name
    
    
