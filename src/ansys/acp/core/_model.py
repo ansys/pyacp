@@ -16,12 +16,17 @@ from ansys.api.acp.v0.model_pb2 import Format as _pb_Format
 from ansys.api.acp.v0.model_pb2_grpc import ModelStub
 from ansys.api.acp.v0.modeling_group_pb2 import (
     CreateModelingGroupRequest,
+    DeleteModelingGroupRequest,
     ListModelingGroupsRequest,
 )
 from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
 
 # Rosette
-from ansys.api.acp.v0.rosette_pb2 import CreateRosetteRequest, ListRosettesRequest
+from ansys.api.acp.v0.rosette_pb2 import (
+    CreateRosetteRequest,
+    DeleteRosetteRequest,
+    ListRosettesRequest,
+)
 from ansys.api.acp.v0.rosette_pb2_grpc import RosetteStub
 
 from ._collection import Collection
@@ -218,10 +223,11 @@ class Model:
     @property
     def modeling_groups(self) -> Collection[ModelingGroup]:
         return Collection(
-            self._list_modeling_groups,
-            lambda resource_path_str: ModelingGroup(
+            list_method=self._list_modeling_groups,
+            constructor=lambda resource_path_str: ModelingGroup(
                 resource_path=resource_path_str, server=self._server
             ),
+            delete_method=self._delete_modeling_group,
         )
 
     def _list_modeling_groups(self) -> Sequence[BasicInfo]:
@@ -241,6 +247,12 @@ class Model:
         reply = stub.List(request)
         return [mg.info for mg in reply.modeling_groups]
 
+    def _delete_modeling_group(self, info: BasicInfo) -> None:
+        stub = ModelingGroupStub(self._server.channel)
+        request = DeleteModelingGroupRequest(info=info)
+        LOGGER.debug("ModelingGroup Delete request.")
+        stub.Delete(request)
+
     # ------------------------------------------------
     # ROSETTE
 
@@ -257,8 +269,11 @@ class Model:
     @property
     def rosettes(self) -> Collection[Rosette]:
         return Collection(
-            self._list_rosettes,
-            lambda resource_path_str: Rosette(resource_path=resource_path_str, server=self._server),
+            list_method=self._list_rosettes,
+            constructor=lambda resource_path_str: Rosette(
+                resource_path=resource_path_str, server=self._server
+            ),
+            delete_method=self._delete_rosette,
         )
 
     def _list_rosettes(self) -> Sequence[BasicInfo]:
@@ -277,3 +292,9 @@ class Model:
         LOGGER.debug("Rosette List request.")
         reply = stub.List(request)
         return [ros.info for ros in reply.rosettes]
+
+    def _delete_rosette(self, info: BasicInfo) -> None:
+        stub = RosetteStub(self._server.channel)
+        request = DeleteRosetteRequest(info=info)
+        LOGGER.debug("Rosette Delete request.")
+        stub.Delete(request)

@@ -10,19 +10,25 @@ class Collection(Generic[ValueT]):
         self,
         list_method: Callable[[], Sequence[BasicInfo]],
         constructor: Callable[[str], ValueT],
+        delete_method: Callable[[BasicInfo], None],
     ):
         # TODO: should the list method return instantiated objects, or
         # do we want to work with the bare protobuf responses here?
         self._list_method = list_method
         self._constructor = constructor
+        self._delete_method = delete_method
 
     def __iter__(self) -> Iterator[str]:
         yield from (obj.id for obj in self._list_method())
 
     def __getitem__(self, key: str) -> ValueT:
+        info = self._get_info_by_id(key)
+        return self._constructor(info.resource_path.value)
+
+    def _get_info_by_id(self, key: str) -> BasicInfo:
         for obj in self._list_method():
             if obj.id == key:
-                return self._constructor(obj.resource_path.value)
+                return obj
         raise KeyError(f"No object with ID '{key}' found.")
 
     # def __setitem__(self, key: str, value: ValueT) -> None:
@@ -35,10 +41,12 @@ class Collection(Generic[ValueT]):
     #     raise NotImplementedError()
 
     def __delitem__(self, key: str) -> None:
-        raise NotImplementedError()
+        info = self._get_info_by_id(key)
+        self._delete_method(info)
 
     def clear(self) -> None:
-        raise NotImplementedError()
+        for info in self._list_method():
+            self._delete_method(info)
 
     # def pop(self, key):
     #     raise NotImplementedError()
