@@ -196,7 +196,7 @@ jobs:
       - name: Install OS packages for PDF build
         run: |
           sudo apt update
-          sudo apt install zip pandoc libgl1-mesa-glx xvfb texlive-latex-extra latexmk
+          sudo apt install build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks
 
       - name: Build PDF Documentation
         run: poetry run make -C doc pdf

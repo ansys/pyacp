@@ -8,7 +8,7 @@ PyACP
     :target: https://docs.pyansys.com/
     :alt: PyAnsys
 
-.. |python| image:: https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue
+.. |python| image:: https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue.svg
     :target: https://pypi.org/project/ansys-acp-core
     :alt: Python
 
@@ -225,8 +225,8 @@ The following commands can be used to build and check the PyACP package:
     poetry build
     twine check dist/*
 
-This creates both a source distribution, and a wheel file. An alternative is 
-          
+This creates both a source distribution, and a wheel file. An alternative is
+
 .. code:: bash
 
     pip install build
