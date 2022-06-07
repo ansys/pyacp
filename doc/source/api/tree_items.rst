@@ -1,5 +1,5 @@
 ACP Objects
-===========
+-----------
 
 .. currentmodule:: ansys.acp.core
 
