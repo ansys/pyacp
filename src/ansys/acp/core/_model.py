@@ -234,6 +234,23 @@ class Model:
             ),
         )
 
+    def _list_modeling_groups(self) -> Sequence[BasicInfo]:
+        # TODO: if all collections create this request in the same way,
+        # this should go into the Collection or an adjacent class.
+        #
+        # There should be some way to invert the dependency here, since
+        # we probably don't want to implement e.g. ModelingGroup logic
+        # in the model (but importing the 'ModelingGroup' class may be
+        # a necessary evil..).
+        collection_path = CollectionPath(
+            value=_rp_join(self._resource_path, ModelingGroup.COLLECTION_LABEL)
+        )
+        stub = ModelingGroupStub(self._server.channel)
+        request = ListModelingGroupsRequest(collection_path=collection_path)
+        LOGGER.debug("ModelingGroup List request.")
+        reply = stub.List(request)
+        return [mg.info for mg in reply.modeling_groups]
+
     @property
     def element_sets(self) -> Collection[ElementSet]:
         return Collection(
@@ -260,19 +277,4 @@ class Model:
         reply = stub.List(request)
         return [eset.info for eset in reply.element_sets]
 
-    def _list_modeling_groups(self) -> Sequence[BasicInfo]:
-        # TODO: if all collections create this request in the same way,
-        # this should go into the Collection or an adjacent class.
-        #
-        # There should be some way to invert the dependency here, since
-        # we probably don't want to implement e.g. ModelingGroup logic
-        # in the model (but importing the 'ModelingGroup' class may be
-        # a necessary evil..).
-        collection_path = CollectionPath(
-            value=_rp_join(self._resource_path, ModelingGroup.COLLECTION_LABEL)
-        )
-        stub = ModelingGroupStub(self._server.channel)
-        request = ListModelingGroupsRequest(collection_path=collection_path)
-        LOGGER.debug("ModelingGroup List request.")
-        reply = stub.List(request)
-        return [mg.info for mg in reply.modeling_groups]
+

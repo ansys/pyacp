@@ -2,7 +2,7 @@ import pytest
 
 
 def test_create_element_set(load_model_from_tempfile):
-    """Test the creation of Modeling Groups."""
+    """Test the creation of Element Sets."""
     with load_model_from_tempfile() as model:
         eset_names = ["ElementSet.1", "ElementSet.1", "üñıçよð€"]
         for ref_name in eset_names:
