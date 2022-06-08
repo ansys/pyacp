@@ -24,6 +24,14 @@ jobs:
         with:
           python-version: 3.7
 
+      - name: Pip cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-precommit
+          restore-keys: |
+            pip-${{ runner.os }}
+
       - name: Install pre-commit requirements
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
@@ -48,6 +56,14 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+
+      - name: Pip cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}-testing
+          restore-keys: |
+            pip-${{ runner.os }}-${{ matrix.python-version }}
 
       - name: Create source and wheel packages
         run: |
@@ -95,6 +111,14 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
+
+      - name: Pip cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-docs
+          restore-keys: |
+            pip-${{ runner.os }}
 
       - name: Install library, with docs extra
         run: |
