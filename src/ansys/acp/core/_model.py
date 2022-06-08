@@ -2,6 +2,8 @@ from enum import Enum
 from typing import Any, Iterable, Optional, Sequence, Union
 
 from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath, ResourcePath
+from ansys.api.acp.v0.element_set_pb2 import CreateElementSetRequest, ListElementSetRequest
+from ansys.api.acp.v0.element_set_pb2_grpc import ElementSetStub
 from ansys.api.acp.v0.model_pb2 import (
     LoadFEModelRequest,
     LoadModelRequest,
@@ -18,18 +20,11 @@ from ansys.api.acp.v0.modeling_group_pb2 import (
 )
 from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
 
-from ansys.api.acp.v0.element_set_pb2_grpc import ElementSetStub
-
-from ansys.api.acp.v0.element_set_pb2 import (
-    CreateElementSetRequest,
-    ListElementSetRequest,
-)
-
 from ._collection import Collection
 from ._data_objects.model import Model as _ModelData
+from ._element_set import ElementSet
 from ._log import LOGGER
 from ._modeling_group import ModelingGroup
-from ._element_set import ElementSet
 from ._property_helper import grpc_data_getter, grpc_data_property, grpc_data_setter
 from ._resource_paths import join as _rp_join
 from ._server import ServerProtocol
@@ -276,5 +271,3 @@ class Model:
         LOGGER.debug("ElementSet List request.")
         reply = stub.List(request)
         return [eset.info for eset in reply.element_sets]
-
-
