@@ -14,7 +14,7 @@ def test_collection_access(load_model_from_tempfile):
     """Basic test of the Model.rosettes collection."""
     with load_model_from_tempfile() as model:
         initial_num_ros = len(model.rosettes)
-        assert initial_num_mg == 1
+        assert initial_num_ros == 1
 
         ros_names = ["Rosette.1", "Rosette.1", "üñıçよð€"]
         ros_ids = []
