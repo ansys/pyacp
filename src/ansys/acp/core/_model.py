@@ -18,10 +18,18 @@ from ansys.api.acp.v0.modeling_group_pb2 import (
 )
 from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
 
+from ansys.api.acp.v0.element_set_pb2_grpc import ElementSetStub
+
+from ansys.api.acp.v0.element_set_pb2 import (
+    CreateElementSetRequest,
+    ListElementSetRequest,
+)
+
 from ._collection import Collection
 from ._data_objects.model import Model as _ModelData
 from ._log import LOGGER
 from ._modeling_group import ModelingGroup
+from ._element_set import ElementSet
 from ._property_helper import grpc_data_getter, grpc_data_property, grpc_data_setter
 from ._resource_paths import join as _rp_join
 from ._server import ServerProtocol
@@ -208,6 +216,15 @@ class Model:
         reply = stub.Create(request)
         return ModelingGroup(resource_path=reply.info.resource_path.value, server=self._server)
 
+    def create_element_set(self, name: str) -> ElementSet:
+        collection_path = CollectionPath(
+            value=_rp_join(self._resource_path, ElementSet.COLLECTION_LABEL)
+        )
+        stub = ElementSetStub(self._server.channel)
+        request = CreateElementSetRequest(collection_path=collection_path, name=name)
+        reply = stub.Create(request)
+        return ElementSet(resource_path=reply.info.resource_path.value, server=self._server)
+
     @property
     def modeling_groups(self) -> Collection[ModelingGroup]:
         return Collection(
@@ -216,6 +233,32 @@ class Model:
                 resource_path=resource_path_str, server=self._server
             ),
         )
+
+    @property
+    def element_sets(self) -> Collection[ElementSet]:
+        return Collection(
+            self._list_element_sets,
+            lambda resource_path_str: ElementSet(
+                resource_path=resource_path_str, server=self._server
+            ),
+        )
+
+    def _list_element_sets(self) -> Sequence[BasicInfo]:
+        # TODO: if all collections create this request in the same way,
+        # this should go into the Collection or an adjacent class.
+        #
+        # There should be some way to invert the dependency here, since
+        # we probably don't want to implement e.g. ModelingGroup logic
+        # in the model (but importing the 'ModelingGroup' class may be
+        # a necessary evil..).
+        collection_path = CollectionPath(
+            value=_rp_join(self._resource_path, ElementSet.COLLECTION_LABEL)
+        )
+        stub = ElementSetStub(self._server.channel)
+        request = ListElementSetRequest(collection_path=collection_path)
+        LOGGER.debug("ElementSet List request.")
+        reply = stub.List(request)
+        return [eset.info for eset in reply.element_sets]
 
     def _list_modeling_groups(self) -> Sequence[BasicInfo]:
         # TODO: if all collections create this request in the same way,
