@@ -22,7 +22,7 @@ def test_collection_access(load_model_from_tempfile):
             rosette = model.create_rosette(name=ref_name)
             ros_ids.append(rosette.id)
 
-        assert len(model.rosettes) == len(ros_names) + initial_num_mg
+        assert len(model.rosettes) == len(ros_names) + initial_num_ros
 
         for name in ros_names:
             assert name in [mg.name for mg in model.rosettes.values()]
