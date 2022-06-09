@@ -30,9 +30,12 @@ class Collection(Generic[ValueT]):
         return self._object_constructor(info.resource_path.value)
 
     def _get_info_list(self) -> List[BasicInfo]:
-        return [
+        res = [
             obj.info for obj in getattr(self._stub.List(self._list_request), self._list_attribute)
         ]
+        if len(set(obj.id for obj in res)) != len(res):
+            raise ValueError("Duplicate ID in Collection.")
+        return res
 
     def _get_info_by_id(self, key: str) -> BasicInfo:
         for obj in self._get_info_list():

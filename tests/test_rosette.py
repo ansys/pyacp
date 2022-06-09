@@ -20,6 +20,7 @@ def test_collection_access(load_model_from_tempfile):
         ros_ids = []
         for ref_name in ros_names:
             rosette = model.create_rosette(name=ref_name)
+            assert rosette.id not in ros_ids
             ros_ids.append(rosette.id)
 
         assert len(model.rosettes) == len(ros_names) + initial_num_ros
