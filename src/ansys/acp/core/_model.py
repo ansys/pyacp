@@ -222,18 +222,17 @@ class Model:
 
     @property
     def modeling_groups(self) -> _Collection[ModelingGroup]:
+        # TODO: maybe this 'type info' can be collected into e.g. a dataclass
         return _Collection(
-            stub=ModelingGroupStub(self._server.channel),
-            list_request=ListModelingGroupsRequest(
-                collection_path=CollectionPath(
-                    value=_rp_join(self._resource_path, ModelingGroup.COLLECTION_LABEL)
-                )
+            server=self._server,
+            stub_class=ModelingGroupStub,
+            collection_path=CollectionPath(
+                value=_rp_join(self._resource_path, ModelingGroup.COLLECTION_LABEL)
             ),
             list_attribute="modeling_groups",
+            list_request_class=ListModelingGroupsRequest,
             delete_request_class=DeleteModelingGroupRequest,
-            object_constructor=lambda resource_path_str: ModelingGroup(
-                resource_path=resource_path_str, server=self._server
-            ),
+            object_class=ModelingGroup,
         )
 
     # ------------------------------------------------
@@ -252,15 +251,13 @@ class Model:
     @property
     def rosettes(self) -> _Collection[Rosette]:
         return _Collection(
-            stub=RosetteStub(self._server.channel),
-            list_request=ListRosettesRequest(
-                collection_path=CollectionPath(
-                    value=_rp_join(self._resource_path, Rosette.COLLECTION_LABEL)
-                )
+            server=self._server,
+            stub_class=RosetteStub,
+            collection_path=CollectionPath(
+                value=_rp_join(self._resource_path, Rosette.COLLECTION_LABEL)
             ),
             list_attribute="rosettes",
+            list_request_class=ListRosettesRequest,
             delete_request_class=DeleteRosetteRequest,
-            object_constructor=lambda resource_path_str: Rosette(
-                resource_path=resource_path_str, server=self._server
-            ),
+            object_class=Rosette,
         )

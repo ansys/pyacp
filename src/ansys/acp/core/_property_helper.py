@@ -11,12 +11,17 @@ try:
 except ImportError:
     from typing_extensions import Protocol  # type: ignore
 
+from ._server import ServerProtocol
+
 
 class ResourceProtocol(Protocol):
     """
     Interface definition for objects which can make use of the grpc
     property helpers.
     """
+
+    def __init__(self, resource_path: str, server: ServerProtocol):
+        ...
 
     def _set_data_attribute(self, key: str, value: Any) -> None:
         ...

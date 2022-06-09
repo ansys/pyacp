@@ -1,26 +1,33 @@
 from typing import Callable, Generic, Iterator, List, Optional, Tuple, Type, TypeVar
 
-from ansys.api.acp.v0.base_pb2 import BasicInfo
+from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath
 
+from .._property_helper import ResourceProtocol
+from .._server import ServerProtocol
 from .protocols import DeleteRequest, ListRequest, ResourceStub
 
-ValueT = TypeVar("ValueT")
+ValueT = TypeVar("ValueT", bound=ResourceProtocol)
 
 
 class Collection(Generic[ValueT]):
     def __init__(
         self,
-        stub: ResourceStub,
-        list_request: ListRequest,
+        *,
+        server: ServerProtocol,
+        stub_class: Type[ResourceStub],
+        collection_path: CollectionPath,
         list_attribute: str,
+        list_request_class: Type[ListRequest],
         delete_request_class: Type[DeleteRequest],
-        object_constructor: Callable[[str], ValueT],
+        object_class: Type[ValueT],
     ):
-        self._stub = stub
-        self._list_request = list_request
+        self._stub = stub_class(server.channel)
         self._list_attribute = list_attribute
+        self._list_request = list_request_class(collection_path=collection_path)
         self._delete_request_class = delete_request_class
-        self._object_constructor = object_constructor
+        self._object_constructor: Callable[[str], ValueT] = lambda resource_path: object_class(
+            resource_path=resource_path, server=server
+        )
 
     def __iter__(self) -> Iterator[str]:
         yield from (obj.id for obj in self._get_info_list())
