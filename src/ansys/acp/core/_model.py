@@ -12,6 +12,8 @@ from ansys.api.acp.v0.model_pb2 import (
     SaveModelRequest,
     UpdateModelRequest,
 )
+
+# ModelingGroup
 from ansys.api.acp.v0.model_pb2 import Format as _pb_Format
 from ansys.api.acp.v0.model_pb2_grpc import ModelStub
 from ansys.api.acp.v0.modeling_group_pb2 import (
@@ -20,6 +22,10 @@ from ansys.api.acp.v0.modeling_group_pb2 import (
 )
 from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
 
+# Rosette
+from ansys.api.acp.v0.rosette_pb2 import CreateRosetteRequest, ListRosettesRequest
+from ansys.api.acp.v0.rosette_pb2_grpc import RosetteStub
+
 from ._collection import Collection
 from ._data_objects.model import Model as _ModelData
 from ._element_set import ElementSet
@@ -27,6 +33,7 @@ from ._log import LOGGER
 from ._modeling_group import ModelingGroup
 from ._property_helper import grpc_data_getter, grpc_data_property, grpc_data_setter
 from ._resource_paths import join as _rp_join
+from ._rosette import Rosette
 from ._server import ServerProtocol
 from ._typing_helper import PATH as _PATH
 
@@ -211,15 +218,6 @@ class Model:
         reply = stub.Create(request)
         return ModelingGroup(resource_path=reply.info.resource_path.value, server=self._server)
 
-    def create_element_set(self, name: str) -> ElementSet:
-        collection_path = CollectionPath(
-            value=_rp_join(self._resource_path, ElementSet.COLLECTION_LABEL)
-        )
-        stub = ElementSetStub(self._server.channel)
-        request = CreateElementSetRequest(collection_path=collection_path, name=name)
-        reply = stub.Create(request)
-        return ElementSet(resource_path=reply.info.resource_path.value, server=self._server)
-
     @property
     def modeling_groups(self) -> Collection[ModelingGroup]:
         return Collection(
@@ -246,6 +244,43 @@ class Model:
         reply = stub.List(request)
         return [mg.info for mg in reply.modeling_groups]
 
+    # ------------------------------------------------
+    # ROSETTE
+
+    # Todo: implement helper functions which are independent of the object type.
+    def create_rosette(self, name: str) -> Rosette:
+        collection_path = CollectionPath(
+            value=_rp_join(self._resource_path, Rosette.COLLECTION_LABEL)
+        )
+        stub = RosetteStub(self._server.channel)
+        request = CreateRosetteRequest(collection_path=collection_path, name=name)
+        reply = stub.Create(request)
+        return Rosette(resource_path=reply.info.resource_path.value, server=self._server)
+
+    @property
+    def rosettes(self) -> Collection[Rosette]:
+        return Collection(
+            self._list_rosettes,
+            lambda resource_path_str: Rosette(resource_path=resource_path_str, server=self._server),
+        )
+
+    def _list_rosettes(self) -> Sequence[BasicInfo]:
+        # TODO: if all collections create this request in the same way,
+        # this should go into the Collection or an adjacent class.
+        #
+        # There should be some way to invert the dependency here, since
+        # we probably don't want to implement e.g. ModelingGroup logic
+        # in the model (but importing the 'ModelingGroup' class may be
+        # a necessary evil..).
+        collection_path = CollectionPath(
+            value=_rp_join(self._resource_path, Rosette.COLLECTION_LABEL)
+        )
+        stub = RosetteStub(self._server.channel)
+        request = ListRosettesRequest(collection_path=collection_path)
+        LOGGER.debug("Rosette List request.")
+        reply = stub.List(request)
+        return [ros.info for ros in reply.rosettes]
+
     @property
     def element_sets(self) -> Collection[ElementSet]:
         return Collection(
@@ -271,3 +306,12 @@ class Model:
         LOGGER.debug("ElementSet List request.")
         reply = stub.List(request)
         return [eset.info for eset in reply.element_sets]
+
+    def create_element_set(self, name: str) -> ElementSet:
+        collection_path = CollectionPath(
+            value=_rp_join(self._resource_path, ElementSet.COLLECTION_LABEL)
+        )
+        stub = ElementSetStub(self._server.channel)
+        request = CreateElementSetRequest(collection_path=collection_path, name=name)
+        reply = stub.Create(request)
+        return ElementSet(resource_path=reply.info.resource_path.value, server=self._server)

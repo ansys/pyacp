@@ -10,6 +10,13 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      api_branch:
+        description: "Branch of the 'ansys-api-acp-private' repository used during the build."
+        required: false
+      docker_image_suffix:
+        description: "Suffix of the 'pyacp-private' docker image used for testing. For example, ':latest', or '@sha256:<hash>' (without quotes)."
+        required: false
 
 jobs:
   style:
@@ -37,6 +44,11 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           pip install poetry
           poetry install -E pre-commit
+
+      - name: Install custom API branch if needed
+        if: "${{ github.event.inputs.api_branch != '' }}"
+        run: |
+          poetry run pip install --force-reinstall git+https://github.com/ansys/ansys-api-acp-private.git@${{ github.event.inputs.api_branch }}
 
       - name: Run pre-commit
         run: |
@@ -79,6 +91,11 @@ jobs:
       - name: Install library, with test extra
         run: pip install $(echo dist/*.whl)[test]
 
+      - name: Install custom API branch if needed
+        if: "${{ github.event.inputs.api_branch != '' }}"
+        run: |
+          pip install --force-reinstall git+https://github.com/ansys/ansys-api-acp-private.git@${{ github.event.inputs.api_branch }}
+
       - name: Login in Github Container registry
         uses: docker/login-action@v1
         with:
@@ -89,10 +106,11 @@ jobs:
       - name: Unit testing
         working-directory: tests
         run: |
-          docker pull ghcr.io/pyansys/pyacp-private:latest
-          pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files
+          docker pull $IMAGE_NAME
+          pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
+          IMAGE_NAME: 'ghcr.io/pyansys/pyacp-private${{ github.event.inputs.docker_image_suffix }}'
 
       - name: Upload wheel
         uses: actions/upload-artifact@v2
@@ -125,6 +143,11 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           pip install poetry
           poetry install -E docs
+
+      - name: Install custom API branch if needed
+        if: "${{ github.event.inputs.api_branch != '' }}"
+        run: |
+          poetry run pip install --force-reinstall git+https://github.com/ansys/ansys-api-acp-private.git@${{ github.event.inputs.api_branch }}
 
       - name: Build HTML
         run: |
