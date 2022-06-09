@@ -33,7 +33,12 @@ from ._data_objects.model import Model as _ModelData
 from ._grpc_helpers.collection import Collection as _Collection
 from ._log import LOGGER
 from ._modeling_group import ModelingGroup
-from ._property_helper import grpc_data_getter, grpc_data_property, grpc_data_setter
+from ._property_helper import (
+    ResourceProtocol,
+    grpc_data_getter,
+    grpc_data_property,
+    grpc_data_setter,
+)
 from ._resource_paths import join as _rp_join
 from ._rosette import Rosette
 from ._server import ServerProtocol
@@ -58,7 +63,7 @@ class _IgnorableEntity(str, Enum):
     SHELL_SECTIONS = "shell_sections"
 
 
-class Model:
+class Model(ResourceProtocol):
     """Defines an ACP Model.
 
     Wrapper for accessing an ACP Model residing on a server.
@@ -223,12 +228,10 @@ class Model:
     @property
     def modeling_groups(self) -> _Collection[ModelingGroup]:
         # TODO: maybe this 'type info' can be collected into e.g. a dataclass
-        return _Collection(
+        return _Collection.from_types(
             server=self._server,
             stub_class=ModelingGroupStub,
-            collection_path=CollectionPath(
-                value=_rp_join(self._resource_path, ModelingGroup.COLLECTION_LABEL)
-            ),
+            parent_resource_path=ResourcePath(value=self._resource_path),
             list_attribute="modeling_groups",
             list_request_class=ListModelingGroupsRequest,
             delete_request_class=DeleteModelingGroupRequest,
@@ -250,12 +253,10 @@ class Model:
 
     @property
     def rosettes(self) -> _Collection[Rosette]:
-        return _Collection(
+        return _Collection.from_types(
             server=self._server,
+            parent_resource_path=ResourcePath(value=self._resource_path),
             stub_class=RosetteStub,
-            collection_path=CollectionPath(
-                value=_rp_join(self._resource_path, Rosette.COLLECTION_LABEL)
-            ),
             list_attribute="rosettes",
             list_request_class=ListRosettesRequest,
             delete_request_class=DeleteRosetteRequest,

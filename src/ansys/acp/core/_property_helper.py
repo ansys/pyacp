@@ -20,6 +20,8 @@ class ResourceProtocol(Protocol):
     property helpers.
     """
 
+    COLLECTION_LABEL: str
+
     def __init__(self, resource_path: str, server: ServerProtocol):
         ...
 

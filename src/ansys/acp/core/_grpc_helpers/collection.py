@@ -1,8 +1,11 @@
+from __future__ import annotations
+
 from typing import Callable, Generic, Iterator, List, Optional, Tuple, Type, TypeVar
 
-from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath
+from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath, ResourcePath
 
 from .._property_helper import ResourceProtocol
+from .._resource_paths import join as _rp_join
 from .._server import ServerProtocol
 from .protocols import DeleteRequest, ListRequest, ResourceStub
 
@@ -13,20 +16,44 @@ class Collection(Generic[ValueT]):
     def __init__(
         self,
         *,
+        list_function: Callable[[], List[BasicInfo]],
+        delete_function: Callable[[BasicInfo], None],
+        constructor: Callable[[str], ValueT],
+    ):
+        self._list_function = list_function
+        self._delete_function = delete_function
+        self._constructor = constructor
+
+    @classmethod
+    def from_types(
+        cls,
+        *,
         server: ServerProtocol,
+        parent_resource_path: ResourcePath,
         stub_class: Type[ResourceStub],
-        collection_path: CollectionPath,
         list_attribute: str,
         list_request_class: Type[ListRequest],
         delete_request_class: Type[DeleteRequest],
         object_class: Type[ValueT],
-    ):
-        self._stub = stub_class(server.channel)
-        self._list_attribute = list_attribute
-        self._list_request = list_request_class(collection_path=collection_path)
-        self._delete_request_class = delete_request_class
-        self._object_constructor: Callable[[str], ValueT] = lambda resource_path: object_class(
-            resource_path=resource_path, server=server
+    ) -> Collection[ValueT]:
+        stub = stub_class(server.channel)
+
+        collection_path = CollectionPath(
+            value=_rp_join(parent_resource_path.value, object_class.COLLECTION_LABEL)
+        )
+        list_request = list_request_class(collection_path=collection_path)
+
+        def list_function() -> List[BasicInfo]:
+            return [obj.info for obj in getattr(stub.List(list_request), list_attribute)]
+
+        def delete_function(info: BasicInfo) -> None:
+            stub.Delete(delete_request_class(info=info))
+
+        def constructor(resource_path: str) -> ValueT:
+            return object_class(resource_path=resource_path, server=server)
+
+        return cls(
+            list_function=list_function, delete_function=delete_function, constructor=constructor
         )
 
     def __iter__(self) -> Iterator[str]:
@@ -34,12 +61,10 @@ class Collection(Generic[ValueT]):
 
     def __getitem__(self, key: str) -> ValueT:
         info = self._get_info_by_id(key)
-        return self._object_constructor(info.resource_path.value)
+        return self._constructor(info.resource_path.value)
 
     def _get_info_list(self) -> List[BasicInfo]:
-        res = [
-            obj.info for obj in getattr(self._stub.List(self._list_request), self._list_attribute)
-        ]
+        res = self._list_function()
         if len(set(obj.id for obj in res)) != len(res):
             raise ValueError("Duplicate ID in Collection.")
         return res
@@ -61,11 +86,11 @@ class Collection(Generic[ValueT]):
 
     def __delitem__(self, key: str) -> None:
         info = self._get_info_by_id(key)
-        self._stub.Delete(self._delete_request_class(info=info))
+        self._delete_function(info)
 
     def clear(self) -> None:
         for info in self._get_info_list():
-            self._stub.Delete(self._delete_request_class(info=info))
+            self._delete_function(info)
 
     # def pop(self, key):
     #     raise NotImplementedError()
@@ -74,12 +99,11 @@ class Collection(Generic[ValueT]):
     #     raise NotImplementedError()
 
     def values(self) -> Iterator[ValueT]:
-        return (self._object_constructor(obj.resource_path.value) for obj in self._get_info_list())
+        return (self._constructor(obj.resource_path.value) for obj in self._get_info_list())
 
     def items(self) -> Iterator[Tuple[str, ValueT]]:
         return (
-            (obj.id, self._object_constructor(obj.resource_path.value))
-            for obj in self._get_info_list()
+            (obj.id, self._constructor(obj.resource_path.value)) for obj in self._get_info_list()
         )
 
     def keys(self) -> Iterator[str]:
