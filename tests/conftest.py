@@ -28,6 +28,7 @@ TEST_ROOT_DIR = pathlib.Path(__file__).parent
 
 SERVER_BIN_OPTION_KEY = "--server-bin"
 LICENSE_SERVER_OPTION_KEY = "--license-server"
+DOCKER_IMAGENAME_OPTION_KEY = "--docker-image"
 NO_SERVER_LOGS_OPTION_KEY = "--no-server-log-files"
 SERVER_STARTUP_TIMEOUT = 30.0
 
@@ -38,6 +39,15 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         SERVER_BIN_OPTION_KEY,
         action="store",
         help="Path of the gRPC server executable",
+    )
+    parser.addoption(
+        DOCKER_IMAGENAME_OPTION_KEY,
+        action="store",
+        help=(
+            "Docker image to be used for running the test. Only used if "
+            f"'{SERVER_BIN_OPTION_KEY}' is not set."
+        ),
+        default="ghcr.io/pyansys/pyacp-private:latest",
     )
     parser.addoption(
         LICENSE_SERVER_OPTION_KEY,
@@ -107,6 +117,7 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
         def _launch_server() -> ServerProtocol:
             tmp_dir = tempfile.gettempdir()
             return launch_acp_docker(
+                image_name=request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY),
                 license_server=license_server,
                 mount_directories={
                     str(model_data_dir_host): str(_model_data_dir_server),
