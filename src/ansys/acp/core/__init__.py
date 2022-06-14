@@ -6,6 +6,7 @@ except ModuleNotFoundError:
 from ._client import Client
 from ._model import Model
 from ._modeling_group import ModelingGroup
+from ._rosette import Rosette
 from ._server import (
     LocalAcpServer,
     RemoteAcpServer,
@@ -29,6 +30,7 @@ __all__ = [
     "LocalAcpServer",
     "RemoteAcpServer",
     "Model",
+    "Rosette",
     "ModelingGroup",
     "Client",
 ]
