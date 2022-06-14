@@ -7,4 +7,5 @@ ACP Objects
     :toctree: _autosummary
 
     Model
+    Rosette
     ModelingGroup
