@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Iterable, Optional, Sequence, Union
+from typing import Any, Iterable, Optional, Union
 
 from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath, ResourcePath
 from ansys.api.acp.v0.element_set_pb2 import (
@@ -35,12 +35,17 @@ from ansys.api.acp.v0.rosette_pb2 import (
 )
 from ansys.api.acp.v0.rosette_pb2_grpc import RosetteStub
 
-from ._collection import Collection
 from ._data_objects.model import Model as _ModelData
 from ._element_set import ElementSet
+from ._grpc_helpers.collection import Collection as _Collection
 from ._log import LOGGER
 from ._modeling_group import ModelingGroup
-from ._property_helper import grpc_data_getter, grpc_data_property, grpc_data_setter
+from ._property_helper import (
+    ResourceProtocol,
+    grpc_data_getter,
+    grpc_data_property,
+    grpc_data_setter,
+)
 from ._resource_paths import join as _rp_join
 from ._rosette import Rosette
 from ._server import ServerProtocol
@@ -65,7 +70,7 @@ class _IgnorableEntity(str, Enum):
     SHELL_SECTIONS = "shell_sections"
 
 
-class Model:
+class Model(ResourceProtocol):
     """Defines an ACP Model.
 
     Wrapper for accessing an ACP Model residing on a server.
@@ -228,37 +233,17 @@ class Model:
         return ModelingGroup(resource_path=reply.info.resource_path.value, server=self._server)
 
     @property
-    def modeling_groups(self) -> Collection[ModelingGroup]:
-        return Collection(
-            list_method=self._list_modeling_groups,
-            constructor=lambda resource_path_str: ModelingGroup(
-                resource_path=resource_path_str, server=self._server
-            ),
-            delete_method=self._delete_modeling_group,
+    def modeling_groups(self) -> _Collection[ModelingGroup]:
+        # TODO: maybe this 'type info' can be collected into e.g. a dataclass
+        return _Collection.from_types(
+            server=self._server,
+            stub_class=ModelingGroupStub,
+            parent_resource_path=ResourcePath(value=self._resource_path),
+            list_attribute="modeling_groups",
+            list_request_class=ListModelingGroupsRequest,
+            delete_request_class=DeleteModelingGroupRequest,
+            object_class=ModelingGroup,
         )
-
-    def _list_modeling_groups(self) -> Sequence[BasicInfo]:
-        # TODO: if all collections create this request in the same way,
-        # this should go into the Collection or an adjacent class.
-        #
-        # There should be some way to invert the dependency here, since
-        # we probably don't want to implement e.g. ModelingGroup logic
-        # in the model (but importing the 'ModelingGroup' class may be
-        # a necessary evil..).
-        collection_path = CollectionPath(
-            value=_rp_join(self._resource_path, ModelingGroup.COLLECTION_LABEL)
-        )
-        stub = ModelingGroupStub(self._server.channel)
-        request = ListModelingGroupsRequest(collection_path=collection_path)
-        LOGGER.debug("ModelingGroup List request.")
-        reply = stub.List(request)
-        return [mg.info for mg in reply.modeling_groups]
-
-    def _delete_modeling_group(self, info: BasicInfo) -> None:
-        stub = ModelingGroupStub(self._server.channel)
-        request = DeleteModelingGroupRequest(info=info)
-        LOGGER.debug("ModelingGroup Delete request.")
-        stub.Delete(request)
 
     # ------------------------------------------------
     # ROSETTE
@@ -274,76 +259,34 @@ class Model:
         return Rosette(resource_path=reply.info.resource_path.value, server=self._server)
 
     @property
-    def rosettes(self) -> Collection[Rosette]:
-        return Collection(
-            list_method=self._list_rosettes,
-            constructor=lambda resource_path_str: Rosette(
-                resource_path=resource_path_str, server=self._server
-            ),
-            delete_method=self._delete_rosette,
+    def rosettes(self) -> _Collection[Rosette]:
+        return _Collection.from_types(
+            server=self._server,
+            parent_resource_path=ResourcePath(value=self._resource_path),
+            stub_class=RosetteStub,
+            list_attribute="rosettes",
+            list_request_class=ListRosettesRequest,
+            delete_request_class=DeleteRosetteRequest,
+            object_class=Rosette,
         )
-
-    def _list_rosettes(self) -> Sequence[BasicInfo]:
-        # TODO: if all collections create this request in the same way,
-        # this should go into the Collection or an adjacent class.
-        #
-        # There should be some way to invert the dependency here, since
-        # we probably don't want to implement e.g. ModelingGroup logic
-        # in the model (but importing the 'ModelingGroup' class may be
-        # a necessary evil..).
-        collection_path = CollectionPath(
-            value=_rp_join(self._resource_path, Rosette.COLLECTION_LABEL)
-        )
-        stub = RosetteStub(self._server.channel)
-        request = ListRosettesRequest(collection_path=collection_path)
-        LOGGER.debug("Rosette List request.")
-        reply = stub.List(request)
-        return [ros.info for ros in reply.rosettes]
-
-    def _delete_rosette(self, info: BasicInfo) -> None:
-        stub = RosetteStub(self._server.channel)
-        request = DeleteRosetteRequest(info=info)
-        LOGGER.debug("Rosette Delete request.")
-        stub.Delete(request)
 
     @property
-    def element_sets(self) -> Collection[ElementSet]:
-        return Collection(
-            self._list_element_sets,
-            lambda resource_path_str: ElementSet(
-                resource_path=resource_path_str, server=self._server
-            ),
-            self._delete_element_set,
+    def element_sets(self) -> _Collection[ElementSet]:
+        return _Collection.from_types(
+            server=self._server,
+            parent_resource_path=ResourcePath(value=self._resource_path),
+            stub_class=ElementSetStub,
+            list_attribute="element_sets",
+            list_request_class=ListElementSetsRequest,
+            delete_request_class=DeleteElementSetRequest,
+            object_class=ElementSet,
         )
-
-    def _list_element_sets(self) -> Sequence[BasicInfo]:
-        # TODO: if all collections create this request in the same way,
-        # this should go into the Collection or an adjacent class.
-        #
-        # There should be some way to invert the dependency here, since
-        # we probably don't want to implement e.g. ModelingGroup logic
-        # in the model (but importing the 'ModelingGroup' class may be
-        # a necessary evil..).
-        collection_path = CollectionPath(
-            value=_rp_join(self._resource_path, ElementSet.COLLECTION_LABEL)
-        )
-        stub = ElementSetStub(self._server.channel)
-        request = ListElementSetsRequest(collection_path=collection_path)
-        LOGGER.debug("ElementSet List request.")
-        reply = stub.List(request)
-        return [eset.info for eset in reply.element_sets]
 
     def create_element_set(self, name: str) -> ElementSet:
         collection_path = CollectionPath(
-            value=_rp_join(self._resource_path, ElementSet.COLLECTION_LABEL)
+            value=_rp_join(self._resource_path, Rosette.COLLECTION_LABEL)
         )
         stub = ElementSetStub(self._server.channel)
         request = CreateElementSetRequest(collection_path=collection_path, name=name)
         reply = stub.Create(request)
         return ElementSet(resource_path=reply.info.resource_path.value, server=self._server)
-
-    def _delete_element_set(self, info: BasicInfo) -> None:
-        stub = ElementSetStub(self._server.channel)
-        request = DeleteElementSetRequest(info=info)
-        LOGGER.debug("Element Set Delete request.")
-        stub.Delete(request)

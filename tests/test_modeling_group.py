@@ -21,6 +21,7 @@ def test_collection_access(load_model_from_tempfile):
         mg_ids = []
         for ref_name in mg_names:
             modeling_group = model.create_modeling_group(name=ref_name)
+            assert modeling_group.id not in mg_ids  # check uniqueness
             mg_ids.append(modeling_group.id)
 
         assert len(model.modeling_groups) == len(mg_names)
