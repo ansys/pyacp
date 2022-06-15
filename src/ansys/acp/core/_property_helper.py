@@ -74,3 +74,12 @@ def grpc_data_property(name: str) -> Any:
     the local object with the remote backend.
     """
     return property(grpc_data_getter(name)).setter(grpc_data_setter(name))
+
+
+def grpc_data_property_read_only(name: str) -> Any:
+    """
+    Helper for defining properties accessed via gRPC. The property getter
+    makes call to the gRPC Get endpoints to synchronize
+    the local object with the remote backend.
+    """
+    return property(grpc_data_getter(name))

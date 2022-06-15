@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Iterable, Optional, Union
+from typing import Any, Iterable, Optional, Tuple, Union
 
 from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath, ResourcePath
 from ansys.api.acp.v0.element_set_pb2 import (
@@ -32,6 +32,7 @@ from ansys.api.acp.v0.rosette_pb2 import (
     CreateRosetteRequest,
     DeleteRosetteRequest,
     ListRosettesRequest,
+    RosetteProperties,
 )
 from ansys.api.acp.v0.rosette_pb2_grpc import RosetteStub
 
@@ -50,6 +51,7 @@ from ._resource_paths import join as _rp_join
 from ._rosette import Rosette
 from ._server import ServerProtocol
 from ._typing_helper import PATH as _PATH
+from .utils.array_conversions import to_1D_double_array
 
 __all__ = ["Model"]
 
@@ -249,12 +251,26 @@ class Model(ResourceProtocol):
     # ROSETTE
 
     # Todo: implement helper functions which are independent of the object type.
-    def create_rosette(self, name: str) -> Rosette:
+    def create_rosette(
+        self,
+        name: str,
+        origin: Tuple[float, ...] = (0.0, 0.0, 0.0),
+        dir1: Tuple[float, ...] = (1.0, 0.0, 0.0),
+        dir2: Tuple[float, ...] = (0.0, 1.0, 0.0),
+    ) -> Rosette:
         collection_path = CollectionPath(
             value=_rp_join(self._resource_path, Rosette.COLLECTION_LABEL)
         )
         stub = RosetteStub(self._server.channel)
-        request = CreateRosetteRequest(collection_path=collection_path, name=name)
+        request = CreateRosetteRequest(
+            collection_path=collection_path,
+            name=name,
+            properties=RosetteProperties(
+                origin=to_1D_double_array(origin),
+                dir1=to_1D_double_array(dir1),
+                dir2=to_1D_double_array(dir2),
+            ),
+        )
         reply = stub.Create(request)
         return Rosette(resource_path=reply.info.resource_path.value, server=self._server)
 
