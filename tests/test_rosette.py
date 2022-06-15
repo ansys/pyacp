@@ -10,6 +10,8 @@ def test_create_rosette(load_model_from_tempfile):
             assert rosette.name == ref_name
 
 
+# TODO: revert 'xfail' once the backend is fixed
+@pytest.mark.xfail(reason="The Rosette replies from the backend are missing the 'id'.")
 def test_collection_access(load_model_from_tempfile):
     """Basic test of the Model.rosettes collection."""
     with load_model_from_tempfile() as model:
@@ -20,6 +22,7 @@ def test_collection_access(load_model_from_tempfile):
         ros_ids = []
         for ref_name in ros_names:
             rosette = model.create_rosette(name=ref_name)
+            assert rosette.id not in ros_ids
             ros_ids.append(rosette.id)
 
         assert len(model.rosettes) == len(ros_names) + initial_num_ros

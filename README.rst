@@ -8,7 +8,7 @@ PyACP
     :target: https://docs.pyansys.com/
     :alt: PyAnsys
 
-.. |python| image:: https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue
+.. |python| image:: https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue.svg
     :target: https://pypi.org/project/ansys-acp-core
     :alt: Python
 
@@ -64,7 +64,7 @@ Getting Started
 ---------------
 
 Launching ACP locally
-'''''''''''''''''''''
+^^^^^^^^^^^^^^^^^^^^^
 
 You can launch the ACP server locally by using ``launch_acp``:
 
@@ -79,7 +79,7 @@ in your Ansys installation. For example, ``r"C:\Program Files\ANSYS Inc\v231\ACP
 
 
 Launching ACP in a Docker container
-'''''''''''''''''''''''''''''''''''
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Alternatively, you can use Docker to run the ACP server. After installing Docker on your
 machine, you can use ``launch_acp_docker``:
@@ -106,7 +106,7 @@ The ``<LOCAL_DIRECTORY>`` is the path to the mounted directory on your machine, 
 ``/home/container/mounted_data`` is the path under which the container will see these files.
 
 Basic Usage
-'''''''''''
+^^^^^^^^^^^
 
 Once the server is running, we can start working with PyACP. For example, to load an ACP
 Model from an existing file:
@@ -122,7 +122,7 @@ Development Setup
 -----------------
 
 Installation
-''''''''''''
+^^^^^^^^^^^^
 
 Installing PyACP in developer mode allows you to modify the source and enhance it. Before contributing to the project,
 please refer to the `PyAnsys Developer's guide`_.
@@ -168,7 +168,7 @@ You will need to follow these steps:
 ..         tox
 
 Testing
-'''''''
+^^^^^^^
 
 .. TODO: If we add tox, add instructions on its use here.
 
@@ -179,7 +179,7 @@ The PyACP test suite uses `pytest`_. You can run it with
     pytest --license-server=<YOUR_LICENSE_SERVER>
 
 Pre-commit hooks
-''''''''''''''''
+^^^^^^^^^^^^^^^^
 
 Style and linter checks are run through the `pre-commit`_ tool. You can run these checks with
 
@@ -197,7 +197,7 @@ This will run the pre-commit hooks on the changed files before every ``git commi
 need to create a commit without running the hooks, you can skip them with ``git commit -n``.
 
 Documentation
-'''''''''''''
+^^^^^^^^^^^^^
 
 The documentation can be built locally using `Sphinx`_.
 
@@ -216,7 +216,7 @@ On Windows:
 The generated HTML files can be viewed with the browser of your choice.
 
 Distribution
-''''''''''''
+^^^^^^^^^^^^
 
 The following commands can be used to build and check the PyACP package:
 
@@ -225,8 +225,8 @@ The following commands can be used to build and check the PyACP package:
     poetry build
     twine check dist/*
 
-This creates both a source distribution, and a wheel file. An alternative is 
-          
+This creates both a source distribution, and a wheel file. An alternative is
+
 .. code:: bash
 
     pip install build
