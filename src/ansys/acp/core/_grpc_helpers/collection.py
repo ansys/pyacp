@@ -1,15 +1,18 @@
 from __future__ import annotations
 
-from typing import Callable, Generic, Iterator, List, Optional, Tuple, Type, TypeVar
+from typing import Any, Callable, Generic, Iterator, List, Optional, Tuple, Type, TypeVar
+
+from grpc import Channel
 
 from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath, ResourcePath
 
-from .._property_helper import ResourceProtocol
 from .._resource_paths import join as _rp_join
-from .._server import ServerProtocol
-from .protocols import DeleteRequest, ListRequest, ResourceStub
+from .._tree_objects.base import TreeObjectBase
+from .stub_info.base import StubWrapperProtocol
 
-ValueT = TypeVar("ValueT", bound=ResourceProtocol)
+ValueT = TypeVar("ValueT", bound=TreeObjectBase)
+
+__all__ = ["Collection", "define_collection"]
 
 
 class Collection(Generic[ValueT]):
@@ -28,29 +31,23 @@ class Collection(Generic[ValueT]):
     def from_types(
         cls,
         *,
-        server: ServerProtocol,
+        channel: Channel,
         parent_resource_path: ResourcePath,
-        stub_class: Type[ResourceStub],
-        list_attribute: str,
-        list_request_class: Type[ListRequest],
-        delete_request_class: Type[DeleteRequest],
+        stub_wrapper: StubWrapperProtocol,
         object_class: Type[ValueT],
     ) -> Collection[ValueT]:
-        stub = stub_class(server.channel)
-
         collection_path = CollectionPath(
             value=_rp_join(parent_resource_path.value, object_class.COLLECTION_LABEL)
         )
-        list_request = list_request_class(collection_path=collection_path)
 
         def list_function() -> List[BasicInfo]:
-            return [obj.info for obj in getattr(stub.List(list_request), list_attribute)]
+            return [obj.info for obj in stub_wrapper.list(collection_path)]
 
         def delete_function(info: BasicInfo) -> None:
-            stub.Delete(delete_request_class(info=info))
+            stub_wrapper.delete(info)
 
         def constructor(resource_path: str) -> ValueT:
-            return object_class(resource_path=resource_path, server=server)
+            return object_class.from_resource_path(resource_path=resource_path, channel=channel)
 
         return cls(
             list_function=list_function, delete_function=delete_function, constructor=constructor
@@ -120,3 +117,38 @@ class Collection(Generic[ValueT]):
             return self[key]
         except KeyError:
             return default
+
+
+ParentT = TypeVar("ParentT", bound=TreeObjectBase)
+
+
+def define_collection(
+    object_class: Type[ValueT], stub_wrapper_class: Type[StubWrapperProtocol]
+) -> Tuple[Callable[[ParentT, str], ValueT], Callable[[ParentT], Collection[ValueT]]]:
+    def create_method(self: ParentT, name: str, **kwargs: Any) -> ValueT:
+        collection_path = CollectionPath(
+            value=_rp_join(self._pb_object.info.resource_path.value, object_class.COLLECTION_LABEL)
+        )
+        stub = stub_wrapper_class(self._channel)
+        # FIXME: harmonize on using the 'initialize + store' approach
+        from .._tree_objects.rosette import Rosette
+
+        if object_class is Rosette:
+            obj = object_class(name, **kwargs)
+            obj.store(parent=self)
+            return obj
+        reply = stub.create(collection_path=collection_path, name=name)
+        return object_class.from_resource_path(
+            resource_path=reply.info.resource_path.value, channel=self._channel
+        )
+
+    @property  # type: ignore
+    def collection_property(self: ParentT) -> Collection[ValueT]:
+        return Collection.from_types(
+            channel=self._channel,
+            parent_resource_path=self._pb_object.info.resource_path,
+            object_class=object_class,
+            stub_wrapper=stub_wrapper_class(channel=self._channel),
+        )
+
+    return create_method, collection_property

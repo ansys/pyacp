@@ -43,8 +43,6 @@ def test_rosette_properties(load_model_from_tempfile):
                 setattr(rosette, prop, value)
 
 
-# TODO: revert 'xfail' once the backend is fixed
-@pytest.mark.xfail(reason="The Rosette replies from the backend are missing the 'id'.")
 def test_collection_access(load_model_from_tempfile):
     """Basic test of the Model.rosettes collection."""
     with load_model_from_tempfile() as model:

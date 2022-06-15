@@ -4,8 +4,8 @@ from ansys.api.acp.v0.base_pb2 import CollectionPath
 from ansys.api.acp.v0.model_pb2 import DeleteModelRequest, ListModelsRequest
 from ansys.api.acp.v0.model_pb2_grpc import ModelStub
 
-from ._model import Model
 from ._server import ServerProtocol
+from ._tree_objects import Model
 from ._typing_helper import PATH as _PATH
 
 __all__ = ["Client"]
@@ -21,10 +21,15 @@ class Client:
     """
 
     def __init__(self, server: ServerProtocol):
-        self._server = server
+        self._channel = server.channel
 
     def import_model(
-        self, *, name: Optional[str] = None, path: _PATH, format: str = "acp:h5", **kwargs: Any
+        self,
+        *,
+        name: Optional[str] = None,
+        path: _PATH,
+        format: str = "acp:h5",  # pylint: disable=redefined-builtin
+        **kwargs: Any,
     ) -> Model:
         """Load an ACP model from a file.
 
@@ -48,9 +53,9 @@ class Client:
                     f"Parameters '{kwargs.keys()}' cannot be passed when "
                     f"loading a model with format '{format}'."
                 )
-            model = Model.from_file(path=path, server=self._server)
+            model = Model.from_file(path=path, channel=self._channel)
         else:
-            model = Model.from_fe_file(path=path, server=self._server, format=format, **kwargs)
+            model = Model.from_fe_file(path=path, channel=self._channel, format=format, **kwargs)
         if name is not None:
             model.name = name
         return model
@@ -61,7 +66,7 @@ class Client:
         Closes the models which are open on the server, without first
         saving them to a file.
         """
-        model_stub = ModelStub(self._server.channel)
+        model_stub = ModelStub(self._channel)
         for model in model_stub.List(
             ListModelsRequest(collection_path=CollectionPath(value=Model.COLLECTION_LABEL))
         ).models:

@@ -4,9 +4,6 @@ except ModuleNotFoundError:
     import importlib_metadata  # type: ignore
 
 from ._client import Client
-from ._model import Model
-from ._modeling_group import ModelingGroup
-from ._rosette import Rosette
 from ._server import (
     LocalAcpServer,
     RemoteAcpServer,
@@ -16,6 +13,7 @@ from ._server import (
     shutdown_server,
     wait_for_server,
 )
+from ._tree_objects import Model, ModelingGroup, Rosette
 
 __version__ = importlib_metadata.version(__name__.replace(".", "-"))
 
@@ -32,5 +30,6 @@ __all__ = [
     "Model",
     "Rosette",
     "ModelingGroup",
+    "Rosette",
     "Client",
 ]
