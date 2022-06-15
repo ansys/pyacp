@@ -2,6 +2,12 @@ from enum import Enum
 from typing import Any, Iterable, Optional, Union
 
 from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath, ResourcePath
+from ansys.api.acp.v0.element_set_pb2 import (
+    CreateElementSetRequest,
+    DeleteElementSetRequest,
+    ListElementSetsRequest,
+)
+from ansys.api.acp.v0.element_set_pb2_grpc import ElementSetStub
 from ansys.api.acp.v0.model_pb2 import (
     LoadFEModelRequest,
     LoadModelRequest,
@@ -30,6 +36,7 @@ from ansys.api.acp.v0.rosette_pb2 import (
 from ansys.api.acp.v0.rosette_pb2_grpc import RosetteStub
 
 from ._data_objects.model import Model as _ModelData
+from ._element_set import ElementSet
 from ._grpc_helpers.collection import Collection as _Collection
 from ._log import LOGGER
 from ._modeling_group import ModelingGroup
@@ -262,3 +269,24 @@ class Model(ResourceProtocol):
             delete_request_class=DeleteRosetteRequest,
             object_class=Rosette,
         )
+
+    @property
+    def element_sets(self) -> _Collection[ElementSet]:
+        return _Collection.from_types(
+            server=self._server,
+            parent_resource_path=ResourcePath(value=self._resource_path),
+            stub_class=ElementSetStub,
+            list_attribute="element_sets",
+            list_request_class=ListElementSetsRequest,
+            delete_request_class=DeleteElementSetRequest,
+            object_class=ElementSet,
+        )
+
+    def create_element_set(self, name: str) -> ElementSet:
+        collection_path = CollectionPath(
+            value=_rp_join(self._resource_path, ElementSet.COLLECTION_LABEL)
+        )
+        stub = ElementSetStub(self._server.channel)
+        request = CreateElementSetRequest(collection_path=collection_path, name=name)
+        reply = stub.Create(request)
+        return ElementSet(resource_path=reply.info.resource_path.value, server=self._server)
