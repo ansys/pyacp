@@ -6,7 +6,7 @@ from ansys.api.acp.v0.rosette_pb2_grpc import RosetteStub
 
 from ._data_objects.rosette import Rosette as _RosetteData
 from ._log import LOGGER
-from ._property_helper import grpc_data_property, grpc_data_property_read_only
+from ._property_helper import ResourceProtocol, grpc_data_property, grpc_data_property_read_only
 from ._server import ServerProtocol
 from .utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .utils.enum_conversions import status_type_to_string
@@ -14,7 +14,7 @@ from .utils.enum_conversions import status_type_to_string
 __all__ = ["Rosette"]
 
 
-class Rosette:
+class Rosette(ResourceProtocol):
     COLLECTION_LABEL = "rosettes"
 
     def __init__(self, *, resource_path: str, server: ServerProtocol):
