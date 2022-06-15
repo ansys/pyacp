@@ -284,7 +284,7 @@ class Model(ResourceProtocol):
 
     def create_element_set(self, name: str) -> ElementSet:
         collection_path = CollectionPath(
-            value=_rp_join(self._resource_path, Rosette.COLLECTION_LABEL)
+            value=_rp_join(self._resource_path, ElementSet.COLLECTION_LABEL)
         )
         stub = ElementSetStub(self._server.channel)
         request = CreateElementSetRequest(collection_path=collection_path, name=name)
