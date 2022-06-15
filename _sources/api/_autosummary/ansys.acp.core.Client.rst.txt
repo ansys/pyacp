@@ -6,16 +6,20 @@
 .. autoclass:: Client
 
    
-   .. automethod:: __init__
 
    
    .. rubric:: Methods
 
    .. autosummary::
+      :toctree:
    
-      ~Client.__init__
-      ~Client.clear
-      ~Client.import_model
+      
+      
+      Client.clear
+      
+      
+      Client.import_model
+      
    
    
 

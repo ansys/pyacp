@@ -1,5 +1,5 @@
 Server Management
-=================
+-----------------
 
 .. currentmodule:: ansys.acp.core
 

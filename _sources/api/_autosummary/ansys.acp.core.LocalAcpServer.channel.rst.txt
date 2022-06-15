@@ -1,0 +1,6 @@
+channel
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LocalAcpServer.channel

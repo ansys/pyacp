@@ -1,5 +1,5 @@
-﻿ansys.acp.core.check\_server
-============================
+﻿check\_server
+=============
 
 .. currentmodule:: ansys.acp.core
 

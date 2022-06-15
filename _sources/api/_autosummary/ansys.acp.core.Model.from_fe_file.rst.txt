@@ -1,0 +1,6 @@
+from\_fe\_file
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.from_fe_file

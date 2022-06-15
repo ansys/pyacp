@@ -1,0 +1,6 @@
+use\_default\_section\_tolerances
+=================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.use_default_section_tolerances

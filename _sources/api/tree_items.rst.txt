@@ -1,5 +1,5 @@
 ACP Objects
-===========
+-----------
 
 .. currentmodule:: ansys.acp.core
 
@@ -7,4 +7,5 @@ ACP Objects
     :toctree: _autosummary
 
     Model
+    Rosette
     ModelingGroup

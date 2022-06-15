@@ -1,0 +1,35 @@
+﻿ansys.acp.core.Rosette
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Rosette
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Rosette.id
+      
+      
+      Rosette.name
+      
+   
+   

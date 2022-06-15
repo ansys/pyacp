@@ -1,5 +1,5 @@
 Database
-========
+--------
 
 .. currentmodule:: ansys.acp.core
 
