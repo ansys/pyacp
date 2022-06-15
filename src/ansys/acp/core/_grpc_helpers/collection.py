@@ -7,10 +7,10 @@ from grpc import Channel
 from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath, ResourcePath
 
 from .._resource_paths import join as _rp_join
-from .._tree_objects.base import TreeObjectBase
-from .stub_info.base import StubWrapperProtocol
+from .._tree_objects.base import TreeObject
+from .stub_info.base import StubWrapper
 
-ValueT = TypeVar("ValueT", bound=TreeObjectBase)
+ValueT = TypeVar("ValueT", bound=TreeObject)
 
 __all__ = ["Collection", "define_collection"]
 
@@ -33,7 +33,7 @@ class Collection(Generic[ValueT]):
         *,
         channel: Channel,
         parent_resource_path: ResourcePath,
-        stub_wrapper: StubWrapperProtocol,
+        stub_wrapper: StubWrapper,
         object_class: Type[ValueT],
     ) -> Collection[ValueT]:
         collection_path = CollectionPath(
@@ -119,11 +119,11 @@ class Collection(Generic[ValueT]):
             return default
 
 
-ParentT = TypeVar("ParentT", bound=TreeObjectBase)
+ParentT = TypeVar("ParentT", bound=TreeObject)
 
 
 def define_collection(
-    object_class: Type[ValueT], stub_wrapper_class: Type[StubWrapperProtocol]
+    object_class: Type[ValueT], stub_wrapper_class: Type[StubWrapper]
 ) -> Tuple[Callable[[ParentT, str], ValueT], Callable[[ParentT], Collection[ValueT]]]:
     def create_method(self: ParentT, name: str, **kwargs: Any) -> ValueT:
         collection_path = CollectionPath(

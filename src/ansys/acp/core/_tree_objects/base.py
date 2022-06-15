@@ -14,10 +14,10 @@ from ansys.api.acp.v0.base_pb2 import ResourcePath
 from .._grpc_helpers.property_helper import grpc_data_property
 from .._grpc_helpers.protocols import ObjectInfo, ResourceStub
 
-_T = TypeVar("_T", bound="TreeObjectBase")
+_T = TypeVar("_T", bound="TreeObject")
 
 
-class TreeObjectBase(ABC):
+class TreeObject(ABC):
     """
     Interface definition for objects which can make use of the grpc
     property helpers.
@@ -26,7 +26,7 @@ class TreeObjectBase(ABC):
     COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: Type[ObjectInfo]
 
-    def __init__(self: TreeObjectBase, name: str = "") -> None:
+    def __init__(self: TreeObject, name: str = "") -> None:
         self._channel_store: Optional[Channel] = None
         self._pb_object: ObjectInfo = self.OBJECT_INFO_TYPE()
         self.name = name
@@ -38,7 +38,7 @@ class TreeObjectBase(ABC):
         instance._channel_store = channel
         return instance
 
-    def store(self, parent: TreeObjectBase) -> None:
+    def store(self, parent: TreeObject) -> None:
         raise NotImplementedError()
 
     @property

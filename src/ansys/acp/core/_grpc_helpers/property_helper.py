@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING, Any, Callable, cast
 from google.protobuf.message import Message
 
 if TYPE_CHECKING:
-    from .._tree_objects.base import TreeObjectBase
+    from .._tree_objects.base import TreeObject
 
 from .protocols import ObjectInfo
 
@@ -18,13 +18,13 @@ _TO_PROTOBUF_T = Callable[[Any], Any]
 _FROM_PROTOBUF_T = Callable[[Any], Any]
 
 
-def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[TreeObjectBase], Any]:
+def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[TreeObject], Any]:
     """
     Creates a getter method which obtains the server object via the gRPC
     Get endpoint.
     """
 
-    def inner(self: TreeObjectBase) -> Any:
+    def inner(self: TreeObject) -> Any:
         if self._is_stored:
             self._pb_object = self._get_stub().Get(self._pb_object.info)
         return from_protobuf(_get_data_attribute(self._pb_object, name))
@@ -32,15 +32,13 @@ def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[Tr
     return inner
 
 
-def grpc_data_setter(
-    name: str, to_protobuf: _TO_PROTOBUF_T
-) -> Callable[[TreeObjectBase, Any], None]:
+def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[TreeObject, Any], None]:
     """
     Creates a setter method which updates the server object via the gRPC
     Put endpoint.
     """
 
-    def inner(self: TreeObjectBase, value: Any) -> None:
+    def inner(self: TreeObject, value: Any) -> None:
         if self._is_stored:
             self._pb_object = self._get_stub().Get(self._pb_object.info)
         current_value = _get_data_attribute(self._pb_object, name)

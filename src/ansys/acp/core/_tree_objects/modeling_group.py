@@ -7,12 +7,12 @@ from ansys.acp.core._grpc_helpers.property_helper import grpc_data_property_read
 from ansys.api.acp.v0.modeling_group_pb2 import ModelingGroupReply
 from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
 
-from .base import TreeObjectBase
+from .base import TreeObject
 
 __all__ = ["ModelingGroup"]
 
 
-class ModelingGroup(TreeObjectBase):
+class ModelingGroup(TreeObject):
     COLLECTION_LABEL = "modeling_groups"
     OBJECT_INFO_TYPE = ModelingGroupReply
 

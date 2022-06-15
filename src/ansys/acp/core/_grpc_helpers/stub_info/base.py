@@ -13,13 +13,13 @@ from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath
 from ..protocols import CreatableResourceStub, CreateRequest, DeleteRequest, ListRequest, ObjectInfo
 
 __all__ = [
-    "StubWrapperProtocol",
+    "StubWrapper",
     "SimpleStubInfo",
     "SimpleStubWrapper",
 ]
 
 
-class StubWrapperProtocol(Protocol):
+class StubWrapper(Protocol):
     def __init__(self, channel: Channel):
         ...
 

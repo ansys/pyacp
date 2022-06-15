@@ -22,7 +22,7 @@ from .._grpc_helpers.stub_info.element_set import ElementSetStubWrapper
 from .._grpc_helpers.stub_info.modeling_group import ModelingGroupStubWrapper
 from .._grpc_helpers.stub_info.rosette import RosetteStubWrapper
 from .._typing_helper import PATH as _PATH
-from .base import TreeObjectBase
+from .base import TreeObject
 from .element_set import ElementSet
 from .modeling_group import ModelingGroup
 from .rosette import Rosette
@@ -46,7 +46,7 @@ class _IgnorableEntity(str, Enum):
     SHELL_SECTIONS = "shell_sections"
 
 
-class Model(TreeObjectBase):
+class Model(TreeObject):
     """Defines an ACP Model.
 
     Wrapper for accessing an ACP Model residing on a server.

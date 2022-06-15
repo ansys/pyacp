@@ -8,12 +8,12 @@ from ansys.api.acp.v0.element_set_pb2_grpc import ElementSetStub
 
 from .._grpc_helpers.property_helper import grpc_data_property
 from .._server import ServerProtocol
-from .base import TreeObjectBase
+from .base import TreeObject
 
 __all__ = ["ElementSet"]
 
 
-class ElementSet(TreeObjectBase):
+class ElementSet(TreeObject):
     COLLECTION_LABEL = "element_sets"
 
     def __init__(self, **kwargs: Any):

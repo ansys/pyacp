@@ -11,12 +11,12 @@ from .._grpc_helpers.property_helper import grpc_data_property, grpc_data_proper
 from .._resource_paths import join as _rp_join
 from ..utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from ..utils.enum_conversions import status_type_to_string
-from .base import TreeObjectBase
+from .base import TreeObject
 
 __all__ = ["Rosette"]
 
 
-class Rosette(TreeObjectBase):
+class Rosette(TreeObject):
     COLLECTION_LABEL = "rosettes"
     OBJECT_INFO_TYPE = RosetteReply
 
@@ -38,7 +38,7 @@ class Rosette(TreeObjectBase):
     def _get_stub(self) -> RosetteStub:
         return RosetteStub(self._channel)
 
-    def store(self, parent: TreeObjectBase) -> None:
+    def store(self, parent: TreeObject) -> None:
         self._channel_store = parent._channel
 
         collection_path = CollectionPath(
