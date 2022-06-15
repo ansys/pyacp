@@ -26,10 +26,25 @@
    
       
       
+      Rosette.dir1
+      
+      
+      Rosette.dir2
+      
+      
       Rosette.id
       
       
+      Rosette.locked
+      
+      
       Rosette.name
+      
+      
+      Rosette.origin
+      
+      
+      Rosette.status
       
    
    
