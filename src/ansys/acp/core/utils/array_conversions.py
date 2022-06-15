@@ -11,4 +11,3 @@ def to_tuple_from_1D_array(double_array: DoubleArray) -> Tuple[float, ...]:
     if not len(double_array.shape) == 1:
         raise RuntimeError(f"Cannot convert {len(double_array.shape)}-dimensional array to tuple!")
     return tuple(double_array.data)
-

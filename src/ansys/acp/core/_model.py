@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Iterable, Optional, Sequence, Tuple, Union
+from typing import Any, Iterable, Optional, Tuple, Union
 
 from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath, ResourcePath
 from ansys.api.acp.v0.element_set_pb2 import (
