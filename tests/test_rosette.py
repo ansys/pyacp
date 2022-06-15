@@ -5,9 +5,42 @@ def test_create_rosette(load_model_from_tempfile):
     """Test the creation of a Rosette."""
     with load_model_from_tempfile() as model:
         ros_names = ["Rosette.1", "Rosette.1", "üñıçよð€"]
-        for ref_name in ros_names:
+        for i, ref_name in enumerate(ros_names):
             rosette = model.create_rosette(name=ref_name)
             assert rosette.name == ref_name
+            if i == 1:
+                assert rosette.id == "Rosette.2"
+            else:
+                assert rosette.id == ref_name
+            assert rosette.status == "NOTUPTODATE"
+            assert not rosette.locked
+            assert rosette.origin == (0.0, 0.0, 0.0)
+            assert rosette.dir1 == (1.0, 0.0, 0.0)
+            assert rosette.dir2 == (0.0, 1.0, 0.0)
+
+
+def test_rosette_properties(load_model_from_tempfile):
+    """Test the put request of a Rosette."""
+    with load_model_from_tempfile() as model:
+
+        rosette = model.create_rosette(name="test_properties")
+        properties = {
+            "name": "new_name",
+            "origin": (2.0, 3.0, 1.0),
+            "dir1": (0.0, 0.0, 1.0),
+            "dir2": (1.0, 0.0, 0.0),
+        }
+
+        for prop, value in properties.items():
+            setattr(rosette, prop, value)
+            assert getattr(rosette, prop) == value
+
+        # test read only property
+        readonly_props = ["id", "status", "locked"]
+        for prop in readonly_props:
+            value = getattr(rosette, prop)
+            with pytest.raises(AttributeError):
+                setattr(rosette, prop, value)
 
 
 def test_collection_access(load_model_from_tempfile):
