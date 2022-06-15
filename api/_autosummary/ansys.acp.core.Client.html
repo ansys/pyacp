@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>ansys.acp.core.Client &#8212; PyACP</title>
     
@@ -309,6 +309,11 @@
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.create_element_set.html">
+       create_element_set
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.create_modeling_group.html">
        create_modeling_group
       </a>
@@ -346,6 +351,11 @@
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.draping_offset_correction.html">
        draping_offset_correction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.element_sets.html">
+       element_sets
       </a>
      </li>
      <li class="toctree-l3">
@@ -476,16 +486,12 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">Client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Client" title="Permalink to this definition">#</a></dt>
 <dd><p>Top-level controller for the models loaded in a server.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>server</strong> (<em>ServerProtocol</em>) – The ACP gRPC server to which the <code class="docutils literal notranslate"><span class="pre">Client</span></code> connects.</p>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Client.clear.html#ansys.acp.core.Client.clear" title="ansys.acp.core.Client.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Client.clear</span></code></a>()</p></td>
 <td><p>Close all models currently loaded on the server.</p></td>

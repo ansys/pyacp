@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>ansys.acp.core.LocalAcpServer &#8212; PyACP</title>
     
@@ -309,6 +309,11 @@
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.create_element_set.html">
+       create_element_set
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.create_modeling_group.html">
        create_modeling_group
       </a>
@@ -346,6 +351,11 @@
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.draping_offset_correction.html">
        draping_offset_correction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.element_sets.html">
+       element_sets
       </a>
      </li>
      <li class="toctree-l3">
@@ -482,7 +492,7 @@ either destroyed, or before Python exits (unless it is a hard crash
 Can be used as a context manager, to terminate the process when
 exiting the context.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>process</strong> (<a class="reference external" href="https://docs.python.org/dev/library/subprocess.html#subprocess.Popen" title="(in Python v3.12)"><em>subprocess.Popen</em></a><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>]</em>) – The process which is executing the ACP server.</p></li>
 <li><p><strong>port</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – The port (on localhost) on which the ACP server listens to requests.</p></li>
@@ -493,10 +503,6 @@ exiting the context.</p>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LocalAcpServer.close.html#ansys.acp.core.LocalAcpServer.close" title="ansys.acp.core.LocalAcpServer.close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalAcpServer.close</span></code></a>()</p></td>
 <td><p></p></td>
@@ -505,10 +511,6 @@ exiting the context.</p>
 </table>
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LocalAcpServer.channel.html#ansys.acp.core.LocalAcpServer.channel" title="ansys.acp.core.LocalAcpServer.channel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalAcpServer.channel</span></code></a></p></td>
 <td><p></p></td>
