@@ -32,6 +32,7 @@ html_theme_options = {
     "show_prev_next": False,
     "show_breadcrumbs": True,
     "additional_breadcrumbs": [("PyAnsys", "https://docs.pyansys.com/")],
+    "logo": {"link": "https://docs.ansys.com"},
 }
 html_title = html_short_title = "PyACP"
 

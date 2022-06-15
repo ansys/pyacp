@@ -27,7 +27,7 @@ resolved_reference = "3e076e0860f37dbacd3b1f8b4c4fc616a0483160"
 
 [[package]]
 name = "ansys-sphinx-theme"
-version = "0.4.0"
+version = "0.4.2"
 description = "This is the ansys-sphinx-theme module."
 category = "main"
 optional = true
@@ -35,7 +35,7 @@ python-versions = ">=3.5"
 
 [package.dependencies]
 Jinja2 = ">=3.1.2"
-pydata-sphinx-theme = "0.8.1"
+pydata-sphinx-theme = "0.9.0"
 Sphinx = ">=4.0.0"
 
 [[package]]
@@ -1005,7 +1005,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
 name = "pydata-sphinx-theme"
-version = "0.8.1"
+version = "0.9.0"
 description = "Bootstrap-based Sphinx theme from the PyData community"
 category = "main"
 optional = true
@@ -1015,10 +1015,10 @@ python-versions = ">=3.7"
 beautifulsoup4 = "*"
 docutils = "!=0.17.0"
 packaging = "*"
-sphinx = ">=3.5.4,<5"
+sphinx = ">=4.0.2"
 
 [package.extras]
-doc = ["numpydoc", "myst-parser", "pandas", "pytest", "pytest-regressions", "sphinxext-rediraffe", "sphinx-sitemap", "jupyter-sphinx", "plotly", "numpy", "xarray"]
+doc = ["numpydoc", "myst-parser", "pandas", "pytest", "pytest-regressions", "sphinxext-rediraffe", "sphinx-sitemap", "jupyter-sphinx", "plotly", "numpy", "xarray", "sphinx-design"]
 test = ["pytest", "pydata-sphinx-theme"]
 coverage = ["pytest-cov", "codecov", "pydata-sphinx-theme"]
 dev = ["pyyaml", "pre-commit", "nox", "pydata-sphinx-theme"]
@@ -1309,7 +1309,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "sphinx"
-version = "4.5.0"
+version = "5.0.1"
 description = "Python documentation generator"
 category = "main"
 optional = true
@@ -1319,7 +1319,7 @@ python-versions = ">=3.6"
 alabaster = ">=0.7,<0.8"
 babel = ">=1.3"
 colorama = {version = ">=0.3.5", markers = "sys_platform == \"win32\""}
-docutils = ">=0.14,<0.18"
+docutils = ">=0.14,<0.19"
 imagesize = "*"
 importlib-metadata = {version = ">=4.4", markers = "python_version < \"3.10\""}
 Jinja2 = ">=2.3"
@@ -1336,8 +1336,8 @@ sphinxcontrib-serializinghtml = ">=1.1.5"
 
 [package.extras]
 docs = ["sphinxcontrib-websupport"]
-lint = ["flake8 (>=3.5.0)", "isort", "mypy (>=0.931)", "docutils-stubs", "types-typed-ast", "types-requests"]
-test = ["pytest", "pytest-cov", "html5lib", "cython", "typed-ast"]
+lint = ["flake8 (>=3.5.0)", "isort", "mypy (>=0.950)", "docutils-stubs", "types-typed-ast", "types-requests"]
+test = ["pytest (>=4.6)", "html5lib", "cython", "typed-ast"]
 
 [[package]]
 name = "sphinx-copybutton"
@@ -1616,7 +1616,7 @@ test = ["pytest", "pytest-cov"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7,<4.0" # Plan on supporting only the currently supported versions of Python
-content-hash = "4f291b8b03bd370a23201ffcd538fb75f500767cf5fc14ac136d6662932b79e7"
+content-hash = "da18aeb1cefd80ecfb02aa2d12bfb543e754f1212208d72f42195622c2e37ee6"
 
 [metadata.files]
 alabaster = [
@@ -1625,8 +1625,8 @@ alabaster = [
 ]
 ansys-api-acp = []
 ansys-sphinx-theme = [
-    {file = "ansys-sphinx-theme-0.4.0.tar.gz", hash = "sha256:31f7b840ce0269d33e5cfdc3eeddeee349abe822748aeac689a79434ce6d6126"},
-    {file = "ansys_sphinx_theme-0.4.0-py3-none-any.whl", hash = "sha256:f09fe7f8aeab006ddc22914e637e95ee83f9481134b8ee5d330b364189910f42"},
+    {file = "ansys-sphinx-theme-0.4.2.tar.gz", hash = "sha256:98f4b4c8c2176515dff82b83a85df18b4d3ba6d058ef17e33d08cadab5be4ef9"},
+    {file = "ansys_sphinx_theme-0.4.2-py3-none-any.whl", hash = "sha256:aafeedd8de45d86b7ced3925b783394da1cc520f8b5fdb647b5fbc67842ef0a0"},
 ]
 appnope = [
     {file = "appnope-0.1.3-py2.py3-none-any.whl", hash = "sha256:265a455292d0bd8a72453494fa24df5a11eb18373a60c7c0430889f22548605e"},
@@ -2236,8 +2236,8 @@ pycparser = [
     {file = "pycparser-2.21.tar.gz", hash = "sha256:e644fdec12f7872f86c58ff790da456218b10f863970249516d60a5eaca77206"},
 ]
 pydata-sphinx-theme = [
-    {file = "pydata_sphinx_theme-0.8.1-py3-none-any.whl", hash = "sha256:af2c99cb0b43d95247b1563860942ba75d7f1596360594fce510caaf8c4fcc16"},
-    {file = "pydata_sphinx_theme-0.8.1.tar.gz", hash = "sha256:96165702253917ece13dd895e23b96ee6dce422dcc144d560806067852fe1fed"},
+    {file = "pydata_sphinx_theme-0.9.0-py3-none-any.whl", hash = "sha256:b22b442a6d6437e5eaf0a1f057169ffcb31eaa9f10be7d5481a125e735c71c12"},
+    {file = "pydata_sphinx_theme-0.9.0.tar.gz", hash = "sha256:03598a86915b596f4bf80bef79a4d33276a83e670bf360def699dbb9f99dc57a"},
 ]
 pygments = [
     {file = "Pygments-2.12.0-py3-none-any.whl", hash = "sha256:dc9c10fb40944260f6ed4c688ece0cd2048414940f1cea51b8b226318411c519"},
@@ -2456,8 +2456,8 @@ soupsieve = [
     {file = "soupsieve-2.3.2.post1.tar.gz", hash = "sha256:fc53893b3da2c33de295667a0e19f078c14bf86544af307354de5fcf12a3f30d"},
 ]
 sphinx = [
-    {file = "Sphinx-4.5.0-py3-none-any.whl", hash = "sha256:ebf612653238bcc8f4359627a9b7ce44ede6fdd75d9d30f68255c7383d3a6226"},
-    {file = "Sphinx-4.5.0.tar.gz", hash = "sha256:7bf8ca9637a4ee15af412d1a1d9689fec70523a68ca9bb9127c2f3eeb344e2e6"},
+    {file = "Sphinx-5.0.1-py3-none-any.whl", hash = "sha256:36aa2a3c2f6d5230be94585bc5d74badd5f9ed8f3388b8eedc1726fe45b1ad30"},
+    {file = "Sphinx-5.0.1.tar.gz", hash = "sha256:f4da1187785a5bc7312cc271b0e867a93946c319d106363e102936a3d9857306"},
 ]
 sphinx-copybutton = [
     {file = "sphinx-copybutton-0.4.0.tar.gz", hash = "sha256:8daed13a87afd5013c3a9af3575cc4d5bec052075ccd3db243f895c07a689386"},
