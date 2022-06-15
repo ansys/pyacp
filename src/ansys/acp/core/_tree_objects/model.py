@@ -73,9 +73,6 @@ class Model(TreeObject):
     def _get_stub(self) -> ModelStub:
         return ModelStub(self._channel)
 
-    # name = grpc_data_property("info.name")
-    # """The name of the model"""
-
     # # TODO: document further properties, or autogenerate docstring from .proto files.
 
     use_nodal_thicknesses = grpc_data_property("modeling_properties.use_nodal_thicknesses")

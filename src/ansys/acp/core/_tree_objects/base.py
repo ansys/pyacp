@@ -19,8 +19,7 @@ _T = TypeVar("_T", bound="TreeObject")
 
 class TreeObject(ABC):
     """
-    Interface definition for objects which can make use of the grpc
-    property helpers.
+    Base class for ACP tree objects.
     """
 
     COLLECTION_LABEL: str
@@ -60,3 +59,4 @@ class TreeObject(ABC):
         return self._channel_store is not None
 
     name = grpc_data_property("info.name")
+    """The name of the object."""

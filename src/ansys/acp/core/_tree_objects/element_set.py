@@ -28,5 +28,4 @@ class ElementSet(TreeObject):
     def _get_stub(self) -> ElementSetStub:
         return ElementSetStub(self._channel)
 
-    name = grpc_data_property("info.name")
     id = grpc_data_property("info.id")
