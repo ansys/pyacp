@@ -1,7 +1,18 @@
 """Sphinx documentation configuration file."""
 from datetime import datetime
 
-from ansys_sphinx_theme import ansys_favicon, pyansys_logo_black
+from sphinx.builders.latex import LaTeXBuilder
+
+LaTeXBuilder.supported_image_types = ["image/png", "image/pdf", "image/svg+xml"]
+
+from ansys_sphinx_theme import (
+    ansys_favicon,
+    ansys_logo_white,
+    ansys_logo_white_cropped,
+    latex,
+    pyansys_logo_black,
+    watermark,
+)
 
 from ansys.acp.core import __version__
 
@@ -21,6 +32,7 @@ html_theme_options = {
     "show_prev_next": False,
     "show_breadcrumbs": True,
     "additional_breadcrumbs": [("PyAnsys", "https://docs.pyansys.com/")],
+    "logo": {"link": "https://docs.ansys.com"},
 }
 html_title = html_short_title = "PyACP"
 
@@ -33,7 +45,6 @@ extensions = [
     "sphinx.ext.napoleon",
     "numpydoc",
     "sphinx_copybutton",
-    "sphinx_tabs.tabs",
     "ansys_sphinx_theme",
 ]
 
@@ -78,11 +89,15 @@ html_favicon = ansys_favicon
 # static path
 html_static_path = ["_static"]
 
-# Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
-
 # The suffix(es) of source filenames.
 source_suffix = ".rst"
 
 # The master toctree document.
 master_doc = "index"
+
+# additional logos for the latex coverpage
+latex_additional_files = [watermark, ansys_logo_white, ansys_logo_white_cropped]
+
+# change the preamble of latex with customized title page
+# variables are the title of pdf, watermark
+latex_elements = {"preamble": latex.generate_preamble(html_title)}

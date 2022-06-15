@@ -193,6 +193,20 @@ jobs:
           folder: doc/build/html
           clean: true
 
+      - name: Install OS packages for PDF build
+        run: |
+          sudo apt update
+          sudo apt install build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks
+
+      - name: Build PDF Documentation
+        run: poetry run make -C doc pdf
+
+      - name: Upload PDF Documentation
+        uses: actions/upload-artifact@v2
+        with:
+          name: Documentation-pdf
+          path: doc/build/latex/ansys-acp-core.pdf
+          retention-days: 7
 
   # Release:
   #   if: contains(github.ref, 'refs/tags')
