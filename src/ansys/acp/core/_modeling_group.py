@@ -6,13 +6,13 @@ from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
 
 from ._data_objects.modeling_group import ModelingGroup as _ModelingGroupData
 from ._log import LOGGER
-from ._property_helper import grpc_data_property
+from ._property_helper import ResourceProtocol, grpc_data_property
 from ._server import ServerProtocol
 
 __all__ = ["ModelingGroup"]
 
 
-class ModelingGroup:
+class ModelingGroup(ResourceProtocol):
     COLLECTION_LABEL = "modeling_groups"
 
     def __init__(self, *, resource_path: str, server: ServerProtocol):
