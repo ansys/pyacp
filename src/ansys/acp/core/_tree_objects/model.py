@@ -137,15 +137,13 @@ class Model(TreeObject):
 
     def update(self, *, relations_only: bool = False) -> None:
         self._get_stub().Update(
-            UpdateModelRequest(
-                resource_path=self._pb_object.info.resource_path, relations_only=relations_only
-            )
+            UpdateModelRequest(resource_path=self._resource_path, relations_only=relations_only)
         )
 
     def save(self, path: _PATH, *, save_cache: bool = False) -> None:
         self._get_stub().SaveToFile(
             SaveModelRequest(
-                resource_path=self._pb_object.info.resource_path,
+                resource_path=self._resource_path,
                 path=str(path),
                 save_cache=save_cache,
             )

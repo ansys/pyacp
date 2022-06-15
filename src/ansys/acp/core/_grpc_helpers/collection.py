@@ -127,7 +127,7 @@ def define_collection(
 ) -> Tuple[Callable[[ParentT, str], ValueT], Callable[[ParentT], Collection[ValueT]]]:
     def create_method(self: ParentT, name: str, **kwargs: Any) -> ValueT:
         collection_path = CollectionPath(
-            value=_rp_join(self._pb_object.info.resource_path.value, object_class.COLLECTION_LABEL)
+            value=_rp_join(self._resource_path.value, object_class.COLLECTION_LABEL)
         )
         stub = stub_wrapper_class(self._channel)
         # FIXME: harmonize on using the 'initialize + store' approach
@@ -146,7 +146,7 @@ def define_collection(
     def collection_property(self: ParentT) -> Collection[ValueT]:
         return Collection.from_types(
             channel=self._channel,
-            parent_resource_path=self._pb_object.info.resource_path,
+            parent_resource_path=self._resource_path,
             object_class=object_class,
             stub_wrapper=stub_wrapper_class(channel=self._channel),
         )
