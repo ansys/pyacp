@@ -9,6 +9,30 @@ def test_create_element_set(load_model_from_tempfile):
             element_set = model.create_element_set(name=ref_name)
             assert element_set.name == ref_name
 
+            assert element_set.status == "NOTUPTODATE"
+            assert not element_set.locked
+            assert not element_set.middle_offset
+            assert element_set.element_labels == []
+
+
+def test_element_set_properties(load_model_from_tempfile):
+    """Test the put request of a Rosette."""
+    with load_model_from_tempfile() as model:
+
+        element_set = model.create_element_set(name="test_properties")
+        properties = {"name": "new_name", "element_labels": [1, 2, 3], "middle_offset": True}
+
+        for prop, value in properties.items():
+            setattr(element_set, prop, value)
+            assert getattr(element_set, prop) == value
+
+        # test read only property
+        readonly_props = ["id", "status", "locked"]
+        for prop in readonly_props:
+            value = getattr(element_set, prop)
+            with pytest.raises(AttributeError):
+                setattr(element_set, prop, value)
+
 
 def test_collection_access(load_model_from_tempfile):
     """Basic test of the Model.element_sets collection."""
