@@ -1659,7 +1659,7 @@ test = ["pytest", "pytest-cov"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7.2,<4.0" # Plan on supporting only the currently supported versions of Python
-content-hash = "37449523327e0f6d5b8f867661e79c69223906726e0ca30dc9390327d2544321"
+content-hash = "1e8533c9d7c88251dd586dfd0451c3ecef2456d33996ec57ce3460f867b86975"
 
 [metadata.files]
 alabaster = [

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import List
+
 try:
     from typing import Protocol
 except ImportError:
@@ -8,39 +10,34 @@ except ImportError:
 from google.protobuf.message import Message
 import grpc
 
-from ansys.api.acp.v0.base_pb2 import BasicInfo, CollectionPath, Empty
-
-
-class DeleteRequest(Protocol):
-    def __init__(self, info: BasicInfo):
-        ...
-
-    @property
-    def info(self) -> BasicInfo:
-        ...
-
-
-class ListRequest(Protocol):
-    def __init__(self, collection_path: CollectionPath):
-        ...
-
-    @property
-    def collection_path(self) -> CollectionPath:
-        ...
+from ansys.api.acp.v0.base_pb2 import (
+    BasicInfo,
+    CollectionPath,
+    DeleteRequest,
+    Empty,
+    GetRequest,
+    ListRequest,
+)
 
 
 class CreateRequest(Protocol):
-    def __init__(self, collection_path: CollectionPath, name: str):
-        ...
-
-    @property
-    def collection_path(self) -> CollectionPath:
+    def __init__(self, collection_path: CollectionPath, name: str, properties: Message):
         ...
 
 
 class ObjectInfo(Protocol):
     @property
     def info(self) -> BasicInfo:
+        ...
+
+    @property
+    def properties(self) -> Message:
+        ...
+
+
+class ListReply(Protocol):
+    @property
+    def objects(self) -> List[ObjectInfo]:
         ...
 
 
@@ -50,13 +47,13 @@ class ResourceStub(Protocol):
     def __init__(self, channel: grpc.Channel):
         ...
 
-    def Get(self, request: BasicInfo) -> ObjectInfo:
+    def Get(self, request: GetRequest) -> ObjectInfo:
         ...
 
     def Put(self, request: ObjectInfo) -> ObjectInfo:
         ...
 
-    def List(self, request: ListRequest) -> Message:
+    def List(self, request: ListRequest) -> ListReply:
         ...
 
     def Delete(self, request: DeleteRequest) -> Empty:
