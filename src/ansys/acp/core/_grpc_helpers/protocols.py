@@ -29,20 +29,40 @@ class ListRequest(Protocol):
         ...
 
 
+class CreateRequest(Protocol):
+    def __init__(self, collection_path: CollectionPath, name: str):
+        ...
+
+    @property
+    def collection_path(self) -> CollectionPath:
+        ...
+
+
+class ObjectInfo(Protocol):
+    @property
+    def info(self) -> BasicInfo:
+        ...
+
+
 class ResourceStub(Protocol):
     """Interface definition for ACP Resource service stubs."""
 
     def __init__(self, channel: grpc.Channel):
         ...
 
-    def Get(self, request: Message) -> Message:
+    def Get(self, request: BasicInfo) -> ObjectInfo:
         ...
 
-    def Put(self, request: Message) -> Message:
+    def Put(self, request: ObjectInfo) -> ObjectInfo:
         ...
 
     def List(self, request: ListRequest) -> Message:
         ...
 
     def Delete(self, request: DeleteRequest) -> Empty:
+        ...
+
+
+class CreatableResourceStub(ResourceStub, Protocol):
+    def Create(self, request: CreateRequest) -> ObjectInfo:
         ...

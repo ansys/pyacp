@@ -1,6 +1,7 @@
 """Pytest configuration file for ansys-acp-core tests."""
 from contextlib import contextmanager
 from dataclasses import dataclass
+import logging
 import os
 import pathlib
 import shutil
@@ -23,6 +24,8 @@ __all__ = [
     "clear_models_before_run",
     "load_model_from_tempfile",
 ]
+
+logging.getLogger("ansys.acp.core").setLevel(logging.DEBUG)
 
 TEST_ROOT_DIR = pathlib.Path(__file__).parent
 

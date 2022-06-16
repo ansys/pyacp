@@ -30,7 +30,8 @@ __all__ = [
     "launch_acp_docker",
     "check_server",
     "shutdown_server",
-    "wait_for_server" "LocalAcpServer",
+    "wait_for_server",
+    "LocalAcpServer",
     "RemoteAcpServer",
 ]
 

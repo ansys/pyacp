@@ -1,3 +1,5 @@
+"""Defines the logger for `ansys-acp-core`."""
+
 import logging
 import sys
 
