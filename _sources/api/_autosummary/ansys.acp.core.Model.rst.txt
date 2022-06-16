@@ -30,7 +30,13 @@
       Model.from_file
       
       
+      Model.from_resource_path
+      
+      
       Model.save
+      
+      
+      Model.store
       
       
       Model.update

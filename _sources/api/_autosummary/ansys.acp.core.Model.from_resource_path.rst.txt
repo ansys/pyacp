@@ -1,0 +1,6 @@
+from\_resource\_path
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.from_resource_path

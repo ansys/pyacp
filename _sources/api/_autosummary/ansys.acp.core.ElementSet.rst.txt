@@ -1,0 +1,42 @@
+﻿ansys.acp.core.ElementSet
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ElementSet
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ElementSet.from_resource_path
+      
+      
+      ElementSet.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ElementSet.id
+      
+      
+      ElementSet.name
+      
+      
+   
+   
