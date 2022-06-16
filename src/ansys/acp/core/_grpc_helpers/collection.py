@@ -36,7 +36,7 @@ class Collection(Generic[ValueT]):
         channel: Channel,
         collection_path: CollectionPath,
         stub: ResourceStub,
-        object_constructor: Callable[[ObjectInfo, Channel], ValueT],
+        object_constructor: Callable[[ObjectInfo, Optional[Channel]], ValueT],
     ) -> None:
         self._collection_path = collection_path
         self._stub = stub
@@ -86,11 +86,19 @@ class Collection(Generic[ValueT]):
                 )
             )
 
-    # def pop(self, key):
-    #     raise NotImplementedError()
+    def pop(self, key: str) -> ValueT:
+        obj_info = self._get_objectinfo_by_id(key)
+        return self._pop_from_info(obj_info)
 
-    # def popitem(self, key):
-    #     raise NotImplementedError()
+    def popitem(self) -> ValueT:
+        obj_info = self._get_objectinfo_list()[0]
+        return self._pop_from_info(obj_info)
+
+    def _pop_from_info(self, object_info: ObjectInfo) -> ValueT:
+        obj = self._object_constructor(object_info, self._channel)
+        new_obj = obj.clone()
+        obj.delete()
+        return new_obj
 
     def values(self) -> Iterator[ValueT]:
         return (
