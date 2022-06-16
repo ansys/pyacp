@@ -53,7 +53,7 @@ class ResourceStub(Protocol):
     def Get(self, request: BasicInfo) -> ObjectInfo:
         ...
 
-    def Put(self, request: ObjectInfo) -> Empty:
+    def Put(self, request: ObjectInfo) -> ObjectInfo:
         ...
 
     def List(self, request: ListRequest) -> Message:

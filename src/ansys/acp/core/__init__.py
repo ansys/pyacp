@@ -27,10 +27,9 @@ __all__ = [
     "shutdown_server",
     "LocalAcpServer",
     "RemoteAcpServer",
+    "Client",
     "Model",
     "ElementSet",
     "Rosette",
     "ModelingGroup",
-    "Rosette",
-    "Client",
 ]

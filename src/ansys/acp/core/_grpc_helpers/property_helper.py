@@ -46,7 +46,7 @@ def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[TreeOb
         if current_value != value_pb:
             _set_data_attribute(self._pb_object, name, value_pb)
             if self._is_stored:
-                self._get_stub().Put(self._pb_object)
+                self._pb_object = self._get_stub().Put(self._pb_object)
 
     return inner
 

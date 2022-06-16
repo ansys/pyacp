@@ -26,7 +26,7 @@ class StubWrapper(Protocol):
     def get(self, basic_info: BasicInfo) -> ObjectInfo:
         ...
 
-    def put(self, object_info: ObjectInfo) -> None:
+    def put(self, object_info: ObjectInfo) -> ObjectInfo:
         ...
 
     def list(self, collection_path: CollectionPath) -> List[ObjectInfo]:
@@ -58,8 +58,8 @@ class SimpleStubWrapper:
     def get(self, basic_info: BasicInfo) -> ObjectInfo:
         return self._stub.Get(basic_info)
 
-    def put(self, object_info: ObjectInfo) -> None:
-        self._stub.Put(object_info)
+    def put(self, object_info: ObjectInfo) -> ObjectInfo:
+        return self._stub.Put(object_info)
 
     def list(self, collection_path: CollectionPath) -> List[ObjectInfo]:
         return cast(
