@@ -16,7 +16,7 @@ def test_create_element_set(load_model_from_tempfile):
 
 
 def test_element_set_properties(load_model_from_tempfile):
-    """Test the put request of a Rosette."""
+    """Test the put request of a ElementSet."""
     with load_model_from_tempfile() as model:
 
         element_set = model.create_element_set(name="test_properties")

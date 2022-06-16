@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import Collection, List, Tuple
 
 from ansys.api.acp.v0.array_types_pb2 import DoubleArray, IntArray
 
@@ -7,7 +7,7 @@ def to_1D_double_array(data: Tuple[float, ...]) -> DoubleArray:
     return DoubleArray(shape=[len(data)], data=data)
 
 
-def to_1D_int_array(data: List[int]) -> IntArray:
+def to_1D_int_array(data: Collection[int]) -> IntArray:
     return IntArray(shape=[len(data)], data=data)
 
 

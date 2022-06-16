@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from functools import lru_cache
-from typing import List, Optional
+from typing import Collection
 
 from ansys.api.acp.v0.element_set_pb2 import ElementSetReply
 from ansys.api.acp.v0.element_set_pb2_grpc import ElementSetStub
@@ -22,7 +22,7 @@ class ElementSet(TreeObject):
         self,
         name: str = "ElementSet",
         middle_offset: bool = False,
-        element_labels: Optional[List[int]] = None,
+        element_labels: Collection[int] = (),
     ):
         if element_labels is None:
             element_labels = []
