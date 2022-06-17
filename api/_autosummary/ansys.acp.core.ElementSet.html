@@ -45,7 +45,7 @@
     <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="from_resource_path" href="ansys.acp.core.ElementSet.from_resource_path.html" />
+    <link rel="next" title="store" href="ansys.acp.core.ElementSet.store.html" />
     <link rel="prev" title="use_nodal_thicknesses" href="ansys.acp.core.Model.use_nodal_thicknesses.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="en">
@@ -334,18 +334,8 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.from_resource_path.html">
-       from_resource_path
-      </a>
-     </li>
-     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.save.html">
        save
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.store.html">
-       store
       </a>
      </li>
      <li class="toctree-l3">
@@ -416,18 +406,28 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.ElementSet.from_resource_path.html">
-       from_resource_path
-      </a>
-     </li>
-     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ElementSet.store.html">
        store
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.element_labels.html">
+       element_labels
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ElementSet.id.html">
        id
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.locked.html">
+       locked
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.middle_offset.html">
+       middle_offset
       </a>
      </li>
      <li class="toctree-l3">
@@ -447,11 +447,6 @@
      </i>
     </label>
     <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Rosette.from_resource_path.html">
-       from_resource_path
-      </a>
-     </li>
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Rosette.store.html">
        store
@@ -504,11 +499,6 @@
      </i>
     </label>
     <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.ModelingGroup.from_resource_path.html">
-       from_resource_path
-      </a>
-     </li>
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ModelingGroup.store.html">
        store
@@ -570,14 +560,11 @@
 <h1>ansys.acp.core.ElementSet<a class="headerlink" href="#ansys-acp-core-elementset" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ansys.acp.core.ElementSet">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">ElementSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ElementSet" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">ElementSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Element</span> <span class="pre">Set'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">middle_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ElementSet" title="Permalink to this definition">#</a></dt>
 <dd><p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ElementSet.from_resource_path.html#ansys.acp.core.ElementSet.from_resource_path" title="ansys.acp.core.ElementSet.from_resource_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementSet.from_resource_path</span></code></a>(resource_path, ...)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ElementSet.store.html#ansys.acp.core.ElementSet.store" title="ansys.acp.core.ElementSet.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementSet.store</span></code></a>(parent)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ElementSet.store.html#ansys.acp.core.ElementSet.store" title="ansys.acp.core.ElementSet.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementSet.store</span></code></a>(parent)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -585,17 +572,30 @@
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ElementSet.id.html#ansys.acp.core.ElementSet.id" title="ansys.acp.core.ElementSet.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementSet.id</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ElementSet.element_labels.html#ansys.acp.core.ElementSet.element_labels" title="ansys.acp.core.ElementSet.element_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementSet.element_labels</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ElementSet.name.html#ansys.acp.core.ElementSet.name" title="ansys.acp.core.ElementSet.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementSet.name</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ElementSet.id.html#ansys.acp.core.ElementSet.id" title="ansys.acp.core.ElementSet.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementSet.id</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ElementSet.locked.html#ansys.acp.core.ElementSet.locked" title="ansys.acp.core.ElementSet.locked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementSet.locked</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ElementSet.middle_offset.html#ansys.acp.core.ElementSet.middle_offset" title="ansys.acp.core.ElementSet.middle_offset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementSet.middle_offset</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ElementSet.name.html#ansys.acp.core.ElementSet.name" title="ansys.acp.core.ElementSet.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementSet.name</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>kwargs</strong> (<em>Any</em>) – </p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
+<li><p><strong>middle_offset</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – </p></li>
+<li><p><strong>element_labels</strong> (<em>Container</em><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>]</em>) – </p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -627,7 +627,7 @@
   
   <div class="footer-item">
     <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br>
 </p>
   </div>
   

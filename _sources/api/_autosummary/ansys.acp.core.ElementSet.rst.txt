@@ -15,9 +15,6 @@
    
       
       
-      ElementSet.from_resource_path
-      
-      
       ElementSet.store
       
    
@@ -32,11 +29,19 @@
    
       
       
+      ElementSet.element_labels
+      
+      
       ElementSet.id
       
       
-      ElementSet.name
+      ElementSet.locked
       
+      
+      ElementSet.middle_offset
+      
+      
+      ElementSet.name
       
    
    

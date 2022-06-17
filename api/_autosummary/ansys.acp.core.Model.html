@@ -334,18 +334,8 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.from_resource_path.html">
-       from_resource_path
-      </a>
-     </li>
-     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.save.html">
        save
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.store.html">
-       store
       </a>
      </li>
      <li class="toctree-l3">
@@ -416,18 +406,28 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.ElementSet.from_resource_path.html">
-       from_resource_path
-      </a>
-     </li>
-     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ElementSet.store.html">
        store
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.element_labels.html">
+       element_labels
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ElementSet.id.html">
        id
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.locked.html">
+       locked
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.middle_offset.html">
+       middle_offset
       </a>
      </li>
      <li class="toctree-l3">
@@ -447,11 +447,6 @@
      </i>
     </label>
     <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Rosette.from_resource_path.html">
-       from_resource_path
-      </a>
-     </li>
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Rosette.store.html">
        store
@@ -504,11 +499,6 @@
      </i>
     </label>
     <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.ModelingGroup.from_resource_path.html">
-       from_resource_path
-      </a>
-     </li>
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ModelingGroup.store.html">
        store
@@ -586,14 +576,14 @@
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_element_set.html#ansys.acp.core.Model.create_element_set" title="ansys.acp.core.Model.create_element_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_element_set</span></code></a>(name, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_element_set.html#ansys.acp.core.Model.create_element_set" title="ansys.acp.core.Model.create_element_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_element_set</span></code></a>(**kwargs)</p></td>
+<td><p>Instantiate an Element Set.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_modeling_group.html#ansys.acp.core.Model.create_modeling_group" title="ansys.acp.core.Model.create_modeling_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_modeling_group</span></code></a>(**kwargs)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_modeling_group.html#ansys.acp.core.Model.create_modeling_group" title="ansys.acp.core.Model.create_modeling_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_modeling_group</span></code></a>(name, **kwargs)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_rosette.html#ansys.acp.core.Model.create_rosette" title="ansys.acp.core.Model.create_rosette"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_rosette</span></code></a>(name, **kwargs)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_rosette.html#ansys.acp.core.Model.create_rosette" title="ansys.acp.core.Model.create_rosette"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_rosette</span></code></a>(**kwargs)</p></td>
+<td><p>Instantiate a Rosette.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.from_fe_file.html#ansys.acp.core.Model.from_fe_file" title="ansys.acp.core.Model.from_fe_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.from_fe_file</span></code></a>(*, path, channel, format)</p></td>
 <td><p></p></td>
@@ -601,13 +591,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.from_file.html#ansys.acp.core.Model.from_file" title="ansys.acp.core.Model.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.from_file</span></code></a>(*, path, channel)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.from_resource_path.html#ansys.acp.core.Model.from_resource_path" title="ansys.acp.core.Model.from_resource_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.from_resource_path</span></code></a>(resource_path, channel)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.save.html#ansys.acp.core.Model.save" title="ansys.acp.core.Model.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.save</span></code></a>(path, *[, save_cache])</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.store.html#ansys.acp.core.Model.store" title="ansys.acp.core.Model.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.store</span></code></a>(parent)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.save.html#ansys.acp.core.Model.save" title="ansys.acp.core.Model.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.save</span></code></a>(path, *[, save_cache])</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.update.html#ansys.acp.core.Model.update" title="ansys.acp.core.Model.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.update</span></code></a>(*[, relations_only])</p></td>
@@ -679,7 +663,7 @@
   
   <div class="footer-item">
     <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br>
 </p>
   </div>
   

@@ -1,6 +1,0 @@
-store
-=====
-
-.. currentmodule:: ansys.acp.core
-
-.. automethod:: Model.store

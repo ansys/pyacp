@@ -1,6 +1,0 @@
-from\_resource\_path
-====================
-
-.. currentmodule:: ansys.acp.core
-
-.. automethod:: Rosette.from_resource_path

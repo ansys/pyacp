@@ -15,9 +15,6 @@
    
       
       
-      ModelingGroup.from_resource_path
-      
-      
       ModelingGroup.store
       
    

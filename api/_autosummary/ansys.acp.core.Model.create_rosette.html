@@ -335,18 +335,8 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.from_resource_path.html">
-       from_resource_path
-      </a>
-     </li>
-     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.save.html">
        save
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.store.html">
-       store
       </a>
      </li>
      <li class="toctree-l3">
@@ -417,18 +407,28 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.ElementSet.from_resource_path.html">
-       from_resource_path
-      </a>
-     </li>
-     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ElementSet.store.html">
        store
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.element_labels.html">
+       element_labels
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ElementSet.id.html">
        id
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.locked.html">
+       locked
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.middle_offset.html">
+       middle_offset
       </a>
      </li>
      <li class="toctree-l3">
@@ -448,11 +448,6 @@
      </i>
     </label>
     <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Rosette.from_resource_path.html">
-       from_resource_path
-      </a>
-     </li>
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Rosette.store.html">
        store
@@ -505,11 +500,6 @@
      </i>
     </label>
     <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.ModelingGroup.from_resource_path.html">
-       from_resource_path
-      </a>
-     </li>
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ModelingGroup.store.html">
        store
@@ -571,17 +561,16 @@
 <h1>create_rosette<a class="headerlink" href="#create-rosette" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_rosette">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_rosette</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_rosette" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_rosette</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_rosette" title="Permalink to this definition">#</a></dt>
+<dd><p>Instantiate a Rosette.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> (<em>ParentT</em>) – </p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
-<li><p><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><em>Any</em></a>) – </p></li>
+<li><p><strong>name</strong> – Name of the Rosette.</p></li>
+<li><p><strong>origin</strong> – Coordinates of the Rosette origin.</p></li>
+<li><p><strong>dir1</strong> – Direction 1 (x-direction) vector of the Rosette.</p></li>
+<li><p><strong>dir2</strong> – Direction 2 (y-direction) vector of the Rosette.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>ValueT</em></p>
 </dd>
 </dl>
 </dd></dl>
@@ -613,7 +602,7 @@
   
   <div class="footer-item">
     <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br>
 </p>
   </div>
   
