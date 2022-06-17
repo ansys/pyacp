@@ -19,7 +19,7 @@ class ElementSet(CreatableTreeObject):
 
     def __init__(
         self,
-        name: str = "Element Set",
+        name: str = "ElementSet",
         middle_offset: bool = False,
         element_labels: Container[int] = tuple(),
     ):

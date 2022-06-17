@@ -26,7 +26,7 @@ class OrientedSelectionSet(CreatableTreeObject):
 
     def __init__(
         self,
-        name: str = "Oriented Selection Set",
+        name: str = "OrientedSelectionSet",
     ):
         super().__init__(name=name)
 

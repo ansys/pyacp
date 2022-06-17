@@ -16,7 +16,7 @@ class ModelingGroup(CreatableTreeObject):
     OBJECT_INFO_TYPE = modeling_group_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = modeling_group_pb2.CreateRequest
 
-    def __init__(self, name: str = "Modeling Group", **kwargs: Any):
+    def __init__(self, name: str = "ModelingGroup", **kwargs: Any):
         super().__init__(name=name)
 
         for key, value in kwargs.items():
