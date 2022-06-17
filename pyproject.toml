@@ -40,6 +40,7 @@ ansys-sphinx-theme = {version = "^0.4.0", optional = true}
 pre-commit = {version = "^2.17.0", optional = true}
 black = {version = "22.3.0", optional = true}
 mypy = {version = "^0.931", optional = true}
+mypy-extensions = {version = "^0.4.3", optional = true}
 pytest = {version = "^7.0", optional = true}
 pytest-cov = {version = "^3.0", optional = true}
 ipykernel = {version = "^6.9.0", optional = true}
@@ -57,6 +58,7 @@ all = [
     "pre-commit",
     "black",
     "mypy",
+    "mypy-extensions",
     "types-protobuf",
     "ipykernel",
     "jupyter",
@@ -66,7 +68,7 @@ all = [
     "pytest-cov"
 ]
 docs = ["Sphinx", "ansys-sphinx-theme", "sphinx-copybutton", "numpydoc"]
-pre-commit = ["pre-commit", "mypy", "types-protobuf", "pytest", "black"]
+pre-commit = ["pre-commit", "mypy", "mypy-extensions", "types-protobuf", "pytest", "black"]
 test = ["pytest", "pytest-cov"]
 examples = ["ipykernel", "jupyter", "notebook"]
 build = ["twine"]

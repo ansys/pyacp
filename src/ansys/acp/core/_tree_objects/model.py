@@ -6,6 +6,7 @@ from typing import Any, Iterable, Union
 
 from grpc import Channel
 
+from ansys.api.acp.v0.element_set_pb2_grpc import ElementSetStub
 from ansys.api.acp.v0.model_pb2 import (
     LoadFEModelRequest,
     LoadModelRequest,
@@ -15,12 +16,11 @@ from ansys.api.acp.v0.model_pb2 import (
 )
 from ansys.api.acp.v0.model_pb2 import Format as _pb_Format
 from ansys.api.acp.v0.model_pb2_grpc import ModelStub
+from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
+from ansys.api.acp.v0.rosette_pb2_grpc import RosetteStub
 
 from .._grpc_helpers.collection import define_collection
 from .._grpc_helpers.property_helper import grpc_data_property
-from .._grpc_helpers.stub_info.element_set import ElementSetStubWrapper
-from .._grpc_helpers.stub_info.modeling_group import ModelingGroupStubWrapper
-from .._grpc_helpers.stub_info.rosette import RosetteStubWrapper
 from .._typing_helper import PATH as _PATH
 from .base import TreeObject
 from .element_set import ElementSet
@@ -75,18 +75,12 @@ class Model(TreeObject):
 
     # # TODO: document further properties, or autogenerate docstring from .proto files.
 
-    use_nodal_thicknesses = grpc_data_property("modeling_properties.use_nodal_thicknesses")
-    draping_offset_correction = grpc_data_property("modeling_properties.draping_offset_correction")
-    angle_tolerance = grpc_data_property("modeling_properties.angle_tolerance")
-    relative_thickness_tolerance = grpc_data_property(
-        "modeling_properties.relative_thickness_tolerance"
-    )
-    minimum_analysis_ply_thickness = grpc_data_property(
-        "modeling_properties.minimum_analysis_ply_thickness"
-    )
-    use_default_section_tolerances = grpc_data_property(
-        "modeling_properties.use_default_section_tolerances"
-    )
+    use_nodal_thicknesses = grpc_data_property("properties.use_nodal_thicknesses")
+    draping_offset_correction = grpc_data_property("properties.draping_offset_correction")
+    angle_tolerance = grpc_data_property("properties.angle_tolerance")
+    relative_thickness_tolerance = grpc_data_property("properties.relative_thickness_tolerance")
+    minimum_analysis_ply_thickness = grpc_data_property("properties.minimum_analysis_ply_thickness")
+    use_default_section_tolerances = grpc_data_property("properties.use_default_section_tolerances")
 
     @classmethod
     def from_file(cls, *, path: _PATH, channel: Channel) -> Model:
@@ -94,7 +88,7 @@ class Model(TreeObject):
         # the Python CWD.
         request = LoadModelRequest(path=str(path))
         reply = ModelStub(channel).LoadFromFile(request)
-        return cls.from_resource_path(resource_path=reply.info.resource_path.value, channel=channel)
+        return cls._from_object_info(object_info=reply, channel=channel)
 
     @classmethod
     def from_fe_file(
@@ -130,7 +124,7 @@ class Model(TreeObject):
             convert_section_data=convert_section_data,
         )
         reply = ModelStub(channel).LoadFromFEFile(request)
-        return cls.from_resource_path(resource_path=reply.info.resource_path.value, channel=channel)
+        return cls._from_object_info(object_info=reply, channel=channel)
 
     def update(self, *, relations_only: bool = False) -> None:
         self._get_stub().Update(
@@ -146,8 +140,6 @@ class Model(TreeObject):
             )
         )
 
-    create_modeling_group, modeling_groups = define_collection(
-        ModelingGroup, ModelingGroupStubWrapper
-    )
-    create_rosette, rosettes = define_collection(Rosette, RosetteStubWrapper)
-    create_element_set, element_sets = define_collection(ElementSet, ElementSetStubWrapper)
+    create_modeling_group, modeling_groups = define_collection(ModelingGroup, ModelingGroupStub)
+    create_rosette, rosettes = define_collection(Rosette, RosetteStub)
+    create_element_set, element_sets = define_collection(ElementSet, ElementSetStub)

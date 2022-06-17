@@ -9,7 +9,10 @@ from typing import TYPE_CHECKING, Any, Callable, cast
 
 from google.protobuf.message import Message
 
+from ansys.api.acp.v0.base_pb2 import GetRequest
+
 if TYPE_CHECKING:
+    # Causes a circular import if imported at runtime
     from .._tree_objects.base import TreeObject
 
 from .protocols import ObjectInfo
@@ -26,7 +29,9 @@ def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[Tr
 
     def inner(self: TreeObject) -> Any:
         if self._is_stored:
-            self._pb_object = self._get_stub().Get(self._pb_object.info)
+            self._pb_object = self._get_stub().Get(
+                GetRequest(resource_path=self._pb_object.info.resource_path)
+            )
         return from_protobuf(_get_data_attribute(self._pb_object, name))
 
     return inner
@@ -40,7 +45,9 @@ def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[TreeOb
 
     def inner(self: TreeObject, value: Any) -> None:
         if self._is_stored:
-            self._pb_object = self._get_stub().Get(self._pb_object.info)
+            self._pb_object = self._get_stub().Get(
+                GetRequest(resource_path=self._pb_object.info.resource_path)
+            )
         current_value = _get_data_attribute(self._pb_object, name)
         value_pb = to_protobuf(value)
         if current_value != value_pb:
