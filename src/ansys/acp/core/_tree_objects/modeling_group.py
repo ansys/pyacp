@@ -22,7 +22,6 @@ class ModelingGroup(CreatableTreeObject):
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-    # Mypy doesn't like this being a property, see https://github.com/python/mypy/issues/1362
     @lru_cache(maxsize=1)
     def _get_stub(self) -> modeling_group_pb2_grpc.ObjectServiceStub:
         return modeling_group_pb2_grpc.ObjectServiceStub(self._channel)

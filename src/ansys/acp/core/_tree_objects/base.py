@@ -65,6 +65,10 @@ class TreeObject(ABC):
             raise RuntimeError("The server connection is uninitialized.")
         return self._channel_store
 
+    # This is implemented as a method instead of a property because we
+    # want to be able to use decorators (in particular functools.lru_cache)
+    # in its implementation. However, decorated properties are not supported
+    # by mypy, see https://github.com/python/mypy/issues/1362
     @abstractmethod
     def _get_stub(self) -> ResourceStub:
         ...

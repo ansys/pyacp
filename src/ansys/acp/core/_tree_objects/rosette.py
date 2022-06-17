@@ -45,7 +45,6 @@ class Rosette(CreatableTreeObject):
         self.dir1 = dir1
         self.dir2 = dir2
 
-    # Mypy doesn't like this being a property, see https://github.com/python/mypy/issues/1362
     @lru_cache(maxsize=1)
     def _get_stub(self) -> rosette_pb2_grpc.ObjectServiceStub:
         return rosette_pb2_grpc.ObjectServiceStub(self._channel)

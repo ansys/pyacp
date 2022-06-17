@@ -38,7 +38,6 @@ class ElementSet(CreatableTreeObject):
         self.middle_offset = middle_offset
         self.element_labels = element_labels
 
-    # Mypy doesn't like this being a property, see https://github.com/python/mypy/issues/1362
     @lru_cache(maxsize=1)
     def _get_stub(self) -> element_set_pb2_grpc.ObjectServiceStub:
         return element_set_pb2_grpc.ObjectServiceStub(self._channel)
