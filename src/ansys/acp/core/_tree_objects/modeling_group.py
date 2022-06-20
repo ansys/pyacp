@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from functools import lru_cache
 from typing import Any
 
 from ansys.acp.core._grpc_helpers.property_helper import grpc_data_property_read_only
@@ -22,8 +21,7 @@ class ModelingGroup(CreatableTreeObject):
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-    @lru_cache(maxsize=1)
-    def _get_stub(self) -> modeling_group_pb2_grpc.ObjectServiceStub:
+    def _create_stub(self) -> modeling_group_pb2_grpc.ObjectServiceStub:
         return modeling_group_pb2_grpc.ObjectServiceStub(self._channel)
 
     id = grpc_data_property_read_only("info.id")

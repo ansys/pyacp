@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from functools import lru_cache
-from typing import Any, Iterable, Union
+from typing import Any, Iterable, Union, cast
 
 from grpc import Channel
 
@@ -66,8 +65,10 @@ class Model(TreeObject):
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-    @lru_cache(maxsize=1)
     def _get_stub(self) -> model_pb2_grpc.ObjectServiceStub:
+        return cast(model_pb2_grpc.ObjectServiceStub, super()._get_stub())
+
+    def _create_stub(self) -> model_pb2_grpc.ObjectServiceStub:
         return model_pb2_grpc.ObjectServiceStub(self._channel)
 
     # # TODO: document further properties, or autogenerate docstring from .proto files.

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from functools import lru_cache
 from typing import Tuple
 
 from ansys.api.acp.v0 import rosette_pb2, rosette_pb2_grpc
@@ -45,8 +44,7 @@ class Rosette(CreatableTreeObject):
         self.dir1 = dir1
         self.dir2 = dir2
 
-    @lru_cache(maxsize=1)
-    def _get_stub(self) -> rosette_pb2_grpc.ObjectServiceStub:
+    def _create_stub(self) -> rosette_pb2_grpc.ObjectServiceStub:
         return rosette_pb2_grpc.ObjectServiceStub(self._channel)
 
     id = grpc_data_property_read_only("info.id")
