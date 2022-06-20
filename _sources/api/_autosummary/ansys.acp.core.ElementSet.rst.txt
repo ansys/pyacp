@@ -15,6 +15,12 @@
    
       
       
+      ElementSet.clone
+      
+      
+      ElementSet.delete
+      
+      
       ElementSet.store
       
    

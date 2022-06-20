@@ -15,6 +15,12 @@
    
       
       
+      Rosette.clone
+      
+      
+      Rosette.delete
+      
+      
       Rosette.store
       
    
