@@ -26,10 +26,10 @@ from .protocols import ObjectInfo, ResourceStub
 
 ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
 
-__all__ = ["Collection", "define_collection"]
+__all__ = ["Mapping", "define_mapping"]
 
 
-class Collection(Generic[ValueT]):
+class Mapping(Generic[ValueT]):
     def __init__(
         self,
         *,
@@ -134,11 +134,11 @@ class Collection(Generic[ValueT]):
 ParentT = TypeVar("ParentT", bound=TreeObject)
 
 
-def define_collection(
+def define_mapping(
     object_class: Type[ValueT], stub_class: Type[ResourceStub]
 ) -> Tuple[
     Callable[[Arg(ParentT, "self"), KwArg(Any)], ValueT],
-    Callable[[Arg(ParentT, "self")], Collection[ValueT]],
+    Callable[[Arg(ParentT, "self")], Mapping[ValueT]],
 ]:
     def create_method(self: ParentT, **kwargs: Any) -> ValueT:
         obj = object_class(**kwargs)
@@ -149,8 +149,8 @@ def define_collection(
     create_method.__annotations__ = object_class.__init__.__annotations__
 
     @property  # type: ignore
-    def collection_property(self: ParentT) -> Collection[ValueT]:
-        return Collection(
+    def collection_property(self: ParentT) -> Mapping[ValueT]:
+        return Mapping(
             channel=self._channel,
             collection_path=CollectionPath(
                 value=_rp_join(self._resource_path.value, object_class.COLLECTION_LABEL)

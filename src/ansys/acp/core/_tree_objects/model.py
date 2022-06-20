@@ -16,7 +16,7 @@ from ansys.api.acp.v0 import (
 )
 from ansys.api.acp.v0.model_pb2 import Format as _pb_Format
 
-from .._grpc_helpers.collection import define_collection
+from .._grpc_helpers.mapping import define_mapping
 from .._grpc_helpers.property_helper import grpc_data_property
 from .._typing_helper import PATH as _PATH
 from .base import TreeObject
@@ -140,13 +140,13 @@ class Model(TreeObject):
             )
         )
 
-    create_element_set, element_sets = define_collection(
+    create_element_set, element_sets = define_mapping(
         ElementSet, element_set_pb2_grpc.ObjectServiceStub
     )
-    create_rosette, rosettes = define_collection(Rosette, rosette_pb2_grpc.ObjectServiceStub)
-    create_oriented_selection_set, oriented_selection_sets = define_collection(
+    create_rosette, rosettes = define_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
+    create_oriented_selection_set, oriented_selection_sets = define_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub
     )
-    create_modeling_group, modeling_groups = define_collection(
+    create_modeling_group, modeling_groups = define_mapping(
         ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
     )
