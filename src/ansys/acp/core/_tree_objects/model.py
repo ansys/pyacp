@@ -6,18 +6,14 @@ from typing import Any, Iterable, Union
 
 from grpc import Channel
 
-from ansys.api.acp.v0.element_set_pb2_grpc import ElementSetStub
-from ansys.api.acp.v0.model_pb2 import (
-    LoadFEModelRequest,
-    LoadModelRequest,
-    ModelInfo,
-    SaveModelRequest,
-    UpdateModelRequest,
+from ansys.api.acp.v0 import (
+    element_set_pb2_grpc,
+    model_pb2,
+    model_pb2_grpc,
+    modeling_group_pb2_grpc,
+    rosette_pb2_grpc,
 )
 from ansys.api.acp.v0.model_pb2 import Format as _pb_Format
-from ansys.api.acp.v0.model_pb2_grpc import ModelStub
-from ansys.api.acp.v0.modeling_group_pb2_grpc import ModelingGroupStub
-from ansys.api.acp.v0.rosette_pb2_grpc import RosetteStub
 
 from .._grpc_helpers.collection import define_collection
 from .._grpc_helpers.property_helper import grpc_data_property
@@ -60,7 +56,7 @@ class Model(TreeObject):
     """
 
     COLLECTION_LABEL = "models"
-    OBJECT_INFO_TYPE = ModelInfo
+    OBJECT_INFO_TYPE = model_pb2.ObjectInfo
 
     def __init__(self, name: str = "ACP Model", **kwargs: Any) -> None:
         super().__init__(name=name)
@@ -70,8 +66,8 @@ class Model(TreeObject):
 
     # Mypy doesn't like this being a property, see https://github.com/python/mypy/issues/1362
     @lru_cache(maxsize=1)
-    def _get_stub(self) -> ModelStub:
-        return ModelStub(self._channel)
+    def _get_stub(self) -> model_pb2_grpc.ObjectServiceStub:
+        return model_pb2_grpc.ObjectServiceStub(self._channel)
 
     # # TODO: document further properties, or autogenerate docstring from .proto files.
 
@@ -86,8 +82,8 @@ class Model(TreeObject):
     def from_file(cls, *, path: _PATH, channel: Channel) -> Model:
         # Send absolute paths to the server, since its CWD may not match
         # the Python CWD.
-        request = LoadModelRequest(path=str(path))
-        reply = ModelStub(channel).LoadFromFile(request)
+        request = model_pb2.LoadFromFileRequest(path=str(path))
+        reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFile(request)
         return cls._from_object_info(object_info=reply, channel=channel)
 
     @classmethod
@@ -108,38 +104,45 @@ class Model(TreeObject):
             _FeFormat.NASTRAN_BDF: _pb_Format.NASTRAN_BDF,
         }[_FeFormat(format)]
 
+        request_type = model_pb2.LoadFromFEFileRequest
         ignored_mapping = {
-            _IgnorableEntity.MESH: LoadFEModelRequest.IgnorableEntity.MESH,
-            _IgnorableEntity.ELEMENT_SETS: LoadFEModelRequest.IgnorableEntity.ELEMENT_SETS,
-            _IgnorableEntity.MATERIALS: LoadFEModelRequest.IgnorableEntity.MATERIALS,
-            _IgnorableEntity.COORDINATE_SYSTEMS: LoadFEModelRequest.IgnorableEntity.COORDINATE_SYSTEMS,
-            _IgnorableEntity.SHELL_SECTIONS: LoadFEModelRequest.IgnorableEntity.SHELL_SECTIONS,
+            _IgnorableEntity.MESH: request_type.IgnorableEntity.MESH,
+            _IgnorableEntity.ELEMENT_SETS: request_type.IgnorableEntity.ELEMENT_SETS,
+            _IgnorableEntity.MATERIALS: request_type.IgnorableEntity.MATERIALS,
+            _IgnorableEntity.COORDINATE_SYSTEMS: request_type.IgnorableEntity.COORDINATE_SYSTEMS,
+            _IgnorableEntity.SHELL_SECTIONS: request_type.IgnorableEntity.SHELL_SECTIONS,
         }
         ignored_entities_pb = [ignored_mapping[_IgnorableEntity(val)] for val in ignored_entities]
 
-        request = LoadFEModelRequest(
+        request = request_type(
             path=str(path),
             format=format_pb,
             ignored_entities=ignored_entities_pb,
             convert_section_data=convert_section_data,
         )
-        reply = ModelStub(channel).LoadFromFEFile(request)
+        reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFEFile(request)
         return cls._from_object_info(object_info=reply, channel=channel)
 
     def update(self, *, relations_only: bool = False) -> None:
         self._get_stub().Update(
-            UpdateModelRequest(resource_path=self._resource_path, relations_only=relations_only)
+            model_pb2.UpdateRequest(
+                resource_path=self._resource_path, relations_only=relations_only
+            )
         )
 
     def save(self, path: _PATH, *, save_cache: bool = False) -> None:
         self._get_stub().SaveToFile(
-            SaveModelRequest(
+            model_pb2.SaveToFileRequest(
                 resource_path=self._resource_path,
                 path=str(path),
                 save_cache=save_cache,
             )
         )
 
-    create_modeling_group, modeling_groups = define_collection(ModelingGroup, ModelingGroupStub)
-    create_rosette, rosettes = define_collection(Rosette, RosetteStub)
-    create_element_set, element_sets = define_collection(ElementSet, ElementSetStub)
+    create_modeling_group, modeling_groups = define_collection(
+        ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
+    )
+    create_rosette, rosettes = define_collection(Rosette, rosette_pb2_grpc.ObjectServiceStub)
+    create_element_set, element_sets = define_collection(
+        ElementSet, element_set_pb2_grpc.ObjectServiceStub
+    )

@@ -3,8 +3,7 @@ from __future__ import annotations
 from functools import lru_cache
 from typing import Container
 
-from ansys.api.acp.v0.element_set_pb2 import CreateElementSetRequest, ElementSetInfo
-from ansys.api.acp.v0.element_set_pb2_grpc import ElementSetStub
+from ansys.api.acp.v0 import element_set_pb2, element_set_pb2_grpc
 
 from .._grpc_helpers.property_helper import grpc_data_property, grpc_data_property_read_only
 from .._utils.array_conversions import to_1D_int_array, to_tuple_from_1D_array
@@ -15,8 +14,8 @@ __all__ = ["ElementSet"]
 
 class ElementSet(CreatableTreeObject):
     COLLECTION_LABEL = "element_sets"
-    OBJECT_INFO_TYPE = ElementSetInfo
-    CREATE_REQUEST_TYPE = CreateElementSetRequest
+    OBJECT_INFO_TYPE = element_set_pb2.ObjectInfo
+    CREATE_REQUEST_TYPE = element_set_pb2.CreateRequest
 
     def __init__(
         self,
@@ -41,8 +40,8 @@ class ElementSet(CreatableTreeObject):
 
     # Mypy doesn't like this being a property, see https://github.com/python/mypy/issues/1362
     @lru_cache(maxsize=1)
-    def _get_stub(self) -> ElementSetStub:
-        return ElementSetStub(self._channel)
+    def _get_stub(self) -> element_set_pb2_grpc.ObjectServiceStub:
+        return element_set_pb2_grpc.ObjectServiceStub(self._channel)
 
     id = grpc_data_property("info.id")
 
