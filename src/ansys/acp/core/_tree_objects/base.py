@@ -9,7 +9,7 @@ from typing import Optional, Type, TypeVar
 
 from grpc import Channel
 
-from ansys.api.acp.v0.base_pb2 import CollectionPath, ResourcePath
+from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ResourcePath
 
 from .._grpc_helpers.property_helper import grpc_data_property
 from .._grpc_helpers.protocols import CreatableResourceStub, CreateRequest, ObjectInfo, ResourceStub
@@ -31,8 +31,25 @@ class TreeObject(ABC):
         self._pb_object: ObjectInfo = self.OBJECT_INFO_TYPE()
         self.name = name
 
+    def clone(self: _T) -> _T:
+        """Create a new unstored object with the same properties."""
+        new_object_info = self.OBJECT_INFO_TYPE()
+        new_object_info.properties.CopyFrom(self._pb_object.properties)
+        new_object_info.info.name = self._pb_object.info.name
+        return type(self)._from_object_info(object_info=new_object_info)
+
+    def delete(self: _T) -> None:
+        self._get_stub().Delete(
+            DeleteRequest(
+                resource_path=self._pb_object.info.resource_path,
+                version=self._pb_object.info.version,
+            )
+        )
+
     @classmethod
-    def _from_object_info(cls: Type[_T], object_info: ObjectInfo, channel: Optional[Channel]) -> _T:
+    def _from_object_info(
+        cls: Type[_T], object_info: ObjectInfo, channel: Optional[Channel] = None
+    ) -> _T:
         instance = cls()
         instance._pb_object = object_info
         instance._channel_store = channel
