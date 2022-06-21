@@ -1,7 +1,7 @@
 from typing import Any, Optional
 
+from ansys.api.acp.v0 import model_pb2_grpc
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
-from ansys.api.acp.v0.model_pb2_grpc import ModelStub
 
 from ._server import ServerProtocol
 from ._tree_objects import Model
@@ -65,7 +65,7 @@ class Client:
         Closes the models which are open on the server, without first
         saving them to a file.
         """
-        model_stub = ModelStub(self._channel)
+        model_stub = model_pb2_grpc.ObjectServiceStub(self._channel)
         for model in model_stub.List(
             ListRequest(collection_path=CollectionPath(value=Model.COLLECTION_LABEL))
         ).objects:

@@ -3,8 +3,7 @@ from __future__ import annotations
 from functools import lru_cache
 from typing import Tuple
 
-from ansys.api.acp.v0.rosette_pb2 import CreateRosetteRequest, RosetteInfo
-from ansys.api.acp.v0.rosette_pb2_grpc import RosetteStub
+from ansys.api.acp.v0 import rosette_pb2, rosette_pb2_grpc
 
 from .._grpc_helpers.property_helper import grpc_data_property, grpc_data_property_read_only
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
@@ -30,8 +29,8 @@ class Rosette(CreatableTreeObject):
     """
 
     COLLECTION_LABEL = "rosettes"
-    OBJECT_INFO_TYPE = RosetteInfo
-    CREATE_REQUEST_TYPE = CreateRosetteRequest
+    OBJECT_INFO_TYPE = rosette_pb2.ObjectInfo
+    CREATE_REQUEST_TYPE = rosette_pb2.CreateRequest
 
     def __init__(
         self,
@@ -48,8 +47,8 @@ class Rosette(CreatableTreeObject):
 
     # Mypy doesn't like this being a property, see https://github.com/python/mypy/issues/1362
     @lru_cache(maxsize=1)
-    def _get_stub(self) -> RosetteStub:
-        return RosetteStub(self._channel)
+    def _get_stub(self) -> rosette_pb2_grpc.ObjectServiceStub:
+        return rosette_pb2_grpc.ObjectServiceStub(self._channel)
 
     id = grpc_data_property_read_only("info.id")
 
