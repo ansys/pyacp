@@ -124,6 +124,9 @@ class LinkedObjectList(Generic[ValueT]):
         resource_path_list = list(np.array(resource_path_list)[idx_list])
         self._set_resourcepath_list(resource_path_list)
 
+    def __eq__(self, other: Any) -> Any:
+        return list(self) == other
+
 
 ChildT = TypeVar("ChildT", bound=CreatableTreeObject)
 
