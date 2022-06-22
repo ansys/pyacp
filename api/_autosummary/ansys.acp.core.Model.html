@@ -324,6 +324,11 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.create_oriented_selection_set.html">
+       create_oriented_selection_set
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.create_rosette.html">
        create_rosette
       </a>
@@ -381,6 +386,11 @@
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.name.html">
        name
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.oriented_selection_sets.html">
+       oriented_selection_sets
       </a>
      </li>
      <li class="toctree-l3">
@@ -625,22 +635,25 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_modeling_group.html#ansys.acp.core.Model.create_modeling_group" title="ansys.acp.core.Model.create_modeling_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_modeling_group</span></code></a>(**kwargs)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_rosette.html#ansys.acp.core.Model.create_rosette" title="ansys.acp.core.Model.create_rosette"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_rosette</span></code></a>(**kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_oriented_selection_set.html#ansys.acp.core.Model.create_oriented_selection_set" title="ansys.acp.core.Model.create_oriented_selection_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_oriented_selection_set</span></code></a>(**kwargs)</p></td>
+<td><p>Instantiate an Oriented Selection Set.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_rosette.html#ansys.acp.core.Model.create_rosette" title="ansys.acp.core.Model.create_rosette"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_rosette</span></code></a>(**kwargs)</p></td>
 <td><p>Instantiate a Rosette.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.delete.html#ansys.acp.core.Model.delete" title="ansys.acp.core.Model.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.delete</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.delete.html#ansys.acp.core.Model.delete" title="ansys.acp.core.Model.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.delete</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.from_fe_file.html#ansys.acp.core.Model.from_fe_file" title="ansys.acp.core.Model.from_fe_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.from_fe_file</span></code></a>(*, path, channel, format)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.from_fe_file.html#ansys.acp.core.Model.from_fe_file" title="ansys.acp.core.Model.from_fe_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.from_fe_file</span></code></a>(*, path, channel, format)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.from_file.html#ansys.acp.core.Model.from_file" title="ansys.acp.core.Model.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.from_file</span></code></a>(*, path, channel)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.from_file.html#ansys.acp.core.Model.from_file" title="ansys.acp.core.Model.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.from_file</span></code></a>(*, path, channel)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.save.html#ansys.acp.core.Model.save" title="ansys.acp.core.Model.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.save</span></code></a>(path, *[, save_cache])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.save.html#ansys.acp.core.Model.save" title="ansys.acp.core.Model.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.save</span></code></a>(path, *[, save_cache])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.update.html#ansys.acp.core.Model.update" title="ansys.acp.core.Model.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.update</span></code></a>(*[, relations_only])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.update.html#ansys.acp.core.Model.update" title="ansys.acp.core.Model.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.update</span></code></a>(*[, relations_only])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -666,16 +679,19 @@
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.name.html#ansys.acp.core.Model.name" title="ansys.acp.core.Model.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.name</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.relative_thickness_tolerance.html#ansys.acp.core.Model.relative_thickness_tolerance" title="ansys.acp.core.Model.relative_thickness_tolerance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.relative_thickness_tolerance</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.oriented_selection_sets.html#ansys.acp.core.Model.oriented_selection_sets" title="ansys.acp.core.Model.oriented_selection_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.oriented_selection_sets</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.rosettes.html#ansys.acp.core.Model.rosettes" title="ansys.acp.core.Model.rosettes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.rosettes</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.relative_thickness_tolerance.html#ansys.acp.core.Model.relative_thickness_tolerance" title="ansys.acp.core.Model.relative_thickness_tolerance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.relative_thickness_tolerance</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.use_default_section_tolerances.html#ansys.acp.core.Model.use_default_section_tolerances" title="ansys.acp.core.Model.use_default_section_tolerances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.use_default_section_tolerances</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.rosettes.html#ansys.acp.core.Model.rosettes" title="ansys.acp.core.Model.rosettes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.rosettes</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html#ansys.acp.core.Model.use_nodal_thicknesses" title="ansys.acp.core.Model.use_nodal_thicknesses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.use_nodal_thicknesses</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.use_default_section_tolerances.html#ansys.acp.core.Model.use_default_section_tolerances" title="ansys.acp.core.Model.use_default_section_tolerances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.use_default_section_tolerances</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html#ansys.acp.core.Model.use_nodal_thicknesses" title="ansys.acp.core.Model.use_nodal_thicknesses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.use_nodal_thicknesses</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>

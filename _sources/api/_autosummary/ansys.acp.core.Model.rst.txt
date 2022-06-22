@@ -24,6 +24,9 @@
       Model.create_modeling_group
       
       
+      Model.create_oriented_selection_set
+      
+      
       Model.create_rosette
       
       
@@ -69,6 +72,9 @@
       
       
       Model.name
+      
+      
+      Model.oriented_selection_sets
       
       
       Model.relative_thickness_tolerance
