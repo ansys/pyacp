@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from functools import lru_cache
 from typing import Container
 
 from ansys.api.acp.v0 import element_set_pb2, element_set_pb2_grpc
@@ -19,7 +18,7 @@ class ElementSet(CreatableTreeObject):
 
     def __init__(
         self,
-        name: str = "Element Set",
+        name: str = "ElementSet",
         middle_offset: bool = False,
         element_labels: Container[int] = tuple(),
     ):
@@ -38,9 +37,7 @@ class ElementSet(CreatableTreeObject):
         self.middle_offset = middle_offset
         self.element_labels = element_labels
 
-    # Mypy doesn't like this being a property, see https://github.com/python/mypy/issues/1362
-    @lru_cache(maxsize=1)
-    def _get_stub(self) -> element_set_pb2_grpc.ObjectServiceStub:
+    def _create_stub(self) -> element_set_pb2_grpc.ObjectServiceStub:
         return element_set_pb2_grpc.ObjectServiceStub(self._channel)
 
     id = grpc_data_property("info.id")

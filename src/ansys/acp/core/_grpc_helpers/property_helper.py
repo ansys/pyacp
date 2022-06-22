@@ -5,9 +5,7 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from functools import reduce
-from typing import TYPE_CHECKING, Any, Callable, cast
-
-from google.protobuf.message import Message
+from typing import TYPE_CHECKING, Any, Callable
 
 from ansys.api.acp.v0.base_pb2 import GetRequest
 
@@ -50,7 +48,11 @@ def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[TreeOb
             )
         current_value = _get_data_attribute(self._pb_object, name)
         value_pb = to_protobuf(value)
-        if current_value != value_pb:
+        try:
+            needs_updating = current_value != value_pb
+        except TypeError:
+            needs_updating = True
+        if needs_updating:
             _set_data_attribute(self._pb_object, name, value_pb)
             if self._is_stored:
                 self._pb_object = self._get_stub().Put(self._pb_object)
@@ -66,12 +68,20 @@ def _get_data_attribute(pb_obj: ObjectInfo, name: str) -> Any:
 def _set_data_attribute(pb_obj: ObjectInfo, name: str, value: Any) -> None:
     name_parts = name.split(".")
 
-    if isinstance(value, Message):
-        target_object = cast(Message, reduce(getattr, name_parts, pb_obj))
-        target_object.CopyFrom(value)
-    else:
+    try:
         parent = reduce(getattr, name_parts[:-1], pb_obj)
         setattr(parent, name_parts[-1], value)
+    except AttributeError:
+        target_object: Any = reduce(getattr, name_parts, pb_obj)
+        if hasattr(target_object, "CopyFrom"):
+            target_object.CopyFrom(value)
+        else:
+            try:
+                target_object[:] = value
+            except TypeError:
+                del target_object[:]
+                for item in value:
+                    target_object.add().CopyFrom(item)
 
 
 def grpc_data_property(

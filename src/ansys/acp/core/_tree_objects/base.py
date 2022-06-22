@@ -5,7 +5,7 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Optional, Type, TypeVar
+from typing import Any, Optional, Type, TypeVar, cast
 
 from grpc import Channel
 
@@ -28,6 +28,7 @@ class TreeObject(ABC):
 
     def __init__(self: TreeObject, name: str = "") -> None:
         self._channel_store: Optional[Channel] = None
+        self._stub_store: Optional[ResourceStub] = None
         self._pb_object: ObjectInfo = self.OBJECT_INFO_TYPE()
         self.name = name
 
@@ -46,12 +47,27 @@ class TreeObject(ABC):
             )
         )
 
+    def __eq__(self: _T, other: Any) -> bool:
+        if not isinstance(other, TreeObject):
+            return False
+        if not self._is_stored:
+            # For unstored objects, fall back to identity comparison
+            return self is other
+        return self._resource_path.value == other._resource_path.value
+
     @classmethod
     def _from_object_info(
         cls: Type[_T], object_info: ObjectInfo, channel: Optional[Channel] = None
     ) -> _T:
         instance = cls()
         instance._pb_object = object_info
+        instance._channel_store = channel
+        return instance
+
+    @classmethod
+    def _from_resource_path(cls: Type[_T], resource_path: ResourcePath, channel: Channel) -> _T:
+        instance = cls()
+        instance._pb_object.info.resource_path.CopyFrom(resource_path)
         instance._channel_store = channel
         return instance
 
@@ -65,8 +81,15 @@ class TreeObject(ABC):
             raise RuntimeError("The server connection is uninitialized.")
         return self._channel_store
 
-    @abstractmethod
     def _get_stub(self) -> ResourceStub:
+        if not self._is_stored:
+            raise RuntimeError("The server connection is uninitialized.")
+        if self._stub_store is None:
+            self._stub_store = self._create_stub()
+        return self._stub_store
+
+    @abstractmethod
+    def _create_stub(self) -> ResourceStub:
         ...
 
     @property
@@ -80,9 +103,8 @@ class TreeObject(ABC):
 class CreatableTreeObject(TreeObject, ABC):
     CREATE_REQUEST_TYPE: Type[CreateRequest]
 
-    @abstractmethod
     def _get_stub(self) -> CreatableResourceStub:
-        ...
+        return cast(CreatableResourceStub, super()._get_stub())
 
     def store(self: CreatableTreeObject, parent: TreeObject) -> None:
         self._channel_store = parent._channel

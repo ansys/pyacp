@@ -24,7 +24,7 @@ repos:
   rev: 0.5.0
   hooks:
   - id: nbstripout
-    args: ["--extra-keys", "metadata.interpreter metadata.kernelspec metadata.language_info"]
+    args: ["--extra-keys", "metadata.interpreter metadata.kernelspec metadata.language_info metadata.vscode"]
 - repo: local
   hooks:
   - id: mypy-code

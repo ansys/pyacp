@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from functools import lru_cache
-from typing import Any, Iterable, Union
+from typing import Any, Iterable, Union, cast
 
 from grpc import Channel
 
@@ -11,16 +10,18 @@ from ansys.api.acp.v0 import (
     model_pb2,
     model_pb2_grpc,
     modeling_group_pb2_grpc,
+    oriented_selection_set_pb2_grpc,
     rosette_pb2_grpc,
 )
 from ansys.api.acp.v0.model_pb2 import Format as _pb_Format
 
-from .._grpc_helpers.collection import define_collection
+from .._grpc_helpers.mapping import define_mapping
 from .._grpc_helpers.property_helper import grpc_data_property
 from .._typing_helper import PATH as _PATH
 from .base import TreeObject
 from .element_set import ElementSet
 from .modeling_group import ModelingGroup
+from .oriented_selection_set import OrientedSelectionSet
 from .rosette import Rosette
 
 __all__ = ["Model"]
@@ -64,9 +65,10 @@ class Model(TreeObject):
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-    # Mypy doesn't like this being a property, see https://github.com/python/mypy/issues/1362
-    @lru_cache(maxsize=1)
     def _get_stub(self) -> model_pb2_grpc.ObjectServiceStub:
+        return cast(model_pb2_grpc.ObjectServiceStub, super()._get_stub())
+
+    def _create_stub(self) -> model_pb2_grpc.ObjectServiceStub:
         return model_pb2_grpc.ObjectServiceStub(self._channel)
 
     # # TODO: document further properties, or autogenerate docstring from .proto files.
@@ -139,10 +141,13 @@ class Model(TreeObject):
             )
         )
 
-    create_modeling_group, modeling_groups = define_collection(
-        ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
-    )
-    create_rosette, rosettes = define_collection(Rosette, rosette_pb2_grpc.ObjectServiceStub)
-    create_element_set, element_sets = define_collection(
+    create_element_set, element_sets = define_mapping(
         ElementSet, element_set_pb2_grpc.ObjectServiceStub
+    )
+    create_rosette, rosettes = define_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
+    create_oriented_selection_set, oriented_selection_sets = define_mapping(
+        OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub
+    )
+    create_modeling_group, modeling_groups = define_mapping(
+        ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
     )
