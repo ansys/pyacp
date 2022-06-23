@@ -3,16 +3,15 @@ from __future__ import annotations
 from functools import lru_cache
 
 from ansys.api.acp.v0 import fabric_pb2, fabric_pb2_grpc
-
-from ansys.api.acp.v0.drop_off_material_pb2 import MaterialHandlingType as DropoffMaterialType
 from ansys.api.acp.v0.drop_off_material_pb2 import MaterialHandlingType as CutoffMaterialType
+from ansys.api.acp.v0.drop_off_material_pb2 import MaterialHandlingType as DropoffMaterialType
 from ansys.api.acp.v0.ply_material_pb2 import DrapingMaterialType
 
 from .._grpc_helpers.property_helper import grpc_data_property, grpc_data_property_read_only
 from .._utils.enum_conversions import status_type_to_string
 from .base import CreatableTreeObject
 
-#from .material import Material
+# from .material import Material
 
 __all__ = ["Fabric"]
 
@@ -50,18 +49,18 @@ class Fabric(CreatableTreeObject):
     def __init__(
         self,
         name: str = "Fabric",
-        #material: Material = None,
-        thickness: float = 0.,
-        area_price: float = 0.,
+        # material: Material = None,
+        thickness: float = 0.0,
+        area_price: float = 0.0,
         ignore_for_postprocessing: bool = False,
-        drop_off_material_handling: DropoffMaterialType = DropoffMaterialType.GLOBAL,
-        cut_off_material_handling: CutoffMaterialType = CutoffMaterialType.COMPUTED,
-        draping_material_model: DrapingMaterialType = DrapingMaterialType.WOVEN,
-        draping_ud_coefficient: float = 0.
+        drop_off_material_handling: DropoffMaterialType.ValueType = DropoffMaterialType.GLOBAL,
+        cut_off_material_handling: CutoffMaterialType.ValueType = CutoffMaterialType.COMPUTED,
+        draping_material_model: DrapingMaterialType.ValueType = DrapingMaterialType.WOVEN,
+        draping_ud_coefficient: float = 0.0,
     ):
         super().__init__(name=name)
 
-        #self.material = material
+        # self.material = material
         self.thickness = thickness
         self.area_price = area_price
         self.ignore_for_postprocessing = ignore_for_postprocessing
@@ -80,12 +79,11 @@ class Fabric(CreatableTreeObject):
     locked = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_to_string)
 
-    material = grpc_data_property( "properties.material")
+    material = grpc_data_property("properties.material")
     thickness = grpc_data_property("properties.thickness")
     area_price = grpc_data_property("properties.area_price")
     ignore_for_postprocessing = grpc_data_property("properties.ignore_for_postprocessing")
 
     draping_ud_coefficient = grpc_data_property("properties.draping_ud_coefficient")
 
-    #material = TBD
-
+    # material = TBD

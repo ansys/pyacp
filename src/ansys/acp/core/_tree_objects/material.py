@@ -24,10 +24,7 @@ class Material(CreatableTreeObject):
     OBJECT_INFO_TYPE = material_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = material_pb2.CreateRequest
 
-    def __init__(
-        self,
-        name: str = "Material"
-    ):
+    def __init__(self, name: str = "Material"):
         super().__init__(name=name)
 
     # Mypy doesn't like this being a property, see https://github.com/python/mypy/issues/1362
