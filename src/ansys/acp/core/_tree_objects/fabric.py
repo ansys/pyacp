@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from functools import lru_cache
-
 from ansys.api.acp.v0 import fabric_pb2, fabric_pb2_grpc
 from ansys.api.acp.v0.cut_off_material_pb2 import MaterialHandlingType as CutoffMaterialType
 from ansys.api.acp.v0.drop_off_material_pb2 import MaterialHandlingType as DropoffMaterialType
@@ -10,12 +8,14 @@ from ansys.api.acp.v0.ply_material_pb2 import DrapingMaterialType
 from .._grpc_helpers.property_helper import grpc_data_property, grpc_data_property_read_only
 from .._utils.enum_conversions import status_type_to_string
 from .base import CreatableTreeObject
+from .object_registry import register
 
 # from .material import Material
 
 __all__ = ["Fabric"]
 
 
+@register
 class Fabric(CreatableTreeObject):
     """Instantiate a Fabric.
 
@@ -69,9 +69,7 @@ class Fabric(CreatableTreeObject):
         self.draping_material_model = draping_material_model
         self.draping_ud_coefficient = draping_ud_coefficient
 
-    # Mypy doesn't like this being a property, see https://github.com/python/mypy/issues/1362
-    @lru_cache(maxsize=1)
-    def _get_stub(self) -> fabric_pb2_grpc.ObjectServiceStub:
+    def _create_stub(self) -> fabric_pb2_grpc.ObjectServiceStub:
         return fabric_pb2_grpc.ObjectServiceStub(self._channel)
 
     id = grpc_data_property_read_only("info.id")

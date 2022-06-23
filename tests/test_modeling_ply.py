@@ -28,6 +28,9 @@ def test_linked_object_access(load_model_from_tempfile):
 
         fabric = modeling_ply.material
         assert fabric.name == "Fabric.1"
+        new_fabric = model.create_fabric(name="Fabric.2")
+        modeling_ply.material = new_fabric
+        assert modeling_ply.material.name == "Fabric.2"
 
 
 def test_collection_access(load_model_from_tempfile):

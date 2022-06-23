@@ -7,6 +7,8 @@ from grpc import Channel
 
 from ansys.api.acp.v0 import (
     element_set_pb2_grpc,
+    fabric_pb2_grpc,
+    material_pb2_grpc,
     model_pb2,
     model_pb2_grpc,
     modeling_group_pb2_grpc,
@@ -20,6 +22,8 @@ from .._grpc_helpers.property_helper import grpc_data_property
 from .._typing_helper import PATH as _PATH
 from .base import TreeObject
 from .element_set import ElementSet
+from .fabric import Fabric
+from .material import Material
 from .modeling_group import ModelingGroup
 from .oriented_selection_set import OrientedSelectionSet
 from .rosette import Rosette
@@ -144,6 +148,8 @@ class Model(TreeObject):
     create_element_set, element_sets = define_mapping(
         ElementSet, element_set_pb2_grpc.ObjectServiceStub
     )
+    create_fabric, fabrics = define_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
+    create_material, materials = define_mapping(Material, material_pb2_grpc.ObjectServiceStub)
     create_rosette, rosettes = define_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
     create_oriented_selection_set, oriented_selection_sets = define_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub

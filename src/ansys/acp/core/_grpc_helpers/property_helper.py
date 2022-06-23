@@ -32,9 +32,9 @@ def grpc_linked_object_getter(name: str) -> Callable[[TreeObject], Any]:
         self._pb_object = self._get_stub().Get(
             GetRequest(resource_path=self._pb_object.info.resource_path)
         )
-        object_resource_path = _get_data_attribute(self._pb_object, name).value
+        object_resource_path = _get_data_attribute(self._pb_object, name)
 
-        resource_type = object_resource_path.split("/")[::2][-1]
+        resource_type = object_resource_path.value.split("/")[::2][-1]
         resource_class = object_registry[resource_type]
 
         return resource_class._from_resource_path(object_resource_path, self._channel)
@@ -137,7 +137,7 @@ def grpc_link_property(name: str) -> Any:
     makes call to the gRPC Get endpoints to get the linked object
     """
     return property(grpc_linked_object_getter(name)).setter(
-        grpc_data_setter(name=name, to_protobuf=lambda obj: obj.info.resource_path)
+        grpc_data_setter(name=name, to_protobuf=lambda obj: obj._resource_path)
     )
 
 
