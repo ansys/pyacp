@@ -7,10 +7,12 @@ from ansys.api.acp.v0 import element_set_pb2, element_set_pb2_grpc
 from .._grpc_helpers.property_helper import grpc_data_property, grpc_data_property_read_only
 from .._utils.array_conversions import to_1D_int_array, to_tuple_from_1D_array
 from .base import CreatableTreeObject
+from .object_registry import register
 
 __all__ = ["ElementSet"]
 
 
+@register
 class ElementSet(CreatableTreeObject):
     COLLECTION_LABEL = "element_sets"
     OBJECT_INFO_TYPE = element_set_pb2.ObjectInfo

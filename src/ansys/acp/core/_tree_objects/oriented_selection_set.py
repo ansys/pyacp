@@ -7,10 +7,12 @@ from .._grpc_helpers.property_helper import grpc_data_property_read_only
 from .._utils.enum_conversions import status_type_to_string
 from .base import CreatableTreeObject
 from .element_set import ElementSet
+from .object_registry import register
 
 __all__ = ["OrientedSelectionSet"]
 
 
+@register
 class OrientedSelectionSet(CreatableTreeObject):
     """Instantiate an Oriented Selection Set.
 

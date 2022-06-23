@@ -19,6 +19,29 @@ _TO_PROTOBUF_T = Callable[[Any], Any]
 _FROM_PROTOBUF_T = Callable[[Any], Any]
 
 
+def grpc_linked_object_getter(name: str) -> Callable[[TreeObject], Any]:
+    """
+    Creates a getter method which obtains the linked server object
+    """
+
+    def inner(self: TreeObject) -> Any:
+        from .._tree_objects.object_registry import object_registry
+
+        if not self._is_stored:
+            raise Exception("Cannot get linked object from unstored object")
+        self._pb_object = self._get_stub().Get(
+            GetRequest(resource_path=self._pb_object.info.resource_path)
+        )
+        object_resource_path = _get_data_attribute(self._pb_object, name).value
+
+        resource_type = object_resource_path.split("/")[::2][-1]
+        resource_class = object_registry[resource_type]
+
+        return resource_class._from_resource_path(object_resource_path, self._channel)
+
+    return inner
+
+
 def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[TreeObject], Any]:
     """
     Creates a getter method which obtains the server object via the gRPC
@@ -106,3 +129,21 @@ def grpc_data_property_read_only(name: str, from_protobuf: _FROM_PROTOBUF_T = la
     the local object with the remote backend.
     """
     return property(grpc_data_getter(name, from_protobuf=from_protobuf))
+
+
+def grpc_link_property(name: str) -> Any:
+    """
+    Helper for defining linked properties accessed via gRPC. The property getter
+    makes call to the gRPC Get endpoints to get the linked object
+    """
+    return property(grpc_linked_object_getter(name)).setter(
+        grpc_data_setter(name=name, to_protobuf=lambda obj: obj.info.resource_path)
+    )
+
+
+def grpc_link_property_read_only(name: str) -> Any:
+    """
+    Helper for defining linked properties accessed via gRPC. The property getter
+    makes call to the gRPC Get endpoints to get the linked object
+    """
+    return property(grpc_linked_object_getter(name))

@@ -4,8 +4,8 @@ import pytest
 def test_create_oriented_selection_set(load_model_from_tempfile):
     """Test the creation of Oriented Selection Sets."""
     with load_model_from_tempfile() as model:
-        mg_names = ["OrientedSelectionSet.1", "OrientedSelectionSet.1", "üñıçよð€"]
-        for ref_name in mg_names:
+        oss_names = ["OrientedSelectionSet.1", "OrientedSelectionSet.1", "üñıçよð€"]
+        for ref_name in oss_names:
             oriented_selection_set = model.create_oriented_selection_set(name=ref_name)
             assert oriented_selection_set.name == ref_name
 
