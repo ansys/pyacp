@@ -3,7 +3,7 @@ from __future__ import annotations
 from functools import lru_cache
 
 from ansys.api.acp.v0 import fabric_pb2, fabric_pb2_grpc
-from ansys.api.acp.v0.drop_off_material_pb2 import MaterialHandlingType as CutoffMaterialType
+from ansys.api.acp.v0.cut_off_material_pb2 import MaterialHandlingType as CutoffMaterialType
 from ansys.api.acp.v0.drop_off_material_pb2 import MaterialHandlingType as DropoffMaterialType
 from ansys.api.acp.v0.ply_material_pb2 import DrapingMaterialType
 
