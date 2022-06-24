@@ -1,8 +1,8 @@
-from typing import Type
+from typing import Dict, Type
 
 from .base import TreeObject
 
-object_registry = {}
+object_registry: Dict[str, Type[TreeObject]] = {}
 
 
 def register(cls: Type[TreeObject]) -> Type[TreeObject]:
