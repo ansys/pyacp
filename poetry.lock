@@ -23,7 +23,7 @@ protobuf = ">=3.19,<4.0"
 type = "git"
 url = "https://github.com/ansys/ansys-api-acp-private.git"
 reference = "main"
-resolved_reference = "e00461ad6392b56f0bb04cf411886e8129118be5"
+resolved_reference = "9fcd9006fbd97929ccc2455be19e20a5a60cfdbf"
 
 [[package]]
 name = "ansys-sphinx-theme"
