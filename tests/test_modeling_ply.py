@@ -9,8 +9,9 @@ def test_modeling_ply(load_model_from_tempfile):
     """Test the creation of Modeling Ply."""
     with load_model_from_tempfile() as model:
         modeling_ply_names = ["ModelingPly.1", "ModelingPly.1", "üñıçよð€"]
+        mg = get_first_modeling_group(model)
         for ref_name in modeling_ply_names:
-            modeling_ply = get_first_modeling_group(model).create_modeling_ply(name=ref_name)
+            modeling_ply = mg.create_modeling_ply(name=ref_name)
             assert modeling_ply.name == ref_name
 
 
