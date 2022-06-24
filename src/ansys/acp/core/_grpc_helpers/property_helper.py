@@ -7,7 +7,7 @@ from __future__ import annotations
 from functools import reduce
 from typing import TYPE_CHECKING, Any, Callable
 
-from ansys.api.acp.v0.base_pb2 import GetRequest
+from ansys.api.acp.v0.base_pb2 import GetRequest, ResourcePath
 
 if TYPE_CHECKING:
     # Causes a circular import if imported at runtime
@@ -37,7 +37,8 @@ def grpc_linked_object_getter(name: str) -> Callable[[TreeObject], Any]:
         object_resource_path = _get_data_attribute(self._pb_object, name)
 
         # Resource path represents an object that is not set as an empty string
-        if object_resource_path == "":
+        # For instance fabric.material = None
+        if object_resource_path.value == "":
             return None
         resource_type = object_resource_path.value.split("/")[::2][-1]
         resource_class = object_registry[resource_type]
@@ -144,7 +145,7 @@ def grpc_link_property(name: str) -> Any:
     return property(grpc_linked_object_getter(name)).setter(
         # Resource path represents an object that is not set as an empty string
         grpc_data_setter(
-            name=name, to_protobuf=lambda obj: "" if obj is None else obj._resource_path
+            name=name, to_protobuf=lambda obj: ResourcePath(value="") if obj is None else obj._resource_path
         )
     )
 
