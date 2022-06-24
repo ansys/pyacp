@@ -13,7 +13,6 @@ from ansys.api.acp.v0 import (
     oriented_selection_set_pb2_grpc,
     rosette_pb2_grpc,
 )
-from ansys.api.acp.v0.model_pb2 import Format as _pb_Format
 
 from .._grpc_helpers.mapping import define_mapping
 from .._grpc_helpers.property_helper import grpc_data_property
@@ -99,11 +98,11 @@ class Model(TreeObject):
         convert_section_data: bool = False,
     ) -> Model:
         format_pb = {
-            _FeFormat.ANSYS_H5: _pb_Format.ANSYS_H5,
-            _FeFormat.ANSYS_CDB: _pb_Format.ANSYS_CDB,
-            _FeFormat.ANSYS_DAT: _pb_Format.ANSYS_DAT,
-            _FeFormat.ABAQUS_INP: _pb_Format.ABAQUS_INP,
-            _FeFormat.NASTRAN_BDF: _pb_Format.NASTRAN_BDF,
+            _FeFormat.ANSYS_H5: model_pb2.Format.ANSYS_H5,
+            _FeFormat.ANSYS_CDB: model_pb2.Format.ANSYS_CDB,
+            _FeFormat.ANSYS_DAT: model_pb2.Format.ANSYS_DAT,
+            _FeFormat.ABAQUS_INP: model_pb2.Format.ABAQUS_INP,
+            _FeFormat.NASTRAN_BDF: model_pb2.Format.NASTRAN_BDF,
         }[_FeFormat(format)]
 
         request_type = model_pb2.LoadFromFEFileRequest
@@ -138,6 +137,14 @@ class Model(TreeObject):
                 resource_path=self._resource_path,
                 path=str(path),
                 save_cache=save_cache,
+            )
+        )
+
+    def save_analysis_model(self, path: _PATH) -> None:
+        self._get_stub().SaveAnalysisModel(
+            model_pb2.SaveAnalysisModelRequest(
+                resource_path=self._resource_path,
+                path=str(path),
             )
         )
 
