@@ -14,6 +14,18 @@ def case_oss_to_elset_empty(load_model_from_tempfile):
         yield oss, "element_sets", tuple(), model.create_element_set
 
 
+def case_oss_to_rosette_empty(load_model_from_tempfile):
+    with load_model_from_tempfile() as model:
+        oss = model.create_oriented_selection_set()
+        yield oss, "rosettes", tuple(), model.create_rosette
+
+
+def case_oss_to_rosette_one_existing(load_model_from_tempfile):
+    with load_model_from_tempfile() as model:
+        oss = model.oriented_selection_sets["OrientedSelectionSet.1"]
+        yield oss, "rosettes", tuple(["Global Coordinate System"]), model.create_rosette
+
+
 @parametrize_with_cases(
     "parent_object, list_attribute, expected_initial_names, child_constructor", cases="."
 )

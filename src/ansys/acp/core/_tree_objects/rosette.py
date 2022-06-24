@@ -8,10 +8,12 @@ from .._grpc_helpers.property_helper import grpc_data_property, grpc_data_proper
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.enum_conversions import status_type_to_string
 from .base import CreatableTreeObject
+from .object_registry import register
 
 __all__ = ["Rosette"]
 
 
+@register
 class Rosette(CreatableTreeObject):
     """Instantiate a Rosette.
 
