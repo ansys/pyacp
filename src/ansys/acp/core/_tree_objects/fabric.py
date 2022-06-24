@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Union
+
 from ansys.api.acp.v0 import fabric_pb2, fabric_pb2_grpc
 from ansys.api.acp.v0.cut_off_material_pb2 import MaterialHandlingType as CutoffMaterialType
 from ansys.api.acp.v0.drop_off_material_pb2 import MaterialHandlingType as DropoffMaterialType
@@ -52,7 +54,7 @@ class Fabric(CreatableTreeObject):
     def __init__(
         self,
         name: str = "Fabric",
-        material: Material = None,
+        material: Union[Material, None] = None,
         thickness: float = 0.0,
         area_price: float = 0.0,
         ignore_for_postprocessing: bool = False,

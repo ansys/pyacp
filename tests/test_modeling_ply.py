@@ -26,11 +26,11 @@ def test_linked_object_access(load_model_from_tempfile):
         )
         assert len(oriented_selection_sets) == 2
 
-        fabric = modeling_ply.material
+        fabric = modeling_ply.ply_material
         assert fabric.name == "Fabric.1"
         new_fabric = model.create_fabric(name="Fabric.2")
-        modeling_ply.material = new_fabric
-        assert modeling_ply.material.name == "Fabric.2"
+        modeling_ply.ply_material = new_fabric
+        assert modeling_ply.ply_material.name == "Fabric.2"
 
 
 def test_collection_access(load_model_from_tempfile):
