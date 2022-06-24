@@ -34,11 +34,20 @@ class ModelingPly(CreatableTreeObject):
         name: str = "ModelingPly",
         ply_material: Union[Fabric, None] = None,
         oriented_selection_sets: Container[OrientedSelectionSet] = (),
+        ply_angle: float = 0.0,
+        number_of_layers: int = 1,
+        active: bool = True,
+        # Todo: Think about a way to get a default for the global_ply_nr
+        global_ply_nr: int = 1,
     ):
         super().__init__(name=name)
 
         self.oriented_selection_sets = oriented_selection_sets
         self.ply_material = ply_material
+        self.ply_angle = ply_angle
+        self.number_of_layers = number_of_layers
+        self.active = active
+        self.global_ply_nr = global_ply_nr
 
     def _create_stub(self) -> modeling_ply_pb2_grpc.ObjectServiceStub:
         return modeling_ply_pb2_grpc.ObjectServiceStub(self._channel)

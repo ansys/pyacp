@@ -5,7 +5,7 @@ def get_first_modeling_group(model):
     return model.modeling_groups["ModelingGroup.1"]
 
 
-def test_modeling_ply(load_model_from_tempfile):
+def test_get_existing(load_model_from_tempfile):
     """Test the creation of Modeling Ply."""
     with load_model_from_tempfile() as model:
         modeling_ply_names = ["ModelingPly.1", "ModelingPly.1", "üñıçよð€"]
@@ -14,7 +14,7 @@ def test_modeling_ply(load_model_from_tempfile):
             assert modeling_ply.name == ref_name
 
 
-def test_linked_object_access(load_model_from_tempfile):
+def test_properties(load_model_from_tempfile):
     """Basic test of the Model.modeling_groups.modeling_plies collection."""
     # TODO: split into separate tests for each mode of access.
     with load_model_from_tempfile() as model:
@@ -31,6 +31,18 @@ def test_linked_object_access(load_model_from_tempfile):
         new_fabric = model.create_fabric(name="Fabric.2")
         modeling_ply.ply_material = new_fabric
         assert modeling_ply.ply_material.name == "Fabric.2"
+
+        modeling_ply.ply_angle = 20.0
+        assert modeling_ply.ply_angle == pytest.approx(20.0)
+
+        modeling_ply.number_of_layers = 3
+        assert modeling_ply.number_of_layers == 3
+
+        modeling_ply.active = False
+        assert not modeling_ply.active
+
+        modeling_ply.global_ply_nr = 3
+        assert modeling_ply.global_ply_nr == 3
 
 
 def test_collection_access(load_model_from_tempfile):
