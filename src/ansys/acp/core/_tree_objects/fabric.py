@@ -5,12 +5,12 @@ from ansys.api.acp.v0.cut_off_material_pb2 import MaterialHandlingType as Cutoff
 from ansys.api.acp.v0.drop_off_material_pb2 import MaterialHandlingType as DropoffMaterialType
 from ansys.api.acp.v0.ply_material_pb2 import DrapingMaterialType
 
-from .._grpc_helpers.property_helper import grpc_data_property, grpc_data_property_read_only
+from .._grpc_helpers.property_helper import grpc_data_property, grpc_data_property_read_only, grpc_link_property
 from .._utils.enum_conversions import status_type_to_string
 from .base import CreatableTreeObject
 from .object_registry import register
 
-# from .material import Material
+from .material import Material
 
 __all__ = ["Fabric"]
 
@@ -49,7 +49,7 @@ class Fabric(CreatableTreeObject):
     def __init__(
         self,
         name: str = "Fabric",
-        # material: Material = None,
+        material: Material = None,
         thickness: float = 0.0,
         area_price: float = 0.0,
         ignore_for_postprocessing: bool = False,
@@ -60,7 +60,7 @@ class Fabric(CreatableTreeObject):
     ):
         super().__init__(name=name)
 
-        # self.material = material
+        self.material = material
         self.thickness = thickness
         self.area_price = area_price
         self.ignore_for_postprocessing = ignore_for_postprocessing
@@ -84,4 +84,4 @@ class Fabric(CreatableTreeObject):
 
     draping_ud_coefficient = grpc_data_property("properties.draping_ud_coefficient")
 
-    # material = TBD
+    material = grpc_link_property("properties.material")

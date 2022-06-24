@@ -7,7 +7,7 @@ from __future__ import annotations
 from functools import reduce
 from typing import TYPE_CHECKING, Any, Callable
 
-from ansys.api.acp.v0.base_pb2 import GetRequest
+from ansys.api.acp.v0.base_pb2 import GetRequest, ResourcePath
 
 if TYPE_CHECKING:
     # Causes a circular import if imported at runtime
@@ -33,11 +33,14 @@ def grpc_linked_object_getter(name: str) -> Callable[[TreeObject], Any]:
             GetRequest(resource_path=self._pb_object.info.resource_path)
         )
         object_resource_path = _get_data_attribute(self._pb_object, name)
+        if object_resource_path.value == "":
+            return None
 
-        resource_type = object_resource_path.value.split("/")[::2][-1]
-        resource_class = object_registry[resource_type]
+        else:
+            resource_type = object_resource_path.value.split("/")[::2][-1]
+            resource_class = object_registry[resource_type]
 
-        return resource_class._from_resource_path(object_resource_path, self._channel)
+            return resource_class._from_resource_path(object_resource_path, self._channel)
 
     return inner
 
@@ -137,7 +140,7 @@ def grpc_link_property(name: str) -> Any:
     makes call to the gRPC Get endpoints to get the linked object
     """
     return property(grpc_linked_object_getter(name)).setter(
-        grpc_data_setter(name=name, to_protobuf=lambda obj: obj._resource_path)
+        grpc_data_setter(name=name, to_protobuf=lambda obj: obj._resource_path if obj else ResourcePath(value=""))
     )
 
 
