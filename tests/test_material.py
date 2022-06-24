@@ -56,6 +56,3 @@ def test_collection_access(load_model_from_tempfile):
         for id in mat_ids:
             assert id in model.materials
             assert id in model.materials.keys()
-
-
-

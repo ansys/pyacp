@@ -145,7 +145,8 @@ def grpc_link_property(name: str) -> Any:
     return property(grpc_linked_object_getter(name)).setter(
         # Resource path represents an object that is not set as an empty string
         grpc_data_setter(
-            name=name, to_protobuf=lambda obj: ResourcePath(value="") if obj is None else obj._resource_path
+            name=name,
+            to_protobuf=lambda obj: ResourcePath(value="") if obj is None else obj._resource_path,
         )
     )
 

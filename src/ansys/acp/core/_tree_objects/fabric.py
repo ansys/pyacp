@@ -5,12 +5,15 @@ from ansys.api.acp.v0.cut_off_material_pb2 import MaterialHandlingType as Cutoff
 from ansys.api.acp.v0.drop_off_material_pb2 import MaterialHandlingType as DropoffMaterialType
 from ansys.api.acp.v0.ply_material_pb2 import DrapingMaterialType
 
-from .._grpc_helpers.property_helper import grpc_data_property, grpc_data_property_read_only, grpc_link_property
+from .._grpc_helpers.property_helper import (
+    grpc_data_property,
+    grpc_data_property_read_only,
+    grpc_link_property,
+)
 from .._utils.enum_conversions import status_type_to_string
 from .base import CreatableTreeObject
-from .object_registry import register
-
 from .material import Material
+from .object_registry import register
 
 __all__ = ["Fabric"]
 

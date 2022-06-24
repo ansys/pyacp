@@ -17,15 +17,14 @@ def test_create_fabric(load_model_from_tempfile):
             else:
                 assert fabric.id == ref_name
             assert fabric.status == "NOTUPTODATE"
-            assert fabric.thickness == 0.
-            assert fabric.area_price == 0.
+            assert fabric.thickness == 0.0
+            assert fabric.area_price == 0.0
             assert not fabric.ignore_for_postprocessing
             assert fabric.drop_off_material_handling == DropoffMaterialType.GLOBAL
             assert fabric.cut_off_material_handling == CutoffMaterialType.COMPUTED
             assert fabric.draping_material_model == DrapingMaterialType.WOVEN
-            assert fabric.draping_ud_coefficient == 0.
+            assert fabric.draping_ud_coefficient == 0.0
             assert fabric.material is None
-
 
 
 def test_fabric_properties(load_model_from_tempfile):
@@ -42,7 +41,7 @@ def test_fabric_properties(load_model_from_tempfile):
             "cut_off_material_handling": CutoffMaterialType.GLOBAL,
             "draping_material_model": DrapingMaterialType.UD,
             "draping_ud_coefficient": 0.55,
-            "material": model.materials['Structural Steel']
+            "material": model.materials["Structural Steel"],
         }
 
         for prop, value in properties.items():
