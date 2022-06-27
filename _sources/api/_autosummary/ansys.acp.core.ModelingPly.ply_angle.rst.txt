@@ -1,0 +1,6 @@
+ply\_angle
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.ply_angle

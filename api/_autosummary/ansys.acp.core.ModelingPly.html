@@ -813,6 +813,16 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ModelingPly.active.html">
+       active
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ModelingPly.global_ply_nr.html">
+       global_ply_nr
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ModelingPly.id.html">
        id
       </a>
@@ -823,8 +833,18 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ModelingPly.number_of_layers.html">
+       number_of_layers
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ModelingPly.oriented_selection_sets.html">
        oriented_selection_sets
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ModelingPly.ply_angle.html">
+       ply_angle
       </a>
      </li>
      <li class="toctree-l3">
@@ -883,7 +903,7 @@
 <h1>ansys.acp.core.ModelingPly<a class="headerlink" href="#ansys-acp-core-modelingply" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ansys.acp.core.ModelingPly">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">ModelingPly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ModelingPly'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ply_material</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oriented_selection_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ModelingPly" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">ModelingPly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ModelingPly'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ply_material</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oriented_selection_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ply_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_ply_nr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ModelingPly" title="Permalink to this definition">#</a></dt>
 <dd><p>Instantiate an Oriented Selection Set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -891,6 +911,10 @@
 <li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The name of the ModelingPly</p></li>
 <li><p><strong>ply_material</strong> (<em>Union</em><em>[</em><a class="reference internal" href="ansys.acp.core.Fabric.html#ansys.acp.core.Fabric" title="ansys.acp.core.Fabric"><em>Fabric</em></a><em>, </em><em>None</em><em>]</em>) – </p></li>
 <li><p><strong>oriented_selection_sets</strong> (<em>Container</em><em>[</em><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.html#ansys.acp.core.OrientedSelectionSet" title="ansys.acp.core.OrientedSelectionSet"><em>OrientedSelectionSet</em></a><em>]</em>) – </p></li>
+<li><p><strong>ply_angle</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – </p></li>
+<li><p><strong>number_of_layers</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – </p></li>
+<li><p><strong>active</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – </p></li>
+<li><p><strong>global_ply_nr</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -911,13 +935,25 @@
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.active.html#ansys.acp.core.ModelingPly.active" title="ansys.acp.core.ModelingPly.active"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.active</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.global_ply_nr.html#ansys.acp.core.ModelingPly.global_ply_nr" title="ansys.acp.core.ModelingPly.global_ply_nr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.global_ply_nr</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.id.html#ansys.acp.core.ModelingPly.id" title="ansys.acp.core.ModelingPly.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.id</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.name.html#ansys.acp.core.ModelingPly.name" title="ansys.acp.core.ModelingPly.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.name</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.oriented_selection_sets.html#ansys.acp.core.ModelingPly.oriented_selection_sets" title="ansys.acp.core.ModelingPly.oriented_selection_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.oriented_selection_sets</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.number_of_layers.html#ansys.acp.core.ModelingPly.number_of_layers" title="ansys.acp.core.ModelingPly.number_of_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.number_of_layers</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.oriented_selection_sets.html#ansys.acp.core.ModelingPly.oriented_selection_sets" title="ansys.acp.core.ModelingPly.oriented_selection_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.oriented_selection_sets</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_angle.html#ansys.acp.core.ModelingPly.ply_angle" title="ansys.acp.core.ModelingPly.ply_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.ply_angle</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_material.html#ansys.acp.core.ModelingPly.ply_material" title="ansys.acp.core.ModelingPly.ply_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.ply_material</span></code></a></p></td>
