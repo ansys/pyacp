@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>check_server &#8212; PyACP</title>
+    <title>save_analysis_model &#8212; PyACP</title>
     
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -45,8 +45,8 @@
     <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="shutdown_server" href="ansys.acp.core.shutdown_server.html" />
-    <link rel="prev" title="launch_acp_docker" href="ansys.acp.core.launch_acp_docker.html" />
+    <link rel="next" title="update" href="ansys.acp.core.Model.update.html" />
+    <link rel="prev" title="save" href="ansys.acp.core.Model.save.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="en">
   </head>
@@ -151,8 +151,9 @@
     
 
           <li class="nav-item nav-item-1"><a href="../index.html" >API Reference</a> » </li>
-          <li class="nav-item nav-item-2"><a href="../server.html" accesskey="U">Server Management</a> » </li>
-        <li class="nav-item nav-item-this"><a href="">check_server</a></li> 
+          <li class="nav-item nav-item-2"><a href="../tree_items.html" >ACP Objects</a> » </li>
+          <li class="nav-item nav-item-3"><a href="ansys.acp.core.Model.html" accesskey="U">ansys.acp.core.Model</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">save_analysis_model</a></li> 
       </ul>
     </div>
         </div>
@@ -173,16 +174,16 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../server.html">
    Server Management
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="ansys.acp.core.launch_acp.html">
      launch_acp
@@ -193,8 +194,8 @@
      launch_acp_docker
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="ansys.acp.core.check_server.html">
      check_server
     </a>
    </li>
@@ -288,26 +289,26 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../tree_items.html">
    ACP Objects
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
   <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2 has-children">
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
     <a class="reference internal" href="ansys.acp.core.Model.html">
      ansys.acp.core.Model
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
     <label for="toctree-checkbox-7">
      <i class="fas fa-chevron-down">
      </i>
     </label>
-    <ul>
+    <ul class="current">
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.clone.html">
        clone
@@ -353,8 +354,8 @@
        save
       </a>
      </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.save_analysis_model.html">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
        save_analysis_model
       </a>
      </li>
@@ -611,26 +612,17 @@
               
               <article class="bd-article" role="main">
                 
-  <section id="check-server">
-<h1>check_server<a class="headerlink" href="#check-server" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="ansys.acp.core.check_server">
-<span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">check_server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.check_server" title="Permalink to this definition">#</a></dt>
-<dd><p>Check if the server responds to health check requests.</p>
-<p>Send a single health check request to the server, and check if it
-responds.</p>
-<dl class="field-list simple">
+  <section id="save-analysis-model">
+<h1>save_analysis_model<a class="headerlink" href="#save-analysis-model" title="Permalink to this heading">#</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="ansys.acp.core.Model.save_analysis_model">
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">save_analysis_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.save_analysis_model" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>server</strong> (<em>ServerProtocol</em>) – The server to which the request is sent.</p></li>
-<li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Optional" title="(in Python v3.12)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>]</em>) – Optional time in seconds to allow for the server to respond.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.12)"><em>Union</em></a><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.12)"><em>PathLike</em></a><em>]</em>) – </p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>If the server responds, <code class="docutils literal notranslate"><span class="pre">True</span></code>, otherwise <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)">bool</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>

@@ -42,6 +42,9 @@
       Model.save
       
       
+      Model.save_analysis_model
+      
+      
       Model.update
       
    
