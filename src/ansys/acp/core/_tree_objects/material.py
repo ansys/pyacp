@@ -3,8 +3,8 @@ from __future__ import annotations
 from ansys.api.acp.v0 import material_pb2, material_pb2_grpc
 
 from .._grpc_helpers.property_helper import grpc_data_property_read_only
-from .._utils.enum_conversions import status_type_to_string
 from .base import CreatableTreeObject
+from .enums import status_type_from_pb
 from .object_registry import register
 
 __all__ = ["Material"]
@@ -33,4 +33,4 @@ class Material(CreatableTreeObject):
     id = grpc_data_property_read_only("info.id")
 
     locked = grpc_data_property_read_only("properties.locked")
-    status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_to_string)
+    status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from enum import Enum
-from typing import Any, Iterable, Union, cast
+from typing import Any, Iterable, cast
 
 from grpc import Channel
 
@@ -16,6 +15,7 @@ from ansys.api.acp.v0 import (
     rosette_pb2_grpc,
 )
 
+from .._grpc_helpers.enum_wrapper import wrap_to_string_enum
 from .._grpc_helpers.mapping import define_mapping
 from .._grpc_helpers.property_helper import grpc_data_property
 from .._typing_helper import PATH as _PATH
@@ -30,20 +30,15 @@ from .rosette import Rosette
 __all__ = ["Model"]
 
 
-class _FeFormat(str, Enum):
-    ANSYS_H5 = "ansys:h5"
-    ANSYS_CDB = "ansys:cdb"
-    ANSYS_DAT = "ansys:dat"
-    ABAQUS_INP = "abaqus:inp"
-    NASTRAN_BDF = "nastran:bdf"
-
-
-class _IgnorableEntity(str, Enum):
-    MESH = "mesh"
-    ELEMENT_SETS = "element_sets"
-    MATERIALS = "materials"
-    COORDINATE_SYSTEMS = "coordinate_systems"
-    SHELL_SECTIONS = "shell_sections"
+_FeFormat, _fe_format_to_pb, _ = wrap_to_string_enum(
+    "_FeFormat",
+    model_pb2.Format,
+    module=__name__,
+    value_converter=lambda val: val.lower().replace("_", ":"),
+)
+_IgnorableEntity, _ignorable_entity_to_pb, _ = wrap_to_string_enum(
+    "_IgnorableEntity", model_pb2.LoadFromFEFileRequest.IgnorableEntity, module=__name__
+)
 
 
 class Model(TreeObject):
@@ -97,29 +92,14 @@ class Model(TreeObject):
         *,
         path: _PATH,
         channel: Channel,
-        format: Union[str, _FeFormat],
-        ignored_entities: Iterable[Union[str, _IgnorableEntity]] = (),
+        format: _FeFormat,  # type: ignore
+        ignored_entities: Iterable[_IgnorableEntity] = (),  # type: ignore
         convert_section_data: bool = False,
     ) -> Model:
-        format_pb = {
-            _FeFormat.ANSYS_H5: model_pb2.Format.ANSYS_H5,
-            _FeFormat.ANSYS_CDB: model_pb2.Format.ANSYS_CDB,
-            _FeFormat.ANSYS_DAT: model_pb2.Format.ANSYS_DAT,
-            _FeFormat.ABAQUS_INP: model_pb2.Format.ABAQUS_INP,
-            _FeFormat.NASTRAN_BDF: model_pb2.Format.NASTRAN_BDF,
-        }[_FeFormat(format)]
+        format_pb = _fe_format_to_pb(format)
+        ignored_entities_pb = [_ignorable_entity_to_pb(val) for val in ignored_entities]
 
-        request_type = model_pb2.LoadFromFEFileRequest
-        ignored_mapping = {
-            _IgnorableEntity.MESH: request_type.IgnorableEntity.MESH,
-            _IgnorableEntity.ELEMENT_SETS: request_type.IgnorableEntity.ELEMENT_SETS,
-            _IgnorableEntity.MATERIALS: request_type.IgnorableEntity.MATERIALS,
-            _IgnorableEntity.COORDINATE_SYSTEMS: request_type.IgnorableEntity.COORDINATE_SYSTEMS,
-            _IgnorableEntity.SHELL_SECTIONS: request_type.IgnorableEntity.SHELL_SECTIONS,
-        }
-        ignored_entities_pb = [ignored_mapping[_IgnorableEntity(val)] for val in ignored_entities]
-
-        request = request_type(
+        request = model_pb2.LoadFromFEFileRequest(
             path=str(path),
             format=format_pb,
             ignored_entities=ignored_entities_pb,

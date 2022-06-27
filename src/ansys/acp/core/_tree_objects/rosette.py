@@ -6,8 +6,8 @@ from ansys.api.acp.v0 import rosette_pb2, rosette_pb2_grpc
 
 from .._grpc_helpers.property_helper import grpc_data_property, grpc_data_property_read_only
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
-from .._utils.enum_conversions import status_type_to_string
 from .base import CreatableTreeObject
+from .enums import status_type_from_pb
 from .object_registry import register
 
 __all__ = ["Rosette"]
@@ -52,7 +52,7 @@ class Rosette(CreatableTreeObject):
     id = grpc_data_property_read_only("info.id")
 
     locked = grpc_data_property_read_only("properties.locked")
-    status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_to_string)
+    status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     origin = grpc_data_property(
         "properties.origin", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array
     )
