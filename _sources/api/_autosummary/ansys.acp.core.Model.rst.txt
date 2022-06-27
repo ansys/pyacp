@@ -21,6 +21,12 @@
       Model.create_element_set
       
       
+      Model.create_fabric
+      
+      
+      Model.create_material
+      
+      
       Model.create_modeling_group
       
       
@@ -66,6 +72,12 @@
       
       
       Model.element_sets
+      
+      
+      Model.fabrics
+      
+      
+      Model.materials
       
       
       Model.minimum_analysis_ply_thickness

@@ -18,6 +18,9 @@
       ModelingGroup.clone
       
       
+      ModelingGroup.create_modeling_ply
+      
+      
       ModelingGroup.delete
       
       
@@ -36,6 +39,9 @@
       
       
       ModelingGroup.id
+      
+      
+      ModelingGroup.modeling_plies
       
       
       ModelingGroup.name

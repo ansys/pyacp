@@ -1,0 +1,50 @@
+﻿ansys.acp.core.Material
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Material
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Material.clone
+      
+      
+      Material.delete
+      
+      
+      Material.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Material.id
+      
+      
+      Material.locked
+      
+      
+      Material.name
+      
+      
+      Material.status
+      
+   
+   

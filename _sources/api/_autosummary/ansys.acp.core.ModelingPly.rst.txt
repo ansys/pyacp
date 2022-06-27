@@ -1,0 +1,53 @@
+﻿ansys.acp.core.ModelingPly
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ModelingPly
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ModelingPly.clone
+      
+      
+      ModelingPly.delete
+      
+      
+      ModelingPly.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ModelingPly.id
+      
+      
+      ModelingPly.name
+      
+      
+      ModelingPly.oriented_selection_sets
+      
+      
+      ModelingPly.ply_material
+      
+      
+      ModelingPly.status
+      
+   
+   

@@ -1,0 +1,65 @@
+﻿ansys.acp.core.Fabric
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Fabric
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Fabric.clone
+      
+      
+      Fabric.delete
+      
+      
+      Fabric.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Fabric.area_price
+      
+      
+      Fabric.draping_ud_coefficient
+      
+      
+      Fabric.id
+      
+      
+      Fabric.ignore_for_postprocessing
+      
+      
+      Fabric.locked
+      
+      
+      Fabric.material
+      
+      
+      Fabric.name
+      
+      
+      Fabric.status
+      
+      
+      Fabric.thickness
+      
+   
+   
