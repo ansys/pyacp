@@ -50,7 +50,7 @@ class OrientedSelectionSet(CreatableTreeObject):
         orientation_point: Tuple[float, ...] = (0.0, 0.0, 0.0),
         orientation_direction: Tuple[float, ...] = (0.0, 0.0, 0.0),
         rosettes: Sequence[Rosette] = tuple(),
-        rosette_selection_method: RosetteSelectionMethod = RosetteSelectionMethod.MINIMUM_ANGLE,
+        rosette_selection_method: RosetteSelectionMethod = "minimum_angle",
     ):
         super().__init__(name=name)
         self.element_sets = element_sets
