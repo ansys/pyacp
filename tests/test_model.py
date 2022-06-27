@@ -85,3 +85,19 @@ def test_unittest(grpc_server, model_data_dir_server, convert_temp_path):
             rel_path_posix = pathlib.Path(relpath_if_possible(model.solver.working_dir)).as_posix()
             # To ensure platform independency we store file paths using POSIX format
             assert model.solver.working_dir == rel_path_posix
+
+
+def test_save_analysis_model(grpc_server, model_data_dir_server, convert_temp_path):
+    """
+    Test that 'save_analysis_model' produces a file. The contents of the file
+    are not checked.
+    """
+    client = Client(server=grpc_server)
+    input_file_path = model_data_dir_server / "ACP-Pre.h5"
+    model = client.import_model(name="minimal_model", path=input_file_path, format="ansys:cdb")
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        out_file_path = pathlib.Path(tmp_dir) / "out_file.cdb"
+        save_path = convert_temp_path(out_file_path)
+        model.save_analysis_model(save_path)
+        assert out_file_path.exists()

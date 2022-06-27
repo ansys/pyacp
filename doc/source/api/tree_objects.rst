@@ -7,6 +7,10 @@ ACP Objects
     :toctree: _autosummary
 
     Model
+    Material
+    Fabric
     ElementSet
     Rosette
+    OrientedSelectionSet
     ModelingGroup
+    ModelingPly

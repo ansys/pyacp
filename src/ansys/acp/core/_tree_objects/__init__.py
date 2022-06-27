@@ -12,7 +12,6 @@ __all__ = [
     "Fabric",
     "ElementSet",
     "Rosette",
-    "Fabric",
     "OrientedSelectionSet",
     "ModelingGroup",
     "ModelingPly",
