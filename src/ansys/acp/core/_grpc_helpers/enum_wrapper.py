@@ -1,11 +1,17 @@
 from enum import Enum
-from typing import Any, Dict, cast
+from typing import Any, Callable, Dict
 
 __all__ = ["wrap_to_string_enum"]
 
+
 # mypy doesn't understand this dynamically created Enum, so we have to
 # fall back to 'Any'.
-def wrap_to_string_enum(class_name: str, proto_enum: Any, module: str) -> Any:
+def wrap_to_string_enum(
+    class_name: str,
+    proto_enum: Any,
+    module: str,
+    value_converter: Callable[[str], str] = lambda val: val.lower(),
+) -> Any:
     """Create a string Enum with the same keys as the given protobuf Enum.
 
     Values of the enum are the keys, converted to lowercase.
@@ -21,8 +27,7 @@ def wrap_to_string_enum(class_name: str, proto_enum: Any, module: str) -> Any:
     to_pb_conversion_dict: Dict[Any, int] = {}
     from_pb_conversion_dict: Dict[int, Any] = {}
     for key, pb_value in proto_enum.items():
-        pb_value = cast(int, pb_value)
-        enum_value = key.lower()
+        enum_value = value_converter(key)
         fields.append((key, enum_value))
         to_pb_conversion_dict[enum_value] = pb_value
         from_pb_conversion_dict[pb_value] = enum_value

@@ -1,8 +1,10 @@
 import pytest
 
-from ansys.api.acp.v0.cut_off_material_pb2 import MaterialHandlingType as CutoffMaterialType
-from ansys.api.acp.v0.drop_off_material_pb2 import MaterialHandlingType as DropoffMaterialType
-from ansys.api.acp.v0.ply_material_pb2 import DrapingMaterialType
+from ansys.acp.core._tree_objects.enums import (
+    CutoffMaterialType,
+    DrapingMaterialType,
+    DropoffMaterialType,
+)
 
 
 def test_create_fabric(load_model_from_tempfile):
