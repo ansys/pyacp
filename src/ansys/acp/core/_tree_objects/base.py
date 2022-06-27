@@ -5,7 +5,7 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Any, Optional, Type, TypeVar, cast
+from typing import Any, Iterable, Optional, Type, TypeVar, cast
 
 from grpc import Channel
 
@@ -22,6 +22,8 @@ class TreeObject(ABC):
     """
     Base class for ACP tree objects.
     """
+
+    __slots__ = ("_channel_store", "_stub_store", "_pb_object")
 
     COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: Type[ObjectInfo]
@@ -101,6 +103,7 @@ class TreeObject(ABC):
 
 
 class CreatableTreeObject(TreeObject, ABC):
+    __slots__: Iterable[str] = tuple()
     CREATE_REQUEST_TYPE: Type[CreateRequest]
 
     def _get_stub(self) -> CreatableResourceStub:

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Container
+from typing import Container, Iterable
 
 from ansys.api.acp.v0 import element_set_pb2, element_set_pb2_grpc
 
@@ -14,6 +14,7 @@ __all__ = ["ElementSet"]
 
 @register
 class ElementSet(CreatableTreeObject):
+    __slots__: Iterable[str] = tuple()
     COLLECTION_LABEL = "element_sets"
     OBJECT_INFO_TYPE = element_set_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = element_set_pb2.CreateRequest

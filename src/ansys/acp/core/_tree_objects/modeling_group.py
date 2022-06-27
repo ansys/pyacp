@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Iterable
 
 from ansys.acp.core._grpc_helpers.property_helper import grpc_data_property_read_only
 from ansys.acp.core._tree_objects.modeling_ply import ModelingPly
@@ -15,6 +15,8 @@ __all__ = ["ModelingGroup"]
 
 @register
 class ModelingGroup(CreatableTreeObject):
+    __slots__: Iterable[str] = tuple()
+
     COLLECTION_LABEL = "modeling_groups"
     OBJECT_INFO_TYPE = modeling_group_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = modeling_group_pb2.CreateRequest
