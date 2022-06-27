@@ -16,7 +16,7 @@ __all__ = [
 ]
 
 (StatusType, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(
-    "StatusType", enum_types_pb2.StatusType, module=__name__
+    "StatusType", enum_types_pb2.StatusType, module=__name__, value_converter=lambda val: val
 )
 (
     RosetteSelectionMethod,
