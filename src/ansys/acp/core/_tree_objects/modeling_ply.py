@@ -37,8 +37,7 @@ class ModelingPly(CreatableTreeObject):
         ply_angle: float = 0.0,
         number_of_layers: int = 1,
         active: bool = True,
-        # Todo: Think about a way to get a default for the global_ply_nr
-        global_ply_nr: int = 1,
+        global_ply_nr: int = 0,
     ):
         super().__init__(name=name)
 
