@@ -25,11 +25,6 @@ from .enums import (
 from .material import Material
 from .object_registry import register
 
-# from ansys.api.acp.v0.cut_off_material_pb2 import MaterialHandlingType as CutoffMaterialType
-# from ansys.api.acp.v0.drop_off_material_pb2 import MaterialHandlingType as DropoffMaterialType
-# from ansys.api.acp.v0.ply_material_pb2 import DrapingMaterialType
-
-
 __all__ = ["Fabric"]
 
 
