@@ -5,7 +5,7 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from functools import reduce
-from typing import TYPE_CHECKING, Any, Callable
+from typing import TYPE_CHECKING, Any, Callable, Optional
 
 from ansys.api.acp.v0.base_pb2 import GetRequest, ResourcePath
 
@@ -24,7 +24,7 @@ def grpc_linked_object_getter(name: str) -> Callable[[TreeObject], Any]:
     Creates a getter method which obtains the linked server object
     """
 
-    def inner(self: TreeObject) -> Any:
+    def inner(self: TreeObject) -> Optional[TreeObject]:
         #  Import here to avoid circular references. Cannot use the registry before
         #  all the object have been imported.
         from .._tree_objects.object_registry import object_registry

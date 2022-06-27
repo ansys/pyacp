@@ -9,7 +9,7 @@ from .rosette import Rosette
 
 __all__ = [
     "Model",
-    "Fabric",
+    "Material",
     "ElementSet",
     "Rosette",
     "Fabric",

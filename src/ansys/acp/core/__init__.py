@@ -13,7 +13,16 @@ from ._server import (
     shutdown_server,
     wait_for_server,
 )
-from ._tree_objects import ElementSet, Model, ModelingGroup, Rosette
+from ._tree_objects import (
+    ElementSet,
+    Fabric,
+    Material,
+    Model,
+    ModelingGroup,
+    ModelingPly,
+    OrientedSelectionSet,
+    Rosette,
+)
 
 __version__ = importlib_metadata.version(__name__.replace(".", "-"))
 
@@ -29,7 +38,11 @@ __all__ = [
     "RemoteAcpServer",
     "Client",
     "Model",
+    "Material",
+    "Fabric",
     "ElementSet",
     "Rosette",
+    "OrientedSelectionSet",
     "ModelingGroup",
+    "ModelingPly",
 ]
