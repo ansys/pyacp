@@ -5,7 +5,11 @@ from typing import Container, Union
 from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc
 
 from .._grpc_helpers.linked_object_list import define_linked_object_list
-from .._grpc_helpers.property_helper import grpc_data_property_read_only, grpc_link_property
+from .._grpc_helpers.property_helper import (
+    grpc_data_property,
+    grpc_data_property_read_only,
+    grpc_link_property,
+)
 from .._utils.enum_conversions import status_type_to_string
 from .base import CreatableTreeObject
 from .fabric import Fabric
@@ -61,3 +65,8 @@ class ModelingPly(CreatableTreeObject):
     oriented_selection_sets = define_linked_object_list(
         "properties.oriented_selection_sets", OrientedSelectionSet
     )
+
+    ply_angle = grpc_data_property("properties.ply_angle")
+    number_of_layers = grpc_data_property("properties.number_of_layers")
+    active = grpc_data_property("properties.active")
+    global_ply_nr = grpc_data_property("properties.global_ply_nr")
