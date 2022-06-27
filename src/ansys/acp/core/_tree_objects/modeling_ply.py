@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Container, Union
+from typing import Container, Iterable, Union
 
 from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc
 
@@ -28,6 +28,8 @@ class ModelingPly(CreatableTreeObject):
     name :
         The name of the ModelingPly
     """
+
+    __slots__: Iterable[str] = tuple()
 
     COLLECTION_LABEL = "modeling_plies"
     OBJECT_INFO_TYPE = modeling_ply_pb2.ObjectInfo

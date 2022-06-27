@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Tuple
+from typing import Iterable, Tuple
 
 from ansys.api.acp.v0 import rosette_pb2, rosette_pb2_grpc
 
@@ -28,6 +28,8 @@ class Rosette(CreatableTreeObject):
     dir2 :
         Direction 2 (y-direction) vector of the Rosette.
     """
+
+    __slots__: Iterable[str] = tuple()
 
     COLLECTION_LABEL = "rosettes"
     OBJECT_INFO_TYPE = rosette_pb2.ObjectInfo

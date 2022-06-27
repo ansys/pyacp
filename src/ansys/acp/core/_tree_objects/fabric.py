@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Union
+from typing import Iterable, Union
 
 from ansys.api.acp.v0 import fabric_pb2, fabric_pb2_grpc
 
@@ -54,6 +54,8 @@ class Fabric(CreatableTreeObject):
         Set the draping coefficient of the uni-directional draping model. Must be in the range of 0 to 1.
 
     """
+
+    __slots__: Iterable[str] = tuple()
 
     COLLECTION_LABEL = "fabrics"
     OBJECT_INFO_TYPE = fabric_pb2.ObjectInfo

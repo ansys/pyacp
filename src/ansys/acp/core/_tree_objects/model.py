@@ -54,6 +54,8 @@ class Model(TreeObject):
         The ACP server on which the model resides.
     """
 
+    __slots__: Iterable[str] = tuple()
+
     COLLECTION_LABEL = "models"
     OBJECT_INFO_TYPE = model_pb2.ObjectInfo
 

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Iterable
+
 from ansys.api.acp.v0 import material_pb2, material_pb2_grpc
 
 from .._grpc_helpers.property_helper import grpc_data_property_read_only
@@ -19,6 +21,8 @@ class Material(CreatableTreeObject):
     name :
         Name of the Material.
     """
+
+    __slots__: Iterable[str] = tuple()
 
     COLLECTION_LABEL = "materials"
     OBJECT_INFO_TYPE = material_pb2.ObjectInfo

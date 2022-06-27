@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Sequence, Tuple
+from typing import Iterable, Sequence, Tuple
 
 from ansys.api.acp.v0 import oriented_selection_set_pb2, oriented_selection_set_pb2_grpc
 
@@ -40,6 +40,8 @@ class OrientedSelectionSet(CreatableTreeObject):
     rosette_selection_method :
         Selection Method for Rosettes of the Oriented Selection Set.
     """
+
+    __slots__: Iterable[str] = tuple()
 
     COLLECTION_LABEL = "oriented_selection_sets"
     OBJECT_INFO_TYPE = oriented_selection_set_pb2.ObjectInfo
