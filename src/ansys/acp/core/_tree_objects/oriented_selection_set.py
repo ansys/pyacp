@@ -15,11 +15,13 @@ from .enums import (
     rosette_selection_method_from_pb,
     rosette_selection_method_to_pb,
 )
+from .object_registry import register
 from .rosette import Rosette
 
 __all__ = ["OrientedSelectionSet"]
 
 
+@register
 class OrientedSelectionSet(CreatableTreeObject):
     """Instantiate an Oriented Selection Set.
 
