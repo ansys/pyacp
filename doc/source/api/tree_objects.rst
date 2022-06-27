@@ -9,4 +9,5 @@ ACP Objects
     Model
     ElementSet
     Rosette
+    OrientedSelectionSet
     ModelingGroup
