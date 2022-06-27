@@ -37,6 +37,8 @@ class ModelingPly(CreatableTreeObject):
         ply_angle: float = 0.0,
         number_of_layers: int = 1,
         active: bool = True,
+        # Backend will automatically assign a consistent global_ply_nr
+        # if global_ply_nr == 0
         global_ply_nr: int = 0,
     ):
         super().__init__(name=name)
