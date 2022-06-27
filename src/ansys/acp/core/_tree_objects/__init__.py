@@ -10,9 +10,9 @@ from .rosette import Rosette
 __all__ = [
     "Model",
     "Material",
+    "Fabric",
     "ElementSet",
     "Rosette",
-    "Fabric",
     "OrientedSelectionSet",
     "ModelingGroup",
     "ModelingPly",
