@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>ACP Objects &#8212; PyACP</title>
+    <title>orientation_direction &#8212; PyACP</title>
     
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -14,39 +14,39 @@
 </script>
 
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
 
 
   <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
 
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
 
     
-        <link href="../_static/css/breadcrumbs.css" rel="stylesheet">
+        <link href="../../_static/css/breadcrumbs.css" rel="stylesheet">
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <link rel="shortcut icon" href="../_static/ansys-favicon.png"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ansys.acp.core.Model" href="_autosummary/ansys.acp.core.Model.html" />
-    <link rel="prev" title="import_model" href="_autosummary/ansys.acp.core.Client.import_model.html" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="orientation_point" href="ansys.acp.core.OrientedSelectionSet.orientation_point.html" />
+    <link rel="prev" title="name" href="ansys.acp.core.OrientedSelectionSet.name.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="en">
   </head>
@@ -69,13 +69,13 @@
   
 
 
-<a class="navbar-brand logo" href="../https%3A//docs.ansys.com.html">
+<a class="navbar-brand logo" href="../../https%3A//docs.ansys.com.html">
   
   
   
   
-    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
-    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+    <img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
   
   
 </a>
@@ -93,13 +93,13 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../index.html">
+ <a class="reference internal nav-link" href="../../index.html">
   PyACP
  </a>
 </li>
 
 <li class="toctree-l1 current active nav-item">
- <a class="reference internal nav-link" href="index.html">
+ <a class="reference internal nav-link" href="../index.html">
   API Reference
  </a>
 </li>
@@ -147,11 +147,13 @@
         <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
     
     
-        <li class="nav-item nav-item-0"><a href="../index.html">PyACP</a> » </li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">PyACP</a> » </li>
     
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> » </li>
-        <li class="nav-item nav-item-this"><a href="">ACP Objects</a></li> 
+          <li class="nav-item nav-item-1"><a href="../index.html" >API Reference</a> » </li>
+          <li class="nav-item nav-item-2"><a href="../tree_objects.html" >ACP Objects</a> » </li>
+          <li class="nav-item nav-item-3"><a href="ansys.acp.core.OrientedSelectionSet.html" accesskey="U">ansys.acp.core.OrientedSelectionSet</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">orientation_direction</a></li> 
       </ul>
     </div>
         </div>
@@ -166,14 +168,14 @@
 
 <!-- Only show if we have sidebars configured, else just a small margin  -->
 <div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
-  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="server.html">
+  <a class="reference internal" href="../server.html">
    Server Management
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -183,32 +185,32 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="_autosummary/ansys.acp.core.launch_acp.html">
+    <a class="reference internal" href="ansys.acp.core.launch_acp.html">
      launch_acp
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="_autosummary/ansys.acp.core.launch_acp_docker.html">
+    <a class="reference internal" href="ansys.acp.core.launch_acp_docker.html">
      launch_acp_docker
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="_autosummary/ansys.acp.core.check_server.html">
+    <a class="reference internal" href="ansys.acp.core.check_server.html">
      check_server
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="_autosummary/ansys.acp.core.shutdown_server.html">
+    <a class="reference internal" href="ansys.acp.core.shutdown_server.html">
      shutdown_server
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="_autosummary/ansys.acp.core.wait_for_server.html">
+    <a class="reference internal" href="ansys.acp.core.wait_for_server.html">
      wait_for_server
     </a>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="_autosummary/ansys.acp.core.LocalAcpServer.html">
+    <a class="reference internal" href="ansys.acp.core.LocalAcpServer.html">
      ansys.acp.core.LocalAcpServer
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -218,24 +220,24 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.LocalAcpServer.close.html">
+      <a class="reference internal" href="ansys.acp.core.LocalAcpServer.close.html">
        close
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.LocalAcpServer.channel.html">
+      <a class="reference internal" href="ansys.acp.core.LocalAcpServer.channel.html">
        channel
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.LocalAcpServer.closed.html">
+      <a class="reference internal" href="ansys.acp.core.LocalAcpServer.closed.html">
        closed
       </a>
      </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="_autosummary/ansys.acp.core.RemoteAcpServer.html">
+    <a class="reference internal" href="ansys.acp.core.RemoteAcpServer.html">
      ansys.acp.core.RemoteAcpServer
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
@@ -245,7 +247,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.RemoteAcpServer.channel.html">
+      <a class="reference internal" href="ansys.acp.core.RemoteAcpServer.channel.html">
        channel
       </a>
      </li>
@@ -254,7 +256,7 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="client.html">
+  <a class="reference internal" href="../client.html">
    Database
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
@@ -264,7 +266,7 @@
   </label>
   <ul>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="_autosummary/ansys.acp.core.Client.html">
+    <a class="reference internal" href="ansys.acp.core.Client.html">
      ansys.acp.core.Client
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
@@ -274,12 +276,12 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Client.clear.html">
+      <a class="reference internal" href="ansys.acp.core.Client.clear.html">
        clear
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Client.import_model.html">
+      <a class="reference internal" href="ansys.acp.core.Client.import_model.html">
        import_model
       </a>
      </li>
@@ -288,7 +290,7 @@
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+  <a class="reference internal" href="../tree_objects.html">
    ACP Objects
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
@@ -296,9 +298,9 @@
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="_autosummary/ansys.acp.core.Model.html">
+    <a class="reference internal" href="ansys.acp.core.Model.html">
      ansys.acp.core.Model
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
@@ -308,119 +310,119 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.clone.html">
+      <a class="reference internal" href="ansys.acp.core.Model.clone.html">
        clone
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.create_element_set.html">
+      <a class="reference internal" href="ansys.acp.core.Model.create_element_set.html">
        create_element_set
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.create_modeling_group.html">
+      <a class="reference internal" href="ansys.acp.core.Model.create_modeling_group.html">
        create_modeling_group
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.create_oriented_selection_set.html">
+      <a class="reference internal" href="ansys.acp.core.Model.create_oriented_selection_set.html">
        create_oriented_selection_set
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.create_rosette.html">
+      <a class="reference internal" href="ansys.acp.core.Model.create_rosette.html">
        create_rosette
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.delete.html">
+      <a class="reference internal" href="ansys.acp.core.Model.delete.html">
        delete
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.from_fe_file.html">
+      <a class="reference internal" href="ansys.acp.core.Model.from_fe_file.html">
        from_fe_file
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.from_file.html">
+      <a class="reference internal" href="ansys.acp.core.Model.from_file.html">
        from_file
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.save.html">
+      <a class="reference internal" href="ansys.acp.core.Model.save.html">
        save
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.save_analysis_model.html">
+      <a class="reference internal" href="ansys.acp.core.Model.save_analysis_model.html">
        save_analysis_model
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.update.html">
+      <a class="reference internal" href="ansys.acp.core.Model.update.html">
        update
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.angle_tolerance.html">
+      <a class="reference internal" href="ansys.acp.core.Model.angle_tolerance.html">
        angle_tolerance
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.draping_offset_correction.html">
+      <a class="reference internal" href="ansys.acp.core.Model.draping_offset_correction.html">
        draping_offset_correction
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.element_sets.html">
+      <a class="reference internal" href="ansys.acp.core.Model.element_sets.html">
        element_sets
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.minimum_analysis_ply_thickness.html">
+      <a class="reference internal" href="ansys.acp.core.Model.minimum_analysis_ply_thickness.html">
        minimum_analysis_ply_thickness
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.modeling_groups.html">
+      <a class="reference internal" href="ansys.acp.core.Model.modeling_groups.html">
        modeling_groups
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.name.html">
+      <a class="reference internal" href="ansys.acp.core.Model.name.html">
        name
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.oriented_selection_sets.html">
+      <a class="reference internal" href="ansys.acp.core.Model.oriented_selection_sets.html">
        oriented_selection_sets
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.relative_thickness_tolerance.html">
+      <a class="reference internal" href="ansys.acp.core.Model.relative_thickness_tolerance.html">
        relative_thickness_tolerance
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.rosettes.html">
+      <a class="reference internal" href="ansys.acp.core.Model.rosettes.html">
        rosettes
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.use_default_section_tolerances.html">
+      <a class="reference internal" href="ansys.acp.core.Model.use_default_section_tolerances.html">
        use_default_section_tolerances
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Model.use_nodal_thicknesses.html">
+      <a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html">
        use_nodal_thicknesses
       </a>
      </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="_autosummary/ansys.acp.core.ElementSet.html">
+    <a class="reference internal" href="ansys.acp.core.ElementSet.html">
      ansys.acp.core.ElementSet
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
@@ -430,49 +432,49 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.ElementSet.clone.html">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.clone.html">
        clone
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.ElementSet.delete.html">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.delete.html">
        delete
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.ElementSet.store.html">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.store.html">
        store
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.ElementSet.element_labels.html">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.element_labels.html">
        element_labels
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.ElementSet.id.html">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.id.html">
        id
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.ElementSet.locked.html">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.locked.html">
        locked
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.ElementSet.middle_offset.html">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.middle_offset.html">
        middle_offset
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.ElementSet.name.html">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.name.html">
        name
       </a>
      </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.html">
+    <a class="reference internal" href="ansys.acp.core.Rosette.html">
      ansys.acp.core.Rosette
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
@@ -482,89 +484,156 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.clone.html">
+      <a class="reference internal" href="ansys.acp.core.Rosette.clone.html">
        clone
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.delete.html">
+      <a class="reference internal" href="ansys.acp.core.Rosette.delete.html">
        delete
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.store.html">
+      <a class="reference internal" href="ansys.acp.core.Rosette.store.html">
        store
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.dir1.html">
+      <a class="reference internal" href="ansys.acp.core.Rosette.dir1.html">
        dir1
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.dir2.html">
+      <a class="reference internal" href="ansys.acp.core.Rosette.dir2.html">
        dir2
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.id.html">
+      <a class="reference internal" href="ansys.acp.core.Rosette.id.html">
        id
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.locked.html">
+      <a class="reference internal" href="ansys.acp.core.Rosette.locked.html">
        locked
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.name.html">
+      <a class="reference internal" href="ansys.acp.core.Rosette.name.html">
        name
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.origin.html">
+      <a class="reference internal" href="ansys.acp.core.Rosette.origin.html">
        origin
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.status.html">
+      <a class="reference internal" href="ansys.acp.core.Rosette.status.html">
+       status
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.html">
+     ansys.acp.core.OrientedSelectionSet
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.clone.html">
+       clone
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.delete.html">
+       delete
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.store.html">
+       store
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.element_sets.html">
+       element_sets
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.id.html">
+       id
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.name.html">
+       name
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       orientation_direction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.orientation_point.html">
+       orientation_point
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rosette_selection_method.html">
+       rosette_selection_method
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rosettes.html">
+       rosettes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.status.html">
        status
       </a>
      </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="_autosummary/ansys.acp.core.ModelingGroup.html">
+    <a class="reference internal" href="ansys.acp.core.ModelingGroup.html">
      ansys.acp.core.ModelingGroup
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
      <i class="fas fa-chevron-down">
      </i>
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.ModelingGroup.clone.html">
+      <a class="reference internal" href="ansys.acp.core.ModelingGroup.clone.html">
        clone
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.ModelingGroup.delete.html">
+      <a class="reference internal" href="ansys.acp.core.ModelingGroup.delete.html">
        delete
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.ModelingGroup.store.html">
+      <a class="reference internal" href="ansys.acp.core.ModelingGroup.store.html">
        store
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.ModelingGroup.id.html">
+      <a class="reference internal" href="ansys.acp.core.ModelingGroup.id.html">
        id
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="_autosummary/ansys.acp.core.ModelingGroup.name.html">
+      <a class="reference internal" href="ansys.acp.core.ModelingGroup.name.html">
        name
       </a>
      </li>
@@ -610,24 +679,13 @@
               
               <article class="bd-article" role="main">
                 
-  <section id="acp-objects">
-<h1>ACP Objects<a class="headerlink" href="#acp-objects" title="Permalink to this heading">#</a></h1>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.Model.html#ansys.acp.core.Model" title="ansys.acp.core.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a>([name])</p></td>
-<td><p>Defines an ACP Model.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ElementSet.html#ansys.acp.core.ElementSet" title="ansys.acp.core.ElementSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementSet</span></code></a>([name, middle_offset, element_labels])</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.html#ansys.acp.core.Rosette" title="ansys.acp.core.Rosette"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rosette</span></code></a>([name, origin, dir1, dir2])</p></td>
-<td><p>Instantiate a Rosette.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ModelingGroup.html#ansys.acp.core.ModelingGroup" title="ansys.acp.core.ModelingGroup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup</span></code></a>([name])</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
+  <section id="orientation-direction">
+<h1>orientation_direction<a class="headerlink" href="#orientation-direction" title="Permalink to this heading">#</a></h1>
+<dl class="py property">
+<dt class="sig sig-object py" id="ansys.acp.core.OrientedSelectionSet.orientation_direction">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">OrientedSelectionSet.</span></span><span class="sig-name descname"><span class="pre">orientation_direction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><a class="headerlink" href="#ansys.acp.core.OrientedSelectionSet.orientation_direction" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
 </section>
 
 
@@ -643,7 +701,7 @@
   
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
 
 <footer class="bd-footer"><div class="bd-footer__inner container">
   
