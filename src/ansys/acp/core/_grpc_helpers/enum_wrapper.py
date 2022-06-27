@@ -27,7 +27,6 @@ def wrap_to_string_enum(
     to_pb_conversion_dict: Dict[Any, int] = {}
     from_pb_conversion_dict: Dict[int, Any] = {}
     for key, pb_value in proto_enum.items():
-        # pb_value = cast(int, pb_value)
         enum_value = value_converter(key)
         fields.append((key, enum_value))
         to_pb_conversion_dict[enum_value] = pb_value
