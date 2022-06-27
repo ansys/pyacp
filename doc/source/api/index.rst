@@ -11,4 +11,4 @@ and attributes.
 
     server
     client
-    tree_items
+    tree_objects
