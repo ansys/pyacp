@@ -118,6 +118,14 @@ Model from an existing file:
     >>> model.name
     'ACP Model'
 
+Full Example
+^^^^^^^^^^^^
+
+.. TODO: Move this into a separate tab, and show the example directly in the docs.
+
+See the [`examples` directory](https://github.com/pyansys/pyacp-private/blob/main/examples/) for full
+examples of running PyACP.
+
 Development Setup
 -----------------
 
