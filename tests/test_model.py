@@ -26,7 +26,6 @@ def test_unittest(grpc_server, model_data_dir_server, convert_temp_path):
         check_property(model, name="path", value=input_file_path),
     check_property(model, name="use_nodal_thicknesses", value=False, set_value=True),
     check_property(model, name="draping_offset_correction", value=False, set_value=True),
-    check_property(model, name="use_default_section_tolerances", value=True, set_value=False),
     check_property(model, name="angle_tolerance", value=1.0, set_value=2.0),
     check_property(model, name="relative_thickness_tolerance", value=0.01, set_value=0.03)
 
@@ -68,7 +67,6 @@ def test_unittest(grpc_server, model_data_dir_server, convert_temp_path):
             check_property(model, name="path", value=input_file_path)
         check_property(model, name="use_nodal_thicknesses", value=True)
         check_property(model, name="draping_offset_correction", value=True)
-        check_property(model, name="use_default_section_tolerances", value=False)
         check_property(model, name="angle_tolerance", value=2.0)
         check_property(model, name="relative_thickness_tolerance", value=0.03)
         with suppress_for_pyacp():
