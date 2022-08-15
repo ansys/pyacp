@@ -285,7 +285,10 @@ def launch_acp_docker(
     stderr = open(stderr_file, mode="w", encoding="utf-8")
     cmd = ["docker", "run"]
     for source_dir, target_dir in mount_directories.items():
-        cmd += ["-v", f"/{pathlib.Path(source_dir).as_posix().replace(':', '')}:{target_dir}"]
+        cmd += [
+            "-v",
+            f"/{pathlib.Path(source_dir).resolve().as_posix().replace(':', '')}:{target_dir}",
+        ]
     if sys.platform == "linux":
         cmd += ["-u", f"{os.getuid()}:{os.getgid()}"]
     cmd += [
