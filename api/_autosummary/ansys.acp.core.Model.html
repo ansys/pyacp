@@ -429,11 +429,6 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.Model.use_default_section_tolerances.html">
-       use_default_section_tolerances
-      </a>
-     </li>
-     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html">
        use_nodal_thicknesses
       </a>
@@ -918,16 +913,19 @@
 <h1>ansys.acp.core.Model<a class="headerlink" href="#ansys-acp-core-model" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ansys.acp.core.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ACP</span> <span class="pre">Model'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ACP</span> <span class="pre">Model'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nodal_thicknesses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_offset_correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relative_thickness_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_analysis_ply_thickness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model" title="Permalink to this definition">#</a></dt>
 <dd><p>Defines an ACP Model.</p>
 <p>Wrapper for accessing an ACP Model residing on a server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>resource_path</strong> – The Resource Path identifying the Model.</p></li>
-<li><p><strong>server</strong> – The ACP server on which the model resides.</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – </p></li>
-<li><p><strong>kwargs</strong> (<em>Any</em>) – </p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The name of the model.</p></li>
+<li><p><strong>use_nodal_thicknesses</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Defines whether to use nodal thicknesses or element thicknesses.</p></li>
+<li><p><strong>draping_offset_correction</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Defines whether to consider lay-up thickness in draping analysis.</p></li>
+<li><p><strong>angle_tolerance</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Section computation angle tolerance (in degree).</p></li>
+<li><p><strong>relative_thickness_tolerance</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Section computation relative thickness tolerance.</p></li>
+<li><p><strong>minimum_analysis_ply_thickness</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Section computation minimum analysis ply thickness (in length
+unit of model).</p></li>
 </ul>
 </dd>
 </dl>
@@ -1011,10 +1009,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.rosettes.html#ansys.acp.core.Model.rosettes" title="ansys.acp.core.Model.rosettes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.rosettes</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.use_default_section_tolerances.html#ansys.acp.core.Model.use_default_section_tolerances" title="ansys.acp.core.Model.use_default_section_tolerances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.use_default_section_tolerances</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html#ansys.acp.core.Model.use_nodal_thicknesses" title="ansys.acp.core.Model.use_nodal_thicknesses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.use_nodal_thicknesses</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html#ansys.acp.core.Model.use_nodal_thicknesses" title="ansys.acp.core.Model.use_nodal_thicknesses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.use_nodal_thicknesses</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>

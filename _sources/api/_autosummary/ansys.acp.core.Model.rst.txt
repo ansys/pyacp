@@ -98,9 +98,6 @@
       Model.rosettes
       
       
-      Model.use_default_section_tolerances
-      
-      
       Model.use_nodal_thicknesses
       
    
