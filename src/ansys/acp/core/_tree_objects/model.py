@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Iterable, cast
+from typing import Iterable, cast
 
 from grpc import Channel
 
@@ -48,10 +48,19 @@ class Model(TreeObject):
 
     Parameters
     ----------
-    resource_path :
-        The Resource Path identifying the Model.
-    server :
-        The ACP server on which the model resides.
+    name :
+        The name of the model.
+    use_nodal_thicknesses :
+        Defines whether to use nodal thicknesses or element thicknesses.
+    draping_offset_correction :
+        Defines whether to consider lay-up thickness in draping analysis.
+    angle_tolerance :
+        Section computation angle tolerance (in degree).
+    relative_thickness_tolerance :
+        Section computation relative thickness tolerance.
+    minimum_analysis_ply_thickness :
+        Section computation minimum analysis ply thickness (in length
+        unit of model).
     """
 
     __slots__: Iterable[str] = tuple()
@@ -59,11 +68,22 @@ class Model(TreeObject):
     COLLECTION_LABEL = "models"
     OBJECT_INFO_TYPE = model_pb2.ObjectInfo
 
-    def __init__(self, name: str = "ACP Model", **kwargs: Any) -> None:
+    def __init__(
+        self,
+        name: str = "ACP Model",
+        use_nodal_thicknesses: bool = False,
+        draping_offset_correction: bool = False,
+        angle_tolerance: float = 1.0,
+        relative_thickness_tolerance: float = 0.01,
+        minimum_analysis_ply_thickness: float = 1e-6,
+    ) -> None:
         super().__init__(name=name)
 
-        for key, value in kwargs.items():
-            setattr(self, key, value)
+        self.use_nodal_thicknesses = use_nodal_thicknesses
+        self.draping_offset_correction = draping_offset_correction
+        self.angle_tolerance = angle_tolerance
+        self.relative_thickness_tolerance = relative_thickness_tolerance
+        self.minimum_analysis_ply_thickness = minimum_analysis_ply_thickness
 
     def _get_stub(self) -> model_pb2_grpc.ObjectServiceStub:
         return cast(model_pb2_grpc.ObjectServiceStub, super()._get_stub())
@@ -78,7 +98,6 @@ class Model(TreeObject):
     angle_tolerance = grpc_data_property("properties.angle_tolerance")
     relative_thickness_tolerance = grpc_data_property("properties.relative_thickness_tolerance")
     minimum_analysis_ply_thickness = grpc_data_property("properties.minimum_analysis_ply_thickness")
-    use_default_section_tolerances = grpc_data_property("properties.use_default_section_tolerances")
 
     @classmethod
     def from_file(cls, *, path: _PATH, channel: Channel) -> Model:
