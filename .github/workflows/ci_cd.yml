@@ -169,7 +169,7 @@ jobs:
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           pip install poetry
-          poetry install -E docs
+          poetry install -E all
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
