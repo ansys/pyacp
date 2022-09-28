@@ -48,8 +48,6 @@ extensions = [
     "ansys_sphinx_theme",
 ]
 
-autodoc_typehints = "description"
-
 # Intersphinx mapping
 intersphinx_mapping = {
     "python": ("https://docs.python.org/dev", None),
