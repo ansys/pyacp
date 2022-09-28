@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from functools import wraps
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -140,13 +141,11 @@ def define_mapping(
     Callable[[Arg(ParentT, "self"), KwArg(Any)], ValueT],
     Callable[[Arg(ParentT, "self")], Mapping[ValueT]],
 ]:
+    @wraps(object_class.__init__)
     def create_method(self: ParentT, **kwargs: Any) -> ValueT:
         obj = object_class(**kwargs)
         obj.store(parent=self)
         return obj
-
-    create_method.__doc__ = object_class.__init__.__doc__ or object_class.__doc__
-    create_method.__annotations__ = object_class.__init__.__annotations__
 
     @property  # type: ignore
     def collection_property(self: ParentT) -> Mapping[ValueT]:
