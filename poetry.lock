@@ -2245,7 +2245,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [extras]
 all = ["Sphinx", "ansys-sphinx-theme", "sphinx-autodoc-typehints", "sphinx-copybutton", "numpydoc", "pre-commit", "black", "mypy", "mypy-extensions", "types-protobuf", "pytest", "pytest-cov", "pytest-cases", "twine", "ipykernel", "jupyter", "notebook", "ipyvtklink", "ansys-mapdl-core"]
 build = ["twine"]
-docs = ["Sphinx", "ansys-sphinx-theme", "sphinx-autodoc-typehints", "sphinx-copybutton", "numpydoc"]
+docs = ["Sphinx", "ansys-sphinx-theme", "sphinx-autodoc-typehints", "sphinx-copybutton", "numpydoc", "mypy-extensions"]
 examples = ["ipykernel", "jupyter", "notebook", "ipyvtklink", "ansys-mapdl-core"]
 pre-commit = ["pre-commit", "mypy", "mypy-extensions", "types-protobuf", "pytest", "pytest-cases", "black"]
 test = ["pytest", "pytest-cov", "pytest-cases"]
@@ -2253,7 +2253,7 @@ test = ["pytest", "pytest-cov", "pytest-cases"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7.2,<3.11" # Plan on supporting only the currently supported versions of Python
-content-hash = "ec27d2bc84a794fb64bd5816a866f80621a38cf6eed14cbb43dce08f2ceef97a"
+content-hash = "205f10bab1f5bac7da1ebe765f5305b8a8ef1e5df8f9776c53d654bb0c0085e4"
 
 [metadata.files]
 aiohttp = [

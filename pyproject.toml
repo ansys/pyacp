@@ -79,7 +79,7 @@ all = [
     "ipyvtklink",
     "ansys-mapdl-core",
 ]
-docs = ["Sphinx", "ansys-sphinx-theme", "sphinx-autodoc-typehints", "sphinx-copybutton", "numpydoc"]
+docs = ["Sphinx", "ansys-sphinx-theme", "sphinx-autodoc-typehints", "sphinx-copybutton", "numpydoc", "mypy-extensions"]
 pre-commit = ["pre-commit", "mypy", "mypy-extensions", "types-protobuf", "pytest", "pytest-cases", "black"]
 test = ["pytest", "pytest-cov", "pytest-cases"]
 build = ["twine"]
