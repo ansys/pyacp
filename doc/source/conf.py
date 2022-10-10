@@ -41,14 +41,12 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
-    "sphinx.ext.autodoc.typehints",
     "sphinx.ext.napoleon",
+    "sphinx_autodoc_typehints",
     "numpydoc",
     "sphinx_copybutton",
     "ansys_sphinx_theme",
 ]
-
-autodoc_typehints = "description"
 
 # Intersphinx mapping
 intersphinx_mapping = {
@@ -60,6 +58,10 @@ intersphinx_mapping = {
     # "pandas": ("https://pandas.pydata.org/pandas-docs/stable", None),
     # "pyvista": ("https://docs.pyvista.org/", None),
 }
+
+# sphinx_autodoc_typehints configuration
+typehints_defaults = "comma"
+simplify_optional_unions = False
 
 # numpydoc configuration
 numpydoc_show_class_members = False

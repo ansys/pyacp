@@ -26,4 +26,5 @@ pdf:
 
 # customized clean due to examples gallery
 clean:
-	rm -rf build
+	rm -rf $(BUILDDIR)
+	find . -type d -name "_autosummary" -exec rm -rf {} +
