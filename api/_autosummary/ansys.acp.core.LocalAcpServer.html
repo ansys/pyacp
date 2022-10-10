@@ -40,6 +40,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
@@ -889,9 +890,23 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ansys.acp.core.LocalAcpServer">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     LocalAcpServer
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -924,10 +939,10 @@ exiting the context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>process</strong> (<a class="reference external" href="https://docs.python.org/dev/library/subprocess.html#subprocess.Popen" title="(in Python v3.12)"><em>subprocess.Popen</em></a><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>]</em>) – The process which is executing the ACP server.</p></li>
-<li><p><strong>port</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – The port (on localhost) on which the ACP server listens to requests.</p></li>
-<li><p><strong>stdout</strong> (<em>TextIO</em>) – Open file handle to which the process output is being written.</p></li>
-<li><p><strong>stderr</strong> (<em>TextIO</em>) – Open file handle to which the process error is being written.</p></li>
+<li><p><strong>process</strong> – The process which is executing the ACP server.</p></li>
+<li><p><strong>port</strong> – The port (on localhost) on which the ACP server listens to requests.</p></li>
+<li><p><strong>stdout</strong> – Open file handle to which the process output is being written.</p></li>
+<li><p><strong>stderr</strong> – Open file handle to which the process error is being written.</p></li>
 </ul>
 </dd>
 </dl>
@@ -935,7 +950,12 @@ exiting the context.</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LocalAcpServer.close.html#ansys.acp.core.LocalAcpServer.close" title="ansys.acp.core.LocalAcpServer.close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalAcpServer.close</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 </tbody>
 </table>
@@ -943,10 +963,20 @@ exiting the context.</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LocalAcpServer.channel.html#ansys.acp.core.LocalAcpServer.channel" title="ansys.acp.core.LocalAcpServer.channel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalAcpServer.channel</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Channel</span></code></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LocalAcpServer.closed.html#ansys.acp.core.LocalAcpServer.closed" title="ansys.acp.core.LocalAcpServer.closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalAcpServer.closed</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 </tbody>
 </table>
@@ -979,7 +1009,7 @@ exiting the context.</p>
   
   <div class="footer-item">
     <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.2.<br>
 </p>
   </div>
   

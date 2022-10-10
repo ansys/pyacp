@@ -40,6 +40,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
@@ -890,9 +891,23 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ansys.acp.core.Model.create_fabric">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     Model.create_fabric()
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -914,24 +929,8 @@
 <h1>create_fabric<a class="headerlink" href="#create-fabric" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_fabric">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_fabric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_fabric" title="Permalink to this definition">#</a></dt>
-<dd><p>Instantiate a Fabric.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Name of the Rosette.</p></li>
-<li><p><strong>material</strong> – Material of the fabric.</p></li>
-<li><p><strong>thickness</strong> – Thickness of the fabric.</p></li>
-<li><p><strong>area_price</strong> – Price per area of the fabric.</p></li>
-<li><p><strong>ignore_for_postprocessing</strong> – Enable this option that the failure computation skips all plies made of this fabric.</p></li>
-<li><p><strong>drop_off_material_handling</strong> – Defines the material of drop-off elements in the solid model extrusion.</p></li>
-<li><p><strong>cut_off_material_handling</strong> – Defines the material of cut-off elements in solid models if cut-off geometries are active.</p></li>
-<li><p><strong>draping_material_model</strong> – Specifies the draping model of the fabric.</p></li>
-<li><p><strong>draping_ud_coefficient</strong> – Set the draping coefficient of the uni-directional draping model. Must be in the range of 0 to 1.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_fabric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Fabric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_for_postprocessing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_off_material_handling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'global'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut_off_material_handling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'computed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_material_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'woven'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_ud_coefficient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_fabric" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
 
 </section>
 
@@ -960,7 +959,7 @@
   
   <div class="footer-item">
     <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.2.<br>
 </p>
   </div>
   

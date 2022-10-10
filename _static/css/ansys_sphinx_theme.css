@@ -1,6 +1,9 @@
 /* Provided by the Sphinx base theme template at build time */
 @import "../basic.css";
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
+@import "../tabs.css";
+@import "../sg_gallery.css";
 
 
 @font-face {
@@ -40,22 +43,28 @@
 
   --pst-color-active-navigation: 200, 146, 17;  /* --ansysBronze */
   --pst-color-navbar-link: 255, 255, 255;
-  --pst-color-navbar-link-hover: 255, 183, 27;  /* --ansysBronze */
+  --pst-color-navbar-link-hover: 200, 146, 17;  /* --ansysBronze */
   --pst-color-navbar-link-active: 255, 183, 27;  /* --ansysBronze */
-
+  --pst-font-size-h1: 48px;
+  --pst-font-size-h2: 36px;
+  --pst-font-size-h3: 28px;
+  --pst-font-size-h4: 20px;
+  --pst-font-size-h5: 14px;
+  --pst-font-size-h6: 11px;
 }
 
 html[data-theme="light"] {
   /*****************************************************************************
   * main colors
   */
-  --pst-color-primary: rgb(255, 183, 27);
+  --pst-color-primary: #fff;
   --pst-color-secondary: rgb(200, 146, 17);
   --pst-color-success: rgb(40, 167, 69);
-  --pst-color-text-base: rgb(51, 51, 51);
+  --pst-color-text-base: rgb(0, 0, 0);
   --pst-color-text-muted: rgb(26, 24, 24);
-  --pst-color-border: rgb(201, 201, 201);
+  --pst-color-border: #c9c9c9;
   --pst-color-shadow: rgb(216, 216, 216);
+  --pst-color-info: var(--pst-color-link);
 
   /*****************************************************************************
   * depth colors
@@ -66,7 +75,7 @@ html[data-theme="light"] {
   * on_surface: object set on surface object (without shadows)
   */
   --pst-color-on-background: rgb(0, 0, 0);
-  --pst-color-on-surface: rgb(255, 255, 255);
+  --pst-color-on-surface: #f2f2f2;
 
   /*****************************************************************************
   * extensions
@@ -78,10 +87,13 @@ html[data-theme="light"] {
   * layout
   */
 
-  --pst-color-link: rgb( 57, 114, 161);
-  --pst-color-link-hover: #005B81;
-  --pst-color-inline-code: rgb(232, 62, 140);
+  --pst-color-link:#1E6DDC;
+  --pst-color-link-hover:#32cfea;
+  --pst-color-inline-code: #CD186D;
   --pst-color-target: rgb(255, 255, 255);
+  /* color for sphinx-gallery-code output*/
+  --pst-color-codeout: #fafae2;
+  --pst-color-sig:#0965C8;
 }
 
 html[data-theme="dark"] {
@@ -99,6 +111,7 @@ html[data-theme="dark"] {
   --pst-color-on-background: rgb(0, 0, 0);
   --pst-color-surface: rgb(41, 41, 41);
   --pst-color-on-surface: rgb(55, 55, 55);
+  --pst-color-info: var(--pst-color-link);
 
   /*****************************************************************************
   * extensions
@@ -110,25 +123,43 @@ html[data-theme="dark"] {
   * layout
   */
 
-  --pst-color-link: rgb( 57, 114, 161);
-  --pst-color-link-hover: #005B81;
+  --pst-color-link: #0088CC;
+  --pst-color-link-hover:#32cfea;
   --pst-color-inline-code: rgb(221, 158, 194);
   --pst-color-target: rgb(71, 39, 0);
+  /* color for sphinx-gallery-code output*/
+  --pst-color-codeout: #6c757d;
+  --pst-color-sig:#d6ab1e;
+}
+
+h1, h2 {
+  color: var(--pst-color-text-base);
 }
 
 .admonition, div.admonition{
-  background-color:var( --pst-color-on-surface);
+  background-color: var( --pst-color-on-surface);
 }
 
 .bd-header.navbar-light#navbar-main .navbar-nav li a.nav-link {
-  color:#ffffff;
+  color: #ddd;
 }
 
 .docutils {
-    color: #C89211;
-    font-family: 'Inconsolata';
-    font-weight: bold;
-    font-size: 107%;
+    color: var(--pst-color-inline-code);
+    font-family:var(--font-family-monospace);
+    font-weight: 500;
+    font-size: 87.5%;
+}
+
+code.literal {
+  padding: .1rem .25rem;
+  padding-top: 0.1rem;
+  padding-right: 0.25rem;
+  padding-bottom: 0.1rem;
+  padding-left: 0.25rem;
+  background-color: var(--pst-color-on-surface);
+  border: 1px solid var(--pst-color-border);
+  border-radius: .25rem;
 }
 
 .xref.std.std-ref {
@@ -140,17 +171,16 @@ html[data-theme="dark"] {
 }
 
 .sig-prename {
-    color: #C89211;
     font-family: 'Source Sans Pro', sans-serif;
 }
 
 .sig-name.descname {
-    color: #C89211;
+    color: var(--pst-color-inline-code);
     /* font-family: '   Source Sans Pro', sans-serif; */
 }
 
 .sig-name {
-    color: #C89211;
+    color: var(--pst-color-sig);
     font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -173,6 +203,25 @@ p.rubric {
 }
 
 
+/*
+###############
+   Sphinx-tab 
+###############
+*/
+.sphinx-tabs-panel p{
+  font-weight: 400;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1rem;
+  font-style: var(--pst-font-family-base-system);
+}
+
+.sphinx-tabs-tab[aria-selected="true"] {
+  background-color: var(--pst-color-background);
+}
+
+.sphinx-tabs-panel {
+    background: var(--pst-color-background);
+}
 
 /*
 ###############
@@ -269,16 +318,6 @@ table.table-centered {
 
 
 /*
-###############
-   longtable 
-###############
-*/
-
-table.longtable tr:hover td {
-  background-color: rgb(255, 183, 27, 0.6);
-}
-
-/*
 #########################
    longtable-centered
 #########################
@@ -325,9 +364,9 @@ table.longtable-centered tr:hover td {
 }
 
 /*
-##############
-   DataFrame
-##############
+#########
+DataFrame
+#########
 Not sure why the odd columns (white) are rendered gray.
 
 I do not think we will be able to call this class.
@@ -348,7 +387,6 @@ I do not think we will be able to call this class.
 .dataframe tr:hover td {
   background-color: rgb(255, 183, 27, 0.6);
 }
-
 
 /*
 #########################
@@ -383,8 +421,6 @@ I do not think we will be able to call this class.
     text-align: center;
 }
 
-
-
 /*
 ###############
    Autosummary 
@@ -414,4 +450,224 @@ a > code.download
     color: var(--pst-color-link);
     text-decoration: none;
     font-weight: normal;
+}
+
+/*
+########################
+   Sphinx gallery output
+########################
+*/
+.sphx-glr-script-out .highlight pre{
+  background-color:  var(--pst-color-codeout) !important;
+  }
+
+.prev-next-area a p.prev-next-title {
+  color: var(--pst-color-link);
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+html[data-theme="light"] .highlight .s1 {
+  color: #519312;
+}
+
+/*
+###############
+Dropdown button
+###############
+*/
+
+.navbar button.navbar-toggler {
+    margin-right: 1em;
+    border-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+}
+
+/*
+####################################################
+Side column size (first and second column from left)
+####################################################
+*/
+
+.col-md-3 {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+
+.col-xl-7 {
+  flex: 0 0 63.33333%;
+  max-width: 63.33333%;
+}
+
+a.headerlink {
+  color: #222;
+}
+
+/*
+#################################
+Right side toctree color and font
+#################################
+*/
+.toc-entry a {
+  padding: .125rem 1.5rem;
+  color: var(--pst-color-link);
+}
+
+.toc-entry>.nav-link.active {
+    font-weight: bold;
+    color: var(--pst-color-text-base);
+    background-color: transparent;
+    border-left: 2px solid var(--pst-color-text-muted);
+}
+
+
+.toc-h2 {
+  font-size: 0.98rem;
+  padding: 0.05em;
+}
+
+.toc-h3 {
+  font-size: .96rem;
+}
+
+.toc-h4 {
+  font-size: .90rem;
+}
+
+.toc-entry a:hover {
+  color: var(--pst-color-link);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/*
+############################################
+Navigation column (according to side column)
+############################################
+*/
+.col-lg-9 {
+  flex: 0 0 80%;
+  max-width: 80%;
+  padding-right: 25px;
+  padding-left: 40px;
+}
+
+/*
+#################################
+Syntax highlighting in code block
+#################################
+*/
+
+html[data-theme="light"] .highlight .o {
+  color: #B35000;
+  font-weight: bold;
+}
+
+/*
+#############################
+Bold font weight for **code**
+#############################
+*/
+
+b, strong {
+  font-weight: 900;
+}
+
+#theme-switch {
+  border-color: #fff;
+  border: 2px solid #898A8D;
+  margin-right: .4rem;
+}
+
+#theme-switch:hover {
+  background-color: #fff
+}
+
+.bd-header.navbar-light#navbar-main .navbar-nav li a.nav-link:hover {
+  color: #fff;
+}
+
+.bd-header.navbar-light#navbar-main .navbar-nav>.active>.nav-link {
+  border-bottom: 2px solid #fff;
+}
+
+/*
+#############################
+Padding of main content block 
+#############################
+*/
+
+.bd-content {
+  padding: 1.5rem 1.5rem 2rem 3rem;
+}
+
+
+/*
+###########################
+Left side toc-tree hovering 
+###########################
+*/
+
+nav.bd-links .active:hover>a {
+  font-weight: bold;
+  color: var(--pst-color-text-base);
+  border-left: 2px solid var(--pst-color-text-base);
+}
+
+nav.bd-links .active>a {
+  font-weight: bold;
+  color: var(--pst-color-text-muted);
+  border-left: 2px solid var(--pst-color-text-base);
+}
+
+nav.bd-links li>a:hover {
+  font-weight: 900;
+  color: var(--pst-color-link);
+}
+
+/*
+######################
+Search bar button text 
+######################
+*/
+
+button, input, optgroup, select, textarea {
+  color: var(--pst-color-text-base)!important;
+}
+
+/*
+##############################
+image padding before and after 
+##############################
+*/
+
+img {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+img.logo__image {
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+}
+
+/*
+##########################
+Nav-bar entity right side. 
+##########################
+*/
+
+nav.bd-links li>a {
+  color: var(--pst-color-link);
+  font-size: .98rem;
+}
+
+html[data-theme="light"] .highlight pre {
+  line-height: 125%;
+  font-size: 0.98em;
+}
+
+html[data-theme="dark"] .highlight pre {
+  line-height: 125%;
+  font-size: 0.98em;
 }

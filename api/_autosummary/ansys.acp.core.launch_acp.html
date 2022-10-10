@@ -40,6 +40,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
@@ -889,9 +890,23 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ansys.acp.core.launch_acp">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     launch_acp()
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -919,19 +934,19 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>binary_path</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.12)"><em>Union</em></a><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.12)"><em>PathLike</em></a><em>]</em>) – Path to the <code class="docutils literal notranslate"><span class="pre">acp_grpcserver</span></code> executable.</p></li>
-<li><p><strong>port</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Optional" title="(in Python v3.12)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>]</em>) – Port on which the server should listen to gRPC calls. If no port
+<li><p><strong>binary_path</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PathLike</span></code></a>]) – Path to the <code class="docutils literal notranslate"><span class="pre">acp_grpcserver</span></code> executable.</p></li>
+<li><p><strong>port</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Optional" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>], default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Port on which the server should listen to gRPC calls. If no port
 is given, a free port will be chosen automatically.</p></li>
-<li><p><strong>stdout_file</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.12)"><em>Union</em></a><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.12)"><em>PathLike</em></a><em>]</em>) – Path of the file to which the server output is written.</p></li>
-<li><p><strong>stderr_file</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.12)"><em>Union</em></a><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.12)"><em>PathLike</em></a><em>]</em>) – Path of the file to which the server error log is written.</p></li>
+<li><p><strong>stdout_file</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PathLike</span></code></a>], default: <code class="docutils literal notranslate"><span class="pre">'/dev/null'</span></code>) – Path of the file to which the server output is written.</p></li>
+<li><p><strong>stderr_file</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PathLike</span></code></a>], default: <code class="docutils literal notranslate"><span class="pre">'/dev/null'</span></code>) – Path of the file to which the server error log is written.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Server object which can be used to control the server, and
-instantiate objects on the server.</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ServerProtocol</span></code></p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><em>ServerProtocol</em></p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Server object which can be used to control the server, and
+instantiate objects on the server.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -963,7 +978,7 @@ instantiate objects on the server.</p>
   
   <div class="footer-item">
     <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.2.<br>
 </p>
   </div>
   

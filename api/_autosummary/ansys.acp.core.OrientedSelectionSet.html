@@ -40,6 +40,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
@@ -889,9 +890,23 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ansys.acp.core.OrientedSelectionSet">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     OrientedSelectionSet
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -918,12 +933,12 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The name of the Oriented Selection Set.</p></li>
-<li><p><strong>element_sets</strong> (<em>Sequence</em><em>[</em><a class="reference internal" href="ansys.acp.core.ElementSet.html#ansys.acp.core.ElementSet" title="ansys.acp.core.ElementSet"><em>ElementSet</em></a><em>]</em>) – Element Sets on which the Oriented Selection Set is defined.</p></li>
-<li><p><strong>orientation_point</strong> (<em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>...</em><em>]</em>) – The Orientation Point of the Oriented Selection Set.</p></li>
-<li><p><strong>orientation_direction</strong> (<em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>...</em><em>]</em>) – The Orientation Direction of the Oriented Element set.</p></li>
-<li><p><strong>rosettes</strong> (<em>Sequence</em><em>[</em><a class="reference internal" href="ansys.acp.core.Rosette.html#ansys.acp.core.Rosette" title="ansys.acp.core.Rosette"><em>Rosette</em></a><em>]</em>) – Rosettes of the Oriented Selection Set.</p></li>
-<li><p><strong>rosette_selection_method</strong> (<em>RosetteSelectionMethod</em>) – Selection Method for Rosettes of the Oriented Selection Set.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">'OrientedSelectionSet'</span></code>) – The name of the Oriented Selection Set.</p></li>
+<li><p><strong>element_sets</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Sequence" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference internal" href="ansys.acp.core.ElementSet.html#ansys.acp.core.ElementSet" title="ansys.acp.core._tree_objects.element_set.ElementSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElementSet</span></code></a>], default: <code class="docutils literal notranslate"><span class="pre">()</span></code>) – Element Sets on which the Oriented Selection Set is defined.</p></li>
+<li><p><strong>orientation_point</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Tuple" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/constants.html#Ellipsis" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>], default: <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></code>) – The Orientation Point of the Oriented Selection Set.</p></li>
+<li><p><strong>orientation_direction</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Tuple" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/constants.html#Ellipsis" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>], default: <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></code>) – The Orientation Direction of the Oriented Element set.</p></li>
+<li><p><strong>rosettes</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Sequence" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference internal" href="ansys.acp.core.Rosette.html#ansys.acp.core.Rosette" title="ansys.acp.core._tree_objects.rosette.Rosette"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rosette</span></code></a>], default: <code class="docutils literal notranslate"><span class="pre">()</span></code>) – Rosettes of the Oriented Selection Set.</p></li>
+<li><p><strong>rosette_selection_method</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">RosetteSelectionMethod</span></code>, default: <code class="docutils literal notranslate"><span class="pre">'minimum_angle'</span></code>) – Selection Method for Rosettes of the Oriented Selection Set.</p></li>
 </ul>
 </dd>
 </dl>
@@ -934,10 +949,20 @@
 <td><p>Create a new unstored object with the same properties.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.delete.html#ansys.acp.core.OrientedSelectionSet.delete" title="ansys.acp.core.OrientedSelectionSet.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.delete</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.store.html#ansys.acp.core.OrientedSelectionSet.store" title="ansys.acp.core.OrientedSelectionSet.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.store</span></code></a>(parent)</p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 </tbody>
 </table>
@@ -945,28 +970,68 @@
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.element_sets.html#ansys.acp.core.OrientedSelectionSet.element_sets" title="ansys.acp.core.OrientedSelectionSet.element_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.element_sets</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">LinkedObjectList</span></code>[<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.TypeVar" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">ChildT</span></code>, bound= <code class="xref py py-class docutils literal notranslate"><span class="pre">CreatableTreeObject</span></code>)]</p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.id.html#ansys.acp.core.OrientedSelectionSet.id" title="ansys.acp.core.OrientedSelectionSet.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.id</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.name.html#ansys.acp.core.OrientedSelectionSet.name" title="ansys.acp.core.OrientedSelectionSet.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.name</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.orientation_direction.html#ansys.acp.core.OrientedSelectionSet.orientation_direction" title="ansys.acp.core.OrientedSelectionSet.orientation_direction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.orientation_direction</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.orientation_point.html#ansys.acp.core.OrientedSelectionSet.orientation_point" title="ansys.acp.core.OrientedSelectionSet.orientation_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.orientation_point</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rosette_selection_method.html#ansys.acp.core.OrientedSelectionSet.rosette_selection_method" title="ansys.acp.core.OrientedSelectionSet.rosette_selection_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.rosette_selection_method</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rosettes.html#ansys.acp.core.OrientedSelectionSet.rosettes" title="ansys.acp.core.OrientedSelectionSet.rosettes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.rosettes</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">LinkedObjectList</span></code>[<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.TypeVar" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">ChildT</span></code>, bound= <code class="xref py py-class docutils literal notranslate"><span class="pre">CreatableTreeObject</span></code>)]</p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.status.html#ansys.acp.core.OrientedSelectionSet.status" title="ansys.acp.core.OrientedSelectionSet.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.status</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 </tbody>
 </table>
@@ -999,7 +1064,7 @@
   
   <div class="footer-item">
     <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.2.<br>
 </p>
   </div>
   

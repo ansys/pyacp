@@ -40,6 +40,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
@@ -889,9 +890,23 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ansys.acp.core.ModelingPly">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ModelingPly
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -917,15 +932,7 @@
 <dd><p>Instantiate an Oriented Selection Set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The name of the ModelingPly</p></li>
-<li><p><strong>ply_material</strong> (<em>Union</em><em>[</em><a class="reference internal" href="ansys.acp.core.Fabric.html#ansys.acp.core.Fabric" title="ansys.acp.core.Fabric"><em>Fabric</em></a><em>, </em><em>None</em><em>]</em>) – </p></li>
-<li><p><strong>oriented_selection_sets</strong> (<em>Container</em><em>[</em><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.html#ansys.acp.core.OrientedSelectionSet" title="ansys.acp.core.OrientedSelectionSet"><em>OrientedSelectionSet</em></a><em>]</em>) – </p></li>
-<li><p><strong>ply_angle</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – </p></li>
-<li><p><strong>number_of_layers</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – </p></li>
-<li><p><strong>active</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – </p></li>
-<li><p><strong>global_ply_nr</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – </p></li>
-</ul>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">'ModelingPly'</span></code>) – The name of the ModelingPly</p>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
@@ -935,10 +942,20 @@
 <td><p>Create a new unstored object with the same properties.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.delete.html#ansys.acp.core.ModelingPly.delete" title="ansys.acp.core.ModelingPly.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.delete</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.store.html#ansys.acp.core.ModelingPly.store" title="ansys.acp.core.ModelingPly.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.store</span></code></a>(parent)</p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 </tbody>
 </table>
@@ -946,31 +963,76 @@
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.active.html#ansys.acp.core.ModelingPly.active" title="ansys.acp.core.ModelingPly.active"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.active</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.global_ply_nr.html#ansys.acp.core.ModelingPly.global_ply_nr" title="ansys.acp.core.ModelingPly.global_ply_nr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.global_ply_nr</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.id.html#ansys.acp.core.ModelingPly.id" title="ansys.acp.core.ModelingPly.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.id</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.name.html#ansys.acp.core.ModelingPly.name" title="ansys.acp.core.ModelingPly.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.name</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.number_of_layers.html#ansys.acp.core.ModelingPly.number_of_layers" title="ansys.acp.core.ModelingPly.number_of_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.number_of_layers</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.oriented_selection_sets.html#ansys.acp.core.ModelingPly.oriented_selection_sets" title="ansys.acp.core.ModelingPly.oriented_selection_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.oriented_selection_sets</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">LinkedObjectList</span></code>[<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.TypeVar" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">ChildT</span></code>, bound= <code class="xref py py-class docutils literal notranslate"><span class="pre">CreatableTreeObject</span></code>)]</p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_angle.html#ansys.acp.core.ModelingPly.ply_angle" title="ansys.acp.core.ModelingPly.ply_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.ply_angle</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_material.html#ansys.acp.core.ModelingPly.ply_material" title="ansys.acp.core.ModelingPly.ply_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.ply_material</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Optional" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TreeObject</span></code>]</p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.status.html#ansys.acp.core.ModelingPly.status" title="ansys.acp.core.ModelingPly.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.status</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 </tbody>
 </table>
@@ -1003,7 +1065,7 @@
   
   <div class="footer-item">
     <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.2.<br>
 </p>
   </div>
   

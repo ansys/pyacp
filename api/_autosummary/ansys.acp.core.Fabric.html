@@ -40,6 +40,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
@@ -889,9 +890,23 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ansys.acp.core.Fabric">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     Fabric
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -918,15 +933,15 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Name of the Rosette.</p></li>
-<li><p><strong>material</strong> (<em>Union</em><em>[</em><a class="reference internal" href="ansys.acp.core.Material.html#ansys.acp.core.Material" title="ansys.acp.core.Material"><em>Material</em></a><em>, </em><em>None</em><em>]</em>) – Material of the fabric.</p></li>
-<li><p><strong>thickness</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Thickness of the fabric.</p></li>
-<li><p><strong>area_price</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Price per area of the fabric.</p></li>
-<li><p><strong>ignore_for_postprocessing</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Enable this option that the failure computation skips all plies made of this fabric.</p></li>
-<li><p><strong>drop_off_material_handling</strong> (<em>DropoffMaterialType</em>) – Defines the material of drop-off elements in the solid model extrusion.</p></li>
-<li><p><strong>cut_off_material_handling</strong> (<em>CutoffMaterialType</em>) – Defines the material of cut-off elements in solid models if cut-off geometries are active.</p></li>
-<li><p><strong>draping_material_model</strong> (<em>DrapingMaterialType</em>) – Specifies the draping model of the fabric.</p></li>
-<li><p><strong>draping_ud_coefficient</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Set the draping coefficient of the uni-directional draping model. Must be in the range of 0 to 1.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">'Fabric'</span></code>) – Name of the Rosette.</p></li>
+<li><p><strong>material</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Optional" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference internal" href="ansys.acp.core.Material.html#ansys.acp.core.Material" title="ansys.acp.core._tree_objects.material.Material"><code class="xref py py-class docutils literal notranslate"><span class="pre">Material</span></code></a>], default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Material of the fabric.</p></li>
+<li><p><strong>thickness</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Thickness of the fabric.</p></li>
+<li><p><strong>area_price</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Price per area of the fabric.</p></li>
+<li><p><strong>ignore_for_postprocessing</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">False</span></code>) – Enable this option that the failure computation skips all plies made of this fabric.</p></li>
+<li><p><strong>drop_off_material_handling</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DropoffMaterialType</span></code>, default: <code class="docutils literal notranslate"><span class="pre">'global'</span></code>) – Defines the material of drop-off elements in the solid model extrusion.</p></li>
+<li><p><strong>cut_off_material_handling</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CutoffMaterialType</span></code>, default: <code class="docutils literal notranslate"><span class="pre">'computed'</span></code>) – Defines the material of cut-off elements in solid models if cut-off geometries are active.</p></li>
+<li><p><strong>draping_material_model</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DrapingMaterialType</span></code>, default: <code class="docutils literal notranslate"><span class="pre">'woven'</span></code>) – Specifies the draping model of the fabric.</p></li>
+<li><p><strong>draping_ud_coefficient</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Set the draping coefficient of the uni-directional draping model. Must be in the range of 0 to 1.</p></li>
 </ul>
 </dd>
 </dl>
@@ -937,10 +952,20 @@
 <td><p>Create a new unstored object with the same properties.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.delete.html#ansys.acp.core.Fabric.delete" title="ansys.acp.core.Fabric.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.delete</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.store.html#ansys.acp.core.Fabric.store" title="ansys.acp.core.Fabric.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.store</span></code></a>(parent)</p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 </tbody>
 </table>
@@ -948,40 +973,100 @@
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.area_price.html#ansys.acp.core.Fabric.area_price" title="ansys.acp.core.Fabric.area_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.area_price</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.cut_off_material_handling.html#ansys.acp.core.Fabric.cut_off_material_handling" title="ansys.acp.core.Fabric.cut_off_material_handling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.cut_off_material_handling</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.draping_material_model.html#ansys.acp.core.Fabric.draping_material_model" title="ansys.acp.core.Fabric.draping_material_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.draping_material_model</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.draping_ud_coefficient.html#ansys.acp.core.Fabric.draping_ud_coefficient" title="ansys.acp.core.Fabric.draping_ud_coefficient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.draping_ud_coefficient</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.drop_off_material_handling.html#ansys.acp.core.Fabric.drop_off_material_handling" title="ansys.acp.core.Fabric.drop_off_material_handling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.drop_off_material_handling</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.id.html#ansys.acp.core.Fabric.id" title="ansys.acp.core.Fabric.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.id</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.ignore_for_postprocessing.html#ansys.acp.core.Fabric.ignore_for_postprocessing" title="ansys.acp.core.Fabric.ignore_for_postprocessing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.ignore_for_postprocessing</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.locked.html#ansys.acp.core.Fabric.locked" title="ansys.acp.core.Fabric.locked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.locked</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.material.html#ansys.acp.core.Fabric.material" title="ansys.acp.core.Fabric.material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.material</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Optional" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TreeObject</span></code>]</p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.name.html#ansys.acp.core.Fabric.name" title="ansys.acp.core.Fabric.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.name</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.status.html#ansys.acp.core.Fabric.status" title="ansys.acp.core.Fabric.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.status</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Fabric.thickness.html#ansys.acp.core.Fabric.thickness" title="ansys.acp.core.Fabric.thickness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fabric.thickness</span></code></a></p></td>
-<td><p></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></p>
+</dd>
+</dl>
+</p></td>
 </tr>
 </tbody>
 </table>
@@ -1014,7 +1099,7 @@
   
   <div class="footer-item">
     <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.2.<br>
 </p>
   </div>
   

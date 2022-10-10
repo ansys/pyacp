@@ -40,6 +40,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
@@ -889,9 +890,23 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ansys.acp.core.launch_acp_docker">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     launch_acp_docker()
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -919,24 +934,23 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>image_name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The name of the Docker image to launch.</p></li>
-<li><p><strong>license_server</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The <code class="docutils literal notranslate"><span class="pre">ANSYSLMD_LICENSE_FILE</span></code> environment variable that is passed
+<li><p><strong>image_name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">'ghcr.io/pyansys/pyacp-private:latest'</span></code>) – The name of the Docker image to launch.</p></li>
+<li><p><strong>license_server</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The <code class="docutils literal notranslate"><span class="pre">ANSYSLMD_LICENSE_FILE</span></code> environment variable that is passed
 to the Docker container.</p></li>
-<li><p><strong>mount_directories</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Mapping" title="(in Python v3.12)"><em>Mapping</em></a><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>]</em>) – Local directories which should be mounted to the Docker container.
+<li><p><strong>mount_directories</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Mapping" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code></a>[<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], default: <code class="docutils literal notranslate"><span class="pre">mappingproxy({})</span></code>) – Local directories which should be mounted to the Docker container.
 The keys contain the path in the context of the host, and the
 values are the paths as they should appear inside the container.</p></li>
-<li><p><strong>stdout_file</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.12)"><em>Union</em></a><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.12)"><em>PathLike</em></a><em>]</em>) – Path (on the host) to which the output of <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> is redirected.</p></li>
-<li><p><strong>stderr_file</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.12)"><em>Union</em></a><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.12)"><em>PathLike</em></a><em>]</em>) – Path (on the host) where the standard error of <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> is
+<li><p><strong>stdout_file</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PathLike</span></code></a>], default: <code class="docutils literal notranslate"><span class="pre">'/dev/null'</span></code>) – Path (on the host) to which the output of <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> is redirected.</p></li>
+<li><p><strong>stderr_file</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PathLike</span></code></a>], default: <code class="docutils literal notranslate"><span class="pre">'/dev/null'</span></code>) – Path (on the host) where the standard error of <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> is
 redirected.</p></li>
-<li><p><strong>port</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Optional" title="(in Python v3.12)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>]</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Server object which can be used to control the server, and
-instantiate objects on the server.</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ServerProtocol</span></code></p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><em>ServerProtocol</em></p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Server object which can be used to control the server, and
+instantiate objects on the server.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -968,7 +982,7 @@ instantiate objects on the server.</p>
   
   <div class="footer-item">
     <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.2.<br>
 </p>
   </div>
   
