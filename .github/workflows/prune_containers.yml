@@ -14,7 +14,7 @@ jobs:
       - uses: vlaurin/action-ghcr-prune@3c4f76ff904f206ace31dab45f37eb7c5a8e3d37
         with:
           organization: pyansys
-          token: ${{ secrets.PYANSYS_CI_BOT_PACKAGE_TOKEN }}
+          token: ${{ secrets.PYACP_DOCKER_IMAGE_CLEANER }}
           container: pyacp-private
           dry-run: false # Dry-run first, then change to `false`
           older-than: 14 # days
