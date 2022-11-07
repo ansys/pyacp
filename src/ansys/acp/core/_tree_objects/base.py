@@ -5,19 +5,21 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Any, Iterable, Optional, Type, TypeVar, cast
+import textwrap
+from typing import Any, Iterable, Optional, Tuple, Type, TypeVar, cast
 
 from grpc import Channel
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ResourcePath
 
-from .._grpc_helpers.property_helper import grpc_data_property
+from .._grpc_helpers.property_helper import grpc_data_property, mark_grpc_properties
 from .._grpc_helpers.protocols import CreatableResourceStub, CreateRequest, ObjectInfo, ResourceStub
 from .._utils.resource_paths import join as _rp_join
 
 _T = TypeVar("_T", bound="TreeObject")
 
 
+@mark_grpc_properties  # type: ignore # see https://github.com/python/mypy/issues/4717
 class TreeObject(ABC):
     """
     Base class for ACP tree objects.
@@ -27,6 +29,7 @@ class TreeObject(ABC):
 
     COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: Type[ObjectInfo]
+    GRPC_PROPERTIES: Tuple[str, ...] = tuple()
 
     def __init__(self: TreeObject, name: str = "") -> None:
         self._channel_store: Optional[Channel] = None
@@ -99,25 +102,39 @@ class TreeObject(ABC):
         return self._channel_store is not None
 
     def __repr__(self) -> str:
-        # TODO: this is a hack. To do it properly, register the grpc
-        # data properties with the class.
-        items = [("name", self.name)]
-        if hasattr(self, "id"):
-            items.append(("id", self.id))  # type: ignore
-        for field_data in self._pb_object.properties.ListFields():
-            fd, _ = field_data
-            name = fd.name
+        return (
+            type(self).__name__
+            + "._from_resource_path("
+            + f"\n{' ' * 4}"
+            + f"resource_path=ResourcePath(value={self._resource_path.value!r})"
+            + f",\n{' ' * 4}"
+            + f"channel={self._channel!r}\n)"
+        )
+
+    def __str__(self) -> str:
+        items = []
+        for attr_name in self.GRPC_PROPERTIES:
             try:
-                value = getattr(self, name)
+                value = getattr(self, attr_name)
             except:
-                value = "<undefined>"
-            items.append((name, value))
-        return type(self).__name__ + "(" + ", ".join(f"{k}={v!r}" for k, v in items) + ")"
+                value = "<unavailable>"
+            items.append((attr_name, value))
+        type_name = type(self).__name__
+        if not items:
+            return type_name + "()"
+        string_items = [f"{k}={v!r}" for k, v in items]
+        if len(items) == 1:
+            content = string_items[0]
+        else:
+            content = ",\n".join(string_items)
+            content = f"\n{textwrap.indent(content, ' ' * 4)}\n"
+        return f"{type_name}({content})"
 
     name = grpc_data_property("info.name")
     """The name of the object."""
 
 
+@mark_grpc_properties  # type: ignore # see https://github.com/python/mypy/issues/4717
 class CreatableTreeObject(TreeObject, ABC):
     __slots__: Iterable[str] = tuple()
     CREATE_REQUEST_TYPE: Type[CreateRequest]

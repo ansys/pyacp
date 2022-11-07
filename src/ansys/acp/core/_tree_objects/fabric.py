@@ -8,6 +8,7 @@ from .._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     grpc_link_property,
+    mark_grpc_properties,
 )
 from .base import CreatableTreeObject
 from .enums import (
@@ -28,6 +29,7 @@ from .object_registry import register
 __all__ = ["Fabric"]
 
 
+@mark_grpc_properties
 @register
 class Fabric(CreatableTreeObject):
     """Instantiate a Fabric.

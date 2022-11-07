@@ -2,7 +2,10 @@ from __future__ import annotations
 
 from typing import Any, Iterable
 
-from ansys.acp.core._grpc_helpers.property_helper import grpc_data_property_read_only
+from ansys.acp.core._grpc_helpers.property_helper import (
+    grpc_data_property_read_only,
+    mark_grpc_properties,
+)
 from ansys.acp.core._tree_objects.modeling_ply import ModelingPly
 from ansys.api.acp.v0 import modeling_group_pb2, modeling_group_pb2_grpc, modeling_ply_pb2_grpc
 
@@ -13,6 +16,7 @@ from .object_registry import register
 __all__ = ["ModelingGroup"]
 
 
+@mark_grpc_properties
 @register
 class ModelingGroup(CreatableTreeObject):
     __slots__: Iterable[str] = tuple()

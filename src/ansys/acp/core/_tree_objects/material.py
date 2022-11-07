@@ -4,7 +4,7 @@ from typing import Iterable
 
 from ansys.api.acp.v0 import material_pb2, material_pb2_grpc
 
-from .._grpc_helpers.property_helper import grpc_data_property_read_only
+from .._grpc_helpers.property_helper import grpc_data_property_read_only, mark_grpc_properties
 from .base import CreatableTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
@@ -12,6 +12,7 @@ from .object_registry import register
 __all__ = ["Material"]
 
 
+@mark_grpc_properties
 @register
 class Material(CreatableTreeObject):
     """Instantiate a Material.

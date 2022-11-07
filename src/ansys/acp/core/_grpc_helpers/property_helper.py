@@ -5,7 +5,7 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from functools import reduce
-from typing import TYPE_CHECKING, Any, Callable, Optional
+from typing import TYPE_CHECKING, Any, Callable, Optional, Type
 
 from ansys.api.acp.v0.base_pb2 import GetRequest, ResourcePath
 
@@ -17,6 +17,24 @@ from .protocols import ObjectInfo
 
 _TO_PROTOBUF_T = Callable[[Any], Any]
 _FROM_PROTOBUF_T = Callable[[Any], Any]
+
+
+class _exposed_grpc_property(property):
+    """
+    Wrapper around 'property', used to signal that the object should
+    be collected into the 'GRPC_PROPERTIES' class attribute.
+    """
+
+    pass
+
+
+def mark_grpc_properties(cls: Type[TreeObject]) -> Type[TreeObject]:
+    props = list(cls.GRPC_PROPERTIES)
+    for key, value in vars(cls).items():
+        if isinstance(value, _exposed_grpc_property):
+            props.append(key)
+    cls.GRPC_PROPERTIES = tuple(props)
+    return cls
 
 
 def grpc_linked_object_getter(name: str) -> Callable[[TreeObject], Any]:
@@ -123,7 +141,7 @@ def grpc_data_property(
     and setter make calls to the gRPC Get and Put endpoints to synchronize
     the local object with the remote backend.
     """
-    return property(grpc_data_getter(name, from_protobuf=from_protobuf)).setter(
+    return _exposed_grpc_property(grpc_data_getter(name, from_protobuf=from_protobuf)).setter(
         grpc_data_setter(name, to_protobuf=to_protobuf)
     )
 
@@ -134,7 +152,7 @@ def grpc_data_property_read_only(name: str, from_protobuf: _FROM_PROTOBUF_T = la
     makes call to the gRPC Get endpoints to synchronize
     the local object with the remote backend.
     """
-    return property(grpc_data_getter(name, from_protobuf=from_protobuf))
+    return _exposed_grpc_property(grpc_data_getter(name, from_protobuf=from_protobuf))
 
 
 def grpc_link_property(name: str) -> Any:
@@ -142,7 +160,7 @@ def grpc_link_property(name: str) -> Any:
     Helper for defining linked properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to get the linked object
     """
-    return property(grpc_linked_object_getter(name)).setter(
+    return _exposed_grpc_property(grpc_linked_object_getter(name)).setter(
         # Resource path represents an object that is not set as an empty string
         grpc_data_setter(
             name=name,
@@ -156,4 +174,4 @@ def grpc_link_property_read_only(name: str) -> Any:
     Helper for defining linked properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to get the linked object
     """
-    return property(grpc_linked_object_getter(name))
+    return _exposed_grpc_property(grpc_linked_object_getter(name))

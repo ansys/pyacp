@@ -17,7 +17,7 @@ from ansys.api.acp.v0 import (
 
 from .._grpc_helpers.enum_wrapper import wrap_to_string_enum
 from .._grpc_helpers.mapping import define_mapping
-from .._grpc_helpers.property_helper import grpc_data_property
+from .._grpc_helpers.property_helper import grpc_data_property, mark_grpc_properties
 from .._typing_helper import PATH as _PATH
 from .base import TreeObject
 from .element_set import ElementSet
@@ -41,6 +41,7 @@ _IgnorableEntity, _ignorable_entity_to_pb, _ = wrap_to_string_enum(
 )
 
 
+@mark_grpc_properties
 class Model(TreeObject):
     """Defines an ACP Model.
 
