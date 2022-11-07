@@ -98,6 +98,22 @@ class TreeObject(ABC):
     def _is_stored(self) -> bool:
         return self._channel_store is not None
 
+    def __repr__(self) -> str:
+        # TODO: this is a hack. To do it properly, register the grpc
+        # data properties with the class.
+        items = [("name", self.name)]
+        if hasattr(self, "id"):
+            items.append(("id", self.id))  # type: ignore
+        for field_data in self._pb_object.properties.ListFields():
+            fd, _ = field_data
+            name = fd.name
+            try:
+                value = getattr(self, name)
+            except:
+                value = "<undefined>"
+            items.append((name, value))
+        return type(self).__name__ + "(" + ", ".join(f"{k}={v!r}" for k, v in items) + ")"
+
     name = grpc_data_property("info.name")
     """The name of the object."""
 
