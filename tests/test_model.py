@@ -106,9 +106,7 @@ def test_string_representation(grpc_server, model_data_dir_server):
     input_file_path = model_data_dir_server / "ACP-Pre.h5"
     model = client.import_model(name="minimal_model", path=input_file_path, format="ansys:cdb")
 
-    model_repr = repr(model)
-    assert model_repr.startswith("Model._from_resource_path(")
-    assert model._pb_object.info.resource_path.value in model_repr
+    assert repr(model) == "<Model with name 'minimal_model'>"
 
     model_str = str(model)
     assert model_str.startswith("Model(")

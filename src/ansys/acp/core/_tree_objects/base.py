@@ -12,7 +12,11 @@ from grpc import Channel
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ResourcePath
 
-from .._grpc_helpers.property_helper import grpc_data_property, mark_grpc_properties
+from .._grpc_helpers.property_helper import (
+    grpc_data_property,
+    grpc_data_property_read_only,
+    mark_grpc_properties,
+)
 from .._grpc_helpers.protocols import CreatableResourceStub, CreateRequest, ObjectInfo, ResourceStub
 from .._utils.resource_paths import join as _rp_join
 
@@ -29,7 +33,7 @@ class TreeObject(ABC):
 
     COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: Type[ObjectInfo]
-    GRPC_PROPERTIES: Tuple[str, ...] = tuple()
+    GRPC_PROPERTIES: Tuple[str, ...]
 
     def __init__(self: TreeObject, name: str = "") -> None:
         self._channel_store: Optional[Channel] = None
@@ -102,29 +106,13 @@ class TreeObject(ABC):
         return self._channel_store is not None
 
     def __repr__(self) -> str:
-        return (
-            type(self).__name__
-            + "._from_resource_path("
-            + f"\n{' ' * 4}"
-            + f"resource_path=ResourcePath(value={self._resource_path.value!r})"
-            + f",\n{' ' * 4}"
-            + f"channel={self._channel!r}\n)"
-        )
-
-    def _short_repr(self) -> str:
-        if hasattr(self, "id"):
-            return f"<{type(self).__name__} with id '{self.id}'>"  # type: ignore
         return f"<{type(self).__name__} with name '{self.name}'>"
 
     def __str__(self) -> str:
         string_items = []
         for attr_name in self.GRPC_PROPERTIES:
             try:
-                value = getattr(self, attr_name)
-                if hasattr(value, "_short_repr"):
-                    value_repr = value._short_repr()
-                else:
-                    value_repr = repr(value)
+                value_repr = repr(getattr(self, attr_name))
             except:
                 value_repr = "<unavailable>"
             string_items.append(f"{attr_name}={value_repr}")
@@ -162,3 +150,15 @@ class CreatableTreeObject(TreeObject, ABC):
             properties=self._pb_object.properties,
         )
         self._pb_object = self._get_stub().Create(request)
+
+
+@mark_grpc_properties  # type: ignore # see https://github.com/python/mypy/issues/4717
+class IdTreeObject(TreeObject, ABC):
+    """Implements the 'id' attribute for tree objects."""
+
+    __slots__: Iterable[str] = tuple()
+
+    id = grpc_data_property_read_only("info.id")
+
+    def __repr__(self) -> str:
+        return f"<{type(self).__name__} with id '{self.id}'>"

@@ -5,7 +5,7 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from functools import reduce
-from typing import TYPE_CHECKING, Any, Callable, Optional, Type
+from typing import TYPE_CHECKING, Any, Callable, List, Optional, Type, cast
 
 from ansys.api.acp.v0.base_pb2 import GetRequest, ResourcePath
 
@@ -29,11 +29,19 @@ class _exposed_grpc_property(property):
 
 
 def mark_grpc_properties(cls: Type[TreeObject]) -> Type[TreeObject]:
-    props = list(cls.GRPC_PROPERTIES)
+    props: List[str] = []
+    for base_cls in reversed(cls.__bases__):
+        if hasattr(base_cls, "GRPC_PROPERTIES"):
+            base_cls = cast("Type[TreeObject]", base_cls)
+            props.extend(base_cls.GRPC_PROPERTIES)
     for key, value in vars(cls).items():
         if isinstance(value, _exposed_grpc_property):
             props.append(key)
-    cls.GRPC_PROPERTIES = tuple(props)
+    props_unique = []
+    for name in props:
+        if name not in props_unique:
+            props_unique.append(name)
+    cls.GRPC_PROPERTIES = tuple(props_unique)
     return cls
 
 

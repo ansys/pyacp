@@ -11,7 +11,7 @@ from .._grpc_helpers.property_helper import (
     mark_grpc_properties,
 )
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
-from .base import CreatableTreeObject
+from .base import CreatableTreeObject, IdTreeObject
 from .element_set import ElementSet
 from .enums import (
     RosetteSelectionMethod,
@@ -27,7 +27,7 @@ __all__ = ["OrientedSelectionSet"]
 
 @mark_grpc_properties
 @register
-class OrientedSelectionSet(CreatableTreeObject):
+class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
     """Instantiate an Oriented Selection Set.
 
     Parameters
@@ -71,7 +71,6 @@ class OrientedSelectionSet(CreatableTreeObject):
     def _create_stub(self) -> oriented_selection_set_pb2_grpc.ObjectServiceStub:
         return oriented_selection_set_pb2_grpc.ObjectServiceStub(self._channel)
 
-    id = grpc_data_property_read_only("info.id")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
 
     element_sets = define_linked_object_list("properties.element_sets", ElementSet)
