@@ -4,16 +4,17 @@ from typing import Iterable
 
 from ansys.api.acp.v0 import material_pb2, material_pb2_grpc
 
-from .._grpc_helpers.property_helper import grpc_data_property_read_only
-from .base import CreatableTreeObject
+from .._grpc_helpers.property_helper import grpc_data_property_read_only, mark_grpc_properties
+from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
 
 __all__ = ["Material"]
 
 
+@mark_grpc_properties
 @register
-class Material(CreatableTreeObject):
+class Material(CreatableTreeObject, IdTreeObject):
     """Instantiate a Material.
 
     Parameters
@@ -33,8 +34,6 @@ class Material(CreatableTreeObject):
 
     def _create_stub(self) -> material_pb2_grpc.ObjectServiceStub:
         return material_pb2_grpc.ObjectServiceStub(self._channel)
-
-    id = grpc_data_property_read_only("info.id")
 
     locked = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)

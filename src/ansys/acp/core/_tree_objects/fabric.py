@@ -8,8 +8,9 @@ from .._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     grpc_link_property,
+    mark_grpc_properties,
 )
-from .base import CreatableTreeObject
+from .base import CreatableTreeObject, IdTreeObject
 from .enums import (
     CutoffMaterialType,
     DrapingMaterialType,
@@ -28,8 +29,9 @@ from .object_registry import register
 __all__ = ["Fabric"]
 
 
+@mark_grpc_properties
 @register
-class Fabric(CreatableTreeObject):
+class Fabric(CreatableTreeObject, IdTreeObject):
     """Instantiate a Fabric.
 
     Parameters
@@ -86,8 +88,6 @@ class Fabric(CreatableTreeObject):
 
     def _create_stub(self) -> fabric_pb2_grpc.ObjectServiceStub:
         return fabric_pb2_grpc.ObjectServiceStub(self._channel)
-
-    id = grpc_data_property_read_only("info.id")
 
     locked = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)

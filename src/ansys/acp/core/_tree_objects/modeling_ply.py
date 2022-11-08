@@ -9,8 +9,9 @@ from .._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     grpc_link_property,
+    mark_grpc_properties,
 )
-from .base import CreatableTreeObject
+from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .fabric import Fabric
 from .object_registry import register
@@ -19,8 +20,9 @@ from .oriented_selection_set import OrientedSelectionSet
 __all__ = ["ModelingPly"]
 
 
+@mark_grpc_properties
 @register
-class ModelingPly(CreatableTreeObject):
+class ModelingPly(CreatableTreeObject, IdTreeObject):
     """Instantiate an Oriented Selection Set.
 
     Parameters
@@ -59,7 +61,6 @@ class ModelingPly(CreatableTreeObject):
     def _create_stub(self) -> modeling_ply_pb2_grpc.ObjectServiceStub:
         return modeling_ply_pb2_grpc.ObjectServiceStub(self._channel)
 
-    id = grpc_data_property_read_only("info.id")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
 
     ply_material = grpc_link_property("properties.ply_material")

@@ -99,3 +99,15 @@ def test_save_analysis_model(grpc_server, model_data_dir_server, convert_temp_pa
         save_path = convert_temp_path(out_file_path)
         model.save_analysis_model(save_path)
         assert out_file_path.exists()
+
+
+def test_string_representation(grpc_server, model_data_dir_server):
+    client = Client(server=grpc_server)
+    input_file_path = model_data_dir_server / "ACP-Pre.h5"
+    model = client.import_model(name="minimal_model", path=input_file_path, format="ansys:cdb")
+
+    assert repr(model) == "<Model with name 'minimal_model'>"
+
+    model_str = str(model)
+    assert model_str.startswith("Model(")
+    assert f"name='{model.name}'" in model_str

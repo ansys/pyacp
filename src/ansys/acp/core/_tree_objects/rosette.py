@@ -4,17 +4,22 @@ from typing import Iterable, Tuple
 
 from ansys.api.acp.v0 import rosette_pb2, rosette_pb2_grpc
 
-from .._grpc_helpers.property_helper import grpc_data_property, grpc_data_property_read_only
+from .._grpc_helpers.property_helper import (
+    grpc_data_property,
+    grpc_data_property_read_only,
+    mark_grpc_properties,
+)
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
-from .base import CreatableTreeObject
+from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
 
 __all__ = ["Rosette"]
 
 
+@mark_grpc_properties
 @register
-class Rosette(CreatableTreeObject):
+class Rosette(CreatableTreeObject, IdTreeObject):
     """Instantiate a Rosette.
 
     Parameters
@@ -50,8 +55,6 @@ class Rosette(CreatableTreeObject):
 
     def _create_stub(self) -> rosette_pb2_grpc.ObjectServiceStub:
         return rosette_pb2_grpc.ObjectServiceStub(self._channel)
-
-    id = grpc_data_property_read_only("info.id")
 
     locked = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
