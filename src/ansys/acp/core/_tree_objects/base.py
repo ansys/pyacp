@@ -12,14 +12,16 @@ from grpc import Channel
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ResourcePath
 
-from .._grpc_helpers.linked_object_helpers import unlink_objects
+from .._grpc_helpers.linked_object_helpers import linked_path_fields, unlink_objects
 from .._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
 from .._grpc_helpers.protocols import CreatableResourceStub, CreateRequest, ObjectInfo, ResourceStub
+from .._utils.resource_paths import common_path
 from .._utils.resource_paths import join as _rp_join
+from .._utils.resource_paths import to_parts
 
 _T = TypeVar("_T", bound="TreeObject")
 
@@ -155,6 +157,17 @@ class CreatableTreeObject(TreeObject, ABC):
         collection_path = CollectionPath(
             value=_rp_join(parent._resource_path.value, self.COLLECTION_LABEL)
         )
+
+        # check that all linked objects are located in the same model
+        path_values = [collection_path.value] + [
+            path.value for _, _, path in linked_path_fields(self._pb_object.properties)
+        ]
+        if len(to_parts(common_path(*path_values))) < 2:
+            raise ValueError(
+                "The object to store contains links to objects which are either "
+                "unstored or located on a different Model."
+            )
+
         request = self.CREATE_REQUEST_TYPE(
             collection_path=collection_path,
             name=self._pb_object.info.name,
