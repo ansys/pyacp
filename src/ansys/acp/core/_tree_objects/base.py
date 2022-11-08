@@ -12,13 +12,13 @@ from grpc import Channel
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ResourcePath
 
+from .._grpc_helpers.linked_object_helpers import unlink_objects
 from .._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
 from .._grpc_helpers.protocols import CreatableResourceStub, CreateRequest, ObjectInfo, ResourceStub
-from .._grpc_helpers.unlink import unlink_objects
 from .._utils.resource_paths import join as _rp_join
 
 _T = TypeVar("_T", bound="TreeObject")
