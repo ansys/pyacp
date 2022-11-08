@@ -1,3 +1,5 @@
+@import "ansys-sphinx-theme.css";
+
 #breadcrumbs{
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -5,8 +7,8 @@
 
 }
 
-#breadcrumbs-spacer{
-  border-right: 1px solid rgba(0,0,0,.1);
+#breadcrumbs-spacer {
+    border-right: 10rem solid var(--pst-color-background);
 }
 
 div.related > ul {
@@ -15,4 +17,8 @@ div.related > ul {
 
 body {
     padding-top: var(--pst-header-height);
+}
+
+*, :after, :before {
+    box-sizing: border-box;
 }

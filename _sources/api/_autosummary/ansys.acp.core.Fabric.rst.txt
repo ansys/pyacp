@@ -35,6 +35,7 @@
    
       
       
+      
       Fabric.area_price
       
       
