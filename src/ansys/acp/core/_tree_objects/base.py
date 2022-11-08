@@ -111,19 +111,27 @@ class TreeObject(ABC):
             + f"channel={self._channel!r}\n)"
         )
 
+    def _short_repr(self) -> str:
+        if hasattr(self, "id"):
+            return f"<{type(self).__name__} with id '{self.id}'>"  # type: ignore
+        return f"<{type(self).__name__} with name '{self.name}'>"
+
     def __str__(self) -> str:
-        items = []
+        string_items = []
         for attr_name in self.GRPC_PROPERTIES:
             try:
                 value = getattr(self, attr_name)
+                if hasattr(value, "_short_repr"):
+                    value_repr = value._short_repr()
+                else:
+                    value_repr = repr(value)
             except:
-                value = "<unavailable>"
-            items.append((attr_name, value))
+                value_repr = "<unavailable>"
+            string_items.append(f"{attr_name}={value_repr}")
         type_name = type(self).__name__
-        if not items:
-            return type_name + "()"
-        string_items = [f"{k}={v!r}" for k, v in items]
-        if len(items) == 1:
+        if not string_items:
+            content = ""
+        elif len(string_items) == 1:
             content = string_items[0]
         else:
             content = ",\n".join(string_items)
