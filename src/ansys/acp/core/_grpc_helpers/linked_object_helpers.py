@@ -5,7 +5,7 @@ from google.protobuf.message import Message
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, ResourcePath
 
-__all__ = ("unlink_objects",)
+__all__ = ("unlink_objects", "linked_path_fields")
 
 
 def unlink_objects(pb_object: Message) -> None:
