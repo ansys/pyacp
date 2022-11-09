@@ -61,6 +61,7 @@ ansys-utilities-filetransfer = { git = "https://github.com/pyansys/ansys-utiliti
 ipyvtklink = {version = "^0.2.2", optional = true}
 sphinx-gallery = {version = "^0.11.1", optional = true}
 pypandoc = {version = "^1.10", optional = true}
+pyvista = {version = "^0.37.0", optional = true}
 
 [tool.poetry.extras]
 all = [
@@ -86,12 +87,13 @@ all = [
     "ipyvtklink",
     "ansys-mapdl-core",
     "ansys-utilities-filetransfer",
+    "pyvista",
 ]
-docs = ["Sphinx", "ansys-sphinx-theme", "sphinx-autodoc-typehints", "sphinx-copybutton", "sphinx-gallery", "numpydoc", "pypandoc", "mypy-extensions", "ansys-utilities-filetransfer"]
+docs = ["Sphinx", "ansys-sphinx-theme", "sphinx-autodoc-typehints", "sphinx-copybutton", "sphinx-gallery", "numpydoc", "pypandoc", "mypy-extensions", "ansys-utilities-filetransfer", "pyvista"]
 pre-commit = ["pre-commit", "mypy", "mypy-extensions", "types-protobuf", "pytest", "pytest-cases", "black", "ansys-utilities-filetransfer",]
 test = ["pytest", "pytest-cov", "pytest-cases"]
 build = ["twine"]
-examples = ["ipykernel", "jupyter", "notebook", "ipyvtklink", "ansys-mapdl-core", "ansys-utilities-filetransfer"]
+examples = ["ipykernel", "jupyter", "notebook", "ipyvtklink", "ansys-mapdl-core", "ansys-utilities-filetransfer", "pyvista"]
 
 [tool.black]
 line-length = 100
@@ -116,5 +118,6 @@ mypy_path = "$MYPY_CONFIG_FILE_DIR/src:$MYPY_CONFIG_FILE_DIR/tests"
 module = [
     "grpc.*",
     "grpc_health.*",
+    "ansys.mapdl.core",
 ]
 ignore_missing_imports = true
