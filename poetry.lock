@@ -2444,13 +2444,13 @@ all = ["Sphinx", "ansys-sphinx-theme", "sphinx-autodoc-typehints", "sphinx-copyb
 build = ["twine"]
 docs = ["Sphinx", "ansys-sphinx-theme", "sphinx-autodoc-typehints", "sphinx-copybutton", "sphinx-gallery", "numpydoc", "pypandoc", "mypy-extensions", "ansys-utilities-filetransfer"]
 examples = ["ipykernel", "jupyter", "notebook", "ipyvtklink", "ansys-mapdl-core", "ansys-utilities-filetransfer"]
-pre-commit = ["pre-commit", "mypy", "mypy-extensions", "types-protobuf", "pytest", "pytest-cases", "black"]
+pre-commit = ["pre-commit", "mypy", "mypy-extensions", "types-protobuf", "pytest", "pytest-cases", "black", "ansys-utilities-filetransfer"]
 test = ["pytest", "pytest-cov", "pytest-cases"]
 
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7.2,<3.11" # Plan on supporting only the currently supported versions of Python
-content-hash = "5f151702ecfd765315e3f8e60a3ff32359b4bd50271e9b9251c3131fc66564bb"
+content-hash = "6b2c10ddb88cfc6be03689abffaaa484326bb5cfd6ccb7aaa9136091fb0aa167"
 
 [metadata.files]
 aiohttp = [

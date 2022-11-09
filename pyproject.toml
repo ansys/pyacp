@@ -88,7 +88,7 @@ all = [
     "ansys-utilities-filetransfer",
 ]
 docs = ["Sphinx", "ansys-sphinx-theme", "sphinx-autodoc-typehints", "sphinx-copybutton", "sphinx-gallery", "numpydoc", "pypandoc", "mypy-extensions", "ansys-utilities-filetransfer"]
-pre-commit = ["pre-commit", "mypy", "mypy-extensions", "types-protobuf", "pytest", "pytest-cases", "black"]
+pre-commit = ["pre-commit", "mypy", "mypy-extensions", "types-protobuf", "pytest", "pytest-cases", "black", "ansys-utilities-filetransfer",]
 test = ["pytest", "pytest-cov", "pytest-cases"]
 build = ["twine"]
 examples = ["ipykernel", "jupyter", "notebook", "ipyvtklink", "ansys-mapdl-core", "ansys-utilities-filetransfer"]
