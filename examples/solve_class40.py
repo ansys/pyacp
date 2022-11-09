@@ -213,10 +213,10 @@ filetransfer_client.download_file(CDB_FILENAME_OUT, str(WORKING_DIR / CDB_FILENA
 # ------------------
 
 #%%
-from ansys.mapdl.core import launch_mapdl
+from ansys.mapdl.core import Mapdl
 
 #%%
-mapdl = launch_mapdl(additional_switches="-smp")
+mapdl = Mapdl(ip="0.0.0.0", port=50557)
 
 #%%
 mapdl.input(str(WORKING_DIR / CDB_FILENAME_OUT))

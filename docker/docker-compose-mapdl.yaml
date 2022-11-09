@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  mapdl:
+    restart: unless-stopped
+    image: ${IMAGE_NAME_MAPDL:-ghcr.io/pyansys/mapdl:latest}
+    ports:
+    - "${PORT_MAPDL:-50557}:50052"
+    environment:
+      - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
