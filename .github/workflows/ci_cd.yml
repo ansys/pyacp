@@ -40,13 +40,14 @@ jobs:
           restore-keys: |
             pip-${{ runner.os }}
 
-      - name: Install pre-commit requirements
+      # pre-commit needs all dev dependencies, since it also checks the test and example files
+      - name: Install library, with all optional groups
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           pip install poetry
-          poetry install -E pre-commit
+          poetry install --with docs,test,precommit
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
@@ -119,13 +120,13 @@ jobs:
           restore-keys: |
             pip-${{ runner.os }}-${{ matrix.python-version }}
 
-      - name: Install library, with test extra
+      - name: Install library, with test group
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           pip install poetry
-          poetry install -E test
+          poetry install --with test
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
@@ -189,13 +190,13 @@ jobs:
           sudo apt update
           sudo apt-get install pandoc
 
-      - name: Install library, with docs extra
+      - name: Install library, with docs group
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           pip install poetry
-          poetry install -E docs
+          poetry install --with docs
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"

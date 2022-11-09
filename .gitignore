@@ -63,3 +63,6 @@ dmypy.json
 
 # Pycharm config
 .idea
+
+# Local poetry config
+poetry.toml
