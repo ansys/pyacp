@@ -44,6 +44,7 @@ jobs:
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           pip install poetry
           poetry install -E pre-commit
 
@@ -121,6 +122,8 @@ jobs:
       - name: Install library, with test extra
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           pip install poetry
           poetry install -E test
 
@@ -170,6 +173,7 @@ jobs:
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           pip install poetry
           poetry install -E docs
 
