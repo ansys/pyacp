@@ -7,3 +7,4 @@ services:
     - "${PORT_MAPDL:-50557}:50052"
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
+      - ANSYS_LOCK="OFF"
