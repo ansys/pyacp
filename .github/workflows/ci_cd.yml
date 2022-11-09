@@ -197,12 +197,15 @@ jobs:
 
       - name: Launch PyACP server via docker-compose
         run: |
+          docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml down -v
           docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
 
       - name: Build HTML
         run: |
+          docker exec -t docker_acp-grpc-server_1 ls -la || true
+          docker exec -t docker_ansys-utilities-filetransfer_1 ls -la || true
           docker ps -a
           poetry run make -C doc html SPHINXOPTS="-W --keep-going"
           touch doc/build/html/.nojekyll

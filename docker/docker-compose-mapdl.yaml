@@ -3,6 +3,7 @@ services:
   mapdl:
     restart: unless-stopped
     image: ${IMAGE_NAME_MAPDL:-ghcr.io/pyansys/mapdl:latest}
+    shm_size: '4gb'
     ports:
     - "${PORT_MAPDL:-50557}:50052"
     environment:
