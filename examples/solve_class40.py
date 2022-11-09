@@ -29,10 +29,10 @@ from ansys.utilities.filetransfer import Client as FileTransferClient
 #%%
 # Instantiate clients: The ``filetransfer_client`` will be used to up- and download
 # files to the server. The ``pyacp_client`` connects to the main PyACP server.
-filetransfer_client = FileTransferClient(grpc.insecure_channel("localhost:50556"))
+filetransfer_client = FileTransferClient(grpc.insecure_channel("0.0.0.0:50556"))
 
-pyacp_server = pyacp.RemoteAcpServer(hostname="localhost", port=50555)
-pyacp.wait_for_server(pyacp_server, timeout=10)  # ensure the server is running
+pyacp_server = pyacp.RemoteAcpServer(hostname="0.0.0.0", port=50555)
+pyacp.wait_for_server(pyacp_server, timeout=30)  # ensure the server is running
 pyacp_client = pyacp.Client(pyacp_server)
 
 #%%

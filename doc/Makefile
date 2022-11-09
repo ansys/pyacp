@@ -17,11 +17,11 @@ help:
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
-	REPO_ROOT=`realpath $(REPO_ROOT)` @$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	@REPO_ROOT=`realpath $(REPO_ROOT)` $(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 # customized to build the pdf rather than using latexpdf due to various issues
 pdf:
-	REPO_ROOT=`realpath $(REPO_ROOT)` @$(SPHINXBUILD) -M latex "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	@REPO_ROOT=`realpath $(REPO_ROOT)` $(SPHINXBUILD) -M latex "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	cd $(BUILDDIR)/latex && latexmk -r latexmkrc -pdf *.tex -interaction=nonstopmode || true
 	(test -f $(BUILDDIR)/latex/ansys-acp-core.pdf && echo pdf exists) || exit 1
 

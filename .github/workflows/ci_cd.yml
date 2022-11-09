@@ -169,6 +169,26 @@ jobs:
           restore-keys: |
             pip-${{ runner.os }}
 
+      - name: Login in Github Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: pyansys-ci-bot
+          password: ${{ secrets.PYANSYS_CI_BOT_PACKAGE_TOKEN }}
+
+      # Launch the server early, s.t. it is up and running by the time
+      # we start building the documentation.
+      - name: Launch PyACP server via docker-compose
+        run: |
+          docker-compose -f ./docker/docker-compose.yaml up -d
+        env:
+          ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
+
+      - name: Install OS packages
+        run: |
+          sudo apt update
+          sudo apt-get install pandoc
+
       - name: Install library, with docs extra
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
@@ -182,21 +202,9 @@ jobs:
         run: |
           poetry run pip install --force-reinstall git+https://github.com/ansys/ansys-api-acp-private.git@${{ github.event.inputs.api_branch }}
 
-      - name: Login in Github Container registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: pyansys-ci-bot
-          password: ${{ secrets.PYANSYS_CI_BOT_PACKAGE_TOKEN }}
-
-      - name: Launch PyACP server via docker-compose
-        run: |
-          docker-compose -f ./docker/docker-compose.yaml up -d
-        env:
-          ANSYSLMD_LICENSE_FILE: ${{ secrets.LICENSE_SERVER }}
-
       - name: Build HTML
         run: |
+          docker ps -a
           poetry run make -C doc html SPHINXOPTS="-W --keep-going"
           touch doc/build/html/.nojekyll
           echo "dev.acp.docs.pyansys.com" >> doc/build/html/CNAME
