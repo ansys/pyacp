@@ -2,14 +2,14 @@ version: '3.8'
 services:
   acp-grpc-server:
     restart: unless-stopped
-    image: ${IMAGE_NAME_PYACP:-ghcr.io/pyansys/pyacp-private:latest}
+    image: ${IMAGE_NAME_PYACP:-ghcr.io/pyansys/pyacp-private:workdir-volume}
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
     ports:
       - "${PORT_PYACP:-50555}:50051"
     working_dir: /home/container/workdir
     volumes:
-      - "acp_data:/home/container/workdir"
+      - "acp_data:/home/container/workdir/"
     user: "1000:1000"
   ansys-utilities-filetransfer:
     restart: unless-stopped
@@ -18,7 +18,7 @@ services:
       - "${PORT_FILETRANSFER:-50556}:50000"
     working_dir: /home/container/workdir
     volumes:
-      - "acp_data:/home/container/workdir"
+      - "acp_data:/home/container/workdir/"
     user: "1000:1000"
 
 volumes:

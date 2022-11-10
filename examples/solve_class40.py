@@ -16,22 +16,27 @@ Define a Composite Lay-up with PyACP and solve the resulting model with PyMAPDL.
 # Import standard library and third-party dependencies
 import os
 import pathlib
+import sys
 import tempfile
 
 import grpc
 
-import ansys.acp.core as pyacp
-
 #%%
 # Import Ansys libraries
+import ansys.acp.core as pyacp
 from ansys.utilities.filetransfer import Client as FileTransferClient
 
 #%%
 # Instantiate clients: The ``filetransfer_client`` will be used to up- and download
 # files to the server. The ``pyacp_client`` connects to the main PyACP server.
-filetransfer_client = FileTransferClient(grpc.insecure_channel("0.0.0.0:50556"))
+if sys.platform == "win32":
+    local_hostname = "localhost"
+else:
+    local_hostname = "0.0.0.0"
 
-pyacp_server = pyacp.RemoteAcpServer(hostname="0.0.0.0", port=50555)
+filetransfer_client = FileTransferClient(grpc.insecure_channel(f"{local_hostname}:50556"))
+
+pyacp_server = pyacp.RemoteAcpServer(hostname=local_hostname, port=50555)
 pyacp.wait_for_server(pyacp_server, timeout=30)  # ensure the server is running
 pyacp_client = pyacp.Client(pyacp_server)
 
@@ -216,7 +221,7 @@ filetransfer_client.download_file(CDB_FILENAME_OUT, str(WORKING_DIR / CDB_FILENA
 from ansys.mapdl.core import Mapdl
 
 #%%
-mapdl = Mapdl(ip="0.0.0.0", port=50557, timeout=30)
+mapdl = Mapdl(ip=local_hostname, port=50557, timeout=30)
 
 #%%
 mapdl.input(str(WORKING_DIR / CDB_FILENAME_OUT))
