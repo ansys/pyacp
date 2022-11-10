@@ -180,7 +180,7 @@ jobs:
       - name: Install OS packages
         run: |
           sudo apt update
-          sudo apt-get install pandoc
+          sudo apt-get install pandoc xvfb
 
       - name: Install library, with docs group
         run: |
@@ -197,17 +197,13 @@ jobs:
 
       - name: Launch PyACP server via docker-compose
         run: |
-          docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml down -v
           docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
 
       - name: Build HTML
         run: |
-          docker exec -t docker_acp-grpc-server_1 ls -la || true
-          docker exec -t docker_ansys-utilities-filetransfer_1 ls -la || true
-          docker ps -a
-          poetry run make -C doc html SPHINXOPTS="-W --keep-going" || docker logs docker_mapdl_1 || docker ps -a
+          xvfb-run poetry run make -C doc html SPHINXOPTS="-W --keep-going"
           touch doc/build/html/.nojekyll
           echo "dev.acp.docs.pyansys.com" >> doc/build/html/CNAME
 
@@ -233,8 +229,7 @@ jobs:
       - name: Install OS packages for PDF build
         run: |
           sudo apt update
-          sudo apt install build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks xvfb
-
+          sudo apt install build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks
       - name: Restart PyACP server via docker-compose
         run: |
           docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml up -d
