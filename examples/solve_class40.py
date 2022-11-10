@@ -149,11 +149,10 @@ def add_ply(mg, name, ply_material, angle, oss):
     )
 
 
-angles = [-90.0, -60.0, -45.0 - 30.0, 0.0, 0.0, 30.0, 45.0, 60.0, 90.0]
-
 #%%
 # Define plies for the HULL, DECK and BULKHEAD
 
+angles = [-90.0, -60.0, -45.0 - 30.0, 0.0, 0.0, 30.0, 45.0, 60.0, 90.0]
 for mg_name in ["hull", "deck", "bulkhead"]:
     mg = model.create_modeling_group(name=mg_name)
     oss_list = [model.oriented_selection_sets["oss_" + mg_name]]
@@ -212,23 +211,27 @@ filetransfer_client.download_file(CDB_FILENAME_OUT, str(WORKING_DIR / CDB_FILENA
 # ------------------
 
 #%%
+# Import PyMAPDL and connect to its server
 from ansys.mapdl.core import Mapdl
 
-#%%
 mapdl = Mapdl(ip="localhost", port=50557, timeout=30)
 
 #%%
+# Load the CDB file into PyMAPDL
 mapdl.input(str(WORKING_DIR / CDB_FILENAME_OUT))
 
 #%%
+# Solve the model
 mapdl.allsel()
 mapdl.slashsolu()
 mapdl.solve()
 
 #%%
+# Post-processing: show displacements
 mapdl.post1()
 mapdl.set("last")
 mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
 #%%
+# Post-processing: show show stresses
 mapdl.post_processing.plot_element_stress("X")
