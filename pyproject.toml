@@ -40,21 +40,16 @@ grpcio-health-checking = "^1.43"
 typing-extensions = { version = "^4.0", python = "<3.8" }
 
 
-[tool.poetry.group.precommit]
+[tool.poetry.group.dev]
 optional = true
 
-[tool.poetry.group.precommit.dependencies]
+[tool.poetry.group.dev.dependencies]
 pre-commit = "^2.17.0"
 black = "22.3.0"
 mypy = "^0.931"
 mypy-extensions = "^0.4.3"
 types-protobuf = "^3.19.12"
 
-
-[tool.poetry.group.docs]
-optional = true
-
-[tool.poetry.group.docs.dependencies]
 Sphinx = "^5.0"
 sphinx-copybutton = "^0.4"
 sphinx-autodoc-typehints = "^1.19"

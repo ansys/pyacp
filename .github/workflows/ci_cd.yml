@@ -47,7 +47,7 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           pip install poetry
-          poetry install --with docs,test,precommit
+          poetry install --with dev,test
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
@@ -182,13 +182,13 @@ jobs:
           sudo apt update
           sudo apt-get install pandoc xvfb
 
-      - name: Install library, with docs group
+      - name: Install library, with dev group
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           pip install poetry
-          poetry install --with docs
+          poetry install --with dev
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"

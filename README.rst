@@ -184,7 +184,7 @@ You will need to follow these steps:
 
     .. code:: bash
 
-        poetry install --with docs,test,precommit
+        poetry install --with dev,test
 
    This step installs pyACP in an editable mode (no build step is needed, no re-install when changing the code).
 
