@@ -207,7 +207,7 @@ jobs:
           docker exec -t docker_acp-grpc-server_1 ls -la || true
           docker exec -t docker_ansys-utilities-filetransfer_1 ls -la || true
           docker ps -a
-          poetry run make -C doc html SPHINXOPTS="-W --keep-going"
+          poetry run make -C doc html SPHINXOPTS="-W --keep-going" || docker logs docker_mapdl_1 || docker ps -a
           touch doc/build/html/.nojekyll
           echo "dev.acp.docs.pyansys.com" >> doc/build/html/CNAME
 
