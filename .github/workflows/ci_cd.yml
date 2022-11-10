@@ -211,6 +211,10 @@ jobs:
           touch doc/build/html/.nojekyll
           echo "dev.acp.docs.pyansys.com" >> doc/build/html/CNAME
 
+      - name: Stop and clean up PyACP server
+        run: |
+          docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml down -v
+
       - name: Upload HTML Documentation
         uses: actions/upload-artifact@v2
         with:
@@ -230,6 +234,12 @@ jobs:
         run: |
           sudo apt update
           sudo apt install build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks
+
+      - name: Restart PyACP server via docker-compose
+        run: |
+          docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml up -d
+        env:
+          ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
 
       - name: Build PDF Documentation
         run: poetry run make -C doc pdf
