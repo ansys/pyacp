@@ -12,6 +12,7 @@ from grpc import Channel
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ResourcePath
 
+from .._grpc_helpers.linked_object_helpers import unlink_objects
 from .._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -41,10 +42,20 @@ class TreeObject(ABC):
         self._pb_object: ObjectInfo = self.OBJECT_INFO_TYPE()
         self.name = name
 
-    def clone(self: _T) -> _T:
-        """Create a new unstored object with the same properties."""
+    def clone(self: _T, *, unlink: bool = False) -> _T:
+        """Create a new unstored object with the same properties.
+
+        Parameters
+        ----------
+        unlink:
+            If `True`, remove all links to other objects. This can be
+            used to store the object to another model, where the links
+            would be invalid.
+        """
         new_object_info = self.OBJECT_INFO_TYPE()
         new_object_info.properties.CopyFrom(self._pb_object.properties)
+        if unlink:
+            unlink_objects(new_object_info.properties)
         new_object_info.info.name = self._pb_object.info.name
         return type(self)._from_object_info(object_info=new_object_info)
 
