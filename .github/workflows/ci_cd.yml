@@ -233,7 +233,7 @@ jobs:
       - name: Install OS packages for PDF build
         run: |
           sudo apt update
-          sudo apt install build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks
+          sudo apt install build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks xvfb
 
       - name: Restart PyACP server via docker-compose
         run: |
@@ -242,7 +242,7 @@ jobs:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
 
       - name: Build PDF Documentation
-        run: poetry run make -C doc pdf
+        run: xvfb-run poetry run make -C doc pdf
 
       - name: Upload PDF Documentation
         uses: actions/upload-artifact@v2
