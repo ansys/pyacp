@@ -1,10 +1,10 @@
 """Sphinx documentation configuration file."""
 from datetime import datetime
 
+import pyvista
 from sphinx.builders.latex import LaTeXBuilder
 
 LaTeXBuilder.supported_image_types = ["image/png", "image/pdf", "image/svg+xml"]
-
 from ansys_sphinx_theme import (
     ansys_favicon,
     ansys_logo_white,
@@ -13,8 +13,18 @@ from ansys_sphinx_theme import (
     pyansys_logo_black,
     watermark,
 )
+from sphinx_gallery.sorting import FileNameSortKey
 
 from ansys.acp.core import __version__
+
+# Manage errors
+pyvista.set_error_output_file("errors.txt")
+
+# Ensure that offscreen rendering is used for docs generation
+pyvista.OFF_SCREEN = True
+
+# necessary when building the sphinx gallery
+pyvista.BUILDING_GALLERY = True
 
 # Project information
 project = "ansys-acp-core"
@@ -46,6 +56,7 @@ extensions = [
     "numpydoc",
     "sphinx_copybutton",
     "ansys_sphinx_theme",
+    "sphinx_gallery.gen_gallery",
 ]
 
 # Intersphinx mapping
@@ -83,6 +94,29 @@ numpydoc_validation_checks = {
     "SS05",  # Summary must start with infinitive verb, not third person
     "RT02",  # The first line of the Returns section should contain only the
     # type, unless multiple values are being returned"
+}
+
+# sphinx gallery options
+sphinx_gallery_conf = {
+    # convert rst to md for ipynb
+    "pypandoc": True,
+    # path to your examples scripts
+    "examples_dirs": ["../../examples/"],
+    # path where to save gallery generated examples
+    "gallery_dirs": ["examples/gallery_examples"],
+    # Pattern to search for example files
+    "filename_pattern": r"\.py",
+    # Remove the "Download all examples" button from the top level gallery
+    "download_all_examples": False,
+    # Sort gallery example by file name instead of number of lines (default)
+    "within_subsection_order": FileNameSortKey,
+    # directory where function granular galleries are stored
+    "backreferences_dir": None,
+    # Modules for which function level galleries are created.  In
+    "doc_module": "ansys-acp-core",
+    "image_scrapers": ("pyvista", "matplotlib"),
+    "ignore_pattern": r"__init__\.py",
+    "thumbnail_size": (350, 350),
 }
 
 # Favicon

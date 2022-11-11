@@ -153,14 +153,6 @@ Model from an existing file:
     >>> model.name
     'ACP Model'
 
-Full Example
-^^^^^^^^^^^^
-
-.. TODO: Move this into a separate tab, and show the example directly in the docs.
-
-See the [`examples` directory](https://github.com/pyansys/pyacp-private/blob/main/examples/) for full
-examples of running PyACP.
-
 Development Setup
 -----------------
 
@@ -192,7 +184,7 @@ You will need to follow these steps:
 
     .. code:: bash
 
-        poetry install --extras all
+        poetry install --with dev,test
 
    This step installs pyACP in an editable mode (no build step is needed, no re-install when changing the code).
 
@@ -242,7 +234,13 @@ need to create a commit without running the hooks, you can skip them with ``git 
 Documentation
 ^^^^^^^^^^^^^
 
-The documentation can be built locally using `Sphinx`_.
+To build the documentation, a PyACP server needs to be running:
+
+.. code:: bash
+
+    docker-compose -f docker/docker-compose.yaml up -d
+
+It can then be built using `Sphinx`_.
 
 On Linux & MacOS:
 

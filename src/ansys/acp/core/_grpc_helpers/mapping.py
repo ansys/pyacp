@@ -137,17 +137,13 @@ ParentT = TypeVar("ParentT", bound=TreeObject)
 
 def define_mapping(
     object_class: Type[ValueT], stub_class: Type[ResourceStub]
-) -> Tuple[
-    Callable[[Arg(ParentT, "self"), KwArg(Any)], ValueT],
-    Callable[[Arg(ParentT, "self")], Mapping[ValueT]],
-]:
+) -> Tuple[Callable[[Arg(ParentT, "self"), KwArg(Any)], ValueT], property]:
     @wraps(object_class.__init__)
     def create_method(self: ParentT, **kwargs: Any) -> ValueT:
         obj = object_class(**kwargs)
         obj.store(parent=self)
         return obj
 
-    @property  # type: ignore
     def collection_property(self: ParentT) -> Mapping[ValueT]:
         return Mapping(
             channel=self._channel,
@@ -158,4 +154,4 @@ def define_mapping(
             stub=stub_class(channel=self._channel),
         )
 
-    return create_method, collection_property
+    return create_method, property(collection_property)

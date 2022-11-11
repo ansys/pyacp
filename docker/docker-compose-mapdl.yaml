@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  mapdl:
+    restart: unless-stopped
+    image: ${IMAGE_NAME_MAPDL:-ghcr.io/pyansys/mapdl:latest}
+    # By default, run on a single core only. Otherwise the command may
+    # fail in restricted environments.
+    # For example, the default Github Actions runner only has two cores.
+    command: ${MAPDL_CMD:--smp -np 1}
+    shm_size: '4gb'
+    ports:
+    - "${PORT_MAPDL:-50557}:50052"
+    environment:
+      - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
+      - ANSYS_LOCK="OFF"

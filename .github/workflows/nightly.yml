@@ -28,8 +28,11 @@ jobs:
           pip install poetry
           poetry build --format wheel
 
-      - name: Install library, with test extra
-        run: pip install $(echo dist/*.whl)[test]
+      - name: Install library from wheel, test dependencies from poetry.lock
+        run: |
+          poetry config virtualenvs.create false --local
+          pip install $(echo dist/*.whl)
+          poetry install --only test
 
       - name: Login in Github Container registry
         uses: docker/login-action@v1

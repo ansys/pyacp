@@ -34,7 +34,7 @@ repos:
     language: python
     types: [python]
     require_serial: true
-    exclude: "^(doc/)|(tests/)"
+    exclude: "^(doc/)|(tests/)|^(examples/)"
     args: ["--strict", "--namespace-packages", "--explicit-package-bases"]
   - id: mypy-tests
     name: "mypy: lenient checks on tests"
@@ -42,5 +42,5 @@ repos:
     language: python
     types: [python]
     require_serial: true
-    files: "^(tests/)"
+    files: "^(tests/)|^(examples/)"
     args: ["--namespace-packages", "--explicit-package-bases"]

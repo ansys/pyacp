@@ -40,13 +40,14 @@ jobs:
           restore-keys: |
             pip-${{ runner.os }}
 
-      - name: Install pre-commit requirements
+      # pre-commit needs all dev dependencies, since it also checks the test and example files
+      - name: Install library, with all optional groups
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           pip install poetry
-          poetry install -E pre-commit
+          poetry install --with dev,test
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
@@ -119,13 +120,13 @@ jobs:
           restore-keys: |
             pip-${{ runner.os }}-${{ matrix.python-version }}
 
-      - name: Install library, with test extra
+      - name: Install library, with test group
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           pip install poetry
-          poetry install -E test
+          poetry install --with test
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
@@ -169,24 +170,46 @@ jobs:
           restore-keys: |
             pip-${{ runner.os }}
 
-      - name: Install library, with docs extra
+      - name: Login in Github Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: pyansys-ci-bot
+          password: ${{ secrets.PYANSYS_CI_BOT_PACKAGE_TOKEN }}
+
+      - name: Install OS packages
+        run: |
+          sudo apt update
+          sudo apt-get install pandoc xvfb
+
+      - name: Install library, with dev group
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           pip install poetry
-          poetry install -E docs
+          poetry install --with dev
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
         run: |
           poetry run pip install --force-reinstall git+https://github.com/ansys/ansys-api-acp-private.git@${{ github.event.inputs.api_branch }}
 
+      - name: Launch PyACP server via docker-compose
+        run: |
+          docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml up -d
+        env:
+          ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
+
       - name: Build HTML
         run: |
-          poetry run make -C doc html SPHINXOPTS="-W --keep-going"
+          xvfb-run poetry run make -C doc html SPHINXOPTS="-W --keep-going"
           touch doc/build/html/.nojekyll
           echo "dev.acp.docs.pyansys.com" >> doc/build/html/CNAME
+
+      - name: Stop and clean up PyACP server
+        run: |
+          docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml down -v
 
       - name: Upload HTML Documentation
         uses: actions/upload-artifact@v2
@@ -207,9 +230,14 @@ jobs:
         run: |
           sudo apt update
           sudo apt install build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks
+      - name: Restart PyACP server via docker-compose
+        run: |
+          docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml up -d
+        env:
+          ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
 
       - name: Build PDF Documentation
-        run: poetry run make -C doc pdf
+        run: xvfb-run poetry run make -C doc pdf
 
       - name: Upload PDF Documentation
         uses: actions/upload-artifact@v2
