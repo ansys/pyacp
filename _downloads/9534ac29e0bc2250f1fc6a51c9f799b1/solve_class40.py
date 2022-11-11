@@ -52,7 +52,7 @@ filetransfer_client.upload_file(
 
 #%%
 # Load CDB file into PyACP
-model = pyacp_client.import_model(path="class40.cdb", format="ansys:cdb")
+model = pyacp_client.import_model(path=CDB_FILENAME, format="ansys:cdb")
 model
 
 #%%
