@@ -493,7 +493,7 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a> <span class="o">/</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME_OUT</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 88888888  VERSION=LINUX x64     13:01:49  NOV 11, 2022 CP=      0.426\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.523\n\n\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 88888888  VERSION=LINUX x64     13:04:09  NOV 11, 2022 CP=      0.428\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.526\n\n\n&#39;
 </pre></div>
 </div>
 <p>Solve the model</p>
@@ -504,7 +504,7 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       0.536   TIME= 13:01:49
+ *** NOTE ***                            CP =       0.538   TIME= 13:04:10
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -529,7 +529,7 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
  Ansys Mechanical Enterprise
- 88888888  VERSION=LINUX x64     13:01:49  NOV 11, 2022 CP=      0.576
+ 88888888  VERSION=LINUX x64     13:04:10  NOV 11, 2022 CP=      0.578
 
 
 
@@ -545,14 +545,14 @@ files to the server. The <code class="docutils literal notranslate"><span class=
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       0.578   TIME= 13:01:49
+ *** NOTE ***                            CP =       0.580   TIME= 13:04:10
  Poisson&#39;s ratio PR input has been converted to NU input.
 
- *** NOTE ***                            CP =       0.585   TIME= 13:01:49
+ *** NOTE ***                            CP =       0.587   TIME= 13:04:10
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       0.586   TIME= 13:01:49
+ *** NOTE ***                            CP =       0.588   TIME= 13:04:10
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -570,7 +570,7 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       0.677   TIME= 13:01:49
+ *** NOTE ***                            CP =       0.677   TIME= 13:04:10
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -619,10 +619,10 @@ files to the server. The <code class="docutils literal notranslate"><span class=
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      3.159   0.000795
-        2        88  BEAM188       0.005   0.000060
-        3        22  SHELL181      0.005   0.000246
- Time at end of element matrix formulation CP = 3.87547803.
+        1      3973  SHELL181      3.076   0.000774
+        2        88  BEAM188       0.004   0.000047
+        3        22  SHELL181      0.005   0.000244
+ Time at end of element matrix formulation CP = 3.79081488.
 
  SPARSE MATRIX DIRECT SOLVER.
   Number of equations =       24096,    Maximum wavefront =     66
@@ -630,7 +630,7 @@ files to the server. The <code class="docutils literal notranslate"><span class=
   Memory required for in-core solution     =    58.542 MB
   Memory required for out-of-core solution =    24.642 MB
 
- *** NOTE ***                            CP =       3.958   TIME= 13:01:53
+ *** NOTE ***                            CP =       3.872   TIME= 13:04:13
  The Sparse Matrix Solver is currently running in the in-core memory
  mode.  This memory mode uses the most amount of memory in order to
  avoid using the hard drive as much as possible, which most often
@@ -645,9 +645,9 @@ files to the server. The <code class="docutils literal notranslate"><span class=
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      7.039   0.001772
-        2        88  BEAM188       0.010   0.000117
-        3        22  SHELL181      0.010   0.000446
+        1      3973  SHELL181      6.807   0.001713
+        2        88  BEAM188       0.009   0.000107
+        3        22  SHELL181      0.010   0.000434
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
@@ -675,7 +675,7 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">plot_element_stress</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_002.png" srcset="../../_images/sphx_glr_solve_class40_002.png" alt="solve class40" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  15.683 seconds)</p>
+<img src="../../_images/sphx_glr_solve_class40_002.png" srcset="../../_images/sphx_glr_solve_class40_002.png" alt="solve class40" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  14.835 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-solve-class40-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/9534ac29e0bc2250f1fc6a51c9f799b1/solve_class40.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">solve_class40.py</span></code></a></p>
