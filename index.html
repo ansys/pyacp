@@ -28,6 +28,10 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css" />
 
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
@@ -46,7 +50,7 @@
     <link rel="shortcut icon" href="_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API Reference" href="api/index.html" />
+    <link rel="next" title="Examples" href="examples/index.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="en">
   </head>
@@ -95,6 +99,12 @@
     <li class="toctree-l1 current active nav-item">
  <a class="current reference internal nav-link" href="#">
   PyACP
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="examples/index.html">
+  Examples
  </a>
 </li>
 
@@ -237,11 +247,6 @@
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#basic-usage">
        Basic Usage
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#full-example">
-       Full Example
       </a>
      </li>
     </ul>
@@ -394,11 +399,6 @@ Model from an existing file:</p>
 </pre></div>
 </div>
 </section>
-<section id="full-example">
-<h4>Full Example<a class="headerlink" href="#full-example" title="Permalink to this heading">#</a></h4>
-<p>See the [<cite>examples</cite> directory](<a class="reference external" href="https://github.com/pyansys/pyacp-private/blob/main/examples/">https://github.com/pyansys/pyacp-private/blob/main/examples/</a>) for full
-examples of running PyACP.</p>
-</section>
 </section>
 <section id="development-setup">
 <h3>Development Setup<a class="headerlink" href="#development-setup" title="Permalink to this heading">#</a></h3>
@@ -428,7 +428,7 @@ pipx install poetry
 <li><p>Install the project and all its development dependencies using poetry. This also takes care of
 creating a new virtual environment:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry install --extras all
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry install --with dev,test
 </pre></div>
 </div>
 </div></blockquote>
@@ -465,7 +465,11 @@ need to create a commit without running the hooks, you can skip them with <code 
 </section>
 <section id="id2">
 <h4>Documentation<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
-<p>The documentation can be built locally using <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>.</p>
+<p>To build the documentation, a PyACP server needs to be running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose -f docker/docker-compose.yaml up -d
+</pre></div>
+</div>
+<p>It can then be built using <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>.</p>
 <p>On Linux &amp; MacOS:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make -C doc html
 </pre></div>
