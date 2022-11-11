@@ -222,6 +222,14 @@
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#launching-acp-with-docker-compose">
+       Launching ACP with
+       <cite>
+        docker-compose
+       </cite>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#launching-acp-in-a-docker-container">
        Launching ACP in a Docker container
       </a>
@@ -300,7 +308,7 @@
 <h1>PyACP Documentation 0.0.dev0<a class="headerlink" href="#pyacp-documentation-version" title="Permalink to this heading">#</a></h1>
 <section id="pyacp">
 <h2>PyACP<a class="headerlink" href="#pyacp" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://docs.pyansys.com/"><img alt="PyAnsys" src="https://img.shields.io/badge/Py-Ansys-ffc107.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAABDklEQVQ4jWNgoDfg5mD8vE7q/3bpVyskbW0sMRUwofHD7Dh5OBkZGBgW7/3W2tZpa2tLQEOyOzeEsfumlK2tbVpaGj4N6jIs1lpsDAwMJ278sveMY2BgCA0NFRISwqkhyQ1q/Nyd3zg4OBgYGNjZ2ePi4rB5loGBhZnhxTLJ/9ulv26Q4uVk1NXV/f///////69du4Zdg78lx//t0v+3S88rFISInD59GqIH2esIJ8G9O2/XVwhjzpw5EAam1xkkBJn/bJX+v1365hxxuCAfH9+3b9/+////48cPuNehNsS7cDEzMTAwMMzb+Q2u4dOnT2vWrMHu9ZtzxP9vl/69RVpCkBlZ3N7enoDXBwEAAA+YYitOilMVAAAAAElFTkSuQmCC" /></a> <a class="reference external" href="https://pypi.org/project/ansys-acp-core"><img alt="Python" src="https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue.svg" /></a> <a class="reference external" href="https://pypi.org/project/ansys-acp-core"><img alt="PyPI" src="https://img.shields.io/pypi/v/pyacp.svg?logo=python&amp;logoColor=white" /></a> <a class="reference external" href="https://github.com/pyansys/pyacp-private/actions/workflows/ci_cd.yml"><img alt="GH-CI" src="https://github.com/pyansys/pyacp-private/actions/workflows/ci_cd.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/pyansys/pyacp-private"><img alt="Codecov" src="https://codecov.io/gh/pyansys/pyacp-private/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/MIT"><img alt="MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a> <a class="reference external" href="https://github.com/psf/black"><img alt="Black" src="https://img.shields.io/badge/code%20style-black-000000.svg?style=flat" /></a></p>
+<p><a class="reference external" href="https://docs.pyansys.com/"><img alt="PyAnsys" src="https://img.shields.io/badge/Py-Ansys-ffc107.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAABDklEQVQ4jWNgoDfg5mD8vE7q/3bpVyskbW0sMRUwofHD7Dh5OBkZGBgW7/3W2tZpa2tLQEOyOzeEsfumlK2tbVpaGj4N6jIs1lpsDAwMJ278sveMY2BgCA0NFRISwqkhyQ1q/Nyd3zg4OBgYGNjZ2ePi4rB5loGBhZnhxTLJ/9ulv26Q4uVk1NXV/f///////69du4Zdg78lx//t0v+3S88rFISInD59GqIH2esIJ8G9O2/XVwhjzpw5EAam1xkkBJn/bJX+v1365hxxuCAfH9+3b9/+////48cPuNehNsS7cDEzMTAwMMzb+Q2u4dOnT2vWrMHu9ZtzxP9vl/69RVpCkBlZ3N7enoDXBwEAAA+YYitOilMVAAAAAElFTkSuQmCC" /></a> <a class="reference external" href="https://pypi.org/project/ansys-acp-core"><img alt="Python" src="https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-blue.svg" /></a> <a class="reference external" href="https://pypi.org/project/ansys-acp-core"><img alt="PyPI" src="https://img.shields.io/pypi/v/pyacp.svg?logo=python&amp;logoColor=white" /></a> <a class="reference external" href="https://github.com/pyansys/pyacp-private/actions/workflows/ci_cd.yml"><img alt="GH-CI" src="https://github.com/pyansys/pyacp-private/actions/workflows/ci_cd.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/pyansys/pyacp-private"><img alt="Codecov" src="https://codecov.io/gh/pyansys/pyacp-private/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/MIT"><img alt="MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a> <a class="reference external" href="https://github.com/psf/black"><img alt="Black" src="https://img.shields.io/badge/code%20style-black-000000.svg?style=flat" /></a></p>
 <p>A Python client for Ansys Composite PrepPost (ACP).</p>
 <section id="overview">
 <h3>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h3>
@@ -318,7 +326,7 @@
 <p>The PyACP documentation can be viewed online at <a class="reference external" href="https://dev.acp.docs.pyansys.com">https://dev.acp.docs.pyansys.com</a>.</p>
 </section>
 <section id="getting-started">
-<h3>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h3>
+<span id="launching-server"></span><h3>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h3>
 <section id="launching-acp-locally">
 <h4>Launching ACP locally<a class="headerlink" href="#launching-acp-locally" title="Permalink to this heading">#</a></h4>
 <p>You can launch the ACP server locally by using <code class="docutils literal notranslate"><span class="pre">launch_acp</span></code>:</p>
@@ -330,10 +338,34 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">&lt;PATH_TO_ACP_GRPCSERVER&gt;</span></code> is the location of the <code class="docutils literal notranslate"><span class="pre">acp_grpcserver</span></code> executable
 in your Ansys installation. For example, <code class="docutils literal notranslate"><span class="pre">r&quot;C:\Program</span> <span class="pre">Files\ANSYS</span> <span class="pre">Inc\v231\ACP\acp_grpcserver.exe&quot;</span></code>.</p>
 </section>
+<section id="launching-acp-with-docker-compose">
+<h4>Launching ACP with <cite>docker-compose</cite><a class="headerlink" href="#launching-acp-with-docker-compose" title="Permalink to this heading">#</a></h4>
+<p>Alternatively, you can use <cite>docker-compose</cite> to run the ACP server, using [ansys-utilities-filetransfer](<a class="reference external" href="https://github.com/pyansys/ansys-utilities-filetransfer">https://github.com/pyansys/ansys-utilities-filetransfer</a>.git`)
+to transfer files to and from the Docker container.</p>
+<p>For this, you will need to install [Docker](<a class="reference external" href="https://www.docker.com/">https://www.docker.com/</a>) on your machine, and install <cite>ansys-utilities-filetransfer</cite> with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/pyansys/ansys-utilities-filetransfer
+</pre></div>
+</div>
+<p>With these prerequisites installed, you can run</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">launch_acp_docker_compose</span>
+
+<span class="n">server_pyacp</span><span class="p">,</span> <span class="n">server_filetransfer</span> <span class="o">=</span> <span class="n">launch_acp_docker_compose</span><span class="p">(</span><span class="n">license_server</span><span class="o">=</span><span class="s2">&quot;&lt;LICENSE_SERVER&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">&lt;LICENSE_SERVER&gt;</span></code> is the address of your license server, e.g. <code class="docutils literal notranslate"><span class="pre">1055&#64;my.licenseserver.com</span></code></p>
+<p>The <cite>server_filetransfer</cite> can be used to upload / download files:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.utilities.filetransfer</span> <span class="kn">import</span> <span class="n">Client</span> <span class="k">as</span> <span class="n">FileTransferClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">FileTransferClient</span><span class="p">(</span><span class="n">server_filetransfer</span><span class="o">.</span><span class="n">channel</span><span class="p">)</span>
+
+<span class="n">client</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="s2">&quot;&lt;local_path&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;remote_path&gt;&quot;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><span class="s2">&quot;&lt;remote_path&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;local_path&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="launching-acp-in-a-docker-container">
 <h4>Launching ACP in a Docker container<a class="headerlink" href="#launching-acp-in-a-docker-container" title="Permalink to this heading">#</a></h4>
-<p>Alternatively, you can use Docker to run the ACP server. After installing Docker on your
-machine, you can use <code class="docutils literal notranslate"><span class="pre">launch_acp_docker</span></code>:</p>
+<p>Finally, you can use Docker directly to run the ACP server. As with <cite>docker-compose</cite>, Docker needs
+to be installed on your system. Then, you can run:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">launch_acp_docker</span>
 
 <span class="n">server</span> <span class="o">=</span> <span class="n">launch_acp_docker</span><span class="p">(</span><span class="n">license_server</span><span class="o">=</span><span class="s2">&quot;&lt;LICENSE_SERVER&gt;&quot;</span><span class="p">)</span>
