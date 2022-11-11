@@ -10,6 +10,7 @@ from ._server import (
     check_server,
     launch_acp,
     launch_acp_docker,
+    launch_acp_docker_compose,
     shutdown_server,
     wait_for_server,
 )
@@ -31,6 +32,7 @@ __all__ = [
     "__version__",
     "launch_acp",
     "launch_acp_docker",
+    "launch_acp_docker_compose",
     "check_server",
     "wait_for_server",
     "shutdown_server",

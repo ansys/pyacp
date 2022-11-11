@@ -26,6 +26,8 @@ packages = [
     { include = "ansys", from = "src" },
 ]
 
+include = ["src/**/docker-compose.yaml"]
+
 [tool.poetry.dependencies]
 python = ">=3.7.2,<3.11" # Plan on supporting only the currently supported versions of Python
 numpy = [
@@ -55,7 +57,10 @@ jupyter = {version = "^1.0.0", optional = true}
 notebook = {version = "^6.4.11", optional = true}
 twine = {version = ">=3.8", optional = true}
 ansys-mapdl-core = {version = "^0.62.1", optional = true}
+ansys-utilities-filetransfer = { git = "https://github.com/pyansys/ansys-utilities-filetransfer.git", branch="main", optional = true}
 ipyvtklink = {version = "^0.2.2", optional = true}
+sphinx-gallery = {version = "^0.11.1", optional = true}
+pypandoc = {version = "^1.10", optional = true}
 
 [tool.poetry.extras]
 all = [
@@ -63,7 +68,9 @@ all = [
     "ansys-sphinx-theme",
     "sphinx-autodoc-typehints",
     "sphinx-copybutton",
+    "sphinx-gallery",
     "numpydoc",
+    "pypandoc",
     "pre-commit",
     "black",
     "mypy",
@@ -78,12 +85,13 @@ all = [
     "notebook",
     "ipyvtklink",
     "ansys-mapdl-core",
+    "ansys-utilities-filetransfer",
 ]
-docs = ["Sphinx", "ansys-sphinx-theme", "sphinx-autodoc-typehints", "sphinx-copybutton", "numpydoc", "mypy-extensions"]
-pre-commit = ["pre-commit", "mypy", "mypy-extensions", "types-protobuf", "pytest", "pytest-cases", "black"]
+docs = ["Sphinx", "ansys-sphinx-theme", "sphinx-autodoc-typehints", "sphinx-copybutton", "sphinx-gallery", "numpydoc", "pypandoc", "mypy-extensions", "ansys-utilities-filetransfer"]
+pre-commit = ["pre-commit", "mypy", "mypy-extensions", "types-protobuf", "pytest", "pytest-cases", "black", "ansys-utilities-filetransfer",]
 test = ["pytest", "pytest-cov", "pytest-cases"]
 build = ["twine"]
-examples = ["ipykernel", "jupyter", "notebook", "ipyvtklink", "ansys-mapdl-core"]
+examples = ["ipykernel", "jupyter", "notebook", "ipyvtklink", "ansys-mapdl-core", "ansys-utilities-filetransfer"]
 
 [tool.black]
 line-length = 100

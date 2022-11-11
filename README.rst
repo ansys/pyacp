@@ -8,7 +8,7 @@ PyACP
     :target: https://docs.pyansys.com/
     :alt: PyAnsys
 
-.. |python| image:: https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue.svg
+.. |python| image:: https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-blue.svg
     :target: https://pypi.org/project/ansys-acp-core
     :alt: Python
 
@@ -60,6 +60,8 @@ Documentation
 The PyACP documentation can be viewed online at https://dev.acp.docs.pyansys.com.
 
 
+.. _launching_server:
+
 Getting Started
 ---------------
 
@@ -78,11 +80,44 @@ The ``<PATH_TO_ACP_GRPCSERVER>`` is the location of the ``acp_grpcserver`` execu
 in your Ansys installation. For example, ``r"C:\Program Files\ANSYS Inc\v231\ACP\acp_grpcserver.exe"``.
 
 
+Launching ACP with `docker-compose`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Alternatively, you can use `docker-compose` to run the ACP server, using [ansys-utilities-filetransfer](https://github.com/pyansys/ansys-utilities-filetransfer.git`)
+to transfer files to and from the Docker container.
+
+For this, you will need to install [Docker](https://www.docker.com/) on your machine, and install `ansys-utilities-filetransfer` with
+
+.. code:: bash
+
+    pip install git+https://github.com/pyansys/ansys-utilities-filetransfer
+
+With these prerequisites installed, you can run
+
+.. code:: python
+
+    from ansys.acp.core import launch_acp_docker_compose
+
+    server_pyacp, server_filetransfer = launch_acp_docker_compose(license_server="<LICENSE_SERVER>")
+
+Here, ``<LICENSE_SERVER>`` is the address of your license server, e.g. ``1055@my.licenseserver.com``
+
+The `server_filetransfer` can be used to upload / download files:
+
+.. code:: python
+
+    from ansys.utilities.filetransfer import Client as FileTransferClient
+    client = FileTransferClient(server_filetransfer.channel)
+
+    client.upload_file("<local_path>", "<remote_path>")
+    client.download_file("<remote_path>", "<local_path>")
+
+
 Launching ACP in a Docker container
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Alternatively, you can use Docker to run the ACP server. After installing Docker on your
-machine, you can use ``launch_acp_docker``:
+Finally, you can use Docker directly to run the ACP server. As with `docker-compose`, Docker needs
+to be installed on your system. Then, you can run:
 
 .. code:: python
 

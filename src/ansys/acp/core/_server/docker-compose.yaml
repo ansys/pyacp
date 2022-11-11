@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  acp-grpc-server:
+    restart: unless-stopped
+    image: ${IMAGE_NAME_PYACP}
+    environment:
+      - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
+    ports:
+    - "${PORT_PYACP}:50051"
+    working_dir: /home/container/workdir
+    volumes:
+      - "acp_data:/home/container/workdir"
+  ansys-utilities-filetransfer:
+    restart: unless-stopped
+    image: ${IMAGE_NAME_FILETRANSFER}
+    ports:
+    - "${PORT_FILETRANSFER}:50000"
+    working_dir: /home/container/workdir
+    volumes:
+      - "acp_data:/home/container/workdir"
+
+volumes:
+  acp_data:
