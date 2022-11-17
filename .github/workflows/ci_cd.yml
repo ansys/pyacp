@@ -46,6 +46,7 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/pydpf-composites".insteadOf "https://github.com/pyansys/pydpf-composites"
           pip install poetry
           poetry install --with dev,test
 
@@ -187,6 +188,7 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/pydpf-composites".insteadOf "https://github.com/pyansys/pydpf-composites"
           pip install poetry
           poetry install --with dev
 
@@ -197,7 +199,7 @@ jobs:
 
       - name: Launch PyACP server via docker-compose
         run: |
-          docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml up -d
+          docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml -f docker/docker-compose-pydpf-composites.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
 
@@ -209,7 +211,7 @@ jobs:
 
       - name: Stop and clean up PyACP server
         run: |
-          docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml down -v
+          docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml -f docker/docker-compose-pydpf-composites.yaml down -v
 
       - name: Upload HTML Documentation
         uses: actions/upload-artifact@v2
@@ -232,7 +234,7 @@ jobs:
           sudo apt install build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks
       - name: Restart PyACP server via docker-compose
         run: |
-          docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml up -d
+          docker-compose -f ./docker/docker-compose-mapdl.yaml -f ./docker/docker-compose.yaml -f docker/docker-compose-pydpf-composites.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
 

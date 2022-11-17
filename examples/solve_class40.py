@@ -41,6 +41,7 @@ pyacp_client = pyacp.Client(pyacp_server)
 
 #%%
 # Define the directory in which the input files are stored.
+#EXAMPLE_DATA_DIR = pathlib.Path(r'D:\ANSYSDev\pyacp-private') / "examples" / "data" / "class40"
 EXAMPLE_DATA_DIR = pathlib.Path(os.environ["REPO_ROOT"]) / "examples" / "data" / "class40"
 
 #%%
@@ -63,17 +64,33 @@ model
 # Create the model (unit system is SI)
 
 #%%
+# Materials
+# '''''''''
+
+mat_corecell_81kg = model.materials["1"]
+mat_corecell_81kg.name = "Core Cell 81kg"
+mat_corecell_81kg.ply_type = "isotropic_homogeneous_core"
+
+mat_corecell_103kg = model.materials["2"]
+mat_corecell_103kg.name = "Core Cell 103kg"
+mat_corecell_103kg.ply_type = "isotropic_homogeneous_core"
+
+mat_eglass_ud = model.materials["3"]
+mat_eglass_ud.name = "E-Glass (uni-directional)"
+mat_eglass_ud.ply_type = "regular"
+
+#%%
 # Fabrics
 # '''''''
 
 corecell_81kg_5mm = model.create_fabric(
-    name="Corecell 81kg", thickness=0.005, material=model.materials["1"]
+    name="Corecell 81kg", thickness=0.005, material=mat_corecell_81kg
 )
 corecell_103kg_10mm = model.create_fabric(
-    name="Corecell 103kg", thickness=0.01, material=model.materials["2"]
+    name="Corecell 103kg", thickness=0.01, material=mat_corecell_103kg
 )
 eglass_ud_02mm = model.create_fabric(
-    name="eglass UD", thickness=0.0002, material=model.materials["3"]
+    name="eglass UD", thickness=0.0002, material=mat_eglass_ud
 )
 
 #%%
@@ -136,7 +153,6 @@ oss_keeltower = model.create_oriented_selection_set(
 #%%
 # Modeling Plies
 # ''''''''''''''
-
 
 def add_ply(mg, name, ply_material, angle, oss):
     return mg.create_modeling_ply(
@@ -204,7 +220,8 @@ model.save_analysis_model("class40_analysis_model.cdb")
 tmp_dir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tmp_dir.name)
 CDB_FILENAME_OUT = "class40_analysis_model.cdb"
-filetransfer_client.download_file(CDB_FILENAME_OUT, str(WORKING_DIR / CDB_FILENAME_OUT))
+CDB_FILEPATH = pathlib.Path(WORKING_DIR) / CDB_FILENAME_OUT
+filetransfer_client.download_file(CDB_FILENAME_OUT, str(CDB_FILEPATH))
 
 #%%
 # Solve with PyMAPDL
@@ -218,7 +235,7 @@ mapdl = Mapdl(ip="localhost", port=50557, timeout=30)
 
 #%%
 # Load the CDB file into PyMAPDL
-mapdl.input(str(WORKING_DIR / CDB_FILENAME_OUT))
+mapdl.input(str(CDB_FILEPATH))
 
 #%%
 # Solve the model
@@ -233,5 +250,35 @@ mapdl.set("last")
 mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
 #%%
-# Post-processing: show show stresses
-mapdl.post_processing.plot_element_stress("X")
+# Post-Processing with DPF composites
+# -----------------------------------
+
+import ansys.dpf.core as dpf
+server = dpf.server.connect_to_server("127.0.0.1", port=50558)
+
+from ansys.dpf.composites.failure_criteria import (
+    CombinedFailureCriterion,
+    MaxStrainCriterion,
+)
+from ansys.dpf.composites.load_plugin import load_composites_plugin
+
+def get_combined_failure_criterion() -> CombinedFailureCriterion:
+    max_strain = MaxStrainCriterion()
+    #max_stress = MaxStressCriterion()
+    #core_failure = CoreFailureCriterion()
+    
+    return CombinedFailureCriterion(
+        name="Combined Failure Criterion",
+        failure_criteria=[max_strain],
+    )
+
+#rd = ResultDefinition(
+#    name="combined failure criteria",
+#    rst_files=[rst_server_path],
+#    material_files=[material_server_path],
+#    composite_definitions=[h5_server_path],
+#    combined_failure_criterion=get_combined_failure_criterion(),
+#)
+#
+#fc_op = dpf.Operator("composite::composite_failure_operator")
+#fc_op.inputs.result_definition(rd.to_json())
