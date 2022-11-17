@@ -2,8 +2,7 @@ from ansys.api.acp.v0 import (
     cut_off_material_pb2,
     drop_off_material_pb2,
     enum_types_pb2,
-    ply_material_pb2,
-    ply_type_pb2
+    ply_material_pb2
 )
 
 from .._grpc_helpers.enum_wrapper import wrap_to_string_enum
@@ -57,6 +56,6 @@ __all__ = [
     ply_type_to_pb,
     ply_type_from_pb,
 ) = wrap_to_string_enum(
-    "PlyType", ply_type_pb2.PlyType, module=__name__
+    "PlyType", enum_types_pb2.PlyType, module=__name__
 )
 
