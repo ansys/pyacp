@@ -255,10 +255,10 @@ mapdl.post_processing.plot_nodal_displacement(component="NORM")
 import ansys.dpf.core as dpf
 
 server = dpf.server.connect_to_server("127.0.0.1", port=50558)
+load_composites_plugin()
 
 from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxStrainCriterion
 from ansys.dpf.composites.load_plugin import load_composites_plugin
-
 
 def get_combined_failure_criterion() -> CombinedFailureCriterion:
     max_strain = MaxStrainCriterion()
@@ -270,6 +270,17 @@ def get_combined_failure_criterion() -> CombinedFailureCriterion:
         failure_criteria=[max_strain],
     )
 
+
+solution_path = mapdl.result_file
+
+model = dpf.Model(solution_path)
+results = model.results
+print(results)
+displacements = results.displacement()
+total_def = dpf.operators.math.norm_fc(displacements)
+total_def_container = total_def.outputs.fields_container()
+mesh = model.metadata.meshed_region
+mesh.plot(total_def_container.get_field_by_time_id(1))
 
 # rd = ResultDefinition(
 #    name="combined failure criteria",
