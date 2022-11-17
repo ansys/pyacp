@@ -10,7 +10,7 @@ from .._grpc_helpers.property_helper import (
     mark_grpc_properties,
 )
 from .base import CreatableTreeObject, IdTreeObject
-from .enums import ply_type_from_pb, ply_type_to_pb, status_type_from_pb, PlyType
+from .enums import PlyType, ply_type_from_pb, ply_type_to_pb, status_type_from_pb
 from .object_registry import register
 
 __all__ = ["Material"]
