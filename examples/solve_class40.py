@@ -41,7 +41,7 @@ pyacp_client = pyacp.Client(pyacp_server)
 
 #%%
 # Define the directory in which the input files are stored.
-#EXAMPLE_DATA_DIR = pathlib.Path(r'D:\ANSYSDev\pyacp-private') / "examples" / "data" / "class40"
+# EXAMPLE_DATA_DIR = pathlib.Path(r"D:\ANSYSDev\pyacp-private") / "examples" / "data" / "class40"
 EXAMPLE_DATA_DIR = pathlib.Path(os.environ["REPO_ROOT"]) / "examples" / "data" / "class40"
 
 #%%
@@ -89,9 +89,7 @@ corecell_81kg_5mm = model.create_fabric(
 corecell_103kg_10mm = model.create_fabric(
     name="Corecell 103kg", thickness=0.01, material=mat_corecell_103kg
 )
-eglass_ud_02mm = model.create_fabric(
-    name="eglass UD", thickness=0.0002, material=mat_eglass_ud
-)
+eglass_ud_02mm = model.create_fabric(name="eglass UD", thickness=0.0002, material=mat_eglass_ud)
 
 #%%
 # Rosettes
@@ -153,6 +151,7 @@ oss_keeltower = model.create_oriented_selection_set(
 #%%
 # Modeling Plies
 # ''''''''''''''
+
 
 def add_ply(mg, name, ply_material, angle, oss):
     return mg.create_modeling_ply(
@@ -254,31 +253,31 @@ mapdl.post_processing.plot_nodal_displacement(component="NORM")
 # -----------------------------------
 
 import ansys.dpf.core as dpf
+
 server = dpf.server.connect_to_server("127.0.0.1", port=50558)
 
-from ansys.dpf.composites.failure_criteria import (
-    CombinedFailureCriterion,
-    MaxStrainCriterion,
-)
+from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxStrainCriterion
 from ansys.dpf.composites.load_plugin import load_composites_plugin
+
 
 def get_combined_failure_criterion() -> CombinedFailureCriterion:
     max_strain = MaxStrainCriterion()
-    #max_stress = MaxStressCriterion()
-    #core_failure = CoreFailureCriterion()
-    
+    # max_stress = MaxStressCriterion()
+    # core_failure = CoreFailureCriterion()
+
     return CombinedFailureCriterion(
         name="Combined Failure Criterion",
         failure_criteria=[max_strain],
     )
 
-#rd = ResultDefinition(
+
+# rd = ResultDefinition(
 #    name="combined failure criteria",
 #    rst_files=[rst_server_path],
 #    material_files=[material_server_path],
 #    composite_definitions=[h5_server_path],
 #    combined_failure_criterion=get_combined_failure_criterion(),
-#)
+# )
 #
-#fc_op = dpf.Operator("composite::composite_failure_operator")
-#fc_op.inputs.result_definition(rd.to_json())
+# fc_op = dpf.Operator("composite::composite_failure_operator")
+# fc_op.inputs.result_definition(rd.to_json())

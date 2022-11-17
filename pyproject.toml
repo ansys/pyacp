@@ -74,7 +74,7 @@ pytest-cases = "^3.6.13"
 [tool.poetry.extras]
 # For the examples, we keep an extra to simplify installing these dependencies for the
 # end user.
-examples = ["ansys-utilities-filetransfer", "pyvista", "ansys-mapdl-core"]
+examples = ["ansys-utilities-filetransfer", "pyvista", "ansys-mapdl-core", "ansys-dpf-composites"]
 
 [tool.black]
 line-length = 100
