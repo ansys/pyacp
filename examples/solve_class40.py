@@ -41,8 +41,8 @@ pyacp_client = pyacp.Client(pyacp_server)
 
 #%%
 # Define the directory in which the input files are stored.
-EXAMPLE_DATA_DIR = pathlib.Path(r"D:\ANSYSDev\pyacp-private") / "examples" / "data" / "class40"
-# EXAMPLE_DATA_DIR = pathlib.Path(os.environ["REPO_ROOT"]) / "examples" / "data" / "class40"
+# EXAMPLE_DATA_DIR = pathlib.Path(r"D:\ANSYSDev\pyacp-private") / "examples" / "data" / "class40"
+EXAMPLE_DATA_DIR = pathlib.Path(os.environ["REPO_ROOT"]) / "examples" / "data" / "class40"
 
 #%%
 # Send ``class40.cdb`` to the server.
