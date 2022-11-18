@@ -175,7 +175,7 @@ class Model(TreeObject):
         path:
             File path. Eg. /tmp/ACPCompositeDefinitions.h5
         """
-        self._get_stub().SaveShellCompositeDefinitionsRequest(
+        self._get_stub().SaveShellCompositeDefinitions(
             model_pb2.SaveShellCompositeDefinitionsRequest(
                 resource_path=self._resource_path, path=str(path)
             )
