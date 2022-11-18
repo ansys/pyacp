@@ -20,8 +20,8 @@ from ansys.api.acp.v0.base_pb2 import CollectionPath
 from .._grpc_helpers.enum_wrapper import wrap_to_string_enum
 from .._grpc_helpers.mapping import define_mapping
 from .._grpc_helpers.property_helper import grpc_data_property, mark_grpc_properties
-from .._utils.resource_paths import join as rp_join
 from .._typing_helper import PATH as _PATH
+from .._utils.resource_paths import join as rp_join
 from .base import TreeObject
 from .element_set import ElementSet
 from .fabric import Fabric
@@ -72,13 +72,13 @@ class Model(TreeObject):
     OBJECT_INFO_TYPE = model_pb2.ObjectInfo
 
     def __init__(
-            self,
-            name: str = "ACP Model",
-            use_nodal_thicknesses: bool = False,
-            draping_offset_correction: bool = False,
-            angle_tolerance: float = 1.0,
-            relative_thickness_tolerance: float = 0.01,
-            minimum_analysis_ply_thickness: float = 1e-6,
+        self,
+        name: str = "ACP Model",
+        use_nodal_thicknesses: bool = False,
+        draping_offset_correction: bool = False,
+        angle_tolerance: float = 1.0,
+        relative_thickness_tolerance: float = 0.01,
+        minimum_analysis_ply_thickness: float = 1e-6,
     ) -> None:
         super().__init__(name=name)
 
@@ -112,13 +112,13 @@ class Model(TreeObject):
 
     @classmethod
     def from_fe_file(
-            cls,
-            *,
-            path: _PATH,
-            channel: Channel,
-            format: _FeFormat,  # type: ignore
-            ignored_entities: Iterable[_IgnorableEntity] = (),  # type: ignore
-            convert_section_data: bool = False,
+        cls,
+        *,
+        path: _PATH,
+        channel: Channel,
+        format: _FeFormat,  # type: ignore
+        ignored_entities: Iterable[_IgnorableEntity] = (),  # type: ignore
+        convert_section_data: bool = False,
     ) -> Model:
         format_pb = _fe_format_to_pb(format)
         ignored_entities_pb = [_ignorable_entity_to_pb(val) for val in ignored_entities]
@@ -177,8 +177,7 @@ class Model(TreeObject):
         """
         self._get_stub().SaveShellCompositeDefinitionsRequest(
             model_pb2.SaveShellCompositeDefinitionsRequest(
-                resource_path=self._resource_path,
-                path=str(path)
+                resource_path=self._resource_path, path=str(path)
             )
         )
 
@@ -201,9 +200,11 @@ class Model(TreeObject):
         )
         print(collection_path)
         material_stub.SaveToFile(
-            material_pb2.SaveToFileRequest(collection_path=collection_path,
-                                           path=str(path),
-                                           format=material_pb2.SaveToFileRequest.ANSYS_XML)
+            material_pb2.SaveToFileRequest(
+                collection_path=collection_path,
+                path=str(path),
+                format=material_pb2.SaveToFileRequest.ANSYS_XML,
+            )
         )
 
     create_element_set, element_sets = define_mapping(

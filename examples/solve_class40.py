@@ -41,8 +41,8 @@ pyacp_client = pyacp.Client(pyacp_server)
 
 #%%
 # Define the directory in which the input files are stored.
-# EXAMPLE_DATA_DIR = pathlib.Path(r"D:\ANSYSDev\pyacp-private") / "examples" / "data" / "class40"
-EXAMPLE_DATA_DIR = pathlib.Path(os.environ["REPO_ROOT"]) / "examples" / "data" / "class40"
+EXAMPLE_DATA_DIR = pathlib.Path(r"D:\ANSYSDev\pyacp-private") / "examples" / "data" / "class40"
+# EXAMPLE_DATA_DIR = pathlib.Path(os.environ["REPO_ROOT"]) / "examples" / "data" / "class40"
 
 #%%
 # Send ``class40.cdb`` to the server.
@@ -260,25 +260,26 @@ mapdl.post_processing.plot_nodal_displacement(component="NORM")
 # Post-Processing with DPF composites
 # -----------------------------------
 
-import ansys.dpf.core as dpf
-from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxStrainCriterion
+from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxStrainCriterion, MaxStressCriterion, CoreFailureCriterion
 from ansys.dpf.composites.load_plugin import load_composites_plugin
+import ansys.dpf.core as dpf
 
 server = dpf.server.connect_to_server("127.0.0.1", port=50558)
 load_composites_plugin()
 
+
 def get_combined_failure_criterion() -> CombinedFailureCriterion:
     max_strain = MaxStrainCriterion()
-    # max_stress = MaxStressCriterion()
-    # core_failure = CoreFailureCriterion()
+    max_stress = MaxStressCriterion()
+    core_failure = CoreFailureCriterion()
 
     return CombinedFailureCriterion(
         name="Combined Failure Criterion",
-        failure_criteria=[max_strain],
+        failure_criteria=[max_strain, max_stress, core_failure],
     )
 
 
-rstfile_path = os.path.join(mapdl.directory, f'{mapdl.jobname}.rst')
+rstfile_path = os.path.join(mapdl.directory, f"{mapdl.jobname}.rst")
 
 model = dpf.Model(rstfile_path)
 results = model.results
@@ -290,11 +291,11 @@ mesh = model.metadata.meshed_region
 mesh.plot(total_def_container.get_field_by_time_id(1))
 
 rd = ResultDefinition(
-   name="combined failure criteria",
-   rst_files=[rstfile_path],
-   material_files=[MATML_FILE],
-   composite_definitions=[COMPOSITE_DEFINITIONS_H5],
-   combined_failure_criterion=get_combined_failure_criterion(),
+    name="combined failure criteria",
+    rst_files=[rstfile_path],
+    material_files=[MATML_FILE],
+    composite_definitions=[COMPOSITE_DEFINITIONS_H5],
+    combined_failure_criterion=get_combined_failure_criterion(),
 )
 
 fc_op = dpf.Operator("composite::composite_failure_operator")
