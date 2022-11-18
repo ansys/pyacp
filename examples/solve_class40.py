@@ -260,7 +260,12 @@ mapdl.post_processing.plot_nodal_displacement(component="NORM")
 # Post-Processing with DPF composites
 # -----------------------------------
 
-from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxStrainCriterion, MaxStressCriterion, CoreFailureCriterion
+from ansys.dpf.composites.failure_criteria import (
+    CombinedFailureCriterion,
+    CoreFailureCriterion,
+    MaxStrainCriterion,
+    MaxStressCriterion,
+)
 from ansys.dpf.composites.load_plugin import load_composites_plugin
 import ansys.dpf.core as dpf
 
