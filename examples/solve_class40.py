@@ -205,20 +205,28 @@ print(len(model.modeling_groups["keeltower"].modeling_plies))
 # Write out ACP Model
 # -------------------
 
+ACPH5_FILE = "class40.acph5"
+CDB_FILENAME_OUT = "class40_analysis_model.cdb"
+COMPOSITE_DEFINITIONS_H5 = "ACPCompositeDefinitions.h5"
+MATML_FILE = "materials.xml"
+
 #%%
 # Update and Save the ACP model
 model.update()
-model.save("class40.acph5", save_cache=True)
+model.save(ACPH5_FILE, save_cache=True)
 
 #%%
 # Save the model as CDB for solving with PyMAPDL
-model.save_analysis_model("class40_analysis_model.cdb")
+model.save_analysis_model(CDB_FILENAME_OUT)
+# Export the shell lay-up for DPF Composites
+model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
+model.export_materials(MATML_FILE)
 
 #%%
 # Download analysis CDB file
 tmp_dir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tmp_dir.name)
-CDB_FILENAME_OUT = "class40_analysis_model.cdb"
+
 CDB_FILEPATH = pathlib.Path(WORKING_DIR) / CDB_FILENAME_OUT
 filetransfer_client.download_file(CDB_FILENAME_OUT, str(CDB_FILEPATH))
 
@@ -270,9 +278,9 @@ def get_combined_failure_criterion() -> CombinedFailureCriterion:
     )
 
 
-solution_path = mapdl.result_file
+rstfile_path = os.path.join(mapdl.directory, f'{mapdl.jobname}.rst')
 
-model = dpf.Model(solution_path)
+model = dpf.Model(rstfile_path)
 results = model.results
 print(results)
 displacements = results.displacement()
@@ -281,13 +289,20 @@ total_def_container = total_def.outputs.fields_container()
 mesh = model.metadata.meshed_region
 mesh.plot(total_def_container.get_field_by_time_id(1))
 
-# rd = ResultDefinition(
-#    name="combined failure criteria",
-#    rst_files=[rst_server_path],
-#    material_files=[material_server_path],
-#    composite_definitions=[h5_server_path],
-#    combined_failure_criterion=get_combined_failure_criterion(),
-# )
-#
-# fc_op = dpf.Operator("composite::composite_failure_operator")
-# fc_op.inputs.result_definition(rd.to_json())
+rd = ResultDefinition(
+   name="combined failure criteria",
+   rst_files=[rstfile_path],
+   material_files=[MATML_FILE],
+   composite_definitions=[COMPOSITE_DEFINITIONS_H5],
+   combined_failure_criterion=get_combined_failure_criterion(),
+)
+
+fc_op = dpf.Operator("composite::composite_failure_operator")
+fc_op.inputs.result_definition(rd.to_json())
+output_all_elements = fc_op.outputs.fields_containerMax()
+
+failure_value_index = 1
+failure_mode_index = 0
+
+irf_field = output_all_elements[failure_value_index]
+irf_field.plot()

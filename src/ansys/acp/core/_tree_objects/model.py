@@ -7,6 +7,7 @@ from grpc import Channel
 from ansys.api.acp.v0 import (
     element_set_pb2_grpc,
     fabric_pb2_grpc,
+    material_pb2,
     material_pb2_grpc,
     model_pb2,
     model_pb2_grpc,
@@ -14,10 +15,12 @@ from ansys.api.acp.v0 import (
     oriented_selection_set_pb2_grpc,
     rosette_pb2_grpc,
 )
+from ansys.api.acp.v0.base_pb2 import CollectionPath
 
 from .._grpc_helpers.enum_wrapper import wrap_to_string_enum
 from .._grpc_helpers.mapping import define_mapping
 from .._grpc_helpers.property_helper import grpc_data_property, mark_grpc_properties
+from .._utils.resource_paths import join as rp_join
 from .._typing_helper import PATH as _PATH
 from .base import TreeObject
 from .element_set import ElementSet
@@ -28,7 +31,6 @@ from .oriented_selection_set import OrientedSelectionSet
 from .rosette import Rosette
 
 __all__ = ["Model"]
-
 
 _FeFormat, _fe_format_to_pb, _ = wrap_to_string_enum(
     "_FeFormat",
@@ -70,13 +72,13 @@ class Model(TreeObject):
     OBJECT_INFO_TYPE = model_pb2.ObjectInfo
 
     def __init__(
-        self,
-        name: str = "ACP Model",
-        use_nodal_thicknesses: bool = False,
-        draping_offset_correction: bool = False,
-        angle_tolerance: float = 1.0,
-        relative_thickness_tolerance: float = 0.01,
-        minimum_analysis_ply_thickness: float = 1e-6,
+            self,
+            name: str = "ACP Model",
+            use_nodal_thicknesses: bool = False,
+            draping_offset_correction: bool = False,
+            angle_tolerance: float = 1.0,
+            relative_thickness_tolerance: float = 0.01,
+            minimum_analysis_ply_thickness: float = 1e-6,
     ) -> None:
         super().__init__(name=name)
 
@@ -110,13 +112,13 @@ class Model(TreeObject):
 
     @classmethod
     def from_fe_file(
-        cls,
-        *,
-        path: _PATH,
-        channel: Channel,
-        format: _FeFormat,  # type: ignore
-        ignored_entities: Iterable[_IgnorableEntity] = (),  # type: ignore
-        convert_section_data: bool = False,
+            cls,
+            *,
+            path: _PATH,
+            channel: Channel,
+            format: _FeFormat,  # type: ignore
+            ignored_entities: Iterable[_IgnorableEntity] = (),  # type: ignore
+            convert_section_data: bool = False,
     ) -> Model:
         format_pb = _fe_format_to_pb(format)
         ignored_entities_pb = [_ignorable_entity_to_pb(val) for val in ignored_entities]
@@ -137,7 +139,17 @@ class Model(TreeObject):
             )
         )
 
-    def save(self, path: _PATH, *, save_cache: bool = False) -> None:
+    def save(self, path: _PATH, *, save_cache: bool = True) -> None:
+        """
+        Save ACP Model (.acph5).
+
+        Parameters
+        ----------
+        path:
+            File path.
+        save_cache:
+            Whether to store the update results such as Analysis Plies and solid models.
+        """
         self._get_stub().SaveToFile(
             model_pb2.SaveToFileRequest(
                 resource_path=self._resource_path,
@@ -152,6 +164,46 @@ class Model(TreeObject):
                 resource_path=self._resource_path,
                 path=str(path),
             )
+        )
+
+    def export_shell_composite_definitions(self, path: _PATH) -> None:
+        """
+        Export the lay-up of the shell as HDF5 used by DPF Composites or Mechanical.
+
+        Parameters
+        ----------
+        path:
+            File path. Eg. /tmp/ACPCompositeDefinitions.h5
+        """
+        self._get_stub().SaveShellCompositeDefinitionsRequest(
+            model_pb2.SaveShellCompositeDefinitionsRequest(
+                resource_path=self._resource_path,
+                path=str(path)
+            )
+        )
+
+    def export_materials(self, path: _PATH) -> None:
+        """
+        Write materials to a XML (MatML) file.
+
+        The XML file is required for the post-processing with DPF or can be loaded by
+        Engineering Data under WB.
+
+        Parameters
+        ----------
+        path:
+            File path. E.g. /tmp/acp_materials.xml
+        """
+        material_stub = material_pb2_grpc.ObjectServiceStub(self._channel)
+        print(material_stub)
+        collection_path = CollectionPath(
+            value=rp_join(self._resource_path.value, Material.COLLECTION_LABEL)
+        )
+        print(collection_path)
+        material_stub.SaveToFile(
+            material_pb2.SaveToFileRequest(collection_path=collection_path,
+                                           path=str(path),
+                                           format=material_pb2.SaveToFileRequest.ANSYS_XML)
         )
 
     create_element_set, element_sets = define_mapping(
