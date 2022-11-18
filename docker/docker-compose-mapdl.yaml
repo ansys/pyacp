@@ -13,10 +13,3 @@ services:
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
       - ANSYS_LOCK="OFF"
-    working_dir: /home/container/workdir
-    volumes:
-      - "acp_data:/home/container/workdir/"
-    user: "1000:1000"
-
-volumes:
-  acp_data:
