@@ -17,8 +17,9 @@ Define a Composite Lay-up with PyACP and solve the resulting model with PyMAPDL.
 import os
 import pathlib
 import tempfile
-import numpy as np
+
 import grpc
+import numpy as np
 
 #%%
 # Import Ansys libraries
