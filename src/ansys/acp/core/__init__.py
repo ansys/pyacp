@@ -23,7 +23,7 @@ from ._tree_objects import (
     ModelingPly,
     OrientedSelectionSet,
     Rosette,
-    UnitSystemType
+    UnitSystemType,
 )
 
 __version__ = importlib_metadata.version(__name__.replace(".", "-"))

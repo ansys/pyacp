@@ -1,8 +1,8 @@
 from ansys.api.acp.v0 import (
-    model_pb2,
     cut_off_material_pb2,
     drop_off_material_pb2,
     enum_types_pb2,
+    model_pb2,
     ply_material_pb2,
     unit_system_pb2,
 )
@@ -16,7 +16,7 @@ __all__ = [
     "DropoffMaterialType",
     "DrapingMaterialType",
     "PlyType",
-    "UnitSystemType"
+    "UnitSystemType",
 ]
 
 (StatusType, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(

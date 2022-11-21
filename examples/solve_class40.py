@@ -259,13 +259,19 @@ mapdl.post_processing.plot_nodal_displacement(component="NORM")
 # Post-Processing with DPF composites
 # -----------------------------------
 
-from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxStrainCriterion, MaxStressCriterion, CoreFailureCriterion
 from ansys.dpf.composites import ResultDefinition
+from ansys.dpf.composites.failure_criteria import (
+    CombinedFailureCriterion,
+    CoreFailureCriterion,
+    MaxStrainCriterion,
+    MaxStressCriterion,
+)
 from ansys.dpf.composites.load_plugin import load_composites_plugin
 import ansys.dpf.core as dpf
 
 dpf_server = dpf.server.connect_to_server("127.0.0.1", port=50558)
 load_composites_plugin()
+
 
 def get_combined_failure_criterion() -> CombinedFailureCriterion:
     max_strain = MaxStrainCriterion()
@@ -277,7 +283,8 @@ def get_combined_failure_criterion() -> CombinedFailureCriterion:
         failure_criteria=[max_strain, max_stress, core_failure],
     )
 
-#rstfile_path = pathlib.Path(mapdl.directory) / f"{mapdl.jobname}.rst"
+
+# rstfile_path = pathlib.Path(mapdl.directory) / f"{mapdl.jobname}.rst"
 rstfile_path = f"{mapdl.jobname}.rst"
 
 dpf_model = dpf.Model(rstfile_path)
@@ -296,7 +303,7 @@ rd = ResultDefinition(
     material_files=[MATML_FILE],
     composite_definitions=[COMPOSITE_DEFINITIONS_H5],
     combined_failure_criterion=get_combined_failure_criterion(),
-    element_scope=elements
+    element_scope=elements,
 )
 
 fc_op = dpf.Operator("composite::composite_failure_operator")

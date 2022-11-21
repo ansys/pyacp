@@ -19,7 +19,11 @@ from ansys.api.acp.v0.base_pb2 import CollectionPath
 
 from .._grpc_helpers.enum_wrapper import wrap_to_string_enum
 from .._grpc_helpers.mapping import define_mapping
-from .._grpc_helpers.property_helper import grpc_data_property, grpc_data_property_read_only, mark_grpc_properties
+from .._grpc_helpers.property_helper import (
+    grpc_data_property,
+    grpc_data_property_read_only,
+    mark_grpc_properties,
+)
 from .._typing_helper import PATH as _PATH
 from .._utils.resource_paths import join as rp_join
 from .base import TreeObject
@@ -102,7 +106,9 @@ class Model(TreeObject):
     angle_tolerance = grpc_data_property("properties.angle_tolerance")
     relative_thickness_tolerance = grpc_data_property("properties.relative_thickness_tolerance")
     minimum_analysis_ply_thickness = grpc_data_property("properties.minimum_analysis_ply_thickness")
-    unit_system = grpc_data_property_read_only("properties.unit_system", from_protobuf=unit_system_type_from_pb)
+    unit_system = grpc_data_property_read_only(
+        "properties.unit_system", from_protobuf=unit_system_type_from_pb
+    )
 
     @classmethod
     def from_file(cls, *, path: _PATH, channel: Channel) -> Model:
@@ -121,7 +127,7 @@ class Model(TreeObject):
         format: _FeFormat,  # type: ignore
         ignored_entities: Iterable[_IgnorableEntity] = (),  # type: ignore
         convert_section_data: bool = False,
-        unit_system: UnitSystemType = UnitSystemType.UNDEFINED
+        unit_system: UnitSystemType = UnitSystemType.UNDEFINED,
     ) -> Model:
         format_pb = _fe_format_to_pb(format)
         ignored_entities_pb = [_ignorable_entity_to_pb(val) for val in ignored_entities]
@@ -131,7 +137,7 @@ class Model(TreeObject):
             format=format_pb,
             ignored_entities=ignored_entities_pb,
             convert_section_data=convert_section_data,
-            unit_system=unit_system_type_to_pb(unit_system)
+            unit_system=unit_system_type_to_pb(unit_system),
         )
         reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFEFile(request)
         return cls._from_object_info(object_info=reply, channel=channel)
