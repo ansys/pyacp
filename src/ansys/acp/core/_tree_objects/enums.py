@@ -2,7 +2,6 @@ from ansys.api.acp.v0 import (
     cut_off_material_pb2,
     drop_off_material_pb2,
     enum_types_pb2,
-    model_pb2,
     ply_material_pb2,
     unit_system_pb2,
 )
