@@ -53,7 +53,7 @@ filetransfer_client.upload_file(
 
 #%%
 # Load CDB file into PyACP
-model = pyacp_client.import_model(path=CDB_FILENAME, format="ansys:cdb")
+model = pyacp_client.import_model(path=CDB_FILENAME, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA)
 model
 
 #%%
@@ -152,7 +152,6 @@ oss_keeltower = model.create_oriented_selection_set(
 # Modeling Plies
 # ''''''''''''''
 
-
 def add_ply(mg, name, ply_material, angle, oss):
     return mg.create_modeling_ply(
         name=name,
@@ -171,12 +170,9 @@ angles = [-90.0, -60.0, -45.0 - 30.0, 0.0, 0.0, 30.0, 45.0, 60.0, 90.0]
 for mg_name in ["hull", "deck", "bulkhead"]:
     mg = model.create_modeling_group(name=mg_name)
     oss_list = [model.oriented_selection_sets["oss_" + mg_name]]
-
     for angle in angles:
         add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)
-
     add_ply(mg, "corecell_103kg_10mm", corecell_103kg_10mm, 0.0, oss_list)
-
     for angle in angles:
         add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)
 

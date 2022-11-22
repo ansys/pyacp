@@ -33,6 +33,7 @@ services:
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
       - ANSYS_LOCK="OFF"
+    # working directory is shared that the example also runs on Windows
     working_dir: /home/container/workdir
     volumes:
       - "acp_data:/home/container/workdir/"

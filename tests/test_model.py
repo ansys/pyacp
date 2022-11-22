@@ -91,8 +91,8 @@ def test_save_analysis_model(grpc_server, model_data_dir_server, convert_temp_pa
     are not checked.
     """
     client = Client(server=grpc_server)
-    input_file_path = model_data_dir_server / "ACP-Pre.h5"
-    model = client.import_model(name="minimal_model", path=input_file_path, format="ansys:cdb")
+    input_file_path = model_data_dir_server / "minimal_model_2.cdb"
+    model = client.import_model(name="minimal_model", path=input_file_path, format="ansys:cdb", unit_system="mpa")
 
     with tempfile.TemporaryDirectory() as tmp_dir:
         out_file_path = pathlib.Path(tmp_dir) / "out_file.cdb"
