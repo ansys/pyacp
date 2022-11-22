@@ -53,7 +53,9 @@ filetransfer_client.upload_file(
 
 #%%
 # Load CDB file into PyACP
-model = pyacp_client.import_model(path=CDB_FILENAME, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA)
+model = pyacp_client.import_model(
+    path=CDB_FILENAME, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
+)
 model
 
 #%%
@@ -151,6 +153,7 @@ oss_keeltower = model.create_oriented_selection_set(
 #%%
 # Modeling Plies
 # ''''''''''''''
+
 
 def add_ply(mg, name, ply_material, angle, oss):
     return mg.create_modeling_ply(
