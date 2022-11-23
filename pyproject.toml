@@ -101,5 +101,6 @@ module = [
     "grpc.*",
     "grpc_health.*",
     "ansys.mapdl.core",
+    "ansys.dpf.core",
 ]
 ignore_missing_imports = true

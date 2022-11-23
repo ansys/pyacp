@@ -200,7 +200,7 @@ jobs:
 
       - name: Launch PyACP server via docker-compose
         run: |
-          docker-compose -f ./docker/docker-compose-examples.yaml up -d
+          docker-compose -f ./docker/docker-compose.yaml -f ./docker/docker-compose-extras.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
 
@@ -212,7 +212,7 @@ jobs:
 
       - name: Stop and clean up PyACP server
         run: |
-          docker-compose -f ./docker/docker-compose-examples.yaml down -v
+          docker-compose -f ./docker/docker-compose.yaml -f ./docker/docker-compose-extras.yaml down -v
 
       - name: Upload HTML Documentation
         uses: actions/upload-artifact@v2
@@ -235,7 +235,7 @@ jobs:
           sudo apt install build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks
       - name: Restart PyACP server via docker-compose
         run: |
-          docker-compose -f ./docker/docker-compose-examples.yaml up -d
+          docker-compose -f ./docker/docker-compose.yaml -f ./docker/docker-compose-extras.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
 

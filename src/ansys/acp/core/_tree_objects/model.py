@@ -204,11 +204,9 @@ class Model(TreeObject):
             File path. E.g. /tmp/acp_materials.xml
         """
         material_stub = material_pb2_grpc.ObjectServiceStub(self._channel)
-        print(material_stub)
         collection_path = CollectionPath(
             value=rp_join(self._resource_path.value, Material.COLLECTION_LABEL)
         )
-        print(collection_path)
         material_stub.SaveToFile(
             material_pb2.SaveToFileRequest(
                 collection_path=collection_path,

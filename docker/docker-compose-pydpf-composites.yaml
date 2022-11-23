@@ -1,9 +1,0 @@
-version: '3.8'
-services:
-  pydpf-composites-server:
-    restart: unless-stopped
-    image: ${IMAGE_NAME_DPF_COMPOSITES:-ghcr.io/pyansys/pydpf-composites:latest}
-    ports:
-    - "${PORT_DPF_COMPOSITES:-50558}:50052"
-    environment:
-      - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}

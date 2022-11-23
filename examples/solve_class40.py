@@ -4,7 +4,14 @@
 Basic PyACP Example
 ===================
 
-Define a Composite Lay-up with PyACP and solve the resulting model with PyMAPDL.
+Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
+a failure analysis with pyDPF-Composites.
+
+The starting point is a MAPDL CDB file which contains the mesh, material data and
+the boundary conditions. This model is imported in pyACP to define the lay-up.
+pyACP exports the resulting model for PyMAPDL. Once the results are available,
+the RST file is loaded in pyDPF composites. The additional input files (material.xml
+and ACPCompositeDefinitions.h5) can also be stored with pyACP and passed to pyDPF Composites.
 
 """
 
@@ -52,7 +59,7 @@ filetransfer_client.upload_file(
 )
 
 #%%
-# Load CDB file into PyACP
+# Load CDB file into PyACP and set the unit system
 model = pyacp_client.import_model(
     path=CDB_FILENAME, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
 )
@@ -63,7 +70,7 @@ model
 # Build Composite Lay-up
 # ----------------------
 #
-# Create the model (unit system is SI)
+# Create the model (unit system is MPA)
 
 #%%
 # Materials
@@ -109,6 +116,8 @@ ros_keeltower = model.create_rosette(
 #%%
 # Oriented Selection Sets
 # '''''''''''''''''''''''
+#
+# Note: the element sets are imported from the initial mesh (CDB)
 
 oss_deck = model.create_oriented_selection_set(
     name="oss_deck",
@@ -153,7 +162,6 @@ oss_keeltower = model.create_oriented_selection_set(
 #%%
 # Modeling Plies
 # ''''''''''''''
-
 
 def add_ply(mg, name, ply_material, angle, oss):
     return mg.create_modeling_ply(
@@ -217,15 +225,17 @@ model.save(ACPH5_FILE, save_cache=True)
 #%%
 # Save the model as CDB for solving with PyMAPDL
 model.save_analysis_model(CDB_FILENAME_OUT)
-# Export the shell lay-up for DPF Composites
+# Export the shell lay-up and material file for DPF Composites
 model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
 model.export_materials(MATML_FILE)
 
 #%%
-# Download analysis CDB file
+# Download analysis CDB file to a local directory
+#
+# This step is not required to run the example but shows how to access
+# the generated data
 tmp_dir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tmp_dir.name)
-
 CDB_FILEPATH = pathlib.Path(WORKING_DIR) / CDB_FILENAME_OUT
 filetransfer_client.download_file(CDB_FILENAME_OUT, str(CDB_FILEPATH))
 
@@ -241,7 +251,7 @@ mapdl = Mapdl(ip="localhost", port=50557, timeout=30)
 
 #%%
 # Load the CDB file into PyMAPDL
-mapdl.input(str(CDB_FILEPATH))
+mapdl.input(str(CDB_FILENAME_OUT))
 
 #%%
 # Solve the model
@@ -258,6 +268,9 @@ mapdl.post_processing.plot_nodal_displacement(component="NORM")
 #%%
 # Post-Processing with DPF composites
 # -----------------------------------
+#
+# Setup: configure imports and connect to the pyDPF Composites server
+# and load the dpf composites plugin
 
 from ansys.dpf.composites import ResultDefinition
 from ansys.dpf.composites.failure_criteria import (
@@ -272,42 +285,39 @@ import ansys.dpf.core as dpf
 dpf_server = dpf.server.connect_to_server("127.0.0.1", port=50558)
 load_composites_plugin()
 
+#%%
+# Specify the Combined Failure Criterion and the result definition
 
-def get_combined_failure_criterion() -> CombinedFailureCriterion:
-    max_strain = MaxStrainCriterion()
-    max_stress = MaxStressCriterion()
-    core_failure = CoreFailureCriterion()
+max_strain = MaxStrainCriterion()
+max_stress = MaxStressCriterion()
+core_failure = CoreFailureCriterion()
 
-    return CombinedFailureCriterion(
+cfc = CombinedFailureCriterion(
         name="Combined Failure Criterion",
         failure_criteria=[max_strain, max_stress, core_failure],
-    )
+)
 
-
-# rstfile_path = pathlib.Path(mapdl.directory) / f"{mapdl.jobname}.rst"
 rstfile_path = f"{mapdl.jobname}.rst"
 
-dpf_model = dpf.Model(rstfile_path)
-results = dpf_model.results
-print(results)
-displacements = results.displacement()
-total_def = dpf.operators.math.norm_fc(displacements)
-total_def_container = total_def.outputs.fields_container()
-mesh = dpf_model.metadata.meshed_region
-mesh.plot(total_def_container.get_field_by_time_id(1))
-
-elements = list([int(v) for v in np.arange(1, 3950)])
+elements = list([int(v) for v in np.arange(1, 3996)])
 rd = ResultDefinition(
     name="combined failure criteria",
     rst_files=[rstfile_path],
     material_files=[MATML_FILE],
     composite_definitions=[COMPOSITE_DEFINITIONS_H5],
-    combined_failure_criterion=get_combined_failure_criterion(),
+    combined_failure_criterion=cfc,
     element_scope=elements,
 )
 
+#%%
+# Initialize the failure operator and configure its input
+
 fc_op = dpf.Operator("composite::composite_failure_operator")
 fc_op.inputs.result_definition(rd.to_json())
+
+#%%
+# Query and plot the results
+
 output_all_elements = fc_op.outputs.fields_containerMax()
 
 failure_value_index = 1
