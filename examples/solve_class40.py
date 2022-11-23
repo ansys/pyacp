@@ -163,6 +163,7 @@ oss_keeltower = model.create_oriented_selection_set(
 # Modeling Plies
 # ''''''''''''''
 
+
 def add_ply(mg, name, ply_material, angle, oss):
     return mg.create_modeling_ply(
         name=name,
@@ -293,8 +294,8 @@ max_stress = MaxStressCriterion()
 core_failure = CoreFailureCriterion()
 
 cfc = CombinedFailureCriterion(
-        name="Combined Failure Criterion",
-        failure_criteria=[max_strain, max_stress, core_failure],
+    name="Combined Failure Criterion",
+    failure_criteria=[max_strain, max_stress, core_failure],
 )
 
 rstfile_path = f"{mapdl.jobname}.rst"
