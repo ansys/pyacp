@@ -134,7 +134,7 @@ test = ["ansys-dpf-core (>=0.5.2,<0.6.0)", "pytest (>=7.1.2,<8.0.0)", "pytest-co
 type = "git"
 url = "https://github.com/pyansys/pydpf-composites.git"
 reference = "main"
-resolved_reference = "ca83fd98a6c4e2314a886bfce323f5951607145a"
+resolved_reference = "460d6ebf45c8579accfa1dd2eaed0144195f32c1"
 
 [[package]]
 name = "ansys-dpf-core"
