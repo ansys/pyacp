@@ -13,6 +13,8 @@ pyACP exports the resulting model for PyMAPDL. Once the results are available,
 the RST file is loaded in pyDPF composites. The additional input files (material.xml
 and ACPCompositeDefinitions.h5) can also be stored with pyACP and passed to pyDPF Composites.
 
+The services (ACP, MAPDL and DPF) are run in docker containers which share
+a volume (working directory).
 """
 
 #%%
@@ -201,7 +203,7 @@ for angle in angles:
     add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)
 
 #%%
-# Inspect the number of plies
+# Inspect the number of modeling groups and plies
 print(len(model.modeling_groups))
 print(len(model.modeling_groups["hull"].modeling_plies))
 print(len(model.modeling_groups["deck"].modeling_plies))
@@ -235,10 +237,10 @@ model.export_materials(MATML_FILE)
 #
 # This step is not required to run the example but shows how to access
 # the generated data
-tmp_dir = tempfile.TemporaryDirectory()
-WORKING_DIR = pathlib.Path(tmp_dir.name)
-CDB_FILEPATH = pathlib.Path(WORKING_DIR) / CDB_FILENAME_OUT
-filetransfer_client.download_file(CDB_FILENAME_OUT, str(CDB_FILEPATH))
+with tempfile.TemporaryDirectory() as tmp_dir:
+    WORKING_DIR = pathlib.Path(tmp_dir)
+    CDB_FILEPATH = pathlib.Path(WORKING_DIR) / CDB_FILENAME_OUT
+    filetransfer_client.download_file(CDB_FILENAME_OUT, str(CDB_FILEPATH))
 
 #%%
 # Solve with PyMAPDL
