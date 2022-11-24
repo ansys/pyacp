@@ -56,8 +56,10 @@ EXAMPLE_DATA_DIR = pathlib.Path(os.environ["REPO_ROOT"]) / "examples" / "data" /
 #%%
 # Send ``class40.cdb`` to the server.
 CDB_FILENAME = "class40.cdb"
+local_file_path = str(EXAMPLE_DATA_DIR / CDB_FILENAME)
+print(local_file_path)
 filetransfer_client.upload_file(
-    local_filename=str(EXAMPLE_DATA_DIR / CDB_FILENAME), remote_filename=CDB_FILENAME
+    local_filename=local_file_path, remote_filename=CDB_FILENAME
 )
 
 #%%
