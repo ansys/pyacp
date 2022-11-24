@@ -13,12 +13,6 @@ services:
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
       - ANSYS_LOCK="OFF"
-    working_dir: /home/container/workdir
-    volumes:
-      - "acp_data:/home/container/workdir/"
-    depends_on:
-      - acp-grpc-server
-      - ansys-utilities-filetransfer
   pydpf-composites-server:
     restart: unless-stopped
     image: ${IMAGE_NAME_DPF_COMPOSITES:-ghcr.io/pyansys/pydpf-composites:latest}
@@ -26,9 +20,3 @@ services:
     - "${PORT_DPF_COMPOSITES:-50558}:50052"
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
-    working_dir: /home/container/workdir
-    volumes:
-      - "acp_data:/home/container/workdir/"
-    depends_on:
-      - acp-grpc-server
-      - ansys-utilities-filetransfer

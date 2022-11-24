@@ -198,7 +198,8 @@ and ansys-mapdl) are installed before launching Python.
     mapdl.set("last")
     mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
-.. image:: ../images/class40_grpc_irf.png
+.. figure:: ./../images/class40_grpc_irf.png
+    :width: 300pt
 
     Total deformations (usum)
 
@@ -260,6 +261,7 @@ and ansys-mapdl) are installed before launching Python.
     irf_field = output_all_elements[failure_value_index]
     irf_field.plot()
 
-.. image:: ../images/class40_grpc_irf.png
+.. figure:: ./../images/class40_grpc_irf.png
+    :width: 300pt
 
     Maximum inverse reserve factor of each element

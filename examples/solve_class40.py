@@ -235,14 +235,15 @@ model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
 model.export_materials(MATML_FILE)
 
 #%%
-# Download analysis CDB file to a local directory
-#
-# This step is not required to run the example but shows how to access
-# the generated data
-with tempfile.TemporaryDirectory() as tmp_dir:
-    WORKING_DIR = pathlib.Path(tmp_dir)
-    CDB_FILEPATH = pathlib.Path(WORKING_DIR) / CDB_FILENAME_OUT
-    filetransfer_client.download_file(CDB_FILENAME_OUT, str(CDB_FILEPATH))
+# Download files from ACP server to a local directory
+tmp_dir = tempfile.TemporaryDirectory()
+WORKING_DIR = pathlib.Path(tmp_dir.name)
+cdb_file_local_path = pathlib.Path(WORKING_DIR) / CDB_FILENAME_OUT
+matml_file_local_path = pathlib.Path(WORKING_DIR) / MATML_FILE
+composite_definitions_local_path = pathlib.Path(WORKING_DIR) / COMPOSITE_DEFINITIONS_H5
+filetransfer_client.download_file(CDB_FILENAME_OUT, str(cdb_file_local_path))
+filetransfer_client.download_file(MATML_FILE, str(matml_file_local_path))
+filetransfer_client.download_file(COMPOSITE_DEFINITIONS_H5, str(composite_definitions_local_path))
 
 #%%
 # Solve with PyMAPDL
@@ -256,7 +257,7 @@ mapdl = Mapdl(ip="localhost", port=50557, timeout=30)
 
 #%%
 # Load the CDB file into PyMAPDL
-mapdl.input(str(CDB_FILENAME_OUT))
+mapdl.input(str(cdb_file_local_path))
 
 #%%
 # Solve the model
@@ -270,6 +271,11 @@ mapdl.post1()
 mapdl.set("last")
 mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
+#Download RST FILE for further post-processing
+rstfile_name = f"{mapdl.jobname}.rst"
+rst_file_local_path = pathlib.Path(tmp_dir.name) / rstfile_name
+mapdl.download(rstfile_name, tmp_dir.name)
+
 #%%
 # Post-Processing with DPF composites
 # -----------------------------------
@@ -277,6 +283,7 @@ mapdl.post_processing.plot_nodal_displacement(component="NORM")
 # Setup: configure imports and connect to the pyDPF Composites server
 # and load the dpf composites plugin
 
+from ansys.dpf.core.core import upload_file_in_tmp_folder
 from ansys.dpf.composites import ResultDefinition
 from ansys.dpf.composites.failure_criteria import (
     CombinedFailureCriterion,
@@ -302,14 +309,17 @@ cfc = CombinedFailureCriterion(
     failure_criteria=[max_strain, max_stress, core_failure],
 )
 
-rstfile_path = f"{mapdl.jobname}.rst"
+# upload files to DPF server
+rst_file_dpf_path = upload_file_in_tmp_folder(str(rst_file_local_path))
+composite_definitions_file_dpf_path = upload_file_in_tmp_folder(str(composite_definitions_local_path))
+matml_file_dpf_path = upload_file_in_tmp_folder(str(matml_file_local_path))
 
 elements = list([int(v) for v in np.arange(1, 3996)])
 rd = ResultDefinition(
     name="combined failure criteria",
-    rst_files=[rstfile_path],
-    material_files=[MATML_FILE],
-    composite_definitions=[COMPOSITE_DEFINITIONS_H5],
+    rst_files=[rst_file_dpf_path],
+    material_files=[matml_file_dpf_path],
+    composite_definitions=[composite_definitions_file_dpf_path],
     combined_failure_criterion=cfc,
     element_scope=elements,
 )
