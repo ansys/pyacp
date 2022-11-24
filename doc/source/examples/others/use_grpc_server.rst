@@ -1,6 +1,7 @@
+.. _ref_example_grpc_server:
 
-Use of gRPC Server instead of Docker Container
-==============================================
+Run pyACP with gRPC Server
+--------------------------
 
 This example demonstrates the use of pyACP in combination with the gRPC sever instead
 of the Docker container. The gRPC server of ACP is delivered with the unified installer.
