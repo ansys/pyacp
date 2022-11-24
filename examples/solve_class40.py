@@ -58,9 +58,7 @@ EXAMPLE_DATA_DIR = pathlib.Path(os.environ["REPO_ROOT"]) / "examples" / "data" /
 CDB_FILENAME = "class40.cdb"
 local_file_path = str(EXAMPLE_DATA_DIR / CDB_FILENAME)
 print(local_file_path)
-filetransfer_client.upload_file(
-    local_filename=local_file_path, remote_filename=CDB_FILENAME
-)
+filetransfer_client.upload_file(local_filename=local_file_path, remote_filename=CDB_FILENAME)
 
 #%%
 # Load CDB file into PyACP and set the unit system
@@ -271,7 +269,7 @@ mapdl.post1()
 mapdl.set("last")
 mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
-#Download RST FILE for further post-processing
+# Download RST FILE for further post-processing
 rstfile_name = f"{mapdl.jobname}.rst"
 rst_file_local_path = pathlib.Path(tmp_dir.name) / rstfile_name
 mapdl.download(rstfile_name, tmp_dir.name)
@@ -283,7 +281,6 @@ mapdl.download(rstfile_name, tmp_dir.name)
 # Setup: configure imports and connect to the pyDPF Composites server
 # and load the dpf composites plugin
 
-from ansys.dpf.core.core import upload_file_in_tmp_folder
 from ansys.dpf.composites import ResultDefinition
 from ansys.dpf.composites.failure_criteria import (
     CombinedFailureCriterion,
@@ -293,6 +290,7 @@ from ansys.dpf.composites.failure_criteria import (
 )
 from ansys.dpf.composites.load_plugin import load_composites_plugin
 import ansys.dpf.core as dpf
+from ansys.dpf.core.core import upload_file_in_tmp_folder
 
 dpf_server = dpf.server.connect_to_server("127.0.0.1", port=50558)
 load_composites_plugin()
@@ -311,7 +309,9 @@ cfc = CombinedFailureCriterion(
 
 # upload files to DPF server
 rst_file_dpf_path = upload_file_in_tmp_folder(str(rst_file_local_path))
-composite_definitions_file_dpf_path = upload_file_in_tmp_folder(str(composite_definitions_local_path))
+composite_definitions_file_dpf_path = upload_file_in_tmp_folder(
+    str(composite_definitions_local_path)
+)
 matml_file_dpf_path = upload_file_in_tmp_folder(str(matml_file_local_path))
 
 elements = list([int(v) for v in np.arange(1, 3996)])
