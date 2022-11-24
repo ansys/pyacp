@@ -1,13 +1,13 @@
 :orphan:
 
-.. _ref_example_grpc_server:
+.. _ref_example_local_executable:
 
-Connect pyACP with gRPC Server
-------------------------------
+Local pyACP Executable
+----------------------
 
-This example demonstrates the use of pyACP in combination with the gRPC sever instead
-of the Docker container. The gRPC server of ACP is delivered with the unified installer.
-It can be beneficial to work with the gRPC server if the data is already stored locally
+This example demonstrates running the PyACP server from a local executable instead of in a
+Docker container. The gRPC server of ACP is delivered with the unified installer.
+It can be beneficial to work with the local executable if the data is already stored locally
 or to reduce the latency between the server and client.
 
 In this example, pyACP is used to add a lay-up to a MAPDL model (CDB file)

@@ -7,5 +7,5 @@ Examples
 .. include:: gallery_examples/index.rst
    :start-line: 2
 
-:doc:`./others/use_grpc_server` is an example which uses the gRPC servers
-from the unified installer instead of Docker containers.
+:doc:`./others/local_pyacp_executable` demonstrates running the
+PyACP server from a local executable instead of in a Docker container
