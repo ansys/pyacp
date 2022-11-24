@@ -1,7 +1,9 @@
+:orphan:
+
 .. _ref_example_grpc_server:
 
-Run pyACP with gRPC Server
---------------------------
+Connect pyACP with gRPC Server
+------------------------------
 
 This example demonstrates the use of pyACP in combination with the gRPC sever instead
 of the Docker container. The gRPC server of ACP is delivered with the unified installer.
@@ -199,7 +201,7 @@ and ansys-mapdl) are installed before launching Python.
     mapdl.set("last")
     mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
-.. figure:: ./../images/class40_grpc_irf.png
+.. figure:: ./../../images/class40_grpc_irf.png
     :width: 300pt
 
     Total deformations (usum)
@@ -262,7 +264,7 @@ and ansys-mapdl) are installed before launching Python.
     irf_field = output_all_elements[failure_value_index]
     irf_field.plot()
 
-.. figure:: ./../images/class40_grpc_irf.png
+.. figure:: ./../../images/class40_grpc_irf.png
     :width: 300pt
 
     Maximum inverse reserve factor of each element
