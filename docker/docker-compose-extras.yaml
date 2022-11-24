@@ -16,6 +16,9 @@ services:
     working_dir: /home/container/workdir
     volumes:
       - "acp_data:/home/container/workdir/"
+    depends_on:
+      - acp-grpc-server
+      - ansys-utilities-filetransfer
   pydpf-composites-server:
     restart: unless-stopped
     image: ${IMAGE_NAME_DPF_COMPOSITES:-ghcr.io/pyansys/pydpf-composites:latest}
