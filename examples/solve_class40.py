@@ -5,7 +5,7 @@ Basic PyACP Example
 ===================
 
 Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
-a failure analysis with pyDPF-Composites.
+a failure analysis with PyDPF-Composites.
 
 The starting point is a MAPDL CDB file which contains the mesh, material data and
 the boundary conditions. This model is imported in pyACP to define the lay-up.
