@@ -2,6 +2,6 @@ These examples assume that a PyACP server is already running. You can start it b
 
 .. code::
 
-    docker-compose -f docker/docker-compose-mapdl.yaml -f docker/docker-compose.yaml -f docker/docker-compose-pydpf-composites.yaml up -d
+    docker-compose -f docker/docker-compose.yaml -f docker/docker-compose-extras.yaml up -d
 
 For further options to launch the PyACP server, see :ref:`launching_server`. You may have to adapt the paths passed to PyACP when using these options.
