@@ -1,4 +1,5 @@
 from .element_set import ElementSet
+from .enums import UnitSystemType
 from .fabric import Fabric
 from .material import Material
 from .model import Model
@@ -16,4 +17,5 @@ __all__ = [
     "OrientedSelectionSet",
     "ModelingGroup",
     "ModelingPly",
+    "UnitSystemType",
 ]

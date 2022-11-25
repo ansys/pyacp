@@ -4,8 +4,17 @@
 Basic PyACP Example
 ===================
 
-Define a Composite Lay-up with PyACP and solve the resulting model with PyMAPDL.
+Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
+a failure analysis with PyDPF-Composites.
 
+The starting point is a MAPDL CDB file which contains the mesh, material data and
+the boundary conditions. This model is imported in PyACP to define the lay-up.
+PyACP exports the resulting model for PyMAPDL. Once the results are available,
+the RST file is loaded in PyDPF composites. The additional input files (material.xml
+and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDPF Composites.
+
+The services (ACP, MAPDL and DPF) are run in docker containers which share
+a volume (working directory).
 """
 
 #%%
@@ -19,6 +28,7 @@ import pathlib
 import tempfile
 
 import grpc
+import numpy as np
 
 #%%
 # Import Ansys libraries
@@ -46,13 +56,15 @@ EXAMPLE_DATA_DIR = pathlib.Path(os.environ["REPO_ROOT"]) / "examples" / "data" /
 #%%
 # Send ``class40.cdb`` to the server.
 CDB_FILENAME = "class40.cdb"
-filetransfer_client.upload_file(
-    local_filename=str(EXAMPLE_DATA_DIR / CDB_FILENAME), remote_filename=CDB_FILENAME
-)
+local_file_path = str(EXAMPLE_DATA_DIR / CDB_FILENAME)
+print(local_file_path)
+filetransfer_client.upload_file(local_filename=local_file_path, remote_filename=CDB_FILENAME)
 
 #%%
-# Load CDB file into PyACP
-model = pyacp_client.import_model(path=CDB_FILENAME, format="ansys:cdb")
+# Load CDB file into PyACP and set the unit system
+model = pyacp_client.import_model(
+    path=CDB_FILENAME, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
+)
 model
 
 #%%
@@ -60,21 +72,35 @@ model
 # Build Composite Lay-up
 # ----------------------
 #
-# Create the model (unit system is SI)
+# Create the model (unit system is MPA)
+
+#%%
+# Materials
+# '''''''''
+
+mat_corecell_81kg = model.materials["1"]
+mat_corecell_81kg.name = "Core Cell 81kg"
+mat_corecell_81kg.ply_type = "isotropic_homogeneous_core"
+
+mat_corecell_103kg = model.materials["2"]
+mat_corecell_103kg.name = "Core Cell 103kg"
+mat_corecell_103kg.ply_type = "isotropic_homogeneous_core"
+
+mat_eglass_ud = model.materials["3"]
+mat_eglass_ud.name = "E-Glass (uni-directional)"
+mat_eglass_ud.ply_type = "regular"
 
 #%%
 # Fabrics
 # '''''''
 
 corecell_81kg_5mm = model.create_fabric(
-    name="Corecell 81kg", thickness=0.005, material=model.materials["1"]
+    name="Corecell 81kg", thickness=0.005, material=mat_corecell_81kg
 )
 corecell_103kg_10mm = model.create_fabric(
-    name="Corecell 103kg", thickness=0.01, material=model.materials["2"]
+    name="Corecell 103kg", thickness=0.01, material=mat_corecell_103kg
 )
-eglass_ud_02mm = model.create_fabric(
-    name="eglass UD", thickness=0.0002, material=model.materials["3"]
-)
+eglass_ud_02mm = model.create_fabric(name="eglass UD", thickness=0.0002, material=mat_eglass_ud)
 
 #%%
 # Rosettes
@@ -92,6 +118,8 @@ ros_keeltower = model.create_rosette(
 #%%
 # Oriented Selection Sets
 # '''''''''''''''''''''''
+#
+# Note: the element sets are imported from the initial mesh (CDB)
 
 oss_deck = model.create_oriented_selection_set(
     name="oss_deck",
@@ -156,12 +184,9 @@ angles = [-90.0, -60.0, -45.0 - 30.0, 0.0, 0.0, 30.0, 45.0, 60.0, 90.0]
 for mg_name in ["hull", "deck", "bulkhead"]:
     mg = model.create_modeling_group(name=mg_name)
     oss_list = [model.oriented_selection_sets["oss_" + mg_name]]
-
     for angle in angles:
         add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)
-
     add_ply(mg, "corecell_103kg_10mm", corecell_103kg_10mm, 0.0, oss_list)
-
     for angle in angles:
         add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)
 
@@ -178,7 +203,7 @@ for angle in angles:
     add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)
 
 #%%
-# Inspect the number of plies
+# Inspect the number of modeling groups and plies
 print(len(model.modeling_groups))
 print(len(model.modeling_groups["hull"].modeling_plies))
 print(len(model.modeling_groups["deck"].modeling_plies))
@@ -190,21 +215,33 @@ print(len(model.modeling_groups["keeltower"].modeling_plies))
 # Write out ACP Model
 # -------------------
 
+ACPH5_FILE = "class40.acph5"
+CDB_FILENAME_OUT = "class40_analysis_model.cdb"
+COMPOSITE_DEFINITIONS_H5 = "ACPCompositeDefinitions.h5"
+MATML_FILE = "materials.xml"
+
 #%%
 # Update and Save the ACP model
 model.update()
-model.save("class40.acph5", save_cache=True)
+model.save(ACPH5_FILE, save_cache=True)
 
 #%%
 # Save the model as CDB for solving with PyMAPDL
-model.save_analysis_model("class40_analysis_model.cdb")
+model.save_analysis_model(CDB_FILENAME_OUT)
+# Export the shell lay-up and material file for DPF Composites
+model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
+model.export_materials(MATML_FILE)
 
 #%%
-# Download analysis CDB file
+# Download files from ACP server to a local directory
 tmp_dir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tmp_dir.name)
-CDB_FILENAME_OUT = "class40_analysis_model.cdb"
-filetransfer_client.download_file(CDB_FILENAME_OUT, str(WORKING_DIR / CDB_FILENAME_OUT))
+cdb_file_local_path = pathlib.Path(WORKING_DIR) / CDB_FILENAME_OUT
+matml_file_local_path = pathlib.Path(WORKING_DIR) / MATML_FILE
+composite_definitions_local_path = pathlib.Path(WORKING_DIR) / COMPOSITE_DEFINITIONS_H5
+filetransfer_client.download_file(CDB_FILENAME_OUT, str(cdb_file_local_path))
+filetransfer_client.download_file(MATML_FILE, str(matml_file_local_path))
+filetransfer_client.download_file(COMPOSITE_DEFINITIONS_H5, str(composite_definitions_local_path))
 
 #%%
 # Solve with PyMAPDL
@@ -218,7 +255,7 @@ mapdl = Mapdl(ip="localhost", port=50557, timeout=30)
 
 #%%
 # Load the CDB file into PyMAPDL
-mapdl.input(str(WORKING_DIR / CDB_FILENAME_OUT))
+mapdl.input(str(cdb_file_local_path))
 
 #%%
 # Solve the model
@@ -232,6 +269,74 @@ mapdl.post1()
 mapdl.set("last")
 mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
+# Download RST FILE for further post-processing
+rstfile_name = f"{mapdl.jobname}.rst"
+rst_file_local_path = pathlib.Path(tmp_dir.name) / rstfile_name
+mapdl.download(rstfile_name, tmp_dir.name)
+
 #%%
-# Post-processing: show show stresses
-mapdl.post_processing.plot_element_stress("X")
+# Post-Processing with DPF composites
+# -----------------------------------
+#
+# Setup: configure imports and connect to the pyDPF Composites server
+# and load the dpf composites plugin
+
+from ansys.dpf.composites import ResultDefinition
+from ansys.dpf.composites.failure_criteria import (
+    CombinedFailureCriterion,
+    CoreFailureCriterion,
+    MaxStrainCriterion,
+    MaxStressCriterion,
+)
+from ansys.dpf.composites.load_plugin import load_composites_plugin
+import ansys.dpf.core as dpf
+from ansys.dpf.core.core import upload_file_in_tmp_folder
+
+dpf_server = dpf.server.connect_to_server("127.0.0.1", port=50558)
+load_composites_plugin()
+
+#%%
+# Specify the Combined Failure Criterion and the result definition
+
+max_strain = MaxStrainCriterion()
+max_stress = MaxStressCriterion()
+core_failure = CoreFailureCriterion()
+
+cfc = CombinedFailureCriterion(
+    name="Combined Failure Criterion",
+    failure_criteria=[max_strain, max_stress, core_failure],
+)
+
+# upload files to DPF server
+rst_file_dpf_path = upload_file_in_tmp_folder(str(rst_file_local_path))
+composite_definitions_file_dpf_path = upload_file_in_tmp_folder(
+    str(composite_definitions_local_path)
+)
+matml_file_dpf_path = upload_file_in_tmp_folder(str(matml_file_local_path))
+
+elements = list([int(v) for v in np.arange(1, 3996)])
+rd = ResultDefinition(
+    name="combined failure criteria",
+    rst_files=[rst_file_dpf_path],
+    material_files=[matml_file_dpf_path],
+    composite_definitions=[composite_definitions_file_dpf_path],
+    combined_failure_criterion=cfc,
+    element_scope=elements,
+)
+
+#%%
+# Initialize the failure operator and configure its input
+
+fc_op = dpf.Operator("composite::composite_failure_operator")
+fc_op.inputs.result_definition(rd.to_json())
+
+#%%
+# Query and plot the results
+
+output_all_elements = fc_op.outputs.fields_containerMax()
+
+failure_value_index = 1
+failure_mode_index = 0
+
+irf_field = output_all_elements[failure_value_index]
+irf_field.plot()

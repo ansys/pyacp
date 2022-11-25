@@ -36,6 +36,8 @@ numpy = [
 ]
 importlib-metadata = { version = "^4.0", python = "<3.8" }
 ansys-api-acp = { git = "https://github.com/ansys/ansys-api-acp-private.git",  branch = "main" }
+ansys-dpf-composites = { git = "https://github.com/pyansys/pydpf-composites.git",  branch = "main" }
+ansys-dpf-core = "^0.6.2"
 grpcio-health-checking = "^1.43"
 typing-extensions = { version = "^4.0", python = "<3.8" }
 
@@ -73,7 +75,7 @@ pytest-cases = "^3.6.13"
 [tool.poetry.extras]
 # For the examples, we keep an extra to simplify installing these dependencies for the
 # end user.
-examples = ["ansys-utilities-filetransfer", "pyvista", "ansys-mapdl-core"]
+examples = ["ansys-utilities-filetransfer", "pyvista", "ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites"]
 
 [tool.black]
 line-length = 100
@@ -99,5 +101,7 @@ module = [
     "grpc.*",
     "grpc_health.*",
     "ansys.mapdl.core",
+    "ansys.dpf.core",
+    "ansys.dpf.core.core"
 ]
 ignore_missing_imports = true
