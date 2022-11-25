@@ -9,7 +9,7 @@ a failure analysis with PyDPF-Composites.
 
 The starting point is a MAPDL CDB file which contains the mesh, material data and
 the boundary conditions. This model is imported in PyACP to define the lay-up.
-pyACP exports the resulting model for PyMAPDL. Once the results are available,
+PyACP exports the resulting model for PyMAPDL. Once the results are available,
 the RST file is loaded in pyDPF composites. The additional input files (material.xml
 and ACPCompositeDefinitions.h5) can also be stored with pyACP and passed to pyDPF Composites.
 
