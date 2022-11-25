@@ -45,6 +45,9 @@
       Material.name
       
       
+      Material.ply_type
+      
+      
       Material.status
       
    

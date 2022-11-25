@@ -360,6 +360,16 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.export_materials.html">
+       export_materials
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.export_shell_composite_definitions.html">
+       export_shell_composite_definitions
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.from_fe_file.html">
        from_fe_file
       </a>
@@ -440,6 +450,11 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.unit_system.html">
+       unit_system
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html">
        use_nodal_thicknesses
       </a>
@@ -484,6 +499,11 @@
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Material.name.html">
        name
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Material.ply_type.html">
+       ply_type
       </a>
      </li>
      <li class="toctree-l3">
@@ -938,10 +958,17 @@
 <h1>save<a class="headerlink" href="#save" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.save">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.save" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.save" title="Permalink to this definition">#</a></dt>
+<dd><p>Save ACP Model (.acph5).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PathLike</span></code></a>]) – File path.</p></li>
+<li><p><strong>save_cache</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>) – Whether to store the update results such as Analysis Plies and solid models.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>

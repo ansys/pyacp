@@ -39,6 +39,12 @@
       Model.delete
       
       
+      Model.export_materials
+      
+      
+      Model.export_shell_composite_definitions
+      
+      
       Model.from_fe_file
       
       
@@ -97,6 +103,9 @@
       
       
       Model.rosettes
+      
+      
+      Model.unit_system
       
       
       Model.use_nodal_thicknesses

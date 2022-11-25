@@ -23,18 +23,28 @@
 Basic PyACP Example
 ===================
 
-Define a Composite Lay-up with PyACP and solve the resulting model with PyMAPDL.
+Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
+a failure analysis with PyDPF-Composites.
 
-.. GENERATED FROM PYTHON SOURCE LINES 12-14
+The starting point is a MAPDL CDB file which contains the mesh, material data and
+the boundary conditions. This model is imported in PyACP to define the lay-up.
+PyACP exports the resulting model for PyMAPDL. Once the results are available,
+the RST file is loaded in PyDPF composites. The additional input files (material.xml
+and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDPF Composites.
+
+The services (ACP, MAPDL and DPF) are run in docker containers which share
+a volume (working directory).
+
+.. GENERATED FROM PYTHON SOURCE LINES 21-23
 
 Setup: Connect to PyACP Server
 ------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 16-17
+.. GENERATED FROM PYTHON SOURCE LINES 25-26
 
 Import standard library and third-party dependencies
 
-.. GENERATED FROM PYTHON SOURCE LINES 17-23
+.. GENERATED FROM PYTHON SOURCE LINES 26-33
 
 .. code-block:: default
 
@@ -43,6 +53,7 @@ Import standard library and third-party dependencies
     import tempfile
 
     import grpc
+    import numpy as np
 
 
 
@@ -51,11 +62,11 @@ Import standard library and third-party dependencies
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-25
+.. GENERATED FROM PYTHON SOURCE LINES 34-35
 
 Import Ansys libraries
 
-.. GENERATED FROM PYTHON SOURCE LINES 25-28
+.. GENERATED FROM PYTHON SOURCE LINES 35-38
 
 .. code-block:: default
 
@@ -69,12 +80,12 @@ Import Ansys libraries
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 29-31
+.. GENERATED FROM PYTHON SOURCE LINES 39-41
 
 Instantiate clients: The ``filetransfer_client`` will be used to up- and download
 files to the server. The ``pyacp_client`` connects to the main PyACP server.
 
-.. GENERATED FROM PYTHON SOURCE LINES 31-37
+.. GENERATED FROM PYTHON SOURCE LINES 41-47
 
 .. code-block:: default
 
@@ -91,16 +102,16 @@ files to the server. The ``pyacp_client`` connects to the main PyACP server.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 38-40
+.. GENERATED FROM PYTHON SOURCE LINES 48-50
 
 Load Mesh and Materials from CDB file
 -------------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 43-44
+.. GENERATED FROM PYTHON SOURCE LINES 53-54
 
 Define the directory in which the input files are stored.
 
-.. GENERATED FROM PYTHON SOURCE LINES 44-46
+.. GENERATED FROM PYTHON SOURCE LINES 54-56
 
 .. code-block:: default
 
@@ -113,35 +124,43 @@ Define the directory in which the input files are stored.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 47-48
+.. GENERATED FROM PYTHON SOURCE LINES 57-58
 
 Send ``class40.cdb`` to the server.
 
-.. GENERATED FROM PYTHON SOURCE LINES 48-53
+.. GENERATED FROM PYTHON SOURCE LINES 58-63
 
 .. code-block:: default
 
     CDB_FILENAME = "class40.cdb"
-    filetransfer_client.upload_file(
-        local_filename=str(EXAMPLE_DATA_DIR / CDB_FILENAME), remote_filename=CDB_FILENAME
-    )
+    local_file_path = str(EXAMPLE_DATA_DIR / CDB_FILENAME)
+    print(local_file_path)
+    filetransfer_client.upload_file(local_filename=local_file_path, remote_filename=CDB_FILENAME)
 
 
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    /home/runner/work/pyacp-private/pyacp-private/examples/data/class40/class40.cdb
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 54-55
 
-Load CDB file into PyACP
+.. GENERATED FROM PYTHON SOURCE LINES 64-65
 
-.. GENERATED FROM PYTHON SOURCE LINES 55-58
+Load CDB file into PyACP and set the unit system
+
+.. GENERATED FROM PYTHON SOURCE LINES 65-70
 
 .. code-block:: default
 
-    model = pyacp_client.import_model(path=CDB_FILENAME, format="ansys:cdb")
+    model = pyacp_client.import_model(
+        path=CDB_FILENAME, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
+    )
     model
 
 
@@ -157,32 +176,59 @@ Load CDB file into PyACP
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 59-63
+.. GENERATED FROM PYTHON SOURCE LINES 71-75
 
 Build Composite Lay-up
 ----------------------
 
-Create the model (unit system is SI)
+Create the model (unit system is MPA)
 
-.. GENERATED FROM PYTHON SOURCE LINES 66-68
+.. GENERATED FROM PYTHON SOURCE LINES 78-80
+
+Materials
+'''''''''
+
+.. GENERATED FROM PYTHON SOURCE LINES 80-93
+
+.. code-block:: default
+
+
+    mat_corecell_81kg = model.materials["1"]
+    mat_corecell_81kg.name = "Core Cell 81kg"
+    mat_corecell_81kg.ply_type = "isotropic_homogeneous_core"
+
+    mat_corecell_103kg = model.materials["2"]
+    mat_corecell_103kg.name = "Core Cell 103kg"
+    mat_corecell_103kg.ply_type = "isotropic_homogeneous_core"
+
+    mat_eglass_ud = model.materials["3"]
+    mat_eglass_ud.name = "E-Glass (uni-directional)"
+    mat_eglass_ud.ply_type = "regular"
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 94-96
 
 Fabrics
 '''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 68-79
+.. GENERATED FROM PYTHON SOURCE LINES 96-105
 
 .. code-block:: default
 
 
     corecell_81kg_5mm = model.create_fabric(
-        name="Corecell 81kg", thickness=0.005, material=model.materials["1"]
+        name="Corecell 81kg", thickness=0.005, material=mat_corecell_81kg
     )
     corecell_103kg_10mm = model.create_fabric(
-        name="Corecell 103kg", thickness=0.01, material=model.materials["2"]
+        name="Corecell 103kg", thickness=0.01, material=mat_corecell_103kg
     )
-    eglass_ud_02mm = model.create_fabric(
-        name="eglass UD", thickness=0.0002, material=model.materials["3"]
-    )
+    eglass_ud_02mm = model.create_fabric(name="eglass UD", thickness=0.0002, material=mat_eglass_ud)
 
 
 
@@ -191,12 +237,12 @@ Fabrics
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 80-82
+.. GENERATED FROM PYTHON SOURCE LINES 106-108
 
 Rosettes
 ''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 82-92
+.. GENERATED FROM PYTHON SOURCE LINES 108-118
 
 .. code-block:: default
 
@@ -217,12 +263,14 @@ Rosettes
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 93-95
+.. GENERATED FROM PYTHON SOURCE LINES 119-123
 
 Oriented Selection Sets
 '''''''''''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 95-136
+Note: the element sets are imported from the initial mesh (CDB)
+
+.. GENERATED FROM PYTHON SOURCE LINES 123-164
 
 .. code-block:: default
 
@@ -274,12 +322,12 @@ Oriented Selection Sets
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 137-139
+.. GENERATED FROM PYTHON SOURCE LINES 165-167
 
 Modeling Plies
 ''''''''''''''
 
-.. GENERATED FROM PYTHON SOURCE LINES 139-152
+.. GENERATED FROM PYTHON SOURCE LINES 167-180
 
 .. code-block:: default
 
@@ -303,11 +351,11 @@ Modeling Plies
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 153-154
+.. GENERATED FROM PYTHON SOURCE LINES 181-182
 
 Define plies for the HULL, DECK and BULKHEAD
 
-.. GENERATED FROM PYTHON SOURCE LINES 154-168
+.. GENERATED FROM PYTHON SOURCE LINES 182-193
 
 .. code-block:: default
 
@@ -316,12 +364,9 @@ Define plies for the HULL, DECK and BULKHEAD
     for mg_name in ["hull", "deck", "bulkhead"]:
         mg = model.create_modeling_group(name=mg_name)
         oss_list = [model.oriented_selection_sets["oss_" + mg_name]]
-
         for angle in angles:
             add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)
-
         add_ply(mg, "corecell_103kg_10mm", corecell_103kg_10mm, 0.0, oss_list)
-
         for angle in angles:
             add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)
 
@@ -332,11 +377,11 @@ Define plies for the HULL, DECK and BULKHEAD
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 169-170
+.. GENERATED FROM PYTHON SOURCE LINES 194-195
 
 Add plies to the keeltower
 
-.. GENERATED FROM PYTHON SOURCE LINES 170-180
+.. GENERATED FROM PYTHON SOURCE LINES 195-205
 
 .. code-block:: default
 
@@ -357,11 +402,11 @@ Add plies to the keeltower
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 181-182
+.. GENERATED FROM PYTHON SOURCE LINES 206-207
 
-Inspect the number of plies
+Inspect the number of modeling groups and plies
 
-.. GENERATED FROM PYTHON SOURCE LINES 182-188
+.. GENERATED FROM PYTHON SOURCE LINES 207-213
 
 .. code-block:: default
 
@@ -388,21 +433,38 @@ Inspect the number of plies
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 189-191
+.. GENERATED FROM PYTHON SOURCE LINES 214-216
 
 Write out ACP Model
 -------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 194-195
+.. GENERATED FROM PYTHON SOURCE LINES 217-223
+
+.. code-block:: default
+
+
+    ACPH5_FILE = "class40.acph5"
+    CDB_FILENAME_OUT = "class40_analysis_model.cdb"
+    COMPOSITE_DEFINITIONS_H5 = "ACPCompositeDefinitions.h5"
+    MATML_FILE = "materials.xml"
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 224-225
 
 Update and Save the ACP model
 
-.. GENERATED FROM PYTHON SOURCE LINES 195-198
+.. GENERATED FROM PYTHON SOURCE LINES 225-228
 
 .. code-block:: default
 
     model.update()
-    model.save("class40.acph5", save_cache=True)
+    model.save(ACPH5_FILE, save_cache=True)
 
 
 
@@ -411,15 +473,18 @@ Update and Save the ACP model
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 199-200
+.. GENERATED FROM PYTHON SOURCE LINES 229-230
 
 Save the model as CDB for solving with PyMAPDL
 
-.. GENERATED FROM PYTHON SOURCE LINES 200-202
+.. GENERATED FROM PYTHON SOURCE LINES 230-235
 
 .. code-block:: default
 
-    model.save_analysis_model("class40_analysis_model.cdb")
+    model.save_analysis_model(CDB_FILENAME_OUT)
+    # Export the shell lay-up and material file for DPF Composites
+    model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
+    model.export_materials(MATML_FILE)
 
 
 
@@ -428,18 +493,22 @@ Save the model as CDB for solving with PyMAPDL
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 203-204
+.. GENERATED FROM PYTHON SOURCE LINES 236-237
 
-Download analysis CDB file
+Download files from ACP server to a local directory
 
-.. GENERATED FROM PYTHON SOURCE LINES 204-209
+.. GENERATED FROM PYTHON SOURCE LINES 237-246
 
 .. code-block:: default
 
     tmp_dir = tempfile.TemporaryDirectory()
     WORKING_DIR = pathlib.Path(tmp_dir.name)
-    CDB_FILENAME_OUT = "class40_analysis_model.cdb"
-    filetransfer_client.download_file(CDB_FILENAME_OUT, str(WORKING_DIR / CDB_FILENAME_OUT))
+    cdb_file_local_path = pathlib.Path(WORKING_DIR) / CDB_FILENAME_OUT
+    matml_file_local_path = pathlib.Path(WORKING_DIR) / MATML_FILE
+    composite_definitions_local_path = pathlib.Path(WORKING_DIR) / COMPOSITE_DEFINITIONS_H5
+    filetransfer_client.download_file(CDB_FILENAME_OUT, str(cdb_file_local_path))
+    filetransfer_client.download_file(MATML_FILE, str(matml_file_local_path))
+    filetransfer_client.download_file(COMPOSITE_DEFINITIONS_H5, str(composite_definitions_local_path))
 
 
 
@@ -448,16 +517,16 @@ Download analysis CDB file
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 210-212
+.. GENERATED FROM PYTHON SOURCE LINES 247-249
 
 Solve with PyMAPDL
 ------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 214-215
+.. GENERATED FROM PYTHON SOURCE LINES 251-252
 
 Import PyMAPDL and connect to its server
 
-.. GENERATED FROM PYTHON SOURCE LINES 215-219
+.. GENERATED FROM PYTHON SOURCE LINES 252-256
 
 .. code-block:: default
 
@@ -472,15 +541,15 @@ Import PyMAPDL and connect to its server
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 220-221
+.. GENERATED FROM PYTHON SOURCE LINES 257-258
 
 Load the CDB file into PyMAPDL
 
-.. GENERATED FROM PYTHON SOURCE LINES 221-223
+.. GENERATED FROM PYTHON SOURCE LINES 258-260
 
 .. code-block:: default
 
-    mapdl.input(str(WORKING_DIR / CDB_FILENAME_OUT))
+    mapdl.input(str(cdb_file_local_path))
 
 
 
@@ -491,15 +560,15 @@ Load the CDB file into PyMAPDL
  .. code-block:: none
 
 
-    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 88888888  VERSION=LINUX x64     13:04:09  NOV 11, 2022 CP=      0.428\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.526\n\n\n'
+    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 88888888  VERSION=LINUX x64     16:03:41  NOV 25, 2022 CP=      0.429\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.530\n\n\n'
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 224-225
+.. GENERATED FROM PYTHON SOURCE LINES 261-262
 
 Solve the model
 
-.. GENERATED FROM PYTHON SOURCE LINES 225-229
+.. GENERATED FROM PYTHON SOURCE LINES 262-266
 
 .. code-block:: default
 
@@ -518,7 +587,7 @@ Solve the model
 
     *****  MAPDL SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       0.538   TIME= 13:04:10
+     *** NOTE ***                            CP =       0.545   TIME= 16:03:41
      There is no title defined for this analysis.                            
 
      *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -543,7 +612,7 @@ Solve the model
 
      *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
      Ansys Mechanical Enterprise                       
-     88888888  VERSION=LINUX x64     13:04:10  NOV 11, 2022 CP=      0.578
+     88888888  VERSION=LINUX x64     16:03:41  NOV 25, 2022 CP=      0.582
 
                                                                                
 
@@ -559,14 +628,14 @@ Solve the model
        ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
        GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  
 
-     *** NOTE ***                            CP =       0.580   TIME= 13:04:10
+     *** NOTE ***                            CP =       0.584   TIME= 16:03:41
      Poisson's ratio PR input has been converted to NU input.                
 
-     *** NOTE ***                            CP =       0.587   TIME= 13:04:10
+     *** NOTE ***                            CP =       0.591   TIME= 16:03:41
      Present time 0 is less than or equal to the previous time.  Time will   
      default to 1.                                                           
 
-     *** NOTE ***                            CP =       0.588   TIME= 13:04:10
+     *** NOTE ***                            CP =       0.592   TIME= 16:03:41
      The conditions for direct assembly have been met.  No .emat or .erot    
      files will be produced.                                                 
 
@@ -584,7 +653,7 @@ Solve the model
 
      SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           
 
-     *** NOTE ***                            CP =       0.677   TIME= 13:04:10
+     *** NOTE ***                            CP =       0.680   TIME= 16:03:41
      Predictor is ON by default for structural elements with rotational      
      degrees of freedom.  Use the PRED,OFF command to turn the predictor     
      OFF if it adversely affects the convergence.                            
@@ -633,10 +702,10 @@ Solve the model
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      3.076   0.000774
-            2        88  BEAM188       0.004   0.000047
-            3        22  SHELL181      0.005   0.000244
-     Time at end of element matrix formulation CP = 3.79081488.              
+            1      3973  SHELL181      2.820   0.000710
+            2        88  BEAM188       0.005   0.000053
+            3        22  SHELL181      0.005   0.000229
+     Time at end of element matrix formulation CP = 3.54047418.              
 
      SPARSE MATRIX DIRECT SOLVER.
       Number of equations =       24096,    Maximum wavefront =     66
@@ -644,7 +713,7 @@ Solve the model
       Memory required for in-core solution     =    58.542 MB
       Memory required for out-of-core solution =    24.642 MB
 
-     *** NOTE ***                            CP =       3.872   TIME= 13:04:13
+     *** NOTE ***                            CP =       3.623   TIME= 16:03:44
      The Sparse Matrix Solver is currently running in the in-core memory     
      mode.  This memory mode uses the most amount of memory in order to      
      avoid using the hard drive as much as possible, which most often        
@@ -659,16 +728,16 @@ Solve the model
        *** ELEMENT RESULT CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      6.807   0.001713
-            2        88  BEAM188       0.009   0.000107
-            3        22  SHELL181      0.010   0.000434
+            1      3973  SHELL181      6.295   0.001584
+            2        88  BEAM188       0.012   0.000131
+            3        22  SHELL181      0.009   0.000420
 
        *** NODAL LOAD CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      0.068   0.000017
-            2        88  BEAM188       0.002   0.000018
-            3        22  SHELL181      0.000   0.000017
+            1      3973  SHELL181      0.076   0.000019
+            2        88  BEAM188       0.002   0.000020
+            3        22  SHELL181      0.000   0.000019
      *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
      *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -680,17 +749,22 @@ Solve the model
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 230-231
+.. GENERATED FROM PYTHON SOURCE LINES 267-268
 
 Post-processing: show displacements
 
-.. GENERATED FROM PYTHON SOURCE LINES 231-235
+.. GENERATED FROM PYTHON SOURCE LINES 268-277
 
 .. code-block:: default
 
     mapdl.post1()
     mapdl.set("last")
     mapdl.post_processing.plot_nodal_displacement(component="NORM")
+
+    # Download RST FILE for further post-processing
+    rstfile_name = f"{mapdl.jobname}.rst"
+    rst_file_local_path = pathlib.Path(tmp_dir.name) / rstfile_name
+    mapdl.download(rstfile_name, tmp_dir.name)
 
 
 
@@ -701,18 +775,126 @@ Post-processing: show displacements
    :class: sphx-glr-single-img
 
 
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+
+    ['file.rst']
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 236-237
+.. GENERATED FROM PYTHON SOURCE LINES 278-283
 
-Post-processing: show show stresses
+Post-Processing with DPF composites
+-----------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 237-238
+Setup: configure imports and connect to the pyDPF Composites server
+and load the dpf composites plugin
+
+.. GENERATED FROM PYTHON SOURCE LINES 283-298
 
 .. code-block:: default
 
-    mapdl.post_processing.plot_element_stress("X")
+
+    from ansys.dpf.composites import ResultDefinition
+    from ansys.dpf.composites.failure_criteria import (
+        CombinedFailureCriterion,
+        CoreFailureCriterion,
+        MaxStrainCriterion,
+        MaxStressCriterion,
+    )
+    from ansys.dpf.composites.load_plugin import load_composites_plugin
+    import ansys.dpf.core as dpf
+    from ansys.dpf.core.core import upload_file_in_tmp_folder
+
+    dpf_server = dpf.server.connect_to_server("127.0.0.1", port=50558)
+    load_composites_plugin()
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 299-300
+
+Specify the Combined Failure Criterion and the result definition
+
+.. GENERATED FROM PYTHON SOURCE LINES 300-327
+
+.. code-block:: default
+
+
+    max_strain = MaxStrainCriterion()
+    max_stress = MaxStressCriterion()
+    core_failure = CoreFailureCriterion()
+
+    cfc = CombinedFailureCriterion(
+        name="Combined Failure Criterion",
+        failure_criteria=[max_strain, max_stress, core_failure],
+    )
+
+    # upload files to DPF server
+    rst_file_dpf_path = upload_file_in_tmp_folder(str(rst_file_local_path))
+    composite_definitions_file_dpf_path = upload_file_in_tmp_folder(
+        str(composite_definitions_local_path)
+    )
+    matml_file_dpf_path = upload_file_in_tmp_folder(str(matml_file_local_path))
+
+    elements = list([int(v) for v in np.arange(1, 3996)])
+    rd = ResultDefinition(
+        name="combined failure criteria",
+        rst_files=[rst_file_dpf_path],
+        material_files=[matml_file_dpf_path],
+        composite_definitions=[composite_definitions_file_dpf_path],
+        combined_failure_criterion=cfc,
+        element_scope=elements,
+    )
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 328-329
+
+Initialize the failure operator and configure its input
+
+.. GENERATED FROM PYTHON SOURCE LINES 329-333
+
+.. code-block:: default
+
+
+    fc_op = dpf.Operator("composite::composite_failure_operator")
+    fc_op.inputs.result_definition(rd.to_json())
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 334-335
+
+Query and plot the results
+
+.. GENERATED FROM PYTHON SOURCE LINES 335-343
+
+.. code-block:: default
+
+
+    output_all_elements = fc_op.outputs.fields_containerMax()
+
+    failure_value_index = 1
+    failure_mode_index = 0
+
+    irf_field = output_all_elements[failure_value_index]
+    irf_field.plot()
 
 
 
@@ -728,7 +910,7 @@ Post-processing: show show stresses
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  14.835 seconds)
+   **Total running time of the script:** ( 0 minutes  17.024 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_solve_class40.py:

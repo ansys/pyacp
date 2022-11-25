@@ -51,7 +51,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="from_file" href="ansys.acp.core.Model.from_file.html" />
-    <link rel="prev" title="delete" href="ansys.acp.core.Model.delete.html" />
+    <link rel="prev" title="export_shell_composite_definitions" href="ansys.acp.core.Model.export_shell_composite_definitions.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="en">
   </head>
@@ -359,6 +359,16 @@
        delete
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.export_materials.html">
+       export_materials
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.export_shell_composite_definitions.html">
+       export_shell_composite_definitions
+      </a>
+     </li>
      <li class="toctree-l3 current active">
       <a class="current reference internal" href="#">
        from_fe_file
@@ -440,6 +450,11 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.unit_system.html">
+       unit_system
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html">
        use_nodal_thicknesses
       </a>
@@ -484,6 +499,11 @@
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Material.name.html">
        name
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Material.ply_type.html">
+       ply_type
       </a>
      </li>
      <li class="toctree-l3">
@@ -938,7 +958,7 @@
 <h1>from_fe_file<a class="headerlink" href="#from-fe-file" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.from_fe_file">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">from_fe_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignored_entities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_section_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.from_fe_file" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">from_fe_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignored_entities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_section_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">UnitSystemType.UNDEFINED</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.from_fe_file" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="ansys.acp.core.Model.html#ansys.acp.core.Model" title="ansys.acp.core._tree_objects.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>

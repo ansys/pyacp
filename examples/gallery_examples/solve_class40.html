@@ -227,6 +227,11 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#materials">
+     Materials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#fabrics">
      Fabrics
     </a>
@@ -258,6 +263,11 @@
    Solve with PyMAPDL
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-processing-with-dpf-composites">
+   Post-Processing with DPF composites
+  </a>
+ </li>
 </ul>
 
 </nav>
@@ -284,7 +294,15 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="basic-pyacp-example">
 <span id="solve-class40-example"></span><span id="sphx-glr-examples-gallery-examples-solve-class40-py"></span><h1>Basic PyACP Example<a class="headerlink" href="#basic-pyacp-example" title="Permalink to this heading">#</a></h1>
-<p>Define a Composite Lay-up with PyACP and solve the resulting model with PyMAPDL.</p>
+<p>Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
+a failure analysis with PyDPF-Composites.</p>
+<p>The starting point is a MAPDL CDB file which contains the mesh, material data and
+the boundary conditions. This model is imported in PyACP to define the lay-up.
+PyACP exports the resulting model for PyMAPDL. Once the results are available,
+the RST file is loaded in PyDPF composites. The additional input files (material.xml
+and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDPF Composites.</p>
+<p>The services (ACP, MAPDL and DPF) are run in docker containers which share
+a volume (working directory).</p>
 <section id="setup-connect-to-pyacp-server">
 <h2>Setup: Connect to PyACP Server<a class="headerlink" href="#setup-connect-to-pyacp-server" title="Permalink to this heading">#</a></h2>
 <p>Import standard library and third-party dependencies</p>
@@ -293,6 +311,7 @@ to download the full example code</p>
 <span class="kn">import</span> <span class="nn">tempfile</span>
 
 <span class="kn">import</span> <span class="nn">grpc</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 <p>Import Ansys libraries</p>
@@ -318,13 +337,18 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 </div>
 <p>Send <code class="docutils literal notranslate"><span class="pre">class40.cdb</span></code> to the server.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME</span></a> <span class="o">=</span> <span class="s2">&quot;class40.cdb&quot;</span>
-<span class="n">filetransfer_client</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span>
-    <span class="n">local_filename</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">EXAMPLE_DATA_DIR</span></a> <span class="o">/</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME</span></a><span class="p">),</span> <span class="n">remote_filename</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME</span></a>
-<span class="p">)</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">local_file_path</span></a> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">EXAMPLE_DATA_DIR</span></a> <span class="o">/</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME</span></a><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">local_file_path</span></a><span class="p">)</span>
+<span class="n">filetransfer_client</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">local_filename</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">local_file_path</span></a><span class="p">,</span> <span class="n">remote_filename</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p>Load CDB file into PyACP</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pyacp_client</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME</span></a><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">)</span>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/runner/work/pyacp-private/pyacp-private/examples/data/class40/class40.cdb
+</pre></div>
+</div>
+<p>Load CDB file into PyACP and set the unit system</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pyacp_client</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span>
+    <span class="n">path</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME</span></a><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">,</span> <span class="n">unit_system</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">UnitSystemType</span><span class="o">.</span><span class="n">MPA</span>
+<span class="p">)</span>
 <span class="n">model</span>
 </pre></div>
 </div>
@@ -334,18 +358,32 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 </section>
 <section id="build-composite-lay-up">
 <h2>Build Composite Lay-up<a class="headerlink" href="#build-composite-lay-up" title="Permalink to this heading">#</a></h2>
-<p>Create the model (unit system is SI)</p>
+<p>Create the model (unit system is MPA)</p>
+<section id="materials">
+<h3>Materials<a class="headerlink" href="#materials" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat_corecell_81kg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span>
+<span class="n">mat_corecell_81kg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Core Cell 81kg&quot;</span>
+<span class="n">mat_corecell_81kg</span><span class="o">.</span><span class="n">ply_type</span> <span class="o">=</span> <span class="s2">&quot;isotropic_homogeneous_core&quot;</span>
+
+<span class="n">mat_corecell_103kg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">]</span>
+<span class="n">mat_corecell_103kg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Core Cell 103kg&quot;</span>
+<span class="n">mat_corecell_103kg</span><span class="o">.</span><span class="n">ply_type</span> <span class="o">=</span> <span class="s2">&quot;isotropic_homogeneous_core&quot;</span>
+
+<span class="n">mat_eglass_ud</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;3&quot;</span><span class="p">]</span>
+<span class="n">mat_eglass_ud</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;E-Glass (uni-directional)&quot;</span>
+<span class="n">mat_eglass_ud</span><span class="o">.</span><span class="n">ply_type</span> <span class="o">=</span> <span class="s2">&quot;regular&quot;</span>
+</pre></div>
+</div>
+</section>
 <section id="fabrics">
 <h3>Fabrics<a class="headerlink" href="#fabrics" title="Permalink to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">corecell_81kg_5mm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Corecell 81kg&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Corecell 81kg&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">mat_corecell_81kg</span>
 <span class="p">)</span>
 <span class="n">corecell_103kg_10mm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Corecell 103kg&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">]</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Corecell 103kg&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">mat_corecell_103kg</span>
 <span class="p">)</span>
-<span class="n">eglass_ud_02mm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;eglass UD&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.0002</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;3&quot;</span><span class="p">]</span>
-<span class="p">)</span>
+<span class="n">eglass_ud_02mm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;eglass UD&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.0002</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">mat_eglass_ud</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -364,6 +402,7 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 </section>
 <section id="oriented-selection-sets">
 <h3>Oriented Selection Sets<a class="headerlink" href="#oriented-selection-sets" title="Permalink to this heading">#</a></h3>
+<p>Note: the element sets are imported from the initial mesh (CDB)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oss_deck</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;oss_deck&quot;</span><span class="p">,</span>
     <span class="n">orientation_point</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.3806</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0016</span><span class="p">,</span> <span class="mf">1.6449</span><span class="p">),</span>
@@ -423,12 +462,9 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 <span class="k">for</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mg_name</span></a> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;hull&quot;</span><span class="p">,</span> <span class="s2">&quot;deck&quot;</span><span class="p">,</span> <span class="s2">&quot;bulkhead&quot;</span><span class="p">]:</span>
     <span class="n">mg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_modeling_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mg_name</span></a><span class="p">)</span>
     <a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">oriented_selection_sets</span><span class="p">[</span><span class="s2">&quot;oss_&quot;</span> <span class="o">+</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mg_name</span></a><span class="p">]]</span>
-
     <span class="k">for</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a> <span class="ow">in</span> <a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles</span></a><span class="p">:</span>
         <span class="n">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="s2">&quot;eglass_ud_02mm_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">),</span> <span class="n">eglass_ud_02mm</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a><span class="p">)</span>
-
     <span class="n">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="s2">&quot;corecell_103kg_10mm&quot;</span><span class="p">,</span> <span class="n">corecell_103kg_10mm</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a><span class="p">)</span>
-
     <span class="k">for</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a> <span class="ow">in</span> <a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles</span></a><span class="p">:</span>
         <span class="n">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="s2">&quot;eglass_ud_02mm_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">),</span> <span class="n">eglass_ud_02mm</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a><span class="p">)</span>
 </pre></div>
@@ -445,7 +481,7 @@ files to the server. The <code class="docutils literal notranslate"><span class=
     <span class="n">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="s2">&quot;eglass_ud_02mm_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">),</span> <span class="n">eglass_ud_02mm</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p>Inspect the number of plies</p>
+<p>Inspect the number of modeling groups and plies</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;hull&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;deck&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">))</span>
@@ -464,20 +500,33 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 </section>
 <section id="write-out-acp-model">
 <h2>Write out ACP Model<a class="headerlink" href="#write-out-acp-model" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ACPH5_FILE</span></a> <span class="o">=</span> <span class="s2">&quot;class40.acph5&quot;</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME_OUT</span></a> <span class="o">=</span> <span class="s2">&quot;class40_analysis_model.cdb&quot;</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">COMPOSITE_DEFINITIONS_H5</span></a> <span class="o">=</span> <span class="s2">&quot;ACPCompositeDefinitions.h5&quot;</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">MATML_FILE</span></a> <span class="o">=</span> <span class="s2">&quot;materials.xml&quot;</span>
+</pre></div>
+</div>
 <p>Update and Save the ACP model</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;class40.acph5&quot;</span><span class="p">,</span> <span class="n">save_cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ACPH5_FILE</span></a><span class="p">,</span> <span class="n">save_cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Save the model as CDB for solving with PyMAPDL</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save_analysis_model</span><span class="p">(</span><span class="s2">&quot;class40_analysis_model.cdb&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save_analysis_model</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME_OUT</span></a><span class="p">)</span>
+<span class="c1"># Export the shell lay-up and material file for DPF Composites</span>
+<span class="n">model</span><span class="o">.</span><span class="n">export_shell_composite_definitions</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">COMPOSITE_DEFINITIONS_H5</span></a><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">export_materials</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">MATML_FILE</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p>Download analysis CDB file</p>
+<p>Download files from ACP server to a local directory</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/dev/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmp_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class"><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span></a><span class="p">()</span>
 <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmp_dir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
-<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME_OUT</span></a> <span class="o">=</span> <span class="s2">&quot;class40_analysis_model.cdb&quot;</span>
-<span class="n">filetransfer_client</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME_OUT</span></a><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a> <span class="o">/</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME_OUT</span></a><span class="p">))</span>
+<a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">)</span> <span class="o">/</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME_OUT</span></a>
+<a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">matml_file_local_path</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">)</span> <span class="o">/</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">MATML_FILE</span></a>
+<a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">composite_definitions_local_path</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">)</span> <span class="o">/</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">COMPOSITE_DEFINITIONS_H5</span></a>
+<span class="n">filetransfer_client</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME_OUT</span></a><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a><span class="p">))</span>
+<span class="n">filetransfer_client</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">MATML_FILE</span></a><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">matml_file_local_path</span></a><span class="p">))</span>
+<span class="n">filetransfer_client</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">COMPOSITE_DEFINITIONS_H5</span></a><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">composite_definitions_local_path</span></a><span class="p">))</span>
 </pre></div>
 </div>
 </section>
@@ -490,10 +539,10 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 </pre></div>
 </div>
 <p>Load the CDB file into PyMAPDL</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a> <span class="o">/</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME_OUT</span></a><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 88888888  VERSION=LINUX x64     13:04:09  NOV 11, 2022 CP=      0.428\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.526\n\n\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 88888888  VERSION=LINUX x64     16:03:41  NOV 25, 2022 CP=      0.429\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.530\n\n\n&#39;
 </pre></div>
 </div>
 <p>Solve the model</p>
@@ -504,7 +553,7 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       0.538   TIME= 13:04:10
+ *** NOTE ***                            CP =       0.545   TIME= 16:03:41
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -529,7 +578,7 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
  Ansys Mechanical Enterprise
- 88888888  VERSION=LINUX x64     13:04:10  NOV 11, 2022 CP=      0.578
+ 88888888  VERSION=LINUX x64     16:03:41  NOV 25, 2022 CP=      0.582
 
 
 
@@ -545,14 +594,14 @@ files to the server. The <code class="docutils literal notranslate"><span class=
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       0.580   TIME= 13:04:10
+ *** NOTE ***                            CP =       0.584   TIME= 16:03:41
  Poisson&#39;s ratio PR input has been converted to NU input.
 
- *** NOTE ***                            CP =       0.587   TIME= 13:04:10
+ *** NOTE ***                            CP =       0.591   TIME= 16:03:41
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       0.588   TIME= 13:04:10
+ *** NOTE ***                            CP =       0.592   TIME= 16:03:41
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -570,7 +619,7 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       0.677   TIME= 13:04:10
+ *** NOTE ***                            CP =       0.680   TIME= 16:03:41
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -619,10 +668,10 @@ files to the server. The <code class="docutils literal notranslate"><span class=
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      3.076   0.000774
-        2        88  BEAM188       0.004   0.000047
-        3        22  SHELL181      0.005   0.000244
- Time at end of element matrix formulation CP = 3.79081488.
+        1      3973  SHELL181      2.820   0.000710
+        2        88  BEAM188       0.005   0.000053
+        3        22  SHELL181      0.005   0.000229
+ Time at end of element matrix formulation CP = 3.54047418.
 
  SPARSE MATRIX DIRECT SOLVER.
   Number of equations =       24096,    Maximum wavefront =     66
@@ -630,7 +679,7 @@ files to the server. The <code class="docutils literal notranslate"><span class=
   Memory required for in-core solution     =    58.542 MB
   Memory required for out-of-core solution =    24.642 MB
 
- *** NOTE ***                            CP =       3.872   TIME= 13:04:13
+ *** NOTE ***                            CP =       3.623   TIME= 16:03:44
  The Sparse Matrix Solver is currently running in the in-core memory
  mode.  This memory mode uses the most amount of memory in order to
  avoid using the hard drive as much as possible, which most often
@@ -645,16 +694,16 @@ files to the server. The <code class="docutils literal notranslate"><span class=
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      6.807   0.001713
-        2        88  BEAM188       0.009   0.000107
-        3        22  SHELL181      0.010   0.000434
+        1      3973  SHELL181      6.295   0.001584
+        2        88  BEAM188       0.012   0.000131
+        3        22  SHELL181      0.009   0.000420
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      0.068   0.000017
-        2        88  BEAM188       0.002   0.000018
-        3        22  SHELL181      0.000   0.000017
+        1      3973  SHELL181      0.076   0.000019
+        2        88  BEAM188       0.002   0.000020
+        3        22  SHELL181      0.000   0.000019
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
  *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -669,13 +718,80 @@ files to the server. The <code class="docutils literal notranslate"><span class=
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span><span class="n">component</span><span class="o">=</span><span class="s2">&quot;NORM&quot;</span><span class="p">)</span>
+
+<span class="c1"># Download RST FILE for further post-processing</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mapdl</span><span class="o">.</span><span class="n">jobname</span><span class="si">}</span><span class="s2">.rst&quot;</span>
+<a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_local_path</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmp_dir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span> <span class="o">/</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmp_dir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_001.png" srcset="../../_images/sphx_glr_solve_class40_001.png" alt="solve class40" class = "sphx-glr-single-img"/><p>Post-processing: show show stresses</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">plot_element_stress</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
+<img src="../../_images/sphx_glr_solve_class40_001.png" srcset="../../_images/sphx_glr_solve_class40_001.png" alt="solve class40" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;file.rst&#39;]
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_002.png" srcset="../../_images/sphx_glr_solve_class40_002.png" alt="solve class40" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  14.835 seconds)</p>
+</section>
+<section id="post-processing-with-dpf-composites">
+<h2>Post-Processing with DPF composites<a class="headerlink" href="#post-processing-with-dpf-composites" title="Permalink to this heading">#</a></h2>
+<p>Setup: configure imports and connect to the pyDPF Composites server
+and load the dpf composites plugin</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf.composites</span> <span class="kn">import</span> <span class="n">ResultDefinition</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.composites.failure_criteria</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CombinedFailureCriterion</span><span class="p">,</span>
+    <span class="n">CoreFailureCriterion</span><span class="p">,</span>
+    <span class="n">MaxStrainCriterion</span><span class="p">,</span>
+    <span class="n">MaxStressCriterion</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.composites.load_plugin</span> <span class="kn">import</span> <span class="n">load_composites_plugin</span>
+<span class="kn">import</span> <span class="nn">ansys.dpf.core</span> <span class="k">as</span> <span class="nn">dpf</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core.core</span> <span class="kn">import</span> <span class="n">upload_file_in_tmp_folder</span>
+
+<span class="n">dpf_server</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">connect_to_server</span><span class="p">(</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">50558</span><span class="p">)</span>
+<span class="n">load_composites_plugin</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Specify the Combined Failure Criterion and the result definition</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">max_strain</span> <span class="o">=</span> <span class="n">MaxStrainCriterion</span><span class="p">()</span>
+<span class="n">max_stress</span> <span class="o">=</span> <span class="n">MaxStressCriterion</span><span class="p">()</span>
+<span class="n">core_failure</span> <span class="o">=</span> <span class="n">CoreFailureCriterion</span><span class="p">()</span>
+
+<span class="n">cfc</span> <span class="o">=</span> <span class="n">CombinedFailureCriterion</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Combined Failure Criterion&quot;</span><span class="p">,</span>
+    <span class="n">failure_criteria</span><span class="o">=</span><span class="p">[</span><span class="n">max_strain</span><span class="p">,</span> <span class="n">max_stress</span><span class="p">,</span> <span class="n">core_failure</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c1"># upload files to DPF server</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_dpf_path</span></a> <span class="o">=</span> <span class="n">upload_file_in_tmp_folder</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_local_path</span></a><span class="p">))</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">composite_definitions_file_dpf_path</span></a> <span class="o">=</span> <span class="n">upload_file_in_tmp_folder</span><span class="p">(</span>
+    <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">composite_definitions_local_path</span></a><span class="p">)</span>
+<span class="p">)</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">matml_file_dpf_path</span></a> <span class="o">=</span> <span class="n">upload_file_in_tmp_folder</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">matml_file_local_path</span></a><span class="p">))</span>
+
+<a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elements</span></a> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3996</span><span class="p">)])</span>
+<span class="n">rd</span> <span class="o">=</span> <span class="n">ResultDefinition</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;combined failure criteria&quot;</span><span class="p">,</span>
+    <span class="n">rst_files</span><span class="o">=</span><span class="p">[</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_dpf_path</span></a><span class="p">],</span>
+    <span class="n">material_files</span><span class="o">=</span><span class="p">[</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">matml_file_dpf_path</span></a><span class="p">],</span>
+    <span class="n">composite_definitions</span><span class="o">=</span><span class="p">[</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">composite_definitions_file_dpf_path</span></a><span class="p">],</span>
+    <span class="n">combined_failure_criterion</span><span class="o">=</span><span class="n">cfc</span><span class="p">,</span>
+    <span class="n">element_scope</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elements</span></a><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Initialize the failure operator and configure its input</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fc_op</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;composite::composite_failure_operator&quot;</span><span class="p">)</span>
+<span class="n">fc_op</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">result_definition</span><span class="p">(</span><span class="n">rd</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Query and plot the results</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">output_all_elements</span> <span class="o">=</span> <span class="n">fc_op</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">fields_containerMax</span><span class="p">()</span>
+
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">failure_value_index</span></a> <span class="o">=</span> <span class="mi">1</span>
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">failure_mode_index</span></a> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">irf_field</span> <span class="o">=</span> <span class="n">output_all_elements</span><span class="p">[</span><a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">failure_value_index</span></a><span class="p">]</span>
+<span class="n">irf_field</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_solve_class40_002.png" srcset="../../_images/sphx_glr_solve_class40_002.png" alt="solve class40" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  17.024 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-solve-class40-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/9534ac29e0bc2250f1fc6a51c9f799b1/solve_class40.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">solve_class40.py</span></code></a></p>

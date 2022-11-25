@@ -4,7 +4,7 @@ These examples assume that a PyACP server is already running. You can start it b
 
 .. code::
 
-    docker-compose -f docker/docker-compose-mapdl.yaml -f docker/docker-compose.yaml up -d
+    docker-compose -f docker/docker-compose.yaml -f docker/docker-compose-extras.yaml up -d
 
 For further options to launch the PyACP server, see :ref:`launching_server`. You may have to adapt the paths passed to PyACP when using these options.
 
@@ -17,7 +17,7 @@ For further options to launch the PyACP server, see :ref:`launching_server`. You
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Define a Composite Lay-up with PyACP and solve the resulting model with PyMAPDL.">
+    <div class="sphx-glr-thumbcontainer" tooltip="Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run a failure...">
 
 .. only:: html
 
