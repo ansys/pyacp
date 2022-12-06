@@ -22,9 +22,13 @@ except ImportError:
 import grpc
 from grpc_health.v1.health_pb2 import HealthCheckRequest, HealthCheckResponse
 from grpc_health.v1.health_pb2_grpc import HealthStub
+import pydantic
 
 from ansys.api.acp.v0.base_pb2 import Empty
 from ansys.api.acp.v0.control_pb2_grpc import ControlStub
+from ansys.utilities.local_instancemanager_server.helpers.direct import DirectLauncherBase
+from ansys.utilities.local_instancemanager_server.helpers.grpc import check_grpc_health
+from ansys.utilities.local_instancemanager_server.interface import LauncherProtocol
 
 from .._typing_helper import PATH as _PATH
 
@@ -48,6 +52,16 @@ class ServerProtocol(Protocol):
         ...
 
 
+class ServerHandleWrapper(ServerProtocol):
+    def __init__(self, handle):
+        self._handle = handle
+        self._channel = grpc.insecure_channel(handle.url)
+
+    @property
+    def channel(self):
+        return self._channel
+
+
 def check_server(server: ServerProtocol, timeout: Optional[float] = None) -> bool:
     """Check if the server responds to health check requests.
 
@@ -66,16 +80,16 @@ def check_server(server: ServerProtocol, timeout: Optional[float] = None) -> boo
     :
         If the server responds, ``True``, otherwise ``False``.
     """
-    try:
-        res = HealthStub(server.channel).Check(
-            request=HealthCheckRequest(),
-            timeout=timeout,
-        )
-        if res.status == HealthCheckResponse.ServingStatus.SERVING:
-            return True
-    except grpc.RpcError:
-        pass
-    return False
+    # try:
+    #     res = HealthStub(server.channel).Check(
+    #         request=HealthCheckRequest(),
+    #         timeout=timeout,
+    #     )
+    #     if res.status == HealthCheckResponse.ServingStatus.SERVING:
+    #         return True
+    # except grpc.RpcError:
+    #     pass
+    # return False
 
 
 def wait_for_server(server: ServerProtocol, timeout: float) -> None:
@@ -237,20 +251,51 @@ def launch_acp(
         Server object which can be used to control the server, and
         instantiate objects on the server.
     """
-    if port is None:
-        port = _find_free_ports()[0]
-    stdout = open(stdout_file, mode="w", encoding="utf-8")
-    stderr = open(stderr_file, mode="w", encoding="utf-8")
-    process = subprocess.Popen(
-        [
-            binary_path,
-            f"--server-address=0.0.0.0:{port}",
-        ],
-        stdout=stdout,
-        stderr=stderr,
-        text=True,
-    )
-    return LocalAcpServer(process=process, port=port, stdout=stdout, stderr=stderr)
+    return ServerHandleWrapper(DirectAcpLauncher(config=DirectAcpConfig(binary_path=binary_path)))
+
+
+class DirectAcpConfig(pydantic.BaseModel):
+    binary_path: str
+
+
+class DirectAcpLauncher(DirectLauncherBase, LauncherProtocol[DirectAcpConfig]):
+    def __init__(self, *, config: DirectAcpConfig):
+        # TODO: fix
+        port = None
+        stdout_file = os.devnull
+        stderr_file = os.devnull
+
+        if port is None:
+            port = _find_free_ports()[0]
+
+        stdout = open(stdout_file, mode="w", encoding="utf-8")
+        stderr = open(stderr_file, mode="w", encoding="utf-8")
+        process = subprocess.Popen(
+            [
+                config.binary_path,
+                f"--server-address=0.0.0.0:{port}",
+            ],
+            stdout=stdout,
+            stderr=stderr,
+            text=True,
+        )
+        self._url = f"localhost:{port}"
+        super().__init__(
+            process=process,
+            # port=port,
+            stdout=stdout,
+            stderr=stderr,
+        )
+
+    def check(self) -> bool:
+        channel = grpc.insecure_channel(self.url)
+        check_grpc_health(
+            channel=channel,
+        )
+
+    @property
+    def url(self) -> str:
+        return self._url
 
 
 def launch_acp_docker(
