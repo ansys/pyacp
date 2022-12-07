@@ -77,6 +77,9 @@ pytest-cases = "^3.6.13"
 # end user.
 examples = ["ansys-utilities-filetransfer", "pyvista", "ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites"]
 
+[tool.poetry.plugins."local_pim_server.launcher"]
+"ACP.direct" = "ansys.acp.core._server:DirectAcpLauncher"
+
 [tool.black]
 line-length = 100
 target-version = ['py37']
