@@ -28,7 +28,11 @@ from ansys.api.acp.v0.base_pb2 import Empty
 from ansys.api.acp.v0.control_pb2_grpc import ControlStub
 from ansys.utilities.local_instancemanager_server.helpers.direct import DirectLauncherBase
 from ansys.utilities.local_instancemanager_server.helpers.grpc import check_grpc_health
-from ansys.utilities.local_instancemanager_server.interface import LauncherProtocol
+from ansys.utilities.local_instancemanager_server.helpers.ports import find_free_ports
+from ansys.utilities.local_instancemanager_server.interface import (
+    LAUNCHER_CONFIG_T,
+    LauncherProtocol,
+)
 
 from .._typing_helper import PATH as _PATH
 
@@ -53,12 +57,12 @@ class ServerProtocol(Protocol):
 
 
 class ServerHandleWrapper(ServerProtocol):
-    def __init__(self, handle):
+    def __init__(self, handle: LauncherProtocol[LAUNCHER_CONFIG_T]):
         self._handle = handle
         self._channel = grpc.insecure_channel(handle.url)
 
     @property
-    def channel(self):
+    def channel(self) -> grpc.Channel:
         return self._channel
 
 
@@ -258,7 +262,9 @@ class DirectAcpConfig(pydantic.BaseModel):
     binary_path: str
 
 
-class DirectAcpLauncher(DirectLauncherBase, LauncherProtocol[DirectAcpConfig]):
+class DirectAcpLauncher(DirectLauncherBase[DirectAcpConfig]):
+    CONFIG_MODEL = DirectAcpConfig
+
     def __init__(self, *, config: DirectAcpConfig):
         # TODO: fix
         port = None
@@ -266,7 +272,7 @@ class DirectAcpLauncher(DirectLauncherBase, LauncherProtocol[DirectAcpConfig]):
         stderr_file = os.devnull
 
         if port is None:
-            port = _find_free_ports()[0]
+            port = find_free_ports()[0]
 
         stdout = open(stdout_file, mode="w", encoding="utf-8")
         stderr = open(stderr_file, mode="w", encoding="utf-8")
@@ -289,7 +295,7 @@ class DirectAcpLauncher(DirectLauncherBase, LauncherProtocol[DirectAcpConfig]):
 
     def check(self) -> bool:
         channel = grpc.insecure_channel(self.url)
-        check_grpc_health(
+        return check_grpc_health(
             channel=channel,
         )
 
@@ -335,7 +341,7 @@ def launch_acp_docker(
         instantiate objects on the server.
     """
     if port is None:
-        port = _find_free_ports()[0]
+        port = find_free_ports()[0]
     stdout = open(stdout_file, mode="w", encoding="utf-8")
     stderr = open(stderr_file, mode="w", encoding="utf-8")
     cmd = ["docker", "run"]
@@ -382,7 +388,7 @@ def launch_acp_docker_compose(
         ) from err
 
     with importlib.resources.path(__name__, "docker-compose.yaml") as compose_file:
-        tmp_port_pyacp, tmp_port_filetransfer = _find_free_ports(num_ports=2)
+        tmp_port_pyacp, tmp_port_filetransfer = find_free_ports(num_ports=2)
         if port_pyacp is None:
             port_pyacp = tmp_port_pyacp
         if port_filetransfer is None:
@@ -422,20 +428,3 @@ def launch_acp_docker_compose(
         # license) to start.
         wait_for_server(server_filetransfer, timeout=10)
         return (server_pyacp, server_filetransfer)
-
-
-def _find_free_ports(num_ports: int = 1) -> List[int]:
-    """Find a free port on localhost.
-
-    .. note::
-
-        There is no guarantee that the port is *still* free when it is
-        used by the calling code.
-    """
-    port_list = []
-    with ExitStack() as context_stack:
-        for _ in range(num_ports):
-            sock = context_stack.enter_context(closing(socket.socket()))
-            sock.bind(("", 0))
-            port_list.append(sock.getsockname()[1])
-    return port_list
