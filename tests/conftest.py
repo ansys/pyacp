@@ -11,7 +11,7 @@ from typing import Callable, Generator
 import pytest
 
 from ansys.acp.core import Client, launch_acp
-from ansys.acp.core._server import AcpLaunchMode, DirectAcpConfig, ServerProtocol
+from ansys.acp.core._server import AcpLaunchMode, DirectAcpConfig, DockerAcpConfig, ServerProtocol
 from ansys.acp.core._typing_helper import PATH
 from ansys.utilities.local_instancemanager_server.config import (
     CONFIG_HANDLER,
@@ -114,17 +114,33 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
         }
 
     else:
-        raise NotImplementedError()
-        # # If no binary is provided, use the Docker container for running
-        # # the ACP server.
-        # _model_data_dir_server = pathlib.PurePosixPath("/home/container/mounted_data")
+        # If no binary is provided, use the Docker container for running
+        # the ACP server.
+        _model_data_dir_server = pathlib.PurePosixPath("/home/container/mounted_data")
 
-        # def _convert_temp_path(external_path: PATH) -> str:
-        #     base_tmp_path = pathlib.PurePosixPath("/tmp")
-        #     relative_external_path = (
-        #         pathlib.Path(external_path).relative_to(tempfile.gettempdir()).as_posix()
-        #     )
-        #     return str(base_tmp_path / relative_external_path)
+        def _convert_temp_path(external_path: PATH) -> str:
+            base_tmp_path = pathlib.PurePosixPath("/tmp")
+            relative_external_path = (
+                pathlib.Path(external_path).relative_to(tempfile.gettempdir()).as_posix()
+            )
+            return str(base_tmp_path / relative_external_path)
+
+        tmp_dir = tempfile.gettempdir()
+        CONFIG_HANDLER.configuration["ACP"] = {
+            CONFIGS_KEY: {
+                AcpLaunchMode.DOCKER: DockerAcpConfig(
+                    image_name=request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY),
+                    license_server=license_server,
+                    mount_directories={
+                        str(model_data_dir_host): str(_model_data_dir_server),
+                        tmp_dir: _convert_temp_path(tmp_dir),
+                    },
+                    stdout_file=str(server_log_stdout),
+                    stderr_file=str(server_log_stderr),
+                ).dict(),
+            },
+            LAUNCH_MODE_KEY: AcpLaunchMode.DOCKER,
+        }
 
         # def _launch_server() -> ServerProtocol:
         #     tmp_dir = tempfile.gettempdir()
@@ -169,7 +185,9 @@ def convert_temp_path(_test_config: _Config) -> Callable[[PATH], str]:
 @pytest.fixture(scope="session")
 def grpc_server(_test_config) -> Generator[ServerProtocol, None, None]:
     """Provide the currently active gRPC server."""
-    yield launch_acp()
+    server = launch_acp()
+    server.wait(timeout=SERVER_STARTUP_TIMEOUT)
+    yield server
 
 
 @pytest.fixture(autouse=True)
@@ -179,6 +197,7 @@ def check_grpc_server_before_run(grpc_server: ServerProtocol) -> Generator[None,
         grpc_server.wait(timeout=1.0)
     except RuntimeError:
         grpc_server.restart()
+        grpc_server.wait(timeout=SERVER_STARTUP_TIMEOUT)
     yield
 
 

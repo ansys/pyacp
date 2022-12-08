@@ -1,8 +1,16 @@
 from .common import AcpLaunchMode, AcpServerKey, ServerProtocol
 from .direct import DirectAcpConfig
+from .docker import DockerAcpConfig
 from .launch import launch_acp
 
-__all__ = ["launch_acp", "AcpLaunchMode", "AcpServerKey", "ServerProtocol", "DirectAcpConfig"]
+__all__ = [
+    "launch_acp",
+    "AcpLaunchMode",
+    "AcpServerKey",
+    "ServerProtocol",
+    "DirectAcpConfig",
+    "DockerAcpConfig",
+]
 
 # from __future__ import annotations
 

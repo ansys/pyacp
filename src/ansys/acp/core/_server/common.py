@@ -11,7 +11,7 @@ class AcpServerKey(str, enum.Enum):
 
 class AcpLaunchMode(str, enum.Enum):
     DIRECT = "direct"
-    # DOCKER = "docker"
+    DOCKER = "docker"
     DOCKER_COMPOSE = "docker_compose"
 
 
