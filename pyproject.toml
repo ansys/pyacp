@@ -78,7 +78,7 @@ pytest-cases = "^3.6.13"
 examples = ["ansys-utilities-filetransfer", "pyvista", "ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites"]
 
 [tool.poetry.plugins."local_pim_server.launcher"]
-"ACP.direct" = "ansys.acp.core._server:DirectAcpLauncher"
+"ACP.direct" = "ansys.acp.core._server.direct:DirectAcpLauncher"
 
 [tool.black]
 line-length = 100

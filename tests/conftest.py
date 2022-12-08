@@ -6,13 +6,18 @@ import os
 import pathlib
 import shutil
 import tempfile
-from typing import Callable, Generator, List
+from typing import Callable, Generator
 
 import pytest
 
-from ansys.acp.core import Client, launch_acp, launch_acp_docker, shutdown_server, wait_for_server
-from ansys.acp.core._server import ServerProtocol
+from ansys.acp.core import Client, launch_acp
+from ansys.acp.core._server import AcpLaunchMode, DirectAcpConfig, ServerProtocol
 from ansys.acp.core._typing_helper import PATH
+from ansys.utilities.local_instancemanager_server.config import (
+    CONFIG_HANDLER,
+    CONFIGS_KEY,
+    LAUNCH_MODE_KEY,
+)
 
 __all__ = [
     "pytest_addoption",
@@ -66,7 +71,6 @@ def pytest_addoption(parser: pytest.Parser) -> None:
 
 @dataclass
 class _Config:
-    server_launcher: Callable[[], ServerProtocol]
     temp_path_converter: Callable[[PATH], str]
     model_data_dir_server: pathlib.PurePath
 
@@ -98,40 +102,45 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
         def _convert_temp_path(external_path: PATH) -> str:
             return str(external_path)
 
-        def _launch_server() -> ServerProtocol:
-            return launch_acp(
-                binary_path=server_bin,
-                stdout_file=server_log_stdout,
-                stderr_file=server_log_stderr,
-            )
+        CONFIG_HANDLER.configuration["ACP"] = {
+            CONFIGS_KEY: {
+                AcpLaunchMode.DIRECT: DirectAcpConfig(
+                    binary_path=server_bin,
+                    stdout_file=str(server_log_stdout),
+                    stderr_file=str(server_log_stderr),
+                ).dict(),
+            },
+            LAUNCH_MODE_KEY: AcpLaunchMode.DIRECT,
+        }
 
     else:
-        # If no binary is provided, use the Docker container for running
-        # the ACP server.
-        _model_data_dir_server = pathlib.PurePosixPath("/home/container/mounted_data")
+        raise NotImplementedError()
+        # # If no binary is provided, use the Docker container for running
+        # # the ACP server.
+        # _model_data_dir_server = pathlib.PurePosixPath("/home/container/mounted_data")
 
-        def _convert_temp_path(external_path: PATH) -> str:
-            base_tmp_path = pathlib.PurePosixPath("/tmp")
-            relative_external_path = (
-                pathlib.Path(external_path).relative_to(tempfile.gettempdir()).as_posix()
-            )
-            return str(base_tmp_path / relative_external_path)
+        # def _convert_temp_path(external_path: PATH) -> str:
+        #     base_tmp_path = pathlib.PurePosixPath("/tmp")
+        #     relative_external_path = (
+        #         pathlib.Path(external_path).relative_to(tempfile.gettempdir()).as_posix()
+        #     )
+        #     return str(base_tmp_path / relative_external_path)
 
-        def _launch_server() -> ServerProtocol:
-            tmp_dir = tempfile.gettempdir()
-            return launch_acp_docker(
-                image_name=request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY),
-                license_server=license_server,
-                mount_directories={
-                    str(model_data_dir_host): str(_model_data_dir_server),
-                    tmp_dir: _convert_temp_path(tmp_dir),
-                },
-                stdout_file=server_log_stdout,
-                stderr_file=server_log_stderr,
-            )
+        # def _launch_server() -> ServerProtocol:
+        #     tmp_dir = tempfile.gettempdir()
+        #     return launch_acp_docker(
+        #         image_name=request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY),
+        #         license_server=license_server,
+        #         mount_directories={
+        #             str(model_data_dir_host): str(_model_data_dir_server),
+        #             tmp_dir: _convert_temp_path(tmp_dir),
+        #         },
+        #         stdout_file=server_log_stdout,
+        #         stderr_file=server_log_stderr,
+        #     )
 
     return _Config(
-        server_launcher=_launch_server,
+        # server_launch_options=_server_launch_options,
         temp_path_converter=_convert_temp_path,
         model_data_dir_server=_model_data_dir_server,
     )
@@ -157,59 +166,19 @@ def convert_temp_path(_test_config: _Config) -> Callable[[PATH], str]:
     return _test_config.temp_path_converter
 
 
-@pytest.fixture
-def grpc_server(_grpc_server_list: List[ServerProtocol]) -> Generator[ServerProtocol, None, None]:
+@pytest.fixture(scope="session")
+def grpc_server(_test_config) -> Generator[ServerProtocol, None, None]:
     """Provide the currently active gRPC server."""
-    yield _grpc_server_list[0]
-
-
-@pytest.fixture(scope="session")
-def _grpc_server_list(
-    _start_grpc_server: Callable[[], ServerProtocol]
-) -> Generator[List[ServerProtocol], None, None]:
-    """Start and terminate the grpc server.
-
-    This fixture yields a one-element list containing the server resources.
-    Tests may replace the resources, if they terminate the server.
-
-    This is a performance optimization because starting a new server is
-    expensive, mainly due to the license checkout.
-    """
-    res = [_start_grpc_server()]
-    try:
-        wait_for_server(res[0], timeout=SERVER_STARTUP_TIMEOUT)
-        yield res
-    finally:
-        shutdown_server(res[0])
-
-
-@pytest.fixture(scope="session")
-def _start_grpc_server(_test_config: _Config) -> Callable[[], ServerProtocol]:
-    """Start the gRPC server."""
-    return _test_config.server_launcher
-
-
-@pytest.fixture
-def _restart_grpc_server(
-    _grpc_server_list: List[ServerProtocol], _start_grpc_server: Callable[[], ServerProtocol]
-) -> Callable[[], None]:
-    def inner() -> None:
-        shutdown_server(_grpc_server_list[0])
-        _grpc_server_list[0] = _start_grpc_server()
-        wait_for_server(_grpc_server_list[0], timeout=SERVER_STARTUP_TIMEOUT)
-
-    return inner
+    yield launch_acp()
 
 
 @pytest.fixture(autouse=True)
-def check_grpc_server_before_run(
-    grpc_server: ServerProtocol, _restart_grpc_server: Callable[[], None]
-) -> Generator[None, None, None]:
+def check_grpc_server_before_run(grpc_server: ServerProtocol) -> Generator[None, None, None]:
     """Check if the server still responds before running each test, otherwise restart it."""
     try:
-        wait_for_server(grpc_server, timeout=1.0)
+        grpc_server.wait(timeout=1.0)
     except RuntimeError:
-        _restart_grpc_server()
+        grpc_server.restart()
     yield
 
 
