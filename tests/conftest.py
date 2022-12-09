@@ -11,7 +11,12 @@ from typing import Callable, Generator
 import pytest
 
 from ansys.acp.core import Client, launch_acp
-from ansys.acp.core._server import AcpLaunchMode, DirectAcpConfig, DockerAcpConfig, ServerProtocol
+from ansys.acp.core._server import (
+    DirectLaunchConfig,
+    DockerLaunchConfig,
+    LaunchMode,
+    ServerProtocol,
+)
 from ansys.acp.core._typing_helper import PATH
 from ansys.utilities.local_instancemanager_server.config import CONFIGS_KEY, LAUNCH_MODE_KEY
 from ansys.utilities.local_instancemanager_server.launch import CONFIG_HANDLER
@@ -101,13 +106,13 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
 
         CONFIG_HANDLER.configuration["ACP"] = {
             CONFIGS_KEY: {
-                AcpLaunchMode.DIRECT: DirectAcpConfig(
+                LaunchMode.DIRECT: DirectLaunchConfig(
                     binary_path=server_bin,
                     stdout_file=str(server_log_stdout),
                     stderr_file=str(server_log_stderr),
                 ).dict(),
             },
-            LAUNCH_MODE_KEY: AcpLaunchMode.DIRECT,
+            LAUNCH_MODE_KEY: LaunchMode.DIRECT,
         }
 
     else:
@@ -125,7 +130,7 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
         tmp_dir = tempfile.gettempdir()
         CONFIG_HANDLER.configuration["ACP"] = {
             CONFIGS_KEY: {
-                AcpLaunchMode.DOCKER: DockerAcpConfig(
+                LaunchMode.DOCKER: DockerLaunchConfig(
                     image_name=request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY),
                     license_server=license_server,
                     mount_directories={
@@ -136,7 +141,7 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
                     stderr_file=str(server_log_stderr),
                 ).dict(),
             },
-            LAUNCH_MODE_KEY: AcpLaunchMode.DOCKER,
+            LAUNCH_MODE_KEY: LaunchMode.DOCKER,
         }
 
     return _Config(

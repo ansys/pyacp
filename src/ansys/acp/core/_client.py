@@ -3,7 +3,7 @@ from typing import Any, Optional
 from ansys.api.acp.v0 import model_pb2_grpc
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 
-from ._server import AcpServerKey, ServerProtocol
+from ._server import ServerKey, ServerProtocol
 from ._tree_objects import Model
 from ._typing_helper import PATH as _PATH
 
@@ -20,7 +20,7 @@ class Client:
     """
 
     def __init__(self, server: ServerProtocol):
-        self._channel = server.channels[AcpServerKey.MAIN]
+        self._channel = server.channels[ServerKey.MAIN]
 
     def import_model(
         self,

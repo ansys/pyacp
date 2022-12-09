@@ -3,7 +3,9 @@ from typing import Optional
 from ansys.utilities.local_instancemanager_server.interface import LAUNCHER_CONFIG_T
 from ansys.utilities.local_instancemanager_server.launch import launch_product
 
-from .common import AcpLaunchMode, ServerProtocol
+from .common import LaunchMode, ServerProtocol
+
+__all__ = ["launch_acp"]
 
 
 def launch_acp(
@@ -12,7 +14,7 @@ def launch_acp(
     # stdout_file: _PATH = os.devnull,
     # stderr_file: _PATH = os.devnull,
     config: Optional[LAUNCHER_CONFIG_T] = None,
-    launch_mode: Optional[AcpLaunchMode] = None,
+    launch_mode: Optional[LaunchMode] = None,
 ) -> ServerProtocol:
     """Launch a local ACP server.
 

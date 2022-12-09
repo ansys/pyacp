@@ -10,20 +10,20 @@ from ansys.utilities.local_instancemanager_server.helpers.grpc import check_grpc
 from ansys.utilities.local_instancemanager_server.helpers.ports import find_free_ports
 from ansys.utilities.local_instancemanager_server.interface import ServerType
 
-from .common import AcpServerKey
+from .common import ServerKey
 
 
-class DirectAcpConfig(pydantic.BaseModel):
+class DirectLaunchConfig(pydantic.BaseModel):
     binary_path: str
     stdout_file: str = os.devnull
     stderr_file: str = os.devnull
 
 
-class DirectAcpLauncher(DirectLauncherBase[DirectAcpConfig]):
-    CONFIG_MODEL = DirectAcpConfig
-    SERVER_SPEC = {AcpServerKey.MAIN: ServerType.GRPC}
+class DirectLauncher(DirectLauncherBase[DirectLaunchConfig]):
+    CONFIG_MODEL = DirectLaunchConfig
+    SERVER_SPEC = {ServerKey.MAIN: ServerType.GRPC}
 
-    def __init__(self, *, config: DirectAcpConfig):
+    def __init__(self, *, config: DirectLaunchConfig):
         self._config = config
         self._url: str
         self._process: subprocess.Popen[str]
@@ -56,9 +56,9 @@ class DirectAcpLauncher(DirectLauncherBase[DirectAcpConfig]):
         )
 
     def check(self, timeout: Optional[float] = None) -> bool:
-        channel = grpc.insecure_channel(self.urls[AcpServerKey.MAIN])
+        channel = grpc.insecure_channel(self.urls[ServerKey.MAIN])
         return check_grpc_health(channel=channel, timeout=timeout)
 
     @property
     def urls(self) -> Dict[str, str]:
-        return {AcpServerKey.MAIN: self._url}
+        return {ServerKey.MAIN: self._url}

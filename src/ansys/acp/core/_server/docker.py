@@ -12,21 +12,21 @@ from ansys.utilities.local_instancemanager_server.helpers.grpc import check_grpc
 from ansys.utilities.local_instancemanager_server.helpers.ports import find_free_ports
 from ansys.utilities.local_instancemanager_server.interface import LauncherProtocol, ServerType
 
-from .common import AcpServerKey
+from .common import ServerKey
 
 
-class DockerAcpConfig(pydantic.BaseModel):
+class DockerLaunchConfig(pydantic.BaseModel):
     image_name: str = "ghcr.io/pyansys/pyacp-private:latest"
     license_server: str
     mount_directories: Dict[str, str]
     keep_container: bool = False
 
 
-class DockerAcpLauncher(LauncherProtocol[DockerAcpConfig]):
-    CONFIG_MODEL = DockerAcpConfig
-    SERVER_SPEC = {AcpServerKey.MAIN: ServerType.GRPC}
+class DockerLauncher(LauncherProtocol[DockerLaunchConfig]):
+    CONFIG_MODEL = DockerLaunchConfig
+    SERVER_SPEC = {ServerKey.MAIN: ServerType.GRPC}
 
-    def __init__(self, *, config: DockerAcpConfig):
+    def __init__(self, *, config: DockerLaunchConfig):
         self._docker_client = docker.from_env()
         self._url: str
         self._container: docker.containers.Container
@@ -60,9 +60,9 @@ class DockerAcpLauncher(LauncherProtocol[DockerAcpConfig]):
         self._container.stop()
 
     def check(self, timeout: Optional[float] = None) -> bool:
-        channel = grpc.insecure_channel(self.urls[AcpServerKey.MAIN])
+        channel = grpc.insecure_channel(self.urls[ServerKey.MAIN])
         return check_grpc_health(channel=channel, timeout=timeout)
 
     @property
     def urls(self) -> Dict[str, str]:
-        return {AcpServerKey.MAIN: self._url}
+        return {ServerKey.MAIN: self._url}

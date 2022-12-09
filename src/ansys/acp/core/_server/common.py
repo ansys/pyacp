@@ -4,12 +4,12 @@ from typing import Dict, Protocol
 import grpc
 
 
-class AcpServerKey(str, enum.Enum):
+class ServerKey(str, enum.Enum):
     MAIN = "main"
     FILE_TRANSFER = "file_transfer"
 
 
-class AcpLaunchMode(str, enum.Enum):
+class LaunchMode(str, enum.Enum):
     DIRECT = "direct"
     DOCKER = "docker"
     DOCKER_COMPOSE = "docker_compose"

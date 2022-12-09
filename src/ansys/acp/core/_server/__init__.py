@@ -1,15 +1,15 @@
-from .common import AcpLaunchMode, AcpServerKey, ServerProtocol
-from .direct import DirectAcpConfig
-from .docker_container import DockerAcpConfig
+from .common import LaunchMode, ServerKey, ServerProtocol
+from .direct import DirectLaunchConfig
+from .docker import DockerLaunchConfig
 from .launch import launch_acp
 
 __all__ = [
     "launch_acp",
-    "AcpLaunchMode",
-    "AcpServerKey",
+    "LaunchMode",
+    "ServerKey",
     "ServerProtocol",
-    "DirectAcpConfig",
-    "DockerAcpConfig",
+    "DirectLaunchConfig",
+    "DockerLaunchConfig",
 ]
 
 # # NOTE: Currently unused, but could be used with manually starting a server.
