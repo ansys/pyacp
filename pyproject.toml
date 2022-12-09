@@ -11,7 +11,7 @@ readme = "README.rst"
 homepage = "https://github.com/pyansys/pyacp/"
 
 authors = ["Ansys, Inc."] # this is required
-maintainers = ["PyAnsys developers <pyansys.support@ansys.com>"] # You can change the name. The email group works.
+maintainers = ["PyAnsys developers <pyansys.support@ansys.com>"]
 license = "MIT"
 
 # Less than critical but helpful
@@ -40,7 +40,9 @@ ansys-dpf-composites = { git = "https://github.com/pyansys/pydpf-composites.git"
 ansys-dpf-core = "^0.6.2"
 grpcio-health-checking = "^1.43"
 typing-extensions = { version = "^4.0", python = "<3.8" }
-
+docker = "^6.0.1"
+# ansys-utilities-local-instancemanager-server = {path = "../local-pim-server", develop = true}
+ansys-utilities-local-instancemanager-server = { git = "https://github.com/pyansys/local-pim-server.git", branch = "main" }
 
 [tool.poetry.group.dev]
 optional = true
@@ -61,7 +63,7 @@ pypandoc = "^1.10"
 sphinx-gallery = "^0.11.1"
 pyvista = "^0.37.0"
 ansys-mapdl-core = "^0.62.1"
-ansys-utilities-filetransfer = { git = "https://github.com/pyansys/ansys-utilities-filetransfer.git", branch= "main" }
+ansys-utilities-filetransfer = { git = "https://github.com/pyansys/ansys-utilities-filetransfer.git", branch = "main" }
 
 
 [tool.poetry.group.test]
@@ -79,7 +81,7 @@ examples = ["ansys-utilities-filetransfer", "pyvista", "ansys-mapdl-core", "ansy
 
 [tool.poetry.plugins."local_pim_server.launcher"]
 "ACP.direct" = "ansys.acp.core._server.direct:DirectAcpLauncher"
-"ACP.docker" = "ansys.acp.core._server.docker:DockerAcpLauncher"
+"ACP.docker" = "ansys.acp.core._server.docker_container:DockerAcpLauncher"
 
 [tool.black]
 line-length = 100

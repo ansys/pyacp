@@ -13,11 +13,8 @@ import pytest
 from ansys.acp.core import Client, launch_acp
 from ansys.acp.core._server import AcpLaunchMode, DirectAcpConfig, DockerAcpConfig, ServerProtocol
 from ansys.acp.core._typing_helper import PATH
-from ansys.utilities.local_instancemanager_server.config import (
-    CONFIG_HANDLER,
-    CONFIGS_KEY,
-    LAUNCH_MODE_KEY,
-)
+from ansys.utilities.local_instancemanager_server.config import CONFIGS_KEY, LAUNCH_MODE_KEY
+from ansys.utilities.local_instancemanager_server.launch import CONFIG_HANDLER
 
 __all__ = [
     "pytest_addoption",
@@ -142,21 +139,7 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
             LAUNCH_MODE_KEY: AcpLaunchMode.DOCKER,
         }
 
-        # def _launch_server() -> ServerProtocol:
-        #     tmp_dir = tempfile.gettempdir()
-        #     return launch_acp_docker(
-        #         image_name=request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY),
-        #         license_server=license_server,
-        #         mount_directories={
-        #             str(model_data_dir_host): str(_model_data_dir_server),
-        #             tmp_dir: _convert_temp_path(tmp_dir),
-        #         },
-        #         stdout_file=server_log_stdout,
-        #         stderr_file=server_log_stderr,
-        #     )
-
     return _Config(
-        # server_launch_options=_server_launch_options,
         temp_path_converter=_convert_temp_path,
         model_data_dir_server=_model_data_dir_server,
     )
