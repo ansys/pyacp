@@ -104,6 +104,7 @@ mypy_path = "$MYPY_CONFIG_FILE_DIR/src:$MYPY_CONFIG_FILE_DIR/tests"
 
 [[tool.mypy.overrides]]
 module = [
+    "docker.*",
     "grpc.*",
     "grpc_health.*",
     "ansys.mapdl.core",

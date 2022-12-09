@@ -238,7 +238,7 @@ To build the documentation, a PyACP server needs to be running:
 
 .. code:: bash
 
-    docker-compose -f docker/docker-compose.yaml up -d
+    docker-compose -f docker-compose/docker-compose.yaml up -d
 
 It can then be built using `Sphinx`_.
 
