@@ -124,17 +124,17 @@ develop = false
 importlib-metadata = {version = "^4.0", markers = "python_version < \"3.8\""}
 
 [package.extras]
-all = ["Sphinx (>=5.0.1,<6.0.0)", "ansys-dpf-core (>=0.6.2,<0.7.0)", "ansys-sphinx-theme (>=0.4.0,<0.5.0)", "build (>=0.8.0,<0.9.0)", "mypy (>=0.931,<0.932)", "mypy-extensions (>=0.4.3,<0.5.0)", "numpy (>=1.15,<1.22)", "numpy (>=1.22,<2.0)", "numpydoc (>=1.3.1,<2.0.0)", "pre-commit", "pypandoc (>=1.8.1,<2.0.0)", "pytest (>=7.1.2,<8.0.0)", "pytest-cov (>=3.0.0,<4.0.0)", "pyvista (>=0.36.1,<0.37.0)", "sphinx-autodoc-typehints (>=1.19,<2.0)", "sphinx-copybutton (>=0.4,<0.5)", "sphinx_gallery (>=0.11.0,<0.12.0)", "twine (>=4.0.1,<5.0.0)"]
+all = ["Sphinx (>=5.0.1,<6.0.0)", "ansys-dpf-core (>=0.6.0,<0.7.0)", "ansys-sphinx-theme (>=0.4.0,<0.5.0)", "build (>=0.8.0,<0.9.0)", "mypy (>=0.931,<0.932)", "mypy-extensions (>=0.4.3,<0.5.0)", "numpy (>=1.15,<1.22)", "numpy (>=1.22,<2.0)", "numpydoc (>=1.3.1,<2.0.0)", "pre-commit", "pypandoc (>=1.8.1,<2.0.0)", "pytest (>=7.1.2,<8.0.0)", "pytest-cov (>=3.0.0,<4.0.0)", "pyvista (>=0.36.1,<0.37.0)", "sphinx-autodoc-typehints (>=1.19,<2.0)", "sphinx-copybutton (>=0.4,<0.5)", "sphinx_gallery (>=0.11.0,<0.12.0)", "twine (>=4.0.1,<5.0.0)"]
 build = ["build (>=0.8.0,<0.9.0)", "twine (>=4.0.1,<5.0.0)"]
-docs = ["Sphinx (>=5.0.1,<6.0.0)", "ansys-dpf-core (>=0.6.2,<0.7.0)", "ansys-sphinx-theme (>=0.4.0,<0.5.0)", "numpydoc (>=1.3.1,<2.0.0)", "pypandoc (>=1.8.1,<2.0.0)", "pyvista (>=0.36.1,<0.37.0)", "sphinx-autodoc-typehints (>=1.19,<2.0)", "sphinx-copybutton (>=0.4,<0.5)", "sphinx_gallery (>=0.11.0,<0.12.0)"]
+docs = ["Sphinx (>=5.0.1,<6.0.0)", "ansys-dpf-core (>=0.6.0,<0.7.0)", "ansys-sphinx-theme (>=0.4.0,<0.5.0)", "numpydoc (>=1.3.1,<2.0.0)", "pypandoc (>=1.8.1,<2.0.0)", "pyvista (>=0.36.1,<0.37.0)", "sphinx-autodoc-typehints (>=1.19,<2.0)", "sphinx-copybutton (>=0.4,<0.5)", "sphinx_gallery (>=0.11.0,<0.12.0)"]
 pre-commit = ["mypy (>=0.931,<0.932)", "mypy-extensions (>=0.4.3,<0.5.0)", "numpy (>=1.15,<1.22)", "numpy (>=1.22,<2.0)", "pre-commit"]
-test = ["ansys-dpf-core (>=0.6.2,<0.7.0)", "pytest (>=7.1.2,<8.0.0)", "pytest-cov (>=3.0.0,<4.0.0)", "pyvista (>=0.36.1,<0.37.0)"]
+test = ["ansys-dpf-core (>=0.6.0,<0.7.0)", "pytest (>=7.1.2,<8.0.0)", "pytest-cov (>=3.0.0,<4.0.0)", "pyvista (>=0.36.1,<0.37.0)"]
 
 [package.source]
 type = "git"
 url = "https://github.com/pyansys/pydpf-composites.git"
 reference = "main"
-resolved_reference = "92a073d61e0e8629bc42312b53fd47782706bb89"
+resolved_reference = "545623b724e2c3316e808795e4448860644db05d"
 
 [[package]]
 name = "ansys-dpf-core"
@@ -303,7 +303,7 @@ typing-extensions = {version = "^4.0", markers = "python_version < \"3.8\""}
 type = "git"
 url = "https://github.com/pyansys/local-pim-server.git"
 reference = "main"
-resolved_reference = "9ae9de03bb8c445d295f8d8ce1e7824403e822f3"
+resolved_reference = "cbe214236e8c12bfcb1d89a5e4cfada7a08a097c"
 
 [[package]]
 name = "appdirs"
@@ -920,7 +920,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "pathspec"
-version = "0.10.2"
+version = "0.10.3"
 description = "Utility library for gitignore style pattern matching of file paths."
 category = "dev"
 optional = false
@@ -2501,8 +2501,8 @@ packaging = [
     {file = "packaging-22.0.tar.gz", hash = "sha256:2198ec20bd4c017b8f9717e00f0c8714076fc2fd93816750ab48e2c41de2cfd3"},
 ]
 pathspec = [
-    {file = "pathspec-0.10.2-py3-none-any.whl", hash = "sha256:88c2606f2c1e818b978540f73ecc908e13999c6c3a383daf3705652ae79807a5"},
-    {file = "pathspec-0.10.2.tar.gz", hash = "sha256:8f6bf73e5758fd365ef5d58ce09ac7c27d2833a8d7da51712eac6e27e35141b0"},
+    {file = "pathspec-0.10.3-py3-none-any.whl", hash = "sha256:3c95343af8b756205e2aba76e843ba9520a24dd84f68c22b9f93251507509dd6"},
+    {file = "pathspec-0.10.3.tar.gz", hash = "sha256:56200de4077d9d0791465aa9095a01d421861e405b5096955051deefd697d6f6"},
 ]
 pexpect = [
     {file = "pexpect-4.8.0-py2.py3-none-any.whl", hash = "sha256:0b48a55dcb3c05f3329815901ea4fc1537514d6ba867a152b581d69ae3710937"},
