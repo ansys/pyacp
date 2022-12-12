@@ -30,8 +30,8 @@ jobs:
 
       - name: Install library from wheel, test dependencies from poetry.lock
         run: |
-          poetry config virtualenvs.create false --local
           pip install $(echo dist/*.whl)
+          poetry config virtualenvs.create false --local
           poetry install --only test
 
       - name: Login in Github Container registry
