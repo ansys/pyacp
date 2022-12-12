@@ -30,6 +30,8 @@ jobs:
 
       - name: Install library from wheel, test dependencies from poetry.lock
         run: |
+          python -m venv test_env
+          . test_env/bin/activate
           pip install $(echo dist/*.whl)
           poetry config virtualenvs.create false --local
           poetry install --only test
@@ -45,7 +47,8 @@ jobs:
         working-directory: tests
         run: |
           docker pull $IMAGE_NAME
-          python -m pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files
+          . test_env/bin/activate
+          pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: 'ghcr.io/pyansys/pyacp-private:latest'
