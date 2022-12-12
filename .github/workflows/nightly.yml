@@ -45,7 +45,7 @@ jobs:
         working-directory: tests
         run: |
           docker pull $IMAGE_NAME
-          pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files
+          python -m pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: 'ghcr.io/pyansys/pyacp-private:latest'
