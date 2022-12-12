@@ -44,11 +44,10 @@ jobs:
           password: ${{ secrets.PYANSYS_CI_BOT_PACKAGE_TOKEN }}
 
       - name: Unit testing
-        working-directory: tests
         run: |
           docker pull $IMAGE_NAME
           . test_env/bin/activate
-          pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files
+          pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files tests/
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: 'ghcr.io/pyansys/pyacp-private:latest'
