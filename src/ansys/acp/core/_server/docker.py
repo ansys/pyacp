@@ -1,25 +1,46 @@
 import os
 import pathlib
 import sys
-from typing import Dict, Optional
+from typing import Dict, Optional, Union
 import uuid
 
 import docker
 import grpc
 import pydantic
 
-from ansys.utilities.local_instancemanager_server.helpers.grpc import check_grpc_health
-from ansys.utilities.local_instancemanager_server.helpers.ports import find_free_ports
-from ansys.utilities.local_instancemanager_server.interface import LauncherProtocol, ServerType
+from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
+from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
+from ansys.tools.local_product_launcher.interface import LauncherProtocol, ServerType
 
 from .common import ServerKey
 
 
+def _get_default_license_server() -> Union[str, pydantic.fields.UndefinedType]:
+    try:
+        return os.environ["ANSYSLMD_LICENSE_FILE"]
+    except KeyError:
+        return pydantic.fields.Undefined
+
+
 class DockerLaunchConfig(pydantic.BaseModel):
-    image_name: str = "ghcr.io/pyansys/pyacp-private:latest"
-    license_server: str
-    mount_directories: Dict[str, str]
-    keep_container: bool = False
+    image_name: str = pydantic.Field(
+        default="ghcr.io/pyansys/pyacp-private:latest",
+        description="Docker image used to run the ACP gRPC server.",
+    )
+    license_server: str = pydantic.Field(
+        default=_get_default_license_server(),
+        description="License server passed to the container as 'ANSYSLMD_LICENSE_FILE' environment variable.",
+    )
+    mount_directories: Dict[str, str] = pydantic.Field(
+        default={},
+        description=(
+            'A mapping \'{"<LOCAL_DIRECTORY>": "<DIRECTORY_IN_CONTAINER>"}\' of '
+            "directories to mount into the container."
+        ),
+    )
+    keep_container: bool = pydantic.Field(
+        default=False, description="If true, keep the container after it is stopped."
+    )
 
 
 class DockerLauncher(LauncherProtocol[DockerLaunchConfig]):

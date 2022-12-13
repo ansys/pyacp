@@ -1,7 +1,7 @@
 from typing import Optional
 
-from ansys.utilities.local_instancemanager_server.interface import LAUNCHER_CONFIG_T
-from ansys.utilities.local_instancemanager_server.launch import launch_product
+from ansys.tools.local_product_launcher.interface import LAUNCHER_CONFIG_T
+from ansys.tools.local_product_launcher.launch import launch_product
 
 from .common import LaunchMode, ServerProtocol
 

@@ -18,8 +18,7 @@ from ansys.acp.core._server import (
     ServerProtocol,
 )
 from ansys.acp.core._typing_helper import PATH
-from ansys.utilities.local_instancemanager_server.config import CONFIGS_KEY, LAUNCH_MODE_KEY
-from ansys.utilities.local_instancemanager_server.launch import CONFIG_HANDLER
+from ansys.tools.local_product_launcher.config import set_config
 
 __all__ = [
     "pytest_addoption",
@@ -104,16 +103,15 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
         def _convert_temp_path(external_path: PATH) -> str:
             return str(external_path)
 
-        CONFIG_HANDLER.configuration["ACP"] = {
-            CONFIGS_KEY: {
-                LaunchMode.DIRECT: DirectLaunchConfig(
-                    binary_path=server_bin,
-                    stdout_file=str(server_log_stdout),
-                    stderr_file=str(server_log_stderr),
-                ).dict(),
-            },
-            LAUNCH_MODE_KEY: LaunchMode.DIRECT,
-        }
+        set_config(
+            product_name="ACP",
+            launch_mode=LaunchMode.DIRECT,
+            config=DirectLaunchConfig(
+                binary_path=server_bin,
+                stdout_file=str(server_log_stdout),
+                stderr_file=str(server_log_stderr),
+            ),
+        )
 
     else:
         # If no binary is provided, use the Docker container for running
@@ -128,21 +126,20 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
             return str(base_tmp_path / relative_external_path)
 
         tmp_dir = tempfile.gettempdir()
-        CONFIG_HANDLER.configuration["ACP"] = {
-            CONFIGS_KEY: {
-                LaunchMode.DOCKER: DockerLaunchConfig(
-                    image_name=request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY),
-                    license_server=license_server,
-                    mount_directories={
-                        str(model_data_dir_host): str(_model_data_dir_server),
-                        tmp_dir: _convert_temp_path(tmp_dir),
-                    },
-                    stdout_file=str(server_log_stdout),
-                    stderr_file=str(server_log_stderr),
-                ).dict(),
-            },
-            LAUNCH_MODE_KEY: LaunchMode.DOCKER,
-        }
+        set_config(
+            product_name="ACP",
+            launch_mode=LaunchMode.DOCKER,
+            config=DockerLaunchConfig(
+                image_name=request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY),
+                license_server=license_server,
+                mount_directories={
+                    str(model_data_dir_host): str(_model_data_dir_server),
+                    tmp_dir: _convert_temp_path(tmp_dir),
+                },
+                stdout_file=str(server_log_stdout),
+                stderr_file=str(server_log_stderr),
+            ),
+        )
 
     return _Config(
         temp_path_converter=_convert_temp_path,

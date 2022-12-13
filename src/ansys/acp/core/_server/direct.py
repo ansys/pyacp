@@ -1,22 +1,40 @@
 import os
 import subprocess
-from typing import Dict, Optional, TextIO
+from typing import Dict, Optional, TextIO, Union
 
 import grpc
 import pydantic
 
-from ansys.utilities.local_instancemanager_server.helpers.direct import DirectLauncherBase
-from ansys.utilities.local_instancemanager_server.helpers.grpc import check_grpc_health
-from ansys.utilities.local_instancemanager_server.helpers.ports import find_free_ports
-from ansys.utilities.local_instancemanager_server.interface import ServerType
+from ansys.tools.local_product_launcher.helpers.ansys_root import get_ansys_root
+from ansys.tools.local_product_launcher.helpers.direct import DirectLauncherBase
+from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
+from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
+from ansys.tools.local_product_launcher.interface import ServerType
 
 from .common import ServerKey
 
 
+def _get_default_binary_path() -> Union[str, pydantic.fields.UndefinedType]:
+    try:
+        ans_root = get_ansys_root()
+        binary_path = os.path.join(ans_root, "ACP", "acp_grpcserver")
+        if os.name == "nt":
+            binary_path += ".exe"
+        return binary_path
+    except (RuntimeError, FileNotFoundError):
+        return pydantic.fields.Undefined
+
+
 class DirectLaunchConfig(pydantic.BaseModel):
-    binary_path: str
-    stdout_file: str = os.devnull
-    stderr_file: str = os.devnull
+    binary_path: str = pydantic.Field(
+        default=_get_default_binary_path(), description="Path to the ACP gRPC server executable."
+    )
+    stdout_file: str = pydantic.Field(
+        default=os.devnull, description="File in which the server stdout is stored."
+    )
+    stderr_file: str = pydantic.Field(
+        default=os.devnull, description="File in which the server stderr is stored."
+    )
 
 
 class DirectLauncher(DirectLauncherBase[DirectLaunchConfig]):

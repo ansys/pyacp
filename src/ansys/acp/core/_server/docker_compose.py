@@ -9,9 +9,9 @@ import uuid
 import grpc
 import pydantic
 
-from ansys.utilities.local_instancemanager_server.helpers.grpc import check_grpc_health
-from ansys.utilities.local_instancemanager_server.helpers.ports import find_free_ports
-from ansys.utilities.local_instancemanager_server.interface import LauncherProtocol, ServerType
+from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
+from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
+from ansys.tools.local_product_launcher.interface import LauncherProtocol, ServerType
 
 from .common import ServerKey
 

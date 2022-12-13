@@ -47,7 +47,7 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/pydpf-composites".insteadOf "https://github.com/pyansys/pydpf-composites"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/local-pim-server".insteadOf "https://github.com/pyansys/local-pim-server"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/pyansys/ansys-tools-local-product-launcher"
           pip install poetry
           poetry install --with dev,test
 
@@ -83,7 +83,7 @@ jobs:
       - name: Build packages
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/local-pim-server".insteadOf "https://github.com/pyansys/local-pim-server"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/pyansys/ansys-tools-local-product-launcher"
           pip install poetry
           poetry build
 
@@ -129,7 +129,7 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/pydpf-composites".insteadOf "https://github.com/pyansys/pydpf-composites"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/local-pim-server".insteadOf "https://github.com/pyansys/local-pim-server"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/pyansys/ansys-tools-local-product-launcher"
           pip install poetry
           poetry install --with test
 
@@ -193,7 +193,7 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/pydpf-composites".insteadOf "https://github.com/pyansys/pydpf-composites"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/local-pim-server".insteadOf "https://github.com/pyansys/local-pim-server"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/pyansys/ansys-tools-local-product-launcher"
           pip install poetry
           poetry install --with dev
 
