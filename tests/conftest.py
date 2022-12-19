@@ -8,6 +8,7 @@ import shutil
 import tempfile
 from typing import Callable, Generator
 
+import docker
 import pytest
 
 from ansys.acp.core import Client, launch_acp
@@ -18,7 +19,7 @@ from ansys.acp.core._server import (
     ServerProtocol,
 )
 from ansys.acp.core._typing_helper import PATH
-from ansys.tools.local_product_launcher.config import set_config_for
+from ansys.tools.local_product_launcher.config import _reset_config, set_config_for
 
 __all__ = [
     "pytest_addoption",
@@ -79,6 +80,7 @@ class _Config:
 @pytest.fixture(scope="session")
 def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _Config:
     """Parse test options and set up server handling."""
+    _reset_config()
     server_bin = request.config.getoption(SERVER_BIN_OPTION_KEY)
     license_server = request.config.getoption(LICENSE_SERVER_OPTION_KEY)
 
@@ -118,6 +120,8 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
         # If no binary is provided, use the Docker container for running
         # the ACP server.
         _model_data_dir_server = pathlib.PurePosixPath("/home/container/mounted_data")
+        image_name = request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY)
+        docker.from_env().images.pull(image_name)
 
         def _convert_temp_path(external_path: PATH) -> str:
             base_tmp_path = pathlib.PurePosixPath("/tmp")
@@ -131,7 +135,7 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
             product_name="ACP",
             launch_mode=LaunchMode.DOCKER,
             config=DockerLaunchConfig(
-                image_name=request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY),
+                image_name=image_name,
                 license_server=license_server,
                 mount_directories={
                     str(model_data_dir_host): str(_model_data_dir_server),
@@ -139,6 +143,7 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
                 },
                 stdout_file=str(server_log_stdout),
                 stderr_file=str(server_log_stderr),
+                keep_container=True,
             ),
             overwrite_default=True,
         )

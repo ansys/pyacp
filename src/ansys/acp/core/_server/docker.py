@@ -1,6 +1,7 @@
 import os
 import pathlib
 import sys
+import time
 from typing import Dict, Optional, Union
 import uuid
 
@@ -9,7 +10,6 @@ import grpc
 import pydantic
 
 from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
-from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
 from ansys.tools.local_product_launcher.interface import LauncherProtocol, ServerType
 
 from .common import ServerKey
@@ -71,16 +71,30 @@ class DockerLauncher(LauncherProtocol[DockerLaunchConfig]):
             self._common_run_kwargs["user"] = f"{os.getuid()}:{os.getgid()}"
 
     def start(self) -> None:
-        port = find_free_ports()[0]
-        self._url = f"localhost:{port}"
         self._container = self._docker_client.containers.run(
-            **self._common_run_kwargs, ports={"50051/tcp": port}
+            **self._common_run_kwargs, ports={"50051/tcp": None}
         )
+        for _ in range(600):
+            self._container.reload()
+            if (self._container.status != "created") and (self._container.ports["50051/tcp"]):
+                break
+            time.sleep(0.1)
+        else:
+            raise RuntimeError("Container initialization did not succeed.")
+        if self._container.status != "running":
+            raise RuntimeError(
+                f"Container did not start successfully; current status: {self._container.status}"
+            )
+        port = self._container.ports["50051/tcp"][0]["HostPort"]
+        self._url = f"localhost:{port}"
 
     def stop(self) -> None:
         self._container.stop()
 
     def check(self, timeout: Optional[float] = None) -> bool:
+        self._container.reload()
+        if self._container.status != "running":
+            return False
         channel = grpc.insecure_channel(self.urls[ServerKey.MAIN])
         return check_grpc_health(channel=channel, timeout=timeout)
 
