@@ -15,6 +15,7 @@ from ansys.tools.local_product_launcher.interface import LauncherProtocol, Serve
 from .common import ServerKey
 
 
+# TODO: move to common location; maybe into helpers module
 def _get_default_license_server() -> Union[str, pydantic.fields.UndefinedType]:
     try:
         return os.environ["ANSYSLMD_LICENSE_FILE"]
@@ -25,7 +26,7 @@ def _get_default_license_server() -> Union[str, pydantic.fields.UndefinedType]:
 class DockerLaunchConfig(pydantic.BaseModel):
     image_name: str = pydantic.Field(
         default="ghcr.io/pyansys/pyacp-private:latest",
-        description="Docker image used to run the ACP gRPC server.",
+        description="Docker image running the ACP gRPC server.",
     )
     license_server: str = pydantic.Field(
         default=_get_default_license_server(),

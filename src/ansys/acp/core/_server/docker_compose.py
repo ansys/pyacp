@@ -14,13 +14,26 @@ from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
 from ansys.tools.local_product_launcher.interface import LauncherProtocol, ServerType
 
 from .common import ServerKey
+from .docker import _get_default_license_server
 
 
 class DockerComposeLaunchConfig(pydantic.BaseModel):
-    image_name_pyacp: str = "ghcr.io/pyansys/pyacp-private:latest"
-    image_name_filetransfer: str = "ghcr.io/ansys/utilities-filetransfer:latest"
-    license_server: str = os.environ.get("ANSYSLMD_LICENSE_FILE", "")  # TODO: validate non-empty
-    keep_volume: bool = False
+    # TODO: add descriptions
+    image_name_pyacp: str = pydantic.Field(
+        default="ghcr.io/pyansys/pyacp-private:latest",
+        description="Docker image running the ACP gRPC server.",
+    )
+    image_name_filetransfer: str = pydantic.Field(
+        default="ghcr.io/ansys/utilities-filetransfer:latest",
+        description="Docker image running the file transfer service.",
+    )
+    license_server: str = pydantic.Field(
+        default=_get_default_license_server(),
+        description="License server passed to the container as 'ANSYSLMD_LICENSE_FILE' environment variable.",
+    )
+    keep_volume: bool = pydantic.Field(
+        default=False, description="If true, keep the volume after docker-compose is stopped."
+    )
 
 
 class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
