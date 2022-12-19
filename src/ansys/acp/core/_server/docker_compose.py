@@ -71,13 +71,15 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 "--detach",
                 "--wait",
             ]
-            subprocess.check_call(cmd, env=env)
+            subprocess.check_call(
+                cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+            )
 
     def stop(self) -> None:
         cmd = ["docker-compose", "--project-name", self._compose_name, "down"]
         if not self._keep_volume:
             cmd.append("--volumes")
-        subprocess.check_call(cmd)
+        subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     def check(self, timeout: Optional[float] = None) -> bool:
         for url in self.urls.values():

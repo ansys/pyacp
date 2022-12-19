@@ -41,8 +41,7 @@ ansys-dpf-core = "^0.6.2"
 grpcio-health-checking = "^1.43"
 typing-extensions = { version = "^4.0", python = "<3.8" }
 docker = "^6.0.1"
-ansys-tools-local-product-launcher = {path = "../ansys-tools-local-product-launcher", develop = true}
-# ansys-tools-local-product-launcher = { git = "https://github.com/pyansys/ansys-tools-local-product-launcher.git", branch = "main" }
+ansys-tools-local-product-launcher = { git = "https://github.com/pyansys/ansys-tools-local-product-launcher.git", branch = "main" }
 
 [tool.poetry.group.dev]
 optional = true
@@ -82,7 +81,7 @@ examples = ["ansys-utilities-filetransfer", "pyvista", "ansys-mapdl-core", "ansy
 [tool.poetry.plugins."ansys.tools.local_product_launcher.launcher"]
 "ACP.direct" = "ansys.acp.core._server.direct:DirectLauncher"
 "ACP.docker" = "ansys.acp.core._server.docker:DockerLauncher"
-"ACP.docker-compose" = "ansys.acp.core._server.docker_compose:DockerComposeLauncher"
+"ACP.docker_compose" = "ansys.acp.core._server.docker_compose:DockerComposeLauncher"
 
 [tool.black]
 line-length = 100

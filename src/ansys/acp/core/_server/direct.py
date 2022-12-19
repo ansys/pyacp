@@ -6,10 +6,9 @@ import grpc
 import pydantic
 
 from ansys.tools.local_product_launcher.helpers.ansys_root import get_ansys_root
-from ansys.tools.local_product_launcher.helpers.direct import DirectLauncherBase
 from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
 from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
-from ansys.tools.local_product_launcher.interface import ServerType
+from ansys.tools.local_product_launcher.interface import LauncherProtocol, ServerType
 
 from .common import ServerKey
 
@@ -37,7 +36,7 @@ class DirectLaunchConfig(pydantic.BaseModel):
     )
 
 
-class DirectLauncher(DirectLauncherBase[DirectLaunchConfig]):
+class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
     CONFIG_MODEL = DirectLaunchConfig
     SERVER_SPEC = {ServerKey.MAIN: ServerType.GRPC}
 
@@ -49,29 +48,29 @@ class DirectLauncher(DirectLauncherBase[DirectLaunchConfig]):
         self._stderr: TextIO
 
     def start(self) -> None:
-        # TODO: fix
+        # TODO: implement patterns
         stdout_file = self._config.stdout_file
         stderr_file = self._config.stderr_file
 
         port = find_free_ports()[0]
-
-        stdout = open(stdout_file, mode="w", encoding="utf-8")
-        stderr = open(stderr_file, mode="w", encoding="utf-8")
-        process = subprocess.Popen(
+        self._url = f"localhost:{port}"
+        self._stdout = open(stdout_file, mode="w", encoding="utf-8")
+        self._stderr = open(stderr_file, mode="w", encoding="utf-8")
+        self._process = subprocess.Popen(
             [
                 self._config.binary_path,
                 f"--server-address=0.0.0.0:{port}",
             ],
-            stdout=stdout,
-            stderr=stderr,
+            stdout=self._stdout,
+            stderr=self._stderr,
             text=True,
         )
-        self._url = f"localhost:{port}"
-        super()._start(
-            process=process,
-            stdout=stdout,
-            stderr=stderr,
-        )
+
+    def stop(self) -> None:
+        self._process.terminate()
+        self._process.wait()
+        self._stdout.close()
+        self._stderr.close()
 
     def check(self, timeout: Optional[float] = None) -> bool:
         channel = grpc.insecure_channel(self.urls[ServerKey.MAIN])

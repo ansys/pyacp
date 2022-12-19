@@ -18,7 +18,7 @@ from ansys.acp.core._server import (
     ServerProtocol,
 )
 from ansys.acp.core._typing_helper import PATH
-from ansys.tools.local_product_launcher.config import set_config
+from ansys.tools.local_product_launcher.config import set_config_for
 
 __all__ = [
     "pytest_addoption",
@@ -103,7 +103,7 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
         def _convert_temp_path(external_path: PATH) -> str:
             return str(external_path)
 
-        set_config(
+        set_config_for(
             product_name="ACP",
             launch_mode=LaunchMode.DIRECT,
             config=DirectLaunchConfig(
@@ -111,6 +111,7 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
                 stdout_file=str(server_log_stdout),
                 stderr_file=str(server_log_stderr),
             ),
+            overwrite_default=True,
         )
 
     else:
@@ -126,7 +127,7 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
             return str(base_tmp_path / relative_external_path)
 
         tmp_dir = tempfile.gettempdir()
-        set_config(
+        set_config_for(
             product_name="ACP",
             launch_mode=LaunchMode.DOCKER,
             config=DockerLaunchConfig(
@@ -139,6 +140,7 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
                 stdout_file=str(server_log_stdout),
                 stderr_file=str(server_log_stderr),
             ),
+            overwrite_default=True,
         )
 
     return _Config(
