@@ -96,17 +96,33 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
             )
 
     def stop(self) -> None:
-        print("docker-compose version:", subprocess.check_output(["docker-compose", "--version"]))
-        print(
-            "docker-compose logs:",
-            subprocess.check_output(
-                ["docker-compose", "--project-name", self._compose_name, "logs"]
-            ),
-        )
-        cmd = ["docker-compose", "--project-name", self._compose_name, "down"]
-        if not self._keep_volume:
-            cmd.append("--volumes")
-        subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        # The compose file needs to be passed for all commands with docker-compose 1.X.
+        # With docker-compose 2.X, this no longer seems to be necessary.
+        with importlib.resources.path(__package__, "docker-compose.yaml") as compose_file:
+            print(
+                "docker-compose logs:",
+                subprocess.check_output(
+                    [
+                        "docker-compose",
+                        "-f",
+                        str(compose_file),
+                        "--project-name",
+                        self._compose_name,
+                        "logs",
+                    ]
+                ),
+            )
+            cmd = [
+                "docker-compose",
+                "-f",
+                str(compose_file),
+                "--project-name",
+                self._compose_name,
+                "down",
+            ]
+            if not self._keep_volume:
+                cmd.append("--volumes")
+            subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     def check(self, timeout: Optional[float] = None) -> bool:
         for url in self.urls.values():
