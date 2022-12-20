@@ -1,7 +1,7 @@
 import dataclasses
 import os
 import subprocess
-from typing import Dict, Optional, TextIO, Union
+from typing import Dict, Optional, TextIO
 
 import grpc
 
@@ -17,7 +17,7 @@ from ansys.tools.local_product_launcher.interface import (
 from .common import ServerKey
 
 
-def _get_default_binary_path() -> Union[str, dataclasses._MISSING_TYPE]:
+def _get_default_binary_path() -> str:
     try:
         ans_root = get_ansys_root()
         binary_path = os.path.join(ans_root, "ACP", "acp_grpcserver")
@@ -25,14 +25,14 @@ def _get_default_binary_path() -> Union[str, dataclasses._MISSING_TYPE]:
             binary_path += ".exe"
         return binary_path
     except (RuntimeError, FileNotFoundError):
-        return dataclasses.MISSING
+        return ""
 
 
 @dataclasses.dataclass
 class DirectLaunchConfig:
     """Configuration options for launching ACP as a sub-process."""
 
-    binary_path: str = dataclasses.field(  # type: ignore # mypy doesn't understand the dataclasses.MISSING
+    binary_path: str = dataclasses.field(
         default=_get_default_binary_path(),
         metadata={DOC_METADATA_KEY: "Path to the ACP gRPC server executable."},
     )

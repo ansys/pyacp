@@ -3,7 +3,7 @@ import os
 import pathlib
 import sys
 import time
-from typing import Dict, Optional, Union
+from typing import Dict, Optional
 import uuid
 
 import docker
@@ -20,11 +20,11 @@ from .common import ServerKey
 
 
 # TODO: move to common location; maybe into helpers module
-def _get_default_license_server() -> Union[str, dataclasses._MISSING_TYPE]:
+def _get_default_license_server() -> str:
     try:
         return os.environ["ANSYSLMD_LICENSE_FILE"]
     except KeyError:
-        return dataclasses.MISSING
+        return ""
 
 
 @dataclasses.dataclass
@@ -35,7 +35,7 @@ class DockerLaunchConfig:
         default="ghcr.io/pyansys/pyacp-private:latest",
         metadata={DOC_METADATA_KEY: "Docker image running the ACP gRPC server."},
     )
-    license_server: str = dataclasses.field(  # type: ignore
+    license_server: str = dataclasses.field(
         default=_get_default_license_server(),
         metadata={
             DOC_METADATA_KEY: (

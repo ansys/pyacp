@@ -34,7 +34,7 @@ class DockerComposeLaunchConfig:
         default="ghcr.io/ansys/utilities-filetransfer:latest",
         metadata={DOC_METADATA_KEY: "Docker image running the file transfer service."},
     )
-    license_server: str = dataclasses.field(  # type: ignore # mypy doesn't understand the dataclasses.MISSING
+    license_server: str = dataclasses.field(
         default=_get_default_license_server(),
         metadata={
             DOC_METADATA_KEY: (
