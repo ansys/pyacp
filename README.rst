@@ -65,80 +65,32 @@ The PyACP documentation can be viewed online at https://dev.acp.docs.pyansys.com
 Getting Started
 ---------------
 
-Launching ACP locally
-^^^^^^^^^^^^^^^^^^^^^
+Launching ACP
+^^^^^^^^^^^^^
 
-You can launch the ACP server locally by using ``launch_acp``:
-
-.. code:: python
-
-    from ansys.acp.core import launch_acp
-
-    server = launch_acp(server_bin="<PATH_TO_ACP_GRPCSERVER>")
-
-The ``<PATH_TO_ACP_GRPCSERVER>`` is the location of the ``acp_grpcserver`` executable
-in your Ansys installation. For example, ``r"C:\Program Files\ANSYS Inc\v231\ACP\acp_grpcserver.exe"``.
-
-
-Launching ACP with `docker-compose`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Alternatively, you can use `docker-compose` to run the ACP server, using [ansys-utilities-filetransfer](https://github.com/pyansys/ansys-utilities-filetransfer.git`)
-to transfer files to and from the Docker container.
-
-For this, you will need to install [Docker](https://www.docker.com/) on your machine, and install `ansys-utilities-filetransfer` with
+Configure ACP using the `ansys-launcher <https://local-product-launcher.tools.docs.pyansys.com>`_ command line tool:
 
 .. code:: bash
 
-    pip install git+https://github.com/pyansys/ansys-utilities-filetransfer
+    ansys-launcher configure ACP <launch_mode>
 
-With these prerequisites installed, you can run
+where ``<launch_mode>`` is one of
 
-.. code:: python
+* ``direct``: run ACP as a sub-process
+* ``docker_compose``: run ACP in a docker container, using ``docker-compose`` and the `filetransfer service <https://github.com/ansys/ansys-utilities-filetransfer-server>`_ to manage files
+* ``docker``: run ACP in a docker container. This mode is not recommended, since it requires manual file transfer.
 
-    from ansys.acp.core import launch_acp_docker_compose
+The ``ansys-launcher`` prompts for the relevant options for each mode.
 
-    server_pyacp, server_filetransfer = launch_acp_docker_compose(license_server="<LICENSE_SERVER>")
-
-Here, ``<LICENSE_SERVER>`` is the address of your license server, e.g. ``1055@my.licenseserver.com``
-
-The `server_filetransfer` can be used to upload / download files:
+Having configured the launcher, the server can be started with ``launch_acp``:
 
 .. code:: python
 
-    from ansys.utilities.filetransfer import Client as FileTransferClient
-    client = FileTransferClient(server_filetransfer.channel)
+    import ansys.acp.core as pyacp
 
-    client.upload_file("<local_path>", "<remote_path>")
-    client.download_file("<remote_path>", "<local_path>")
+    server = pyacp.launch_acp()
+    client = pyacp.Client(server)
 
-
-Launching ACP in a Docker container
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Finally, you can use Docker directly to run the ACP server. As with `docker-compose`, Docker needs
-to be installed on your system. Then, you can run:
-
-.. code:: python
-
-    from ansys.acp.core import launch_acp_docker
-
-    server = launch_acp_docker(license_server="<LICENSE_SERVER>")
-
-Here, ``<LICENSE_SERVER>`` is the address of your license server, e.g. ``1055@my.licenseserver.com``
-
-Optionally, you can mount a local directory in the Docker container. This will give the container
-access to the files in this directory.
-
-.. code:: python
-
-    server = launch_acp_docker(
-        license_server="<LICENSE_SERVER>",
-        mount_directories={"<LOCAL_DIRECTORY>": "/home/container/mounted_data"}
-    )
-
-The ``<LOCAL_DIRECTORY>`` is the path to the mounted directory on your machine, and
-``/home/container/mounted_data`` is the path under which the container will see these files.
 
 Basic Usage
 ^^^^^^^^^^^
@@ -148,8 +100,8 @@ Model from an existing file:
 
 .. code:: python
 
-    >>> from ansys.acp.core import Model
-    >>> model = Model.from_file(path="<MODEL_PATH>", server=server)
+    >>> remote_filename = client.upload_file(local_path="<MODEL_PATH>")
+    >>> model = client.import_model(path=remote_filename)
     >>> model.name
     'ACP Model'
 

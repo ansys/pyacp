@@ -19,7 +19,7 @@ from ansys.acp.core._server import (
     LaunchMode,
 )
 from ansys.acp.core._typing_helper import PATH
-from ansys.tools.local_product_launcher.config import _reset_config, set_config_for
+from ansys.tools.local_product_launcher.config import set_config_for
 
 __all__ = [
     "pytest_addoption",
@@ -80,7 +80,6 @@ class _Config:
 @pytest.fixture(scope="session")
 def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _Config:
     """Parse test options and set up server handling."""
-    _reset_config()
     server_bin = request.config.getoption(SERVER_BIN_OPTION_KEY)
     license_server = request.config.getoption(LICENSE_SERVER_OPTION_KEY)
 

@@ -9,10 +9,6 @@ __all__ = ["launch_acp"]
 
 
 def launch_acp(
-    # binary_path: _PATH,
-    # port: Optional[int] = None,
-    # stdout_file: _PATH = os.devnull,
-    # stderr_file: _PATH = os.devnull,
     config: Optional[LAUNCHER_CONFIG_T] = None,
     launch_mode: Optional[LaunchMode] = None,
 ) -> ServerProtocol:

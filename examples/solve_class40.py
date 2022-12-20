@@ -252,7 +252,6 @@ pyacp_client.download_file(
 # Import PyMAPDL and connect to its server
 from ansys.mapdl.core import Mapdl
 
-# mapdl = launch_mapdl(start_timeout=30)
 mapdl = Mapdl(ip="localhost", port=50557, timeout=30)
 
 #%%
