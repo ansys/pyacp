@@ -14,17 +14,3 @@ __all__ = [
     "DockerLaunchConfig",
     "DockerComposeLaunchConfig",
 ]
-
-# # NOTE: Currently unused, but could be used with manually starting a server.
-# class RemoteAcpServer:
-#     def __init__(self, hostname: str, port: int):
-#         self._hostname = hostname
-#         self._port = port
-#         self._channel = None
-
-#     @property
-#     def channel(self) -> grpc.Channel:
-#         # TODO: implement secure channel
-#         if self._channel is None:
-#             self._channel = grpc.insecure_channel(f"{self._hostname}:{self._port}")
-#         return self._channel

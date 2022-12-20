@@ -18,7 +18,8 @@ from .docker import _get_default_license_server
 
 
 class DockerComposeLaunchConfig(pydantic.BaseModel):
-    # TODO: add descriptions
+    """Configuration options for launching ACP through docker-compose."""
+
     image_name_pyacp: str = pydantic.Field(
         default="ghcr.io/pyansys/pyacp-private:latest",
         description="Docker image running the ACP gRPC server.",
@@ -89,6 +90,13 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
             )
 
     def stop(self) -> None:
+        print("docker-compose version:", subprocess.check_output(["docker-compose", "--version"]))
+        print(
+            "docker-compose logs:",
+            subprocess.check_output(
+                ["docker-compose", "--project-name", self._compose_name, "logs"]
+            ),
+        )
         cmd = ["docker-compose", "--project-name", self._compose_name, "down"]
         if not self._keep_volume:
             cmd.append("--volumes")

@@ -3,9 +3,12 @@ try:
 except ModuleNotFoundError:
     import importlib_metadata  # type: ignore
 
-
 from ._client import Client
-from ._server import (  # LocalAcpServer,; RemoteAcpServer,; check_server,; launch_acp_docker,; launch_acp_docker_compose,; shutdown_server,; wait_for_server,
+from ._server import (
+    DirectLaunchConfig,
+    DockerComposeLaunchConfig,
+    DockerLaunchConfig,
+    LaunchMode,
     launch_acp,
 )
 from ._tree_objects import (
@@ -26,13 +29,10 @@ __version__ = importlib_metadata.version(__name__.replace(".", "-"))
 __all__ = [
     "__version__",
     "launch_acp",
-    # "launch_acp_docker",
-    # "launch_acp_docker_compose",
-    # "check_server",
-    # "wait_for_server",
-    # "shutdown_server",
-    # "LocalAcpServer",
-    # "RemoteAcpServer",
+    "LaunchMode",
+    "DirectLaunchConfig",
+    "DockerLaunchConfig",
+    "DockerComposeLaunchConfig",
     "Client",
     "Model",
     "Material",

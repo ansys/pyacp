@@ -25,6 +25,8 @@ def _get_default_binary_path() -> Union[str, pydantic.fields.UndefinedType]:
 
 
 class DirectLaunchConfig(pydantic.BaseModel):
+    """Configuration options for launching ACP as a sub-process."""
+
     binary_path: str = pydantic.Field(
         default=_get_default_binary_path(), description="Path to the ACP gRPC server executable."
     )

@@ -24,6 +24,8 @@ def _get_default_license_server() -> Union[str, pydantic.fields.UndefinedType]:
 
 
 class DockerLaunchConfig(pydantic.BaseModel):
+    """Configuration options for launching ACP as a docker container."""
+
     image_name: str = pydantic.Field(
         default="ghcr.io/pyansys/pyacp-private:latest",
         description="Docker image running the ACP gRPC server.",
