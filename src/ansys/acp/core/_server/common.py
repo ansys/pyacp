@@ -27,10 +27,13 @@ class ServerProtocol(Protocol):
     def channels(self) -> Dict[str, grpc.Channel]:
         ...
 
-    # TODO: Remove what doesn't make sense with remote servers
-
     def wait(self, timeout: float) -> None:
         ...
 
+    # def restart(self) -> None:
+    #     ...
+
+
+class ControllableServerProtocol(ServerProtocol):
     def restart(self) -> None:
         ...

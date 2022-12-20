@@ -6,17 +6,17 @@ import os
 import pathlib
 import shutil
 import tempfile
-from typing import Callable, Generator
+from typing import Callable, Generator, cast
 
 import docker
 import pytest
 
 from ansys.acp.core import Client, launch_acp
 from ansys.acp.core._server import (
+    ControllableServerProtocol,
     DirectLaunchConfig,
     DockerLaunchConfig,
     LaunchMode,
-    ServerProtocol,
 )
 from ansys.acp.core._typing_helper import PATH
 from ansys.tools.local_product_launcher.config import _reset_config, set_config_for
@@ -175,15 +175,17 @@ def convert_temp_path(_test_config: _Config) -> Callable[[PATH], str]:
 
 
 @pytest.fixture(scope="session")
-def grpc_server(_test_config) -> Generator[ServerProtocol, None, None]:
+def grpc_server(_test_config) -> Generator[ControllableServerProtocol, None, None]:
     """Provide the currently active gRPC server."""
-    server = launch_acp()
+    server = cast(ControllableServerProtocol, launch_acp())
     server.wait(timeout=SERVER_STARTUP_TIMEOUT)
     yield server
 
 
 @pytest.fixture(autouse=True)
-def check_grpc_server_before_run(grpc_server: ServerProtocol) -> Generator[None, None, None]:
+def check_grpc_server_before_run(
+    grpc_server: ControllableServerProtocol,
+) -> Generator[None, None, None]:
     """Check if the server still responds before running each test, otherwise restart it."""
     try:
         grpc_server.wait(timeout=1.0)

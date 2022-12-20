@@ -1,7 +1,10 @@
+import os
+import shutil
 from typing import Any, Optional
 
 from ansys.api.acp.v0 import model_pb2_grpc
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
+from ansys.utilities.filetransfer import Client as FileTransferClient
 
 from ._server import ServerKey, ServerProtocol
 from ._tree_objects import Model
@@ -21,6 +24,37 @@ class Client:
 
     def __init__(self, server: ServerProtocol):
         self._channel = server.channels[ServerKey.MAIN]
+        if ServerKey.FILE_TRANSFER in server.channels:
+            self._ft_client: Optional[FileTransferClient] = FileTransferClient(
+                server.channels[ServerKey.FILE_TRANSFER]
+            )
+        else:
+            self._ft_client = None
+
+    def upload_file(self, local_path: _PATH) -> _PATH:
+        # TODO: find a way to detect local vs. docker (or maybe just get rid of
+        # the pure-docker variant): raise on docker, simply return on local
+        if self._ft_client is None:
+            # TODO: maybe the local server should have a temporary working directory.
+            # The question then is: how do we let the client know where this is;
+            # or how do we surface the file transfer capability in general?
+            return local_path
+
+        else:
+            remote_filename = os.path.basename(local_path)
+            self._ft_client.upload_file(
+                local_filename=str(local_path), remote_filename=str(remote_filename)
+            )
+            # TODO: turn this into a 'file reference' object
+            return remote_filename
+
+    def download_file(self, remote_filename: str, local_path: _PATH) -> None:
+        if self._ft_client is None:
+            shutil.copyfile(remote_filename, str(local_path))
+        else:
+            self._ft_client.download_file(
+                remote_filename=remote_filename, local_filename=str(local_path)
+            )
 
     def import_model(
         self,
