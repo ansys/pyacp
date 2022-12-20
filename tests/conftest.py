@@ -141,9 +141,9 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
                     str(model_data_dir_host): str(_model_data_dir_server),
                     tmp_dir: _convert_temp_path(tmp_dir),
                 },
-                stdout_file=str(server_log_stdout),
-                stderr_file=str(server_log_stderr),
-                keep_container=True,
+                # stdout_file=str(server_log_stdout),
+                # stderr_file=str(server_log_stderr),
+                keep_container=False,
             ),
             overwrite_default=True,
         )

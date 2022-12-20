@@ -1,3 +1,4 @@
+import dataclasses
 import os
 import pathlib
 import sys
@@ -7,42 +8,54 @@ import uuid
 
 import docker
 import grpc
-import pydantic
 
 from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
-from ansys.tools.local_product_launcher.interface import LauncherProtocol, ServerType
+from ansys.tools.local_product_launcher.interface import (
+    DOC_METADATA_KEY,
+    LauncherProtocol,
+    ServerType,
+)
 
 from .common import ServerKey
 
 
 # TODO: move to common location; maybe into helpers module
-def _get_default_license_server() -> Union[str, pydantic.fields.UndefinedType]:
+def _get_default_license_server() -> Union[str, dataclasses._MISSING_TYPE]:
     try:
         return os.environ["ANSYSLMD_LICENSE_FILE"]
     except KeyError:
-        return pydantic.fields.Undefined
+        return dataclasses.MISSING
 
 
-class DockerLaunchConfig(pydantic.BaseModel):
+@dataclasses.dataclass
+class DockerLaunchConfig:
     """Configuration options for launching ACP as a docker container."""
 
-    image_name: str = pydantic.Field(
+    image_name: str = dataclasses.field(
         default="ghcr.io/pyansys/pyacp-private:latest",
-        description="Docker image running the ACP gRPC server.",
+        metadata={DOC_METADATA_KEY: "Docker image running the ACP gRPC server."},
     )
-    license_server: str = pydantic.Field(
+    license_server: str = dataclasses.field(  # type: ignore
         default=_get_default_license_server(),
-        description="License server passed to the container as 'ANSYSLMD_LICENSE_FILE' environment variable.",
+        metadata={
+            DOC_METADATA_KEY: (
+                "License server passed to the container as "
+                "'ANSYSLMD_LICENSE_FILE' environment variable."
+            )
+        },
     )
-    mount_directories: Dict[str, str] = pydantic.Field(
-        default={},
-        description=(
-            'A mapping \'{"<LOCAL_DIRECTORY>": "<DIRECTORY_IN_CONTAINER>"}\' of '
-            "directories to mount into the container."
-        ),
+    mount_directories: Dict[str, str] = dataclasses.field(
+        default_factory=dict,
+        metadata={
+            DOC_METADATA_KEY: (
+                'A mapping \'{"<LOCAL_DIRECTORY>": "<DIRECTORY_IN_CONTAINER>"}\' of '
+                "directories to mount into the container."
+            )
+        },
     )
-    keep_container: bool = pydantic.Field(
-        default=False, description="If true, keep the container after it is stopped."
+    keep_container: bool = dataclasses.field(
+        default=False,
+        metadata={DOC_METADATA_KEY: "If true, keep the container after it is stopped."},
     )
 
 

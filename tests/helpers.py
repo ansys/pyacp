@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 import os
-from typing import Any, TypeVar
+from typing import Any, Optional, TypeVar
 import warnings
 
 IS_PYACP = True
@@ -10,7 +10,7 @@ __all__ = ["check_property", "relpath_if_possible"]
 T = TypeVar("T")
 
 
-def check_property(obj: Any, *, name: str, value: T, set_value: T = None):
+def check_property(obj: Any, *, name: str, value: T, set_value: Optional[T] = None):
     assert hasattr(obj, name), f"Object '{obj}' has no property named '{name}'"
     assert (
         getattr(obj, name) == value

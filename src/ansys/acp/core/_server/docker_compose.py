@@ -1,40 +1,51 @@
 import collections
 import copy
+import dataclasses
 import importlib.resources
 import os
 import subprocess
 from typing import Dict, Optional
 import uuid
-from packaging.version import parse as parse_version
 
 import grpc
-import pydantic
+from packaging.version import parse as parse_version
 
 from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
 from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
-from ansys.tools.local_product_launcher.interface import LauncherProtocol, ServerType
+from ansys.tools.local_product_launcher.interface import (
+    DOC_METADATA_KEY,
+    LauncherProtocol,
+    ServerType,
+)
 
 from .common import ServerKey
 from .docker import _get_default_license_server
 
 
-class DockerComposeLaunchConfig(pydantic.BaseModel):
+@dataclasses.dataclass
+class DockerComposeLaunchConfig:
     """Configuration options for launching ACP through docker-compose."""
 
-    image_name_pyacp: str = pydantic.Field(
+    image_name_pyacp: str = dataclasses.field(
         default="ghcr.io/pyansys/pyacp-private:latest",
-        description="Docker image running the ACP gRPC server.",
+        metadata={DOC_METADATA_KEY: "Docker image running the ACP gRPC server."},
     )
-    image_name_filetransfer: str = pydantic.Field(
+    image_name_filetransfer: str = dataclasses.field(
         default="ghcr.io/ansys/utilities-filetransfer:latest",
-        description="Docker image running the file transfer service.",
+        metadata={DOC_METADATA_KEY: "Docker image running the file transfer service."},
     )
-    license_server: str = pydantic.Field(
+    license_server: str = dataclasses.field(  # type: ignore # mypy doesn't understand the dataclasses.MISSING
         default=_get_default_license_server(),
-        description="License server passed to the container as 'ANSYSLMD_LICENSE_FILE' environment variable.",
+        metadata={
+            DOC_METADATA_KEY: (
+                "License server passed to the container as "
+                "'ANSYSLMD_LICENSE_FILE' environment variable."
+            )
+        },
     )
-    keep_volume: bool = pydantic.Field(
-        default=False, description="If true, keep the volume after docker-compose is stopped."
+    keep_volume: bool = dataclasses.field(
+        default=False,
+        metadata={DOC_METADATA_KEY: "If true, keep the volume after docker-compose is stopped."},
     )
 
 
@@ -61,7 +72,9 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
         )
         self._keep_volume = config.keep_volume
 
-        self._compose_version = parse_version(subprocess.check_output(["docker-compose", "version", "--short"], text=True))
+        self._compose_version = parse_version(
+            subprocess.check_output(["docker-compose", "version", "--short"], text=True)
+        )
 
     def start(self) -> None:
         with importlib.resources.path(__package__, "docker-compose.yaml") as compose_file:

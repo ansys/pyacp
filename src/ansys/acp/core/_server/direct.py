@@ -1,19 +1,23 @@
+import dataclasses
 import os
 import subprocess
 from typing import Dict, Optional, TextIO, Union
 
 import grpc
-import pydantic
 
 from ansys.tools.local_product_launcher.helpers.ansys_root import get_ansys_root
 from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
 from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
-from ansys.tools.local_product_launcher.interface import LauncherProtocol, ServerType
+from ansys.tools.local_product_launcher.interface import (
+    DOC_METADATA_KEY,
+    LauncherProtocol,
+    ServerType,
+)
 
 from .common import ServerKey
 
 
-def _get_default_binary_path() -> Union[str, pydantic.fields.UndefinedType]:
+def _get_default_binary_path() -> Union[str, dataclasses._MISSING_TYPE]:
     try:
         ans_root = get_ansys_root()
         binary_path = os.path.join(ans_root, "ACP", "acp_grpcserver")
@@ -21,20 +25,24 @@ def _get_default_binary_path() -> Union[str, pydantic.fields.UndefinedType]:
             binary_path += ".exe"
         return binary_path
     except (RuntimeError, FileNotFoundError):
-        return pydantic.fields.Undefined
+        return dataclasses.MISSING
 
 
-class DirectLaunchConfig(pydantic.BaseModel):
+@dataclasses.dataclass
+class DirectLaunchConfig:
     """Configuration options for launching ACP as a sub-process."""
 
-    binary_path: str = pydantic.Field(
-        default=_get_default_binary_path(), description="Path to the ACP gRPC server executable."
+    binary_path: str = dataclasses.field(  # type: ignore # mypy doesn't understand the dataclasses.MISSING
+        default=_get_default_binary_path(),
+        metadata={DOC_METADATA_KEY: "Path to the ACP gRPC server executable."},
     )
-    stdout_file: str = pydantic.Field(
-        default=os.devnull, description="File in which the server stdout is stored."
+    stdout_file: str = dataclasses.field(
+        default=os.devnull,
+        metadata={DOC_METADATA_KEY: "File in which the server stdout is stored."},
     )
-    stderr_file: str = pydantic.Field(
-        default=os.devnull, description="File in which the server stderr is stored."
+    stderr_file: str = dataclasses.field(
+        default=os.devnull,
+        metadata={DOC_METADATA_KEY: "File in which the server stderr is stored."},
     )
 
 
