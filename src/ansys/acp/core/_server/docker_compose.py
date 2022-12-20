@@ -5,6 +5,7 @@ import os
 import subprocess
 from typing import Dict, Optional
 import uuid
+from packaging.version import parse as parse_version
 
 import grpc
 import pydantic
@@ -60,6 +61,8 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
         )
         self._keep_volume = config.keep_volume
 
+        self._compose_version = parse_version(subprocess.check_output(["docker-compose", "version", "--short"], text=True))
+
     def start(self) -> None:
         with importlib.resources.path(__package__, "docker-compose.yaml") as compose_file:
             port_acp, port_ft = find_free_ports(2)
@@ -83,8 +86,11 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 self._compose_name,
                 "up",
                 "--detach",
-                "--wait",
             ]
+            if self._compose_version >= parse_version("2.1.1"):
+                # The '--wait' flag is only available from version >= 2.1.1 of docker-compose:
+                # https://github.com/docker/compose/commit/72e4519cbfb6cdfc600e6ebfa377ce4b8e162c78
+                cmd.append("--wait")
             subprocess.check_call(
                 cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
             )

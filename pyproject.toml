@@ -43,6 +43,7 @@ typing-extensions = { version = "^4.0", python = "<3.8" }
 docker = "^6.0.1"
 ansys-tools-local-product-launcher = { git = "https://github.com/pyansys/ansys-tools-local-product-launcher.git", branch = "main" }
 ansys-utilities-filetransfer = { git = "https://github.com/pyansys/ansys-utilities-filetransfer.git", branch = "main" }
+packaging = ">=15.0"
 
 [tool.poetry.group.dev]
 optional = true
