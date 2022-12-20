@@ -112,19 +112,6 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
         # The compose file needs to be passed for all commands with docker-compose 1.X.
         # With docker-compose 2.X, this no longer seems to be necessary.
         with importlib.resources.path(__package__, "docker-compose.yaml") as compose_file:
-            print(
-                "docker-compose logs:",
-                subprocess.check_output(
-                    [
-                        "docker-compose",
-                        "-f",
-                        str(compose_file),
-                        "--project-name",
-                        self._compose_name,
-                        "logs",
-                    ]
-                ),
-            )
             cmd = [
                 "docker-compose",
                 "-f",

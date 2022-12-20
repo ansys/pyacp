@@ -276,7 +276,7 @@ typing-extensions = "^4.0"
 type = "git"
 url = "https://github.com/pyansys/ansys-tools-local-product-launcher.git"
 reference = "main"
-resolved_reference = "822cf4c0596167bd85d04e7fc812081f78c3c099"
+resolved_reference = "e2ea1b5db2c3e57d1ec2dfeebd18ede35afd4568"
 
 [[package]]
 name = "ansys-utilities-filetransfer"
