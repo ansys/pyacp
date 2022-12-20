@@ -42,6 +42,7 @@ grpcio-health-checking = "^1.43"
 typing-extensions = { version = "^4.0", python = "<3.8" }
 docker = "^6.0.1"
 ansys-tools-local-product-launcher = { git = "https://github.com/pyansys/ansys-tools-local-product-launcher.git", branch = "main" }
+ansys-utilities-filetransfer = { git = "https://github.com/pyansys/ansys-utilities-filetransfer.git", branch = "main" }
 
 [tool.poetry.group.dev]
 optional = true
@@ -62,7 +63,6 @@ pypandoc = "^1.10"
 sphinx-gallery = "^0.11.1"
 pyvista = "^0.37.0"
 ansys-mapdl-core = "^0.62.1"
-ansys-utilities-filetransfer = { git = "https://github.com/pyansys/ansys-utilities-filetransfer.git", branch = "main" }
 
 
 [tool.poetry.group.test]

@@ -204,6 +204,7 @@ jobs:
 
       - name: Configure Local Product Launcher for ACP
         run: >
+          poetry run
           ansys-launcher ACP docker_compose
           --image_name_pyacp=ghcr.io/pyansys/pyacp-private${{ github.event.inputs.docker_image_suffix }}
           --image_name_filetransfer=ghcr.io/ansys/utilities-filetransfer:latest
