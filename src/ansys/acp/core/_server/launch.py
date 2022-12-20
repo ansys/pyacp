@@ -18,15 +18,13 @@ def launch_acp(
 
     Parameters
     ----------
-    binary_path :
-        Path to the ``acp_grpcserver`` executable.
-    port :
-        Port on which the server should listen to gRPC calls. If no port
-        is given, a free port will be chosen automatically.
-    stdout_file :
-        Path of the file to which the server output is written.
-    stderr_file :
-        Path of the file to which the server error log is written.
+    config :
+        The configuration used for launching ACP. If unspecified, the
+        default for the given launch mode is used.
+    launch_mode :
+        Specifies which ACP launcher is used. One of ``direct``, ``docker``,
+        or ``docker_compose``. If unspecified, the configured default is
+        used.
 
     Returns
     -------
