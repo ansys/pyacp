@@ -11,7 +11,7 @@ readme = "README.rst"
 homepage = "https://github.com/pyansys/pyacp/"
 
 authors = ["Ansys, Inc."] # this is required
-maintainers = ["PyAnsys developers <pyansys.support@ansys.com>"] # You can change the name. The email group works.
+maintainers = ["PyAnsys developers <pyansys.support@ansys.com>"]
 license = "MIT"
 
 # Less than critical but helpful
@@ -40,7 +40,10 @@ ansys-dpf-composites = { git = "https://github.com/pyansys/pydpf-composites.git"
 ansys-dpf-core = "^0.6.2"
 grpcio-health-checking = "^1.43"
 typing-extensions = { version = "^4.0", python = "<3.8" }
-
+docker = "^6.0.1"
+ansys-tools-local-product-launcher = { git = "https://github.com/pyansys/ansys-tools-local-product-launcher.git", branch = "main" }
+ansys-utilities-filetransfer = { git = "https://github.com/pyansys/ansys-utilities-filetransfer.git", branch = "main" }
+packaging = ">=15.0"
 
 [tool.poetry.group.dev]
 optional = true
@@ -48,7 +51,7 @@ optional = true
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^2.17.0"
 black = "22.3.0"
-mypy = "^0.931"
+mypy = "^0"
 mypy-extensions = "^0.4.3"
 types-protobuf = "^3.19.12"
 
@@ -61,7 +64,6 @@ pypandoc = "^1.10"
 sphinx-gallery = "^0.11.1"
 pyvista = "^0.37.0"
 ansys-mapdl-core = "^0.62.1"
-ansys-utilities-filetransfer = { git = "https://github.com/pyansys/ansys-utilities-filetransfer.git", branch= "main" }
 
 
 [tool.poetry.group.test]
@@ -76,6 +78,11 @@ pytest-cases = "^3.6.13"
 # For the examples, we keep an extra to simplify installing these dependencies for the
 # end user.
 examples = ["ansys-utilities-filetransfer", "pyvista", "ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites"]
+
+[tool.poetry.plugins."ansys.tools.local_product_launcher.launcher"]
+"ACP.direct" = "ansys.acp.core._server.direct:DirectLauncher"
+"ACP.docker" = "ansys.acp.core._server.docker:DockerLauncher"
+"ACP.docker_compose" = "ansys.acp.core._server.docker_compose:DockerComposeLauncher"
 
 [tool.black]
 line-length = 100
@@ -98,6 +105,7 @@ mypy_path = "$MYPY_CONFIG_FILE_DIR/src:$MYPY_CONFIG_FILE_DIR/tests"
 
 [[tool.mypy.overrides]]
 module = [
+    "docker.*",
     "grpc.*",
     "grpc_health.*",
     "ansys.mapdl.core",

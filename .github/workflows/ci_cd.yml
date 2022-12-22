@@ -47,6 +47,7 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/pydpf-composites".insteadOf "https://github.com/pyansys/pydpf-composites"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/pyansys/ansys-tools-local-product-launcher"
           pip install poetry
           poetry install --with dev,test
 
@@ -82,6 +83,7 @@ jobs:
       - name: Build packages
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/pyansys/ansys-tools-local-product-launcher"
           pip install poetry
           poetry build
 
@@ -127,6 +129,7 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/pydpf-composites".insteadOf "https://github.com/pyansys/pydpf-composites"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/pyansys/ansys-tools-local-product-launcher"
           pip install poetry
           poetry install --with test
 
@@ -190,6 +193,7 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/pydpf-composites".insteadOf "https://github.com/pyansys/pydpf-composites"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/pyansys/ansys-tools-local-product-launcher"
           pip install poetry
           poetry install --with dev
 
@@ -198,9 +202,21 @@ jobs:
         run: |
           poetry run pip install --force-reinstall git+https://github.com/ansys/ansys-api-acp-private.git@${{ github.event.inputs.api_branch }}
 
-      - name: Launch PyACP server via docker-compose
+      - name: Configure Local Product Launcher for ACP
+        run: >
+          poetry run
+          ansys-launcher configure ACP docker_compose
+          --image_name_pyacp=ghcr.io/pyansys/pyacp-private${{ github.event.inputs.docker_image_suffix }}
+          --image_name_filetransfer=ghcr.io/ansys/utilities-filetransfer:latest
+          --license_server=1055@$LICENSE_SERVER
+          --keep_volume=False
+          --overwrite_default
+        env:
+          LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
+
+      - name: Launch MAPDL and DPF servers via docker-compose
         run: |
-          docker-compose -f ./docker/docker-compose.yaml -f ./docker/docker-compose-extras.yaml up -d
+          docker-compose -f ./docker-compose/docker-compose-extras.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
 
@@ -210,9 +226,9 @@ jobs:
           touch doc/build/html/.nojekyll
           echo "dev.acp.docs.pyansys.com" >> doc/build/html/CNAME
 
-      - name: Stop and clean up PyACP server
+      - name: Stop and clean up MAPDL and DPF servers
         run: |
-          docker-compose -f ./docker/docker-compose.yaml -f ./docker/docker-compose-extras.yaml down -v
+          docker-compose -f ./docker-compose/docker-compose-extras.yaml down -v
 
       - name: Upload HTML Documentation
         uses: actions/upload-artifact@v2
@@ -233,9 +249,9 @@ jobs:
         run: |
           sudo apt update
           sudo apt install build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks
-      - name: Restart PyACP server via docker-compose
+      - name: Restart MAPDL and DPF servers via docker-compose
         run: |
-          docker-compose -f ./docker/docker-compose.yaml -f ./docker/docker-compose-extras.yaml up -d
+          docker-compose -f ./docker-compose/docker-compose-extras.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
 

@@ -5,14 +5,11 @@ except ModuleNotFoundError:
 
 from ._client import Client
 from ._server import (
-    LocalAcpServer,
-    RemoteAcpServer,
-    check_server,
+    DirectLaunchConfig,
+    DockerComposeLaunchConfig,
+    DockerLaunchConfig,
+    LaunchMode,
     launch_acp,
-    launch_acp_docker,
-    launch_acp_docker_compose,
-    shutdown_server,
-    wait_for_server,
 )
 from ._tree_objects import (
     ElementSet,
@@ -32,13 +29,10 @@ __version__ = importlib_metadata.version(__name__.replace(".", "-"))
 __all__ = [
     "__version__",
     "launch_acp",
-    "launch_acp_docker",
-    "launch_acp_docker_compose",
-    "check_server",
-    "wait_for_server",
-    "shutdown_server",
-    "LocalAcpServer",
-    "RemoteAcpServer",
+    "LaunchMode",
+    "DirectLaunchConfig",
+    "DockerLaunchConfig",
+    "DockerComposeLaunchConfig",
     "Client",
     "Model",
     "Material",

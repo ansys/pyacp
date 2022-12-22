@@ -26,7 +26,7 @@ from .._utils.resource_paths import to_parts
 _T = TypeVar("_T", bound="TreeObject")
 
 
-@mark_grpc_properties  # type: ignore # see https://github.com/python/mypy/issues/4717
+@mark_grpc_properties
 class TreeObject(ABC):
     """
     Base class for ACP tree objects.
@@ -143,7 +143,7 @@ class TreeObject(ABC):
     """The name of the object."""
 
 
-@mark_grpc_properties  # type: ignore # see https://github.com/python/mypy/issues/4717
+@mark_grpc_properties
 class CreatableTreeObject(TreeObject, ABC):
     __slots__: Iterable[str] = tuple()
     CREATE_REQUEST_TYPE: Type[CreateRequest]
@@ -185,7 +185,7 @@ class CreatableTreeObject(TreeObject, ABC):
         self._pb_object = self._get_stub().Create(request)
 
 
-@mark_grpc_properties  # type: ignore # see https://github.com/python/mypy/issues/4717
+@mark_grpc_properties
 class IdTreeObject(TreeObject, ABC):
     """Implements the 'id' attribute for tree objects."""
 
