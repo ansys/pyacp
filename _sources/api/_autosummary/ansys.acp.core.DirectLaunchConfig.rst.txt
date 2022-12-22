@@ -1,9 +1,9 @@
-﻿ansys.acp.core.LocalAcpServer
-=============================
+﻿ansys.acp.core.DirectLaunchConfig
+=================================
 
 .. currentmodule:: ansys.acp.core
 
-.. autoclass:: LocalAcpServer
+.. autoclass:: DirectLaunchConfig
 
    
 
@@ -13,9 +13,6 @@
    .. autosummary::
       :toctree:
    
-      
-      
-      LocalAcpServer.close
       
    
    
@@ -28,10 +25,13 @@
       :toctree:
    
       
-      LocalAcpServer.channel
+      DirectLaunchConfig.binary_path
       
       
-      LocalAcpServer.closed
+      DirectLaunchConfig.stderr_file
+      
+      
+      DirectLaunchConfig.stdout_file
       
    
    

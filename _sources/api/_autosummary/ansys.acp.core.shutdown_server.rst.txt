@@ -1,6 +1,0 @@
-﻿shutdown\_server
-================
-
-.. currentmodule:: ansys.acp.core
-
-.. autofunction:: shutdown_server

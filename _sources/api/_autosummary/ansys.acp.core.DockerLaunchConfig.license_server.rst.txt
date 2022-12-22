@@ -1,0 +1,6 @@
+license\_server
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DockerLaunchConfig.license_server

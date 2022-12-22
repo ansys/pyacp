@@ -144,6 +144,7 @@
     </nav>
     
     
+    
         <div class="container-xl">
     <div class="row">
         <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
@@ -226,21 +227,8 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#launching-acp-locally">
-       Launching ACP locally
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#launching-acp-with-docker-compose">
-       Launching ACP with
-       <cite>
-        docker-compose
-       </cite>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#launching-acp-in-a-docker-container">
-       Launching ACP in a Docker container
+      <a class="reference internal nav-link" href="#launching-acp">
+       Launching ACP
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
@@ -331,68 +319,33 @@
 </section>
 <section id="getting-started">
 <span id="launching-server"></span><h3>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h3>
-<section id="launching-acp-locally">
-<h4>Launching ACP locally<a class="headerlink" href="#launching-acp-locally" title="Permalink to this heading">#</a></h4>
-<p>You can launch the ACP server locally by using <code class="docutils literal notranslate"><span class="pre">launch_acp</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">launch_acp</span>
+<section id="launching-acp">
+<h4>Launching ACP<a class="headerlink" href="#launching-acp" title="Permalink to this heading">#</a></h4>
+<p>Configure ACP using the <a class="reference external" href="https://local-product-launcher.tools.docs.pyansys.com">ansys-launcher</a> command line tool:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansys-launcher configure ACP &lt;launch_mode&gt;
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;launch_mode&gt;</span></code> is one of</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">direct</span></code>: run ACP as a sub-process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docker_compose</span></code>: run ACP in a docker container, using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> and the <a class="reference external" href="https://github.com/ansys/ansys-utilities-filetransfer-server">filetransfer service</a> to manage files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docker</span></code>: run ACP in a docker container. This mode is not recommended, since it requires manual file transfer.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">ansys-launcher</span></code> prompts for the relevant options for each mode.</p>
+<p>Having configured the launcher, the server can be started with <code class="docutils literal notranslate"><span class="pre">launch_acp</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
 
-<span class="n">server</span> <span class="o">=</span> <span class="n">launch_acp</span><span class="p">(</span><span class="n">server_bin</span><span class="o">=</span><span class="s2">&quot;&lt;PATH_TO_ACP_GRPCSERVER&gt;&quot;</span><span class="p">)</span>
+<span class="n">server</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">&lt;PATH_TO_ACP_GRPCSERVER&gt;</span></code> is the location of the <code class="docutils literal notranslate"><span class="pre">acp_grpcserver</span></code> executable
-in your Ansys installation. For example, <code class="docutils literal notranslate"><span class="pre">r&quot;C:\Program</span> <span class="pre">Files\ANSYS</span> <span class="pre">Inc\v231\ACP\acp_grpcserver.exe&quot;</span></code>.</p>
-</section>
-<section id="launching-acp-with-docker-compose">
-<h4>Launching ACP with <cite>docker-compose</cite><a class="headerlink" href="#launching-acp-with-docker-compose" title="Permalink to this heading">#</a></h4>
-<p>Alternatively, you can use <cite>docker-compose</cite> to run the ACP server, using [ansys-utilities-filetransfer](<a class="reference external" href="https://github.com/pyansys/ansys-utilities-filetransfer">https://github.com/pyansys/ansys-utilities-filetransfer</a>.git`)
-to transfer files to and from the Docker container.</p>
-<p>For this, you will need to install [Docker](<a class="reference external" href="https://www.docker.com/">https://www.docker.com/</a>) on your machine, and install <cite>ansys-utilities-filetransfer</cite> with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/pyansys/ansys-utilities-filetransfer
-</pre></div>
-</div>
-<p>With these prerequisites installed, you can run</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">launch_acp_docker_compose</span>
-
-<span class="n">server_pyacp</span><span class="p">,</span> <span class="n">server_filetransfer</span> <span class="o">=</span> <span class="n">launch_acp_docker_compose</span><span class="p">(</span><span class="n">license_server</span><span class="o">=</span><span class="s2">&quot;&lt;LICENSE_SERVER&gt;&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Here, <code class="docutils literal notranslate"><span class="pre">&lt;LICENSE_SERVER&gt;</span></code> is the address of your license server, e.g. <code class="docutils literal notranslate"><span class="pre">1055&#64;my.licenseserver.com</span></code></p>
-<p>The <cite>server_filetransfer</cite> can be used to upload / download files:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.utilities.filetransfer</span> <span class="kn">import</span> <span class="n">Client</span> <span class="k">as</span> <span class="n">FileTransferClient</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">FileTransferClient</span><span class="p">(</span><span class="n">server_filetransfer</span><span class="o">.</span><span class="n">channel</span><span class="p">)</span>
-
-<span class="n">client</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="s2">&quot;&lt;local_path&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;remote_path&gt;&quot;</span><span class="p">)</span>
-<span class="n">client</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><span class="s2">&quot;&lt;remote_path&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;local_path&gt;&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="launching-acp-in-a-docker-container">
-<h4>Launching ACP in a Docker container<a class="headerlink" href="#launching-acp-in-a-docker-container" title="Permalink to this heading">#</a></h4>
-<p>Finally, you can use Docker directly to run the ACP server. As with <cite>docker-compose</cite>, Docker needs
-to be installed on your system. Then, you can run:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">launch_acp_docker</span>
-
-<span class="n">server</span> <span class="o">=</span> <span class="n">launch_acp_docker</span><span class="p">(</span><span class="n">license_server</span><span class="o">=</span><span class="s2">&quot;&lt;LICENSE_SERVER&gt;&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Here, <code class="docutils literal notranslate"><span class="pre">&lt;LICENSE_SERVER&gt;</span></code> is the address of your license server, e.g. <code class="docutils literal notranslate"><span class="pre">1055&#64;my.licenseserver.com</span></code></p>
-<p>Optionally, you can mount a local directory in the Docker container. This will give the container
-access to the files in this directory.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="o">=</span> <span class="n">launch_acp_docker</span><span class="p">(</span>
-    <span class="n">license_server</span><span class="o">=</span><span class="s2">&quot;&lt;LICENSE_SERVER&gt;&quot;</span><span class="p">,</span>
-    <span class="n">mount_directories</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;&lt;LOCAL_DIRECTORY&gt;&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/container/mounted_data&quot;</span><span class="p">}</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">&lt;LOCAL_DIRECTORY&gt;</span></code> is the path to the mounted directory on your machine, and
-<code class="docutils literal notranslate"><span class="pre">/home/container/mounted_data</span></code> is the path under which the container will see these files.</p>
 </section>
 <section id="basic-usage">
 <h4>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this heading">#</a></h4>
 <p>Once the server is running, we can start working with PyACP. For example, to load an ACP
 Model from an existing file:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">Model</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;&lt;MODEL_PATH&gt;&quot;</span><span class="p">,</span> <span class="n">server</span><span class="o">=</span><span class="n">server</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">remote_filename</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">local_path</span><span class="o">=</span><span class="s2">&quot;&lt;MODEL_PATH&gt;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">remote_filename</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">name</span>
 <span class="go">&#39;ACP Model&#39;</span>
 </pre></div>
@@ -465,7 +418,7 @@ need to create a commit without running the hooks, you can skip them with <code 
 <section id="id2">
 <h4>Documentation<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
 <p>To build the documentation, a PyACP server needs to be running:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose -f docker/docker-compose.yaml up -d
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose -f docker-compose/docker-compose.yaml up -d
 </pre></div>
 </div>
 <p>It can then be built using <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>.</p>

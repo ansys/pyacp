@@ -18,7 +18,13 @@
       Client.clear
       
       
+      Client.download_file
+      
+      
       Client.import_model
+      
+      
+      Client.upload_file
       
    
    

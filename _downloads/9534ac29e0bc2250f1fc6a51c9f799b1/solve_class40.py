@@ -27,21 +27,16 @@ import os
 import pathlib
 import tempfile
 
-import grpc
 import numpy as np
 
 #%%
 # Import Ansys libraries
 import ansys.acp.core as pyacp
-from ansys.utilities.filetransfer import Client as FileTransferClient
 
 #%%
-# Instantiate clients: The ``filetransfer_client`` will be used to up- and download
-# files to the server. The ``pyacp_client`` connects to the main PyACP server.
-filetransfer_client = FileTransferClient(grpc.insecure_channel("localhost:50556"))
-
-pyacp_server = pyacp.RemoteAcpServer(hostname="localhost", port=50555)
-pyacp.wait_for_server(pyacp_server, timeout=30)  # ensure the server is running
+# Launch the PyACP server and connect to it.
+pyacp_server = pyacp.launch_acp()
+pyacp_server.wait(timeout=30)
 pyacp_client = pyacp.Client(pyacp_server)
 
 #%%
@@ -51,19 +46,23 @@ pyacp_client = pyacp.Client(pyacp_server)
 
 #%%
 # Define the directory in which the input files are stored.
-EXAMPLE_DATA_DIR = pathlib.Path(os.environ["REPO_ROOT"]) / "examples" / "data" / "class40"
+try:
+    EXAMPLES_DIR = pathlib.Path(os.environ["REPO_ROOT"]) / "examples"
+except KeyError:
+    EXAMPLES_DIR = pathlib.Path(__file__).parent
+EXAMPLE_DATA_DIR = EXAMPLES_DIR / "data" / "class40"
 
 #%%
 # Send ``class40.cdb`` to the server.
 CDB_FILENAME = "class40.cdb"
 local_file_path = str(EXAMPLE_DATA_DIR / CDB_FILENAME)
 print(local_file_path)
-filetransfer_client.upload_file(local_filename=local_file_path, remote_filename=CDB_FILENAME)
+cdb_file_path = pyacp_client.upload_file(local_path=local_file_path)
 
 #%%
 # Load CDB file into PyACP and set the unit system
 model = pyacp_client.import_model(
-    path=CDB_FILENAME, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
+    path=cdb_file_path, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
 )
 model
 
@@ -239,9 +238,11 @@ WORKING_DIR = pathlib.Path(tmp_dir.name)
 cdb_file_local_path = pathlib.Path(WORKING_DIR) / CDB_FILENAME_OUT
 matml_file_local_path = pathlib.Path(WORKING_DIR) / MATML_FILE
 composite_definitions_local_path = pathlib.Path(WORKING_DIR) / COMPOSITE_DEFINITIONS_H5
-filetransfer_client.download_file(CDB_FILENAME_OUT, str(cdb_file_local_path))
-filetransfer_client.download_file(MATML_FILE, str(matml_file_local_path))
-filetransfer_client.download_file(COMPOSITE_DEFINITIONS_H5, str(composite_definitions_local_path))
+pyacp_client.download_file(remote_filename=CDB_FILENAME_OUT, local_path=str(cdb_file_local_path))
+pyacp_client.download_file(remote_filename=MATML_FILE, local_path=str(matml_file_local_path))
+pyacp_client.download_file(
+    remote_filename=COMPOSITE_DEFINITIONS_H5, local_path=str(composite_definitions_local_path)
+)
 
 #%%
 # Solve with PyMAPDL
@@ -293,7 +294,7 @@ import ansys.dpf.core as dpf
 from ansys.dpf.core.core import upload_file_in_tmp_folder
 
 dpf_server = dpf.server.connect_to_server("127.0.0.1", port=50558)
-load_composites_plugin()
+load_composites_plugin(dpf_server)
 
 #%%
 # Specify the Combined Failure Criterion and the result definition

@@ -1,0 +1,6 @@
+keep\_container
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DockerLaunchConfig.keep_container

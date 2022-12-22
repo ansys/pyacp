@@ -1,6 +1,0 @@
-﻿check\_server
-=============
-
-.. currentmodule:: ansys.acp.core
-
-.. autofunction:: check_server

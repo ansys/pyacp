@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>ansys.acp.core.LocalAcpServer &#8212; PyACP</title>
+    <title>binary_path &#8212; PyACP</title>
     
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -50,8 +50,8 @@
     <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="close" href="ansys.acp.core.LocalAcpServer.close.html" />
-    <link rel="prev" title="wait_for_server" href="ansys.acp.core.wait_for_server.html" />
+    <link rel="next" title="stderr_file" href="ansys.acp.core.DirectLaunchConfig.stderr_file.html" />
+    <link rel="prev" title="ansys.acp.core.DirectLaunchConfig" href="ansys.acp.core.DirectLaunchConfig.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="en">
   </head>
@@ -145,6 +145,7 @@
     </nav>
     
     
+    
         <div class="container-xl">
     <div class="row">
         <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
@@ -161,8 +162,9 @@
     
 
           <li class="nav-item nav-item-1"><a href="../index.html" >API Reference</a> » </li>
-          <li class="nav-item nav-item-2"><a href="../server.html" accesskey="U">Server Management</a> » </li>
-        <li class="nav-item nav-item-this"><a href="">ansys.acp.core.LocalAcpServer</a></li> 
+          <li class="nav-item nav-item-2"><a href="../server.html" >Server Management</a> » </li>
+          <li class="nav-item nav-item-3"><a href="ansys.acp.core.DirectLaunchConfig.html" accesskey="U">ansys.acp.core.DirectLaunchConfig</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">binary_path</a></li> 
       </ul>
     </div>
         </div>
@@ -199,55 +201,40 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="ansys.acp.core.launch_acp_docker.html">
-     launch_acp_docker
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ansys.acp.core.check_server.html">
-     check_server
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ansys.acp.core.shutdown_server.html">
-     shutdown_server
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ansys.acp.core.wait_for_server.html">
-     wait_for_server
+    <a class="reference internal" href="ansys.acp.core.LaunchMode.html">
+     ansys.acp.core.LaunchMode
     </a>
    </li>
    <li class="toctree-l2 current active has-children">
-    <a class="current reference internal" href="#">
-     ansys.acp.core.LocalAcpServer
+    <a class="reference internal" href="ansys.acp.core.DirectLaunchConfig.html">
+     ansys.acp.core.DirectLaunchConfig
     </a>
     <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
     <label for="toctree-checkbox-2">
      <i class="fas fa-chevron-down">
      </i>
     </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.LocalAcpServer.close.html">
-       close
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       binary_path
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.LocalAcpServer.channel.html">
-       channel
+      <a class="reference internal" href="ansys.acp.core.DirectLaunchConfig.stderr_file.html">
+       stderr_file
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.LocalAcpServer.closed.html">
-       closed
+      <a class="reference internal" href="ansys.acp.core.DirectLaunchConfig.stdout_file.html">
+       stdout_file
       </a>
      </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="ansys.acp.core.RemoteAcpServer.html">
-     ansys.acp.core.RemoteAcpServer
+    <a class="reference internal" href="ansys.acp.core.DockerLaunchConfig.html">
+     ansys.acp.core.DockerLaunchConfig
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
     <label for="toctree-checkbox-3">
@@ -256,8 +243,55 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.RemoteAcpServer.channel.html">
-       channel
+      <a class="reference internal" href="ansys.acp.core.DockerLaunchConfig.image_name.html">
+       image_name
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.DockerLaunchConfig.keep_container.html">
+       keep_container
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.DockerLaunchConfig.license_server.html">
+       license_server
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.DockerLaunchConfig.mount_directories.html">
+       mount_directories
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.html">
+     ansys.acp.core.DockerComposeLaunchConfig
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.image_name_filetransfer.html">
+       image_name_filetransfer
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.image_name_pyacp.html">
+       image_name_pyacp
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.keep_volume.html">
+       keep_volume
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.license_server.html">
+       license_server
       </a>
      </li>
     </ul>
@@ -268,8 +302,8 @@
   <a class="reference internal" href="../client.html">
    Database
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -278,8 +312,8 @@
     <a class="reference internal" href="ansys.acp.core.Client.html">
      ansys.acp.core.Client
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-    <label for="toctree-checkbox-5">
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -290,8 +324,18 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Client.download_file.html">
+       download_file
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Client.import_model.html">
        import_model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Client.upload_file.html">
+       upload_file
       </a>
      </li>
     </ul>
@@ -302,8 +346,8 @@
   <a class="reference internal" href="../tree_objects.html">
    ACP Objects
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -312,8 +356,8 @@
     <a class="reference internal" href="ansys.acp.core.Model.html">
      ansys.acp.core.Model
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-    <label for="toctree-checkbox-7">
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -464,8 +508,8 @@
     <a class="reference internal" href="ansys.acp.core.Material.html">
      ansys.acp.core.Material
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-    <label for="toctree-checkbox-8">
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -516,8 +560,8 @@
     <a class="reference internal" href="ansys.acp.core.Fabric.html">
      ansys.acp.core.Fabric
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-    <label for="toctree-checkbox-9">
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -603,8 +647,8 @@
     <a class="reference internal" href="ansys.acp.core.ElementSet.html">
      ansys.acp.core.ElementSet
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -655,8 +699,8 @@
     <a class="reference internal" href="ansys.acp.core.Rosette.html">
      ansys.acp.core.Rosette
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-    <label for="toctree-checkbox-11">
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -717,8 +761,8 @@
     <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.html">
      ansys.acp.core.OrientedSelectionSet
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-    <label for="toctree-checkbox-12">
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -784,8 +828,8 @@
     <a class="reference internal" href="ansys.acp.core.ModelingGroup.html">
      ansys.acp.core.ModelingGroup
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-    <label for="toctree-checkbox-13">
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -831,8 +875,8 @@
     <a class="reference internal" href="ansys.acp.core.ModelingPly.html">
      ansys.acp.core.ModelingPly
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -926,10 +970,10 @@
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ansys.acp.core.LocalAcpServer">
+  <a class="reference internal nav-link" href="#ansys.acp.core.DirectLaunchConfig.binary_path">
    <code class="docutils literal notranslate">
     <span class="pre">
-     LocalAcpServer
+     DirectLaunchConfig.binary_path
     </span>
    </code>
   </a>
@@ -953,63 +997,12 @@
               
               <article class="bd-article" role="main">
                 
-  <section id="ansys-acp-core-localacpserver">
-<h1>ansys.acp.core.LocalAcpServer<a class="headerlink" href="#ansys-acp-core-localacpserver" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="ansys.acp.core.LocalAcpServer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">LocalAcpServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.LocalAcpServer" title="Permalink to this definition">#</a></dt>
-<dd><p>Manages an ACP server running on the local machine.</p>
-<p>Wrapper for ACP servers which run as a process on the local machine.
-This class takes care of terminating the process when the object is
-either destroyed, or before Python exits (unless it is a hard crash
-/ kill).
-Can be used as a context manager, to terminate the process when
-exiting the context.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>process</strong> – The process which is executing the ACP server.</p></li>
-<li><p><strong>port</strong> – The port (on localhost) on which the ACP server listens to requests.</p></li>
-<li><p><strong>stdout</strong> – Open file handle to which the process output is being written.</p></li>
-<li><p><strong>stderr</strong> – Open file handle to which the process error is being written.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LocalAcpServer.close.html#ansys.acp.core.LocalAcpServer.close" title="ansys.acp.core.LocalAcpServer.close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalAcpServer.close</span></code></a>()</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">rtype<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
-</dd>
-</dl>
-</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LocalAcpServer.channel.html#ansys.acp.core.LocalAcpServer.channel" title="ansys.acp.core.LocalAcpServer.channel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalAcpServer.channel</span></code></a></p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">rtype<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Channel</span></code></p>
-</dd>
-</dl>
-</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LocalAcpServer.closed.html#ansys.acp.core.LocalAcpServer.closed" title="ansys.acp.core.LocalAcpServer.closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalAcpServer.closed</span></code></a></p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">rtype<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
-</dd>
-</dl>
-</p></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
+  <section id="binary-path">
+<h1>binary_path<a class="headerlink" href="#binary-path" title="Permalink to this heading">#</a></h1>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ansys.acp.core.DirectLaunchConfig.binary_path">
+<span class="sig-prename descclassname"><span class="pre">DirectLaunchConfig.</span></span><span class="sig-name descname"><span class="pre">binary_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#ansys.acp.core.DirectLaunchConfig.binary_path" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
 
 </section>
 

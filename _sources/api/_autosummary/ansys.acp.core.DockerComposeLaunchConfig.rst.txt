@@ -1,0 +1,40 @@
+﻿ansys.acp.core.DockerComposeLaunchConfig
+========================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: DockerComposeLaunchConfig
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+      DockerComposeLaunchConfig.image_name_filetransfer
+      
+      
+      DockerComposeLaunchConfig.image_name_pyacp
+      
+      
+      DockerComposeLaunchConfig.keep_volume
+      
+      
+      DockerComposeLaunchConfig.license_server
+      
+   
+   
