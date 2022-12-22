@@ -19,7 +19,7 @@ from .common import ServerKey
 
 def _get_default_binary_path() -> str:
     try:
-        ans_root = get_ansys_root()
+        ans_root = get_ansys_root()  # get latest installed Ansys version; raises if none found
         binary_path = os.path.join(ans_root, "ACP", "acp_grpcserver")
         if os.name == "nt":
             binary_path += ".exe"
