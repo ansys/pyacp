@@ -77,7 +77,7 @@ pytest-cases = "^3.6.13"
 [tool.poetry.extras]
 # For the examples, we keep an extra to simplify installing these dependencies for the
 # end user.
-examples = ["ansys-utilities-filetransfer", "pyvista", "ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites"]
+examples = ["pyvista", "ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites"]
 
 [tool.poetry.plugins."ansys.tools.local_product_launcher.launcher"]
 "ACP.direct" = "ansys.acp.core._server.direct:DirectLauncher"
