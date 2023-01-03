@@ -322,7 +322,7 @@
 <section id="launching-acp">
 <h4>Launching ACP<a class="headerlink" href="#launching-acp" title="Permalink to this heading">#</a></h4>
 <p>Configure ACP using the <a class="reference external" href="https://local-product-launcher.tools.docs.pyansys.com">ansys-launcher</a> command line tool:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansys-launcher configure ACP &lt;launch_mode&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansys-launcher<span class="w"> </span>configure<span class="w"> </span>ACP<span class="w"> </span>&lt;launch_mode&gt;
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">&lt;launch_mode&gt;</span></code> is one of</p>
@@ -362,17 +362,17 @@ please refer to the <a class="reference external" href="https://dev.docs.pyansys
 <ol class="arabic">
 <li><p>Start by cloning this repository, and entering the newly created directory:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/pyansys/pyacp-private
-<span class="nb">cd</span> pyacp-private
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pyansys/pyacp-private
+<span class="nb">cd</span><span class="w"> </span>pyacp-private
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Make sure you have the latest version of poetry:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m pip install pipx
-pipx ensurepath
-pipx install poetry
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pipx
+pipx<span class="w"> </span>ensurepath
+pipx<span class="w"> </span>install<span class="w"> </span>poetry
 </pre></div>
 </div>
 </div></blockquote>
@@ -380,7 +380,7 @@ pipx install poetry
 <li><p>Install the project and all its development dependencies using poetry. This also takes care of
 creating a new virtual environment:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry install --with dev,test
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>install<span class="w"> </span>--with<span class="w"> </span>dev,test
 </pre></div>
 </div>
 </div></blockquote>
@@ -388,7 +388,7 @@ creating a new virtual environment:</p>
 </li>
 <li><p>Activate your development virtual environment with:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry shell
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>shell
 </pre></div>
 </div>
 </div></blockquote>
@@ -398,18 +398,18 @@ creating a new virtual environment:</p>
 <section id="testing">
 <h4>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h4>
 <p>The PyACP test suite uses <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a>. You can run it with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest --license-server<span class="o">=</span>&lt;YOUR_LICENSE_SERVER&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--license-server<span class="o">=</span>&lt;YOUR_LICENSE_SERVER&gt;
 </pre></div>
 </div>
 </section>
 <section id="pre-commit-hooks">
 <h4>Pre-commit hooks<a class="headerlink" href="#pre-commit-hooks" title="Permalink to this heading">#</a></h4>
 <p>Style and linter checks are run through the <a class="reference external" href="https://pre-commit.com/">pre-commit</a> tool. You can run these checks with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit run --all-files
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>run<span class="w"> </span>--all-files
 </pre></div>
 </div>
 <p>We also recommend installing pre-commit into your repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit install
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>install
 </pre></div>
 </div>
 <p>This will run the pre-commit hooks on the changed files before every <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>. If you ever
@@ -418,12 +418,12 @@ need to create a commit without running the hooks, you can skip them with <code 
 <section id="id2">
 <h4>Documentation<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
 <p>To build the documentation, a PyACP server needs to be running:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose -f docker-compose/docker-compose.yaml up -d
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose/docker-compose.yaml<span class="w"> </span>up<span class="w"> </span>-d
 </pre></div>
 </div>
 <p>It can then be built using <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>.</p>
 <p>On Linux &amp; MacOS:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make -C doc html
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>doc<span class="w"> </span>html
 </pre></div>
 </div>
 <p>On Windows:</p>
@@ -435,13 +435,13 @@ need to create a commit without running the hooks, you can skip them with <code 
 <section id="distribution">
 <h4>Distribution<a class="headerlink" href="#distribution" title="Permalink to this heading">#</a></h4>
 <p>The following commands can be used to build and check the PyACP package:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry build
-twine check dist/*
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>build
+twine<span class="w"> </span>check<span class="w"> </span>dist/*
 </pre></div>
 </div>
 <p>This creates both a source distribution, and a wheel file. An alternative is</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install build
-python -m build --wheel
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>build
+python<span class="w"> </span>-m<span class="w"> </span>build<span class="w"> </span>--wheel
 </pre></div>
 </div>
 </section>
@@ -474,7 +474,7 @@ python -m build --wheel
   
   <div class="footer-item">
     <p class="copyright">
-    &copy; Copyright (c) 2022 ANSYS, Inc. All rights reserved.<br>
+    &copy; Copyright (c) 2023 ANSYS, Inc. All rights reserved.<br>
 </p>
   </div>
   
