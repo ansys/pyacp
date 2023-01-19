@@ -18,6 +18,9 @@ on:
         description: "Suffix of the 'pyacp-private' docker image used for testing. For example, ':latest', or '@sha256:<hash>' (without quotes)."
         required: false
 
+env:
+  DOCUMENTATION_CNAME: 'acp.docs.pyansys.com'
+
 jobs:
   style:
     name: Pre-commit Check
@@ -223,8 +226,6 @@ jobs:
       - name: Build HTML
         run: |
           xvfb-run poetry run make -C doc html SPHINXOPTS="-W --keep-going"
-          touch doc/build/html/.nojekyll
-          echo "dev.acp.docs.pyansys.com" >> doc/build/html/CNAME
 
       - name: Stop and clean up MAPDL and DPF servers
         run: |
@@ -233,17 +234,9 @@ jobs:
       - name: Upload HTML Documentation
         uses: actions/upload-artifact@v2
         with:
-          name: Documentation-html
+          name: documentation-html
           path: doc/build/html
           retention-days: 7
-
-      - name: Deploy Documentation
-        if: github.ref == 'refs/heads/main'
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: gh-pages
-          folder: doc/build/html
-          clean: true
 
       - name: Install OS packages for PDF build
         run: |
@@ -264,6 +257,18 @@ jobs:
           name: Documentation-pdf
           path: doc/build/latex/ansys-acp-core.pdf
           retention-days: 7
+
+  upload_dev_docs:
+    name: "Upload dev documentation"
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: [docs]
+    steps:
+      - name: Deploy the latest documentation
+        uses: pyansys/actions/doc-deploy-dev@v2
+        with:
+          cname: ${{ env.DOCUMENTATION_CNAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
   # Release:
   #   if: contains(github.ref, 'refs/tags')
