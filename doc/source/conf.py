@@ -1,5 +1,6 @@
 """Sphinx documentation configuration file."""
 from datetime import datetime
+import os
 
 import pyvista
 from sphinx.builders.latex import LaTeXBuilder
@@ -9,6 +10,7 @@ from ansys_sphinx_theme import (
     ansys_favicon,
     ansys_logo_white,
     ansys_logo_white_cropped,
+    get_version_match,
     latex,
     pyansys_logo_black,
     watermark,
@@ -36,12 +38,21 @@ release = version = __version__
 html_logo = pyansys_logo_black
 html_theme = "ansys_sphinx_theme"
 
+
+cname = os.getenv("DOCUMENTATION_CNAME", "acp.docs.pyansys.com")
+"""The canonical name of the webpage hosting the documentation."""
+
 # specify the location of your github repo
 html_theme_options = {
     "github_url": "https://github.com/pyansys/pyacp-private",
     "show_prev_next": False,
     "show_breadcrumbs": True,
     "additional_breadcrumbs": [("PyAnsys", "https://docs.pyansys.com/")],
+    "switcher": {
+        "json_url": f"https://{cname}/release/versions.json",
+        "version_match": get_version_match(__version__),
+    },
+    "navbar_end": ["version-switcher", "theme-switcher", "navbar-icon-links"],
 }
 html_title = html_short_title = "PyACP"
 

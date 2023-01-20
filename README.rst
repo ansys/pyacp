@@ -57,7 +57,7 @@ For installing PyACP in development mode, see the `Development Setup`_ instructi
 Documentation
 -------------
 
-The PyACP documentation can be viewed online at https://dev.acp.docs.pyansys.com.
+The PyACP documentation can be viewed online at https://acp.docs.pyansys.com.
 
 
 .. _launching_server:
