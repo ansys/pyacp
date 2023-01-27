@@ -1,20 +1,31 @@
 repos:
 - repo: https://github.com/psf/black
-  rev: 22.8.0
+  rev: '22.8.0'
   hooks:
   - id: black
 - repo: https://github.com/pycqa/isort
-  rev: 5.10.1
+  rev: '5.10.1'
   hooks:
   - id: isort
 - repo: https://github.com/PyCQA/flake8
-  rev: 5.0.4
+  rev: '5.0.4'
   hooks:
   - id: flake8
 - repo: https://github.com/codespell-project/codespell
   rev: v2.2.1
   hooks:
   - id: codespell
+- repo: https://github.com/python-poetry/poetry/
+  rev: '1.3.2'
+  hooks:
+  - id: poetry-check
+    name: "poetry: check pyproject.toml syntax"
+  # We're slightly abusing the 'poetry-lock' hook, by running
+  # 'poetry lock --check' instead of 'poetry lock'
+  - id: poetry-lock
+    name: "poetry: check poetry.lock consistency"
+    args: ['--check']
+    files: '^(pyproject\.toml|poetry\.lock)$'
 # - repo: https://github.com/pycqa/pydocstyle
 #   rev: 6.1.1
 #   hooks:
