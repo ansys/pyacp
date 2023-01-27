@@ -26,7 +26,7 @@ def test_collection_access(load_model_from_tempfile):
 
         assert len(model.modeling_groups) == len(mg_names)
 
-        assert set(mg_names) == set(mg.name for mg in model.modeling_groups.values())
+        assert set(mg_names) == {mg.name for mg in model.modeling_groups.values()}
         assert set(mg_ids) == set(model.modeling_groups) == set(model.modeling_groups.keys())
 
         for id in mg_ids:

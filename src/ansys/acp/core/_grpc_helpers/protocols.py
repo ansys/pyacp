@@ -1,11 +1,6 @@
 from __future__ import annotations
 
-from typing import List
-
-try:
-    from typing import Protocol
-except ImportError:
-    from typing_extensions import Protocol  # type: ignore
+from typing import Protocol
 
 from google.protobuf.message import Message
 import grpc
@@ -37,7 +32,7 @@ class ObjectInfo(Protocol):
 
 class ListReply(Protocol):
     @property
-    def objects(self) -> List[ObjectInfo]:
+    def objects(self) -> list[ObjectInfo]:
         ...
 
 

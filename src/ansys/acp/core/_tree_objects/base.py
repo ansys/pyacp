@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 import textwrap
-from typing import Any, Iterable, Optional, Tuple, Type, TypeVar, cast
+from typing import Any, Iterable, TypeVar, cast
 
 from grpc import Channel
 
@@ -35,12 +35,12 @@ class TreeObject(ABC):
     __slots__ = ("_channel_store", "_stub_store", "_pb_object")
 
     COLLECTION_LABEL: str
-    OBJECT_INFO_TYPE: Type[ObjectInfo]
-    GRPC_PROPERTIES: Tuple[str, ...]
+    OBJECT_INFO_TYPE: type[ObjectInfo]
+    GRPC_PROPERTIES: tuple[str, ...]
 
     def __init__(self: TreeObject, name: str = "") -> None:
-        self._channel_store: Optional[Channel] = None
-        self._stub_store: Optional[ResourceStub] = None
+        self._channel_store: Channel | None = None
+        self._stub_store: ResourceStub | None = None
         self._pb_object: ObjectInfo = self.OBJECT_INFO_TYPE()
         self.name = name
 
@@ -79,7 +79,7 @@ class TreeObject(ABC):
 
     @classmethod
     def _from_object_info(
-        cls: Type[_T], object_info: ObjectInfo, channel: Optional[Channel] = None
+        cls: type[_T], object_info: ObjectInfo, channel: Channel | None = None
     ) -> _T:
         instance = cls()
         instance._pb_object = object_info
@@ -87,7 +87,7 @@ class TreeObject(ABC):
         return instance
 
     @classmethod
-    def _from_resource_path(cls: Type[_T], resource_path: ResourcePath, channel: Channel) -> _T:
+    def _from_resource_path(cls: type[_T], resource_path: ResourcePath, channel: Channel) -> _T:
         instance = cls()
         instance._pb_object.info.resource_path.CopyFrom(resource_path)
         instance._channel_store = channel
@@ -146,7 +146,7 @@ class TreeObject(ABC):
 @mark_grpc_properties
 class CreatableTreeObject(TreeObject, ABC):
     __slots__: Iterable[str] = tuple()
-    CREATE_REQUEST_TYPE: Type[CreateRequest]
+    CREATE_REQUEST_TYPE: type[CreateRequest]
 
     def _get_stub(self) -> CreatableResourceStub:
         return cast(CreatableResourceStub, super()._get_stub())

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Iterable, Union
+from typing import Iterable
 
 from ansys.api.acp.v0 import fabric_pb2, fabric_pb2_grpc
 
@@ -66,7 +66,7 @@ class Fabric(CreatableTreeObject, IdTreeObject):
     def __init__(
         self,
         name: str = "Fabric",
-        material: Union[Material, None] = None,
+        material: Material | None = None,
         thickness: float = 0.0,
         area_price: float = 0.0,
         ignore_for_postprocessing: bool = False,

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Iterable, Sequence, Tuple
+from typing import Iterable, Sequence
 
 from ansys.api.acp.v0 import oriented_selection_set_pb2, oriented_selection_set_pb2_grpc
 
@@ -56,8 +56,8 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         self,
         name: str = "OrientedSelectionSet",
         element_sets: Sequence[ElementSet] = tuple(),
-        orientation_point: Tuple[float, ...] = (0.0, 0.0, 0.0),
-        orientation_direction: Tuple[float, ...] = (0.0, 0.0, 0.0),
+        orientation_point: tuple[float, ...] = (0.0, 0.0, 0.0),
+        orientation_direction: tuple[float, ...] = (0.0, 0.0, 0.0),
         rosettes: Sequence[Rosette] = tuple(),
         rosette_selection_method: RosetteSelectionMethod = "minimum_angle",
     ):
