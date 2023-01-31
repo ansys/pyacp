@@ -19,7 +19,13 @@ from ansys.tools.local_product_launcher.interface import (
 )
 
 from .common import ServerKey
-from .docker import _get_default_license_server
+
+
+def _get_default_license_server() -> str:
+    try:
+        return os.environ["ANSYSLMD_LICENSE_FILE"]
+    except KeyError:
+        return ""
 
 
 @dataclasses.dataclass
