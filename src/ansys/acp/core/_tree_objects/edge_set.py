@@ -20,6 +20,30 @@ from .object_registry import register
 @mark_grpc_properties
 @register
 class EdgeSet(CreatableTreeObject, IdTreeObject):
+    """Instantiate an Edge Set.
+
+    Parameters
+    ----------
+    name :
+        Name of the Edge Set.
+    edge_set_type :
+        Determines how the Edge Set is defined. Can be either :attr:`.EdgeSetType.BY_NODES`
+        or :attr:`.EdgeSetType.BY_REFERENCE`.
+    defining_node_labels :
+        Labels of the nodes in the Edge Set.
+        Only applies when ``edge_set_type`` is :attr:`.EdgeSetType.BY_NODES`.
+    element_set :
+        Element Set whose boundary the Edge Set follows.
+        Only applies when ``edge_set_type`` is :attr:`.EdgeSetType.BY_REFERENCE`.
+    limit_angle :
+        Maximum angle above which the remaining Element Set boundary is no
+        longer considered connected to the Edge Set.
+        Only applies when ``edge_set_type`` is :attr:`.EdgeSetType.BY_REFERENCE`.
+    origin :
+        Defines the starting point of the Edge Set.
+        Only applies when ``edge_set_type`` is :attr:`.EdgeSetType.BY_REFERENCE`.
+    """
+
     __slots__: Iterable[str] = tuple()
     COLLECTION_LABEL = "edge_sets"
     OBJECT_INFO_TYPE = edge_set_pb2.ObjectInfo
