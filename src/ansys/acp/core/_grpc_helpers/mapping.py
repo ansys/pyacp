@@ -1,18 +1,7 @@
 from __future__ import annotations
 
 from functools import wraps
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Callable,
-    Generic,
-    Iterator,
-    List,
-    Optional,
-    Tuple,
-    Type,
-    TypeVar,
-)
+from typing import TYPE_CHECKING, Any, Callable, Generic, Iterator, TypeVar
 
 if TYPE_CHECKING:
     from mypy_extensions import KwArg, Arg
@@ -37,7 +26,7 @@ class Mapping(Generic[ValueT]):
         channel: Channel,
         collection_path: CollectionPath,
         stub: ResourceStub,
-        object_constructor: Callable[[ObjectInfo, Optional[Channel]], ValueT],
+        object_constructor: Callable[[ObjectInfo, Channel | None], ValueT],
     ) -> None:
         self._collection_path = collection_path
         self._stub = stub
@@ -52,9 +41,9 @@ class Mapping(Generic[ValueT]):
         obj_info = self._get_objectinfo_by_id(key)
         return self._object_constructor(obj_info, self._channel)
 
-    def _get_objectinfo_list(self) -> List[ObjectInfo]:
+    def _get_objectinfo_list(self) -> list[ObjectInfo]:
         res = self._stub.List(ListRequest(collection_path=self._collection_path)).objects
-        if len(set(obj.info.id for obj in res)) != len(res):
+        if len({obj.info.id for obj in res}) != len(res):
             raise ValueError("Duplicate ID in Collection.")
         return res
 
@@ -107,7 +96,7 @@ class Mapping(Generic[ValueT]):
             for obj_info in self._get_objectinfo_list()
         )
 
-    def items(self) -> Iterator[Tuple[str, ValueT]]:
+    def items(self) -> Iterator[tuple[str, ValueT]]:
         return (
             (
                 obj_info.info.id,
@@ -125,7 +114,7 @@ class Mapping(Generic[ValueT]):
     def __len__(self) -> int:
         return len(self._get_objectinfo_list())
 
-    def get(self, key: str, default: Optional[ValueT] = None) -> Optional[ValueT]:
+    def get(self, key: str, default: ValueT | None = None) -> ValueT | None:
         try:
             return self[key]
         except KeyError:
@@ -136,8 +125,8 @@ ParentT = TypeVar("ParentT", bound=TreeObject)
 
 
 def define_mapping(
-    object_class: Type[ValueT], stub_class: Type[ResourceStub]
-) -> Tuple[Callable[[Arg(ParentT, "self"), KwArg(Any)], ValueT], property]:
+    object_class: type[ValueT], stub_class: type[ResourceStub]
+) -> tuple[Callable[[Arg(ParentT, "self"), KwArg(Any)], ValueT], property]:
     @wraps(object_class.__init__)
     def create_method(self: ParentT, **kwargs: Any) -> ValueT:
         obj = object_class(**kwargs)

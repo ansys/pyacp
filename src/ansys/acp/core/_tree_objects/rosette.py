@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Iterable, Tuple
+from typing import Iterable
 
 from ansys.api.acp.v0 import rosette_pb2, rosette_pb2_grpc
 
@@ -43,9 +43,9 @@ class Rosette(CreatableTreeObject, IdTreeObject):
     def __init__(
         self,
         name: str = "Rosette",
-        origin: Tuple[float, ...] = (0.0, 0.0, 0.0),
-        dir1: Tuple[float, ...] = (1.0, 0.0, 0.0),
-        dir2: Tuple[float, ...] = (0.0, 1.0, 0.0),
+        origin: tuple[float, ...] = (0.0, 0.0, 0.0),
+        dir1: tuple[float, ...] = (1.0, 0.0, 0.0),
+        dir2: tuple[float, ...] = (0.0, 1.0, 0.0),
     ):
         super().__init__(name=name)
 

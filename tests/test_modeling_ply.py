@@ -61,9 +61,9 @@ def test_collection_access(load_model_from_tempfile):
 
         assert len(get_first_modeling_group(model).modeling_plies) == len(mp_names)
 
-        assert set(mp_names) == set(
+        assert set(mp_names) == {
             mp.name for mp in get_first_modeling_group(model).modeling_plies.values()
-        )
+        }
         assert (
             set(mp_ids)
             == set(get_first_modeling_group(model).modeling_plies)

@@ -1,7 +1,4 @@
-try:
-    import importlib.metadata as importlib_metadata  # type: ignore
-except ModuleNotFoundError:
-    import importlib_metadata  # type: ignore
+import importlib.metadata
 
 from ._client import Client
 from ._server import (
@@ -23,7 +20,7 @@ from ._tree_objects import (
     UnitSystemType,
 )
 
-__version__ = importlib_metadata.version(__name__.replace(".", "-"))
+__version__ = importlib.metadata.version(__name__.replace(".", "-"))
 
 
 __all__ = [

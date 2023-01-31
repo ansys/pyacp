@@ -5,7 +5,7 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from functools import reduce
-from typing import TYPE_CHECKING, Any, Callable, List, Optional, Type, cast
+from typing import TYPE_CHECKING, Any, Callable, cast
 
 from ansys.api.acp.v0.base_pb2 import GetRequest, ResourcePath
 
@@ -28,11 +28,11 @@ class _exposed_grpc_property(property):
     pass
 
 
-def mark_grpc_properties(cls: Type[TreeObject]) -> Type[TreeObject]:
-    props: List[str] = []
+def mark_grpc_properties(cls: type[TreeObject]) -> type[TreeObject]:
+    props: list[str] = []
     for base_cls in reversed(cls.__bases__):
         if hasattr(base_cls, "GRPC_PROPERTIES"):
-            base_cls = cast("Type[TreeObject]", base_cls)
+            base_cls = cast("type[TreeObject]", base_cls)
             props.extend(base_cls.GRPC_PROPERTIES)
     for key, value in vars(cls).items():
         if isinstance(value, _exposed_grpc_property):
@@ -50,7 +50,7 @@ def grpc_linked_object_getter(name: str) -> Callable[[TreeObject], Any]:
     Creates a getter method which obtains the linked server object
     """
 
-    def inner(self: TreeObject) -> Optional[TreeObject]:
+    def inner(self: TreeObject) -> TreeObject | None:
         #  Import here to avoid circular references. Cannot use the registry before
         #  all the object have been imported.
         from .._tree_objects.object_registry import object_registry
