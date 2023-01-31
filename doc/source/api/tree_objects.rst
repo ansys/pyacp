@@ -10,6 +10,7 @@ ACP Objects
     Material
     Fabric
     ElementSet
+    EdgeSet
     Rosette
     OrientedSelectionSet
     ModelingGroup
