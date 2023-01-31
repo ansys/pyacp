@@ -67,7 +67,7 @@ def test_collection_access(load_model_from_tempfile):
 
         assert len(model.oriented_selection_sets) == len(mg_names)
 
-        assert set(mg_names) == set(mg.name for mg in model.oriented_selection_sets.values())
+        assert set(mg_names) == {mg.name for mg in model.oriented_selection_sets.values()}
         assert (
             set(mg_ids)
             == set(model.oriented_selection_sets)

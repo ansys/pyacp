@@ -1,10 +1,5 @@
 import enum
-from typing import Dict
-
-try:
-    from typing import Protocol
-except ImportError:
-    from typing_extensions import Protocol  # type: ignore
+from typing import Dict, Protocol
 
 import grpc
 

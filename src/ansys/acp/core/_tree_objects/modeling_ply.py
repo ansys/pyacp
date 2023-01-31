@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Container, Iterable, Union
+from typing import Container, Iterable
 
 from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc
 
@@ -40,7 +40,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     def __init__(
         self,
         name: str = "ModelingPly",
-        ply_material: Union[Fabric, None] = None,
+        ply_material: Fabric | None = None,
         oriented_selection_sets: Container[OrientedSelectionSet] = (),
         ply_angle: float = 0.0,
         number_of_layers: int = 1,
