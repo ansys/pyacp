@@ -1,3 +1,4 @@
+from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import UnitSystemType
 from .fabric import Fabric
@@ -13,6 +14,7 @@ __all__ = [
     "Material",
     "Fabric",
     "ElementSet",
+    "EdgeSet",
     "Rosette",
     "OrientedSelectionSet",
     "ModelingGroup",

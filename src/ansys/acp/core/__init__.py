@@ -9,6 +9,7 @@ from ._server import (
     launch_acp,
 )
 from ._tree_objects import (
+    EdgeSet,
     ElementSet,
     Fabric,
     Material,
@@ -35,8 +36,10 @@ __all__ = [
     "Material",
     "Fabric",
     "ElementSet",
+    "EdgeSet",
     "Rosette",
     "OrientedSelectionSet",
     "ModelingGroup",
     "ModelingPly",
+    "UnitSystemType",
 ]
