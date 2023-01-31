@@ -219,8 +219,8 @@ and ansys-mapdl) are installed before launching Python.
         MaxStressCriterion,
         CoreFailureCriterion
     )
-    from ansys.dpf.composites import ResultDefinition
-    from ansys.dpf.composites.load_plugin import load_composites_plugin
+    from ansys.dpf.composites.result_definition import ResultDefinition
+    from ansys.dpf.composites.server_helpers import load_composites_plugin
     import ansys.dpf.core as dpf
 
     # Launch local gRPC server of dpf and connect to

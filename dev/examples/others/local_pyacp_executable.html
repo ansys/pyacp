@@ -520,8 +520,8 @@ and ansys-mapdl) are installed before launching Python.</p>
     <span class="n">MaxStressCriterion</span><span class="p">,</span>
     <span class="n">CoreFailureCriterion</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">ansys.dpf.composites</span> <span class="kn">import</span> <span class="n">ResultDefinition</span>
-<span class="kn">from</span> <span class="nn">ansys.dpf.composites.load_plugin</span> <span class="kn">import</span> <span class="n">load_composites_plugin</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.composites.result_definition</span> <span class="kn">import</span> <span class="n">ResultDefinition</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.composites.server_helpers</span> <span class="kn">import</span> <span class="n">load_composites_plugin</span>
 <span class="kn">import</span> <span class="nn">ansys.dpf.core</span> <span class="k">as</span> <span class="nn">dpf</span>
 
 <span class="c1"># Launch local gRPC server of dpf and connect to</span>

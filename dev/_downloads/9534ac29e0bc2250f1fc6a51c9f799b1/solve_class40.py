@@ -282,14 +282,14 @@ mapdl.download(rstfile_name, tmp_dir.name)
 # Setup: configure imports and connect to the pyDPF Composites server
 # and load the dpf composites plugin
 
-from ansys.dpf.composites import ResultDefinition
 from ansys.dpf.composites.failure_criteria import (
     CombinedFailureCriterion,
     CoreFailureCriterion,
     MaxStrainCriterion,
     MaxStressCriterion,
 )
-from ansys.dpf.composites.load_plugin import load_composites_plugin
+from ansys.dpf.composites.result_definition import ResultDefinition, ResultDefinitionScope
+from ansys.dpf.composites.server_helpers import load_composites_plugin
 import ansys.dpf.core as dpf
 from ansys.dpf.core.core import upload_file_in_tmp_folder
 
@@ -318,11 +318,15 @@ matml_file_dpf_path = upload_file_in_tmp_folder(str(matml_file_local_path))
 elements = list([int(v) for v in np.arange(1, 3996)])
 rd = ResultDefinition(
     name="combined failure criteria",
-    rst_files=[rst_file_dpf_path],
-    material_files=[matml_file_dpf_path],
-    composite_definitions=[composite_definitions_file_dpf_path],
+    rst_file=rst_file_dpf_path,
+    material_file=matml_file_dpf_path,
     combined_failure_criterion=cfc,
-    element_scope=elements,
+    composite_scopes=[
+        ResultDefinitionScope(
+            element_scope=elements,
+            composite_definition=composite_definitions_file_dpf_path,
+        )
+    ],
 )
 
 #%%

@@ -561,7 +561,7 @@ Load the CDB file into PyMAPDL
  .. code-block:: none
 
 
-    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 88888888  VERSION=LINUX x64     11:01:21  JAN 31, 2023 CP=      0.417\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.512\n\n\n'
+    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 88888888  VERSION=LINUX x64     11:13:52  JAN 31, 2023 CP=      0.410\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.505\n\n\n'
 
 
 
@@ -588,7 +588,7 @@ Solve the model
 
     *****  MAPDL SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       0.526   TIME= 11:01:21
+     *** NOTE ***                            CP =       0.517   TIME= 11:13:52
      There is no title defined for this analysis.                            
 
      *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -613,7 +613,7 @@ Solve the model
 
      *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
      Ansys Mechanical Enterprise                       
-     88888888  VERSION=LINUX x64     11:01:21  JAN 31, 2023 CP=      0.565
+     88888888  VERSION=LINUX x64     11:13:52  JAN 31, 2023 CP=      0.556
 
                                                                                
 
@@ -629,14 +629,14 @@ Solve the model
        ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
        GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  
 
-     *** NOTE ***                            CP =       0.567   TIME= 11:01:21
+     *** NOTE ***                            CP =       0.558   TIME= 11:13:52
      Poisson's ratio PR input has been converted to NU input.                
 
-     *** NOTE ***                            CP =       0.573   TIME= 11:01:21
+     *** NOTE ***                            CP =       0.565   TIME= 11:13:52
      Present time 0 is less than or equal to the previous time.  Time will   
      default to 1.                                                           
 
-     *** NOTE ***                            CP =       0.574   TIME= 11:01:21
+     *** NOTE ***                            CP =       0.565   TIME= 11:13:52
      The conditions for direct assembly have been met.  No .emat or .erot    
      files will be produced.                                                 
 
@@ -654,7 +654,7 @@ Solve the model
 
      SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           
 
-     *** NOTE ***                            CP =       0.665   TIME= 11:01:21
+     *** NOTE ***                            CP =       0.653   TIME= 11:13:52
      Predictor is ON by default for structural elements with rotational      
      degrees of freedom.  Use the PRED,OFF command to turn the predictor     
      OFF if it adversely affects the convergence.                            
@@ -703,10 +703,10 @@ Solve the model
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      2.822   0.000710
-            2        88  BEAM188       0.005   0.000059
-            3        22  SHELL181      0.005   0.000235
-     Time at end of element matrix formulation CP = 3.52925873.              
+            1      3973  SHELL181      3.066   0.000772
+            2        88  BEAM188       0.004   0.000047
+            3        22  SHELL181      0.005   0.000243
+     Time at end of element matrix formulation CP = 3.75609398.              
 
      SPARSE MATRIX DIRECT SOLVER.
       Number of equations =       24096,    Maximum wavefront =     66
@@ -714,7 +714,7 @@ Solve the model
       Memory required for in-core solution     =    58.542 MB
       Memory required for out-of-core solution =    24.642 MB
 
-     *** NOTE ***                            CP =       3.619   TIME= 11:01:24
+     *** NOTE ***                            CP =       3.836   TIME= 11:13:55
      The Sparse Matrix Solver is currently running in the in-core memory     
      mode.  This memory mode uses the most amount of memory in order to      
      avoid using the hard drive as much as possible, which most often        
@@ -729,16 +729,16 @@ Solve the model
        *** ELEMENT RESULT CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      6.348   0.001598
-            2        88  BEAM188       0.013   0.000142
-            3        22  SHELL181      0.009   0.000412
+            1      3973  SHELL181      6.798   0.001711
+            2        88  BEAM188       0.010   0.000109
+            3        22  SHELL181      0.010   0.000435
 
        *** NODAL LOAD CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      0.076   0.000019
-            2        88  BEAM188       0.002   0.000020
-            3        22  SHELL181      0.000   0.000020
+            1      3973  SHELL181      0.068   0.000017
+            2        88  BEAM188       0.002   0.000018
+            3        22  SHELL181      0.000   0.000017
      *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
      *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -798,14 +798,14 @@ and load the dpf composites plugin
 .. code-block:: default
 
 
-    from ansys.dpf.composites import ResultDefinition
     from ansys.dpf.composites.failure_criteria import (
         CombinedFailureCriterion,
         CoreFailureCriterion,
         MaxStrainCriterion,
         MaxStressCriterion,
     )
-    from ansys.dpf.composites.load_plugin import load_composites_plugin
+    from ansys.dpf.composites.result_definition import ResultDefinition, ResultDefinitionScope
+    from ansys.dpf.composites.server_helpers import load_composites_plugin
     import ansys.dpf.core as dpf
     from ansys.dpf.core.core import upload_file_in_tmp_folder
 
@@ -823,7 +823,7 @@ and load the dpf composites plugin
 
 Specify the Combined Failure Criterion and the result definition
 
-.. GENERATED FROM PYTHON SOURCE LINES 301-328
+.. GENERATED FROM PYTHON SOURCE LINES 301-332
 
 .. code-block:: default
 
@@ -847,11 +847,15 @@ Specify the Combined Failure Criterion and the result definition
     elements = list([int(v) for v in np.arange(1, 3996)])
     rd = ResultDefinition(
         name="combined failure criteria",
-        rst_files=[rst_file_dpf_path],
-        material_files=[matml_file_dpf_path],
-        composite_definitions=[composite_definitions_file_dpf_path],
+        rst_file=rst_file_dpf_path,
+        material_file=matml_file_dpf_path,
         combined_failure_criterion=cfc,
-        element_scope=elements,
+        composite_scopes=[
+            ResultDefinitionScope(
+                element_scope=elements,
+                composite_definition=composite_definitions_file_dpf_path,
+            )
+        ],
     )
 
 
@@ -861,11 +865,11 @@ Specify the Combined Failure Criterion and the result definition
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 329-330
+.. GENERATED FROM PYTHON SOURCE LINES 333-334
 
 Initialize the failure operator and configure its input
 
-.. GENERATED FROM PYTHON SOURCE LINES 330-334
+.. GENERATED FROM PYTHON SOURCE LINES 334-338
 
 .. code-block:: default
 
@@ -880,11 +884,11 @@ Initialize the failure operator and configure its input
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 335-336
+.. GENERATED FROM PYTHON SOURCE LINES 339-340
 
 Query and plot the results
 
-.. GENERATED FROM PYTHON SOURCE LINES 336-344
+.. GENERATED FROM PYTHON SOURCE LINES 340-348
 
 .. code-block:: default
 
@@ -911,7 +915,7 @@ Query and plot the results
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  39.186 seconds)
+   **Total running time of the script:** ( 0 minutes  35.312 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_solve_class40.py:
