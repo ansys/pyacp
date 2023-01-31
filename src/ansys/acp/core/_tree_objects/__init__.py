@@ -1,6 +1,6 @@
 from .edge_set import EdgeSet
 from .element_set import ElementSet
-from .enums import UnitSystemType
+from .enums import EdgeSetType, UnitSystemType
 from .fabric import Fabric
 from .material import Material
 from .model import Model
@@ -20,4 +20,5 @@ __all__ = [
     "ModelingGroup",
     "ModelingPly",
     "UnitSystemType",
+    "EdgeSetType",
 ]

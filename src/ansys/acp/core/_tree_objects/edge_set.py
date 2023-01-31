@@ -11,28 +11,42 @@ from .._grpc_helpers.property_helper import (
     mark_grpc_properties,
 )
 from .._utils.array_conversions import to_1D_double_array, to_1D_int_array, to_tuple_from_1D_array
-from .base import CreatableTreeObject
-from .enums import edge_set_type_from_pb, edge_set_type_to_pb
+from .base import CreatableTreeObject, IdTreeObject
+from .element_set import ElementSet
+from .enums import EdgeSetType, edge_set_type_from_pb, edge_set_type_to_pb, status_type_from_pb
 from .object_registry import register
 
 
 @mark_grpc_properties
 @register
-class EdgeSet(CreatableTreeObject):
+class EdgeSet(CreatableTreeObject, IdTreeObject):
     __slots__: Iterable[str] = tuple()
     COLLECTION_LABEL = "edge_sets"
     OBJECT_INFO_TYPE = edge_set_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = edge_set_pb2.CreateRequest
 
-    def __init__(self, name: str = "EdgeSet"):
-        super().__init__(name=name)
-        ...
+    def __init__(
+        self,
+        name: str = "EdgeSet",
+        edge_set_type: EdgeSetType = EdgeSetType.BY_NODES,
+        defining_node_labels: Iterable[int] = tuple(),
+        element_set: ElementSet | None = None,
+        limit_angle: float = -1.0,
+        origin: tuple[float, float, float] = (0.0, 0.0, 0.0),
+    ):
+        super().__init__(
+            name=name,
+        )
+        self.edge_set_type = edge_set_type
+        self.defining_node_labels = defining_node_labels
+        self.element_set = element_set
+        self.limit_angle = limit_angle
+        self.origin = origin
 
     def _create_stub(self) -> edge_set_pb2_grpc.ObjectServiceStub:
         return edge_set_pb2_grpc.ObjectServiceStub(self._channel)
 
-    id = grpc_data_property("info.id")
-
+    status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     locked = grpc_data_property_read_only("properties.locked")
 
     edge_set_type = grpc_data_property(

@@ -10,6 +10,7 @@ from ._server import (
 )
 from ._tree_objects import (
     EdgeSet,
+    EdgeSetType,
     ElementSet,
     Fabric,
     Material,
@@ -42,4 +43,5 @@ __all__ = [
     "ModelingGroup",
     "ModelingPly",
     "UnitSystemType",
+    "EdgeSetType",
 ]

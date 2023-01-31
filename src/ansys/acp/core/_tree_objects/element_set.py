@@ -10,7 +10,8 @@ from .._grpc_helpers.property_helper import (
     mark_grpc_properties,
 )
 from .._utils.array_conversions import to_1D_int_array, to_tuple_from_1D_array
-from .base import CreatableTreeObject
+from .base import CreatableTreeObject, IdTreeObject
+from .enums import status_type_from_pb
 from .object_registry import register
 
 __all__ = ["ElementSet"]
@@ -18,7 +19,7 @@ __all__ = ["ElementSet"]
 
 @mark_grpc_properties
 @register
-class ElementSet(CreatableTreeObject):
+class ElementSet(CreatableTreeObject, IdTreeObject):
     __slots__: Iterable[str] = tuple()
     COLLECTION_LABEL = "element_sets"
     OBJECT_INFO_TYPE = element_set_pb2.ObjectInfo
@@ -48,8 +49,7 @@ class ElementSet(CreatableTreeObject):
     def _create_stub(self) -> element_set_pb2_grpc.ObjectServiceStub:
         return element_set_pb2_grpc.ObjectServiceStub(self._channel)
 
-    id = grpc_data_property("info.id")
-
+    status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     locked = grpc_data_property_read_only("properties.locked")
     middle_offset = grpc_data_property("properties.middle_offset")
     element_labels = grpc_data_property(
