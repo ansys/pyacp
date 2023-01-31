@@ -1,4 +1,4 @@
-ACP Objects
+ACP objects
 -----------
 
 .. currentmodule:: ansys.acp.core

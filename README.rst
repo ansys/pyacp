@@ -138,7 +138,7 @@ You will need to follow these steps:
 
         poetry install --with dev,test
 
-   This step installs pyACP in an editable mode (no build step is needed, no re-install when changing the code).
+   This step installs PyACP in an editable mode (no build step is needed, no re-install when changing the code).
 
 4. Activate your development virtual environment with:
 
