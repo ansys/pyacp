@@ -1,104 +1,116 @@
 import pytest
+from pytest_cases import fixture, parametrize_with_cases
 
 from ansys.acp.core._tree_objects.enums import RosetteSelectionMethod
+from common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
+from common.tree_object_tester import ObjectProperties, TreeObjectTester
 
 
-def test_create_oriented_selection_set(load_model_from_tempfile):
-    """Test the creation of Oriented Selection Sets."""
+@pytest.fixture
+def parent_object(load_model_from_tempfile):
     with load_model_from_tempfile() as model:
-        oss_names = ["OrientedSelectionSet.1", "OrientedSelectionSet.1", "üñıçよð€"]
-        for ref_name in oss_names:
-            oriented_selection_set = model.create_oriented_selection_set(name=ref_name)
-            assert oriented_selection_set.name == ref_name
-            assert oriented_selection_set.status == "NOTUPTODATE"
-            assert oriented_selection_set.element_sets == []
-            assert oriented_selection_set.rosettes == []
-            assert oriented_selection_set.orientation_point == (0.0, 0.0, 0.0)
-            assert oriented_selection_set.orientation_direction == (0.0, 0.0, 0.0)
-            assert oriented_selection_set.rosette_selection_method == "minimum_angle"
-            assert (
-                oriented_selection_set.rosette_selection_method
-                == RosetteSelectionMethod.MINIMUM_ANGLE
-            )
+        yield model
 
 
-def test_oriented_selection_set_properties(load_model_from_tempfile):
-    """Test the put request of a Rosette."""
-    with load_model_from_tempfile() as model:
+@pytest.fixture
+def tree_object(parent_object):
+    return parent_object.create_oriented_selection_set()
 
+
+class TestOrientedSelectionSet(TreeObjectTester):
+    COLLECTION_NAME = "oriented_selection_sets"
+    DEFAULT_PROPERTIES = {
+        "status": "NOTUPTODATE",
+        "element_sets": [],
+        "rosettes": [],
+        "orientation_point": (0.0, 0.0, 0.0),
+        "orientation_direction": (0.0, 0.0, 0.0),
+        "rosette_selection_method": "minimum_angle",
+    }
+    CREATE_METHOD_NAME = "create_oriented_selection_set"
+
+    @staticmethod
+    @pytest.fixture
+    def object_properties(parent_object):
+        model = parent_object
         element_sets = [model.create_element_set() for _ in range(3)]
         rosettes = [model.create_rosette() for _ in range(4)]
-
-        oriented_selection_set = model.create_oriented_selection_set(name="test_properties")
-        properties = {
-            "name": "new_name",
-            "element_sets": element_sets,
-            "orientation_point": (1.2, 6.3, -2.4),
-            "orientation_direction": (1.0, -0.4, 0.9),
-            "rosettes": rosettes,
-            "rosette_selection_method": RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED,
-        }
-
-        for prop, value in properties.items():
-            setattr(oriented_selection_set, prop, value)
-            assert getattr(oriented_selection_set, prop) == value
-
-        # test read only property
-        readonly_props = ["id", "status"]
-        for prop in readonly_props:
-            value = getattr(oriented_selection_set, prop)
-            with pytest.raises(AttributeError):
-                setattr(oriented_selection_set, prop, value)
-
-
-def test_collection_access(load_model_from_tempfile):
-    """Basic test of the Model.oriented_selection_sets collection."""
-    # TODO: split into separate tests for each mode of access.
-    with load_model_from_tempfile() as model:
-        model.oriented_selection_sets.clear()
-        assert len(model.oriented_selection_sets) == 0
-
-        mg_names = ["OrientedSelectionSet.1", "OrientedSelectionSet.1", "üñıçよð€"]
-        mg_ids = []
-        for ref_name in mg_names:
-            oriented_selection_set = model.create_oriented_selection_set(name=ref_name)
-            assert oriented_selection_set.id not in mg_ids  # check uniqueness
-            mg_ids.append(oriented_selection_set.id)
-
-        assert len(model.oriented_selection_sets) == len(mg_names)
-
-        assert set(mg_names) == {mg.name for mg in model.oriented_selection_sets.values()}
-        assert (
-            set(mg_ids)
-            == set(model.oriented_selection_sets)
-            == set(model.oriented_selection_sets.keys())
+        return ObjectProperties(
+            read_write={
+                "name": "new_name",
+                "element_sets": element_sets,
+                "orientation_point": (1.2, 6.3, -2.4),
+                "orientation_direction": (1.0, -0.4, 0.9),
+                "rosettes": rosettes,
+                "rosette_selection_method": RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED,
+            },
+            read_only={
+                "id": "some_id",
+                "status": "UPTODATE",
+            },
         )
 
-        for id in mg_ids:
-            assert id in model.oriented_selection_sets
 
-        mg_names_fromitems = []
-        mg_ids_fromitems = []
-        for key, value in model.oriented_selection_sets.items():
-            mg_names_fromitems.append(value.name)
-            mg_ids_fromitems.append(key)
-            assert key == value.id
+def case_link_to_elset_one_existing(parent_object):
+    oss = parent_object.oriented_selection_sets["OrientedSelectionSet.1"]
+    yield LinkedObjectListTestCase(
+        parent_object=oss,
+        linked_attribute_name="element_sets",
+        existing_linked_object_names=tuple(["All_Elements"]),
+        linked_object_constructor=parent_object.create_element_set,
+    )
 
-        for name in mg_names:
-            assert name in mg_names_fromitems
-        for id in mg_ids:
-            assert id in mg_ids_fromitems
 
-        REF_ID = mg_ids[0]
-        INEXISTENT_ID = "Inexistent ID"
+def case_link_to_elset_empty(load_model_from_tempfile):
+    with load_model_from_tempfile() as model:
+        oss = model.create_oriented_selection_set()
+        yield LinkedObjectListTestCase(
+            parent_object=oss,
+            linked_attribute_name="element_sets",
+            existing_linked_object_names=tuple(),
+            linked_object_constructor=model.create_element_set,
+        )
 
-        assert model.oriented_selection_sets[REF_ID].id == REF_ID
-        assert model.oriented_selection_sets.get(REF_ID).id == REF_ID
 
-        with pytest.raises(KeyError):
-            model.oriented_selection_sets[INEXISTENT_ID]
-        assert model.oriented_selection_sets.get(INEXISTENT_ID) is None
+def case_link_to_rosette_empty(load_model_from_tempfile):
+    with load_model_from_tempfile() as model:
+        oss = model.create_oriented_selection_set()
+        yield LinkedObjectListTestCase(
+            parent_object=oss,
+            linked_attribute_name="rosettes",
+            existing_linked_object_names=tuple(),
+            linked_object_constructor=model.create_rosette,
+        )
 
-        del model.oriented_selection_sets[REF_ID]
-        with pytest.raises(KeyError):
-            model.oriented_selection_sets[REF_ID]
+
+def case_link_to_rosette_one_existing(load_model_from_tempfile):
+    with load_model_from_tempfile() as model:
+        oss = model.oriented_selection_sets["OrientedSelectionSet.1"]
+        yield LinkedObjectListTestCase(
+            parent_object=oss,
+            linked_attribute_name="rosettes",
+            existing_linked_object_names=tuple(["Global Coordinate System"]),
+            linked_object_constructor=model.create_rosette,
+        )
+
+
+@fixture
+@parametrize_with_cases("linked_case", cases=".", glob="link_*")
+def linked_object_case(linked_case):
+    return linked_case
+
+
+@fixture
+@parametrize_with_cases("linked_case", cases=".", glob="link_*_existing")
+def linked_object_case_nonempty(linked_case):
+    return linked_case
+
+
+@fixture
+@parametrize_with_cases("linked_case", cases=".", glob="link_*_empty")
+def linked_object_case_empty(linked_case):
+    return linked_case
+
+
+class TestLinkedObjectLists(LinkedObjectListTester):
+    pass
