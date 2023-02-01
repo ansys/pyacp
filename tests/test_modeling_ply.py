@@ -21,7 +21,7 @@ def tree_object(parent_object):
     return parent_object.create_modeling_ply()
 
 
-class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
+class TestModelingPly(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "modeling_plies"
     DEFAULT_PROPERTIES = {
         "status": "NOTUPTODATE",
@@ -53,8 +53,6 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
         )
 
 
-# @fixture
-# @parametrize_with_cases("linked_case", cases=".", glob="link_*")
 @pytest.fixture
 def linked_object_case(tree_object, parent_model):
     return LinkedObjectListTestCase(

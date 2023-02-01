@@ -29,7 +29,7 @@ def object_properties():
     )
 
 
-class TestModelingGroup(WithLockedMixin, TreeObjectTester):
+class TestMaterial(WithLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "materials"
     DEFAULT_PROPERTIES = {
         "ply_type": PlyType.UNDEFINED,

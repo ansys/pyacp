@@ -14,7 +14,7 @@ def tree_object(parent_object):
     return parent_object.create_rosette()
 
 
-class TestOrientedSelectionSet(WithLockedMixin, TreeObjectTester):
+class TestRosette(WithLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "rosettes"
     DEFAULT_PROPERTIES = {
         "status": "NOTUPTODATE",
