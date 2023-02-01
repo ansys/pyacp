@@ -25,7 +25,6 @@ def test_create_oriented_selection_set(load_model_from_tempfile):
 def test_oriented_selection_set_properties(load_model_from_tempfile):
     """Test the put request of a Rosette."""
     with load_model_from_tempfile() as model:
-
         element_sets = [model.create_element_set() for _ in range(3)]
         rosettes = [model.create_rosette() for _ in range(4)]
 

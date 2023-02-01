@@ -42,6 +42,7 @@ DOCKER_IMAGENAME_OPTION_KEY = "--docker-image"
 NO_SERVER_LOGS_OPTION_KEY = "--no-server-log-files"
 SERVER_STARTUP_TIMEOUT = 30.0
 
+
 # Add pytest command-line options
 def pytest_addoption(parser: pytest.Parser) -> None:
     """Add command-line options to pytest."""

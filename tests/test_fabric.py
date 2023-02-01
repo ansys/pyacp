@@ -32,7 +32,6 @@ def test_create_fabric(load_model_from_tempfile):
 def test_fabric_properties(load_model_from_tempfile):
     """Test the put request."""
     with load_model_from_tempfile() as model:
-
         fabric = model.create_fabric(name="test_properties")
         properties = {
             "name": "new_name",
