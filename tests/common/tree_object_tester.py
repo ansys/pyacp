@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, Dict
+from typing import Any, Dict, Tuple
 
 import pytest
 
@@ -34,25 +34,6 @@ class TreeObjectTester:
         for prop, value in object_properties.read_only.items():
             with pytest.raises(AttributeError):
                 setattr(tree_object, prop, value)
-
-    @pytest.fixture
-    def collection_test_data(self, parent_object):
-        object_collection = getattr(parent_object, self.COLLECTION_NAME)
-        object_collection.clear()
-        object_names = ["ObjectName.1", "ObjectName.1", "üñıçよð€"]
-        object_ids = []
-        for ref_name in object_names:
-            new_object = getattr(parent_object, self.CREATE_METHOD_NAME)(name=ref_name)
-            assert new_object.id not in object_ids  # check uniqueness
-            object_ids.append(new_object.id)
-        return object_collection, object_names, object_ids
-
-    @staticmethod
-    def test_collection_clear(collection_test_data):
-        """Test clearing the object collection."""
-        object_collection, _, _ = collection_test_data
-        object_collection.clear()
-        assert len(object_collection) == 0
 
     @staticmethod
     def test_collection_len(collection_test_data):
@@ -118,8 +99,46 @@ class TreeObjectTester:
     def test_collection_delitem(collection_test_data):
         """Test deleting items in the object collection."""
         object_collection, _, object_ids = collection_test_data
-        ref_id = object_ids[0]
+        # Use the last object, since it is definitely not locked.
+        ref_id = object_ids[-1]
 
         del object_collection[ref_id]
         with pytest.raises(KeyError):
             object_collection[ref_id]
+
+
+class NoLockedMixin:
+    @pytest.fixture
+    def collection_test_data(self, parent_object):
+        object_collection = getattr(parent_object, self.COLLECTION_NAME)
+        object_collection.clear()
+        object_names = ["ObjectName.1", "ObjectName.1", "üñıçよð€"]
+        object_ids = []
+        for ref_name in object_names:
+            new_object = getattr(parent_object, self.CREATE_METHOD_NAME)(name=ref_name)
+            assert new_object.id not in object_ids  # check uniqueness
+            object_ids.append(new_object.id)
+        return object_collection, object_names, object_ids
+
+    @staticmethod
+    def test_collection_clear(collection_test_data):
+        """Test clearing the object collection."""
+        object_collection, _, _ = collection_test_data
+        object_collection.clear()
+        assert len(object_collection) == 0
+
+
+class WithLockedMixin:
+    INITIAL_OBJECT_NAMES: Tuple[str, ...]
+
+    @pytest.fixture
+    def collection_test_data(self, parent_object):
+        object_collection = getattr(parent_object, self.COLLECTION_NAME)
+        new_object_names = ["ObjectName.1", "ObjectName.1", "üñıçよð€"]
+        object_ids = list(object_collection)
+        for ref_name in new_object_names:
+            new_object = getattr(parent_object, self.CREATE_METHOD_NAME)(name=ref_name)
+            assert new_object.id not in object_ids  # check uniqueness
+            object_ids.append(new_object.id)
+        object_names = list(self.INITIAL_OBJECT_NAMES) + new_object_names
+        return object_collection, object_names, object_ids

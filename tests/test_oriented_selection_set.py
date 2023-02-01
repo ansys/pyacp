@@ -3,7 +3,7 @@ from pytest_cases import fixture, parametrize_with_cases
 
 from ansys.acp.core._tree_objects.enums import RosetteSelectionMethod
 from common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
-from common.tree_object_tester import ObjectProperties, TreeObjectTester
+from common.tree_object_tester import NoLockedMixin, ObjectProperties, TreeObjectTester
 
 
 @pytest.fixture
@@ -17,7 +17,7 @@ def tree_object(parent_object):
     return parent_object.create_oriented_selection_set()
 
 
-class TestOrientedSelectionSet(TreeObjectTester):
+class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "oriented_selection_sets"
     DEFAULT_PROPERTIES = {
         "status": "NOTUPTODATE",
