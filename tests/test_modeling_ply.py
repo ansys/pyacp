@@ -1,5 +1,6 @@
 import pytest
 
+from common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
 from common.tree_object_tester import NoLockedMixin, ObjectProperties, TreeObjectTester
 from common.utils import AnyThing
 
@@ -50,3 +51,33 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
                 "status": "UPTODATE",
             },
         )
+
+
+# @fixture
+# @parametrize_with_cases("linked_case", cases=".", glob="link_*")
+@pytest.fixture
+def linked_object_case(tree_object, parent_model):
+    return LinkedObjectListTestCase(
+        parent_object=tree_object,
+        linked_attribute_name="oriented_selection_sets",
+        existing_linked_object_names=(),
+        linked_object_constructor=parent_model.create_oriented_selection_set,
+    )
+
+
+linked_object_case_empty = linked_object_case
+
+
+@pytest.fixture
+def linked_object_case_nonempty(tree_object, parent_model):
+    tree_object.oriented_selection_sets = [parent_model.create_oriented_selection_set(name="OSS.1")]
+    return LinkedObjectListTestCase(
+        parent_object=tree_object,
+        linked_attribute_name="oriented_selection_sets",
+        existing_linked_object_names=("OSS.1",),
+        linked_object_constructor=parent_model.create_oriented_selection_set,
+    )
+
+
+class TestLinkedObjectLists(LinkedObjectListTester):
+    pass
