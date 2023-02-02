@@ -55,6 +55,6 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
             read_only=[
                 ("id", "some_id"),
                 ("status", "UPTODATE"),
-                ("draping_ud_coefficient", 4.32),
+                # ("draping_ud_coefficient", 4.32), # TODO: enable this check, see backend issue #778698
             ],
         )
