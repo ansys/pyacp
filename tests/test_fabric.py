@@ -5,7 +5,7 @@ from ansys.acp.core._tree_objects.enums import (
     DrapingMaterialType,
     DropoffMaterialType,
 )
-from common.tree_object_tester import NoLockedMixin, ObjectProperties, TreeObjectTester
+from common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 
 @pytest.fixture
@@ -40,21 +40,21 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
     def object_properties(parent_object):
         model = parent_object
         material = model.create_material()
-        return ObjectProperties(
-            read_write={
-                "name": "Fabric name",
-                "thickness": 1e-6,
-                "area_price": 5.98,
-                "ignore_for_postprocessing": True,
-                "drop_off_material_handling": DropoffMaterialType.CUSTOM,
-                "cut_off_material_handling": CutoffMaterialType.GLOBAL,
-                "draping_material_model": DrapingMaterialType.UD,
-                "draping_ud_coefficient": 0.55,
-                "material": material,
-            },
-            read_only={
-                "id": "some_id",
-                "status": "UPTODATE",
-                "draping_ud_coefficient": 4.32,
-            },
+        return ObjectPropertiesToTest(
+            read_write=[
+                ("name", "Fabric name"),
+                ("thickness", 1e-6),
+                ("area_price", 5.98),
+                ("ignore_for_postprocessing", True),
+                ("drop_off_material_handling", DropoffMaterialType.CUSTOM),
+                ("cut_off_material_handling", CutoffMaterialType.GLOBAL),
+                ("draping_material_model", DrapingMaterialType.UD),
+                ("draping_ud_coefficient", 0.55),
+                ("material", material),
+            ],
+            read_only=[
+                ("id", "some_id"),
+                ("status", "UPTODATE"),
+                ("draping_ud_coefficient", 4.32),
+            ],
         )

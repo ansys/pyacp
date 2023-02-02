@@ -1,7 +1,7 @@
 import pytest
 
 from ansys.acp.core._tree_objects.enums import PlyType
-from common.tree_object_tester import ObjectProperties, TreeObjectTester, WithLockedMixin
+from common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
 
 
 @pytest.fixture
@@ -17,15 +17,15 @@ def tree_object(parent_object):
 
 @pytest.fixture
 def object_properties():
-    return ObjectProperties(
-        read_write={
-            "name": "Material Name",
-            "ply_type": PlyType.WOVEN,
-        },
-        read_only={
-            "locked": True,
-            "id": "some_id",
-        },
+    return ObjectPropertiesToTest(
+        read_write=[
+            ("name", "Material Name"),
+            ("ply_type", PlyType.WOVEN),
+        ],
+        read_only=[
+            ("locked", True),
+            ("id", "some_id"),
+        ],
     )
 
 

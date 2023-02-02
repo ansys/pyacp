@@ -1,6 +1,6 @@
 import pytest
 
-from common.tree_object_tester import ObjectProperties, TreeObjectTester, WithLockedMixin
+from common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
 
 
 @pytest.fixture
@@ -29,16 +29,16 @@ class TestRosette(WithLockedMixin, TreeObjectTester):
     @staticmethod
     @pytest.fixture
     def object_properties():
-        return ObjectProperties(
-            read_write={
-                "name": "new_name",
-                "origin": (2.0, 3.0, 1.0),
-                "dir1": (0.0, 0.0, 1.0),
-                "dir2": (1.0, 0.0, 0.0),
-            },
-            read_only={
-                "id": "some_id",
-                "status": "UPTODATE",
-                "locked": True,
-            },
+        return ObjectPropertiesToTest(
+            read_write=[
+                ("name", "new_name"),
+                ("origin", (2.0, 3.0, 1.0)),
+                ("dir1", (0.0, 0.0, 1.0)),
+                ("dir2", (1.0, 0.0, 0.0)),
+            ],
+            read_only=[
+                ("id", "some_id"),
+                ("status", "UPTODATE"),
+                ("locked", True),
+            ],
         )

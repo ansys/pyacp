@@ -1,7 +1,7 @@
 import pytest
 
 from common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
-from common.tree_object_tester import NoLockedMixin, ObjectProperties, TreeObjectTester
+from common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 from common.utils import AnyThing
 
 
@@ -38,18 +38,18 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
     def object_properties(parent_model):
         oriented_selection_sets = [parent_model.create_oriented_selection_set() for _ in range(3)]
         fabric = parent_model.create_fabric()
-        return ObjectProperties(
-            read_write={
-                "oriented_selection_sets": oriented_selection_sets,
-                "ply_material": fabric,
-                "ply_angle": 0.5,
-                "active": False,
-                "global_ply_nr": AnyThing(),
-            },
-            read_only={
-                "id": "some_id",
-                "status": "UPTODATE",
-            },
+        return ObjectPropertiesToTest(
+            read_write=[
+                ("oriented_selection_sets", oriented_selection_sets),
+                ("ply_material", fabric),
+                ("ply_angle", 0.5),
+                ("active", False),
+                ("global_ply_nr", AnyThing()),
+            ],
+            read_only=[
+                ("id", "some_id"),
+                ("status", "UPTODATE"),
+            ],
         )
 
 

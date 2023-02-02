@@ -1,6 +1,6 @@
 import pytest
 
-from common.tree_object_tester import ObjectProperties, TreeObjectTester, WithLockedMixin
+from common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
 
 
 @pytest.fixture
@@ -16,16 +16,16 @@ def tree_object(parent_object):
 
 @pytest.fixture
 def object_properties():
-    return ObjectProperties(
-        read_write={
-            "name": "new_name",
-            "middle_offset": True,
-            "element_labels": (1, 2, 3, 4),
-        },
-        read_only={
-            "id": "some_id",
-            "status": "UPTODATE",
-        },
+    return ObjectPropertiesToTest(
+        read_write=[
+            ("name", "new_name"),
+            ("middle_offset", True),
+            ("element_labels", (1, 2, 3, 4)),
+        ],
+        read_only=[
+            ("id", "some_id"),
+            ("status", "UPTODATE"),
+        ],
     )
 
 

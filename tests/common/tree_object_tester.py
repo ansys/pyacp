@@ -1,13 +1,13 @@
 from dataclasses import dataclass
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, List, Tuple
 
 import pytest
 
 
 @dataclass
-class ObjectProperties:
-    read_write: Dict[str, Any]
-    read_only: Dict[str, Any]
+class ObjectPropertiesToTest:
+    read_write: List[Tuple[str, Any]]
+    read_only: List[Tuple[str, Any]]
 
 
 class TreeObjectTester:
@@ -26,12 +26,12 @@ class TreeObjectTester:
                 assert getattr(new_object, key) == val
 
     @staticmethod
-    def test_properties(tree_object, object_properties: ObjectProperties):
-        for prop, value in object_properties.read_write.items():
+    def test_properties(tree_object, object_properties: ObjectPropertiesToTest):
+        for prop, value in object_properties.read_write:
             setattr(tree_object, prop, value)
             assert getattr(tree_object, prop) == value
 
-        for prop, value in object_properties.read_only.items():
+        for prop, value in object_properties.read_only:
             with pytest.raises(AttributeError):
                 setattr(tree_object, prop, value)
 

@@ -1,6 +1,6 @@
 import pytest
 
-from common.tree_object_tester import NoLockedMixin, ObjectProperties, TreeObjectTester
+from common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 
 @pytest.fixture
@@ -25,11 +25,11 @@ class TestModelingGroup(NoLockedMixin, TreeObjectTester):
         model = parent_object
         element_sets = [model.create_element_set() for _ in range(3)]
         rosettes = [model.create_rosette() for _ in range(4)]
-        return ObjectProperties(
-            read_write={
-                "name": "new_name",
-            },
-            read_only={
-                "id": "some_id",
-            },
+        return ObjectPropertiesToTest(
+            read_write=[
+                ("name", "new_name"),
+            ],
+            read_only=[
+                ("id", "some_id"),
+            ],
         )

@@ -3,7 +3,7 @@ from pytest_cases import fixture, parametrize_with_cases
 
 from ansys.acp.core._tree_objects.enums import RosetteSelectionMethod
 from common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
-from common.tree_object_tester import NoLockedMixin, ObjectProperties, TreeObjectTester
+from common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 
 @pytest.fixture
@@ -35,19 +35,19 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
         model = parent_object
         element_sets = [model.create_element_set() for _ in range(3)]
         rosettes = [model.create_rosette() for _ in range(4)]
-        return ObjectProperties(
-            read_write={
-                "name": "new_name",
-                "element_sets": element_sets,
-                "orientation_point": (1.2, 6.3, -2.4),
-                "orientation_direction": (1.0, -0.4, 0.9),
-                "rosettes": rosettes,
-                "rosette_selection_method": RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED,
-            },
-            read_only={
-                "id": "some_id",
-                "status": "UPTODATE",
-            },
+        return ObjectPropertiesToTest(
+            read_write=[
+                ("name", "new_name"),
+                ("element_sets", element_sets),
+                ("orientation_point", (1.2, 6.3, -2.4)),
+                ("orientation_direction", (1.0, -0.4, 0.9)),
+                ("rosettes", rosettes),
+                ("rosette_selection_method", RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED),
+            ],
+            read_only=[
+                ("id", "some_id"),
+                ("status", "UPTODATE"),
+            ],
         )
 
 
