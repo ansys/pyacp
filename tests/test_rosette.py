@@ -22,7 +22,6 @@ def test_create_rosette(load_model_from_tempfile):
 def test_rosette_properties(load_model_from_tempfile):
     """Test the put request of a Rosette."""
     with load_model_from_tempfile() as model:
-
         rosette = model.create_rosette(name="test_properties")
         properties = {
             "name": "new_name",
