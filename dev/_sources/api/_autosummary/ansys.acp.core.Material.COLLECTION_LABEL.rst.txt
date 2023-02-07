@@ -1,0 +1,6 @@
+COLLECTION\_LABEL
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: Material.COLLECTION_LABEL

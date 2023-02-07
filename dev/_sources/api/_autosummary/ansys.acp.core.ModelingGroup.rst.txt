@@ -36,16 +36,10 @@
    .. autosummary::
       :toctree:
    
-      
-      
-      
+      ModelingGroup.COLLECTION_LABEL
+      ModelingGroup.GRPC_PROPERTIES
       ModelingGroup.id
-      
-      
       ModelingGroup.modeling_plies
-      
-      
       ModelingGroup.name
-      
    
    

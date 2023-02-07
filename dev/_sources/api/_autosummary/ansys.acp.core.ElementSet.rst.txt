@@ -33,22 +33,12 @@
    .. autosummary::
       :toctree:
    
-      
-      
-      
+      ElementSet.COLLECTION_LABEL
+      ElementSet.GRPC_PROPERTIES
       ElementSet.element_labels
-      
-      
       ElementSet.id
-      
-      
       ElementSet.locked
-      
-      
       ElementSet.middle_offset
-      
-      
       ElementSet.name
-      
    
    

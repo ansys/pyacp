@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>image_name &#8212; PyACP</title>
+    <title>DIRECT &#8212; PyACP</title>
     
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -50,8 +50,8 @@
     <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="keep_container" href="ansys.acp.core.DockerLaunchConfig.keep_container.html" />
-    <link rel="prev" title="ansys.acp.core.DockerLaunchConfig" href="ansys.acp.core.DockerLaunchConfig.html" />
+    <link rel="next" title="DOCKER_COMPOSE" href="ansys.acp.core.LaunchMode.DOCKER_COMPOSE.html" />
+    <link rel="prev" title="ansys.acp.core.LaunchMode" href="ansys.acp.core.LaunchMode.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="en">
   </head>
@@ -135,14 +135,14 @@
 
 <!-- NOTE: this JS must live here (not in our global JS file) because it relies
      on being processed by Jinja before it is run (specifically for replacing
-     variables api/_autosummary/ansys.acp.core.DockerLaunchConfig.image_name and {'json_url': 'https://acp.docs.pyansys.com/release/versions.json', 'version_match': 'dev'}.
+     variables api/_autosummary/ansys.acp.core.LaunchMode.DIRECT and {'json_url': 'https://acp.docs.pyansys.com/release/versions.json', 'version_match': 'dev'}.
 -->
 
 <script type="text/javascript">
 // Check if corresponding page path exists in other version of docs
 // and, if so, go there instead of the homepage of the other docs version
 function checkPageExistsAndRedirect(event) {
-    const currentFilePath = "api/_autosummary/ansys.acp.core.DockerLaunchConfig.image_name.html",
+    const currentFilePath = "api/_autosummary/ansys.acp.core.LaunchMode.DIRECT.html",
           tryUrl = event.target.getAttribute("href");
     let otherDocsHomepage = tryUrl.replace(currentFilePath, "");
     $.ajax({
@@ -163,7 +163,7 @@ function checkPageExistsAndRedirect(event) {
 // Populate the version switcher from the JSON config file
 (function () {
     $.getJSON("https://acp.docs.pyansys.com/release/versions.json", function(data, textStatus, jqXHR) {
-        const currentFilePath = "api/_autosummary/ansys.acp.core.DockerLaunchConfig.image_name.html";
+        const currentFilePath = "api/_autosummary/ansys.acp.core.LaunchMode.DIRECT.html";
         let btn = document.getElementById("version_switcher_button");
         // Set empty strings by default so that these attributes exist and can be used in CSS selectors
         btn.dataset["activeVersionName"] = "";
@@ -258,8 +258,8 @@ function checkPageExistsAndRedirect(event) {
 
           <li class="nav-item nav-item-1"><a href="../index.html" >API Reference</a> » </li>
           <li class="nav-item nav-item-2"><a href="../server.html" >Server Management</a> » </li>
-          <li class="nav-item nav-item-3"><a href="ansys.acp.core.DockerLaunchConfig.html" accesskey="U">ansys.acp.core.DockerLaunchConfig</a> » </li>
-        <li class="nav-item nav-item-this"><a href="">image_name</a></li> 
+          <li class="nav-item nav-item-3"><a href="ansys.acp.core.LaunchMode.html" accesskey="U">ansys.acp.core.LaunchMode</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">DIRECT</a></li> 
       </ul>
     </div>
         </div>
@@ -295,17 +295,34 @@ function checkPageExistsAndRedirect(event) {
      launch_acp
     </a>
    </li>
-   <li class="toctree-l2">
+   <li class="toctree-l2 current active has-children">
     <a class="reference internal" href="ansys.acp.core.LaunchMode.html">
      ansys.acp.core.LaunchMode
     </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       DIRECT
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.LaunchMode.DOCKER_COMPOSE.html">
+       DOCKER_COMPOSE
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toctree-l2 has-children">
     <a class="reference internal" href="ansys.acp.core.DirectLaunchConfig.html">
      ansys.acp.core.DirectLaunchConfig
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -323,38 +340,6 @@ function checkPageExistsAndRedirect(event) {
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.DirectLaunchConfig.stdout_file.html">
        stdout_file
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 current active has-children">
-    <a class="reference internal" href="ansys.acp.core.DockerLaunchConfig.html">
-     ansys.acp.core.DockerLaunchConfig
-    </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-    <label for="toctree-checkbox-3">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul class="current">
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
-       image_name
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.DockerLaunchConfig.keep_container.html">
-       keep_container
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.DockerLaunchConfig.license_server.html">
-       license_server
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.DockerLaunchConfig.mount_directories.html">
-       mount_directories
       </a>
      </li>
     </ul>
@@ -533,6 +518,16 @@ function checkPageExistsAndRedirect(event) {
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.COLLECTION_LABEL.html">
+       COLLECTION_LABEL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Model.GRPC_PROPERTIES.html">
+       GRPC_PROPERTIES
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Model.angle_tolerance.html">
        angle_tolerance
       </a>
@@ -625,6 +620,16 @@ function checkPageExistsAndRedirect(event) {
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Material.COLLECTION_LABEL.html">
+       COLLECTION_LABEL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Material.GRPC_PROPERTIES.html">
+       GRPC_PROPERTIES
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Material.id.html">
        id
       </a>
@@ -674,6 +679,16 @@ function checkPageExistsAndRedirect(event) {
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Fabric.store.html">
        store
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Fabric.COLLECTION_LABEL.html">
+       COLLECTION_LABEL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Fabric.GRPC_PROPERTIES.html">
+       GRPC_PROPERTIES
       </a>
      </li>
      <li class="toctree-l3">
@@ -764,6 +779,16 @@ function checkPageExistsAndRedirect(event) {
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.COLLECTION_LABEL.html">
+       COLLECTION_LABEL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ElementSet.GRPC_PROPERTIES.html">
+       GRPC_PROPERTIES
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ElementSet.element_labels.html">
        element_labels
       </a>
@@ -813,6 +838,16 @@ function checkPageExistsAndRedirect(event) {
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.Rosette.store.html">
        store
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Rosette.COLLECTION_LABEL.html">
+       COLLECTION_LABEL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.Rosette.GRPC_PROPERTIES.html">
+       GRPC_PROPERTIES
       </a>
      </li>
      <li class="toctree-l3">
@@ -875,6 +910,16 @@ function checkPageExistsAndRedirect(event) {
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.store.html">
        store
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.COLLECTION_LABEL.html">
+       COLLECTION_LABEL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.GRPC_PROPERTIES.html">
+       GRPC_PROPERTIES
       </a>
      </li>
      <li class="toctree-l3">
@@ -950,6 +995,16 @@ function checkPageExistsAndRedirect(event) {
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ModelingGroup.COLLECTION_LABEL.html">
+       COLLECTION_LABEL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ModelingGroup.GRPC_PROPERTIES.html">
+       GRPC_PROPERTIES
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ModelingGroup.id.html">
        id
       </a>
@@ -989,6 +1044,16 @@ function checkPageExistsAndRedirect(event) {
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ModelingPly.store.html">
        store
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ModelingPly.COLLECTION_LABEL.html">
+       COLLECTION_LABEL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ModelingPly.GRPC_PROPERTIES.html">
+       GRPC_PROPERTIES
       </a>
      </li>
      <li class="toctree-l3">
@@ -1065,10 +1130,10 @@ function checkPageExistsAndRedirect(event) {
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ansys.acp.core.DockerLaunchConfig.image_name">
+  <a class="reference internal nav-link" href="#ansys.acp.core.LaunchMode.DIRECT">
    <code class="docutils literal notranslate">
     <span class="pre">
-     DockerLaunchConfig.image_name
+     LaunchMode.DIRECT
     </span>
    </code>
   </a>
@@ -1092,11 +1157,11 @@ function checkPageExistsAndRedirect(event) {
               
               <article class="bd-article" role="main">
                 
-  <section id="image-name">
-<h1>image_name<a class="headerlink" href="#image-name" title="Permalink to this heading">#</a></h1>
+  <section id="direct">
+<h1>DIRECT<a class="headerlink" href="#direct" title="Permalink to this heading">#</a></h1>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ansys.acp.core.DockerLaunchConfig.image_name">
-<span class="sig-prename descclassname"><span class="pre">DockerLaunchConfig.</span></span><span class="sig-name descname"><span class="pre">image_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ghcr.io/pyansys/pyacp-private:latest'</span></em><a class="headerlink" href="#ansys.acp.core.DockerLaunchConfig.image_name" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="ansys.acp.core.LaunchMode.DIRECT">
+<span class="sig-prename descclassname"><span class="pre">LaunchMode.</span></span><span class="sig-name descname"><span class="pre">DIRECT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'direct'</span></em><a class="headerlink" href="#ansys.acp.core.LaunchMode.DIRECT" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 </section>

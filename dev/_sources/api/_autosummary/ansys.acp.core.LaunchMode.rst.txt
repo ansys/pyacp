@@ -17,8 +17,7 @@
    .. autosummary::
       :toctree:
    
-      
-      
-      
+      LaunchMode.DIRECT
+      LaunchMode.DOCKER_COMPOSE
    
    

@@ -24,14 +24,8 @@
    .. autosummary::
       :toctree:
    
-      
       DirectLaunchConfig.binary_path
-      
-      
       DirectLaunchConfig.stderr_file
-      
-      
       DirectLaunchConfig.stdout_file
-      
    
    

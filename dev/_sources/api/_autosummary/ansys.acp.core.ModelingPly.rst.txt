@@ -33,34 +33,16 @@
    .. autosummary::
       :toctree:
    
-      
-      
-      
+      ModelingPly.COLLECTION_LABEL
+      ModelingPly.GRPC_PROPERTIES
       ModelingPly.active
-      
-      
       ModelingPly.global_ply_nr
-      
-      
       ModelingPly.id
-      
-      
       ModelingPly.name
-      
-      
       ModelingPly.number_of_layers
-      
-      
       ModelingPly.oriented_selection_sets
-      
-      
       ModelingPly.ply_angle
-      
-      
       ModelingPly.ply_material
-      
-      
       ModelingPly.status
-      
    
    

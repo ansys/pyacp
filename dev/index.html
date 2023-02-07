@@ -424,7 +424,6 @@ function checkPageExistsAndRedirect(event) {
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">direct</span></code>: run ACP as a sub-process</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">docker_compose</span></code>: run ACP in a docker container, using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> and the <a class="reference external" href="https://github.com/ansys/ansys-utilities-filetransfer-server">filetransfer service</a> to manage files</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docker</span></code>: run ACP in a docker container. This mode is not recommended, since it requires manual file transfer.</p></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">ansys-launcher</span></code> prompts for the relevant options for each mode.</p>
 <p>Having configured the launcher, the server can be started with <code class="docutils literal notranslate"><span class="pre">launch_acp</span></code>:</p>
@@ -439,7 +438,7 @@ function checkPageExistsAndRedirect(event) {
 <h4>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this heading">#</a></h4>
 <p>Once the server is running, we can start working with PyACP. For example, to load an ACP
 Model from an existing file:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">remote_filename</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">local_path</span><span class="o">=</span><span class="s2">&quot;&lt;MODEL_PATH&gt;&quot;</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">remote_filename</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">local_path</span><span class="o">=</span><span class="s2">&quot;&lt;MODEL_PATH&gt;&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">remote_filename</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">name</span>
 <span class="go">&#39;ACP Model&#39;</span>
@@ -456,37 +455,33 @@ please refer to the <a class="reference external" href="https://dev.docs.pyansys
 <p>You will need to follow these steps:</p>
 <ol class="arabic">
 <li><p>Start by cloning this repository, and entering the newly created directory:</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pyansys/pyacp-private
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pyansys/pyacp-private
 <span class="nb">cd</span><span class="w"> </span>pyacp-private
 </pre></div>
 </div>
-</div></blockquote>
 </li>
 <li><p>Make sure you have the latest version of poetry:</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pipx
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pipx
 pipx<span class="w"> </span>ensurepath
 pipx<span class="w"> </span>install<span class="w"> </span>poetry
 </pre></div>
 </div>
-</div></blockquote>
 </li>
 <li><p>Install the project and all its development dependencies using poetry. This also takes care of
 creating a new virtual environment:</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>install<span class="w"> </span>--with<span class="w"> </span>dev,test
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>install<span class="w"> </span>--with<span class="w"> </span>dev,test
 </pre></div>
 </div>
-</div></blockquote>
-<p>This step installs pyACP in an editable mode (no build step is needed, no re-install when changing the code).</p>
 </li>
-<li><p>Activate your development virtual environment with:</p>
+</ol>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>shell
+<div><p>This step installs pyACP in an editable mode (no build step is needed, no re-install when changing the code).</p>
+</div></blockquote>
+<ol class="arabic" start="4">
+<li><p>Activate your development virtual environment with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>shell
 </pre></div>
 </div>
-</div></blockquote>
 </li>
 </ol>
 </section>

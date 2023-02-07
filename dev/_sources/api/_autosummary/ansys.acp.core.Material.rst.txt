@@ -33,22 +33,12 @@
    .. autosummary::
       :toctree:
    
-      
-      
-      
+      Material.COLLECTION_LABEL
+      Material.GRPC_PROPERTIES
       Material.id
-      
-      
       Material.locked
-      
-      
       Material.name
-      
-      
       Material.ply_type
-      
-      
       Material.status
-      
    
    

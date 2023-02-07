@@ -69,46 +69,20 @@
    .. autosummary::
       :toctree:
    
-      
-      
-      
+      Model.COLLECTION_LABEL
+      Model.GRPC_PROPERTIES
       Model.angle_tolerance
-      
-      
       Model.draping_offset_correction
-      
-      
       Model.element_sets
-      
-      
       Model.fabrics
-      
-      
       Model.materials
-      
-      
       Model.minimum_analysis_ply_thickness
-      
-      
       Model.modeling_groups
-      
-      
       Model.name
-      
-      
       Model.oriented_selection_sets
-      
-      
       Model.relative_thickness_tolerance
-      
-      
       Model.rosettes
-      
-      
       Model.unit_system
-      
-      
       Model.use_nodal_thicknesses
-      
    
    

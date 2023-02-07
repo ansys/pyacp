@@ -343,7 +343,13 @@ and ansys-mapdl) are installed before launching Python.</p>
 
 <span class="c1"># Launch gRPC server and pyACP client</span>
 <span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
-<span class="n">pyacp_server</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">(</span><span class="n">binary_path</span><span class="o">=</span><span class="n">acp_grpc_exe</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">50555</span><span class="p">,</span> <span class="n">stdout_file</span><span class="o">=</span><span class="s2">&quot;pyacp.log&quot;</span><span class="p">,</span> <span class="n">stderr_file</span><span class="o">=</span><span class="s2">&quot;pyacp.err&quot;</span><span class="p">)</span>
+
+<span class="n">pyacp_server</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">(</span>
+    <span class="n">binary_path</span><span class="o">=</span><span class="n">acp_grpc_exe</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">50555</span><span class="p">,</span>
+    <span class="n">stdout_file</span><span class="o">=</span><span class="s2">&quot;pyacp.log&quot;</span><span class="p">,</span>
+    <span class="n">stderr_file</span><span class="o">=</span><span class="s2">&quot;pyacp.err&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">pyacp</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">(</span><span class="n">pyacp_server</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>  <span class="c1"># ensure the server is running</span>
 <span class="n">pyacp_client</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">pyacp_server</span><span class="p">)</span>
 
@@ -354,9 +360,8 @@ and ansys-mapdl) are installed before launching Python.</p>
 <span class="c1"># Import the model from MAPDL input file (CDB)</span>
 <span class="c1"># Note: the unit system is required for the post-processing</span>
 <span class="n">CDB_FILENAME</span> <span class="o">=</span> <span class="s2">&quot;class40.cdb&quot;</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">pyacp_client</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">CDB_FILENAME</span><span class="p">,</span>
-    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">,</span>
-    <span class="n">unit_system</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">UnitSystemType</span><span class="o">.</span><span class="n">MPA</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">pyacp_client</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span>
+    <span class="n">path</span><span class="o">=</span><span class="n">CDB_FILENAME</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">,</span> <span class="n">unit_system</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">UnitSystemType</span><span class="o">.</span><span class="n">MPA</span>
 <span class="p">)</span>
 <span class="n">model</span>
 
@@ -381,13 +386,18 @@ and ansys-mapdl) are installed before launching Python.</p>
 <span class="n">corecell_103kg_10mm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Corecell 103kg&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">mat_corecell_103kg</span>
 <span class="p">)</span>
-<span class="n">eglass_ud_02mm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;eglass UD&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.0002</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">mat_eglass_ud</span><span class="p">)</span>
+<span class="n">eglass_ud_02mm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;eglass UD&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.0002</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">mat_eglass_ud</span>
+<span class="p">)</span>
 
 <span class="c1"># Specify rosettes (coordinate systems)</span>
 <span class="n">ros_deck</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ros_deck&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.9334</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0481</span><span class="p">,</span> <span class="mf">1.693</span><span class="p">))</span>
 <span class="n">ros_hull</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ros_hull&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.3711</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0506</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2551</span><span class="p">))</span>
 <span class="n">ros_bulkhead</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ros_bulkhead&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.622</span><span class="p">,</span> <span class="mf">0.0022</span><span class="p">,</span> <span class="mf">0.0847</span><span class="p">),</span> <span class="n">dir1</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">dir2</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ros_bulkhead&quot;</span><span class="p">,</span>
+    <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.622</span><span class="p">,</span> <span class="mf">0.0022</span><span class="p">,</span> <span class="mf">0.0847</span><span class="p">),</span>
+    <span class="n">dir1</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">dir2</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
 <span class="p">)</span>
 <span class="n">ros_keeltower</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ros_keeltower&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">6.0699</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0502</span><span class="p">,</span> <span class="mf">0.623</span><span class="p">),</span> <span class="n">dir1</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
@@ -433,6 +443,7 @@ and ansys-mapdl) are installed before launching Python.</p>
     <span class="n">rosettes</span><span class="o">=</span><span class="p">[</span><span class="n">ros_keeltower</span><span class="p">],</span>
 <span class="p">)</span>
 
+
 <span class="c1"># Add plies to all parts</span>
 <span class="k">def</span> <span class="nf">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">ply_material</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">oss</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">mg</span><span class="o">.</span><span class="n">create_modeling_ply</span><span class="p">(</span>
@@ -443,6 +454,7 @@ and ansys-mapdl) are installed before launching Python.</p>
         <span class="n">number_of_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">global_ply_nr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># add at the end</span>
     <span class="p">)</span>
+
 
 <span class="n">angles</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">90.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">60.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">45.0</span> <span class="o">-</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">45.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">mg_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;hull&quot;</span><span class="p">,</span> <span class="s2">&quot;deck&quot;</span><span class="p">,</span> <span class="s2">&quot;bulkhead&quot;</span><span class="p">]:</span>
@@ -489,6 +501,7 @@ and ansys-mapdl) are installed before launching Python.</p>
 
 <span class="c1"># Launch MAPDL</span>
 <span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+
 <span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
 <span class="c1"># Load the CDB file with the composite lay-up</span>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">CDB_FILENAME_OUT</span><span class="p">)</span>
@@ -518,7 +531,7 @@ and ansys-mapdl) are installed before launching Python.</p>
     <span class="n">CombinedFailureCriterion</span><span class="p">,</span>
     <span class="n">MaxStrainCriterion</span><span class="p">,</span>
     <span class="n">MaxStressCriterion</span><span class="p">,</span>
-    <span class="n">CoreFailureCriterion</span>
+    <span class="n">CoreFailureCriterion</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ansys.dpf.composites.result_definition</span> <span class="kn">import</span> <span class="n">ResultDefinition</span>
 <span class="kn">from</span> <span class="nn">ansys.dpf.composites.server_helpers</span> <span class="kn">import</span> <span class="n">load_composites_plugin</span>
@@ -528,7 +541,13 @@ and ansys-mapdl) are installed before launching Python.</p>
 <span class="n">dpf_server</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">start_local_server</span><span class="p">(</span><span class="n">ansys_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">AWP_ROOT_KEY</span><span class="p">])</span>
 <span class="n">base</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">BaseService</span><span class="p">(</span><span class="n">server</span><span class="o">=</span><span class="n">dpf_server</span><span class="p">,</span> <span class="n">load_operators</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">base</span><span class="o">.</span><span class="n">load_library</span><span class="p">(</span><span class="s2">&quot;Ans.Dpf.EngineeringData.dll&quot;</span><span class="p">,</span> <span class="s2">&quot;EngineeringData&quot;</span><span class="p">)</span>
-<span class="n">composites_plugin_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">AWP_ROOT_KEY</span><span class="p">],</span> <span class="s2">&quot;dpf&quot;</span><span class="p">,</span> <span class="s2">&quot;plugins&quot;</span><span class="p">,</span> <span class="s2">&quot;dpf_composites&quot;</span><span class="p">,</span> <span class="s2">&quot;composite_operators.dll&quot;</span><span class="p">)</span>
+<span class="n">composites_plugin_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">AWP_ROOT_KEY</span><span class="p">],</span>
+    <span class="s2">&quot;dpf&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;plugins&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dpf_composites&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;composite_operators.dll&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">base</span><span class="o">.</span><span class="n">load_library</span><span class="p">(</span><span class="n">composites_plugin_path</span><span class="p">,</span> <span class="s2">&quot;Composites&quot;</span><span class="p">)</span>
 
 <span class="c1"># Configure failure criteria</span>
@@ -538,7 +557,7 @@ and ansys-mapdl) are installed before launching Python.</p>
 
 <span class="n">cfc</span> <span class="o">=</span> <span class="n">CombinedFailureCriterion</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Combined Failure Criterion&quot;</span><span class="p">,</span>
-    <span class="n">failure_criteria</span><span class="o">=</span><span class="p">[</span><span class="n">max_strain</span><span class="p">,</span> <span class="n">max_stress</span><span class="p">,</span> <span class="n">core_failure</span><span class="p">]</span>
+    <span class="n">failure_criteria</span><span class="o">=</span><span class="p">[</span><span class="n">max_strain</span><span class="p">,</span> <span class="n">max_stress</span><span class="p">,</span> <span class="n">core_failure</span><span class="p">],</span>
 <span class="p">)</span>
 
 <span class="n">rstfile_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mapdl</span><span class="o">.</span><span class="n">jobname</span><span class="si">}</span><span class="s2">.rst&quot;</span><span class="p">)</span>
@@ -553,8 +572,8 @@ and ansys-mapdl) are installed before launching Python.</p>
 
 <span class="c1"># Configure and run DPF failure operator</span>
 <span class="n">fc_op</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;composite::composite_failure_operator&quot;</span><span class="p">)</span>
-<span class="n">elements</span> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3996</span><span class="p">)])</span>
-<span class="n">rd</span><span class="o">.</span><span class="n">element_scope</span><span class="o">=</span><span class="n">elements</span>
+<span class="n">elements</span> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3996</span><span class="p">)])</span>
+<span class="n">rd</span><span class="o">.</span><span class="n">element_scope</span> <span class="o">=</span> <span class="n">elements</span>
 <span class="n">fc_op</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">result_definition</span><span class="p">(</span><span class="n">rd</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
 <span class="n">output_all_elements</span> <span class="o">=</span> <span class="n">fc_op</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">fields_containerMax</span><span class="p">()</span>
 

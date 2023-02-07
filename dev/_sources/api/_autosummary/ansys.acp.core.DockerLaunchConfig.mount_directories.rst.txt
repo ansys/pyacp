@@ -1,6 +1,0 @@
-mount\_directories
-==================
-
-.. currentmodule:: ansys.acp.core
-
-.. autoattribute:: DockerLaunchConfig.mount_directories

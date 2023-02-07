@@ -1,0 +1,6 @@
+COLLECTION\_LABEL
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ModelingGroup.COLLECTION_LABEL

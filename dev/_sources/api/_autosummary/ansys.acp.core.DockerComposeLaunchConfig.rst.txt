@@ -24,17 +24,9 @@
    .. autosummary::
       :toctree:
    
-      
       DockerComposeLaunchConfig.image_name_filetransfer
-      
-      
       DockerComposeLaunchConfig.image_name_pyacp
-      
-      
       DockerComposeLaunchConfig.keep_volume
-      
-      
       DockerComposeLaunchConfig.license_server
-      
    
    

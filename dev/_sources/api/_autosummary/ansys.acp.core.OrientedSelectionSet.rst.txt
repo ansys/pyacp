@@ -33,31 +33,15 @@
    .. autosummary::
       :toctree:
    
-      
-      
-      
+      OrientedSelectionSet.COLLECTION_LABEL
+      OrientedSelectionSet.GRPC_PROPERTIES
       OrientedSelectionSet.element_sets
-      
-      
       OrientedSelectionSet.id
-      
-      
       OrientedSelectionSet.name
-      
-      
       OrientedSelectionSet.orientation_direction
-      
-      
       OrientedSelectionSet.orientation_point
-      
-      
       OrientedSelectionSet.rosette_selection_method
-      
-      
       OrientedSelectionSet.rosettes
-      
-      
       OrientedSelectionSet.status
-      
    
    

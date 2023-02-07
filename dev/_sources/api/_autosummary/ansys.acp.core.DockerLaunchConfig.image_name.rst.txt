@@ -1,6 +1,0 @@
-image\_name
-===========
-
-.. currentmodule:: ansys.acp.core
-
-.. autoattribute:: DockerLaunchConfig.image_name
