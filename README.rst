@@ -47,7 +47,7 @@ Installation
 
 Install PyACP with:
 
-.. code::
+.. code-block::
 
     pip install git+https://github.com/pyansys/pyacp-private
 
@@ -70,7 +70,7 @@ Launching ACP
 
 Configure ACP using the `ansys-launcher <https://local-product-launcher.tools.docs.pyansys.com>`_ command line tool:
 
-.. code:: bash
+.. code-block:: bash
 
     ansys-launcher configure ACP <launch_mode>
 
@@ -83,7 +83,7 @@ The ``ansys-launcher`` prompts for the relevant options for each mode.
 
 Having configured the launcher, the server can be started with ``launch_acp``:
 
-.. code:: python
+.. code-block:: python
 
     import ansys.acp.core as pyacp
 
@@ -97,7 +97,7 @@ Basic Usage
 Once the server is running, we can start working with PyACP. For example, to load an ACP
 Model from an existing file:
 
-.. code:: python
+.. code-block:: pycon
 
     >>> remote_filename = client.upload_file(local_path="<MODEL_PATH>")
     >>> model = client.import_model(path=remote_filename)
@@ -115,33 +115,33 @@ please refer to the `PyAnsys Developer's guide`_.
 
 You will need to follow these steps:
 
-1. Start by cloning this repository, and entering the newly created directory:
+1.  Start by cloning this repository, and entering the newly created directory:
 
-    .. code:: bash
+    .. code-block:: bash
 
         git clone https://github.com/pyansys/pyacp-private
         cd pyacp-private
 
-2. Make sure you have the latest version of poetry:
+2.  Make sure you have the latest version of poetry:
 
-    .. code:: bash
+    .. code-block:: bash
 
         python -m pip install pipx
         pipx ensurepath
         pipx install poetry
 
-3. Install the project and all its development dependencies using poetry. This also takes care of
-   creating a new virtual environment:
+3.  Install the project and all its development dependencies using poetry. This also takes care of
+    creating a new virtual environment:
 
-    .. code:: bash
+    .. code-block:: bash
 
         poetry install --with dev,test
 
    This step installs pyACP in an editable mode (no build step is needed, no re-install when changing the code).
 
-4. Activate your development virtual environment with:
+4.  Activate your development virtual environment with:
 
-    .. code:: bash
+    .. code-block:: bash
 
         poetry shell
 
@@ -149,7 +149,7 @@ You will need to follow these steps:
 
 .. 6. Verify your development installation by running:
 
-..     .. code:: bash
+..     .. code-block:: bash
 
 ..         tox
 
@@ -160,7 +160,7 @@ Testing
 
 The PyACP test suite uses `pytest`_. You can run it with
 
-.. code:: bash
+.. code-block:: bash
 
     pytest --license-server=<YOUR_LICENSE_SERVER>
 
@@ -169,13 +169,13 @@ Pre-commit hooks
 
 Style and linter checks are run through the `pre-commit`_ tool. You can run these checks with
 
-.. code:: bash
+.. code-block:: bash
 
     pre-commit run --all-files
 
 We also recommend installing pre-commit into your repository:
 
-.. code:: bash
+.. code-block:: bash
 
     pre-commit install
 
@@ -187,7 +187,7 @@ Documentation
 
 To build the documentation, a PyACP server needs to be running:
 
-.. code:: bash
+.. code-block:: bash
 
     docker-compose -f docker-compose/docker-compose.yaml up -d
 
@@ -195,13 +195,13 @@ It can then be built using `Sphinx`_.
 
 On Linux & MacOS:
 
-.. code:: sh
+.. code-block:: sh
 
     make -C doc html
 
 On Windows:
 
-.. code:: batch
+.. code-block:: batch
 
     cd doc; .\make.bat html
 
@@ -212,14 +212,14 @@ Distribution
 
 The following commands can be used to build and check the PyACP package:
 
-.. code:: bash
+.. code-block:: bash
 
     poetry build
     twine check dist/*
 
 This creates both a source distribution, and a wheel file. An alternative is
 
-.. code:: bash
+.. code-block:: bash
 
     pip install build
     python -m build --wheel
