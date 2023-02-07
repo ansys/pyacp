@@ -1,12 +1,10 @@
 """Pytest configuration file for ansys-acp-core tests."""
 from contextlib import contextmanager
-from dataclasses import dataclass
 import logging
 import os
 import pathlib
-import shutil
 import tempfile
-from typing import Callable, Generator, cast
+from typing import Generator, cast
 
 import docker
 import pytest
@@ -15,7 +13,7 @@ from ansys.acp.core import Client, launch_acp
 from ansys.acp.core._server import (
     ControllableServerProtocol,
     DirectLaunchConfig,
-    DockerLaunchConfig,
+    DockerComposeLaunchConfig,
     LaunchMode,
 )
 from ansys.acp.core._typing_helper import PATH
@@ -23,9 +21,8 @@ from ansys.tools.local_product_launcher.config import set_config_for
 
 __all__ = [
     "pytest_addoption",
-    "model_data_dir_server",
-    "model_data_dir_host",
-    "convert_temp_path",
+    "model_data_dir",
+    # "convert_temp_path",
     "grpc_server",
     "check_grpc_server_before_run",
     "clear_models_before_run",
@@ -72,14 +69,8 @@ def pytest_addoption(parser: pytest.Parser) -> None:
     )
 
 
-@dataclass
-class _Config:
-    temp_path_converter: Callable[[PATH], str]
-    model_data_dir_server: pathlib.PurePath
-
-
 @pytest.fixture(scope="session")
-def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _Config:
+def _configure_launcher(request: pytest.FixtureRequest) -> None:
     """Parse test options and set up server handling."""
     server_bin = request.config.getoption(SERVER_BIN_OPTION_KEY)
     license_server = request.config.getoption(LICENSE_SERVER_OPTION_KEY)
@@ -99,12 +90,6 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
     if server_bin:
         # Run the ACP server directly, with the provided binary.
         # This assumes that licensing is already configured on the host.
-
-        _model_data_dir_server: pathlib.PurePath = pathlib.Path(model_data_dir_host)
-
-        def _convert_temp_path(external_path: PATH) -> str:
-            return str(external_path)
-
         set_config_for(
             product_name="ACP",
             launch_mode=LaunchMode.DIRECT,
@@ -117,45 +102,28 @@ def _test_config(request: pytest.FixtureRequest, model_data_dir_host: PATH) -> _
         )
 
     else:
-        # If no binary is provided, use the Docker container for running
+        # If no binary is provided, use docker-compose for running
         # the ACP server.
-        _model_data_dir_server = pathlib.PurePosixPath("/home/container/mounted_data")
         image_name = request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY)
+        image_name_filetransfer = "ghcr.io/ansys/utilities-filetransfer:latest"
         docker.from_env().images.pull(image_name)
+        docker.from_env().images.pull(image_name_filetransfer)
 
-        def _convert_temp_path(external_path: PATH) -> str:
-            base_tmp_path = pathlib.PurePosixPath("/tmp")
-            relative_external_path = (
-                pathlib.Path(external_path).relative_to(tempfile.gettempdir()).as_posix()
-            )
-            return str(base_tmp_path / relative_external_path)
-
-        tmp_dir = tempfile.gettempdir()
         set_config_for(
             product_name="ACP",
-            launch_mode=LaunchMode.DOCKER,
-            config=DockerLaunchConfig(
-                image_name=image_name,
+            launch_mode=LaunchMode.DOCKER_COMPOSE,
+            config=DockerComposeLaunchConfig(
+                image_name_pyacp=image_name,
+                image_name_filetransfer=image_name_filetransfer,
                 license_server=license_server,
-                mount_directories={
-                    str(model_data_dir_host): str(_model_data_dir_server),
-                    tmp_dir: _convert_temp_path(tmp_dir),
-                },
-                # stdout_file=str(server_log_stdout),
-                # stderr_file=str(server_log_stderr),
-                keep_container=False,
+                keep_volume=False,
             ),
             overwrite_default=True,
         )
 
-    return _Config(
-        temp_path_converter=_convert_temp_path,
-        model_data_dir_server=_model_data_dir_server,
-    )
-
 
 @pytest.fixture(scope="session")
-def model_data_dir_host() -> pathlib.Path:
+def model_data_dir() -> pathlib.Path:
     """Test data path, in the host filesystem."""
     res_path = (TEST_ROOT_DIR / "data").resolve()
     assert res_path.is_dir(), f"Could not find data directory at '{res_path}'."
@@ -163,19 +131,7 @@ def model_data_dir_host() -> pathlib.Path:
 
 
 @pytest.fixture(scope="session")
-def model_data_dir_server(_test_config: _Config) -> pathlib.PurePath:
-    """Test data path, in the server filesystem."""
-    return _test_config.model_data_dir_server
-
-
-@pytest.fixture(scope="session")
-def convert_temp_path(_test_config: _Config) -> Callable[[PATH], str]:
-    """Convert temporary paths from the host to the server filesystem."""
-    return _test_config.temp_path_converter
-
-
-@pytest.fixture(scope="session")
-def grpc_server(_test_config) -> Generator[ControllableServerProtocol, None, None]:
+def grpc_server(_configure_launcher) -> Generator[ControllableServerProtocol, None, None]:
     """Provide the currently active gRPC server."""
     server = cast(ControllableServerProtocol, launch_acp())
     server.wait(timeout=SERVER_STARTUP_TIMEOUT)
@@ -202,15 +158,13 @@ def clear_models_before_run(grpc_server):
 
 
 @pytest.fixture
-def load_model_from_tempfile(model_data_dir_host, grpc_server, convert_temp_path):
+def load_model_from_tempfile(model_data_dir, grpc_server):
     @contextmanager
     def inner(relative_file_path="minimal_complete_model.acph5", format="acp:h5"):
         with tempfile.TemporaryDirectory() as tmp_dir:
-            dest_path = pathlib.Path(tmp_dir) / os.path.basename(relative_file_path)
-            source_path = model_data_dir_host / relative_file_path
-            shutil.copyfile(source_path, dest_path)
-
+            source_path = model_data_dir / relative_file_path
             client = Client(server=grpc_server)
-            yield client.import_model(path=convert_temp_path(dest_path), format=format)
+            file_path = client.upload_file(source_path)
+            yield client.import_model(path=file_path, format=format)
 
     return inner

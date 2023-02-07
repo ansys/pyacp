@@ -78,7 +78,6 @@ where ``<launch_mode>`` is one of
 
 * ``direct``: run ACP as a sub-process
 * ``docker_compose``: run ACP in a docker container, using ``docker-compose`` and the `filetransfer service <https://github.com/ansys/ansys-utilities-filetransfer-server>`_ to manage files
-* ``docker``: run ACP in a docker container. This mode is not recommended, since it requires manual file transfer.
 
 The ``ansys-launcher`` prompts for the relevant options for each mode.
 
