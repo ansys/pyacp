@@ -6,14 +6,16 @@ from ansys.acp.core import Client
 from helpers import check_property
 
 
-def test_unittest(grpc_server, model_data_dir_server, convert_temp_path):
+def test_unittest(grpc_server, model_data_dir):
     """
     Test basic properties of the model object
     """
     client = Client(server=grpc_server)
 
-    input_file_path = model_data_dir_server / "ACP-Pre.h5"
-    model = client.import_model(name="kiteboard", path=input_file_path, format="ansys:h5")
+    input_file_path = model_data_dir / "ACP-Pre.h5"
+    remote_path = client.upload_file(input_file_path)
+
+    model = client.import_model(name="kiteboard", path=remote_path, format="ansys:h5")
 
     # TODO: re-activate these tests when the respective features are implemented
     # assert model.unit_system.type == "mks"
@@ -91,22 +93,26 @@ def test_save_analysis_model(grpc_server, model_data_dir_server, convert_temp_pa
     are not checked.
     """
     client = Client(server=grpc_server)
-    input_file_path = model_data_dir_server / "minimal_model_2.cdb"
+    input_file_path = model_data_dir / "minimal_model_2.cdb"
+    remote_file_path = client.upload_file(input_file_path)
+    remote_workdir = remote_file_path.parent
     model = client.import_model(
-        name="minimal_model", path=input_file_path, format="ansys:cdb", unit_system="mpa"
+        name="minimal_model", path=remote_file_path, format="ansys:cdb", unit_system="mpa"
     )
 
+    out_file_path = remote_workdir / "out_file.cdb"
+    model.save_analysis_model(out_file_path)
     with tempfile.TemporaryDirectory() as tmp_dir:
-        out_file_path = pathlib.Path(tmp_dir) / "out_file.cdb"
-        save_path = convert_temp_path(out_file_path)
-        model.save_analysis_model(save_path)
-        assert out_file_path.exists()
+        local_file_path = pathlib.Path(tmp_dir, "out_file.cdb")
+        client.download_file(out_file_path, local_file_path)
+        assert local_file_path.exists()
 
 
-def test_string_representation(grpc_server, model_data_dir_server):
+def test_string_representation(grpc_server, model_data_dir):
     client = Client(server=grpc_server)
-    input_file_path = model_data_dir_server / "ACP-Pre.h5"
-    model = client.import_model(name="minimal_model", path=input_file_path, format="ansys:cdb")
+    input_file_path = model_data_dir / "ACP-Pre.h5"
+    remote_file_path = client.upload_file(input_file_path)
+    model = client.import_model(name="minimal_model", path=remote_file_path, format="ansys:cdb")
 
     assert repr(model) == "<Model with name 'minimal_model'>"
 

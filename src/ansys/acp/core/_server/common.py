@@ -11,7 +11,6 @@ class ServerKey(str, enum.Enum):
 
 class LaunchMode(str, enum.Enum):
     DIRECT = "direct"
-    DOCKER = "docker"
     DOCKER_COMPOSE = "docker_compose"
 
 

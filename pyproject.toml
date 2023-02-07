@@ -32,7 +32,7 @@ include = ["src/**/docker-compose.yaml"]
 python = ">=3.8,<4" # Plan on supporting only the currently supported versions of Python
 numpy = "^1.22"
 ansys-api-acp = { git = "https://github.com/ansys/ansys-api-acp-private.git",  branch = "main" }
-ansys-dpf-composites = { git = "https://github.com/pyansys/pydpf-composites.git",  branch = "main" }
+ansys-dpf-composites = "^0.1"
 ansys-dpf-core = "^0.7"
 grpcio-health-checking = "^1.43"
 docker = "^6.0.1"
@@ -59,6 +59,7 @@ pypandoc = "^1.10"
 sphinx-gallery = "^0.11.1"
 pyvista = ">=0.36"
 ansys-mapdl-core = "^0.62.1"
+ipykernel = "^6.21.0"
 
 
 [tool.poetry.group.test]
@@ -76,7 +77,6 @@ examples = ["pyvista", "ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composit
 
 [tool.poetry.plugins."ansys.tools.local_product_launcher.launcher"]
 "ACP.direct" = "ansys.acp.core._server.direct:DirectLauncher"
-"ACP.docker" = "ansys.acp.core._server.docker:DockerLauncher"
 "ACP.docker_compose" = "ansys.acp.core._server.docker_compose:DockerComposeLauncher"
 
 [tool.black]
