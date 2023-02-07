@@ -50,7 +50,7 @@ def test_unittest(grpc_server, model_data_dir):
         os.makedirs(working_dir)
         # model.solver.working_dir = str(working_dir)
 
-        save_path = convert_temp_path(pathlib.Path(tmp_dir) / "test_model_serialization.acph5")
+        save_path = os.path.join(os.path.dirname(remote_path), "test_model_serialization.acph5")
         model.save(save_path, save_cache=True)
 
         client.clear()
@@ -87,7 +87,7 @@ def test_unittest(grpc_server, model_data_dir):
         # assert model.solver.working_dir == rel_path_posix
 
 
-def test_save_analysis_model(grpc_server, model_data_dir_server, convert_temp_path):
+def test_save_analysis_model(grpc_server, model_data_dir):
     """
     Test that 'save_analysis_model' produces a file. The contents of the file
     are not checked.
