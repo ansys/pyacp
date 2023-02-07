@@ -32,7 +32,7 @@ include = ["src/**/docker-compose.yaml"]
 python = ">=3.8,<4" # Plan on supporting only the currently supported versions of Python
 numpy = "^1.22"
 ansys-api-acp = { git = "https://github.com/ansys/ansys-api-acp-private.git",  branch = "main" }
-ansys-dpf-composites = { git = "https://github.com/pyansys/pydpf-composites.git",  branch = "main" }
+ansys-dpf-composites = "^0.1"
 ansys-dpf-core = "^0.7"
 grpcio-health-checking = "^1.43"
 docker = "^6.0.1"
