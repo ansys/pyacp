@@ -104,19 +104,21 @@ files = [
 
 [[package]]
 name = "ansys-dpf-composites"
-version = "0.2.dev0"
+version = "0.1.0"
 description = "A python wrapper for ansys dpf composites"
 category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
-files = []
-develop = false
+files = [
+    {file = "ansys_dpf_composites-0.1.0-py3-none-any.whl", hash = "sha256:43314dc0103327cd92133c7ef727281a75a677264d9e82219083e6ad98ee55dd"},
+    {file = "ansys_dpf_composites-0.1.0.tar.gz", hash = "sha256:fc67fc74cff3958bfac02fbb3a35031a9e1799f90215a6a062898fc78320084f"},
+]
 
 [package.dependencies]
-ansys-dpf-core = "^0.7.0"
-matplotlib = "^3.5.0"
-numpy = {version = "^1.22,<1.24", markers = "python_version >= \"3.8\" and python_version < \"3.11\""}
-pyvista = "^0.36.1"
+ansys-dpf-core = ">=0.7.0,<0.8.0"
+matplotlib = ">=3.5.0,<4.0.0"
+numpy = {version = ">=1.22,<1.24", markers = "python_version >= \"3.8\" and python_version < \"3.11\""}
+pyvista = ">=0.36.1,<0.37.0"
 vtk = "*"
 
 [package.extras]
@@ -125,12 +127,6 @@ build = ["build (>=0.8.0,<0.9.0)", "twine (>=4.0.1,<5.0.0)"]
 docs = ["Sphinx (>=5.0.1,<6.0.0)", "ansys-sphinx-theme (>=0,<1)", "numpydoc (>=1.5,<2.0)", "pypandoc (>=1.8.1,<2.0.0)", "sphinx-autodoc-typehints (>=1.19,<1.20.2)", "sphinx-copybutton (>=0.4,<0.5)", "sphinx-design (>=0.3.0,<0.4.0)", "sphinx_gallery (>=0.11.0,<0.12.0)"]
 pre-commit = ["mypy (>=0.931,<0.932)", "mypy-extensions (>=0.4.3,<0.5.0)", "pre-commit", "pylint (>=2.13,<3.0)"]
 test = ["pytest (>=7.1.2,<8.0.0)", "pytest-cov (>=3.0.0,<4.0.0)"]
-
-[package.source]
-type = "git"
-url = "https://github.com/pyansys/pydpf-composites.git"
-reference = "main"
-resolved_reference = "0cdfd34c9a31e935ac41384a34b9e1a8f099650f"
 
 [[package]]
 name = "ansys-dpf-core"
@@ -3226,4 +3222,4 @@ examples = ["ansys-dpf-core", "ansys-dpf-composites"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<4" # Plan on supporting only the currently supported versions of Python
-content-hash = "19938d7947e37c604384cf061a6bd25063ea523411cd18b858a67cbe7597ba81"
+content-hash = "8866702a0b073289670e1c785c0ab854424949f4b702baba867d0d676c886990"
