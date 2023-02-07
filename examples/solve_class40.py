@@ -17,11 +17,11 @@ The services (ACP, MAPDL and DPF) are run in docker containers which share
 a volume (working directory).
 """
 
-#%%
+# %%
 # Setup: Connect to PyACP Server
 # ------------------------------
 
-#%%
+# %%
 # Import standard library and third-party dependencies
 import os
 import pathlib
@@ -29,22 +29,22 @@ import tempfile
 
 import numpy as np
 
-#%%
+# %%
 # Import Ansys libraries
 import ansys.acp.core as pyacp
 
-#%%
+# %%
 # Launch the PyACP server and connect to it.
 pyacp_server = pyacp.launch_acp()
 pyacp_server.wait(timeout=30)
 pyacp_client = pyacp.Client(pyacp_server)
 
-#%%
+# %%
 #
 # Load Mesh and Materials from CDB file
 # -------------------------------------
 
-#%%
+# %%
 # Define the directory in which the input files are stored.
 try:
     EXAMPLES_DIR = pathlib.Path(os.environ["REPO_ROOT"]) / "examples"
@@ -52,28 +52,28 @@ except KeyError:
     EXAMPLES_DIR = pathlib.Path(__file__).parent
 EXAMPLE_DATA_DIR = EXAMPLES_DIR / "data" / "class40"
 
-#%%
+# %%
 # Send ``class40.cdb`` to the server.
 CDB_FILENAME = "class40.cdb"
 local_file_path = str(EXAMPLE_DATA_DIR / CDB_FILENAME)
 print(local_file_path)
 cdb_file_path = pyacp_client.upload_file(local_path=local_file_path)
 
-#%%
+# %%
 # Load CDB file into PyACP and set the unit system
 model = pyacp_client.import_model(
     path=cdb_file_path, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
 )
 model
 
-#%%
+# %%
 #
 # Build Composite Lay-up
 # ----------------------
 #
 # Create the model (unit system is MPA)
 
-#%%
+# %%
 # Materials
 # '''''''''
 
@@ -89,7 +89,7 @@ mat_eglass_ud = model.materials["3"]
 mat_eglass_ud.name = "E-Glass (uni-directional)"
 mat_eglass_ud.ply_type = "regular"
 
-#%%
+# %%
 # Fabrics
 # '''''''
 
@@ -101,7 +101,7 @@ corecell_103kg_10mm = model.create_fabric(
 )
 eglass_ud_02mm = model.create_fabric(name="eglass UD", thickness=0.0002, material=mat_eglass_ud)
 
-#%%
+# %%
 # Rosettes
 # ''''''''
 
@@ -114,7 +114,7 @@ ros_keeltower = model.create_rosette(
     name="ros_keeltower", origin=(-6.0699, -0.0502, 0.623), dir1=(0.0, 0.0, 1.0)
 )
 
-#%%
+# %%
 # Oriented Selection Sets
 # '''''''''''''''''''''''
 #
@@ -160,7 +160,7 @@ oss_keeltower = model.create_oriented_selection_set(
 )
 
 
-#%%
+# %%
 # Modeling Plies
 # ''''''''''''''
 
@@ -176,7 +176,7 @@ def add_ply(mg, name, ply_material, angle, oss):
     )
 
 
-#%%
+# %%
 # Define plies for the HULL, DECK and BULKHEAD
 
 angles = [-90.0, -60.0, -45.0 - 30.0, 0.0, 0.0, 30.0, 45.0, 60.0, 90.0]
@@ -189,7 +189,7 @@ for mg_name in ["hull", "deck", "bulkhead"]:
     for angle in angles:
         add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)
 
-#%%
+# %%
 # Add plies to the keeltower
 mg = model.create_modeling_group(name="keeltower")
 oss_list = [model.oriented_selection_sets["oss_keeltower"]]
@@ -201,7 +201,7 @@ add_ply(mg, "corecell_81kg_5mm", corecell_81kg_5mm, 0.0, oss_list)
 for angle in angles:
     add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)
 
-#%%
+# %%
 # Inspect the number of modeling groups and plies
 print(len(model.modeling_groups))
 print(len(model.modeling_groups["hull"].modeling_plies))
@@ -209,7 +209,7 @@ print(len(model.modeling_groups["deck"].modeling_plies))
 print(len(model.modeling_groups["bulkhead"].modeling_plies))
 print(len(model.modeling_groups["keeltower"].modeling_plies))
 
-#%%
+# %%
 #
 # Write out ACP Model
 # -------------------
@@ -219,19 +219,19 @@ CDB_FILENAME_OUT = "class40_analysis_model.cdb"
 COMPOSITE_DEFINITIONS_H5 = "ACPCompositeDefinitions.h5"
 MATML_FILE = "materials.xml"
 
-#%%
+# %%
 # Update and Save the ACP model
 model.update()
 model.save(ACPH5_FILE, save_cache=True)
 
-#%%
+# %%
 # Save the model as CDB for solving with PyMAPDL
 model.save_analysis_model(CDB_FILENAME_OUT)
 # Export the shell lay-up and material file for DPF Composites
 model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
 model.export_materials(MATML_FILE)
 
-#%%
+# %%
 # Download files from ACP server to a local directory
 tmp_dir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tmp_dir.name)
@@ -244,27 +244,27 @@ pyacp_client.download_file(
     remote_filename=COMPOSITE_DEFINITIONS_H5, local_path=str(composite_definitions_local_path)
 )
 
-#%%
+# %%
 # Solve with PyMAPDL
 # ------------------
 
-#%%
+# %%
 # Import PyMAPDL and connect to its server
 from ansys.mapdl.core import Mapdl
 
 mapdl = Mapdl(ip="localhost", port=50557, timeout=30)
 
-#%%
+# %%
 # Load the CDB file into PyMAPDL
 mapdl.input(str(cdb_file_local_path))
 
-#%%
+# %%
 # Solve the model
 mapdl.allsel()
 mapdl.slashsolu()
 mapdl.solve()
 
-#%%
+# %%
 # Post-processing: show displacements
 mapdl.post1()
 mapdl.set("last")
@@ -275,7 +275,7 @@ rstfile_name = f"{mapdl.jobname}.rst"
 rst_file_local_path = pathlib.Path(tmp_dir.name) / rstfile_name
 mapdl.download(rstfile_name, tmp_dir.name)
 
-#%%
+# %%
 # Post-Processing with DPF composites
 # -----------------------------------
 #
@@ -296,7 +296,7 @@ from ansys.dpf.core.core import upload_file_in_tmp_folder
 dpf_server = dpf.server.connect_to_server("127.0.0.1", port=50558)
 load_composites_plugin(dpf_server)
 
-#%%
+# %%
 # Specify the Combined Failure Criterion and the result definition
 
 max_strain = MaxStrainCriterion()
@@ -329,13 +329,13 @@ rd = ResultDefinition(
     ],
 )
 
-#%%
+# %%
 # Initialize the failure operator and configure its input
 
 fc_op = dpf.Operator("composite::composite_failure_operator")
 fc_op.inputs.result_definition(rd.to_json())
 
-#%%
+# %%
 # Query and plot the results
 
 output_all_elements = fc_op.outputs.fields_containerMax()

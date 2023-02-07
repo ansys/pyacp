@@ -17,7 +17,6 @@ def test_create_material(load_model_from_tempfile):
 def test_material_properties(load_model_from_tempfile):
     """Test the put request of a Material."""
     with load_model_from_tempfile() as model:
-
         material = model.create_material(name="test_properties")
         properties = {
             "name": "new_name",

@@ -42,7 +42,13 @@ and ansys-mapdl) are installed before launching Python.
 
     # Launch gRPC server and PyACP client
     import ansys.acp.core as pyacp
-    pyacp_server = pyacp.launch_acp(binary_path=acp_grpc_exe, port=50555, stdout_file="pyacp.log", stderr_file="pyacp.err")
+
+    pyacp_server = pyacp.launch_acp(
+        binary_path=acp_grpc_exe,
+        port=50555,
+        stdout_file="pyacp.log",
+        stderr_file="pyacp.err",
+    )
     pyacp.wait_for_server(pyacp_server, timeout=30)  # ensure the server is running
     pyacp_client = pyacp.Client(pyacp_server)
 
@@ -53,9 +59,8 @@ and ansys-mapdl) are installed before launching Python.
     # Import the model from MAPDL input file (CDB)
     # Note: the unit system is required for the post-processing
     CDB_FILENAME = "class40.cdb"
-    model = pyacp_client.import_model(path=CDB_FILENAME,
-        format="ansys:cdb",
-        unit_system=pyacp.UnitSystemType.MPA
+    model = pyacp_client.import_model(
+        path=CDB_FILENAME, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
     )
     model
 
@@ -80,13 +85,18 @@ and ansys-mapdl) are installed before launching Python.
     corecell_103kg_10mm = model.create_fabric(
         name="Corecell 103kg", thickness=0.01, material=mat_corecell_103kg
     )
-    eglass_ud_02mm = model.create_fabric(name="eglass UD", thickness=0.0002, material=mat_eglass_ud)
+    eglass_ud_02mm = model.create_fabric(
+        name="eglass UD", thickness=0.0002, material=mat_eglass_ud
+    )
 
     # Specify rosettes (coordinate systems)
     ros_deck = model.create_rosette(name="ros_deck", origin=(-5.9334, -0.0481, 1.693))
     ros_hull = model.create_rosette(name="ros_hull", origin=(-5.3711, -0.0506, -0.2551))
     ros_bulkhead = model.create_rosette(
-        name="ros_bulkhead", origin=(-5.622, 0.0022, 0.0847), dir1=(0.0, 1.0, 0.0), dir2=(0.0, 0.0, 1.0)
+        name="ros_bulkhead",
+        origin=(-5.622, 0.0022, 0.0847),
+        dir1=(0.0, 1.0, 0.0),
+        dir2=(0.0, 0.0, 1.0),
     )
     ros_keeltower = model.create_rosette(
         name="ros_keeltower", origin=(-6.0699, -0.0502, 0.623), dir1=(0.0, 0.0, 1.0)
@@ -132,6 +142,7 @@ and ansys-mapdl) are installed before launching Python.
         rosettes=[ros_keeltower],
     )
 
+
     # Add plies to all parts
     def add_ply(mg, name, ply_material, angle, oss):
         return mg.create_modeling_ply(
@@ -142,6 +153,7 @@ and ansys-mapdl) are installed before launching Python.
             number_of_layers=1,
             global_ply_nr=0,  # add at the end
         )
+
 
     angles = [-90.0, -60.0, -45.0 - 30.0, 0.0, 0.0, 30.0, 45.0, 60.0, 90.0]
     for mg_name in ["hull", "deck", "bulkhead"]:
@@ -188,6 +200,7 @@ and ansys-mapdl) are installed before launching Python.
 
     # Launch MAPDL
     from ansys.mapdl.core import launch_mapdl
+
     mapdl = launch_mapdl()
     # Load the CDB file with the composite lay-up
     mapdl.input(CDB_FILENAME_OUT)
@@ -217,7 +230,7 @@ and ansys-mapdl) are installed before launching Python.
         CombinedFailureCriterion,
         MaxStrainCriterion,
         MaxStressCriterion,
-        CoreFailureCriterion
+        CoreFailureCriterion,
     )
     from ansys.dpf.composites.result_definition import ResultDefinition
     from ansys.dpf.composites.server_helpers import load_composites_plugin
@@ -227,7 +240,13 @@ and ansys-mapdl) are installed before launching Python.
     dpf_server = dpf.start_local_server(ansys_path=os.environ[AWP_ROOT_KEY])
     base = dpf.BaseService(server=dpf_server, load_operators=False)
     base.load_library("Ans.Dpf.EngineeringData.dll", "EngineeringData")
-    composites_plugin_path = os.path.join(os.environ[AWP_ROOT_KEY], "dpf", "plugins", "dpf_composites", "composite_operators.dll")
+    composites_plugin_path = os.path.join(
+        os.environ[AWP_ROOT_KEY],
+        "dpf",
+        "plugins",
+        "dpf_composites",
+        "composite_operators.dll",
+    )
     base.load_library(composites_plugin_path, "Composites")
 
     # Configure failure criteria
@@ -237,7 +256,7 @@ and ansys-mapdl) are installed before launching Python.
 
     cfc = CombinedFailureCriterion(
         name="Combined Failure Criterion",
-        failure_criteria=[max_strain, max_stress, core_failure]
+        failure_criteria=[max_strain, max_stress, core_failure],
     )
 
     rstfile_path = os.path.join(mapdl.directory, f"{mapdl.jobname}.rst")
@@ -252,8 +271,8 @@ and ansys-mapdl) are installed before launching Python.
 
     # Configure and run DPF failure operator
     fc_op = dpf.Operator("composite::composite_failure_operator")
-    elements = list([int(v) for v in np.arange(1,3996)])
-    rd.element_scope=elements
+    elements = list([int(v) for v in np.arange(1, 3996)])
+    rd.element_scope = elements
     fc_op.inputs.result_definition(rd.to_json())
     output_all_elements = fc_op.outputs.fields_containerMax()
 
