@@ -18,8 +18,13 @@ class LinkedObjectListTestCase:
 
 
 class LinkedObjectListTester:
+    """Tests for object attributes which link to multiple other objects, as a list."""
+
     @staticmethod
     def test_iter(linked_object_case: LinkedObjectListTestCase):
+        """
+        Test iterating through the linked objects.
+        """
         linked_object_list = getattr(
             linked_object_case.parent_object, linked_object_case.linked_attribute_name
         )
@@ -30,6 +35,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_getitem_first(linked_object_case_nonempty: LinkedObjectListTestCase):
+        """
+        Test accessing the first linked object.
+        """
         linked_object_list = getattr(
             linked_object_case_nonempty.parent_object,
             linked_object_case_nonempty.linked_attribute_name,
@@ -42,6 +50,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_getitem_negative_index(linked_object_case_nonempty: LinkedObjectListTestCase):
+        """
+        Test accessing the last linked object, with negative indexing.
+        """
         linked_object_list = getattr(
             linked_object_case_nonempty.parent_object,
             linked_object_case_nonempty.linked_attribute_name,
@@ -54,6 +65,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_getitem_full_slice(linked_object_case_nonempty: LinkedObjectListTestCase):
+        """
+        Test accessing all objects, with a slice ``[:]``.
+        """
         linked_object_list = getattr(
             linked_object_case_nonempty.parent_object,
             linked_object_case_nonempty.linked_attribute_name,
@@ -65,6 +79,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_setitem_zero(linked_object_case_nonempty: LinkedObjectListTestCase):
+        """
+        Test replacing the first linked item.
+        """
         linked_object_list = getattr(
             linked_object_case_nonempty.parent_object,
             linked_object_case_nonempty.linked_attribute_name,
@@ -83,6 +100,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_delitem_slice(linked_object_case_nonempty: LinkedObjectListTestCase):
+        """
+        Test removing all linked items, via ``del`` with a slice.
+        """
         linked_object_list = getattr(
             linked_object_case_nonempty.parent_object,
             linked_object_case_nonempty.linked_attribute_name,
@@ -111,6 +131,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_append(linked_object_case: LinkedObjectListTestCase):
+        """
+        Test adding linked items via ``.append()``
+        """
         linked_object_list = getattr(
             linked_object_case.parent_object, linked_object_case.linked_attribute_name
         )
@@ -129,6 +152,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_extend(linked_object_case: LinkedObjectListTestCase):
+        """
+        Test adding linked items via ``.extend()``
+        """
         linked_object_list = getattr(
             linked_object_case.parent_object, linked_object_case.linked_attribute_name
         )
@@ -150,6 +176,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_append_unstored(linked_object_case_empty: LinkedObjectListTestCase):
+        """
+        Test that adding unstored linked items raises an error.
+        """
         linked_object_list = getattr(
             linked_object_case_empty.parent_object, linked_object_case_empty.linked_attribute_name
         )
@@ -159,6 +188,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_sort_by_name(linked_object_case_empty: LinkedObjectListTestCase):
+        """
+        Test that the linked objects can be sorted via ``.sort()``.
+        """
         parent_object = linked_object_case_empty.parent_object
         linked_attribute_name = linked_object_case_empty.linked_attribute_name
         names_unsorted = ["A", "Z", "C", "F", "B"]
@@ -182,6 +214,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_reverse(linked_object_case_empty: LinkedObjectListTestCase):
+        """
+        Test that the order of linked objects can be reversed.
+        """
         parent_object = linked_object_case_empty.parent_object
         linked_attribute_name = linked_object_case_empty.linked_attribute_name
 
@@ -201,6 +236,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_reversed_iter(linked_object_case_empty: LinkedObjectListTestCase):
+        """
+        Test that the linked objects can be iterated over in reverse order.
+        """
         parent_object = linked_object_case_empty.parent_object
         linked_attribute_name = linked_object_case_empty.linked_attribute_name
 
@@ -221,6 +259,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_contains(linked_object_case_empty: LinkedObjectListTestCase):
+        """
+        Test the ``object in container`` check.
+        """
         parent_object = linked_object_case_empty.parent_object
         linked_attribute_name = linked_object_case_empty.linked_attribute_name
         linked_object_constructor = linked_object_case_empty.linked_object_constructor
@@ -241,6 +282,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_count(linked_object_case_empty: LinkedObjectListTestCase):
+        """
+        Test the ``container.count(obj)`` method.
+        """
         parent_object = linked_object_case_empty.parent_object
         linked_attribute_name = linked_object_case_empty.linked_attribute_name
         linked_object_constructor = linked_object_case_empty.linked_object_constructor
@@ -264,6 +308,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_index(linked_object_case_empty: LinkedObjectListTestCase):
+        """
+        Test that objects in the linked objects list can be found via ``.index()``.
+        """
         parent_object = linked_object_case_empty.parent_object
         linked_attribute_name = linked_object_case_empty.linked_attribute_name
         linked_object_constructor = linked_object_case_empty.linked_object_constructor
@@ -286,6 +333,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_insert(linked_object_case_empty: LinkedObjectListTestCase):
+        """
+        Test that the linked objects list can be inserted into.
+        """
         parent_object = linked_object_case_empty.parent_object
         linked_attribute_name = linked_object_case_empty.linked_attribute_name
         linked_object_constructor = linked_object_case_empty.linked_object_constructor
@@ -319,6 +369,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_remove(linked_object_case_empty: LinkedObjectListTestCase):
+        """
+        Test objects can be removed by index.
+        """
         parent_object = linked_object_case_empty.parent_object
         linked_attribute_name = linked_object_case_empty.linked_attribute_name
         linked_object_constructor = linked_object_case_empty.linked_object_constructor
@@ -338,6 +391,9 @@ class LinkedObjectListTester:
 
     @staticmethod
     def test_pop(linked_object_case_empty: LinkedObjectListTestCase):
+        """
+        Test objects can be removed + returned by index, with ``.pop()``.
+        """
         parent_object = linked_object_case_empty.parent_object
         linked_attribute_name = linked_object_case_empty.linked_attribute_name
         linked_object_constructor = linked_object_case_empty.linked_object_constructor
