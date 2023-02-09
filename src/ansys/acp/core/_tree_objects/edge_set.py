@@ -20,28 +20,32 @@ from .object_registry import register
 @mark_grpc_properties
 @register
 class EdgeSet(CreatableTreeObject, IdTreeObject):
-    """Instantiate an Edge Set.
+    """Instantiate an edge set.
 
     Parameters
     ----------
     name :
-        Name of the Edge Set.
+        Name of the edge set.
     edge_set_type :
-        Determines how the Edge Set is defined. Can be either :attr:`.EdgeSetType.BY_NODES`
-        or :attr:`.EdgeSetType.BY_REFERENCE`.
+        Determines how the edge set is defined. Can be one of:
+
+        * :attr:`.EdgeSetType.BY_REFERENCE`: define the edge set using an :class:`.ElementSet`.
+        * :attr:`.EdgeSetType.BY_NODES`: define the edge set using a list of node labels.
+
     defining_node_labels :
-        Labels of the nodes in the Edge Set.
-        Only applies when ``edge_set_type`` is :attr:`.EdgeSetType.BY_NODES`.
+        Labels of the nodes in the edge set.
+        This parameter only applies when ``edge_set_type`` is :attr:`.EdgeSetType.BY_NODES`.
     element_set :
-        Element Set whose boundary the Edge Set follows.
-        Only applies when ``edge_set_type`` is :attr:`.EdgeSetType.BY_REFERENCE`.
+        The boundary of this element set defines the initial
+        edge set.
+        This parameter only applies when ``edge_set_type`` is :attr:`.EdgeSetType.BY_REFERENCE`.
     limit_angle :
-        Maximum angle above which the remaining Element Set boundary is no
-        longer considered connected to the Edge Set.
-        Only applies when ``edge_set_type`` is :attr:`.EdgeSetType.BY_REFERENCE`.
+        The edge set is cropped if the angle between two element edges exceeds this limits (in degrees).
+        Use ``-1.`` to disable cropping.
+        This parameter only applies when ``edge_set_type`` is :attr:`.EdgeSetType.BY_REFERENCE`.
     origin :
-        Defines the starting point of the Edge Set.
-        Only applies when ``edge_set_type`` is :attr:`.EdgeSetType.BY_REFERENCE`.
+        Defines the starting point of the edge set.
+        This parameter only applies when ``edge_set_type`` is :attr:`.EdgeSetType.BY_REFERENCE`.
     """
 
     __slots__: Iterable[str] = tuple()
@@ -52,7 +56,7 @@ class EdgeSet(CreatableTreeObject, IdTreeObject):
     def __init__(
         self,
         name: str = "EdgeSet",
-        edge_set_type: EdgeSetType = EdgeSetType.BY_NODES,
+        edge_set_type: EdgeSetType = EdgeSetType.BY_REFERENCE,
         defining_node_labels: Iterable[int] = tuple(),
         element_set: ElementSet | None = None,
         limit_angle: float = -1.0,
