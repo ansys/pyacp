@@ -7,7 +7,7 @@ import uuid
 
 from ansys.api.acp.v0 import model_pb2_grpc
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
-from ansys.utilities.filetransfer import Client as FileTransferClient
+from ansys.tools.filetransfer import Client as FileTransferClient
 
 from ._server import ServerKey, ServerProtocol
 from ._tree_objects import Model

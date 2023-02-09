@@ -37,7 +37,7 @@ class DockerComposeLaunchConfig:
         metadata={DOC_METADATA_KEY: "Docker image running the ACP gRPC server."},
     )
     image_name_filetransfer: str = dataclasses.field(
-        default="ghcr.io/ansys/utilities-filetransfer:latest",
+        default="ghcr.io/ansys/tools-filetransfer:latest",
         metadata={DOC_METADATA_KEY: "Docker image running the file transfer service."},
     )
     license_server: str = dataclasses.field(
@@ -64,10 +64,10 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
         self._urls: Dict[str, str]
 
         try:
-            import ansys.utilities.filetransfer  # noqa
+            import ansys.tools.filetransfer  # noqa
         except ImportError as err:
             raise ImportError(
-                "The 'ansys.utilities.filetransfer' module is needed to launch ACP via docker-compose."
+                "The 'ansys.tools.filetransfer' module is needed to launch ACP via docker-compose."
             ) from err
 
         self._env = copy.copy(os.environ)

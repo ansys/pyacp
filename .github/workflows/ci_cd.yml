@@ -53,8 +53,8 @@ jobs:
       - name: Install library, with all optional groups
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-filetransfer".insteadOf "https://github.com/pyansys/ansys-tools-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-tools-filetransfer".insteadOf "https://github.com/ansys/ansys-api-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/pyansys/ansys-tools-local-product-launcher"
           pip install poetry
           poetry install --with dev,test
@@ -142,8 +142,8 @@ jobs:
       - name: Install library, with test group
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-filetransfer".insteadOf "https://github.com/pyansys/ansys-tools-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-tools-filetransfer".insteadOf "https://github.com/ansys/ansys-api-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/pyansys/ansys-tools-local-product-launcher"
           pip install poetry
           poetry install --with test
@@ -204,8 +204,8 @@ jobs:
       - name: Install library, with dev group
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp-private".insteadOf "https://github.com/ansys/ansys-api-acp-private"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-utilities-filetransfer".insteadOf "https://github.com/pyansys/ansys-utilities-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-utilities-filetransfer".insteadOf "https://github.com/ansys/ansys-api-utilities-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-filetransfer".insteadOf "https://github.com/pyansys/ansys-tools-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-tools-filetransfer".insteadOf "https://github.com/ansys/ansys-api-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/pyansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/pyansys/ansys-tools-local-product-launcher"
           pip install poetry
           poetry install --with dev
@@ -220,7 +220,7 @@ jobs:
           poetry run
           ansys-launcher configure ACP docker_compose
           --image_name_pyacp=ghcr.io/pyansys/pyacp-private${{ github.event.inputs.docker_image_suffix }}
-          --image_name_filetransfer=ghcr.io/ansys/utilities-filetransfer:latest
+          --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False
           --overwrite_default

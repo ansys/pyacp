@@ -77,7 +77,7 @@ Configure ACP using the `ansys-launcher <https://local-product-launcher.tools.do
 where ``<launch_mode>`` is one of
 
 * ``direct``: run ACP as a sub-process
-* ``docker_compose``: run ACP in a docker container, using ``docker-compose`` and the `filetransfer service <https://github.com/ansys/ansys-utilities-filetransfer-server>`_ to manage files
+* ``docker_compose``: run ACP in a docker container, using ``docker-compose`` and the `filetransfer service <https://github.com/ansys/ansys-tools-filetransfer-server>`_ to manage files
 
 The ``ansys-launcher`` prompts for the relevant options for each mode.
 
