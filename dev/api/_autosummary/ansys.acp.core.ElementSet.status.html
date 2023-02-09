@@ -50,7 +50,8 @@
     <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="ply_material" href="ansys.acp.core.ModelingPly.ply_material.html" />
+    <link rel="next" title="ansys.acp.core.Rosette" href="ansys.acp.core.Rosette.html" />
+    <link rel="prev" title="name" href="ansys.acp.core.ElementSet.name.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="en">
   </head>
@@ -134,14 +135,14 @@
 
 <!-- NOTE: this JS must live here (not in our global JS file) because it relies
      on being processed by Jinja before it is run (specifically for replacing
-     variables api/_autosummary/ansys.acp.core.ModelingPly.status and {'json_url': 'https://acp.docs.pyansys.com/release/versions.json', 'version_match': 'dev'}.
+     variables api/_autosummary/ansys.acp.core.ElementSet.status and {'json_url': 'https://acp.docs.pyansys.com/release/versions.json', 'version_match': 'dev'}.
 -->
 
 <script type="text/javascript">
 // Check if corresponding page path exists in other version of docs
 // and, if so, go there instead of the homepage of the other docs version
 function checkPageExistsAndRedirect(event) {
-    const currentFilePath = "api/_autosummary/ansys.acp.core.ModelingPly.status.html",
+    const currentFilePath = "api/_autosummary/ansys.acp.core.ElementSet.status.html",
           tryUrl = event.target.getAttribute("href");
     let otherDocsHomepage = tryUrl.replace(currentFilePath, "");
     $.ajax({
@@ -162,7 +163,7 @@ function checkPageExistsAndRedirect(event) {
 // Populate the version switcher from the JSON config file
 (function () {
     $.getJSON("https://acp.docs.pyansys.com/release/versions.json", function(data, textStatus, jqXHR) {
-        const currentFilePath = "api/_autosummary/ansys.acp.core.ModelingPly.status.html";
+        const currentFilePath = "api/_autosummary/ansys.acp.core.ElementSet.status.html";
         let btn = document.getElementById("version_switcher_button");
         // Set empty strings by default so that these attributes exist and can be used in CSS selectors
         btn.dataset["activeVersionName"] = "";
@@ -257,7 +258,7 @@ function checkPageExistsAndRedirect(event) {
 
           <li class="nav-item nav-item-1"><a href="../index.html" >API reference</a> » </li>
           <li class="nav-item nav-item-2"><a href="../tree_objects.html" >ACP objects</a> » </li>
-          <li class="nav-item nav-item-3"><a href="ansys.acp.core.ModelingPly.html" accesskey="U">ansys.acp.core.ModelingPly</a> » </li>
+          <li class="nav-item nav-item-3"><a href="ansys.acp.core.ElementSet.html" accesskey="U">ansys.acp.core.ElementSet</a> » </li>
         <li class="nav-item nav-item-this"><a href="">status</a></li> 
       </ul>
     </div>
@@ -752,16 +753,16 @@ function checkPageExistsAndRedirect(event) {
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 has-children">
+   <li class="toctree-l2 current active has-children">
     <a class="reference internal" href="ansys.acp.core.ElementSet.html">
      ansys.acp.core.ElementSet
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
     <label for="toctree-checkbox-11">
      <i class="fas fa-chevron-down">
      </i>
     </label>
-    <ul>
+    <ul class="current">
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ElementSet.clone.html">
        clone
@@ -812,8 +813,8 @@ function checkPageExistsAndRedirect(event) {
        name
       </a>
      </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ansys.acp.core.ElementSet.status.html">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
        status
       </a>
      </li>
@@ -1025,16 +1026,16 @@ function checkPageExistsAndRedirect(event) {
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 current active has-children">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="ansys.acp.core.ModelingPly.html">
      ansys.acp.core.ModelingPly
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
     <label for="toctree-checkbox-15">
      <i class="fas fa-chevron-down">
      </i>
     </label>
-    <ul class="current">
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="ansys.acp.core.ModelingPly.clone.html">
        clone
@@ -1100,8 +1101,8 @@ function checkPageExistsAndRedirect(event) {
        ply_material
       </a>
      </li>
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
+     <li class="toctree-l3">
+      <a class="reference internal" href="ansys.acp.core.ModelingPly.status.html">
        status
       </a>
      </li>
@@ -1134,10 +1135,10 @@ function checkPageExistsAndRedirect(event) {
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ansys.acp.core.ModelingPly.status">
+  <a class="reference internal nav-link" href="#ansys.acp.core.ElementSet.status">
    <code class="docutils literal notranslate">
     <span class="pre">
-     ModelingPly.status
+     ElementSet.status
     </span>
    </code>
   </a>
@@ -1164,8 +1165,8 @@ function checkPageExistsAndRedirect(event) {
   <section id="status">
 <h1>status<a class="headerlink" href="#status" title="Permalink to this heading">#</a></h1>
 <dl class="py property">
-<dt class="sig sig-object py" id="ansys.acp.core.ModelingPly.status">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ModelingPly.</span></span><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a></em><a class="headerlink" href="#ansys.acp.core.ModelingPly.status" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="ansys.acp.core.ElementSet.status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ElementSet.</span></span><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a></em><a class="headerlink" href="#ansys.acp.core.ElementSet.status" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 </section>

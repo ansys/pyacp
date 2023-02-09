@@ -40,5 +40,6 @@
       ElementSet.locked
       ElementSet.middle_offset
       ElementSet.name
+      ElementSet.status
    
    

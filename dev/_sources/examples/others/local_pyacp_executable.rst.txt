@@ -2,7 +2,7 @@
 
 .. _ref_example_local_executable:
 
-Local pyACP Executable
+Local PyACP executable
 ----------------------
 
 This example demonstrates running the PyACP server from a local executable instead of in a
@@ -10,14 +10,14 @@ Docker container. The gRPC server of ACP is delivered with the unified installer
 It can be beneficial to work with the local executable if the data is already stored locally
 or to reduce the latency between the server and client.
 
-In this example, pyACP is used to add a lay-up to a MAPDL model (CDB file)
+In this example, PyACP is used to add a lay-up to a MAPDL model (CDB file)
 which already contains the material properties, boundary conditions and solution settings.
 The MAPDL model with lay-up definition is solved with pyMAPDL.
 Finally, the result is post-processed with pyDPF Composites to run a composite failure analysis.
 
 The first step is to specify the license server and the version of the unified installer.
 These environment variables are used within the Python script and by the gRPC servers
-(ACP, MAPDL and DPF) for the license checkout.
+(ACP, MAPDL, and DPF) for the license checkout.
 
 .. code-block:: bash
 
@@ -40,7 +40,7 @@ and ansys-mapdl) are installed before launching Python.
 
     acp_grpc_exe = os.path.join(os.environ[AWP_ROOT_KEY], "ACP", "acp_grpcserver.exe")
 
-    # Launch gRPC server and pyACP client
+    # Launch gRPC server and PyACP client
     import ansys.acp.core as pyacp
 
     pyacp_server = pyacp.launch_acp(
@@ -53,7 +53,7 @@ and ansys-mapdl) are installed before launching Python.
     pyacp_client = pyacp.Client(pyacp_server)
 
     """
-    Modelling of The Composite Lay-up with pyACP
+    Modelling of The Composite Lay-up with PyACP
     """
 
     # Import the model from MAPDL input file (CDB)
@@ -217,7 +217,7 @@ and ansys-mapdl) are installed before launching Python.
 .. figure:: ./../../images/class40_grpc_irf.png
     :width: 300pt
 
-    Total deformations (usum)
+    Total deformations (``usum``)
 
 .. code-block:: python
 

@@ -4,7 +4,7 @@
     here.
 
 =============================
-PyACP Documentation |version|
+PyACP documentation |version|
 =============================
 
 .. include:: ../../README.rst

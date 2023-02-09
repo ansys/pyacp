@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Local pyACP Executable &#8212; PyACP</title>
+    <title>Local PyACP executable &#8212; PyACP</title>
     
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -108,7 +108,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../api/index.html">
-  API Reference
+  API reference
  </a>
 </li>
 
@@ -254,7 +254,7 @@ function checkPageExistsAndRedirect(event) {
         <li class="nav-item nav-item-0"><a href="../../index.html">PyACP</a> » </li>
     
 
-        <li class="nav-item nav-item-this"><a href="">Local pyACP Executable</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Local PyACP executable</a></li> 
       </ul>
     </div>
         </div>
@@ -312,18 +312,18 @@ function checkPageExistsAndRedirect(event) {
               <article class="bd-article" role="main">
                 
   <section id="local-pyacp-executable">
-<span id="ref-example-local-executable"></span><h1>Local pyACP Executable<a class="headerlink" href="#local-pyacp-executable" title="Permalink to this heading">#</a></h1>
+<span id="ref-example-local-executable"></span><h1>Local PyACP executable<a class="headerlink" href="#local-pyacp-executable" title="Permalink to this heading">#</a></h1>
 <p>This example demonstrates running the PyACP server from a local executable instead of in a
 Docker container. The gRPC server of ACP is delivered with the unified installer.
 It can be beneficial to work with the local executable if the data is already stored locally
 or to reduce the latency between the server and client.</p>
-<p>In this example, pyACP is used to add a lay-up to a MAPDL model (CDB file)
+<p>In this example, PyACP is used to add a lay-up to a MAPDL model (CDB file)
 which already contains the material properties, boundary conditions and solution settings.
 The MAPDL model with lay-up definition is solved with pyMAPDL.
 Finally, the result is post-processed with pyDPF Composites to run a composite failure analysis.</p>
 <p>The first step is to specify the license server and the version of the unified installer.
 These environment variables are used within the Python script and by the gRPC servers
-(ACP, MAPDL and DPF) for the license checkout.</p>
+(ACP, MAPDL, and DPF) for the license checkout.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span><span class="nv">ANSYS_VERSION</span><span class="o">=</span><span class="m">231</span>
 <span class="nb">set</span><span class="w"> </span><span class="nv">ANSYSLMD_LICENSE_FILE</span><span class="o">=</span><span class="m">1055</span>@my_license_server
 </pre></div>
@@ -341,7 +341,7 @@ and ansys-mapdl) are installed before launching Python.</p>
 
 <span class="n">acp_grpc_exe</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">AWP_ROOT_KEY</span><span class="p">],</span> <span class="s2">&quot;ACP&quot;</span><span class="p">,</span> <span class="s2">&quot;acp_grpcserver.exe&quot;</span><span class="p">)</span>
 
-<span class="c1"># Launch gRPC server and pyACP client</span>
+<span class="c1"># Launch gRPC server and PyACP client</span>
 <span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
 
 <span class="n">pyacp_server</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">(</span>
@@ -354,7 +354,7 @@ and ansys-mapdl) are installed before launching Python.</p>
 <span class="n">pyacp_client</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">pyacp_server</span><span class="p">)</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Modelling of The Composite Lay-up with pyACP</span>
+<span class="sd">Modelling of The Composite Lay-up with PyACP</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># Import the model from MAPDL input file (CDB)</span>
@@ -519,7 +519,7 @@ and ansys-mapdl) are installed before launching Python.</p>
 <figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../../_images/class40_grpc_irf.png"><img alt="../../_images/class40_grpc_irf.png" src="../../_images/class40_grpc_irf.png" style="width: 300pt;" /></a>
 <figcaption>
-<p><span class="caption-text">Total deformations (usum)</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Total deformations (<code class="docutils literal notranslate"><span class="pre">usum</span></code>)</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
