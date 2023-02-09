@@ -94,6 +94,11 @@ src_paths = ["doc", "src", "tests"]
 [tool.pydocstyle]
 convention = "numpy"
 
+[tool.codespell]
+skip = '*.cdb'
+ignore-words-list = 'ans,uptodate,notuptodate'
+quiet-level = 3
+
 [tool.mypy]
 python_version = 3.8
 mypy_path = "$MYPY_CONFIG_FILE_DIR/src:$MYPY_CONFIG_FILE_DIR/tests"
