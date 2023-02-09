@@ -1,6 +1,9 @@
 import os
+import pathlib
 import shutil
+import tempfile
 from typing import Any, Optional
+import uuid
 
 from ansys.api.acp.v0 import model_pb2_grpc
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
@@ -28,17 +31,23 @@ class Client:
             self._ft_client: Optional[FileTransferClient] = FileTransferClient(
                 server.channels[ServerKey.FILE_TRANSFER]
             )
+            self._tmp_dir = None
         else:
             self._ft_client = None
+            self._tmp_dir = tempfile.TemporaryDirectory()
 
-    def upload_file(self, local_path: _PATH) -> _PATH:
-        # TODO: find a way to detect local vs. docker (or maybe just get rid of
-        # the pure-docker variant): raise on docker, simply return on local
+    def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
         if self._ft_client is None:
-            # TODO: maybe the local server should have a temporary working directory.
-            # The question then is: how do we let the client know where this is;
-            # or how do we surface the file transfer capability in general?
-            return local_path
+            assert self._tmp_dir is not None
+            # TODO: The '_tmp_dir', and file tracking / up-/download in general
+            # should probably be handled by the local server itself.
+            # For now, we just do it client-side.
+            dest_dir = pathlib.Path(self._tmp_dir.name) / uuid.uuid4().hex
+            dest_dir.mkdir(parents=True)
+            filename = os.path.basename(local_path)
+            res_path = dest_dir / filename
+            shutil.copyfile(local_path, res_path)
+            return pathlib.Path(res_path)
 
         else:
             remote_filename = os.path.basename(local_path)
@@ -46,14 +55,14 @@ class Client:
                 local_filename=str(local_path), remote_filename=str(remote_filename)
             )
             # TODO: turn this into a 'file reference' object
-            return remote_filename
+            return pathlib.PurePosixPath(remote_filename)
 
-    def download_file(self, remote_filename: str, local_path: _PATH) -> None:
+    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
         if self._ft_client is None:
-            shutil.copyfile(remote_filename, str(local_path))
+            shutil.copyfile(remote_filename, local_path)
         else:
             self._ft_client.download_file(
-                remote_filename=remote_filename, local_filename=str(local_path)
+                remote_filename=str(remote_filename), local_filename=str(local_path)
             )
 
     def import_model(

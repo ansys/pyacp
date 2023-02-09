@@ -1,59 +1,35 @@
 import pytest
 
+from common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
-def test_create_modeling_group(load_model_from_tempfile):
-    """Test the creation of Modeling Groups."""
+
+@pytest.fixture
+def parent_object(load_model_from_tempfile):
     with load_model_from_tempfile() as model:
-        mg_names = ["ModelingGroup.1", "ModelingGroup.1", "üñıçよð€"]
-        for ref_name in mg_names:
-            modeling_group = model.create_modeling_group(name=ref_name)
-            assert modeling_group.name == ref_name
+        yield model
 
 
-def test_collection_access(load_model_from_tempfile):
-    """Basic test of the Model.modeling_groups collection."""
-    # TODO: split into separate tests for each mode of access.
-    with load_model_from_tempfile() as model:
-        model.modeling_groups.clear()
-        assert len(model.modeling_groups) == 0
+@pytest.fixture
+def tree_object(parent_object):
+    return parent_object.create_oriented_selection_set()
 
-        mg_names = ["ModelingGroup.1", "ModelingGroup.1", "üñıçよð€"]
-        mg_ids = []
-        for ref_name in mg_names:
-            modeling_group = model.create_modeling_group(name=ref_name)
-            assert modeling_group.id not in mg_ids  # check uniqueness
-            mg_ids.append(modeling_group.id)
 
-        assert len(model.modeling_groups) == len(mg_names)
+class TestModelingGroup(NoLockedMixin, TreeObjectTester):
+    COLLECTION_NAME = "modeling_groups"
+    DEFAULT_PROPERTIES = {}
+    CREATE_METHOD_NAME = "create_modeling_group"
 
-        assert set(mg_names) == {mg.name for mg in model.modeling_groups.values()}
-        assert set(mg_ids) == set(model.modeling_groups) == set(model.modeling_groups.keys())
-
-        for id in mg_ids:
-            assert id in model.modeling_groups
-
-        mg_names_fromitems = []
-        mg_ids_fromitems = []
-        for key, value in model.modeling_groups.items():
-            mg_names_fromitems.append(value.name)
-            mg_ids_fromitems.append(key)
-            assert key == value.id
-
-        for name in mg_names:
-            assert name in mg_names_fromitems
-        for id in mg_ids:
-            assert id in mg_ids_fromitems
-
-        REF_ID = mg_ids[0]
-        INEXISTENT_ID = "Inexistent ID"
-
-        assert model.modeling_groups[REF_ID].id == REF_ID
-        assert model.modeling_groups.get(REF_ID).id == REF_ID
-
-        with pytest.raises(KeyError):
-            model.modeling_groups[INEXISTENT_ID]
-        assert model.modeling_groups.get(INEXISTENT_ID) is None
-
-        del model.modeling_groups[REF_ID]
-        with pytest.raises(KeyError):
-            model.modeling_groups[REF_ID]
+    @staticmethod
+    @pytest.fixture
+    def object_properties(parent_object):
+        model = parent_object
+        element_sets = [model.create_element_set() for _ in range(3)]
+        rosettes = [model.create_rosette() for _ in range(4)]
+        return ObjectPropertiesToTest(
+            read_write=[
+                ("name", "new_name"),
+            ],
+            read_only=[
+                ("id", "some_id"),
+            ],
+        )

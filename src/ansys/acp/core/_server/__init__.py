@@ -1,6 +1,5 @@
 from .common import ControllableServerProtocol, LaunchMode, ServerKey, ServerProtocol
 from .direct import DirectLaunchConfig
-from .docker import DockerLaunchConfig
 from .docker_compose import DockerComposeLaunchConfig
 from .launch import launch_acp
 
@@ -11,6 +10,5 @@ __all__ = [
     "ServerProtocol",
     "ControllableServerProtocol",
     "DirectLaunchConfig",
-    "DockerLaunchConfig",
     "DockerComposeLaunchConfig",
 ]
