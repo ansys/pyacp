@@ -19,11 +19,17 @@ on:
         required: false
 
 env:
-  DOCUMENTATION_CNAME: 'acp.docs.pyansys.com'
+  MAIN_PYTHON_VERSION: "3.8"
+  PACKAGE_NAME: "ansys-acp-core"
+  DOCUMENTATION_CNAME: "acp.docs.pyansys.com"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  style:
-    name: Pre-commit Check
+  code-style:
+    name: "Pre-commit Check"
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -33,10 +39,10 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
       - name: Pip cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/pip
           key: pip-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-precommit
@@ -62,6 +68,14 @@ jobs:
         run: |
           poetry run pre-commit run --all-files || ( git status --short ; git diff ; exit 1 )
 
+  doc-style:
+    name: "Documentation style"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pyansys/actions/doc-style@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
   build:
     name: Build packages
     runs-on: ubuntu-latest
@@ -72,10 +86,10 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
       - name: Pip cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/pip
           key: pip-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-precommit
@@ -95,7 +109,7 @@ jobs:
           twine check dist/*
 
       - name: Upload packages
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Packages
           path: dist/
@@ -107,7 +121,7 @@ jobs:
     timeout-minutes: 30
     strategy:
       matrix:
-        python-version: ['3.8', '3.10']
+        python-version: ["3.8", "3.10"]
 
     steps:
       - uses: actions/checkout@v3
@@ -118,7 +132,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Pip cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/pip
           key: pip-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}-testing
@@ -153,8 +167,7 @@ jobs:
           poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: 'ghcr.io/pyansys/pyacp-private${{ github.event.inputs.docker_image_suffix }}'
-
+          IMAGE_NAME: "ghcr.io/pyansys/pyacp-private${{ github.event.inputs.docker_image_suffix }}"
 
   docs:
     name: Build Documentation
@@ -166,10 +179,10 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
       - name: Pip cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/pip
           key: pip-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-docs
@@ -229,7 +242,7 @@ jobs:
           docker-compose -f ./docker-compose/docker-compose-extras.yaml down -v
 
       - name: Upload HTML Documentation
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: documentation-html
           path: doc/build/html
@@ -249,7 +262,7 @@ jobs:
         run: xvfb-run poetry run make -C doc pdf
 
       - name: Upload PDF Documentation
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Documentation-pdf
           path: doc/build/latex/ansys-acp-core.pdf
