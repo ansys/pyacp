@@ -1,0 +1,6 @@
+defining\_node\_labels
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: EdgeSet.defining_node_labels

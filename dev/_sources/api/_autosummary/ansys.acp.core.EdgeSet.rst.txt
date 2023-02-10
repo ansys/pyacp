@@ -1,0 +1,48 @@
+﻿ansys.acp.core.EdgeSet
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: EdgeSet
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      EdgeSet.clone
+      
+      
+      EdgeSet.delete
+      
+      
+      EdgeSet.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      EdgeSet.COLLECTION_LABEL
+      EdgeSet.GRPC_PROPERTIES
+      EdgeSet.defining_node_labels
+      EdgeSet.edge_set_type
+      EdgeSet.element_set
+      EdgeSet.id
+      EdgeSet.limit_angle
+      EdgeSet.locked
+      EdgeSet.name
+      EdgeSet.origin
+      EdgeSet.status
+   
+   

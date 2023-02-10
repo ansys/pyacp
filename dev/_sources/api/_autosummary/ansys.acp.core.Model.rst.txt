@@ -18,6 +18,9 @@
       Model.clone
       
       
+      Model.create_edge_set
+      
+      
       Model.create_element_set
       
       
@@ -73,6 +76,7 @@
       Model.GRPC_PROPERTIES
       Model.angle_tolerance
       Model.draping_offset_correction
+      Model.edge_sets
       Model.element_sets
       Model.fabrics
       Model.materials
