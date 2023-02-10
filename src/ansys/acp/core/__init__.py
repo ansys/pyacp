@@ -3,6 +3,8 @@ import importlib.metadata
 from ._client import Client
 from ._server import DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode, launch_acp
 from ._tree_objects import (
+    EdgeSet,
+    EdgeSetType,
     ElementSet,
     Fabric,
     Material,
@@ -28,6 +30,8 @@ __all__ = [
     "Material",
     "Fabric",
     "ElementSet",
+    "EdgeSet",
+    "EdgeSetType",
     "Rosette",
     "OrientedSelectionSet",
     "ModelingGroup",

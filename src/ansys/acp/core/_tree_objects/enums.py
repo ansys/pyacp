@@ -1,6 +1,7 @@
 from ansys.api.acp.v0 import (
     cut_off_material_pb2,
     drop_off_material_pb2,
+    edge_set_pb2,
     enum_types_pb2,
     ply_material_pb2,
     unit_system_pb2,
@@ -52,6 +53,12 @@ __all__ = [
 ) = wrap_to_string_enum(
     "DrapingMaterialType", ply_material_pb2.DrapingMaterialType, module=__name__
 )
+
+(
+    EdgeSetType,
+    edge_set_type_to_pb,
+    edge_set_type_from_pb,
+) = wrap_to_string_enum("EdgeSetType", edge_set_pb2.EdgeSetType, module=__name__)
 
 (
     PlyType,

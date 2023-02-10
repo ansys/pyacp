@@ -5,6 +5,7 @@ from typing import Iterable, cast
 from grpc import Channel
 
 from ansys.api.acp.v0 import (
+    edge_set_pb2_grpc,
     element_set_pb2_grpc,
     fabric_pb2_grpc,
     material_pb2,
@@ -27,6 +28,7 @@ from .._grpc_helpers.property_helper import (
 from .._typing_helper import PATH as _PATH
 from .._utils.resource_paths import join as rp_join
 from .base import TreeObject
+from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import UnitSystemType, unit_system_type_from_pb, unit_system_type_to_pb
 from .fabric import Fabric
@@ -218,6 +220,7 @@ class Model(TreeObject):
     create_element_set, element_sets = define_mapping(
         ElementSet, element_set_pb2_grpc.ObjectServiceStub
     )
+    create_edge_set, edge_sets = define_mapping(EdgeSet, edge_set_pb2_grpc.ObjectServiceStub)
     create_fabric, fabrics = define_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
     create_material, materials = define_mapping(Material, material_pb2_grpc.ObjectServiceStub)
     create_rosette, rosettes = define_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
