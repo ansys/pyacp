@@ -109,7 +109,7 @@ jobs:
           twine check dist/*
 
       - name: Upload packages
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Packages
           path: dist/
@@ -242,7 +242,7 @@ jobs:
           docker-compose -f ./docker-compose/docker-compose-extras.yaml down -v
 
       - name: Upload HTML Documentation
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: documentation-html
           path: doc/build/html
@@ -262,7 +262,7 @@ jobs:
         run: xvfb-run poetry run make -C doc pdf
 
       - name: Upload PDF Documentation
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Documentation-pdf
           path: doc/build/latex/ansys-acp-core.pdf
