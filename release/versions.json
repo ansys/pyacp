@@ -1,6 +1,4 @@
-[
-    {
-        "version": "dev",
-        "url":"https://acp.docs.pyansys.com/dev/"
-    },
-]
+[{
+	"version": "dev",
+	"url": "https://acp.docs.pyansys.com/dev/"
+}]
