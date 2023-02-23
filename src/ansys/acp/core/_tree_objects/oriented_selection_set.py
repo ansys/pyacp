@@ -4,13 +4,13 @@ from typing import Iterable, Sequence
 
 from ansys.api.acp.v0 import oriented_selection_set_pb2, oriented_selection_set_pb2_grpc
 
-from .._grpc_helpers.linked_object_list import define_linked_object_list
-from .._grpc_helpers.property_helper import (
+from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
+from ._grpc_helpers.linked_object_list import define_linked_object_list
+from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
-from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .base import CreatableTreeObject, IdTreeObject
 from .element_set import ElementSet
 from .enums import (

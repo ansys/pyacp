@@ -4,30 +4,43 @@ via gRPC Put / Get calls.
 """
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod, abstractproperty
 import textwrap
-from typing import Any, Iterable, TypeVar, cast
+from typing import Any, Iterable, Protocol, TypeVar, cast
 
 from grpc import Channel
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ResourcePath
 
-from .._grpc_helpers.linked_object_helpers import linked_path_fields, unlink_objects
-from .._grpc_helpers.property_helper import (
+from .._utils.resource_paths import common_path
+from .._utils.resource_paths import join as _rp_join
+from .._utils.resource_paths import to_parts
+from ._grpc_helpers.linked_object_helpers import linked_path_fields, unlink_objects
+from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
-from .._grpc_helpers.protocols import CreatableResourceStub, CreateRequest, ObjectInfo, ResourceStub
-from .._utils.resource_paths import common_path
-from .._utils.resource_paths import join as _rp_join
-from .._utils.resource_paths import to_parts
+from ._grpc_helpers.protocols import CreatableResourceStub, CreateRequest, ObjectInfo, ResourceStub
+
+
+class TreeObjectBase(Protocol):
+    _pb_object: ObjectInfo
+
+    @abstractmethod
+    def _get_stub(self) -> ResourceStub:
+        ...
+
+    @abstractproperty
+    def _is_stored(self) -> bool:
+        ...
+
 
 _T = TypeVar("_T", bound="TreeObject")
 
 
 @mark_grpc_properties
-class TreeObject(ABC):
+class TreeObject(TreeObjectBase, ABC):
     """
     Base class for ACP tree objects.
     """

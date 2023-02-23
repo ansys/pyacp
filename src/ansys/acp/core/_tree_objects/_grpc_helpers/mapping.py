@@ -10,8 +10,8 @@ from grpc import Channel
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 
-from .._tree_objects.base import CreatableTreeObject, TreeObject
-from .._utils.resource_paths import join as _rp_join
+from ..._utils.resource_paths import join as _rp_join
+from ..base import CreatableTreeObject, TreeObject
 from .protocols import ObjectInfo, ResourceStub
 
 ValueT = TypeVar("ValueT", bound=CreatableTreeObject)

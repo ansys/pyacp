@@ -11,7 +11,7 @@ from ansys.api.acp.v0.base_pb2 import GetRequest, ResourcePath
 
 if TYPE_CHECKING:
     # Causes a circular import if imported at runtime
-    from .._tree_objects.base import TreeObject
+    from ..base import TreeObjectBase, TreeObject
 
 from .protocols import ObjectInfo
 
@@ -53,7 +53,7 @@ def grpc_linked_object_getter(name: str) -> Callable[[TreeObject], Any]:
     def inner(self: TreeObject) -> TreeObject | None:
         #  Import here to avoid circular references. Cannot use the registry before
         #  all the object have been imported.
-        from .._tree_objects.object_registry import object_registry
+        from ..object_registry import object_registry
 
         if not self._is_stored:
             raise Exception("Cannot get linked object from unstored object")
@@ -74,13 +74,13 @@ def grpc_linked_object_getter(name: str) -> Callable[[TreeObject], Any]:
     return inner
 
 
-def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[TreeObject], Any]:
+def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[TreeObjectBase], Any]:
     """
     Creates a getter method which obtains the server object via the gRPC
     Get endpoint.
     """
 
-    def inner(self: TreeObject) -> Any:
+    def inner(self: TreeObjectBase) -> Any:
         if self._is_stored:
             self._pb_object = self._get_stub().Get(
                 GetRequest(resource_path=self._pb_object.info.resource_path)
@@ -90,13 +90,15 @@ def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[Tr
     return inner
 
 
-def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[TreeObject, Any], None]:
+def grpc_data_setter(
+    name: str, to_protobuf: _TO_PROTOBUF_T
+) -> Callable[[TreeObjectBase, Any], None]:
     """
     Creates a setter method which updates the server object via the gRPC
     Put endpoint.
     """
 
-    def inner(self: TreeObject, value: Any) -> None:
+    def inner(self: TreeObjectBase, value: Any) -> None:
         if self._is_stored:
             self._pb_object = self._get_stub().Get(
                 GetRequest(resource_path=self._pb_object.info.resource_path)

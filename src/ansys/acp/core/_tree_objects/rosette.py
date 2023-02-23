@@ -4,12 +4,12 @@ from typing import Iterable
 
 from ansys.api.acp.v0 import rosette_pb2, rosette_pb2_grpc
 
-from .._grpc_helpers.property_helper import (
+from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
+from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
-from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register

@@ -2,12 +2,12 @@ from __future__ import annotations
 
 from typing import Any, Iterable
 
-from ansys.acp.core._grpc_helpers.property_helper import mark_grpc_properties
-from ansys.acp.core._tree_objects.modeling_ply import ModelingPly
 from ansys.api.acp.v0 import modeling_group_pb2, modeling_group_pb2_grpc, modeling_ply_pb2_grpc
 
-from .._grpc_helpers.mapping import define_mapping
+from ._grpc_helpers.mapping import define_mapping
+from ._grpc_helpers.property_helper import mark_grpc_properties
 from .base import CreatableTreeObject, IdTreeObject
+from .modeling_ply import ModelingPly
 from .object_registry import register
 
 __all__ = ["ModelingGroup"]

@@ -6,7 +6,7 @@ import numpy as np
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
-from .._tree_objects.base import CreatableTreeObject, TreeObject
+from ..base import CreatableTreeObject, TreeObject
 from .property_helper import grpc_data_getter, grpc_data_setter
 
 ValueT = TypeVar("ValueT", bound=CreatableTreeObject)

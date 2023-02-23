@@ -7,7 +7,7 @@ from ansys.api.acp.v0 import (
     unit_system_pb2,
 )
 
-from .._grpc_helpers.enum_wrapper import wrap_to_string_enum
+from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
 
 __all__ = [
     "StatusType",
