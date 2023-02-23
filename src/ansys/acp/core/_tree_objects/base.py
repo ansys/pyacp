@@ -4,11 +4,12 @@ via gRPC Put / Get calls.
 """
 from __future__ import annotations
 
-from abc import ABC, abstractmethod, abstractproperty
+from abc import abstractmethod
 import textwrap
-from typing import Any, Iterable, Protocol, TypeVar, cast
+from typing import Any, Iterable, TypeVar, cast
 
 from grpc import Channel
+from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ResourcePath
 
@@ -21,26 +22,20 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
-from ._grpc_helpers.protocols import CreatableResourceStub, CreateRequest, ObjectInfo, ResourceStub
-
-
-class TreeObjectBase(Protocol):
-    _pb_object: ObjectInfo
-
-    @abstractmethod
-    def _get_stub(self) -> ResourceStub:
-        ...
-
-    @abstractproperty
-    def _is_stored(self) -> bool:
-        ...
-
+from ._grpc_helpers.protocols import (
+    CreatableResourceStub,
+    CreateRequest,
+    GrpcObjectContainer,
+    ObjectInfo,
+    OwningGrpcObjectContainer,
+    ResourceStub,
+)
 
 _T = TypeVar("_T", bound="TreeObject")
 
 
 @mark_grpc_properties
-class TreeObject(TreeObjectBase, ABC):
+class TreeObject(OwningGrpcObjectContainer):
     """
     Base class for ACP tree objects.
     """
@@ -49,7 +44,6 @@ class TreeObject(TreeObjectBase, ABC):
 
     COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: type[ObjectInfo]
-    GRPC_PROPERTIES: tuple[str, ...]
 
     def __init__(self: TreeObject, name: str = "") -> None:
         self._channel_store: Channel | None = None
@@ -100,7 +94,7 @@ class TreeObject(TreeObjectBase, ABC):
         return instance
 
     @classmethod
-    def _from_resource_path(cls: type[_T], resource_path: ResourcePath, channel: Channel) -> _T:
+    def _from_resource_path(cls, resource_path: ResourcePath, channel: Channel) -> Self:
         instance = cls()
         instance._pb_object.info.resource_path.CopyFrom(resource_path)
         instance._channel_store = channel
@@ -157,7 +151,7 @@ class TreeObject(TreeObjectBase, ABC):
 
 
 @mark_grpc_properties
-class CreatableTreeObject(TreeObject, ABC):
+class CreatableTreeObject(TreeObject):
     __slots__: Iterable[str] = tuple()
     CREATE_REQUEST_TYPE: type[CreateRequest]
 
@@ -199,7 +193,7 @@ class CreatableTreeObject(TreeObject, ABC):
 
 
 @mark_grpc_properties
-class IdTreeObject(TreeObject, ABC):
+class IdTreeObject(TreeObject):
     """Implements the 'id' attribute for tree objects."""
 
     __slots__: Iterable[str] = tuple()
@@ -208,3 +202,25 @@ class IdTreeObject(TreeObject, ABC):
 
     def __repr__(self) -> str:
         return f"<{type(self).__name__} with id '{self.id}'>"
+
+
+class NestedGrpcObject(GrpcObjectContainer):
+    __slots__ = ("_parent_object",)
+
+    def __init__(self, parent_object: GrpcObjectContainer):
+        self._parent_object: GrpcObjectContainer = parent_object
+
+    @property
+    def _pb_object(self) -> ObjectInfo:
+        return self._parent_object._pb_object
+
+    @_pb_object.setter
+    def _pb_object(self, value: ObjectInfo) -> None:
+        self._parent_object._pb_object = value
+
+    def _get_stub(self) -> ResourceStub:
+        return self._parent_object._get_stub()
+
+    @property
+    def _is_stored(self) -> bool:
+        return self._parent_object._is_stored

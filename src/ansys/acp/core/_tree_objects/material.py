@@ -4,13 +4,12 @@ from typing import Iterable
 
 from ansys.api.acp.v0 import material_pb2, material_pb2_grpc
 
-from ._grpc_helpers.nested_object import NestedGrpcObject
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
-from .base import CreatableTreeObject, IdTreeObject
+from .base import CreatableTreeObject, IdTreeObject, NestedGrpcObject
 from .enums import PlyType, ply_type_from_pb, ply_type_to_pb, status_type_from_pb
 from .object_registry import register
 
@@ -21,7 +20,10 @@ __all__ = ["Material"]
 # property sets to all-zero. The same should be done here.
 
 
+@mark_grpc_properties
 class DensityPropertySet(NestedGrpcObject):
+    GRPC_PROPERTIES = tuple()
+
     rho = grpc_data_property(
         "properties.property_sets.density",
         to_protobuf=lambda x: material_pb2.DensityPropertySet(

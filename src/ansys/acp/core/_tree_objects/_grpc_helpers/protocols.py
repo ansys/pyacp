@@ -4,6 +4,7 @@ from typing import Protocol
 
 from google.protobuf.message import Message
 import grpc
+from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import (
     BasicInfo,
@@ -12,6 +13,7 @@ from ansys.api.acp.v0.base_pb2 import (
     Empty,
     GetRequest,
     ListRequest,
+    ResourcePath,
 )
 
 
@@ -57,4 +59,27 @@ class ResourceStub(Protocol):
 
 class CreatableResourceStub(ResourceStub, Protocol):
     def Create(self, request: CreateRequest) -> ObjectInfo:
+        ...
+
+
+class GrpcObjectContainer(Protocol):
+    GRPC_PROPERTIES: tuple[str, ...]
+    _pb_object: ObjectInfo
+
+    # @abstractmethod
+    def _get_stub(self) -> ResourceStub:
+        ...
+
+    @property
+    def _is_stored(self) -> bool:
+        ...
+
+
+class OwningGrpcObjectContainer(GrpcObjectContainer, Protocol):
+    @property
+    def _channel(self) -> grpc.Channel:
+        ...
+
+    @classmethod
+    def _from_resource_path(cls, resource_path: ResourcePath, channel: grpc.Channel) -> Self:
         ...
