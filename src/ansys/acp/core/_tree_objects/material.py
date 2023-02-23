@@ -9,7 +9,7 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
-from .base import CreatableTreeObject, IdTreeObject, NestedGrpcObject
+from .base import CreatableTreeObject, IdTreeObject, TreeObjectAttribute
 from .enums import PlyType, ply_type_from_pb, ply_type_to_pb, status_type_from_pb
 from .object_registry import register
 
@@ -21,7 +21,7 @@ __all__ = ["Material"]
 
 
 @mark_grpc_properties
-class DensityPropertySet(NestedGrpcObject):
+class DensityPropertySet(TreeObjectAttribute):
     GRPC_PROPERTIES = tuple()
 
     rho = grpc_data_property(
@@ -59,7 +59,7 @@ class Material(CreatableTreeObject, IdTreeObject):
         self.density.rho = 0.0
         # TODO: set engineering constants to zero
 
-        # self.density = NestedGrpcObject(parent_object=self)
+        # self.density = TreeObjectAttribute(parent_object=self)
 
     @property
     def density(self) -> DensityPropertySet:

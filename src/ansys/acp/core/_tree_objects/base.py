@@ -25,17 +25,17 @@ from ._grpc_helpers.property_helper import (
 from ._grpc_helpers.protocols import (
     CreatableResourceStub,
     CreateRequest,
-    GrpcObjectContainer,
+    GrpcObject,
     ObjectInfo,
-    OwningGrpcObjectContainer,
     ResourceStub,
+    RootGrpcObject,
 )
 
 _T = TypeVar("_T", bound="TreeObject")
 
 
 @mark_grpc_properties
-class TreeObject(OwningGrpcObjectContainer):
+class TreeObject(RootGrpcObject):
     """
     Base class for ACP tree objects.
     """
@@ -204,11 +204,11 @@ class IdTreeObject(TreeObject):
         return f"<{type(self).__name__} with id '{self.id}'>"
 
 
-class NestedGrpcObject(GrpcObjectContainer):
+class TreeObjectAttribute(GrpcObject):
     __slots__ = ("_parent_object",)
 
-    def __init__(self, parent_object: GrpcObjectContainer):
-        self._parent_object: GrpcObjectContainer = parent_object
+    def __init__(self, parent_object: GrpcObject):
+        self._parent_object: GrpcObject = parent_object
 
     @property
     def _pb_object(self) -> ObjectInfo:

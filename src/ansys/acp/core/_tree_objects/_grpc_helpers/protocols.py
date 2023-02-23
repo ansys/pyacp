@@ -62,7 +62,7 @@ class CreatableResourceStub(ResourceStub, Protocol):
         ...
 
 
-class GrpcObjectContainer(Protocol):
+class GrpcObject(Protocol):
     GRPC_PROPERTIES: tuple[str, ...]
     _pb_object: ObjectInfo
 
@@ -75,7 +75,7 @@ class GrpcObjectContainer(Protocol):
         ...
 
 
-class OwningGrpcObjectContainer(GrpcObjectContainer, Protocol):
+class RootGrpcObject(GrpcObject, Protocol):
     @property
     def _channel(self) -> grpc.Channel:
         ...

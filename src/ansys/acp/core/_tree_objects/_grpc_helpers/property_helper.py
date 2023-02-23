@@ -9,7 +9,7 @@ from typing import Any, Callable, cast
 
 from ansys.api.acp.v0.base_pb2 import GetRequest, ResourcePath
 
-from .protocols import GrpcObjectContainer, ObjectInfo, OwningGrpcObjectContainer
+from .protocols import GrpcObject, ObjectInfo, RootGrpcObject
 
 _TO_PROTOBUF_T = Callable[[Any], Any]
 _FROM_PROTOBUF_T = Callable[[Any], Any]
@@ -24,11 +24,11 @@ class _exposed_grpc_property(property):
     pass
 
 
-def mark_grpc_properties(cls: type[GrpcObjectContainer]) -> type[GrpcObjectContainer]:
+def mark_grpc_properties(cls: type[GrpcObject]) -> type[GrpcObject]:
     props: list[str] = []
     for base_cls in reversed(cls.__bases__):
         if hasattr(base_cls, "GRPC_PROPERTIES"):
-            base_cls = cast("type[GrpcObjectContainer]", base_cls)
+            base_cls = cast("type[GrpcObject]", base_cls)
             props.extend(base_cls.GRPC_PROPERTIES)
     for key, value in vars(cls).items():
         if isinstance(value, _exposed_grpc_property):
@@ -41,12 +41,12 @@ def mark_grpc_properties(cls: type[GrpcObjectContainer]) -> type[GrpcObjectConta
     return cls
 
 
-def grpc_linked_object_getter(name: str) -> Callable[[OwningGrpcObjectContainer], Any]:
+def grpc_linked_object_getter(name: str) -> Callable[[RootGrpcObject], Any]:
     """
     Creates a getter method which obtains the linked server object
     """
 
-    def inner(self: OwningGrpcObjectContainer) -> OwningGrpcObjectContainer | None:
+    def inner(self: RootGrpcObject) -> RootGrpcObject | None:
         #  Import here to avoid circular references. Cannot use the registry before
         #  all the object have been imported.
         from ..object_registry import object_registry
@@ -63,22 +63,20 @@ def grpc_linked_object_getter(name: str) -> Callable[[OwningGrpcObjectContainer]
         if object_resource_path.value == "":
             return None
         resource_type = object_resource_path.value.split("/")[::2][-1]
-        resource_class: type[OwningGrpcObjectContainer] = object_registry[resource_type]
+        resource_class: type[RootGrpcObject] = object_registry[resource_type]
 
         return resource_class._from_resource_path(object_resource_path, self._channel)
 
     return inner
 
 
-def grpc_data_getter(
-    name: str, from_protobuf: _FROM_PROTOBUF_T
-) -> Callable[[GrpcObjectContainer], Any]:
+def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[GrpcObject], Any]:
     """
     Creates a getter method which obtains the server object via the gRPC
     Get endpoint.
     """
 
-    def inner(self: GrpcObjectContainer) -> Any:
+    def inner(self: GrpcObject) -> Any:
         if self._is_stored:
             self._pb_object = self._get_stub().Get(
                 GetRequest(resource_path=self._pb_object.info.resource_path)
@@ -88,15 +86,13 @@ def grpc_data_getter(
     return inner
 
 
-def grpc_data_setter(
-    name: str, to_protobuf: _TO_PROTOBUF_T
-) -> Callable[[GrpcObjectContainer, Any], None]:
+def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[GrpcObject, Any], None]:
     """
     Creates a setter method which updates the server object via the gRPC
     Put endpoint.
     """
 
-    def inner(self: GrpcObjectContainer, value: Any) -> None:
+    def inner(self: GrpcObject, value: Any) -> None:
         if self._is_stored:
             self._pb_object = self._get_stub().Get(
                 GetRequest(resource_path=self._pb_object.info.resource_path)
