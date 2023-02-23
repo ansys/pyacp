@@ -1,5 +1,5 @@
-﻿ansys.acp.core.Fabric
-=====================
+﻿Fabric
+======
 
 .. currentmodule:: ansys.acp.core
 

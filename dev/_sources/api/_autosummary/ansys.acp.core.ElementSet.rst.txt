@@ -1,5 +1,5 @@
-﻿ansys.acp.core.ElementSet
-=========================
+﻿ElementSet
+==========
 
 .. currentmodule:: ansys.acp.core
 
