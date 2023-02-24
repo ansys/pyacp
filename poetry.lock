@@ -130,21 +130,23 @@ test = ["pytest (>=7.1.2,<8.0.0)", "pytest-cov (>=3.0.0,<4.0.0)"]
 
 [[package]]
 name = "ansys-dpf-core"
-version = "0.7.2"
-description = "DPF Python client"
+version = "0.7.3"
+description = "Data Processing Framework - Python Core"
 category = "main"
 optional = false
-python-versions = ">=3.7.*,<4.0"
+python-versions = ">=3.7, <4"
 files = [
-    {file = "ansys-dpf-core-0.7.2.tar.gz", hash = "sha256:6d63b69f496e08978ab74c1512245fe9f253694549a79cb02ce32dcf7a518c42"},
-    {file = "ansys_dpf_core-0.7.2-py3-none-any.whl", hash = "sha256:7d25c5009312d1c9a0683f049ccf78a99e330965ea7b23d2536d84c2400fd367"},
+    {file = "ansys-dpf-core-0.7.3.tar.gz", hash = "sha256:99cf1f0b2f504e3b58c6746b391412ae793367f2e16fc0502ad7a7454f961731"},
+    {file = "ansys_dpf_core-0.7.3-py3-none-any.whl", hash = "sha256:f0d3591294652858ee2b0c8bcb1e04868a8fc750ed47d37c5f40df448fe92417"},
 ]
 
 [package.dependencies]
 ansys-dpf-gate = ">=0.3"
-numpy = "<1.24"
+importlib-metadata = ">=4.0"
+numpy = "*"
 packaging = "*"
 psutil = "*"
+setuptools = "*"
 tqdm = "*"
 
 [package.extras]
@@ -1360,7 +1362,7 @@ files = [
 name = "importlib-metadata"
 version = "6.0.0"
 description = "Read metadata from Python packages"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -2755,7 +2757,7 @@ cpu = ["mkl", "psutil"]
 name = "setuptools"
 version = "67.3.2"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
