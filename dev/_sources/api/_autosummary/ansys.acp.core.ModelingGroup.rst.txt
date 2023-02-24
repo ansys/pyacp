@@ -1,5 +1,5 @@
-﻿ansys.acp.core.ModelingGroup
-============================
+﻿ModelingGroup
+=============
 
 .. currentmodule:: ansys.acp.core
 
