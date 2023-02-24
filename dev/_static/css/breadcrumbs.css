@@ -1,13 +1,11 @@
-/* Provided by the Sphinx base theme template at build time,
-styles exclusively for the ansys-sphinx-theme classes. */
-
 @import "ansys-sphinx-theme.css";
 
-/*
-############
-breadcrumbs
-############
-*/
+#breadcrumbs{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 3rem;
+
+}
 
 #breadcrumbs-spacer {
     border-right: 10rem solid var(--pst-color-background);
@@ -15,18 +13,15 @@ breadcrumbs
 
 div.related > ul {
     padding-left: 0;
-    padding-bottom: 1.5rem;
+}
+
+body {
+    padding-top: var(--pst-header-height);
 }
 
 *, :after, :before {
     box-sizing: border-box;
 }
-
-/*
-###########################
-vesrion warning announcement
-############################
-*/
 
 #announcement_msg {
     display: flex;

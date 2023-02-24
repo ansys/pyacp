@@ -1,5 +1,5 @@
-﻿Client
-======
+﻿ansys.acp.core.Client
+=====================
 
 .. currentmodule:: ansys.acp.core
 

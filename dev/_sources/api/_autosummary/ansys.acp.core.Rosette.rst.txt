@@ -1,5 +1,5 @@
-﻿Rosette
-=======
+﻿ansys.acp.core.Rosette
+======================
 
 .. currentmodule:: ansys.acp.core
 

@@ -1,5 +1,5 @@
-﻿EdgeSet
-=======
+﻿ansys.acp.core.EdgeSet
+======================
 
 .. currentmodule:: ansys.acp.core
 

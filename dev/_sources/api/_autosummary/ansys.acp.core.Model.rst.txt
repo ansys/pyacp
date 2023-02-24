@@ -1,5 +1,5 @@
-﻿Model
-=====
+﻿ansys.acp.core.Model
+====================
 
 .. currentmodule:: ansys.acp.core
 

@@ -1,5 +1,5 @@
-﻿LaunchMode
-==========
+﻿ansys.acp.core.LaunchMode
+=========================
 
 .. currentmodule:: ansys.acp.core
 

@@ -1,5 +1,5 @@
-﻿ModelingPly
-===========
+﻿ansys.acp.core.ModelingPly
+==========================
 
 .. currentmodule:: ansys.acp.core
 

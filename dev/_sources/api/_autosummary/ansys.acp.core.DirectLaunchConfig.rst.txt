@@ -1,5 +1,5 @@
-﻿DirectLaunchConfig
-==================
+﻿ansys.acp.core.DirectLaunchConfig
+=================================
 
 .. currentmodule:: ansys.acp.core
 

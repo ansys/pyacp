@@ -1,5 +1,5 @@
-﻿DockerComposeLaunchConfig
-=========================
+﻿ansys.acp.core.DockerComposeLaunchConfig
+========================================
 
 .. currentmodule:: ansys.acp.core
 

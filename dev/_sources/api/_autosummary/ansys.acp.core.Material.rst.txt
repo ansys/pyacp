@@ -1,5 +1,5 @@
-﻿Material
-========
+﻿ansys.acp.core.Material
+=======================
 
 .. currentmodule:: ansys.acp.core
 

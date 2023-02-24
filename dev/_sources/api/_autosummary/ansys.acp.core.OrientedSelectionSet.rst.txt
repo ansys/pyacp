@@ -1,5 +1,5 @@
-﻿OrientedSelectionSet
-====================
+﻿ansys.acp.core.OrientedSelectionSet
+===================================
 
 .. currentmodule:: ansys.acp.core
 
