@@ -63,14 +63,22 @@ class CreatableResourceStub(ResourceStub, Protocol):
         ...
 
 
-class GrpcObject(Protocol):
+class GrpcObjectReadOnly(Protocol):
     GRPC_PROPERTIES: tuple[str, ...]
-    _pb_object: Any
+
+    @property
+    def _pb_object(self) -> Any:
+        ...
 
     def _get(self) -> None:
         ...
 
-    def _put(self) -> None:
+    def _get_if_stored(self) -> None:
+        if self._is_stored:
+            self._get()
+
+    @property
+    def _is_stored(self) -> bool:
         ...
 
     def __str__(self) -> str:
@@ -91,9 +99,22 @@ class GrpcObject(Protocol):
             content = f"\n{textwrap.indent(content, ' ' * 4)}\n"
         return f"{type_name}({content})"
 
+
+class GrpcObject(GrpcObjectReadOnly, Protocol):
     @property
-    def _is_stored(self) -> bool:
+    def _pb_object(self) -> Any:
         ...
+
+    @_pb_object.setter
+    def _pb_object(self, value: Any) -> None:
+        ...
+
+    def _put(self) -> None:
+        ...
+
+    def _put_if_stored(self) -> None:
+        if self._is_stored:
+            self._put()
 
 
 class RootGrpcObject(GrpcObject, Protocol):

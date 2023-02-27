@@ -9,7 +9,7 @@ from typing import Any, Callable, cast
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
-from .protocols import GrpcObject, ObjectInfo, RootGrpcObject
+from .protocols import GrpcObject, GrpcObjectReadOnly, ObjectInfo, RootGrpcObject
 
 _TO_PROTOBUF_T = Callable[[Any], Any]
 _FROM_PROTOBUF_T = Callable[[Any], Any]
@@ -24,11 +24,11 @@ class _exposed_grpc_property(property):
     pass
 
 
-def mark_grpc_properties(cls: type[GrpcObject]) -> type[GrpcObject]:
+def mark_grpc_properties(cls: type[GrpcObjectReadOnly]) -> type[GrpcObjectReadOnly]:
     props: list[str] = []
     for base_cls in reversed(cls.__bases__):
         if hasattr(base_cls, "GRPC_PROPERTIES"):
-            base_cls = cast("type[GrpcObject]", base_cls)
+            base_cls = cast("type[GrpcObjectReadOnly]", base_cls)
             props.extend(base_cls.GRPC_PROPERTIES)
     for key, value in vars(cls).items():
         if isinstance(value, _exposed_grpc_property):
@@ -75,8 +75,7 @@ def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[Gr
     """
 
     def inner(self: GrpcObject) -> Any:
-        if self._is_stored:
-            self._get()
+        self._get_if_stored()
         return from_protobuf(_get_data_attribute(self._pb_object, name))
 
     return inner
@@ -89,8 +88,7 @@ def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[GrpcOb
     """
 
     def inner(self: GrpcObject, value: Any) -> None:
-        if self._is_stored:
-            self._get()
+        self._get_if_stored()
         current_value = _get_data_attribute(self._pb_object, name)
         value_pb = to_protobuf(value)
         try:
@@ -99,8 +97,7 @@ def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[GrpcOb
             needs_updating = True
         if needs_updating:
             _set_data_attribute(self._pb_object, name, value_pb)
-            if self._is_stored:
-                self._put()
+            self._put_if_stored()
 
     return inner
 

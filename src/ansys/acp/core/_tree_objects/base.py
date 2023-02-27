@@ -25,6 +25,7 @@ from ._grpc_helpers.protocols import (
     CreatableResourceStub,
     CreateRequest,
     GrpcObject,
+    GrpcObjectReadOnly,
     ObjectInfo,
     ResourceStub,
     RootGrpcObject,
@@ -193,18 +194,25 @@ class IdTreeObject(TreeObject):
         return f"<{type(self).__name__} with id '{self.id}'>"
 
 
-class TreeObjectAttribute(GrpcObject):
+class TreeObjectAttributeReadOnly(GrpcObjectReadOnly):
+    __slots__ = ("_parent_object",)
+
+    def __init__(self, parent_object: GrpcObjectReadOnly):
+        self._parent_object: GrpcObjectReadOnly = parent_object
+
+    def _get(self) -> None:
+        self._parent_object._get()
+
+    @property
+    def _is_stored(self) -> bool:
+        return self._parent_object._is_stored
+
+
+class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
     __slots__ = ("_parent_object",)
 
     def __init__(self, parent_object: GrpcObject):
         self._parent_object: GrpcObject = parent_object
 
-    def _get(self) -> None:
-        self._parent_object._get()
-
     def _put(self) -> None:
         self._parent_object._put()
-
-    @property
-    def _is_stored(self) -> bool:
-        return self._parent_object._is_stored
