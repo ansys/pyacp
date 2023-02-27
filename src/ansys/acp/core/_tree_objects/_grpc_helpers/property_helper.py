@@ -7,7 +7,7 @@ from __future__ import annotations
 from functools import reduce
 from typing import Any, Callable, cast
 
-from ansys.api.acp.v0.base_pb2 import GetRequest, ResourcePath
+from ansys.api.acp.v0.base_pb2 import ResourcePath
 
 from .protocols import GrpcObject, ObjectInfo, RootGrpcObject
 
@@ -53,9 +53,7 @@ def grpc_linked_object_getter(name: str) -> Callable[[RootGrpcObject], Any]:
 
         if not self._is_stored:
             raise Exception("Cannot get linked object from unstored object")
-        self._pb_object = self._get_stub().Get(
-            GetRequest(resource_path=self._pb_object.info.resource_path)
-        )
+        self._get()
         object_resource_path = _get_data_attribute(self._pb_object, name)
 
         # Resource path represents an object that is not set as an empty string
@@ -78,9 +76,7 @@ def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[Gr
 
     def inner(self: GrpcObject) -> Any:
         if self._is_stored:
-            self._pb_object = self._get_stub().Get(
-                GetRequest(resource_path=self._pb_object.info.resource_path)
-            )
+            self._get()
         return from_protobuf(_get_data_attribute(self._pb_object, name))
 
     return inner
@@ -94,9 +90,7 @@ def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[GrpcOb
 
     def inner(self: GrpcObject, value: Any) -> None:
         if self._is_stored:
-            self._pb_object = self._get_stub().Get(
-                GetRequest(resource_path=self._pb_object.info.resource_path)
-            )
+            self._get()
         current_value = _get_data_attribute(self._pb_object, name)
         value_pb = to_protobuf(value)
         try:
@@ -106,7 +100,7 @@ def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[GrpcOb
         if needs_updating:
             _set_data_attribute(self._pb_object, name, value_pb)
             if self._is_stored:
-                self._pb_object = self._get_stub().Put(self._pb_object)
+                self._put()
 
     return inner
 
@@ -150,7 +144,10 @@ def grpc_data_property(
     )
 
 
-def grpc_data_property_read_only(name: str, from_protobuf: _FROM_PROTOBUF_T = lambda x: x) -> Any:
+def grpc_data_property_read_only(
+    name: str,
+    from_protobuf: _FROM_PROTOBUF_T = lambda x: x,
+) -> Any:
     """
     Helper for defining properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to synchronize

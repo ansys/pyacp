@@ -5,13 +5,12 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from abc import abstractmethod
-import textwrap
 from typing import Any, Iterable, TypeVar, cast
 
 from grpc import Channel
 from typing_extensions import Self
 
-from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ResourcePath
+from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, GetRequest, ResourcePath
 
 from .._utils.resource_paths import common_path
 from .._utils.resource_paths import join as _rp_join
@@ -117,6 +116,14 @@ class TreeObject(RootGrpcObject):
             self._stub_store = self._create_stub()
         return self._stub_store
 
+    def _get(self) -> None:
+        self._pb_object = self._get_stub().Get(
+            GetRequest(resource_path=self._pb_object.info.resource_path)
+        )
+
+    def _put(self) -> None:
+        self._pb_object = self._get_stub().Put(self._pb_object)
+
     @abstractmethod
     def _create_stub(self) -> ResourceStub:
         ...
@@ -127,24 +134,6 @@ class TreeObject(RootGrpcObject):
 
     def __repr__(self) -> str:
         return f"<{type(self).__name__} with name '{self.name}'>"
-
-    def __str__(self) -> str:
-        string_items = []
-        for attr_name in self.GRPC_PROPERTIES:
-            try:
-                value_repr = repr(getattr(self, attr_name))
-            except:
-                value_repr = "<unavailable>"
-            string_items.append(f"{attr_name}={value_repr}")
-        type_name = type(self).__name__
-        if not string_items:
-            content = ""
-        elif len(string_items) == 1:
-            content = string_items[0]
-        else:
-            content = ",\n".join(string_items)
-            content = f"\n{textwrap.indent(content, ' ' * 4)}\n"
-        return f"{type_name}({content})"
 
     name = grpc_data_property("info.name")
     """The name of the object."""
@@ -210,16 +199,11 @@ class TreeObjectAttribute(GrpcObject):
     def __init__(self, parent_object: GrpcObject):
         self._parent_object: GrpcObject = parent_object
 
-    @property
-    def _pb_object(self) -> ObjectInfo:
-        return self._parent_object._pb_object
+    def _get(self) -> None:
+        self._parent_object._get()
 
-    @_pb_object.setter
-    def _pb_object(self, value: ObjectInfo) -> None:
-        self._parent_object._pb_object = value
-
-    def _get_stub(self) -> ResourceStub:
-        return self._parent_object._get_stub()
+    def _put(self) -> None:
+        self._parent_object._put()
 
     @property
     def _is_stored(self) -> bool:
