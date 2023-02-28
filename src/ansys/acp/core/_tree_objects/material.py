@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from abc import abstractproperty
 from dataclasses import dataclass
-from typing import Any, Iterable, cast
+from typing import Iterable, cast
 
 from google.protobuf.message import Message
 
@@ -46,25 +46,17 @@ class MaterialPropertySetBase(TreeObjectAttribute):
         self._pb_propset_impl.values.append(value)  # type: ignore
 
 
-@mark_grpc_properties
-class InterpolationOptions(TreeObjectAttributeReadOnly):
-    GRPC_PROPERTIES = tuple()
-
-    @property
-    def _pb_object(self) -> Any:
-        if self._parent_object is None:
-            raise RuntimeError("The parent object is not set.")
-        return self._parent_object._pb_object.interpolation_options
-
-    algorithm = grpc_data_property_read_only("algorithm")
-    cached = grpc_data_property_read_only("cached")
-    normalized = grpc_data_property_read_only("normalized")
+@dataclass(frozen=True)
+class InterpolationOptions:
+    algorithm: str
+    cached: bool
+    normalized: bool
 
 
 @dataclass(frozen=True)
 class FieldVariable:
     name: str
-    values: list[float]
+    values: tuple[float, ...]
     default: float
     lower_limit: float
     upper_limit: float
@@ -90,7 +82,7 @@ class MaterialPropertySetVariable(TreeObjectAttributeReadOnly):
         from_protobuf=lambda field_vars: tuple(
             FieldVariable(
                 name=val.name,
-                values=val.values,
+                values=tuple(float(v) for v in val.values),
                 default=val.default,
                 lower_limit=val.lower_limit,
                 upper_limit=val.upper_limit,
@@ -99,9 +91,12 @@ class MaterialPropertySetVariable(TreeObjectAttributeReadOnly):
         ),
     )
 
-    @property
-    def interpolation_options(self) -> InterpolationOptions:
-        return InterpolationOptions(parent_object=self)
+    interpolation_options = grpc_data_property_read_only(
+        "interpolation_options",
+        from_protobuf=lambda val: InterpolationOptions(
+            algorithm=val.algorithm, cached=val.cached, normalized=val.normalized
+        ),
+    )
 
 
 @mark_grpc_properties
@@ -122,9 +117,21 @@ class DensityPropertySet(MaterialPropertySetBase):
 
 
 @mark_grpc_properties
-class EngineeringConstantsPropertySetVariable(MaterialPropertySetVariable):
-    # GRPC_PROPERTIES = tuple()
+class DensityPropertySetVariable(MaterialPropertySetVariable):
+    @property
+    def _pb_propset(
+        self,
+    ) -> material_pb2.DensityPropertySet:
+        assert self._parent_object is not None
+        return self._parent_object._pb_object.properties.property_sets.density  # type: ignore
 
+    rho = grpc_data_property_read_only(
+        "values", from_protobuf=lambda values: tuple(val.rho for val in values)
+    )
+
+
+@mark_grpc_properties
+class EngineeringConstantsPropertySetVariable(MaterialPropertySetVariable):
     @property
     def _pb_propset(
         self,
@@ -132,8 +139,7 @@ class EngineeringConstantsPropertySetVariable(MaterialPropertySetVariable):
         material_pb2.OrthotropicEngineeringConstantsPropertySet
         | material_pb2.IsotropicEngineeringConstantsPropertySet
     ):
-        if self._parent_object is None:
-            raise RuntimeError("The parent object is not set.")
+        assert self._parent_object is not None
         propset_name = "engineering_constants"
         field_name_default = "engineering_constants_orthotropic"
         field_name = (
@@ -244,18 +250,22 @@ class Material(CreatableTreeObject, IdTreeObject):
         self.engineering_constants = EngineeringConstantsPropertySet()
 
     @property
-    def density(self) -> DensityPropertySet | None:
+    def density(self) -> DensityPropertySetVariable | DensityPropertySet | None:
         self._get_if_stored()
         if not self._pb_object.properties.property_sets.HasField("density"):
             return None
-        if len(self._pb_object.properties.property_sets.density.values) == 0:
+        density_propset = self._pb_object.properties.property_sets.density
+        if len(density_propset.values) == 0:
             return None
+        if (len(density_propset.values) > 1) or (len(density_propset.field_variables) > 0):
+            return DensityPropertySetVariable(parent_object=self)
         return DensityPropertySet(parent_object=self)
 
     @density.setter
     def density(self, value: DensityPropertySet | None) -> None:
         self._get_if_stored()
-        # TODO: check for variable propset
+        if isinstance(self.density, MaterialPropertySetVariable):
+            raise AttributeError("Cannot replace variable property sets.")
         self._pb_object.properties.property_sets.ClearField("density")
         if value is not None:
             self._pb_object.properties.property_sets.density.CopyFrom(
@@ -290,8 +300,8 @@ class Material(CreatableTreeObject, IdTreeObject):
     @engineering_constants.setter
     def engineering_constants(self, value: EngineeringConstantsPropertySet | None) -> None:
         self._get_if_stored()
-        if isinstance(self.engineering_constants, EngineeringConstantsPropertySetVariable):
-            raise ValueError("Cannot replace variable engineering constants.")
+        if isinstance(self.engineering_constants, MaterialPropertySetVariable):
+            raise AttributeError("Cannot replace variable engineering constants.")
         self._pb_object.properties.property_sets.ClearField("engineering_constants_isotropic")
         self._pb_object.properties.property_sets.ClearField("engineering_constants_orthotropic")
         if value is not None:
