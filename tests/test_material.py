@@ -5,12 +5,12 @@ import pytest
 
 from ansys.acp.core._tree_objects.enums import PlyType
 from ansys.acp.core._tree_objects.material import (
-    DensityPropertySet,
-    DensityPropertySetVariable,
-    EngineeringConstantsPropertySet,
-    EngineeringConstantsPropertySetVariable,
+    ConstantDensity,
+    ConstantEngineeringConstants,
     FieldVariable,
     InterpolationOptions,
+    VariableDensity,
+    VariableEngineeringConstants,
 )
 from common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
 
@@ -68,8 +68,8 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         },
     }
     DEFAULT_TYPE_BY_PROPERTY_SET = {
-        "density": DensityPropertySet,
-        "engineering_constants": EngineeringConstantsPropertySet,
+        "density": ConstantDensity,
+        "engineering_constants": ConstantEngineeringConstants,
     }
     DEFAULT_PROPERTY_SET_ATTRIBUTE_PAIRS = [
         ("density", "rho"),
@@ -119,10 +119,10 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
     @pytest.mark.parametrize(
         "property_set_name,property_set_value,attributes_to_check",
         [
-            ("density", DensityPropertySet(), DEFAULT_VALUES_BY_PROPERTY_SET["density"]),
+            ("density", ConstantDensity(), DEFAULT_VALUES_BY_PROPERTY_SET["density"]),
             (
                 "engineering_constants",
-                EngineeringConstantsPropertySet(),
+                ConstantEngineeringConstants(),
                 DEFAULT_VALUES_BY_PROPERTY_SET["engineering_constants"],
             ),
         ],
@@ -136,8 +136,8 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
 
     @pytest.fixture(
         params=[
-            ("density", DensityPropertySet),
-            ("engineering_constants", EngineeringConstantsPropertySet),
+            ("density", ConstantDensity),
+            ("engineering_constants", ConstantEngineeringConstants),
         ]
     )
     def property_set_types(self, request):
@@ -174,7 +174,7 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         [
             (
                 "density",
-                DensityPropertySetVariable,
+                VariableDensity,
                 {
                     "rho": (1234.0, 2345.0),
                     "field_variables": (
@@ -195,7 +195,7 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
             ),
             (
                 "engineering_constants",
-                EngineeringConstantsPropertySetVariable,
+                VariableEngineeringConstants,
                 {
                     "E1": (1212, 1212.12),
                     "E2": (1313, 1313.13),
