@@ -185,11 +185,13 @@ need to create a commit without running the hooks, you can skip them with ``git 
 Documentation
 ^^^^^^^^^^^^^
 
-To build the documentation, a PyACP server needs to be running:
+To build the documentation, DPF Composites and MAPDL servers need to be running:
 
 .. code-block:: bash
 
-    docker-compose -f docker-compose/docker-compose.yaml up -d
+    docker-compose -f docker-compose/docker-compose-extras.yaml up -d
+
+In addition, the PyACP server needs to be configured via ``ansys-launcher``, see `Launching ACP <launching_server>`_ above.
 
 It can then be built using `Sphinx`_.
 
