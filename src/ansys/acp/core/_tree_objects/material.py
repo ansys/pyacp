@@ -28,22 +28,14 @@ __all__ = ["Material"]
 class MaterialPropertySetBase(TreeObjectAttribute):
     @abstractproperty
     def _pb_propset_impl(self) -> Message:
-        ...
+        pass
 
     @property
     def _pb_object_impl(self) -> Message:
         try:
             return self._pb_propset_impl.values[0]  # type: ignore
         except IndexError:
-            # set default
-            pb_object_default = type(self._pb_object_impl).Data()  # type: ignore
-            self._pb_object_impl = pb_object_default
-            return self._pb_object_impl
-
-    @_pb_object_impl.setter
-    def _pb_object_impl(self, value: Message) -> None:
-        del self._pb_propset_impl.values[:]  # type: ignore
-        self._pb_propset_impl.values.append(value)  # type: ignore
+            raise RuntimeError("The property set has either been deleted or changed type.")
 
 
 @dataclass(frozen=True)
@@ -64,13 +56,9 @@ class FieldVariable:
 
 @mark_grpc_properties
 class MaterialPropertySetVariable(TreeObjectAttributeReadOnly):
-    GRPC_PROPERTIES = (
-        "interpolation_options",
-    )  # TODO: doesn't seem to propagate to children.. but why?
-
     @abstractproperty
     def _pb_propset(self) -> Message:
-        ...
+        pass
 
     @property
     def _pb_object(self) -> Message:
@@ -105,6 +93,12 @@ class DensityPropertySet(MaterialPropertySetBase):
     _DEFAULT_PB_OBJECT_CONSTRUCTOR = material_pb2.DensityPropertySet.Data
     _pb_object: material_pb2.DensityPropertySet.Data
 
+    def __init__(self, *, rho: float = 0.0, _parent_object: Material | None = None):
+        super().__init__(_parent_object=_parent_object)
+        if _parent_object is not None:
+            return
+        self.rho = rho
+
     @property
     def _pb_propset_impl(self) -> material_pb2.DensityPropertySet:
         assert self._parent_object is not None
@@ -118,6 +112,8 @@ class DensityPropertySet(MaterialPropertySetBase):
 
 @mark_grpc_properties
 class DensityPropertySetVariable(MaterialPropertySetVariable):
+    GRPC_PROPERTIES = tuple()
+
     @property
     def _pb_propset(
         self,
@@ -132,6 +128,8 @@ class DensityPropertySetVariable(MaterialPropertySetVariable):
 
 @mark_grpc_properties
 class EngineeringConstantsPropertySetVariable(MaterialPropertySetVariable):
+    GRPC_PROPERTIES = tuple()
+
     @property
     def _pb_propset(
         self,
@@ -192,6 +190,33 @@ class EngineeringConstantsPropertySet(MaterialPropertySetBase):
         | material_pb2.OrthotropicEngineeringConstantsPropertySet.Data
     )
 
+    def __init__(
+        self,
+        *,
+        E1: float = 0.0,
+        E2: float = 0.0,
+        E3: float = 0.0,
+        nu12: float = 0.0,
+        nu23: float = 0.0,
+        nu13: float = 0.0,
+        G12: float = 0.0,
+        G23: float = 0.0,
+        G31: float = 0.0,
+        _parent_object: Material | None = None,
+    ):
+        super().__init__(_parent_object=_parent_object)
+        if _parent_object is not None:
+            return
+        self.E1 = E1
+        self.E2 = E2
+        self.E3 = E3
+        self.nu12 = nu12
+        self.nu23 = nu23
+        self.nu13 = nu13
+        self.G12 = G12
+        self.G23 = G23
+        self.G31 = G31
+
     @property
     def _pb_propset_impl(
         self,
@@ -241,13 +266,18 @@ class Material(CreatableTreeObject, IdTreeObject):
     OBJECT_INFO_TYPE = material_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = material_pb2.CreateRequest
 
-    def __init__(self, name: str = "Material", ply_type: PlyType = "undefined"):
+    def __init__(
+        self,
+        name: str = "Material",
+        ply_type: PlyType = "undefined",
+        density: DensityPropertySet | None = None,
+        engineering_constants: EngineeringConstantsPropertySet | None = None,
+    ):
         super().__init__(name=name)
 
         self.ply_type = ply_type
-        # if
-        self.density = DensityPropertySet()
-        self.engineering_constants = EngineeringConstantsPropertySet()
+        self.density = density or DensityPropertySet()
+        self.engineering_constants = engineering_constants or EngineeringConstantsPropertySet()
 
     @property
     def density(self) -> DensityPropertySetVariable | DensityPropertySet | None:
@@ -258,8 +288,8 @@ class Material(CreatableTreeObject, IdTreeObject):
         if len(density_propset.values) == 0:
             return None
         if (len(density_propset.values) > 1) or (len(density_propset.field_variables) > 0):
-            return DensityPropertySetVariable(parent_object=self)
-        return DensityPropertySet(parent_object=self)
+            return DensityPropertySetVariable(_parent_object=self)
+        return DensityPropertySet(_parent_object=self)
 
     @density.setter
     def density(self, value: DensityPropertySet | None) -> None:
@@ -292,10 +322,10 @@ class Material(CreatableTreeObject, IdTreeObject):
         if (len(eng_constants_propset.values) > 1) or (
             len(eng_constants_propset.field_variables) > 0
         ):
-            return EngineeringConstantsPropertySetVariable(parent_object=self)
+            return EngineeringConstantsPropertySetVariable(_parent_object=self)
         if len(eng_constants_propset.values) == 0:
             return None
-        return EngineeringConstantsPropertySet(parent_object=self)
+        return EngineeringConstantsPropertySet(_parent_object=self)
 
     @engineering_constants.setter
     def engineering_constants(self, value: EngineeringConstantsPropertySet | None) -> None:

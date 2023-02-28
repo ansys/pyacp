@@ -197,8 +197,8 @@ class IdTreeObject(TreeObject):
 class TreeObjectAttributeReadOnly(GrpcObjectReadOnly):
     __slots__ = ("_parent_object",)
 
-    def __init__(self, parent_object: GrpcObjectReadOnly | None = None):
-        self._parent_object: GrpcObjectReadOnly | None = parent_object
+    def __init__(self, *, _parent_object: GrpcObjectReadOnly | None = None):
+        self._parent_object: GrpcObjectReadOnly | None = _parent_object
 
     def _get(self) -> None:
         if self._parent_object is None:
@@ -216,19 +216,15 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
     _DEFAULT_PB_OBJECT_CONSTRUCTOR: Callable[[], Any]
     __slots__ = ("_parent_object", "_pb_object_store")
 
-    def __init__(self, parent_object: GrpcObject | None = None):
-        if parent_object is None:
+    def __init__(self, *, _parent_object: GrpcObject | None = None):
+        if _parent_object is None:
             self._pb_object_store: Any = self._DEFAULT_PB_OBJECT_CONSTRUCTOR()
         else:
             self._pb_object_store = None
-        self._parent_object: GrpcObject | None = parent_object
+        self._parent_object: GrpcObject | None = _parent_object
 
     @abstractproperty
     def _pb_object_impl(self) -> Any:
-        ...
-
-    @_pb_object_impl.setter
-    def _pb_object_impl(self, value: Any) -> None:
         ...
 
     @property
@@ -237,13 +233,6 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
             return self._pb_object_store
         else:
             return self._pb_object_impl
-
-    @_pb_object.setter
-    def _pb_object(self, value: Any) -> None:
-        if self._parent_object is None:
-            self._pb_object_store = value
-        else:
-            self._pb_object_impl = value
 
     def _put(self) -> None:
         if self._parent_object is None:

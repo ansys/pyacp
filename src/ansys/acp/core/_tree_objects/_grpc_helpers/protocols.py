@@ -105,10 +105,6 @@ class GrpcObject(GrpcObjectReadOnly, Protocol):
     def _pb_object(self) -> Any:
         ...
 
-    @_pb_object.setter
-    def _pb_object(self, value: Any) -> None:
-        ...
-
     def _put(self) -> None:
         ...
 

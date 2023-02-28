@@ -1,3 +1,6 @@
+from hypothesis import HealthCheck, given, settings
+from hypothesis import strategies as st
+import numpy.testing as npt
 import pytest
 
 from ansys.acp.core._tree_objects.enums import PlyType
@@ -50,7 +53,6 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
     }
     CREATE_METHOD_NAME = "create_material"
     INITIAL_OBJECT_NAMES = ("Structural Steel",)
-
     DEFAULT_VALUES_BY_PROPERTY_SET = {
         "density": {"rho": 0.0},
         "engineering_constants": {
@@ -65,6 +67,30 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
             "G31": 0.0,
         },
     }
+    DEFAULT_TYPE_BY_PROPERTY_SET = {
+        "density": DensityPropertySet,
+        "engineering_constants": EngineeringConstantsPropertySet,
+    }
+    DEFAULT_PROPERTY_SET_ATTRIBUTE_PAIRS = [
+        ("density", "rho"),
+        ("engineering_constants", "E1"),
+        ("engineering_constants", "E2"),
+        ("engineering_constants", "E3"),
+        ("engineering_constants", "nu12"),
+        ("engineering_constants", "nu23"),
+        ("engineering_constants", "nu13"),
+        ("engineering_constants", "G12"),
+        ("engineering_constants", "G23"),
+        ("engineering_constants", "G31"),
+    ]
+
+    @pytest.fixture
+    def default_property_set_attribute_pairs(self):
+        return (
+            (property_set_name, attr_name)
+            for property_set_name in list(self.DEFAULT_NAMES_BY_PROPERTY_SET.keys())
+            for attr_name in self.DEFAULT_NAMES_BY_PROPERTY_SET[property_set_name]
+        )
 
     def test_property_sets_default(self, tree_object):
         for propset_name in ["density", "engineering_constants"]:
@@ -214,3 +240,39 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
             setattr(variable_material, property_set_name, None)
         with pytest.raises(AttributeError):
             delattr(variable_material, property_set_name)
+
+    @pytest.mark.parametrize(
+        "property_set_name,attr_name",
+        DEFAULT_PROPERTY_SET_ATTRIBUTE_PAIRS,
+    )
+    @given(val=st.floats())
+    @settings(suppress_health_check=[HealthCheck.function_scoped_fixture])
+    def test_material_property_set(self, val, tree_object, property_set_name, attr_name):
+        property_set = getattr(tree_object, property_set_name)
+        setattr(property_set, attr_name, val)
+        tree_object.density.rho = val
+        # The ``npt.assert_equal`` check treats positive and negative zero as different. To avoid
+        # this, we use ``npt.assert_allclose`` with zero tolerance.
+        npt.assert_allclose(getattr(property_set, attr_name), val, rtol=0.0, atol=0.0)
+        # We test also by directly accessing it from the 'tree_object', to ensure the base property
+        # works as expected.
+        npt.assert_allclose(
+            getattr(getattr(tree_object, property_set_name), attr_name), val, rtol=0.0, atol=0.0
+        )
+
+    @pytest.mark.parametrize(
+        "property_set_name,attr_name",
+        DEFAULT_PROPERTY_SET_ATTRIBUTE_PAIRS,
+    )
+    @given(val=st.floats())
+    @settings(suppress_health_check=[HealthCheck.function_scoped_fixture])
+    def test_material_property_initialize(self, val, tree_object, property_set_name, attr_name):
+        delattr(tree_object, property_set_name)
+        setattr(
+            tree_object,
+            property_set_name,
+            self.DEFAULT_TYPE_BY_PROPERTY_SET[property_set_name](**{attr_name: val}),
+        )
+        npt.assert_allclose(
+            getattr(getattr(tree_object, property_set_name), attr_name), val, rtol=0.0, atol=0.0
+        )
