@@ -205,6 +205,14 @@ class TreeObjectAttributeReadOnly(GrpcObjectReadOnly):
             raise RuntimeError("The parent object is not set.")
         self._parent_object._get()
 
+    @abstractproperty
+    def _pb_object_impl(self) -> Any:
+        ...
+
+    @property
+    def _pb_object(self) -> Any:
+        return self._pb_object_impl
+
     @property
     def _is_stored(self) -> bool:
         if self._parent_object is None:
