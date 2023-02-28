@@ -4,8 +4,8 @@ via gRPC Put / Get calls.
 """
 from __future__ import annotations
 
-from abc import abstractmethod
-from typing import Any, Iterable, TypeVar, cast
+from abc import abstractmethod, abstractproperty
+from typing import Any, Callable, Iterable, TypeVar, cast
 
 from grpc import Channel
 from typing_extensions import Self
@@ -197,22 +197,55 @@ class IdTreeObject(TreeObject):
 class TreeObjectAttributeReadOnly(GrpcObjectReadOnly):
     __slots__ = ("_parent_object",)
 
-    def __init__(self, parent_object: GrpcObjectReadOnly):
-        self._parent_object: GrpcObjectReadOnly = parent_object
+    def __init__(self, parent_object: GrpcObjectReadOnly | None = None):
+        self._parent_object: GrpcObjectReadOnly | None = parent_object
 
     def _get(self) -> None:
+        if self._parent_object is None:
+            raise RuntimeError("The parent object is not set.")
         self._parent_object._get()
 
     @property
     def _is_stored(self) -> bool:
+        if self._parent_object is None:
+            return False
         return self._parent_object._is_stored
 
 
 class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
-    __slots__ = ("_parent_object",)
+    _DEFAULT_PB_OBJECT_CONSTRUCTOR: Callable[[], Any]
+    __slots__ = ("_parent_object", "_pb_object_store")
 
-    def __init__(self, parent_object: GrpcObject):
-        self._parent_object: GrpcObject = parent_object
+    def __init__(self, parent_object: GrpcObject | None = None):
+        if parent_object is None:
+            self._pb_object_store: Any = self._DEFAULT_PB_OBJECT_CONSTRUCTOR()
+        else:
+            self._pb_object_store = None
+        self._parent_object: GrpcObject | None = parent_object
+
+    @abstractproperty
+    def _pb_object_impl(self) -> Any:
+        ...
+
+    @_pb_object_impl.setter
+    def _pb_object_impl(self, value: Any) -> None:
+        ...
+
+    @property
+    def _pb_object(self) -> Any:
+        if self._parent_object is None:
+            return self._pb_object_store
+        else:
+            return self._pb_object_impl
+
+    @_pb_object.setter
+    def _pb_object(self, value: Any) -> None:
+        if self._parent_object is None:
+            self._pb_object_store = value
+        else:
+            self._pb_object_impl = value
 
     def _put(self) -> None:
+        if self._parent_object is None:
+            raise RuntimeError("The parent object is not set.")
         self._parent_object._put()

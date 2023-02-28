@@ -27,26 +27,23 @@ __all__ = ["Material"]
 
 class MaterialPropertySetBase(TreeObjectAttribute):
     @abstractproperty
-    def _pb_propset(self) -> Message:
+    def _pb_propset_impl(self) -> Message:
         ...
 
     @property
-    def _pb_object(self) -> Message:
-        # self._get_if_stored()
+    def _pb_object_impl(self) -> Message:
         try:
-            return self._pb_propset.values[0]  # type: ignore
+            return self._pb_propset_impl.values[0]  # type: ignore
         except IndexError:
             # set default
-            pb_object_default = type(self._pb_propset).Data()  # type: ignore
-            self._pb_object = pb_object_default
-            return self._pb_object
+            pb_object_default = type(self._pb_object_impl).Data()  # type: ignore
+            self._pb_object_impl = pb_object_default
+            return self._pb_object_impl
 
-    @_pb_object.setter
-    def _pb_object(self, value: Message) -> None:
-        # self._get_if_stored()
-        del self._pb_propset.values[:]  # type: ignore
-        self._pb_propset.values.append(value)  # type: ignore
-        # self._put_if_stored()
+    @_pb_object_impl.setter
+    def _pb_object_impl(self, value: Message) -> None:
+        del self._pb_propset_impl.values[:]  # type: ignore
+        self._pb_propset_impl.values.append(value)  # type: ignore
 
 
 @mark_grpc_properties
@@ -55,6 +52,8 @@ class InterpolationOptions(TreeObjectAttributeReadOnly):
 
     @property
     def _pb_object(self) -> Any:
+        if self._parent_object is None:
+            raise RuntimeError("The parent object is not set.")
         return self._parent_object._pb_object.interpolation_options
 
     algorithm = grpc_data_property_read_only("algorithm")
@@ -83,7 +82,7 @@ class MaterialPropertySetVariable(TreeObjectAttributeReadOnly):
 
     @property
     def _pb_object(self) -> Message:
-        self._get_if_stored()
+        # self._get_if_stored()
         return self._pb_propset
 
     field_variables = grpc_data_property_read_only(
@@ -108,9 +107,12 @@ class MaterialPropertySetVariable(TreeObjectAttributeReadOnly):
 @mark_grpc_properties
 class DensityPropertySet(MaterialPropertySetBase):
     GRPC_PROPERTIES = tuple()
+    _DEFAULT_PB_OBJECT_CONSTRUCTOR = material_pb2.DensityPropertySet.Data
+    _pb_object: material_pb2.DensityPropertySet.Data
 
     @property
-    def _pb_propset(self) -> material_pb2.DensityPropertySet:
+    def _pb_propset_impl(self) -> material_pb2.DensityPropertySet:
+        assert self._parent_object is not None
         return cast(
             material_pb2.DensityPropertySet,
             self._parent_object._pb_object.properties.property_sets.density,
@@ -130,6 +132,8 @@ class EngineeringConstantsPropertySetVariable(MaterialPropertySetVariable):
         material_pb2.OrthotropicEngineeringConstantsPropertySet
         | material_pb2.IsotropicEngineeringConstantsPropertySet
     ):
+        if self._parent_object is None:
+            raise RuntimeError("The parent object is not set.")
         propset_name = "engineering_constants"
         field_name_default = "engineering_constants_orthotropic"
         field_name = (
@@ -176,14 +180,20 @@ class EngineeringConstantsPropertySetVariable(MaterialPropertySetVariable):
 @mark_grpc_properties
 class EngineeringConstantsPropertySet(MaterialPropertySetBase):
     GRPC_PROPERTIES = tuple()
+    _DEFAULT_PB_OBJECT_CONSTRUCTOR = material_pb2.OrthotropicEngineeringConstantsPropertySet.Data
+    _pb_object: (
+        material_pb2.IsotropicEngineeringConstantsPropertySet.Data
+        | material_pb2.OrthotropicEngineeringConstantsPropertySet.Data
+    )
 
     @property
-    def _pb_propset(
+    def _pb_propset_impl(
         self,
     ) -> (
         material_pb2.OrthotropicEngineeringConstantsPropertySet
         | material_pb2.IsotropicEngineeringConstantsPropertySet
     ):
+        assert self._parent_object is not None
         propset_name = "engineering_constants"
         field_name_default = "engineering_constants_orthotropic"
         field_name = (
@@ -230,27 +240,32 @@ class Material(CreatableTreeObject, IdTreeObject):
 
         self.ply_type = ply_type
         # if
-        self.density = DensityPropertySet(parent_object=self)
-        self.engineering_constants = EngineeringConstantsPropertySet(parent_object=self)
+        self.density = DensityPropertySet()
+        self.engineering_constants = EngineeringConstantsPropertySet()
 
     @property
     def density(self) -> DensityPropertySet | None:
         self._get_if_stored()
         if not self._pb_object.properties.property_sets.HasField("density"):
             return None
+        if len(self._pb_object.properties.property_sets.density.values) == 0:
+            return None
         return DensityPropertySet(parent_object=self)
 
     @density.setter
     def density(self, value: DensityPropertySet | None) -> None:
         self._get_if_stored()
+        # TODO: check for variable propset
         self._pb_object.properties.property_sets.ClearField("density")
         if value is not None:
             self._pb_object.properties.property_sets.density.CopyFrom(
-                material_pb2.DensityPropertySet()
+                material_pb2.DensityPropertySet(values=[value._pb_object])
             )
-            assert self.density is not None
-            self.density._pb_object = value._pb_object
         self._put_if_stored()
+
+    @density.deleter
+    def density(self) -> None:
+        self.density = None
 
     @property
     def engineering_constants(
@@ -268,28 +283,35 @@ class Material(CreatableTreeObject, IdTreeObject):
             len(eng_constants_propset.field_variables) > 0
         ):
             return EngineeringConstantsPropertySetVariable(parent_object=self)
+        if len(eng_constants_propset.values) == 0:
+            return None
         return EngineeringConstantsPropertySet(parent_object=self)
 
     @engineering_constants.setter
     def engineering_constants(self, value: EngineeringConstantsPropertySet | None) -> None:
         self._get_if_stored()
-        self._pb_object.properties.property_sets.ClearField("engineering_constants")
         if isinstance(self.engineering_constants, EngineeringConstantsPropertySetVariable):
             raise ValueError("Cannot replace variable engineering constants.")
+        self._pb_object.properties.property_sets.ClearField("engineering_constants_isotropic")
+        self._pb_object.properties.property_sets.ClearField("engineering_constants_orthotropic")
         if value is not None:
             if isinstance(
                 value._pb_object, material_pb2.OrthotropicEngineeringConstantsPropertySet.Data
             ):
                 self._pb_object.properties.property_sets.engineering_constants_orthotropic.CopyFrom(
-                    material_pb2.OrthotropicEngineeringConstantsPropertySet()
+                    material_pb2.OrthotropicEngineeringConstantsPropertySet(
+                        values=[value._pb_object]
+                    )
                 )
             else:
                 self._pb_object.properties.property_sets.engineering_constants_isotropic.CopyFrom(
-                    material_pb2.IsotropicEngineeringConstantsPropertySet()
+                    material_pb2.IsotropicEngineeringConstantsPropertySet(values=[value._pb_object])
                 )
-            assert self.engineering_constants is not None
-            self.engineering_constants._pb_object = value._pb_object
         self._put_if_stored()
+
+    @engineering_constants.deleter
+    def engineering_constants(self) -> None:
+        self.engineering_constants = None
 
     def _create_stub(self) -> material_pb2_grpc.ObjectServiceStub:
         return material_pb2_grpc.ObjectServiceStub(self._channel)

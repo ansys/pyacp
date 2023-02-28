@@ -104,6 +104,8 @@ quiet-level = 3
 python_version = 3.8
 mypy_path = "$MYPY_CONFIG_FILE_DIR/src:$MYPY_CONFIG_FILE_DIR/tests"
 disable_error_code = "type-abstract"
+show_error_context = true
+pretty = true
 
 [[tool.mypy.overrides]]
 module = [
