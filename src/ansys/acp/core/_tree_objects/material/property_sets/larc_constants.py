@@ -20,7 +20,7 @@ class _LaRCConstantsMixin:
 
 @mark_grpc_properties
 class ConstantLaRCConstants(_LaRCConstantsMixin, _ConstantPropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     def __init__(
         self,
@@ -53,7 +53,7 @@ class ConstantLaRCConstants(_LaRCConstantsMixin, _ConstantPropertySet):
 
 @mark_grpc_properties
 class VariableLaRCConstants(_LaRCConstantsMixin, _VariablePropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     fracture_angle_under_compression = _variable_material_grpc_data_property(
         "fracture_angle_under_compression"

@@ -19,7 +19,7 @@ class _DensityMixin:
 
 @mark_grpc_properties
 class ConstantDensity(_DensityMixin, _ConstantPropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     def __init__(
         self,
@@ -38,6 +38,6 @@ class ConstantDensity(_DensityMixin, _ConstantPropertySet):
 
 @mark_grpc_properties
 class VariableDensity(_DensityMixin, _VariablePropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     rho = _variable_material_grpc_data_property("rho")

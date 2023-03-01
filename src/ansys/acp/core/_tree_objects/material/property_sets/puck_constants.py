@@ -32,7 +32,7 @@ class _PuckConstantsMixin:
 
 @mark_grpc_properties
 class ConstantPuckConstants(_PuckConstantsMixin, _ConstantPropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     # TODO: should we implement defaults depending on the 'mat_type'?
     def __init__(
@@ -73,7 +73,7 @@ class ConstantPuckConstants(_PuckConstantsMixin, _ConstantPropertySet):
 
 @mark_grpc_properties
 class VariablePuckConstants(_PuckConstantsMixin, _VariablePropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     p_21_pos = _variable_material_grpc_data_property("p_21_pos")
     p_21_neg = _variable_material_grpc_data_property("p_21_neg")

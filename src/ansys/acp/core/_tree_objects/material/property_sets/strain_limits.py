@@ -28,7 +28,7 @@ class _StrainLimitsMixin(_PolymorphicMixin):
 
 @mark_grpc_properties
 class ConstantStrainLimits(_StrainLimitsMixin, _ConstantPropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     def __init__(
         self,
@@ -72,7 +72,7 @@ class ConstantStrainLimits(_StrainLimitsMixin, _ConstantPropertySet):
 
 @mark_grpc_properties
 class VariableStrainLimits(_StrainLimitsMixin, _VariablePropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     effective_strain = _variable_material_grpc_data_property("effective_strain")
     eXc = _variable_material_grpc_data_property("eXc")

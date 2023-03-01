@@ -64,7 +64,7 @@ class CreatableResourceStub(ResourceStub, Protocol):
 
 
 class GrpcObjectReadOnly(Protocol):
-    GRPC_PROPERTIES: tuple[str, ...]
+    _GRPC_PROPERTIES: tuple[str, ...]
 
     @property
     def _pb_object(self) -> Any:
@@ -83,7 +83,7 @@ class GrpcObjectReadOnly(Protocol):
 
     def __str__(self) -> str:
         string_items = []
-        for attr_name in self.GRPC_PROPERTIES:
+        for attr_name in self._GRPC_PROPERTIES:
             try:
                 value_repr = repr(getattr(self, attr_name))
             except:

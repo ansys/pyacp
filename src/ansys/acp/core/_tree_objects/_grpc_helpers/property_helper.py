@@ -18,7 +18,7 @@ _FROM_PROTOBUF_T = Callable[[Any], Any]
 class _exposed_grpc_property(property):
     """
     Wrapper around 'property', used to signal that the object should
-    be collected into the 'GRPC_PROPERTIES' class attribute.
+    be collected into the '_GRPC_PROPERTIES' class attribute.
     """
 
     pass
@@ -27,9 +27,9 @@ class _exposed_grpc_property(property):
 def mark_grpc_properties(cls: type[GrpcObjectReadOnly]) -> type[GrpcObjectReadOnly]:
     props: list[str] = []
     for base_cls in reversed(cls.__bases__):
-        if hasattr(base_cls, "GRPC_PROPERTIES"):
+        if hasattr(base_cls, "_GRPC_PROPERTIES"):
             base_cls = cast("type[GrpcObjectReadOnly]", base_cls)
-            props.extend(base_cls.GRPC_PROPERTIES)
+            props.extend(base_cls._GRPC_PROPERTIES)
     for key, value in vars(cls).items():
         if isinstance(value, _exposed_grpc_property):
             props.append(key)
@@ -37,7 +37,7 @@ def mark_grpc_properties(cls: type[GrpcObjectReadOnly]) -> type[GrpcObjectReadOn
     for name in props:
         if name not in props_unique:
             props_unique.append(name)
-    cls.GRPC_PROPERTIES = tuple(props_unique)
+    cls._GRPC_PROPERTIES = tuple(props_unique)
     return cls
 
 

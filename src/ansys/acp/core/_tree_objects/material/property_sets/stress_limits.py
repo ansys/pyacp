@@ -28,7 +28,7 @@ class _StressLimitsMixin(_PolymorphicMixin):
 
 @mark_grpc_properties
 class ConstantStressLimits(_StressLimitsMixin, _ConstantPropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     def __init__(
         self,
@@ -72,7 +72,7 @@ class ConstantStressLimits(_StressLimitsMixin, _ConstantPropertySet):
 
 @mark_grpc_properties
 class VariableStressLimits(_StressLimitsMixin, _VariablePropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     effective_stress = _variable_material_grpc_data_property("effective_stress")
     Xc = _variable_material_grpc_data_property("Xc")

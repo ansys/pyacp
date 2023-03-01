@@ -20,7 +20,7 @@ class _TsaiWuConstantsMixin:
 
 @mark_grpc_properties
 class ConstantTsaiWuConstants(_TsaiWuConstantsMixin, _ConstantPropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     def __init__(
         self,
@@ -45,7 +45,7 @@ class ConstantTsaiWuConstants(_TsaiWuConstantsMixin, _ConstantPropertySet):
 
 @mark_grpc_properties
 class VariableTsaiWuConstants(_TsaiWuConstantsMixin, _VariablePropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     XY = _variable_material_grpc_data_property("XY")
     XZ = _variable_material_grpc_data_property("XZ")

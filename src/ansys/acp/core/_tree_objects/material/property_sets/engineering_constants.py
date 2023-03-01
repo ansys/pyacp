@@ -28,7 +28,7 @@ class _EngineeringConstantsMixin(_PolymorphicMixin):
 
 @mark_grpc_properties
 class ConstantEngineeringConstants(_EngineeringConstantsMixin, _ConstantPropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     def __init__(
         self,
@@ -73,7 +73,7 @@ class ConstantEngineeringConstants(_EngineeringConstantsMixin, _ConstantProperty
 
 @mark_grpc_properties
 class VariableEngineeringConstants(_EngineeringConstantsMixin, _VariablePropertySet):
-    GRPC_PROPERTIES = tuple()
+    _GRPC_PROPERTIES = tuple()
 
     E = _variable_material_grpc_data_property("E")
     nu = _variable_material_grpc_data_property("nu")
