@@ -25,9 +25,9 @@ class ConstantTsaiWuConstants(_TsaiWuConstantsMixin, _ConstantPropertySet):
     def __init__(
         self,
         *,
-        XY: float = 0.0,
-        XZ: float = 0.0,
-        YZ: float = 0.0,
+        XY: float = -1.0,
+        XZ: float = -1.0,
+        YZ: float = -1.0,
         _parent_object: TreeObject | None = None,
         _attribute_path: str | None = None,
     ):

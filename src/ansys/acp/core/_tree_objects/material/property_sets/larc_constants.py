@@ -25,7 +25,7 @@ class ConstantLaRCConstants(_LaRCConstantsMixin, _ConstantPropertySet):
     def __init__(
         self,
         *,
-        fracture_angle_under_compression: float = 0.0,
+        fracture_angle_under_compression: float = 53.0,
         fracture_toughness_ratio: float = 0.0,
         fracture_toughness_mode_1: float = 0.0,
         fracture_toughness_mode_2: float = 0.0,
