@@ -196,6 +196,11 @@ class IdTreeObject(TreeObject):
 
 
 class TreeObjectAttributeReadOnly(GrpcObjectReadOnly):
+    """
+    Defines an attribute which is defined as a sub-component of a parent
+    object's protobuf object (read-only).
+    """
+
     __slots__ = ("_parent_object", "_attribute_path")
 
     def __init__(
@@ -234,6 +239,11 @@ class TreeObjectAttributeReadOnly(GrpcObjectReadOnly):
 
 
 class PolymorphicMixin(TreeObjectAttributeReadOnly):
+    """
+    Mixin class for attributes which can have multiple types, through a
+    'oneof' definition.
+    """
+
     @property
     def _pb_object_impl(self) -> Any:
         assert self._parent_object is not None
@@ -244,6 +254,11 @@ class PolymorphicMixin(TreeObjectAttributeReadOnly):
 
 
 class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
+    """
+    Defines an attribute which is defined as a sub-component of a parent
+    object's protobuf object (read-write).
+    """
+
     __slots__ = ("_parent_object", "_attribute_path", "_pb_object_store")
 
     @classmethod
@@ -260,10 +275,6 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
             self._pb_object_store = None
         self._parent_object: GrpcObject | None
         super().__init__(_parent_object=_parent_object, _attribute_path=_attribute_path)
-
-    # @abstractproperty
-    # def _pb_object_impl(self) -> Any:
-    #     ...
 
     @property
     def _pb_object(self) -> Any:

@@ -10,6 +10,9 @@ TC = TypeVar("TC", bound=_ConstantPropertySet)
 TV = TypeVar("TV", bound=_VariablePropertySet)
 
 
+__all__ = ["wrap_property_set"]
+
+
 def _property_set_getter(name: str, type_constant: type[TC], type_variable: type[TV]) -> Any:
     assert issubclass(type_constant, _PolymorphicMixin) == issubclass(
         type_variable, _PolymorphicMixin
@@ -82,6 +85,7 @@ def _property_set_deleter(name: str) -> Any:
 
 
 def wrap_property_set(name: str, type_constant: type[TC], type_variable: type[TV]) -> Any:
+    """Helper function to define a material property set on the material."""
     return (
         _exposed_grpc_property(
             _property_set_getter(

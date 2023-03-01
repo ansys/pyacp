@@ -13,6 +13,8 @@ __all__ = ("_ConstantPropertySet", "_PolymorphicMixin", "_VariablePropertySet")
 
 
 class _ConstantPropertySet(TreeObjectAttribute):
+    """Base class for constant property sets."""
+
     _DEFAULT_PB_PROPERTYSET_TYPE: Any
 
     @classmethod
@@ -22,6 +24,8 @@ class _ConstantPropertySet(TreeObjectAttribute):
 
 @mark_grpc_properties
 class _VariablePropertySet(TreeObjectAttributeReadOnly):
+    """Base class for variable property sets."""
+
     field_variables = grpc_data_property_read_only(
         "field_variables",
         from_protobuf=lambda field_vars: tuple(
@@ -45,5 +49,11 @@ class _VariablePropertySet(TreeObjectAttributeReadOnly):
 
 
 class _PolymorphicMixin(_BasePolymorphicMixin):
+    """Mixin class for property sets which can have multiple protobuf types.
+
+    The class attributes defined here are consumed in the wrapper that exposes
+    the property set on the parent Material.
+    """
+
     _FIELD_NAME_DEFAULT: str
     _FIELD_NAME_SUFFIX_BY_PB_DATATYPE: dict[type[Message], str]
