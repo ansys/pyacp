@@ -98,7 +98,7 @@ convention = "numpy"
 
 [tool.codespell]
 skip = '*.cdb'
-ignore-words-list = 'ans,uptodate,notuptodate'
+ignore-words-list = 'ans,uptodate,notuptodate,eyt'
 quiet-level = 3
 
 [tool.mypy]

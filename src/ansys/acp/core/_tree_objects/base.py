@@ -4,8 +4,8 @@ via gRPC Put / Get calls.
 """
 from __future__ import annotations
 
-from abc import abstractmethod, abstractproperty
-from typing import Any, Callable, Iterable, TypeVar, cast
+from abc import abstractmethod
+from typing import Any, Iterable, TypeVar, cast
 
 from grpc import Channel
 from typing_extensions import Self
@@ -17,6 +17,7 @@ from .._utils.resource_paths import join as _rp_join
 from .._utils.resource_paths import to_parts
 from ._grpc_helpers.linked_object_helpers import linked_path_fields, unlink_objects
 from ._grpc_helpers.property_helper import (
+    _get_data_attribute,
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
@@ -195,19 +196,31 @@ class IdTreeObject(TreeObject):
 
 
 class TreeObjectAttributeReadOnly(GrpcObjectReadOnly):
-    __slots__ = ("_parent_object",)
+    __slots__ = ("_parent_object", "_attribute_path")
 
-    def __init__(self, *, _parent_object: GrpcObjectReadOnly | None = None):
+    def __init__(
+        self,
+        *,
+        _parent_object: GrpcObjectReadOnly | None = None,
+        _attribute_path: str | None = None,
+    ):
+        if _parent_object is None != _attribute_path is None:
+            raise TypeError(
+                "Either both '_parent_object' and '_attribute_path' need to be 'None', or neither."
+            )
         self._parent_object: GrpcObjectReadOnly | None = _parent_object
+        self._attribute_path = _attribute_path
 
     def _get(self) -> None:
         if self._parent_object is None:
             raise RuntimeError("The parent object is not set.")
         self._parent_object._get()
 
-    @abstractproperty
+    @property
     def _pb_object_impl(self) -> Any:
-        ...
+        assert self._parent_object is not None
+        assert self._attribute_path is not None
+        return _get_data_attribute(self._parent_object._pb_object, self._attribute_path)
 
     @property
     def _pb_object(self) -> Any:
@@ -220,20 +233,37 @@ class TreeObjectAttributeReadOnly(GrpcObjectReadOnly):
         return self._parent_object._is_stored
 
 
-class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
-    _DEFAULT_PB_OBJECT_CONSTRUCTOR: Callable[[], Any]
-    __slots__ = ("_parent_object", "_pb_object_store")
+class PolymorphicMixin(TreeObjectAttributeReadOnly):
+    @property
+    def _pb_object_impl(self) -> Any:
+        assert self._parent_object is not None
+        assert self._attribute_path is not None
+        *sub_path, prop_name = self._attribute_path.split(".")
+        parent_attr = _get_data_attribute(self._parent_object._pb_object, ".".join(sub_path))
+        return getattr(parent_attr, parent_attr.WhichOneof(prop_name))
 
-    def __init__(self, *, _parent_object: GrpcObject | None = None):
+
+class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
+    __slots__ = ("_parent_object", "_attribute_path", "_pb_object_store")
+
+    @classmethod
+    @abstractmethod
+    def _create_default_pb_object(cls) -> Any:
+        ...
+
+    def __init__(
+        self, *, _parent_object: GrpcObject | None = None, _attribute_path: str | None = None
+    ):
         if _parent_object is None:
-            self._pb_object_store: Any = self._DEFAULT_PB_OBJECT_CONSTRUCTOR()
+            self._pb_object_store: Any = self._create_default_pb_object()
         else:
             self._pb_object_store = None
-        self._parent_object: GrpcObject | None = _parent_object
+        self._parent_object: GrpcObject | None
+        super().__init__(_parent_object=_parent_object, _attribute_path=_attribute_path)
 
-    @abstractproperty
-    def _pb_object_impl(self) -> Any:
-        ...
+    # @abstractproperty
+    # def _pb_object_impl(self) -> Any:
+    #     ...
 
     @property
     def _pb_object(self) -> Any:

@@ -84,6 +84,7 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         ("engineering_constants", "G31"),
     ]
 
+    # TODO: this seems unused?
     @pytest.fixture
     def default_property_set_attribute_pairs(self):
         return (
