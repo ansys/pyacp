@@ -4,13 +4,23 @@ import numpy.testing as npt
 import pytest
 
 from ansys.acp.core._tree_objects.enums import PlyType
-from ansys.acp.core._tree_objects.material import (
+from ansys.acp.core._tree_objects.material.property_sets import (
     ConstantDensity,
     ConstantEngineeringConstants,
+    ConstantFabricFiberAngle,
+    ConstantLaRCConstants,
+    ConstantPuckConstants,
+    ConstantStrainLimits,
+    ConstantStressLimits,
+    ConstantTsaiWuConstants,
+    ConstantWovenCharacterization,
+    ConstantWovenStressLimits,
     FieldVariable,
     InterpolationOptions,
     VariableDensity,
     VariableEngineeringConstants,
+    VariableStrainLimits,
+    VariableStressLimits,
 )
 from common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
 
@@ -70,6 +80,17 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
     DEFAULT_TYPE_BY_PROPERTY_SET = {
         "density": ConstantDensity,
         "engineering_constants": ConstantEngineeringConstants,
+        "stress_limits": ConstantStressLimits,
+        "strain_limits": ConstantStrainLimits,
+        "puck_constants": ConstantPuckConstants,
+        "woven_characterization": ConstantWovenCharacterization,
+        "woven_puck_constants_1": ConstantPuckConstants,
+        "woven_puck_constants_2": ConstantPuckConstants,
+        "woven_stress_limits_1": ConstantWovenStressLimits,
+        "woven_stress_limits_2": ConstantWovenStressLimits,
+        "tsai_wu_constants": ConstantTsaiWuConstants,
+        "larc_constants": ConstantLaRCConstants,
+        "fabric_fiber_angle": ConstantFabricFiberAngle,
     }
     DEFAULT_PROPERTY_SET_ATTRIBUTE_PAIRS = [
         ("density", "rho"),
@@ -83,15 +104,84 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         ("engineering_constants", "G23"),
         ("engineering_constants", "G31"),
     ]
-
-    # TODO: this seems unused?
-    @pytest.fixture
-    def default_property_set_attribute_pairs(self):
-        return (
-            (property_set_name, attr_name)
-            for property_set_name in list(self.DEFAULT_NAMES_BY_PROPERTY_SET.keys())
-            for attr_name in self.DEFAULT_NAMES_BY_PROPERTY_SET[property_set_name]
-        )
+    EXTRA_PROPERTY_SET_ATTRIBUTE_PAIRS = [
+        ("stress_limits", "Xt"),
+        ("stress_limits", "Yt"),
+        ("stress_limits", "Zt"),
+        ("stress_limits", "Xc"),
+        ("stress_limits", "Yc"),
+        ("stress_limits", "Zc"),
+        ("stress_limits", "Sxy"),
+        ("stress_limits", "Syz"),
+        ("stress_limits", "Sxz"),
+        ("strain_limits", "eXt"),
+        ("strain_limits", "eYt"),
+        ("strain_limits", "eZt"),
+        ("strain_limits", "eXc"),
+        ("strain_limits", "eYc"),
+        ("strain_limits", "eZc"),
+        ("strain_limits", "eSxy"),
+        ("strain_limits", "eSyz"),
+        ("strain_limits", "eSxz"),
+        ("puck_constants", "p_21_pos"),
+        ("puck_constants", "p_22_pos"),
+        ("puck_constants", "p_21_neg"),
+        ("puck_constants", "p_22_neg"),
+        ("puck_constants", "s"),
+        ("puck_constants", "M"),
+        ("puck_constants", "interface_weakening_factor"),
+        ("woven_characterization", "orientation_1"),
+        ("woven_characterization", "E1_1"),
+        ("woven_characterization", "E2_1"),
+        ("woven_characterization", "G12_1"),
+        ("woven_characterization", "G23_1"),
+        ("woven_characterization", "nu12_1"),
+        ("woven_characterization", "orientation_2"),
+        ("woven_characterization", "E1_2"),
+        ("woven_characterization", "E2_2"),
+        ("woven_characterization", "G12_2"),
+        ("woven_characterization", "G23_2"),
+        ("woven_characterization", "nu12_2"),
+        ("woven_puck_constants_1", "p_21_pos"),
+        ("woven_puck_constants_1", "p_22_pos"),
+        ("woven_puck_constants_1", "p_21_neg"),
+        ("woven_puck_constants_1", "p_22_neg"),
+        ("woven_puck_constants_1", "s"),
+        ("woven_puck_constants_1", "M"),
+        ("woven_puck_constants_1", "interface_weakening_factor"),
+        ("woven_puck_constants_2", "p_21_pos"),
+        ("woven_puck_constants_2", "p_22_pos"),
+        ("woven_puck_constants_2", "p_21_neg"),
+        ("woven_puck_constants_2", "p_22_neg"),
+        ("woven_puck_constants_2", "s"),
+        ("woven_puck_constants_2", "M"),
+        ("woven_puck_constants_2", "interface_weakening_factor"),
+        ("woven_stress_limits_1", "Xt"),
+        ("woven_stress_limits_1", "Yt"),
+        ("woven_stress_limits_1", "Zt"),
+        ("woven_stress_limits_1", "Xc"),
+        ("woven_stress_limits_1", "Yc"),
+        ("woven_stress_limits_1", "Zc"),
+        ("woven_stress_limits_1", "Sxy"),
+        ("woven_stress_limits_1", "Syz"),
+        ("woven_stress_limits_2", "Xt"),
+        ("woven_stress_limits_2", "Yt"),
+        ("woven_stress_limits_2", "Zt"),
+        ("woven_stress_limits_2", "Xc"),
+        ("woven_stress_limits_2", "Yc"),
+        ("woven_stress_limits_2", "Zc"),
+        ("woven_stress_limits_2", "Sxy"),
+        ("woven_stress_limits_2", "Syz"),
+        ("tsai_wu_constants", "XY"),
+        ("tsai_wu_constants", "XZ"),
+        ("tsai_wu_constants", "YZ"),
+        ("larc_constants", "fracture_angle_under_compression"),
+        ("larc_constants", "fracture_toughness_ratio"),
+        ("larc_constants", "fracture_toughness_mode_1"),
+        ("larc_constants", "fracture_toughness_mode_2"),
+        ("larc_constants", "thin_ply_thickness_limit"),
+        ("fabric_fiber_angle", "fabric_fiber_angle"),
+    ]
 
     def test_property_sets_default(self, tree_object):
         for propset_name in ["density", "engineering_constants"]:
@@ -223,6 +313,64 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
                     ),
                 },
             ),
+            (
+                "stress_limits",
+                VariableStressLimits,
+                {
+                    "Xt": (11, 11.11),
+                    "Yt": (22, 22.22),
+                    "Zt": (33, 33.33),
+                    "Xc": (-12, -12.12),
+                    "Yc": (-23, -23.23),
+                    "Zc": (-34, -34.34),
+                    "Sxy": (13, 13.13),
+                    "Syz": (24, 24.24),
+                    "Sxz": (35, 35.35),
+                    "field_variables": (
+                        FieldVariable(
+                            name="Temperature",
+                            values=(10.0, 30.0),
+                            default=22.0,
+                            lower_limit=10.0,
+                            upper_limit=32.0,
+                        ),
+                    ),
+                    "interpolation_options": InterpolationOptions(
+                        algorithm="Triangulation-based Linear Multivariate",
+                        cached=True,
+                        normalized=True,
+                    ),
+                },
+            ),
+            (
+                "strain_limits",
+                VariableStrainLimits,
+                {
+                    "eXt": (1.23, 0.123),
+                    "eYt": (2.34, 0.234),
+                    "eZt": (3.45, 0.345),
+                    "eXc": (-1.23, -0.123),
+                    "eYc": (-2.34, -0.234),
+                    "eZc": (-3.45, -0.345),
+                    "eSxy": (111, 1111),
+                    "eSyz": (222, 2222),
+                    "eSxz": (333, 3333),
+                    "field_variables": (
+                        FieldVariable(
+                            name="Temperature",
+                            values=(12.0, 32.0),
+                            default=22.0,
+                            lower_limit=10.0,
+                            upper_limit=32.0,
+                        ),
+                    ),
+                    "interpolation_options": InterpolationOptions(
+                        algorithm="Triangulation-based Linear Multivariate",
+                        cached=True,
+                        normalized=True,
+                    ),
+                },
+            ),
         ],
     )
     def test_variable_material(
@@ -251,7 +399,6 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
     def test_material_property_set(self, val, tree_object, property_set_name, attr_name):
         property_set = getattr(tree_object, property_set_name)
         setattr(property_set, attr_name, val)
-        tree_object.density.rho = val
         # The ``npt.assert_equal`` check treats positive and negative zero as different. To avoid
         # this, we use ``npt.assert_allclose`` with zero tolerance.
         npt.assert_allclose(getattr(property_set, attr_name), val, rtol=0.0, atol=0.0)
@@ -263,7 +410,31 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
 
     @pytest.mark.parametrize(
         "property_set_name,attr_name",
-        DEFAULT_PROPERTY_SET_ATTRIBUTE_PAIRS,
+        DEFAULT_PROPERTY_SET_ATTRIBUTE_PAIRS + EXTRA_PROPERTY_SET_ATTRIBUTE_PAIRS,
+    )
+    @given(val=st.floats())
+    @settings(suppress_health_check=[HealthCheck.function_scoped_fixture])
+    def test_material_property_set_after_init(self, val, tree_object, property_set_name, attr_name):
+        setattr(
+            tree_object,
+            property_set_name,
+            self.DEFAULT_TYPE_BY_PROPERTY_SET[property_set_name](**{attr_name: val}),
+        )
+
+        property_set = getattr(tree_object, property_set_name)
+        setattr(property_set, attr_name, val)
+        # The ``npt.assert_equal`` check treats positive and negative zero as different. To avoid
+        # this, we use ``npt.assert_allclose`` with zero tolerance.
+        npt.assert_allclose(getattr(property_set, attr_name), val, rtol=0.0, atol=0.0)
+        # We test also by directly accessing it from the 'tree_object', to ensure the base property
+        # works as expected.
+        npt.assert_allclose(
+            getattr(getattr(tree_object, property_set_name), attr_name), val, rtol=0.0, atol=0.0
+        )
+
+    @pytest.mark.parametrize(
+        "property_set_name,attr_name",
+        DEFAULT_PROPERTY_SET_ATTRIBUTE_PAIRS + EXTRA_PROPERTY_SET_ATTRIBUTE_PAIRS,
     )
     @given(val=st.floats())
     @settings(suppress_health_check=[HealthCheck.function_scoped_fixture])

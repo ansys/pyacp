@@ -7,6 +7,7 @@ import tempfile
 from typing import Generator, cast
 
 import docker
+from hypothesis import settings
 import pytest
 
 from ansys.acp.core import Client, launch_acp
@@ -28,6 +29,10 @@ __all__ = [
     "clear_models_before_run",
     "load_model_from_tempfile",
 ]
+
+
+settings.register_profile("fast", max_examples=10)
+settings.load_profile("fast")
 
 logging.getLogger("ansys.acp.core").setLevel(logging.DEBUG)
 

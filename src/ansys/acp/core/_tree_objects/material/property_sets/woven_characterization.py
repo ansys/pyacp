@@ -25,6 +25,7 @@ class ConstantWovenCharacterization(_WovenCharacterizationMixin, _ConstantProper
     def __init__(
         self,
         *,
+        orientation_1: float = 0.0,
         E1_1: float = 0.0,
         E2_1: float = 0.0,
         G12_1: float = 0.0,
@@ -42,6 +43,7 @@ class ConstantWovenCharacterization(_WovenCharacterizationMixin, _ConstantProper
         super().__init__(_parent_object=_parent_object, _attribute_path=_attribute_path)
         if _parent_object is not None:
             return
+        self.orientation_1 = orientation_1
         self.E1_1 = E1_1
         self.E2_1 = E2_1
         self.G12_1 = G12_1
@@ -54,6 +56,7 @@ class ConstantWovenCharacterization(_WovenCharacterizationMixin, _ConstantProper
         self.G23_2 = G23_2
         self.nu12_2 = nu12_2
 
+    orientation_1 = _constant_material_grpc_data_property("orientation_1")
     E1_1 = _constant_material_grpc_data_property("E1_1")
     E2_1 = _constant_material_grpc_data_property("E2_1")
     G12_1 = _constant_material_grpc_data_property("G12_1")

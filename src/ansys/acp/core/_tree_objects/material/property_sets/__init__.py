@@ -6,6 +6,7 @@ from .puck_constants import ConstantPuckConstants, VariablePuckConstants
 from .strain_limits import ConstantStrainLimits, VariableStrainLimits
 from .stress_limits import ConstantStressLimits, VariableStressLimits
 from .tsai_wu_constants import ConstantTsaiWuConstants, VariableTsaiWuConstants
+from .variable_property_set_attributes import FieldVariable, InterpolationOptions
 from .woven_characterization import ConstantWovenCharacterization, VariableWovenCharacterization
 from .woven_stress_limits import ConstantWovenStressLimits, VariableWovenStressLimits
 from .wrapper import wrap_property_set
@@ -31,5 +32,7 @@ __all__ = [
     "VariableLaRCConstants",
     "ConstantFabricFiberAngle",
     "VariableFabricFiberAngle",
+    "FieldVariable",
+    "InterpolationOptions",
     "wrap_property_set",
 ]

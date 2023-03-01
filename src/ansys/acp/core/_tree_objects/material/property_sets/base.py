@@ -7,7 +7,7 @@ from google.protobuf.message import Message
 from ..._grpc_helpers.property_helper import grpc_data_property_read_only, mark_grpc_properties
 from ...base import PolymorphicMixin as _BasePolymorphicMixin
 from ...base import TreeObjectAttribute, TreeObjectAttributeReadOnly
-from ..variable_property_set_attributes import FieldVariable, InterpolationOptions
+from .variable_property_set_attributes import FieldVariable, InterpolationOptions
 
 __all__ = ("_ConstantPropertySet", "_PolymorphicMixin", "_VariablePropertySet")
 
