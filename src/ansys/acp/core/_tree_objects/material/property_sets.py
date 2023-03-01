@@ -55,16 +55,23 @@ class VariableDensity(_MonomorphicMixin, _VariablePropertySet):
     rho = _variable_material_grpc_data_property("rho")
 
 
-@mark_grpc_properties
-class ConstantEngineeringConstants(_PolymorphicMixin, _ConstantPropertySet):
-    GRPC_PROPERTIES = tuple()
-    _DEFAULT_PB_OBJECT_CONSTRUCTOR = material_pb2.OrthotropicEngineeringConstantsPropertySet.Data
-    _pb_object: (
-        material_pb2.IsotropicEngineeringConstantsPropertySet.Data
-        | material_pb2.OrthotropicEngineeringConstantsPropertySet.Data
-    )
+class _EngineeringConstantsMixin(_PolymorphicMixin):
     _PROPERTYSET_NAME = "engineering_constants"
     _FIELD_NAME_DEFAULT = "engineering_constants_orthotropic"
+    _FIELD_NAMES_BY_PB_DATATYPE = {
+        material_pb2.IsotropicEngineeringConstantsPropertySet.Data: "engineering_constants_isotropic",
+        material_pb2.OrthotropicEngineeringConstantsPropertySet.Data: "engineering_constants_orthotropic",
+    }
+
+
+@mark_grpc_properties
+class ConstantEngineeringConstants(_EngineeringConstantsMixin, _ConstantPropertySet):
+    GRPC_PROPERTIES = tuple()
+    _DEFAULT_PB_OBJECT_CONSTRUCTOR = material_pb2.OrthotropicEngineeringConstantsPropertySet.Data
+    # _pb_object: (
+    #     material_pb2.IsotropicEngineeringConstantsPropertySet.Data
+    #     | material_pb2.OrthotropicEngineeringConstantsPropertySet.Data
+    # )
 
     def __init__(
         self,
@@ -107,10 +114,8 @@ class ConstantEngineeringConstants(_PolymorphicMixin, _ConstantPropertySet):
 
 
 @mark_grpc_properties
-class VariableEngineeringConstants(_PolymorphicMixin, _VariablePropertySet):
+class VariableEngineeringConstants(_EngineeringConstantsMixin, _VariablePropertySet):
     GRPC_PROPERTIES = tuple()
-    _PROPERTYSET_NAME = "engineering_constants"
-    _FIELD_NAME_DEFAULT = "engineering_constants_orthotropic"
 
     E = _variable_material_grpc_data_property("E")
     nu = _variable_material_grpc_data_property("nu")

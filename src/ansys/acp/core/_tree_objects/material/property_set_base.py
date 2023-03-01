@@ -13,6 +13,8 @@ __all__ = ("_ConstantPropertySet", "_MonomorphicMixin", "_PolymorphicMixin", "_V
 
 
 class _ConstantPropertySet(TreeObjectAttribute):
+    _PROPERTYSET_NAME: str
+
     @abstractproperty
     def _pb_propset_impl(
         self,
@@ -77,6 +79,7 @@ class _MonomorphicMixin(TreeObjectAttributeReadOnly):
 class _PolymorphicMixin(TreeObjectAttributeReadOnly):
     _PROPERTYSET_NAME: str
     _FIELD_NAME_DEFAULT: str
+    _FIELD_NAMES_BY_PB_DATATYPE: dict[type[Message], str]
 
     @property
     def _pb_propset_impl(
