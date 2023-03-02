@@ -15,7 +15,6 @@ __all__ = ["ConstantWovenStressLimits", "VariableWovenStressLimits"]
 
 class _WovenStressLimitsMixin:
     _DEFAULT_PB_PROPERTYSET_TYPE = material_pb2.OrthotropicStressLimitsPropertySet
-    # _PROPERTYSET_NAME = "woven_stress_limits"
 
 
 @mark_grpc_properties

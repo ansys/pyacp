@@ -18,7 +18,6 @@ __all__ = [
 
 class _StrainLimitsMixin(_PolymorphicMixin):
     _DEFAULT_PB_PROPERTYSET_TYPE = material_pb2.OrthotropicStrainLimitsPropertySet
-    # _PROPERTYSET_NAME = "strain_limits"
     _FIELD_NAME_SUFFIX_DEFAULT = "_orthotropic"
     _FIELD_NAME_SUFFIX_BY_PB_DATATYPE = {
         material_pb2.IsotropicStrainLimitsPropertySet: "_isotropic",

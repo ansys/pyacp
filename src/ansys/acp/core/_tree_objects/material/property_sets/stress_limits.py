@@ -18,7 +18,6 @@ __all__ = [
 
 class _StressLimitsMixin(_PolymorphicMixin):
     _DEFAULT_PB_PROPERTYSET_TYPE = material_pb2.OrthotropicStressLimitsPropertySet
-    # _PROPERTYSET_NAME = "stress_limits"
     _FIELD_NAME_SUFFIX_DEFAULT = "_orthotropic"
     _FIELD_NAME_SUFFIX_BY_PB_DATATYPE = {
         material_pb2.IsotropicStressLimitsPropertySet: "_isotropic",

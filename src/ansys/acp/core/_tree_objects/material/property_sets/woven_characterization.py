@@ -15,7 +15,6 @@ __all__ = ["ConstantWovenCharacterization", "VariableWovenCharacterization"]
 
 class _WovenCharacterizationMixin:
     _DEFAULT_PB_PROPERTYSET_TYPE = material_pb2.WovenCharacterizationPropertySet
-    # _PROPERTYSET_NAME = "woven_characterization"
 
 
 @mark_grpc_properties

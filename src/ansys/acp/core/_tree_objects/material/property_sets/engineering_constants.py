@@ -18,7 +18,6 @@ __all__ = [
 
 class _EngineeringConstantsMixin(_PolymorphicMixin):
     _DEFAULT_PB_PROPERTYSET_TYPE = material_pb2.OrthotropicEngineeringConstantsPropertySet
-    # _PROPERTYSET_NAME = "engineering_constants"
     _FIELD_NAME_DEFAULT = "_orthotropic"
     _FIELD_NAME_SUFFIX_BY_PB_DATATYPE = {
         material_pb2.IsotropicEngineeringConstantsPropertySet: "_isotropic",

@@ -15,7 +15,6 @@ __all__ = ["ConstantTsaiWuConstants", "VariableTsaiWuConstants"]
 
 class _TsaiWuConstantsMixin:
     _DEFAULT_PB_PROPERTYSET_TYPE = material_pb2.TsaiWuConstantsPropertySet
-    # _PROPERTYSET_NAME = "tsai_wu_constants"
 
 
 @mark_grpc_properties

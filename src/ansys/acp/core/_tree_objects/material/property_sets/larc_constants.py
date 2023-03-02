@@ -15,7 +15,6 @@ __all__ = ["ConstantLaRCConstants", "VariableLaRCConstants"]
 
 class _LaRCConstantsMixin:
     _DEFAULT_PB_PROPERTYSET_TYPE = material_pb2.LaRCConstantsPropertySet
-    # _PROPERTYSET_NAME = "larc_constants"
 
 
 @mark_grpc_properties
