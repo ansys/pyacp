@@ -1,3 +1,8 @@
+"""
+Implements a helper function ``wrap_property_set`` to expose property sets on the
+Material, as a property.
+"""
+
 from __future__ import annotations
 
 from typing import Any, TypeVar
@@ -85,7 +90,29 @@ def _property_set_deleter(name: str) -> Any:
 
 
 def wrap_property_set(name: str, type_constant: type[TC], type_variable: type[TV]) -> Any:
-    """Helper function to define a material property set on the material."""
+    """Helper function to define a material property set on the material.
+
+    Expose a property set on the ``Material``, as a property. The property
+    automatically chooses the appropriate type (``type_constant`` or ``type_variable``),
+    depending on whether the property set is constant (has exactly one value, and
+    no field variables), or variable.
+
+    For polymorphic property sets (which are defined as a protobuf 'oneof'), the
+    wrapper takes care of storing / constructing the object with the currently
+    active field.
+
+    Parameters
+    ----------
+    name :
+        Field name on which the property set is defined. If the property set is
+        polymorphic (defined as a protobuf 'oneof'), this is the name of the
+        'oneof' itself, not of the contained fields.
+    type_constant :
+        Type of the property set when the property set is constant (independent
+        of field variables).
+    type_variable :
+        Type of the property set when the property set depends on field variables.
+    """
     return (
         _exposed_grpc_property(
             _property_set_getter(
