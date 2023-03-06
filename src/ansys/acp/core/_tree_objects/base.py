@@ -4,39 +4,47 @@ via gRPC Put / Get calls.
 """
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
-import textwrap
+from abc import abstractmethod
 from typing import Any, Iterable, TypeVar, cast
 
 from grpc import Channel
+from typing_extensions import Self
 
-from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ResourcePath
+from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, GetRequest, ResourcePath
 
-from .._grpc_helpers.linked_object_helpers import linked_path_fields, unlink_objects
-from .._grpc_helpers.property_helper import (
+from .._utils.resource_paths import common_path
+from .._utils.resource_paths import join as _rp_join
+from .._utils.resource_paths import to_parts
+from ._grpc_helpers.linked_object_helpers import linked_path_fields, unlink_objects
+from ._grpc_helpers.property_helper import (
+    _get_data_attribute,
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
-from .._grpc_helpers.protocols import CreatableResourceStub, CreateRequest, ObjectInfo, ResourceStub
-from .._utils.resource_paths import common_path
-from .._utils.resource_paths import join as _rp_join
-from .._utils.resource_paths import to_parts
+from ._grpc_helpers.protocols import (
+    CreatableResourceStub,
+    CreateRequest,
+    GrpcObject,
+    GrpcObjectReadOnly,
+    ObjectInfo,
+    ResourceStub,
+    RootGrpcObject,
+)
 
 _T = TypeVar("_T", bound="TreeObject")
 
 
 @mark_grpc_properties
-class TreeObject(ABC):
+class TreeObject(RootGrpcObject):
     """
     Base class for ACP tree objects.
     """
 
     __slots__ = ("_channel_store", "_stub_store", "_pb_object")
 
-    COLLECTION_LABEL: str
+    _COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: type[ObjectInfo]
-    GRPC_PROPERTIES: tuple[str, ...]
 
     def __init__(self: TreeObject, name: str = "") -> None:
         self._channel_store: Channel | None = None
@@ -87,7 +95,7 @@ class TreeObject(ABC):
         return instance
 
     @classmethod
-    def _from_resource_path(cls: type[_T], resource_path: ResourcePath, channel: Channel) -> _T:
+    def _from_resource_path(cls, resource_path: ResourcePath, channel: Channel) -> Self:
         instance = cls()
         instance._pb_object.info.resource_path.CopyFrom(resource_path)
         instance._channel_store = channel
@@ -110,6 +118,14 @@ class TreeObject(ABC):
             self._stub_store = self._create_stub()
         return self._stub_store
 
+    def _get(self) -> None:
+        self._pb_object = self._get_stub().Get(
+            GetRequest(resource_path=self._pb_object.info.resource_path)
+        )
+
+    def _put(self) -> None:
+        self._pb_object = self._get_stub().Put(self._pb_object)
+
     @abstractmethod
     def _create_stub(self) -> ResourceStub:
         ...
@@ -121,30 +137,12 @@ class TreeObject(ABC):
     def __repr__(self) -> str:
         return f"<{type(self).__name__} with name '{self.name}'>"
 
-    def __str__(self) -> str:
-        string_items = []
-        for attr_name in self.GRPC_PROPERTIES:
-            try:
-                value_repr = repr(getattr(self, attr_name))
-            except:
-                value_repr = "<unavailable>"
-            string_items.append(f"{attr_name}={value_repr}")
-        type_name = type(self).__name__
-        if not string_items:
-            content = ""
-        elif len(string_items) == 1:
-            content = string_items[0]
-        else:
-            content = ",\n".join(string_items)
-            content = f"\n{textwrap.indent(content, ' ' * 4)}\n"
-        return f"{type_name}({content})"
-
     name = grpc_data_property("info.name")
     """The name of the object."""
 
 
 @mark_grpc_properties
-class CreatableTreeObject(TreeObject, ABC):
+class CreatableTreeObject(TreeObject):
     __slots__: Iterable[str] = tuple()
     CREATE_REQUEST_TYPE: type[CreateRequest]
 
@@ -155,7 +153,7 @@ class CreatableTreeObject(TreeObject, ABC):
         self._channel_store = parent._channel
 
         collection_path = CollectionPath(
-            value=_rp_join(parent._resource_path.value, self.COLLECTION_LABEL)
+            value=_rp_join(parent._resource_path.value, self._COLLECTION_LABEL)
         )
 
         # check that all linked objects are located in the same model
@@ -186,7 +184,7 @@ class CreatableTreeObject(TreeObject, ABC):
 
 
 @mark_grpc_properties
-class IdTreeObject(TreeObject, ABC):
+class IdTreeObject(TreeObject):
     """Implements the 'id' attribute for tree objects."""
 
     __slots__: Iterable[str] = tuple()
@@ -195,3 +193,97 @@ class IdTreeObject(TreeObject, ABC):
 
     def __repr__(self) -> str:
         return f"<{type(self).__name__} with id '{self.id}'>"
+
+
+class TreeObjectAttributeReadOnly(GrpcObjectReadOnly):
+    """
+    Defines an attribute which is defined as a sub-component of a parent
+    object's protobuf object (read-only).
+    """
+
+    __slots__ = ("_parent_object", "_attribute_path")
+
+    def __init__(
+        self,
+        *,
+        _parent_object: GrpcObjectReadOnly | None = None,
+        _attribute_path: str | None = None,
+    ):
+        if _parent_object is None != _attribute_path is None:
+            raise TypeError(
+                "Either both '_parent_object' and '_attribute_path' need to be 'None', or neither."
+            )
+        self._parent_object: GrpcObjectReadOnly | None = _parent_object
+        self._attribute_path = _attribute_path
+
+    def _get(self) -> None:
+        if self._parent_object is None:
+            raise RuntimeError("The parent object is not set.")
+        self._parent_object._get()
+
+    @property
+    def _pb_object_impl(self) -> Any:
+        assert self._parent_object is not None
+        assert self._attribute_path is not None
+        return _get_data_attribute(self._parent_object._pb_object, self._attribute_path)
+
+    @property
+    def _pb_object(self) -> Any:
+        return self._pb_object_impl
+
+    @property
+    def _is_stored(self) -> bool:
+        if self._parent_object is None:
+            return False
+        return self._parent_object._is_stored
+
+
+class PolymorphicMixin(TreeObjectAttributeReadOnly):
+    """
+    Mixin class for attributes which can have multiple types, through a
+    'oneof' definition.
+    """
+
+    @property
+    def _pb_object_impl(self) -> Any:
+        assert self._parent_object is not None
+        assert self._attribute_path is not None
+        *sub_path, prop_name = self._attribute_path.split(".")
+        parent_attr = _get_data_attribute(self._parent_object._pb_object, ".".join(sub_path))
+        return getattr(parent_attr, parent_attr.WhichOneof(prop_name))
+
+
+class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
+    """
+    Defines an attribute which is defined as a sub-component of a parent
+    object's protobuf object (read-write).
+    """
+
+    __slots__ = ("_parent_object", "_attribute_path", "_pb_object_store")
+
+    @classmethod
+    @abstractmethod
+    def _create_default_pb_object(cls) -> Any:
+        ...
+
+    def __init__(
+        self, *, _parent_object: GrpcObject | None = None, _attribute_path: str | None = None
+    ):
+        if _parent_object is None:
+            self._pb_object_store: Any = self._create_default_pb_object()
+        else:
+            self._pb_object_store = None
+        self._parent_object: GrpcObject | None
+        super().__init__(_parent_object=_parent_object, _attribute_path=_attribute_path)
+
+    @property
+    def _pb_object(self) -> Any:
+        if self._parent_object is None:
+            return self._pb_object_store
+        else:
+            return self._pb_object_impl
+
+    def _put(self) -> None:
+        if self._parent_object is None:
+            raise RuntimeError("The parent object is not set.")
+        self._parent_object._put()

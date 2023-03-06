@@ -18,15 +18,15 @@ from ansys.api.acp.v0 import (
 )
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
-from .._grpc_helpers.enum_wrapper import wrap_to_string_enum
-from .._grpc_helpers.mapping import define_mapping
-from .._grpc_helpers.property_helper import (
+from .._typing_helper import PATH as _PATH
+from .._utils.resource_paths import join as rp_join
+from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
+from ._grpc_helpers.mapping import define_mapping
+from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
-from .._typing_helper import PATH as _PATH
-from .._utils.resource_paths import join as rp_join
 from .base import TreeObject
 from .edge_set import EdgeSet
 from .element_set import ElementSet
@@ -75,7 +75,7 @@ class Model(TreeObject):
 
     __slots__: Iterable[str] = tuple()
 
-    COLLECTION_LABEL = "models"
+    _COLLECTION_LABEL = "models"
     OBJECT_INFO_TYPE = model_pb2.ObjectInfo
 
     def __init__(
@@ -207,7 +207,7 @@ class Model(TreeObject):
         """
         material_stub = material_pb2_grpc.ObjectServiceStub(self._channel)
         collection_path = CollectionPath(
-            value=rp_join(self._resource_path.value, Material.COLLECTION_LABEL)
+            value=rp_join(self._resource_path.value, Material._COLLECTION_LABEL)
         )
         material_stub.SaveToFile(
             material_pb2.SaveToFileRequest(

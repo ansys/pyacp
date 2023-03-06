@@ -5,15 +5,11 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from functools import reduce
-from typing import TYPE_CHECKING, Any, Callable, cast
+from typing import Any, Callable, cast
 
-from ansys.api.acp.v0.base_pb2 import GetRequest, ResourcePath
+from ansys.api.acp.v0.base_pb2 import ResourcePath
 
-if TYPE_CHECKING:
-    # Causes a circular import if imported at runtime
-    from .._tree_objects.base import TreeObject
-
-from .protocols import ObjectInfo
+from .protocols import GrpcObject, GrpcObjectReadOnly, ObjectInfo, RootGrpcObject
 
 _TO_PROTOBUF_T = Callable[[Any], Any]
 _FROM_PROTOBUF_T = Callable[[Any], Any]
@@ -22,18 +18,18 @@ _FROM_PROTOBUF_T = Callable[[Any], Any]
 class _exposed_grpc_property(property):
     """
     Wrapper around 'property', used to signal that the object should
-    be collected into the 'GRPC_PROPERTIES' class attribute.
+    be collected into the '_GRPC_PROPERTIES' class attribute.
     """
 
     pass
 
 
-def mark_grpc_properties(cls: type[TreeObject]) -> type[TreeObject]:
+def mark_grpc_properties(cls: type[GrpcObjectReadOnly]) -> type[GrpcObjectReadOnly]:
     props: list[str] = []
     for base_cls in reversed(cls.__bases__):
-        if hasattr(base_cls, "GRPC_PROPERTIES"):
-            base_cls = cast("type[TreeObject]", base_cls)
-            props.extend(base_cls.GRPC_PROPERTIES)
+        if hasattr(base_cls, "_GRPC_PROPERTIES"):
+            base_cls = cast("type[GrpcObjectReadOnly]", base_cls)
+            props.extend(base_cls._GRPC_PROPERTIES)
     for key, value in vars(cls).items():
         if isinstance(value, _exposed_grpc_property):
             props.append(key)
@@ -41,25 +37,23 @@ def mark_grpc_properties(cls: type[TreeObject]) -> type[TreeObject]:
     for name in props:
         if name not in props_unique:
             props_unique.append(name)
-    cls.GRPC_PROPERTIES = tuple(props_unique)
+    cls._GRPC_PROPERTIES = tuple(props_unique)
     return cls
 
 
-def grpc_linked_object_getter(name: str) -> Callable[[TreeObject], Any]:
+def grpc_linked_object_getter(name: str) -> Callable[[RootGrpcObject], Any]:
     """
     Creates a getter method which obtains the linked server object
     """
 
-    def inner(self: TreeObject) -> TreeObject | None:
+    def inner(self: RootGrpcObject) -> RootGrpcObject | None:
         #  Import here to avoid circular references. Cannot use the registry before
         #  all the object have been imported.
-        from .._tree_objects.object_registry import object_registry
+        from ..object_registry import object_registry
 
         if not self._is_stored:
             raise Exception("Cannot get linked object from unstored object")
-        self._pb_object = self._get_stub().Get(
-            GetRequest(resource_path=self._pb_object.info.resource_path)
-        )
+        self._get()
         object_resource_path = _get_data_attribute(self._pb_object, name)
 
         # Resource path represents an object that is not set as an empty string
@@ -67,40 +61,34 @@ def grpc_linked_object_getter(name: str) -> Callable[[TreeObject], Any]:
         if object_resource_path.value == "":
             return None
         resource_type = object_resource_path.value.split("/")[::2][-1]
-        resource_class = object_registry[resource_type]
+        resource_class: type[RootGrpcObject] = object_registry[resource_type]
 
         return resource_class._from_resource_path(object_resource_path, self._channel)
 
     return inner
 
 
-def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[TreeObject], Any]:
+def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[GrpcObject], Any]:
     """
     Creates a getter method which obtains the server object via the gRPC
     Get endpoint.
     """
 
-    def inner(self: TreeObject) -> Any:
-        if self._is_stored:
-            self._pb_object = self._get_stub().Get(
-                GetRequest(resource_path=self._pb_object.info.resource_path)
-            )
+    def inner(self: GrpcObject) -> Any:
+        self._get_if_stored()
         return from_protobuf(_get_data_attribute(self._pb_object, name))
 
     return inner
 
 
-def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[TreeObject, Any], None]:
+def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[GrpcObject, Any], None]:
     """
     Creates a setter method which updates the server object via the gRPC
     Put endpoint.
     """
 
-    def inner(self: TreeObject, value: Any) -> None:
-        if self._is_stored:
-            self._pb_object = self._get_stub().Get(
-                GetRequest(resource_path=self._pb_object.info.resource_path)
-            )
+    def inner(self: GrpcObject, value: Any) -> None:
+        self._get_if_stored()
         current_value = _get_data_attribute(self._pb_object, name)
         value_pb = to_protobuf(value)
         try:
@@ -109,8 +97,7 @@ def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[TreeOb
             needs_updating = True
         if needs_updating:
             _set_data_attribute(self._pb_object, name, value_pb)
-            if self._is_stored:
-                self._pb_object = self._get_stub().Put(self._pb_object)
+            self._put_if_stored()
 
     return inner
 
@@ -154,7 +141,10 @@ def grpc_data_property(
     )
 
 
-def grpc_data_property_read_only(name: str, from_protobuf: _FROM_PROTOBUF_T = lambda x: x) -> Any:
+def grpc_data_property_read_only(
+    name: str,
+    from_protobuf: _FROM_PROTOBUF_T = lambda x: x,
+) -> Any:
     """
     Helper for defining properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to synchronize

@@ -235,7 +235,7 @@ jobs:
 
       - name: Build HTML
         run: |
-          xvfb-run poetry run make -C doc html SPHINXOPTS="-W --keep-going -vv"
+          xvfb-run poetry run make -C doc html SPHINXOPTS="-W --keep-going -v"
 
       - name: Stop and clean up MAPDL and DPF servers
         run: |

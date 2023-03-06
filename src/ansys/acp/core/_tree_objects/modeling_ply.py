@@ -4,8 +4,8 @@ from typing import Container, Iterable
 
 from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc
 
-from .._grpc_helpers.linked_object_list import define_linked_object_list
-from .._grpc_helpers.property_helper import (
+from ._grpc_helpers.linked_object_list import define_linked_object_list
+from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     grpc_link_property,
@@ -33,7 +33,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
 
     __slots__: Iterable[str] = tuple()
 
-    COLLECTION_LABEL = "modeling_plies"
+    _COLLECTION_LABEL = "modeling_plies"
     OBJECT_INFO_TYPE = modeling_ply_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = modeling_ply_pb2.CreateRequest
 

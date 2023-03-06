@@ -10,8 +10,8 @@ from grpc import Channel
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 
-from .._tree_objects.base import CreatableTreeObject, TreeObject
-from .._utils.resource_paths import join as _rp_join
+from ..._utils.resource_paths import join as _rp_join
+from ..base import CreatableTreeObject, TreeObject
 from .protocols import ObjectInfo, ResourceStub
 
 ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
@@ -137,7 +137,7 @@ def define_mapping(
         return Mapping(
             channel=self._channel,
             collection_path=CollectionPath(
-                value=_rp_join(self._resource_path.value, object_class.COLLECTION_LABEL)
+                value=_rp_join(self._resource_path.value, object_class._COLLECTION_LABEL)
             ),
             object_constructor=object_class._from_object_info,
             stub=stub_class(channel=self._channel),
