@@ -42,12 +42,52 @@ from .property_sets import (
 class Material(CreatableTreeObject, IdTreeObject):
     """Instantiate a Material.
 
+    .. note::
+
+        The active material property sets are determined by the ``ply_type``. For
+        example, ``puck_constants`` are only active when the ``ply_type`` is either
+        :attr:`.PlyType.REGULAR` or :attr:`.PlyType.WOVEN`.
+
+        The inactive property sets can still be *set*, but may not be accessible:
+
+        - For **stored** materials, inactive property sets always return ``None``.
+        - For **unstored** materials, inactive property sets can be accessed. They
+          return ``None`` after storing.
+
     Parameters
     ----------
     name :
         Name of the Material.
     ply_type :
         Define the type of material such as core, uni-directional (regular), woven, or isotropic.
+    density :
+        TODO
+    engineering_constants :
+        TODO
+    stress_limits :
+        TODO
+    strain_limits :
+        TODO
+    puck_constants :
+        TODO
+    woven_characterization :
+        TODO
+    woven_puck_constants_1 :
+        TODO
+    woven_puck_constants_2 :
+        TODO
+    woven_puck_constants_2 :
+        TODO
+    woven_stress_limits_1 :
+        TODO
+    woven_stress_limits_2 :
+        TODO
+    tsai_wu_constants :
+        TODO
+    larc_constants :
+        TODO
+    fabric_fiber_angle :
+        TODO
     """
 
     _pb_object: material_pb2.ObjectInfo
@@ -63,12 +103,34 @@ class Material(CreatableTreeObject, IdTreeObject):
         ply_type: PlyType = "undefined",
         density: ConstantDensity | None = None,
         engineering_constants: ConstantEngineeringConstants | None = None,
+        stress_limits: ConstantStressLimits | None = None,
+        strain_limits: ConstantStrainLimits | None = None,
+        puck_constants: ConstantPuckConstants | None = None,
+        woven_characterization: ConstantWovenCharacterization | None = None,
+        woven_puck_constants_1: ConstantPuckConstants | None = None,
+        woven_puck_constants_2: ConstantPuckConstants | None = None,
+        woven_stress_limits_1: ConstantWovenStressLimits | None = None,
+        woven_stress_limits_2: ConstantWovenStressLimits | None = None,
+        tsai_wu_constants: ConstantTsaiWuConstants | None = None,
+        larc_constants: ConstantLaRCConstants | None = None,
+        fabric_fiber_angle: ConstantFabricFiberAngle | None = None,
     ):
         super().__init__(name=name)
 
         self.ply_type = ply_type
         self.density = density or ConstantDensity()
         self.engineering_constants = engineering_constants or ConstantEngineeringConstants()
+        self.stress_limits = stress_limits
+        self.strain_limits = strain_limits
+        self.puck_constants = puck_constants
+        self.woven_characterization = woven_characterization
+        self.woven_puck_constants_1 = woven_puck_constants_1
+        self.woven_puck_constants_2 = woven_puck_constants_2
+        self.woven_stress_limits_1 = woven_stress_limits_1
+        self.woven_stress_limits_2 = woven_stress_limits_2
+        self.tsai_wu_constants = tsai_wu_constants
+        self.larc_constants = larc_constants
+        self.fabric_fiber_angle = fabric_fiber_angle
 
     density = wrap_property_set("density", ConstantDensity, VariableDensity)
     engineering_constants = wrap_property_set(

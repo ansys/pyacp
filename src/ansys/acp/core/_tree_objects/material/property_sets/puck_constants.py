@@ -34,14 +34,13 @@ class _PuckConstantsMixin:
 class ConstantPuckConstants(_PuckConstantsMixin, _ConstantPropertySet):
     _GRPC_PROPERTIES = tuple()
 
-    # TODO: should we implement defaults depending on the 'mat_type'?
     def __init__(
         self,
         *,
-        p_21_pos: float = 0.325,
-        p_21_neg: float = 0.275,
-        p_22_pos: float = 0.225,
-        p_22_neg: float = 0.225,
+        p_21_pos: float | None = None,
+        p_21_neg: float | None = None,
+        p_22_pos: float | None = None,
+        p_22_neg: float | None = None,
         s: float = 0.5,
         M: float = 0.5,
         interface_weakening_factor: float = 0.8,
@@ -52,14 +51,35 @@ class ConstantPuckConstants(_PuckConstantsMixin, _ConstantPropertySet):
         super().__init__(_parent_object=_parent_object, _attribute_path=_attribute_path)
         if _parent_object is not None:
             return
-        self.p_21_pos = p_21_pos
-        self.p_21_neg = p_21_neg
-        self.p_22_pos = p_22_pos
-        self.p_22_neg = p_22_neg
+
+        def val_or_default(val: float | None, default: float) -> float:
+            if val is not None:
+                return val
+            return default
+
+        self.mat_type = PuckMaterialType(mat_type)
+
+        if mat_type in (PuckMaterialType.IGNORED, PuckMaterialType.MATERIAL_SPECIFIC):
+            self.p_21_pos = val_or_default(p_21_pos, 0.325)
+            self.p_21_neg = val_or_default(p_21_neg, 0.275)
+            self.p_22_pos = val_or_default(p_22_pos, 0.225)
+            self.p_22_neg = val_or_default(p_22_neg, 0.225)
+        elif mat_type == PuckMaterialType.CARBON:
+            self.p_21_pos = val_or_default(p_21_pos, 0.35)
+            self.p_21_neg = val_or_default(p_21_neg, 0.3)
+            self.p_22_pos = val_or_default(p_22_pos, 0.25)
+            self.p_22_neg = val_or_default(p_22_neg, 0.25)
+        elif mat_type == PuckMaterialType.GLASS:
+            self.p_21_pos = val_or_default(p_21_pos, 0.3)
+            self.p_21_neg = val_or_default(p_21_neg, 0.25)
+            self.p_22_pos = val_or_default(p_22_pos, 0.2)
+            self.p_22_neg = val_or_default(p_22_neg, 0.2)
+        else:
+            raise ValueError(f"Unknown 'mat_type': '{mat_type}'")
+
         self.s = s
         self.M = M
         self.interface_weakening_factor = interface_weakening_factor
-        self.mat_type = mat_type
 
     p_21_pos = _constant_material_grpc_data_property("p_21_pos")
     p_21_neg = _constant_material_grpc_data_property("p_21_neg")
@@ -68,7 +88,7 @@ class ConstantPuckConstants(_PuckConstantsMixin, _ConstantPropertySet):
     s = _constant_material_grpc_data_property("s")
     M = _constant_material_grpc_data_property("M")
     interface_weakening_factor = _constant_material_grpc_data_property("interface_weakening_factor")
-    mat_type = grpc_data_property("mat_type")
+    mat_type = grpc_data_property("mat_type", from_protobuf=PuckMaterialType)
 
 
 @mark_grpc_properties
