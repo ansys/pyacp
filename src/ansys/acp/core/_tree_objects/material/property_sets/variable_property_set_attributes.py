@@ -10,6 +10,8 @@ __all__ = (
 
 @dataclass(frozen=True)
 class InterpolationOptions:
+    """Defines the interpolation options for variable materials."""
+
     algorithm: str
     cached: bool
     normalized: bool
@@ -17,6 +19,8 @@ class InterpolationOptions:
 
 @dataclass(frozen=True)
 class FieldVariable:
+    """Defines field variables for variable material properties."""
+
     name: str
     values: tuple[float, ...]
     default: float
