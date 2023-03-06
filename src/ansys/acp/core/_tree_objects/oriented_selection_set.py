@@ -48,7 +48,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
 
     __slots__: Iterable[str] = tuple()
 
-    COLLECTION_LABEL = "oriented_selection_sets"
+    _COLLECTION_LABEL = "oriented_selection_sets"
     OBJECT_INFO_TYPE = oriented_selection_set_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = oriented_selection_set_pb2.CreateRequest
 

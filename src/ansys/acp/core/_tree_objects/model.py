@@ -75,7 +75,7 @@ class Model(TreeObject):
 
     __slots__: Iterable[str] = tuple()
 
-    COLLECTION_LABEL = "models"
+    _COLLECTION_LABEL = "models"
     OBJECT_INFO_TYPE = model_pb2.ObjectInfo
 
     def __init__(
@@ -207,7 +207,7 @@ class Model(TreeObject):
         """
         material_stub = material_pb2_grpc.ObjectServiceStub(self._channel)
         collection_path = CollectionPath(
-            value=rp_join(self._resource_path.value, Material.COLLECTION_LABEL)
+            value=rp_join(self._resource_path.value, Material._COLLECTION_LABEL)
         )
         material_stub.SaveToFile(
             material_pb2.SaveToFileRequest(

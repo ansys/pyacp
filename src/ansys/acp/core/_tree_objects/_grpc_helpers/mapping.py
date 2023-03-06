@@ -137,7 +137,7 @@ def define_mapping(
         return Mapping(
             channel=self._channel,
             collection_path=CollectionPath(
-                value=_rp_join(self._resource_path.value, object_class.COLLECTION_LABEL)
+                value=_rp_join(self._resource_path.value, object_class._COLLECTION_LABEL)
             ),
             object_constructor=object_class._from_object_info,
             stub=stub_class(channel=self._channel),

@@ -43,7 +43,7 @@ class TreeObject(RootGrpcObject):
 
     __slots__ = ("_channel_store", "_stub_store", "_pb_object")
 
-    COLLECTION_LABEL: str
+    _COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: type[ObjectInfo]
 
     def __init__(self: TreeObject, name: str = "") -> None:
@@ -153,7 +153,7 @@ class CreatableTreeObject(TreeObject):
         self._channel_store = parent._channel
 
         collection_path = CollectionPath(
-            value=_rp_join(parent._resource_path.value, self.COLLECTION_LABEL)
+            value=_rp_join(parent._resource_path.value, self._COLLECTION_LABEL)
         )
 
         # check that all linked objects are located in the same model

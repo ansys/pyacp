@@ -36,7 +36,7 @@ class Rosette(CreatableTreeObject, IdTreeObject):
 
     __slots__: Iterable[str] = tuple()
 
-    COLLECTION_LABEL = "rosettes"
+    _COLLECTION_LABEL = "rosettes"
     OBJECT_INFO_TYPE = rosette_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = rosette_pb2.CreateRequest
 

@@ -18,7 +18,7 @@ __all__ = ["ModelingGroup"]
 class ModelingGroup(CreatableTreeObject, IdTreeObject):
     __slots__: Iterable[str] = tuple()
 
-    COLLECTION_LABEL = "modeling_groups"
+    _COLLECTION_LABEL = "modeling_groups"
     OBJECT_INFO_TYPE = modeling_group_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = modeling_group_pb2.CreateRequest
 

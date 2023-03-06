@@ -59,7 +59,7 @@ class Fabric(CreatableTreeObject, IdTreeObject):
 
     __slots__: Iterable[str] = tuple()
 
-    COLLECTION_LABEL = "fabrics"
+    _COLLECTION_LABEL = "fabrics"
     OBJECT_INFO_TYPE = fabric_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = fabric_pb2.CreateRequest
 

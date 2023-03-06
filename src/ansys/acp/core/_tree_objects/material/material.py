@@ -93,7 +93,7 @@ class Material(CreatableTreeObject, IdTreeObject):
     _pb_object: material_pb2.ObjectInfo
     __slots__: Iterable[str] = tuple()
 
-    COLLECTION_LABEL = "materials"
+    _COLLECTION_LABEL = "materials"
     OBJECT_INFO_TYPE = material_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = material_pb2.CreateRequest
 

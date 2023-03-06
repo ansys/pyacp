@@ -49,7 +49,7 @@ class EdgeSet(CreatableTreeObject, IdTreeObject):
     """
 
     __slots__: Iterable[str] = tuple()
-    COLLECTION_LABEL = "edge_sets"
+    _COLLECTION_LABEL = "edge_sets"
     OBJECT_INFO_TYPE = edge_set_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = edge_set_pb2.CreateRequest
 

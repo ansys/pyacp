@@ -21,7 +21,7 @@ __all__ = ["ElementSet"]
 @register
 class ElementSet(CreatableTreeObject, IdTreeObject):
     __slots__: Iterable[str] = tuple()
-    COLLECTION_LABEL = "element_sets"
+    _COLLECTION_LABEL = "element_sets"
     OBJECT_INFO_TYPE = element_set_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = element_set_pb2.CreateRequest
 
