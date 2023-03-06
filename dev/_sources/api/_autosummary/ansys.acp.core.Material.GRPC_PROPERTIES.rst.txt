@@ -1,6 +1,0 @@
-GRPC\_PROPERTIES
-================
-
-.. currentmodule:: ansys.acp.core
-
-.. autoattribute:: Material.GRPC_PROPERTIES

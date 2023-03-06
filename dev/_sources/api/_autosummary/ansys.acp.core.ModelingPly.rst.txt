@@ -33,8 +33,6 @@
    .. autosummary::
       :toctree:
    
-      ModelingPly.COLLECTION_LABEL
-      ModelingPly.GRPC_PROPERTIES
       ModelingPly.active
       ModelingPly.global_ply_nr
       ModelingPly.id

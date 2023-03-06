@@ -72,8 +72,6 @@
    .. autosummary::
       :toctree:
    
-      Model.COLLECTION_LABEL
-      Model.GRPC_PROPERTIES
       Model.angle_tolerance
       Model.draping_offset_correction
       Model.edge_sets

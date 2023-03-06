@@ -1,0 +1,6 @@
+normalized
+==========
+
+.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets
+
+.. autoattribute:: InterpolationOptions.normalized

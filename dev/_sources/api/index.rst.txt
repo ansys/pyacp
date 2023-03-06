@@ -12,3 +12,4 @@ and attributes.
     server
     client
     tree_objects
+    material_property_sets

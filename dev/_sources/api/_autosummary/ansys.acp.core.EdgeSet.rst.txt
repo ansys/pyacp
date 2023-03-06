@@ -33,8 +33,6 @@
    .. autosummary::
       :toctree:
    
-      EdgeSet.COLLECTION_LABEL
-      EdgeSet.GRPC_PROPERTIES
       EdgeSet.defining_node_labels
       EdgeSet.edge_set_type
       EdgeSet.element_set

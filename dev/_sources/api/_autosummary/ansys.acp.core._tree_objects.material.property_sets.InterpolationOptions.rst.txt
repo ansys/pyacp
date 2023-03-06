@@ -1,0 +1,31 @@
+﻿InterpolationOptions
+====================
+
+.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets
+
+.. autoclass:: InterpolationOptions
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      InterpolationOptions.algorithm
+      InterpolationOptions.cached
+      InterpolationOptions.normalized
+   
+   

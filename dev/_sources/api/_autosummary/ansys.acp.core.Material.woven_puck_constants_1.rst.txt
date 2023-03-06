@@ -1,0 +1,6 @@
+woven\_puck\_constants\_1
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.woven_puck_constants_1

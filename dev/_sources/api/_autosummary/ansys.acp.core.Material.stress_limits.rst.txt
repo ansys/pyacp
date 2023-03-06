@@ -1,0 +1,6 @@
+stress\_limits
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.stress_limits
