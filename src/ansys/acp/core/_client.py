@@ -110,7 +110,7 @@ class Client:
         """
         model_stub = model_pb2_grpc.ObjectServiceStub(self._channel)
         for model in model_stub.List(
-            ListRequest(collection_path=CollectionPath(value=Model.COLLECTION_LABEL))
+            ListRequest(collection_path=CollectionPath(value=Model._COLLECTION_LABEL))
         ).objects:
             model_stub.Delete(
                 DeleteRequest(resource_path=model.info.resource_path, version=model.info.version)
