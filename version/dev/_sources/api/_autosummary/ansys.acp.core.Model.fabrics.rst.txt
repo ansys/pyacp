@@ -1,0 +1,6 @@
+fabrics
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.fabrics

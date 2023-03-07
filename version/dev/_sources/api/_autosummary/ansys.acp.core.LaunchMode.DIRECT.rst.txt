@@ -1,0 +1,6 @@
+DIRECT
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LaunchMode.DIRECT

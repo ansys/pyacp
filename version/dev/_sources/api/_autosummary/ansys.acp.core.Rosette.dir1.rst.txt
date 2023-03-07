@@ -1,0 +1,6 @@
+dir1
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Rosette.dir1

@@ -1,0 +1,6 @@
+ply\_material
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.ply_material

@@ -1,0 +1,6 @@
+draping\_material\_model
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.draping_material_model

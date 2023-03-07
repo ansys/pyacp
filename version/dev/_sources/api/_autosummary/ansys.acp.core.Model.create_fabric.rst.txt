@@ -1,0 +1,6 @@
+create\_fabric
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_fabric

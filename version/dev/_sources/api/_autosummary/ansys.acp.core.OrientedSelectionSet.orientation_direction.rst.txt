@@ -1,0 +1,6 @@
+orientation\_direction
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.orientation_direction
