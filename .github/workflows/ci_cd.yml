@@ -279,6 +279,7 @@ jobs:
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          force-orphan: false
 
   # Release:
   #   if: contains(github.ref, 'refs/tags')
