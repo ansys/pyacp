@@ -72,7 +72,7 @@ jobs:
     name: "Documentation style"
     runs-on: ubuntu-latest
     steps:
-      - uses: pyansys/actions/doc-style@v3
+      - uses: pyansys/actions/doc-style@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -275,10 +275,11 @@ jobs:
     needs: [docs]
     steps:
       - name: Deploy the latest documentation
-        uses: pyansys/actions/doc-deploy-dev@v2
+        uses: pyansys/actions/doc-deploy-dev@v4
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          force-orphan: false
 
   # Release:
   #   if: contains(github.ref, 'refs/tags')
