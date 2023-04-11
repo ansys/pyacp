@@ -295,14 +295,14 @@ importlib-metadata = ">=4.0"
 
 [[package]]
 name = "ansys-sphinx-theme"
-version = "0.9.6"
+version = "0.9.7"
 description = "A theme devised by ANSYS, Inc. for Sphinx documentation."
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "ansys-sphinx-theme-0.9.6.tar.gz", hash = "sha256:9154236b18c113ed0ff1c9644d009089fa696f816a375b6a394cd2a1dee23f81"},
-    {file = "ansys_sphinx_theme-0.9.6-py3-none-any.whl", hash = "sha256:57e43a6560de75bd101b465823bec80a3c20f427b118809186233a255483735f"},
+    {file = "ansys-sphinx-theme-0.9.7.tar.gz", hash = "sha256:ba13cd842e1a11218a9580c887214762112d5daeb9293b823920b7cc3dbe6fc4"},
+    {file = "ansys_sphinx_theme-0.9.7-py3-none-any.whl", hash = "sha256:63668de0ecfda7115d8dbfa9a7c6d2ae6d89e6fe8402c7839fd31456556d9053"},
 ]
 
 [package.dependencies]
