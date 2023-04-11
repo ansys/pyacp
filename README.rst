@@ -129,9 +129,6 @@ You will need to follow these steps:
         python -m pip install pipx
         pipx ensurepath
         pipx install poetry
-        poetry config installer.modern-installation false
-
-    The ``poetry config`` call is a temporary workaround for https://github.com/pydata/pydata-sphinx-theme/issues/1253
 
 3.  Install the project and all its development dependencies using poetry. This also takes care of
     creating a new virtual environment:
