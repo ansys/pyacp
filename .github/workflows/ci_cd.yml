@@ -228,6 +228,7 @@ jobs:
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False
           --overwrite_default
+          --compose_file=default
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
 
