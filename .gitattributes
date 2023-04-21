@@ -1,1 +1,5 @@
 *.yml diff
+
+# Using CRLF in Dockerfiles can cause problems when using 'heredocs'
+# to define files inline.
+*Dockerfile* text eol=lf

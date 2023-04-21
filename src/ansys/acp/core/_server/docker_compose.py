@@ -1,10 +1,12 @@
 import collections
+import contextlib
 import copy
 import dataclasses
 import importlib.resources
 import os
+import pathlib
 import subprocess
-from typing import Dict, Optional
+from typing import Dict, Iterator, Optional
 import uuid
 
 import grpc
@@ -28,6 +30,9 @@ def _get_default_license_server() -> str:
         return ""
 
 
+_COMPOSE_FILE_DEFAULT_KEY = "default"
+
+
 @dataclasses.dataclass
 class DockerComposeLaunchConfig:
     """Configuration options for launching ACP through docker-compose."""
@@ -47,6 +52,13 @@ class DockerComposeLaunchConfig:
                 "License server passed to the container as "
                 "'ANSYSLMD_LICENSE_FILE' environment variable."
             )
+        },
+    )
+    compose_file: str = dataclasses.field(
+        default=_COMPOSE_FILE_DEFAULT_KEY,  # TODO: allow empty configuration in ansys-launcher
+        metadata={
+            DOC_METADATA_KEY: ("Docker compose file used to start the services. Uses the "
+            "'docker-compose.yaml' shipped with PyACP by default.")
         },
     )
     keep_volume: bool = dataclasses.field(
@@ -78,12 +90,25 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
         )
         self._keep_volume = config.keep_volume
 
+        if config.compose_file == _COMPOSE_FILE_DEFAULT_KEY:
+            self._compose_file = None
+        else:
+            self._compose_file = pathlib.Path(config.compose_file)
+
         self._compose_version = parse_version(
             subprocess.check_output(["docker-compose", "version", "--short"], text=True)
         )
 
+    @contextlib.contextmanager
+    def _get_compose_file(self) -> Iterator[pathlib.Path]:
+        if self._compose_file is not None:
+            yield self._compose_file
+        else:
+            with importlib.resources.path(__package__, "docker-compose.yaml") as compose_file:
+                yield compose_file
+
     def start(self) -> None:
-        with importlib.resources.path(__package__, "docker-compose.yaml") as compose_file:
+        with self._get_compose_file() as compose_file:
             port_acp, port_ft = find_free_ports(2)
             self._urls = {
                 ServerKey.MAIN: f"localhost:{port_acp}",
@@ -117,7 +142,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
     def stop(self) -> None:
         # The compose file needs to be passed for all commands with docker-compose 1.X.
         # With docker-compose 2.X, this no longer seems to be necessary.
-        with importlib.resources.path(__package__, "docker-compose.yaml") as compose_file:
+        with self._get_compose_file() as compose_file:
             cmd = [
                 "docker-compose",
                 "-f",
