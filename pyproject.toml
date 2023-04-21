@@ -41,16 +41,18 @@ ansys-tools-filetransfer = { git = "https://github.com/pyansys/ansys-tools-filet
 packaging = ">=15.0"
 typing-extensions = "^4.5.0"
 hypothesis = "^6.68.2"
+ansys-mapdl-core = { version = "^0.62.1", optional = true }
+pyvista = { version = ">=0.36", optional = true }
 
 [tool.poetry.group.dev]
 optional = true
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^2.17.0"
-black = "22.3.0"
+black = "23.3.0"
 mypy = "^1.0"
 mypy-extensions = "^1.0"
-types-protobuf = "^3.19.12"
+types-protobuf = "^4.22.0.2"
 
 Sphinx = "^5.0"
 sphinx-copybutton = "^0.4"
@@ -61,16 +63,16 @@ pypandoc = "^1.10"
 sphinx-gallery = "^0.11.1"
 pyvista = ">=0.36"
 ansys-mapdl-core = "^0.62.1"
-ipykernel = "^6.21.0"
+ipykernel = "^6.22.0"
 
 
 [tool.poetry.group.test]
 optional = true
 
 [tool.poetry.group.test.dependencies]
-pytest = "^7.0"
-pytest-cov = "^3.0"
-pytest-cases = "^3.6.13"
+pytest = "^7.3.1"
+pytest-cov = "^4.0.0"
+pytest-cases = "^3.6.14"
 
 [tool.poetry.extras]
 # For the examples, we keep an extra to simplify installing these dependencies for the
