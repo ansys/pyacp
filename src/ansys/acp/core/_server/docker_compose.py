@@ -57,8 +57,10 @@ class DockerComposeLaunchConfig:
     compose_file: str = dataclasses.field(
         default=_COMPOSE_FILE_DEFAULT_KEY,  # TODO: allow empty configuration in ansys-launcher
         metadata={
-            DOC_METADATA_KEY: ("Docker compose file used to start the services. Uses the "
-            "'docker-compose.yaml' shipped with PyACP by default.")
+            DOC_METADATA_KEY: (
+                "Docker compose file used to start the services. Uses the "
+                "'docker-compose.yaml' shipped with PyACP by default."
+            )
         },
     )
     keep_volume: bool = dataclasses.field(
