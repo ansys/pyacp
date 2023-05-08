@@ -53,4 +53,4 @@ jobs:
           pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files tests/
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: 'ghcr.io/pyansys/pyacp-private:latest'
+          IMAGE_NAME: 'ghcr.io/ansys-internal/pyacp:latest'

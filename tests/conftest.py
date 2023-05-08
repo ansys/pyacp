@@ -62,7 +62,7 @@ def pytest_addoption(parser: pytest.Parser) -> None:
             "Docker image to be used for running the test. Only used if "
             f"'{SERVER_BIN_OPTION_KEY}' is not set."
         ),
-        default="ghcr.io/pyansys/pyacp-private:latest",
+        default="ghcr.io/ansys-internal/pyacp:latest",
     )
     parser.addoption(
         LICENSE_SERVER_OPTION_KEY,
