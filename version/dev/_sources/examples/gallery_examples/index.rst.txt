@@ -20,7 +20,7 @@ These examples assume that MAPDL and DPF servers are already running. You can st
 .. only:: html
 
   .. image:: /examples/gallery_examples/images/thumb/sphx_glr_solve_class40_thumb.png
-    :alt: Basic PyACP Example
+    :alt:
 
   :ref:`sphx_glr_examples_gallery_examples_solve_class40.py`
 
