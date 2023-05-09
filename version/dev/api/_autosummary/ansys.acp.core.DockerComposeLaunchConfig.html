@@ -218,7 +218,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/pyansys/pyacp-private" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+          <a href="https://github.com/ansys-internal/pyacp" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
             <label class="sr-only">GitHub</label></a>
         </li>
 </ul></div>
@@ -362,7 +362,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/pyansys/pyacp-private" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+          <a href="https://github.com/ansys-internal/pyacp" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
             <label class="sr-only">GitHub</label></a>
         </li>
 </ul></div>
@@ -833,7 +833,7 @@ document.write(`
 <h1>DockerComposeLaunchConfig<a class="headerlink" href="#dockercomposelaunchconfig" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ansys.acp.core.DockerComposeLaunchConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">DockerComposeLaunchConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_name_pyacp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ghcr.io/pyansys/pyacp-private:latest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_name_filetransfer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ghcr.io/ansys/tools-filetransfer:latest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">license_server</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_volume</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.DockerComposeLaunchConfig" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">DockerComposeLaunchConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_name_pyacp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ghcr.io/ansys-internal/pyacp:latest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_name_filetransfer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ghcr.io/ansys-internal/tools-filetransfer:latest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">license_server</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_volume</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.DockerComposeLaunchConfig" title="Permalink to this definition">#</a></dt>
 <dd><p>Configuration options for launching ACP through docker-compose.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
@@ -933,8 +933,15 @@ document.write(`
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
-</p></div>
+    Built with the <a href="https://sphinxdocs.ansys.com/version/stable/index.html">Ansys Sphinx Theme</a> 0.9.8.
+    <br>Last updated on <span id="date"></span></br>
+</p>
+<script>
+  var options = { day: 'numeric', month: 'long', year: 'numeric' };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString('en-US', options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
       
     </div>
   
