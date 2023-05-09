@@ -2,7 +2,7 @@ PyACP
 =====
 |pyansys| |python| |pypi| |GH-CI| |codecov| |MIT| |black|
 
-.. TODO: Replace `pyacp-private` with `pyacp` everywhere before release.
+.. TODO: Replace `ansys-internal` with `ansys` everywhere before release.
 
 .. |pyansys| image:: https://img.shields.io/badge/Py-Ansys-ffc107.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAABDklEQVQ4jWNgoDfg5mD8vE7q/3bpVyskbW0sMRUwofHD7Dh5OBkZGBgW7/3W2tZpa2tLQEOyOzeEsfumlK2tbVpaGj4N6jIs1lpsDAwMJ278sveMY2BgCA0NFRISwqkhyQ1q/Nyd3zg4OBgYGNjZ2ePi4rB5loGBhZnhxTLJ/9ulv26Q4uVk1NXV/f///////69du4Zdg78lx//t0v+3S88rFISInD59GqIH2esIJ8G9O2/XVwhjzpw5EAam1xkkBJn/bJX+v1365hxxuCAfH9+3b9/+////48cPuNehNsS7cDEzMTAwMMzb+Q2u4dOnT2vWrMHu9ZtzxP9vl/69RVpCkBlZ3N7enoDXBwEAAA+YYitOilMVAAAAAElFTkSuQmCC
     :target: https://docs.pyansys.com/
@@ -16,12 +16,12 @@ PyACP
     :target: https://pypi.org/project/ansys-acp-core
     :alt: PyPI
 
-.. |codecov| image:: https://codecov.io/gh/pyansys/pyacp-private/branch/main/graph/badge.svg
-    :target: https://codecov.io/gh/pyansys/pyacp-private
+.. |codecov| image:: https://codecov.io/gh/ansys-internal/pyacp/branch/main/graph/badge.svg
+    :target: https://codecov.io/gh/ansys-internal/pyacp
     :alt: Codecov
 
-.. |GH-CI| image:: https://github.com/pyansys/pyacp-private/actions/workflows/ci_cd.yml/badge.svg
-    :target: https://github.com/pyansys/pyacp-private/actions/workflows/ci_cd.yml
+.. |GH-CI| image:: https://github.com/ansys-internal/pyacp/actions/workflows/ci_cd.yml/badge.svg
+    :target: https://github.com/ansys-internal/pyacp/actions/workflows/ci_cd.yml
     :alt: GH-CI
 
 .. |MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
@@ -49,7 +49,7 @@ Install PyACP with:
 
 .. code-block::
 
-    pip install git+https://github.com/pyansys/pyacp-private
+    pip install git+https://github.com/ansys-internal/pyacp
 
 For installing PyACP in development mode, see the `Development Setup`_ instructions below.
 
@@ -77,7 +77,7 @@ Configure ACP using the `ansys-launcher <https://local-product-launcher.tools.do
 where ``<launch_mode>`` is one of
 
 * ``direct``: run ACP as a sub-process
-* ``docker_compose``: run ACP in a docker container, using ``docker-compose`` and the `filetransfer service <https://github.com/ansys/ansys-tools-filetransfer-server>`_ to manage files
+* ``docker_compose``: run ACP in a docker container, using ``docker-compose`` and the `filetransfer service <https://github.com/ansys-internal/ansys-tools-filetransfer-server>`_ to manage files
 
 The ``ansys-launcher`` prompts for the relevant options for each mode.
 
@@ -119,8 +119,8 @@ You will need to follow these steps:
 
     .. code-block:: bash
 
-        git clone https://github.com/pyansys/pyacp-private
-        cd pyacp-private
+        git clone https://github.com/ansys-internal/pyacp
+        cd pyacp
 
 2.  Make sure you have the latest version of poetry:
 
@@ -231,7 +231,7 @@ This creates both a source distribution, and a wheel file. An alternative is
 
 License
 -------
-``PyACP`` is licensed under the MIT license. Please see the `LICENSE <https://github.com/pyansys/pyacp-private/raw/main/LICENSE>`_ for more details.
+``PyACP`` is licensed under the MIT license. Please see the `LICENSE <https://github.com/ansys-internal/pyacp/raw/main/LICENSE>`_ for more details.
 
 
 .. _black: https://github.com/psf/black

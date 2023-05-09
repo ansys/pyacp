@@ -16,6 +16,7 @@ jobs:
       - name: "Delete untagged package versions"
         uses: pyansys/actions/hk-package-clean-untagged@v4
         with:
-          package-name: 'pyacp-private'
+          package-org: 'ansys-internal'
+          package-name: 'pyacp'
           allow-last-days: '7'
           token: ${{ secrets.GITHUB_TOKEN }}

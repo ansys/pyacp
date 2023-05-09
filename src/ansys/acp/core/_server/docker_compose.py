@@ -33,11 +33,11 @@ class DockerComposeLaunchConfig:
     """Configuration options for launching ACP through docker-compose."""
 
     image_name_pyacp: str = dataclasses.field(
-        default="ghcr.io/pyansys/pyacp-private:latest",
+        default="ghcr.io/ansys-internal/pyacp:latest",
         metadata={DOC_METADATA_KEY: "Docker image running the ACP gRPC server."},
     )
     image_name_filetransfer: str = dataclasses.field(
-        default="ghcr.io/ansys/tools-filetransfer:latest",
+        default="ghcr.io/ansys-internal/tools-filetransfer:latest",
         metadata={DOC_METADATA_KEY: "Docker image running the file transfer service."},
     )
     license_server: str = dataclasses.field(
