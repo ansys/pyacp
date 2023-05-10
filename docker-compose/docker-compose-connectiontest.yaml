@@ -2,7 +2,7 @@ version: '3.8'
 services:
   acp-grpc-server:
     restart: unless-stopped
-    image: ${IMAGE_NAME_PYACP:-ghcr.io/pyansys/pyacp-private:latest}
+    image: ${IMAGE_NAME_PYACP:-ghcr.io/ansys-internal/pyacp:latest}
     command: ["${PYACP_DELAY:-100ms}", "${PYACP_RATE:-1mbit}", "--server-address=0.0.0.0:50051"]
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}

@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-ARG BASE_IMAGE=ghcr.io/pyansys/pyacp-private:latest
+ARG BASE_IMAGE=ghcr.io/ansys-internal/pyacp:latest
 
 FROM $BASE_IMAGE
 
