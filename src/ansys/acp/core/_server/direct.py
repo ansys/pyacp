@@ -9,7 +9,7 @@ from ansys.tools.local_product_launcher.helpers.ansys_root import get_ansys_root
 from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
 from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
 from ansys.tools.local_product_launcher.interface import (
-    DOC_METADATA_KEY,
+    METADATA_KEY_DOC,
     LauncherProtocol,
     ServerType,
 )
@@ -34,15 +34,15 @@ class DirectLaunchConfig:
 
     binary_path: str = dataclasses.field(
         default=_get_default_binary_path(),
-        metadata={DOC_METADATA_KEY: "Path to the ACP gRPC server executable."},
+        metadata={METADATA_KEY_DOC: "Path to the ACP gRPC server executable."},
     )
     stdout_file: str = dataclasses.field(
         default=os.devnull,
-        metadata={DOC_METADATA_KEY: "File in which the server stdout is stored."},
+        metadata={METADATA_KEY_DOC: "File in which the server stdout is stored."},
     )
     stderr_file: str = dataclasses.field(
         default=os.devnull,
-        metadata={DOC_METADATA_KEY: "File in which the server stderr is stored."},
+        metadata={METADATA_KEY_DOC: "File in which the server stderr is stored."},
     )
 
 
