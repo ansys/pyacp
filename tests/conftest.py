@@ -37,11 +37,13 @@ settings.load_profile("fast")
 logging.getLogger("ansys.acp.core").setLevel(logging.DEBUG)
 
 TEST_ROOT_DIR = pathlib.Path(__file__).parent
+SOURCE_ROOT_DIR = TEST_ROOT_DIR.parent
 
 SERVER_BIN_OPTION_KEY = "--server-bin"
 LICENSE_SERVER_OPTION_KEY = "--license-server"
 DOCKER_IMAGENAME_OPTION_KEY = "--docker-image"
 NO_SERVER_LOGS_OPTION_KEY = "--no-server-log-files"
+BUILD_BENCHMARK_IMAGE_OPTION_KEY = "--build-benchmark-image"
 SERVER_STARTUP_TIMEOUT = 30.0
 
 pytest.register_assert_rewrite("common")
@@ -73,6 +75,11 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         NO_SERVER_LOGS_OPTION_KEY,
         action="store_true",
         help="If set, the server log is ignored instead of written to a file.",
+    )
+    parser.addoption(
+        BUILD_BENCHMARK_IMAGE_OPTION_KEY,
+        action="store_true",
+        help="Build the 'pyacp-benchmark-runner' image.",
     )
 
 

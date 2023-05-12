@@ -98,7 +98,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 "The 'ansys.tools.filetransfer' module is needed to launch ACP via docker-compose."
             ) from err
 
-        self._env = copy.copy(os.environ)
+        self._env = copy.deepcopy(os.environ)
         self._env.update(
             IMAGE_NAME_PYACP=config.image_name_pyacp,
             IMAGE_NAME_FILETRANSFER=config.image_name_filetransfer,

@@ -40,6 +40,8 @@ test-output.xml
 \#*
 .\#*
 .ipynb_checkpoints
+.benchmarks
+benchmark_output.json
 
 # Environments
 .env

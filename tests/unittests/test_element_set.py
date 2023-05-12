@@ -1,6 +1,6 @@
 import pytest
 
-from common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
+from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
 
 
 @pytest.fixture

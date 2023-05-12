@@ -3,7 +3,8 @@ import pathlib
 import tempfile
 
 from ansys.acp.core import Client
-from helpers import check_property
+
+from .helpers import check_property
 
 
 def test_unittest(grpc_server, model_data_dir):
