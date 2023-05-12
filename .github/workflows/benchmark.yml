@@ -1,0 +1,52 @@
+name: Performance Benchmark
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "*" # to remove when initial development is done
+
+env:
+  MAIN_PYTHON_VERSION: "3.8"
+
+jobs:
+  benchmark:
+    name: Benchmark
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+      - name: Install library, with test group
+        run: |
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-api-tools-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
+          pip install poetry
+          poetry install --with test
+
+      - name: Login in Github Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build benchmark Docker image
+        working-directory: dockerfiles
+        run: |
+          docker build --tag pyacp-benchmark-runner -f ConnectionTest.Dockerfile .
+
+      - name: Unit testing
+        working-directory: tests
+        run: |
+          docker pull $IMAGE_NAME
+
+          docker-compose -f docker-compose/docker-compose-benchmark.yaml up -d --wait
+          docker ps -a
+        env:
+          LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
+          IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix }}"
