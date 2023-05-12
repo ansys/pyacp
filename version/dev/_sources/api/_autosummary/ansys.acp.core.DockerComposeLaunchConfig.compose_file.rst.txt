@@ -1,0 +1,6 @@
+compose\_file
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DockerComposeLaunchConfig.compose_file

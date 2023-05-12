@@ -61,7 +61,7 @@
     <link rel="icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="image_name_filetransfer" href="ansys.acp.core.DockerComposeLaunchConfig.image_name_filetransfer.html" />
+    <link rel="next" title="compose_file" href="ansys.acp.core.DockerComposeLaunchConfig.compose_file.html" />
     <link rel="prev" title="stdout_file" href="ansys.acp.core.DirectLaunchConfig.stdout_file.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -106,7 +106,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
+</form>
+</div>
   </div>
   
     
@@ -387,10 +388,12 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">DockerComposeLaunchConfig</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.compose_file.html">compose_file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.image_name_filetransfer.html">image_name_filetransfer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.image_name_pyacp.html">image_name_pyacp</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.keep_volume.html">keep_volume</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.license_server.html">license_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.environment_variables.html">environment_variables</a></li>
 </ul>
 </li>
 </ul>
@@ -830,7 +833,7 @@ document.write(`
 <h1>DockerComposeLaunchConfig<a class="headerlink" href="#dockercomposelaunchconfig" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ansys.acp.core.DockerComposeLaunchConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">DockerComposeLaunchConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_name_pyacp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ghcr.io/ansys-internal/pyacp:latest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_name_filetransfer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ghcr.io/ansys-internal/tools-filetransfer:latest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">license_server</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_volume</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.DockerComposeLaunchConfig" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">DockerComposeLaunchConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_name_pyacp='ghcr.io/ansys-internal/pyacp:latest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_name_filetransfer='ghcr.io/ansys-internal/tools-filetransfer:latest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">license_server=''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_volume=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compose_file=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment_variables=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.DockerComposeLaunchConfig" title="Permalink to this definition">#</a></dt>
 <dd><p>Configuration options for launching ACP through docker-compose.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
@@ -840,16 +843,22 @@ document.write(`
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.image_name_filetransfer.html#ansys.acp.core.DockerComposeLaunchConfig.image_name_filetransfer" title="ansys.acp.core.DockerComposeLaunchConfig.image_name_filetransfer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig.image_name_filetransfer</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.compose_file.html#ansys.acp.core.DockerComposeLaunchConfig.compose_file" title="ansys.acp.core.DockerComposeLaunchConfig.compose_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig.compose_file</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.image_name_pyacp.html#ansys.acp.core.DockerComposeLaunchConfig.image_name_pyacp" title="ansys.acp.core.DockerComposeLaunchConfig.image_name_pyacp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig.image_name_pyacp</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.image_name_filetransfer.html#ansys.acp.core.DockerComposeLaunchConfig.image_name_filetransfer" title="ansys.acp.core.DockerComposeLaunchConfig.image_name_filetransfer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig.image_name_filetransfer</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.keep_volume.html#ansys.acp.core.DockerComposeLaunchConfig.keep_volume" title="ansys.acp.core.DockerComposeLaunchConfig.keep_volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig.keep_volume</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.image_name_pyacp.html#ansys.acp.core.DockerComposeLaunchConfig.image_name_pyacp" title="ansys.acp.core.DockerComposeLaunchConfig.image_name_pyacp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig.image_name_pyacp</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.license_server.html#ansys.acp.core.DockerComposeLaunchConfig.license_server" title="ansys.acp.core.DockerComposeLaunchConfig.license_server"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig.license_server</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.keep_volume.html#ansys.acp.core.DockerComposeLaunchConfig.keep_volume" title="ansys.acp.core.DockerComposeLaunchConfig.keep_volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig.keep_volume</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.license_server.html#ansys.acp.core.DockerComposeLaunchConfig.license_server" title="ansys.acp.core.DockerComposeLaunchConfig.license_server"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig.license_server</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.environment_variables.html#ansys.acp.core.DockerComposeLaunchConfig.environment_variables" title="ansys.acp.core.DockerComposeLaunchConfig.environment_variables"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig.environment_variables</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -930,7 +939,7 @@ document.write(`
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-    Built with the <a href="https://sphinxdocs.ansys.com/version/stable/index.html">Ansys Sphinx Theme</a> 0.9.8.
+    Built with the <a href="https://sphinxdocs.ansys.com/version/stable/index.html">Ansys Sphinx Theme</a> 0.9.9.
     <br>Last updated on <span id="date"></span></br>
 </p>
 <script>

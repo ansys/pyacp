@@ -1,0 +1,6 @@
+environment\_variables
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DockerComposeLaunchConfig.environment_variables
