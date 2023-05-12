@@ -1,10 +1,6 @@
 name: Performance Benchmark
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - "*" # to remove when initial development is done
+on: [push, pull_request]
 
 env:
   MAIN_PYTHON_VERSION: "3.8"
