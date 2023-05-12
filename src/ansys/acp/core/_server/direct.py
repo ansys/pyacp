@@ -41,7 +41,7 @@ def _get_default_binary_path() -> str:
         if os.name == "nt":
             binary_path += ".exe"
         return binary_path
-    except (RuntimeError, FileNotFoundError):
+    except (ValueError, FileNotFoundError):
         return ""
 
 
