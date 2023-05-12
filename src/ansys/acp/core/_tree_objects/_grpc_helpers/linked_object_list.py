@@ -58,7 +58,6 @@ class LinkedObjectList(Generic[ValueT]):
             resource_path_list[key] = value._resource_path
         else:
             key = cast(slice, key)
-            value = cast(List[ValueT], value)
             resource_path_list[key] = [item._resource_path for item in value]
         self._set_resourcepath_list(resource_path_list)
 

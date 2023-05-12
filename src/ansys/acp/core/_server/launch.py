@@ -22,8 +22,8 @@ def launch_acp(
         The configuration used for launching ACP. If unspecified, the
         default for the given launch mode is used.
     launch_mode :
-        Specifies which ACP launcher is used. One of ``direct``, ``docker``,
-        or ``docker_compose``. If unspecified, the configured default is
+        Specifies which ACP launcher is used. One of ``direct`` or
+        ``docker_compose``. If unspecified, the configured default is
         used.
 
     Returns
