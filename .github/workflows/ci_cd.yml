@@ -180,7 +180,6 @@ jobs:
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix }}"
-        if: matrix.python-version == '3.8'
 
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
