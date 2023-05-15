@@ -43,6 +43,7 @@ typing-extensions = "^4.5.0"
 hypothesis = "^6.68.2"
 ansys-mapdl-core = { version = "^0.62.1", optional = true }
 pyvista = { version = ">=0.36", optional = true }
+ansys-tools-path = "^0.2.3"
 
 [tool.poetry.group.dev]
 optional = true
@@ -117,6 +118,7 @@ module = [
     "grpc_health.*",
     "ansys.mapdl.core",
     "ansys.dpf.core",
-    "ansys.dpf.core.core"
+    "ansys.dpf.core.core",
+    "ansys.tools.path",
 ]
 ignore_missing_imports = true
