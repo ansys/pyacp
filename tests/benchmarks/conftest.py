@@ -16,6 +16,7 @@ from ..conftest import (
     LICENSE_SERVER_OPTION_KEY,
     SERVER_STARTUP_TIMEOUT,
     SOURCE_ROOT_DIR,
+    VALIDATE_BENCHMARKS_ONLY_OPTION_KEY,
 )
 
 BENCHMARK_IMAGE_NAME = "pyacp-benchmark-runner"
@@ -81,14 +82,16 @@ def launcher_configuration(request):
 
 ServerNetworkOptions = namedtuple("ServerNetworkOptions", ["delay_ms", "rate_kbit"])
 
+VALIDATE_BENCHMARK_NETWORK_OPTION = ServerNetworkOptions(delay_ms=0, rate_kbit=1e6)
+
 NETWORK_OPTIONS = [
     ServerNetworkOptions(delay_ms=0, rate_kbit=1e6),
     ServerNetworkOptions(delay_ms=1, rate_kbit=1e6),
     ServerNetworkOptions(delay_ms=10, rate_kbit=1e6),
     ServerNetworkOptions(delay_ms=100, rate_kbit=1e6),
-    ServerNetworkOptions(delay_ms=0, rate_kbit=1000),
-    ServerNetworkOptions(delay_ms=0, rate_kbit=100),
-    ServerNetworkOptions(delay_ms=0, rate_kbit=10),
+    ServerNetworkOptions(delay_ms=0, rate_kbit=1e4),
+    ServerNetworkOptions(delay_ms=0, rate_kbit=1e3),
+    ServerNetworkOptions(delay_ms=0, rate_kbit=1e2),
 ]
 
 
@@ -121,7 +124,14 @@ def _benchmark_servers(launcher_configuration):
     params=NETWORK_OPTIONS,
     ids=lambda options: f"delay={options.delay_ms}ms, rate={options.rate_kbit}kbit",
 )
-def network_options(request, benchmark):
+def network_options(request):
+    options = request.param
+    if request.config.getoption(VALIDATE_BENCHMARKS_ONLY_OPTION_KEY):
+        if options != VALIDATE_BENCHMARK_NETWORK_OPTION:
+            pytest.skip(
+                "Skipping benchmarks for slower network options since "
+                f"'{VALIDATE_BENCHMARKS_ONLY_OPTION_KEY}' is specified."
+            )
     return request.param
 
 
