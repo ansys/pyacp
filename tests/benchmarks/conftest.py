@@ -122,10 +122,7 @@ def _benchmark_servers(launcher_configuration):
     ids=lambda options: f"delay={options.delay_ms}ms, rate={options.rate_kbit}kbit",
 )
 def network_options(request, benchmark):
-    options = request.param
-    benchmark.extra_info["delay [ms]"] = options.delay_ms
-    benchmark.extra_info["rate [kbit]"] = options.rate_kbit
-    return options
+    return request.param
 
 
 @pytest.fixture
