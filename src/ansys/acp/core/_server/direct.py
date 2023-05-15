@@ -1,11 +1,10 @@
 import dataclasses
 import os
 import subprocess
-from typing import Dict, Optional, TextIO
+from typing import Dict, Optional, TextIO, Union, cast
 
 import grpc
 
-from ansys.tools.local_product_launcher.helpers.ansys_root import get_ansys_root
 from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
 from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
 from ansys.tools.local_product_launcher.interface import (
@@ -13,18 +12,36 @@ from ansys.tools.local_product_launcher.interface import (
     LauncherProtocol,
     ServerType,
 )
+from ansys.tools.path import get_available_ansys_installations
 
 from .common import ServerKey
 
 
+def _get_latest_ansys_installation() -> str:
+    """Get the latest installed Ansys installation."""
+
+    installations = cast(Dict[int, str], get_available_ansys_installations())
+    if not installations:
+        raise ValueError("No Ansys installation found.")
+
+    def sort_key(version_nr: int) -> Union[int, float]:
+        # prefer regular over student installs
+        if version_nr < 0:
+            return abs(version_nr) - 0.5
+        return version_nr
+
+    latest_key = max(installations, key=sort_key)
+    return installations[latest_key]
+
+
 def _get_default_binary_path() -> str:
     try:
-        ans_root = get_ansys_root()  # get latest installed Ansys version; raises if none found
+        ans_root = _get_latest_ansys_installation()
         binary_path = os.path.join(ans_root, "ACP", "acp_grpcserver")
         if os.name == "nt":
             binary_path += ".exe"
         return binary_path
-    except (RuntimeError, FileNotFoundError):
+    except (ValueError, FileNotFoundError):
         return ""
 
 
