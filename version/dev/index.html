@@ -468,12 +468,8 @@ creating a new virtual environment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>install<span class="w"> </span>--with<span class="w"> </span>dev,test
 </pre></div>
 </div>
+<p>This step installs PyACP in an editable mode (no build step is needed, no re-install when changing the code).</p>
 </li>
-</ol>
-<blockquote>
-<div><p>This step installs PyACP in an editable mode (no build step is needed, no re-install when changing the code).</p>
-</div></blockquote>
-<ol class="arabic" start="4">
 <li><p>Activate your development virtual environment with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>shell
 </pre></div>
@@ -484,9 +480,21 @@ creating a new virtual environment:</p>
 <section id="testing">
 <h4>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h4>
 <p>The PyACP test suite uses <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a>. You can run it with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--license-server<span class="o">=</span>&lt;YOUR_LICENSE_SERVER&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--license-server<span class="o">=</span>&lt;YOUR_LICENSE_SERVER&gt;<span class="w"> </span>tests/unittests
 </pre></div>
 </div>
+</section>
+<section id="benchmarking">
+<h4>Benchmarking<a class="headerlink" href="#benchmarking" title="Permalink to this heading">#</a></h4>
+<p>As part of the test suite, we run some performance benchmarks. These can be run with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--license-server<span class="o">=</span>&lt;YOUR_LICENSE_SERVER&gt;<span class="w"> </span>tests/benchmarks
+</pre></div>
+</div>
+<p>Additional options can be found in the <a class="reference external" href="https://pytest-benchmark.readthedocs.io/en/latest/usage.html">pytest-benchmark documentation</a>.</p>
+<p><strong>NOTE:</strong> The benchmarks use the <code class="docutils literal notranslate"><span class="pre">tc-netem</span></code> Linux kernel module to simulate a slow network
+connection within a Docker container. This is available only on Linux, not on Docker for MacOS
+or Windows.</p>
+<p>The benchmark results from the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch are uploaded to <a class="reference external" href="https://acp.docs.pyansys.com/benchmarks">https://acp.docs.pyansys.com/benchmarks</a>.</p>
 </section>
 <section id="pre-commit-hooks">
 <h4>Pre-commit hooks<a class="headerlink" href="#pre-commit-hooks" title="Permalink to this heading">#</a></h4>
@@ -571,6 +579,7 @@ python<span class="w"> </span>-m<span class="w"> </span>build<span class="w"> </
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#development-setup">Development Setup</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Installation</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmarking">Benchmarking</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-commit-hooks">Pre-commit hooks</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Documentation</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution">Distribution</a></li>

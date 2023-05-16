@@ -416,16 +416,14 @@ the boundary conditions. This model is imported in PyACP to define the lay-up.
 PyACP exports the resulting model for PyMAPDL. Once the results are available,
 the RST file is loaded in PyDPF composites. The additional input files (material.xml
 and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDPF Composites.</p>
-<p>The services (ACP, MAPDL and DPF) are run in docker containers which share
-a volume (working directory).</p>
+<p>The MAPDL and DPF services are run in docker containers which share a volume (working
+directory).</p>
 <section id="setup-connect-to-pyacp-server">
 <h2>Setup: Connect to PyACP Server<a class="headerlink" href="#setup-connect-to-pyacp-server" title="Permalink to this heading">#</a></h2>
 <p>Import standard library and third-party dependencies</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 <p>Import Ansys libraries</p>
@@ -658,7 +656,7 @@ a volume (working directory).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     14:08:26  MAY 12, 2023 CP=      0.497\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.625\n\n\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     12:50:40  MAY 16, 2023 CP=      0.477\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.605\n\n\n&#39;
 </pre></div>
 </div>
 <p>Solve the model</p>
@@ -669,7 +667,7 @@ a volume (working directory).</p>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       0.642   TIME= 14:08:26
+ *** NOTE ***                            CP =       0.623   TIME= 12:50:40
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -694,7 +692,7 @@ a volume (working directory).</p>
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
  Ansys Mechanical Enterprise
- 00000000  VERSION=LINUX x64     14:08:26  MAY 12, 2023 CP=      0.691
+ 00000000  VERSION=LINUX x64     12:50:40  MAY 16, 2023 CP=      0.673
 
 
 
@@ -710,14 +708,14 @@ a volume (working directory).</p>
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       0.693   TIME= 14:08:26
+ *** NOTE ***                            CP =       0.675   TIME= 12:50:40
  Poisson&#39;s ratio PR input has been converted to NU input.
 
- *** NOTE ***                            CP =       0.701   TIME= 14:08:26
+ *** NOTE ***                            CP =       0.685   TIME= 12:50:40
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       0.702   TIME= 14:08:26
+ *** NOTE ***                            CP =       0.687   TIME= 12:50:40
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -735,7 +733,7 @@ a volume (working directory).</p>
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       0.814   TIME= 14:08:26
+ *** NOTE ***                            CP =       0.808   TIME= 12:50:40
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -784,10 +782,10 @@ a volume (working directory).</p>
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      3.512   0.000884
-        2        88  BEAM188       0.007   0.000078
-        3        22  SHELL181      0.006   0.000285
- Time at end of element matrix formulation CP = 4.37671995.
+        1      3973  SHELL181      4.248   0.001069
+        2        88  BEAM188       0.009   0.000105
+        3        22  SHELL181      0.007   0.000338
+ Time at end of element matrix formulation CP = 5.11556864.
 
  SPARSE MATRIX DIRECT SOLVER.
   Number of equations =       24096,    Maximum wavefront =     66
@@ -795,7 +793,7 @@ a volume (working directory).</p>
   Memory required for in-core solution     =    58.542 MB
   Memory required for out-of-core solution =    24.642 MB
 
- *** NOTE ***                            CP =       4.479   TIME= 14:08:30
+ *** NOTE ***                            CP =       5.222   TIME= 12:50:45
  The Sparse Matrix Solver is currently running in the in-core memory
  mode.  This memory mode uses the most amount of memory in order to
  avoid using the hard drive as much as possible, which most often
@@ -810,16 +808,16 @@ a volume (working directory).</p>
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      8.106   0.002040
-        2        88  BEAM188       0.019   0.000217
-        3        22  SHELL181      0.012   0.000536
+        1      3973  SHELL181      9.550   0.002404
+        2        88  BEAM188       0.019   0.000216
+        3        22  SHELL181      0.013   0.000592
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      0.100   0.000025
-        2        88  BEAM188       0.002   0.000026
-        3        22  SHELL181      0.001   0.000024
+        1      3973  SHELL181      0.123   0.000031
+        2        88  BEAM188       0.003   0.000038
+        3        22  SHELL181      0.001   0.000030
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
  *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -849,22 +847,28 @@ a volume (working directory).</p>
 <h2>Post-Processing with DPF composites<a class="headerlink" href="#post-processing-with-dpf-composites" title="Permalink to this heading">#</a></h2>
 <p>Setup: configure imports and connect to the pyDPF Composites server
 and load the dpf composites plugin</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf.composites.failure_criteria</span> <span class="kn">import</span> <span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf.composites.composite_model</span> <span class="kn">import</span> <span class="n">CompositeModel</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.composites.constants</span> <span class="kn">import</span> <span class="n">FailureOutput</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.composites.data_sources</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CompositeDefinitionFiles</span><span class="p">,</span>
+    <span class="n">ContinuousFiberCompositesFiles</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.composites.failure_criteria</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CombinedFailureCriterion</span><span class="p">,</span>
     <span class="n">CoreFailureCriterion</span><span class="p">,</span>
     <span class="n">MaxStrainCriterion</span><span class="p">,</span>
     <span class="n">MaxStressCriterion</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">ansys.dpf.composites.result_definition</span> <span class="kn">import</span> <span class="n">ResultDefinition</span><span class="p">,</span> <span class="n">ResultDefinitionScope</span>
-<span class="kn">from</span> <span class="nn">ansys.dpf.composites.server_helpers</span> <span class="kn">import</span> <span class="n">load_composites_plugin</span>
-<span class="kn">import</span> <span class="nn">ansys.dpf.core</span> <span class="k">as</span> <span class="nn">dpf</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.composites.server_helpers</span> <span class="kn">import</span> <span class="n">connect_to_or_start_server</span>
 <span class="kn">from</span> <span class="nn">ansys.dpf.core.core</span> <span class="kn">import</span> <span class="n">upload_file_in_tmp_folder</span>
-
-<span class="n">dpf_server</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">connect_to_server</span><span class="p">(</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">50558</span><span class="p">)</span>
-<span class="n">load_composites_plugin</span><span class="p">(</span><span class="n">dpf_server</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Specify the Combined Failure Criterion and the result definition</p>
+<p>Connect to the server. The <code class="docutils literal notranslate"><span class="pre">connect_to_or_start_server</span></code> function
+automatically loads the composites plugin.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpf_server</span> <span class="o">=</span> <span class="n">connect_to_or_start_server</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">50558</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Specify the Combined Failure Criterion</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">max_strain</span> <span class="o">=</span> <span class="n">MaxStrainCriterion</span><span class="p">()</span>
 <span class="n">max_stress</span> <span class="o">=</span> <span class="n">MaxStressCriterion</span><span class="p">()</span>
 <span class="n">core_failure</span> <span class="o">=</span> <span class="n">CoreFailureCriterion</span><span class="p">()</span>
@@ -873,45 +877,39 @@ and load the dpf composites plugin</p>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Combined Failure Criterion&quot;</span><span class="p">,</span>
     <span class="n">failure_criteria</span><span class="o">=</span><span class="p">[</span><span class="n">max_strain</span><span class="p">,</span> <span class="n">max_stress</span><span class="p">,</span> <span class="n">core_failure</span><span class="p">],</span>
 <span class="p">)</span>
-
-<span class="c1"># upload files to DPF server</span>
-<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_dpf_path</span></a> <span class="o">=</span> <span class="n">upload_file_in_tmp_folder</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_local_path</span></a><span class="p">))</span>
+</pre></div>
+</div>
+<p>Upload files to DPF server</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_dpf_path</span></a> <span class="o">=</span> <span class="n">upload_file_in_tmp_folder</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_local_path</span></a><span class="p">))</span>
 <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">composite_definitions_file_dpf_path</span></a> <span class="o">=</span> <span class="n">upload_file_in_tmp_folder</span><span class="p">(</span>
     <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">composite_definitions_local_path</span></a><span class="p">)</span>
 <span class="p">)</span>
 <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">matml_file_dpf_path</span></a> <span class="o">=</span> <span class="n">upload_file_in_tmp_folder</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">matml_file_local_path</span></a><span class="p">))</span>
-
-<a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elements</span></a> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3996</span><span class="p">)])</span>
-<span class="n">rd</span> <span class="o">=</span> <span class="n">ResultDefinition</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;combined failure criteria&quot;</span><span class="p">,</span>
-    <span class="n">rst_file</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_dpf_path</span></a><span class="p">,</span>
-    <span class="n">material_file</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">matml_file_dpf_path</span></a><span class="p">,</span>
-    <span class="n">combined_failure_criterion</span><span class="o">=</span><span class="n">cfc</span><span class="p">,</span>
-    <span class="n">composite_scopes</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">ResultDefinitionScope</span><span class="p">(</span>
-            <span class="n">element_scope</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elements</span></a><span class="p">,</span>
-            <span class="n">composite_definition</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">composite_definitions_file_dpf_path</span></a><span class="p">,</span>
-        <span class="p">)</span>
-    <span class="p">],</span>
+</pre></div>
+</div>
+<p>Create the CompositeModel and configure its input</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">composite_model</span> <span class="o">=</span> <span class="n">CompositeModel</span><span class="p">(</span>
+    <span class="n">composite_files</span><span class="o">=</span><span class="n">ContinuousFiberCompositesFiles</span><span class="p">(</span>
+        <span class="n">rst</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_dpf_path</span></a><span class="p">,</span>
+        <span class="n">composite</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;shell&quot;</span><span class="p">:</span> <span class="n">CompositeDefinitionFiles</span><span class="p">(</span><span class="n">definition</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">composite_definitions_file_dpf_path</span></a><span class="p">),</span>
+        <span class="p">},</span>
+        <span class="n">engineering_data</span><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">matml_file_dpf_path</span></a><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">server</span><span class="o">=</span><span class="n">dpf_server</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Initialize the failure operator and configure its input</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fc_op</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;composite::composite_failure_operator&quot;</span><span class="p">)</span>
-<span class="n">fc_op</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">result_definition</span><span class="p">(</span><span class="n">rd</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
+<p>Evaluate the failure criteria</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">output_all_elements</span> <span class="o">=</span> <span class="n">composite_model</span><span class="o">.</span><span class="n">evaluate_failure_criteria</span><span class="p">(</span><span class="n">cfc</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Query and plot the results</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">output_all_elements</span> <span class="o">=</span> <span class="n">fc_op</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">fields_containerMax</span><span class="p">()</span>
-
-<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">failure_value_index</span></a> <span class="o">=</span> <span class="mi">1</span>
-<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">failure_mode_index</span></a> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="n">irf_field</span> <span class="o">=</span> <span class="n">output_all_elements</span><span class="p">[</span><a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">failure_value_index</span></a><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">irf_field</span> <span class="o">=</span> <span class="n">output_all_elements</span><span class="o">.</span><span class="n">get_field</span><span class="p">({</span><span class="s2">&quot;failure_label&quot;</span><span class="p">:</span> <span class="n">FailureOutput</span><span class="o">.</span><span class="n">FAILURE_VALUE</span><span class="p">})</span>
 <span class="n">irf_field</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_002.png" srcset="../../_images/sphx_glr_solve_class40_002.png" alt="solve class40" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  47.954 seconds)</p>
+<img src="../../_images/sphx_glr_solve_class40_002.png" srcset="../../_images/sphx_glr_solve_class40_002.png" alt="solve class40" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  47.722 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-solve-class40-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/9534ac29e0bc2250f1fc6a51c9f799b1/solve_class40.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">solve_class40.py</span></code></a></p>
