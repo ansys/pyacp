@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1684243170777,
+  "lastUpdate": 1684252100651,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -76,6 +76,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00033193261914098095",
             "extra": "mean: 876.0914132059485 usec\nrounds: 1469"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "63ee2986489921f5effbdea0bda45eb4e2c77aec",
+          "message": "Improve dependency specification (#196)\n\n* Make `ansys-dpf-core` and `ansys-dpf-composites` optional in the main\r\n  dependency group, and extend their possible versions.\r\n* Move `hypothesis` to the `test` dependency group\r\n* Sort dependencies",
+          "timestamp": "2023-05-16T17:45:02+02:00",
+          "tree_id": "755543975f2e81d3e30e204e46328ef26f2b8c07",
+          "url": "https://github.com/ansys-internal/pyacp/commit/63ee2986489921f5effbdea0bda45eb4e2c77aec"
+        },
+        "date": 1684252098730,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 6.437394415600574,
+            "unit": "iter/sec",
+            "range": "stddev: 0.002369872972674608",
+            "extra": "mean: 155.34235366665902 msec\nrounds: 6"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1164.755415633218,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002773744490673541",
+            "extra": "mean: 858.5493457064983 usec\nrounds: 1374"
           }
         ]
       }
