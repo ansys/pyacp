@@ -6,13 +6,11 @@ FROM $BASE_IMAGE
 
 USER root
 
-RUN yum install -y \
-    iproute \
+RUN apt-get update && apt-get install -y \
+    iproute2 \
     sudo \
     && \
-    yum autoremove -y \
-    && \
-    yum clean all -y
+    rm -rf /var/lib/apt/lists/*
 
 #escape=`
 COPY --chmod=755 <<EOF /usr/ansys_inc/acp/acp_grpcserver_wrapper.sh
