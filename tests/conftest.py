@@ -54,6 +54,7 @@ NO_SERVER_LOGS_OPTION_KEY = "--no-server-log-files"
 BUILD_BENCHMARK_IMAGE_OPTION_KEY = "--build-benchmark-image"
 VALIDATE_BENCHMARKS_ONLY_OPTION_KEY = "--validate-benchmarks-only"
 SERVER_STARTUP_TIMEOUT = 30.0
+SERVER_STOP_TIMEOUT = 1.0
 
 pytest.register_assert_rewrite("common")
 
@@ -178,7 +179,7 @@ def check_grpc_server_before_run(
     try:
         grpc_server.wait(timeout=1.0)
     except RuntimeError:
-        grpc_server.restart()
+        grpc_server.restart(stop_timeout=SERVER_STOP_TIMEOUT)
         grpc_server.wait(timeout=SERVER_STARTUP_TIMEOUT)
     yield
 
