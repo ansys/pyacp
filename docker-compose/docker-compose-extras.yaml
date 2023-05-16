@@ -2,7 +2,7 @@ version: '3.8'
 services:
   mapdl:
     restart: unless-stopped
-    image: ${IMAGE_NAME_MAPDL:-ghcr.io/pyansys/mapdl:latest}
+    image: ${IMAGE_NAME_MAPDL:-ghcr.io/ansys/mapdl:latest}
     # By default, run on a single core only. Otherwise the command may
     # fail in restricted environments.
     # For example, the default Github Actions runner only has two cores.
@@ -15,7 +15,7 @@ services:
       - ANSYS_LOCK="OFF"
   pydpf-composites-server:
     restart: unless-stopped
-    image: ${IMAGE_NAME_DPF_COMPOSITES:-ghcr.io/pyansys/pydpf-composites:231}
+    image: ${IMAGE_NAME_DPF_COMPOSITES:-ghcr.io/ansys/pydpf-composites:231}
     ports:
     - "${PORT_DPF_COMPOSITES:-50558}:50052"
     environment:
