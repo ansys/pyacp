@@ -22,7 +22,8 @@ from ansys.acp.core._tree_objects.material.property_sets import (
     VariableStrainLimits,
     VariableStressLimits,
 )
-from common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
+
+from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
 
 
 @pytest.fixture

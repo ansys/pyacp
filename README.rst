@@ -137,7 +137,7 @@ You will need to follow these steps:
 
         poetry install --with dev,test
 
-   This step installs PyACP in an editable mode (no build step is needed, no re-install when changing the code).
+    This step installs PyACP in an editable mode (no build step is needed, no re-install when changing the code).
 
 4.  Activate your development virtual environment with:
 
@@ -162,7 +162,25 @@ The PyACP test suite uses `pytest`_. You can run it with
 
 .. code-block:: bash
 
-    pytest --license-server=<YOUR_LICENSE_SERVER>
+    pytest --license-server=<YOUR_LICENSE_SERVER> tests/unittests
+
+Benchmarking
+^^^^^^^^^^^^
+
+As part of the test suite, we run some performance benchmarks. These can be run with
+
+.. code-block:: bash
+
+    pytest --license-server=<YOUR_LICENSE_SERVER> tests/benchmarks
+
+
+Additional options can be found in the `pytest-benchmark documentation <https://pytest-benchmark.readthedocs.io/en/latest/usage.html>`_.
+
+**NOTE:** The benchmarks use the ``tc-netem`` Linux kernel module to simulate a slow network
+connection within a Docker container. This is available only on Linux, not on Docker for MacOS
+or Windows.
+
+The benchmark results from the ``main`` branch are uploaded to https://acp.docs.pyansys.com/benchmarks.
 
 Pre-commit hooks
 ^^^^^^^^^^^^^^^^

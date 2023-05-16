@@ -1,8 +1,8 @@
 import pytest
 
-from common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
-from common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
-from common.utils import AnyThing
+from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
+from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
+from .common.utils import AnyThing
 
 
 @pytest.fixture

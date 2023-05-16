@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 COPY --chmod=755 <<EOF /usr/ansys_inc/acp/acp_grpcserver_wrapper.sh
 #!/usr/bin/bash
 
-set -e
+set -ex
 
 DELAY=\$1
 RATE=\$2

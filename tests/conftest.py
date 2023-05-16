@@ -23,11 +23,19 @@ from ansys.tools.local_product_launcher.config import set_config_for
 __all__ = [
     "pytest_addoption",
     "model_data_dir",
-    # "convert_temp_path",
     "grpc_server",
     "check_grpc_server_before_run",
     "clear_models_before_run",
     "load_model_from_tempfile",
+    "TEST_ROOT_DIR",
+    "SOURCE_ROOT_DIR",
+    "SERVER_BIN_OPTION_KEY",
+    "LICENSE_SERVER_OPTION_KEY",
+    "DOCKER_IMAGENAME_OPTION_KEY",
+    "NO_SERVER_LOGS_OPTION_KEY",
+    "BUILD_BENCHMARK_IMAGE_OPTION_KEY",
+    "VALIDATE_BENCHMARKS_ONLY_OPTION_KEY",
+    "SERVER_STARTUP_TIMEOUT",
 ]
 
 
@@ -37,11 +45,14 @@ settings.load_profile("fast")
 logging.getLogger("ansys.acp.core").setLevel(logging.DEBUG)
 
 TEST_ROOT_DIR = pathlib.Path(__file__).parent
+SOURCE_ROOT_DIR = TEST_ROOT_DIR.parent
 
 SERVER_BIN_OPTION_KEY = "--server-bin"
 LICENSE_SERVER_OPTION_KEY = "--license-server"
 DOCKER_IMAGENAME_OPTION_KEY = "--docker-image"
 NO_SERVER_LOGS_OPTION_KEY = "--no-server-log-files"
+BUILD_BENCHMARK_IMAGE_OPTION_KEY = "--build-benchmark-image"
+VALIDATE_BENCHMARKS_ONLY_OPTION_KEY = "--validate-benchmarks-only"
 SERVER_STARTUP_TIMEOUT = 30.0
 
 pytest.register_assert_rewrite("common")
@@ -73,6 +84,16 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         NO_SERVER_LOGS_OPTION_KEY,
         action="store_true",
         help="If set, the server log is ignored instead of written to a file.",
+    )
+    parser.addoption(
+        BUILD_BENCHMARK_IMAGE_OPTION_KEY,
+        action="store_true",
+        help="Build the 'pyacp-benchmark-runner' image.",
+    )
+    parser.addoption(
+        VALIDATE_BENCHMARKS_ONLY_OPTION_KEY,
+        action="store_true",
+        help="Run the benchmarks only for the fastest network configuration.",
     )
 
 
@@ -113,7 +134,11 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
         # the ACP server.
         image_name = request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY)
         image_name_filetransfer = "ghcr.io/ansys-internal/tools-filetransfer:latest"
-        docker.from_env().images.pull(image_name)
+        # We distinguish between local and remote images by checking if
+        # the image name contains a slash. This is somewhat crude, but works
+        # for now.
+        if "/" in image_name:
+            docker.from_env().images.pull(image_name)
         docker.from_env().images.pull(image_name_filetransfer)
 
         set_config_for(

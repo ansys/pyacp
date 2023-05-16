@@ -2,8 +2,9 @@ import pytest
 from pytest_cases import fixture, parametrize_with_cases
 
 from ansys.acp.core._tree_objects.enums import RosetteSelectionMethod
-from common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
-from common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
+
+from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
+from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 
 @pytest.fixture

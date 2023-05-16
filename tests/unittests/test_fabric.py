@@ -5,7 +5,8 @@ from ansys.acp.core._tree_objects.enums import (
     DrapingMaterialType,
     DropoffMaterialType,
 )
-from common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
+
+from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 
 @pytest.fixture
