@@ -13,8 +13,8 @@ PyACP exports the resulting model for PyMAPDL. Once the results are available,
 the RST file is loaded in PyDPF composites. The additional input files (material.xml
 and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDPF Composites.
 
-The services (ACP, MAPDL and DPF) are run in docker containers which share
-a volume (working directory).
+The MAPDL and DPF services are run in docker containers which share a volume (working
+directory).
 """
 
 # %%
@@ -26,8 +26,6 @@ a volume (working directory).
 import os
 import pathlib
 import tempfile
-
-import numpy as np
 
 # %%
 # Import Ansys libraries
@@ -282,23 +280,28 @@ mapdl.download(rstfile_name, tmp_dir.name)
 # Setup: configure imports and connect to the pyDPF Composites server
 # and load the dpf composites plugin
 
+from ansys.dpf.composites.composite_model import CompositeModel
+from ansys.dpf.composites.constants import FailureOutput
+from ansys.dpf.composites.data_sources import (
+    CompositeDefinitionFiles,
+    ContinuousFiberCompositesFiles,
+)
 from ansys.dpf.composites.failure_criteria import (
     CombinedFailureCriterion,
     CoreFailureCriterion,
     MaxStrainCriterion,
     MaxStressCriterion,
 )
-from ansys.dpf.composites.result_definition import ResultDefinition, ResultDefinitionScope
-from ansys.dpf.composites.server_helpers import load_composites_plugin
-import ansys.dpf.core as dpf
+from ansys.dpf.composites.server_helpers import connect_to_or_start_server
 from ansys.dpf.core.core import upload_file_in_tmp_folder
 
-dpf_server = dpf.server.connect_to_server("127.0.0.1", port=50558)
-load_composites_plugin(dpf_server)
+# %%
+# Connect to the server. The ``connect_to_or_start_server`` function
+# automatically loads the composites plugin.
+dpf_server = connect_to_or_start_server(ip="127.0.0.1", port=50558)
 
 # %%
-# Specify the Combined Failure Criterion and the result definition
-
+# Specify the Combined Failure Criterion
 max_strain = MaxStrainCriterion()
 max_stress = MaxStressCriterion()
 core_failure = CoreFailureCriterion()
@@ -308,40 +311,32 @@ cfc = CombinedFailureCriterion(
     failure_criteria=[max_strain, max_stress, core_failure],
 )
 
-# upload files to DPF server
+# %%
+# Upload files to DPF server
 rst_file_dpf_path = upload_file_in_tmp_folder(str(rst_file_local_path))
 composite_definitions_file_dpf_path = upload_file_in_tmp_folder(
     str(composite_definitions_local_path)
 )
 matml_file_dpf_path = upload_file_in_tmp_folder(str(matml_file_local_path))
 
-elements = list([int(v) for v in np.arange(1, 3996)])
-rd = ResultDefinition(
-    name="combined failure criteria",
-    rst_file=rst_file_dpf_path,
-    material_file=matml_file_dpf_path,
-    combined_failure_criterion=cfc,
-    composite_scopes=[
-        ResultDefinitionScope(
-            element_scope=elements,
-            composite_definition=composite_definitions_file_dpf_path,
-        )
-    ],
+# %%
+# Create the CompositeModel and configure its input
+composite_model = CompositeModel(
+    composite_files=ContinuousFiberCompositesFiles(
+        rst=rst_file_dpf_path,
+        composite={
+            "shell": CompositeDefinitionFiles(definition=composite_definitions_file_dpf_path),
+        },
+        engineering_data=matml_file_dpf_path,
+    ),
+    server=dpf_server,
 )
 
 # %%
-# Initialize the failure operator and configure its input
-
-fc_op = dpf.Operator("composite::composite_failure_operator")
-fc_op.inputs.result_definition(rd.to_json())
+# Evaluate the failure criteria
+output_all_elements = composite_model.evaluate_failure_criteria(cfc)
 
 # %%
 # Query and plot the results
-
-output_all_elements = fc_op.outputs.fields_containerMax()
-
-failure_value_index = 1
-failure_mode_index = 0
-
-irf_field = output_all_elements[failure_value_index]
+irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
 irf_field.plot()
