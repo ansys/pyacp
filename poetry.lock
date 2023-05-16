@@ -361,7 +361,7 @@ typing-extensions = "^4.0"
 type = "git"
 url = "https://github.com/ansys-internal/ansys-tools-local-product-launcher.git"
 reference = "main"
-resolved_reference = "e37ff49b99f1a393c949f36340204f987bd7c57b"
+resolved_reference = "6a9e061d2ad8b07c26d7babe527d018ec8207aba"
 
 [[package]]
 name = "ansys-tools-path"
