@@ -93,9 +93,13 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
             text=True,
         )
 
-    def stop(self) -> None:
+    def stop(self, *, timeout: Optional[float] = None) -> None:
         self._process.terminate()
-        self._process.wait()
+        try:
+            self._process.wait(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            self._process.kill()
+            self._process.wait()
         self._stdout.close()
         self._stderr.close()
 

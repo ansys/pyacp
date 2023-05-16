@@ -15,6 +15,7 @@ from ..conftest import (
     DOCKER_IMAGENAME_OPTION_KEY,
     LICENSE_SERVER_OPTION_KEY,
     SERVER_STARTUP_TIMEOUT,
+    SERVER_STOP_TIMEOUT,
     SOURCE_ROOT_DIR,
     VALIDATE_BENCHMARKS_ONLY_OPTION_KEY,
 )
@@ -117,7 +118,7 @@ def _benchmark_servers(launcher_configuration):
     }
 
     # convert to list to wait until all servers are stopped
-    list(executor.map(lambda server: server.stop(), servers_list))
+    list(executor.map(lambda server: server.stop(timeout=SERVER_STOP_TIMEOUT), servers_list))
 
 
 @pytest.fixture(

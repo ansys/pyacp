@@ -1,5 +1,5 @@
 import enum
-from typing import Dict, Protocol
+from typing import Dict, Optional, Protocol
 
 import grpc
 
@@ -29,5 +29,5 @@ class ServerProtocol(Protocol):
 
 
 class ControllableServerProtocol(ServerProtocol):
-    def restart(self) -> None:
+    def restart(self, *, stop_timeout: Optional[float] = None) -> None:
         ...

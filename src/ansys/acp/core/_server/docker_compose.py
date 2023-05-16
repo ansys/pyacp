@@ -3,6 +3,7 @@ import contextlib
 import copy
 import dataclasses
 import importlib.resources
+import math
 import os
 import pathlib
 import subprocess
@@ -156,7 +157,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
             )
 
-    def stop(self) -> None:
+    def stop(self, *, timeout: Optional[float] = None) -> None:
         # The compose file needs to be passed for all commands with docker-compose 1.X.
         # With docker-compose 2.X, this no longer seems to be necessary.
         with self._get_compose_file() as compose_file:
@@ -168,6 +169,9 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 self._compose_name,
                 "down",
             ]
+            if timeout is not None:
+                # --timeout must be an integer, so we round up.
+                cmd.extend(["--timeout", str(math.ceil(timeout))])
             if not self._keep_volume:
                 cmd.append("--volumes")
             subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
