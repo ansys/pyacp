@@ -92,13 +92,13 @@ develop = false
 
 [package.dependencies]
 grpcio = ">=1.17,<2.0"
-protobuf = ">=3.19,<4.0"
+protobuf = ">=3.19,<5"
 
 [package.source]
 type = "git"
 url = "https://github.com/ansys-internal/ansys-api-tools-filetransfer.git"
 reference = "main"
-resolved_reference = "42d3562cc94e9e86472bd93117637509f3bc338c"
+resolved_reference = "74a63ffe2b8302eb6dfcd763c99bf91563286328"
 
 [[package]]
 name = "ansys-corba"
@@ -361,7 +361,7 @@ typing-extensions = "^4.0"
 type = "git"
 url = "https://github.com/ansys-internal/ansys-tools-local-product-launcher.git"
 reference = "main"
-resolved_reference = "6a9e061d2ad8b07c26d7babe527d018ec8207aba"
+resolved_reference = "e37ff49b99f1a393c949f36340204f987bd7c57b"
 
 [[package]]
 name = "ansys-tools-path"
@@ -1473,14 +1473,14 @@ files = [
 
 [[package]]
 name = "ipykernel"
-version = "6.23.0"
+version = "6.23.1"
 description = "IPython Kernel for Jupyter"
 category = "dev"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "ipykernel-6.23.0-py3-none-any.whl", hash = "sha256:fc886f1dcdc0ec17f277e4d21fd071c857d381adcb04f3f3735d25325ca323c6"},
-    {file = "ipykernel-6.23.0.tar.gz", hash = "sha256:bd6f487d9e2744c84f6e667d46462d7647a4c862e70e08282f05a52b9d4b705f"},
+    {file = "ipykernel-6.23.1-py3-none-any.whl", hash = "sha256:77aeffab056c21d16f1edccdc9e5ccbf7d96eb401bd6703610a21be8b068aadc"},
+    {file = "ipykernel-6.23.1.tar.gz", hash = "sha256:1aba0ae8453e15e9bc6b24e497ef6840114afcdb832ae597f32137fa19d42a6f"},
 ]
 
 [package.dependencies]
