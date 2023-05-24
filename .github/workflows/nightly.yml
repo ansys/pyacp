@@ -50,7 +50,7 @@ jobs:
         run: |
           docker pull $IMAGE_NAME
           . test_env/bin/activate
-          pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files tests/
+          pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files tests/unittests
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: 'ghcr.io/ansys-internal/pyacp:latest'
