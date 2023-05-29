@@ -372,14 +372,14 @@ resolved_reference = "83dcf5f5a28c026ca92db78b42494a0cce47dc7a"
 
 [[package]]
 name = "ansys-tools-path"
-version = "0.2.3"
+version = "0.2.4"
 description = "Library to locate Ansys products in a local machine."
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "ansys-tools-path-0.2.3.tar.gz", hash = "sha256:03de9be4bb6092157aacf593ba2d36c841ee0fbec18394aa870d1c8bbfcbe8a3"},
-    {file = "ansys_tools_path-0.2.3-py3-none-any.whl", hash = "sha256:bee14bb7bd6f6f2b745083a9372d8fdc32606b7f2edca4084f2a7dbfcf4f7441"},
+    {file = "ansys_tools_path-0.2.4-py3-none-any.whl", hash = "sha256:bed0488133e3a2d1ab72d43018f4ab72af141225e2fe2231b5f6262efcfaa1f8"},
+    {file = "ansys_tools_path-0.2.4.tar.gz", hash = "sha256:b64c2ad37536d86e3894f7eb610485eec6924bd3eaf0b39c1f7bf01dae672628"},
 ]
 
 [package.dependencies]
@@ -388,7 +388,7 @@ importlib-metadata = ">=4.0"
 
 [package.extras]
 build = ["build (==0.10.0)", "twine (==4.0.2)"]
-doc = ["Sphinx (==7.0.0)", "ansys-sphinx-theme (==0.9.8)", "numpydoc (==1.5.0)", "sphinx-copybutton (==0.5.2)"]
+doc = ["Sphinx (==6.2.1)", "ansys-sphinx-theme (==0.9.9)", "numpydoc (==1.5.0)", "sphinx-copybutton (==0.5.2)"]
 test = ["pytest (==7.3.1)", "pytest-cov (==4.0.0)"]
 
 [[package]]
