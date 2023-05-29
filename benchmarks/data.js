@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1685386955444,
+  "lastUpdate": 1685387579784,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -846,6 +846,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00008415269203728181",
             "extra": "mean: 38.31265633333781 msec\nrounds: 27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "dbfd5c7a982a476d2d03d5bc02362b91685654a5",
+          "message": "Bump typing-extensions from 4.6.1 to 4.6.2 (#205)\n\nBumps [typing-extensions](https://github.com/python/typing_extensions) from 4.6.1 to 4.6.2.\r\n- [Changelog](https://github.com/python/typing_extensions/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/python/typing_extensions/compare/4.6.1...4.6.2)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: typing-extensions\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-05-29T19:08:11Z",
+          "tree_id": "8a73ec8f15efcd2cbe2615ed30ae609acd7c35cf",
+          "url": "https://github.com/ansys-internal/pyacp/commit/dbfd5c7a982a476d2d03d5bc02362b91685654a5"
+        },
+        "date": 1685387577612,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 6.23858040853289,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003852860161660852",
+            "extra": "mean: 160.29287666665937 msec\nrounds: 6"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.2622391839653866,
+            "unit": "iter/sec",
+            "range": "stddev: 0.007579536818036179",
+            "extra": "mean: 442.03990766667783 msec\nrounds: 3"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.37884524227164484,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.639600260000009 sec\nrounds: 1"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.041180193191463696,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.283518907999962 sec\nrounds: 1"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 3.2915967587059076,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005868192071080762",
+            "extra": "mean: 303.80392050001603 msec\nrounds: 4"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.7216514737646617,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.3857104659999777 sec\nrounds: 1"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.08368157622113556,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 11.950061711999979 sec\nrounds: 1"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1093.5137732982441,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00028877825675463953",
+            "extra": "mean: 914.4832231822842 usec\nrounds: 1389"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 332.6863595604258,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003357375945817423",
+            "extra": "mean: 3.005834087460896 msec\nrounds: 343"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 47.323790415170926,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001755937470150359",
+            "extra": "mean: 21.13102080849853 msec\nrounds: 47"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.958346197969616,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00011349723744398612",
+            "extra": "mean: 201.6801489999807 msec\nrounds: 5"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 832.3910474955698,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00024063480344986896",
+            "extra": "mean: 1.2013584276389306 msec\nrounds: 919"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 207.28530606545445,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002741862695672209",
+            "extra": "mean: 4.824268632356556 msec\nrounds: 204"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.729644474192046,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00023832514858001302",
+            "extra": "mean: 38.865675000019664 msec\nrounds: 26"
           }
         ]
       }
