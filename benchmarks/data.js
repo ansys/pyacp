@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1685709653897,
+  "lastUpdate": 1685946545739,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -1212,6 +1212,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0001376023119934565",
             "extra": "mean: 39.106842739134045 msec\nrounds: 23"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1f564b88d53c916aeaf51b9dfde874896476c8d2",
+          "message": "Bump ansys-mapdl-core from 0.64.1 to 0.65.0 (#210)\n\nBumps [ansys-mapdl-core](https://github.com/ansys/pymapdl) from 0.64.1 to 0.65.0.\r\n- [Release notes](https://github.com/ansys/pymapdl/releases)\r\n- [Commits](https://github.com/ansys/pymapdl/compare/v0.64.1...v0.65.0)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: ansys-mapdl-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-06-05T08:23:49+02:00",
+          "tree_id": "289d0be975ae4be9f8cc11fbd728fe2b59f8b771",
+          "url": "https://github.com/ansys-internal/pyacp/commit/1f564b88d53c916aeaf51b9dfde874896476c8d2"
+        },
+        "date": 1685946543317,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 5.809404836970238,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0037151846020935186",
+            "extra": "mean: 172.1346726666629 msec\nrounds: 6"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.342181236285157,
+            "unit": "iter/sec",
+            "range": "stddev: 0.009177885214786238",
+            "extra": "mean: 426.95244266667487 msec\nrounds: 3"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.37463959025164634,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.6692320459999905 sec\nrounds: 1"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04118242162960568,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.282204893 sec\nrounds: 1"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 3.50611938750406,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005415594272189596",
+            "extra": "mean: 285.21561575000476 msec\nrounds: 4"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.707615653321538,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.4131965500000092 sec\nrounds: 1"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.08356096748879581,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 11.967309978000003 sec\nrounds: 1"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1107.759773772286,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000549422517761854",
+            "extra": "mean: 902.7227957508073 usec\nrounds: 1082"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 361.7547809757432,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00043558151903971414",
+            "extra": "mean: 2.76430348011642 msec\nrounds: 352"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 47.01751755158976,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00010515204419354605",
+            "extra": "mean: 21.268668617026716 msec\nrounds: 47"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.963662353209856,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00010243590864191176",
+            "extra": "mean: 201.46414660000573 msec\nrounds: 5"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 892.0567296221983,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00015950465420796862",
+            "extra": "mean: 1.121004939252594 msec\nrounds: 856"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 212.12473358586925,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00032743923980632877",
+            "extra": "mean: 4.7142074528296085 msec\nrounds: 212"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.570202056928526,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0006779413326406506",
+            "extra": "mean: 39.10802103845867 msec\nrounds: 26"
           }
         ]
       }
