@@ -71,3 +71,4 @@ poetry.toml
 
 # Hypothesis testing
 .hypothesis
+.DS_Store
