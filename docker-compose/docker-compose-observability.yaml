@@ -5,7 +5,7 @@ services:
     image: prom/prometheus:latest
     restart: always
     volumes:
-      - ./docker/shared/prometheus/prometheus-config.yml:/etc/prometheus/prometheus.yml
+      - ./shared/prometheus/prometheus-config.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
     labels:
