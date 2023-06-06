@@ -41,8 +41,8 @@ services:
       - "GF_AUTH_ANONYMOUS_ENABLED=true"
       - "GF_AUTH_ANONYMOUS_ORG_ROLE=Admin"
       - "GF_FEATURE_TOGGLES_ENABLE=traceToMetrics"
-    expose:
-      - 80
+    ports:
+      - 8080:80
     volumes:
       - ./shared/grafana/grafana-datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
       - ./shared/grafana/dashboards:/etc/grafana/provisioning/dashboards
