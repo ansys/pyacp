@@ -1,0 +1,80 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+  fluentforward:
+    endpoint: "0.0.0.0:8006"
+
+exporters:
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+
+  otlp:
+    endpoint: tempo:4317
+    tls:
+      insecure: true       
+
+  logging:
+    loglevel: info
+  
+  loki:
+    endpoint: http://host.docker.internal:3100/loki/api/v1/push
+    tls:
+      insecure: true
+      
+# Below  exporters are needed to push obervability data to AWS cloudwatch
+# log_stream_name and log_group_name to be updated with proper values     
+  awscloudwatchlogs:
+    log_group_name: "rep-logs"
+    log_stream_name: "rep-logs-dev"
+    
+  awsemf:
+    log_group_name: "rep-metric-logs"
+    log_stream_name: "rep-mteric-logs-dev"
+    resource_to_telemetry_conversion:
+      enabled: true
+  
+  awsxray:
+    no_verify_ssl: true 
+
+processors:
+  batch:
+  resource:
+    attributes:
+    - action: insert
+      key: service_name
+      from_attribute: service.name
+    - action: insert
+      key: service_namespace
+      from_attribute: service.namespace
+    - action: insert
+      key: loki.resource.labels
+      value: service_name, service_namespace
+
+extensions:
+  health_check:
+  pprof:
+    endpoint: :1888
+  zpages:
+    endpoint: :55679
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp]
+      # set trace exporter to awsxray to push data to AWS Xray service
+      #exporters: [awsxray]     
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [prometheus]
+      # set metric exporter to awsemf to push data to AWS Cloudwatch service
+      #exporters: [awsemf]     
+    logs:
+      receivers: [otlp]
+      processors: [resource]
+      exporters: [loki]      
+      # set log exporter to awscloudwatchlogs to push data to AWS Cloudwatch service
+      #exporters: [awscloudwatchlogs]     

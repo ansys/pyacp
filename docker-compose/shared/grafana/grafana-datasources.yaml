@@ -1,0 +1,68 @@
+apiVersion: 1
+# Feeds Grafana | configuration | Data sources
+# Deployed services should share the same network
+# URL use Docker name instead of localhost.
+
+datasources:
+  - name: prometheus
+    type: prometheus
+    uid: my-prometheus
+    access: proxy
+    orgId: 1
+    url: http://host.docker.internal:9090
+    isDefault: false
+    readOnly: false
+    editable: true
+    jsonData:
+      exemplarTraceIdDestinations:
+        - datasourceUid: my-tempo
+          name: otelTraceID    
+  
+  - name: loki
+    type: loki
+    uid: my-loki
+    access: proxy
+    orgId: 1    
+    url: http://host.docker.internal:3100
+    basicAuth: false
+    isDefault: false
+    readOnly: false
+    editable: true
+    jsonData:
+      derivedFields:
+        - datasourceUid: my-tempo
+          matcherRegex: '"otelTraceID":"(\w+)"'
+          name: TraceID
+          url: $${__value.raw}
+
+  - name: tempo
+    type: tempo
+    uid: my-tempo
+    access: proxy
+    url: http://host.docker.internal:3200
+    apiVersion: 1
+    basicAuth: false
+    isDefault: false
+    readOnly: false
+    editable: true
+    jsonData:
+      httpMethod: POST
+      tracesToLogs:
+        datasourceUid: my-loki
+        mapTagNamesEnabled: true
+        mappedTags: [{ key: 'service.name', value: 'service_name' }]
+        filterByTraceID: True
+        filterBySpanID: false
+        lokiSearch: true
+      tracesToMetrics:
+        datasourceUid: my-prometheus
+        tags: [{ key: 'service.name', value: 'exported_job' }]
+        spanStartTimeShift: -10s
+        spanEndTimeShift: 10s
+        # Time window must be adjusted manually
+        queries:
+          - name: 'system_cpu_utilization'
+            query: 'rate(system_cpu_utilization{exported_job="ansys_rep_jms"}[$$__rate_interval])'
+          - name: 'system_memory_utilization'
+            query: 'rate(system_memory_utilization{exported_job="ansys_rep_jms"}[$$__rate_interval])'            
+      
