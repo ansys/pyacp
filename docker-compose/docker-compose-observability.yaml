@@ -1,4 +1,6 @@
 version: '3.8'
+name: otel
+
 services:
   prometheus:
     container_name: prometheus
@@ -43,6 +45,7 @@ services:
       - "GF_FEATURE_TOGGLES_ENABLE=traceToMetrics"
     ports:
       - 8080:80
+      - 3000:3000
     volumes:
       - ./shared/grafana/grafana-datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
       - ./shared/grafana/dashboards:/etc/grafana/provisioning/dashboards
