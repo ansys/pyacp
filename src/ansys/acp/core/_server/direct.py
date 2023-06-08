@@ -87,6 +87,7 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
             [
                 self._config.binary_path,
                 f"--server-address=0.0.0.0:{port}",
+                "--telemetry-collector-url=localhost:4317",
             ],
             stdout=self._stdout,
             stderr=self._stderr,

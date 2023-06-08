@@ -74,7 +74,7 @@ def pytest_addoption(parser: pytest.Parser) -> None:
             "Docker image to be used for running the test. Only used if "
             f"'{SERVER_BIN_OPTION_KEY}' is not set."
         ),
-        default="ghcr.io/ansys-internal/pyacp:latest",
+        default="ghcr.io/ansys-internal/pyacp:hackathon",
     )
     parser.addoption(
         LICENSE_SERVER_OPTION_KEY,
@@ -105,9 +105,13 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
     license_server = request.config.getoption(LICENSE_SERVER_OPTION_KEY)
 
     if bool(server_bin) == bool(license_server):
-        raise ValueError(
-            f"Exactly one of '{SERVER_BIN_OPTION_KEY}' or '{LICENSE_SERVER_OPTION_KEY}' must be specified."
-        )
+        if not license_server:
+            license_server = "not set"
+        else:
+            raise ValueError(
+                f"Exactly one of '{SERVER_BIN_OPTION_KEY}' or "
+                f"'{LICENSE_SERVER_OPTION_KEY}' must be specified."
+            )
 
     if request.config.getoption(NO_SERVER_LOGS_OPTION_KEY):
         server_log_stdout: PATH = os.devnull
