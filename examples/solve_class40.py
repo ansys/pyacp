@@ -26,14 +26,44 @@ directory).
 import os
 import pathlib
 import tempfile
+from typing import Dict
+
+import grpc
+
+import ansys.acp.core as pyacp
+from ansys.acp.core._server.common import ServerKey, ServerProtocol
 
 # %%
 # Import Ansys libraries
-import ansys.acp.core as pyacp
+from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
+
+PYACP_URL = "10.240.0.213:50051"
+FILETRANSFER_URL = "10.240.1.174:50000"
+
+
+class ServerFromURL(ServerProtocol):
+    """Interface definition for ACP gRPC servers."""
+
+    def __init__(self):
+        self._main_channel = grpc.insecure_channel(PYACP_URL)
+        self._filetransfer_channel = grpc.insecure_channel(FILETRANSFER_URL)
+
+    @property
+    def channels(self) -> Dict[str, grpc.Channel]:
+        return {
+            ServerKey.MAIN: self._main_channel,
+            ServerKey.FILE_TRANSFER: self._filetransfer_channel,
+        }
+
+    def wait(self, timeout: float):
+        check_grpc_health(channel=self._main_channel, timeout=timeout) and check_grpc_health(
+            channel=self._filetransfer_channel, timeout=timeout
+        )
+
 
 # %%
 # Launch the PyACP server and connect to it.
-pyacp_server = pyacp.launch_acp()
+pyacp_server = ServerFromURL()
 pyacp_server.wait(timeout=30)
 pyacp_client = pyacp.Client(pyacp_server)
 
@@ -242,101 +272,101 @@ pyacp_client.download_file(
     remote_filename=COMPOSITE_DEFINITIONS_H5, local_path=str(composite_definitions_local_path)
 )
 
-# %%
-# Solve with PyMAPDL
-# ------------------
+# # %%
+# # Solve with PyMAPDL
+# # ------------------
 
-# %%
-# Import PyMAPDL and connect to its server
-from ansys.mapdl.core import Mapdl
+# # %%
+# # Import PyMAPDL and connect to its server
+# from ansys.mapdl.core import Mapdl
 
-mapdl = Mapdl(ip="localhost", port=50557, timeout=30)
+# mapdl = Mapdl(ip="localhost", port=50557, timeout=30)
 
-# %%
-# Load the CDB file into PyMAPDL
-mapdl.input(str(cdb_file_local_path))
+# # %%
+# # Load the CDB file into PyMAPDL
+# mapdl.input(str(cdb_file_local_path))
 
-# %%
-# Solve the model
-mapdl.allsel()
-mapdl.slashsolu()
-mapdl.solve()
+# # %%
+# # Solve the model
+# mapdl.allsel()
+# mapdl.slashsolu()
+# mapdl.solve()
 
-# %%
-# Post-processing: show displacements
-mapdl.post1()
-mapdl.set("last")
-mapdl.post_processing.plot_nodal_displacement(component="NORM")
+# # %%
+# # Post-processing: show displacements
+# mapdl.post1()
+# mapdl.set("last")
+# mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
-# Download RST FILE for further post-processing
-rstfile_name = f"{mapdl.jobname}.rst"
-rst_file_local_path = pathlib.Path(tmp_dir.name) / rstfile_name
-mapdl.download(rstfile_name, tmp_dir.name)
+# # Download RST FILE for further post-processing
+# rstfile_name = f"{mapdl.jobname}.rst"
+# rst_file_local_path = pathlib.Path(tmp_dir.name) / rstfile_name
+# mapdl.download(rstfile_name, tmp_dir.name)
 
-# %%
-# Post-Processing with DPF composites
-# -----------------------------------
-#
-# Setup: configure imports and connect to the pyDPF Composites server
-# and load the dpf composites plugin
+# # %%
+# # Post-Processing with DPF composites
+# # -----------------------------------
+# #
+# # Setup: configure imports and connect to the pyDPF Composites server
+# # and load the dpf composites plugin
 
-from ansys.dpf.composites.composite_model import CompositeModel
-from ansys.dpf.composites.constants import FailureOutput
-from ansys.dpf.composites.data_sources import (
-    CompositeDefinitionFiles,
-    ContinuousFiberCompositesFiles,
-)
-from ansys.dpf.composites.failure_criteria import (
-    CombinedFailureCriterion,
-    CoreFailureCriterion,
-    MaxStrainCriterion,
-    MaxStressCriterion,
-)
-from ansys.dpf.composites.server_helpers import connect_to_or_start_server
-from ansys.dpf.core.core import upload_file_in_tmp_folder
+# from ansys.dpf.composites.composite_model import CompositeModel
+# from ansys.dpf.composites.constants import FailureOutput
+# from ansys.dpf.composites.data_sources import (
+#     CompositeDefinitionFiles,
+#     ContinuousFiberCompositesFiles,
+# )
+# from ansys.dpf.composites.failure_criteria import (
+#     CombinedFailureCriterion,
+#     CoreFailureCriterion,
+#     MaxStrainCriterion,
+#     MaxStressCriterion,
+# )
+# from ansys.dpf.composites.server_helpers import connect_to_or_start_server
+# from ansys.dpf.core.core import upload_file_in_tmp_folder
 
-# %%
-# Connect to the server. The ``connect_to_or_start_server`` function
-# automatically loads the composites plugin.
-dpf_server = connect_to_or_start_server(ip="127.0.0.1", port=50558)
+# # %%
+# # Connect to the server. The ``connect_to_or_start_server`` function
+# # automatically loads the composites plugin.
+# dpf_server = connect_to_or_start_server(ip="127.0.0.1", port=50558)
 
-# %%
-# Specify the Combined Failure Criterion
-max_strain = MaxStrainCriterion()
-max_stress = MaxStressCriterion()
-core_failure = CoreFailureCriterion()
+# # %%
+# # Specify the Combined Failure Criterion
+# max_strain = MaxStrainCriterion()
+# max_stress = MaxStressCriterion()
+# core_failure = CoreFailureCriterion()
 
-cfc = CombinedFailureCriterion(
-    name="Combined Failure Criterion",
-    failure_criteria=[max_strain, max_stress, core_failure],
-)
+# cfc = CombinedFailureCriterion(
+#     name="Combined Failure Criterion",
+#     failure_criteria=[max_strain, max_stress, core_failure],
+# )
 
-# %%
-# Upload files to DPF server
-rst_file_dpf_path = upload_file_in_tmp_folder(str(rst_file_local_path))
-composite_definitions_file_dpf_path = upload_file_in_tmp_folder(
-    str(composite_definitions_local_path)
-)
-matml_file_dpf_path = upload_file_in_tmp_folder(str(matml_file_local_path))
+# # %%
+# # Upload files to DPF server
+# rst_file_dpf_path = upload_file_in_tmp_folder(str(rst_file_local_path))
+# composite_definitions_file_dpf_path = upload_file_in_tmp_folder(
+#     str(composite_definitions_local_path)
+# )
+# matml_file_dpf_path = upload_file_in_tmp_folder(str(matml_file_local_path))
 
-# %%
-# Create the CompositeModel and configure its input
-composite_model = CompositeModel(
-    composite_files=ContinuousFiberCompositesFiles(
-        rst=rst_file_dpf_path,
-        composite={
-            "shell": CompositeDefinitionFiles(definition=composite_definitions_file_dpf_path),
-        },
-        engineering_data=matml_file_dpf_path,
-    ),
-    server=dpf_server,
-)
+# # %%
+# # Create the CompositeModel and configure its input
+# composite_model = CompositeModel(
+#     composite_files=ContinuousFiberCompositesFiles(
+#         rst=rst_file_dpf_path,
+#         composite={
+#             "shell": CompositeDefinitionFiles(definition=composite_definitions_file_dpf_path),
+#         },
+#         engineering_data=matml_file_dpf_path,
+#     ),
+#     server=dpf_server,
+# )
 
-# %%
-# Evaluate the failure criteria
-output_all_elements = composite_model.evaluate_failure_criteria(cfc)
+# # %%
+# # Evaluate the failure criteria
+# output_all_elements = composite_model.evaluate_failure_criteria(cfc)
 
-# %%
-# Query and plot the results
-irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
-irf_field.plot()
+# # %%
+# # Query and plot the results
+# irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
+# irf_field.plot()
