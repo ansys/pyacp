@@ -218,7 +218,7 @@
             "uid": "my-loki"
           },
           "editorMode": "builder",
-          "expr": "count_over_time({service_name=\"unknown_service\"} |= `` | line_format `{{.severity}}` [$__interval])",
+          "expr": "count_over_time({service_name=\"acp-grpcserver\"} |= `` | line_format `{{.severity}}` [$__interval])",
           "queryType": "range",
           "refId": "A"
         }
@@ -246,7 +246,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -274,7 +275,13 @@
           ],
           "show": false
         },
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Trace ID"
+          }
+        ]
       },
       "pluginVersion": "9.5.3",
       "targets": [
@@ -287,7 +294,7 @@
           "limit": 20,
           "queryType": "nativeSearch",
           "refId": "A",
-          "serviceName": "unknown_service",
+          "serviceName": "acp-grpcserver",
           "spanName": "materials:Create"
         }
       ],
@@ -339,7 +346,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -386,7 +394,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": "30s",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -401,6 +409,6 @@
   "timezone": "",
   "title": "acp-dashboard-1",
   "uid": "f8afd54f-53a1-445f-8bcd-fa343e889ef0",
-  "version": 4,
+  "version": 6,
   "weekStart": ""
 }
