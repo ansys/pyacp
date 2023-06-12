@@ -390,11 +390,11 @@
           "refId": "A"
         }
       ],
-      "title": "Materials API call rate",
+      "title": "Model API call rate",
       "type": "timeseries"
     }
   ],
-  "refresh": "30s",
+  "refresh": "5s",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -402,13 +402,13 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "acp-dashboard-1",
   "uid": "f8afd54f-53a1-445f-8bcd-fa343e889ef0",
-  "version": 6,
+  "version": 3,
   "weekStart": ""
 }

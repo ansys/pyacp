@@ -2,7 +2,7 @@ version: '3.8'
 services:
   acp-grpc-server:
     restart: unless-stopped
-    image: ${IMAGE_NAME_PYACP:-ghcr.io/ansys-internal/pyacp:hackathon}
+    image: ${IMAGE_NAME_PYACP:-ghcr.io/ansys-internal/pyacp:post-hackathon}
     command:
       - "--server-address=0.0.0.0:50051"
       - "--telemetry-collector-url=host.docker.internal:4317"
