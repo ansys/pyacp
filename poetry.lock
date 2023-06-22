@@ -356,13 +356,13 @@ resolved_reference = "83dcf5f5a28c026ca92db78b42494a0cce47dc7a"
 
 [[package]]
 name = "ansys-tools-path"
-version = "0.2.4"
+version = "0.2.6"
 description = "Library to locate Ansys products in a local machine."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "ansys_tools_path-0.2.4-py3-none-any.whl", hash = "sha256:bed0488133e3a2d1ab72d43018f4ab72af141225e2fe2231b5f6262efcfaa1f8"},
-    {file = "ansys_tools_path-0.2.4.tar.gz", hash = "sha256:b64c2ad37536d86e3894f7eb610485eec6924bd3eaf0b39c1f7bf01dae672628"},
+    {file = "ansys_tools_path-0.2.6-py3-none-any.whl", hash = "sha256:ef137f52947c8a8a764f5122d633960b55fd2716edf310f9987b8023d2208a70"},
+    {file = "ansys_tools_path-0.2.6.tar.gz", hash = "sha256:3aca012143dfe93ac13aca52884fbfb040066946111a10636b3275d26eeac53a"},
 ]
 
 [package.dependencies]
