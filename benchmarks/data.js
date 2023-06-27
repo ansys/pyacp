@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1687855734001,
+  "lastUpdate": 1687856262414,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -2432,6 +2432,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00010864899932039725",
             "extra": "mean: 39.32360665384111 msec\nrounds: 26"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "87ce92358f8a947a596f2fe10a11aaf83530a504",
+          "message": "Bump ipykernel from 6.23.2 to 6.23.3 (#221)\n\nBumps [ipykernel](https://github.com/ipython/ipykernel) from 6.23.2 to 6.23.3.\r\n- [Release notes](https://github.com/ipython/ipykernel/releases)\r\n- [Changelog](https://github.com/ipython/ipykernel/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ipython/ipykernel/compare/v6.23.2...v6.23.3)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: ipykernel\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-06-27T08:53:02Z",
+          "tree_id": "8523140996347de0f12040a6e752dc89e299079d",
+          "url": "https://github.com/ansys-internal/pyacp/commit/87ce92358f8a947a596f2fe10a11aaf83530a504"
+        },
+        "date": 1687856260527,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 6.904364687346504,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0030119386015713934",
+            "extra": "mean: 144.83591833332335 msec\nrounds: 6"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.5296160767867177,
+            "unit": "iter/sec",
+            "range": "stddev: 0.007217267514509638",
+            "extra": "mean: 395.3169056666752 msec\nrounds: 3"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.3837350537484642,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.6059646889999613 sec\nrounds: 1"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04120857600945622,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.266793391999954 sec\nrounds: 1"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 3.853703662938201,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005134063357479369",
+            "extra": "mean: 259.49063225000657 msec\nrounds: 4"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.7436728322865768,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.3446773320000034 sec\nrounds: 1"
+          },
+          {
+            "name": "test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.08370585408564167,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 11.946595742 sec\nrounds: 1"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1137.3700893401644,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00029411647460654463",
+            "extra": "mean: 879.2212924995605 usec\nrounds: 1200"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 370.4033098218152,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00016503872273275144",
+            "extra": "mean: 2.69975989275327 msec\nrounds: 345"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 47.83188031575405,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00007706804254136903",
+            "extra": "mean: 20.906558416659966 msec\nrounds: 48"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.967044400491782,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00008474933435960464",
+            "extra": "mean: 201.32697020002297 msec\nrounds: 5"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 901.1179779344862,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00015571047411623077",
+            "extra": "mean: 1.1097326038175024 msec\nrounds: 838"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 216.89017225818816,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00010313252438171503",
+            "extra": "mean: 4.6106284558139885 msec\nrounds: 215"
+          },
+          {
+            "name": "test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.89751413577196,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00009395539590389",
+            "extra": "mean: 38.613744730762036 msec\nrounds: 26"
           }
         ]
       }
