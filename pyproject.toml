@@ -133,3 +133,8 @@ module = [
     ".conftest", # mypy doesn't seem to find the root 'conftest.py' when imported in 'benchmarks/conftest.py'
 ]
 ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+# This section is required even if empty, so that pytest recognizes this
+# file as a pytest configuration file, and sets the containing directory
+# as its 'rootdir'.
