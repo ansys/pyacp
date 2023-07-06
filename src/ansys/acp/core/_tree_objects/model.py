@@ -1,15 +1,21 @@
 from __future__ import annotations
 
+import dataclasses
 from typing import Iterable, cast
 
 from grpc import Channel
+import numpy as np
+import numpy.typing as npt
+from pyvista.core.pointset import UnstructuredGrid
 
 from ansys.api.acp.v0 import (
+    base_pb2,
     edge_set_pb2_grpc,
     element_set_pb2_grpc,
     fabric_pb2_grpc,
     material_pb2,
     material_pb2_grpc,
+    mesh_query_pb2_grpc,
     model_pb2,
     model_pb2_grpc,
     modeling_group_pb2_grpc,
@@ -19,7 +25,9 @@ from ansys.api.acp.v0 import (
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
 from .._typing_helper import PATH as _PATH
+from .._utils.array_conversions import to_numpy
 from .._utils.resource_paths import join as rp_join
+from .._utils.visualization import to_pyvista_faces, to_pyvista_types
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
 from ._grpc_helpers.mapping import define_mapping
 from ._grpc_helpers.property_helper import (
@@ -37,7 +45,7 @@ from .modeling_group import ModelingGroup
 from .oriented_selection_set import OrientedSelectionSet
 from .rosette import Rosette
 
-__all__ = ["Model"]
+__all__ = ["MeshData", "Model"]
 
 _FeFormat, _fe_format_to_pb, _ = wrap_to_string_enum(
     "_FeFormat",
@@ -48,6 +56,27 @@ _FeFormat, _fe_format_to_pb, _ = wrap_to_string_enum(
 _IgnorableEntity, _ignorable_entity_to_pb, _ = wrap_to_string_enum(
     "_IgnorableEntity", model_pb2.LoadFromFEFileRequest.IgnorableEntity, module=__name__
 )
+
+
+@dataclasses.dataclass
+class MeshData:
+    """Container for the mesh data of an ACP Model."""
+
+    nodes: npt.NDArray[np.float64]
+    element_types: npt.NDArray[np.int32]
+    element_nodes: npt.NDArray[np.int32]
+    element_nodes_offsets: npt.NDArray[np.int32]
+
+    def to_pyvista(self) -> UnstructuredGrid:
+        return UnstructuredGrid(
+            to_pyvista_faces(
+                element_types=self.element_types,
+                element_nodes=self.element_nodes,
+                element_nodes_offsets=self.element_nodes_offsets,
+            ),
+            to_pyvista_types(self.element_types),
+            self.nodes,
+        )
 
 
 @mark_grpc_properties
@@ -230,3 +259,14 @@ class Model(TreeObject):
     create_modeling_group, modeling_groups = define_mapping(
         ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
     )
+
+    @property
+    def mesh(self) -> MeshData:
+        mesh_query_stub = mesh_query_pb2_grpc.ObjectServiceStub(self._channel)
+        reply = mesh_query_stub.GetMesh(base_pb2.GetRequest(resource_path=self._resource_path))
+        return MeshData(
+            nodes=to_numpy(reply.nodes),
+            element_types=to_numpy(reply.element_types),
+            element_nodes=to_numpy(reply.element_nodes),
+            element_nodes_offsets=to_numpy(reply.element_nodes_offsets),
+        )

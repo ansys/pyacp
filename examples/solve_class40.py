@@ -64,6 +64,12 @@ model = pyacp_client.import_model(
 )
 model
 
+
+# %%
+# Visualize the loaded mesh
+mesh = model.mesh.to_pyvista()
+mesh.plot()
+
 # %%
 #
 # Build Composite Lay-up
@@ -206,6 +212,7 @@ print(len(model.modeling_groups["hull"].modeling_plies))
 print(len(model.modeling_groups["deck"].modeling_plies))
 print(len(model.modeling_groups["bulkhead"].modeling_plies))
 print(len(model.modeling_groups["keeltower"].modeling_plies))
+
 
 # %%
 #
