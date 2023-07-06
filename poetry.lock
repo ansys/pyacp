@@ -41,8 +41,8 @@ protobuf = ">=3.19,<5"
 [package.source]
 type = "git"
 url = "https://github.com/ansys-internal/ansys-api-acp.git"
-reference = "main"
-resolved_reference = "c3f79fa9a2d890e4121d8952c91cc35a3e8fd4d4"
+reference = "feat/mesh_query"
+resolved_reference = "87958624d8d793f5e4a17a6209557e6d5af0e0b1"
 
 [[package]]
 name = "ansys-api-mapdl"
@@ -4195,4 +4195,4 @@ examples = ["ansys-dpf-composites", "ansys-dpf-core", "ansys-mapdl-core", "pyvis
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<4"
-content-hash = "6cd02424289429718f106e4bd6c2086c2b2a79bf9266badd87599c1212442a1c"
+content-hash = "69078facf624afd336a282a091b817fe3d9bebbfa5824cdd70ea29ff91ccfcbc"
