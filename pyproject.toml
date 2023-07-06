@@ -46,7 +46,7 @@ ansys-tools-filetransfer = { git = "https://github.com/ansys-internal/ansys-tool
 ansys-mapdl-core = { version = ">=0.62.1,<1", optional = true }
 ansys-dpf-composites = { version = ">=0.1,<1", optional = true }
 ansys-dpf-core = { version = ">=0.7,<1", optional = true }
-pyvista = { version = ">=0.36", optional = true }
+pyvista = { version = ">=0.36", optional = true, extras=["jupyter"] }
 
 [tool.poetry.group.dev]
 optional = true
@@ -73,7 +73,7 @@ ipykernel = "^6.22.0"
 ansys-mapdl-core = ">=0.62.1,<1"
 ansys-dpf-composites = ">=0.1,<1"
 ansys-dpf-core = ">=0.7,<1"
-pyvista = ">=0.36"
+pyvista = { version = ">=0.36", extras=["jupyter"] }
 
 [tool.poetry.group.test]
 optional = true
