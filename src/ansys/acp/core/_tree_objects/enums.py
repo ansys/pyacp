@@ -3,6 +3,7 @@ from ansys.api.acp.v0 import (
     drop_off_material_pb2,
     edge_set_pb2,
     enum_types_pb2,
+    mesh_query_pb2,
     ply_material_pb2,
     unit_system_pb2,
 )
@@ -17,6 +18,8 @@ __all__ = [
     "DrapingMaterialType",
     "PlyType",
     "UnitSystemType",
+    "ElementalDataType",
+    "NodalDataType",
 ]
 
 (StatusType, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(
@@ -71,3 +74,26 @@ __all__ = [
     unit_system_type_to_pb,
     unit_system_type_from_pb,
 ) = wrap_to_string_enum("UnitSystemType", unit_system_pb2.UnitSystemType, module=__name__)
+
+(
+    ElementalDataType,
+    elemental_data_type_to_pb,
+    elemental_data_type_from_pb,
+) = wrap_to_string_enum(
+    "ElementalDataType",
+    mesh_query_pb2.ElementalDataType,
+    module=__name__,
+    key_converter=lambda val: val.split("_", 1)[1],
+    value_converter=lambda val: val.split("_", 1)[1].lower(),
+)
+(
+    NodalDataType,
+    nodal_data_type_to_pb,
+    nodal_data_type_from_pb,
+) = wrap_to_string_enum(
+    "NodalDataType",
+    mesh_query_pb2.NodalDataType,
+    module=__name__,
+    key_converter=lambda val: val.split("_", 1)[1],
+    value_converter=lambda val: val.split("_", 1)[1].lower(),
+)

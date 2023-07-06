@@ -1,6 +1,10 @@
 from __future__ import annotations
 
+import dataclasses
 from typing import Iterable, Sequence
+
+import numpy as np
+import numpy.typing as npt
 
 from ansys.api.acp.v0 import oriented_selection_set_pb2, oriented_selection_set_pb2_grpc
 
@@ -11,6 +15,7 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
+from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import CreatableTreeObject, IdTreeObject
 from .element_set import ElementSet
 from .enums import (
@@ -22,7 +27,25 @@ from .enums import (
 from .object_registry import register
 from .rosette import Rosette
 
-__all__ = ["OrientedSelectionSet"]
+__all__ = [
+    "OrientedSelectionSet",
+    "OrientedSelectionSetElementalData",
+    "OrientedSelectionSetNodalData",
+]
+
+
+@dataclasses.dataclass
+class OrientedSelectionSetElementalData(ElementalData):
+    """Represents elemental data for an Oriented Selection Set."""
+
+    normal: npt.NDArray[np.float64]
+    orientation: npt.NDArray[np.float64]
+    reference_direction: npt.NDArray[np.float64]
+
+
+@dataclasses.dataclass
+class OrientedSelectionSetNodalData(NodalData):
+    """Represents nodal data for an Oriented Selection Set."""
 
 
 @mark_grpc_properties
@@ -92,3 +115,6 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         from_protobuf=rosette_selection_method_from_pb,
         to_protobuf=rosette_selection_method_to_pb,
     )
+
+    elemental_data = elemental_data_property(OrientedSelectionSetElementalData)
+    nodal_data = nodal_data_property(OrientedSelectionSetNodalData)
