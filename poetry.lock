@@ -3780,9 +3780,9 @@ pillow = "*"
 pooch = "*"
 pythreejs = {version = "*", optional = true, markers = "extra == \"jupyter\""}
 scooby = ">=0.5.1"
-trame = {version = ">=2.5.2", optional = true, markers = "extra == \"jupyter\""}
-trame-vtk = {version = ">=2.5.8", optional = true, markers = "extra == \"jupyter\""}
-trame-vuetify = {version = ">=2.3.1", optional = true, markers = "extra == \"jupyter\""}
+trame = {version = ">=2.5.2", optional = true, markers = "extra == \"jupyter\" or extra == \"trame\""}
+trame-vtk = {version = ">=2.5.8", optional = true, markers = "extra == \"jupyter\" or extra == \"trame\""}
+trame-vuetify = {version = ">=2.3.1", optional = true, markers = "extra == \"jupyter\" or extra == \"trame\""}
 vtk = "*"
 
 [package.extras]
@@ -5055,4 +5055,4 @@ examples = ["ansys-dpf-composites", "ansys-dpf-core", "ansys-mapdl-core", "pyvis
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<4"
-content-hash = "90e0d975f59f045bec422e3fbdd6facaf99e2d2440b18e45a96769cc3ed8decd"
+content-hash = "2efa94d6c0a88f378be45856a9235ab784799aaa28d6b775b86995ea3734a342"
