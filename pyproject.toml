@@ -129,6 +129,7 @@ module = [
     "ansys.mapdl.core",
     "ansys.dpf.core",
     "ansys.dpf.core.core",
+    "ansys.dpf.core.*",
     "ansys.tools.path",
     ".conftest", # mypy doesn't seem to find the root 'conftest.py' when imported in 'benchmarks/conftest.py'
 ]
