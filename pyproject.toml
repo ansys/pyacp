@@ -46,7 +46,7 @@ ansys-tools-filetransfer = { git = "https://github.com/ansys-internal/ansys-tool
 ansys-mapdl-core = { version = ">=0.62.1,<1", optional = true }
 ansys-dpf-composites = { version = ">=0.1,<1", optional = true }
 ansys-dpf-core = { version = ">=0.7,<1", optional = true }
-pyvista = ">=0.36"
+pyvista = ">=0.40"
 
 [tool.poetry.group.dev]
 optional = true
