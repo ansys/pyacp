@@ -4,7 +4,10 @@ geometry_import_28 = geometry_import_group_11.AddGeometryImport()
 
 geometry_import_28_format = Ansys.Mechanical.DataModel.Enums.GeometryImportPreference.Format.Automatic
 geometry_import_28_preferences = Ansys.ACT.Mechanical.Utilities.GeometryImportPreferences()
-geometry_import_28.Import(r"D:\ANSYSDev\pyacp-private\examples\pymechanical\geometry\\flat_plate.stp", geometry_import_28_format, geometry_import_28_preferences)
+
+geometry_import_28_preferences.ProcessNamedSelections = True
+geometry_import_28_preferences.ProcessCoordinateSystems = True
+geometry_import_28.Import(r"D:\ANSYSDev\pyacp-private\examples\pymechanical\geometry\\flat_plate.agdb", geometry_import_28_format, geometry_import_28_preferences)
 
 
 body = Model.Geometry.GetChildren(

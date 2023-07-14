@@ -1,0 +1,1 @@
+Model.Materials.Import(r'D:\ANSYSDev\pyacp-private\examples\pymechanical\materials.xml')
