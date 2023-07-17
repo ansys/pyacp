@@ -44,7 +44,8 @@ ansys-tools-filetransfer = { git = "https://github.com/ansys-internal/ansys-tool
 # Dependencies for the examples. Update also the 'dev' group when
 # these are updated.
 ansys-mapdl-core = { version = ">=0.62.1,<1", optional = true }
-ansys-dpf-composites = { version = ">=0.1,<1", optional = true }
+# TODO: Revert back to using a released version of ansys-dpf-composites once a version '>0.2.0' is released.
+ansys-dpf-composites =  { git = "https://github.com/ansys/pydpf-composites.git", branch = "main", optional = true }
 ansys-dpf-core = { version = ">=0.7,<1", optional = true }
 pyvista = { version = ">=0.36", optional = true }
 
@@ -129,6 +130,7 @@ module = [
     "ansys.mapdl.core",
     "ansys.dpf.core",
     "ansys.dpf.core.core",
+    "ansys.dpf.core.*",
     "ansys.tools.path",
     ".conftest", # mypy doesn't seem to find the root 'conftest.py' when imported in 'benchmarks/conftest.py'
 ]
