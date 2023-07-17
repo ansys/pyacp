@@ -537,6 +537,13 @@ Import PyMAPDL and connect to its server
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    /home/runner/.cache/pypoetry/virtualenvs/ansys-acp-core-O77fA6pn-py3.8/lib/python3.8/site-packages/pyvista/utilities/__init__.py:69: PyVistaDeprecationWarning: The `pyvista.utilities` module has been deprecated. `_get_sg_image_scraper` is now imported as: `from pyvista.plotting.utilities import _get_sg_image_scraper`.
+      warnings.warn(
+
 
 
 
@@ -559,7 +566,7 @@ Load the CDB file into PyMAPDL
  .. code-block:: none
 
 
-    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     07:16:18  JUL 13, 2023 CP=      0.474\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.600\n\n\n'
+    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     19:19:59  JUL 17, 2023 CP=      0.435\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.532\n\n\n'
 
 
 
@@ -586,7 +593,7 @@ Solve the model
 
     *****  MAPDL SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       0.623   TIME= 07:16:18
+     *** NOTE ***                            CP =       0.550   TIME= 19:19:59
      There is no title defined for this analysis.                            
 
      *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -611,7 +618,7 @@ Solve the model
 
      *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
      Ansys Mechanical Enterprise                       
-     00000000  VERSION=LINUX x64     07:16:18  JUL 13, 2023 CP=      0.679
+     00000000  VERSION=LINUX x64     19:19:59  JUL 17, 2023 CP=      0.589
 
                                                                                
 
@@ -627,14 +634,14 @@ Solve the model
        ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
        GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  
 
-     *** NOTE ***                            CP =       0.681   TIME= 07:16:18
+     *** NOTE ***                            CP =       0.591   TIME= 19:19:59
      Poisson's ratio PR input has been converted to NU input.                
 
-     *** NOTE ***                            CP =       0.691   TIME= 07:16:18
+     *** NOTE ***                            CP =       0.598   TIME= 19:19:59
      Present time 0 is less than or equal to the previous time.  Time will   
      default to 1.                                                           
 
-     *** NOTE ***                            CP =       0.692   TIME= 07:16:18
+     *** NOTE ***                            CP =       0.599   TIME= 19:19:59
      The conditions for direct assembly have been met.  No .emat or .erot    
      files will be produced.                                                 
 
@@ -652,7 +659,7 @@ Solve the model
 
      SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           
 
-     *** NOTE ***                            CP =       0.815   TIME= 07:16:18
+     *** NOTE ***                            CP =       0.693   TIME= 19:19:59
      Predictor is ON by default for structural elements with rotational      
      degrees of freedom.  Use the PRED,OFF command to turn the predictor     
      OFF if it adversely affects the convergence.                            
@@ -701,10 +708,10 @@ Solve the model
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      4.290   0.001080
-            2        88  BEAM188       0.009   0.000104
-            3        22  SHELL181      0.008   0.000354
-     Time at end of element matrix formulation CP = 5.16347313.              
+            1      3973  SHELL181      3.099   0.000780
+            2        88  BEAM188       0.004   0.000047
+            3        22  SHELL181      0.005   0.000245
+     Time at end of element matrix formulation CP = 3.82968307.              
 
      SPARSE MATRIX DIRECT SOLVER.
       Number of equations =       24096,    Maximum wavefront =     66
@@ -712,7 +719,7 @@ Solve the model
       Memory required for in-core solution     =    58.542 MB
       Memory required for out-of-core solution =    24.642 MB
 
-     *** NOTE ***                            CP =       5.270   TIME= 07:16:23
+     *** NOTE ***                            CP =       3.910   TIME= 19:20:02
      The Sparse Matrix Solver is currently running in the in-core memory     
      mode.  This memory mode uses the most amount of memory in order to      
      avoid using the hard drive as much as possible, which most often        
@@ -727,16 +734,16 @@ Solve the model
        *** ELEMENT RESULT CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      9.507   0.002393
-            2        88  BEAM188       0.019   0.000212
-            3        22  SHELL181      0.014   0.000656
+            1      3973  SHELL181      6.853   0.001725
+            2        88  BEAM188       0.009   0.000106
+            3        22  SHELL181      0.010   0.000438
 
        *** NODAL LOAD CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      0.123   0.000031
-            2        88  BEAM188       0.003   0.000034
-            3        22  SHELL181      0.001   0.000030
+            1      3973  SHELL181      0.068   0.000017
+            2        88  BEAM188       0.002   0.000018
+            3        22  SHELL181      0.000   0.000017
      *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
      *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -778,6 +785,8 @@ Post-processing: show displacements
 
  .. code-block:: none
 
+    /home/runner/.cache/pypoetry/virtualenvs/ansys-acp-core-O77fA6pn-py3.8/lib/python3.8/site-packages/pyvista/themes.py:2969: PyVistaDeprecationWarning: `DefaultTheme` has been deprecated and renamed `Theme`. Further, `DocumentTheme` is now the PyVista default theme.
+      warnings.warn(
 
     ['file.rst']
 
@@ -809,7 +818,7 @@ and load the dpf composites plugin
         MaxStressCriterion,
     )
     from ansys.dpf.composites.server_helpers import connect_to_or_start_server
-    from ansys.dpf.core.core import upload_file_in_tmp_folder
+    from ansys.dpf.core.unit_system import unit_systems
 
 
 
@@ -862,41 +871,21 @@ Specify the Combined Failure Criterion
 
 .. GENERATED FROM PYTHON SOURCE LINES 315-316
 
-Upload files to DPF server
-
-.. GENERATED FROM PYTHON SOURCE LINES 316-322
-
-.. code-block:: default
-
-    rst_file_dpf_path = upload_file_in_tmp_folder(str(rst_file_local_path))
-    composite_definitions_file_dpf_path = upload_file_in_tmp_folder(
-        str(composite_definitions_local_path)
-    )
-    matml_file_dpf_path = upload_file_in_tmp_folder(str(matml_file_local_path))
-
-
-
-
-
-
-
-
-.. GENERATED FROM PYTHON SOURCE LINES 323-324
-
 Create the CompositeModel and configure its input
 
-.. GENERATED FROM PYTHON SOURCE LINES 324-335
+.. GENERATED FROM PYTHON SOURCE LINES 316-328
 
 .. code-block:: default
 
     composite_model = CompositeModel(
         composite_files=ContinuousFiberCompositesFiles(
-            rst=rst_file_dpf_path,
+            rst=rst_file_local_path,
             composite={
-                "shell": CompositeDefinitionFiles(definition=composite_definitions_file_dpf_path),
+                "shell": CompositeDefinitionFiles(definition=composite_definitions_local_path),
             },
-            engineering_data=matml_file_dpf_path,
+            engineering_data=matml_file_local_path,
         ),
+        default_unit_system=unit_systems.solver_nmm,
         server=dpf_server,
     )
 
@@ -907,11 +896,11 @@ Create the CompositeModel and configure its input
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 336-337
+.. GENERATED FROM PYTHON SOURCE LINES 329-330
 
 Evaluate the failure criteria
 
-.. GENERATED FROM PYTHON SOURCE LINES 337-339
+.. GENERATED FROM PYTHON SOURCE LINES 330-332
 
 .. code-block:: default
 
@@ -924,11 +913,11 @@ Evaluate the failure criteria
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 340-341
+.. GENERATED FROM PYTHON SOURCE LINES 333-334
 
 Query and plot the results
 
-.. GENERATED FROM PYTHON SOURCE LINES 341-343
+.. GENERATED FROM PYTHON SOURCE LINES 334-336
 
 .. code-block:: default
 
@@ -949,7 +938,7 @@ Query and plot the results
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  46.958 seconds)
+   **Total running time of the script:** ( 0 minutes  33.904 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_solve_class40.py:

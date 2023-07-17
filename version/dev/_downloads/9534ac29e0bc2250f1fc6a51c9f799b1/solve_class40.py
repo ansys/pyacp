@@ -293,7 +293,7 @@ from ansys.dpf.composites.failure_criteria import (
     MaxStressCriterion,
 )
 from ansys.dpf.composites.server_helpers import connect_to_or_start_server
-from ansys.dpf.core.core import upload_file_in_tmp_folder
+from ansys.dpf.core.unit_system import unit_systems
 
 # %%
 # Connect to the server. The ``connect_to_or_start_server`` function
@@ -312,23 +312,16 @@ cfc = CombinedFailureCriterion(
 )
 
 # %%
-# Upload files to DPF server
-rst_file_dpf_path = upload_file_in_tmp_folder(str(rst_file_local_path))
-composite_definitions_file_dpf_path = upload_file_in_tmp_folder(
-    str(composite_definitions_local_path)
-)
-matml_file_dpf_path = upload_file_in_tmp_folder(str(matml_file_local_path))
-
-# %%
 # Create the CompositeModel and configure its input
 composite_model = CompositeModel(
     composite_files=ContinuousFiberCompositesFiles(
-        rst=rst_file_dpf_path,
+        rst=rst_file_local_path,
         composite={
-            "shell": CompositeDefinitionFiles(definition=composite_definitions_file_dpf_path),
+            "shell": CompositeDefinitionFiles(definition=composite_definitions_local_path),
         },
-        engineering_data=matml_file_dpf_path,
+        engineering_data=matml_file_local_path,
     ),
+    default_unit_system=unit_systems.solver_nmm,
     server=dpf_server,
 )
 
