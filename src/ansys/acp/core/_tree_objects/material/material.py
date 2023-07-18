@@ -171,6 +171,7 @@ class Material(CreatableTreeObject, IdTreeObject):
 
     locked = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
+    ext_id = grpc_data_property_read_only("properties.ext_id")
 
     ply_type = grpc_data_property(
         "properties.ply_type",
