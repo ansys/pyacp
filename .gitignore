@@ -71,3 +71,7 @@ poetry.toml
 
 # Hypothesis testing
 .hypothesis
+
+# example generated data
+examples/pymechanical/output/*
+!examples/pymechanical/output/.gitkeep
