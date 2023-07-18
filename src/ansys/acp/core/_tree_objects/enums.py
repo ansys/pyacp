@@ -55,6 +55,14 @@ __all__ = [
 )
 
 (
+    SymmetryType,
+    symmetry_type_to_pb,
+    symmetry_type_from_pb,
+) = wrap_to_string_enum(
+    "SymmetryType", ply_material_pb2.SymmetryType, module=__name__
+)
+
+(
     EdgeSetType,
     edge_set_type_to_pb,
     edge_set_type_from_pb,
