@@ -1,0 +1,6 @@
+ext\_id
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.ext_id

@@ -35,6 +35,7 @@
    
       Material.density
       Material.engineering_constants
+      Material.ext_id
       Material.fabric_fiber_angle
       Material.id
       Material.larc_constants

@@ -448,6 +448,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Material.store.html">store</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Material.density.html">density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Material.engineering_constants.html">engineering_constants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Material.ext_id.html">ext_id</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Material.fabric_fiber_angle.html">fabric_fiber_angle</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Material.id.html">id</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Material.larc_constants.html">larc_constants</a></li>
@@ -852,20 +853,29 @@ return <code class="docutils literal notranslate"><span class="pre">None</span><
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (str, default: <code class="docutils literal notranslate"><span class="pre">'Material'</span></code>) – Name of the Material.</p></li>
 <li><p><strong>ply_type</strong> (PlyType, default: <code class="docutils literal notranslate"><span class="pre">'undefined'</span></code>) – Define the type of material such as core, uni-directional (regular), woven, or isotropic.</p></li>
-<li><p><strong>density</strong> (ConstantDensity | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – TODO</p></li>
-<li><p><strong>engineering_constants</strong> (ConstantEngineeringConstants | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – TODO</p></li>
-<li><p><strong>stress_limits</strong> (ConstantStressLimits | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – TODO</p></li>
-<li><p><strong>strain_limits</strong> (ConstantStrainLimits | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – TODO</p></li>
-<li><p><strong>puck_constants</strong> (ConstantPuckConstants | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – TODO</p></li>
-<li><p><strong>woven_characterization</strong> (ConstantWovenCharacterization | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – TODO</p></li>
-<li><p><strong>woven_puck_constants_1</strong> (ConstantPuckConstants | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – TODO</p></li>
-<li><p><strong>woven_puck_constants_2</strong> (ConstantPuckConstants | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – TODO</p></li>
-<li><p><strong>woven_puck_constants_2</strong> – TODO</p></li>
-<li><p><strong>woven_stress_limits_1</strong> (ConstantWovenStressLimits | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – TODO</p></li>
-<li><p><strong>woven_stress_limits_2</strong> (ConstantWovenStressLimits | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – TODO</p></li>
-<li><p><strong>tsai_wu_constants</strong> (ConstantTsaiWuConstants | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – TODO</p></li>
-<li><p><strong>larc_constants</strong> (ConstantLaRCConstants | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – TODO</p></li>
-<li><p><strong>fabric_fiber_angle</strong> (ConstantFabricFiberAngle | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – TODO</p></li>
+<li><p><strong>density</strong> (ConstantDensity | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Define the density of the material.</p></li>
+<li><p><strong>engineering_constants</strong> (ConstantEngineeringConstants | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Define the material stiffness (Young’s moduli, Poisson ratios and shear moduli).</p></li>
+<li><p><strong>stress_limits</strong> (ConstantStressLimits | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Define the stress limits for the evaluation of failure criteria with ansys.dpf.composites.</p></li>
+<li><p><strong>strain_limits</strong> (ConstantStrainLimits | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Define the strain limits for the evaluation of failure criteria with ansys.dpf.composites.</p></li>
+<li><p><strong>puck_constants</strong> (ConstantPuckConstants | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Define the puck constants for the evaluation of the Puck criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>woven_characterization</strong> (ConstantWovenCharacterization | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Define the puck constants of woven fabrics for the evaluation of the Puck
+criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>woven_puck_constants_1</strong> (ConstantPuckConstants | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Define the puck constants of woven fabrics for the evaluation of the Puck
+criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>woven_puck_constants_2</strong> (ConstantPuckConstants | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Define the puck constants of woven fabrics for the evaluation of the Puck
+criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>woven_puck_constants_2</strong> – Define the puck constants of woven fabrics for the evaluation of the Puck
+criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>woven_stress_limits_1</strong> (ConstantWovenStressLimits | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Define the puck constants of woven fabrics for the evaluation of the Puck
+criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>woven_stress_limits_2</strong> (ConstantWovenStressLimits | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Define the puck constants of woven fabrics for the evaluation of the Puck
+criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>tsai_wu_constants</strong> (ConstantTsaiWuConstants | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Define the Tsai-Wu constants for the evaluation of the Tsai-Wu criterion
+with ansys.dpf.composites.</p></li>
+<li><p><strong>larc_constants</strong> (ConstantLaRCConstants | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Define the LaRC constants for the evaluation of the LaRC criterion with
+ansys.dpf.composites.</p></li>
+<li><p><strong>fabric_fiber_angle</strong> (ConstantFabricFiberAngle | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Define the rotation angle between the material coordinate system and the fiber direction.
+Only used for shear dependent material properties which are provided by Material Designer.</p></li>
 </ul>
 </dd>
 </dl>
@@ -902,52 +912,55 @@ return <code class="docutils literal notranslate"><span class="pre">None</span><
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.engineering_constants.html#ansys.acp.core.Material.engineering_constants" title="ansys.acp.core.Material.engineering_constants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.engineering_constants</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.fabric_fiber_angle.html#ansys.acp.core.Material.fabric_fiber_angle" title="ansys.acp.core.Material.fabric_fiber_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.fabric_fiber_angle</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.ext_id.html#ansys.acp.core.Material.ext_id" title="ansys.acp.core.Material.ext_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.ext_id</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.id.html#ansys.acp.core.Material.id" title="ansys.acp.core.Material.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.id</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.fabric_fiber_angle.html#ansys.acp.core.Material.fabric_fiber_angle" title="ansys.acp.core.Material.fabric_fiber_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.fabric_fiber_angle</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.larc_constants.html#ansys.acp.core.Material.larc_constants" title="ansys.acp.core.Material.larc_constants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.larc_constants</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.id.html#ansys.acp.core.Material.id" title="ansys.acp.core.Material.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.id</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.locked.html#ansys.acp.core.Material.locked" title="ansys.acp.core.Material.locked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.locked</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.larc_constants.html#ansys.acp.core.Material.larc_constants" title="ansys.acp.core.Material.larc_constants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.larc_constants</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.name.html#ansys.acp.core.Material.name" title="ansys.acp.core.Material.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.name</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.locked.html#ansys.acp.core.Material.locked" title="ansys.acp.core.Material.locked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.locked</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.ply_type.html#ansys.acp.core.Material.ply_type" title="ansys.acp.core.Material.ply_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.ply_type</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.name.html#ansys.acp.core.Material.name" title="ansys.acp.core.Material.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.name</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.puck_constants.html#ansys.acp.core.Material.puck_constants" title="ansys.acp.core.Material.puck_constants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.puck_constants</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.ply_type.html#ansys.acp.core.Material.ply_type" title="ansys.acp.core.Material.ply_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.ply_type</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.status.html#ansys.acp.core.Material.status" title="ansys.acp.core.Material.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.status</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.puck_constants.html#ansys.acp.core.Material.puck_constants" title="ansys.acp.core.Material.puck_constants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.puck_constants</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.strain_limits.html#ansys.acp.core.Material.strain_limits" title="ansys.acp.core.Material.strain_limits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.strain_limits</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.status.html#ansys.acp.core.Material.status" title="ansys.acp.core.Material.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.status</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.stress_limits.html#ansys.acp.core.Material.stress_limits" title="ansys.acp.core.Material.stress_limits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.stress_limits</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.strain_limits.html#ansys.acp.core.Material.strain_limits" title="ansys.acp.core.Material.strain_limits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.strain_limits</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.tsai_wu_constants.html#ansys.acp.core.Material.tsai_wu_constants" title="ansys.acp.core.Material.tsai_wu_constants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.tsai_wu_constants</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.stress_limits.html#ansys.acp.core.Material.stress_limits" title="ansys.acp.core.Material.stress_limits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.stress_limits</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.woven_characterization.html#ansys.acp.core.Material.woven_characterization" title="ansys.acp.core.Material.woven_characterization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.woven_characterization</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.tsai_wu_constants.html#ansys.acp.core.Material.tsai_wu_constants" title="ansys.acp.core.Material.tsai_wu_constants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.tsai_wu_constants</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.woven_puck_constants_1.html#ansys.acp.core.Material.woven_puck_constants_1" title="ansys.acp.core.Material.woven_puck_constants_1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.woven_puck_constants_1</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.woven_characterization.html#ansys.acp.core.Material.woven_characterization" title="ansys.acp.core.Material.woven_characterization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.woven_characterization</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.woven_puck_constants_2.html#ansys.acp.core.Material.woven_puck_constants_2" title="ansys.acp.core.Material.woven_puck_constants_2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.woven_puck_constants_2</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.woven_puck_constants_1.html#ansys.acp.core.Material.woven_puck_constants_1" title="ansys.acp.core.Material.woven_puck_constants_1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.woven_puck_constants_1</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.woven_stress_limits_1.html#ansys.acp.core.Material.woven_stress_limits_1" title="ansys.acp.core.Material.woven_stress_limits_1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.woven_stress_limits_1</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.woven_puck_constants_2.html#ansys.acp.core.Material.woven_puck_constants_2" title="ansys.acp.core.Material.woven_puck_constants_2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.woven_puck_constants_2</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.woven_stress_limits_2.html#ansys.acp.core.Material.woven_stress_limits_2" title="ansys.acp.core.Material.woven_stress_limits_2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.woven_stress_limits_2</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Material.woven_stress_limits_1.html#ansys.acp.core.Material.woven_stress_limits_1" title="ansys.acp.core.Material.woven_stress_limits_1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.woven_stress_limits_1</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Material.woven_stress_limits_2.html#ansys.acp.core.Material.woven_stress_limits_2" title="ansys.acp.core.Material.woven_stress_limits_2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material.woven_stress_limits_2</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
