@@ -1,3 +1,5 @@
+import uuid
+
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 import numpy.testing as npt
@@ -53,6 +55,7 @@ def object_properties():
         read_only=[
             ("locked", True),
             ("id", "some_id"),
+            ("ext_id", "my personal ext id"),
         ],
     )
 
@@ -449,3 +452,15 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         npt.assert_allclose(
             getattr(getattr(tree_object, property_set_name), attr_name), val, rtol=0.0, atol=0.0
         )
+
+    def test_ext_id(self, tree_object):
+        """
+        Verify that the ext_id was set by the backend.
+
+        This is important for workflows such as pyACP-pyMechanical and the
+        post-processing with ansys.dpf.composites.
+        """
+        material = tree_object
+        assert material.ext_id != ""
+        # the next check fails if ext_id is not a valid uuid
+        assert uuid.UUID(material.ext_id)
