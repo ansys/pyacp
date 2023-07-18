@@ -71,24 +71,32 @@ class Material(CreatableTreeObject, IdTreeObject):
     puck_constants :
         Define the puck constants for the evaluation of the Puck criterion with ansys.dpf.composites.
     woven_characterization :
-        Define the puck constants of woven fabrics for the evaluation of the Puck criterion with ansys.dpf.composites.
+        Define the puck constants of woven fabrics for the evaluation of the Puck
+        criterion with ansys.dpf.composites.
     woven_puck_constants_1 :
-        Define the puck constants of woven fabrics for the evaluation of the Puck criterion with ansys.dpf.composites.
+        Define the puck constants of woven fabrics for the evaluation of the Puck
+        criterion with ansys.dpf.composites.
     woven_puck_constants_2 :
-        Define the puck constants of woven fabrics for the evaluation of the Puck criterion with ansys.dpf.composites.
+        Define the puck constants of woven fabrics for the evaluation of the Puck
+        criterion with ansys.dpf.composites.
     woven_puck_constants_2 :
-        Define the puck constants of woven fabrics for the evaluation of the Puck criterion with ansys.dpf.composites.
+        Define the puck constants of woven fabrics for the evaluation of the Puck
+        criterion with ansys.dpf.composites.
     woven_stress_limits_1 :
-        Define the puck constants of woven fabrics for the evaluation of the Puck criterion with ansys.dpf.composites.
+        Define the puck constants of woven fabrics for the evaluation of the Puck
+        criterion with ansys.dpf.composites.
     woven_stress_limits_2 :
-        Define the puck constants of woven fabrics for the evaluation of the Puck criterion with ansys.dpf.composites.
+        Define the puck constants of woven fabrics for the evaluation of the Puck
+        criterion with ansys.dpf.composites.
     tsai_wu_constants :
-        Define the Tsai-Wu constants for the evaluation of the Tsai-Wu criterion with ansys.dpf.composites.
+        Define the Tsai-Wu constants for the evaluation of the Tsai-Wu criterion
+        with ansys.dpf.composites.
     larc_constants :
-        Define the LaRC constants for the evaluation of the LaRC criterion with ansys.dpf.composites.
+        Define the LaRC constants for the evaluation of the LaRC criterion with
+        ansys.dpf.composites.
     fabric_fiber_angle :
-        Define the rotation angle between the material coordinate system and the fiber direction. Only used for
-        shear dependent material properties which are provided by Material Designer.
+        Define the rotation angle between the material coordinate system and the fiber direction.
+        Only used for shear dependent material properties which are provided by Material Designer.
     """
 
     _pb_object: material_pb2.ObjectInfo

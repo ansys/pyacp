@@ -1,8 +1,9 @@
+import uuid
+
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 import numpy.testing as npt
 import pytest
-import uuid
 
 from ansys.acp.core._tree_objects.enums import PlyType
 from ansys.acp.core._tree_objects.material.property_sets import (
