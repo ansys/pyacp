@@ -61,33 +61,42 @@ class Material(CreatableTreeObject, IdTreeObject):
     ply_type :
         Define the type of material such as core, uni-directional (regular), woven, or isotropic.
     density :
-        TODO
+        Define the density of the material.
     engineering_constants :
-        TODO
+        Define the material stiffness (Young's moduli, Poisson ratios and shear moduli).
     stress_limits :
-        TODO
+        Define the stress limits for the evaluation of failure criteria with ansys.dpf.composites.
     strain_limits :
-        TODO
+        Define the strain limits for the evaluation of failure criteria with ansys.dpf.composites.
     puck_constants :
-        TODO
+        Define the puck constants for the evaluation of the Puck criterion with ansys.dpf.composites.
     woven_characterization :
-        TODO
+        Define the puck constants of woven fabrics for the evaluation of the Puck
+        criterion with ansys.dpf.composites.
     woven_puck_constants_1 :
-        TODO
+        Define the puck constants of woven fabrics for the evaluation of the Puck
+        criterion with ansys.dpf.composites.
     woven_puck_constants_2 :
-        TODO
+        Define the puck constants of woven fabrics for the evaluation of the Puck
+        criterion with ansys.dpf.composites.
     woven_puck_constants_2 :
-        TODO
+        Define the puck constants of woven fabrics for the evaluation of the Puck
+        criterion with ansys.dpf.composites.
     woven_stress_limits_1 :
-        TODO
+        Define the puck constants of woven fabrics for the evaluation of the Puck
+        criterion with ansys.dpf.composites.
     woven_stress_limits_2 :
-        TODO
+        Define the puck constants of woven fabrics for the evaluation of the Puck
+        criterion with ansys.dpf.composites.
     tsai_wu_constants :
-        TODO
+        Define the Tsai-Wu constants for the evaluation of the Tsai-Wu criterion
+        with ansys.dpf.composites.
     larc_constants :
-        TODO
+        Define the LaRC constants for the evaluation of the LaRC criterion with
+        ansys.dpf.composites.
     fabric_fiber_angle :
-        TODO
+        Define the rotation angle between the material coordinate system and the fiber direction.
+        Only used for shear dependent material properties which are provided by Material Designer.
     """
 
     _pb_object: material_pb2.ObjectInfo
@@ -171,6 +180,7 @@ class Material(CreatableTreeObject, IdTreeObject):
 
     locked = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
+    ext_id = grpc_data_property_read_only("properties.ext_id")
 
     ply_type = grpc_data_property(
         "properties.ply_type",
