@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Callable, Iterable, Sequence
+from typing import Any, Iterable, Sequence
 
 from ansys.api.acp.v0 import stackup_pb2, stackup_pb2_grpc
 
@@ -40,19 +40,19 @@ class FabricWithAngle(GenericObjectType):
         self._angle = angle
 
     @property
-    def fabric(self):
+    def fabric(self) -> Fabric | None:
         return self._fabric
 
     @fabric.setter
-    def fabric(self, value: Fabric):
+    def fabric(self, value: Fabric) -> None:
         self._fabric = value
 
     @property
-    def angle(self):
+    def angle(self) -> float:
         return self._angle
 
     @angle.setter
-    def angle(self, value: float):
+    def angle(self, value: float) -> None:
         self._angle = value
 
     @classmethod
@@ -64,24 +64,31 @@ class FabricWithAngle(GenericObjectType):
             angle=message.angle,
         )
 
-    def message_type(self) -> Callable:
+    def message_type(self) -> type[stackup_pb2.FabricWithAngle]:
         return stackup_pb2.FabricWithAngle
 
     def to_pb_object(self) -> stackup_pb2.FabricWithAngle:
+        if not self.fabric:
+            raise RuntimeError(
+                "Cannot convert FabricWithAngle to pb message because fabric is not set."
+            )
         return self.message_type()(fabric=self.fabric._resource_path, angle=self.angle)
 
     def check(self) -> bool:
         # Check for empty resource paths
-        return bool(self.fabric._resource_path.value)
+        if self.fabric:
+            return bool(self.fabric._resource_path.value)
+        return False
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: Any) -> bool:
         if isinstance(other, self.__class__):
-            return (
-                self.fabric._resource_path == other.fabric._resource_path
-                and self.angle == other.angle
-            )
-        else:
-            return False
+            if self.fabric and other.fabric:
+                return (
+                    self.fabric._resource_path == other.fabric._resource_path
+                    and self.angle == other.angle
+                )
+
+        return False
 
 
 @mark_grpc_properties
