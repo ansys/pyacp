@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Iterable, Sequence
+from typing import Iterable, Callable, Sequence
 
 from ansys.api.acp.v0 import stackup_pb2, stackup_pb2_grpc
 
@@ -10,6 +10,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
+from ._grpc_helpers.generic_object_list import GenericObjectType, define_generic_object_list
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import (
     CutoffMaterialType,
@@ -30,7 +31,54 @@ from .material import Material
 from .fabric import Fabric
 from .object_registry import register
 
-__all__ = ["Stackup"]
+__all__ = ["Stackup", "FabricWithAngle"]
+
+
+class FabricWithAngle(GenericObjectType):
+
+    def __init__(self, fabric: Fabric | None = None,
+                 angle: float = 0.0):
+        self._fabric = fabric
+        self._angle = angle
+
+    @property
+    def fabric(self):
+        return self._fabric
+
+    @fabric.setter
+    def fabric(self, value: Fabric):
+        self._fabric = value
+
+    @property
+    def angle(self):
+        return self._angle
+
+    @angle.setter
+    def angle(self, value: float):
+        self._angle = value
+
+    @classmethod
+    def object_constructor(cls, parent_object: CreatableTreeObject,
+                           message: stackup_pb2.FabricWithAngle) -> FabricWithAngle:
+        return FabricWithAngle(fabric=Fabric._from_resource_path(message.fabric, parent_object._channel),
+                               angle=message.angle)
+
+    def message_type(self) -> Callable:
+        return stackup_pb2.FabricWithAngle
+
+    def to_pb_object(self) -> stackup_pb2.FabricWithAngle:
+        return self.message_type()(fabric=self.fabric._resource_path, angle=self.angle)
+
+    def check(self) -> bool:
+        # Check for empty resource paths
+        return bool(self.fabric._resource_path.value)
+
+    def __eq__(self, other) -> bool:
+        if isinstance(other, self.__class__):
+            return self.fabric._resource_path == other.fabric._resource_path and \
+                   self.angle == other.angle
+        else:
+            return False
 
 
 @mark_grpc_properties
@@ -76,7 +124,7 @@ class Stackup(CreatableTreeObject, IdTreeObject):
         name: str = "Stackup",
         symmetry: SymmetryType = "no_symmetry",
         topdown: bool = True,
-        fabrics: Sequence[FabricWithAngle] | None = None,
+        fabrics: Sequence[FabricWithAngle] = tuple(),
         area_price: float = 0.0,
         drop_off_material_handling: DropoffMaterialType = "global",
         drop_off_material: Material | None = None,
@@ -131,3 +179,5 @@ class Stackup(CreatableTreeObject, IdTreeObject):
         to_protobuf=draping_material_type_to_pb,
     )
     draping_ud_coefficient = grpc_data_property("properties.draping_ud_coefficient")
+
+    fabrics = define_generic_object_list("properties.fabrics", FabricWithAngle)

@@ -13,6 +13,8 @@ from ._tree_objects import (
     ModelingPly,
     OrientedSelectionSet,
     Rosette,
+    Stackup,
+    FabricWithAngle,
     UnitSystemType,
 )
 
@@ -37,4 +39,6 @@ __all__ = [
     "ModelingGroup",
     "ModelingPly",
     "UnitSystemType",
+    "Stackup",
+    "FabricWithAngle"
 ]
