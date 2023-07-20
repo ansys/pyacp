@@ -1,9 +1,21 @@
 import sys
-from typing import Any, Callable, Generic, Iterable, Iterator, List, Type, TypeVar, Union, cast, Protocol
-from typing_extensions import Self
+from typing import (
+    Any,
+    Callable,
+    Generic,
+    Iterable,
+    Iterator,
+    List,
+    Protocol,
+    Type,
+    TypeVar,
+    Union,
+    cast,
+)
 
 from google.protobuf.message import Message
 import numpy as np
+from typing_extensions import Self
 
 from ..base import CreatableTreeObject, TreeObject
 from .property_helper import grpc_data_getter, grpc_data_setter
@@ -17,8 +29,7 @@ class GenericObjectType(Protocol):
     def __init__(self, *kwargs):
         ...
 
-    def object_constructor(self, parent_object: CreatableTreeObject,
-                           message: Message) -> Self:
+    def object_constructor(self, parent_object: CreatableTreeObject, message: Message) -> Self:
         ...
 
     def message_type(self) -> Type[Message]:
@@ -67,7 +78,9 @@ class GenericObjectList(Generic[ValueT]):
         self._set_pb_object_list = set_pb_object_list
         self._object_constructor: Callable[
             [Message], ValueT
-        ] = lambda pb_object: object_constructor(parent_object=self._parent_object, message=pb_object)
+        ] = lambda pb_object: object_constructor(
+            parent_object=self._parent_object, message=pb_object
+        )
 
     def __len__(self) -> int:
         return len(self._get_pb_object_list())
@@ -158,8 +171,7 @@ class GenericObjectList(Generic[ValueT]):
 ChildT = TypeVar("ChildT", bound=GenericObjectType)
 
 
-def define_generic_object_list(attribute_name: str,
-                               value_type: ChildT) -> Any:
+def define_generic_object_list(attribute_name: str, value_type: ChildT) -> Any:
     def getter(self: ValueT) -> GenericObjectList[ChildT]:
         return GenericObjectList(
             parent_object=self,

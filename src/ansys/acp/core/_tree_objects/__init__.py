@@ -8,7 +8,7 @@ from .modeling_group import ModelingGroup
 from .modeling_ply import ModelingPly
 from .oriented_selection_set import OrientedSelectionSet
 from .rosette import Rosette
-from .stackup import Stackup, FabricWithAngle
+from .stackup import FabricWithAngle, Stackup
 
 __all__ = [
     "Model",

@@ -7,6 +7,7 @@ from ._tree_objects import (
     EdgeSetType,
     ElementSet,
     Fabric,
+    FabricWithAngle,
     Material,
     Model,
     ModelingGroup,
@@ -14,7 +15,6 @@ from ._tree_objects import (
     OrientedSelectionSet,
     Rosette,
     Stackup,
-    FabricWithAngle,
     UnitSystemType,
 )
 
@@ -40,5 +40,5 @@ __all__ = [
     "ModelingPly",
     "UnitSystemType",
     "Stackup",
-    "FabricWithAngle"
+    "FabricWithAngle",
 ]

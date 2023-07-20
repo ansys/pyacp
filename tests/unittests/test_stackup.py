@@ -1,12 +1,12 @@
 import pytest
 
+from ansys.acp.core import FabricWithAngle
 from ansys.acp.core._tree_objects.enums import (
     CutoffMaterialType,
     DrapingMaterialType,
     DropoffMaterialType,
     SymmetryType,
 )
-from ansys.acp.core import FabricWithAngle
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
@@ -53,10 +53,13 @@ class TestStackup(NoLockedMixin, TreeObjectTester):
                 ("name", "Stackup name"),
                 ("topdown", False),
                 ("area_price", 6.45),
-                ("fabrics", [
-                    FabricWithAngle(fabric=fabric, angle=30.),
-                    FabricWithAngle(fabric=fabric, angle=-60.),
-                ]),
+                (
+                    "fabrics",
+                    [
+                        FabricWithAngle(fabric=fabric, angle=30.0),
+                        FabricWithAngle(fabric=fabric, angle=-60.0),
+                    ],
+                ),
                 ("symmetry", SymmetryType.EVEN_SYMMETRY),
                 ("drop_off_material_handling", DropoffMaterialType.CUSTOM),
                 ("drop_off_material", material),
