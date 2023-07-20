@@ -4,7 +4,7 @@ from typing import Any, Iterable, Sequence
 
 from ansys.api.acp.v0 import stackup_pb2, stackup_pb2_grpc
 
-from ._grpc_helpers.generic_object_list import GenericObjectType, define_generic_object_list
+from ._grpc_helpers.generic_object_list import GenericObjectType, define_generic_object_list, GenericObjectList
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -35,9 +35,13 @@ __all__ = ["Stackup", "FabricWithAngle"]
 
 
 class FabricWithAngle(GenericObjectType):
-    def __init__(self, fabric: Fabric | None = None, angle: float = 0.0):
+    #todo: does none for fabric make sense?
+    def __init__(self, fabric: Fabric | None = None,
+                 angle: float = 0.0,
+                 generic_list_obj: GenericObjectList | None = None):
         self._fabric = fabric
         self._angle = angle
+        self._generic_obj_list = generic_list_obj
 
     @property
     def fabric(self) -> Fabric | None:
@@ -46,6 +50,8 @@ class FabricWithAngle(GenericObjectType):
     @fabric.setter
     def fabric(self, value: Fabric) -> None:
         self._fabric = value
+        if self._generic_obj_list:
+            self._generic_obj_list._set_object_list(self._generic_obj_list._object_list)
 
     @property
     def angle(self) -> float:
@@ -54,14 +60,17 @@ class FabricWithAngle(GenericObjectType):
     @angle.setter
     def angle(self, value: float) -> None:
         self._angle = value
+        if self._generic_obj_list:
+            self._generic_obj_list._set_object_list(self._generic_obj_list._object_list)
 
     @classmethod
     def object_constructor(
-        cls, parent_object: CreatableTreeObject, message: stackup_pb2.FabricWithAngle
+        cls, parent_object: CreatableTreeObject, message: stackup_pb2.FabricWithAngle, generic_list_obj: GenericObjectList
     ) -> FabricWithAngle:
         return FabricWithAngle(
             fabric=Fabric._from_resource_path(message.fabric, parent_object._channel),
             angle=message.angle,
+            generic_list_obj=generic_list_obj
         )
 
     def message_type(self) -> type[stackup_pb2.FabricWithAngle]:
