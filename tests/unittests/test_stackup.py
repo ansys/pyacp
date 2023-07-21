@@ -45,9 +45,8 @@ class TestStackup(NoLockedMixin, TreeObjectTester):
     def object_properties(parent_object):
         model = parent_object
         material = model.create_material()
-        fabric = model.create_fabric()
-        fabric.thickness = 0.2
-        fabric.material = material
+        f1 = model.create_fabric(name="fabric 1", thickness=0.1, material=material)
+        f2 = model.create_fabric(name="fabric 2", thickness=0.25, material=material)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Stackup name"),
@@ -56,8 +55,8 @@ class TestStackup(NoLockedMixin, TreeObjectTester):
                 (
                     "fabrics",
                     [
-                        FabricWithAngle(fabric=fabric, angle=30.0),
-                        FabricWithAngle(fabric=fabric, angle=-60.0),
+                        FabricWithAngle(fabric=f1, angle=30.0),
+                        FabricWithAngle(fabric=f2, angle=-60.0),
                     ],
                 ),
                 ("symmetry", SymmetryType.EVEN_SYMMETRY),
