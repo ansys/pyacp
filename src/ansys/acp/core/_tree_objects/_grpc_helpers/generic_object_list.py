@@ -21,9 +21,6 @@ from .property_helper import grpc_data_getter, grpc_data_setter
 
 __all__ = ["GenericObjectList", "define_generic_object_list", "GenericObjectType"]
 
-class GenericObjectList:
-    pass
-
 
 class GenericObjectType(Protocol):
     """Interface definition for ACP Resource service stubs."""
@@ -32,16 +29,21 @@ class GenericObjectType(Protocol):
         ...
 
     @classmethod
-    def object_constructor(cls, parent_object: CreatableTreeObject, message: Any, generic_list_obj: GenericObjectList) -> Self:
+    def _from_pb_object(
+        cls,
+        parent_object: CreatableTreeObject,
+        message: Any,
+        callback_apply_changes: Callable[[], None],
+    ) -> Self:
         ...
 
-    def message_type(self) -> Type[Message]:
+    def _to_pb_object(self) -> Message:
         ...
 
-    def to_pb_object(self) -> Message:
+    def _check(self) -> bool:
         ...
 
-    def check(self) -> bool:
+    def _set_callback_apply_changes(self, callback_apply_changes: Callable[[], None]) -> None:
         ...
 
 
@@ -50,27 +52,28 @@ ValueT = TypeVar("ValueT", bound=GenericObjectType)
 
 class GenericObjectList(Generic[ValueT]):
     def __init__(
-            self,
-            *,
-            parent_object: CreatableTreeObject,
-            object_class: Type[GenericObjectType],
-            attribute_name: str,
-            object_constructor: Callable[[CreatableTreeObject, Message], ValueT],
+        self,
+        *,
+        parent_object: CreatableTreeObject,
+        object_type: Type[GenericObjectType],
+        attribute_name: str,
+        from_pb_constructor: Callable[[CreatableTreeObject, Message, Callable[[], None]], ValueT],
     ) -> None:
         getter = grpc_data_getter(attribute_name, from_protobuf=list)
         setter = grpc_data_setter(attribute_name, to_protobuf=lambda x: x)
 
         self._parent_object = parent_object
-        self._object_class = object_class
-        self._attribute_name = attribute_name
-        self._message_type = object_class().message_type()
+        self._object_type = object_type
+        self._name = attribute_name.split(".")[-1]
 
         self._object_constructor: Callable[
             [Message], ValueT
-        ] = lambda pb_object: object_constructor(self._parent_object, pb_object, self)
+        ] = lambda pb_object: from_pb_constructor(
+            self._parent_object, pb_object, self._apply_changes
+        )
 
         # get initial object list
-        def get_object_list_from_parent_object() -> List[GenericObjectType]:
+        def get_object_list_from_parent_object() -> List[ValueT]:
             obj_list = []
             for item in getter(parent_object):
                 obj_list.append(self._object_constructor(item))
@@ -78,15 +81,18 @@ class GenericObjectList(Generic[ValueT]):
 
         self._object_list = get_object_list_from_parent_object()
 
-        def set_object_list(value: List[GenericObjectType]) -> None:
+        def set_object_list(value: List[ValueT]) -> None:
             pb_obj_list = []
             for item in value:
-                if not item.check():
+                if not item._check():
                     raise RuntimeError("Cannot initialize incomplete object.")
-                pb_obj_list.append(item.to_pb_object())
+                pb_obj_list.append(item._to_pb_object())
+                # update callback in case item was copied from another tree object
+                # or if it is a new object
+                item._set_callback_apply_changes(self._apply_changes)
             setter(parent_object, pb_obj_list)
-            # keep object list in sync with the backend
-            self._object_list = get_object_list_from_parent_object()
+            # keep object list in sync with the backend. This is needed for the in-place editing
+            self._object_list = value
 
         self._set_object_list = set_object_list
 
@@ -96,8 +102,8 @@ class GenericObjectList(Generic[ValueT]):
     def __getitem__(self, index: Union[int, slice]) -> Union[ValueT, List[ValueT]]:
         obj_list = self._object_list[index]
         if not isinstance(obj_list, list):
-            assert isinstance(obj_list, self._object_class)
-            return obj_list
+            assert isinstance(obj_list, self._object_type)
+            return cast(ValueT, obj_list)
         return [item for item in obj_list]
 
     def __setitem__(self, key: Union[int, slice], value: Union[ValueT, List[ValueT]]) -> None:
@@ -161,6 +167,13 @@ class GenericObjectList(Generic[ValueT]):
     def reverse(self) -> None:
         self._set_object_list(list(reversed(self._object_list)))
 
+    def _apply_changes(self) -> None:
+        """
+        Use to support in-place modification.
+        This function applies the changes if someone edits one entry of the list.
+        """
+        self._set_object_list(self._object_list)
+
     """
     It does not make to sense to sort them because the model depends on the order
     def sort(
@@ -179,14 +192,18 @@ class GenericObjectList(Generic[ValueT]):
     def __eq__(self, other: Any) -> Any:
         return list(self) == other
 
+    def __repr__(self) -> str:
+        entries = ", ".join(f"{item}" for item in self._object_list)
+        return f"{self._parent_object.name} - {self._name}({entries})"
+
 
 def define_generic_object_list(attribute_name: str, value_type: Type[GenericObjectType]) -> Any:
     def getter(self: CreatableTreeObject) -> GenericObjectList[GenericObjectType]:
         return GenericObjectList(
             parent_object=self,
-            object_class=value_type,
+            object_type=value_type,
             attribute_name=attribute_name,
-            object_constructor=value_type.object_constructor,
+            from_pb_constructor=value_type._from_pb_object,
         )
 
     def setter(self: CreatableTreeObject, value: List[GenericObjectType]) -> None:

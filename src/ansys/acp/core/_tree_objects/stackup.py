@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from typing import Any, Iterable, Sequence
+from typing import Any, Callable, Iterable, Sequence
 
 from ansys.api.acp.v0 import stackup_pb2, stackup_pb2_grpc
 
-from ._grpc_helpers.generic_object_list import GenericObjectType, define_generic_object_list, GenericObjectList
+from ._grpc_helpers.generic_object_list import GenericObjectType, define_generic_object_list
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -35,23 +35,32 @@ __all__ = ["Stackup", "FabricWithAngle"]
 
 
 class FabricWithAngle(GenericObjectType):
-    #todo: does none for fabric make sense?
-    def __init__(self, fabric: Fabric | None = None,
-                 angle: float = 0.0,
-                 generic_list_obj: GenericObjectList | None = None):
+    """
+    Class to define the fabrics of a stackup.
+
+    Parameters
+    ----------
+    fabric :
+        Link to an existing fabric.
+    angle :
+        Orientation angle in degree of the fabric with respect to the reference direction.
+
+    """
+
+    def __init__(self, fabric: Fabric, angle: float = 0.0):
         self._fabric = fabric
         self._angle = angle
-        self._generic_obj_list = generic_list_obj
+        self._callback_apply_changes: Callable[[], None] | None = (None,)
 
     @property
-    def fabric(self) -> Fabric | None:
+    def fabric(self) -> Fabric:
         return self._fabric
 
     @fabric.setter
     def fabric(self, value: Fabric) -> None:
         self._fabric = value
-        if self._generic_obj_list:
-            self._generic_obj_list._set_object_list(self._generic_obj_list._object_list)
+        if self._callback_apply_changes:
+            self._callback_apply_changes()
 
     @property
     def angle(self) -> float:
@@ -60,44 +69,44 @@ class FabricWithAngle(GenericObjectType):
     @angle.setter
     def angle(self, value: float) -> None:
         self._angle = value
-        if self._generic_obj_list:
-            self._generic_obj_list._set_object_list(self._generic_obj_list._object_list)
+        if self._callback_apply_changes:
+            self._callback_apply_changes()
+
+    def _set_callback_apply_changes(self, callback_apply_changes: Callable[[], None]) -> None:
+        self._callback_apply_changes = callback_apply_changes
 
     @classmethod
-    def object_constructor(
-        cls, parent_object: CreatableTreeObject, message: stackup_pb2.FabricWithAngle, generic_list_obj: GenericObjectList
+    def _from_pb_object(
+        cls,
+        parent_object: CreatableTreeObject,
+        message: stackup_pb2.FabricWithAngle,
+        apply_changes: Callable[[], None],
     ) -> FabricWithAngle:
-        return FabricWithAngle(
+        new_obj = FabricWithAngle(
             fabric=Fabric._from_resource_path(message.fabric, parent_object._channel),
             angle=message.angle,
-            generic_list_obj=generic_list_obj
         )
+        new_obj._set_callback_apply_changes(apply_changes)
+        return new_obj
 
-    def message_type(self) -> type[stackup_pb2.FabricWithAngle]:
-        return stackup_pb2.FabricWithAngle
+    def _to_pb_object(self) -> stackup_pb2.FabricWithAngle:
+        return stackup_pb2.FabricWithAngle(fabric=self.fabric._resource_path, angle=self.angle)
 
-    def to_pb_object(self) -> stackup_pb2.FabricWithAngle:
-        if not self.fabric:
-            raise RuntimeError(
-                "Cannot convert FabricWithAngle to pb message because fabric is not set."
-            )
-        return self.message_type()(fabric=self.fabric._resource_path, angle=self.angle)
-
-    def check(self) -> bool:
+    def _check(self) -> bool:
         # Check for empty resource paths
-        if self.fabric:
-            return bool(self.fabric._resource_path.value)
-        return False
+        return bool(self.fabric._resource_path.value)
 
     def __eq__(self, other: Any) -> bool:
         if isinstance(other, self.__class__):
-            if self.fabric and other.fabric:
-                return (
-                    self.fabric._resource_path == other.fabric._resource_path
-                    and self.angle == other.angle
-                )
+            return (
+                self.fabric._resource_path == other.fabric._resource_path
+                and self.angle == other.angle
+            )
 
         return False
+
+    def __repr__(self) -> str:
+        return f"FabricWithAngle(fabric={self.fabric.__repr__()}, angle={self.angle})"
 
 
 @mark_grpc_properties
