@@ -19,11 +19,11 @@ from typing_extensions import Self
 from ..base import CreatableTreeObject
 from .property_helper import grpc_data_getter, grpc_data_setter
 
-__all__ = ["GenericObjectList", "define_generic_object_list", "GenericObjectType"]
+__all__ = ["EdgePropertyList", "define_edge_property_list", "GenericEdgePropertyType"]
 
 
-class GenericObjectType(Protocol):
-    """Interface definition for ACP Resource service stubs."""
+class GenericEdgePropertyType(Protocol):
+    """Protocol for the definition of ACP edge properties such as FabricWithAngle."""
 
     def __init__(self, *kwargs: Any) -> None:
         ...
@@ -47,15 +47,15 @@ class GenericObjectType(Protocol):
         ...
 
 
-ValueT = TypeVar("ValueT", bound=GenericObjectType)
+ValueT = TypeVar("ValueT", bound=GenericEdgePropertyType)
 
 
-class GenericObjectList(Generic[ValueT]):
+class EdgePropertyList(Generic[ValueT]):
     def __init__(
         self,
         *,
         parent_object: CreatableTreeObject,
-        object_type: Type[GenericObjectType],
+        object_type: Type[GenericEdgePropertyType],
         attribute_name: str,
         from_pb_constructor: Callable[[CreatableTreeObject, Message, Callable[[], None]], ValueT],
     ) -> None:
@@ -197,16 +197,18 @@ class GenericObjectList(Generic[ValueT]):
         return f"{self._parent_object.name} - {self._name}({entries})"
 
 
-def define_generic_object_list(attribute_name: str, value_type: Type[GenericObjectType]) -> Any:
-    def getter(self: CreatableTreeObject) -> GenericObjectList[GenericObjectType]:
-        return GenericObjectList(
+def define_edge_property_list(
+    attribute_name: str, value_type: Type[GenericEdgePropertyType]
+) -> Any:
+    def getter(self: CreatableTreeObject) -> EdgePropertyList[GenericEdgePropertyType]:
+        return EdgePropertyList(
             parent_object=self,
             object_type=value_type,
             attribute_name=attribute_name,
             from_pb_constructor=value_type._from_pb_object,
         )
 
-    def setter(self: CreatableTreeObject, value: List[GenericObjectType]) -> None:
+    def setter(self: CreatableTreeObject, value: List[GenericEdgePropertyType]) -> None:
         getter(self)[:] = value
 
     return property(getter).setter(setter)

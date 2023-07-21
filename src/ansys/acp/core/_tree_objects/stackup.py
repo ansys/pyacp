@@ -4,7 +4,7 @@ from typing import Any, Callable, Iterable, Sequence
 
 from ansys.api.acp.v0 import stackup_pb2, stackup_pb2_grpc
 
-from ._grpc_helpers.generic_object_list import GenericObjectType, define_generic_object_list
+from ._grpc_helpers.edge_property_list import GenericEdgePropertyType, define_edge_property_list
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -34,9 +34,9 @@ from .object_registry import register
 __all__ = ["Stackup", "FabricWithAngle"]
 
 
-class FabricWithAngle(GenericObjectType):
+class FabricWithAngle(GenericEdgePropertyType):
     """
-    Class to define the fabrics of a stackup.
+    Class to define a fabric of a stackup.
 
     Parameters
     ----------
@@ -50,7 +50,7 @@ class FabricWithAngle(GenericObjectType):
     def __init__(self, fabric: Fabric, angle: float = 0.0):
         self._fabric = fabric
         self._angle = angle
-        self._callback_apply_changes: Callable[[], None] | None = (None,)
+        self._callback_apply_changes: Callable[[], None] | None = None
 
     @property
     def fabric(self) -> Fabric:
@@ -208,4 +208,4 @@ class Stackup(CreatableTreeObject, IdTreeObject):
     )
     draping_ud_coefficient = grpc_data_property("properties.draping_ud_coefficient")
 
-    fabrics = define_generic_object_list("properties.fabrics", FabricWithAngle)
+    fabrics = define_edge_property_list("properties.fabrics", FabricWithAngle)
