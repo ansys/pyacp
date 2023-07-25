@@ -29,8 +29,10 @@ pyacp_client = pyacp.Client(pyacp_server)
 
 current_file_location = pathlib.Path(__file__).parent
 
-MESH_FILE_NAME = str((current_file_location / "output" / "mesh.h5").resolve())
-model = pyacp_client.import_model(path=MESH_FILE_NAME,format="ansys:h5")
+MESH_FILE_NAME = "mesh.h5"
+LOCAL_MESH_PATH = str((current_file_location / "output" / MESH_FILE_NAME).resolve())
+pyacp_client.upload_file(LOCAL_MESH_PATH)
+model = pyacp_client.import_model(path=MESH_FILE_NAME, format="ansys:h5")
 
 mat = model.create_material(name="mat")
 
@@ -103,8 +105,14 @@ os.mkdir(output_path)
 model.update()
 #model.save(ACPH5_FILE, save_cache=True)
 
-model.export_shell_composite_definitions(output_path / COMPOSITE_DEFINITIONS_H5)
-model.export_materials(output_path / MATML_FILE)
+model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
+model.export_materials(MATML_FILE)
+
+pyacp_client.download_file(remote_filename=MATML_FILE, local_path=str(output_path / MATML_FILE))
+pyacp_client.download_file(
+    remote_filename=COMPOSITE_DEFINITIONS_H5, local_path=str(output_path / COMPOSITE_DEFINITIONS_H5)
+)
+
 
 material_output_path = str((output_path / MATML_FILE).resolve())
 import_material_cmd = f"Model.Materials.Import('{material_output_path}')"
