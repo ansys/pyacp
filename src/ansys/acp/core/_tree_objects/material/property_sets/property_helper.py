@@ -1,7 +1,6 @@
-from typing import Any
+from typing import Any, Protocol
 
 from ..._grpc_helpers.property_helper import _exposed_grpc_property, grpc_data_property_read_only
-from ..._grpc_helpers.protocols import GrpcObject, GrpcObjectReadOnly
 
 __all__ = ["_variable_material_grpc_data_property", "_constant_material_grpc_data_property"]
 
@@ -12,13 +11,20 @@ def _variable_material_grpc_data_property(name: str) -> Any:
     )
 
 
+class Gettable(Protocol):
+    def _get_if_stored(self) -> None:
+        ...
+
+    _pb_object: Any
+
+
 def _constant_material_grpc_data_getter(name: str) -> Any:
     """
     Creates a getter method which obtains the server object via the gRPC
     Get endpoint.
     """
 
-    def inner(self: GrpcObjectReadOnly) -> Any:
+    def inner(self: Gettable) -> Any:
         self._get_if_stored()
         data_vals = self._pb_object.values
         if len(data_vals) != 1:
@@ -30,13 +36,18 @@ def _constant_material_grpc_data_getter(name: str) -> Any:
     return inner
 
 
+class Editable(Gettable):
+    def _put_if_stored(self) -> None:
+        ...
+
+
 def _constant_material_grpc_data_setter(name: str) -> Any:
     """
     Creates a setter method which updates the server object via the gRPC
     Put endpoint.
     """
 
-    def inner(self: GrpcObject, value: Any) -> None:
+    def inner(self: Editable, value: Any) -> None:
         self._get_if_stored()
         data_vals = self._pb_object.values
         if len(data_vals) != 1:

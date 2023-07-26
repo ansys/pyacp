@@ -5,7 +5,6 @@ from typing import Any, Protocol
 
 from google.protobuf.message import Message
 import grpc
-from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import (
     BasicInfo,
@@ -14,7 +13,6 @@ from ansys.api.acp.v0.base_pb2 import (
     Empty,
     GetRequest,
     ListRequest,
-    ResourcePath,
 )
 
 
@@ -63,22 +61,11 @@ class CreatableResourceStub(ResourceStub, Protocol):
         ...
 
 
-class GrpcObjectReadOnly(Protocol):
+class GrpcObjectBase(Protocol):
     _GRPC_PROPERTIES: tuple[str, ...]
 
     @property
     def _pb_object(self) -> Any:
-        ...
-
-    def _get(self) -> None:
-        ...
-
-    def _get_if_stored(self) -> None:
-        if self._is_stored:
-            self._get()
-
-    @property
-    def _is_stored(self) -> bool:
         ...
 
     def __str__(self) -> str:
@@ -98,28 +85,3 @@ class GrpcObjectReadOnly(Protocol):
             content = ",\n".join(string_items)
             content = f"\n{textwrap.indent(content, ' ' * 4)}\n"
         return f"{type_name}({content})"
-
-
-class GrpcObject(GrpcObjectReadOnly, Protocol):
-    @property
-    def _pb_object(self) -> Any:
-        ...
-
-    def _put(self) -> None:
-        ...
-
-    def _put_if_stored(self) -> None:
-        if self._is_stored:
-            self._put()
-
-
-class RootGrpcObject(GrpcObject, Protocol):
-    _pb_object: ObjectInfo
-
-    @property
-    def _channel(self) -> grpc.Channel:
-        ...
-
-    @classmethod
-    def _from_resource_path(cls, resource_path: ResourcePath, channel: grpc.Channel) -> Self:
-        ...
