@@ -27,14 +27,14 @@ from ._grpc_helpers.protocols import (
     CreateRequest,
     GrpcObjectBase,
     ObjectInfo,
-    ResourceStub,
+    ResourceStub, Gettable, Editable,
 )
 
 _T = TypeVar("_T", bound="TreeObject")
 
 
 @mark_grpc_properties
-class TreeObject(GrpcObjectBase):
+class TreeObjectBase(GrpcObjectBase):
     """
     Base class for ACP tree objects.
     """
@@ -46,7 +46,7 @@ class TreeObject(GrpcObjectBase):
 
     _pb_object: ObjectInfo
 
-    def __init__(self: TreeObject, name: str = "") -> None:
+    def __init__(self: TreeObjectBase, name: str = "") -> None:
         self._channel_store: Channel | None = None
         self._stub_store: ResourceStub | None = None
         self._pb_object: ObjectInfo = self.OBJECT_INFO_TYPE()
@@ -114,7 +114,7 @@ class TreeObject(GrpcObjectBase):
     """The name of the object."""
 
 
-class EditableTreeObject(TreeObject):
+class TreeObject(TreeObjectBase):
     @abstractmethod
     def _create_stub(self) -> ResourceStub:
         ...
@@ -152,7 +152,7 @@ class EditableTreeObject(TreeObject):
 
 
 @mark_grpc_properties
-class CreatableTreeObject(EditableTreeObject):
+class CreatableTreeObject(TreeObject):
     __slots__: Iterable[str] = tuple()
     CREATE_REQUEST_TYPE: type[CreateRequest]
 
@@ -205,17 +205,6 @@ class IdTreeObject(TreeObject):
         return f"<{type(self).__name__} with id '{self.id}'>"
 
 
-class Gettable(Protocol):
-    def _get(self) -> None:
-        ...
-
-    @property
-    def _is_stored(self) -> bool:
-        ...
-
-    _pb_object: ObjectInfo
-
-
 class TreeObjectAttributeReadOnly:
     """
     Defines an attribute which is defined as a sub-component of a parent
@@ -241,6 +230,10 @@ class TreeObjectAttributeReadOnly:
         if self._parent_object is None:
             raise RuntimeError("The parent object is not set.")
         self._parent_object._get()
+
+    def _get_if_stored(self) -> None:
+        if self._is_stored:
+            self._get()
 
     @property
     def _pb_object_impl(self) -> Any:
@@ -272,11 +265,6 @@ class PolymorphicMixin(TreeObjectAttributeReadOnly):
         *sub_path, prop_name = self._attribute_path.split(".")
         parent_attr = _get_data_attribute(self._parent_object._pb_object, ".".join(sub_path))
         return getattr(parent_attr, parent_attr.WhichOneof(prop_name))
-
-
-class Editable(Gettable):
-    def _put(self) -> None:
-        ...
 
 
 class TreeObjectAttribute(TreeObjectAttributeReadOnly):
@@ -313,3 +301,7 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly):
         if self._parent_object is None:
             raise RuntimeError("The parent object is not set.")
         self._parent_object._put()
+
+    def _put_if_stored(self) -> None:
+        if self._is_stored:
+            self._put()
