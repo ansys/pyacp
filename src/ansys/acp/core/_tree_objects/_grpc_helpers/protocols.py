@@ -56,6 +56,21 @@ class ResourceStub(Protocol):
         ...
 
 
+class ReadOnlyResourceStub(Protocol):
+    """Interface definition for ACP Resource service stubs."""
+
+    def __init__(self, channel: grpc.Channel):
+        ...
+
+    def Get(self, request: GetRequest) -> ObjectInfo:
+        ...
+
+    def List(self, request: ListRequest) -> ListReply:
+        ...
+
+
+
+
 class CreatableResourceStub(ResourceStub, Protocol):
     def Create(self, request: CreateRequest) -> ObjectInfo:
         ...
