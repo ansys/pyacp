@@ -5,7 +5,7 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import Any, Iterable, TypeVar, cast
+from typing import Any, Iterable, Protocol, TypeVar, cast
 
 from grpc import Channel
 from typing_extensions import Self
@@ -25,18 +25,16 @@ from ._grpc_helpers.property_helper import (
 from ._grpc_helpers.protocols import (
     CreatableResourceStub,
     CreateRequest,
-    GrpcObject,
-    GrpcObjectReadOnly,
+    GrpcObjectBase,
     ObjectInfo,
     ResourceStub,
-    RootGrpcObject,
 )
 
 _T = TypeVar("_T", bound="TreeObject")
 
 
 @mark_grpc_properties
-class TreeObject(RootGrpcObject):
+class TreeObject(GrpcObjectBase):
     """
     Base class for ACP tree objects.
     """
@@ -45,6 +43,8 @@ class TreeObject(RootGrpcObject):
 
     _COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: type[ObjectInfo]
+
+    _pb_object: ObjectInfo
 
     def __init__(self: TreeObject, name: str = "") -> None:
         self._channel_store: Channel | None = None
@@ -68,14 +68,6 @@ class TreeObject(RootGrpcObject):
             unlink_objects(new_object_info.properties)
         new_object_info.info.name = self._pb_object.info.name
         return type(self)._from_object_info(object_info=new_object_info)
-
-    def delete(self: _T) -> None:
-        self._get_stub().Delete(
-            DeleteRequest(
-                resource_path=self._pb_object.info.resource_path,
-                version=self._pb_object.info.version,
-            )
-        )
 
     def __eq__(self: _T, other: Any) -> bool:
         if not isinstance(other, TreeObject):
@@ -111,25 +103,6 @@ class TreeObject(RootGrpcObject):
             raise RuntimeError("The server connection is uninitialized.")
         return self._channel_store
 
-    def _get_stub(self) -> ResourceStub:
-        if not self._is_stored:
-            raise RuntimeError("The server connection is uninitialized.")
-        if self._stub_store is None:
-            self._stub_store = self._create_stub()
-        return self._stub_store
-
-    def _get(self) -> None:
-        self._pb_object = self._get_stub().Get(
-            GetRequest(resource_path=self._pb_object.info.resource_path)
-        )
-
-    def _put(self) -> None:
-        self._pb_object = self._get_stub().Put(self._pb_object)
-
-    @abstractmethod
-    def _create_stub(self) -> ResourceStub:
-        ...
-
     @property
     def _is_stored(self) -> bool:
         return self._channel_store is not None
@@ -141,8 +114,45 @@ class TreeObject(RootGrpcObject):
     """The name of the object."""
 
 
+class EditableTreeObject(TreeObject):
+    @abstractmethod
+    def _create_stub(self) -> ResourceStub:
+        ...
+
+    def delete(self) -> None:
+        self._get_stub().Delete(
+            DeleteRequest(
+                resource_path=self._pb_object.info.resource_path,
+                version=self._pb_object.info.version,
+            )
+        )
+
+    def _get(self) -> None:
+        self._pb_object = self._get_stub().Get(
+            GetRequest(resource_path=self._pb_object.info.resource_path)
+        )
+
+    def _get_if_stored(self) -> None:
+        if self._is_stored:
+            self._get()
+
+    def _put(self) -> None:
+        self._pb_object = self._get_stub().Put(self._pb_object)
+
+    def _put_if_stored(self) -> None:
+        if self._is_stored:
+            self._put()
+
+    def _get_stub(self) -> ResourceStub:
+        if not self._is_stored:
+            raise RuntimeError("The server connection is uninitialized.")
+        if self._stub_store is None:
+            self._stub_store = self._create_stub()
+        return self._stub_store
+
+
 @mark_grpc_properties
-class CreatableTreeObject(TreeObject):
+class CreatableTreeObject(EditableTreeObject):
     __slots__: Iterable[str] = tuple()
     CREATE_REQUEST_TYPE: type[CreateRequest]
 
@@ -195,7 +205,18 @@ class IdTreeObject(TreeObject):
         return f"<{type(self).__name__} with id '{self.id}'>"
 
 
-class TreeObjectAttributeReadOnly(GrpcObjectReadOnly):
+class Gettable(Protocol):
+    def _get(self) -> None:
+        ...
+
+    @property
+    def _is_stored(self) -> bool:
+        ...
+
+    _pb_object: ObjectInfo
+
+
+class TreeObjectAttributeReadOnly:
     """
     Defines an attribute which is defined as a sub-component of a parent
     object's protobuf object (read-only).
@@ -206,14 +227,14 @@ class TreeObjectAttributeReadOnly(GrpcObjectReadOnly):
     def __init__(
         self,
         *,
-        _parent_object: GrpcObjectReadOnly | None = None,
+        _parent_object: Gettable | None = None,
         _attribute_path: str | None = None,
     ):
         if _parent_object is None != _attribute_path is None:
             raise TypeError(
                 "Either both '_parent_object' and '_attribute_path' need to be 'None', or neither."
             )
-        self._parent_object: GrpcObjectReadOnly | None = _parent_object
+        self._parent_object: Gettable | None = _parent_object
         self._attribute_path = _attribute_path
 
     def _get(self) -> None:
@@ -253,7 +274,12 @@ class PolymorphicMixin(TreeObjectAttributeReadOnly):
         return getattr(parent_attr, parent_attr.WhichOneof(prop_name))
 
 
-class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
+class Editable(Gettable):
+    def _put(self) -> None:
+        ...
+
+
+class TreeObjectAttribute(TreeObjectAttributeReadOnly):
     """
     Defines an attribute which is defined as a sub-component of a parent
     object's protobuf object (read-write).
@@ -267,13 +293,13 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
         ...
 
     def __init__(
-        self, *, _parent_object: GrpcObject | None = None, _attribute_path: str | None = None
+        self, *, _parent_object: Editable | None = None, _attribute_path: str | None = None
     ):
         if _parent_object is None:
             self._pb_object_store: Any = self._create_default_pb_object()
         else:
             self._pb_object_store = None
-        self._parent_object: GrpcObject | None
+        self._parent_object: Editable | None
         super().__init__(_parent_object=_parent_object, _attribute_path=_attribute_path)
 
     @property
