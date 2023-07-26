@@ -85,3 +85,27 @@ class GrpcObjectBase(Protocol):
             content = ",\n".join(string_items)
             content = f"\n{textwrap.indent(content, ' ' * 4)}\n"
         return f"{type_name}({content})"
+
+
+class Gettable(Protocol):
+    def _get(self) -> None:
+        ...
+
+    def _get_if_stored(self) -> None:
+        ...
+
+    @property
+    def _is_stored(self) -> bool:
+        ...
+
+    @property
+    def _channel(self) -> grpc.Channel:
+        ...
+
+    _pb_object: ObjectInfo
+
+
+class Editable(Gettable):
+    def _put_if_stored(self) -> None:
+        ...
+

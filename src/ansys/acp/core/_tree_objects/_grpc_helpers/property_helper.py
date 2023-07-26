@@ -12,7 +12,7 @@ from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
-from .protocols import GrpcObjectBase, ObjectInfo
+from .protocols import GrpcObjectBase, ObjectInfo, Gettable, Editable
 
 _TO_PROTOBUF_T = Callable[[Any], Any]
 _FROM_PROTOBUF_T = Callable[[Any], Any]
@@ -45,23 +45,6 @@ def mark_grpc_properties(cls: type[GrpcObjectBase]) -> type[GrpcObjectBase]:
     cls._GRPC_PROPERTIES = tuple(props_unique)
     return cls
 
-
-class Gettable(Protocol):
-    def _get(self) -> None:
-        ...
-
-    def _get_if_stored(self) -> None:
-        ...
-
-    @property
-    def _is_stored(self) -> bool:
-        ...
-
-    @property
-    def _channel(self) -> grpc.Channel:
-        ...
-
-    _pb_object: ObjectInfo
 
 
 class CreatableFromResourcePath(Protocol):
@@ -110,11 +93,6 @@ def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[Ge
     return inner
 
 
-class Editable(Gettable):
-    def _put_if_stored(self) -> None:
-        ...
-
-
 def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[Editable, Any], None]:
     """
     Creates a setter method which updates the server object via the gRPC
@@ -160,6 +138,7 @@ def _set_data_attribute(pb_obj: ObjectInfo, name: str, value: Any) -> None:
                     target_object.add().CopyFrom(item)
 
 
+
 def grpc_data_property(
     name: str,
     to_protobuf: _TO_PROTOBUF_T = lambda x: x,
@@ -170,6 +149,11 @@ def grpc_data_property(
     and setter make calls to the gRPC Get and Put endpoints to synchronize
     the local object with the remote backend.
     """
+    # Tbd: We don't ensure with types that the property returned here is compatible
+    # with the class on which this property is created. For example:
+    # grpc_data_setter returns callable that expects an editable object as the first argument.
+    # But this property can also be added to a class that does not satisfy the Editable
+    # Protocol
     return _exposed_grpc_property(grpc_data_getter(name, from_protobuf=from_protobuf)).setter(
         grpc_data_setter(name, to_protobuf=to_protobuf)
     )
