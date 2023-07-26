@@ -27,7 +27,7 @@ from ._grpc_helpers.protocols import (
     CreateRequest,
     GrpcObjectBase,
     ObjectInfo,
-    ResourceStub, Gettable, Editable,
+    ResourceStub, Gettable, Editable, ReadOnlyResourceStub,
 )
 
 _T = TypeVar("_T", bound="TreeObject")
@@ -39,7 +39,7 @@ class TreeObjectBase(GrpcObjectBase):
     Base class for ACP tree objects.
     """
 
-    __slots__ = ("_channel_store", "_stub_store", "_pb_object")
+    __slots__ = ("_channel_store", "_pb_object")
 
     _COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: type[ObjectInfo]
@@ -144,6 +144,28 @@ class TreeObject(TreeObjectBase):
             self._put()
 
     def _get_stub(self) -> ResourceStub:
+        if not self._is_stored:
+            raise RuntimeError("The server connection is uninitialized.")
+        if self._stub_store is None:
+            self._stub_store = self._create_stub()
+        return self._stub_store
+
+
+class ReadOnlyTreeObject(TreeObjectBase):
+    @abstractmethod
+    def _create_stub(self) -> ReadOnlyResourceStub:
+        ...
+
+    def _get(self) -> None:
+        self._pb_object = self._get_stub().Get(
+            GetRequest(resource_path=self._pb_object.info.resource_path)
+        )
+
+    def _get_if_stored(self) -> None:
+        if self._is_stored:
+            self._get()
+
+    def _get_stub(self) -> ReadOnlyResourceStub:
         if not self._is_stored:
             raise RuntimeError("The server connection is uninitialized.")
         if self._stub_store is None:
