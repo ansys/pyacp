@@ -181,6 +181,8 @@ class ReadOnlyTreeObject(TreeObjectBase):
     def _get_stub(self) -> ReadOnlyResourceStub:
         return self._stub_store.get(self._is_stored)
 
+    # Tbd: we could further reduce code duplication by
+    # delegating the stub operations to a subobject.
     def _get(self) -> None:
         self._pb_object = self._get_stub().Get(
             GetRequest(resource_path=self._pb_object.info.resource_path)
