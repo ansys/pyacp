@@ -5,7 +5,7 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import Any, Iterable, Protocol, TypeVar, cast
+from typing import Any, Iterable, TypeVar, cast
 
 from grpc import Channel
 from typing_extensions import Self
@@ -25,12 +25,15 @@ from ._grpc_helpers.property_helper import (
 from ._grpc_helpers.protocols import (
     CreatableResourceStub,
     CreateRequest,
+    Editable,
+    Gettable,
     GrpcObjectBase,
     ObjectInfo,
-    ResourceStub, Gettable, Editable, ReadOnlyResourceStub,
+    ReadOnlyResourceStub,
+    ResourceStub,
 )
 
-_T = TypeVar("_T", bound="TreeObject")
+_T = TypeVar("_T", bound="TreeObjectBase")
 
 
 @mark_grpc_properties
@@ -39,7 +42,7 @@ class TreeObjectBase(GrpcObjectBase):
     Base class for ACP tree objects.
     """
 
-    __slots__ = ("_channel_store", "_pb_object")
+    __slots__ = ("_channel_store", "_channel", "_pb_object")
 
     _COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: type[ObjectInfo]
@@ -48,7 +51,6 @@ class TreeObjectBase(GrpcObjectBase):
 
     def __init__(self: TreeObjectBase, name: str = "") -> None:
         self._channel_store: Channel | None = None
-        self._stub_store: ResourceStub | None = None
         self._pb_object: ObjectInfo = self.OBJECT_INFO_TYPE()
         self.name = name
 
@@ -119,6 +121,10 @@ class TreeObject(TreeObjectBase):
     def _create_stub(self) -> ResourceStub:
         ...
 
+    def __init__(self: TreeObject, name: str = "") -> None:
+        super().__init__(name=name)
+        self._stub_store: ResourceStub | None = None
+
     def delete(self) -> None:
         self._get_stub().Delete(
             DeleteRequest(
@@ -152,6 +158,10 @@ class TreeObject(TreeObjectBase):
 
 
 class ReadOnlyTreeObject(TreeObjectBase):
+    def __init__(self: ReadOnlyTreeObject, name: str = "") -> None:
+        super().__init__(name=name)
+        self._stub_store: ReadOnlyResourceStub | None = None
+
     @abstractmethod
     def _create_stub(self) -> ReadOnlyResourceStub:
         ...
@@ -215,9 +225,10 @@ class CreatableTreeObject(TreeObject):
         self._pb_object = self._get_stub().Create(request)
 
 
-@mark_grpc_properties
-class IdTreeObject(TreeObject):
+class IdTreeObject(TreeObjectBase):
     """Implements the 'id' attribute for tree objects."""
+
+    # Todo: TreeObjectBase has no getter, this should derive from different class
 
     __slots__: Iterable[str] = tuple()
 

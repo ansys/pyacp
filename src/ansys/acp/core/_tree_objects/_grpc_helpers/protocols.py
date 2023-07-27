@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import textwrap
-from typing import Any, Protocol
+from typing import Protocol
 
 from google.protobuf.message import Message
 import grpc
@@ -69,8 +69,6 @@ class ReadOnlyResourceStub(Protocol):
         ...
 
 
-
-
 class CreatableResourceStub(ResourceStub, Protocol):
     def Create(self, request: CreateRequest) -> ObjectInfo:
         ...
@@ -78,10 +76,6 @@ class CreatableResourceStub(ResourceStub, Protocol):
 
 class GrpcObjectBase(Protocol):
     _GRPC_PROPERTIES: tuple[str, ...]
-
-    @property
-    def _pb_object(self) -> Any:
-        ...
 
     def __str__(self) -> str:
         string_items = []
@@ -121,6 +115,8 @@ class Gettable(Protocol):
 
 
 class Editable(Gettable):
-    def _put_if_stored(self) -> None:
+    def _put(self) -> None:
         ...
 
+    def _put_if_stored(self) -> None:
+        ...
