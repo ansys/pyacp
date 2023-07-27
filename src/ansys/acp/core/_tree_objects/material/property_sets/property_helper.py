@@ -1,21 +1,16 @@
-from typing import Any, Protocol
+from typing import Any
 
 from ..._grpc_helpers.property_helper import _exposed_grpc_property, grpc_data_property_read_only
 
 __all__ = ["_variable_material_grpc_data_property", "_constant_material_grpc_data_property"]
+
+from ..._grpc_helpers.protocols import Editable, Gettable
 
 
 def _variable_material_grpc_data_property(name: str) -> Any:
     return grpc_data_property_read_only(
         "values", from_protobuf=lambda values: tuple(getattr(val, name) for val in values)
     )
-
-
-class Gettable(Protocol):
-    def _get_if_stored(self) -> None:
-        ...
-
-    _pb_object: Any
 
 
 def _constant_material_grpc_data_getter(name: str) -> Any:
@@ -34,11 +29,6 @@ def _constant_material_grpc_data_getter(name: str) -> Any:
         return getattr(data_vals[0], name)
 
     return inner
-
-
-class Editable(Gettable):
-    def _put_if_stored(self) -> None:
-        ...
 
 
 def _constant_material_grpc_data_setter(name: str) -> Any:

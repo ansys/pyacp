@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import textwrap
-from typing import Protocol
+from typing import Any, Protocol
 
 from google.protobuf.message import Message
 import grpc
@@ -111,7 +111,7 @@ class Gettable(Protocol):
     def _channel(self) -> grpc.Channel:
         ...
 
-    _pb_object: ObjectInfo
+    _pb_object: Any
 
 
 class Editable(Gettable):

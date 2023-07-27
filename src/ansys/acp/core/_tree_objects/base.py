@@ -5,7 +5,7 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import Any, Iterable, TypeVar, cast
+from typing import Any, Callable, Generic, Iterable, TypeVar, cast
 
 from grpc import Channel
 from typing_extensions import Self
@@ -42,7 +42,7 @@ class TreeObjectBase(GrpcObjectBase):
     Base class for ACP tree objects.
     """
 
-    __slots__ = ("_channel_store", "_channel", "_pb_object")
+    __slots__ = ("_channel_store", "_pb_object")
 
     _COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: type[ObjectInfo]
@@ -116,6 +116,22 @@ class TreeObjectBase(GrpcObjectBase):
     """The name of the object."""
 
 
+StubT = TypeVar("StubT")
+
+
+class StubStore(Generic[StubT]):
+    def __init__(self, create_stub_fun: Callable[[], StubT]) -> None:
+        self._stub_store: StubT | None = None
+        self._create_stub_fun = create_stub_fun
+
+    def get(self, is_stored: bool) -> StubT:
+        if not is_stored:
+            raise RuntimeError("The server connection is uninitialized.")
+        if self._stub_store is None:
+            self._stub_store = self._create_stub_fun()
+        return self._stub_store
+
+
 class TreeObject(TreeObjectBase):
     @abstractmethod
     def _create_stub(self) -> ResourceStub:
@@ -123,7 +139,7 @@ class TreeObject(TreeObjectBase):
 
     def __init__(self: TreeObject, name: str = "") -> None:
         super().__init__(name=name)
-        self._stub_store: ResourceStub | None = None
+        self._stub_store = StubStore(self._create_stub)
 
     def delete(self) -> None:
         self._get_stub().Delete(
@@ -150,21 +166,20 @@ class TreeObject(TreeObjectBase):
             self._put()
 
     def _get_stub(self) -> ResourceStub:
-        if not self._is_stored:
-            raise RuntimeError("The server connection is uninitialized.")
-        if self._stub_store is None:
-            self._stub_store = self._create_stub()
-        return self._stub_store
+        return self._stub_store.get(self._is_stored)
 
 
 class ReadOnlyTreeObject(TreeObjectBase):
     def __init__(self: ReadOnlyTreeObject, name: str = "") -> None:
         super().__init__(name=name)
-        self._stub_store: ReadOnlyResourceStub | None = None
+        self._stub_store = StubStore(self._create_stub)
 
     @abstractmethod
     def _create_stub(self) -> ReadOnlyResourceStub:
         ...
+
+    def _get_stub(self) -> ReadOnlyResourceStub:
+        return self._stub_store.get(self._is_stored)
 
     def _get(self) -> None:
         self._pb_object = self._get_stub().Get(
@@ -174,13 +189,6 @@ class ReadOnlyTreeObject(TreeObjectBase):
     def _get_if_stored(self) -> None:
         if self._is_stored:
             self._get()
-
-    def _get_stub(self) -> ReadOnlyResourceStub:
-        if not self._is_stored:
-            raise RuntimeError("The server connection is uninitialized.")
-        if self._stub_store is None:
-            self._stub_store = self._create_stub()
-        return self._stub_store
 
 
 @mark_grpc_properties
