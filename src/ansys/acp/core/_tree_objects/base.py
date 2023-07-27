@@ -33,10 +33,10 @@ from ._grpc_helpers.protocols import (
     ResourceStub,
 )
 
+
 _T = TypeVar("_T", bound="TreeObjectBase")
 
 
-@mark_grpc_properties
 class TreeObjectBase(GrpcObjectBase):
     """
     Base class for ACP tree objects.
@@ -109,12 +109,6 @@ class TreeObjectBase(GrpcObjectBase):
     def _is_stored(self) -> bool:
         return self._channel_store is not None
 
-    def __repr__(self) -> str:
-        return f"<{type(self).__name__} with name '{self.name}'>"
-
-    name = grpc_data_property("info.name")
-    """The name of the object."""
-
 
 StubT = TypeVar("StubT")
 
@@ -132,7 +126,18 @@ class StubStore(Generic[StubT]):
         return self._stub_store
 
 
-class TreeObject(TreeObjectBase):
+@mark_grpc_properties
+class NameTreeObject(GrpcObjectBase):
+    """Implements the 'name' attribute for tree objects."""
+
+    name = grpc_data_property("info.name")
+    """The name of the object."""
+
+    def __repr__(self) -> str:
+        return f"<{type(self).__name__} with name '{self.name}'>"
+
+
+class TreeObject(TreeObjectBase, NameTreeObject):
     @abstractmethod
     def _create_stub(self) -> ResourceStub:
         ...
@@ -169,7 +174,7 @@ class TreeObject(TreeObjectBase):
         return self._stub_store.get(self._is_stored)
 
 
-class ReadOnlyTreeObject(TreeObjectBase):
+class ReadOnlyTreeObject(TreeObjectBase, NameTreeObject):
     def __init__(self: ReadOnlyTreeObject, name: str = "") -> None:
         super().__init__(name=name)
         self._stub_store = StubStore(self._create_stub)
@@ -237,10 +242,6 @@ class CreatableTreeObject(TreeObject):
 
 class IdTreeObject(TreeObjectBase):
     """Implements the 'id' attribute for tree objects."""
-
-    # Todo: TreeObjectBase has no getter, this should derive from different class
-
-    __slots__: Iterable[str] = tuple()
 
     id = grpc_data_property_read_only("info.id")
 
