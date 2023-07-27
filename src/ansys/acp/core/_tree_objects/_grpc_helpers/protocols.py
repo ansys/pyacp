@@ -114,7 +114,7 @@ class Gettable(Protocol):
     _pb_object: Any
 
 
-class Editable(Gettable):
+class Editable(Gettable, Protocol):
     def _put(self) -> None:
         ...
 

@@ -33,7 +33,6 @@ from ._grpc_helpers.protocols import (
     ResourceStub,
 )
 
-
 _T = TypeVar("_T", bound="TreeObjectBase")
 
 
@@ -349,3 +348,13 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly):
     def _put_if_stored(self) -> None:
         if self._is_stored:
             self._put()
+
+# Ensure that the ReadOnlyTreeObject satisfies the Gettable interface
+# Tbd: Is there a better way?
+def gettable_protocol_is_satisfied(obj: ReadOnlyTreeObject) -> None:
+    dummy: Gettable = obj
+
+# Ensure that the TreeObject satisfies the Editable interface
+# Tbd: Is there a better way?
+def editable_protocol_is_satisfied(obj: TreeObject) -> None:
+    dummy: Editable = obj
