@@ -8,7 +8,7 @@ from __future__ import annotations
 from typing import Any, TypeVar
 
 from ..._grpc_helpers.property_helper import _exposed_grpc_property
-from ..._grpc_helpers.protocols import Editable, Gettable
+from ..._grpc_helpers.protocols import Editable
 from .base import _ConstantPropertySet, _PolymorphicMixin, _VariablePropertySet
 
 TC = TypeVar("TC", bound=_ConstantPropertySet)
