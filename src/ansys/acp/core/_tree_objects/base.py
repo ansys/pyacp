@@ -351,10 +351,10 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly):
 
 # Ensure that the ReadOnlyTreeObject satisfies the Gettable interface
 # Tbd: Is there a better way?
-def gettable_protocol_is_satisfied(obj: ReadOnlyTreeObject) -> None:
+def _gettable_protocol_is_satisfied(obj: ReadOnlyTreeObject) -> None:
     dummy: Gettable = obj
 
 # Ensure that the TreeObject satisfies the Editable interface
 # Tbd: Is there a better way?
-def editable_protocol_is_satisfied(obj: TreeObject) -> None:
+def _editable_protocol_is_satisfied(obj: TreeObject) -> None:
     dummy: Editable = obj
