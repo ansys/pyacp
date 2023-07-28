@@ -5,7 +5,7 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from functools import reduce
-from typing import Any, Callable, Protocol, cast
+from typing import Any, Callable, Protocol
 
 import grpc
 from typing_extensions import Self
@@ -29,12 +29,9 @@ class _exposed_grpc_property(property):
 
 def mark_grpc_properties(cls: type[GrpcObjectBase]) -> type[GrpcObjectBase]:
     props: list[str] = []
-    for base_cls in reversed(cls.__bases__):
-        # todo: why is this needed cls already has the
-        # correct type
-        if hasattr(base_cls, "_GRPC_PROPERTIES"):
-            base_cls = cast("type[GrpcObjectBase]", base_cls)
-            props.extend(base_cls._GRPC_PROPERTIES)
+    # todo: why was the loop through the base classes needed?
+    if hasattr(cls, "_GRPC_PROPERTIES"):
+        props.extend(cls._GRPC_PROPERTIES)
     for key, value in vars(cls).items():
         if isinstance(value, _exposed_grpc_property):
             props.append(key)

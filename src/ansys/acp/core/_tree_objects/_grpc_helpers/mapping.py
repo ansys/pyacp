@@ -159,8 +159,6 @@ def get_read_only_collection_property(
 def define_mapping(
     object_class: type[ValueT], stub_class: type[ResourceStub]
 ) -> tuple[Callable[[Arg(ParentT, "self"), KwArg(Any)], ValueT], property]:
-    # Todo: why does stub_class annotation have type[ResourceStub] and not just ResourceStub
-
     @wraps(object_class.__init__)
     def create_method(self: ParentT, **kwargs: Any) -> ValueT:
         obj = object_class(**kwargs)
