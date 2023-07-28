@@ -24,7 +24,9 @@ def _property_set_getter(name: str, type_constant: type[TC], type_variable: type
     )
     is_monomorphic = not issubclass(type_constant, _PolymorphicMixin)
 
-    def inner(self: Gettable) -> TC | TV | None:
+    def inner(self: Editable) -> TC | TV | None:
+        # self needs to be Editable because the init function
+        # of type_constant and type_variable expect a Editable _parent_object
         self._get_if_stored()
         if is_monomorphic:
             if not self._pb_object.properties.property_sets.HasField(name):

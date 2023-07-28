@@ -248,7 +248,7 @@ class IdTreeObject(TreeObjectBase):
         return f"<{type(self).__name__} with id '{self.id}'>"
 
 
-class TreeObjectAttributeReadOnly:
+class TreeObjectAttributeReadOnly(GrpcObjectBase):
     """
     Defines an attribute which is defined as a sub-component of a parent
     object's protobuf object (read-only).
@@ -349,10 +349,12 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly):
         if self._is_stored:
             self._put()
 
+
 # Ensure that the ReadOnlyTreeObject satisfies the Gettable interface
 # Tbd: Is there a better way?
 def _gettable_protocol_is_satisfied(obj: ReadOnlyTreeObject) -> None:
     dummy: Gettable = obj
+
 
 # Ensure that the TreeObject satisfies the Editable interface
 # Tbd: Is there a better way?

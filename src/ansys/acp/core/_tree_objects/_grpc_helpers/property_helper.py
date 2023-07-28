@@ -12,7 +12,7 @@ from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
-from .protocols import GrpcObjectBase, ObjectInfo, Gettable, Editable
+from .protocols import Editable, Gettable, GrpcObjectBase, ObjectInfo
 
 _TO_PROTOBUF_T = Callable[[Any], Any]
 _FROM_PROTOBUF_T = Callable[[Any], Any]
@@ -41,7 +41,6 @@ def mark_grpc_properties(cls: type[GrpcObjectBase]) -> type[GrpcObjectBase]:
             props_unique.append(name)
     cls._GRPC_PROPERTIES = tuple(props_unique)
     return cls
-
 
 
 class CreatableFromResourcePath(Protocol):
@@ -133,7 +132,6 @@ def _set_data_attribute(pb_obj: ObjectInfo, name: str, value: Any) -> None:
                 del target_object[:]
                 for item in value:
                     target_object.add().CopyFrom(item)
-
 
 
 def grpc_data_property(
