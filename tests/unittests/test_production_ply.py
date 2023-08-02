@@ -1,5 +1,4 @@
 from grpc import RpcError
-from grpc._channel import _InactiveRpcError
 import pytest
 
 from ansys.acp.core import Model, ModelingPly
