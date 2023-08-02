@@ -34,10 +34,12 @@
       :toctree:
    
       ElementSet.element_labels
+      ElementSet.elemental_data
       ElementSet.id
       ElementSet.locked
       ElementSet.middle_offset
       ElementSet.name
+      ElementSet.nodal_data
       ElementSet.status
    
    

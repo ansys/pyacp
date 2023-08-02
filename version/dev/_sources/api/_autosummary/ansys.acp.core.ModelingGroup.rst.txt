@@ -36,8 +36,10 @@
    .. autosummary::
       :toctree:
    
+      ModelingGroup.elemental_data
       ModelingGroup.id
       ModelingGroup.modeling_plies
       ModelingGroup.name
+      ModelingGroup.nodal_data
    
    

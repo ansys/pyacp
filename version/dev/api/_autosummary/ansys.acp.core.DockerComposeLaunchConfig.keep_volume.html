@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>keep_volume &#8212; PyACP</title>
-    
+
   
   
   
@@ -42,10 +42,9 @@
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+ 
+<link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
 
-    
-        <link href="../../_static/css/breadcrumbs.css" rel="stylesheet">
-    
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx_highlight.js"></script>
@@ -90,7 +89,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
 
-  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<!-- If there is no MiliSearch enabled, use the PyData search -->
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -106,11 +105,9 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-</div>
+</form></div>
   </div>
-  
-    
+   
     <nav class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
@@ -245,9 +242,6 @@ document.write(`
 </div>
 
     </nav>
-  
-
-    
     <div id="announcement_msg"></div>
 <script>
   fetch("announcement.html")
@@ -257,38 +251,34 @@ document.write(`
       }
       return response.text();
     })
-    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
     .catch((error) => console.error(`Fetch problem: ${error.message}`));
-</script>
-    
-
-    
-    <div class="container-xl">
-    <div class="row">
-        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
-        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
-          
+</script>   <div class="container-xl">
+  <div class="row">
+    <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+    <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
-      <ul>
-    
-        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
-    
-    
-        <li class="nav-item nav-item-0"><a href="../../index.html">PyACP</a> » </li>
-    
-
+      <ul> 
+<li class="nav-item nav-item-additional-breadcrumb">
+  <a href="https://docs.pyansys.com/">PyAnsys</a> » 
+</li>
+ 
+<li class="nav-item nav-item-0">
+  <a href="../../index.html">PyACP</a> » 
+</li>
+ 
           <li class="nav-item nav-item-1"><a href="../index.html" >API reference</a> » </li>
           <li class="nav-item nav-item-2"><a href="../server.html" >Server management</a> » </li>
           <li class="nav-item nav-item-3"><a href="ansys.acp.core.DockerComposeLaunchConfig.html" accesskey="U">DockerComposeLaunchConfig</a> » </li>
         <li class="nav-item nav-item-this"><a href="">keep_volume</a></li> 
       </ul>
-    </div>
-        </div>
+    </div></div>
   </div>
 </div>
-    
-
+ 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
@@ -431,11 +421,14 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.draping_offset_correction.html">draping_offset_correction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.edge_sets.html">edge_sets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.element_sets.html">element_sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.elemental_data.html">elemental_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.fabrics.html">fabrics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.materials.html">materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.mesh.html">mesh</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.minimum_analysis_ply_thickness.html">minimum_analysis_ply_thickness</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.modeling_groups.html">modeling_groups</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.name.html">name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.nodal_data.html">nodal_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.oriented_selection_sets.html">oriented_selection_sets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.relative_thickness_tolerance.html">relative_thickness_tolerance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.rosettes.html">rosettes</a></li>
@@ -491,10 +484,12 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ElementSet.delete.html">delete</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ElementSet.store.html">store</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ElementSet.element_labels.html">element_labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ElementSet.elemental_data.html">elemental_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ElementSet.id.html">id</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ElementSet.locked.html">locked</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ElementSet.middle_offset.html">middle_offset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ElementSet.name.html">name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ElementSet.nodal_data.html">nodal_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ElementSet.status.html">status</a></li>
 </ul>
 </li>
@@ -531,8 +526,10 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.delete.html">delete</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.store.html">store</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.element_sets.html">element_sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.elemental_data.html">elemental_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.id.html">id</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.name.html">name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.nodal_data.html">nodal_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.orientation_direction.html">orientation_direction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.orientation_point.html">orientation_point</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rosette_selection_method.html">rosette_selection_method</a></li>
@@ -545,9 +542,11 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_modeling_ply.html">create_modeling_ply</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.delete.html">delete</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.store.html">store</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.elemental_data.html">elemental_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.id.html">id</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.modeling_plies.html">modeling_plies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.name.html">name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.nodal_data.html">nodal_data</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="ansys.acp.core.ModelingPly.html">ModelingPly</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -555,9 +554,11 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.delete.html">delete</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.store.html">store</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.active.html">active</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.elemental_data.html">elemental_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.global_ply_nr.html">global_ply_nr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.id.html">id</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.name.html">name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.nodal_data.html">nodal_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.number_of_layers.html">number_of_layers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.oriented_selection_sets.html">oriented_selection_sets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_angle.html">ply_angle</a></li>
@@ -912,13 +913,17 @@ document.write(`
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-    Built with the <a href="https://sphinxdocs.ansys.com/version/stable/index.html">Ansys Sphinx Theme</a> 0.9.9.
-    <br>Last updated on <span id="date"></span></br>
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.10.0. <br />Last updated on
+  <span id="date"></span>
 </p>
 <script>
-  var options = { day: 'numeric', month: 'long', year: 'numeric' };
+  var options = { day: "numeric", month: "long", year: "numeric" };
   var lastModifiedDate = new Date(document.lastModified);
-  var date = lastModifiedDate.toLocaleDateString('en-US', options);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
   document.getElementById("date").innerHTML = date;
 </script></div>
       

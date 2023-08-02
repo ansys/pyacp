@@ -34,9 +34,11 @@
       :toctree:
    
       ModelingPly.active
+      ModelingPly.elemental_data
       ModelingPly.global_ply_nr
       ModelingPly.id
       ModelingPly.name
+      ModelingPly.nodal_data
       ModelingPly.number_of_layers
       ModelingPly.oriented_selection_sets
       ModelingPly.ply_angle

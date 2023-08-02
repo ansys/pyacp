@@ -76,11 +76,14 @@
       Model.draping_offset_correction
       Model.edge_sets
       Model.element_sets
+      Model.elemental_data
       Model.fabrics
       Model.materials
+      Model.mesh
       Model.minimum_analysis_ply_thickness
       Model.modeling_groups
       Model.name
+      Model.nodal_data
       Model.oriented_selection_sets
       Model.relative_thickness_tolerance
       Model.rosettes

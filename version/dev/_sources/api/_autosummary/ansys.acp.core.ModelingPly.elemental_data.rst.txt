@@ -1,0 +1,6 @@
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.elemental_data

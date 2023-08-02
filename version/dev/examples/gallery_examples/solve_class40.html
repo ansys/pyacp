@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Basic PyACP Example &#8212; PyACP</title>
-    
+
   
   
   
@@ -42,10 +42,9 @@
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+ 
+<link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
 
-    
-        <link href="../../_static/css/breadcrumbs.css" rel="stylesheet">
-    
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx_highlight.js"></script>
@@ -90,7 +89,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
 
-  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<!-- If there is no MiliSearch enabled, use the PyData search -->
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -106,11 +105,9 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-</div>
+</form></div>
   </div>
-  
-    
+   
     <nav class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
@@ -245,9 +242,6 @@ document.write(`
 </div>
 
     </nav>
-  
-
-    
     <div id="announcement_msg"></div>
 <script>
   fetch("announcement.html")
@@ -257,36 +251,32 @@ document.write(`
       }
       return response.text();
     })
-    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
     .catch((error) => console.error(`Fetch problem: ${error.message}`));
-</script>
-    
-
-    
-    <div class="container-xl">
-    <div class="row">
-        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
-        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
-          
+</script>   <div class="container-xl">
+  <div class="row">
+    <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+    <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
-      <ul>
-    
-        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
-    
-    
-        <li class="nav-item nav-item-0"><a href="../../index.html">PyACP</a> » </li>
-    
-
+      <ul> 
+<li class="nav-item nav-item-additional-breadcrumb">
+  <a href="https://docs.pyansys.com/">PyAnsys</a> » 
+</li>
+ 
+<li class="nav-item nav-item-0">
+  <a href="../../index.html">PyACP</a> » 
+</li>
+ 
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Examples</a> » </li>
         <li class="nav-item nav-item-this"><a href="">Basic PyACP Example</a></li> 
       </ul>
-    </div>
-        </div>
+    </div></div>
   </div>
 </div>
-    
-
+ 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
@@ -424,6 +414,8 @@ directory).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
+
+<span class="kn">import</span> <span class="nn">pyvista</span>
 </pre></div>
 </div>
 <p>Import Ansys libraries</p>
@@ -467,7 +459,12 @@ directory).</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Model with name &#39;ACP Lay-up Model&#39;&gt;
 </pre></div>
 </div>
-</section>
+<p>Visualize the loaded mesh</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">()</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_solve_class40_001.png" srcset="../../_images/sphx_glr_solve_class40_001.png" alt="solve class40" class = "sphx-glr-single-img"/></section>
 <section id="build-composite-lay-up">
 <h2>Build Composite Lay-up<a class="headerlink" href="#build-composite-lay-up" title="Permalink to this heading">#</a></h2>
 <p>Create the model (unit system is MPA)</p>
@@ -555,7 +552,22 @@ directory).</p>
 <span class="p">)</span>
 </pre></div>
 </div>
-</section>
+<p>Show the orientations on the hull OSS.</p>
+<p>Note that the Model must be updated before the orientations are available.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span>
+    <span class="n">oss_hull</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(</span>
+        <span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">component</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">ElementalDataType</span><span class="o">.</span><span class="n">ORIENTATION</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">culling_factor</span><span class="o">=</span><span class="mi">5</span>
+    <span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_solve_class40_002.png" srcset="../../_images/sphx_glr_solve_class40_002.png" alt="solve class40" class = "sphx-glr-single-img"/></section>
 <section id="modeling-plies">
 <h3>Modeling Plies<a class="headerlink" href="#modeling-plies" title="Permalink to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">ply_material</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span> <span class="n">oss</span><span class="p">):</span>
@@ -608,7 +620,30 @@ directory).</p>
 19
 </pre></div>
 </div>
-</section>
+<p>Show the thickness of one of the plies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<span class="n">modeling_ply</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;deck&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">[</span><span class="s2">&quot;eglass_ud_02mm_0.5&quot;</span><span class="p">]</span>
+<span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(</span>
+    <span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">component</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">ElementalDataType</span><span class="o">.</span><span class="n">THICKNESS</span>
+<span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_solve_class40_003.png" srcset="../../_images/sphx_glr_solve_class40_003.png" alt="solve class40" class = "sphx-glr-single-img"/><p>Show the ply offsets, scaled by a factor of 200</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plotter</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span>
+    <span class="n">modeling_ply</span><span class="o">.</span><span class="n">nodal_data</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(</span>
+        <span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">component</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">NodalDataType</span><span class="o">.</span><span class="n">PLY_OFFSET</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mi">200</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_solve_class40_004.png" srcset="../../_images/sphx_glr_solve_class40_004.png" alt="solve class40" class = "sphx-glr-single-img"/><p>Show the thickness of the entire lay-up</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">component</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">ElementalDataType</span><span class="o">.</span><span class="n">THICKNESS</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_solve_class40_005.png" srcset="../../_images/sphx_glr_solve_class40_005.png" alt="solve class40" class = "sphx-glr-single-img"/></section>
 </section>
 <section id="write-out-acp-model">
 <h2>Write out ACP Model<a class="headerlink" href="#write-out-acp-model" title="Permalink to this heading">#</a></h2>
@@ -660,7 +695,7 @@ directory).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     11:43:22  JUL 18, 2023 CP=      0.431\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.529\n\n\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     16:13:09  AUG 02, 2023 CP=      0.548\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.701\n\n\n&#39;
 </pre></div>
 </div>
 <p>Solve the model</p>
@@ -671,7 +706,7 @@ directory).</p>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       0.546   TIME= 11:43:23
+ *** NOTE ***                            CP =       0.733   TIME= 16:13:09
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -696,7 +731,7 @@ directory).</p>
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
  Ansys Mechanical Enterprise
- 00000000  VERSION=LINUX x64     11:43:23  JUL 18, 2023 CP=      0.585
+ 00000000  VERSION=LINUX x64     16:13:09  AUG 02, 2023 CP=      0.791
 
 
 
@@ -712,14 +747,14 @@ directory).</p>
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       0.587   TIME= 11:43:23
+ *** NOTE ***                            CP =       0.793   TIME= 16:13:09
  Poisson&#39;s ratio PR input has been converted to NU input.
 
- *** NOTE ***                            CP =       0.593   TIME= 11:43:23
+ *** NOTE ***                            CP =       0.806   TIME= 16:13:09
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       0.594   TIME= 11:43:23
+ *** NOTE ***                            CP =       0.807   TIME= 16:13:09
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -737,7 +772,7 @@ directory).</p>
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       0.682   TIME= 11:43:23
+ *** NOTE ***                            CP =       0.957   TIME= 16:13:09
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -786,10 +821,10 @@ directory).</p>
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      3.082   0.000776
-        2        88  BEAM188       0.005   0.000055
-        3        22  SHELL181      0.005   0.000245
- Time at end of element matrix formulation CP = 3.80151296.
+        1      3973  SHELL181      4.873   0.001226
+        2        88  BEAM188       0.010   0.000114
+        3        22  SHELL181      0.008   0.000385
+ Time at end of element matrix formulation CP = 5.89766884.
 
  SPARSE MATRIX DIRECT SOLVER.
   Number of equations =       24096,    Maximum wavefront =     66
@@ -797,7 +832,7 @@ directory).</p>
   Memory required for in-core solution     =    58.542 MB
   Memory required for out-of-core solution =    24.642 MB
 
- *** NOTE ***                            CP =       3.878   TIME= 11:43:26
+ *** NOTE ***                            CP =       6.012   TIME= 16:13:14
  The Sparse Matrix Solver is currently running in the in-core memory
  mode.  This memory mode uses the most amount of memory in order to
  avoid using the hard drive as much as possible, which most often
@@ -812,16 +847,16 @@ directory).</p>
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      6.774   0.001705
-        2        88  BEAM188       0.010   0.000110
-        3        22  SHELL181      0.009   0.000429
+        1      3973  SHELL181     11.123   0.002800
+        2        88  BEAM188       0.022   0.000254
+        3        22  SHELL181      0.018   0.000822
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      0.068   0.000017
-        2        88  BEAM188       0.002   0.000018
-        3        22  SHELL181      0.000   0.000017
+        1      3973  SHELL181      0.164   0.000041
+        2        88  BEAM188       0.004   0.000045
+        3        22  SHELL181      0.001   0.000033
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
  *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -843,7 +878,7 @@ directory).</p>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmp_dir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_001.png" srcset="../../_images/sphx_glr_solve_class40_001.png" alt="solve class40" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/runner/.cache/pypoetry/virtualenvs/ansys-acp-core-O77fA6pn-py3.8/lib/python3.8/site-packages/pyvista/themes.py:2969: PyVistaDeprecationWarning: `DefaultTheme` has been deprecated and renamed `Theme`. Further, `DocumentTheme` is now the PyVista default theme.
+<img src="../../_images/sphx_glr_solve_class40_006.png" srcset="../../_images/sphx_glr_solve_class40_006.png" alt="solve class40" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/runner/.cache/pypoetry/virtualenvs/ansys-acp-core-O77fA6pn-py3.8/lib/python3.8/site-packages/pyvista/themes.py:2969: PyVistaDeprecationWarning: `DefaultTheme` has been deprecated and renamed `Theme`. Further, `DocumentTheme` is now the PyVista default theme.
   warnings.warn(
 
 [&#39;file.rst&#39;]
@@ -909,7 +944,7 @@ automatically loads the composites plugin.</p>
 <span class="n">irf_field</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_002.png" srcset="../../_images/sphx_glr_solve_class40_002.png" alt="solve class40" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  35.546 seconds)</p>
+<img src="../../_images/sphx_glr_solve_class40_007.png" srcset="../../_images/sphx_glr_solve_class40_007.png" alt="solve class40" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  1.379 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-solve-class40-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/9534ac29e0bc2250f1fc6a51c9f799b1/solve_class40.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">solve_class40.py</span></code></a></p>
@@ -1006,13 +1041,17 @@ automatically loads the composites plugin.</p>
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-    Built with the <a href="https://sphinxdocs.ansys.com/version/stable/index.html">Ansys Sphinx Theme</a> 0.9.9.
-    <br>Last updated on <span id="date"></span></br>
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.10.0. <br />Last updated on
+  <span id="date"></span>
 </p>
 <script>
-  var options = { day: 'numeric', month: 'long', year: 'numeric' };
+  var options = { day: "numeric", month: "long", year: "numeric" };
   var lastModifiedDate = new Date(document.lastModified);
-  var date = lastModifiedDate.toLocaleDateString('en-US', options);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
   document.getElementById("date").innerHTML = date;
 </script></div>
       

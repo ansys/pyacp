@@ -34,8 +34,10 @@
       :toctree:
    
       OrientedSelectionSet.element_sets
+      OrientedSelectionSet.elemental_data
       OrientedSelectionSet.id
       OrientedSelectionSet.name
+      OrientedSelectionSet.nodal_data
       OrientedSelectionSet.orientation_direction
       OrientedSelectionSet.orientation_point
       OrientedSelectionSet.rosette_selection_method
