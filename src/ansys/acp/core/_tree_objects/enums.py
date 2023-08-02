@@ -83,6 +83,11 @@ __all__ = [
     "ElementalDataType",
     mesh_query_pb2.ElementalDataType,
     module=__name__,
+    # The enum value names in the '.proto' definition are prefixed with 'ELEMENT_',
+    # since they must be unique within the 'mesh_query.proto' file and would
+    # otherwise conflict with the 'NodalDataType' enum.
+    # For the Python enum, we remove the prefix and convert the values to
+    # lowercase.
     key_converter=lambda val: val.split("_", 1)[1],
     value_converter=lambda val: val.split("_", 1)[1].lower(),
 )
@@ -94,6 +99,11 @@ __all__ = [
     "NodalDataType",
     mesh_query_pb2.NodalDataType,
     module=__name__,
+    # The enum value names in the '.proto' definition are prefixed with 'NODE_',
+    # since they must be unique within the 'mesh_query.proto' file and would
+    # otherwise conflict with the 'ElementalDataType' enum.
+    # For the Python enum, we remove the prefix and convert the values to
+    # lowercase.
     key_converter=lambda val: val.split("_", 1)[1],
     value_converter=lambda val: val.split("_", 1)[1].lower(),
 )
