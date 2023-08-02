@@ -126,7 +126,7 @@ class StubStore(Generic[StubT]):
 
 
 @mark_grpc_properties
-class NameTreeObject(GrpcObjectBase):
+class NamedTreeObject(GrpcObjectBase):
     """Implements the 'name' attribute for tree objects."""
 
     name = grpc_data_property("info.name")
@@ -136,7 +136,7 @@ class NameTreeObject(GrpcObjectBase):
         return f"<{type(self).__name__} with name '{self.name}'>"
 
 
-class TreeObject(TreeObjectBase, NameTreeObject):
+class TreeObject(TreeObjectBase, NamedTreeObject):
     @abstractmethod
     def _create_stub(self) -> ResourceStub:
         ...
@@ -173,7 +173,7 @@ class TreeObject(TreeObjectBase, NameTreeObject):
         return self._stub_store.get(self._is_stored)
 
 
-class ReadOnlyTreeObject(TreeObjectBase, NameTreeObject):
+class ReadOnlyTreeObject(TreeObjectBase, NamedTreeObject):
     def __init__(self: ReadOnlyTreeObject, name: str = "") -> None:
         super().__init__(name=name)
         self._stub_store = StubStore(self._create_stub)

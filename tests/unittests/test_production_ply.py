@@ -1,3 +1,5 @@
+from grpc import RpcError
+from grpc._channel import _InactiveRpcError
 import pytest
 
 from ansys.acp.core import Model, ModelingPly
@@ -21,7 +23,7 @@ class TestProductionPly(TreeObjectTesterReadOnly):
     COLLECTION_NAME = "production_plies"
 
     @pytest.fixture
-    def properties(self, parent_model: Model):
+    def properties_3_layers(self, parent_model: Model):
         first_fabric = parent_model.fabrics["Fabric.1"]
         return {
             "ProductionPly": {
@@ -51,16 +53,38 @@ class TestProductionPly(TreeObjectTesterReadOnly):
 
         return object_collection, object_names, object_ids
 
-    def test_properties(self, parent_object: ModelingPly, parent_model: Model, properties):
+    def test_properties(self, parent_object: ModelingPly, parent_model: Model, properties_3_layers):
         parent_object.number_of_layers = 3
         parent_model.update()
-        for ply_name, ply_properties in properties.items():
+        for ply_name, ply_properties in properties_3_layers.items():
             ply_obj = parent_object.production_plies[ply_name]
             for prop, value in ply_properties.items():
                 assert getattr(ply_obj, prop) == value
 
-        for ply_name, ply_properties in properties.items():
+        for ply_name, ply_properties in properties_3_layers.items():
             ply_obj = parent_object.production_plies[ply_name]
             for prop, value in ply_properties.items():
                 with pytest.raises(AttributeError):
                     setattr(ply_obj, prop, value)
+
+    def test_after_update(
+        self, parent_object: ModelingPly, parent_model: Model, properties_3_layers
+    ):
+        # Test that list of production plies stays up-to-date
+        # after update that removes production plies.
+        # Check that requesting properties on a removed production
+        # ply throws the expected error
+        parent_object.number_of_layers = 3
+        parent_model.update()
+        for ply_name, ply_properties in properties_3_layers.items():
+            ply_obj = parent_object.production_plies[ply_name]
+            for prop, value in ply_properties.items():
+                assert getattr(ply_obj, prop) == value
+
+        production_ply_that_gets_removed_on_update = parent_object.production_plies["ProductionPly"]
+        parent_object.number_of_layers = 1
+        parent_model.update()
+        assert len(parent_object.production_plies) == 1
+
+        with pytest.raises(RpcError, match="Entity not found") as ex:
+            _ = production_ply_that_gets_removed_on_update.status
