@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1689680790640,
+  "lastUpdate": 1690992845600,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -3896,6 +3896,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023347664491217017",
             "extra": "mean: 38.99095073913249 msec\nrounds: 23"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8ed07ce9742f19940c3b52cea866b7ed7a46724b",
+          "message": "Expose mesh data, add plotting capability. (#231)\n\nAdd `elemental_data` and `nodal_data` attributes to tree objects, which fetch the\r\ndata from the mesh query API.\r\n\r\nThe returned objects have a method `to_pyvista`, to convert to a plottable object. Currently,\r\nthis requires the `Model.mesh` to be passed in; we may consider how this can be avoided.\r\n\r\nOptionally, a `component` (name to be improved) can be passed, to select which data to\r\nadd to the PyVista mesh. If a vector component is selected, the data is converted to arrows.\r\n\r\nThe possible string constants for `component` are exposed in the `ElementalDataType` and\r\n`NodalDataType` enums, which are auto-converted from their protobuf equivalent.\r\n\r\nHelper classes and functions for wrapping mesh query data are defined in `_mesh_data.py`:\r\n\r\n- a base class `MeshDataBase` which implements `to_pyvista`, as well as the construction\r\n  from a mesh query response\r\n- base classes `ElementalData` and `NodalData`, which are the classes to be used to define\r\n  the mesh data classes for each tree object type\r\n- property helpers `elemental_data_property` and `nodal_data_property`, for defining\r\n  the `elemental_data` and `nodal_data` properties, respectively.\r\n\r\n\r\nThe mesh data itself is exposed in a separate `mesh` on the `Model`. Its class `MeshData`\r\nalso implements a `to_pyvista` method.\r\n\r\nAdd a `__slots__` class attribute in some places where it was missing, to disallow setting\r\nattributes that are not explicitly defined on tree objects.",
+          "timestamp": "2023-08-02T18:08:33+02:00",
+          "tree_id": "db9ffa31a2269480b7e1374a489acfadbe9a442a",
+          "url": "https://github.com/ansys-internal/pyacp/commit/8ed07ce9742f19940c3b52cea866b7ed7a46724b"
+        },
+        "date": 1690992842028,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 5.274697901013739,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00460094107896553",
+            "extra": "mean: 189.58431720000704 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.237483620668974,
+            "unit": "iter/sec",
+            "range": "stddev: 0.006714096267067295",
+            "extra": "mean: 446.93064599999843 msec\nrounds: 2"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.3702241892689194,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.7010660809999933 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04112390580307352,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.316756408999993 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 3.251340110001192,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005380249629904136",
+            "extra": "mean: 307.5654856666574 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.7034569487488133,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.4215511010000341 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.08263213403855763,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 12.10182953200001 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 947.3248783937535,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0005161914439535643",
+            "extra": "mean: 1.0556040729085048 msec\nrounds: 1111"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 347.9926995698549,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000461195409414361",
+            "extra": "mean: 2.8736235019759757 msec\nrounds: 253"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 46.59907364245739,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001990485404682183",
+            "extra": "mean: 21.459654062497908 msec\nrounds: 48"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.960386310282433,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00016330300112877554",
+            "extra": "mean: 201.59720180000704 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 765.202043754203,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00038147883584026634",
+            "extra": "mean: 1.3068443924872977 msec\nrounds: 772"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 207.6832837853777,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002459688138422801",
+            "extra": "mean: 4.815024020100777 msec\nrounds: 199"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.489741467923455,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00017063477931365524",
+            "extra": "mean: 39.23146891302958 msec\nrounds: 23"
           }
         ]
       }
