@@ -41,7 +41,7 @@ class TreeObjectBase(GrpcObjectBase):
     Base class for ACP tree objects.
     """
 
-    __slots__ = ("_channel_store", "_pb_object")
+    __slots__: Iterable[str] = ("_channel_store", "_pb_object")
 
     _COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: type[ObjectInfo]
@@ -254,7 +254,7 @@ class TreeObjectAttributeReadOnly(GrpcObjectBase):
     object's protobuf object (read-only).
     """
 
-    __slots__ = ("_parent_object", "_attribute_path")
+    __slots__: Iterable[str] = ("_parent_object", "_attribute_path")
 
     def __init__(
         self,
@@ -316,7 +316,7 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly):
     object's protobuf object (read-write).
     """
 
-    __slots__ = ("_parent_object", "_attribute_path", "_pb_object_store")
+    __slots__: Iterable[str] = ("_parent_object", "_attribute_path", "_pb_object_store")
 
     @classmethod
     @abstractmethod

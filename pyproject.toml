@@ -47,7 +47,7 @@ ansys-mapdl-core = { version = ">=0.62.1,<1", optional = true }
 # TODO: Revert back to using a released version of ansys-dpf-composites once a version '>0.2.0' is released.
 ansys-dpf-composites =  { git = "https://github.com/ansys/pydpf-composites.git", branch = "main", optional = true }
 ansys-dpf-core = { version = ">=0.7,<1", optional = true }
-pyvista = { version = ">=0.36", optional = true }
+pyvista = ">=0.40"
 
 [tool.poetry.group.dev]
 optional = true
@@ -67,6 +67,7 @@ ansys-sphinx-theme = "^0"
 pypandoc = "^1.10"
 sphinx-gallery = "^0.13.0"
 ipykernel = "^6.22.0"
+pyvista = { version = ">=0.40", extras=["jupyter"] }
 
 # Repeat optional dependencies from the main group which are
 # included in the 'examples' extra. This is done s.t. the install
@@ -74,7 +75,6 @@ ipykernel = "^6.22.0"
 ansys-mapdl-core = ">=0.62.1,<1"
 ansys-dpf-composites = ">=0.1,<1"
 ansys-dpf-core = ">=0.7,<1"
-pyvista = ">=0.36"
 
 [tool.poetry.group.test]
 optional = true
@@ -89,7 +89,7 @@ hypothesis = "^6.68.2"
 [tool.poetry.extras]
 # For the examples, we keep an extra to simplify installing these dependencies for the
 # end user.
-examples = ["pyvista", "ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites"]
+examples = ["ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites"]
 
 [tool.poetry.plugins."ansys.tools.local_product_launcher.launcher"]
 "ACP.direct" = "ansys.acp.core._server.direct:DirectLauncher"

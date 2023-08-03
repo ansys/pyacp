@@ -1,6 +1,10 @@
 from __future__ import annotations
 
+import dataclasses
 from typing import Container, Iterable
+
+import numpy as np
+import numpy.typing as npt
 
 from ansys.api.acp.v0 import element_set_pb2, element_set_pb2_grpc
 
@@ -10,11 +14,28 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
+from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
 
-__all__ = ["ElementSet"]
+__all__ = [
+    "ElementSet",
+    "ElementSetElementalData",
+    "ElementSetNodalData",
+]
+
+
+@dataclasses.dataclass
+class ElementSetElementalData(ElementalData):
+    """Represents elemental data for an Element Set."""
+
+    normal: npt.NDArray[np.float64]
+
+
+@dataclasses.dataclass
+class ElementSetNodalData(NodalData):
+    """Represents nodal data for an Element Set."""
 
 
 @mark_grpc_properties
@@ -57,3 +78,6 @@ class ElementSet(CreatableTreeObject, IdTreeObject):
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_int_array,
     )
+
+    elemental_data = elemental_data_property(ElementSetElementalData)
+    nodal_data = nodal_data_property(ElementSetNodalData)
