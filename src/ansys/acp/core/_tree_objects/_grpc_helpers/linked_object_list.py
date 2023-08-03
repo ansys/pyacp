@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 import sys
-from typing import Any, Callable, Generic, Iterable, Iterator, List, Type, TypeVar, Union, cast
+from typing import Any, Callable, Iterable, Iterator, List, MutableSequence, TypeVar, cast, overload
 
 from grpc import Channel
 import numpy as np
@@ -15,7 +17,7 @@ ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
 __all__ = ["LinkedObjectList", "define_linked_object_list"]
 
 
-class LinkedObjectList(Generic[ValueT]):
+class LinkedObjectList(MutableSequence[ValueT]):
     def __init__(
         self,
         *,
@@ -30,7 +32,7 @@ class LinkedObjectList(Generic[ValueT]):
             Callable[[], List[ResourcePath]], lambda: getter(parent_object)
         )
 
-        def set_resourcepath_list(value: List[ResourcePath]) -> None:
+        def set_resourcepath_list(value: list[ResourcePath]) -> None:
             if not all([rp.value for rp in value]):
                 # Check for empty resource paths
                 raise RuntimeError("Cannot link to unstored objects.")
@@ -44,24 +46,42 @@ class LinkedObjectList(Generic[ValueT]):
     def __len__(self) -> int:
         return len(self._get_resourcepath_list())
 
-    def __getitem__(self, index: Union[int, slice]) -> Union[ValueT, List[ValueT]]:
+    @overload
+    def __getitem__(self, index: int) -> ValueT:
+        ...
+
+    @overload
+    def __getitem__(self, index: slice) -> list[ValueT]:
+        ...
+
+    def __getitem__(self, index: int | slice) -> ValueT | list[ValueT]:
         resource_path = self._get_resourcepath_list()[index]
         if not isinstance(resource_path, list):
             assert isinstance(resource_path, ResourcePath)
             return self._object_constructor(resource_path)
         return [self._object_constructor(item) for item in resource_path]
 
-    def __setitem__(self, key: Union[int, slice], value: Union[ValueT, List[ValueT]]) -> None:
+    @overload
+    def __setitem__(self, key: int, value: ValueT) -> None:
+        ...
+
+    @overload
+    def __setitem__(self, key: slice, value: Iterable[ValueT]) -> None:
+        ...
+
+    def __setitem__(self, key: int | slice, value: ValueT | Iterable[ValueT]) -> None:
         resource_path_list = self._get_resourcepath_list()
         if isinstance(value, TreeObject):
-            key = cast(int, key)
+            if not isinstance(key, int):
+                raise TypeError("Cannot assign to a slice with a single object.")
             resource_path_list[key] = value._resource_path
         else:
-            key = cast(slice, key)
+            if not isinstance(key, slice):
+                raise TypeError("Cannot assign to a single index with an iterable.")
             resource_path_list[key] = [item._resource_path for item in value]
         self._set_resourcepath_list(resource_path_list)
 
-    def __delitem__(self, key: Union[int, slice]) -> None:
+    def __delitem__(self, key: int | slice) -> None:
         resource_path_list = self._get_resourcepath_list()
         del resource_path_list[key]
         self._set_resourcepath_list(resource_path_list)
@@ -74,8 +94,10 @@ class LinkedObjectList(Generic[ValueT]):
         resource_path_list = self._get_resourcepath_list()
         yield from (self._object_constructor(item) for item in reversed(resource_path_list))
 
-    def __contains__(self, item: ValueT) -> bool:
-        return item._resource_path in self._get_resourcepath_list()
+    def __contains__(self, item: object) -> bool:
+        return (
+            hasattr(item, "_resource_path") and item._resource_path in self._get_resourcepath_list()
+        )
 
     def append(self, object: ValueT) -> None:
         resource_path_list = self._get_resourcepath_list()
@@ -130,7 +152,7 @@ class LinkedObjectList(Generic[ValueT]):
 ChildT = TypeVar("ChildT", bound=CreatableTreeObject)
 
 
-def define_linked_object_list(attribute_name: str, object_class: Type[ChildT]) -> Any:
+def define_linked_object_list(attribute_name: str, object_class: type[ChildT]) -> Any:
     def getter(self: ValueT) -> LinkedObjectList[ChildT]:
         return LinkedObjectList(
             parent_object=self,
@@ -138,7 +160,7 @@ def define_linked_object_list(attribute_name: str, object_class: Type[ChildT]) -
             object_constructor=object_class._from_resource_path,
         )
 
-    def setter(self: ValueT, value: List[ChildT]) -> None:
+    def setter(self: ValueT, value: list[ChildT]) -> None:
         getter(self)[:] = value
 
     return property(getter).setter(setter)
