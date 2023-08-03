@@ -5,6 +5,7 @@ from ._server import DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode, 
 from ._tree_objects import (
     EdgeSet,
     EdgeSetType,
+    ElementalDataType,
     ElementSet,
     Fabric,
     FabricWithAngle,
@@ -12,6 +13,7 @@ from ._tree_objects import (
     Model,
     ModelingGroup,
     ModelingPly,
+    NodalDataType,
     OrientedSelectionSet,
     Rosette,
     Stackup,
@@ -41,4 +43,6 @@ __all__ = [
     "UnitSystemType",
     "Stackup",
     "FabricWithAngle",
+    "ElementalDataType",
+    "NodalDataType",
 ]

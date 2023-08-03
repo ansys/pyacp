@@ -1,16 +1,16 @@
+from __future__ import annotations
+
 import sys
 from typing import (
     Any,
     Callable,
-    Generic,
     Iterable,
     Iterator,
-    List,
+    MutableSequence,
     Protocol,
-    Type,
     TypeVar,
-    Union,
     cast,
+    overload,
 )
 
 from google.protobuf.message import Message
@@ -50,12 +50,12 @@ class GenericEdgePropertyType(Protocol):
 ValueT = TypeVar("ValueT", bound=GenericEdgePropertyType)
 
 
-class EdgePropertyList(Generic[ValueT]):
+class EdgePropertyList(MutableSequence[ValueT]):
     def __init__(
         self,
         *,
         parent_object: CreatableTreeObject,
-        object_type: Type[GenericEdgePropertyType],
+        object_type: type[GenericEdgePropertyType],
         attribute_name: str,
         from_pb_constructor: Callable[[CreatableTreeObject, Message, Callable[[], None]], ValueT],
     ) -> None:
@@ -73,7 +73,7 @@ class EdgePropertyList(Generic[ValueT]):
         )
 
         # get initial object list
-        def get_object_list_from_parent_object() -> List[ValueT]:
+        def get_object_list_from_parent_object() -> list[ValueT]:
             obj_list = []
             for item in getter(parent_object):
                 obj_list.append(self._object_constructor(item))
@@ -81,7 +81,7 @@ class EdgePropertyList(Generic[ValueT]):
 
         self._object_list = get_object_list_from_parent_object()
 
-        def set_object_list(value: List[ValueT]) -> None:
+        def set_object_list(value: list[ValueT]) -> None:
             pb_obj_list = []
             for item in value:
                 if not item._check():
@@ -99,24 +99,42 @@ class EdgePropertyList(Generic[ValueT]):
     def __len__(self) -> int:
         return len(self._object_list)
 
-    def __getitem__(self, index: Union[int, slice]) -> Union[ValueT, List[ValueT]]:
+    @overload
+    def __getitem__(self, index: int) -> ValueT:
+        ...
+
+    @overload
+    def __getitem__(self, index: slice) -> list[ValueT]:
+        ...
+
+    def __getitem__(self, index: int | slice) -> ValueT | list[ValueT]:
         obj_list = self._object_list[index]
         if not isinstance(obj_list, list):
             assert isinstance(obj_list, self._object_type)
             return cast(ValueT, obj_list)
         return [item for item in obj_list]
 
-    def __setitem__(self, key: Union[int, slice], value: Union[ValueT, List[ValueT]]) -> None:
+    @overload
+    def __setitem__(self, key: int, value: ValueT) -> None:
+        ...
+
+    @overload
+    def __setitem__(self, key: slice, value: Iterable[ValueT]) -> None:
+        ...
+
+    def __setitem__(self, key: int | slice, value: ValueT | Iterable[ValueT]) -> None:
         obj_list = self._object_list
         if isinstance(value, Iterable):
-            key = cast(slice, key)
+            if not isinstance(key, slice):
+                raise TypeError("Cannot assign to a single index with an iterable.")
             obj_list[key] = [item for item in value]
         else:
-            key = cast(int, key)
+            if not isinstance(key, int):
+                raise TypeError("Cannot assign to a slice with a single object.")
             obj_list[key] = value
         self._set_object_list(obj_list)
 
-    def __delitem__(self, key: Union[int, slice]) -> None:
+    def __delitem__(self, key: int | slice) -> None:
         obj_list = self._object_list
         del obj_list[key]
         self._set_object_list(obj_list)
@@ -129,7 +147,7 @@ class EdgePropertyList(Generic[ValueT]):
         obj_list = self._object_list
         yield from (item for item in reversed(obj_list))
 
-    def __contains__(self, item: ValueT) -> bool:
+    def __contains__(self, item: object) -> bool:
         return item in self._object_list
 
     def append(self, value: ValueT) -> None:
@@ -198,7 +216,7 @@ class EdgePropertyList(Generic[ValueT]):
 
 
 def define_edge_property_list(
-    attribute_name: str, value_type: Type[GenericEdgePropertyType]
+    attribute_name: str, value_type: type[GenericEdgePropertyType]
 ) -> Any:
     def getter(self: CreatableTreeObject) -> EdgePropertyList[GenericEdgePropertyType]:
         return EdgePropertyList(
@@ -208,7 +226,7 @@ def define_edge_property_list(
             from_pb_constructor=value_type._from_pb_object,
         )
 
-    def setter(self: CreatableTreeObject, value: List[GenericEdgePropertyType]) -> None:
+    def setter(self: CreatableTreeObject, value: list[GenericEdgePropertyType]) -> None:
         getter(self)[:] = value
 
     return property(getter).setter(setter)
