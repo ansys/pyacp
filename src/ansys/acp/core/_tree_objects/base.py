@@ -127,6 +127,8 @@ class StubStore(Generic[StubT]):
 
 @mark_grpc_properties
 class NamedTreeObject(GrpcObjectBase):
+    __slots__: Iterable[str] = tuple()
+
     """Implements the 'name' attribute for tree objects."""
 
     name = grpc_data_property("info.name")
@@ -137,6 +139,8 @@ class NamedTreeObject(GrpcObjectBase):
 
 
 class TreeObject(TreeObjectBase, NamedTreeObject):
+    __slots__: Iterable[str] = ("_stub_store",)
+
     @abstractmethod
     def _create_stub(self) -> ResourceStub:
         ...
@@ -241,6 +245,8 @@ class CreatableTreeObject(TreeObject):
 
 class IdTreeObject(TreeObjectBase):
     """Implements the 'id' attribute for tree objects."""
+
+    __slots__: Iterable[str] = tuple()
 
     id = grpc_data_property_read_only("info.id")
 
