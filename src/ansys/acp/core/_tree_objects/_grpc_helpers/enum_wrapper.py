@@ -10,6 +10,8 @@ def wrap_to_string_enum(
     class_name: str,
     proto_enum: Any,
     module: str,
+    *,
+    key_converter: Callable[[str], str] = lambda val: val,
     value_converter: Callable[[str], str] = lambda val: val.lower(),
 ) -> Any:
     """Create a string Enum with the same keys as the given protobuf Enum.
@@ -27,8 +29,9 @@ def wrap_to_string_enum(
     to_pb_conversion_dict: Dict[Any, int] = {}
     from_pb_conversion_dict: Dict[int, Any] = {}
     for key, pb_value in proto_enum.items():
+        enum_key = key_converter(key)
         enum_value = value_converter(key)
-        fields.append((key, enum_value))
+        fields.append((enum_key, enum_value))
         to_pb_conversion_dict[enum_value] = pb_value
         from_pb_conversion_dict[pb_value] = enum_value
 

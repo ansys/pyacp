@@ -40,6 +40,7 @@ ansys-api-acp = { git = "https://github.com/ansys-internal/ansys-api-acp.git",  
 ansys-tools-path = "^0.2.3"
 ansys-tools-local-product-launcher = { git = "https://github.com/ansys-internal/ansys-tools-local-product-launcher.git", branch = "main" }
 ansys-tools-filetransfer = { git = "https://github.com/ansys-internal/ansys-tools-filetransfer.git", branch = "main" }
+pyvista = ">=0.40.2"
 
 # Dependencies for the examples. Update also the 'dev' group when
 # these are updated.
@@ -47,7 +48,6 @@ ansys-mapdl-core = { version = ">=0.62.1,<1", optional = true }
 # TODO: Revert back to using a released version of ansys-dpf-composites once a version '>0.2.0' is released.
 ansys-dpf-composites =  { git = "https://github.com/ansys/pydpf-composites.git", branch = "main", optional = true }
 ansys-dpf-core = { version = ">=0.7,<1", optional = true }
-pyvista = { version = ">=0.40", optional = true }
 
 [tool.poetry.group.dev]
 optional = true
@@ -89,7 +89,7 @@ hypothesis = "^6.68.2"
 [tool.poetry.extras]
 # For the examples, we keep an extra to simplify installing these dependencies for the
 # end user.
-examples = ["pyvista", "ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites"]
+examples = ["ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites"]
 
 [tool.poetry.plugins."ansys.tools.local_product_launcher.launcher"]
 "ACP.direct" = "ansys.acp.core._server.direct:DirectLauncher"
