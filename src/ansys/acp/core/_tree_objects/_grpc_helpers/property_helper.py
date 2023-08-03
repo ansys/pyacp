@@ -12,7 +12,7 @@ from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
-from .protocols import Editable, Gettable, GrpcObjectBase, ObjectInfo
+from .protocols import Editable, GrpcObjectBase, ObjectInfo, Readable
 
 _TO_PROTOBUF_T = Callable[[Any], Any]
 _FROM_PROTOBUF_T = Callable[[Any], Any]
@@ -49,12 +49,12 @@ class CreatableFromResourcePath(Protocol):
         ...
 
 
-def grpc_linked_object_getter(name: str) -> Callable[[Gettable], Any]:
+def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
     """
     Creates a getter method which obtains the linked server object
     """
 
-    def inner(self: Gettable) -> CreatableFromResourcePath | None:
+    def inner(self: Readable) -> CreatableFromResourcePath | None:
         #  Import here to avoid circular references. Cannot use the registry before
         #  all the object have been imported.
         from ..object_registry import object_registry
@@ -76,13 +76,13 @@ def grpc_linked_object_getter(name: str) -> Callable[[Gettable], Any]:
     return inner
 
 
-def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[Gettable], Any]:
+def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[Readable], Any]:
     """
     Creates a getter method which obtains the server object via the gRPC
     Get endpoint.
     """
 
-    def inner(self: Gettable) -> Any:
+    def inner(self: Readable) -> Any:
         self._get_if_stored()
         return from_protobuf(_get_data_attribute(self._pb_object, name))
 

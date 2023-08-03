@@ -26,11 +26,11 @@ from ._grpc_helpers.protocols import (
     CreatableResourceStub,
     CreateRequest,
     Editable,
-    Gettable,
+    EditableAndReadableResourceStub,
     GrpcObjectBase,
     ObjectInfo,
-    ReadOnlyResourceStub,
-    ResourceStub,
+    Readable,
+    ReadableResourceStub,
 )
 
 _T = TypeVar("_T", bound="TreeObjectBase")
@@ -142,7 +142,7 @@ class TreeObject(TreeObjectBase, NamedTreeObject):
     __slots__: Iterable[str] = ("_stub_store",)
 
     @abstractmethod
-    def _create_stub(self) -> ResourceStub:
+    def _create_stub(self) -> EditableAndReadableResourceStub:
         ...
 
     def __init__(self: TreeObject, name: str = "") -> None:
@@ -173,7 +173,7 @@ class TreeObject(TreeObjectBase, NamedTreeObject):
         if self._is_stored:
             self._put()
 
-    def _get_stub(self) -> ResourceStub:
+    def _get_stub(self) -> EditableAndReadableResourceStub:
         return self._stub_store.get(self._is_stored)
 
 
@@ -183,10 +183,10 @@ class ReadOnlyTreeObject(TreeObjectBase, NamedTreeObject):
         self._stub_store = StubStore(self._create_stub)
 
     @abstractmethod
-    def _create_stub(self) -> ReadOnlyResourceStub:
+    def _create_stub(self) -> ReadableResourceStub:
         ...
 
-    def _get_stub(self) -> ReadOnlyResourceStub:
+    def _get_stub(self) -> ReadableResourceStub:
         return self._stub_store.get(self._is_stored)
 
     # Tbd: we could further reduce code duplication by
@@ -265,14 +265,14 @@ class TreeObjectAttributeReadOnly(GrpcObjectBase):
     def __init__(
         self,
         *,
-        _parent_object: Gettable | None = None,
+        _parent_object: Readable | None = None,
         _attribute_path: str | None = None,
     ):
         if _parent_object is None != _attribute_path is None:
             raise TypeError(
                 "Either both '_parent_object' and '_attribute_path' need to be 'None', or neither."
             )
-        self._parent_object: Gettable | None = _parent_object
+        self._parent_object: Readable | None = _parent_object
         self._attribute_path = _attribute_path
 
     def _get(self) -> None:
@@ -359,7 +359,7 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly):
 # Ensure that the ReadOnlyTreeObject satisfies the Gettable interface
 # Tbd: Is there a better way?
 def _gettable_protocol_is_satisfied(obj: ReadOnlyTreeObject) -> None:
-    dummy: Gettable = obj
+    dummy: Readable = obj
 
 
 # Ensure that the TreeObject satisfies the Editable interface

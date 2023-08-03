@@ -12,20 +12,20 @@ from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 
 from ..._utils.resource_paths import join as _rp_join
 from ..base import CreatableTreeObject, TreeObject
-from .protocols import ObjectInfo, ReadOnlyResourceStub, ResourceStub
+from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableResourceStub
 
 ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
 
-__all__ = ["Mapping", "define_mapping"]
+__all__ = ["MutableMapping", "define_mapping"]
 
 
-class ReadOnlyMapping(Generic[ValueT]):
+class Mapping(Generic[ValueT]):
     def __init__(
         self,
         *,
         channel: Channel,
         collection_path: CollectionPath,
-        stub: ReadOnlyResourceStub,
+        stub: ReadableResourceStub,
         object_constructor: Callable[[ObjectInfo, Channel | None], ValueT],
     ) -> None:
         self._collection_path = collection_path
@@ -93,17 +93,17 @@ class ReadOnlyMapping(Generic[ValueT]):
             return default
 
 
-class Mapping(ReadOnlyMapping[ValueT]):
+class MutableMapping(Mapping[ValueT]):
     def __init__(
         self,
         *,
         channel: Channel,
         collection_path: CollectionPath,
-        stub: ResourceStub,
+        stub: EditableAndReadableResourceStub,
         object_constructor: Callable[[ObjectInfo, Channel | None], ValueT],
     ) -> None:
         self._collection_path = collection_path
-        self._stub: ResourceStub = stub
+        self._stub: EditableAndReadableResourceStub = stub
 
         self._channel = channel
         self._object_constructor = object_constructor
@@ -141,10 +141,10 @@ ParentT = TypeVar("ParentT", bound=TreeObject)
 
 
 def get_read_only_collection_property(
-    object_class: type[ValueT], stub_class: type[ReadOnlyResourceStub]
-) -> Callable[[ParentT], ReadOnlyMapping[ValueT]]:
-    def collection_property(self: ParentT) -> ReadOnlyMapping[ValueT]:
-        return ReadOnlyMapping(
+    object_class: type[ValueT], stub_class: type[ReadableResourceStub]
+) -> Callable[[ParentT], Mapping[ValueT]]:
+    def collection_property(self: ParentT) -> Mapping[ValueT]:
+        return Mapping(
             channel=self._channel,
             collection_path=CollectionPath(
                 value=_rp_join(self._resource_path.value, object_class._COLLECTION_LABEL)
@@ -157,7 +157,7 @@ def get_read_only_collection_property(
 
 
 def define_mapping(
-    object_class: type[ValueT], stub_class: type[ResourceStub]
+    object_class: type[ValueT], stub_class: type[EditableAndReadableResourceStub]
 ) -> tuple[Callable[[Arg(ParentT, "self"), KwArg(Any)], ValueT], property]:
     @wraps(object_class.__init__)
     def create_method(self: ParentT, **kwargs: Any) -> ValueT:
@@ -165,8 +165,8 @@ def define_mapping(
         obj.store(parent=self)
         return obj
 
-    def collection_property(self: ParentT) -> Mapping[ValueT]:
-        return Mapping(
+    def collection_property(self: ParentT) -> MutableMapping[ValueT]:
+        return MutableMapping(
             channel=self._channel,
             collection_path=CollectionPath(
                 value=_rp_join(self._resource_path.value, object_class._COLLECTION_LABEL)
