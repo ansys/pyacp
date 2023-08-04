@@ -16,7 +16,7 @@ from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableReso
 
 ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
 
-__all__ = ["MutableMapping", "define_mutable_mapping"]
+__all__ = ["Mapping", "MutableMapping", "define_mutable_mapping"]
 
 
 class Mapping(Generic[ValueT]):
