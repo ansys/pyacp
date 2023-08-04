@@ -16,6 +16,7 @@ from ansys.dpf.composites.failure_criteria import (
 )
 from ansys.dpf.composites.server_helpers import connect_to_or_start_server
 
+
 # Run mechanical docker container: docker run -e ANSYSLMD_LICENSE_FILE=1055@milwinlicense1.win.ansys.com -p 50054:10000 ghcr.io/ansys/mechanical:24.1.0
 #mechanical = pymechanical.launch_mechanical(batch=False, port=50054, start_instance=False)
 mechanical = pymechanical.launch_mechanical(batch=False)
@@ -91,8 +92,8 @@ mg.create_modeling_ply(
         global_ply_nr=0,  # add at the end
     )
 
-ACPH5_FILE = "acp.acph5"
-CDB_FILENAME_OUT = "class40_analysis_model.cdb"
+#ACPH5_FILE = "acp.acph5"
+#CDB_FILENAME_OUT = "class40_analysis_model.cdb"
 COMPOSITE_DEFINITIONS_H5 = "ACPCompositeDefinitions.h5"
 MATML_FILE = "materials.xml"
 
@@ -126,22 +127,14 @@ result = mechanical.run_python_script(import_material_cmd)
 # The second argument for Import is probably the list of mapping files. It is required
 # to pass an empty container if no mapping files are present, otherwise Import will fail.
 import_plies_str = f"""
-clr.AddReference("Ansys.Common.Interop.241")
-external_model_type=Ansys.Common.Interop.DSObjectTypes.DSExternalEnhancedModelType.kEXTERNAL_ENHANCEDMODEL_ASSEMBLEDLAYEREDSECTION
-
-internal_model=Model.InternalObject
-external_model = internal_model.AddExternalEnhancedModel(external_model_type)
-
 str_cont = Ansys.Common.Interop.AnsCoreObjects.AnsBSTRColl()
 str_cont.Add(r"{SETUP_FOLDER_NAME}::{str((output_path / COMPOSITE_DEFINITIONS_H5).resolve())}")
 
 null_cont = Ansys.Common.Interop.AnsCoreObjects.AnsVARIANTColl()
 null_cont.Add(None)
 
-external_model.Import(str_cont, null_cont)
-
-external_model.Update()
-    """
+ACPFuture.Shims.ImportPlies(Model, str_cont, null_cont) 
+"""
 
 result = mechanical.run_python_script(import_plies_str)
 

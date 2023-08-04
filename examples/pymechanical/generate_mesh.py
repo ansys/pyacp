@@ -21,11 +21,15 @@ body.Thickness = Quantity(0.001, "m")
 
 Model.Mesh.GenerateMesh()
 
-internal_model = Model.InternalObject
 geometry_type = Ansys.Common.Interop.DSObjectTypes.DSGeometryType.kSheetGeometry
-bsMeshFilePath=os.path.join(script_dir,"output", "mesh.h5")
+bsMeshFilePath = os.path.join(script_dir, "output", "mesh.h5")
 unit = Ansys.Common.Interop.WBUnitTypes.WBUnitSystemType.WBUST_StandardMKS
-# Todo: unclear why this works only with dsid 0
-#dsid=Model.Analyses[0].ObjectId
-dsid = 0
-internal_model.WriteHDF5TransferFile(geometry_type, bsMeshFilePath, unit, 0)
+
+
+import clr
+import sys
+sys.path.append(os.path.join(script_dir, "acp_future", "bin", "x64", "Debug"))
+clr.AddReference(r"ACPFuture.dll")
+import ACPFuture
+ACPFuture.Shims.ModelExportHDF5TransferFile(Model, bsMeshFilePath, geometry_type, unit)
+

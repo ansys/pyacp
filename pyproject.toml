@@ -76,7 +76,7 @@ ansys-mapdl-core = ">=0.62.1,<1"
 ansys-dpf-composites = ">=0.1,<1"
 ansys-dpf-core = ">=0.7,<1"
 pyvista = ">=0.36"
-#ansys-mechancial-core = ">=0.7.0"
+ansys-mechancial-core = ">=0.7.0"
 
 [tool.poetry.group.test]
 optional = true
