@@ -29,9 +29,10 @@ class _exposed_grpc_property(property):
 
 def mark_grpc_properties(cls: type[GrpcObjectBase]) -> type[GrpcObjectBase]:
     props: list[str] = []
-    # todo: why was the loop through the base classes needed?
-    if hasattr(cls, "_GRPC_PROPERTIES"):
-        props.extend(cls._GRPC_PROPERTIES)
+    # Loop is needed because we otherwise get only the _GRPC_PROPERTIES of one of the base classes.
+    for base_cls in reversed(cls.__bases__):
+        if hasattr(base_cls, "_GRPC_PROPERTIES"):
+            props.extend(base_cls._GRPC_PROPERTIES)
     for key, value in vars(cls).items():
         if isinstance(value, _exposed_grpc_property):
             props.append(key)
@@ -144,11 +145,13 @@ def grpc_data_property(
     and setter make calls to the gRPC Get and Put endpoints to synchronize
     the local object with the remote backend.
     """
-    # Tbd: We don't ensure with types that the property returned here is compatible
-    # with the class on which this property is created. For example:
+    # Note jvonrick August 2023: We don't ensure with types that the property returned here is0
+    # compatible with the class on which this property is created. For example:
     # grpc_data_setter returns callable that expects an editable object as the first argument.
     # But this property can also be added to a class that does not satisfy the Editable
     # Protocol
+    # See the discussion here on why it is hard to have typed properties:
+    # https://github.com/python/typing/issues/985
     return _exposed_grpc_property(grpc_data_getter(name, from_protobuf=from_protobuf)).setter(
         grpc_data_setter(name, to_protobuf=to_protobuf)
     )

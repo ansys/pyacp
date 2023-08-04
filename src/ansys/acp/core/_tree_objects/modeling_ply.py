@@ -62,7 +62,7 @@ class ModelingPlyNodalData(NodalData):
 @mark_grpc_properties
 @register
 class ModelingPly(CreatableTreeObject, IdTreeObject):
-    """Instantiate an Oriented Selection Set.
+    """Instantiate an Modeling Ply.
 
     Parameters
     ----------

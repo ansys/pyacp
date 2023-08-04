@@ -64,9 +64,15 @@ class EditableAndReadableResourceStub(EditableResourceStub, ReadableResourceStub
     ...
 
 
-class CreatableResourceStub(EditableAndReadableResourceStub, Protocol):
+class CreatableResourceStub(Protocol):
     def Create(self, request: CreateRequest) -> ObjectInfo:
         ...
+
+
+class CreatableEditableAndReadableResourceStub(
+    CreatableResourceStub, EditableResourceStub, ReadableResourceStub, Protocol
+):
+    ...
 
 
 class GrpcObjectBase(Protocol):

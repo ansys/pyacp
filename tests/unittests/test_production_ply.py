@@ -9,7 +9,6 @@ from .common.tree_object_tester import TreeObjectTesterReadOnly
 @pytest.fixture
 def parent_model(load_model_from_tempfile):
     with load_model_from_tempfile() as model:
-        # Todo: why is model up-to-date?
         yield model
 
 

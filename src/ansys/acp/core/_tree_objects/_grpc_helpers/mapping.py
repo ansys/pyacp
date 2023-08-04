@@ -16,10 +16,15 @@ from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableReso
 
 ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
 
-__all__ = ["MutableMapping", "define_mapping"]
+__all__ = ["MutableMapping", "define_mutable_mapping"]
 
 
 class Mapping(Generic[ValueT]):
+    """
+    Note: We could derive from collections.abc.Mapping to make sure
+    this class conforms to the Mapping interface.
+    """
+
     def __init__(
         self,
         *,
@@ -156,7 +161,7 @@ def get_read_only_collection_property(
     return collection_property
 
 
-def define_mapping(
+def define_mutable_mapping(
     object_class: type[ValueT], stub_class: type[EditableAndReadableResourceStub]
 ) -> tuple[Callable[[Arg(ParentT, "self"), KwArg(Any)], ValueT], property]:
     @wraps(object_class.__init__)

@@ -21,10 +21,15 @@ __all__ = ["ProductionPly"]
 class ProductionPly(ReadOnlyTreeObject, IdTreeObject):
     """Instantiate a Production Ply.
 
-    Parameters
+    Attributes
     ----------
-    name :
+    name:
         The name of the ProductionPly
+    material:
+        "Material of the production ply."
+    angle:
+        "Angle of the production ply in degrees"
+
     """
 
     __slots__: Iterable[str] = tuple()
