@@ -10,6 +10,7 @@ from pyvista.core.pointset import UnstructuredGrid
 
 from ansys.api.acp.v0 import (
     base_pb2,
+    boolean_selection_rule_pb2_grpc,
     cylindrical_selection_rule_pb2_grpc,
     edge_set_pb2_grpc,
     element_set_pb2_grpc,
@@ -42,6 +43,7 @@ from ._grpc_helpers.property_helper import (
 )
 from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import TreeObject
+from .boolean_selection_rule import BooleanSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
 from .element_set import ElementSet
@@ -304,9 +306,9 @@ class Model(TreeObject):
     create_tube_selection_rule, tube_selection_rules = define_mutable_mapping(
         TubeSelectionRule, tube_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    # create_boolean_selection_rule, boolean_selection_rules = define_mutable_mapping(
-    #     BooleanSelectionRule, boolean_selection_rule_pb2_grpc.ObjectServiceStub
-    # )
+    create_boolean_selection_rule, boolean_selection_rules = define_mutable_mapping(
+        BooleanSelectionRule, boolean_selection_rule_pb2_grpc.ObjectServiceStub
+    )
 
     create_oriented_selection_set, oriented_selection_sets = define_mutable_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub

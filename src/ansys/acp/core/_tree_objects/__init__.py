@@ -1,8 +1,10 @@
+from .boolean_selection_rule import BooleanSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import EdgeSetType, ElementalDataType, NodalDataType, UnitSystemType
 from .fabric import Fabric
+from .linked_selection_rule import LinkedSelectionRule
 from .material import Material
 from .model import Model
 from .modeling_group import ModelingGroup
@@ -25,9 +27,12 @@ __all__ = [
     "EdgeSet",
     "Rosette",
     "ParallelSelectionRule",
+    "BooleanSelectionRule",
     "CylindricalSelectionRule",
     "SphericalSelectionRule",
     "TubeSelectionRule",
+    "BooleanSelectionRule",
+    "LinkedSelectionRule",
     "OrientedSelectionSet",
     "ModelingGroup",
     "ModelingPly",

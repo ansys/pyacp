@@ -3,6 +3,7 @@ import importlib.metadata
 from ._client import Client
 from ._server import DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode, launch_acp
 from ._tree_objects import (
+    BooleanSelectionRule,
     CylindricalSelectionRule,
     EdgeSet,
     EdgeSetType,
@@ -10,6 +11,7 @@ from ._tree_objects import (
     ElementSet,
     Fabric,
     FabricWithAngle,
+    LinkedSelectionRule,
     Material,
     Model,
     ModelingGroup,
@@ -46,6 +48,8 @@ __all__ = [
     "CylindricalSelectionRule",
     "SphericalSelectionRule",
     "TubeSelectionRule",
+    "BooleanSelectionRule",
+    "LinkedSelectionRule",
     "OrientedSelectionSet",
     "ModelingGroup",
     "ModelingPly",

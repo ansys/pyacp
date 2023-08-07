@@ -11,7 +11,11 @@ from ._grpc_helpers.edge_property_list import GenericEdgePropertyType
 from ._grpc_helpers.polymorphic_from_pb import tree_object_from_resource_path
 from .base import CreatableTreeObject
 from .cylindrical_selection_rule import CylindricalSelectionRule
-from .enums import BooleanOperationType
+from .enums import (
+    BooleanOperationType,
+    boolean_operation_type_from_pb,
+    boolean_operation_type_to_pb,
+)
 from .parallel_selection_rule import ParallelSelectionRule
 from .spherical_selection_rule import SphericalSelectionRule
 from .tube_selection_rule import TubeSelectionRule
@@ -48,7 +52,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     def __init__(
         self,
         selection_rule: _LINKABLE_SELECTION_RULE_TYPES,
-        operation_type: BooleanOperationType = BooleanOperationType.INTERSECTION,
+        operation_type: BooleanOperationType = BooleanOperationType.INTERSECT,
         template_rule: bool = False,
         parameter_1: float = 0.0,
         parameter_2: float = 0.0,
@@ -129,7 +133,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         selection_rule = typing.cast(_LINKABLE_SELECTION_RULE_TYPES, selection_rule)
         new_obj = cls(
             selection_rule=selection_rule,
-            operation_type=message.operation_type,
+            operation_type=boolean_operation_type_from_pb(message.operation_type),
             template_rule=message.template_rule,
             parameter_1=message.parameter_1,
             parameter_2=message.parameter_2,
@@ -140,7 +144,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     def _to_pb_object(self) -> linked_selection_rule_pb2.LinkedSelectionRule:
         return linked_selection_rule_pb2.LinkedSelectionRule(
             resource_path=self.selection_rule._resource_path,
-            operation_type=self.operation_type,
+            operation_type=boolean_operation_type_to_pb(self.operation_type),
             template_rule=self.template_rule,
             parameter_1=self.parameter_1,
             parameter_2=self.parameter_2,
