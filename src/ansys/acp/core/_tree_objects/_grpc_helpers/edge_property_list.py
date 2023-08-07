@@ -17,7 +17,7 @@ from google.protobuf.message import Message
 from typing_extensions import Self
 
 from ..base import CreatableTreeObject
-from .property_helper import grpc_data_getter, grpc_data_setter
+from .property_helper import _exposed_grpc_property, grpc_data_getter, grpc_data_setter
 
 __all__ = ["EdgePropertyList", "define_edge_property_list", "GenericEdgePropertyType"]
 
@@ -229,4 +229,4 @@ def define_edge_property_list(
     def setter(self: CreatableTreeObject, value: list[GenericEdgePropertyType]) -> None:
         getter(self)[:] = value
 
-    return property(getter).setter(setter)
+    return _exposed_grpc_property(getter).setter(setter)
