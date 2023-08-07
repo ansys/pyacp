@@ -145,9 +145,9 @@ def grpc_data_property(
     and setter make calls to the gRPC Get and Put endpoints to synchronize
     the local object with the remote backend.
     """
-    # Note jvonrick August 2023: We don't ensure with types that the property returned here is0
+    # Note jvonrick August 2023: We don't ensure with typechecks that the property returned here is
     # compatible with the class on which this property is created. For example:
-    # grpc_data_setter returns callable that expects an editable object as the first argument.
+    # grpc_data_setter returns a callable that expects an editable object as the first argument.
     # But this property can also be added to a class that does not satisfy the Editable
     # Protocol
     # See the discussion here on why it is hard to have typed properties:

@@ -179,8 +179,8 @@ class TreeObject(TreeObjectBase, NamedTreeObject):
 
 
 class ReadOnlyTreeObject(TreeObjectBase, NamedTreeObject):
-    def __init__(self: ReadOnlyTreeObject, name: str = "") -> None:
-        super().__init__(name=name)
+    def __init__(self: ReadOnlyTreeObject) -> None:
+        super().__init__()
         self._stub_store = StubStore(self._create_stub)
 
     @abstractmethod

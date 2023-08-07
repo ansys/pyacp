@@ -21,14 +21,14 @@ __all__ = ["ProductionPly"]
 class ProductionPly(ReadOnlyTreeObject, IdTreeObject):
     """Instantiate a Production Ply.
 
-    Attributes
+    Parameters
     ----------
-    name:
+    name: str
         The name of the ProductionPly
-    material:
-        "Material of the production ply."
-    angle:
-        "Angle of the production ply in degrees"
+    material: Material
+        Material of the production ply.
+    angle: float
+        Angle of the production ply in degrees
 
     """
 

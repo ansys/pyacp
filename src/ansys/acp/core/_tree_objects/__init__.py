@@ -6,6 +6,7 @@ from .material import Material
 from .model import Model
 from .modeling_group import ModelingGroup
 from .modeling_ply import ModelingPly
+from .production_ply import ProductionPly
 from .oriented_selection_set import OrientedSelectionSet
 from .rosette import Rosette
 
@@ -19,6 +20,7 @@ __all__ = [
     "OrientedSelectionSet",
     "ModelingGroup",
     "ModelingPly",
+    "ProductionPly",
     "UnitSystemType",
     "EdgeSetType",
     "ElementalDataType",
