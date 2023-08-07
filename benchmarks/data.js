@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1691396645673,
+  "lastUpdate": 1691408299833,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -4140,6 +4140,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00011149921281022799",
             "extra": "mean: 39.087149615382415 msec\nrounds: 26"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ba6656f665601a9d27370158b1a096a67292ea6a",
+          "message": "Jvonrick/production ply object (#244)\n\nImplement the production ply frontend.\r\n\r\nIn order to support read-only objects I simplified the class Hierarchy for TreeObject. Basically there are now three levels:\r\n\r\nGrpcObjectBase: Handles the _GRPC_Properties and its string representation\r\nTreeObjectBase: Handles everything related to storing and instanciating the object.\r\nTreeObject / ReadOnlyTreeObject: Handles the different requests using the stubs.\r\nThe reason why I changed this was because I would have to add a ReadOnly variant of the RootGrpcObject, which makes the already complex class hierarchy even more complicated. I did not fully understand why we need the intermediate classes in the hierarchy (such as RootGrpcObject). In my understanding these subtypes are only needed because the are used as types elsewhere (for example in the property helpers). But I think it is easier to adress this with structural subtyping. Therefore I added Editable and Gettable protocols that are implemented by the new tree object classes (ReadOnlyTreeObjects and TreeObject). The downside of the new implementation is that there is a little bit of code repetition for the _get methods. We could add small subjects to which we delegate the different requests to avoid this (Similar to StubStore).\r\n\r\nOther changes:\r\n\r\nSplit the Mapping object into a readable and editable part\r\nSplit the TreeObjectTester in a readonly and editable part",
+          "timestamp": "2023-08-07T11:33:21Z",
+          "tree_id": "5b25153fcf7650411c8d4f41562e5ecc4a576c2c",
+          "url": "https://github.com/ansys-internal/pyacp/commit/ba6656f665601a9d27370158b1a096a67292ea6a"
+        },
+        "date": 1691408297550,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 6.896227561809127,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0018895010213891713",
+            "extra": "mean: 145.0068158333314 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.459649446727021,
+            "unit": "iter/sec",
+            "range": "stddev: 0.010647331214214727",
+            "extra": "mean: 406.5620006666677 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.38152619795287523,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.621051989000023 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.041204078157285766,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.269442364000042 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 3.7096136403264657,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004213387739617485",
+            "extra": "mean: 269.5698520000036 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.7313544232233601,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.3673261120000006 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.08300411468736071,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 12.04759551699999 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1101.4109996290201,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002905134075134189",
+            "extra": "mean: 907.9262875863982 usec\nrounds: 1450"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 358.02722175703957,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00021373122332008794",
+            "extra": "mean: 2.7930837076925084 msec\nrounds: 325"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 47.40473011376882,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00017428816237557326",
+            "extra": "mean: 21.09494131914797 msec\nrounds: 47"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.96794871253486,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006565548812720788",
+            "extra": "mean: 201.29032280000274 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 895.2448467800842,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001679270036350431",
+            "extra": "mean: 1.1170128525136862 msec\nrounds: 895"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 214.1910666594999,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00016437618365482156",
+            "extra": "mean: 4.668728792455674 msec\nrounds: 212"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.683870541745637,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013571183705349838",
+            "extra": "mean: 38.93494161538605 msec\nrounds: 26"
           }
         ]
       }
