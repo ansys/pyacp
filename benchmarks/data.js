@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1690992845600,
+  "lastUpdate": 1691396645673,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -4018,6 +4018,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00017063477931365524",
             "extra": "mean: 39.23146891302958 msec\nrounds: 23"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "50c8a6f8d3bb27e1582cfe1ca0e7051c82497003",
+          "message": "Add tests for mesh data (#249)\n\nAdd tests for the `mesh`, `elemental_data` and `nodal_data` attributes on the\r\ntop-level `Model`, and tests for `elemental_data` and `nodal_data` on the\r\nmodeling ply.\r\n\r\nSince the code in use is mostly the same between mesh data attributes on\r\ndifferent tree objects (apart from defining which elemental and nodal\r\ndata attributes are available), I think it's not really necessary to add tests\r\nfor all other objects.",
+          "timestamp": "2023-08-07T10:19:01+02:00",
+          "tree_id": "92b81f1dd89cba130cfe9ad4552e22a58375e930",
+          "url": "https://github.com/ansys-internal/pyacp/commit/50c8a6f8d3bb27e1582cfe1ca0e7051c82497003"
+        },
+        "date": 1691396642600,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 6.798083652460759,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0029523592468086264",
+            "extra": "mean: 147.10027871428468 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.5175849131186268,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004497966061948127",
+            "extra": "mean: 397.2060663333347 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.37666686396728194,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.6548658659999944 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04117720410708055,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.285281666999992 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 3.6826907103870403,
+            "unit": "iter/sec",
+            "range": "stddev: 0.011591966031600613",
+            "extra": "mean: 271.54058775001033 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.7276803807018903,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.3742297119999876 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.08318645689184145,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 12.021187550999969 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1233.7829710292967,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00021553058418585577",
+            "extra": "mean: 810.5153203449869 usec\nrounds: 1155"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 368.20351259431965,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00011794703352274739",
+            "extra": "mean: 2.715889354107773 msec\nrounds: 353"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 46.73627359539634,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00015838359250544939",
+            "extra": "mean: 21.396656666664644 msec\nrounds: 48"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.962289157978211,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00008815302746155542",
+            "extra": "mean: 201.51989700000286 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 925.2538846563701,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001558993751405431",
+            "extra": "mean: 1.0807844382857035 msec\nrounds: 794"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 211.90552419046708,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00014953923851618398",
+            "extra": "mean: 4.719084147618398 msec\nrounds: 210"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.58385581553019,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00011149921281022799",
+            "extra": "mean: 39.087149615382415 msec\nrounds: 26"
           }
         ]
       }
