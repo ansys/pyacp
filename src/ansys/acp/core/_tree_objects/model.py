@@ -20,6 +20,7 @@ from ansys.api.acp.v0 import (
     model_pb2_grpc,
     modeling_group_pb2_grpc,
     oriented_selection_set_pb2_grpc,
+    parallel_selection_rule_pb2_grpc,
     rosette_pb2_grpc,
     stackup_pb2_grpc,
 )
@@ -45,6 +46,7 @@ from .fabric import Fabric
 from .material import Material
 from .modeling_group import ModelingGroup
 from .oriented_selection_set import OrientedSelectionSet
+from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
 from .stackup import Stackup
 
@@ -283,6 +285,11 @@ class Model(TreeObject):
         EdgeSet, edge_set_pb2_grpc.ObjectServiceStub
     )
     create_rosette, rosettes = define_mutable_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
+
+    create_parallel_selection_rule, parallel_selection_rules = define_mutable_mapping(
+        ParallelSelectionRule, parallel_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+
     create_oriented_selection_set, oriented_selection_sets = define_mutable_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub
     )
