@@ -1,0 +1,6 @@
+production\_plies
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.production_plies

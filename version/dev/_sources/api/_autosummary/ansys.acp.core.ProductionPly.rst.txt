@@ -1,0 +1,36 @@
+﻿ProductionPly
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ProductionPly
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ProductionPly.clone
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ProductionPly.angle
+      ProductionPly.id
+      ProductionPly.material
+      ProductionPly.name
+      ProductionPly.status
+   
+   

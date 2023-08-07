@@ -15,3 +15,4 @@ ACP objects
     OrientedSelectionSet
     ModelingGroup
     ModelingPly
+    ProductionPly

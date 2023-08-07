@@ -43,6 +43,7 @@
       ModelingPly.oriented_selection_sets
       ModelingPly.ply_angle
       ModelingPly.ply_material
+      ModelingPly.production_plies
       ModelingPly.status
    
    
