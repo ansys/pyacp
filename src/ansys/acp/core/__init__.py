@@ -14,6 +14,7 @@ from ._tree_objects import (
     ModelingPly,
     NodalDataType,
     OrientedSelectionSet,
+    ProductionPly,
     Rosette,
     UnitSystemType,
 )
@@ -38,6 +39,7 @@ __all__ = [
     "OrientedSelectionSet",
     "ModelingGroup",
     "ModelingPly",
+    "ProductionPly",
     "UnitSystemType",
     "ElementalDataType",
     "NodalDataType",

@@ -8,7 +8,7 @@ import numpy.typing as npt
 
 from ansys.api.acp.v0 import modeling_group_pb2, modeling_group_pb2_grpc, modeling_ply_pb2_grpc
 
-from ._grpc_helpers.mapping import define_mapping
+from ._grpc_helpers.mapping import define_mutable_mapping
 from ._grpc_helpers.property_helper import mark_grpc_properties
 from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import CreatableTreeObject, IdTreeObject
@@ -48,7 +48,7 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
     def _create_stub(self) -> modeling_group_pb2_grpc.ObjectServiceStub:
         return modeling_group_pb2_grpc.ObjectServiceStub(self._channel)
 
-    create_modeling_ply, modeling_plies = define_mapping(
+    create_modeling_ply, modeling_plies = define_mutable_mapping(
         ModelingPly, modeling_ply_pb2_grpc.ObjectServiceStub
     )
 
