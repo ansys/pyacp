@@ -21,6 +21,7 @@ from ansys.api.acp.v0 import (
     modeling_group_pb2_grpc,
     oriented_selection_set_pb2_grpc,
     rosette_pb2_grpc,
+    stackup_pb2_grpc,
 )
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
@@ -45,6 +46,7 @@ from .material import Material
 from .modeling_group import ModelingGroup
 from .oriented_selection_set import OrientedSelectionSet
 from .rosette import Rosette
+from .stackup import Stackup
 
 __all__ = ["MeshData", "Model", "ModelElementalData", "ModelNodalData"]
 
@@ -269,15 +271,16 @@ class Model(TreeObject):
             )
         )
 
+    create_material, materials = define_mutable_mapping(
+        Material, material_pb2_grpc.ObjectServiceStub
+    )
+    create_fabric, fabrics = define_mutable_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
+    create_stackup, stackups = define_mutable_mapping(Stackup, stackup_pb2_grpc.ObjectServiceStub)
     create_element_set, element_sets = define_mutable_mapping(
         ElementSet, element_set_pb2_grpc.ObjectServiceStub
     )
     create_edge_set, edge_sets = define_mutable_mapping(
         EdgeSet, edge_set_pb2_grpc.ObjectServiceStub
-    )
-    create_fabric, fabrics = define_mutable_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
-    create_material, materials = define_mutable_mapping(
-        Material, material_pb2_grpc.ObjectServiceStub
     )
     create_rosette, rosettes = define_mutable_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
     create_oriented_selection_set, oriented_selection_sets = define_mutable_mapping(

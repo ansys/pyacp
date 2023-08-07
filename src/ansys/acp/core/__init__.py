@@ -8,6 +8,7 @@ from ._tree_objects import (
     ElementalDataType,
     ElementSet,
     Fabric,
+    FabricWithAngle,
     Material,
     Model,
     ModelingGroup,
@@ -16,6 +17,7 @@ from ._tree_objects import (
     OrientedSelectionSet,
     ProductionPly,
     Rosette,
+    Stackup,
     UnitSystemType,
 )
 
@@ -41,6 +43,8 @@ __all__ = [
     "ModelingPly",
     "ProductionPly",
     "UnitSystemType",
+    "Stackup",
+    "FabricWithAngle",
     "ElementalDataType",
     "NodalDataType",
 ]

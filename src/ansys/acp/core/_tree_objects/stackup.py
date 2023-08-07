@@ -168,7 +168,7 @@ class Stackup(CreatableTreeObject, IdTreeObject):
         self.area_price = area_price
         self.fabrics = fabrics
         self.drop_off_material_handling = DropoffMaterialType(drop_off_material_handling)
-        self.drop_off_materia = drop_off_material
+        self.drop_off_material = drop_off_material
         self.cut_off_material_handling = CutoffMaterialType(cut_off_material_handling)
         self.cut_off_material = cut_off_material
         self.draping_material_model = DrapingMaterialType(draping_material_model)
