@@ -2,13 +2,15 @@ from __future__ import annotations
 
 from typing import Iterable
 
-from ansys.api.acp.v0 import production_ply_pb2, production_ply_pb2_grpc
+from ansys.api.acp.v0 import analysis_ply_pb2_grpc, production_ply_pb2, production_ply_pb2_grpc
 
+from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     grpc_link_property_read_only,
     mark_grpc_properties,
 )
+from .analysis_ply import AnalysisPly
 from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
@@ -43,3 +45,7 @@ class ProductionPly(ReadOnlyTreeObject, IdTreeObject):
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     material = grpc_link_property_read_only("properties.material")
     angle = grpc_data_property_read_only("properties.angle")
+
+    analysis_plies = property(
+        get_read_only_collection_property(AnalysisPly, analysis_ply_pb2_grpc.ObjectServiceStub)
+    )
