@@ -7,6 +7,7 @@ from .model import Model
 from .modeling_group import ModelingGroup
 from .modeling_ply import ModelingPly
 from .oriented_selection_set import OrientedSelectionSet
+from .production_ply import ProductionPly
 from .rosette import Rosette
 from .stackup import FabricWithAngle, Stackup
 
@@ -22,6 +23,7 @@ __all__ = [
     "OrientedSelectionSet",
     "ModelingGroup",
     "ModelingPly",
+    "ProductionPly",
     "UnitSystemType",
     "EdgeSetType",
     "ElementalDataType",

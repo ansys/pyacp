@@ -6,9 +6,10 @@ from typing import Container, Iterable
 import numpy as np
 import numpy.typing as npt
 
-from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc
+from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc, production_ply_pb2_grpc
 
 from ._grpc_helpers.linked_object_list import define_linked_object_list
+from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -21,6 +22,7 @@ from .enums import status_type_from_pb
 from .fabric import Fabric
 from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
+from .production_ply import ProductionPly
 
 __all__ = ["ModelingPly", "ModelingPlyElementalData", "ModelingPlyNodalData"]
 
@@ -60,7 +62,7 @@ class ModelingPlyNodalData(NodalData):
 @mark_grpc_properties
 @register
 class ModelingPly(CreatableTreeObject, IdTreeObject):
-    """Instantiate an Oriented Selection Set.
+    """Instantiate an Modeling Ply.
 
     Parameters
     ----------
@@ -110,6 +112,10 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     number_of_layers = grpc_data_property("properties.number_of_layers")
     active = grpc_data_property("properties.active")
     global_ply_nr = grpc_data_property("properties.global_ply_nr")
+
+    production_plies = property(
+        get_read_only_collection_property(ProductionPly, production_ply_pb2_grpc.ObjectServiceStub)
+    )
 
     elemental_data = elemental_data_property(ModelingPlyElementalData)
     nodal_data = nodal_data_property(ModelingPlyNodalData)

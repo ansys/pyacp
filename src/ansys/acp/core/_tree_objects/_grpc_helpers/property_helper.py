@@ -5,11 +5,14 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from functools import reduce
-from typing import Any, Callable, cast
+from typing import Any, Callable, Protocol
+
+import grpc
+from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
-from .protocols import GrpcObject, GrpcObjectReadOnly, ObjectInfo, RootGrpcObject
+from .protocols import Editable, GrpcObjectBase, ObjectInfo, Readable
 
 _TO_PROTOBUF_T = Callable[[Any], Any]
 _FROM_PROTOBUF_T = Callable[[Any], Any]
@@ -24,11 +27,11 @@ class _exposed_grpc_property(property):
     pass
 
 
-def mark_grpc_properties(cls: type[GrpcObjectReadOnly]) -> type[GrpcObjectReadOnly]:
+def mark_grpc_properties(cls: type[GrpcObjectBase]) -> type[GrpcObjectBase]:
     props: list[str] = []
+    # Loop is needed because we otherwise get only the _GRPC_PROPERTIES of one of the base classes.
     for base_cls in reversed(cls.__bases__):
         if hasattr(base_cls, "_GRPC_PROPERTIES"):
-            base_cls = cast("type[GrpcObjectReadOnly]", base_cls)
             props.extend(base_cls._GRPC_PROPERTIES)
     for key, value in vars(cls).items():
         if isinstance(value, _exposed_grpc_property):
@@ -41,12 +44,18 @@ def mark_grpc_properties(cls: type[GrpcObjectReadOnly]) -> type[GrpcObjectReadOn
     return cls
 
 
-def grpc_linked_object_getter(name: str) -> Callable[[RootGrpcObject], Any]:
+class CreatableFromResourcePath(Protocol):
+    @classmethod
+    def _from_resource_path(cls, resource_path: ResourcePath, channel: grpc.Channel) -> Self:
+        ...
+
+
+def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
     """
     Creates a getter method which obtains the linked server object
     """
 
-    def inner(self: RootGrpcObject) -> RootGrpcObject | None:
+    def inner(self: Readable) -> CreatableFromResourcePath | None:
         #  Import here to avoid circular references. Cannot use the registry before
         #  all the object have been imported.
         from ..object_registry import object_registry
@@ -61,33 +70,33 @@ def grpc_linked_object_getter(name: str) -> Callable[[RootGrpcObject], Any]:
         if object_resource_path.value == "":
             return None
         resource_type = object_resource_path.value.split("/")[::2][-1]
-        resource_class: type[RootGrpcObject] = object_registry[resource_type]
+        resource_class: type[CreatableFromResourcePath] = object_registry[resource_type]
 
         return resource_class._from_resource_path(object_resource_path, self._channel)
 
     return inner
 
 
-def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[GrpcObject], Any]:
+def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[Readable], Any]:
     """
     Creates a getter method which obtains the server object via the gRPC
     Get endpoint.
     """
 
-    def inner(self: GrpcObject) -> Any:
+    def inner(self: Readable) -> Any:
         self._get_if_stored()
         return from_protobuf(_get_data_attribute(self._pb_object, name))
 
     return inner
 
 
-def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[GrpcObject, Any], None]:
+def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[Editable, Any], None]:
     """
     Creates a setter method which updates the server object via the gRPC
     Put endpoint.
     """
 
-    def inner(self: GrpcObject, value: Any) -> None:
+    def inner(self: Editable, value: Any) -> None:
         self._get_if_stored()
         current_value = _get_data_attribute(self._pb_object, name)
         value_pb = to_protobuf(value)
@@ -136,6 +145,13 @@ def grpc_data_property(
     and setter make calls to the gRPC Get and Put endpoints to synchronize
     the local object with the remote backend.
     """
+    # Note jvonrick August 2023: We don't ensure with typechecks that the property returned here is
+    # compatible with the class on which this property is created. For example:
+    # grpc_data_setter returns a callable that expects an editable object as the first argument.
+    # But this property can also be added to a class that does not satisfy the Editable
+    # Protocol
+    # See the discussion here on why it is hard to have typed properties:
+    # https://github.com/python/typing/issues/985
     return _exposed_grpc_property(grpc_data_getter(name, from_protobuf=from_protobuf)).setter(
         grpc_data_setter(name, to_protobuf=to_protobuf)
     )

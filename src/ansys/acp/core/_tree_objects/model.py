@@ -30,7 +30,7 @@ from .._utils.array_conversions import to_numpy
 from .._utils.resource_paths import join as rp_join
 from .._utils.visualization import to_pyvista_faces, to_pyvista_types
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
-from ._grpc_helpers.mapping import define_mapping
+from ._grpc_helpers.mapping import define_mutable_mapping
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -271,18 +271,22 @@ class Model(TreeObject):
             )
         )
 
-    create_material, materials = define_mapping(Material, material_pb2_grpc.ObjectServiceStub)
-    create_fabric, fabrics = define_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
-    create_stackup, stackups = define_mapping(Stackup, stackup_pb2_grpc.ObjectServiceStub)
-    create_element_set, element_sets = define_mapping(
+    create_material, materials = define_mutable_mapping(
+        Material, material_pb2_grpc.ObjectServiceStub
+    )
+    create_fabric, fabrics = define_mutable_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
+    create_stackup, stackups = define_mutable_mapping(Stackup, stackup_pb2_grpc.ObjectServiceStub)
+    create_element_set, element_sets = define_mutable_mapping(
         ElementSet, element_set_pb2_grpc.ObjectServiceStub
     )
-    create_edge_set, edge_sets = define_mapping(EdgeSet, edge_set_pb2_grpc.ObjectServiceStub)
-    create_rosette, rosettes = define_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
-    create_oriented_selection_set, oriented_selection_sets = define_mapping(
+    create_edge_set, edge_sets = define_mutable_mapping(
+        EdgeSet, edge_set_pb2_grpc.ObjectServiceStub
+    )
+    create_rosette, rosettes = define_mutable_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
+    create_oriented_selection_set, oriented_selection_sets = define_mutable_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub
     )
-    create_modeling_group, modeling_groups = define_mapping(
+    create_modeling_group, modeling_groups = define_mutable_mapping(
         ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
     )
 
