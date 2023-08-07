@@ -12,9 +12,9 @@ from ._tree_objects import (
     Model,
     ModelingGroup,
     ModelingPly,
-    ProductionPly,
     NodalDataType,
     OrientedSelectionSet,
+    ProductionPly,
     Rosette,
     UnitSystemType,
 )

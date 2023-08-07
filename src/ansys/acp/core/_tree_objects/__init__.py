@@ -6,8 +6,8 @@ from .material import Material
 from .model import Model
 from .modeling_group import ModelingGroup
 from .modeling_ply import ModelingPly
-from .production_ply import ProductionPly
 from .oriented_selection_set import OrientedSelectionSet
+from .production_ply import ProductionPly
 from .rosette import Rosette
 
 __all__ = [
