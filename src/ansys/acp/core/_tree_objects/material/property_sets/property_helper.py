@@ -4,7 +4,7 @@ from ..._grpc_helpers.property_helper import _exposed_grpc_property, grpc_data_p
 
 __all__ = ["_variable_material_grpc_data_property", "_constant_material_grpc_data_property"]
 
-from ..._grpc_helpers.protocols import Editable, Gettable
+from ..._grpc_helpers.protocols import Editable, Readable
 
 
 def _variable_material_grpc_data_property(name: str) -> Any:
@@ -19,7 +19,7 @@ def _constant_material_grpc_data_getter(name: str) -> Any:
     Get endpoint.
     """
 
-    def inner(self: Gettable) -> Any:
+    def inner(self: Readable) -> Any:
         self._get_if_stored()
         data_vals = self._pb_object.values
         if len(data_vals) != 1:

@@ -2,7 +2,12 @@ import os
 import pathlib
 import tempfile
 
-from ansys.acp.core import Client
+import numpy as np
+import numpy.testing
+import pytest
+import pyvista
+
+from ansys.acp.core import Client, ElementalDataType
 
 from .helpers import check_property
 
@@ -120,3 +125,78 @@ def test_string_representation(grpc_server, model_data_dir):
     model_str = str(model)
     assert model_str.startswith("Model(")
     assert f"name='{model.name}'" in model_str
+
+
+@pytest.fixture
+def minimal_complete_model(load_model_from_tempfile):
+    with load_model_from_tempfile() as model:
+        yield model
+
+
+def test_mesh_data(minimal_complete_model):
+    mesh = minimal_complete_model.mesh
+
+    numpy.testing.assert_equal(mesh.node_labels, np.array([1, 2, 3, 4]))
+    numpy.testing.assert_allclose(
+        mesh.node_coordinates,
+        np.array(
+            [
+                [-150.0, 150.0, 0.0],
+                [-150.0, -150.0, 0.0],
+                [150.0, -150.0, 0.0],
+                [150.0, 150.0, 0.0],
+            ]
+        ),
+    )
+    numpy.testing.assert_equal(mesh.element_labels, np.array([1]))
+    numpy.testing.assert_equal(mesh.element_types, np.array([126]))
+    numpy.testing.assert_equal(mesh.element_nodes, np.array([0, 1, 2, 3]))
+    numpy.testing.assert_equal(mesh.element_nodes_offsets, np.array([0]))
+
+
+def test_elemental_data(minimal_complete_model):
+    data = minimal_complete_model.elemental_data
+    numpy.testing.assert_allclose(data.element_labels, np.array([1]))
+    numpy.testing.assert_allclose(data.normal, np.array([[0.0, 0.0, 1.0]]))
+    numpy.testing.assert_allclose(data.thickness, np.array([1e-4]))
+    numpy.testing.assert_allclose(data.relative_thickness_correction, np.array([1.0]))
+    numpy.testing.assert_allclose(data.area, np.array([9e4]))
+    numpy.testing.assert_allclose(data.price, np.array([0.0]))
+    numpy.testing.assert_allclose(data.volume, np.array([9.0]))
+    numpy.testing.assert_allclose(data.mass, np.array([7.065e-08]))
+    numpy.testing.assert_allclose(data.offset, np.array([5e-5]))
+    numpy.testing.assert_allclose(data.cog, np.array([[0.0, 0.0, 5e-5]]))
+
+
+def test_nodal_data(minimal_complete_model):
+    data = minimal_complete_model.nodal_data
+    numpy.testing.assert_allclose(data.node_labels, np.array([1, 2, 3, 4]))
+
+
+def test_mesh_data_to_pyvista(minimal_complete_model):
+    pv_mesh = minimal_complete_model.mesh.to_pyvista()
+    assert isinstance(pv_mesh, pyvista.core.pointset.UnstructuredGrid)
+    assert pv_mesh.n_points == 4
+    assert pv_mesh.n_cells == 1
+
+
+def test_elemental_data_to_pyvista(minimal_complete_model):
+    data = minimal_complete_model.elemental_data
+    pv_mesh = data.to_pyvista(mesh=minimal_complete_model.mesh)
+    assert isinstance(pv_mesh, pyvista.core.pointset.UnstructuredGrid)
+    assert pv_mesh.n_points == 4
+    assert pv_mesh.n_cells == 1
+
+
+@pytest.mark.parametrize("component", [e.value for e in ElementalDataType])
+def test_elemental_data_to_pyvista_with_component(minimal_complete_model, component):
+    data = minimal_complete_model.elemental_data
+    if not hasattr(data, component):
+        pytest.skip(f"Model elemental data does not contain component '{component}'")
+    pv_mesh = data.to_pyvista(mesh=minimal_complete_model.mesh, component=component)
+    if component in ["normal", "cog"]:
+        assert isinstance(pv_mesh, pyvista.core.pointset.PolyData)
+    else:
+        assert isinstance(pv_mesh, pyvista.core.pointset.UnstructuredGrid)
+        assert pv_mesh.n_points == 4
+        assert pv_mesh.n_cells == 1

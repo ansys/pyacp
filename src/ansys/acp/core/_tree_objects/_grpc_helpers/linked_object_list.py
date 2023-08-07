@@ -7,7 +7,7 @@ import numpy as np
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
 from ..base import CreatableTreeObject, TreeObject
-from .property_helper import grpc_data_getter, grpc_data_setter
+from .property_helper import _exposed_grpc_property, grpc_data_getter, grpc_data_setter
 
 ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
 
@@ -141,4 +141,4 @@ def define_linked_object_list(attribute_name: str, object_class: Type[ChildT]) -
     def setter(self: ValueT, value: List[ChildT]) -> None:
         getter(self)[:] = value
 
-    return property(getter).setter(setter)
+    return _exposed_grpc_property(getter).setter(setter)
