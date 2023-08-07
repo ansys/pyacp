@@ -1,5 +1,10 @@
 import pytest
 
+from ansys.acp.core._tree_objects.tube_selection_rule import (
+    TubeSelectionRuleElementalData,
+    TubeSelectionRuleNodalData,
+)
+
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 
@@ -54,3 +59,9 @@ class TestTubeSelectionRule(NoLockedMixin, TreeObjectTester):
                 ("status", "UPTODATE"),
             ],
         )
+
+
+def test_mesh_data(parent_object):
+    rule = parent_object.create_tube_selection_rule()
+    assert isinstance(rule.elemental_data, TubeSelectionRuleElementalData)
+    assert isinstance(rule.nodal_data, TubeSelectionRuleNodalData)

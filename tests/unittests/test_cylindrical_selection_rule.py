@@ -1,5 +1,10 @@
 import pytest
 
+from ansys.acp.core._tree_objects.cylindrical_selection_rule import (
+    CylindricalSelectionRuleElementalData,
+    CylindricalSelectionRuleNodalData,
+)
+
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 
@@ -50,3 +55,9 @@ class TestCylindricalSelectionRule(NoLockedMixin, TreeObjectTester):
                 ("status", "UPTODATE"),
             ],
         )
+
+
+def test_mesh_data(parent_object):
+    rule = parent_object.create_cylindrical_selection_rule()
+    assert isinstance(rule.elemental_data, CylindricalSelectionRuleElementalData)
+    assert isinstance(rule.nodal_data, CylindricalSelectionRuleNodalData)

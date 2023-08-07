@@ -1,5 +1,10 @@
 import pytest
 
+from ansys.acp.core._tree_objects.parallel_selection_rule import (
+    ParallelSelectionRuleElementalData,
+    ParallelSelectionRuleNodalData,
+)
+
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 
@@ -52,3 +57,16 @@ class TestParallelSelectionRule(NoLockedMixin, TreeObjectTester):
                 ("status", "UPTODATE"),
             ],
         )
+
+
+def test_mesh_data(parent_object):
+    model = parent_object
+    rule = model.create_parallel_selection_rule(
+        use_global_coordinate_system=True,
+        origin=(0.0, 0.0, 0.0),
+        direction=(1.0, 0.0, 0.0),
+        lower_limit=-1.0,
+        upper_limit=1.0,
+    )
+    assert isinstance(rule.elemental_data, ParallelSelectionRuleElementalData)
+    assert isinstance(rule.nodal_data, ParallelSelectionRuleNodalData)

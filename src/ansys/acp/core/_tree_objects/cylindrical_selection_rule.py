@@ -1,6 +1,10 @@
 from __future__ import annotations
 
+import dataclasses
 from typing import Iterable
+
+import numpy as np
+import numpy.typing as npt
 
 from ansys.api.acp.v0 import cylindrical_selection_rule_pb2, cylindrical_selection_rule_pb2_grpc
 
@@ -11,12 +15,29 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
+from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
 from .rosette import Rosette
 
-__all__ = ["CylindricalSelectionRule"]
+__all__ = [
+    "CylindricalSelectionRule",
+    "CylindricalSelectionRuleElementalData",
+    "CylindricalSelectionRuleNodalData",
+]
+
+
+@dataclasses.dataclass
+class CylindricalSelectionRuleElementalData(ElementalData):
+    """Represents elemental data for a Cylindrical Selection Rule."""
+
+    normal: npt.NDArray[np.float64]
+
+
+@dataclasses.dataclass
+class CylindricalSelectionRuleNodalData(NodalData):
+    """Represents nodal data for a Cylindrical Selection Rule."""
 
 
 @mark_grpc_properties
@@ -88,3 +109,6 @@ class CylindricalSelectionRule(CreatableTreeObject, IdTreeObject):
     radius = grpc_data_property("properties.radius")
     relative_rule_type = grpc_data_property("properties.relative_rule_type")
     include_rule_type = grpc_data_property("properties.include_rule_type")
+
+    elemental_data = elemental_data_property(CylindricalSelectionRuleElementalData)
+    nodal_data = nodal_data_property(CylindricalSelectionRuleNodalData)

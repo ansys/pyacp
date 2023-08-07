@@ -304,7 +304,7 @@ class Model(TreeObject):
     create_tube_selection_rule, tube_selection_rules = define_mutable_mapping(
         TubeSelectionRule, tube_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    # create_boolean_selection_rule, boolean_selection_rules = define_mapping(
+    # create_boolean_selection_rule, boolean_selection_rules = define_mutable_mapping(
     #     BooleanSelectionRule, boolean_selection_rule_pb2_grpc.ObjectServiceStub
     # )
 

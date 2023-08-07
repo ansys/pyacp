@@ -3,6 +3,7 @@ import importlib.metadata
 from ._client import Client
 from ._server import DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode, launch_acp
 from ._tree_objects import (
+    CylindricalSelectionRule,
     EdgeSet,
     EdgeSetType,
     ElementalDataType,
@@ -16,7 +17,10 @@ from ._tree_objects import (
     NodalDataType,
     OrientedSelectionSet,
     ProductionPly,
+    ParallelSelectionRule,
     Rosette,
+    SphericalSelectionRule,
+    TubeSelectionRule,
     Stackup,
     UnitSystemType,
 )
@@ -38,6 +42,10 @@ __all__ = [
     "EdgeSet",
     "EdgeSetType",
     "Rosette",
+    "ParallelSelectionRule",
+    "CylindricalSelectionRule",
+    "SphericalSelectionRule",
+    "TubeSelectionRule",
     "OrientedSelectionSet",
     "ModelingGroup",
     "ModelingPly",

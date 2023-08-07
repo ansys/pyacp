@@ -1,5 +1,10 @@
 import pytest
 
+from ansys.acp.core._tree_objects.spherical_selection_rule import (
+    SphericalSelectionRuleElementalData,
+    SphericalSelectionRuleNodalData,
+)
+
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 
@@ -48,3 +53,9 @@ class TestSphericalSelectionRule(NoLockedMixin, TreeObjectTester):
                 ("status", "UPTODATE"),
             ],
         )
+
+
+def test_mesh_data(parent_object):
+    rule = parent_object.create_spherical_selection_rule()
+    assert isinstance(rule.elemental_data, SphericalSelectionRuleElementalData)
+    assert isinstance(rule.nodal_data, SphericalSelectionRuleNodalData)

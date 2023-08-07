@@ -1,6 +1,10 @@
 from __future__ import annotations
 
+import dataclasses
 from typing import Iterable
+
+import numpy as np
+import numpy.typing as npt
 
 from ansys.api.acp.v0 import tube_selection_rule_pb2, tube_selection_rule_pb2_grpc
 
@@ -11,12 +15,29 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
+from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import CreatableTreeObject, IdTreeObject
 from .edge_set import EdgeSet
 from .enums import status_type_from_pb
 from .object_registry import register
 
-__all__ = ["TubeSelectionRule"]
+__all__ = [
+    "TubeSelectionRule",
+    "TubeSelectionRuleElementalData",
+    "TubeSelectionRuleNodalData",
+]
+
+
+@dataclasses.dataclass
+class TubeSelectionRuleElementalData(ElementalData):
+    """Represents elemental data for a Tube Selection Rule."""
+
+    normal: npt.NDArray[np.float64]
+
+
+@dataclasses.dataclass
+class TubeSelectionRuleNodalData(NodalData):
+    """Represents nodal data for a Tube Selection Rule."""
 
 
 @mark_grpc_properties
@@ -98,3 +119,6 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
     )
     head_extension = grpc_data_property("properties.head_extension")
     tail_extension = grpc_data_property("properties.tail_extension")
+
+    elemental_data = elemental_data_property(TubeSelectionRuleElementalData)
+    nodal_data = nodal_data_property(TubeSelectionRuleNodalData)
