@@ -1,3 +1,4 @@
+from .analysis_ply import AnalysisPly
 from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import EdgeSetType, ElementalDataType, NodalDataType, UnitSystemType
@@ -24,6 +25,7 @@ __all__ = [
     "ModelingGroup",
     "ModelingPly",
     "ProductionPly",
+    "AnalysisPly",
     "UnitSystemType",
     "EdgeSetType",
     "ElementalDataType",

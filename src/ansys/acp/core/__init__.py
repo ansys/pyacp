@@ -3,6 +3,7 @@ import importlib.metadata
 from ._client import Client
 from ._server import DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode, launch_acp
 from ._tree_objects import (
+    AnalysisPly,
     EdgeSet,
     EdgeSetType,
     ElementalDataType,
@@ -42,6 +43,7 @@ __all__ = [
     "ModelingGroup",
     "ModelingPly",
     "ProductionPly",
+    "AnalysisPly",
     "UnitSystemType",
     "Stackup",
     "FabricWithAngle",

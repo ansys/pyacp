@@ -26,11 +26,11 @@ class ProductionPly(ReadOnlyTreeObject, IdTreeObject):
     Parameters
     ----------
     name: str
-        The name of the ProductionPly
+        The name of the ProductionPly.
     material: Material
         Material of the production ply.
     angle: float
-        Angle of the production ply in degrees
+        Angle of the production ply in degrees.
 
     """
 

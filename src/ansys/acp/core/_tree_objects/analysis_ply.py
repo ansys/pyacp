@@ -23,8 +23,15 @@ class AnalysisPly(ReadOnlyTreeObject, IdTreeObject):
 
     Parameters
     ----------
-    name :
-        The name of the AnalysisPly
+    name: str
+        The name of the Analysis Ply.
+    material: Material
+        Material of the Analysis ply.
+    angle: float
+        Angle of the Analysis ply in degrees.
+    active_in_post_mode: bool
+        If False, deactivates the failure analysis for this ply during post-processing.
+
     """
 
     __slots__: Iterable[str] = tuple()
