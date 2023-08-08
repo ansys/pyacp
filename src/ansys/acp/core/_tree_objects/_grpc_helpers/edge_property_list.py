@@ -17,7 +17,7 @@ from google.protobuf.message import Message
 from typing_extensions import Self
 
 from ..base import CreatableTreeObject
-from .property_helper import grpc_data_getter, grpc_data_setter
+from .property_helper import _exposed_grpc_property, grpc_data_getter, grpc_data_setter
 
 __all__ = ["EdgePropertyList", "define_edge_property_list", "GenericEdgePropertyType"]
 
@@ -51,6 +51,26 @@ ValueT = TypeVar("ValueT", bound=GenericEdgePropertyType)
 
 
 class EdgePropertyList(MutableSequence[ValueT]):
+    """
+    The edge property list is used to wrap graph edges of a specific type.
+
+    For instance FabricWithAngle of a stackup.
+    This object handles the conversion of the protobuf messages to the
+    corresponding Python object and vice-versa.
+    self._object_list holds the Python object. The python objects are stored
+    to support editing in-place editing. This is achieved by passing a callback
+    function to the python object.
+
+    The edges (and parent object) is updated
+    as soon as an item or one of its properties are changed.
+
+    Note: sort is not implemented because the model definition often depends
+    on the order.
+
+    The LinkedObjectList should be used for graph edges without a specific type.
+    For instance, element sets of an oriented element set.
+    """
+
     def __init__(
         self,
         *,
@@ -81,9 +101,10 @@ class EdgePropertyList(MutableSequence[ValueT]):
 
         self._object_list = get_object_list_from_parent_object()
 
-        def set_object_list(value: list[ValueT]) -> None:
+        def set_object_list(items: list[ValueT]) -> None:
+            """Set the object list on the parent AND updates the internal object list."""
             pb_obj_list = []
-            for item in value:
+            for item in items:
                 if not item._check():
                     raise RuntimeError("Cannot initialize incomplete object.")
                 pb_obj_list.append(item._to_pb_object())
@@ -92,7 +113,7 @@ class EdgePropertyList(MutableSequence[ValueT]):
                 item._set_callback_apply_changes(self._apply_changes)
             setter(parent_object, pb_obj_list)
             # keep object list in sync with the backend. This is needed for the in-place editing
-            self._object_list = value
+            self._object_list = items
 
         self._set_object_list = set_object_list
 
@@ -229,4 +250,4 @@ def define_edge_property_list(
     def setter(self: CreatableTreeObject, value: list[GenericEdgePropertyType]) -> None:
         getter(self)[:] = value
 
-    return property(getter).setter(setter)
+    return _exposed_grpc_property(getter).setter(setter)
