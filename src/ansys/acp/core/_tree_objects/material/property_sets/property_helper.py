@@ -1,9 +1,10 @@
 from typing import Any
 
 from ..._grpc_helpers.property_helper import _exposed_grpc_property, grpc_data_property_read_only
-from ..._grpc_helpers.protocols import GrpcObject, GrpcObjectReadOnly
 
 __all__ = ["_variable_material_grpc_data_property", "_constant_material_grpc_data_property"]
+
+from ..._grpc_helpers.protocols import Editable, Readable
 
 
 def _variable_material_grpc_data_property(name: str) -> Any:
@@ -18,7 +19,7 @@ def _constant_material_grpc_data_getter(name: str) -> Any:
     Get endpoint.
     """
 
-    def inner(self: GrpcObjectReadOnly) -> Any:
+    def inner(self: Readable) -> Any:
         self._get_if_stored()
         data_vals = self._pb_object.values
         if len(data_vals) != 1:
@@ -36,7 +37,7 @@ def _constant_material_grpc_data_setter(name: str) -> Any:
     Put endpoint.
     """
 
-    def inner(self: GrpcObject, value: Any) -> None:
+    def inner(self: Editable, value: Any) -> None:
         self._get_if_stored()
         data_vals = self._pb_object.values
         if len(data_vals) != 1:

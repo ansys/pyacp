@@ -5,7 +5,8 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import Any, Iterable, TypeVar, cast
+import typing
+from typing import Any, Callable, Generic, Iterable, TypeVar, cast
 
 from grpc import Channel
 from typing_extensions import Self
@@ -23,32 +24,33 @@ from ._grpc_helpers.property_helper import (
     mark_grpc_properties,
 )
 from ._grpc_helpers.protocols import (
-    CreatableResourceStub,
+    CreatableEditableAndReadableResourceStub,
     CreateRequest,
-    GrpcObject,
-    GrpcObjectReadOnly,
+    Editable,
+    EditableAndReadableResourceStub,
+    GrpcObjectBase,
     ObjectInfo,
-    ResourceStub,
-    RootGrpcObject,
+    Readable,
+    ReadableResourceStub,
 )
 
-_T = TypeVar("_T", bound="TreeObject")
+_T = TypeVar("_T", bound="TreeObjectBase")
 
 
-@mark_grpc_properties
-class TreeObject(RootGrpcObject):
+class TreeObjectBase(GrpcObjectBase):
     """
     Base class for ACP tree objects.
     """
 
-    __slots__ = ("_channel_store", "_stub_store", "_pb_object")
+    __slots__: Iterable[str] = ("_channel_store", "_pb_object")
 
     _COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: type[ObjectInfo]
 
-    def __init__(self: TreeObject, name: str = "") -> None:
+    _pb_object: ObjectInfo
+
+    def __init__(self: TreeObjectBase, name: str = "") -> None:
         self._channel_store: Channel | None = None
-        self._stub_store: ResourceStub | None = None
         self._pb_object: ObjectInfo = self.OBJECT_INFO_TYPE()
         self.name = name
 
@@ -68,14 +70,6 @@ class TreeObject(RootGrpcObject):
             unlink_objects(new_object_info.properties)
         new_object_info.info.name = self._pb_object.info.name
         return type(self)._from_object_info(object_info=new_object_info)
-
-    def delete(self: _T) -> None:
-        self._get_stub().Delete(
-            DeleteRequest(
-                resource_path=self._pb_object.info.resource_path,
-                version=self._pb_object.info.version,
-            )
-        )
 
     def __eq__(self: _T, other: Any) -> bool:
         if not isinstance(other, TreeObject):
@@ -111,34 +105,99 @@ class TreeObject(RootGrpcObject):
             raise RuntimeError("The server connection is uninitialized.")
         return self._channel_store
 
-    def _get_stub(self) -> ResourceStub:
-        if not self._is_stored:
+    @property
+    def _is_stored(self) -> bool:
+        return self._channel_store is not None
+
+
+StubT = TypeVar("StubT")
+
+
+class StubStore(Generic[StubT]):
+    def __init__(self, create_stub_fun: Callable[[], StubT]) -> None:
+        self._stub_store: StubT | None = None
+        self._create_stub_fun = create_stub_fun
+
+    def get(self, is_stored: bool) -> StubT:
+        if not is_stored:
             raise RuntimeError("The server connection is uninitialized.")
         if self._stub_store is None:
-            self._stub_store = self._create_stub()
+            self._stub_store = self._create_stub_fun()
         return self._stub_store
+
+
+@mark_grpc_properties
+class NamedTreeObject(GrpcObjectBase):
+    __slots__: Iterable[str] = tuple()
+
+    """Implements the 'name' attribute for tree objects."""
+
+    name = grpc_data_property("info.name")
+    """The name of the object."""
+
+    def __repr__(self) -> str:
+        return f"<{type(self).__name__} with name '{self.name}'>"
+
+
+class TreeObject(TreeObjectBase, NamedTreeObject):
+    __slots__: Iterable[str] = ("_stub_store",)
+
+    @abstractmethod
+    def _create_stub(self) -> EditableAndReadableResourceStub:
+        ...
+
+    def __init__(self: TreeObject, name: str = "") -> None:
+        super().__init__(name=name)
+        self._stub_store = StubStore(self._create_stub)
+
+    def delete(self) -> None:
+        self._get_stub().Delete(
+            DeleteRequest(
+                resource_path=self._pb_object.info.resource_path,
+                version=self._pb_object.info.version,
+            )
+        )
 
     def _get(self) -> None:
         self._pb_object = self._get_stub().Get(
             GetRequest(resource_path=self._pb_object.info.resource_path)
         )
 
+    def _get_if_stored(self) -> None:
+        if self._is_stored:
+            self._get()
+
     def _put(self) -> None:
         self._pb_object = self._get_stub().Put(self._pb_object)
 
+    def _put_if_stored(self) -> None:
+        if self._is_stored:
+            self._put()
+
+    def _get_stub(self) -> EditableAndReadableResourceStub:
+        return self._stub_store.get(self._is_stored)
+
+
+class ReadOnlyTreeObject(TreeObjectBase, NamedTreeObject):
+    def __init__(self: ReadOnlyTreeObject) -> None:
+        super().__init__()
+        self._stub_store = StubStore(self._create_stub)
+
     @abstractmethod
-    def _create_stub(self) -> ResourceStub:
+    def _create_stub(self) -> ReadableResourceStub:
         ...
 
-    @property
-    def _is_stored(self) -> bool:
-        return self._channel_store is not None
+    def _get_stub(self) -> ReadableResourceStub:
+        return self._stub_store.get(self._is_stored)
 
-    def __repr__(self) -> str:
-        return f"<{type(self).__name__} with name '{self.name}'>"
+    def _get(self) -> None:
+        self._pb_object = self._get_stub().Get(
+            GetRequest(resource_path=self._pb_object.info.resource_path)
+        )
 
-    name = grpc_data_property("info.name")
-    """The name of the object."""
+    def _get_if_stored(self) -> None:
+        if self._is_stored:
+            self._get()
 
 
 @mark_grpc_properties
@@ -146,8 +205,8 @@ class CreatableTreeObject(TreeObject):
     __slots__: Iterable[str] = tuple()
     CREATE_REQUEST_TYPE: type[CreateRequest]
 
-    def _get_stub(self) -> CreatableResourceStub:
-        return cast(CreatableResourceStub, super()._get_stub())
+    def _get_stub(self) -> CreatableEditableAndReadableResourceStub:
+        return cast(CreatableEditableAndReadableResourceStub, super()._get_stub())
 
     def store(self: CreatableTreeObject, parent: TreeObject) -> None:
         self._channel_store = parent._channel
@@ -184,7 +243,7 @@ class CreatableTreeObject(TreeObject):
 
 
 @mark_grpc_properties
-class IdTreeObject(TreeObject):
+class IdTreeObject(TreeObjectBase):
     """Implements the 'id' attribute for tree objects."""
 
     __slots__: Iterable[str] = tuple()
@@ -195,31 +254,35 @@ class IdTreeObject(TreeObject):
         return f"<{type(self).__name__} with id '{self.id}'>"
 
 
-class TreeObjectAttributeReadOnly(GrpcObjectReadOnly):
+class TreeObjectAttributeReadOnly(GrpcObjectBase):
     """
     Defines an attribute which is defined as a sub-component of a parent
     object's protobuf object (read-only).
     """
 
-    __slots__ = ("_parent_object", "_attribute_path")
+    __slots__: Iterable[str] = ("_parent_object", "_attribute_path")
 
     def __init__(
         self,
         *,
-        _parent_object: GrpcObjectReadOnly | None = None,
+        _parent_object: Readable | None = None,
         _attribute_path: str | None = None,
     ):
         if _parent_object is None != _attribute_path is None:
             raise TypeError(
                 "Either both '_parent_object' and '_attribute_path' need to be 'None', or neither."
             )
-        self._parent_object: GrpcObjectReadOnly | None = _parent_object
+        self._parent_object: Readable | None = _parent_object
         self._attribute_path = _attribute_path
 
     def _get(self) -> None:
         if self._parent_object is None:
             raise RuntimeError("The parent object is not set.")
         self._parent_object._get()
+
+    def _get_if_stored(self) -> None:
+        if self._is_stored:
+            self._get()
 
     @property
     def _pb_object_impl(self) -> Any:
@@ -253,13 +316,13 @@ class PolymorphicMixin(TreeObjectAttributeReadOnly):
         return getattr(parent_attr, parent_attr.WhichOneof(prop_name))
 
 
-class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
+class TreeObjectAttribute(TreeObjectAttributeReadOnly):
     """
     Defines an attribute which is defined as a sub-component of a parent
     object's protobuf object (read-write).
     """
 
-    __slots__ = ("_parent_object", "_attribute_path", "_pb_object_store")
+    __slots__: Iterable[str] = ("_parent_object", "_attribute_path", "_pb_object_store")
 
     @classmethod
     @abstractmethod
@@ -267,13 +330,13 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
         ...
 
     def __init__(
-        self, *, _parent_object: GrpcObject | None = None, _attribute_path: str | None = None
+        self, *, _parent_object: Editable | None = None, _attribute_path: str | None = None
     ):
         if _parent_object is None:
             self._pb_object_store: Any = self._create_default_pb_object()
         else:
             self._pb_object_store = None
-        self._parent_object: GrpcObject | None
+        self._parent_object: Editable | None
         super().__init__(_parent_object=_parent_object, _attribute_path=_attribute_path)
 
     @property
@@ -287,3 +350,14 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly, GrpcObject):
         if self._parent_object is None:
             raise RuntimeError("The parent object is not set.")
         self._parent_object._put()
+
+    def _put_if_stored(self) -> None:
+        if self._is_stored:
+            self._put()
+
+
+if typing.TYPE_CHECKING:
+    # Ensure that the ReadOnlyTreeObject satisfies the Gettable interface
+    _x: Readable = typing.cast(ReadOnlyTreeObject, None)
+    # Ensure that the TreeObject satisfies the Editable interface
+    _y: Editable = typing.cast(TreeObject, None)

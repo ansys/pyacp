@@ -1,15 +1,21 @@
 from __future__ import annotations
 
+import dataclasses
 from typing import Iterable, cast
 
 from grpc import Channel
+import numpy as np
+import numpy.typing as npt
+from pyvista.core.pointset import UnstructuredGrid
 
 from ansys.api.acp.v0 import (
+    base_pb2,
     edge_set_pb2_grpc,
     element_set_pb2_grpc,
     fabric_pb2_grpc,
     material_pb2,
     material_pb2_grpc,
+    mesh_query_pb2_grpc,
     model_pb2,
     model_pb2_grpc,
     modeling_group_pb2_grpc,
@@ -20,14 +26,17 @@ from ansys.api.acp.v0 import (
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
 from .._typing_helper import PATH as _PATH
+from .._utils.array_conversions import to_numpy
 from .._utils.resource_paths import join as rp_join
+from .._utils.visualization import to_pyvista_faces, to_pyvista_types
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
-from ._grpc_helpers.mapping import define_mapping
+from ._grpc_helpers.mapping import define_mutable_mapping
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
+from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import TreeObject
 from .edge_set import EdgeSet
 from .element_set import ElementSet
@@ -39,7 +48,7 @@ from .oriented_selection_set import OrientedSelectionSet
 from .rosette import Rosette
 from .stackup import Stackup
 
-__all__ = ["Model"]
+__all__ = ["MeshData", "Model", "ModelElementalData", "ModelNodalData"]
 
 _FeFormat, _fe_format_to_pb, _ = wrap_to_string_enum(
     "_FeFormat",
@@ -50,6 +59,49 @@ _FeFormat, _fe_format_to_pb, _ = wrap_to_string_enum(
 _IgnorableEntity, _ignorable_entity_to_pb, _ = wrap_to_string_enum(
     "_IgnorableEntity", model_pb2.LoadFromFEFileRequest.IgnorableEntity, module=__name__
 )
+
+
+@dataclasses.dataclass
+class MeshData:
+    """Container for the mesh data of an ACP Model."""
+
+    node_labels: npt.NDArray[np.int32]
+    node_coordinates: npt.NDArray[np.float64]
+    element_labels: npt.NDArray[np.int32]
+    element_types: npt.NDArray[np.int32]
+    element_nodes: npt.NDArray[np.int32]
+    element_nodes_offsets: npt.NDArray[np.int32]
+
+    def to_pyvista(self) -> UnstructuredGrid:
+        return UnstructuredGrid(
+            to_pyvista_faces(
+                element_types=self.element_types,
+                element_nodes=self.element_nodes,
+                element_nodes_offsets=self.element_nodes_offsets,
+            ),
+            to_pyvista_types(self.element_types),
+            self.node_coordinates,
+        )
+
+
+@dataclasses.dataclass
+class ModelElementalData(ElementalData):
+    """Represents elemental data for a Model."""
+
+    normal: npt.NDArray[np.float64]
+    thickness: npt.NDArray[np.float64]
+    relative_thickness_correction: npt.NDArray[np.float64]
+    area: npt.NDArray[np.float64]
+    price: npt.NDArray[np.float64]
+    volume: npt.NDArray[np.float64]
+    mass: npt.NDArray[np.float64]
+    offset: npt.NDArray[np.float64]
+    cog: npt.NDArray[np.float64]
+
+
+@dataclasses.dataclass
+class ModelNodalData(NodalData):
+    """Represents nodal data for a Model."""
 
 
 @mark_grpc_properties
@@ -219,17 +271,37 @@ class Model(TreeObject):
             )
         )
 
-    create_material, materials = define_mapping(Material, material_pb2_grpc.ObjectServiceStub)
-    create_fabric, fabrics = define_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
-    create_stackup, stackups = define_mapping(Stackup, stackup_pb2_grpc.ObjectServiceStub)
-    create_element_set, element_sets = define_mapping(
+    create_material, materials = define_mutable_mapping(
+        Material, material_pb2_grpc.ObjectServiceStub
+    )
+    create_fabric, fabrics = define_mutable_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
+    create_stackup, stackups = define_mutable_mapping(Stackup, stackup_pb2_grpc.ObjectServiceStub)
+    create_element_set, element_sets = define_mutable_mapping(
         ElementSet, element_set_pb2_grpc.ObjectServiceStub
     )
-    create_edge_set, edge_sets = define_mapping(EdgeSet, edge_set_pb2_grpc.ObjectServiceStub)
-    create_rosette, rosettes = define_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
-    create_oriented_selection_set, oriented_selection_sets = define_mapping(
+    create_edge_set, edge_sets = define_mutable_mapping(
+        EdgeSet, edge_set_pb2_grpc.ObjectServiceStub
+    )
+    create_rosette, rosettes = define_mutable_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
+    create_oriented_selection_set, oriented_selection_sets = define_mutable_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub
     )
-    create_modeling_group, modeling_groups = define_mapping(
+    create_modeling_group, modeling_groups = define_mutable_mapping(
         ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
     )
+
+    @property
+    def mesh(self) -> MeshData:
+        mesh_query_stub = mesh_query_pb2_grpc.MeshQueryServiceStub(self._channel)
+        reply = mesh_query_stub.GetMeshData(base_pb2.GetRequest(resource_path=self._resource_path))
+        return MeshData(
+            node_labels=to_numpy(reply.node_labels),
+            node_coordinates=to_numpy(reply.node_coordinates),
+            element_labels=to_numpy(reply.element_labels),
+            element_types=to_numpy(reply.element_types),
+            element_nodes=to_numpy(reply.element_nodes),
+            element_nodes_offsets=to_numpy(reply.element_nodes_offsets),
+        )
+
+    elemental_data = elemental_data_property(ModelElementalData)
+    nodal_data = nodal_data_property(ModelNodalData)

@@ -10,31 +10,7 @@ class ObjectPropertiesToTest:
     read_only: List[Tuple[str, Any]]
 
 
-class TreeObjectTester:
-    COLLECTION_NAME: str
-    DEFAULT_PROPERTIES: Dict[str, Any]
-    CREATE_METHOD_NAME: str
-
-    def test_create(self, parent_object):
-        """Test the creation of objects."""
-        create_method = getattr(parent_object, self.CREATE_METHOD_NAME)
-        names = ["ObjectName.1", "ObjectName.1", "üñıçよð€"]
-        for ref_name in names:
-            new_object = create_method(name=ref_name)
-            assert new_object.name == ref_name
-            for key, val in self.DEFAULT_PROPERTIES.items():
-                assert getattr(new_object, key) == val
-
-    @staticmethod
-    def test_properties(tree_object, object_properties: ObjectPropertiesToTest):
-        for prop, value in object_properties.read_write:
-            setattr(tree_object, prop, value)
-            assert getattr(tree_object, prop) == value
-
-        for prop, value in object_properties.read_only:
-            with pytest.raises(AttributeError):
-                setattr(tree_object, prop, value)
-
+class TreeObjectTesterReadOnly:
     @staticmethod
     def test_collection_len(collection_test_data):
         """Test the ``len()`` method of the object collection."""
@@ -94,6 +70,37 @@ class TreeObjectTester:
         with pytest.raises(KeyError):
             object_collection[INEXISTENT_ID]
         assert object_collection.get(INEXISTENT_ID) is None
+
+
+class TreeObjectTester(TreeObjectTesterReadOnly):
+    COLLECTION_NAME: str
+    DEFAULT_PROPERTIES: Dict[str, Any]
+    CREATE_METHOD_NAME: str
+
+    def test_create(self, parent_object):
+        """Test the creation of objects."""
+        create_method = getattr(parent_object, self.CREATE_METHOD_NAME)
+        names = ["ObjectName.1", "ObjectName.1", "üñıçよð€"]
+        for ref_name in names:
+            new_object = create_method(name=ref_name)
+            assert new_object.name == ref_name
+            for key, val in self.DEFAULT_PROPERTIES.items():
+                assert getattr(new_object, key) == val
+
+    @staticmethod
+    def test_properties(tree_object, object_properties: ObjectPropertiesToTest):
+        for prop, value in object_properties.read_write:
+            setattr(tree_object, prop, value)
+            assert getattr(tree_object, prop) == value
+
+        for prop, value in object_properties.read_only:
+            with pytest.raises(AttributeError):
+                setattr(tree_object, prop, value)
+
+        for prop, _ in object_properties.read_only + object_properties.read_write:
+            assert f"{prop}=" in str(
+                tree_object
+            ), f"{prop} not found in object string: {str(tree_object)}"
 
     @staticmethod
     def test_collection_delitem(collection_test_data):
