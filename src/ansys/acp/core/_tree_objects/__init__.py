@@ -13,8 +13,8 @@ from .oriented_selection_set import OrientedSelectionSet
 from .parallel_selection_rule import ParallelSelectionRule
 from .production_ply import ProductionPly
 from .rosette import Rosette
-from .stackup import FabricWithAngle, Stackup
 from .spherical_selection_rule import SphericalSelectionRule
+from .stackup import FabricWithAngle, Stackup
 from .tube_selection_rule import TubeSelectionRule
 
 __all__ = [

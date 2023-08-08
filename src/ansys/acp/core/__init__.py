@@ -22,8 +22,8 @@ from ._tree_objects import (
     ProductionPly,
     Rosette,
     SphericalSelectionRule,
-    TubeSelectionRule,
     Stackup,
+    TubeSelectionRule,
     UnitSystemType,
 )
 
