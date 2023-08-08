@@ -37,7 +37,7 @@ class Fabric(CreatableTreeObject, IdTreeObject):
     Parameters
     ----------
     name :
-        Name of the Rosette.
+        Name of the fabric.
     material :
         Material of the fabric.
     thickness :
