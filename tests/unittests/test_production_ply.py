@@ -2,6 +2,10 @@ from grpc import RpcError
 import pytest
 
 from ansys.acp.core import Model, ModelingPly
+from ansys.acp.core._tree_objects.production_ply import (
+    ProductionPlyElementalData,
+    ProductionPlyNodalData,
+)
 
 from .common.tree_object_tester import TreeObjectTesterReadOnly
 
@@ -86,3 +90,15 @@ class TestProductionPly(TreeObjectTesterReadOnly):
 
         with pytest.raises(RpcError, match="Entity not found") as ex:
             _ = production_ply_that_gets_removed_on_update.status
+
+
+def test_mesh_data_existence(parent_object):
+    """
+    Test that the elemental and nodal data can be retrieved. Does not
+    test the correctness of the data.
+    """
+    production_ply = list(parent_object.production_plies.values())[0]
+    elemental_data = production_ply.elemental_data
+    assert isinstance(elemental_data, ProductionPlyElementalData)
+    nodal_data = production_ply.nodal_data
+    assert isinstance(nodal_data, ProductionPlyNodalData)
