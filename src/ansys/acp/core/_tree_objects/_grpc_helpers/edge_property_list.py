@@ -51,6 +51,25 @@ ValueT = TypeVar("ValueT", bound=GenericEdgePropertyType)
 
 
 class EdgePropertyList(Generic[ValueT]):
+    """
+    The edge property list is used to wrap graph edges of a specific type.
+
+    For instance FabricWithAngle of a stackup.
+    This object handles the conversion of the protobuf messages to the
+    corresponding Python object and vice-versa.
+    self._object_list holds the Python object. The python objects are stored
+    to support editing in-place editing. This is achieved by passing a callback
+    function to the python object.
+
+    The edges (and parent object) is updated
+    as soon as an item or one of its properties are changed.
+
+    Note: sort is not implemented because the model definition often depends
+    on the order.
+
+    The LinkedObjectList should be used for graph edges without a specific type.
+    For instance, element sets of an oriented element set.
+    """
     def __init__(
         self,
         *,
@@ -81,9 +100,9 @@ class EdgePropertyList(Generic[ValueT]):
 
         self._object_list = get_object_list_from_parent_object()
 
-        def set_object_list(value: List[ValueT]) -> None:
+        def set_object_list(items: List[ValueT]) -> None:
             pb_obj_list = []
-            for item in value:
+            for item in items:
                 if not item._check():
                     raise RuntimeError("Cannot initialize incomplete object.")
                 pb_obj_list.append(item._to_pb_object())
@@ -92,7 +111,7 @@ class EdgePropertyList(Generic[ValueT]):
                 item._set_callback_apply_changes(self._apply_changes)
             setter(parent_object, pb_obj_list)
             # keep object list in sync with the backend. This is needed for the in-place editing
-            self._object_list = value
+            self._object_list = items
 
         self._set_object_list = set_object_list
 
@@ -173,21 +192,6 @@ class EdgePropertyList(Generic[ValueT]):
         This function applies the changes if someone edits one entry of the list.
         """
         self._set_object_list(self._object_list)
-
-    """
-    It does not make to sense to sort them because the model depends on the order
-    def sort(
-        self, *, key: Callable[[ValueT], Any] = lambda obj: obj.__lt__, reverse: bool = False
-    ) -> None:
-        pb_object_list = self._get_pb_object_list()
-        evaluated_key_list = [key(self._object_constructor(obj)) for obj in pb_object_list]
-        idx_list = np.argsort(evaluated_key_list)
-        if reverse:
-            idx_list = idx_list[::-1]
-        pb_object_list = list(np.array(pb_object_list)[idx_list])
-        self._set_pb_object_list(pb_object_list)
-
-    """
 
     def __eq__(self, other: Any) -> Any:
         return list(self) == other

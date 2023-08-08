@@ -125,7 +125,7 @@ class Stackup(CreatableTreeObject, IdTreeObject):
     fabrics :
         List of fabrics with angles which build the stackup.
     area_price :
-        Price per area of the fabric.
+        Price per area of the stackup.
     drop_off_material_handling :
         Defines the material of drop-off elements in the solid model extrusion.
     drop_off_material :
@@ -133,7 +133,7 @@ class Stackup(CreatableTreeObject, IdTreeObject):
     cut_off_material_handling :
         Defines the material of cut-off elements in solid models if cut-off geometries are active.
     cut_off_material :
-        Define the cut-off material if this ply is shaped by a cut-off geometry.
+        Define the cut-off material if a ply with this material is shaped by a cut-off geometry.
     draping_material_model :
         Specifies the draping model of the fabric.
     draping_ud_coefficient :
