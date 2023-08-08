@@ -28,9 +28,11 @@
       :toctree:
    
       ProductionPly.angle
+      ProductionPly.elemental_data
       ProductionPly.id
       ProductionPly.material
       ProductionPly.name
+      ProductionPly.nodal_data
       ProductionPly.status
    
    

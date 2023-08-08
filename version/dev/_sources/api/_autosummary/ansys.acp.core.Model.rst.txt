@@ -39,6 +39,9 @@
       Model.create_rosette
       
       
+      Model.create_stackup
+      
+      
       Model.delete
       
       
@@ -87,6 +90,7 @@
       Model.oriented_selection_sets
       Model.relative_thickness_tolerance
       Model.rosettes
+      Model.stackups
       Model.unit_system
       Model.use_nodal_thicknesses
    

@@ -1,0 +1,6 @@
+stackups
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.stackups

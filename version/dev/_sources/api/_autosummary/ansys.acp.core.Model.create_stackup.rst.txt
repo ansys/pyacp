@@ -1,0 +1,6 @@
+create\_stackup
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_stackup

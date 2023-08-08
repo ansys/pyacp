@@ -408,6 +408,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_modeling_group.html">create_modeling_group</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_oriented_selection_set.html">create_oriented_selection_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_rosette.html">create_rosette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_stackup.html">create_stackup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.delete.html">delete</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.export_materials.html">export_materials</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.export_shell_composite_definitions.html">export_shell_composite_definitions</a></li>
@@ -431,6 +432,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.oriented_selection_sets.html">oriented_selection_sets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.relative_thickness_tolerance.html">relative_thickness_tolerance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.rosettes.html">rosettes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.stackups.html">stackups</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.unit_system.html">unit_system</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html">use_nodal_thicknesses</a></li>
 </ul>
@@ -569,9 +571,11 @@ document.write(`
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">ProductionPly</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ProductionPly.clone.html">clone</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ProductionPly.angle.html">angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ProductionPly.elemental_data.html">elemental_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ProductionPly.id.html">id</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ProductionPly.material.html">material</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ProductionPly.name.html">name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ProductionPly.nodal_data.html">nodal_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ProductionPly.status.html">status</a></li>
 </ul>
 </li>
@@ -870,13 +874,19 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ProductionPly.angle.html#ansys.acp.core.ProductionPly.angle" title="ansys.acp.core.ProductionPly.angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPly.angle</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ProductionPly.id.html#ansys.acp.core.ProductionPly.id" title="ansys.acp.core.ProductionPly.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPly.id</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ProductionPly.elemental_data.html#ansys.acp.core.ProductionPly.elemental_data" title="ansys.acp.core.ProductionPly.elemental_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPly.elemental_data</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ProductionPly.material.html#ansys.acp.core.ProductionPly.material" title="ansys.acp.core.ProductionPly.material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPly.material</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ProductionPly.id.html#ansys.acp.core.ProductionPly.id" title="ansys.acp.core.ProductionPly.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPly.id</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ProductionPly.name.html#ansys.acp.core.ProductionPly.name" title="ansys.acp.core.ProductionPly.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPly.name</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ProductionPly.material.html#ansys.acp.core.ProductionPly.material" title="ansys.acp.core.ProductionPly.material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPly.material</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ProductionPly.name.html#ansys.acp.core.ProductionPly.name" title="ansys.acp.core.ProductionPly.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPly.name</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ProductionPly.nodal_data.html#ansys.acp.core.ProductionPly.nodal_data" title="ansys.acp.core.ProductionPly.nodal_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPly.nodal_data</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ProductionPly.status.html#ansys.acp.core.ProductionPly.status" title="ansys.acp.core.ProductionPly.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPly.status</span></code></a></p></td>
