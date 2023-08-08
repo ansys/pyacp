@@ -10,6 +10,7 @@ from pyvista.core.pointset import UnstructuredGrid
 
 from ansys.api.acp.v0 import (
     base_pb2,
+    cylindrical_selection_rule_pb2_grpc,
     edge_set_pb2_grpc,
     element_set_pb2_grpc,
     fabric_pb2_grpc,
@@ -22,7 +23,9 @@ from ansys.api.acp.v0 import (
     oriented_selection_set_pb2_grpc,
     parallel_selection_rule_pb2_grpc,
     rosette_pb2_grpc,
+    spherical_selection_rule_pb2_grpc,
     stackup_pb2_grpc,
+    tube_selection_rule_pb2_grpc,
 )
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
@@ -39,6 +42,7 @@ from ._grpc_helpers.property_helper import (
 )
 from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import TreeObject
+from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import UnitSystemType, unit_system_type_from_pb, unit_system_type_to_pb
@@ -48,7 +52,9 @@ from .modeling_group import ModelingGroup
 from .oriented_selection_set import OrientedSelectionSet
 from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
+from .spherical_selection_rule import SphericalSelectionRule
 from .stackup import Stackup
+from .tube_selection_rule import TubeSelectionRule
 
 __all__ = ["MeshData", "Model", "ModelElementalData", "ModelNodalData"]
 
@@ -289,6 +295,18 @@ class Model(TreeObject):
     create_parallel_selection_rule, parallel_selection_rules = define_mutable_mapping(
         ParallelSelectionRule, parallel_selection_rule_pb2_grpc.ObjectServiceStub
     )
+    create_cylindrical_selection_rule, cylindrical_selection_rules = define_mutable_mapping(
+        CylindricalSelectionRule, cylindrical_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+    create_spherical_selection_rule, spherical_selection_rules = define_mutable_mapping(
+        SphericalSelectionRule, spherical_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+    create_tube_selection_rule, tube_selection_rules = define_mutable_mapping(
+        TubeSelectionRule, tube_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+    # create_boolean_selection_rule, boolean_selection_rules = define_mapping(
+    #     BooleanSelectionRule, boolean_selection_rule_pb2_grpc.ObjectServiceStub
+    # )
 
     create_oriented_selection_set, oriented_selection_sets = define_mutable_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub
