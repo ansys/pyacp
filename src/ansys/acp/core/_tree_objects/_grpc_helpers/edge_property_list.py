@@ -70,6 +70,7 @@ class EdgePropertyList(MutableSequence[ValueT]):
     The LinkedObjectList should be used for graph edges without a specific type.
     For instance, element sets of an oriented element set.
     """
+
     def __init__(
         self,
         *,
