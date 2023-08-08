@@ -20,12 +20,18 @@ from .parallel_selection_rule import ParallelSelectionRule
 from .spherical_selection_rule import SphericalSelectionRule
 from .tube_selection_rule import TubeSelectionRule
 
-_LINKABLE_SELECTION_RULE_TYPES = Union[
-    ParallelSelectionRule,
-    CylindricalSelectionRule,
-    SphericalSelectionRule,
-    TubeSelectionRule,
-]
+if typing.TYPE_CHECKING:
+    # Since the 'LinkedSelectionRule' class is used by the boolean selection rule,
+    # this would cause a circular import at run-time.
+    from .boolean_selection_rule import BooleanSelectionRule
+
+    _LINKABLE_SELECTION_RULE_TYPES = Union[
+        ParallelSelectionRule,
+        CylindricalSelectionRule,
+        SphericalSelectionRule,
+        TubeSelectionRule,
+        BooleanSelectionRule,
+    ]
 
 
 class LinkedSelectionRule(GenericEdgePropertyType):
@@ -121,16 +127,30 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         message: linked_selection_rule_pb2.LinkedSelectionRule,
         apply_changes: Callable[[], None],
     ) -> Self:
+        from .boolean_selection_rule import BooleanSelectionRule
+
+        # Cannot link to objects of the same type as the parent.
+        allowed_types = tuple(
+            type_
+            for type_ in [
+                ParallelSelectionRule,
+                CylindricalSelectionRule,
+                SphericalSelectionRule,
+                TubeSelectionRule,
+                BooleanSelectionRule,
+            ]
+            if not isinstance(parent_object, type_)
+        )
+
         selection_rule = tree_object_from_resource_path(
             resource_path=message.resource_path, channel=parent_object._channel
         )
-        allowed_types = typing.get_args(_LINKABLE_SELECTION_RULE_TYPES)
         if not isinstance(selection_rule, allowed_types):
             raise TypeError(
                 f"Expected selection_rule to be of type {allowed_types}, "
                 f"got {type(selection_rule)}."
             )
-        selection_rule = typing.cast(_LINKABLE_SELECTION_RULE_TYPES, selection_rule)
+        selection_rule = typing.cast("_LINKABLE_SELECTION_RULE_TYPES", selection_rule)
         new_obj = cls(
             selection_rule=selection_rule,
             operation_type=boolean_operation_type_from_pb(message.operation_type),

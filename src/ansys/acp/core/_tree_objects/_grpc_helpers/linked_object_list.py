@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from functools import partial
 import sys
 from typing import Any, Callable, Iterable, Iterator, List, MutableSequence, TypeVar, cast, overload
 
@@ -9,6 +10,7 @@ import numpy as np
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
 from ..base import CreatableTreeObject, TreeObject
+from .polymorphic_from_pb import tree_object_from_resource_path
 from .property_helper import _exposed_grpc_property, grpc_data_getter, grpc_data_setter
 
 ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
@@ -161,6 +163,22 @@ def define_linked_object_list(attribute_name: str, object_class: type[ChildT]) -
         )
 
     def setter(self: ValueT, value: list[ChildT]) -> None:
+        getter(self)[:] = value
+
+    return _exposed_grpc_property(getter).setter(setter)
+
+
+def define_polymorphic_linked_object_list(
+    attribute_name: str, allowed_types: tuple[Any, ...]
+) -> Any:
+    def getter(self: ValueT) -> LinkedObjectList[Any]:
+        return LinkedObjectList(
+            parent_object=self,
+            attribute_name=attribute_name,
+            object_constructor=partial(tree_object_from_resource_path, allowed_types=allowed_types),
+        )
+
+    def setter(self: ValueT, value: list[Any]) -> None:
         getter(self)[:] = value
 
     return _exposed_grpc_property(getter).setter(setter)

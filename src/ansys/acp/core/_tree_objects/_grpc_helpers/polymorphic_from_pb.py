@@ -19,6 +19,7 @@ class CreatableFromResourcePath(Protocol):
 def tree_object_from_resource_path(
     resource_path: ResourcePath,
     channel: grpc.Channel,
+    allowed_types: tuple[type[CreatableFromResourcePath], ...] | None = None,
 ) -> CreatableFromResourcePath | None:
     #  Import here to avoid circular references. Cannot use the registry before
     #  all the object have been imported.
@@ -31,4 +32,10 @@ def tree_object_from_resource_path(
 
     collection_name = resource_path.value.split("/")[::2][-1]
     resource_class: type[CreatableFromResourcePath] = object_registry[collection_name]
+    if allowed_types is not None:
+        if not issubclass(resource_class, allowed_types):
+            raise TypeError(
+                f"Resource path {resource_path.value} does not point to a valid "
+                f"object type. Allowed types: {allowed_types}"
+            )
     return resource_class._from_resource_path(resource_path, channel)

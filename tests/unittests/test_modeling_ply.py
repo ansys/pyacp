@@ -3,7 +3,8 @@ import numpy.testing
 import pytest
 import pyvista
 
-from ansys.acp.core import ElementalDataType, NodalDataType
+from ansys.acp.core import ElementalDataType, LinkedSelectionRule, NodalDataType
+from ansys.acp.core._tree_objects.enums import BooleanOperationType
 
 from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
@@ -50,6 +51,46 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
                 ("ply_angle", 0.5),
                 ("active", False),
                 ("global_ply_nr", AnyThing()),
+                (
+                    "selection_rules",
+                    [
+                        LinkedSelectionRule(
+                            selection_rule=parent_model.create_parallel_selection_rule(),
+                            operation_type=BooleanOperationType.INTERSECT,
+                            template_rule=False,
+                            parameter_1=1.0,
+                            parameter_2=2.0,
+                        ),
+                        LinkedSelectionRule(
+                            selection_rule=parent_model.create_cylindrical_selection_rule(),
+                            operation_type=BooleanOperationType.ADD,
+                            template_rule=True,
+                            parameter_1=1.1,
+                            parameter_2=2.2,
+                        ),
+                        LinkedSelectionRule(
+                            selection_rule=parent_model.create_spherical_selection_rule(),
+                            operation_type=BooleanOperationType.REMOVE,
+                            template_rule=True,
+                            parameter_1=2.3,
+                            parameter_2=-1.3,
+                        ),
+                        LinkedSelectionRule(
+                            selection_rule=parent_model.create_tube_selection_rule(),
+                            operation_type=BooleanOperationType.INTERSECT,
+                            template_rule=False,
+                            parameter_1=1.3,
+                            parameter_2=2.9,
+                        ),
+                        LinkedSelectionRule(
+                            selection_rule=parent_model.create_boolean_selection_rule(),
+                            operation_type=BooleanOperationType.REMOVE,
+                            template_rule=False,
+                            parameter_1=4.0,
+                            parameter_2=9.2,
+                        ),
+                    ],
+                ),
             ],
             read_only=[
                 ("id", "some_id"),
