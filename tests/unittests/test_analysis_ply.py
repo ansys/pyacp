@@ -1,7 +1,8 @@
 from grpc import RpcError
 import pytest
 
-from ansys.acp.core import Model, FabricWithAngle
+from ansys.acp.core import FabricWithAngle, Model
+from ansys.acp.core._tree_objects.analysis_ply import AnalysisPlyElementalData, AnalysisPlyNodalData
 
 from .common.tree_object_tester import TreeObjectTesterReadOnly
 
@@ -22,11 +23,13 @@ def get_first_production_ply(parent_model: Model):
 
 def add_stackup_with_3_layers_to_modeling_ply(model: Model):
     fabric = model.fabrics["Fabric.1"]
-    stackup = model.create_stackup(fabrics=[
-        FabricWithAngle(fabric=fabric, angle=0.0),
-        FabricWithAngle(fabric=fabric, angle=10.0),
-        FabricWithAngle(fabric=fabric, angle=20.0)
-    ])
+    stackup = model.create_stackup(
+        fabrics=[
+            FabricWithAngle(fabric=fabric, angle=0.0),
+            FabricWithAngle(fabric=fabric, angle=10.0),
+            FabricWithAngle(fabric=fabric, angle=20.0),
+        ]
+    )
     get_first_modeling_ply(model).ply_material = stackup
     model.update()
 
@@ -80,9 +83,7 @@ class TestAnalysisPly(TreeObjectTesterReadOnly):
                 with pytest.raises(AttributeError):
                     setattr(ply_obj, prop, value)
 
-    def test_after_update(
-        self, model, properties_3_layers
-    ):
+    def test_after_update(self, model, properties_3_layers):
         # Test that list of analysis plies stays up-to-date
         # after update that removes analysis plies.
         # Check that requesting properties on a removed analysis
@@ -95,11 +96,27 @@ class TestAnalysisPly(TreeObjectTesterReadOnly):
             for prop, value in ply_properties.items():
                 assert getattr(ply_obj, prop) == value
 
-        analysis_ply_that_gets_removed_on_update = get_first_production_ply(model).analysis_plies["P1L1__ModelingPly.1"]
+        analysis_ply_that_gets_removed_on_update = get_first_production_ply(model).analysis_plies[
+            "P1L1__ModelingPly.1"
+        ]
         get_first_modeling_ply(model).ply_material = model.fabrics["Fabric.1"]
         model.update()
         assert len(get_first_modeling_ply(model).production_plies) == 1
-        assert len(get_first_modeling_ply(model).production_plies["ProductionPly"].analysis_plies) == 1
+        assert (
+            len(get_first_modeling_ply(model).production_plies["ProductionPly"].analysis_plies) == 1
+        )
 
         with pytest.raises(RpcError, match="Entity not found") as ex:
             _ = analysis_ply_that_gets_removed_on_update.status
+
+
+def test_mesh_data_existence(model: Model):
+    """
+    Test that the elemental and nodal data can be retrieved. Does not
+    test the correctness of the data.
+    """
+    analysis_ply = list(get_first_production_ply(model).analysis_plies.values())[0]
+    elemental_data = analysis_ply.elemental_data
+    assert isinstance(elemental_data, AnalysisPlyElementalData)
+    nodal_data = analysis_ply.nodal_data
+    assert isinstance(nodal_data, AnalysisPlyNodalData)
