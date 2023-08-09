@@ -1,0 +1,6 @@
+tube\_selection\_rules
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.tube_selection_rules

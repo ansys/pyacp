@@ -42,6 +42,7 @@
       OrientedSelectionSet.orientation_point
       OrientedSelectionSet.rosette_selection_method
       OrientedSelectionSet.rosettes
+      OrientedSelectionSet.selection_rules
       OrientedSelectionSet.status
    
    

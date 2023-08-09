@@ -1,0 +1,6 @@
+uMKS
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.uMKS

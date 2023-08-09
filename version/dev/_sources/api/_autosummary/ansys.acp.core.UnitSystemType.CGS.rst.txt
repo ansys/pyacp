@@ -1,0 +1,6 @@
+CGS
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.CGS

@@ -1,0 +1,29 @@
+﻿UnitSystemType
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: UnitSystemType
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      UnitSystemType.UNDEFINED
+      UnitSystemType.SI
+      UnitSystemType.MKS
+      UnitSystemType.uMKS
+      UnitSystemType.CGS
+      UnitSystemType.MPA
+      UnitSystemType.BFT
+      UnitSystemType.BIN
+   
+   

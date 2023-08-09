@@ -1,0 +1,6 @@
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.name

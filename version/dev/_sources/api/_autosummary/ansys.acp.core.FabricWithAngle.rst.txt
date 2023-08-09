@@ -1,0 +1,30 @@
+﻿FabricWithAngle
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: FabricWithAngle
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      FabricWithAngle.angle
+      FabricWithAngle.fabric
+   
+   

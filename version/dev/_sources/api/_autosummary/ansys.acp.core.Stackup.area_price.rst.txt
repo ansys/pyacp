@@ -1,0 +1,6 @@
+area\_price
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.area_price

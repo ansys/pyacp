@@ -1,0 +1,6 @@
+ignore\_for\_postprocessing
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.ignore_for_postprocessing

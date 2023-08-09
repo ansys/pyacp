@@ -18,6 +18,12 @@
       Model.clone
       
       
+      Model.create_boolean_selection_rule
+      
+      
+      Model.create_cylindrical_selection_rule
+      
+      
       Model.create_edge_set
       
       
@@ -36,10 +42,19 @@
       Model.create_oriented_selection_set
       
       
+      Model.create_parallel_selection_rule
+      
+      
       Model.create_rosette
       
       
+      Model.create_spherical_selection_rule
+      
+      
       Model.create_stackup
+      
+      
+      Model.create_tube_selection_rule
       
       
       Model.delete
@@ -76,6 +91,8 @@
       :toctree:
    
       Model.angle_tolerance
+      Model.boolean_selection_rules
+      Model.cylindrical_selection_rules
       Model.draping_offset_correction
       Model.edge_sets
       Model.element_sets
@@ -88,9 +105,12 @@
       Model.name
       Model.nodal_data
       Model.oriented_selection_sets
+      Model.parallel_selection_rules
       Model.relative_thickness_tolerance
       Model.rosettes
+      Model.spherical_selection_rules
       Model.stackups
+      Model.tube_selection_rules
       Model.unit_system
       Model.use_nodal_thicknesses
    

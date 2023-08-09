@@ -1,0 +1,6 @@
+AREA
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.AREA

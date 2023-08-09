@@ -1,0 +1,6 @@
+THICKNESS
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.THICKNESS

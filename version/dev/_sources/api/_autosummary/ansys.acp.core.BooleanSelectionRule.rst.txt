@@ -1,0 +1,44 @@
+﻿BooleanSelectionRule
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: BooleanSelectionRule
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      BooleanSelectionRule.clone
+      
+      
+      BooleanSelectionRule.delete
+      
+      
+      BooleanSelectionRule.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      BooleanSelectionRule.elemental_data
+      BooleanSelectionRule.id
+      BooleanSelectionRule.include_rule_type
+      BooleanSelectionRule.name
+      BooleanSelectionRule.nodal_data
+      BooleanSelectionRule.selection_rules
+      BooleanSelectionRule.status
+   
+   

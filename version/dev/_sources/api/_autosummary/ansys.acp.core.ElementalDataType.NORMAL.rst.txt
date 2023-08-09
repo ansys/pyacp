@@ -1,0 +1,6 @@
+NORMAL
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.NORMAL

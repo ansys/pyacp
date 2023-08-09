@@ -1,0 +1,6 @@
+draping\_ud\_coefficient
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.draping_ud_coefficient

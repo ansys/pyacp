@@ -1,0 +1,6 @@
+direction
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.direction

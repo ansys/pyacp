@@ -1,0 +1,22 @@
+﻿NodalDataType
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: NodalDataType
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      NodalDataType.PLY_OFFSET
+   
+   

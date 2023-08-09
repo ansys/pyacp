@@ -1,0 +1,6 @@
+locked
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.locked

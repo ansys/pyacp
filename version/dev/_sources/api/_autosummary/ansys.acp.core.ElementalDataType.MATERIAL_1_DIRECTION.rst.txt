@@ -1,0 +1,6 @@
+MATERIAL\_1\_DIRECTION
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.MATERIAL_1_DIRECTION

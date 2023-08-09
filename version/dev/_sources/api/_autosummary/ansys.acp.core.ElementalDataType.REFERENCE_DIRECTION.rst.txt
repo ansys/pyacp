@@ -1,0 +1,6 @@
+REFERENCE\_DIRECTION
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.REFERENCE_DIRECTION

@@ -1,0 +1,6 @@
+tail\_extension
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.tail_extension

@@ -1,0 +1,6 @@
+head\_extension
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.head_extension

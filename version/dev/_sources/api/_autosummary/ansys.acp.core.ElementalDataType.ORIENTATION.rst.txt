@@ -1,0 +1,6 @@
+ORIENTATION
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.ORIENTATION

@@ -1,0 +1,6 @@
+BY\_REFERENCE
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: EdgeSetType.BY_REFERENCE

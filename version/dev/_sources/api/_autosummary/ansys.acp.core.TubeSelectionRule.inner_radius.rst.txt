@@ -1,0 +1,6 @@
+inner\_radius
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.inner_radius

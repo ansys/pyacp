@@ -1,0 +1,6 @@
+COG
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.COG

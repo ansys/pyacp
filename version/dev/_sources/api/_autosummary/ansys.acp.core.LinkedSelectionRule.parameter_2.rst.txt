@@ -1,0 +1,6 @@
+parameter\_2
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LinkedSelectionRule.parameter_2

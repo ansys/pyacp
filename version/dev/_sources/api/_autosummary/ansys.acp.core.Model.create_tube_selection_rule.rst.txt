@@ -1,0 +1,6 @@
+create\_tube\_selection\_rule
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_tube_selection_rule

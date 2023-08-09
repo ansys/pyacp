@@ -1,0 +1,6 @@
+PRICE
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.PRICE

@@ -1,0 +1,6 @@
+MPA
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.MPA

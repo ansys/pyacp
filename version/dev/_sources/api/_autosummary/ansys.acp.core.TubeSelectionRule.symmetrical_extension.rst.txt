@@ -1,0 +1,6 @@
+symmetrical\_extension
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.symmetrical_extension

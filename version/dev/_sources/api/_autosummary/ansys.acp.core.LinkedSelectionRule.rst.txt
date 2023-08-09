@@ -1,0 +1,33 @@
+﻿LinkedSelectionRule
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: LinkedSelectionRule
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      LinkedSelectionRule.operation_type
+      LinkedSelectionRule.parameter_1
+      LinkedSelectionRule.parameter_2
+      LinkedSelectionRule.selection_rule
+      LinkedSelectionRule.template_rule
+   
+   

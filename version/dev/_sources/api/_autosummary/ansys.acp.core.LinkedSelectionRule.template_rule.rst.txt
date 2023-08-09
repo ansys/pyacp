@@ -1,0 +1,6 @@
+template\_rule
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LinkedSelectionRule.template_rule

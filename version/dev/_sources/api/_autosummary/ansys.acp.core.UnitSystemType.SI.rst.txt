@@ -1,0 +1,6 @@
+SI
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.SI

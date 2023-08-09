@@ -1,0 +1,6 @@
+use\_global\_coordinate\_system
+===============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.use_global_coordinate_system

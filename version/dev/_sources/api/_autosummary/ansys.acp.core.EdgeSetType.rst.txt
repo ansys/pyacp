@@ -1,0 +1,23 @@
+﻿EdgeSetType
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: EdgeSetType
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      EdgeSetType.BY_REFERENCE
+      EdgeSetType.BY_NODES
+   
+   

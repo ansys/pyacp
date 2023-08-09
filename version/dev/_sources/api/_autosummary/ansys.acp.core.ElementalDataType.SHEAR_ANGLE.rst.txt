@@ -1,0 +1,6 @@
+SHEAR\_ANGLE
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.SHEAR_ANGLE

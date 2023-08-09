@@ -44,6 +44,7 @@
       ModelingPly.ply_angle
       ModelingPly.ply_material
       ModelingPly.production_plies
+      ModelingPly.selection_rules
       ModelingPly.status
    
    

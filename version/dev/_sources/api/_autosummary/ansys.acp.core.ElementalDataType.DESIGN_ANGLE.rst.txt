@@ -1,0 +1,6 @@
+DESIGN\_ANGLE
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.DESIGN_ANGLE

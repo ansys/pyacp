@@ -1,0 +1,6 @@
+fabric
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: FabricWithAngle.fabric

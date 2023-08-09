@@ -1,0 +1,6 @@
+create\_spherical\_selection\_rule
+==================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_spherical_selection_rule

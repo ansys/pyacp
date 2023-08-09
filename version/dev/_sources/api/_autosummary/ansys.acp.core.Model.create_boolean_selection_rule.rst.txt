@@ -1,0 +1,6 @@
+create\_boolean\_selection\_rule
+================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_boolean_selection_rule

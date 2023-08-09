@@ -1,0 +1,6 @@
+BIN
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.BIN

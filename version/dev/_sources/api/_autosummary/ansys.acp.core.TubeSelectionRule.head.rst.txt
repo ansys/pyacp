@@ -1,0 +1,6 @@
+head
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.head

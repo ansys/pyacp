@@ -1,0 +1,6 @@
+outer\_radius
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.outer_radius

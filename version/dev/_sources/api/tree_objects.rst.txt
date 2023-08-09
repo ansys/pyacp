@@ -9,9 +9,15 @@ ACP objects
     Model
     Material
     Fabric
+    Stackup
     ElementSet
     EdgeSet
     Rosette
+    ParallelSelectionRule
+    CylindricalSelectionRule
+    SphericalSelectionRule
+    TubeSelectionRule
+    BooleanSelectionRule
     OrientedSelectionSet
     ModelingGroup
     ModelingPly

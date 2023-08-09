@@ -1,0 +1,6 @@
+symmetry
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.symmetry

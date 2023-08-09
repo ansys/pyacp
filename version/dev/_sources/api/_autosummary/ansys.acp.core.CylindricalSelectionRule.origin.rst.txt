@@ -1,0 +1,6 @@
+origin
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CylindricalSelectionRule.origin

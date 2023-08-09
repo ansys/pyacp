@@ -1,0 +1,6 @@
+BFT
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.BFT

@@ -1,0 +1,6 @@
+DRAPED\_TRANSVERSE\_DIRECTION
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.DRAPED_TRANSVERSE_DIRECTION

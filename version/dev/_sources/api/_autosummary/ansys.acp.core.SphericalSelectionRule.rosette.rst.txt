@@ -1,0 +1,6 @@
+rosette
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.rosette

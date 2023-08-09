@@ -1,0 +1,6 @@
+PLY\_OFFSET
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: NodalDataType.PLY_OFFSET

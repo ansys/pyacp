@@ -1,0 +1,6 @@
+COORDINATES
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.COORDINATES

@@ -1,0 +1,6 @@
+TRANSVERSE\_DIRECTION
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.TRANSVERSE_DIRECTION

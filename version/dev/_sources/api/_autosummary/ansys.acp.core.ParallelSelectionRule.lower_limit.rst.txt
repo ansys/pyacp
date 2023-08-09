@@ -1,0 +1,6 @@
+lower\_limit
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.lower_limit

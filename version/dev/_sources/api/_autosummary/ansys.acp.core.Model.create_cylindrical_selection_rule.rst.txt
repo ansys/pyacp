@@ -1,0 +1,6 @@
+create\_cylindrical\_selection\_rule
+====================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_cylindrical_selection_rule

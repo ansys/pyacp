@@ -1,0 +1,6 @@
+selection\_rules
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.selection_rules

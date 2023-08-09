@@ -1,0 +1,49 @@
+﻿CylindricalSelectionRule
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: CylindricalSelectionRule
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      CylindricalSelectionRule.clone
+      
+      
+      CylindricalSelectionRule.delete
+      
+      
+      CylindricalSelectionRule.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CylindricalSelectionRule.direction
+      CylindricalSelectionRule.elemental_data
+      CylindricalSelectionRule.id
+      CylindricalSelectionRule.include_rule_type
+      CylindricalSelectionRule.name
+      CylindricalSelectionRule.nodal_data
+      CylindricalSelectionRule.origin
+      CylindricalSelectionRule.radius
+      CylindricalSelectionRule.relative_rule_type
+      CylindricalSelectionRule.rosette
+      CylindricalSelectionRule.status
+      CylindricalSelectionRule.use_global_coordinate_system
+   
+   

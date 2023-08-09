@@ -1,0 +1,6 @@
+FIBER\_DIRECTION
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.FIBER_DIRECTION

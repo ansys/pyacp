@@ -1,0 +1,6 @@
+operation\_type
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LinkedSelectionRule.operation_type
