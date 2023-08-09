@@ -35,7 +35,7 @@ if typing.TYPE_CHECKING:
 
 
 class LinkedSelectionRule(GenericEdgePropertyType):
-    """Defines selection rules linked to a Boolean Selection Rule or Modeling Ply.
+    r"""Defines selection rules linked to a Boolean Selection Rule or Modeling Ply.
 
     Parameters
     ----------
@@ -62,13 +62,13 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     Rule Type                              ``parameter_1``                    ``parameter_2``
     ====================================== ================================== ===================
     :class:`.ParallelSelectionRule`        ``lower_limit``                    ``upper_limit``
-    :class:`.CylindricalSelectionRule`     ``radius``                         \\-
-    :class:`.SphericalSelectionRule`       ``radius``                         \\-
+    :class:`.CylindricalSelectionRule`     ``radius``                         \-
+    :class:`.SphericalSelectionRule`       ``radius``                         \-
     :class:`.TubeSelectionRule`            ``outer_radius``                   ``inner_radius``
-    (TODO: CutOffSelectionRule)            \\-                                \\-
-    (TODO: GeometricalSelectionRule)       (TODO: in-plane capture tolerance) \\-
-    (TODO: VariableOffsetSelectionRule)    \\-                                \\-
-    :class:`.BooleanSelectionRule`         \\-                                \\-
+    (TODO: CutOffSelectionRule)            \-                                 \-
+    (TODO: GeometricalSelectionRule)       (TODO: in-plane capture tolerance) \-
+    (TODO: VariableOffsetSelectionRule)    \-                                 \-
+    :class:`.BooleanSelectionRule`         \-                                 \-
     ====================================== ================================== ===================
     """
 

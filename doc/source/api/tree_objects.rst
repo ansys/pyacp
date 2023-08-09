@@ -10,7 +10,6 @@ ACP objects
     Material
     Fabric
     Stackup
-    FabricWithAngle
     ElementSet
     EdgeSet
     Rosette
@@ -19,12 +18,7 @@ ACP objects
     SphericalSelectionRule
     TubeSelectionRule
     BooleanSelectionRule
-    LinkedSelectionRule
     OrientedSelectionSet
     ModelingGroup
     ModelingPly
     ProductionPly
-    UnitSystemType
-    EdgeSetType
-    ElementalDataType
-    NodalDataType
