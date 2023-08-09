@@ -85,7 +85,9 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
             new_object = create_method(name=ref_name)
             assert new_object.name == ref_name
             for key, val in self.DEFAULT_PROPERTIES.items():
-                assert getattr(new_object, key) == val
+                assert (
+                    getattr(new_object, key) == val
+                ), f"Attribute {key} not set correctly. Expected {val}, got {getattr(new_object, key)}"
 
     @staticmethod
     def test_properties(tree_object, object_properties: ObjectPropertiesToTest):
