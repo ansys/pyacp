@@ -53,6 +53,23 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     parameter_2 :
         Second parameter value of the selection rule. Only applies if ``template_rule``
         is ``True``.
+
+
+    The ``parameter_1`` and ``parameter_2`` attributes determine the values of the
+    following parameters, depending on the type of selection rule:
+
+    ====================================== ================================== ===================
+    Rule Type                              ``parameter_1``                    ``parameter_2``
+    ====================================== ================================== ===================
+    :class:`.ParallelSelectionRule`        ``lower_limit``                    ``upper_limit``
+    :class:`.CylindricalSelectionRule`     ``radius``                         \\-
+    :class:`.SphericalSelectionRule`       ``radius``                         \\-
+    :class:`.TubeSelectionRule`            ``outer_radius``                   ``inner_radius``
+    (TODO: CutOffSelectionRule)            \\-                                \\-
+    (TODO: GeometricalSelectionRule)       (TODO: in-plane capture tolerance) \\-
+    (TODO: VariableOffsetSelectionRule)    \\-                                \\-
+    :class:`.BooleanSelectionRule`         \\-                                \\-
+    ====================================== ================================== ===================
     """
 
     def __init__(
