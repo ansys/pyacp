@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EngineeringData version="18.0.0.60" versiondate="29.08.2016 15:02:00">
+  <Materials>
+    <MatML_Doc>
+      <Material>
+        <BulkDetails>
+          <Name>mat</Name>
+          <PropertyData property="pr0">
+            <Data format="string">-</Data>
+            <Qualifier name="source">ACP</Qualifier>
+            <Qualifier name="Type">Regular</Qualifier>
+          </PropertyData>
+          <PropertyData property="pr1">
+            <Data format="float">0</Data>
+          </PropertyData>
+          <PropertyData property="pr2">
+            <Data format="string">-</Data>
+            <Qualifier name="Behavior">Orthotropic</Qualifier>
+            <ParameterValue format="float" parameter="pa0">
+              <Data>1000000000000</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa1">
+              <Data>100000000000</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa2">
+              <Data>100000000000</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa3">
+              <Data>10000000000</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa4">
+              <Data>10000000000</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa5">
+              <Data>10000000000</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa6">
+              <Data>0.29999999999999999</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa7">
+              <Data>0.29999999999999999</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa8">
+              <Data>0.29999999999999999</Data>
+            </ParameterValue>
+          </PropertyData>
+          <PropertyData property="pr3">
+            <Data format="string">-</Data>
+            <Qualifier name="Behavior">Orthotropic</Qualifier>
+            <ParameterValue format="float" parameter="pa9">
+              <Data>0.01</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa10">
+              <Data>-0.01</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa11">
+              <Data>0.01</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa12">
+              <Data>-0.01</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa13">
+              <Data>0.01</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa14">
+              <Data>-0.01</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa15">
+              <Data>0.01</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa16">
+              <Data>0.01</Data>
+            </ParameterValue>
+            <ParameterValue format="float" parameter="pa17">
+              <Data>0.01</Data>
+            </ParameterValue>
+          </PropertyData>
+        </BulkDetails>
+      </Material>
+      <Metadata>
+        <PropertyDetails id="pr0">
+          <Name>Ply Type</Name>
+          <Unitless/>
+        </PropertyDetails>
+        <PropertyDetails id="pr1">
+          <Name>Density</Name>
+          <Units>
+            <Unit>
+              <Name>kg</Name>
+            </Unit>
+            <Unit power="-3">
+              <Name>m</Name>
+            </Unit>
+          </Units>
+        </PropertyDetails>
+        <PropertyDetails id="pr2">
+          <Name>Elasticity</Name>
+          <Unitless/>
+        </PropertyDetails>
+        <ParameterDetails id="pa0">
+          <Name>Young&apos;s Modulus X direction</Name>
+          <Units>
+            <Unit>
+              <Name>Pa</Name>
+            </Unit>
+          </Units>
+        </ParameterDetails>
+        <ParameterDetails id="pa1">
+          <Name>Young&apos;s Modulus Y direction</Name>
+          <Units>
+            <Unit>
+              <Name>Pa</Name>
+            </Unit>
+          </Units>
+        </ParameterDetails>
+        <ParameterDetails id="pa2">
+          <Name>Young&apos;s Modulus Z direction</Name>
+          <Units>
+            <Unit>
+              <Name>Pa</Name>
+            </Unit>
+          </Units>
+        </ParameterDetails>
+        <ParameterDetails id="pa3">
+          <Name>Shear Modulus XY</Name>
+          <Units>
+            <Unit>
+              <Name>Pa</Name>
+            </Unit>
+          </Units>
+        </ParameterDetails>
+        <ParameterDetails id="pa4">
+          <Name>Shear Modulus YZ</Name>
+          <Units>
+            <Unit>
+              <Name>Pa</Name>
+            </Unit>
+          </Units>
+        </ParameterDetails>
+        <ParameterDetails id="pa5">
+          <Name>Shear Modulus XZ</Name>
+          <Units>
+            <Unit>
+              <Name>Pa</Name>
+            </Unit>
+          </Units>
+        </ParameterDetails>
+        <ParameterDetails id="pa6">
+          <Name>Poisson&apos;s Ratio XY</Name>
+          <Unitless/>
+        </ParameterDetails>
+        <ParameterDetails id="pa7">
+          <Name>Poisson&apos;s Ratio XZ</Name>
+          <Unitless/>
+        </ParameterDetails>
+        <ParameterDetails id="pa8">
+          <Name>Poisson&apos;s Ratio YZ</Name>
+          <Unitless/>
+        </ParameterDetails>
+        <PropertyDetails id="pr3">
+          <Name>Strain Limits</Name>
+          <Unitless/>
+        </PropertyDetails>
+        <ParameterDetails id="pa9">
+          <Name>Tensile X direction</Name>
+          <Unitless/>
+        </ParameterDetails>
+        <ParameterDetails id="pa10">
+          <Name>Compressive X direction</Name>
+          <Unitless/>
+        </ParameterDetails>
+        <ParameterDetails id="pa11">
+          <Name>Tensile Y direction</Name>
+          <Unitless/>
+        </ParameterDetails>
+        <ParameterDetails id="pa12">
+          <Name>Compressive Y direction</Name>
+          <Unitless/>
+        </ParameterDetails>
+        <ParameterDetails id="pa13">
+          <Name>Tensile Z direction</Name>
+          <Unitless/>
+        </ParameterDetails>
+        <ParameterDetails id="pa14">
+          <Name>Compressive Z direction</Name>
+          <Unitless/>
+        </ParameterDetails>
+        <ParameterDetails id="pa15">
+          <Name>Shear XY</Name>
+          <Unitless/>
+        </ParameterDetails>
+        <ParameterDetails id="pa16">
+          <Name>Shear XZ</Name>
+          <Unitless/>
+        </ParameterDetails>
+        <ParameterDetails id="pa17">
+          <Name>Shear YZ</Name>
+          <Unitless/>
+        </ParameterDetails>
+      </Metadata>
+    </MatML_Doc>
+  </Materials>
+  <ANSYSWBTransferData>
+    <Materials>
+      <Material>
+        <Name>mat</Name>
+        <DataTransferID>fedb8d06-cb5a-46eb-8b3d-a745627b3239</DataTransferID>
+      </Material>
+    </Materials>
+  </ANSYSWBTransferData>
+</EngineeringData>

@@ -37,7 +37,7 @@ docker = "^6.0.1"
 packaging = ">=15.0"
 typing-extensions = "^4.5.0"
 ansys-api-acp = { git = "https://github.com/ansys-internal/ansys-api-acp.git",  branch = "main" }
-ansys-tools-path = "^0.2.3"
+ansys-tools-path = "^0.3.0"
 ansys-tools-local-product-launcher = { git = "https://github.com/ansys-internal/ansys-tools-local-product-launcher.git", branch = "main" }
 ansys-tools-filetransfer = { git = "https://github.com/ansys-internal/ansys-tools-filetransfer.git", branch = "main" }
 
@@ -47,7 +47,9 @@ ansys-mapdl-core = { version = ">=0.62.1,<1", optional = true }
 ansys-dpf-composites = { version = ">=0.1,<1", optional = true }
 ansys-dpf-core = { version = ">=0.7,<1", optional = true }
 pyvista = { version = ">=0.36", optional = true }
-ansys-mechanical-core = { version = ">=0.7.0", optional = true, python = "<3.12" }
+ansys-mechanical-core = { version = ">=0.10.0", optional = true, python = "<3.12" }
+#protoc-gen-swagger = { version = "==0.1.0", optional = true, python = "<3.12" }
+
 
 
 [tool.poetry.group.dev]
@@ -76,7 +78,7 @@ ansys-mapdl-core = ">=0.62.1,<1"
 ansys-dpf-composites = ">=0.1,<1"
 ansys-dpf-core = ">=0.7,<1"
 pyvista = ">=0.36"
-ansys-mechancial-core = ">=0.7.0"
+ansys-mechanical-core = { version = ">=0.10.0", python = "<3.12" }
 
 [tool.poetry.group.test]
 optional = true
