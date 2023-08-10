@@ -8,6 +8,7 @@ using Ansys.Common.Interop.DSObjectTypes;
 using Ansys.Mechanical.DataModel.Enums;
 using Ansys.Common.Interop.AnsCoreObjects;
 using Ansys.Common.Interop.DSObjectsAuto;
+using Ansys.ACT.Automation.Mechanical;
 
 namespace ACPFuture
 {
@@ -27,26 +28,29 @@ namespace ACPFuture
             model.InternalObject.WriteHDF5TransferFile((DSGeometryType)geomType, filename, (int)unitSystemType, 0);
         }
         
-        public static void ImportPlies(Ansys.ACT.Automation.Mechanical.Model model, string composite_defintion_paths, string mapping_paths)
+        public static void ImportPlies(Ansys.ACT.Automation.Mechanical.Model model, string composite_defintion_paths)
         {
   
+            // Note: Currently supports only a single composite definition file and no
+            // mapping files because I'm not sure what is the best way
+            // to pass lists from IronPython to C#
             var composite_definition_paths_coll = new AnsBSTRColl();
             var mapping_paths_coll = new AnsVARIANTColl();
 
-            /* foreach(var str in composite_defintion_paths){
-                 composite_definition_paths_coll.Add(str.Replace(@"\", @"\\"));
+            composite_definition_paths_coll.Add(composite_defintion_paths);
+            mapping_paths_coll.Add(null);
+
+            /*
+            foreach (var str in composite_defintion_paths){
+                 composite_definition_paths_coll.Add(str);
              }
              foreach (var str in mapping_paths)
              {
-                 mapping_paths_coll.Add(str.Replace(@"\", @"\\"));
+                 mapping_paths_coll.Add(str);
              }
- */
-            composite_definition_paths_coll.Add(composite_defintion_paths);
-            mapping_paths_coll.Add(null);
-            var external_model = (IDSExternalEnhancedModelAuto)model.InternalObject.AddExternalEnhancedModel(DSExternalEnhancedModelType.kEXTERNAL_ENHANCEDMODEL_ASSEMBLEDLAYEREDSECTION);
+             */
 
-            //throw new Exception(composite_defintion_paths);
-            var val = composite_definition_paths_coll[1];
+            var external_model = (IDSExternalEnhancedModelAuto)model.InternalObject.AddExternalEnhancedModel(DSExternalEnhancedModelType.kEXTERNAL_ENHANCEDMODEL_ASSEMBLEDLAYEREDSECTION);
             external_model.Import(composite_definition_paths_coll, mapping_paths_coll);
             external_model.Update();
         }
