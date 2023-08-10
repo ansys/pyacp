@@ -1,4 +1,3 @@
-import os
 import pathlib
 
 import ansys.acp.core as pyacp
@@ -16,7 +15,6 @@ def setup_and_update_acp_model(output_path):
 
     MESH_FILE_NAME = "mesh.h5"
     LOCAL_MESH_PATH = str((current_file_location / "output" / MESH_FILE_NAME).resolve())
-    #  pyacp_client.upload_file(LOCAL_MESH_PATH)
     model = pyacp_client.import_model(path=LOCAL_MESH_PATH, format="ansys:h5")
 
     mat = model.create_material(name="mat")
@@ -77,13 +75,7 @@ def setup_and_update_acp_model(output_path):
     # %%
     # Update and Save the ACP model
     model.update()
-    model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
-    model.export_materials(MATML_FILE)
-
-    pyacp_client.download_file(remote_filename=MATML_FILE, local_path=str(output_path / MATML_FILE))
-    pyacp_client.download_file(
-        remote_filename=COMPOSITE_DEFINITIONS_H5,
-        local_path=str(output_path / COMPOSITE_DEFINITIONS_H5),
-    )
+    model.export_shell_composite_definitions(output_path / COMPOSITE_DEFINITIONS_H5)
+    model.export_materials(output_path / MATML_FILE)
 
     return model

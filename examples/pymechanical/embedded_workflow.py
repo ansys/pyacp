@@ -71,10 +71,18 @@ os.mkdir(output_path)
 
 acp_model = setup_and_update_acp_model(output_path)
 
+MATML_FILE = "materials.xml"
+
+material_output_path = str((output_path / MATML_FILE).resolve())
+material_output_path = material_output_path.replace("\\", "\\\\")
+Model.Materials.Import(material_output_path)
+
 COMPOSITE_DEFINITIONS_H5 = "ACPCompositeDefinitions.h5"
 MATML_FILE = "materials.xml"
-file_list = [rf"{SETUP_FOLDER_NAME}::{str((output_path / COMPOSITE_DEFINITIONS_H5).resolve())}"]
-ACPFuture.Shims.ImportPlies(Model, file_list, [])
+hdf_file = rf"{SETUP_FOLDER_NAME}::{str((output_path / COMPOSITE_DEFINITIONS_H5).resolve())}"
+hdf_file = hdf_file.replace("\\", "\\\\")
+hdf_file = hdf_file.replace("\\", "\\\\")
+ACPFuture.Shims.ImportPlies(Model, hdf_file, "")
 
 
 # Geometry has 4 named selctions the
