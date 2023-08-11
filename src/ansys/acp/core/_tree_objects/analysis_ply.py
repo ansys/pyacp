@@ -43,6 +43,7 @@ class AnalysisPlyElementalData(ElementalData):
     volume: npt.NDArray[np.float64]
     mass: npt.NDArray[np.float64]
     offset: npt.NDArray[np.float64]
+    material_1_direction: npt.NDArray[np.float64]
     cog: npt.NDArray[np.float64]
 
 
