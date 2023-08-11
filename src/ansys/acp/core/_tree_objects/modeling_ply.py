@@ -8,6 +8,7 @@ import numpy.typing as npt
 
 from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc, production_ply_pb2_grpc
 
+from ._grpc_helpers.edge_property_list import define_edge_property_list
 from ._grpc_helpers.linked_object_list import define_linked_object_list
 from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
@@ -20,6 +21,7 @@ from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .fabric import Fabric
+from .linked_selection_rule import LinkedSelectionRule
 from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
 from .production_ply import ProductionPly
@@ -68,6 +70,9 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     ----------
     name :
         The name of the ModelingPly
+
+    selection_rules :
+        Selection Rules which may limit the extent of the ply.
     """
 
     __slots__: Iterable[str] = tuple()
@@ -87,6 +92,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         # Backend will automatically assign a consistent global_ply_nr
         # if global_ply_nr == 0
         global_ply_nr: int = 0,
+        selection_rules: Iterable[LinkedSelectionRule] = (),
     ):
         super().__init__(name=name)
 
@@ -96,6 +102,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         self.number_of_layers = number_of_layers
         self.active = active
         self.global_ply_nr = global_ply_nr
+        self.selection_rules = selection_rules
 
     def _create_stub(self) -> modeling_ply_pb2_grpc.ObjectServiceStub:
         return modeling_ply_pb2_grpc.ObjectServiceStub(self._channel)
@@ -112,6 +119,8 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     number_of_layers = grpc_data_property("properties.number_of_layers")
     active = grpc_data_property("properties.active")
     global_ply_nr = grpc_data_property("properties.global_ply_nr")
+
+    selection_rules = define_edge_property_list("properties.selection_rules", LinkedSelectionRule)
 
     production_plies = property(
         get_read_only_collection_property(ProductionPly, production_ply_pb2_grpc.ObjectServiceStub)

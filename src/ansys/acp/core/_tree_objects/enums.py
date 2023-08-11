@@ -76,6 +76,14 @@ __all__ = [
 ) = wrap_to_string_enum("PlyType", enum_types_pb2.PlyType, module=__name__)
 
 (
+    BooleanOperationType,
+    boolean_operation_type_to_pb,
+    boolean_operation_type_from_pb,
+) = wrap_to_string_enum(
+    "BooleanOperationType", enum_types_pb2.BooleanOperationType, module=__name__
+)
+
+(
     UnitSystemType,
     unit_system_type_to_pb,
     unit_system_type_from_pb,

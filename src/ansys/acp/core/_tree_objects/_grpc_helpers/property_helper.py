@@ -5,13 +5,11 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from functools import reduce
-from typing import Any, Callable, Protocol
-
-import grpc
-from typing_extensions import Self
+from typing import Any, Callable
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
+from .polymorphic_from_pb import CreatableFromResourcePath, tree_object_from_resource_path
 from .protocols import Editable, GrpcObjectBase, ObjectInfo, Readable
 
 _TO_PROTOBUF_T = Callable[[Any], Any]
@@ -44,12 +42,6 @@ def mark_grpc_properties(cls: type[GrpcObjectBase]) -> type[GrpcObjectBase]:
     return cls
 
 
-class CreatableFromResourcePath(Protocol):
-    @classmethod
-    def _from_resource_path(cls, resource_path: ResourcePath, channel: grpc.Channel) -> Self:
-        ...
-
-
 def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
     """
     Creates a getter method which obtains the linked server object
@@ -58,21 +50,12 @@ def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
     def inner(self: Readable) -> CreatableFromResourcePath | None:
         #  Import here to avoid circular references. Cannot use the registry before
         #  all the object have been imported.
-        from ..object_registry import object_registry
-
         if not self._is_stored:
             raise Exception("Cannot get linked object from unstored object")
         self._get()
         object_resource_path = _get_data_attribute(self._pb_object, name)
 
-        # Resource path represents an object that is not set as an empty string
-        # For instance fabric.material = None
-        if object_resource_path.value == "":
-            return None
-        resource_type = object_resource_path.value.split("/")[::2][-1]
-        resource_class: type[CreatableFromResourcePath] = object_registry[resource_type]
-
-        return resource_class._from_resource_path(object_resource_path, self._channel)
+        return tree_object_from_resource_path(object_resource_path, self._channel)
 
     return inner
 
