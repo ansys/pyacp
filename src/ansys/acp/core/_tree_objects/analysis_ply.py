@@ -18,7 +18,7 @@ from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
 
-__all__ = ["AnalysisPly"]
+__all__ = ["AnalysisPly", "AnalysisPlyElementalData", "AnalysisPlyNodalData"]
 
 
 @dataclasses.dataclass
