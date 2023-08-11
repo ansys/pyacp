@@ -4,7 +4,7 @@ import ansys.acp.core as pyacp
 from ansys.acp.core._tree_objects.material.property_sets import ConstantStrainLimits
 
 
-def setup_and_update_acp_model(output_path):
+def setup_and_update_acp_model(output_path, is_local=False):
     COMPOSITE_DEFINITIONS_H5 = "ACPCompositeDefinitions.h5"
     MATML_FILE = "materials.xml"
     pyacp_server = pyacp.launch_acp()
@@ -15,7 +15,12 @@ def setup_and_update_acp_model(output_path):
 
     MESH_FILE_NAME = "mesh.h5"
     LOCAL_MESH_PATH = str((current_file_location / "output" / MESH_FILE_NAME).resolve())
-    model = pyacp_client.import_model(path=LOCAL_MESH_PATH, format="ansys:h5")
+
+    if is_local:
+        model = pyacp_client.import_model(path=LOCAL_MESH_PATH, format="ansys:h5")
+    else:
+        path_on_server = pyacp_client.upload_file(LOCAL_MESH_PATH)
+        model = pyacp_client.import_model(path=path_on_server, format="ansys:h5")
 
     mat = model.create_material(name="mat")
 
@@ -75,7 +80,14 @@ def setup_and_update_acp_model(output_path):
     # %%
     # Update and Save the ACP model
     model.update()
-    model.export_shell_composite_definitions(output_path / COMPOSITE_DEFINITIONS_H5)
-    model.export_materials(output_path / MATML_FILE)
+
+    if is_local:
+        model.export_shell_composite_definitions(output_path / COMPOSITE_DEFINITIONS_H5)
+        model.export_materials(output_path / MATML_FILE)
+    else:
+        model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
+        model.export_materials(MATML_FILE)
+        pyacp_client.download_file(COMPOSITE_DEFINITIONS_H5, output_path / COMPOSITE_DEFINITIONS_H5)
+        pyacp_client.download_file(MATML_FILE, output_path / MATML_FILE)
 
     return model

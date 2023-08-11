@@ -1,8 +1,8 @@
 import os
 import pathlib
 
-from examples.pymechanical.postprocess_results import postprocess_results
-from examples.pymechanical.setup_acp_model import setup_and_update_acp_model
+from postprocess_results import postprocess_results
+from setup_acp_model import setup_and_update_acp_model
 
 import ansys.mechanical.core as pymechanical
 
