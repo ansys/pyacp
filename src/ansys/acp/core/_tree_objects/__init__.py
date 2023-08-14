@@ -1,3 +1,4 @@
+from .analysis_ply import AnalysisPly
 from .boolean_selection_rule import BooleanSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
@@ -37,6 +38,7 @@ __all__ = [
     "ModelingGroup",
     "ModelingPly",
     "ProductionPly",
+    "AnalysisPly",
     "UnitSystemType",
     "EdgeSetType",
     "ElementalDataType",

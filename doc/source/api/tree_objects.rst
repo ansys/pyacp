@@ -22,3 +22,4 @@ ACP objects
     ModelingGroup
     ModelingPly
     ProductionPly
+    AnalysisPly
