@@ -255,6 +255,7 @@ jobs:
           docker-compose -f ./docker-compose/docker-compose-extras.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
+          ANSYS_DPF_ACCEPT_LA: "Y"
 
       - name: Build HTML
         run: |
@@ -280,6 +281,7 @@ jobs:
           docker-compose -f ./docker-compose/docker-compose-extras.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
+          ANSYS_DPF_ACCEPT_LA: "Y"
 
       - name: Build PDF Documentation
         run: xvfb-run poetry run make -C doc pdf

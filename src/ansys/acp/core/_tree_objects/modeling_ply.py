@@ -1,34 +1,78 @@
 from __future__ import annotations
 
+import dataclasses
 from typing import Container, Iterable
 
-from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc
+import numpy as np
+import numpy.typing as npt
 
+from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc, production_ply_pb2_grpc
+
+from ._grpc_helpers.edge_property_list import define_edge_property_list
 from ._grpc_helpers.linked_object_list import define_linked_object_list
+from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     grpc_link_property,
     mark_grpc_properties,
 )
+from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .fabric import Fabric
+from .linked_selection_rule import LinkedSelectionRule
 from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
+from .production_ply import ProductionPly
 
-__all__ = ["ModelingPly"]
+__all__ = ["ModelingPly", "ModelingPlyElementalData", "ModelingPlyNodalData"]
+
+
+@dataclasses.dataclass
+class ModelingPlyElementalData(ElementalData):
+    """Represents elemental data for a Modeling Ply."""
+
+    normal: npt.NDArray[np.float64]
+    orientation: npt.NDArray[np.float64]
+    reference_direction: npt.NDArray[np.float64]
+    fiber_direction: npt.NDArray[np.float64]
+    draped_fiber_direction: npt.NDArray[np.float64]
+    transverse_direction: npt.NDArray[np.float64]
+    draped_transverse_direction: npt.NDArray[np.float64]
+    thickness: npt.NDArray[np.float64]
+    relative_thickness_correction: npt.NDArray[np.float64]
+    design_angle: npt.NDArray[np.float64]
+    shear_angle: npt.NDArray[np.float64]
+    draped_fiber_angle: npt.NDArray[np.float64]
+    draped_transverse_angle: npt.NDArray[np.float64]
+    area: npt.NDArray[np.float64]
+    price: npt.NDArray[np.float64]
+    volume: npt.NDArray[np.float64]
+    mass: npt.NDArray[np.float64]
+    offset: npt.NDArray[np.float64]
+    cog: npt.NDArray[np.float64]
+
+
+@dataclasses.dataclass
+class ModelingPlyNodalData(NodalData):
+    """Represents nodal data for a Modeling Ply."""
+
+    ply_offset: npt.NDArray[np.float64]
 
 
 @mark_grpc_properties
 @register
 class ModelingPly(CreatableTreeObject, IdTreeObject):
-    """Instantiate an Oriented Selection Set.
+    """Instantiate an Modeling Ply.
 
     Parameters
     ----------
     name :
         The name of the ModelingPly
+
+    selection_rules :
+        Selection Rules which may limit the extent of the ply.
     """
 
     __slots__: Iterable[str] = tuple()
@@ -48,6 +92,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         # Backend will automatically assign a consistent global_ply_nr
         # if global_ply_nr == 0
         global_ply_nr: int = 0,
+        selection_rules: Iterable[LinkedSelectionRule] = (),
     ):
         super().__init__(name=name)
 
@@ -57,6 +102,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         self.number_of_layers = number_of_layers
         self.active = active
         self.global_ply_nr = global_ply_nr
+        self.selection_rules = selection_rules
 
     def _create_stub(self) -> modeling_ply_pb2_grpc.ObjectServiceStub:
         return modeling_ply_pb2_grpc.ObjectServiceStub(self._channel)
@@ -73,3 +119,12 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     number_of_layers = grpc_data_property("properties.number_of_layers")
     active = grpc_data_property("properties.active")
     global_ply_nr = grpc_data_property("properties.global_ply_nr")
+
+    selection_rules = define_edge_property_list("properties.selection_rules", LinkedSelectionRule)
+
+    production_plies = property(
+        get_read_only_collection_property(ProductionPly, production_ply_pb2_grpc.ObjectServiceStub)
+    )
+
+    elemental_data = elemental_data_property(ModelingPlyElementalData)
+    nodal_data = nodal_data_property(ModelingPlyNodalData)

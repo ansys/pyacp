@@ -27,6 +27,8 @@ import os
 import pathlib
 import tempfile
 
+import pyvista
+
 # %%
 # Import Ansys libraries
 import ansys.acp.core as pyacp
@@ -63,6 +65,12 @@ model = pyacp_client.import_model(
     path=cdb_file_path, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
 )
 model
+
+
+# %%
+# Visualize the loaded mesh
+mesh = model.mesh.to_pyvista()
+mesh.plot()
 
 # %%
 #
@@ -157,6 +165,23 @@ oss_keeltower = model.create_oriented_selection_set(
     rosettes=[ros_keeltower],
 )
 
+# %%
+# Show the orientations on the hull OSS.
+#
+# Note that the Model must be updated before the orientations are available.
+
+model.update()
+
+plotter = pyvista.Plotter()
+plotter.add_mesh(model.mesh.to_pyvista(), color="white")
+plotter.add_mesh(
+    oss_hull.elemental_data.to_pyvista(
+        mesh=model.mesh, component=pyacp.ElementalDataType.ORIENTATION, factor=0.2, culling_factor=5
+    ),
+    color="blue",
+)
+plotter.show()
+
 
 # %%
 # Modeling Plies
@@ -206,6 +231,30 @@ print(len(model.modeling_groups["hull"].modeling_plies))
 print(len(model.modeling_groups["deck"].modeling_plies))
 print(len(model.modeling_groups["bulkhead"].modeling_plies))
 print(len(model.modeling_groups["keeltower"].modeling_plies))
+
+
+# %%
+# Show the thickness of one of the plies
+model.update()
+modeling_ply = model.modeling_groups["deck"].modeling_plies["eglass_ud_02mm_0.5"]
+modeling_ply.elemental_data.to_pyvista(
+    mesh=model.mesh, component=pyacp.ElementalDataType.THICKNESS
+).plot()
+
+# %%
+# Show the ply offsets, scaled by a factor of 200
+plotter = pyvista.Plotter()
+plotter.add_mesh(model.mesh.to_pyvista(), color="white")
+plotter.add_mesh(
+    modeling_ply.nodal_data.to_pyvista(
+        mesh=model.mesh, component=pyacp.NodalDataType.PLY_OFFSET, factor=200
+    ),
+)
+plotter.show()
+
+# %%
+# Show the thickness of the entire lay-up
+model.elemental_data.to_pyvista(mesh=model.mesh, component=pyacp.ElementalDataType.THICKNESS).plot()
 
 # %%
 #
@@ -293,7 +342,7 @@ from ansys.dpf.composites.failure_criteria import (
     MaxStressCriterion,
 )
 from ansys.dpf.composites.server_helpers import connect_to_or_start_server
-from ansys.dpf.core.core import upload_file_in_tmp_folder
+from ansys.dpf.core.unit_system import unit_systems
 
 # %%
 # Connect to the server. The ``connect_to_or_start_server`` function
@@ -312,23 +361,16 @@ cfc = CombinedFailureCriterion(
 )
 
 # %%
-# Upload files to DPF server
-rst_file_dpf_path = upload_file_in_tmp_folder(str(rst_file_local_path))
-composite_definitions_file_dpf_path = upload_file_in_tmp_folder(
-    str(composite_definitions_local_path)
-)
-matml_file_dpf_path = upload_file_in_tmp_folder(str(matml_file_local_path))
-
-# %%
 # Create the CompositeModel and configure its input
 composite_model = CompositeModel(
     composite_files=ContinuousFiberCompositesFiles(
-        rst=rst_file_dpf_path,
+        rst=rst_file_local_path,
         composite={
-            "shell": CompositeDefinitionFiles(definition=composite_definitions_file_dpf_path),
+            "shell": CompositeDefinitionFiles(definition=composite_definitions_local_path),
         },
-        engineering_data=matml_file_dpf_path,
+        engineering_data=matml_file_local_path,
     ),
+    default_unit_system=unit_systems.solver_nmm,
     server=dpf_server,
 )
 

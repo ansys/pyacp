@@ -44,6 +44,16 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
                 ("orientation_direction", (1.0, -0.4, 0.9)),
                 ("rosettes", rosettes),
                 ("rosette_selection_method", RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED),
+                (
+                    "selection_rules",
+                    [
+                        model.create_tube_selection_rule(),
+                        model.create_parallel_selection_rule(),
+                        model.create_spherical_selection_rule(),
+                        model.create_cylindrical_selection_rule(),
+                        model.create_boolean_selection_rule(),
+                    ],
+                ),
             ],
             read_only=[
                 ("id", "some_id"),

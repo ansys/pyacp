@@ -8,7 +8,7 @@ from __future__ import annotations
 from typing import Any, TypeVar
 
 from ..._grpc_helpers.property_helper import _exposed_grpc_property
-from ..._grpc_helpers.protocols import GrpcObject
+from ..._grpc_helpers.protocols import Editable
 from .base import _ConstantPropertySet, _PolymorphicMixin, _VariablePropertySet
 
 TC = TypeVar("TC", bound=_ConstantPropertySet)
@@ -24,7 +24,9 @@ def _property_set_getter(name: str, type_constant: type[TC], type_variable: type
     )
     is_monomorphic = not issubclass(type_constant, _PolymorphicMixin)
 
-    def inner(self: GrpcObject) -> TC | TV | None:
+    def inner(self: Editable) -> TC | TV | None:
+        # self needs to be Editable because the init function
+        # of type_constant and type_variable expect a Editable _parent_object
         self._get_if_stored()
         if is_monomorphic:
             if not self._pb_object.properties.property_sets.HasField(name):
@@ -57,7 +59,7 @@ def _property_set_setter(name: str, type_constant: type[TC], type_variable: type
     )
     is_monomorphic = not issubclass(type_constant, _PolymorphicMixin)
 
-    def inner(self: GrpcObject, value: type[TC] | None) -> None:
+    def inner(self: Editable, value: type[TC] | None) -> None:
         self._get_if_stored()
         if isinstance(getattr(self, name), _VariablePropertySet):
             raise AttributeError("Cannot replace variable property sets.")
@@ -83,7 +85,7 @@ def _property_set_setter(name: str, type_constant: type[TC], type_variable: type
 
 
 def _property_set_deleter(name: str) -> Any:
-    def inner(self: GrpcObject) -> None:
+    def inner(self: Any) -> None:
         setattr(self, name, None)
 
     return inner
