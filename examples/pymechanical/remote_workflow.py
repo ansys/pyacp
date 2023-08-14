@@ -12,14 +12,15 @@ import ansys.mechanical.core as pymechanical
  See embedded_workflow.py for more comments.
 """
 
-# The next lines show how to start the pymechanical container, currently disable because
+# The next lines show how to start the pymechanical container, currently disabled because
 # a local instance is used.
 # Run mechanical docker container: docker run -e ANSYSLMD_LICENSE_FILE=1055@milwinlicense1.win.ansys.com -p 50054:10000 ghcr.io/ansys/mechanical:24.1.0
 # mechanical = pymechanical.launch_mechanical(batch=False, port=50054, start_instance=False)
 
 # Note: It looks like the version argument is not working. It can be set by hardcoding
 # it in pymechanical
-mechanical = pymechanical.launch_mechanical(batch=True, version="241")
+# Note: batch = True is working as well.
+mechanical = pymechanical.launch_mechanical(batch=False, version="241")
 print(mechanical.project_directory)
 script_dir = os.path.dirname(os.path.abspath(__file__))
 

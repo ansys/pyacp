@@ -1,13 +1,14 @@
 The acp_future C# project contains code that extends the python API for Mechanical. Some of the
 API's of Mechanical are available on the Internal COM object, but this API is only available on 
 Windows. An example is Model.InternalObject. In addition, these methods often
-expect Interop objects as arguments (such as AnsBSTRColl), which also only works on Linux. 
+expect Interop objects as arguments (such as AnsBSTRColl), which also only works on Windows. 
 The Shims in this C# project wrap the methods on the COM object and replace the arguments by 
 standard datatypes to make them available also on Linux. 
 
 Current Requirements to build:
 
-* A workbench 2024 R1 installation at $(AWP_ROOTDV_DEV) for the dependencies
+* A workbench 2024 R1 installation at $(AWP_ROOTDV_DEV) for the dependencies. Note: Versions need 
+to be bumped in various places (python scripts and visual studio project if the workbench version changes)
 * Visual Studio with C# Framework
 
 To build:

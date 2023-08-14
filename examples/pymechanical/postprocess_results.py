@@ -8,10 +8,10 @@ from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxS
 from ansys.dpf.composites.server_helpers import connect_to_or_start_server
 
 
-def postprocess_results(rst_file, matml_out, composite_definitions_path):
+def postprocess_results(rst_file, matml_file, composite_definitions_path):
     """
     Basic failure criteria evaluation. Expects that a dpf docker container with the
-    composites pluing is running at port 50052
+    composites plugin is running at port 50052
     """
     dpf_server = connect_to_or_start_server(ip="127.0.0.1", port=50052)
 
@@ -27,7 +27,7 @@ def postprocess_results(rst_file, matml_out, composite_definitions_path):
             composite={
                 "shell": CompositeDefinitionFiles(definition=composite_definitions_path),
             },
-            engineering_data=matml_out,
+            engineering_data=matml_file,
         ),
         server=dpf_server,
     )

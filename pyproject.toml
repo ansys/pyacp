@@ -48,8 +48,6 @@ ansys-dpf-composites = { version = ">=0.1,<1", optional = true }
 ansys-dpf-core = { version = ">=0.7,<1", optional = true }
 pyvista = { version = ">=0.36", optional = true }
 ansys-mechanical-core = { version = ">=0.10.0", optional = true, python = "<3.12" }
-#protoc-gen-swagger = { version = "==0.1.0", optional = true, python = "<3.12" }
-
 
 
 [tool.poetry.group.dev]
