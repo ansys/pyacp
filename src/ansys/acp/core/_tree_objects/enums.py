@@ -3,6 +3,7 @@ from ansys.api.acp.v0 import (
     drop_off_material_pb2,
     edge_set_pb2,
     enum_types_pb2,
+    lookup_table_column_type_pb2,
     mesh_query_pb2,
     ply_material_pb2,
     unit_system_pb2,
@@ -18,8 +19,10 @@ __all__ = [
     "DrapingMaterialType",
     "PlyType",
     "UnitSystemType",
+    "DimensionType",
     "ElementalDataType",
     "NodalDataType",
+    "LookUpTableColumnValueType",
 ]
 
 (StatusType, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(
@@ -90,6 +93,12 @@ __all__ = [
 ) = wrap_to_string_enum("UnitSystemType", unit_system_pb2.UnitSystemType, module=__name__)
 
 (
+    DimensionType,
+    dimension_type_to_pb,
+    dimension_type_from_pb,
+) = wrap_to_string_enum("DimensionType", unit_system_pb2.DimensionType, module=__name__)
+
+(
     ElementalDataType,
     elemental_data_type_to_pb,
     elemental_data_type_from_pb,
@@ -120,4 +129,12 @@ __all__ = [
     # lowercase.
     key_converter=lambda val: val.split("_", 1)[1],
     value_converter=lambda val: val.split("_", 1)[1].lower(),
+)
+
+(
+    LookUpTableColumnValueType,
+    lookup_table_column_value_type_to_pb,
+    lookup_table_column_value_type_from_pb,
+) = wrap_to_string_enum(
+    "LookUpTableColumnValueType", lookup_table_column_type_pb2.ValueType, module=__name__
 )
