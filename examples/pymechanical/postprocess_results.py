@@ -1,5 +1,3 @@
-import pathlib
-
 from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput
 from ansys.dpf.composites.data_sources import (
@@ -11,6 +9,10 @@ from ansys.dpf.composites.server_helpers import connect_to_or_start_server
 
 
 def postprocess_results(rst_file, matml_out, composite_definitions_path):
+    """
+    Basic failure criteria evaluation. Expects that a dpf docker container with the
+    composites pluing is running at port 50052
+    """
     dpf_server = connect_to_or_start_server(ip="127.0.0.1", port=50052)
 
     max_strain = MaxStrainCriterion()
@@ -30,11 +32,9 @@ def postprocess_results(rst_file, matml_out, composite_definitions_path):
         server=dpf_server,
     )
 
-    # %%
     # Evaluate the failure criteria
     output_all_elements = composite_model.evaluate_failure_criteria(cfc)
 
-    # %%
     # Query and plot the results
     irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
 

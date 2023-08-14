@@ -43,15 +43,21 @@ namespace ACPFuture
             /*
             foreach (var str in composite_defintion_paths){
                  composite_definition_paths_coll.Add(str);
-             }
-             foreach (var str in mapping_paths)
-             {
-                 mapping_paths_coll.Add(str);
-             }
-             */
+            }
+            foreach (var str in mapping_paths)
+            {
+                mapping_paths_coll.Add(str);
+            }
+            */
+
 
             var external_model = (IDSExternalEnhancedModelAuto)model.InternalObject.AddExternalEnhancedModel(DSExternalEnhancedModelType.kEXTERNAL_ENHANCEDMODEL_ASSEMBLEDLAYEREDSECTION);
+
+            // The second argument for Import is probably the list of mapping files. It is required
+            // to pass a container with a single null entry if no mapping files are present, otherwise Import will fail.
             external_model.Import(composite_definition_paths_coll, mapping_paths_coll);
+            // Note: If plies cannot be imported, Update will remove the whole
+            // Imported Plies object from the tree.
             external_model.Update();
         }
     }

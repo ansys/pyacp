@@ -1,41 +1,44 @@
 import os
 import pathlib
 
+from constants import COMPOSITE_DEFINITIONS_H5, MATML_FILE
 from postprocess_results import postprocess_results
 from setup_acp_model import setup_and_update_acp_model
 
 import ansys.mechanical.core as pymechanical
 
+"""
+ Full composites workflow that uses 'remote' pymechanical.
+ See embedded_workflow.py for more comments.
+"""
+
+# The next lines show how to start the pymechanical container, currently disable because
+# a local instance is used.
 # Run mechanical docker container: docker run -e ANSYSLMD_LICENSE_FILE=1055@milwinlicense1.win.ansys.com -p 50054:10000 ghcr.io/ansys/mechanical:24.1.0
 # mechanical = pymechanical.launch_mechanical(batch=False, port=50054, start_instance=False)
-mechanical = pymechanical.launch_mechanical(batch=False, version="232")
+
+# Note: It looks like the version argument is not working. It can be set by hardcoding
+# it in pymechanical
+mechanical = pymechanical.launch_mechanical(batch=True, version="241")
 print(mechanical.project_directory)
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 result = mechanical.run_python_script_from_file("generate_mesh.py", enable_logging=True)
-
 
 SETUP_FOLDER_NAME = "Setup"
 output_path = pathlib.Path(mechanical.project_directory) / SETUP_FOLDER_NAME
 os.mkdir(output_path)
 
-acp_model = setup_and_update_acp_model(output_path)
+mesh_path = os.path.join(script_dir, "output", "mesh.h5")
+acp_model = setup_and_update_acp_model(output_path, mesh_path)
 
-COMPOSITE_DEFINITIONS_H5 = "ACPCompositeDefinitions.h5"
-MATML_FILE = "materials.xml"
-
+# Import materials into Mechanical
 material_output_path = str((output_path / MATML_FILE).resolve())
 material_output_path = material_output_path.replace("\\", "\\\\")
 import_material_cmd = f"Model.Materials.Import('{material_output_path}')"
 result = mechanical.run_python_script(import_material_cmd)
 
-# The composite definitions file needs to be copied into
-# a folder from which a relative path to the solver files directory
-# can be constructed. Otherwise, the material assignment fails.
-# The prefix before the filename and :: is necessary, but it looks like the actual value is
-# ignored.
-# The second argument for Import is probably the list of mapping files. It is required
-# to pass an empty container if no mapping files are present, otherwise Import will fail.
-
+# Import plies into Mechanical
 hdf_file = rf"{SETUP_FOLDER_NAME}::{str((output_path / COMPOSITE_DEFINITIONS_H5).resolve())}"
 hdf_file = hdf_file.replace("\\", "\\\\")
 hdf_file = hdf_file.replace("\\", "\\\\")
