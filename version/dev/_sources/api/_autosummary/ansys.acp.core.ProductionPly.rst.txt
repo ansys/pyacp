@@ -27,6 +27,7 @@
    .. autosummary::
       :toctree:
    
+      ProductionPly.analysis_plies
       ProductionPly.angle
       ProductionPly.elemental_data
       ProductionPly.id

@@ -1,0 +1,6 @@
+active\_in\_post\_mode
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: AnalysisPly.active_in_post_mode

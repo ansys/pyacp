@@ -1,0 +1,39 @@
+﻿AnalysisPly
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: AnalysisPly
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      AnalysisPly.clone
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      AnalysisPly.active_in_post_mode
+      AnalysisPly.angle
+      AnalysisPly.elemental_data
+      AnalysisPly.id
+      AnalysisPly.material
+      AnalysisPly.name
+      AnalysisPly.nodal_data
+      AnalysisPly.status
+   
+   
