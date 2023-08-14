@@ -6,6 +6,7 @@ from .element_set import ElementSet
 from .enums import EdgeSetType, ElementalDataType, NodalDataType, UnitSystemType
 from .fabric import Fabric
 from .linked_selection_rule import LinkedSelectionRule
+from .lookup_table_1d import LookUpTable1D
 from .material import Material
 from .model import Model
 from .modeling_group import ModelingGroup
@@ -27,6 +28,7 @@ __all__ = [
     "ElementSet",
     "EdgeSet",
     "Rosette",
+    "LookUpTable1D",
     "ParallelSelectionRule",
     "BooleanSelectionRule",
     "CylindricalSelectionRule",
