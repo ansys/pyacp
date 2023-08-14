@@ -1,3 +1,4 @@
+# type: ignore
 import os
 import pathlib
 
@@ -9,7 +10,6 @@ from ansys.mechanical.core import App, global_variables
 
 """
  Full composites workflow that uses 'embedded' pymechanical.
- 
  These are the main steps:
     * Load geometry (with named selections) in pymechanical
     * Mesh in pymechanical

@@ -1,3 +1,4 @@
+# type: ignore
 from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput
 from ansys.dpf.composites.data_sources import (

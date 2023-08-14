@@ -1,10 +1,11 @@
+# type: ignore
 """
 Generate a structural analysis and set the boundary conditions. Used in remote_workflow.py
 """
 
 analysis = Model.AddStaticStructuralAnalysis()
 
-# Geometry has 4 named selctions the
+# Geometry has 4 named selections the
 # NS2 is xmin and NS3 is xmax
 NS2 = Model.NamedSelections.Children[1]
 NS3 = Model.NamedSelections.Children[2]
