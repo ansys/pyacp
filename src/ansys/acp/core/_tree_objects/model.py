@@ -15,6 +15,8 @@ from ansys.api.acp.v0 import (
     edge_set_pb2_grpc,
     element_set_pb2_grpc,
     fabric_pb2_grpc,
+    lookup_table_1d_pb2_grpc,
+    lookup_table_3d_pb2_grpc,
     material_pb2,
     material_pb2_grpc,
     mesh_query_pb2_grpc,
@@ -50,6 +52,8 @@ from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import UnitSystemType, unit_system_type_from_pb, unit_system_type_to_pb
 from .fabric import Fabric
+from .lookup_table_1d import LookUpTable1D
+from .lookup_table_3d import LookUpTable3D
 from .material import Material
 from .modeling_group import ModelingGroup
 from .oriented_selection_set import OrientedSelectionSet
@@ -296,6 +300,14 @@ class Model(TreeObject):
         EdgeSet, edge_set_pb2_grpc.ObjectServiceStub
     )
     create_rosette, rosettes = define_mutable_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
+
+    create_lookup_table_1d, lookup_tables_1d = define_mutable_mapping(
+        LookUpTable1D, lookup_table_1d_pb2_grpc.ObjectServiceStub
+    )
+
+    create_lookup_table_3d, lookup_tables_3d = define_mutable_mapping(
+        LookUpTable3D, lookup_table_3d_pb2_grpc.ObjectServiceStub
+    )
 
     create_parallel_selection_rule, parallel_selection_rules = define_mutable_mapping(
         ParallelSelectionRule, parallel_selection_rule_pb2_grpc.ObjectServiceStub

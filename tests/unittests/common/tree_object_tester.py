@@ -3,6 +3,8 @@ from typing import Any, Dict, List, Tuple
 
 import pytest
 
+from .compare import assert_allclose
+
 
 @dataclass
 class ObjectPropertiesToTest:
@@ -85,17 +87,25 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
             new_object = create_method(name=ref_name)
             assert new_object.name == ref_name
             for key, val in self.DEFAULT_PROPERTIES.items():
-                assert (
-                    getattr(new_object, key) == val
-                ), f"Attribute {key} not set correctly. Expected {val}, got {getattr(new_object, key)}"
+                assert_allclose(
+                    actual=getattr(new_object, key),
+                    desired=val,
+                    msg=f"Attribute {key} not set correctly. Expected {val}, got {getattr(new_object, key)}",
+                ),
 
     @staticmethod
     def test_properties(tree_object, object_properties: ObjectPropertiesToTest):
         for prop, value in object_properties.read_write:
             setattr(tree_object, prop, value)
-            assert getattr(tree_object, prop) == value
+            assert_allclose(
+                actual=getattr(tree_object, prop),
+                desired=value,
+            )
 
         for prop, value in object_properties.read_only:
+            getattr(
+                tree_object, prop
+            ), f"Cannot get read-only property '{prop}' of object '{tree_object}'"
             with pytest.raises(AttributeError):
                 setattr(tree_object, prop, value)
 
