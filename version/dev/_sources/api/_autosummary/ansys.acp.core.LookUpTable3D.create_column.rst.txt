@@ -1,0 +1,6 @@
+create\_column
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LookUpTable3D.create_column

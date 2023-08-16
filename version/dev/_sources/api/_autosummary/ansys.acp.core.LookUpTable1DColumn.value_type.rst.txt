@@ -1,0 +1,6 @@
+value\_type
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable1DColumn.value_type

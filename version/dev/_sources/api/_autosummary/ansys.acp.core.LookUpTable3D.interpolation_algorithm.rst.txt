@@ -1,0 +1,6 @@
+interpolation\_algorithm
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3D.interpolation_algorithm

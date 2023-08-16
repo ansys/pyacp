@@ -1,0 +1,6 @@
+search\_radius
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3D.search_radius

@@ -13,6 +13,10 @@ ACP objects
     ElementSet
     EdgeSet
     Rosette
+    LookUpTable1D
+    LookUpTable1DColumn
+    LookUpTable3D
+    LookUpTable3DColumn
     ParallelSelectionRule
     CylindricalSelectionRule
     SphericalSelectionRule

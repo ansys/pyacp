@@ -1,0 +1,42 @@
+﻿LookUpTable1DColumn
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: LookUpTable1DColumn
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      LookUpTable1DColumn.clone
+      
+      
+      LookUpTable1DColumn.delete
+      
+      
+      LookUpTable1DColumn.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      LookUpTable1DColumn.data
+      LookUpTable1DColumn.dimension_type
+      LookUpTable1DColumn.id
+      LookUpTable1DColumn.name
+      LookUpTable1DColumn.value_type
+   
+   

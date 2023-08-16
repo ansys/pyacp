@@ -1,0 +1,6 @@
+create\_lookup\_table\_3d
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_lookup_table_3d

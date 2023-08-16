@@ -1,0 +1,6 @@
+num\_min\_neighbors
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3D.num_min_neighbors

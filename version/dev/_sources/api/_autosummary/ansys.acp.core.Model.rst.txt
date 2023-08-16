@@ -33,6 +33,12 @@
       Model.create_fabric
       
       
+      Model.create_lookup_table_1d
+      
+      
+      Model.create_lookup_table_3d
+      
+      
       Model.create_material
       
       
@@ -98,6 +104,8 @@
       Model.element_sets
       Model.elemental_data
       Model.fabrics
+      Model.lookup_tables_1d
+      Model.lookup_tables_3d
       Model.materials
       Model.mesh
       Model.minimum_analysis_ply_thickness

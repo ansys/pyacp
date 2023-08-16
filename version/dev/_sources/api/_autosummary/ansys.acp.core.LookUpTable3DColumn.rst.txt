@@ -1,0 +1,42 @@
+﻿LookUpTable3DColumn
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: LookUpTable3DColumn
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      LookUpTable3DColumn.clone
+      
+      
+      LookUpTable3DColumn.delete
+      
+      
+      LookUpTable3DColumn.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      LookUpTable3DColumn.data
+      LookUpTable3DColumn.dimension_type
+      LookUpTable3DColumn.id
+      LookUpTable3DColumn.name
+      LookUpTable3DColumn.value_type
+   
+   

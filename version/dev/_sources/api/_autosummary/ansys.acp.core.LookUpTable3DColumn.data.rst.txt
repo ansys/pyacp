@@ -1,0 +1,6 @@
+data
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3DColumn.data

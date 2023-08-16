@@ -1,0 +1,6 @@
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LookUpTable3DColumn.clone

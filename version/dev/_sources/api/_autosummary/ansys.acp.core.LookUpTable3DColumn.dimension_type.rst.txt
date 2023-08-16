@@ -1,0 +1,6 @@
+dimension\_type
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3DColumn.dimension_type

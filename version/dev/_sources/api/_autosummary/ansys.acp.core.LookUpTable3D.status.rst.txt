@@ -1,0 +1,6 @@
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3D.status

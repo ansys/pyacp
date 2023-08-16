@@ -1,0 +1,6 @@
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LookUpTable1DColumn.store

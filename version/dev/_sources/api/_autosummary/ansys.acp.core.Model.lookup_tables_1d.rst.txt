@@ -1,0 +1,6 @@
+lookup\_tables\_1d
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.lookup_tables_1d

@@ -1,0 +1,6 @@
+columns
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable1D.columns
