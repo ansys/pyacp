@@ -292,7 +292,9 @@ class Model(TreeObject):
     )
     create_fabric, fabrics = define_mutable_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
     create_stackup, stackups = define_mutable_mapping(Stackup, stackup_pb2_grpc.ObjectServiceStub)
-    create_sublaminate, sublaminates = define_mutable_mapping(SubLaminate, sublaminate_pb2_grpc.ObjectServiceStub)
+    create_sublaminate, sublaminates = define_mutable_mapping(
+        SubLaminate, sublaminate_pb2_grpc.ObjectServiceStub
+    )
     create_element_set, element_sets = define_mutable_mapping(
         ElementSet, element_set_pb2_grpc.ObjectServiceStub
     )

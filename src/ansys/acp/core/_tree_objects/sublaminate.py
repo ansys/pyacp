@@ -13,15 +13,10 @@ from ._grpc_helpers.property_helper import (
     mark_grpc_properties,
 )
 from .base import CreatableTreeObject, IdTreeObject
-from .enums import (
-    SymmetryType,
-    status_type_from_pb,
-    symmetry_type_from_pb,
-    symmetry_type_to_pb,
-)
+from .enums import SymmetryType, status_type_from_pb, symmetry_type_from_pb, symmetry_type_to_pb
 from .fabric import Fabric
-from .stackup import Stackup
 from .object_registry import register
+from .stackup import Stackup
 
 __all__ = ["SubLaminate", "Lamina"]
 
@@ -76,7 +71,6 @@ class Lamina(GenericEdgePropertyType):
         message: sublaminate_pb2.Lamina,
         apply_changes: Callable[[], None],
     ) -> Lamina:
-
         material = tree_object_from_resource_path(
             resource_path=message.material, channel=parent_object._channel
         )

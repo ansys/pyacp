@@ -1,9 +1,7 @@
 import pytest
 
 from ansys.acp.core import FabricWithAngle, Lamina
-from ansys.acp.core._tree_objects.enums import (
-    SymmetryType,
-)
+from ansys.acp.core._tree_objects.enums import SymmetryType
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
@@ -35,26 +33,30 @@ class TestSubLaminate(NoLockedMixin, TreeObjectTester):
     def object_properties(parent_object):
         model = parent_object
         material = model.create_material()
-        fabric = model.create_fabric(name="fabric 1", thickness=0.1, material=material, area_price=15.)
-        fabric_stack = [FabricWithAngle(fabric=fabric, angle=30.), FabricWithAngle(fabric=fabric, angle=-30.)]
+        fabric = model.create_fabric(
+            name="fabric 1", thickness=0.1, material=material, area_price=15.0
+        )
+        fabric_stack = [
+            FabricWithAngle(fabric=fabric, angle=30.0),
+            FabricWithAngle(fabric=fabric, angle=-30.0),
+        ]
         stackup = model.create_stackup(name="stackup 1", fabrics=fabric_stack, area_price=32.5)
-        sublaminat_stack = [Lamina(material=fabric, angle=45.),
-                            Lamina(material=stackup, angle=-60.)
-                            ]
+        sublaminat_stack = [
+            Lamina(material=fabric, angle=45.0),
+            Lamina(material=stackup, angle=-60.0),
+        ]
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Sub-laminate name"),
                 ("topdown", False),
-                (
-                    "materials", sublaminat_stack
-                ),
+                ("materials", sublaminat_stack),
                 ("symmetry", SymmetryType.EVEN_SYMMETRY),
             ],
             read_only=[
                 ("id", "some_id"),
                 ("status", "UPTODATE"),
                 ("thickness", 0.3),
-                ("area_weight", 0.),
+                ("area_weight", 0.0),
                 ("area_price", 47.5),
             ],
         )
