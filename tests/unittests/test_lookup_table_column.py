@@ -1,6 +1,9 @@
+"""Tests for LookUpTable1DColumn and LookUpTable3DColumn."""
+
 import numpy as np
 import pytest
 
+from ansys.acp.core import LookUpTable1DColumn, LookUpTable3DColumn
 from ansys.acp.core._tree_objects.enums import DimensionType, LookUpTableColumnValueType
 
 from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
@@ -12,9 +15,16 @@ def parent_model(load_model_from_tempfile):
         yield model
 
 
+@pytest.fixture(params=[LookUpTable1DColumn, LookUpTable3DColumn])
+def column_type_to_test(request):
+    return request.param
+
+
 @pytest.fixture
-def parent_object(parent_model):
-    return parent_model.create_lookup_table_1d()
+def parent_object(parent_model, column_type_to_test):
+    if column_type_to_test == LookUpTable1DColumn:
+        return parent_model.create_lookup_table_1d()
+    return parent_model.create_lookup_table_3d()
 
 
 @pytest.fixture(params=[0, 1, 5])
@@ -36,12 +46,16 @@ def column_data(num_points, column_value_type):
 
 
 @pytest.fixture
-def tree_object(parent_object, column_value_type, num_points):
-    parent_object.columns["Location"].data = np.linspace(-10.0, 10.0, num_points)
+def tree_object(parent_object, column_value_type, num_points, column_type_to_test):
+    if column_type_to_test == LookUpTable1DColumn:
+        data = np.linspace(-10.0, 10.0, num_points)
+    else:
+        data = np.random.rand(num_points, 3)
+    parent_object.columns["Location"].data = data
     return parent_object.create_column(value_type=column_value_type)
 
 
-class TestLookUpTable1DColumn(WithLockedMixin, TreeObjectTester):
+class TestLookUpTableColumn(WithLockedMixin, TreeObjectTester):
     INITIAL_OBJECT_NAMES = ("Location",)
     COLLECTION_NAME = "columns"
     DEFAULT_PROPERTIES = {

@@ -3,6 +3,7 @@ from ansys.api.acp.v0 import (
     drop_off_material_pb2,
     edge_set_pb2,
     enum_types_pb2,
+    lookup_table_3d_pb2,
     lookup_table_column_type_pb2,
     mesh_query_pb2,
     ply_material_pb2,
@@ -137,4 +138,13 @@ __all__ = [
     lookup_table_column_value_type_from_pb,
 ) = wrap_to_string_enum(
     "LookUpTableColumnValueType", lookup_table_column_type_pb2.ValueType, module=__name__
+)
+(
+    LookUpTable3DInterpolationAlgorithm,
+    lookup_table_3d_interpolation_algorithm_to_pb,
+    lookup_table_3d_interpolation_algorithm_from_pb,
+) = wrap_to_string_enum(
+    "LookUpTable3DInterpolationAlgorithm",
+    lookup_table_3d_pb2.InterpolationAlgorithm,
+    module=__name__,
 )
