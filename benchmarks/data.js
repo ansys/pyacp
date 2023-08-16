@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1692014169895,
+  "lastUpdate": 1692178546331,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -5116,6 +5116,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00025917878700252797",
             "extra": "mean: 38.591253461541655 msec\nrounds: 26"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8adae81b894a6f12caaaccaace2bb2acda3c35b6",
+          "message": "Add look-up tables (#258)\n\nAdd the `LookUpTable1D`, `LookUpTable1DColumn`, `LookUpTable3D` and\r\n`LookUpTable3DColumn` classes. The two column classes use a common \r\nbase, since they have the same attributes.\r\n\r\nThe column `value_type` is settable only in the constructor, since the API\r\nonly allows changing it when the `data` shape is changed to match, or\r\nthe `data` is empty. This would make setting it independently as a property \r\nchallenging / potentially confusing.",
+          "timestamp": "2023-08-16T09:30:04Z",
+          "tree_id": "ceb3ff5c354b22ca943c8a9fa70d74d339eb2518",
+          "url": "https://github.com/ansys-internal/pyacp/commit/8adae81b894a6f12caaaccaace2bb2acda3c35b6"
+        },
+        "date": 1692178542804,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 5.106933414872426,
+            "unit": "iter/sec",
+            "range": "stddev: 0.006049401127542347",
+            "extra": "mean: 195.81222600000956 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.2056907773443335,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003805308271976744",
+            "extra": "mean: 453.3727076666689 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.3768213818816131,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.6537772220000306 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.041138954541775,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.30786127500005 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 3.1246192358527627,
+            "unit": "iter/sec",
+            "range": "stddev: 0.007812243612284369",
+            "extra": "mean: 320.03899500000443 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.7168140798525512,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.3950618829999826 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.0828056426584938,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 12.076471697999978 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1046.1057331093632,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0004083828727475577",
+            "extra": "mean: 955.9263163845568 usec\nrounds: 708"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 332.59221787044464,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00032218553754282043",
+            "extra": "mean: 3.00668490201876 msec\nrounds: 347"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 47.352205725911155,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00017774373767199243",
+            "extra": "mean: 21.118340416670378 msec\nrounds: 48"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.960713672715376,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006273158774159342",
+            "extra": "mean: 201.5838981999991 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 712.6818733839964,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0004468151727673447",
+            "extra": "mean: 1.40315060245849 msec\nrounds: 732"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 210.31610434008743,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00012219533907878864",
+            "extra": "mean: 4.754747636362502 msec\nrounds: 198"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.63902745470173,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022353500542254454",
+            "extra": "mean: 39.003039478262984 msec\nrounds: 23"
           }
         ]
       }
