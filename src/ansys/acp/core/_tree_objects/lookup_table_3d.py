@@ -32,6 +32,18 @@ __all__ = ["LookUpTable3D"]
 class LookUpTable3D(CreatableTreeObject, IdTreeObject):
     """Instantiate a 3D Look-Up Table.
 
+    The three-dimensional look-up table is defined by 3D data points. The
+    locations of these data points are defined by the ``Location`` column,
+    which:
+
+    * has shape ``(N, 3)``, where ``N`` is the number of data points (rows)
+    * is automatically created when the look-up table is instantiated
+    * cannot be deleted or renamed
+
+    When the length of the ``Location`` column is changed, the data of the
+    other columns is automatically either truncated, or extended with ``NaN``
+    values to fit.
+
     Parameters
     ----------
     interpolation_algorithm :

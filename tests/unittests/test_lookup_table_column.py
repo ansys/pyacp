@@ -78,7 +78,6 @@ class TestLookUpTableColumn(WithLockedMixin, TreeObjectTester):
             ],
             read_only=[
                 ("id", "some_id"),
-                ("status", "UPTODATE"),
                 ("value_type", LookUpTableColumnValueType.SCALAR),
                 ("value_type", LookUpTableColumnValueType.DIRECTION),
             ],

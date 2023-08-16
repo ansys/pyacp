@@ -20,7 +20,6 @@ from .enums import (
     dimension_type_to_pb,
     lookup_table_column_value_type_from_pb,
     lookup_table_column_value_type_to_pb,
-    status_type_from_pb,
 )
 
 __all__ = ["LookUpTableColumnBase"]
@@ -35,8 +34,10 @@ class LookUpTableColumnBase(CreatableTreeObject, IdTreeObject):
     value_type :
         Determines whether the column data is scalar (one entry per row) or
         directional (three entries per row).
+        Note that the ``value_type`` can only be set when constructing the
+        column, and is read-only afterwards.
     dimension_type :
-        Dimensionality of the column data.
+        Dimensionality (such as time, length, force, ...) of the column data.
     data :
         The column data. The shape of the data must match the ``value_type``
         and the length of the ``Location`` column of the parent look-up
@@ -66,8 +67,6 @@ class LookUpTableColumnBase(CreatableTreeObject, IdTreeObject):
         self.dimension_type = dimension_type
         if data is not None:
             self.data = data
-
-    status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
 
     value_type = grpc_data_property_read_only(
         "properties.value_type", from_protobuf=lookup_table_column_value_type_from_pb

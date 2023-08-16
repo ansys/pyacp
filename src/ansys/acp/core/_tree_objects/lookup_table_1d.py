@@ -28,6 +28,19 @@ __all__ = ["LookUpTable1D"]
 class LookUpTable1D(CreatableTreeObject, IdTreeObject):
     """Instantiate a 1D Look-Up Table.
 
+    The one-dimensional look-up table is defined along an axis. The locations
+    of the data points along the axis are defined by the ``Location`` column,
+    which:
+
+    * contains scalar data. When the column contains ``N`` data points (rows),
+      it has shape ``(N, )``.
+    * is automatically created when the look-up table is instantiated
+    * cannot be deleted or renamed
+
+    When the length of the ``Location`` column is changed, the data of the
+    other columns is automatically either truncated, or extended with ``NaN``
+    values to fit.
+
     Parameters
     ----------
     origin :

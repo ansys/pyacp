@@ -25,8 +25,10 @@ class LookUpTable3DColumn(LookUpTableColumnBase):
     value_type :
         Determines whether the column data is scalar (one entry per row) or
         directional (three entries per row).
+        Note that the ``value_type`` can only be set when constructing the
+        column, and is read-only afterwards.
     dimension_type :
-        Dimensionality of the column data.
+        Dimensionality (such as time, length, force, ...) of the column data.
     data :
         The column data. The shape of the data must match the ``value_type``
         and the length of the ``Location`` column of the parent look-up

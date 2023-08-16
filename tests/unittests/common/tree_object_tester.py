@@ -103,6 +103,9 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
             )
 
         for prop, value in object_properties.read_only:
+            getattr(
+                tree_object, prop
+            ), f"Cannot get read-only property '{prop}' of object '{tree_object}'"
             with pytest.raises(AttributeError):
                 setattr(tree_object, prop, value)
 
