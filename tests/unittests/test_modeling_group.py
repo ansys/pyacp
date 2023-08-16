@@ -23,8 +23,6 @@ class TestModelingGroup(NoLockedMixin, TreeObjectTester):
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        element_sets = [model.create_element_set() for _ in range(3)]
-        rosettes = [model.create_rosette() for _ in range(4)]
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "new_name"),
