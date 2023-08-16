@@ -1,3 +1,4 @@
+# type: ignore
 from constants import COMPOSITE_DEFINITIONS_H5, MATML_FILE
 
 import ansys.acp.core as pyacp

@@ -21,6 +21,10 @@ def to_tuple_from_1D_array(array: Union[IntArray, DoubleArray]) -> Tuple[Any, ..
     return tuple(array.data)
 
 
+def to_ND_double_array_from_numpy(data: npt.NDArray[np.float64]) -> DoubleArray:
+    return DoubleArray(shape=list(data.shape), data=data.flatten())
+
+
 @overload
 def to_numpy(array_pb: IntArray) -> npt.NDArray[np.int64]:
     ...
