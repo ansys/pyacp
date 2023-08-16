@@ -24,6 +24,8 @@ from ._tree_objects import (
     Rosette,
     SphericalSelectionRule,
     Stackup,
+    SubLaminate,
+    Lamina,
     TubeSelectionRule,
     UnitSystemType,
 )
