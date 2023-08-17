@@ -40,17 +40,6 @@ namespace ACPFuture
             composite_definition_paths_coll.Add(composite_defintion_paths);
             mapping_paths_coll.Add(null);
 
-            /*
-            foreach (var str in composite_defintion_paths){
-                 composite_definition_paths_coll.Add(str);
-            }
-            foreach (var str in mapping_paths)
-            {
-                mapping_paths_coll.Add(str);
-            }
-            */
-
-
             var external_model = (IDSExternalEnhancedModelAuto)model.InternalObject.AddExternalEnhancedModel(DSExternalEnhancedModelType.kEXTERNAL_ENHANCEDMODEL_ASSEMBLEDLAYEREDSECTION);
 
             // The second argument for Import is probably the list of mapping files. It is required
