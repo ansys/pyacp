@@ -130,7 +130,9 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         draping_seed_point: tuple[float, float, float] = (0.0, 0.0, 0.0),
         auto_draping_direction: bool = True,
         draping_direction: tuple[float, float, float] = (1.0, 0.0, 0.0),
-        draping_mesh_size: float | None = None,  # let the backend choose the default value
+        # The backend will choose a default value depending on the model size
+        # TODO: check this correct, and not implemented only in the GUI
+        draping_mesh_size: float | None = None,
         draping_thickness_correction: bool = True,
         draping_angle_1_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
         draping_angle_2_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
