@@ -1,5 +1,5 @@
 The acp_future C# project contains code that extends the python API for Mechanical. Some of the
-API's of Mechanical are available on the Internal COM object, but this API is only available on 
+APIs of Mechanical are available on the Internal COM object, but this API is only available on 
 Windows. An example is Model.InternalObject. In addition, these methods often
 expect Interop objects as arguments (such as AnsBSTRColl), which also only works on Windows. 
 The Shims in this C# project wrap the methods on the COM object and replace the arguments by 
