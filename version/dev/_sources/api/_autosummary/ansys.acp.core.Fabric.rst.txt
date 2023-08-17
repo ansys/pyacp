@@ -34,6 +34,7 @@
       :toctree:
    
       Fabric.area_price
+      Fabric.area_weight
       Fabric.cut_off_material_handling
       Fabric.draping_material_model
       Fabric.draping_ud_coefficient

@@ -34,6 +34,7 @@
       :toctree:
    
       Stackup.area_price
+      Stackup.area_weight
       Stackup.cut_off_material
       Stackup.cut_off_material_handling
       Stackup.draping_material_model
@@ -47,6 +48,7 @@
       Stackup.name
       Stackup.status
       Stackup.symmetry
+      Stackup.thickness
       Stackup.topdown
    
    

@@ -415,6 +415,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_rosette.html">create_rosette</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_spherical_selection_rule.html">create_spherical_selection_rule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_stackup.html">create_stackup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_sublaminate.html">create_sublaminate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_tube_selection_rule.html">create_tube_selection_rule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.delete.html">delete</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.export_materials.html">export_materials</a></li>
@@ -446,6 +447,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.rosettes.html">rosettes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.spherical_selection_rules.html">spherical_selection_rules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.stackups.html">stackups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.sublaminates.html">sublaminates</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.tube_selection_rules.html">tube_selection_rules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.unit_system.html">unit_system</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html">use_nodal_thicknesses</a></li>
@@ -481,6 +483,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Fabric.delete.html">delete</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Fabric.store.html">store</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Fabric.area_price.html">area_price</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Fabric.area_weight.html">area_weight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Fabric.cut_off_material_handling.html">cut_off_material_handling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Fabric.draping_material_model.html">draping_material_model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Fabric.draping_ud_coefficient.html">draping_ud_coefficient</a></li>
@@ -499,6 +502,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Stackup.delete.html">delete</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Stackup.store.html">store</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Stackup.area_price.html">area_price</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Stackup.area_weight.html">area_weight</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Stackup.cut_off_material.html">cut_off_material</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Stackup.cut_off_material_handling.html">cut_off_material_handling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Stackup.draping_material_model.html">draping_material_model</a></li>
@@ -512,6 +516,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Stackup.name.html">name</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Stackup.status.html">status</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Stackup.symmetry.html">symmetry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Stackup.thickness.html">thickness</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Stackup.topdown.html">topdown</a></li>
 </ul>
 </li>
@@ -1164,10 +1169,13 @@ unit of model).</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_stackup.html#ansys.acp.core.Model.create_stackup" title="ansys.acp.core.Model.create_stackup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_stackup</span></code></a>([name, symmetry, ...])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_tube_selection_rule.html#ansys.acp.core.Model.create_tube_selection_rule" title="ansys.acp.core.Model.create_tube_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_tube_selection_rule</span></code></a>([name, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_sublaminate.html#ansys.acp.core.Model.create_sublaminate" title="ansys.acp.core.Model.create_sublaminate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_sublaminate</span></code></a>([name, symmetry, ...])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.delete.html#ansys.acp.core.Model.delete" title="ansys.acp.core.Model.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.delete</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_tube_selection_rule.html#ansys.acp.core.Model.create_tube_selection_rule" title="ansys.acp.core.Model.create_tube_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_tube_selection_rule</span></code></a>([name, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.delete.html#ansys.acp.core.Model.delete" title="ansys.acp.core.Model.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.delete</span></code></a>()</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">rtype<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
@@ -1175,13 +1183,13 @@ unit of model).</p></li>
 </dl>
 </p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.export_materials.html#ansys.acp.core.Model.export_materials" title="ansys.acp.core.Model.export_materials"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.export_materials</span></code></a>(path)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.export_materials.html#ansys.acp.core.Model.export_materials" title="ansys.acp.core.Model.export_materials"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.export_materials</span></code></a>(path)</p></td>
 <td><p>Write materials to a XML (MatML) file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.export_shell_composite_definitions.html#ansys.acp.core.Model.export_shell_composite_definitions" title="ansys.acp.core.Model.export_shell_composite_definitions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.export_shell_composite_definitions</span></code></a>(path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.export_shell_composite_definitions.html#ansys.acp.core.Model.export_shell_composite_definitions" title="ansys.acp.core.Model.export_shell_composite_definitions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.export_shell_composite_definitions</span></code></a>(path)</p></td>
 <td><p>Export the lay-up of the shell as HDF5 used by DPF Composites or Mechanical.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.from_fe_file.html#ansys.acp.core.Model.from_fe_file" title="ansys.acp.core.Model.from_fe_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.from_fe_file</span></code></a>(*, path, channel, format)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.from_fe_file.html#ansys.acp.core.Model.from_fe_file" title="ansys.acp.core.Model.from_fe_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.from_fe_file</span></code></a>(*, path, channel, format)</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">rtype<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#ansys.acp.core.Model" title="ansys.acp.core._tree_objects.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
@@ -1189,7 +1197,7 @@ unit of model).</p></li>
 </dl>
 </p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.from_file.html#ansys.acp.core.Model.from_file" title="ansys.acp.core.Model.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.from_file</span></code></a>(*, path, channel)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.from_file.html#ansys.acp.core.Model.from_file" title="ansys.acp.core.Model.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.from_file</span></code></a>(*, path, channel)</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">rtype<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#ansys.acp.core.Model" title="ansys.acp.core._tree_objects.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
@@ -1197,10 +1205,10 @@ unit of model).</p></li>
 </dl>
 </p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.save.html#ansys.acp.core.Model.save" title="ansys.acp.core.Model.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.save</span></code></a>(path, *[, save_cache])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.save.html#ansys.acp.core.Model.save" title="ansys.acp.core.Model.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.save</span></code></a>(path, *[, save_cache])</p></td>
 <td><p>Save ACP Model (.acph5).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.save_analysis_model.html#ansys.acp.core.Model.save_analysis_model" title="ansys.acp.core.Model.save_analysis_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.save_analysis_model</span></code></a>(path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.save_analysis_model.html#ansys.acp.core.Model.save_analysis_model" title="ansys.acp.core.Model.save_analysis_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.save_analysis_model</span></code></a>(path)</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">rtype<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
@@ -1208,7 +1216,7 @@ unit of model).</p></li>
 </dl>
 </p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.update.html#ansys.acp.core.Model.update" title="ansys.acp.core.Model.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.update</span></code></a>(*[, relations_only])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.update.html#ansys.acp.core.Model.update" title="ansys.acp.core.Model.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.update</span></code></a>(*[, relations_only])</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">rtype<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
@@ -1287,13 +1295,16 @@ unit of model).</p></li>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.stackups.html#ansys.acp.core.Model.stackups" title="ansys.acp.core.Model.stackups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.stackups</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.tube_selection_rules.html#ansys.acp.core.Model.tube_selection_rules" title="ansys.acp.core.Model.tube_selection_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.tube_selection_rules</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.sublaminates.html#ansys.acp.core.Model.sublaminates" title="ansys.acp.core.Model.sublaminates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.sublaminates</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.unit_system.html#ansys.acp.core.Model.unit_system" title="ansys.acp.core.Model.unit_system"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.unit_system</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.tube_selection_rules.html#ansys.acp.core.Model.tube_selection_rules" title="ansys.acp.core.Model.tube_selection_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.tube_selection_rules</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html#ansys.acp.core.Model.use_nodal_thicknesses" title="ansys.acp.core.Model.use_nodal_thicknesses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.use_nodal_thicknesses</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.unit_system.html#ansys.acp.core.Model.unit_system" title="ansys.acp.core.Model.unit_system"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.unit_system</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html#ansys.acp.core.Model.use_nodal_thicknesses" title="ansys.acp.core.Model.use_nodal_thicknesses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.use_nodal_thicknesses</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>

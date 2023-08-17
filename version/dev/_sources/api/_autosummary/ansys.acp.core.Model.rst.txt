@@ -60,6 +60,9 @@
       Model.create_stackup
       
       
+      Model.create_sublaminate
+      
+      
       Model.create_tube_selection_rule
       
       
@@ -118,6 +121,7 @@
       Model.rosettes
       Model.spherical_selection_rules
       Model.stackups
+      Model.sublaminates
       Model.tube_selection_rules
       Model.unit_system
       Model.use_nodal_thicknesses

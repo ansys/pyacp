@@ -1,0 +1,6 @@
+area\_weight
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.area_weight
