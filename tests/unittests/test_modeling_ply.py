@@ -3,7 +3,7 @@ import numpy.testing
 import pytest
 import pyvista
 
-from ansys.acp.core import ElementalDataType, LinkedSelectionRule, NodalDataType
+from ansys.acp.core import ElementalDataType, LinkedSelectionRule, NodalDataType, Fabric, Stackup, SubLaminate
 from ansys.acp.core._tree_objects.enums import BooleanOperationType
 
 from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
@@ -40,14 +40,17 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
     CREATE_METHOD_NAME = "create_modeling_ply"
 
     @staticmethod
-    @pytest.fixture
-    def object_properties(parent_model):
+    @pytest.fixture(params=["create_fabric", "create_stackup", "create_sublaminate"])
+    def object_properties(request, parent_model):
         oriented_selection_sets = [parent_model.create_oriented_selection_set() for _ in range(3)]
-        fabric = parent_model.create_fabric()
+        create_method = getattr(parent_model, request.param, None)
+        ply_material = create_method()
+        if not isinstance(ply_material, (Fabric, Stackup, SubLaminate)):
+            raise RuntimeError("Unsupported ply material!")
         return ObjectPropertiesToTest(
             read_write=[
                 ("oriented_selection_sets", oriented_selection_sets),
-                ("ply_material", fabric),
+                ("ply_material", ply_material),
                 ("ply_angle", 0.5),
                 ("active", False),
                 ("global_ply_nr", AnyThing()),
