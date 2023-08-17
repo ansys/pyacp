@@ -3,7 +3,14 @@ import numpy.testing
 import pytest
 import pyvista
 
-from ansys.acp.core import ElementalDataType, LinkedSelectionRule, NodalDataType, Fabric, Stackup, SubLaminate
+from ansys.acp.core import (
+    ElementalDataType,
+    Fabric,
+    LinkedSelectionRule,
+    NodalDataType,
+    Stackup,
+    SubLaminate,
+)
 from ansys.acp.core._tree_objects.enums import BooleanOperationType
 
 from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
