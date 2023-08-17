@@ -50,7 +50,7 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
     @pytest.fixture(params=["create_fabric", "create_stackup", "create_sublaminate"])
     def object_properties(request, parent_model):
         oriented_selection_sets = [parent_model.create_oriented_selection_set() for _ in range(3)]
-        create_method = getattr(parent_model, request.param, None)
+        create_method = getattr(parent_model, request.param)
         ply_material = create_method()
         if not isinstance(ply_material, (Fabric, Stackup, SubLaminate)):
             raise RuntimeError("Unsupported ply material!")
