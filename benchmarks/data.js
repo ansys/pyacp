@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1692255420128,
+  "lastUpdate": 1692266929321,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -5360,6 +5360,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00022153342131897764",
             "extra": "mean: 39.24393334782805 msec\nrounds: 23"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "105842014+roosre@users.noreply.github.com",
+            "name": "René Roos",
+            "username": "roosre"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f7a470eb92c787ee12e097d1012d871e09f52d30",
+          "message": "Test link between MP and Fabric, Stackup or SubLaminate (#262)\n\n* ModelingPly: test linkage of all possible ply materials (Fabric, Stackup and SubLaminate)\r\n\r\n* run pre-commit checks\r\n\r\n* Update tests/unittests/test_modeling_ply.py\r\n\r\nCo-authored-by: Dominik Gresch <greschd@users.noreply.github.com>\r\n\r\n---------\r\n\r\nCo-authored-by: Dominik Gresch <greschd@users.noreply.github.com>",
+          "timestamp": "2023-08-17T10:03:44Z",
+          "tree_id": "e14d61ea9369d211f74dab63767b8304c1797601",
+          "url": "https://github.com/ansys-internal/pyacp/commit/f7a470eb92c787ee12e097d1012d871e09f52d30"
+        },
+        "date": 1692266926411,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 6.46571009790458,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005173298258463225",
+            "extra": "mean: 154.66205333333485 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.4167983299460016,
+            "unit": "iter/sec",
+            "range": "stddev: 0.010640750873826222",
+            "extra": "mean: 413.7705606666581 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.37953857762903587,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.634778277999999 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.041132000432478784,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.311970959000007 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 3.422165605838521,
+            "unit": "iter/sec",
+            "range": "stddev: 0.017440717815800328",
+            "extra": "mean: 292.2126264999889 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.7212706392891726,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.3864421279999988 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.08284614432042796,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 12.070567775999962 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1170.796429064625,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000326156196819708",
+            "extra": "mean: 854.1194482450908 usec\nrounds: 1140"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 343.01731468083386,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003240030121578548",
+            "extra": "mean: 2.915304730113891 msec\nrounds: 352"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 47.216870151740316,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022261055645300383",
+            "extra": "mean: 21.178870958331448 msec\nrounds: 48"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.95859542080321,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00014961164485056218",
+            "extra": "mean: 201.67001240000673 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 887.1092010882204,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00021922231956416808",
+            "extra": "mean: 1.1272569360945597 msec\nrounds: 579"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 205.8126606049751,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002840512701202695",
+            "extra": "mean: 4.858787584109523 msec\nrounds: 214"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.68720708483059,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00017734180842694943",
+            "extra": "mean: 38.92988430768495 msec\nrounds: 26"
           }
         ]
       }
