@@ -82,7 +82,7 @@ class FabricWithAngle(GenericEdgePropertyType):
         message: stackup_pb2.FabricWithAngle,
         apply_changes: Callable[[], None],
     ) -> FabricWithAngle:
-        new_obj = FabricWithAngle(
+        new_obj = cls(
             fabric=Fabric._from_resource_path(message.fabric, parent_object._channel),
             angle=message.angle,
         )
@@ -179,6 +179,8 @@ class Stackup(CreatableTreeObject, IdTreeObject):
 
     locked = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
+    thickness = grpc_data_property_read_only("properties.thickness")
+    area_weight = grpc_data_property_read_only("properties.area_weight")
 
     symmetry = grpc_data_property(
         "properties.symmetry",

@@ -12,6 +12,7 @@ from ._tree_objects import (
     ElementSet,
     Fabric,
     FabricWithAngle,
+    Lamina,
     LinkedSelectionRule,
     LookUpTable1D,
     LookUpTable1DColumn,
@@ -28,6 +29,7 @@ from ._tree_objects import (
     Rosette,
     SphericalSelectionRule,
     Stackup,
+    SubLaminate,
     TubeSelectionRule,
     UnitSystemType,
 )

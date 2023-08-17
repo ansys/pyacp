@@ -20,6 +20,7 @@ from .production_ply import ProductionPly
 from .rosette import Rosette
 from .spherical_selection_rule import SphericalSelectionRule
 from .stackup import FabricWithAngle, Stackup
+from .sublaminate import Lamina, SubLaminate
 from .tube_selection_rule import TubeSelectionRule
 
 __all__ = [
@@ -28,6 +29,8 @@ __all__ = [
     "Fabric",
     "Stackup",
     "FabricWithAngle",
+    "SubLaminate",
+    "Lamina",
     "ElementSet",
     "EdgeSet",
     "Rosette",
