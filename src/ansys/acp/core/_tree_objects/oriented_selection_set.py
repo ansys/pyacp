@@ -91,7 +91,8 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         Set the primary draping direction for the draping algorithm. Only used if
         ``auto_draping_direction`` is ``False``.
     draping_mesh_size :
-        Defines the mesh size for the draping algorithm.
+        Defines the mesh size for the draping algorithm. If set to ``-1.``, the
+        mesh size is automatically determined based on the average element size.
     draping_material_model :
         Chooses between different draping formulations.
     draping_ud_coefficient :
@@ -119,7 +120,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         draping_seed_point: tuple[float, float, float] = (0.0, 0.0, 0.0),
         auto_draping_direction: bool = True,
         draping_direction: tuple[float, float, float] = (0.0, 0.0, 1.0),
-        draping_mesh_size: float | None = None,
+        draping_mesh_size: float = -1.0,
         draping_material_model: DrapingMaterialType = DrapingMaterialType.WOVEN,
         draping_ud_coefficient: float = 0.0,
     ):
@@ -133,8 +134,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         self.draping_seed_point = draping_seed_point
         self.auto_draping_direction = auto_draping_direction
         self.draping_direction = draping_direction
-        if draping_mesh_size is not None:
-            self.draping_mesh_size = draping_mesh_size
+        self.draping_mesh_size = draping_mesh_size
         self.draping_material_model = DrapingMaterialType(draping_material_model)
         self.draping_ud_coefficient = draping_ud_coefficient
 
@@ -163,25 +163,25 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         to_protobuf=rosette_selection_method_to_pb,
     )
 
-    draping = grpc_data_property("property.draping")
+    draping = grpc_data_property("properties.draping")
     draping_seed_point = grpc_data_property(
-        "property.draping_seed_point",
+        "properties.draping_seed_point",
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_double_array,
     )
-    auto_draping_direction = grpc_data_property("property.auto_draping_direction")
+    auto_draping_direction = grpc_data_property("properties.auto_draping_direction")
     draping_direction = grpc_data_property(
-        "property.draping_direction",
+        "properties.draping_direction",
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_double_array,
     )
-    draping_mesh_size = grpc_data_property("property.draping_mesh_size")
+    draping_mesh_size = grpc_data_property("properties.draping_mesh_size")
     draping_material_model = grpc_data_property(
-        "property.draping_material_model",
+        "properties.draping_material_model",
         from_protobuf=draping_material_type_from_pb,
         to_protobuf=draping_material_type_to_pb,
     )
-    draping_ud_coefficient = grpc_data_property("property.draping_ud_coefficient")
+    draping_ud_coefficient = grpc_data_property("properties.draping_ud_coefficient")
 
     selection_rules = define_polymorphic_linked_object_list(
         "properties.selection_rules",

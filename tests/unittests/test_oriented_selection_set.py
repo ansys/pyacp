@@ -27,6 +27,13 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
         "orientation_point": (0.0, 0.0, 0.0),
         "orientation_direction": (0.0, 0.0, 0.0),
         "rosette_selection_method": "minimum_angle",
+        "draping": False,
+        "draping_seed_point": (0.0, 0.0, 0.0),
+        "auto_draping_direction": True,
+        "draping_direction": (0.0, 0.0, 1.0),
+        "draping_mesh_size": -1.0,  # is only set to the computed value after draping is run
+        "draping_material_model": "woven",
+        "draping_ud_coefficient": 0.0,
     }
     CREATE_METHOD_NAME = "create_oriented_selection_set"
 
@@ -54,6 +61,13 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
                         model.create_boolean_selection_rule(),
                     ],
                 ),
+                ("draping", True),
+                ("draping_seed_point", (0.0, 0.1, 0.0)),
+                ("auto_draping_direction", False),
+                ("draping_direction", (1.0, 0.0, 0.0)),
+                ("draping_mesh_size", 0.1),
+                ("draping_material_model", "ud"),
+                ("draping_ud_coefficient", 0.5),
             ],
             read_only=[
                 ("id", "some_id"),

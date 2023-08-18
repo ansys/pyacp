@@ -96,7 +96,8 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         Set the primary draping direction for the draping algorithm. Only used if
         ``auto_draping_direction`` is ``False``.
     draping_mesh_size :
-        Defines the mesh size for the draping algorithm.
+        Defines the mesh size for the draping algorithm.  If set to ``-1.``, the
+        mesh size is automatically determined based on the average element size.
     draping_thickness_correction :
         Enables the thickness correction of draped plies based on the draping
         shear angle.
@@ -130,9 +131,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         draping_seed_point: tuple[float, float, float] = (0.0, 0.0, 0.0),
         auto_draping_direction: bool = True,
         draping_direction: tuple[float, float, float] = (1.0, 0.0, 0.0),
-        # The backend will choose a default value depending on the model size
-        # TODO: check this correct, and not implemented only in the GUI
-        draping_mesh_size: float | None = None,
+        draping_mesh_size: float = -1.0,
         draping_thickness_correction: bool = True,
         draping_angle_1_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
         draping_angle_2_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
@@ -150,8 +149,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         self.draping_seed_point = draping_seed_point
         self.auto_draping_direction = auto_draping_direction
         self.draping_direction = draping_direction
-        if draping_mesh_size is not None:
-            self.draping_mesh_size = draping_mesh_size
+        self.draping_mesh_size = draping_mesh_size
         self.draping_thickness_correction = draping_thickness_correction
         self.draping_angle_1_field = draping_angle_1_field
         self.draping_angle_2_field = draping_angle_2_field
