@@ -30,6 +30,7 @@ from ansys.api.acp.v0 import (
     stackup_pb2_grpc,
     sublaminate_pb2_grpc,
     tube_selection_rule_pb2_grpc,
+    variable_offset_selection_rule_pb2_grpc,
 )
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
@@ -63,6 +64,7 @@ from .spherical_selection_rule import SphericalSelectionRule
 from .stackup import Stackup
 from .sublaminate import SubLaminate
 from .tube_selection_rule import TubeSelectionRule
+from .variable_offset_selection_rule import VariableOffsetSelectionRule
 
 __all__ = ["MeshData", "Model", "ModelElementalData", "ModelNodalData"]
 
@@ -322,6 +324,9 @@ class Model(TreeObject):
     )
     create_tube_selection_rule, tube_selection_rules = define_mutable_mapping(
         TubeSelectionRule, tube_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+    create_variable_offset_selection_rule, variable_offset_selection_rules = define_mutable_mapping(
+        VariableOffsetSelectionRule, variable_offset_selection_rule_pb2_grpc.ObjectServiceStub
     )
     create_boolean_selection_rule, boolean_selection_rules = define_mutable_mapping(
         BooleanSelectionRule, boolean_selection_rule_pb2_grpc.ObjectServiceStub

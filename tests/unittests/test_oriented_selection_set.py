@@ -58,6 +58,7 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
                         model.create_parallel_selection_rule(),
                         model.create_spherical_selection_rule(),
                         model.create_cylindrical_selection_rule(),
+                        model.create_variable_offset_selection_rule(),
                         model.create_boolean_selection_rule(),
                     ],
                 ),

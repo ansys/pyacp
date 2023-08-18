@@ -104,6 +104,13 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
                             parameter_2=2.9,
                         ),
                         LinkedSelectionRule(
+                            selection_rule=parent_model.create_variable_offset_selection_rule(),
+                            operation_type=BooleanOperationType.ADD,
+                            template_rule=False,
+                            parameter_1=0.0,
+                            parameter_2=0.0,
+                        ),
+                        LinkedSelectionRule(
                             selection_rule=parent_model.create_boolean_selection_rule(),
                             operation_type=BooleanOperationType.REMOVE,
                             template_rule=False,

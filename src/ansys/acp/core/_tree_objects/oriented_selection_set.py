@@ -37,6 +37,7 @@ from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
 from .spherical_selection_rule import SphericalSelectionRule
 from .tube_selection_rule import TubeSelectionRule
+from .variable_offset_selection_rule import VariableOffsetSelectionRule
 
 __all__ = [
     "OrientedSelectionSet",
@@ -185,11 +186,12 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
 
     selection_rules = define_polymorphic_linked_object_list(
         "properties.selection_rules",
-        (
+        allowed_types=(
             ParallelSelectionRule,
             CylindricalSelectionRule,
             SphericalSelectionRule,
             TubeSelectionRule,
+            VariableOffsetSelectionRule,
             BooleanSelectionRule,
         ),
     )
