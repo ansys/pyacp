@@ -26,6 +26,7 @@ from ansys.api.acp.v0 import (
     oriented_selection_set_pb2_grpc,
     parallel_selection_rule_pb2_grpc,
     rosette_pb2_grpc,
+    sensor_pb2_grpc,
     spherical_selection_rule_pb2_grpc,
     stackup_pb2_grpc,
     sublaminate_pb2_grpc,
@@ -60,6 +61,7 @@ from .modeling_group import ModelingGroup
 from .oriented_selection_set import OrientedSelectionSet
 from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
+from .sensor import Sensor
 from .spherical_selection_rule import SphericalSelectionRule
 from .stackup import Stackup
 from .sublaminate import SubLaminate
@@ -338,6 +340,8 @@ class Model(TreeObject):
     create_modeling_group, modeling_groups = define_mutable_mapping(
         ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
     )
+
+    create_sensor, sensors = define_mutable_mapping(Sensor, sensor_pb2_grpc.ObjectServiceStub)
 
     @property
     def mesh(self) -> MeshData:

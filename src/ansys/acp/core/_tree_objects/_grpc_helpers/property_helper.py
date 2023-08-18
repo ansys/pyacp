@@ -60,7 +60,9 @@ def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
     return inner
 
 
-def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[Readable], Any]:
+def grpc_data_getter(
+    name: str, from_protobuf: _FROM_PROTOBUF_T, check_optional: bool = False
+) -> Callable[[Readable], Any]:
     """
     Creates a getter method which obtains the server object via the gRPC
     Get endpoint.
@@ -68,7 +70,10 @@ def grpc_data_getter(name: str, from_protobuf: _FROM_PROTOBUF_T) -> Callable[[Re
 
     def inner(self: Readable) -> Any:
         self._get_if_stored()
-        return from_protobuf(_get_data_attribute(self._pb_object, name))
+        pb_attribute = _get_data_attribute(self._pb_object, name, check_optional=check_optional)
+        if check_optional and pb_attribute is None:
+            return None
+        return from_protobuf(pb_attribute)
 
     return inner
 
@@ -94,8 +99,12 @@ def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[Editab
     return inner
 
 
-def _get_data_attribute(pb_obj: ObjectInfo, name: str) -> Any:
+def _get_data_attribute(pb_obj: ObjectInfo, name: str, check_optional: bool = False) -> Any:
     name_parts = name.split(".")
+    if check_optional:
+        parent_obj = reduce(getattr, name_parts[:-1], pb_obj)
+        if hasattr(parent_obj, "HasField") and not parent_obj.HasField(name_parts[-1]):
+            return None
     return reduce(getattr, name_parts, pb_obj)
 
 
@@ -122,6 +131,7 @@ def grpc_data_property(
     name: str,
     to_protobuf: _TO_PROTOBUF_T = lambda x: x,
     from_protobuf: _FROM_PROTOBUF_T = lambda x: x,
+    check_optional: bool = False,
 ) -> Any:
     """
     Helper for defining properties accessed via gRPC. The property getter
@@ -135,21 +145,24 @@ def grpc_data_property(
     # Protocol
     # See the discussion here on why it is hard to have typed properties:
     # https://github.com/python/typing/issues/985
-    return _exposed_grpc_property(grpc_data_getter(name, from_protobuf=from_protobuf)).setter(
-        grpc_data_setter(name, to_protobuf=to_protobuf)
-    )
+    return _exposed_grpc_property(
+        grpc_data_getter(name, from_protobuf=from_protobuf, check_optional=check_optional)
+    ).setter(grpc_data_setter(name, to_protobuf=to_protobuf))
 
 
 def grpc_data_property_read_only(
     name: str,
     from_protobuf: _FROM_PROTOBUF_T = lambda x: x,
+    check_optional: bool = False,
 ) -> Any:
     """
     Helper for defining properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to synchronize
     the local object with the remote backend.
     """
-    return _exposed_grpc_property(grpc_data_getter(name, from_protobuf=from_protobuf))
+    return _exposed_grpc_property(
+        grpc_data_getter(name, from_protobuf=from_protobuf, check_optional=check_optional)
+    )
 
 
 def grpc_link_property(name: str) -> Any:
