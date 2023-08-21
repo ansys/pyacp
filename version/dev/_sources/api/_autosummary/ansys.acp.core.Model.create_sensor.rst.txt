@@ -1,0 +1,6 @@
+create\_sensor
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_sensor

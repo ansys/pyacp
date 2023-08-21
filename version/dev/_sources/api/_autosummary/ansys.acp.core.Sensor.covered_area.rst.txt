@@ -1,0 +1,6 @@
+covered\_area
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.covered_area

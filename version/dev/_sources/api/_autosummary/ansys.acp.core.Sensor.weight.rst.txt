@@ -1,0 +1,6 @@
+weight
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.weight

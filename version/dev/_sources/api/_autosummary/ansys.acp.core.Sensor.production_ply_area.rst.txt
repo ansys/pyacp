@@ -1,0 +1,6 @@
+production\_ply\_area
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.production_ply_area

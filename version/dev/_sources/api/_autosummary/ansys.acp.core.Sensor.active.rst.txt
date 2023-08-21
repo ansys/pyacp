@@ -1,0 +1,6 @@
+active
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.active

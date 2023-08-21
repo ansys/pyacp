@@ -1,0 +1,6 @@
+sensor\_type
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.sensor_type

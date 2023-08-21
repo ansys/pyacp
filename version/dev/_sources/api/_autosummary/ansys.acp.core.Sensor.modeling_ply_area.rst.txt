@@ -1,0 +1,6 @@
+modeling\_ply\_area
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.modeling_ply_area
