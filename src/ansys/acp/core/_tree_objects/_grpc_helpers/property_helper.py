@@ -66,6 +66,16 @@ def grpc_data_getter(
     """
     Creates a getter method which obtains the server object via the gRPC
     Get endpoint.
+
+    Parameters
+    ----------
+    from_protobuf :
+        Function to convert the protobuf object to the type exposed by the
+        property.
+    check_optional :
+        If ``True``, the getter will return ``None`` if the property is not
+        set on the protobuf object. Otherwise, the default protobuf value
+        will be used.
     """
 
     def inner(self: Readable) -> Any:
