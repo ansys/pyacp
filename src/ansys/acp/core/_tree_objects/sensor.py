@@ -79,15 +79,39 @@ class Sensor(CreatableTreeObject, IdTreeObject):
         "properties.entities", allowed_types=get_args(_LINKABLE_ENTITY_TYPES)
     )
 
-    covered_area = grpc_data_property_read_only("properties.covered_area", check_optional=True)
+    covered_area = grpc_data_property_read_only(
+        "properties.covered_area",
+        check_optional=True,
+        doc=(
+            "The surface area of a selected Element Set / Oriented Selection Set, "
+            "or the tooling surface area that is covered by the composite layup of "
+            "the selected Material or Modeling Ply."
+        ),
+    )
     modeling_ply_area = grpc_data_property_read_only(
-        "properties.modeling_ply_area", check_optional=True
+        "properties.modeling_ply_area",
+        check_optional=True,
+        doc="The surface area of all Modeling Plies of the selected entity.",
     )
     production_ply_area = grpc_data_property_read_only(
-        "properties.production_ply_area", check_optional=True
+        "properties.production_ply_area",
+        check_optional=True,
+        doc="The surface area of all production plies of the selected entity.",
     )
-    price = grpc_data_property_read_only("properties.price", check_optional=True)
-    weight = grpc_data_property_read_only("properties.weight", check_optional=True)
+    price = grpc_data_property_read_only(
+        "properties.price",
+        check_optional=True,
+        doc=(
+            "The price for the composite layup of the selected entity. The price "
+            "per area is defined on the Fabrics or Stackups."
+        ),
+    )
+    weight = grpc_data_property_read_only(
+        "properties.weight", check_optional=True, doc="The mass of the selected entity."
+    )
     center_of_gravity = grpc_data_property_read_only(
-        "properties.center_of_gravity", from_protobuf=to_tuple_from_1D_array, check_optional=True
+        "properties.center_of_gravity",
+        from_protobuf=to_tuple_from_1D_array,
+        check_optional=True,
+        doc="The center of gravity of the selected entity in the global coordinate system.",
     )

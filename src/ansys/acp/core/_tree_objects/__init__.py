@@ -18,6 +18,7 @@ from .oriented_selection_set import OrientedSelectionSet
 from .parallel_selection_rule import ParallelSelectionRule
 from .production_ply import ProductionPly
 from .rosette import Rosette
+from .sensor import Sensor
 from .spherical_selection_rule import SphericalSelectionRule
 from .stackup import FabricWithAngle, Stackup
 from .sublaminate import Lamina, SubLaminate
@@ -52,6 +53,7 @@ __all__ = [
     "ModelingPly",
     "ProductionPly",
     "AnalysisPly",
+    "Sensor",
     "UnitSystemType",
     "EdgeSetType",
     "ElementalDataType",

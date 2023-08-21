@@ -137,16 +137,39 @@ def _set_data_attribute(pb_obj: ObjectInfo, name: str, value: Any) -> None:
                     target_object.add().CopyFrom(item)
 
 
+def _wrap_doc(obj: Any, doc: str | None) -> Any:
+    if doc is not None:
+        obj.__doc__ = doc
+    return obj
+
+
 def grpc_data_property(
     name: str,
     to_protobuf: _TO_PROTOBUF_T = lambda x: x,
     from_protobuf: _FROM_PROTOBUF_T = lambda x: x,
     check_optional: bool = False,
+    doc: str | None = None,
 ) -> Any:
     """
     Helper for defining properties accessed via gRPC. The property getter
     and setter make calls to the gRPC Get and Put endpoints to synchronize
     the local object with the remote backend.
+
+    Parameters
+    ----------
+    name :
+        Name of the property.
+    to_protobuf :
+        Function to convert the property value to the protobuf type.
+    from_protobuf :
+        Function to convert the protobuf object to the type exposed by the
+        property.
+    check_optional :
+        If ``True``, the getter will return ``None`` if the property is not
+        set on the protobuf object. Otherwise, the default protobuf value
+        will be used.
+    doc :
+        Docstring for the property.
     """
     # Note jvonrick August 2023: We don't ensure with typechecks that the property returned here is
     # compatible with the class on which this property is created. For example:
@@ -155,23 +178,44 @@ def grpc_data_property(
     # Protocol
     # See the discussion here on why it is hard to have typed properties:
     # https://github.com/python/typing/issues/985
-    return _exposed_grpc_property(
-        grpc_data_getter(name, from_protobuf=from_protobuf, check_optional=check_optional)
-    ).setter(grpc_data_setter(name, to_protobuf=to_protobuf))
+    return _wrap_doc(
+        _exposed_grpc_property(
+            grpc_data_getter(name, from_protobuf=from_protobuf, check_optional=check_optional)
+        ).setter(grpc_data_setter(name, to_protobuf=to_protobuf)),
+        doc=doc,
+    )
 
 
 def grpc_data_property_read_only(
     name: str,
     from_protobuf: _FROM_PROTOBUF_T = lambda x: x,
     check_optional: bool = False,
+    doc: str | None = None,
 ) -> Any:
     """
     Helper for defining properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to synchronize
     the local object with the remote backend.
+
+    Parameters
+    ----------
+    name :
+        Name of the property.
+    from_protobuf :
+        Function to convert the protobuf object to the type exposed by the
+        property.
+    check_optional :
+        If ``True``, the getter will return ``None`` if the property is not
+        set on the protobuf object. Otherwise, the default protobuf value
+        will be used.
+    doc :
+        Docstring for the property.
     """
-    return _exposed_grpc_property(
-        grpc_data_getter(name, from_protobuf=from_protobuf, check_optional=check_optional)
+    return _wrap_doc(
+        _exposed_grpc_property(
+            grpc_data_getter(name, from_protobuf=from_protobuf, check_optional=check_optional)
+        ),
+        doc=doc,
     )
 
 
