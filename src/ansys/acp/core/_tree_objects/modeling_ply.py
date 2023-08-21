@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Container, Iterable
 import dataclasses
+from typing import Iterable
 
 import numpy as np
 import numpy.typing as npt
@@ -67,46 +68,42 @@ class ModelingPlyNodalData(NodalData):
 @mark_grpc_properties
 @register
 class ModelingPly(CreatableTreeObject, IdTreeObject):
-    """Instantiate an Modeling Ply.
+    """Instantiate a Modeling Ply.
 
     Parameters
     ----------
     name :
-        The name of the ModelingPly
+        The name of the Modeling Ply
     ply_material :
-        The material (fabric, stackup or sub-laminate) of the ply.
+        {replace_doc.ply_material}
+    oriented_selection_sets :
+        {replace_doc.oriented_selection_sets}
     ply_angle :
-        Design angle between the reference direction and the ply fiber direction.
+        {replace_doc.ply_angle}
     number_of_layers :
-        Number of times the plies are generated.
+        {replace_doc.number_of_layers}
     active :
-        Inactive plies are ignored in ACP and the downstream analysis.
+        {replace_doc.active}
     global_ply_nr :
-        Defines the global ply order.
+        {replace_doc.global_ply_nr}
     selection_rules :
-        Selection Rules which may limit the extent of the ply.
+        {replace_doc.selection_rules}
     draping :
-        Chooses between different draping formulations.
+        {replace_doc.draping}
     draping_seed_point :
-        Starting point of the draping algorithm.
+        {replace_doc.draping_seed_point}
     auto_draping_direction :
-        If ``True``, the fiber direction of the production ply at the draping
-         seed point is used as draping direction.
+        {replace_doc.auto_draping_direction}
     draping_direction :
-        Set the primary draping direction for the draping algorithm. Only used if
-        ``auto_draping_direction`` is ``False``.
+        {replace_doc.draping_direction}
     draping_mesh_size :
-        Defines the mesh size for the draping algorithm.  If set to ``-1.``, the
-        mesh size is automatically determined based on the average element size.
+        {replace_doc.draping_mesh_size}
     draping_thickness_correction :
-        Enables the thickness correction of draped plies based on the draping
-        shear angle.
+        {replace_doc.draping_thickness_correction}
     draping_angle_1_field :
-        Correction angle between the fiber and draped fiber directions, in degree.
+        {replace_doc.draping_angle_1_field}
     draping_angle_2_field :
-        Correction angle between the transverse and draped transverse directions,
-        in degree. Optional, uses the same values as ``draping_angle_1_field``
-        (no shear) by default.
+        {replace_doc.draping_angle_2_field}
     """
 
     __slots__: Iterable[str] = tuple()
@@ -118,8 +115,8 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     def __init__(
         self,
         name: str = "ModelingPly",
+        oriented_selection_sets: Iterable[OrientedSelectionSet] = (),
         ply_material: Fabric | None = None,
-        oriented_selection_sets: Container[OrientedSelectionSet] = (),
         ply_angle: float = 0.0,
         number_of_layers: int = 1,
         active: bool = True,
@@ -159,43 +156,98 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     def _create_stub(self) -> modeling_ply_pb2_grpc.ObjectServiceStub:
         return modeling_ply_pb2_grpc.ObjectServiceStub(self._channel)
 
-    status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
-
-    ply_material = grpc_link_property("properties.ply_material")
-
-    oriented_selection_sets = define_linked_object_list(
-        "properties.oriented_selection_sets", OrientedSelectionSet
+    status = grpc_data_property_read_only(
+        "properties.status",
+        from_protobuf=status_type_from_pb,
+        doc="Indicates if the Modeling Ply is up-to-date.",
     )
 
-    ply_angle = grpc_data_property("properties.ply_angle")
-    number_of_layers = grpc_data_property("properties.number_of_layers")
-    active = grpc_data_property("properties.active")
-    global_ply_nr = grpc_data_property("properties.global_ply_nr")
+    oriented_selection_sets = define_linked_object_list(
+        "properties.oriented_selection_sets",
+        OrientedSelectionSet,
+        doc="Defines the offset, reference direction and primary extent.",
+    )
+
+    ply_material = grpc_link_property(
+        "properties.ply_material", doc="The material (fabric, stackup or sub-laminate) of the ply."
+    )
+
+    ply_angle = grpc_data_property(
+        "properties.ply_angle",
+        doc="Design angle between the reference direction and the ply fiber direction.",
+    )
+    number_of_layers = grpc_data_property(
+        "properties.number_of_layers", doc="Number of times the plies are generated."
+    )
+    active = grpc_data_property(
+        "properties.active", doc="Inactive plies are ignored in ACP and the downstream analysis."
+    )
+    global_ply_nr = grpc_data_property(
+        "properties.global_ply_nr", doc="Defines the global ply order."
+    )
 
     draping = grpc_data_property(
-        "properties.draping", from_protobuf=draping_type_from_pb, to_protobuf=draping_type_to_pb
+        "properties.draping",
+        from_protobuf=draping_type_from_pb,
+        to_protobuf=draping_type_to_pb,
+        doc="Chooses between different draping formulations.",
     )
     draping_seed_point = grpc_data_property(
         "properties.draping_seed_point",
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_double_array,
+        doc="Starting point of the draping algorithm.",
     )
-    auto_draping_direction = grpc_data_property("properties.auto_draping_direction")
+    auto_draping_direction = grpc_data_property(
+        "properties.auto_draping_direction",
+        doc=(
+            "If ``True``, the fiber direction of the production ply at the draping "
+            "seed point is used as draping direction."
+        ),
+    )
     draping_direction = grpc_data_property(
         "properties.draping_direction",
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_double_array,
+        doc=(
+            "Set the primary draping direction for the draping algorithm. Only used if "
+            "``auto_draping_direction`` is ``False``."
+        ),
     )
-    use_default_draping_mesh_size = grpc_data_property("properties.use_default_draping_mesh_size")
-    draping_mesh_size = grpc_data_property("properties.draping_mesh_size")
-    draping_thickness_correction = grpc_data_property("properties.draping_thickness_correction")
-    draping_angle_1_field = grpc_link_property("properties.draping_angle_1_field")
-    draping_angle_2_field = grpc_link_property("properties.draping_angle_2_field")
+    draping_mesh_size = grpc_data_property(
+        "properties.draping_mesh_size",
+        doc=(
+            "Defines the mesh size for the draping algorithm.  If set to ``-1.``, the "
+            "mesh size is automatically determined based on the average element size."
+        ),
+    )
+    draping_thickness_correction = grpc_data_property(
+        "properties.draping_thickness_correction",
+        doc=("Enables the thickness correction of draped plies based on the draping shear angle."),
+    )
+    draping_angle_1_field = grpc_link_property(
+        "properties.draping_angle_1_field",
+        doc="Correction angle between the fiber and draped fiber directions, in degree.",
+    )
+    draping_angle_2_field = grpc_link_property(
+        "properties.draping_angle_2_field",
+        doc=(
+            "Correction angle between the transverse and draped transverse directions, "
+            "in degree. Optional, uses the same values as ``draping_angle_1_field`` "
+            "(no shear) by default."
+        ),
+    )
 
-    selection_rules = define_edge_property_list("properties.selection_rules", LinkedSelectionRule)
+    selection_rules = define_edge_property_list(
+        "properties.selection_rules",
+        LinkedSelectionRule,
+        doc="Selection Rules which may limit the extent of the ply.",
+    )
 
-    production_plies = property(
-        get_read_only_collection_property(ProductionPly, production_ply_pb2_grpc.ObjectServiceStub)
+    production_plies = get_read_only_collection_property(
+        ProductionPly,
+        production_ply_pb2_grpc.ObjectServiceStub,
+        doc="Production Plies which are generated from the Modeling Ply definition.",
     )
 
     elemental_data = elemental_data_property(ModelingPlyElementalData)

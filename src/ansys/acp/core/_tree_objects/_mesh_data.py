@@ -177,11 +177,13 @@ def elemental_data_property(
     wrapped_cls: type[ElementalDataT],
 ) -> property:
     """Create a property to get elemental data from a tree object."""
-    return _mesh_data_property_impl(
+    res = _mesh_data_property_impl(
         wrapped_cls=wrapped_cls,
         request_name="GetElementalData",
         request_type=mesh_query_pb2.GetElementalDataRequest,
     )
+    res.__doc__ = "Elemental data of the object."
+    return res
 
 
 NodalDataT = typing.TypeVar("NodalDataT", bound=NodalData)
@@ -191,11 +193,13 @@ def nodal_data_property(
     wrapped_cls: type[NodalDataT],
 ) -> property:
     """Create a property to get nodal data from a tree object."""
-    return _mesh_data_property_impl(
+    res = _mesh_data_property_impl(
         wrapped_cls=wrapped_cls,
         request_name="GetNodalData",
         request_type=mesh_query_pb2.GetNodalDataRequest,
     )
+    res.__doc__ = "Nodal data of the object."
+    return res
 
 
 MeshDataT = typing.TypeVar("MeshDataT", bound=MeshDataBase)

@@ -12,10 +12,12 @@ from grpc import Channel
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 
 from ..._utils.resource_paths import join as _rp_join
-from ..base import CreatableTreeObject, TreeObject
+from ..base import CreatableTreeObject, TreeObject, TreeObjectBase
+from .property_helper import _exposed_grpc_property, _wrap_doc
 from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableResourceStub
 
-ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
+ValueT = TypeVar("ValueT", bound=TreeObjectBase)
+CreatableValueT = TypeVar("CreatableValueT", bound=CreatableTreeObject)
 
 __all__ = ["Mapping", "MutableMapping", "define_mutable_mapping"]
 
@@ -99,14 +101,14 @@ class Mapping(Generic[ValueT]):
             return default
 
 
-class MutableMapping(Mapping[ValueT]):
+class MutableMapping(Mapping[CreatableValueT]):
     def __init__(
         self,
         *,
         channel: Channel,
         collection_path: CollectionPath,
         stub: EditableAndReadableResourceStub,
-        object_constructor: Callable[[ObjectInfo, Channel | None], ValueT],
+        object_constructor: Callable[[ObjectInfo, Channel | None], CreatableValueT],
     ) -> None:
         self._collection_path = collection_path
         self._stub: EditableAndReadableResourceStub = stub
@@ -128,15 +130,15 @@ class MutableMapping(Mapping[ValueT]):
                 )
             )
 
-    def pop(self, key: str) -> ValueT:
+    def pop(self, key: str) -> CreatableValueT:
         obj_info = self._get_objectinfo_by_id(key)
         return self._pop_from_info(obj_info)
 
-    def popitem(self) -> ValueT:
+    def popitem(self) -> CreatableValueT:
         obj_info = self._get_objectinfo_list()[0]
         return self._pop_from_info(obj_info)
 
-    def _pop_from_info(self, object_info: ObjectInfo) -> ValueT:
+    def _pop_from_info(self, object_info: ObjectInfo) -> CreatableValueT:
         obj = self._object_constructor(object_info, self._channel)
         new_obj = obj.clone()
         obj.delete()
@@ -147,8 +149,8 @@ ParentT = TypeVar("ParentT", bound=TreeObject)
 
 
 def get_read_only_collection_property(
-    object_class: type[ValueT], stub_class: type[ReadableResourceStub]
-) -> Callable[[ParentT], Mapping[ValueT]]:
+    object_class: type[ValueT], stub_class: type[ReadableResourceStub], doc: str | None = None
+) -> property:
     def collection_property(self: ParentT) -> Mapping[ValueT]:
         return Mapping(
             channel=self._channel,
@@ -159,19 +161,21 @@ def get_read_only_collection_property(
             stub=stub_class(channel=self._channel),
         )
 
-    return collection_property
+    return _wrap_doc(_exposed_grpc_property(collection_property), doc=doc)
 
 
 def define_mutable_mapping(
-    object_class: type[ValueT], stub_class: type[EditableAndReadableResourceStub]
-) -> tuple[Callable[[Arg(ParentT, "self"), KwArg(Any)], ValueT], property]:
+    object_class: type[CreatableValueT],
+    stub_class: type[EditableAndReadableResourceStub],
+    doc: str | None = None,
+) -> tuple[Callable[[Arg(ParentT, "self"), KwArg(Any)], CreatableValueT], property]:
     @wraps(object_class.__init__)
-    def create_method(self: ParentT, **kwargs: Any) -> ValueT:
+    def create_method(self: ParentT, **kwargs: Any) -> CreatableValueT:
         obj = object_class(**kwargs)
         obj.store(parent=self)
         return obj
 
-    def collection_property(self: ParentT) -> MutableMapping[ValueT]:
+    def collection_property(self: ParentT) -> MutableMapping[CreatableValueT]:
         return MutableMapping(
             channel=self._channel,
             collection_path=CollectionPath(
@@ -181,4 +185,4 @@ def define_mutable_mapping(
             stub=stub_class(channel=self._channel),
         )
 
-    return create_method, property(collection_property)
+    return create_method, _wrap_doc(_exposed_grpc_property(collection_property), doc=doc)

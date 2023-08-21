@@ -5,7 +5,8 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from functools import reduce
-from typing import Any, Callable
+from types import SimpleNamespace
+from typing import Any, Callable, TypeVar
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
@@ -39,6 +40,20 @@ def mark_grpc_properties(cls: type[GrpcObjectBase]) -> type[GrpcObjectBase]:
         if name not in props_unique:
             props_unique.append(name)
     cls._GRPC_PROPERTIES = tuple(props_unique)
+
+    replacement_map = SimpleNamespace()
+    for name in cls._GRPC_PROPERTIES:
+        property_doc = getattr(cls, name).__doc__
+        if property_doc is not None:
+            setattr(replacement_map, name, property_doc)
+
+    # TODO: we should be consistent in whether the docstring is defined
+    # on the class or on the __init__ method.
+    # TODO: check the performance impact of this on loading the library.
+    if cls.__init__.__doc__ is not None:
+        cls.__init__.__doc__ = cls.__init__.__doc__.format(replace_doc=replacement_map)
+    if cls.__doc__ is not None:
+        cls.__doc__ = cls.__doc__.format(replace_doc=replacement_map)
     return cls
 
 
@@ -137,7 +152,10 @@ def _set_data_attribute(pb_obj: ObjectInfo, name: str, value: Any) -> None:
                     target_object.add().CopyFrom(item)
 
 
-def _wrap_doc(obj: Any, doc: str | None) -> Any:
+_PropertyT = TypeVar("_PropertyT", bound=property)
+
+
+def _wrap_doc(obj: _PropertyT, doc: str | None) -> _PropertyT:
     if doc is not None:
         obj.__doc__ = doc
     return obj
@@ -219,23 +237,45 @@ def grpc_data_property_read_only(
     )
 
 
-def grpc_link_property(name: str) -> Any:
+def grpc_link_property(
+    name: str,
+    doc: str | None = None,
+) -> Any:
     """
     Helper for defining linked properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to get the linked object
+
+    Parameters
+    ----------
+    name :
+        Name of the property.
+    doc :
+        Docstring for the property.
     """
-    return _exposed_grpc_property(grpc_linked_object_getter(name)).setter(
-        # Resource path represents an object that is not set as an empty string
-        grpc_data_setter(
-            name=name,
-            to_protobuf=lambda obj: ResourcePath(value="") if obj is None else obj._resource_path,
-        )
+    return _wrap_doc(
+        _exposed_grpc_property(grpc_linked_object_getter(name)).setter(
+            # Resource path represents an object that is not set as an empty string
+            grpc_data_setter(
+                name=name,
+                to_protobuf=lambda obj: ResourcePath(value="")
+                if obj is None
+                else obj._resource_path,
+            )
+        ),
+        doc=doc,
     )
 
 
-def grpc_link_property_read_only(name: str) -> Any:
+def grpc_link_property_read_only(name: str, doc: str | None = None) -> Any:
     """
     Helper for defining linked properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to get the linked object
+
+    Parameters
+    ----------
+    name :
+        Name of the property.
+    doc :
+        Docstring for the property.
     """
-    return _exposed_grpc_property(grpc_linked_object_getter(name))
+    return _wrap_doc(_exposed_grpc_property(grpc_linked_object_getter(name)), doc=doc)
