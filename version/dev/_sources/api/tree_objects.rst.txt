@@ -21,6 +21,7 @@ ACP objects
     CylindricalSelectionRule
     SphericalSelectionRule
     TubeSelectionRule
+    VariableOffsetSelectionRule
     BooleanSelectionRule
     OrientedSelectionSet
     ModelingGroup

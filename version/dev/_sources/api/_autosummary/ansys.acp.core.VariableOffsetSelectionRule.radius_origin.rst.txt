@@ -1,0 +1,6 @@
+radius\_origin
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.radius_origin

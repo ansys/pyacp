@@ -1,0 +1,6 @@
+distance\_along\_edge
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.distance_along_edge

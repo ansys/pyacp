@@ -1,0 +1,6 @@
+auto\_draping\_direction
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.auto_draping_direction

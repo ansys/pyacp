@@ -1,0 +1,6 @@
+radius\_direction
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.radius_direction

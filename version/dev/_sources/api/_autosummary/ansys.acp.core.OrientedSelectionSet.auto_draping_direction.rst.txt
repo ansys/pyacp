@@ -1,0 +1,6 @@
+auto\_draping\_direction
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.auto_draping_direction

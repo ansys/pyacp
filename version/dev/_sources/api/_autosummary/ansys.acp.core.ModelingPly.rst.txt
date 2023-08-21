@@ -34,6 +34,14 @@
       :toctree:
    
       ModelingPly.active
+      ModelingPly.auto_draping_direction
+      ModelingPly.draping
+      ModelingPly.draping_angle_1_field
+      ModelingPly.draping_angle_2_field
+      ModelingPly.draping_direction
+      ModelingPly.draping_mesh_size
+      ModelingPly.draping_seed_point
+      ModelingPly.draping_thickness_correction
       ModelingPly.elemental_data
       ModelingPly.global_ply_nr
       ModelingPly.id

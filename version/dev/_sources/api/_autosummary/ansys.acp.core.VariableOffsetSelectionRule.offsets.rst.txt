@@ -1,0 +1,6 @@
+offsets
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.offsets

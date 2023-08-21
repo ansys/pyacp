@@ -1,0 +1,6 @@
+draping\_material\_model
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.draping_material_model

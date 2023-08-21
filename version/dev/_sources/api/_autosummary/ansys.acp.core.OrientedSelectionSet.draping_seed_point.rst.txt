@@ -1,0 +1,6 @@
+draping\_seed\_point
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.draping_seed_point

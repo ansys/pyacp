@@ -1,0 +1,6 @@
+use\_offset\_correction
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.use_offset_correction

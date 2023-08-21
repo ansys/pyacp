@@ -1,0 +1,6 @@
+edge\_set
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.edge_set

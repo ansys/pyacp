@@ -1,0 +1,6 @@
+inherit\_from\_lookup\_table
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.inherit_from_lookup_table

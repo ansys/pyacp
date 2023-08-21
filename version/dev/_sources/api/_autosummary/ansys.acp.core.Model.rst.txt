@@ -66,6 +66,9 @@
       Model.create_tube_selection_rule
       
       
+      Model.create_variable_offset_selection_rule
+      
+      
       Model.delete
       
       
@@ -125,5 +128,6 @@
       Model.tube_selection_rules
       Model.unit_system
       Model.use_nodal_thicknesses
+      Model.variable_offset_selection_rules
    
    

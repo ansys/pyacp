@@ -33,6 +33,13 @@
    .. autosummary::
       :toctree:
    
+      OrientedSelectionSet.auto_draping_direction
+      OrientedSelectionSet.draping
+      OrientedSelectionSet.draping_direction
+      OrientedSelectionSet.draping_material_model
+      OrientedSelectionSet.draping_mesh_size
+      OrientedSelectionSet.draping_seed_point
+      OrientedSelectionSet.draping_ud_coefficient
       OrientedSelectionSet.element_sets
       OrientedSelectionSet.elemental_data
       OrientedSelectionSet.id

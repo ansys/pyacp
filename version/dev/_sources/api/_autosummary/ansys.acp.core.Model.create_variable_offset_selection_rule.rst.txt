@@ -1,0 +1,6 @@
+create\_variable\_offset\_selection\_rule
+=========================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_variable_offset_selection_rule

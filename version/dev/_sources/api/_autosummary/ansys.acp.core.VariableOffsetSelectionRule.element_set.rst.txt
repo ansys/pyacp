@@ -1,0 +1,6 @@
+element\_set
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.element_set
