@@ -32,6 +32,7 @@ from ._tree_objects import (
     SubLaminate,
     TubeSelectionRule,
     UnitSystemType,
+    VariableOffsetSelectionRule,
 )
 
 __version__ = importlib.metadata.version(__name__.replace(".", "-"))
@@ -47,6 +48,7 @@ __all__ = [
     "Model",
     "Material",
     "Fabric",
+    "SubLaminate",
     "ElementSet",
     "EdgeSet",
     "EdgeSetType",
@@ -59,6 +61,7 @@ __all__ = [
     "CylindricalSelectionRule",
     "SphericalSelectionRule",
     "TubeSelectionRule",
+    "VariableOffsetSelectionRule",
     "BooleanSelectionRule",
     "LinkedSelectionRule",
     "OrientedSelectionSet",

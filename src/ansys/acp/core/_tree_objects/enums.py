@@ -17,6 +17,7 @@ __all__ = [
     "RosetteSelectionMethod",
     "CutoffMaterialType",
     "DropoffMaterialType",
+    "DrapingType",
     "DrapingMaterialType",
     "PlyType",
     "UnitSystemType",
@@ -52,6 +53,12 @@ __all__ = [
 ) = wrap_to_string_enum(
     "DropoffMaterialType", drop_off_material_pb2.MaterialHandlingType, module=__name__
 )
+
+(
+    DrapingType,
+    draping_type_to_pb,
+    draping_type_from_pb,
+) = wrap_to_string_enum("DrapingType", ply_material_pb2.DrapingType, module=__name__)
 
 (
     DrapingMaterialType,

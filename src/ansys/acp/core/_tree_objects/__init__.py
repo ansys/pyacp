@@ -22,6 +22,7 @@ from .spherical_selection_rule import SphericalSelectionRule
 from .stackup import FabricWithAngle, Stackup
 from .sublaminate import Lamina, SubLaminate
 from .tube_selection_rule import TubeSelectionRule
+from .variable_offset_selection_rule import VariableOffsetSelectionRule
 
 __all__ = [
     "Model",
@@ -43,6 +44,7 @@ __all__ = [
     "CylindricalSelectionRule",
     "SphericalSelectionRule",
     "TubeSelectionRule",
+    "VariableOffsetSelectionRule",
     "BooleanSelectionRule",
     "LinkedSelectionRule",
     "OrientedSelectionSet",
