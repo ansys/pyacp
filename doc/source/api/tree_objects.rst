@@ -28,3 +28,4 @@ ACP objects
     ModelingPly
     ProductionPly
     AnalysisPly
+    Sensor

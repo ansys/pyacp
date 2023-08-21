@@ -7,6 +7,7 @@ from ansys.api.acp.v0 import (
     lookup_table_column_type_pb2,
     mesh_query_pb2,
     ply_material_pb2,
+    sensor_pb2,
     unit_system_pb2,
 )
 
@@ -25,6 +26,7 @@ __all__ = [
     "ElementalDataType",
     "NodalDataType",
     "LookUpTableColumnValueType",
+    "SensorType",
 ]
 
 (StatusType, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(
@@ -155,3 +157,8 @@ __all__ = [
     lookup_table_3d_pb2.InterpolationAlgorithm,
     module=__name__,
 )
+(
+    SensorType,
+    sensor_type_to_pb,
+    sensor_type_from_pb,
+) = wrap_to_string_enum("SensorType", sensor_pb2.SensorType, module=__name__)

@@ -27,6 +27,7 @@ from ._tree_objects import (
     ParallelSelectionRule,
     ProductionPly,
     Rosette,
+    Sensor,
     SphericalSelectionRule,
     Stackup,
     SubLaminate,
