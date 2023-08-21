@@ -1,12 +1,14 @@
+from __future__ import annotations
+
 import os
 import pathlib
 import shutil
 import tempfile
-from typing import Any, Optional
+from typing import Any, cast
 import uuid
 
-from ansys.api.acp.v0 import model_pb2_grpc
-from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
+from ansys.api.acp.v0 import control_pb2_grpc, model_pb2_grpc
+from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, Empty, ListRequest
 from ansys.tools.filetransfer import Client as FileTransferClient
 
 from ._server import ServerKey, ServerProtocol
@@ -28,7 +30,7 @@ class Client:
     def __init__(self, server: ServerProtocol):
         self._channel = server.channels[ServerKey.MAIN]
         if ServerKey.FILE_TRANSFER in server.channels:
-            self._ft_client: Optional[FileTransferClient] = FileTransferClient(
+            self._ft_client: FileTransferClient | None = FileTransferClient(
                 server.channels[ServerKey.FILE_TRANSFER]
             )
             self._tmp_dir = None
@@ -68,7 +70,7 @@ class Client:
     def import_model(
         self,
         *,
-        name: Optional[str] = None,
+        name: str | None = None,
         path: _PATH,
         format: str = "acp:h5",  # pylint: disable=redefined-builtin
         **kwargs: Any,
@@ -115,3 +117,13 @@ class Client:
             model_stub.Delete(
                 DeleteRequest(resource_path=model.info.resource_path, version=model.info.version)
             )
+
+    @property
+    def server_version(self) -> str:
+        """The version of the connected server."""
+        control_stub = control_pb2_grpc.ControlStub(self._channel)
+        server_info = control_stub.GetServerInfo(Empty())
+        version = server_info.version
+        if not version:
+            raise RuntimeError("Server version could not be determined.")
+        return cast(str, version)
