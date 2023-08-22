@@ -31,4 +31,11 @@
 
    
    
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Client.server_version
+   
    

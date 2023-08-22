@@ -395,6 +395,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Client.download_file.html">download_file</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">import_model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Client.upload_file.html">upload_file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Client.server_version.html">server_version</a></li>
 </ul>
 </li>
 </ul>
@@ -1170,13 +1171,13 @@ document.write(`
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Name of the newly loaded model.</p></li>
-<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/dev/library/typing.html#typing.Union" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/os.html#os.PathLike" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PathLike</span></code></a>]) – Path of the file to be loaded.</p></li>
-<li><p><strong>format</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">'acp:h5'</span></code>) – Format of the file to be loaded. Can be one of (TODO: list options).</p></li>
+<li><p><strong>name</strong> (str | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Name of the newly loaded model.</p></li>
+<li><p><strong>path</strong> (<em>_PATH</em>) – Path of the file to be loaded.</p></li>
+<li><p><strong>format</strong> (str, default: <code class="docutils literal notranslate"><span class="pre">'acp:h5'</span></code>) – Format of the file to be loaded. Can be one of (TODO: list options).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="ansys.acp.core.Model.html#ansys.acp.core.Model" title="ansys.acp.core._tree_objects.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<dd class="field-even"><p><a class="reference internal" href="ansys.acp.core.Model.html#ansys.acp.core.Model" title="ansys.acp.core.Model">Model</a></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The loaded <code class="docutils literal notranslate"><span class="pre">Model</span></code> instance.</p>
