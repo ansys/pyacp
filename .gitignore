@@ -71,3 +71,15 @@ poetry.toml
 
 # Hypothesis testing
 .hypothesis
+
+# example generated data
+examples/pymechanical/output/*
+!examples/pymechanical/output/.gitkeep
+
+# Shim C# project
+/examples/pymechanical/acp_future/obj/
+/examples/pymechanical/acp_future/bin/
+/examples/pymechanical/acp_future/.vs/
+
+/examples/workbench_project/
+
