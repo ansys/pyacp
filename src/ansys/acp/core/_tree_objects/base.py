@@ -38,6 +38,7 @@ from ._grpc_helpers.protocols import (
 _T = TypeVar("_T", bound="TreeObjectBase")
 
 
+@mark_grpc_properties
 class TreeObjectBase(GrpcObjectBase):
     """
     Base class for ACP tree objects.
@@ -176,6 +177,7 @@ class TreeObject(TreeObjectBase):
     name = grpc_data_property("info.name", doc="The name of the object.")
 
 
+@mark_grpc_properties
 class ReadOnlyTreeObject(TreeObjectBase):
     def __init__(self: ReadOnlyTreeObject) -> None:
         super().__init__()
