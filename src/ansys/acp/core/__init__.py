@@ -12,6 +12,7 @@ from ._tree_objects import (
     ElementSet,
     Fabric,
     FabricWithAngle,
+    Lamina,
     LinkedSelectionRule,
     LookUpTable1D,
     LookUpTable1DColumn,
@@ -26,10 +27,13 @@ from ._tree_objects import (
     ParallelSelectionRule,
     ProductionPly,
     Rosette,
+    Sensor,
     SphericalSelectionRule,
     Stackup,
+    SubLaminate,
     TubeSelectionRule,
     UnitSystemType,
+    VariableOffsetSelectionRule,
 )
 
 __version__ = importlib.metadata.version(__name__.replace(".", "-"))
@@ -45,6 +49,7 @@ __all__ = [
     "Model",
     "Material",
     "Fabric",
+    "SubLaminate",
     "ElementSet",
     "EdgeSet",
     "EdgeSetType",
@@ -57,6 +62,7 @@ __all__ = [
     "CylindricalSelectionRule",
     "SphericalSelectionRule",
     "TubeSelectionRule",
+    "VariableOffsetSelectionRule",
     "BooleanSelectionRule",
     "LinkedSelectionRule",
     "OrientedSelectionSet",

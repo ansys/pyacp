@@ -26,9 +26,12 @@ from ansys.api.acp.v0 import (
     oriented_selection_set_pb2_grpc,
     parallel_selection_rule_pb2_grpc,
     rosette_pb2_grpc,
+    sensor_pb2_grpc,
     spherical_selection_rule_pb2_grpc,
     stackup_pb2_grpc,
+    sublaminate_pb2_grpc,
     tube_selection_rule_pb2_grpc,
+    variable_offset_selection_rule_pb2_grpc,
 )
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
@@ -58,9 +61,12 @@ from .modeling_group import ModelingGroup
 from .oriented_selection_set import OrientedSelectionSet
 from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
+from .sensor import Sensor
 from .spherical_selection_rule import SphericalSelectionRule
 from .stackup import Stackup
+from .sublaminate import SubLaminate
 from .tube_selection_rule import TubeSelectionRule
+from .variable_offset_selection_rule import VariableOffsetSelectionRule
 
 __all__ = ["MeshData", "Model", "ModelElementalData", "ModelNodalData"]
 
@@ -290,6 +296,9 @@ class Model(TreeObject):
     )
     create_fabric, fabrics = define_mutable_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
     create_stackup, stackups = define_mutable_mapping(Stackup, stackup_pb2_grpc.ObjectServiceStub)
+    create_sublaminate, sublaminates = define_mutable_mapping(
+        SubLaminate, sublaminate_pb2_grpc.ObjectServiceStub
+    )
     create_element_set, element_sets = define_mutable_mapping(
         ElementSet, element_set_pb2_grpc.ObjectServiceStub
     )
@@ -318,6 +327,9 @@ class Model(TreeObject):
     create_tube_selection_rule, tube_selection_rules = define_mutable_mapping(
         TubeSelectionRule, tube_selection_rule_pb2_grpc.ObjectServiceStub
     )
+    create_variable_offset_selection_rule, variable_offset_selection_rules = define_mutable_mapping(
+        VariableOffsetSelectionRule, variable_offset_selection_rule_pb2_grpc.ObjectServiceStub
+    )
     create_boolean_selection_rule, boolean_selection_rules = define_mutable_mapping(
         BooleanSelectionRule, boolean_selection_rule_pb2_grpc.ObjectServiceStub
     )
@@ -328,6 +340,8 @@ class Model(TreeObject):
     create_modeling_group, modeling_groups = define_mutable_mapping(
         ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
     )
+
+    create_sensor, sensors = define_mutable_mapping(Sensor, sensor_pb2_grpc.ObjectServiceStub)
 
     @property
     def mesh(self) -> MeshData:

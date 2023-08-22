@@ -3,8 +3,15 @@ import numpy.testing
 import pytest
 import pyvista
 
-from ansys.acp.core import ElementalDataType, LinkedSelectionRule, NodalDataType
-from ansys.acp.core._tree_objects.enums import BooleanOperationType
+from ansys.acp.core import (
+    ElementalDataType,
+    Fabric,
+    LinkedSelectionRule,
+    NodalDataType,
+    Stackup,
+    SubLaminate,
+)
+from ansys.acp.core._tree_objects.enums import BooleanOperationType, DrapingType
 
 from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
@@ -36,18 +43,32 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
         "ply_angle": 0.0,
         "active": True,
         "global_ply_nr": AnyThing(),
+        "draping": DrapingType.NO_DRAPING,
+        "draping_seed_point": (0.0, 0.0, 0.0),
+        "auto_draping_direction": True,
+        "draping_direction": (1.0, 0.0, 0.0),
+        "draping_mesh_size": -1.0,
+        "draping_thickness_correction": True,
+        "draping_angle_1_field": None,
+        "draping_angle_2_field": None,
     }
     CREATE_METHOD_NAME = "create_modeling_ply"
 
     @staticmethod
-    @pytest.fixture
-    def object_properties(parent_model):
+    @pytest.fixture(params=["create_fabric", "create_stackup", "create_sublaminate"])
+    def object_properties(request, parent_model):
         oriented_selection_sets = [parent_model.create_oriented_selection_set() for _ in range(3)]
-        fabric = parent_model.create_fabric()
+        create_method = getattr(parent_model, request.param)
+        ply_material = create_method()
+        if not isinstance(ply_material, (Fabric, Stackup, SubLaminate)):
+            raise RuntimeError("Unsupported ply material!")
+        lookup_table = parent_model.create_lookup_table_1d()
+        column_1 = lookup_table.create_column()
+        column_2 = lookup_table.create_column()
         return ObjectPropertiesToTest(
             read_write=[
                 ("oriented_selection_sets", oriented_selection_sets),
-                ("ply_material", fabric),
+                ("ply_material", ply_material),
                 ("ply_angle", 0.5),
                 ("active", False),
                 ("global_ply_nr", AnyThing()),
@@ -83,6 +104,13 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
                             parameter_2=2.9,
                         ),
                         LinkedSelectionRule(
+                            selection_rule=parent_model.create_variable_offset_selection_rule(),
+                            operation_type=BooleanOperationType.ADD,
+                            template_rule=False,
+                            parameter_1=0.0,
+                            parameter_2=0.0,
+                        ),
+                        LinkedSelectionRule(
                             selection_rule=parent_model.create_boolean_selection_rule(),
                             operation_type=BooleanOperationType.REMOVE,
                             template_rule=False,
@@ -91,6 +119,13 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
                         ),
                     ],
                 ),
+                ("draping_seed_point", (0.0, 0.1, 0.2)),
+                ("auto_draping_direction", False),
+                ("draping_direction", (0.0, -1.0, 0.0)),
+                ("draping_mesh_size", 20.0),
+                ("draping_thickness_correction", False),
+                ("draping_angle_1_field", column_1),
+                ("draping_angle_2_field", column_2),
             ],
             read_only=[
                 ("id", "some_id"),

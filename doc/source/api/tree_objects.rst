@@ -21,9 +21,11 @@ ACP objects
     CylindricalSelectionRule
     SphericalSelectionRule
     TubeSelectionRule
+    VariableOffsetSelectionRule
     BooleanSelectionRule
     OrientedSelectionSet
     ModelingGroup
     ModelingPly
     ProductionPly
     AnalysisPly
+    Sensor

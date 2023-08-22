@@ -70,6 +70,8 @@ class TestStackup(NoLockedMixin, TreeObjectTester):
             read_only=[
                 ("id", "some_id"),
                 ("status", "UPTODATE"),
+                ("area_weight", 0.0),
+                ("thickness", 0.35),
                 # ("draping_ud_coefficient", 4.32), # TODO: enable this check, see backend issue #778698
             ],
         )

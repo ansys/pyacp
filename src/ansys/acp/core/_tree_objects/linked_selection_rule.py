@@ -19,6 +19,7 @@ from .enums import (
 from .parallel_selection_rule import ParallelSelectionRule
 from .spherical_selection_rule import SphericalSelectionRule
 from .tube_selection_rule import TubeSelectionRule
+from .variable_offset_selection_rule import VariableOffsetSelectionRule
 
 if typing.TYPE_CHECKING:
     # Since the 'LinkedSelectionRule' class is used by the boolean selection rule,
@@ -30,6 +31,7 @@ if typing.TYPE_CHECKING:
         CylindricalSelectionRule,
         SphericalSelectionRule,
         TubeSelectionRule,
+        VariableOffsetSelectionRule,
         BooleanSelectionRule,
     ]
 
@@ -67,7 +69,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     :class:`.TubeSelectionRule`            ``outer_radius``                   ``inner_radius``
     (TODO: CutOffSelectionRule)            \-                                 \-
     (TODO: GeometricalSelectionRule)       (TODO: in-plane capture tolerance) \-
-    (TODO: VariableOffsetSelectionRule)    \-                                 \-
+    :class:`.VariableOffsetSelectionRule`  \-                                 \-
     :class:`.BooleanSelectionRule`         \-                                 \-
     ====================================== ================================== ===================
     """
@@ -154,6 +156,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
                 CylindricalSelectionRule,
                 SphericalSelectionRule,
                 TubeSelectionRule,
+                VariableOffsetSelectionRule,
                 BooleanSelectionRule,
             ]
             if not isinstance(parent_object, type_)
