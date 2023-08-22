@@ -85,6 +85,6 @@ class ProductionPly(ReadOnlyTreeObject, IdTreeObject):
     elemental_data = elemental_data_property(ProductionPlyElementalData)
     nodal_data = nodal_data_property(ProductionPlyNodalData)
 
-    analysis_plies = property(
-        get_read_only_collection_property(AnalysisPly, analysis_ply_pb2_grpc.ObjectServiceStub)
+    analysis_plies = get_read_only_collection_property(
+        AnalysisPly, analysis_ply_pb2_grpc.ObjectServiceStub
     )
