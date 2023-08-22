@@ -22,6 +22,9 @@ namespace ACPFuture
 
         public static void ModelExportHDF5TransferFile(Ansys.ACT.Automation.Mechanical.Model model, string filename, GeometryType geomType, WBUnitSystemType unitSystemType)
         {
+            /*
+             * Export Shell Mesh from Mechanical in hdf5 format. 
+             */
             // Todo: unclear why this works only with dsid 0
             // dsid=Model.Analyses[0].ObjectId
             uint dsid = 0;
@@ -30,10 +33,14 @@ namespace ACPFuture
         
         public static void ImportPlies(Ansys.ACT.Automation.Mechanical.Model model, string composite_defintion_paths)
         {
+            /*
+             * Import CompositeDefinitions.h5 in Mechanical and generate the ImportedPlies object.
+             */
   
             // Note: Currently supports only a single composite definition file and no
             // mapping files because I'm not sure what is the best way
             // to pass lists from IronPython to C#
+            // Note: it is not clear if multiple CompositeDefinition files are actually supported.
             var composite_definition_paths_coll = new AnsBSTRColl();
             var mapping_paths_coll = new AnsVARIANTColl();
 
