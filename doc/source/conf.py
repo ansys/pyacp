@@ -1,7 +1,9 @@
 """Sphinx documentation configuration file."""
 from datetime import datetime
 import os
+from pathlib import Path
 
+from ansys_sphinx_theme import AUTOAPI_TEMPLATES_PATH
 import pyvista
 from sphinx.builders.latex import LaTeXBuilder
 
@@ -58,16 +60,35 @@ html_title = html_short_title = "PyACP"
 
 # Sphinx extensions
 extensions = [
-    "sphinx.ext.autodoc",
-    "sphinx.ext.autosummary",
+    "sphinx_design",
+    # "sphinx.ext.autodoc",
+    # "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
-    "sphinx_autodoc_typehints",
+    # "sphinx_autodoc_typehints",
     "numpydoc",
     "sphinx_copybutton",
     "ansys_sphinx_theme",
     "sphinx_gallery.gen_gallery",
+    "autoapi.extension",
 ]
+
+# Configuration for Sphinx autoapi
+autoapi_type = "python"
+autoapi_dirs = ["../../src/ansys"]
+autoapi_options = [
+    "members",
+    "undoc-members",
+    "show-inheritance",
+    "show-module-summary",
+    "special-members",
+]
+autoapi_template_dir = AUTOAPI_TEMPLATES_PATH.absolute()
+suppress_warnings = ["autoapi.python_import_resolution"]
+autoapi_python_use_implicit_namespaces = True
+# autoapi_keep_files = False
+autoapi_keep_files = True
+autoapi_render_in_single_page = ["class"]
 
 # Intersphinx mapping
 intersphinx_mapping = {

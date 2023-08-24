@@ -15,4 +15,4 @@ PyACP documentation |version|
 
     PyACP <self>
     examples/index
-    api/index
+    autoapi/index

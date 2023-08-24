@@ -62,6 +62,7 @@ class EdgeSet(CreatableTreeObject, IdTreeObject):
         limit_angle: float = -1.0,
         origin: tuple[float, float, float] = (0.0, 0.0, 0.0),
     ):
+        """Foobar"""
         super().__init__(
             name=name,
         )
