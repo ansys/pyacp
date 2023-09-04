@@ -3,8 +3,11 @@ from ansys.api.acp.v0 import (
     drop_off_material_pb2,
     edge_set_pb2,
     enum_types_pb2,
+    lookup_table_3d_pb2,
+    lookup_table_column_type_pb2,
     mesh_query_pb2,
     ply_material_pb2,
+    sensor_pb2,
     unit_system_pb2,
 )
 
@@ -15,11 +18,15 @@ __all__ = [
     "RosetteSelectionMethod",
     "CutoffMaterialType",
     "DropoffMaterialType",
+    "DrapingType",
     "DrapingMaterialType",
     "PlyType",
     "UnitSystemType",
+    "DimensionType",
     "ElementalDataType",
     "NodalDataType",
+    "LookUpTableColumnValueType",
+    "SensorType",
 ]
 
 (StatusType, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(
@@ -50,12 +57,24 @@ __all__ = [
 )
 
 (
+    DrapingType,
+    draping_type_to_pb,
+    draping_type_from_pb,
+) = wrap_to_string_enum("DrapingType", ply_material_pb2.DrapingType, module=__name__)
+
+(
     DrapingMaterialType,
     draping_material_type_to_pb,
     draping_material_type_from_pb,
 ) = wrap_to_string_enum(
     "DrapingMaterialType", ply_material_pb2.DrapingMaterialType, module=__name__
 )
+
+(
+    SymmetryType,
+    symmetry_type_to_pb,
+    symmetry_type_from_pb,
+) = wrap_to_string_enum("SymmetryType", ply_material_pb2.SymmetryType, module=__name__)
 
 (
     EdgeSetType,
@@ -70,10 +89,24 @@ __all__ = [
 ) = wrap_to_string_enum("PlyType", enum_types_pb2.PlyType, module=__name__)
 
 (
+    BooleanOperationType,
+    boolean_operation_type_to_pb,
+    boolean_operation_type_from_pb,
+) = wrap_to_string_enum(
+    "BooleanOperationType", enum_types_pb2.BooleanOperationType, module=__name__
+)
+
+(
     UnitSystemType,
     unit_system_type_to_pb,
     unit_system_type_from_pb,
 ) = wrap_to_string_enum("UnitSystemType", unit_system_pb2.UnitSystemType, module=__name__)
+
+(
+    DimensionType,
+    dimension_type_to_pb,
+    dimension_type_from_pb,
+) = wrap_to_string_enum("DimensionType", unit_system_pb2.DimensionType, module=__name__)
 
 (
     ElementalDataType,
@@ -107,3 +140,25 @@ __all__ = [
     key_converter=lambda val: val.split("_", 1)[1],
     value_converter=lambda val: val.split("_", 1)[1].lower(),
 )
+
+(
+    LookUpTableColumnValueType,
+    lookup_table_column_value_type_to_pb,
+    lookup_table_column_value_type_from_pb,
+) = wrap_to_string_enum(
+    "LookUpTableColumnValueType", lookup_table_column_type_pb2.ValueType, module=__name__
+)
+(
+    LookUpTable3DInterpolationAlgorithm,
+    lookup_table_3d_interpolation_algorithm_to_pb,
+    lookup_table_3d_interpolation_algorithm_from_pb,
+) = wrap_to_string_enum(
+    "LookUpTable3DInterpolationAlgorithm",
+    lookup_table_3d_pb2.InterpolationAlgorithm,
+    module=__name__,
+)
+(
+    SensorType,
+    sensor_type_to_pb,
+    sensor_type_from_pb,
+) = wrap_to_string_enum("SensorType", sensor_pb2.SensorType, module=__name__)

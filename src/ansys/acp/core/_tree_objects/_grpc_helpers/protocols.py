@@ -5,7 +5,6 @@ from typing import Any, Iterable, Protocol
 
 from google.protobuf.message import Message
 import grpc
-from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import (
     BasicInfo,
@@ -14,7 +13,6 @@ from ansys.api.acp.v0.base_pb2 import (
     Empty,
     GetRequest,
     ListRequest,
-    ResourcePath,
 )
 
 
@@ -39,7 +37,17 @@ class ListReply(Protocol):
         ...
 
 
-class ResourceStub(Protocol):
+class EditableResourceStub(Protocol):
+    """Interface definition for ACP Resource service stubs."""
+
+    def Put(self, request: ObjectInfo) -> ObjectInfo:
+        ...
+
+    def Delete(self, request: DeleteRequest) -> Empty:
+        ...
+
+
+class ReadableResourceStub(Protocol):
     """Interface definition for ACP Resource service stubs."""
 
     def __init__(self, channel: grpc.Channel):
@@ -48,39 +56,28 @@ class ResourceStub(Protocol):
     def Get(self, request: GetRequest) -> ObjectInfo:
         ...
 
-    def Put(self, request: ObjectInfo) -> ObjectInfo:
-        ...
-
     def List(self, request: ListRequest) -> ListReply:
         ...
 
-    def Delete(self, request: DeleteRequest) -> Empty:
-        ...
+
+class EditableAndReadableResourceStub(EditableResourceStub, ReadableResourceStub, Protocol):
+    ...
 
 
-class CreatableResourceStub(ResourceStub, Protocol):
+class CreatableResourceStub(Protocol):
     def Create(self, request: CreateRequest) -> ObjectInfo:
         ...
 
 
-class GrpcObjectReadOnly(Protocol):
+class CreatableEditableAndReadableResourceStub(
+    CreatableResourceStub, EditableResourceStub, ReadableResourceStub, Protocol
+):
+    ...
+
+
+class GrpcObjectBase(Protocol):
     __slots__: Iterable[str] = tuple()
     _GRPC_PROPERTIES: tuple[str, ...]
-
-    @property
-    def _pb_object(self) -> Any:
-        ...
-
-    def _get(self) -> None:
-        ...
-
-    def _get_if_stored(self) -> None:
-        if self._is_stored:
-            self._get()
-
-    @property
-    def _is_stored(self) -> bool:
-        ...
 
     def __str__(self) -> str:
         string_items = []
@@ -101,29 +98,27 @@ class GrpcObjectReadOnly(Protocol):
         return f"{type_name}({content})"
 
 
-class GrpcObject(GrpcObjectReadOnly, Protocol):
-    __slots__: Iterable[str] = tuple()
+class Readable(Protocol):
+    def _get(self) -> None:
+        ...
+
+    def _get_if_stored(self) -> None:
+        ...
 
     @property
-    def _pb_object(self) -> Any:
+    def _is_stored(self) -> bool:
         ...
-
-    def _put(self) -> None:
-        ...
-
-    def _put_if_stored(self) -> None:
-        if self._is_stored:
-            self._put()
-
-
-class RootGrpcObject(GrpcObject, Protocol):
-    __slots__: Iterable[str] = tuple()
-    _pb_object: ObjectInfo
 
     @property
     def _channel(self) -> grpc.Channel:
         ...
 
-    @classmethod
-    def _from_resource_path(cls, resource_path: ResourcePath, channel: grpc.Channel) -> Self:
+    _pb_object: Any
+
+
+class Editable(Readable, Protocol):
+    def _put(self) -> None:
+        ...
+
+    def _put_if_stored(self) -> None:
         ...

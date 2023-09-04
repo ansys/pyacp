@@ -1,7 +1,7 @@
 import dataclasses
 import os
 import subprocess
-from typing import Dict, Optional, TextIO, Union, cast
+from typing import Dict, Optional, TextIO, Union
 
 import grpc
 
@@ -20,7 +20,7 @@ from .common import ServerKey
 def _get_latest_ansys_installation() -> str:
     """Get the latest installed Ansys installation."""
 
-    installations = cast(Dict[int, str], get_available_ansys_installations())
+    installations = get_available_ansys_installations()
     if not installations:
         raise ValueError("No Ansys installation found.")
 

@@ -10,9 +10,13 @@ from pyvista.core.pointset import UnstructuredGrid
 
 from ansys.api.acp.v0 import (
     base_pb2,
+    boolean_selection_rule_pb2_grpc,
+    cylindrical_selection_rule_pb2_grpc,
     edge_set_pb2_grpc,
     element_set_pb2_grpc,
     fabric_pb2_grpc,
+    lookup_table_1d_pb2_grpc,
+    lookup_table_3d_pb2_grpc,
     material_pb2,
     material_pb2_grpc,
     mesh_query_pb2_grpc,
@@ -20,7 +24,14 @@ from ansys.api.acp.v0 import (
     model_pb2_grpc,
     modeling_group_pb2_grpc,
     oriented_selection_set_pb2_grpc,
+    parallel_selection_rule_pb2_grpc,
     rosette_pb2_grpc,
+    sensor_pb2_grpc,
+    spherical_selection_rule_pb2_grpc,
+    stackup_pb2_grpc,
+    sublaminate_pb2_grpc,
+    tube_selection_rule_pb2_grpc,
+    variable_offset_selection_rule_pb2_grpc,
 )
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
@@ -29,7 +40,7 @@ from .._utils.array_conversions import to_numpy
 from .._utils.resource_paths import join as rp_join
 from .._utils.visualization import to_pyvista_faces, to_pyvista_types
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
-from ._grpc_helpers.mapping import define_mapping
+from ._grpc_helpers.mapping import define_mutable_mapping
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -37,14 +48,25 @@ from ._grpc_helpers.property_helper import (
 )
 from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import TreeObject
+from .boolean_selection_rule import BooleanSelectionRule
+from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import UnitSystemType, unit_system_type_from_pb, unit_system_type_to_pb
 from .fabric import Fabric
+from .lookup_table_1d import LookUpTable1D
+from .lookup_table_3d import LookUpTable3D
 from .material import Material
 from .modeling_group import ModelingGroup
 from .oriented_selection_set import OrientedSelectionSet
+from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
+from .sensor import Sensor
+from .spherical_selection_rule import SphericalSelectionRule
+from .stackup import Stackup
+from .sublaminate import SubLaminate
+from .tube_selection_rule import TubeSelectionRule
+from .variable_offset_selection_rule import VariableOffsetSelectionRule
 
 __all__ = ["MeshData", "Model", "ModelElementalData", "ModelNodalData"]
 
@@ -269,19 +291,57 @@ class Model(TreeObject):
             )
         )
 
-    create_element_set, element_sets = define_mapping(
+    create_material, materials = define_mutable_mapping(
+        Material, material_pb2_grpc.ObjectServiceStub
+    )
+    create_fabric, fabrics = define_mutable_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
+    create_stackup, stackups = define_mutable_mapping(Stackup, stackup_pb2_grpc.ObjectServiceStub)
+    create_sublaminate, sublaminates = define_mutable_mapping(
+        SubLaminate, sublaminate_pb2_grpc.ObjectServiceStub
+    )
+    create_element_set, element_sets = define_mutable_mapping(
         ElementSet, element_set_pb2_grpc.ObjectServiceStub
     )
-    create_edge_set, edge_sets = define_mapping(EdgeSet, edge_set_pb2_grpc.ObjectServiceStub)
-    create_fabric, fabrics = define_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
-    create_material, materials = define_mapping(Material, material_pb2_grpc.ObjectServiceStub)
-    create_rosette, rosettes = define_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
-    create_oriented_selection_set, oriented_selection_sets = define_mapping(
+    create_edge_set, edge_sets = define_mutable_mapping(
+        EdgeSet, edge_set_pb2_grpc.ObjectServiceStub
+    )
+    create_rosette, rosettes = define_mutable_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
+
+    create_lookup_table_1d, lookup_tables_1d = define_mutable_mapping(
+        LookUpTable1D, lookup_table_1d_pb2_grpc.ObjectServiceStub
+    )
+
+    create_lookup_table_3d, lookup_tables_3d = define_mutable_mapping(
+        LookUpTable3D, lookup_table_3d_pb2_grpc.ObjectServiceStub
+    )
+
+    create_parallel_selection_rule, parallel_selection_rules = define_mutable_mapping(
+        ParallelSelectionRule, parallel_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+    create_cylindrical_selection_rule, cylindrical_selection_rules = define_mutable_mapping(
+        CylindricalSelectionRule, cylindrical_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+    create_spherical_selection_rule, spherical_selection_rules = define_mutable_mapping(
+        SphericalSelectionRule, spherical_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+    create_tube_selection_rule, tube_selection_rules = define_mutable_mapping(
+        TubeSelectionRule, tube_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+    create_variable_offset_selection_rule, variable_offset_selection_rules = define_mutable_mapping(
+        VariableOffsetSelectionRule, variable_offset_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+    create_boolean_selection_rule, boolean_selection_rules = define_mutable_mapping(
+        BooleanSelectionRule, boolean_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+
+    create_oriented_selection_set, oriented_selection_sets = define_mutable_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub
     )
-    create_modeling_group, modeling_groups = define_mapping(
+    create_modeling_group, modeling_groups = define_mutable_mapping(
         ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
     )
+
+    create_sensor, sensors = define_mutable_mapping(Sensor, sensor_pb2_grpc.ObjectServiceStub)
 
     @property
     def mesh(self) -> MeshData:

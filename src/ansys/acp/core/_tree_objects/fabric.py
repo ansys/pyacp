@@ -37,7 +37,7 @@ class Fabric(CreatableTreeObject, IdTreeObject):
     Parameters
     ----------
     name :
-        Name of the Rosette.
+        Name of the fabric.
     material :
         Material of the fabric.
     thickness :
@@ -54,7 +54,8 @@ class Fabric(CreatableTreeObject, IdTreeObject):
         Specifies the draping model of the fabric.
     draping_ud_coefficient :
         Set the draping coefficient of the uni-directional draping model. Must be in the range of 0 to 1.
-
+    area_weight :
+        Weight per area of the fabric. Read only.
     """
 
     __slots__: Iterable[str] = tuple()
@@ -91,6 +92,7 @@ class Fabric(CreatableTreeObject, IdTreeObject):
 
     locked = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
+    area_weight = grpc_data_property_read_only("properties.area_weight")
 
     material = grpc_link_property("properties.material")
     thickness = grpc_data_property("properties.thickness")

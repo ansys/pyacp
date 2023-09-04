@@ -9,7 +9,10 @@ import numpy.typing as npt
 from ansys.api.acp.v0 import oriented_selection_set_pb2, oriented_selection_set_pb2_grpc
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
-from ._grpc_helpers.linked_object_list import define_linked_object_list
+from ._grpc_helpers.linked_object_list import (
+    define_linked_object_list,
+    define_polymorphic_linked_object_list,
+)
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -17,15 +20,24 @@ from ._grpc_helpers.property_helper import (
 )
 from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import CreatableTreeObject, IdTreeObject
+from .boolean_selection_rule import BooleanSelectionRule
+from .cylindrical_selection_rule import CylindricalSelectionRule
 from .element_set import ElementSet
 from .enums import (
+    DrapingMaterialType,
     RosetteSelectionMethod,
+    draping_material_type_from_pb,
+    draping_material_type_to_pb,
     rosette_selection_method_from_pb,
     rosette_selection_method_to_pb,
     status_type_from_pb,
 )
 from .object_registry import register
+from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
+from .spherical_selection_rule import SphericalSelectionRule
+from .tube_selection_rule import TubeSelectionRule
+from .variable_offset_selection_rule import VariableOffsetSelectionRule
 
 __all__ = [
     "OrientedSelectionSet",
@@ -67,6 +79,28 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         Rosettes of the Oriented Selection Set.
     rosette_selection_method :
         Selection Method for Rosettes of the Oriented Selection Set.
+    selection_rules :
+        Selection Rules which may limit the extent of the Oriented Selection Set.
+    draping :
+        If ``True``, activate draping to adjust the reference directions.
+    draping_seed_point :
+        Starting point of the draping algorithm.
+    auto_draping_direction :
+        If ``True``, the reference direction of the Oriented Selection Set at
+        the seed point is used as draping direction.
+    draping_direction :
+        Set the primary draping direction for the draping algorithm. Only used if
+        ``auto_draping_direction`` is ``False``.
+    draping_mesh_size :
+        Defines the mesh size for the draping algorithm. If set to ``-1.``, the
+        mesh size is automatically determined based on the average element size.
+    draping_material_model :
+        Chooses between different draping formulations.
+    draping_ud_coefficient :
+        Value between ``0`` and ``1`` which determines the amount of deformation
+        in the transverse direction if the draping material model is set to
+        :attr:`DrapingMaterialType.UD`.
+
     """
 
     __slots__: Iterable[str] = tuple()
@@ -79,10 +113,17 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         self,
         name: str = "OrientedSelectionSet",
         element_sets: Sequence[ElementSet] = tuple(),
-        orientation_point: tuple[float, ...] = (0.0, 0.0, 0.0),
-        orientation_direction: tuple[float, ...] = (0.0, 0.0, 0.0),
+        orientation_point: tuple[float, float, float] = (0.0, 0.0, 0.0),
+        orientation_direction: tuple[float, float, float] = (0.0, 0.0, 0.0),
         rosettes: Sequence[Rosette] = tuple(),
         rosette_selection_method: RosetteSelectionMethod = "minimum_angle",
+        draping: bool = False,
+        draping_seed_point: tuple[float, float, float] = (0.0, 0.0, 0.0),
+        auto_draping_direction: bool = True,
+        draping_direction: tuple[float, float, float] = (0.0, 0.0, 1.0),
+        draping_mesh_size: float = -1.0,
+        draping_material_model: DrapingMaterialType = DrapingMaterialType.WOVEN,
+        draping_ud_coefficient: float = 0.0,
     ):
         super().__init__(name=name)
         self.element_sets = element_sets
@@ -90,6 +131,13 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         self.orientation_direction = orientation_direction
         self.rosettes = rosettes
         self.rosette_selection_method = RosetteSelectionMethod(rosette_selection_method)
+        self.draping = draping
+        self.draping_seed_point = draping_seed_point
+        self.auto_draping_direction = auto_draping_direction
+        self.draping_direction = draping_direction
+        self.draping_mesh_size = draping_mesh_size
+        self.draping_material_model = DrapingMaterialType(draping_material_model)
+        self.draping_ud_coefficient = draping_ud_coefficient
 
     def _create_stub(self) -> oriented_selection_set_pb2_grpc.ObjectServiceStub:
         return oriented_selection_set_pb2_grpc.ObjectServiceStub(self._channel)
@@ -114,6 +162,38 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         "properties.rosette_selection_method",
         from_protobuf=rosette_selection_method_from_pb,
         to_protobuf=rosette_selection_method_to_pb,
+    )
+
+    draping = grpc_data_property("properties.draping")
+    draping_seed_point = grpc_data_property(
+        "properties.draping_seed_point",
+        from_protobuf=to_tuple_from_1D_array,
+        to_protobuf=to_1D_double_array,
+    )
+    auto_draping_direction = grpc_data_property("properties.auto_draping_direction")
+    draping_direction = grpc_data_property(
+        "properties.draping_direction",
+        from_protobuf=to_tuple_from_1D_array,
+        to_protobuf=to_1D_double_array,
+    )
+    draping_mesh_size = grpc_data_property("properties.draping_mesh_size")
+    draping_material_model = grpc_data_property(
+        "properties.draping_material_model",
+        from_protobuf=draping_material_type_from_pb,
+        to_protobuf=draping_material_type_to_pb,
+    )
+    draping_ud_coefficient = grpc_data_property("properties.draping_ud_coefficient")
+
+    selection_rules = define_polymorphic_linked_object_list(
+        "properties.selection_rules",
+        allowed_types=(
+            ParallelSelectionRule,
+            CylindricalSelectionRule,
+            SphericalSelectionRule,
+            TubeSelectionRule,
+            VariableOffsetSelectionRule,
+            BooleanSelectionRule,
+        ),
     )
 
     elemental_data = elemental_data_property(OrientedSelectionSetElementalData)

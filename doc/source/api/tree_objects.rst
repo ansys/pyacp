@@ -9,9 +9,23 @@ ACP objects
     Model
     Material
     Fabric
+    Stackup
     ElementSet
     EdgeSet
     Rosette
+    LookUpTable1D
+    LookUpTable1DColumn
+    LookUpTable3D
+    LookUpTable3DColumn
+    ParallelSelectionRule
+    CylindricalSelectionRule
+    SphericalSelectionRule
+    TubeSelectionRule
+    VariableOffsetSelectionRule
+    BooleanSelectionRule
     OrientedSelectionSet
     ModelingGroup
     ModelingPly
+    ProductionPly
+    AnalysisPly
+    Sensor
