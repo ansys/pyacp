@@ -698,7 +698,7 @@ Load the CDB file into PyMAPDL
  .. code-block:: none
 
 
-    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     06:04:26  SEP 04, 2023 CP=      0.469\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.583\n\n\n'
+    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     05:03:18  SEP 05, 2023 CP=      0.435\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.530\n\n\n'
 
 
 
@@ -725,7 +725,7 @@ Solve the model
 
     *****  MAPDL SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       0.606   TIME= 06:04:26
+     *** NOTE ***                            CP =       0.548   TIME= 05:03:19
      There is no title defined for this analysis.                            
 
      *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -750,7 +750,7 @@ Solve the model
 
      *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
      Ansys Mechanical Enterprise                       
-     00000000  VERSION=LINUX x64     06:04:26  SEP 04, 2023 CP=      0.648
+     00000000  VERSION=LINUX x64     05:03:19  SEP 05, 2023 CP=      0.588
 
                                                                                
 
@@ -766,14 +766,14 @@ Solve the model
        ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
        GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  
 
-     *** NOTE ***                            CP =       0.650   TIME= 06:04:26
+     *** NOTE ***                            CP =       0.589   TIME= 05:03:19
      Poisson's ratio PR input has been converted to NU input.                
 
-     *** NOTE ***                            CP =       0.659   TIME= 06:04:26
+     *** NOTE ***                            CP =       0.596   TIME= 05:03:19
      Present time 0 is less than or equal to the previous time.  Time will   
      default to 1.                                                           
 
-     *** NOTE ***                            CP =       0.660   TIME= 06:04:26
+     *** NOTE ***                            CP =       0.597   TIME= 05:03:19
      The conditions for direct assembly have been met.  No .emat or .erot    
      files will be produced.                                                 
 
@@ -791,7 +791,7 @@ Solve the model
 
      SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           
 
-     *** NOTE ***                            CP =       0.770   TIME= 06:04:26
+     *** NOTE ***                            CP =       0.687   TIME= 05:03:19
      Predictor is ON by default for structural elements with rotational      
      degrees of freedom.  Use the PRED,OFF command to turn the predictor     
      OFF if it adversely affects the convergence.                            
@@ -840,10 +840,10 @@ Solve the model
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      3.852   0.000969
-            2        88  BEAM188       0.008   0.000086
-            3        22  SHELL181      0.007   0.000337
-     Time at end of element matrix formulation CP = 4.674891.                
+            1      3973  SHELL181      3.129   0.000788
+            2        88  BEAM188       0.005   0.000051
+            3        22  SHELL181      0.005   0.000244
+     Time at end of element matrix formulation CP = 3.85445929.              
 
      SPARSE MATRIX DIRECT SOLVER.
       Number of equations =       24096,    Maximum wavefront =     66
@@ -851,7 +851,7 @@ Solve the model
       Memory required for in-core solution     =    58.542 MB
       Memory required for out-of-core solution =    24.642 MB
 
-     *** NOTE ***                            CP =       4.758   TIME= 06:04:30
+     *** NOTE ***                            CP =       3.935   TIME= 05:03:22
      The Sparse Matrix Solver is currently running in the in-core memory     
      mode.  This memory mode uses the most amount of memory in order to      
      avoid using the hard drive as much as possible, which most often        
@@ -866,16 +866,16 @@ Solve the model
        *** ELEMENT RESULT CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      8.546   0.002151
-            2        88  BEAM188       0.014   0.000163
-            3        22  SHELL181      0.012   0.000533
+            1      3973  SHELL181      6.935   0.001746
+            2        88  BEAM188       0.010   0.000111
+            3        22  SHELL181      0.010   0.000443
 
        *** NODAL LOAD CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      0.110   0.000028
-            2        88  BEAM188       0.003   0.000032
-            3        22  SHELL181      0.001   0.000026
+            1      3973  SHELL181      0.068   0.000017
+            2        88  BEAM188       0.002   0.000018
+            3        22  SHELL181      0.000   0.000018
      *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
      *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -1068,7 +1068,7 @@ Query and plot the results
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  53.655 seconds)
+   **Total running time of the script:** ( 0 minutes  46.501 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_solve_class40.py:
