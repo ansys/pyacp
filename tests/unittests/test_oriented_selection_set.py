@@ -31,7 +31,8 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
         "draping_seed_point": (0.0, 0.0, 0.0),
         "auto_draping_direction": True,
         "draping_direction": (0.0, 0.0, 1.0),
-        "draping_mesh_size": -1.0,  # is only set to the computed value after draping is run
+        "use_default_draping_mesh_size": True,
+        "draping_mesh_size": 0.0,
         "draping_material_model": "woven",
         "draping_ud_coefficient": 0.0,
     }
@@ -66,6 +67,7 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
                 ("draping_seed_point", (0.0, 0.1, 0.0)),
                 ("auto_draping_direction", False),
                 ("draping_direction", (1.0, 0.0, 0.0)),
+                ("use_default_draping_mesh_size", False),
                 ("draping_mesh_size", 0.1),
                 ("draping_material_model", "ud"),
                 ("draping_ud_coefficient", 0.5),
