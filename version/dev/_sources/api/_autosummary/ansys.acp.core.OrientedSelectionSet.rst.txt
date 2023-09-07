@@ -51,5 +51,6 @@
       OrientedSelectionSet.rosettes
       OrientedSelectionSet.selection_rules
       OrientedSelectionSet.status
+      OrientedSelectionSet.use_default_draping_mesh_size
    
    

@@ -54,5 +54,6 @@
       ModelingPly.production_plies
       ModelingPly.selection_rules
       ModelingPly.status
+      ModelingPly.use_default_draping_mesh_size
    
    
