@@ -131,7 +131,8 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         draping_seed_point: tuple[float, float, float] = (0.0, 0.0, 0.0),
         auto_draping_direction: bool = True,
         draping_direction: tuple[float, float, float] = (1.0, 0.0, 0.0),
-        draping_mesh_size: float = -1.0,
+        use_default_draping_mesh_size: bool = True,
+        draping_mesh_size: float = 0.0,
         draping_thickness_correction: bool = True,
         draping_angle_1_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
         draping_angle_2_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
@@ -149,6 +150,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         self.draping_seed_point = draping_seed_point
         self.auto_draping_direction = auto_draping_direction
         self.draping_direction = draping_direction
+        self.use_default_draping_mesh_size = use_default_draping_mesh_size
         self.draping_mesh_size = draping_mesh_size
         self.draping_thickness_correction = draping_thickness_correction
         self.draping_angle_1_field = draping_angle_1_field
@@ -184,6 +186,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_double_array,
     )
+    use_default_draping_mesh_size = grpc_data_property("properties.use_default_draping_mesh_size")
     draping_mesh_size = grpc_data_property("properties.draping_mesh_size")
     draping_thickness_correction = grpc_data_property("properties.draping_thickness_correction")
     draping_angle_1_field = grpc_link_property("properties.draping_angle_1_field")

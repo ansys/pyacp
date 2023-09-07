@@ -121,7 +121,8 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         draping_seed_point: tuple[float, float, float] = (0.0, 0.0, 0.0),
         auto_draping_direction: bool = True,
         draping_direction: tuple[float, float, float] = (0.0, 0.0, 1.0),
-        draping_mesh_size: float = -1.0,
+        use_default_draping_mesh_size: bool = True,
+        draping_mesh_size: float = 0.0,
         draping_material_model: DrapingMaterialType = DrapingMaterialType.WOVEN,
         draping_ud_coefficient: float = 0.0,
     ):
@@ -135,6 +136,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         self.draping_seed_point = draping_seed_point
         self.auto_draping_direction = auto_draping_direction
         self.draping_direction = draping_direction
+        self.use_default_draping_mesh_size = use_default_draping_mesh_size
         self.draping_mesh_size = draping_mesh_size
         self.draping_material_model = DrapingMaterialType(draping_material_model)
         self.draping_ud_coefficient = draping_ud_coefficient
@@ -176,6 +178,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_double_array,
     )
+    use_default_draping_mesh_size = grpc_data_property("properties.use_default_draping_mesh_size")
     draping_mesh_size = grpc_data_property("properties.draping_mesh_size")
     draping_material_model = grpc_data_property(
         "properties.draping_material_model",
