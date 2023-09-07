@@ -164,7 +164,7 @@ protobuf = ">=3.19,<5"
 type = "git"
 url = "https://github.com/ansys-internal/ansys-api-acp.git"
 reference = "main"
-resolved_reference = "aded15a99a7744de28bb4a2c4c15712ea75876b8"
+resolved_reference = "94cdb6ddfefd4aa7527ae4803c820b91ea798cc9"
 
 [[package]]
 name = "ansys-api-mapdl"
