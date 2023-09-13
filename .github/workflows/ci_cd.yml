@@ -158,7 +158,7 @@ jobs:
           poetry run pip install --force-reinstall git+https://github.com/ansys-internal/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
 
       - name: Login in Github Container registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -213,7 +213,7 @@ jobs:
             pip-${{ runner.os }}
 
       - name: Login in Github Container registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: pyansys-ci-bot
