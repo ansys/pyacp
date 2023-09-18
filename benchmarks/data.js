@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1694586573746,
+  "lastUpdate": 1695026186631,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -6820,6 +6820,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00013415378466398093",
             "extra": "mean: 39.02986165384557 msec\nrounds: 26"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e17b73a852a2b982f4303245b587c9ed90250ec6",
+          "message": "Bump the dependencies group with 7 updates (#281)\n\nBumps the dependencies group with 7 updates:\r\n\r\n| Package | From | To |\r\n| --- | --- | --- |\r\n| [ansys-dpf-composites](https://github.com/ansys/pydpf-composites) | `0.3.0` | `0.3.1` |\r\n| [pyvista](https://github.com/pyvista/pyvista) | `0.42.0` | `0.42.2` |\r\n| [ansys-mechanical-core](https://github.com/ansys/pymechanical) | `0.10.1` | `0.10.2` |\r\n| [ansys-sphinx-theme](https://github.com/ansys/ansys-sphinx-theme) | `0.10.5` | `0.11.2` |\r\n| [ipykernel](https://github.com/ipython/ipykernel) | `6.25.1` | `6.25.2` |\r\n| [pytest](https://github.com/pytest-dev/pytest) | `7.4.1` | `7.4.2` |\r\n| [hypothesis](https://github.com/HypothesisWorks/hypothesis) | `6.83.1` | `6.86.1` |\r\n\r\n\r\nUpdates `ansys-dpf-composites` from 0.3.0 to 0.3.1\r\n- [Release notes](https://github.com/ansys/pydpf-composites/releases)\r\n- [Commits](https://github.com/ansys/pydpf-composites/compare/v0.3.0...v0.3.1)\r\n\r\nUpdates `pyvista` from 0.42.0 to 0.42.2\r\n- [Release notes](https://github.com/pyvista/pyvista/releases)\r\n- [Commits](https://github.com/pyvista/pyvista/compare/v0.42.0...v0.42.2)\r\n\r\nUpdates `ansys-mechanical-core` from 0.10.1 to 0.10.2\r\n- [Release notes](https://github.com/ansys/pymechanical/releases)\r\n- [Changelog](https://github.com/ansys/pymechanical/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ansys/pymechanical/compare/v0.10.1...v0.10.2)\r\n\r\nUpdates `ansys-sphinx-theme` from 0.10.5 to 0.11.2\r\n- [Release notes](https://github.com/ansys/ansys-sphinx-theme/releases)\r\n- [Commits](https://github.com/ansys/ansys-sphinx-theme/compare/v0.10.5...v0.11.2)\r\n\r\nUpdates `ipykernel` from 6.25.1 to 6.25.2\r\n- [Release notes](https://github.com/ipython/ipykernel/releases)\r\n- [Changelog](https://github.com/ipython/ipykernel/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ipython/ipykernel/compare/v6.25.1...v6.25.2)\r\n\r\nUpdates `pytest` from 7.4.1 to 7.4.2\r\n- [Release notes](https://github.com/pytest-dev/pytest/releases)\r\n- [Changelog](https://github.com/pytest-dev/pytest/blob/main/CHANGELOG.rst)\r\n- [Commits](https://github.com/pytest-dev/pytest/compare/7.4.1...7.4.2)\r\n\r\nUpdates `hypothesis` from 6.83.1 to 6.86.1\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.83.1...hypothesis-python-6.86.1)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: ansys-dpf-composites\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: pyvista\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-mechanical-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-sphinx-theme\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: ipykernel\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: pytest\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-09-18T10:29:58+02:00",
+          "tree_id": "426ab3826e134abb0aec779cc38b747a2f183b9d",
+          "url": "https://github.com/ansys-internal/pyacp/commit/e17b73a852a2b982f4303245b587c9ed90250ec6"
+        },
+        "date": 1695026180459,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 4.377500616447743,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0017473511006550813",
+            "extra": "mean: 228.4408587500053 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.0649396361616947,
+            "unit": "iter/sec",
+            "range": "stddev: 0.012769729749800974",
+            "extra": "mean: 484.27565749999246 msec\nrounds: 2"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.3704827200785296,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.699181218999996 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.041096101401721256,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.333208404000004 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.780793177205988,
+            "unit": "iter/sec",
+            "range": "stddev: 0.011574303247163131",
+            "extra": "mean: 359.6096280000059 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.6562797580006797,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.5237404290000427 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.07667210585358321,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 13.042552944999954 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 870.3657138749553,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00028644597549313405",
+            "extra": "mean: 1.1489423170725555 msec\nrounds: 902"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 324.55777415216545,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013214907253882304",
+            "extra": "mean: 3.0811155351686645 msec\nrounds: 327"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 47.57771410233349,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00015941086551448055",
+            "extra": "mean: 21.01824391666085 msec\nrounds: 48"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.964531904642935,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006133031926400085",
+            "extra": "mean: 201.42885959999148 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 671.7681636707617,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002599396904016717",
+            "extra": "mean: 1.4886087999997972 msec\nrounds: 780"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 206.38888706970857,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019350685761370347",
+            "extra": "mean: 4.84522211538573 msec\nrounds: 182"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.669367305914843,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002336221951756861",
+            "extra": "mean: 38.95693992308006 msec\nrounds: 26"
           }
         ]
       }
