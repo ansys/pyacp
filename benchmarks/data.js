@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1695625240753,
+  "lastUpdate": 1695795924085,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -7186,6 +7186,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00012787935704023276",
             "extra": "mean: 39.02525503846513 msec\nrounds: 26"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "347ce4f8567de3e81392d3449c5bac54bba3e76e",
+          "message": "Bump the dependencies group with 3 updates (#286)\n\nBumps the dependencies group with 3 updates: [ansys-mechanical-core](https://github.com/ansys/pymechanical), [numpydoc](https://github.com/numpy/numpydoc) and [ansys-sphinx-theme](https://github.com/ansys/ansys-sphinx-theme).\r\n\r\n\r\nUpdates `ansys-mechanical-core` from 0.10.2 to 0.10.3\r\n- [Release notes](https://github.com/ansys/pymechanical/releases)\r\n- [Changelog](https://github.com/ansys/pymechanical/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ansys/pymechanical/compare/v0.10.2...v0.10.3)\r\n\r\nUpdates `numpydoc` from 1.5.0 to 1.6.0\r\n- [Release notes](https://github.com/numpy/numpydoc/releases)\r\n- [Changelog](https://github.com/numpy/numpydoc/blob/main/doc/release_notes.rst)\r\n- [Commits](https://github.com/numpy/numpydoc/compare/v1.5.0...v1.6.0)\r\n\r\nUpdates `ansys-sphinx-theme` from 0.11.2 to 0.12.0\r\n- [Release notes](https://github.com/ansys/ansys-sphinx-theme/releases)\r\n- [Commits](https://github.com/ansys/ansys-sphinx-theme/compare/v0.11.2...v0.12.0)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: ansys-mechanical-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: numpydoc\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-sphinx-theme\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2023-09-27T08:19:43+02:00",
+          "tree_id": "4bd941e2be2411d27a49df2425feffbb102f09fb",
+          "url": "https://github.com/ansys-internal/pyacp/commit/347ce4f8567de3e81392d3449c5bac54bba3e76e"
+        },
+        "date": 1695795918516,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 5.305648532860562,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0064207614854599904",
+            "extra": "mean: 188.47837239999876 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.2100280796149208,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005512425940361323",
+            "extra": "mean: 452.48293866666245 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.3716806209602696,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.690481945000016 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04106446419053365,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.35195538800002 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 3.1187420167352555,
+            "unit": "iter/sec",
+            "range": "stddev: 0.009353547482067735",
+            "extra": "mean: 320.6421033333224 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.6537584441548996,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.529616954000005 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.07648873429798747,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 13.073820728999976 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 987.4224838722403,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003205439607288912",
+            "extra": "mean: 1.012737725070262 msec\nrounds: 1073"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 352.32170476698434,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00010818656471910835",
+            "extra": "mean: 2.838315058282804 msec\nrounds: 326"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 46.958203562500984,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018064038142813217",
+            "extra": "mean: 21.295533562501134 msec\nrounds: 48"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.95819270258539,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00024121771775285374",
+            "extra": "mean: 201.68639259998145 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 812.2314011753642,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018687014406452686",
+            "extra": "mean: 1.2311762369109587 msec\nrounds: 764"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 209.5241498036027,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003698309410181099",
+            "extra": "mean: 4.772719521531762 msec\nrounds: 209"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.36121765269845,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0007599574729870662",
+            "extra": "mean: 39.430283423067394 msec\nrounds: 26"
           }
         ]
       }
