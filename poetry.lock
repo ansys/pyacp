@@ -248,13 +248,13 @@ files = [
 
 [[package]]
 name = "ansys-dpf-composites"
-version = "0.3.1"
+version = "0.3.2"
 description = "Post-processing of composite structures based on Ansys DPF"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "ansys_dpf_composites-0.3.1-py3-none-any.whl", hash = "sha256:d55aee917dfb66eb0a5c179c77846534f83b5dbb1b92b8eebbb1e3023812a008"},
-    {file = "ansys_dpf_composites-0.3.1.tar.gz", hash = "sha256:9d9b3926bedb447771b69329e2a2615d14f9a10d49749dcd67d594babc9a02ae"},
+    {file = "ansys_dpf_composites-0.3.2-py3-none-any.whl", hash = "sha256:52d133c42353f70acdff9c9d52158439c5cdea5e0b07614f2a6abdf0d7c6b3ea"},
+    {file = "ansys_dpf_composites-0.3.2.tar.gz", hash = "sha256:fc87da05c2245c49d328471e9fb34baf9f18294154f9b81eb2b09087ff840b7c"},
 ]
 
 [package.dependencies]
