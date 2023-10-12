@@ -8,7 +8,7 @@ PyACP
     :target: https://docs.pyansys.com/
     :alt: PyAnsys
 
-.. |python| image:: https://img.shields.io/badge/Python-3.8%20%7C%203.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-blue.svg
+.. |python| image:: https://img.shields.io/badge/Python-3.9%20%7C%203.9%20%7C%203.9%20%7C%203.10%20%7C%203.12-blue.svg
     :target: https://pypi.org/project/ansys-acp-core
     :alt: Python
 
