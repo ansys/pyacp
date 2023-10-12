@@ -5,8 +5,9 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from abc import abstractmethod
+from collections.abc import Iterable
 import typing
-from typing import Any, Callable, Generic, Iterable, TypeVar, cast
+from typing import Any, Callable, Generic, TypeVar, cast
 
 from grpc import Channel
 from typing_extensions import Self

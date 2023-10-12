@@ -1,4 +1,5 @@
-from typing import Iterable, Tuple, Union
+from collections.abc import Iterable
+from typing import Union
 
 from google.protobuf.descriptor import FieldDescriptor
 from google.protobuf.message import Message
@@ -16,7 +17,7 @@ def unlink_objects(pb_object: Message) -> None:
 
 def linked_path_fields(
     pb_object: Message,
-) -> Iterable[Tuple[Message, FieldDescriptor, Union[ResourcePath, CollectionPath]]]:
+) -> Iterable[tuple[Message, FieldDescriptor, Union[ResourcePath, CollectionPath]]]:
     """
     Get tuples (parent_message, field_descriptor, {resource_path or collection_path})
     describing all resource or collection paths present in the protobuf

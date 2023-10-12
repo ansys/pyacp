@@ -1,5 +1,5 @@
 import enum
-from typing import Dict, Optional, Protocol
+from typing import Optional, Protocol
 
 import grpc
 
@@ -18,7 +18,7 @@ class ServerProtocol(Protocol):
     """Interface definition for ACP gRPC servers."""
 
     @property
-    def channels(self) -> Dict[str, grpc.Channel]:
+    def channels(self) -> dict[str, grpc.Channel]:
         ...
 
     def wait(self, timeout: float) -> None:

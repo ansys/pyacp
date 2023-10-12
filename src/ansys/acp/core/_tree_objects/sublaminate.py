@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Iterable, Sequence
 import typing
-from typing import Any, Callable, Iterable, Sequence, Union, get_args
+from typing import Any, Callable, Union, get_args
 
 from ansys.api.acp.v0 import sublaminate_pb2, sublaminate_pb2_grpc
 

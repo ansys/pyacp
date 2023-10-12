@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Container, Iterable
 import dataclasses
-from typing import Container, Iterable
 
 import numpy as np
 import numpy.typing as npt

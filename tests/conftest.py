@@ -1,10 +1,11 @@
 """Pytest configuration file for ansys-acp-core tests."""
+from collections.abc import Generator
 from contextlib import contextmanager
 import logging
 import os
 import pathlib
 import tempfile
-from typing import Generator, cast
+from typing import cast
 
 import docker
 from hypothesis import settings

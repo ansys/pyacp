@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Any, Callable, Iterable, Sequence
+from collections.abc import Iterable, Sequence
+from typing import Any, Callable
 
 from ansys.api.acp.v0 import stackup_pb2, stackup_pb2_grpc
 

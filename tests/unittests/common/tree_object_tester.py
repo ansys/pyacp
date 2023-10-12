@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, Dict, List, Tuple
+from typing import Any
 
 import pytest
 
@@ -8,8 +8,8 @@ from .compare import assert_allclose
 
 @dataclass
 class ObjectPropertiesToTest:
-    read_write: List[Tuple[str, Any]]
-    read_only: List[Tuple[str, Any]]
+    read_write: list[tuple[str, Any]]
+    read_only: list[tuple[str, Any]]
 
 
 class TreeObjectTesterReadOnly:
@@ -76,7 +76,7 @@ class TreeObjectTesterReadOnly:
 
 class TreeObjectTester(TreeObjectTesterReadOnly):
     COLLECTION_NAME: str
-    DEFAULT_PROPERTIES: Dict[str, Any]
+    DEFAULT_PROPERTIES: dict[str, Any]
     CREATE_METHOD_NAME: str
 
     def test_create(self, parent_object):
@@ -148,7 +148,7 @@ class NoLockedMixin:
 
 
 class WithLockedMixin:
-    INITIAL_OBJECT_NAMES: Tuple[str, ...]
+    INITIAL_OBJECT_NAMES: tuple[str, ...]
 
     @pytest.fixture
     def collection_test_data(self, parent_object):

@@ -1,4 +1,4 @@
-from typing import Any, Tuple, Type, Union, overload
+from typing import Any, Union, overload
 
 import numpy as np
 import numpy.typing as npt
@@ -7,15 +7,15 @@ from ansys.api.acp.v0.array_types_pb2 import DoubleArray, Int32Array, IntArray
 from ansys.api.acp.v0.mesh_query_pb2 import DataArray
 
 
-def to_1D_double_array(data: Tuple[float, ...]) -> DoubleArray:
+def to_1D_double_array(data: tuple[float, ...]) -> DoubleArray:
     return DoubleArray(shape=[len(data)], data=data)
 
 
-def to_1D_int_array(data: Tuple[int, ...]) -> IntArray:
+def to_1D_int_array(data: tuple[int, ...]) -> IntArray:
     return IntArray(shape=[len(data)], data=data)
 
 
-def to_tuple_from_1D_array(array: Union[IntArray, DoubleArray]) -> Tuple[Any, ...]:
+def to_tuple_from_1D_array(array: Union[IntArray, DoubleArray]) -> tuple[Any, ...]:
     if not len(array.shape) == 1:
         raise RuntimeError(f"Cannot convert {len(array.shape)}-dimensional array to tuple!")
     return tuple(array.data)
@@ -53,7 +53,7 @@ def to_numpy(
 
 def dataarray_to_numpy(
     array_pb: DataArray,
-    dtype: Union[Type[np.int32], Type[np.int64], Type[np.float64]],
+    dtype: Union[type[np.int32], type[np.int64], type[np.float64]],
 ) -> Union[npt.NDArray[np.int64], npt.NDArray[np.int32], npt.NDArray[np.float64]]:
     data_array_attribute = array_pb.WhichOneof("data")
     if data_array_attribute is None:
