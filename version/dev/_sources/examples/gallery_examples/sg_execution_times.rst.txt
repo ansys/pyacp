@@ -6,8 +6,8 @@
 
 Computation times
 =================
-**00:55.824** total execution time for **examples_gallery_examples** files:
+**00:42.037** total execution time for **examples_gallery_examples** files:
 
 +-----------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_solve_class40.py` (``solve_class40.py``) | 00:55.824 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_solve_class40.py` (``solve_class40.py``) | 00:42.037 | 0.0 MB |
 +-----------------------------------------------------------------------------------+-----------+--------+
