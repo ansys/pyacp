@@ -1752,13 +1752,13 @@ pyparsing = {version = ">=2.4.2,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.0.2 || >3.0
 
 [[package]]
 name = "hypothesis"
-version = "6.88.0"
+version = "6.88.1"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "hypothesis-6.88.0-py3-none-any.whl", hash = "sha256:b52b5b5a5065340875fb8a1a45e45391c277d9c5765374560edc1c5e5c3e2d48"},
-    {file = "hypothesis-6.88.0.tar.gz", hash = "sha256:c9096ccd5a78bbf75221a2b4a6149e00e254acb17637c94abab98c529b2f61e5"},
+    {file = "hypothesis-6.88.1-py3-none-any.whl", hash = "sha256:b45b8a651dfe4ce26f900ce6ccbce997d4fbec39ba03dd243516bf81fea8c0b8"},
+    {file = "hypothesis-6.88.1.tar.gz", hash = "sha256:f4c2c004b9ec3e0e25332ad2cb6b91eba477a855557a7b5c6e79068809ff8b51"},
 ]
 
 [package.dependencies]
@@ -3393,13 +3393,13 @@ full = ["geomdl", "pyvista (>=0.28.0)"]
 
 [[package]]
 name = "pypandoc"
-version = "1.11"
+version = "1.12"
 description = "Thin wrapper for pandoc."
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "pypandoc-1.11-py3-none-any.whl", hash = "sha256:b260596934e9cfc6513056110a7c8600171d414f90558bf4407e68b209be8007"},
-    {file = "pypandoc-1.11.tar.gz", hash = "sha256:7f6d68db0e57e0f6961bec2190897118c4d305fc2d31c22cd16037f22ee084a5"},
+    {file = "pypandoc-1.12-py3-none-any.whl", hash = "sha256:efb4f7d68ead8bec32e22b62f02d5608a1700978b51bfc4af286fd6acfe9d218"},
+    {file = "pypandoc-1.12.tar.gz", hash = "sha256:8f44740a9f074e121d81b489f073160421611d4ead62d1b306aeb11aab3c32df"},
 ]
 
 [[package]]
