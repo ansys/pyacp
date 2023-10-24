@@ -731,7 +731,7 @@ directory).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     07:24:20  OCT 23, 2023 CP=      0.518\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.657\n\n\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     06:49:55  OCT 24, 2023 CP=      0.499\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.635\n\n\n&#39;
 </pre></div>
 </div>
 <p>Solve the model</p>
@@ -742,7 +742,7 @@ directory).</p>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       0.691   TIME= 07:24:20
+ *** NOTE ***                            CP =       0.666   TIME= 06:49:55
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -767,7 +767,7 @@ directory).</p>
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
  Ansys Mechanical Enterprise
- 00000000  VERSION=LINUX x64     07:24:20  OCT 23, 2023 CP=      0.741
+ 00000000  VERSION=LINUX x64     06:49:55  OCT 24, 2023 CP=      0.715
 
 
 
@@ -783,14 +783,14 @@ directory).</p>
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       0.744   TIME= 07:24:20
+ *** NOTE ***                            CP =       0.717   TIME= 06:49:55
  Poisson&#39;s ratio PR input has been converted to NU input.
 
- *** NOTE ***                            CP =       0.752   TIME= 07:24:20
+ *** NOTE ***                            CP =       0.726   TIME= 06:49:55
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       0.754   TIME= 07:24:20
+ *** NOTE ***                            CP =       0.727   TIME= 06:49:55
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -808,7 +808,7 @@ directory).</p>
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       0.878   TIME= 07:24:20
+ *** NOTE ***                            CP =       0.847   TIME= 06:49:55
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -857,10 +857,10 @@ directory).</p>
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      4.115   0.001036
-        2        88  BEAM188       0.010   0.000115
-        3        22  SHELL181      0.008   0.000354
- Time at end of element matrix formulation CP = 5.06110716.
+        1      3973  SHELL181      4.081   0.001027
+        2        88  BEAM188       0.008   0.000095
+        3        22  SHELL181      0.007   0.000338
+ Time at end of element matrix formulation CP = 4.98267126.
 
  SPARSE MATRIX DIRECT SOLVER.
   Number of equations =       24096,    Maximum wavefront =     66
@@ -868,7 +868,7 @@ directory).</p>
   Memory required for in-core solution     =    58.542 MB
   Memory required for out-of-core solution =    24.642 MB
 
- *** NOTE ***                            CP =       5.175   TIME= 07:24:25
+ *** NOTE ***                            CP =       5.095   TIME= 06:49:59
  The Sparse Matrix Solver is currently running in the in-core memory
  mode.  This memory mode uses the most amount of memory in order to
  avoid using the hard drive as much as possible, which most often
@@ -883,16 +883,16 @@ directory).</p>
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      8.967   0.002257
-        2        88  BEAM188       0.020   0.000223
-        3        22  SHELL181      0.013   0.000603
+        1      3973  SHELL181      8.662   0.002180
+        2        88  BEAM188       0.018   0.000203
+        3        22  SHELL181      0.012   0.000544
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      0.120   0.000030
-        2        88  BEAM188       0.003   0.000038
-        3        22  SHELL181      0.001   0.000028
+        1      3973  SHELL181      0.109   0.000027
+        2        88  BEAM188       0.003   0.000031
+        3        22  SHELL181      0.001   0.000026
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
  *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -977,7 +977,7 @@ automatically loads the composites plugin.</p>
 <span class="n">irf_field</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_007.png" srcset="../../_images/sphx_glr_solve_class40_007.png" alt="solve class40" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  58.411 seconds)</p>
+<img src="../../_images/sphx_glr_solve_class40_007.png" srcset="../../_images/sphx_glr_solve_class40_007.png" alt="solve class40" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  57.291 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-solve-class40-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/9534ac29e0bc2250f1fc6a51c9f799b1/solve_class40.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">solve_class40.py</span></code></a></p>
