@@ -57,7 +57,7 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-api-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
-          pip install poetry
+          pip install 'poetry<1.7.0'
           poetry install --with dev,test
 
       - name: Install custom API branch if needed
@@ -102,7 +102,7 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
-          pip install poetry
+          pip install 'poetry<1.7.0'
           poetry build
 
       - name: Validate packages
@@ -148,7 +148,7 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-api-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
-          pip install poetry
+          pip install 'poetry<1.7.0'
           poetry install --with test
 
       - name: Install custom API branch if needed
@@ -230,7 +230,7 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-api-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
-          pip install poetry
+          pip install 'poetry<1.7.0'
           poetry install --with dev
 
       - name: Install custom API branch if needed
