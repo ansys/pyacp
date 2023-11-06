@@ -30,72 +30,24 @@ packages = [
 include = ["src/**/docker-compose.yaml"]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4" # Plan on supporting only the currently supported versions of Python
-numpy = "^1.22"
-grpcio-health-checking = "^1.43"
-docker = "^6.0.1"
-packaging = ">=15.0"
-typing-extensions = "^4.5.0"
-ansys-api-acp = { git = "https://github.com/ansys-internal/ansys-api-acp.git",  branch = "main" }
-ansys-tools-path = "^0.3.0"
-ansys-tools-local-product-launcher = { git = "https://github.com/ansys-internal/ansys-tools-local-product-launcher.git", branch = "main" }
+python = ">=3.9,<4" # Plan on supporting only the currently supported versions of Python
 ansys-tools-filetransfer = { git = "https://github.com/ansys-internal/ansys-tools-filetransfer.git", branch = "main" }
 
-# Dependencies for the examples. Update also the 'dev' group when
-# these are updated.
-ansys-mapdl-core = { version = ">=0.62.1,<1", optional = true }
-ansys-dpf-composites = { version = ">=0.3,<1", optional = true }
-ansys-dpf-core = { version = ">=0.7,<1", optional = true }
-pyvista = ">=0.40"
-ansys-mechanical-core = { version = ">=0.10.0", optional = true, python = "<3.12" }
 
 
 [tool.poetry.group.dev]
 optional = true
 
 [tool.poetry.group.dev.dependencies]
-pre-commit = "^2.17.0"
-black = "23.3.0"
-mypy = "^1.0"
-mypy-extensions = "^1.0"
-types-protobuf = "^4.22.0.2"
-
-Sphinx = "^6.0"
-sphinx-copybutton = "^0.5.2"
-sphinx-autodoc-typehints = "^1.23.0"
-numpydoc = "^1.5.0"
-ansys-sphinx-theme = "^0"
-pypandoc = "^1.10"
-sphinx-gallery = "^0.13.0"
-ipykernel = "^6.22.0"
-pyvista = { version = ">=0.40", extras=["jupyter"] }
-
-# Repeat optional dependencies from the main group which are
-# included in the 'examples' extra. This is done s.t. the install
-# flag '--with=dev,test' will install all dependencies.
-ansys-mapdl-core = ">=0.62.1,<1"
-ansys-dpf-composites = { version = ">=0.3,<1" }
-ansys-dpf-core = ">=0.7,<1"
-ansys-mechanical-core = { version = ">=0.10.0", python = "<3.12" }
 
 [tool.poetry.group.test]
 optional = true
 
 [tool.poetry.group.test.dependencies]
-pytest = "^7.3.1"
-pytest-cov = "^4.0.0"
-pytest-cases = "^3.6.14"
-pytest-benchmark = "^4.0.0"
-hypothesis = "^6.68.2"
 
 [tool.poetry.extras]
-# For the examples, we keep an extra to simplify installing these dependencies for the
-# end user.
-examples = ["ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites", "ansys-mechanical-core"]
 
 [tool.poetry.plugins."ansys.tools.local_product_launcher.launcher"]
-"ACP.direct" = "ansys.acp.core._server.direct:DirectLauncher"
-"ACP.docker_compose" = "ansys.acp.core._server.docker_compose:DockerComposeLauncher"
 
 [tool.black]
 line-length = 100
