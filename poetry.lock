@@ -3461,13 +3461,13 @@ histogram = ["pygal", "pygaljs"]
 
 [[package]]
 name = "pytest-cases"
-version = "3.8.0"
+version = "3.8.1"
 description = "Separate test code from test cases in pytest."
 optional = false
 python-versions = "*"
 files = [
-    {file = "pytest-cases-3.8.0.tar.gz", hash = "sha256:4737b910009b734e906d0671b311b918d7a9859ec05d0876bc4e832956d29870"},
-    {file = "pytest_cases-3.8.0-py2.py3-none-any.whl", hash = "sha256:6f6ef033019af6086f3b5251bdc321646c3673a6993a484fb580fe52f30280bb"},
+    {file = "pytest-cases-3.8.1.tar.gz", hash = "sha256:49d7f6f8ad534e5a6e73fb8f5fd38986606f17b46ee55f7ebee07a55c677ca01"},
+    {file = "pytest_cases-3.8.1-py2.py3-none-any.whl", hash = "sha256:595553f5a522ad6525778a35e0fcb4a46f8eb069e0abe108de02e1d4fb136b85"},
 ]
 
 [package.dependencies]
