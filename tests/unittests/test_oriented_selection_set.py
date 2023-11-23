@@ -35,6 +35,7 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
         "draping_mesh_size": 0.0,
         "draping_material_model": "woven",
         "draping_ud_coefficient": 0.0,
+        "rotation_angle": 0.0,
     }
     CREATE_METHOD_NAME = "create_oriented_selection_set"
 
@@ -71,6 +72,7 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
                 ("draping_mesh_size", 0.1),
                 ("draping_material_model", "ud"),
                 ("draping_ud_coefficient", 0.5),
+                ("rotation_angle", 22.35),
             ],
             read_only=[
                 ("id", "some_id"),
