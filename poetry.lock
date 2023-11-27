@@ -688,9 +688,6 @@ files = [
     {file = "Babel-2.13.1.tar.gz", hash = "sha256:33e0952d7dd6374af8dbf6768cc4ddf3ccfefc244f9986d4074704f2fbd18900"},
 ]
 
-[package.dependencies]
-setuptools = {version = "*", markers = "python_version >= \"3.12\""}
-
 [package.extras]
 dev = ["freezegun (>=1.0,<2.0)", "pytest (>=6.0)", "pytest-cov"]
 
@@ -4631,5 +4628,5 @@ examples = ["ansys-dpf-composites", "ansys-dpf-core", "ansys-mapdl-core", "ansys
 
 [metadata]
 lock-version = "2.0"
-python-versions = ">=3.9,<3.13"
-content-hash = "1dbb763dca5a9e57e7bf8de7dffa347219082ca03631cdba2f38af6d020abde9"
+python-versions = ">=3.9,<3.11"
+content-hash = "f73c1f3b305d9c25e9cb7f1abec4f40bc16f1ef042121b3203bcdb7fd5d0245c"
