@@ -114,7 +114,9 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
             self._compose_file = None
 
         self._compose_version = parse_version(
-            subprocess.check_output(["docker-compose", "version", "--short"], text=True)
+            subprocess.check_output(["docker-compose", "version", "--short"], text=True).replace(
+                "-", "+"
+            )
         )
 
     @contextlib.contextmanager

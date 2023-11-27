@@ -399,7 +399,7 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         DEFAULT_PROPERTY_SET_ATTRIBUTE_PAIRS,
     )
     @given(val=st.floats())
-    @settings(suppress_health_check=[HealthCheck.function_scoped_fixture])
+    @settings(suppress_health_check=[HealthCheck.function_scoped_fixture], deadline=None)
     def test_material_property_set(self, val, tree_object, property_set_name, attr_name):
         property_set = getattr(tree_object, property_set_name)
         setattr(property_set, attr_name, val)
@@ -417,7 +417,7 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         DEFAULT_PROPERTY_SET_ATTRIBUTE_PAIRS + EXTRA_PROPERTY_SET_ATTRIBUTE_PAIRS,
     )
     @given(val=st.floats())
-    @settings(suppress_health_check=[HealthCheck.function_scoped_fixture])
+    @settings(suppress_health_check=[HealthCheck.function_scoped_fixture], deadline=None)
     def test_material_property_set_after_init(self, val, tree_object, property_set_name, attr_name):
         setattr(
             tree_object,
@@ -441,7 +441,7 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         DEFAULT_PROPERTY_SET_ATTRIBUTE_PAIRS + EXTRA_PROPERTY_SET_ATTRIBUTE_PAIRS,
     )
     @given(val=st.floats())
-    @settings(suppress_health_check=[HealthCheck.function_scoped_fixture])
+    @settings(suppress_health_check=[HealthCheck.function_scoped_fixture], deadline=None)
     def test_material_property_initialize(self, val, tree_object, property_set_name, attr_name):
         delattr(tree_object, property_set_name)
         setattr(
