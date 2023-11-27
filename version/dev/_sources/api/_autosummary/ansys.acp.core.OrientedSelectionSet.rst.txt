@@ -49,6 +49,7 @@
       OrientedSelectionSet.orientation_point
       OrientedSelectionSet.rosette_selection_method
       OrientedSelectionSet.rosettes
+      OrientedSelectionSet.rotation_angle
       OrientedSelectionSet.selection_rules
       OrientedSelectionSet.status
       OrientedSelectionSet.use_default_draping_mesh_size
