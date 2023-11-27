@@ -125,6 +125,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         draping_mesh_size: float = 0.0,
         draping_material_model: DrapingMaterialType = DrapingMaterialType.WOVEN,
         draping_ud_coefficient: float = 0.0,
+        rotation_angle: float = 0.0,
     ):
         super().__init__(name=name)
         self.element_sets = element_sets
@@ -140,6 +141,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         self.draping_mesh_size = draping_mesh_size
         self.draping_material_model = DrapingMaterialType(draping_material_model)
         self.draping_ud_coefficient = draping_ud_coefficient
+        self.rotation_angle = rotation_angle
 
     def _create_stub(self) -> oriented_selection_set_pb2_grpc.ObjectServiceStub:
         return oriented_selection_set_pb2_grpc.ObjectServiceStub(self._channel)
@@ -186,6 +188,8 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         to_protobuf=draping_material_type_to_pb,
     )
     draping_ud_coefficient = grpc_data_property("properties.draping_ud_coefficient")
+
+    rotation_angle = grpc_data_property("properties.rotation_angle")
 
     selection_rules = define_polymorphic_linked_object_list(
         "properties.selection_rules",
