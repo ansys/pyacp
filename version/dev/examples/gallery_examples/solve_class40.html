@@ -495,7 +495,9 @@ directory).</p>
 <span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_001.png" srcset="../../_images/sphx_glr_solve_class40_001.png" alt="solve class40" class = "sphx-glr-single-img"/></section>
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/sphx_glr_solve_class40_001.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</section>
 <section id="build-composite-lay-up">
 <h2>Build Composite Lay-up<a class="headerlink" href="#build-composite-lay-up" title="Permalink to this heading">#</a></h2>
 <p>Create the model (unit system is MPA)</p>
@@ -598,7 +600,9 @@ directory).</p>
 <span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_002.png" srcset="../../_images/sphx_glr_solve_class40_002.png" alt="solve class40" class = "sphx-glr-single-img"/></section>
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/sphx_glr_solve_class40_002.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</section>
 <section id="modeling-plies">
 <h3>Modeling Plies<a class="headerlink" href="#modeling-plies" title="Permalink to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">ply_material</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span> <span class="n">oss</span><span class="p">):</span>
@@ -659,7 +663,9 @@ directory).</p>
 <span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_003.png" srcset="../../_images/sphx_glr_solve_class40_003.png" alt="solve class40" class = "sphx-glr-single-img"/><p>Show the ply offsets, scaled by a factor of 200</p>
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/sphx_glr_solve_class40_003.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+<p>Show the ply offsets, scaled by a factor of 200</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plotter</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span>
@@ -670,11 +676,15 @@ directory).</p>
 <span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_004.png" srcset="../../_images/sphx_glr_solve_class40_004.png" alt="solve class40" class = "sphx-glr-single-img"/><p>Show the thickness of the entire lay-up</p>
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/sphx_glr_solve_class40_004.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+<p>Show the thickness of the entire lay-up</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">component</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">ElementalDataType</span><span class="o">.</span><span class="n">THICKNESS</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_005.png" srcset="../../_images/sphx_glr_solve_class40_005.png" alt="solve class40" class = "sphx-glr-single-img"/></section>
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/sphx_glr_solve_class40_005.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</section>
 </section>
 <section id="write-out-acp-model">
 <h2>Write out ACP Model<a class="headerlink" href="#write-out-acp-model" title="Permalink to this heading">#</a></h2>
@@ -731,7 +741,7 @@ directory).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     07:37:12  NOV 29, 2023 CP=      0.470\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.582\n\n\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     08:03:53  NOV 29, 2023 CP=      0.442\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.538\n\n\n&#39;
 </pre></div>
 </div>
 <p>Solve the model</p>
@@ -742,7 +752,7 @@ directory).</p>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       0.611   TIME= 07:37:13
+ *** NOTE ***                            CP =       0.561   TIME= 08:03:53
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -767,7 +777,7 @@ directory).</p>
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
  Ansys Mechanical Enterprise
- 00000000  VERSION=LINUX x64     07:37:13  NOV 29, 2023 CP=      0.657
+ 00000000  VERSION=LINUX x64     08:03:53  NOV 29, 2023 CP=      0.600
 
 
 
@@ -783,14 +793,14 @@ directory).</p>
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       0.659   TIME= 07:37:13
+ *** NOTE ***                            CP =       0.602   TIME= 08:03:53
  Poisson&#39;s ratio PR input has been converted to NU input.
 
- *** NOTE ***                            CP =       0.666   TIME= 07:37:13
+ *** NOTE ***                            CP =       0.609   TIME= 08:03:53
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       0.667   TIME= 07:37:13
+ *** NOTE ***                            CP =       0.609   TIME= 08:03:53
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -808,7 +818,7 @@ directory).</p>
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       0.774   TIME= 07:37:13
+ *** NOTE ***                            CP =       0.699   TIME= 08:03:53
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -857,10 +867,10 @@ directory).</p>
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      3.353   0.000844
-        2        88  BEAM188       0.006   0.000072
-        3        22  SHELL181      0.006   0.000278
- Time at end of element matrix formulation CP = 4.17772913.
+        1      3973  SHELL181      3.086   0.000777
+        2        88  BEAM188       0.005   0.000057
+        3        22  SHELL181      0.005   0.000244
+ Time at end of element matrix formulation CP = 3.8227582.
 
  SPARSE MATRIX DIRECT SOLVER.
   Number of equations =       24096,    Maximum wavefront =     66
@@ -868,7 +878,7 @@ directory).</p>
   Memory required for in-core solution     =    58.542 MB
   Memory required for out-of-core solution =    24.642 MB
 
- *** NOTE ***                            CP =       4.283   TIME= 07:37:16
+ *** NOTE ***                            CP =       3.903   TIME= 08:03:56
  The Sparse Matrix Solver is currently running in the in-core memory
  mode.  This memory mode uses the most amount of memory in order to
  avoid using the hard drive as much as possible, which most often
@@ -883,16 +893,16 @@ directory).</p>
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      7.537   0.001897
-        2        88  BEAM188       0.014   0.000158
-        3        22  SHELL181      0.011   0.000507
+        1      3973  SHELL181      6.819   0.001716
+        2        88  BEAM188       0.010   0.000113
+        3        22  SHELL181      0.010   0.000436
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      0.089   0.000022
-        2        88  BEAM188       0.002   0.000024
-        3        22  SHELL181      0.000   0.000022
+        1      3973  SHELL181      0.068   0.000017
+        2        88  BEAM188       0.002   0.000018
+        3        22  SHELL181      0.000   0.000017
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
  *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -914,7 +924,9 @@ directory).</p>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmp_dir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_006.png" srcset="../../_images/sphx_glr_solve_class40_006.png" alt="solve class40" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;file.rst&#39;]
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/sphx_glr_solve_class40_006.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;file.rst&#39;]
 </pre></div>
 </div>
 </section>
@@ -977,7 +989,9 @@ automatically loads the composites plugin.</p>
 <span class="n">irf_field</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_solve_class40_007.png" srcset="../../_images/sphx_glr_solve_class40_007.png" alt="solve class40" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  45.098 seconds)</p>
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/sphx_glr_solve_class40_007.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  44.626 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-solve-class40-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/9534ac29e0bc2250f1fc6a51c9f799b1/solve_class40.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">solve_class40.py</span></code></a></p>
