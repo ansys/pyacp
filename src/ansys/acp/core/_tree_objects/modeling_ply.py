@@ -213,11 +213,18 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
             "``auto_draping_direction`` is ``False``."
         ),
     )
+    use_default_draping_mesh_size = grpc_data_property(
+        "properties.use_default_draping_mesh_size",
+        doc=(
+            "If ``True``, the mesh size is automatically determined based on the average "
+            "element size."
+        ),
+    )
     draping_mesh_size = grpc_data_property(
         "properties.draping_mesh_size",
         doc=(
-            "Defines the mesh size for the draping algorithm.  If set to ``-1.``, the "
-            "mesh size is automatically determined based on the average element size."
+            "Defines the mesh size for the draping algorithm, unless ``use_default_draping_mesh_size`` "
+            "is ``True``."
         ),
     )
     draping_thickness_correction = grpc_data_property(
