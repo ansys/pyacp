@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1701245175074,
+  "lastUpdate": 1701246839422,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -9382,6 +9382,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00012467699676407264",
             "extra": "mean: 38.55105122222455 msec\nrounds: 27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7770a9567130d7c2f73080972c91f3dfd679ede4",
+          "message": "Update supported Python versions (#293)\n\n* Drop support for Python 3.8\r\n* Run `pyupgrade` with `--py39-plus`\r\n* Disallow poetry version `1.7.0`, to avoid https://github.com/python-poetry/poetry/issues/8628\r\n* Remove outdated `poetry config installer.modern-installation false`\r\n* Switch dependabot to weekly schedule\r\n* Fix type hints for paths\r\n* Re-lock dependencies",
+          "timestamp": "2023-11-29T08:28:49Z",
+          "tree_id": "c01860651b761e50ab10631cb131a7e40619cd65",
+          "url": "https://github.com/ansys-internal/pyacp/commit/7770a9567130d7c2f73080972c91f3dfd679ede4"
+        },
+        "date": 1701246834206,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 6.748710477491311,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00514835712317747",
+            "extra": "mean: 148.17645583334146 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.107714582301116,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0013708391885385897",
+            "extra": "mean: 474.44754066665 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.3752616550354054,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.664807306 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.041187118649925455,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.279435725999974 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 3.0205272616278473,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004474146555476303",
+            "extra": "mean: 331.06802666666607 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.6595925253988365,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.5160875259999784 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.07706057866844966,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 12.976803668999992 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1082.696344812999,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002473274839171471",
+            "extra": "mean: 923.6200018507661 usec\nrounds: 1621"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 316.6402988097534,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003520838770835406",
+            "extra": "mean: 3.1581577068963944 msec\nrounds: 348"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 47.009302455411564,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001936957643916554",
+            "extra": "mean: 21.27238541666306 msec\nrounds: 48"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.964604134952438,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019235834451426933",
+            "extra": "mean: 201.42592899999272 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 780.4267496369987,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00029234660327463773",
+            "extra": "mean: 1.2813502362202882 msec\nrounds: 1016"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 201.64009749753106,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002809131583162571",
+            "extra": "mean: 4.959331067632737 msec\nrounds: 207"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.69659737582439,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00025973289005684977",
+            "extra": "mean: 38.91565818518875 msec\nrounds: 27"
           }
         ]
       }
