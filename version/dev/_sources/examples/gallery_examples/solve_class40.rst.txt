@@ -666,18 +666,6 @@ Import PyMAPDL and connect to its server
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- .. code-block:: none
-
-    /home/runner/.cache/pypoetry/virtualenvs/ansys-acp-core-O77fA6pn-py3.8/lib/python3.8/site-packages/ansys/mapdl/core/__init__.py:28: UserWarning: Support for Python 3.8 will be dropped in the next minor release.
-      warn(
-    /home/runner/.cache/pypoetry/virtualenvs/ansys-acp-core-O77fA6pn-py3.8/lib/python3.8/site-packages/ansys/mapdl/core/__init__.py:33: UserWarning: Python 3.8 is not being tested or officially supported. It is recommended you use a newer version of Python. The mininimum supported and tested version is 3.8.
-
-    **This warning is shown only the first time you run PyMAPDL.**
-
-      warn(
-
 
 
 
@@ -700,7 +688,7 @@ Load the CDB file into PyMAPDL
  .. code-block:: none
 
 
-    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     08:03:53  NOV 29, 2023 CP=      0.442\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.538\n\n\n'
+    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     08:32:12  NOV 29, 2023 CP=      0.445\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.541\n\n\n'
 
 
 
@@ -727,7 +715,7 @@ Solve the model
 
     *****  MAPDL SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       0.561   TIME= 08:03:53
+     *** NOTE ***                            CP =       0.564   TIME= 08:32:12
      There is no title defined for this analysis.                            
 
      *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -752,7 +740,7 @@ Solve the model
 
      *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
      Ansys Mechanical Enterprise                       
-     00000000  VERSION=LINUX x64     08:03:53  NOV 29, 2023 CP=      0.600
+     00000000  VERSION=LINUX x64     08:32:12  NOV 29, 2023 CP=      0.603
 
                                                                                
 
@@ -768,14 +756,14 @@ Solve the model
        ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
        GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  
 
-     *** NOTE ***                            CP =       0.602   TIME= 08:03:53
+     *** NOTE ***                            CP =       0.605   TIME= 08:32:12
      Poisson's ratio PR input has been converted to NU input.                
 
-     *** NOTE ***                            CP =       0.609   TIME= 08:03:53
+     *** NOTE ***                            CP =       0.611   TIME= 08:32:12
      Present time 0 is less than or equal to the previous time.  Time will   
      default to 1.                                                           
 
-     *** NOTE ***                            CP =       0.609   TIME= 08:03:53
+     *** NOTE ***                            CP =       0.612   TIME= 08:32:12
      The conditions for direct assembly have been met.  No .emat or .erot    
      files will be produced.                                                 
 
@@ -793,7 +781,7 @@ Solve the model
 
      SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           
 
-     *** NOTE ***                            CP =       0.699   TIME= 08:03:53
+     *** NOTE ***                            CP =       0.699   TIME= 08:32:12
      Predictor is ON by default for structural elements with rotational      
      degrees of freedom.  Use the PRED,OFF command to turn the predictor     
      OFF if it adversely affects the convergence.                            
@@ -842,10 +830,10 @@ Solve the model
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      3.086   0.000777
-            2        88  BEAM188       0.005   0.000057
-            3        22  SHELL181      0.005   0.000244
-     Time at end of element matrix formulation CP = 3.8227582.               
+            1      3973  SHELL181      3.171   0.000798
+            2        88  BEAM188       0.005   0.000056
+            3        22  SHELL181      0.005   0.000247
+     Time at end of element matrix formulation CP = 3.90606928.              
 
      SPARSE MATRIX DIRECT SOLVER.
       Number of equations =       24096,    Maximum wavefront =     66
@@ -853,7 +841,7 @@ Solve the model
       Memory required for in-core solution     =    58.542 MB
       Memory required for out-of-core solution =    24.642 MB
 
-     *** NOTE ***                            CP =       3.903   TIME= 08:03:56
+     *** NOTE ***                            CP =       3.985   TIME= 08:32:16
      The Sparse Matrix Solver is currently running in the in-core memory     
      mode.  This memory mode uses the most amount of memory in order to      
      avoid using the hard drive as much as possible, which most often        
@@ -868,9 +856,9 @@ Solve the model
        *** ELEMENT RESULT CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      6.819   0.001716
+            1      3973  SHELL181      6.946   0.001748
             2        88  BEAM188       0.010   0.000113
-            3        22  SHELL181      0.010   0.000436
+            3        22  SHELL181      0.010   0.000443
 
        *** NODAL LOAD CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
@@ -1066,7 +1054,7 @@ Query and plot the results
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  44.626 seconds)
+   **Total running time of the script:** ( 0 minutes  49.300 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_solve_class40.py:
