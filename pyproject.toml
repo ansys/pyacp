@@ -40,13 +40,13 @@ ansys-api-acp = { git = "https://github.com/ansys-internal/ansys-api-acp.git",  
 ansys-tools-path = "^0.3.0"
 ansys-tools-local-product-launcher = { git = "https://github.com/ansys-internal/ansys-tools-local-product-launcher.git", branch = "main" }
 ansys-tools-filetransfer = { git = "https://github.com/ansys-internal/ansys-tools-filetransfer.git", branch = "main" }
+pyvista = ">=0.42.0"
 
 # Dependencies for the examples. Update also the 'dev' group when
 # these are updated.
 ansys-mapdl-core = { version = ">=0.62.1,<1", optional = true }
 ansys-dpf-composites = { version = ">=0.3,<1", optional = true }
 ansys-dpf-core = { version = ">=0.7,<1", optional = true }
-pyvista = ">=0.40"
 ansys-mechanical-core = { version = ">=0.10.0", optional = true, python = "<3.12" }
 
 
@@ -68,7 +68,7 @@ ansys-sphinx-theme = "^0"
 pypandoc = "^1.10"
 sphinx-gallery = "^0.13.0"
 ipykernel = "^6.22.0"
-pyvista = { version = ">=0.40", extras=["jupyter"] }
+pyvista = { version = ">=0.42.0", extras=["jupyter", "trame"] }
 
 # Repeat optional dependencies from the main group which are
 # included in the 'examples' extra. This is done s.t. the install
