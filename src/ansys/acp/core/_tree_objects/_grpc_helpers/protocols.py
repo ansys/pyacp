@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
 import textwrap
-from typing import Any, Iterable, Protocol
+from typing import Any, Protocol
 
 from google.protobuf.message import Message
 import grpc

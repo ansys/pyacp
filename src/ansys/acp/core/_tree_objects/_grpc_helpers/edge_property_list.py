@@ -1,17 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Iterable, Iterator, MutableSequence
 import sys
-from typing import (
-    Any,
-    Callable,
-    Iterable,
-    Iterator,
-    MutableSequence,
-    Protocol,
-    TypeVar,
-    cast,
-    overload,
-)
+from typing import Any, Callable, Protocol, TypeVar, cast, overload
 
 from google.protobuf.message import Message
 from typing_extensions import Self

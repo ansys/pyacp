@@ -1,4 +1,5 @@
 import collections
+from collections.abc import Iterator
 import contextlib
 import copy
 import dataclasses
@@ -7,7 +8,7 @@ import math
 import os
 import pathlib
 import subprocess
-from typing import Dict, Iterator, Optional
+from typing import Optional
 import uuid
 
 import grpc
@@ -70,7 +71,7 @@ class DockerComposeLaunchConfig:
             METADATA_KEY_NOPROMPT: True,
         },
     )
-    environment_variables: Dict[str, str] = dataclasses.field(
+    environment_variables: dict[str, str] = dataclasses.field(
         default_factory=dict,
         metadata={
             METADATA_KEY_DOC: (
@@ -90,7 +91,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
 
     def __init__(self, *, config: DockerComposeLaunchConfig):
         self._compose_name = f"pyacp_compose_{uuid.uuid4().hex}"
-        self._urls: Dict[str, str]
+        self._urls: dict[str, str]
 
         try:
             import ansys.tools.filetransfer  # noqa
@@ -186,5 +187,5 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
         return True
 
     @property
-    def urls(self) -> Dict[str, str]:
+    def urls(self) -> dict[str, str]:
         return self._urls

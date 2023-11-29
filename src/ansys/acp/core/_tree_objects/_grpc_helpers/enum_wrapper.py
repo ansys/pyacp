@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Callable, Dict
+from typing import Any, Callable
 
 __all__ = ["wrap_to_string_enum"]
 
@@ -26,8 +26,8 @@ def wrap_to_string_enum(
         - a conversion function from protobuf to string enum
     """
     fields = []
-    to_pb_conversion_dict: Dict[Any, int] = {}
-    from_pb_conversion_dict: Dict[int, Any] = {}
+    to_pb_conversion_dict: dict[Any, int] = {}
+    from_pb_conversion_dict: dict[int, Any] = {}
     for key, pb_value in proto_enum.items():
         enum_key = key_converter(key)
         enum_value = value_converter(key)

@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
 import dataclasses
-from typing import Iterable, cast
+from typing import cast
 
 from grpc import Channel
 import numpy as np

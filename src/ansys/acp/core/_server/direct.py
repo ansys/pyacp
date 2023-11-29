@@ -1,7 +1,7 @@
 import dataclasses
 import os
 import subprocess
-from typing import Dict, Optional, TextIO, Union
+from typing import Optional, TextIO, Union
 
 import grpc
 
@@ -108,5 +108,5 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         return check_grpc_health(channel=channel, timeout=timeout)
 
     @property
-    def urls(self) -> Dict[str, str]:
+    def urls(self) -> dict[str, str]:
         return {ServerKey.MAIN: self._url}

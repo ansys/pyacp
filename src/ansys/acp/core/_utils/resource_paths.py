@@ -1,7 +1,5 @@
 """Helper functions for dealing with Resource Paths."""
 
-from typing import Tuple
-
 __all__ = ["join"]
 
 
@@ -14,7 +12,7 @@ def join(*parts: str) -> str:
     return "/".join(parts).replace("//", "/").strip("/")
 
 
-def to_parts(path: str) -> Tuple[str, ...]:
+def to_parts(path: str) -> tuple[str, ...]:
     """Returns a tuple representation of the given path."""
     return tuple(path.split("/"))
 

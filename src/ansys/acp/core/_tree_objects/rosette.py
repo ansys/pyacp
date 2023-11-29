@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Iterable
+from collections.abc import Iterable
 
 from ansys.api.acp.v0 import rosette_pb2, rosette_pb2_grpc
 

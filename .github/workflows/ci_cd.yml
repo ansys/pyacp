@@ -19,7 +19,7 @@ on:
         required: false
 
 env:
-  MAIN_PYTHON_VERSION: "3.8"
+  MAIN_PYTHON_VERSION: "3.9"
   PACKAGE_NAME: "ansys-acp-core"
   DOCUMENTATION_CNAME: "acp.docs.pyansys.com"
 
@@ -50,17 +50,14 @@ jobs:
             pip-${{ runner.os }}
 
       # pre-commit needs all dev dependencies, since it also checks the test and example files
-      # TODO: remove 'poetry config installer.modern-installation false' once we use a pydata-sphinx-theme
-      # version where https://github.com/pydata/pydata-sphinx-theme/issues/1253 is resolved.
-      # The same needs to be removed in the README.
       - name: Install library, with all optional groups
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-api-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
-          pip install poetry
-          poetry config installer.modern-installation false
+          pip install -U pip
+          pip install 'poetry!=1.7.0'
           poetry install --with dev,test
 
       - name: Install custom API branch if needed
@@ -104,7 +101,8 @@ jobs:
         run: |
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
-          pip install poetry
+          pip install -U pip
+          pip install 'poetry!=1.7.0'
           poetry build
 
       - name: Validate packages
@@ -125,7 +123,7 @@ jobs:
     timeout-minutes: 30
     strategy:
       matrix:
-        python-version: ["3.8", "3.10"]
+        python-version: ["3.9", "3.10"]
 
     steps:
       - uses: actions/checkout@v4
@@ -149,7 +147,8 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-api-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
-          pip install poetry
+          pip install -U pip
+          pip install 'poetry!=1.7.0'
           poetry install --with test
 
       - name: Install custom API branch if needed
@@ -176,7 +175,7 @@ jobs:
       - name: Benchmarks
         working-directory: tests/benchmarks
         run: |
-          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == '3.8' && github.ref == 'refs/heads/main') && ' ' || '--validate-benchmarks-only' }}
+          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == '3.9' && github.ref == 'refs/heads/main') && ' ' || '--validate-benchmarks-only' }}
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
@@ -190,7 +189,7 @@ jobs:
           benchmark-data-dir-path: benchmarks
           auto-push: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-        if: matrix.python-version == '3.8' && github.ref == 'refs/heads/main'
+        if: matrix.python-version == '3.9' && github.ref == 'refs/heads/main'
 
   docs:
     name: Build Documentation
@@ -230,7 +229,8 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-api-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
-          pip install poetry
+          pip install -U pip
+          pip install 'poetry!=1.7.0'
           poetry install --with dev
 
       - name: Install custom API branch if needed

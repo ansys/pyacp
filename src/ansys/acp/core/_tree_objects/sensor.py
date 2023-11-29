@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Iterable, Union, get_args
+from collections.abc import Iterable
+from typing import Union, get_args
 
 from ansys.api.acp.v0 import sensor_pb2, sensor_pb2_grpc
 

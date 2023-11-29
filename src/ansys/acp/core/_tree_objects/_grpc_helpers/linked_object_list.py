@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+from collections.abc import Iterable, Iterator, MutableSequence
 from functools import partial
 import sys
-from typing import Any, Callable, Iterable, Iterator, List, MutableSequence, TypeVar, cast, overload
+from typing import Any, Callable, TypeVar, cast, overload
 
 from grpc import Channel
 import numpy as np
@@ -31,7 +32,7 @@ class LinkedObjectList(MutableSequence[ValueT]):
         setter = grpc_data_setter(attribute_name, to_protobuf=lambda x: x)
 
         self._get_resourcepath_list = cast(
-            Callable[[], List[ResourcePath]], lambda: getter(parent_object)
+            Callable[[], list[ResourcePath]], lambda: getter(parent_object)
         )
 
         def set_resourcepath_list(value: list[ResourcePath]) -> None:
