@@ -470,7 +470,7 @@ tests = ["grpcio-health-checking (>=1.47.0,<2.0.0)", "pytest (>=7.1.0)", "pytest
 type = "git"
 url = "https://github.com/ansys-internal/ansys-tools-filetransfer.git"
 reference = "main"
-resolved_reference = "88fe93e485ce87a926a5d22a03284e7f2add19e9"
+resolved_reference = "e658608add9cbf155f552ce6e053ae314210148b"
 
 [[package]]
 name = "ansys-tools-local-product-launcher"
@@ -1538,13 +1538,13 @@ uritemplate = ">=3.0.1,<5"
 
 [[package]]
 name = "google-auth"
-version = "2.25.1"
+version = "2.25.2"
 description = "Google Authentication Library"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "google-auth-2.25.1.tar.gz", hash = "sha256:d5d66b8f4f6e3273740d7bb73ddefa6c2d1ff691704bd407d51c6b5800e7c97b"},
-    {file = "google_auth-2.25.1-py2.py3-none-any.whl", hash = "sha256:dfd7b44935d498e106c08883b2dac0ad36d8aa10402a6412e9a1c9d74b4773f1"},
+    {file = "google-auth-2.25.2.tar.gz", hash = "sha256:42f707937feb4f5e5a39e6c4f343a17300a459aaf03141457ba505812841cc40"},
+    {file = "google_auth-2.25.2-py2.py3-none-any.whl", hash = "sha256:473a8dfd0135f75bb79d878436e568f2695dce456764bf3a02b6f8c540b1d256"},
 ]
 
 [package.dependencies]
@@ -2430,6 +2430,17 @@ python-versions = ">=3.7"
 files = [
     {file = "mistune-3.0.2-py3-none-any.whl", hash = "sha256:71481854c30fdbc938963d3605b72501f5c10a9320ecd412c121c163a1c7d205"},
     {file = "mistune-3.0.2.tar.gz", hash = "sha256:fc7f93ded930c92394ef2cb6f04a8aabab4117a91449e72dcc8dfa646a508be8"},
+]
+
+[[package]]
+name = "more-itertools"
+version = "10.1.0"
+description = "More routines for operating on iterables, beyond itertools"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "more-itertools-10.1.0.tar.gz", hash = "sha256:626c369fa0eb37bac0291bce8259b332fd59ac792fa5497b59837309cd5b114a"},
+    {file = "more_itertools-10.1.0-py3-none-any.whl", hash = "sha256:64e0735fcfdc6f3464ea133afe8ea4483b1c5fe3a3d69852e6503b43a0b222e6"},
 ]
 
 [[package]]
@@ -4251,16 +4262,17 @@ test = ["Pillow", "pixelmatch", "pytest", "pytest-xprocess", "seleniumbase"]
 
 [[package]]
 name = "trame-server"
-version = "2.12.1"
+version = "2.13.0"
 description = "Internal server side implementation of trame"
 optional = false
 python-versions = "*"
 files = [
-    {file = "trame-server-2.12.1.tar.gz", hash = "sha256:9b0cd384307525ea4a5414e40cb47b8490a5d76ef96f984b7f7d80c2b84daa24"},
-    {file = "trame_server-2.12.1-py3-none-any.whl", hash = "sha256:3ed69f2769f26c3e51419d5e6b84ca61320868e17307cace34044111bf71b71d"},
+    {file = "trame-server-2.13.0.tar.gz", hash = "sha256:46bb16d48490917f73e75df051b3bf777244ec4bc3d811c9ac311c98f1d323a9"},
+    {file = "trame_server-2.13.0-py3-none-any.whl", hash = "sha256:81f43c221cdbd41347d1910bbe5584fe58786df9ba7a84f7d78d2e3e6d111abd"},
 ]
 
 [package.dependencies]
+more-itertools = "*"
 wslink = ">=1.12.2"
 
 [[package]]
@@ -4631,4 +4643,4 @@ examples = ["ansys-dpf-composites", "ansys-dpf-core", "ansys-mapdl-core", "ansys
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.11"
-content-hash = "91d063b7ff789d86d81c4de1fe470163101326685670ad0ba459b98a5c406f82"
+content-hash = "0356acad15dcdb1ad954b517cae9b39db2decfe08526eb9e8183f07116e35f9c"

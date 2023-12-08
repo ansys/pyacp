@@ -106,9 +106,8 @@ priority = "primary"
 
 [[tool.poetry.source]]
 name = "pyansys_private_pypi"
-url = "https://pkgs.dev.azure.com/pyansys/_packaging/pyansys/pypi/simple"
+url = "https://pkgs.dev.azure.com/pyansys/_packaging/pyansys/pypi/simple/"
 priority = "explicit"
-
 
 [tool.black]
 line-length = 100

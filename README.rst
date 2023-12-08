@@ -130,11 +130,10 @@ You will need to follow these steps:
         pipx ensurepath
         pipx install poetry
 
-3. Set up PyAnsys internal PyPI instance
+3. Set up credentials for the PyAnsys internal PyPI instance
 
     .. code-block:: bash
 
-        poetry source add pyansys_private_pypi https://pkgs.dev.azure.com/pyansys/_packaging/pyansys/pypi/simple/
         poetry config http-basic.pyansys_private_pypi TOKEN <TOKEN>
 
     Where `<TOKEN>` should be replaced with the PAT for the internal PyPI instance. Reach out to a team member or the PyAnsys team for access instructions.

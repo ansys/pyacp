@@ -56,7 +56,6 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry source add pyansys_private_pypi https://pkgs.dev.azure.com/pyansys/_packaging/pyansys/pypi/simple/
           poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
           poetry install --with dev,test
 
@@ -103,7 +102,6 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry source add pyansys_private_pypi https://pkgs.dev.azure.com/pyansys/_packaging/pyansys/pypi/simple/
           poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
           poetry build
 
@@ -149,7 +147,6 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry source add pyansys_private_pypi https://pkgs.dev.azure.com/pyansys/_packaging/pyansys/pypi/simple/
           poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
           poetry install --with test
 
@@ -232,7 +229,6 @@ jobs:
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry source add pyansys_private_pypi https://pkgs.dev.azure.com/pyansys/_packaging/pyansys/pypi/simple/
           poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
           poetry install --with dev
 
