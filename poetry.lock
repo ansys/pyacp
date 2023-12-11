@@ -483,6 +483,7 @@ develop = false
 
 [package.dependencies]
 appdirs = "^1.4.4"
+backports-entry-points-selectable = "^1.3.0"
 click = "^8.1.3"
 grpcio = "^1.51.1"
 grpcio-health-checking = "^1.43"
@@ -491,7 +492,7 @@ grpcio-health-checking = "^1.43"
 type = "git"
 url = "https://github.com/ansys-internal/ansys-tools-local-product-launcher.git"
 reference = "main"
-resolved_reference = "9b0b6ab7d0d9a0096ff408829d11c2d263c1e1c4"
+resolved_reference = "9be142722ecb45b2bddff2b7cb1cc28506249a91"
 
 [[package]]
 name = "ansys-tools-path"
@@ -695,6 +696,21 @@ setuptools = {version = "*", markers = "python_version >= \"3.12\""}
 
 [package.extras]
 dev = ["freezegun (>=1.0,<2.0)", "pytest (>=6.0)", "pytest-cov"]
+
+[[package]]
+name = "backports-entry-points-selectable"
+version = "1.3.0"
+description = "Compatibility shim providing selectable entry points for older implementations"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "backports.entry_points_selectable-1.3.0-py3-none-any.whl", hash = "sha256:66f5da003eb4b283c7b60581bc8bb0baf0d810eb3e3068da786d3821b4d5746a"},
+    {file = "backports.entry_points_selectable-1.3.0.tar.gz", hash = "sha256:17a8b44ae700fba548686dd274ddc91c060371565cd63806c20a1d33911746e6"},
+]
+
+[package.extras]
+docs = ["furo", "jaraco.packaging (>=9.3)", "rst.linker (>=1.9)", "sphinx (<7.2.5)", "sphinx (>=3.5)", "sphinx-lint"]
+testing = ["pytest", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-mypy (>=0.9.1)", "pytest-ruff"]
 
 [[package]]
 name = "beautifulsoup4"
@@ -1691,13 +1707,13 @@ pyparsing = {version = ">=2.4.2,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.0.2 || >3.0
 
 [[package]]
 name = "hypothesis"
-version = "6.91.1"
+version = "6.92.0"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "hypothesis-6.91.1-py3-none-any.whl", hash = "sha256:aa4c8fb6e8d7ddf78d10169793f2eb3cd1f1201b4ce2e5c9816379c517d73908"},
-    {file = "hypothesis-6.91.1.tar.gz", hash = "sha256:f0408274b58e892134a56cfca6f80e5ef4be24c22ae55c9097b308ae824d2e93"},
+    {file = "hypothesis-6.92.0-py3-none-any.whl", hash = "sha256:d4577f99b912acc725bea684899b7cb62591a0412e2446c618be0b4855995276"},
+    {file = "hypothesis-6.92.0.tar.gz", hash = "sha256:65b72c7dc7da3e16144db54fe093c6b74a33631b933a8063eb754c5a61361ae6"},
 ]
 
 [package.dependencies]
@@ -2810,13 +2826,13 @@ testing = ["docopt", "pytest (<6.0.0)"]
 
 [[package]]
 name = "pathspec"
-version = "0.11.2"
+version = "0.12.1"
 description = "Utility library for gitignore style pattern matching of file paths."
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "pathspec-0.11.2-py3-none-any.whl", hash = "sha256:1d6ed233af05e679efb96b1851550ea95bbb64b7c490b0f5aa52996c11e92a20"},
-    {file = "pathspec-0.11.2.tar.gz", hash = "sha256:e0d8d0ac2f12da61956eb2306b69f9469b42f4deb0f3cb6ed47b9cce9996ced3"},
+    {file = "pathspec-0.12.1-py3-none-any.whl", hash = "sha256:a0d503e138a4c123b27490a4f7beda6a01c6f288df0e4a8b79c7eb0dc7b4cc08"},
+    {file = "pathspec-0.12.1.tar.gz", hash = "sha256:a482d51503a1ab33b1c67a6c3813a26953dbdc71c31dacaef9a838c4e29f5712"},
 ]
 
 [[package]]
@@ -2953,13 +2969,13 @@ xxhash = ["xxhash (>=1.4.3)"]
 
 [[package]]
 name = "pre-commit"
-version = "3.5.0"
+version = "3.6.0"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "pre_commit-3.5.0-py2.py3-none-any.whl", hash = "sha256:841dc9aef25daba9a0238cd27984041fa0467b4199fc4852e27950664919f660"},
-    {file = "pre_commit-3.5.0.tar.gz", hash = "sha256:5804465c675b659b0862f07907f96295d490822a450c4c40e747d0b1c6ebcb32"},
+    {file = "pre_commit-3.6.0-py2.py3-none-any.whl", hash = "sha256:c255039ef399049a5544b6ce13d135caba8f2c28c3b4033277a788f434308376"},
+    {file = "pre_commit-3.6.0.tar.gz", hash = "sha256:d30bad9abf165f7785c15a21a1f46da7d0677cb00ee7ff4c579fd38922efe15d"},
 ]
 
 [package.dependencies]
@@ -4251,13 +4267,13 @@ trame-server = ">=2.12.0"
 
 [[package]]
 name = "trame-client"
-version = "2.13.0"
+version = "2.14.0"
 description = "Internal client of trame"
 optional = false
 python-versions = "*"
 files = [
-    {file = "trame-client-2.13.0.tar.gz", hash = "sha256:506ac725b062d2a6c9305481c64d5e980527274a2a2370c7c564ebcb7e4ee587"},
-    {file = "trame_client-2.13.0-py3-none-any.whl", hash = "sha256:8407c26b90c5656e20c5cf6e0aa11773c439c2abd0355431cc9f78b58a7fddc2"},
+    {file = "trame-client-2.14.0.tar.gz", hash = "sha256:c9f7c96c640f77ef12c36fa2e93c133da091162f200d3d582a7667c08554a9ae"},
+    {file = "trame_client-2.14.0-py3-none-any.whl", hash = "sha256:7cd435e110992c3befa8e43ba509accea8262ad1bc26b9117638fb23aed7ee57"},
 ]
 
 [package.extras]
@@ -4265,13 +4281,13 @@ test = ["Pillow", "pixelmatch", "pytest", "pytest-xprocess", "seleniumbase"]
 
 [[package]]
 name = "trame-server"
-version = "2.13.0"
+version = "2.13.1"
 description = "Internal server side implementation of trame"
 optional = false
 python-versions = "*"
 files = [
-    {file = "trame-server-2.13.0.tar.gz", hash = "sha256:46bb16d48490917f73e75df051b3bf777244ec4bc3d811c9ac311c98f1d323a9"},
-    {file = "trame_server-2.13.0-py3-none-any.whl", hash = "sha256:81f43c221cdbd41347d1910bbe5584fe58786df9ba7a84f7d78d2e3e6d111abd"},
+    {file = "trame-server-2.13.1.tar.gz", hash = "sha256:136783cfdbc23fe736af2e29d218f3223d0e57e132ec63f7617349963eca19b1"},
+    {file = "trame_server-2.13.1-py3-none-any.whl", hash = "sha256:88724d4c9f9246bfca6b2f90460b61736338525d485b9f42c6fa59ea52c07341"},
 ]
 
 [package.dependencies]
@@ -4330,13 +4346,13 @@ files = [
 
 [[package]]
 name = "typing-extensions"
-version = "4.8.0"
+version = "4.9.0"
 description = "Backported and Experimental Type Hints for Python 3.8+"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "typing_extensions-4.8.0-py3-none-any.whl", hash = "sha256:8f92fc8806f9a6b641eaa5318da32b44d401efaac0f6678c9bc448ba3605faa0"},
-    {file = "typing_extensions-4.8.0.tar.gz", hash = "sha256:df8e4339e9cb77357558cbdbceca33c303714cf861d1eef15e1070055ae8b7ef"},
+    {file = "typing_extensions-4.9.0-py3-none-any.whl", hash = "sha256:af72aea155e91adfc61c3ae9e0e342dbc0cba726d6cba4b6c72c1f34e47291cd"},
+    {file = "typing_extensions-4.9.0.tar.gz", hash = "sha256:23478f88c37f27d76ac8aee6c905017a143b0b1b886c3c9f66bc2fd94f9f5783"},
 ]
 
 [[package]]
