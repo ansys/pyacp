@@ -14,7 +14,6 @@ on:
       api_branch:
         description: "Branch of the 'ansys-api-acp' repository used during the build."
         required: false
-        default: 'main' # TODO: revert
       docker_image_suffix:
         description: "Suffix of the 'pyacp' docker image used for testing. For example, ':latest', or '@sha256:<hash>' (without quotes)."
         required: false
