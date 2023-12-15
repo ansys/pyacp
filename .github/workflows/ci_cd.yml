@@ -52,17 +52,17 @@ jobs:
       # pre-commit needs all dev dependencies, since it also checks the test and example files
       - name: Install library, with all optional groups
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-api-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
+          poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
           poetry install --with dev,test
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
         run: |
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
           poetry run pip install --force-reinstall git+https://github.com/ansys-internal/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
 
       - name: Run pre-commit
@@ -99,10 +99,10 @@ jobs:
 
       - name: Build packages
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
+          poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
           poetry build
 
       - name: Validate packages
@@ -143,17 +143,17 @@ jobs:
 
       - name: Install library, with test group
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-api-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
+          poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
           poetry install --with test
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
         run: |
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
           poetry run pip install --force-reinstall git+https://github.com/ansys-internal/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
 
       - name: Login in Github Container registry
@@ -225,17 +225,17 @@ jobs:
 
       - name: Install library, with dev group
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-api-tools-filetransfer"
           git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
+          poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
           poetry install --with dev
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
         run: |
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
           poetry run pip install --force-reinstall git+https://github.com/ansys-internal/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
 
       - name: Configure Local Product Launcher for ACP

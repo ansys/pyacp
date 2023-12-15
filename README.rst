@@ -130,7 +130,15 @@ You will need to follow these steps:
         pipx ensurepath
         pipx install poetry
 
-3.  Install the project and all its development dependencies using poetry. This also takes care of
+3. Set up credentials for the PyAnsys internal PyPI instance
+
+    .. code-block:: bash
+
+        poetry config http-basic.pyansys_private_pypi TOKEN <TOKEN>
+
+    Where `<TOKEN>` should be replaced with the PAT for the internal PyPI instance. Reach out to a team member or the PyAnsys team for access instructions.
+
+4.  Install the project and all its development dependencies using poetry. This also takes care of
     creating a new virtual environment:
 
     .. code-block:: bash
@@ -139,7 +147,7 @@ You will need to follow these steps:
 
     This step installs PyACP in an editable mode (no build step is needed, no re-install when changing the code).
 
-4.  Activate your development virtual environment with:
+5.  Activate your development virtual environment with:
 
     .. code-block:: bash
 
