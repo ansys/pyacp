@@ -489,6 +489,14 @@ pipx<span class="w"> </span>install<span class="w"> </span>poetry
 </pre></div>
 </div>
 </li>
+<li><p>Set up credentials for the PyAnsys internal PyPI instance</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>config<span class="w"> </span>http-basic.pyansys_private_pypi<span class="w"> </span>TOKEN<span class="w"> </span>&lt;TOKEN&gt;
+</pre></div>
+</div>
+<p>Where <cite>&lt;TOKEN&gt;</cite> should be replaced with the PAT for the internal PyPI instance. Reach out to a team member or the PyAnsys team for access instructions.</p>
+</div></blockquote>
+</li>
 <li><p>Install the project and all its development dependencies using poetry. This also takes care of
 creating a new virtual environment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>install<span class="w"> </span>--with<span class="w"> </span>dev,test
