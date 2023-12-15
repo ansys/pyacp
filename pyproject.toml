@@ -69,6 +69,7 @@ numpydoc = "^1.5.0"
 ansys-sphinx-theme = "^0"
 pypandoc = "^1.10"
 sphinx-gallery = "^0.13.0"
+sphinx-design = "^0.5.0" # undeclared indirect dependency via PyVista
 ipykernel = "^6.22.0"
 pyvista = { version = ">=0.42.0", extras=["jupyter", "trame"] }
 
