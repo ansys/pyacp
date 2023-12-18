@@ -1,9 +1,16 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
+import dataclasses
 
-from ansys.api.acp.v0 import cad_geometry_pb2, cad_geometry_pb2_grpc
+import numpy as np
+import numpy.typing as npt
+import pyvista as pv
+from typing_extensions import Self
 
+from ansys.api.acp.v0 import base_pb2, cad_geometry_pb2, cad_geometry_pb2_grpc
+
+from .._utils.array_conversions import to_numpy
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -12,6 +19,37 @@ from ._grpc_helpers.property_helper import (
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
+
+
+@dataclasses.dataclass
+class TriangleMesh:
+    """
+    TODO
+    """
+
+    node_coordinates: npt.NDArray[np.float64]
+    element_nodes: npt.NDArray[np.int64]
+
+    @classmethod
+    def _from_pb(cls, response: cad_geometry_pb2.TriangleMeshData) -> Self:
+        """Construct a triangle mesh object from a protobuf response."""
+
+        return cls(
+            to_numpy(response.node_coordinates),
+            to_numpy(response.element_nodes),
+        )
+
+    def to_pyvista(
+        self,
+    ) -> pv.PolyData:
+        """Convert the mesh data to a PyVista object."""
+        return pv.PolyData.from_regular_faces(
+            points=self.node_coordinates,
+            faces=self.element_nodes,
+            # points=self.node_coordinates.reshape(-1, 3),
+            # faces=self.element_nodes.reshape(-1, 3),
+            # deep=True, # ?
+        )
 
 
 @mark_grpc_properties
@@ -74,3 +112,16 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
     precision = grpc_data_property("properties.precision")
     use_default_offset = grpc_data_property("properties.use_default_offset")
     offset = grpc_data_property("properties.offset")
+
+    @property
+    def visualization_mesh(self) -> TriangleMesh:
+        """TODO"""
+        if not self._is_stored:
+            raise RuntimeError("Cannot get mesh data from an unstored object")
+        stub = cad_geometry_pb2_grpc.ObjectServiceStub(self._channel)
+        response = stub.GetMesh(
+            request=base_pb2.GetRequest(
+                resource_path=self._resource_path,
+            ),
+        )
+        return TriangleMesh._from_pb(response)
