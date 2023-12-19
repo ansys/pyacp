@@ -8,15 +8,22 @@ import numpy.typing as npt
 import pyvista as pv
 from typing_extensions import Self
 
-from ansys.api.acp.v0 import base_pb2, cad_geometry_pb2, cad_geometry_pb2_grpc
+from ansys.api.acp.v0 import (
+    base_pb2,
+    cad_component_pb2_grpc,
+    cad_geometry_pb2,
+    cad_geometry_pb2_grpc,
+)
 
 from .._utils.array_conversions import to_numpy
+from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
 from .base import CreatableTreeObject, IdTreeObject
+from .cad_component import CADComponent
 from .enums import status_type_from_pb
 from .object_registry import register
 
@@ -55,12 +62,12 @@ class TriangleMesh:
 @mark_grpc_properties
 @register
 class CADGeometry(CreatableTreeObject, IdTreeObject):
-    """Instantiate an edge set.
+    """Instantiate a CAD Geometry.
 
     Parameters
     ----------
     name :
-        Name of the edge set.
+        Name of the CAD Geometry.
     external_path :
         Path to the CAD file.
     scale_factor :
@@ -125,3 +132,7 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
             ),
         )
         return TriangleMesh._from_pb(response)
+
+    root_shapes = property(
+        get_read_only_collection_property(CADComponent, cad_component_pb2_grpc.ObjectServiceStub)
+    )

@@ -34,6 +34,7 @@ from ansys.api.acp.v0 import (
     sublaminate_pb2_grpc,
     tube_selection_rule_pb2_grpc,
     variable_offset_selection_rule_pb2_grpc,
+    virtual_geometry_pb2_grpc,
 )
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
@@ -70,6 +71,7 @@ from .stackup import Stackup
 from .sublaminate import SubLaminate
 from .tube_selection_rule import TubeSelectionRule
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
+from .virtual_geometry import VirtualGeometry
 
 __all__ = ["MeshData", "Model", "ModelElementalData", "ModelNodalData"]
 
@@ -310,6 +312,9 @@ class Model(TreeObject):
     )
     create_cad_geometry, cad_geometries = define_mutable_mapping(
         CADGeometry, cad_geometry_pb2_grpc.ObjectServiceStub
+    )
+    create_virtual_geometry, virtual_geometries = define_mutable_mapping(
+        VirtualGeometry, virtual_geometry_pb2_grpc.ObjectServiceStub
     )
     create_rosette, rosettes = define_mutable_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
 
