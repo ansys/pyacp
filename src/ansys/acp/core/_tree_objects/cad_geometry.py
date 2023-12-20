@@ -30,9 +30,7 @@ from .object_registry import register
 
 @dataclasses.dataclass
 class TriangleMesh:
-    """
-    TODO
-    """
+    """Represents a mesh consisting of triangle faces only."""
 
     node_coordinates: npt.NDArray[np.float64]
     element_nodes: npt.NDArray[np.int64]
@@ -53,9 +51,6 @@ class TriangleMesh:
         return pv.PolyData.from_regular_faces(
             points=self.node_coordinates,
             faces=self.element_nodes,
-            # points=self.node_coordinates.reshape(-1, 3),
-            # faces=self.element_nodes.reshape(-1, 3),
-            # deep=True, # ?
         )
 
 
@@ -122,7 +117,7 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
 
     @property
     def visualization_mesh(self) -> TriangleMesh:
-        """TODO"""
+        """The CAD Geometry's surface represented as a triangle mesh."""
         if not self._is_stored:
             raise RuntimeError("Cannot get mesh data from an unstored object")
         stub = cad_geometry_pb2_grpc.ObjectServiceStub(self._channel)

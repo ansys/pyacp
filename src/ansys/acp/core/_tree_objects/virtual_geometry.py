@@ -30,7 +30,7 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
     dimension :
         Dimension of the Virtual Geometry, if it is uniquely defined.
     sub_shapes :
-        Paths of the CAD Components that make up the Virtual Geometry.
+        Paths of the CAD Components that make up the virtual geometry.
     """
 
     __slots__: Iterable[str] = tuple()
@@ -58,5 +58,12 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
     sub_shapes = grpc_data_property("properties.sub_shapes")
 
     def set_cad_components(self, cad_components: Iterable[CADComponent]) -> None:
+        """Set the sub-shapes to match the given CADComponents
+
+        Parameters
+        ----------
+        cad_components :
+            The components which make up the virtual geometry.
+        """
         sub_shapes = [component.path for component in cad_components]
         self.sub_shapes = sub_shapes
