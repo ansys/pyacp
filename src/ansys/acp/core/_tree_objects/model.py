@@ -13,10 +13,12 @@ from ansys.api.acp.v0 import (
     base_pb2,
     boolean_selection_rule_pb2_grpc,
     cad_geometry_pb2_grpc,
+    cutoff_selection_rule_pb2_grpc,
     cylindrical_selection_rule_pb2_grpc,
     edge_set_pb2_grpc,
     element_set_pb2_grpc,
     fabric_pb2_grpc,
+    geometrical_selection_rule_pb2_grpc,
     lookup_table_1d_pb2_grpc,
     lookup_table_3d_pb2_grpc,
     material_pb2,
@@ -54,11 +56,13 @@ from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal
 from .base import TreeObject
 from .boolean_selection_rule import BooleanSelectionRule
 from .cad_geometry import CADGeometry
+from .cutoff_selection_rule import CutoffSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import UnitSystemType, unit_system_type_from_pb, unit_system_type_to_pb
 from .fabric import Fabric
+from .geometrical_selection_rule import GeometricalSelectionRule
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_3d import LookUpTable3D
 from .material import Material
@@ -338,6 +342,12 @@ class Model(TreeObject):
     )
     create_tube_selection_rule, tube_selection_rules = define_mutable_mapping(
         TubeSelectionRule, tube_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+    create_cutoff_selection_rule, cutoff_selection_rules = define_mutable_mapping(
+        CutoffSelectionRule, cutoff_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+    create_geometrical_selection_rule, geometrical_selection_rules = define_mutable_mapping(
+        GeometricalSelectionRule, geometrical_selection_rule_pb2_grpc.ObjectServiceStub
     )
     create_variable_offset_selection_rule, variable_offset_selection_rules = define_mutable_mapping(
         VariableOffsetSelectionRule, variable_offset_selection_rule_pb2_grpc.ObjectServiceStub

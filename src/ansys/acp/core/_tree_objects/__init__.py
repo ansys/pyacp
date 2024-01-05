@@ -1,10 +1,12 @@
 from .analysis_ply import AnalysisPly
 from .boolean_selection_rule import BooleanSelectionRule
+from .cutoff_selection_rule import CutoffSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import EdgeSetType, ElementalDataType, NodalDataType, UnitSystemType
 from .fabric import Fabric
+from .geometrical_selection_rule import GeometricalSelectionRule
 from .linked_selection_rule import LinkedSelectionRule
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_1d_column import LookUpTable1DColumn
@@ -45,6 +47,8 @@ __all__ = [
     "CylindricalSelectionRule",
     "SphericalSelectionRule",
     "TubeSelectionRule",
+    "CutoffSelectionRule",
+    "GeometricalSelectionRule",
     "VariableOffsetSelectionRule",
     "BooleanSelectionRule",
     "LinkedSelectionRule",
