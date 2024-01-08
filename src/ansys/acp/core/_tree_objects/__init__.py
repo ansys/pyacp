@@ -17,7 +17,7 @@ from .lookup_table_3d_column import LookUpTable3DColumn
 from .material import Material
 from .model import Model
 from .modeling_group import ModelingGroup
-from .modeling_ply import ModelingPly
+from .modeling_ply import ModelingPly, TaperEdge
 from .oriented_selection_set import OrientedSelectionSet
 from .parallel_selection_rule import ParallelSelectionRule
 from .production_ply import ProductionPly
@@ -61,6 +61,7 @@ __all__ = [
     "OrientedSelectionSet",
     "ModelingGroup",
     "ModelingPly",
+    "TaperEdge",
     "ProductionPly",
     "AnalysisPly",
     "Sensor",

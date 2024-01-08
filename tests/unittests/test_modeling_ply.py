@@ -10,8 +10,14 @@ from ansys.acp.core import (
     NodalDataType,
     Stackup,
     SubLaminate,
+    TaperEdge,
 )
-from ansys.acp.core._tree_objects.enums import BooleanOperationType, DrapingType
+from ansys.acp.core._tree_objects.enums import (
+    BooleanOperationType,
+    DrapingType,
+    ThicknessFieldType,
+    ThicknessType,
+)
 
 from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
@@ -52,6 +58,11 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
         "draping_thickness_correction": True,
         "draping_angle_1_field": None,
         "draping_angle_2_field": None,
+        "thickness_type": ThicknessType.NOMINAL,
+        "thickness_geometry": None,
+        "thickness_field": None,
+        "thickness_field_type": ThicknessFieldType.ABSOLUTE_VALUES,
+        "taper_edges": [],
     }
     CREATE_METHOD_NAME = "create_modeling_ply"
 
@@ -128,6 +139,18 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
                 ("draping_thickness_correction", False),
                 ("draping_angle_1_field", column_1),
                 ("draping_angle_2_field", column_2),
+                ("thickness_type", ThicknessType.FROM_GEOMETRY),
+                ("thickness_geometry", parent_model.create_virtual_geometry()),
+                ("thickness_type", ThicknessType.FROM_TABLE),
+                ("thickness_field", column_1),
+                ("thickness_field_type", ThicknessFieldType.RELATIVE_SCALING_FACTOR),
+                (
+                    "taper_edges",
+                    [
+                        TaperEdge(edge_set=parent_model.create_edge_set(), angle=1.2, offset=2.3),
+                        TaperEdge(edge_set=parent_model.create_edge_set(), angle=3.4, offset=4.5),
+                    ],
+                ),
             ],
             read_only=[
                 ("id", "some_id"),
