@@ -40,6 +40,7 @@ from ansys.api.acp.v0.base_pb2 import CollectionPath
 
 from .._typing_helper import PATH as _PATH
 from .._utils.array_conversions import to_numpy
+from .._utils.path_to_str import path_to_str_checked
 from .._utils.resource_paths import join as rp_join
 from .._utils.visualization import to_pyvista_faces, to_pyvista_types
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
@@ -195,7 +196,7 @@ class Model(TreeObject):
     def from_file(cls, *, path: _PATH, channel: Channel) -> Model:
         # Send absolute paths to the server, since its CWD may not match
         # the Python CWD.
-        request = model_pb2.LoadFromFileRequest(path=str(path))
+        request = model_pb2.LoadFromFileRequest(path=path_to_str_checked(path))
         reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFile(request)
         return cls._from_object_info(object_info=reply, channel=channel)
 
@@ -214,7 +215,7 @@ class Model(TreeObject):
         ignored_entities_pb = [_ignorable_entity_to_pb(val) for val in ignored_entities]
 
         request = model_pb2.LoadFromFEFileRequest(
-            path=str(path),
+            path=path_to_str_checked(path),
             format=format_pb,
             ignored_entities=ignored_entities_pb,
             convert_section_data=convert_section_data,
@@ -244,7 +245,7 @@ class Model(TreeObject):
         self._get_stub().SaveToFile(
             model_pb2.SaveToFileRequest(
                 resource_path=self._resource_path,
-                path=str(path),
+                path=path_to_str_checked(path),
                 save_cache=save_cache,
             )
         )
@@ -253,7 +254,7 @@ class Model(TreeObject):
         self._get_stub().SaveAnalysisModel(
             model_pb2.SaveAnalysisModelRequest(
                 resource_path=self._resource_path,
-                path=str(path),
+                path=path_to_str_checked(path),
             )
         )
 
@@ -268,7 +269,7 @@ class Model(TreeObject):
         """
         self._get_stub().SaveShellCompositeDefinitions(
             model_pb2.SaveShellCompositeDefinitionsRequest(
-                resource_path=self._resource_path, path=str(path)
+                resource_path=self._resource_path, path=path_to_str_checked(path)
             )
         )
 
@@ -291,7 +292,7 @@ class Model(TreeObject):
         material_stub.SaveToFile(
             material_pb2.SaveToFileRequest(
                 collection_path=collection_path,
-                path=str(path),
+                path=path_to_str_checked(path),
                 format=material_pb2.SaveToFileRequest.ANSYS_XML,
             )
         )

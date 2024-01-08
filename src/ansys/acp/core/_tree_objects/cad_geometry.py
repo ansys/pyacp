@@ -16,6 +16,7 @@ from ansys.api.acp.v0 import (
 )
 
 from .._utils.array_conversions import to_numpy
+from .._utils.path_to_str import path_to_str_checked
 from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
@@ -108,7 +109,7 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     locked = grpc_data_property_read_only("properties.locked")
 
-    external_path = grpc_data_property("properties.external_path")
+    external_path = grpc_data_property("properties.external_path", to_protobuf=path_to_str_checked)
     scale_factor = grpc_data_property("properties.scale_factor")
     use_default_precision = grpc_data_property("properties.use_default_precision")
     precision = grpc_data_property("properties.precision")

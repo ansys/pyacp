@@ -9,11 +9,16 @@ def model(load_model_from_tempfile):
         yield model
 
 
+@pytest.fixture
+def cad_geometry(model, load_cad_geometry):
+    with load_cad_geometry(model) as cad_geometry:
+        yield cad_geometry
+
+
 class TestCADComponent(TreeObjectTesterReadOnly):
     COLLECTION_NAME = "cad_components"
 
     @pytest.fixture
-    def collection_test_data(self, model):
+    def collection_test_data(self, model, cad_geometry):
         model.update()
-        cad_geometry = model.cad_geometries["CADGeometry.1"]
         return cad_geometry.root_shapes, ["SOLID", "SHELL"], ["SOLID", "SHELL"]
