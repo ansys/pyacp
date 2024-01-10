@@ -1,3 +1,4 @@
+import grpc
 import pytest
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
@@ -48,3 +49,18 @@ class TestCADGeometry(NoLockedMixin, TreeObjectTester):
                 ("status", "UPTODATE"),
             ],
         )
+
+    @staticmethod
+    def test_refresh(load_cad_geometry, load_model_from_tempfile):
+        """Test refreshing the geometry.
+
+        Only tests that the call does not raise an exception.
+        """
+        with load_model_from_tempfile() as model, load_cad_geometry(model=model) as cad_geometry:
+            cad_geometry.refresh()
+
+    @staticmethod
+    def test_refresh_inexistent_raises(tree_object):
+        """Test refreshing the geometry from an inexistent file."""
+        with pytest.raises(grpc.RpcError, match="source file `[^`]*` does not exist"):
+            tree_object.refresh()

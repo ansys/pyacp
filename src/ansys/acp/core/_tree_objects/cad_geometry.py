@@ -132,3 +132,12 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
     root_shapes = property(
         get_read_only_collection_property(CADComponent, cad_component_pb2_grpc.ObjectServiceStub)
     )
+
+    def refresh(self) -> None:
+        """Reload the geometry from its external source."""
+        stub = cad_geometry_pb2_grpc.ObjectServiceStub(self._channel)
+        stub.Refresh(
+            request=cad_geometry_pb2.RefreshRequest(
+                resource_path=self._resource_path,
+            ),
+        )

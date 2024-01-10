@@ -1,4 +1,4 @@
-from pathlib import Path
+from pathlib import PurePath
 
 from .._typing_helper import PATH
 
@@ -9,7 +9,7 @@ def path_to_str_checked(path: PATH) -> str:
     """Converts a path to a string, with a type check."""
     if isinstance(path, str):
         return path
-    elif isinstance(path, Path):
+    elif isinstance(path, PurePath):
         return str(path)
     else:
         raise TypeError(f"Expected a Path or str, got {type(path)}")
