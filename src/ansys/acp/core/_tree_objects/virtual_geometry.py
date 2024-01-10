@@ -20,9 +20,6 @@ if typing.TYPE_CHECKING:
 class SubShape(GenericEdgePropertyType):
     """Represents a sub-shape of a virtual geometry."""
 
-    # cad_geometry: CADGeometry
-    # path: str
-
     def __init__(self, cad_geometry: CADGeometry, path: str):
         self._cad_geometry = cad_geometry
         self._path = path
