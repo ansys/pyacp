@@ -74,7 +74,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     :class:`.BooleanSelectionRule`         \-                                 \-
     ====================================== ================================== ===================
 
-    Note that ``CutoffSelectionRule`` and other ``BooleanSelectionRule`` objects cannot be linked.
+    Note that ``CutoffSelectionRule`` and  ``BooleanSelectionRule`` objects cannot be linked.
     """
 
     def __init__(
