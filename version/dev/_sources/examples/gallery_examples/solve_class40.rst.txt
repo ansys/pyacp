@@ -190,7 +190,31 @@ Visualize the loaded mesh
 
 
 
-.. offlineviewer:: examples/gallery_examples/images/sphx_glr_solve_class40_001.vtksz
+
+
+
+
+.. tab-set::
+
+
+
+   .. tab-item:: Static Scene
+
+
+
+            
+     .. image-sg:: /examples/gallery_examples/images/sphx_glr_solve_class40_001.png
+        :alt: solve class40
+        :srcset: /examples/gallery_examples/images/sphx_glr_solve_class40_001.png
+        :class: sphx-glr-single-img
+     
+
+
+   .. tab-item:: Interactive Scene
+
+
+
+       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/gallery_examples/images/sphx_glr_solve_class40_001.vtksz
 
 
 
@@ -369,7 +393,31 @@ Note that the Model must be updated before the orientations are available.
 
 
 
-.. offlineviewer:: examples/gallery_examples/images/sphx_glr_solve_class40_002.vtksz
+
+
+
+
+.. tab-set::
+
+
+
+   .. tab-item:: Static Scene
+
+
+
+            
+     .. image-sg:: /examples/gallery_examples/images/sphx_glr_solve_class40_002.png
+        :alt: solve class40
+        :srcset: /examples/gallery_examples/images/sphx_glr_solve_class40_002.png
+        :class: sphx-glr-single-img
+     
+
+
+   .. tab-item:: Interactive Scene
+
+
+
+       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/gallery_examples/images/sphx_glr_solve_class40_002.vtksz
 
 
 
@@ -505,7 +553,31 @@ Show the thickness of one of the plies
 
 
 
-.. offlineviewer:: examples/gallery_examples/images/sphx_glr_solve_class40_003.vtksz
+
+
+
+
+.. tab-set::
+
+
+
+   .. tab-item:: Static Scene
+
+
+
+            
+     .. image-sg:: /examples/gallery_examples/images/sphx_glr_solve_class40_003.png
+        :alt: solve class40
+        :srcset: /examples/gallery_examples/images/sphx_glr_solve_class40_003.png
+        :class: sphx-glr-single-img
+     
+
+
+   .. tab-item:: Interactive Scene
+
+
+
+       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/gallery_examples/images/sphx_glr_solve_class40_003.vtksz
 
 
 
@@ -532,7 +604,31 @@ Show the ply offsets, scaled by a factor of 200
 
 
 
-.. offlineviewer:: examples/gallery_examples/images/sphx_glr_solve_class40_004.vtksz
+
+
+
+
+.. tab-set::
+
+
+
+   .. tab-item:: Static Scene
+
+
+
+            
+     .. image-sg:: /examples/gallery_examples/images/sphx_glr_solve_class40_004.png
+        :alt: solve class40
+        :srcset: /examples/gallery_examples/images/sphx_glr_solve_class40_004.png
+        :class: sphx-glr-single-img
+     
+
+
+   .. tab-item:: Interactive Scene
+
+
+
+       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/gallery_examples/images/sphx_glr_solve_class40_004.vtksz
 
 
 
@@ -552,7 +648,31 @@ Show the thickness of the entire lay-up
 
 
 
-.. offlineviewer:: examples/gallery_examples/images/sphx_glr_solve_class40_005.vtksz
+
+
+
+
+.. tab-set::
+
+
+
+   .. tab-item:: Static Scene
+
+
+
+            
+     .. image-sg:: /examples/gallery_examples/images/sphx_glr_solve_class40_005.png
+        :alt: solve class40
+        :srcset: /examples/gallery_examples/images/sphx_glr_solve_class40_005.png
+        :class: sphx-glr-single-img
+     
+
+
+   .. tab-item:: Interactive Scene
+
+
+
+       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/gallery_examples/images/sphx_glr_solve_class40_005.vtksz
 
 
 
@@ -688,7 +808,7 @@ Load the CDB file into PyMAPDL
  .. code-block:: none
 
 
-    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     08:22:18  JAN 03, 2024 CP=      0.494\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.614\n\n\n'
+    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     10:55:11  JAN 10, 2024 CP=      0.440\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.535\n\n\n'
 
 
 
@@ -715,7 +835,7 @@ Solve the model
 
     *****  MAPDL SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       0.644   TIME= 08:22:18
+     *** NOTE ***                            CP =       0.558   TIME= 10:55:11
      There is no title defined for this analysis.                            
 
      *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -740,7 +860,7 @@ Solve the model
 
      *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
      Ansys Mechanical Enterprise                       
-     00000000  VERSION=LINUX x64     08:22:18  JAN 03, 2024 CP=      0.692
+     00000000  VERSION=LINUX x64     10:55:11  JAN 10, 2024 CP=      0.597
 
                                                                                
 
@@ -756,14 +876,14 @@ Solve the model
        ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
        GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  
 
-     *** NOTE ***                            CP =       0.695   TIME= 08:22:18
+     *** NOTE ***                            CP =       0.598   TIME= 10:55:11
      Poisson's ratio PR input has been converted to NU input.                
 
-     *** NOTE ***                            CP =       0.702   TIME= 08:22:18
+     *** NOTE ***                            CP =       0.605   TIME= 10:55:11
      Present time 0 is less than or equal to the previous time.  Time will   
      default to 1.                                                           
 
-     *** NOTE ***                            CP =       0.703   TIME= 08:22:18
+     *** NOTE ***                            CP =       0.605   TIME= 10:55:11
      The conditions for direct assembly have been met.  No .emat or .erot    
      files will be produced.                                                 
 
@@ -781,7 +901,7 @@ Solve the model
 
      SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           
 
-     *** NOTE ***                            CP =       0.800   TIME= 08:22:18
+     *** NOTE ***                            CP =       0.696   TIME= 10:55:11
      Predictor is ON by default for structural elements with rotational      
      degrees of freedom.  Use the PRED,OFF command to turn the predictor     
      OFF if it adversely affects the convergence.                            
@@ -830,10 +950,10 @@ Solve the model
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      3.145   0.000792
-            2        88  BEAM188       0.006   0.000066
-            3        22  SHELL181      0.006   0.000253
-     Time at end of element matrix formulation CP = 3.99140787.              
+            1      3973  SHELL181      3.074   0.000774
+            2        88  BEAM188       0.004   0.000045
+            3        22  SHELL181      0.005   0.000243
+     Time at end of element matrix formulation CP = 3.80656219.              
 
      SPARSE MATRIX DIRECT SOLVER.
       Number of equations =       24096,    Maximum wavefront =     66
@@ -841,7 +961,7 @@ Solve the model
       Memory required for in-core solution     =    58.542 MB
       Memory required for out-of-core solution =    24.642 MB
 
-     *** NOTE ***                            CP =       4.090   TIME= 08:22:21
+     *** NOTE ***                            CP =       3.888   TIME= 10:55:15
      The Sparse Matrix Solver is currently running in the in-core memory     
      mode.  This memory mode uses the most amount of memory in order to      
      avoid using the hard drive as much as possible, which most often        
@@ -856,16 +976,16 @@ Solve the model
        *** ELEMENT RESULT CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      7.261   0.001828
-            2        88  BEAM188       0.014   0.000154
-            3        22  SHELL181      0.011   0.000483
+            1      3973  SHELL181      6.816   0.001716
+            2        88  BEAM188       0.009   0.000105
+            3        22  SHELL181      0.010   0.000436
 
        *** NODAL LOAD CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      0.087   0.000022
-            2        88  BEAM188       0.002   0.000023
-            3        22  SHELL181      0.000   0.000022
+            1      3973  SHELL181      0.068   0.000017
+            2        88  BEAM188       0.002   0.000018
+            3        22  SHELL181      0.000   0.000017
      *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
      *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -897,7 +1017,31 @@ Post-processing: show displacements
 
 
 
-.. offlineviewer:: examples/gallery_examples/images/sphx_glr_solve_class40_006.vtksz
+
+
+
+
+.. tab-set::
+
+
+
+   .. tab-item:: Static Scene
+
+
+
+            
+     .. image-sg:: /examples/gallery_examples/images/sphx_glr_solve_class40_006.png
+        :alt: solve class40
+        :srcset: /examples/gallery_examples/images/sphx_glr_solve_class40_006.png
+        :class: sphx-glr-single-img
+     
+
+
+   .. tab-item:: Interactive Scene
+
+
+
+       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/gallery_examples/images/sphx_glr_solve_class40_006.vtksz
 
 
 
@@ -1044,7 +1188,31 @@ Query and plot the results
 
 
 
-.. offlineviewer:: examples/gallery_examples/images/sphx_glr_solve_class40_007.vtksz
+
+
+
+
+.. tab-set::
+
+
+
+   .. tab-item:: Static Scene
+
+
+
+            
+     .. image-sg:: /examples/gallery_examples/images/sphx_glr_solve_class40_007.png
+        :alt: solve class40
+        :srcset: /examples/gallery_examples/images/sphx_glr_solve_class40_007.png
+        :class: sphx-glr-single-img
+     
+
+
+   .. tab-item:: Interactive Scene
+
+
+
+       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/gallery_examples/images/sphx_glr_solve_class40_007.vtksz
 
 
 
@@ -1054,7 +1222,7 @@ Query and plot the results
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  59.578 seconds)
+   **Total running time of the script:** ( 0 minutes  45.216 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_solve_class40.py:
