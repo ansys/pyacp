@@ -72,6 +72,7 @@ extensions = [
     "sphinx_copybutton",
     "ansys_sphinx_theme",
     "sphinx_gallery.gen_gallery",
+    "sphinx_design",  # needed for pyvista offlineviewer directive
     "pyvista.ext.viewer_directive",
 ]
 
