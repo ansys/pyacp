@@ -1,8 +1,10 @@
 from ansys.api.acp.v0 import (
     cut_off_material_pb2,
+    cutoff_selection_rule_pb2,
     drop_off_material_pb2,
     edge_set_pb2,
     enum_types_pb2,
+    geometrical_selection_rule_pb2,
     lookup_table_3d_pb2,
     lookup_table_column_type_pb2,
     mesh_query_pb2,
@@ -169,3 +171,23 @@ __all__ = [
     virtual_geometry_dimension_to_pb,
     virtual_geometry_dimension_from_pb,
 ) = wrap_to_string_enum("VirtualGeometryDimension", virtual_geometry_pb2.Dimension, module=__name__)
+
+(
+    CutoffRuleType,
+    cutoff_rule_type_to_pb,
+    cutoff_rule_type_from_pb,
+) = wrap_to_string_enum("CutoffRuleType", cutoff_selection_rule_pb2.CutoffRuleType, module=__name__)
+
+(
+    PlyCutoffType,
+    ply_cutoff_type_to_pb,
+    ply_cutoff_type_from_pb,
+) = wrap_to_string_enum("PlyCutoffType", cutoff_selection_rule_pb2.PlyCutoffType, module=__name__)
+
+(
+    GeometricalRuleType,
+    geometrical_rule_type_to_pb,
+    geometrical_rule_type_from_pb,
+) = wrap_to_string_enum(
+    "GeometricalRuleType", geometrical_selection_rule_pb2.GeometricalRuleType, module=__name__
+)

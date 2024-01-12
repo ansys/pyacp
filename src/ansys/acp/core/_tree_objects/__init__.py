@@ -1,10 +1,14 @@
 from .analysis_ply import AnalysisPly
 from .boolean_selection_rule import BooleanSelectionRule
+from .cad_component import CADComponent
+from .cad_geometry import CADGeometry
+from .cutoff_selection_rule import CutoffSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import EdgeSetType, ElementalDataType, NodalDataType, UnitSystemType
 from .fabric import Fabric
+from .geometrical_selection_rule import GeometricalSelectionRule
 from .linked_selection_rule import LinkedSelectionRule
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_1d_column import LookUpTable1DColumn
@@ -24,6 +28,7 @@ from .stackup import FabricWithAngle, Stackup
 from .sublaminate import Lamina, SubLaminate
 from .tube_selection_rule import TubeSelectionRule
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
+from .virtual_geometry import VirtualGeometry
 
 __all__ = [
     "Model",
@@ -35,6 +40,9 @@ __all__ = [
     "Lamina",
     "ElementSet",
     "EdgeSet",
+    "CADGeometry",
+    "CADComponent",
+    "VirtualGeometry",
     "Rosette",
     "LookUpTable1D",
     "LookUpTable1DColumn",
@@ -45,6 +53,8 @@ __all__ = [
     "CylindricalSelectionRule",
     "SphericalSelectionRule",
     "TubeSelectionRule",
+    "CutoffSelectionRule",
+    "GeometricalSelectionRule",
     "VariableOffsetSelectionRule",
     "BooleanSelectionRule",
     "LinkedSelectionRule",

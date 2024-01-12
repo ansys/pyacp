@@ -71,6 +71,13 @@ class TestBooleanSelectionRule(NoLockedMixin, TreeObjectTester):
                             parameter_2=2.9,
                         ),
                         LinkedSelectionRule(
+                            selection_rule=model.create_geometrical_selection_rule(),
+                            operation_type=BooleanOperationType.REMOVE,
+                            template_rule=False,
+                            parameter_1=1.5,
+                            parameter_2=2.5,
+                        ),
+                        LinkedSelectionRule(
                             selection_rule=model.create_variable_offset_selection_rule(),
                             operation_type=BooleanOperationType.ADD,
                             template_rule=False,
