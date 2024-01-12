@@ -12,6 +12,7 @@ from pyvista.core.pointset import UnstructuredGrid
 from ansys.api.acp.v0 import (
     base_pb2,
     boolean_selection_rule_pb2_grpc,
+    cad_geometry_pb2_grpc,
     cylindrical_selection_rule_pb2_grpc,
     edge_set_pb2_grpc,
     element_set_pb2_grpc,
@@ -33,11 +34,13 @@ from ansys.api.acp.v0 import (
     sublaminate_pb2_grpc,
     tube_selection_rule_pb2_grpc,
     variable_offset_selection_rule_pb2_grpc,
+    virtual_geometry_pb2_grpc,
 )
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
 from .._typing_helper import PATH as _PATH
 from .._utils.array_conversions import to_numpy
+from .._utils.path_to_str import path_to_str_checked
 from .._utils.resource_paths import join as rp_join
 from .._utils.visualization import to_pyvista_faces, to_pyvista_types
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
@@ -50,6 +53,7 @@ from ._grpc_helpers.property_helper import (
 from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import TreeObject
 from .boolean_selection_rule import BooleanSelectionRule
+from .cad_geometry import CADGeometry
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
 from .element_set import ElementSet
@@ -68,6 +72,7 @@ from .stackup import Stackup
 from .sublaminate import SubLaminate
 from .tube_selection_rule import TubeSelectionRule
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
+from .virtual_geometry import VirtualGeometry
 
 __all__ = ["MeshData", "Model", "ModelElementalData", "ModelNodalData"]
 
@@ -191,7 +196,7 @@ class Model(TreeObject):
     def from_file(cls, *, path: _PATH, channel: Channel) -> Model:
         # Send absolute paths to the server, since its CWD may not match
         # the Python CWD.
-        request = model_pb2.LoadFromFileRequest(path=str(path))
+        request = model_pb2.LoadFromFileRequest(path=path_to_str_checked(path))
         reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFile(request)
         return cls._from_object_info(object_info=reply, channel=channel)
 
@@ -210,7 +215,7 @@ class Model(TreeObject):
         ignored_entities_pb = [_ignorable_entity_to_pb(val) for val in ignored_entities]
 
         request = model_pb2.LoadFromFEFileRequest(
-            path=str(path),
+            path=path_to_str_checked(path),
             format=format_pb,
             ignored_entities=ignored_entities_pb,
             convert_section_data=convert_section_data,
@@ -240,7 +245,7 @@ class Model(TreeObject):
         self._get_stub().SaveToFile(
             model_pb2.SaveToFileRequest(
                 resource_path=self._resource_path,
-                path=str(path),
+                path=path_to_str_checked(path),
                 save_cache=save_cache,
             )
         )
@@ -249,7 +254,7 @@ class Model(TreeObject):
         self._get_stub().SaveAnalysisModel(
             model_pb2.SaveAnalysisModelRequest(
                 resource_path=self._resource_path,
-                path=str(path),
+                path=path_to_str_checked(path),
             )
         )
 
@@ -264,7 +269,7 @@ class Model(TreeObject):
         """
         self._get_stub().SaveShellCompositeDefinitions(
             model_pb2.SaveShellCompositeDefinitionsRequest(
-                resource_path=self._resource_path, path=str(path)
+                resource_path=self._resource_path, path=path_to_str_checked(path)
             )
         )
 
@@ -287,7 +292,7 @@ class Model(TreeObject):
         material_stub.SaveToFile(
             material_pb2.SaveToFileRequest(
                 collection_path=collection_path,
-                path=str(path),
+                path=path_to_str_checked(path),
                 format=material_pb2.SaveToFileRequest.ANSYS_XML,
             )
         )
@@ -305,6 +310,12 @@ class Model(TreeObject):
     )
     create_edge_set, edge_sets = define_mutable_mapping(
         EdgeSet, edge_set_pb2_grpc.ObjectServiceStub
+    )
+    create_cad_geometry, cad_geometries = define_mutable_mapping(
+        CADGeometry, cad_geometry_pb2_grpc.ObjectServiceStub
+    )
+    create_virtual_geometry, virtual_geometries = define_mutable_mapping(
+        VirtualGeometry, virtual_geometry_pb2_grpc.ObjectServiceStub
     )
     create_rosette, rosettes = define_mutable_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
 

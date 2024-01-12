@@ -9,6 +9,7 @@ from ansys.api.acp.v0 import (
     ply_material_pb2,
     sensor_pb2,
     unit_system_pb2,
+    virtual_geometry_pb2,
 )
 
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
@@ -162,3 +163,9 @@ __all__ = [
     sensor_type_to_pb,
     sensor_type_from_pb,
 ) = wrap_to_string_enum("SensorType", sensor_pb2.SensorType, module=__name__)
+
+(
+    VirtualGeometryDimension,
+    virtual_geometry_dimension_to_pb,
+    virtual_geometry_dimension_from_pb,
+) = wrap_to_string_enum("VirtualGeometryDimension", virtual_geometry_pb2.Dimension, module=__name__)
