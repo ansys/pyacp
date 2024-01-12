@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1704884341394,
+  "lastUpdate": 1705069838289,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -10232,6 +10232,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00013133573155572445",
             "extra": "mean: 39.085171269221064 msec\nrounds: 26"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1499707a525b7a08a178a54e105c54f91041fab2",
+          "message": "Add CAD Geometry exposure (#327)\n\nAdd `CADGeometry`, `CADComponent` and `VirtualGeometry` classes.\r\n\r\nThe `CADGeometry` has a property `visualization_mesh` which provides\r\na tessellated representation that can be converted to a PyVista object.\r\n\r\nThe `VirtualGeometry` has a method `set_cad_components` which can be\r\nused to set the sub-shapes of the virtual geometry to correspond to a \r\nlist of `CADComponent`s.",
+          "timestamp": "2024-01-12T15:24:35+01:00",
+          "tree_id": "73102b95626e918fa081fc333bc331649ef7ba8d",
+          "url": "https://github.com/ansys-internal/pyacp/commit/1499707a525b7a08a178a54e105c54f91041fab2"
+        },
+        "date": 1705069830927,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 4.861324132308884,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0076436352771502986",
+            "extra": "mean: 205.7052714000065 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.1215256952461528,
+            "unit": "iter/sec",
+            "range": "stddev: 0.012633847868063814",
+            "extra": "mean: 471.3588915000031 msec\nrounds: 2"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.3716349198490273,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.690812801999982 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04113012187891177,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.31308137000002 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.7562205094740135,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0016529093268426393",
+            "extra": "mean: 362.8156733333488 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.6537607982831521,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.5296114459999899 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.0768146302172183,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 13.018353368000021 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 899.4223759162165,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003856001406997443",
+            "extra": "mean: 1.1118246852390434 msec\nrounds: 1023"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 330.54988768816065,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0005147099918332223",
+            "extra": "mean: 3.0252619566562844 msec\nrounds: 323"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 47.05801844269336,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002055220069397752",
+            "extra": "mean: 21.25036355319098 msec\nrounds: 47"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.967051017405669,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00004844927243965242",
+            "extra": "mean: 201.32670199999438 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 723.6129870756794,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00033845838327466963",
+            "extra": "mean: 1.38195419079096 msec\nrounds: 608"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 207.0170964974799,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003829946175686478",
+            "extra": "mean: 4.830518913263637 msec\nrounds: 196"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.644068165346287,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00011977148398313374",
+            "extra": "mean: 38.99537286955641 msec\nrounds: 23"
           }
         ]
       }
