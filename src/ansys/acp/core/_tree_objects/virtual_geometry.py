@@ -129,7 +129,7 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
     )
 
     def set_cad_components(self, cad_components: Iterable[CADComponent]) -> None:
-        """Set the sub-shapes to match the given CADComponents
+        """Set the sub-shapes to match the given CADComponents.
 
         Parameters
         ----------

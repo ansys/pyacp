@@ -12,6 +12,9 @@ ACP objects
     Stackup
     ElementSet
     EdgeSet
+    CADGeometry
+    CADComponent
+    VirtualGeometry
     Rosette
     LookUpTable1D
     LookUpTable1DColumn
@@ -21,6 +24,8 @@ ACP objects
     CylindricalSelectionRule
     SphericalSelectionRule
     TubeSelectionRule
+    CutoffSelectionRule
+    GeometricalSelectionRule
     VariableOffsetSelectionRule
     BooleanSelectionRule
     OrientedSelectionSet

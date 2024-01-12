@@ -1,5 +1,7 @@
 from .analysis_ply import AnalysisPly
 from .boolean_selection_rule import BooleanSelectionRule
+from .cad_component import CADComponent
+from .cad_geometry import CADGeometry
 from .cutoff_selection_rule import CutoffSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
@@ -26,6 +28,7 @@ from .stackup import FabricWithAngle, Stackup
 from .sublaminate import Lamina, SubLaminate
 from .tube_selection_rule import TubeSelectionRule
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
+from .virtual_geometry import VirtualGeometry
 
 __all__ = [
     "Model",
@@ -37,6 +40,9 @@ __all__ = [
     "Lamina",
     "ElementSet",
     "EdgeSet",
+    "CADGeometry",
+    "CADComponent",
+    "VirtualGeometry",
     "Rosette",
     "LookUpTable1D",
     "LookUpTable1DColumn",
