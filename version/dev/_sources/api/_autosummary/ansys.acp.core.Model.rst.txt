@@ -21,6 +21,9 @@
       Model.create_boolean_selection_rule
       
       
+      Model.create_cad_geometry
+      
+      
       Model.create_cylindrical_selection_rule
       
       
@@ -72,6 +75,9 @@
       Model.create_variable_offset_selection_rule
       
       
+      Model.create_virtual_geometry
+      
+      
       Model.delete
       
       
@@ -107,6 +113,7 @@
    
       Model.angle_tolerance
       Model.boolean_selection_rules
+      Model.cad_geometries
       Model.cylindrical_selection_rules
       Model.draping_offset_correction
       Model.edge_sets
@@ -133,5 +140,6 @@
       Model.unit_system
       Model.use_nodal_thicknesses
       Model.variable_offset_selection_rules
+      Model.virtual_geometries
    
    

@@ -20,15 +20,15 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
@@ -41,9 +41,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
  
 <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
 
@@ -57,7 +57,7 @@
     <script src="../../_static/design-tabs.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/ansys.acp.core.OrientedSelectionSet.element_sets';</script>
     <script>
-        DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://acp.docs.pyansys.com/versions.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
@@ -76,7 +76,7 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
 
@@ -121,8 +121,10 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <header>
    
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
     <span class="fa-solid fa-bars"></span>
@@ -160,12 +162,6 @@
       
         <div class="navbar-item">
 <nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
@@ -265,7 +261,7 @@ document.write(`
   
 </div>
 
-    </nav>
+    </div>
     <div id="announcement_msg"></div>
 <script>
   fetch("announcement.html")
@@ -280,8 +276,12 @@ document.write(`
     )
     .catch((error) => console.error(`Fetch problem: ${error.message}`));
 </script>  
+  </header>
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -294,12 +294,6 @@ document.write(`
         
           <div class="navbar-item">
 <nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
@@ -408,6 +402,7 @@ document.write(`
 <li class="toctree-l2 has-children"><a class="reference internal" href="ansys.acp.core.Model.html">Model</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.clone.html">clone</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_boolean_selection_rule.html">create_boolean_selection_rule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_cad_geometry.html">create_cad_geometry</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_cylindrical_selection_rule.html">create_cylindrical_selection_rule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_edge_set.html">create_edge_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_element_set.html">create_element_set</a></li>
@@ -425,6 +420,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_sublaminate.html">create_sublaminate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_tube_selection_rule.html">create_tube_selection_rule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_variable_offset_selection_rule.html">create_variable_offset_selection_rule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_virtual_geometry.html">create_virtual_geometry</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.delete.html">delete</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.export_materials.html">export_materials</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.export_shell_composite_definitions.html">export_shell_composite_definitions</a></li>
@@ -435,6 +431,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.update.html">update</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.angle_tolerance.html">angle_tolerance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.boolean_selection_rules.html">boolean_selection_rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.cad_geometries.html">cad_geometries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.cylindrical_selection_rules.html">cylindrical_selection_rules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.draping_offset_correction.html">draping_offset_correction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.edge_sets.html">edge_sets</a></li>
@@ -461,6 +458,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.unit_system.html">unit_system</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.use_nodal_thicknesses.html">use_nodal_thicknesses</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.variable_offset_selection_rules.html">variable_offset_selection_rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.virtual_geometries.html">virtual_geometries</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="ansys.acp.core.Material.html">Material</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -1169,20 +1167,21 @@ document.write(`
         <div class="header-article-item">
 <nav aria-label="Breadcrumb">
   <ul class="bd-breadcrumbs">
-      
+         
     <li class="breadcrumb-item breadcrumb-home">
       <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
     </li>
-      
+     
     <li class="breadcrumb-item">
       <a
         href="../../index.html"
         class="nav-link"
         aria-label="Home"
       >
-        <i class="fa-solid fa-home"></i
-      ></a>
-    </li> 
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
     <li class="breadcrumb-item">
       <a href="../index.html" class="nav-link">API reference</a>
     </li>
@@ -1211,7 +1210,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="element-sets">
 <h1>element_sets<a class="headerlink" href="#element-sets" title="Permalink to this heading">#</a></h1>
@@ -1235,12 +1234,14 @@ document.write(`
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-  <div class="sidebar-secondary-item">
 
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ansys.acp.core.OrientedSelectionSet.element_sets"><code class="docutils literal notranslate"><span class="pre">OrientedSelectionSet.element_sets</span></code></a></li>
 </ul>
@@ -1272,8 +1273,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1309,7 +1310,7 @@ document.write(`
   <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
     >Ansys Sphinx Theme</a
   >
-  0.12.5. <br />Last updated on
+  0.13.0. <br />Last updated on
   <span id="date"></span>
 </p>
 <script>

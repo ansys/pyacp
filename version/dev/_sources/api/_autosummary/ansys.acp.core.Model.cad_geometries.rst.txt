@@ -1,0 +1,6 @@
+cad\_geometries
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.cad_geometries

@@ -1,0 +1,6 @@
+create\_virtual\_geometry
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_virtual_geometry

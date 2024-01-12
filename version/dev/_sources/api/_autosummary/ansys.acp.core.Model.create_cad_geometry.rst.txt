@@ -1,0 +1,6 @@
+create\_cad\_geometry
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_cad_geometry

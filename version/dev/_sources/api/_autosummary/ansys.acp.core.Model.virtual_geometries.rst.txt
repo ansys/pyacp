@@ -1,0 +1,6 @@
+virtual\_geometries
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.virtual_geometries
