@@ -1,0 +1,6 @@
+refresh
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CADGeometry.refresh

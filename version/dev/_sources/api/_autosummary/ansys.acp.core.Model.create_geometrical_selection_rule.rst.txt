@@ -1,0 +1,6 @@
+create\_geometrical\_selection\_rule
+====================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_geometrical_selection_rule

@@ -1,0 +1,6 @@
+root\_shapes
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.root_shapes

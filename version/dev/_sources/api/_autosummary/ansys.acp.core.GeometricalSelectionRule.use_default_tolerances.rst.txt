@@ -1,0 +1,6 @@
+use\_default\_tolerances
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.use_default_tolerances

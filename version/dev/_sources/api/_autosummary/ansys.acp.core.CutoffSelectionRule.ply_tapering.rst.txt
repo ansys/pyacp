@@ -1,0 +1,6 @@
+ply\_tapering
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutoffSelectionRule.ply_tapering

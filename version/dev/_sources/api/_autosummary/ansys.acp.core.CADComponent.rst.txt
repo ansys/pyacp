@@ -1,0 +1,35 @@
+﻿CADComponent
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: CADComponent
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      CADComponent.clone
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CADComponent.id
+      CADComponent.name
+      CADComponent.path
+      CADComponent.status
+   
+   

@@ -1,0 +1,6 @@
+geometrical\_selection\_rules
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.geometrical_selection_rules

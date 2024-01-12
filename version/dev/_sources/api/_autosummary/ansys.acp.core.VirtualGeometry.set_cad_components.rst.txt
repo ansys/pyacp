@@ -1,0 +1,6 @@
+set\_cad\_components
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: VirtualGeometry.set_cad_components

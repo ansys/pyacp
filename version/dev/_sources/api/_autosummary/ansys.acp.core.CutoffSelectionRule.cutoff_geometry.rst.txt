@@ -1,0 +1,6 @@
+cutoff\_geometry
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutoffSelectionRule.cutoff_geometry

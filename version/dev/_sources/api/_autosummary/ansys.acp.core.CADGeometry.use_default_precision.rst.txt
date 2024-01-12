@@ -1,0 +1,6 @@
+use\_default\_precision
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.use_default_precision

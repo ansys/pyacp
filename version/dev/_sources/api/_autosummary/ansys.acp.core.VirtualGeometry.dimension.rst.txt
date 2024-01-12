@@ -1,0 +1,6 @@
+dimension
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VirtualGeometry.dimension

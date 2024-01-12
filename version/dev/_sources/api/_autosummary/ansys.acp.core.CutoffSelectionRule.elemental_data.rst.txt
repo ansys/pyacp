@@ -1,0 +1,6 @@
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutoffSelectionRule.elemental_data

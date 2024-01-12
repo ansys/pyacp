@@ -1,0 +1,6 @@
+visualization\_mesh
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.visualization_mesh

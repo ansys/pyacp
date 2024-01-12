@@ -1,0 +1,6 @@
+precision
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.precision

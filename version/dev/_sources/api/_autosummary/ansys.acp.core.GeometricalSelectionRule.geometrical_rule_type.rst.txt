@@ -1,0 +1,6 @@
+geometrical\_rule\_type
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.geometrical_rule_type

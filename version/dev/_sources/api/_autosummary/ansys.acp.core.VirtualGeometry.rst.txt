@@ -1,0 +1,45 @@
+﻿VirtualGeometry
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: VirtualGeometry
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      VirtualGeometry.clone
+      
+      
+      VirtualGeometry.delete
+      
+      
+      VirtualGeometry.set_cad_components
+      
+      
+      VirtualGeometry.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VirtualGeometry.dimension
+      VirtualGeometry.id
+      VirtualGeometry.name
+      VirtualGeometry.status
+      VirtualGeometry.sub_shapes
+   
+   

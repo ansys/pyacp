@@ -1,0 +1,6 @@
+scale\_factor
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.scale_factor

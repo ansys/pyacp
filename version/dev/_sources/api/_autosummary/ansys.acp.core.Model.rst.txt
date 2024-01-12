@@ -24,6 +24,9 @@
       Model.create_cad_geometry
       
       
+      Model.create_cutoff_selection_rule
+      
+      
       Model.create_cylindrical_selection_rule
       
       
@@ -34,6 +37,9 @@
       
       
       Model.create_fabric
+      
+      
+      Model.create_geometrical_selection_rule
       
       
       Model.create_lookup_table_1d
@@ -114,12 +120,14 @@
       Model.angle_tolerance
       Model.boolean_selection_rules
       Model.cad_geometries
+      Model.cutoff_selection_rules
       Model.cylindrical_selection_rules
       Model.draping_offset_correction
       Model.edge_sets
       Model.element_sets
       Model.elemental_data
       Model.fabrics
+      Model.geometrical_selection_rules
       Model.lookup_tables_1d
       Model.lookup_tables_3d
       Model.materials

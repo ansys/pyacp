@@ -1,0 +1,6 @@
+create\_cutoff\_selection\_rule
+===============================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_cutoff_selection_rule

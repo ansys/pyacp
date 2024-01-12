@@ -19,15 +19,15 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
@@ -40,9 +40,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
  
 <link href="_static/css/breadcrumbs.css" rel="stylesheet" />
 
@@ -56,7 +56,7 @@
     <script src="_static/design-tabs.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
     <script>
-        DOCUMENTATION_OPTIONS.theme_version = '0.15.1';
+        DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://acp.docs.pyansys.com/versions.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
@@ -73,7 +73,7 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
 
@@ -118,10 +118,8 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <header>
    
-    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
     <span class="fa-solid fa-bars"></span>
@@ -159,6 +157,12 @@
       
         <div class="navbar-item">
 <nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
@@ -258,7 +262,7 @@ document.write(`
   
 </div>
 
-    </div>
+    </nav>
     <div id="announcement_msg"></div>
 <script>
   fetch("announcement.html")
@@ -273,14 +277,8 @@ document.write(`
     )
     .catch((error) => console.error(`Fetch problem: ${error.message}`));
 </script>  
-  </header>
-
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-      
-      
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
@@ -293,6 +291,12 @@ document.write(`
         
           <div class="navbar-item">
 <nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
@@ -410,7 +414,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article">
+                <article class="bd-article" role="main">
                   
 
 <h1 id="index">Index</h1>
@@ -462,6 +466,8 @@ document.write(`
       <li><a href="api/_autosummary/ansys.acp.core.AnalysisPly.angle.html#ansys.acp.core.AnalysisPly.angle">angle (ansys.acp.core.AnalysisPly property)</a>
 
       <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.angle.html#ansys.acp.core.CutoffSelectionRule.angle">(ansys.acp.core.CutoffSelectionRule property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.FabricWithAngle.angle.html#ansys.acp.core.FabricWithAngle.angle">(ansys.acp.core.FabricWithAngle property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.ProductionPly.angle.html#ansys.acp.core.ProductionPly.angle">(ansys.acp.core.ProductionPly property)</a>
@@ -525,6 +531,10 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.cad_geometries.html#ansys.acp.core.Model.cad_geometries">cad_geometries (ansys.acp.core.Model property)</a>
 </li>
+      <li><a href="api/_autosummary/ansys.acp.core.CADComponent.html#ansys.acp.core.CADComponent">CADComponent (class in ansys.acp.core)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.html#ansys.acp.core.CADGeometry">CADGeometry (class in ansys.acp.core)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.Sensor.center_of_gravity.html#ansys.acp.core.Sensor.center_of_gravity">center_of_gravity (ansys.acp.core.Sensor property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.UnitSystemType.CGS.html#ansys.acp.core.UnitSystemType.CGS">CGS (ansys.acp.core.UnitSystemType attribute)</a>
@@ -538,6 +548,12 @@ document.write(`
       <ul>
         <li><a href="api/_autosummary/ansys.acp.core.BooleanSelectionRule.clone.html#ansys.acp.core.BooleanSelectionRule.clone">(ansys.acp.core.BooleanSelectionRule method)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.CADComponent.clone.html#ansys.acp.core.CADComponent.clone">(ansys.acp.core.CADComponent method)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.clone.html#ansys.acp.core.CADGeometry.clone">(ansys.acp.core.CADGeometry method)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.clone.html#ansys.acp.core.CutoffSelectionRule.clone">(ansys.acp.core.CutoffSelectionRule method)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.clone.html#ansys.acp.core.CylindricalSelectionRule.clone">(ansys.acp.core.CylindricalSelectionRule method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.EdgeSet.clone.html#ansys.acp.core.EdgeSet.clone">(ansys.acp.core.EdgeSet method)</a>
@@ -545,6 +561,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.ElementSet.clone.html#ansys.acp.core.ElementSet.clone">(ansys.acp.core.ElementSet method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.Fabric.clone.html#ansys.acp.core.Fabric.clone">(ansys.acp.core.Fabric method)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.clone.html#ansys.acp.core.GeometricalSelectionRule.clone">(ansys.acp.core.GeometricalSelectionRule method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1D.clone.html#ansys.acp.core.LookUpTable1D.clone">(ansys.acp.core.LookUpTable1D method)</a>
 </li>
@@ -579,6 +597,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.TubeSelectionRule.clone.html#ansys.acp.core.TubeSelectionRule.clone">(ansys.acp.core.TubeSelectionRule method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.VariableOffsetSelectionRule.clone.html#ansys.acp.core.VariableOffsetSelectionRule.clone">(ansys.acp.core.VariableOffsetSelectionRule method)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.VirtualGeometry.clone.html#ansys.acp.core.VirtualGeometry.clone">(ansys.acp.core.VirtualGeometry method)</a>
 </li>
       </ul></li>
       <li><a href="api/_autosummary/ansys.acp.core.ElementalDataType.COG.html#ansys.acp.core.ElementalDataType.COG">COG (ansys.acp.core.ElementalDataType attribute)</a>
@@ -627,6 +647,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable3D.create_column.html#ansys.acp.core.LookUpTable3D.create_column">(ansys.acp.core.LookUpTable3D method)</a>
 </li>
       </ul></li>
+      <li><a href="api/_autosummary/ansys.acp.core.Model.create_cutoff_selection_rule.html#ansys.acp.core.Model.create_cutoff_selection_rule">create_cutoff_selection_rule() (ansys.acp.core.Model method)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.create_cylindrical_selection_rule.html#ansys.acp.core.Model.create_cylindrical_selection_rule">create_cylindrical_selection_rule() (ansys.acp.core.Model method)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.create_edge_set.html#ansys.acp.core.Model.create_edge_set">create_edge_set() (ansys.acp.core.Model method)</a>
@@ -634,6 +656,8 @@ document.write(`
       <li><a href="api/_autosummary/ansys.acp.core.Model.create_element_set.html#ansys.acp.core.Model.create_element_set">create_element_set() (ansys.acp.core.Model method)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.create_fabric.html#ansys.acp.core.Model.create_fabric">create_fabric() (ansys.acp.core.Model method)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.Model.create_geometrical_selection_rule.html#ansys.acp.core.Model.create_geometrical_selection_rule">create_geometrical_selection_rule() (ansys.acp.core.Model method)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.create_lookup_table_1d.html#ansys.acp.core.Model.create_lookup_table_1d">create_lookup_table_1d() (ansys.acp.core.Model method)</a>
 </li>
@@ -673,6 +697,14 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.Stackup.cut_off_material_handling.html#ansys.acp.core.Stackup.cut_off_material_handling">(ansys.acp.core.Stackup property)</a>
 </li>
       </ul></li>
+      <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.cutoff_geometry.html#ansys.acp.core.CutoffSelectionRule.cutoff_geometry">cutoff_geometry (ansys.acp.core.CutoffSelectionRule property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.cutoff_rule_type.html#ansys.acp.core.CutoffSelectionRule.cutoff_rule_type">cutoff_rule_type (ansys.acp.core.CutoffSelectionRule property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.Model.cutoff_selection_rules.html#ansys.acp.core.Model.cutoff_selection_rules">cutoff_selection_rules (ansys.acp.core.Model property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.html#ansys.acp.core.CutoffSelectionRule">CutoffSelectionRule (class in ansys.acp.core)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.cylindrical_selection_rules.html#ansys.acp.core.Model.cylindrical_selection_rules">cylindrical_selection_rules (ansys.acp.core.Model property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.html#ansys.acp.core.CylindricalSelectionRule">CylindricalSelectionRule (class in ansys.acp.core)</a>
@@ -696,6 +728,10 @@ document.write(`
       <li><a href="api/_autosummary/ansys.acp.core.BooleanSelectionRule.delete.html#ansys.acp.core.BooleanSelectionRule.delete">delete() (ansys.acp.core.BooleanSelectionRule method)</a>
 
       <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.delete.html#ansys.acp.core.CADGeometry.delete">(ansys.acp.core.CADGeometry method)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.delete.html#ansys.acp.core.CutoffSelectionRule.delete">(ansys.acp.core.CutoffSelectionRule method)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.delete.html#ansys.acp.core.CylindricalSelectionRule.delete">(ansys.acp.core.CylindricalSelectionRule method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.EdgeSet.delete.html#ansys.acp.core.EdgeSet.delete">(ansys.acp.core.EdgeSet method)</a>
@@ -703,6 +739,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.ElementSet.delete.html#ansys.acp.core.ElementSet.delete">(ansys.acp.core.ElementSet method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.Fabric.delete.html#ansys.acp.core.Fabric.delete">(ansys.acp.core.Fabric method)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.delete.html#ansys.acp.core.GeometricalSelectionRule.delete">(ansys.acp.core.GeometricalSelectionRule method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1D.delete.html#ansys.acp.core.LookUpTable1D.delete">(ansys.acp.core.LookUpTable1D method)</a>
 </li>
@@ -736,10 +774,14 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.VariableOffsetSelectionRule.delete.html#ansys.acp.core.VariableOffsetSelectionRule.delete">(ansys.acp.core.VariableOffsetSelectionRule method)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.VirtualGeometry.delete.html#ansys.acp.core.VirtualGeometry.delete">(ansys.acp.core.VirtualGeometry method)</a>
+</li>
       </ul></li>
       <li><a href="api/_autosummary/ansys.acp.core.Material.density.html#ansys.acp.core.Material.density">density (ansys.acp.core.Material property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ElementalDataType.DESIGN_ANGLE.html#ansys.acp.core.ElementalDataType.DESIGN_ANGLE">DESIGN_ANGLE (ansys.acp.core.ElementalDataType attribute)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.VirtualGeometry.dimension.html#ansys.acp.core.VirtualGeometry.dimension">dimension (ansys.acp.core.VirtualGeometry property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1DColumn.dimension_type.html#ansys.acp.core.LookUpTable1DColumn.dimension_type">dimension_type (ansys.acp.core.LookUpTable1DColumn property)</a>
 
@@ -749,6 +791,8 @@ document.write(`
       </ul></li>
       <li><a href="api/_autosummary/ansys.acp.core.Rosette.dir1.html#ansys.acp.core.Rosette.dir1">dir1 (ansys.acp.core.Rosette property)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.Rosette.dir2.html#ansys.acp.core.Rosette.dir2">dir2 (ansys.acp.core.Rosette property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.LaunchMode.DIRECT.html#ansys.acp.core.LaunchMode.DIRECT">DIRECT (ansys.acp.core.LaunchMode attribute)</a>
@@ -763,8 +807,6 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.SphericalSelectionRule.direction.html#ansys.acp.core.SphericalSelectionRule.direction">(ansys.acp.core.SphericalSelectionRule property)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.DirectLaunchConfig.html#ansys.acp.core.DirectLaunchConfig">DirectLaunchConfig (class in ansys.acp.core)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.VariableOffsetSelectionRule.distance_along_edge.html#ansys.acp.core.VariableOffsetSelectionRule.distance_along_edge">distance_along_edge (ansys.acp.core.VariableOffsetSelectionRule property)</a>
@@ -927,9 +969,11 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.VariableOffsetSelectionRule.element_set.html#ansys.acp.core.VariableOffsetSelectionRule.element_set">(ansys.acp.core.VariableOffsetSelectionRule property)</a>
 </li>
       </ul></li>
-      <li><a href="api/_autosummary/ansys.acp.core.Model.element_sets.html#ansys.acp.core.Model.element_sets">element_sets (ansys.acp.core.Model property)</a>
+      <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.element_sets.html#ansys.acp.core.GeometricalSelectionRule.element_sets">element_sets (ansys.acp.core.GeometricalSelectionRule property)</a>
 
       <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.Model.element_sets.html#ansys.acp.core.Model.element_sets">(ansys.acp.core.Model property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.OrientedSelectionSet.element_sets.html#ansys.acp.core.OrientedSelectionSet.element_sets">(ansys.acp.core.OrientedSelectionSet property)</a>
 </li>
       </ul></li>
@@ -938,9 +982,13 @@ document.write(`
       <ul>
         <li><a href="api/_autosummary/ansys.acp.core.BooleanSelectionRule.elemental_data.html#ansys.acp.core.BooleanSelectionRule.elemental_data">(ansys.acp.core.BooleanSelectionRule property)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.elemental_data.html#ansys.acp.core.CutoffSelectionRule.elemental_data">(ansys.acp.core.CutoffSelectionRule property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.elemental_data.html#ansys.acp.core.CylindricalSelectionRule.elemental_data">(ansys.acp.core.CylindricalSelectionRule property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.ElementSet.elemental_data.html#ansys.acp.core.ElementSet.elemental_data">(ansys.acp.core.ElementSet property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.elemental_data.html#ansys.acp.core.GeometricalSelectionRule.elemental_data">(ansys.acp.core.GeometricalSelectionRule property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.Model.elemental_data.html#ansys.acp.core.Model.elemental_data">(ansys.acp.core.Model property)</a>
 </li>
@@ -1010,6 +1058,8 @@ document.write(`
       <li><a href="api/_autosummary/ansys.acp.core.Material.ext_id.html#ansys.acp.core.Material.ext_id">ext_id (ansys.acp.core.Material property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.TubeSelectionRule.extend_endings.html#ansys.acp.core.TubeSelectionRule.extend_endings">extend_endings (ansys.acp.core.TubeSelectionRule property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.external_path.html#ansys.acp.core.CADGeometry.external_path">external_path (ansys.acp.core.CADGeometry property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core._tree_objects.material.property_sets.ConstantStrainLimits.eYc.html#ansys.acp.core._tree_objects.material.property_sets.ConstantStrainLimits.eYc">eYc (ansys.acp.core._tree_objects.material.property_sets.ConstantStrainLimits property)</a>
 
@@ -1147,14 +1197,14 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core._tree_objects.material.property_sets.VariableEngineeringConstants.G23.html#ansys.acp.core._tree_objects.material.property_sets.VariableEngineeringConstants.G23">(ansys.acp.core._tree_objects.material.property_sets.VariableEngineeringConstants property)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core._tree_objects.material.property_sets.ConstantWovenCharacterization.G23_1.html#ansys.acp.core._tree_objects.material.property_sets.ConstantWovenCharacterization.G23_1">G23_1 (ansys.acp.core._tree_objects.material.property_sets.ConstantWovenCharacterization property)</a>
 
       <ul>
         <li><a href="api/_autosummary/ansys.acp.core._tree_objects.material.property_sets.VariableWovenCharacterization.G23_1.html#ansys.acp.core._tree_objects.material.property_sets.VariableWovenCharacterization.G23_1">(ansys.acp.core._tree_objects.material.property_sets.VariableWovenCharacterization property)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core._tree_objects.material.property_sets.ConstantWovenCharacterization.G23_2.html#ansys.acp.core._tree_objects.material.property_sets.ConstantWovenCharacterization.G23_2">G23_2 (ansys.acp.core._tree_objects.material.property_sets.ConstantWovenCharacterization property)</a>
 
       <ul>
@@ -1167,6 +1217,14 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core._tree_objects.material.property_sets.VariableEngineeringConstants.G31.html#ansys.acp.core._tree_objects.material.property_sets.VariableEngineeringConstants.G31">(ansys.acp.core._tree_objects.material.property_sets.VariableEngineeringConstants property)</a>
 </li>
       </ul></li>
+      <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.geometrical_rule_type.html#ansys.acp.core.GeometricalSelectionRule.geometrical_rule_type">geometrical_rule_type (ansys.acp.core.GeometricalSelectionRule property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.Model.geometrical_selection_rules.html#ansys.acp.core.Model.geometrical_selection_rules">geometrical_selection_rules (ansys.acp.core.Model property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.html#ansys.acp.core.GeometricalSelectionRule">GeometricalSelectionRule (class in ansys.acp.core)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.geometry.html#ansys.acp.core.GeometricalSelectionRule.geometry">geometry (ansys.acp.core.GeometricalSelectionRule property)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.ModelingPly.global_ply_nr.html#ansys.acp.core.ModelingPly.global_ply_nr">global_ply_nr (ansys.acp.core.ModelingPly property)</a>
 </li>
   </ul></td>
@@ -1192,6 +1250,12 @@ document.write(`
       <ul>
         <li><a href="api/_autosummary/ansys.acp.core.BooleanSelectionRule.id.html#ansys.acp.core.BooleanSelectionRule.id">(ansys.acp.core.BooleanSelectionRule property)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.CADComponent.id.html#ansys.acp.core.CADComponent.id">(ansys.acp.core.CADComponent property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.id.html#ansys.acp.core.CADGeometry.id">(ansys.acp.core.CADGeometry property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.id.html#ansys.acp.core.CutoffSelectionRule.id">(ansys.acp.core.CutoffSelectionRule property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.id.html#ansys.acp.core.CylindricalSelectionRule.id">(ansys.acp.core.CylindricalSelectionRule property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.EdgeSet.id.html#ansys.acp.core.EdgeSet.id">(ansys.acp.core.EdgeSet property)</a>
@@ -1199,6 +1263,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.ElementSet.id.html#ansys.acp.core.ElementSet.id">(ansys.acp.core.ElementSet property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.Fabric.id.html#ansys.acp.core.Fabric.id">(ansys.acp.core.Fabric property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.id.html#ansys.acp.core.GeometricalSelectionRule.id">(ansys.acp.core.GeometricalSelectionRule property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1D.id.html#ansys.acp.core.LookUpTable1D.id">(ansys.acp.core.LookUpTable1D property)</a>
 </li>
@@ -1232,6 +1298,8 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.VariableOffsetSelectionRule.id.html#ansys.acp.core.VariableOffsetSelectionRule.id">(ansys.acp.core.VariableOffsetSelectionRule property)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.VirtualGeometry.id.html#ansys.acp.core.VirtualGeometry.id">(ansys.acp.core.VirtualGeometry property)</a>
+</li>
       </ul></li>
       <li><a href="api/_autosummary/ansys.acp.core.Fabric.ignore_for_postprocessing.html#ansys.acp.core.Fabric.ignore_for_postprocessing">ignore_for_postprocessing (ansys.acp.core.Fabric property)</a>
 
@@ -1247,10 +1315,14 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Client.import_model.html#ansys.acp.core.Client.import_model">import_model() (ansys.acp.core.Client method)</a>
 </li>
+      <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.in_plane_capture_tolerance.html#ansys.acp.core.GeometricalSelectionRule.in_plane_capture_tolerance">in_plane_capture_tolerance (ansys.acp.core.GeometricalSelectionRule property)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.BooleanSelectionRule.include_rule_type.html#ansys.acp.core.BooleanSelectionRule.include_rule_type">include_rule_type (ansys.acp.core.BooleanSelectionRule property)</a>
 
       <ul>
         <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.include_rule_type.html#ansys.acp.core.CylindricalSelectionRule.include_rule_type">(ansys.acp.core.CylindricalSelectionRule property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.include_rule_type.html#ansys.acp.core.GeometricalSelectionRule.include_rule_type">(ansys.acp.core.GeometricalSelectionRule property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.ParallelSelectionRule.include_rule_type.html#ansys.acp.core.ParallelSelectionRule.include_rule_type">(ansys.acp.core.ParallelSelectionRule property)</a>
 </li>
@@ -1323,9 +1395,11 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.LinkedSelectionRule.html#ansys.acp.core.LinkedSelectionRule">LinkedSelectionRule (class in ansys.acp.core)</a>
 </li>
-      <li><a href="api/_autosummary/ansys.acp.core.EdgeSet.locked.html#ansys.acp.core.EdgeSet.locked">locked (ansys.acp.core.EdgeSet property)</a>
+      <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.locked.html#ansys.acp.core.CADGeometry.locked">locked (ansys.acp.core.CADGeometry property)</a>
 
       <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.EdgeSet.locked.html#ansys.acp.core.EdgeSet.locked">(ansys.acp.core.EdgeSet property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.ElementSet.locked.html#ansys.acp.core.ElementSet.locked">(ansys.acp.core.ElementSet property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.Fabric.locked.html#ansys.acp.core.Fabric.locked">(ansys.acp.core.Fabric property)</a>
@@ -1430,6 +1504,12 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.BooleanSelectionRule.name.html#ansys.acp.core.BooleanSelectionRule.name">(ansys.acp.core.BooleanSelectionRule property)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.CADComponent.name.html#ansys.acp.core.CADComponent.name">(ansys.acp.core.CADComponent property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.name.html#ansys.acp.core.CADGeometry.name">(ansys.acp.core.CADGeometry property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.name.html#ansys.acp.core.CutoffSelectionRule.name">(ansys.acp.core.CutoffSelectionRule property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.name.html#ansys.acp.core.CylindricalSelectionRule.name">(ansys.acp.core.CylindricalSelectionRule property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.EdgeSet.name.html#ansys.acp.core.EdgeSet.name">(ansys.acp.core.EdgeSet property)</a>
@@ -1437,6 +1517,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.ElementSet.name.html#ansys.acp.core.ElementSet.name">(ansys.acp.core.ElementSet property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.Fabric.name.html#ansys.acp.core.Fabric.name">(ansys.acp.core.Fabric property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.name.html#ansys.acp.core.GeometricalSelectionRule.name">(ansys.acp.core.GeometricalSelectionRule property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1D.name.html#ansys.acp.core.LookUpTable1D.name">(ansys.acp.core.LookUpTable1D property)</a>
 </li>
@@ -1472,15 +1554,23 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.VariableOffsetSelectionRule.name.html#ansys.acp.core.VariableOffsetSelectionRule.name">(ansys.acp.core.VariableOffsetSelectionRule property)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.VirtualGeometry.name.html#ansys.acp.core.VirtualGeometry.name">(ansys.acp.core.VirtualGeometry property)</a>
+</li>
       </ul></li>
+      <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.negative_capture_tolerance.html#ansys.acp.core.GeometricalSelectionRule.negative_capture_tolerance">negative_capture_tolerance (ansys.acp.core.GeometricalSelectionRule property)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.AnalysisPly.nodal_data.html#ansys.acp.core.AnalysisPly.nodal_data">nodal_data (ansys.acp.core.AnalysisPly property)</a>
 
       <ul>
         <li><a href="api/_autosummary/ansys.acp.core.BooleanSelectionRule.nodal_data.html#ansys.acp.core.BooleanSelectionRule.nodal_data">(ansys.acp.core.BooleanSelectionRule property)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.nodal_data.html#ansys.acp.core.CutoffSelectionRule.nodal_data">(ansys.acp.core.CutoffSelectionRule property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.nodal_data.html#ansys.acp.core.CylindricalSelectionRule.nodal_data">(ansys.acp.core.CylindricalSelectionRule property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.ElementSet.nodal_data.html#ansys.acp.core.ElementSet.nodal_data">(ansys.acp.core.ElementSet property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.nodal_data.html#ansys.acp.core.GeometricalSelectionRule.nodal_data">(ansys.acp.core.GeometricalSelectionRule property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.Model.nodal_data.html#ansys.acp.core.Model.nodal_data">(ansys.acp.core.Model property)</a>
 </li>
@@ -1555,6 +1645,12 @@ document.write(`
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.offset.html#ansys.acp.core.CADGeometry.offset">offset (ansys.acp.core.CADGeometry property)</a>
+
+      <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.offset.html#ansys.acp.core.CutoffSelectionRule.offset">(ansys.acp.core.CutoffSelectionRule property)</a>
+</li>
+      </ul></li>
       <li><a href="api/_autosummary/ansys.acp.core.ElementalDataType.OFFSET.html#ansys.acp.core.ElementalDataType.OFFSET">OFFSET (ansys.acp.core.ElementalDataType attribute)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.VariableOffsetSelectionRule.offsets.html#ansys.acp.core.VariableOffsetSelectionRule.offsets">offsets (ansys.acp.core.VariableOffsetSelectionRule property)</a>
@@ -1573,10 +1669,10 @@ document.write(`
       </ul></li>
       <li><a href="api/_autosummary/ansys.acp.core.OrientedSelectionSet.orientation_direction.html#ansys.acp.core.OrientedSelectionSet.orientation_direction">orientation_direction (ansys.acp.core.OrientedSelectionSet property)</a>
 </li>
-      <li><a href="api/_autosummary/ansys.acp.core.OrientedSelectionSet.orientation_point.html#ansys.acp.core.OrientedSelectionSet.orientation_point">orientation_point (ansys.acp.core.OrientedSelectionSet property)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ansys.acp.core.OrientedSelectionSet.orientation_point.html#ansys.acp.core.OrientedSelectionSet.orientation_point">orientation_point (ansys.acp.core.OrientedSelectionSet property)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.oriented_selection_sets.html#ansys.acp.core.Model.oriented_selection_sets">oriented_selection_sets (ansys.acp.core.Model property)</a>
 
       <ul>
@@ -1637,17 +1733,27 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.LinkedSelectionRule.parameter_1.html#ansys.acp.core.LinkedSelectionRule.parameter_1">parameter_1 (ansys.acp.core.LinkedSelectionRule property)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.LinkedSelectionRule.parameter_2.html#ansys.acp.core.LinkedSelectionRule.parameter_2">parameter_2 (ansys.acp.core.LinkedSelectionRule property)</a>
 </li>
+      <li><a href="api/_autosummary/ansys.acp.core.CADComponent.path.html#ansys.acp.core.CADComponent.path">path (ansys.acp.core.CADComponent property)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.ModelingPly.ply_angle.html#ansys.acp.core.ModelingPly.ply_angle">ply_angle (ansys.acp.core.ModelingPly property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.ply_cutoff_type.html#ansys.acp.core.CutoffSelectionRule.ply_cutoff_type">ply_cutoff_type (ansys.acp.core.CutoffSelectionRule property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ModelingPly.ply_material.html#ansys.acp.core.ModelingPly.ply_material">ply_material (ansys.acp.core.ModelingPly property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.NodalDataType.PLY_OFFSET.html#ansys.acp.core.NodalDataType.PLY_OFFSET">PLY_OFFSET (ansys.acp.core.NodalDataType attribute)</a>
 </li>
+      <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.ply_tapering.html#ansys.acp.core.CutoffSelectionRule.ply_tapering">ply_tapering (ansys.acp.core.CutoffSelectionRule property)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.Material.ply_type.html#ansys.acp.core.Material.ply_type">ply_type (ansys.acp.core.Material property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.positive_capture_tolerance.html#ansys.acp.core.GeometricalSelectionRule.positive_capture_tolerance">positive_capture_tolerance (ansys.acp.core.GeometricalSelectionRule property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.precision.html#ansys.acp.core.CADGeometry.precision">precision (ansys.acp.core.CADGeometry property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ElementalDataType.PRICE.html#ansys.acp.core.ElementalDataType.PRICE">PRICE (ansys.acp.core.ElementalDataType attribute)</a>
 </li>
@@ -1679,6 +1785,8 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ElementalDataType.REFERENCE_DIRECTION.html#ansys.acp.core.ElementalDataType.REFERENCE_DIRECTION">REFERENCE_DIRECTION (ansys.acp.core.ElementalDataType attribute)</a>
 </li>
+      <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.refresh.html#ansys.acp.core.CADGeometry.refresh">refresh() (ansys.acp.core.CADGeometry method)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.relative_rule_type.html#ansys.acp.core.CylindricalSelectionRule.relative_rule_type">relative_rule_type (ansys.acp.core.CylindricalSelectionRule property)</a>
 
       <ul>
@@ -1699,6 +1807,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core._tree_objects.material.property_sets.VariableDensity.rho.html#ansys.acp.core._tree_objects.material.property_sets.VariableDensity.rho">(ansys.acp.core._tree_objects.material.property_sets.VariableDensity property)</a>
 </li>
       </ul></li>
+      <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.root_shapes.html#ansys.acp.core.CADGeometry.root_shapes">root_shapes (ansys.acp.core.CADGeometry property)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.rosette.html#ansys.acp.core.CylindricalSelectionRule.rosette">rosette (ansys.acp.core.CylindricalSelectionRule property)</a>
 
       <ul>
@@ -1735,6 +1845,8 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.save_analysis_model.html#ansys.acp.core.Model.save_analysis_model">save_analysis_model() (ansys.acp.core.Model method)</a>
 </li>
+      <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.scale_factor.html#ansys.acp.core.CADGeometry.scale_factor">scale_factor (ansys.acp.core.CADGeometry property)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.LookUpTable3D.search_radius.html#ansys.acp.core.LookUpTable3D.search_radius">search_radius (ansys.acp.core.LookUpTable3D property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.LinkedSelectionRule.selection_rule.html#ansys.acp.core.LinkedSelectionRule.selection_rule">selection_rule (ansys.acp.core.LinkedSelectionRule property)</a>
@@ -1755,6 +1867,8 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Client.server_version.html#ansys.acp.core.Client.server_version">server_version (ansys.acp.core.Client property)</a>
 </li>
+      <li><a href="api/_autosummary/ansys.acp.core.VirtualGeometry.set_cad_components.html#ansys.acp.core.VirtualGeometry.set_cad_components">set_cad_components() (ansys.acp.core.VirtualGeometry method)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.ElementalDataType.SHEAR_ANGLE.html#ansys.acp.core.ElementalDataType.SHEAR_ANGLE">SHEAR_ANGLE (ansys.acp.core.ElementalDataType attribute)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.UnitSystemType.SI.html#ansys.acp.core.UnitSystemType.SI">SI (ansys.acp.core.UnitSystemType attribute)</a>
@@ -1772,6 +1886,12 @@ document.write(`
       <ul>
         <li><a href="api/_autosummary/ansys.acp.core.BooleanSelectionRule.status.html#ansys.acp.core.BooleanSelectionRule.status">(ansys.acp.core.BooleanSelectionRule property)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.CADComponent.status.html#ansys.acp.core.CADComponent.status">(ansys.acp.core.CADComponent property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.status.html#ansys.acp.core.CADGeometry.status">(ansys.acp.core.CADGeometry property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.status.html#ansys.acp.core.CutoffSelectionRule.status">(ansys.acp.core.CutoffSelectionRule property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.status.html#ansys.acp.core.CylindricalSelectionRule.status">(ansys.acp.core.CylindricalSelectionRule property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.EdgeSet.status.html#ansys.acp.core.EdgeSet.status">(ansys.acp.core.EdgeSet property)</a>
@@ -1779,6 +1899,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.ElementSet.status.html#ansys.acp.core.ElementSet.status">(ansys.acp.core.ElementSet property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.Fabric.status.html#ansys.acp.core.Fabric.status">(ansys.acp.core.Fabric property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.status.html#ansys.acp.core.GeometricalSelectionRule.status">(ansys.acp.core.GeometricalSelectionRule property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1D.status.html#ansys.acp.core.LookUpTable1D.status">(ansys.acp.core.LookUpTable1D property)</a>
 </li>
@@ -1806,6 +1928,8 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.VariableOffsetSelectionRule.status.html#ansys.acp.core.VariableOffsetSelectionRule.status">(ansys.acp.core.VariableOffsetSelectionRule property)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.VirtualGeometry.status.html#ansys.acp.core.VirtualGeometry.status">(ansys.acp.core.VirtualGeometry property)</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -1816,6 +1940,10 @@ document.write(`
       <li><a href="api/_autosummary/ansys.acp.core.BooleanSelectionRule.store.html#ansys.acp.core.BooleanSelectionRule.store">store() (ansys.acp.core.BooleanSelectionRule method)</a>
 
       <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.store.html#ansys.acp.core.CADGeometry.store">(ansys.acp.core.CADGeometry method)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.store.html#ansys.acp.core.CutoffSelectionRule.store">(ansys.acp.core.CutoffSelectionRule method)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.store.html#ansys.acp.core.CylindricalSelectionRule.store">(ansys.acp.core.CylindricalSelectionRule method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.EdgeSet.store.html#ansys.acp.core.EdgeSet.store">(ansys.acp.core.EdgeSet method)</a>
@@ -1823,6 +1951,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.ElementSet.store.html#ansys.acp.core.ElementSet.store">(ansys.acp.core.ElementSet method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.Fabric.store.html#ansys.acp.core.Fabric.store">(ansys.acp.core.Fabric method)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.store.html#ansys.acp.core.GeometricalSelectionRule.store">(ansys.acp.core.GeometricalSelectionRule method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1D.store.html#ansys.acp.core.LookUpTable1D.store">(ansys.acp.core.LookUpTable1D method)</a>
 </li>
@@ -1854,10 +1984,14 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.VariableOffsetSelectionRule.store.html#ansys.acp.core.VariableOffsetSelectionRule.store">(ansys.acp.core.VariableOffsetSelectionRule method)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.VirtualGeometry.store.html#ansys.acp.core.VirtualGeometry.store">(ansys.acp.core.VirtualGeometry method)</a>
+</li>
       </ul></li>
       <li><a href="api/_autosummary/ansys.acp.core.Material.strain_limits.html#ansys.acp.core.Material.strain_limits">strain_limits (ansys.acp.core.Material property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Material.stress_limits.html#ansys.acp.core.Material.stress_limits">stress_limits (ansys.acp.core.Material property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.VirtualGeometry.sub_shapes.html#ansys.acp.core.VirtualGeometry.sub_shapes">sub_shapes (ansys.acp.core.VirtualGeometry property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.sublaminates.html#ansys.acp.core.Model.sublaminates">sublaminates (ansys.acp.core.Model property)</a>
 </li>
@@ -1903,6 +2037,8 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.TubeSelectionRule.tail_extension.html#ansys.acp.core.TubeSelectionRule.tail_extension">tail_extension (ansys.acp.core.TubeSelectionRule property)</a>
 </li>
+      <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.taper_edge_set.html#ansys.acp.core.CutoffSelectionRule.taper_edge_set">taper_edge_set (ansys.acp.core.CutoffSelectionRule property)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.LinkedSelectionRule.template_rule.html#ansys.acp.core.LinkedSelectionRule.template_rule">template_rule (ansys.acp.core.LinkedSelectionRule property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ElementalDataType.THICKNESS.html#ansys.acp.core.ElementalDataType.THICKNESS">THICKNESS (ansys.acp.core.ElementalDataType attribute)</a>
@@ -1913,14 +2049,14 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.Stackup.thickness.html#ansys.acp.core.Stackup.thickness">(ansys.acp.core.Stackup property)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core._tree_objects.material.property_sets.ConstantLaRCConstants.thin_ply_thickness_limit.html#ansys.acp.core._tree_objects.material.property_sets.ConstantLaRCConstants.thin_ply_thickness_limit">thin_ply_thickness_limit (ansys.acp.core._tree_objects.material.property_sets.ConstantLaRCConstants property)</a>
 
       <ul>
         <li><a href="api/_autosummary/ansys.acp.core._tree_objects.material.property_sets.VariableLaRCConstants.thin_ply_thickness_limit.html#ansys.acp.core._tree_objects.material.property_sets.VariableLaRCConstants.thin_ply_thickness_limit">(ansys.acp.core._tree_objects.material.property_sets.VariableLaRCConstants property)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.Stackup.topdown.html#ansys.acp.core.Stackup.topdown">topdown (ansys.acp.core.Stackup property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ElementalDataType.TRANSVERSE_DIRECTION.html#ansys.acp.core.ElementalDataType.TRANSVERSE_DIRECTION">TRANSVERSE_DIRECTION (ansys.acp.core.ElementalDataType attribute)</a>
@@ -1955,15 +2091,21 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.ParallelSelectionRule.upper_limit.html#ansys.acp.core.ParallelSelectionRule.upper_limit">(ansys.acp.core.ParallelSelectionRule property)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.ModelingPly.use_default_draping_mesh_size.html#ansys.acp.core.ModelingPly.use_default_draping_mesh_size">use_default_draping_mesh_size (ansys.acp.core.ModelingPly property)</a>
 
       <ul>
         <li><a href="api/_autosummary/ansys.acp.core.OrientedSelectionSet.use_default_draping_mesh_size.html#ansys.acp.core.OrientedSelectionSet.use_default_draping_mesh_size">(ansys.acp.core.OrientedSelectionSet property)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.use_default_offset.html#ansys.acp.core.CADGeometry.use_default_offset">use_default_offset (ansys.acp.core.CADGeometry property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.use_default_precision.html#ansys.acp.core.CADGeometry.use_default_precision">use_default_precision (ansys.acp.core.CADGeometry property)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.LookUpTable3D.use_default_search_radius.html#ansys.acp.core.LookUpTable3D.use_default_search_radius">use_default_search_radius (ansys.acp.core.LookUpTable3D property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.use_default_tolerances.html#ansys.acp.core.GeometricalSelectionRule.use_default_tolerances">use_default_tolerances (ansys.acp.core.GeometricalSelectionRule property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.use_global_coordinate_system.html#ansys.acp.core.CylindricalSelectionRule.use_global_coordinate_system">use_global_coordinate_system (ansys.acp.core.CylindricalSelectionRule property)</a>
 
@@ -2001,10 +2143,10 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core._tree_objects.material.property_sets.VariableLaRCConstants.html#ansys.acp.core._tree_objects.material.property_sets.VariableLaRCConstants">VariableLaRCConstants (class in ansys.acp.core._tree_objects.material.property_sets)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.VariableOffsetSelectionRule.html#ansys.acp.core.VariableOffsetSelectionRule">VariableOffsetSelectionRule (class in ansys.acp.core)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core._tree_objects.material.property_sets.VariablePuckConstants.html#ansys.acp.core._tree_objects.material.property_sets.VariablePuckConstants">VariablePuckConstants (class in ansys.acp.core._tree_objects.material.property_sets)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core._tree_objects.material.property_sets.VariableStrainLimits.html#ansys.acp.core._tree_objects.material.property_sets.VariableStrainLimits">VariableStrainLimits (class in ansys.acp.core._tree_objects.material.property_sets)</a>
@@ -2018,6 +2160,10 @@ document.write(`
       <li><a href="api/_autosummary/ansys.acp.core._tree_objects.material.property_sets.VariableWovenStressLimits.html#ansys.acp.core._tree_objects.material.property_sets.VariableWovenStressLimits">VariableWovenStressLimits (class in ansys.acp.core._tree_objects.material.property_sets)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.virtual_geometries.html#ansys.acp.core.Model.virtual_geometries">virtual_geometries (ansys.acp.core.Model property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.VirtualGeometry.html#ansys.acp.core.VirtualGeometry">VirtualGeometry (class in ansys.acp.core)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.visualization_mesh.html#ansys.acp.core.CADGeometry.visualization_mesh">visualization_mesh (ansys.acp.core.CADGeometry property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ElementalDataType.VOLUME.html#ansys.acp.core.ElementalDataType.VOLUME">VOLUME (ansys.acp.core.ElementalDataType attribute)</a>
 </li>
@@ -2160,7 +2306,6 @@ document.write(`
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-
   <div class="sidebar-secondary-item">
 <!-- If there is no fix edit button function, use the PyData edit-this-button-->
 </div>
@@ -2178,8 +2323,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -2215,7 +2360,7 @@ document.write(`
   <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
     >Ansys Sphinx Theme</a
   >
-  0.13.0. <br />Last updated on
+  0.13.1. <br />Last updated on
   <span id="date"></span>
 </p>
 <script>

@@ -1,0 +1,6 @@
+geometry
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.geometry

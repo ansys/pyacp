@@ -1,0 +1,6 @@
+path
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADComponent.path

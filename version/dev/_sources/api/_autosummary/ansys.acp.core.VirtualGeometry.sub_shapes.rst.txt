@@ -1,0 +1,6 @@
+sub\_shapes
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VirtualGeometry.sub_shapes
