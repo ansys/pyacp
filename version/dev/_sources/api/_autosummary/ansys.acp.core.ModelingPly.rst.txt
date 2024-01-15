@@ -54,6 +54,11 @@
       ModelingPly.production_plies
       ModelingPly.selection_rules
       ModelingPly.status
+      ModelingPly.taper_edges
+      ModelingPly.thickness_field
+      ModelingPly.thickness_field_type
+      ModelingPly.thickness_geometry
+      ModelingPly.thickness_type
       ModelingPly.use_default_draping_mesh_size
    
    

@@ -1,0 +1,6 @@
+thickness\_geometry
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.thickness_geometry

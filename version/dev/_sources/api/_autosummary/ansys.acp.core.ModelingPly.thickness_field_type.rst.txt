@@ -1,0 +1,6 @@
+thickness\_field\_type
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.thickness_field_type
