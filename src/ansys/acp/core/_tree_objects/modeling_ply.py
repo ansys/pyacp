@@ -223,7 +223,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         Choose between :attr:`ThicknessType.FROM_GEOMETRY` or
         :attr:`ThicknessType.FROM_TABLE` to define a ply with variable thickness.
         The default value is :attr:`ThicknessType.NOMINAL`, which means the ply
-        thickness is constant and determined by the material thickness.
+        thickness is constant and determined by the thickness of the ply material.
     thickness_geometry :
         Defines the geometry used to determine the ply thickness. Only applies if
         ``thickness_type`` is :attr:`ThicknessType.FROM_GEOMETRY`.
