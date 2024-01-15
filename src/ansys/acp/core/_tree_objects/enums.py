@@ -8,6 +8,7 @@ from ansys.api.acp.v0 import (
     lookup_table_3d_pb2,
     lookup_table_column_type_pb2,
     mesh_query_pb2,
+    modeling_ply_pb2,
     ply_material_pb2,
     sensor_pb2,
     unit_system_pb2,
@@ -191,3 +192,14 @@ __all__ = [
 ) = wrap_to_string_enum(
     "GeometricalRuleType", geometrical_selection_rule_pb2.GeometricalRuleType, module=__name__
 )
+(
+    ThicknessType,
+    thickness_type_to_pb,
+    thickness_type_from_pb,
+) = wrap_to_string_enum("ThicknessType", modeling_ply_pb2.ThicknessType, module=__name__)
+
+(
+    ThicknessFieldType,
+    thickness_field_type_to_pb,
+    thickness_field_type_from_pb,
+) = wrap_to_string_enum("ThicknessFieldType", modeling_ply_pb2.ThicknessFieldType, module=__name__)
