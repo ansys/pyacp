@@ -46,6 +46,7 @@ from .._utils.path_to_str import path_to_str_checked
 from .._utils.resource_paths import join as rp_join
 from .._utils.visualization import to_pyvista_faces, to_pyvista_types
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
+from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.mapping import define_mutable_mapping
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
@@ -201,7 +202,8 @@ class Model(TreeObject):
         # Send absolute paths to the server, since its CWD may not match
         # the Python CWD.
         request = model_pb2.LoadFromFileRequest(path=path_to_str_checked(path))
-        reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFile(request)
+        with wrap_grpc_errors():
+            reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFile(request)
         return cls._from_object_info(object_info=reply, channel=channel)
 
     @classmethod
@@ -225,15 +227,17 @@ class Model(TreeObject):
             convert_section_data=convert_section_data,
             unit_system=unit_system_type_to_pb(unit_system),
         )
-        reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFEFile(request)
+        with wrap_grpc_errors():
+            reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFEFile(request)
         return cls._from_object_info(object_info=reply, channel=channel)
 
     def update(self, *, relations_only: bool = False) -> None:
-        self._get_stub().Update(
-            model_pb2.UpdateRequest(
-                resource_path=self._resource_path, relations_only=relations_only
+        with wrap_grpc_errors():
+            self._get_stub().Update(
+                model_pb2.UpdateRequest(
+                    resource_path=self._resource_path, relations_only=relations_only
+                )
             )
-        )
 
     def save(self, path: _PATH, *, save_cache: bool = True) -> None:
         """
@@ -246,21 +250,23 @@ class Model(TreeObject):
         save_cache:
             Whether to store the update results such as Analysis Plies and solid models.
         """
-        self._get_stub().SaveToFile(
-            model_pb2.SaveToFileRequest(
-                resource_path=self._resource_path,
-                path=path_to_str_checked(path),
-                save_cache=save_cache,
+        with wrap_grpc_errors():
+            self._get_stub().SaveToFile(
+                model_pb2.SaveToFileRequest(
+                    resource_path=self._resource_path,
+                    path=path_to_str_checked(path),
+                    save_cache=save_cache,
+                )
             )
-        )
 
     def save_analysis_model(self, path: _PATH) -> None:
-        self._get_stub().SaveAnalysisModel(
-            model_pb2.SaveAnalysisModelRequest(
-                resource_path=self._resource_path,
-                path=path_to_str_checked(path),
+        with wrap_grpc_errors():
+            self._get_stub().SaveAnalysisModel(
+                model_pb2.SaveAnalysisModelRequest(
+                    resource_path=self._resource_path,
+                    path=path_to_str_checked(path),
+                )
             )
-        )
 
     def export_shell_composite_definitions(self, path: _PATH) -> None:
         """
@@ -271,11 +277,12 @@ class Model(TreeObject):
         path:
             File path. Eg. /tmp/ACPCompositeDefinitions.h5
         """
-        self._get_stub().SaveShellCompositeDefinitions(
-            model_pb2.SaveShellCompositeDefinitionsRequest(
-                resource_path=self._resource_path, path=path_to_str_checked(path)
+        with wrap_grpc_errors():
+            self._get_stub().SaveShellCompositeDefinitions(
+                model_pb2.SaveShellCompositeDefinitionsRequest(
+                    resource_path=self._resource_path, path=path_to_str_checked(path)
+                )
             )
-        )
 
     def export_materials(self, path: _PATH) -> None:
         """
@@ -293,13 +300,14 @@ class Model(TreeObject):
         collection_path = CollectionPath(
             value=rp_join(self._resource_path.value, Material._COLLECTION_LABEL)
         )
-        material_stub.SaveToFile(
-            material_pb2.SaveToFileRequest(
-                collection_path=collection_path,
-                path=path_to_str_checked(path),
-                format=material_pb2.SaveToFileRequest.ANSYS_XML,
+        with wrap_grpc_errors():
+            material_stub.SaveToFile(
+                material_pb2.SaveToFileRequest(
+                    collection_path=collection_path,
+                    path=path_to_str_checked(path),
+                    format=material_pb2.SaveToFileRequest.ANSYS_XML,
+                )
             )
-        )
 
     create_material, materials = define_mutable_mapping(
         Material, material_pb2_grpc.ObjectServiceStub
