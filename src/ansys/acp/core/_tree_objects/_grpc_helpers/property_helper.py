@@ -5,7 +5,7 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from functools import reduce
-from typing import Any, Callable
+from typing import Any, Callable, TypeVar
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
@@ -25,7 +25,10 @@ class _exposed_grpc_property(property):
     pass
 
 
-def mark_grpc_properties(cls: type[GrpcObjectBase]) -> type[GrpcObjectBase]:
+T = TypeVar("T", bound=type[GrpcObjectBase])
+
+
+def mark_grpc_properties(cls: T) -> T:
     props: list[str] = []
     # Loop is needed because we otherwise get only the _GRPC_PROPERTIES of one of the base classes.
     for base_cls in reversed(cls.__bases__):
