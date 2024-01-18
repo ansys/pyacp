@@ -99,26 +99,39 @@ mat_eglass_ud.ply_type = "regular"
 # Fabrics
 # '''''''
 
-corecell_81kg_5mm = model.create_fabric(
-    name="Corecell 81kg", thickness=0.005, material=mat_corecell_81kg
-)
-corecell_103kg_10mm = model.create_fabric(
+corecell_81kg_5mm = pyacp.Fabric(name="Corecell 81kg", thickness=0.005, material=mat_corecell_81kg)
+model.add_fabric(corecell_81kg_5mm)
+
+corecell_103kg_10mm = pyacp.Fabric(
     name="Corecell 103kg", thickness=0.01, material=mat_corecell_103kg
 )
-eglass_ud_02mm = model.create_fabric(name="eglass UD", thickness=0.0002, material=mat_eglass_ud)
+model.add_fabric(corecell_103kg_10mm)
+
+eglass_ud_02mm = pyacp.Fabric(name="eglass UD", thickness=0.0002, material=mat_eglass_ud)
+model.add_fabric(eglass_ud_02mm)
 
 # %%
 # Rosettes
 # ''''''''
 
-ros_deck = model.create_rosette(name="ros_deck", origin=(-5.9334, -0.0481, 1.693))
-ros_hull = model.create_rosette(name="ros_hull", origin=(-5.3711, -0.0506, -0.2551))
-ros_bulkhead = model.create_rosette(
-    name="ros_bulkhead", origin=(-5.622, 0.0022, 0.0847), dir1=(0.0, 1.0, 0.0), dir2=(0.0, 0.0, 1.0)
+ros_deck = pyacp.Rosette(name="ros_deck", origin=(-5.9334, -0.0481, 1.693))
+model.add_rosette(ros_deck)
+
+ros_hull = pyacp.Rosette(name="ros_hull", origin=(-5.3711, -0.0506, -0.2551))
+model.add_rosette(ros_hull)
+
+ros_bulkhead = pyacp.Rosette(
+    name="ros_bulkhead",
+    origin=(-5.622, 0.0022, 0.0847),
+    dir1=(0.0, 1.0, 0.0),
+    dir2=(0.0, 0.0, 1.0),
 )
-ros_keeltower = model.create_rosette(
+model.add_rosette(ros_bulkhead)
+
+ros_keeltower = pyacp.Rosette(
     name="ros_keeltower", origin=(-6.0699, -0.0502, 0.623), dir1=(0.0, 0.0, 1.0)
 )
+model.add_rosette(ros_keeltower)
 
 # %%
 # Oriented Selection Sets
@@ -126,28 +139,33 @@ ros_keeltower = model.create_rosette(
 #
 # Note: the element sets are imported from the initial mesh (CDB)
 
-oss_deck = model.create_oriented_selection_set(
-    name="oss_deck",
-    orientation_point=(-5.3806, -0.0016, 1.6449),
-    orientation_direction=(0.0, 0.0, -1.0),
-    element_sets=[model.element_sets["DECK"]],
-    rosettes=[ros_deck],
+model.add_oriented_selection_set(
+    pyacp.OrientedSelectionSet(
+        name="oss_deck",
+        orientation_point=(-5.3806, -0.0016, 1.6449),
+        orientation_direction=(0.0, 0.0, -1.0),
+        element_sets=[model.element_sets["DECK"]],
+        rosettes=[ros_deck],
+    )
 )
 
-oss_hull = model.create_oriented_selection_set(
+oss_hull = pyacp.OrientedSelectionSet(
     name="oss_hull",
     orientation_point=(-5.12, 0.1949, -0.2487),
     orientation_direction=(0.0, 0.0, 1.0),
     element_sets=[model.element_sets["HULL_ALL"]],
     rosettes=[ros_hull],
 )
+model.add_oriented_selection_set(oss_hull)
 
-oss_bulkhead = model.create_oriented_selection_set(
-    name="oss_bulkhead",
-    orientation_point=(-5.622, -0.0465, -0.094),
-    orientation_direction=(1.0, 0.0, 0.0),
-    element_sets=[model.element_sets["BULKHEAD_ALL"]],
-    rosettes=[ros_bulkhead],
+model.add_oriented_selection_set(
+    pyacp.OrientedSelectionSet(
+        name="oss_bulkhead",
+        orientation_point=(-5.622, -0.0465, -0.094),
+        orientation_direction=(1.0, 0.0, 0.0),
+        element_sets=[model.element_sets["BULKHEAD_ALL"]],
+        rosettes=[ros_bulkhead],
+    )
 )
 
 esets = [
@@ -157,12 +175,14 @@ esets = [
     model.element_sets["KEELTOWER_STB"],
 ]
 
-oss_keeltower = model.create_oriented_selection_set(
-    name="oss_keeltower",
-    orientation_point=(-6.1019, 0.0001, 1.162),
-    orientation_direction=(-1.0, 0.0, 0.0),
-    element_sets=esets,
-    rosettes=[ros_keeltower],
+model.add_oriented_selection_set(
+    pyacp.OrientedSelectionSet(
+        name="oss_keeltower",
+        orientation_point=(-6.1019, 0.0001, 1.162),
+        orientation_direction=(-1.0, 0.0, 0.0),
+        element_sets=esets,
+        rosettes=[ros_keeltower],
+    )
 )
 
 # %%
@@ -180,7 +200,7 @@ plotter.add_mesh(
     ),
     color="blue",
 )
-plotter.show()
+# plotter.show()
 
 
 # %%
@@ -189,13 +209,15 @@ plotter.show()
 
 
 def add_ply(mg, name, ply_material, angle, oss):
-    return mg.create_modeling_ply(
-        name=name,
-        ply_material=ply_material,
-        oriented_selection_sets=oss,
-        ply_angle=angle,
-        number_of_layers=1,
-        global_ply_nr=0,  # add at the end
+    return mg.add_modeling_ply(
+        pyacp.ModelingPly(
+            name=name,
+            ply_material=ply_material,
+            oriented_selection_sets=oss,
+            ply_angle=angle,
+            number_of_layers=1,
+            global_ply_nr=0,  # add at the end
+        )
     )
 
 
@@ -204,7 +226,8 @@ def add_ply(mg, name, ply_material, angle, oss):
 
 angles = [-90.0, -60.0, -45.0 - 30.0, 0.0, 0.0, 30.0, 45.0, 60.0, 90.0]
 for mg_name in ["hull", "deck", "bulkhead"]:
-    mg = model.create_modeling_group(name=mg_name)
+    mg = pyacp.ModelingGroup(name=mg_name)
+    model.add_modeling_group(mg)
     oss_list = [model.oriented_selection_sets["oss_" + mg_name]]
     for angle in angles:
         add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)
@@ -214,7 +237,8 @@ for mg_name in ["hull", "deck", "bulkhead"]:
 
 # %%
 # Add plies to the keeltower
-mg = model.create_modeling_group(name="keeltower")
+mg = pyacp.ModelingGroup(name="keeltower")
+model.add_modeling_group(mg)
 oss_list = [model.oriented_selection_sets["oss_keeltower"]]
 for angle in angles:
     add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)

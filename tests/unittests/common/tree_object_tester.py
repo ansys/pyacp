@@ -77,14 +77,23 @@ class TreeObjectTesterReadOnly:
 class TreeObjectTester(TreeObjectTesterReadOnly):
     COLLECTION_NAME: str
     DEFAULT_PROPERTIES: dict[str, Any]
-    CREATE_METHOD_NAME: str
+    OBJECT_CLS: type
+    ADD_METHOD_NAME: str
 
-    def test_create(self, parent_object):
+    @pytest.fixture
+    def object_cls(self):
+        # Use the 'OBJECT_CLS' attribute of the class by default, but
+        # allow overriding it in subclasses. In particular, this is used
+        # in the test for LookUpTableColumn, where the class is chosen
+        # based on the 'column_type_to_test' fixture.
+        return self.OBJECT_CLS
+
+    def test_create(self, parent_object, object_cls):
         """Test the creation of objects."""
-        create_method = getattr(parent_object, self.CREATE_METHOD_NAME)
         names = ["ObjectName.1", "ObjectName.1", "üñıçよð€"]
         for ref_name in names:
-            new_object = create_method(name=ref_name)
+            new_object = object_cls(name=ref_name)
+            getattr(parent_object, self.ADD_METHOD_NAME)(new_object)
             assert new_object.name == ref_name
             for key, val in self.DEFAULT_PROPERTIES.items():
                 assert_allclose(
@@ -128,13 +137,14 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
 
 class NoLockedMixin:
     @pytest.fixture
-    def collection_test_data(self, parent_object):
+    def collection_test_data(self, parent_object, object_cls):
         object_collection = getattr(parent_object, self.COLLECTION_NAME)
         object_collection.clear()
         object_names = ["ObjectName.1", "ObjectName.1", "üñıçよð€"]
         object_ids = []
         for ref_name in object_names:
-            new_object = getattr(parent_object, self.CREATE_METHOD_NAME)(name=ref_name)
+            new_object = object_cls(name=ref_name)
+            getattr(parent_object, self.ADD_METHOD_NAME)(new_object)
             assert new_object.id not in object_ids  # check uniqueness
             object_ids.append(new_object.id)
         return object_collection, object_names, object_ids
@@ -151,12 +161,13 @@ class WithLockedMixin:
     INITIAL_OBJECT_NAMES: tuple[str, ...]
 
     @pytest.fixture
-    def collection_test_data(self, parent_object):
+    def collection_test_data(self, parent_object, object_cls):
         object_collection = getattr(parent_object, self.COLLECTION_NAME)
         new_object_names = ["ObjectName.1", "ObjectName.1", "üñıçよð€"]
         object_ids = list(object_collection)
         for ref_name in new_object_names:
-            new_object = getattr(parent_object, self.CREATE_METHOD_NAME)(name=ref_name)
+            new_object = object_cls(name=ref_name)
+            getattr(parent_object, self.ADD_METHOD_NAME)(new_object)
             assert new_object.id not in object_ids  # check uniqueness
             object_ids.append(new_object.id)
         object_names = list(self.INITIAL_OBJECT_NAMES) + new_object_names

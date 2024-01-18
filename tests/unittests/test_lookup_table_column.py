@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from ansys.acp.core import LookUpTable1DColumn, LookUpTable3DColumn
+from ansys.acp.core import LookUpTable1D, LookUpTable1DColumn, LookUpTable3D, LookUpTable3DColumn
 from ansys.acp.core._tree_objects.enums import DimensionType, LookUpTableColumnValueType
 
 from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
@@ -23,8 +23,12 @@ def column_type_to_test(request):
 @pytest.fixture
 def parent_object(parent_model, column_type_to_test):
     if column_type_to_test == LookUpTable1DColumn:
-        return parent_model.create_lookup_table_1d()
-    return parent_model.create_lookup_table_3d()
+        lookup_table_1d = LookUpTable1D()
+        parent_model.add_lookup_table_1d(lookup_table_1d)
+        return lookup_table_1d
+    lookup_table_3d = LookUpTable3D()
+    parent_model.add_lookup_table_3d(lookup_table_3d)
+    return lookup_table_3d
 
 
 @pytest.fixture(params=[0, 1, 5])
@@ -52,7 +56,9 @@ def tree_object(parent_object, column_value_type, num_points, column_type_to_tes
     else:
         data = np.random.rand(num_points, 3)
     parent_object.columns["Location"].data = data
-    return parent_object.create_column(value_type=column_value_type)
+    column = column_type_to_test(value_type=column_value_type)
+    parent_object.add_column(column)
+    return column
 
 
 class TestLookUpTableColumn(WithLockedMixin, TreeObjectTester):
@@ -63,7 +69,12 @@ class TestLookUpTableColumn(WithLockedMixin, TreeObjectTester):
         "dimension_type": DimensionType.DIMENSIONLESS,
         "data": np.array([]),
     }
-    CREATE_METHOD_NAME = "create_column"
+    ADD_METHOD_NAME = "add_column"
+
+    @staticmethod
+    @pytest.fixture
+    def object_cls(column_type_to_test):
+        return column_type_to_test
 
     @staticmethod
     @pytest.fixture

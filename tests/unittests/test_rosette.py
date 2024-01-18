@@ -1,5 +1,7 @@
 import pytest
 
+from ansys.acp.core import Rosette
+
 from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
 
 
@@ -11,7 +13,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_rosette()
+    rosette = Rosette()
+    parent_object.add_rosette(rosette)
+    return rosette
 
 
 class TestRosette(WithLockedMixin, TreeObjectTester):
@@ -23,7 +27,8 @@ class TestRosette(WithLockedMixin, TreeObjectTester):
         "dir1": (1.0, 0.0, 0.0),
         "dir2": (0.0, 1.0, 0.0),
     }
-    CREATE_METHOD_NAME = "create_rosette"
+    ADD_METHOD_NAME = "add_rosette"
+    OBJECT_CLS = Rosette
     INITIAL_OBJECT_NAMES = ("Global Coordinate System",)
 
     @staticmethod

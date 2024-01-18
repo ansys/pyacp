@@ -1,5 +1,12 @@
 import pytest
 
+from ansys.acp.core import (
+    EdgeSet,
+    ElementSet,
+    LookUpTable1D,
+    LookUpTable1DColumn,
+    VariableOffsetSelectionRule,
+)
 from ansys.acp.core._tree_objects.variable_offset_selection_rule import (
     VariableOffsetSelectionRuleElementalData,
     VariableOffsetSelectionRuleNodalData,
@@ -16,7 +23,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_variable_offset_selection_rule()
+    rule = VariableOffsetSelectionRule()
+    parent_object.add_variable_offset_selection_rule(rule)
+    return rule
 
 
 class TestVariableOffsetSelectionRule(NoLockedMixin, TreeObjectTester):
@@ -34,18 +43,25 @@ class TestVariableOffsetSelectionRule(NoLockedMixin, TreeObjectTester):
         "radius_direction": (1.0, 0.0, 0.0),
         "distance_along_edge": False,
     }
-
-    CREATE_METHOD_NAME = "create_variable_offset_selection_rule"
+    OBJECT_CLS = VariableOffsetSelectionRule
+    ADD_METHOD_NAME = "add_variable_offset_selection_rule"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        edge_set = model.create_edge_set()
-        lookup_table = model.create_lookup_table_1d()
-        column_1 = lookup_table.create_column()
-        column_2 = lookup_table.create_column()
-        element_set = model.create_element_set()
+        edge_set = EdgeSet()
+        model.add_edge_set(edge_set)
+        lookup_table = LookUpTable1D()
+        model.add_lookup_table_1d(lookup_table)
+
+        column_1 = LookUpTable1DColumn()
+        column_2 = LookUpTable1DColumn()
+        lookup_table.add_column(column_1)
+        lookup_table.add_column(column_2)
+
+        element_set = ElementSet()
+        model.add_element_set(element_set)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Variable Offset Selection Rule name"),
@@ -68,6 +84,7 @@ class TestVariableOffsetSelectionRule(NoLockedMixin, TreeObjectTester):
 
 
 def test_mesh_data(parent_object):
-    rule = parent_object.create_variable_offset_selection_rule()
+    rule = VariableOffsetSelectionRule()
+    parent_object.add_variable_offset_selection_rule(rule)
     assert isinstance(rule.elemental_data, VariableOffsetSelectionRuleElementalData)
     assert isinstance(rule.nodal_data, VariableOffsetSelectionRuleNodalData)

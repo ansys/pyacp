@@ -1,5 +1,6 @@
 import pytest
 
+from ansys.acp.core import EdgeSet, TubeSelectionRule
 from ansys.acp.core._tree_objects.tube_selection_rule import (
     TubeSelectionRuleElementalData,
     TubeSelectionRuleNodalData,
@@ -16,7 +17,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_tube_selection_rule()
+    tube_selection_rule = TubeSelectionRule()
+    parent_object.add_tube_selection_rule(tube_selection_rule)
+    return tube_selection_rule
 
 
 class TestTubeSelectionRule(NoLockedMixin, TreeObjectTester):
@@ -33,14 +36,15 @@ class TestTubeSelectionRule(NoLockedMixin, TreeObjectTester):
         "head_extension": 0.0,
         "tail_extension": 0.0,
     }
-
-    CREATE_METHOD_NAME = "create_tube_selection_rule"
+    OBJECT_CLS = TubeSelectionRule
+    ADD_METHOD_NAME = "add_tube_selection_rule"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        edge_set = model.create_edge_set()
+        edge_set = EdgeSet()
+        model.add_edge_set(edge_set)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Tube Selection Rule name"),
@@ -62,6 +66,7 @@ class TestTubeSelectionRule(NoLockedMixin, TreeObjectTester):
 
 
 def test_mesh_data(parent_object):
-    rule = parent_object.create_tube_selection_rule()
+    rule = TubeSelectionRule()
+    parent_object.add_tube_selection_rule(rule)
     assert isinstance(rule.elemental_data, TubeSelectionRuleElementalData)
     assert isinstance(rule.nodal_data, TubeSelectionRuleNodalData)

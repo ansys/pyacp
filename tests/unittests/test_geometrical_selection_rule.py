@@ -1,5 +1,6 @@
 import pytest
 
+from ansys.acp.core import ElementSet, GeometricalSelectionRule, VirtualGeometry
 from ansys.acp.core._tree_objects.enums import GeometricalRuleType
 from ansys.acp.core._tree_objects.geometrical_selection_rule import (
     GeometricalSelectionRuleElementalData,
@@ -17,7 +18,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_geometrical_selection_rule()
+    res = GeometricalSelectionRule()
+    parent_object.add_geometrical_selection_rule(res)
+    return res
 
 
 class TestGeometricalSelectionRule(NoLockedMixin, TreeObjectTester):
@@ -33,20 +36,23 @@ class TestGeometricalSelectionRule(NoLockedMixin, TreeObjectTester):
         "negative_capture_tolerance": 0.0,
         "positive_capture_tolerance": 0.0,
     }
-
-    CREATE_METHOD_NAME = "create_geometrical_selection_rule"
+    OBJECT_CLS = GeometricalSelectionRule
+    ADD_METHOD_NAME = "add_geometrical_selection_rule"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        geometry = model.create_virtual_geometry()
-        element_sets = [model.create_element_set() for _ in range(3)]
+        virtual_geometry = VirtualGeometry()
+        model.add_virtual_geometry(virtual_geometry)
+        element_sets = [ElementSet() for _ in range(3)]
+        for element_set in element_sets:
+            model.add_element_set(element_set)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Geometrical Selection Rule name"),
                 ("geometrical_rule_type", GeometricalRuleType.ELEMENT_SETS),
-                ("geometry", geometry),
+                ("geometry", virtual_geometry),
                 ("element_sets", element_sets),
                 ("include_rule_type", False),
                 ("use_default_tolerances", False),
@@ -62,6 +68,7 @@ class TestGeometricalSelectionRule(NoLockedMixin, TreeObjectTester):
 
 
 def test_mesh_data(parent_object):
-    rule = parent_object.create_geometrical_selection_rule()
+    rule = GeometricalSelectionRule()
+    parent_object.add_geometrical_selection_rule(rule)
     assert isinstance(rule.elemental_data, GeometricalSelectionRuleElementalData)
     assert isinstance(rule.nodal_data, GeometricalSelectionRuleNodalData)

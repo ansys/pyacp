@@ -5,6 +5,7 @@ from hypothesis import strategies as st
 import numpy.testing as npt
 import pytest
 
+from ansys.acp.core import Material
 from ansys.acp.core._tree_objects.enums import PlyType
 from ansys.acp.core._tree_objects.material.property_sets import (
     ConstantDensity,
@@ -36,7 +37,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_material()
+    material = Material()
+    parent_object.add_material(material)
+    return material
 
 
 @pytest.fixture
@@ -65,7 +68,8 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
     DEFAULT_PROPERTIES = {
         "ply_type": PlyType.UNDEFINED,
     }
-    CREATE_METHOD_NAME = "create_material"
+    ADD_METHOD_NAME = "add_material"
+    OBJECT_CLS = Material
     INITIAL_OBJECT_NAMES = ("Structural Steel",)
     DEFAULT_VALUES_BY_PROPERTY_SET = {
         "density": {"rho": 0.0},

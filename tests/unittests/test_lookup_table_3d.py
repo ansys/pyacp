@@ -1,5 +1,6 @@
 import pytest
 
+from ansys.acp.core import LookUpTable3D
 from ansys.acp.core._tree_objects.enums import LookUpTable3DInterpolationAlgorithm
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
@@ -13,10 +14,12 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_lookup_table_3d()
+    lookup_table_3d = LookUpTable3D()
+    parent_object.add_lookup_table_3d(lookup_table_3d)
+    return lookup_table_3d
 
 
-class TestLookUpTable1D(NoLockedMixin, TreeObjectTester):
+class TestLookUpTable3D(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "lookup_tables_3d"
     DEFAULT_PROPERTIES = {
         "status": "NOTUPTODATE",
@@ -25,8 +28,8 @@ class TestLookUpTable1D(NoLockedMixin, TreeObjectTester):
         "search_radius": 0.0,
         "num_min_neighbors": 1,
     }
-
-    CREATE_METHOD_NAME = "create_lookup_table_3d"
+    OBJECT_CLS = LookUpTable3D
+    ADD_METHOD_NAME = "add_lookup_table_3d"
 
     @staticmethod
     @pytest.fixture

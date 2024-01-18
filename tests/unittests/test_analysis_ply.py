@@ -1,7 +1,7 @@
 from grpc import RpcError
 import pytest
 
-from ansys.acp.core import FabricWithAngle, Model
+from ansys.acp.core import FabricWithAngle, Model, Stackup
 from ansys.acp.core._tree_objects.analysis_ply import AnalysisPlyElementalData, AnalysisPlyNodalData
 
 from .common.tree_object_tester import TreeObjectTesterReadOnly
@@ -23,13 +23,14 @@ def get_first_production_ply(parent_model: Model):
 
 def add_stackup_with_3_layers_to_modeling_ply(model: Model):
     fabric = model.fabrics["Fabric.1"]
-    stackup = model.create_stackup(
+    stackup = Stackup(
         fabrics=[
             FabricWithAngle(fabric=fabric, angle=0.0),
             FabricWithAngle(fabric=fabric, angle=10.0),
             FabricWithAngle(fabric=fabric, angle=20.0),
         ]
     )
+    model.add_stackup(stackup)
     get_first_modeling_ply(model).ply_material = stackup
     model.update()
 

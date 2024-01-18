@@ -80,6 +80,6 @@ class LookUpTable1D(CreatableTreeObject, IdTreeObject):
         "properties.direction", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array
     )
 
-    create_column, columns = define_mutable_mapping(
+    add_column, columns = define_mutable_mapping(
         LookUpTable1DColumn, lookup_table_1d_column_pb2_grpc.ObjectServiceStub
     )

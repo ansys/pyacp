@@ -1,5 +1,7 @@
 import pytest
 
+from ansys.acp.core import ElementSet
+
 from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
 
 
@@ -11,7 +13,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_element_set()
+    element_set = ElementSet()
+    parent_object.add_element_set(element_set)
+    return element_set
 
 
 @pytest.fixture
@@ -37,5 +41,6 @@ class TestElementSet(WithLockedMixin, TreeObjectTester):
         "middle_offset": False,
         "element_labels": tuple(),
     }
-    CREATE_METHOD_NAME = "create_element_set"
+    ADD_METHOD_NAME = "add_element_set"
+    OBJECT_CLS = ElementSet
     INITIAL_OBJECT_NAMES = ("All_Elements",)

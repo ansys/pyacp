@@ -1,5 +1,6 @@
 import pytest
 
+from ansys.acp.core import CutoffSelectionRule, EdgeSet, VirtualGeometry
 from ansys.acp.core._tree_objects.cutoff_selection_rule import (
     CutoffSelectionRuleElementalData,
     CutoffSelectionRuleNodalData,
@@ -17,7 +18,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_cutoff_selection_rule()
+    res = CutoffSelectionRule()
+    parent_object.add_cutoff_selection_rule(res)
+    return res
 
 
 class TestCutoffSelectionRule(NoLockedMixin, TreeObjectTester):
@@ -32,15 +35,17 @@ class TestCutoffSelectionRule(NoLockedMixin, TreeObjectTester):
         "ply_cutoff_type": PlyCutoffType.PRODUCTION_PLY_CUTOFF,
         "ply_tapering": False,
     }
-
-    CREATE_METHOD_NAME = "create_cutoff_selection_rule"
+    OBJECT_CLS = CutoffSelectionRule
+    ADD_METHOD_NAME = "add_cutoff_selection_rule"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        geometry = model.create_virtual_geometry()
-        edge_set = model.create_edge_set()
+        geometry = VirtualGeometry()
+        model.add_virtual_geometry(geometry)
+        edge_set = EdgeSet()
+        model.add_edge_set(edge_set)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Cutoff Selection Rule name"),
@@ -60,6 +65,7 @@ class TestCutoffSelectionRule(NoLockedMixin, TreeObjectTester):
 
 
 def test_mesh_data(parent_object):
-    rule = parent_object.create_cutoff_selection_rule()
+    rule = CutoffSelectionRule()
+    parent_object.add_cutoff_selection_rule(rule)
     assert isinstance(rule.elemental_data, CutoffSelectionRuleElementalData)
     assert isinstance(rule.nodal_data, CutoffSelectionRuleNodalData)

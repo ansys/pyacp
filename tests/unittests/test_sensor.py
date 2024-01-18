@@ -1,5 +1,15 @@
 import pytest
 
+from ansys.acp.core import (
+    ElementSet,
+    Fabric,
+    ModelingGroup,
+    ModelingPly,
+    OrientedSelectionSet,
+    Sensor,
+    Stackup,
+    SubLaminate,
+)
 from ansys.acp.core._tree_objects.enums import SensorType
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
@@ -13,7 +23,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_sensor()
+    sensor = Sensor()
+    parent_object.add_sensor(sensor)
+    return sensor
 
 
 class TestSensor(NoLockedMixin, TreeObjectTester):
@@ -29,19 +41,27 @@ class TestSensor(NoLockedMixin, TreeObjectTester):
         "weight": None,
         "center_of_gravity": None,
     }
-
-    CREATE_METHOD_NAME = "create_sensor"
+    OBJECT_CLS = Sensor
+    ADD_METHOD_NAME = "add_sensor"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        elset = model.create_element_set()
-        oriented_selection_set = model.create_oriented_selection_set()
-        modeling_ply = model.create_modeling_group().create_modeling_ply()
-        fabric = model.create_fabric()
-        stackup = model.create_stackup()
-        sublaminate = model.create_sublaminate()
+        elset = ElementSet()
+        model.add_element_set(elset)
+        oriented_selection_set = OrientedSelectionSet()
+        model.add_oriented_selection_set(oriented_selection_set)
+        mg = ModelingGroup()
+        model.add_modeling_group(mg)
+        modeling_ply = ModelingPly()
+        mg.add_modeling_ply(modeling_ply)
+        fabric = Fabric()
+        model.add_fabric(fabric)
+        stackup = Stackup()
+        model.add_stackup(stackup)
+        sublaminate = SubLaminate()
+        model.add_sublaminate(sublaminate)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Sensor name"),

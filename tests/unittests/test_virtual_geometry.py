@@ -1,5 +1,6 @@
 import pytest
 
+from ansys.acp.core import CADGeometry, VirtualGeometry
 from ansys.acp.core._tree_objects.enums import VirtualGeometryDimension
 from ansys.acp.core._tree_objects.virtual_geometry import SubShape
 
@@ -14,7 +15,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_virtual_geometry()
+    virtual_geometry = VirtualGeometry()
+    parent_object.add_virtual_geometry(virtual_geometry)
+    return virtual_geometry
 
 
 class TestVirtualGeometry(NoLockedMixin, TreeObjectTester):
@@ -24,14 +27,15 @@ class TestVirtualGeometry(NoLockedMixin, TreeObjectTester):
         "dimension": VirtualGeometryDimension.UNKNOWN,
         "sub_shapes": [],
     }
-
-    CREATE_METHOD_NAME = "create_virtual_geometry"
+    OBJECT_CLS = VirtualGeometry
+    ADD_METHOD_NAME = "add_virtual_geometry"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        cad_geometry = model.create_cad_geometry()
+        cad_geometry = CADGeometry()
+        model.add_cad_geometry(cad_geometry)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Virtual Geometry name"),

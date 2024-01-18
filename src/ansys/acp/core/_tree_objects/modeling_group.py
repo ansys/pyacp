@@ -49,7 +49,7 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
     def _create_stub(self) -> modeling_group_pb2_grpc.ObjectServiceStub:
         return modeling_group_pb2_grpc.ObjectServiceStub(self._channel)
 
-    create_modeling_ply, modeling_plies = define_mutable_mapping(
+    add_modeling_ply, modeling_plies = define_mutable_mapping(
         ModelingPly, modeling_ply_pb2_grpc.ObjectServiceStub
     )
 

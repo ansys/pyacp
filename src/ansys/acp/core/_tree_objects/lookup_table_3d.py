@@ -93,6 +93,6 @@ class LookUpTable3D(CreatableTreeObject, IdTreeObject):
     search_radius = grpc_data_property("properties.search_radius")
     num_min_neighbors = grpc_data_property("properties.num_min_neighbors")
 
-    create_column, columns = define_mutable_mapping(
+    add_column, columns = define_mutable_mapping(
         LookUpTable3DColumn, lookup_table_3d_column_pb2_grpc.ObjectServiceStub
     )

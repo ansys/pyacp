@@ -1,11 +1,10 @@
 from __future__ import annotations
 
 from collections.abc import Iterator
-from functools import wraps
-from typing import TYPE_CHECKING, Any, Callable, Generic, TypeVar
+from typing import TYPE_CHECKING, Callable, Generic, TypeVar
 
 if TYPE_CHECKING:
-    from mypy_extensions import KwArg, Arg
+    from mypy_extensions import Arg
 
 from grpc import Channel
 
@@ -164,12 +163,19 @@ def get_read_only_collection_property(
 
 def define_mutable_mapping(
     object_class: type[ValueT], stub_class: type[EditableAndReadableResourceStub]
-) -> tuple[Callable[[Arg(ParentT, "self"), KwArg(Any)], ValueT], property]:
-    @wraps(object_class.__init__)
-    def create_method(self: ParentT, **kwargs: Any) -> ValueT:
-        obj = object_class(**kwargs)
-        obj.store(parent=self)
-        return obj
+) -> tuple[Callable[[Arg(ParentT, "self"), Arg(ValueT)], None], property]:
+    def add_method(self: ParentT, tree_object: ValueT) -> None:
+        f"""
+        Add a {object_class.__name__} to the collection.
+
+        Parameters
+        ----------
+        tree_object :
+            The {object_class.__name__} to add.
+        """
+        if not isinstance(tree_object, object_class):
+            raise TypeError(f"Expected {object_class.__name__}, got {type(tree_object).__name__}.")
+        tree_object._store(parent=self)
 
     def collection_property(self: ParentT) -> MutableMapping[ValueT]:
         return MutableMapping(
@@ -181,4 +187,4 @@ def define_mutable_mapping(
             stub=stub_class(channel=self._channel),
         )
 
-    return create_method, property(collection_property)
+    return add_method, property(collection_property)

@@ -1,5 +1,6 @@
 import pytest
 
+from ansys.acp.core import CylindricalSelectionRule, Rosette
 from ansys.acp.core._tree_objects.cylindrical_selection_rule import (
     CylindricalSelectionRuleElementalData,
     CylindricalSelectionRuleNodalData,
@@ -16,7 +17,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_cylindrical_selection_rule()
+    res = CylindricalSelectionRule()
+    parent_object.add_cylindrical_selection_rule(res)
+    return res
 
 
 class TestCylindricalSelectionRule(NoLockedMixin, TreeObjectTester):
@@ -31,14 +34,15 @@ class TestCylindricalSelectionRule(NoLockedMixin, TreeObjectTester):
         "relative_rule_type": False,
         "include_rule_type": True,
     }
-
-    CREATE_METHOD_NAME = "create_cylindrical_selection_rule"
+    OBJECT_CLS = CylindricalSelectionRule
+    ADD_METHOD_NAME = "add_cylindrical_selection_rule"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        rosette = model.create_rosette()
+        rosette = Rosette()
+        rosette = model.add_rosette(rosette)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Cylindrical Selection Rule name"),
@@ -58,6 +62,7 @@ class TestCylindricalSelectionRule(NoLockedMixin, TreeObjectTester):
 
 
 def test_mesh_data(parent_object):
-    rule = parent_object.create_cylindrical_selection_rule()
+    rule = CylindricalSelectionRule()
+    parent_object.add_cylindrical_selection_rule(rule)
     assert isinstance(rule.elemental_data, CylindricalSelectionRuleElementalData)
     assert isinstance(rule.nodal_data, CylindricalSelectionRuleNodalData)

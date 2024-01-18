@@ -1,5 +1,6 @@
 import pytest
 
+from ansys.acp.core import Fabric, Material
 from ansys.acp.core._tree_objects.enums import (
     CutoffMaterialType,
     DrapingMaterialType,
@@ -17,7 +18,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_fabric()
+    fabric = Fabric()
+    parent_object.add_fabric(fabric)
+    return fabric
 
 
 class TestFabric(NoLockedMixin, TreeObjectTester):
@@ -33,14 +36,15 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
         "draping_ud_coefficient": 0.0,
         "material": None,
     }
-
-    CREATE_METHOD_NAME = "create_fabric"
+    OBJECT_CLS = Fabric
+    ADD_METHOD_NAME = "add_fabric"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        material = model.create_material()
+        material = Material()
+        model.add_material(material)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Fabric name"),

@@ -20,7 +20,8 @@ def setup_and_update_acp_model(output_path, mesh_path, is_local=False):
 
     model = pyacp_client.import_model(path=mesh_path, format="ansys:h5")
 
-    mat = model.create_material(name="mat")
+    mat = pyacp.material(name="mat")
+    model.add_material(mat)
 
     mat.ply_type = "regular"
     mat.engineering_constants.E1 = 1e12
@@ -45,34 +46,42 @@ def setup_and_update_acp_model(output_path, mesh_path, is_local=False):
         eSxz=0.01,
     )
 
-    corecell_81kg_5mm = model.create_fabric(name="Corecell 81kg", thickness=0.005, material=mat)
+    corecell_81kg_5mm = pyacp.Fabric(name="Corecell 81kg", thickness=0.005, material=mat)
+    model.add_fabric(corecell_81kg_5mm)
 
-    ros = model.create_rosette(name="ros", origin=(0, 0, 0))
+    ros = pyacp.Rosette(name="ros", origin=(0, 0, 0))
+    model.add_rosette(ros)
 
-    oss = model.create_oriented_selection_set(
+    oss = pyacp.OrientedSelectionSet(
         name="oss",
         orientation_point=(-0, 0, 0),
         orientation_direction=(0.0, 1, 0.0),
         element_sets=[model.element_sets["All_Elements"]],
         rosettes=[ros],
     )
+    model.add_oriented_selection_set(oss)
 
-    mg = model.create_modeling_group(name="group")
-    mg.create_modeling_ply(
-        name="ply",
-        ply_material=corecell_81kg_5mm,
-        oriented_selection_sets=[oss],
-        ply_angle=45,
-        number_of_layers=1,
-        global_ply_nr=0,  # add at the end
+    mg = pyacp.ModelingGroup(name="group")
+    model.add_modeling_group(mg)
+    mg.add_modeling_ply(
+        pyacp.ModelingPly(
+            name="ply",
+            ply_material=corecell_81kg_5mm,
+            oriented_selection_sets=[oss],
+            ply_angle=45,
+            number_of_layers=1,
+            global_ply_nr=0,  # add at the end
+        )
     )
-    mg.create_modeling_ply(
-        name="ply2",
-        ply_material=corecell_81kg_5mm,
-        oriented_selection_sets=[oss],
-        ply_angle=0,
-        number_of_layers=2,
-        global_ply_nr=0,  # add at the end
+    mg.add_modeling_ply(
+        pyacp.ModelingPly(
+            name="ply2",
+            ply_material=corecell_81kg_5mm,
+            oriented_selection_sets=[oss],
+            ply_angle=0,
+            number_of_layers=2,
+            global_ply_nr=0,  # add at the end
+        )
     )
 
     # %%

@@ -1,5 +1,6 @@
 import pytest
 
+from ansys.acp.core import ParallelSelectionRule, Rosette
 from ansys.acp.core._tree_objects.parallel_selection_rule import (
     ParallelSelectionRuleElementalData,
     ParallelSelectionRuleNodalData,
@@ -16,7 +17,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_parallel_selection_rule()
+    rule = ParallelSelectionRule()
+    parent_object.add_parallel_selection_rule(rule)
+    return rule
 
 
 class TestParallelSelectionRule(NoLockedMixin, TreeObjectTester):
@@ -32,14 +35,15 @@ class TestParallelSelectionRule(NoLockedMixin, TreeObjectTester):
         "relative_rule_type": False,
         "include_rule_type": True,
     }
-
-    CREATE_METHOD_NAME = "create_parallel_selection_rule"
+    OBJECT_CLS = ParallelSelectionRule
+    ADD_METHOD_NAME = "add_parallel_selection_rule"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        rosette = model.create_rosette()
+        rosette = Rosette()
+        model.add_rosette(rosette)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Parallel Selection Rule name"),
@@ -60,13 +64,13 @@ class TestParallelSelectionRule(NoLockedMixin, TreeObjectTester):
 
 
 def test_mesh_data(parent_object):
-    model = parent_object
-    rule = model.create_parallel_selection_rule(
+    rule = ParallelSelectionRule(
         use_global_coordinate_system=True,
         origin=(0.0, 0.0, 0.0),
         direction=(1.0, 0.0, 0.0),
         lower_limit=-1.0,
         upper_limit=1.0,
     )
+    parent_object.add_parallel_selection_rule(rule)
     assert isinstance(rule.elemental_data, ParallelSelectionRuleElementalData)
     assert isinstance(rule.nodal_data, ParallelSelectionRuleNodalData)

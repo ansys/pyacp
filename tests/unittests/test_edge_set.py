@@ -1,5 +1,6 @@
 import pytest
 
+from ansys.acp.core import EdgeSet, ElementSet
 from ansys.acp.core._tree_objects.enums import EdgeSetType
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
@@ -13,7 +14,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_edge_set()
+    edge_set = EdgeSet()
+    parent_object.add_edge_set(edge_set)
+    return edge_set
 
 
 class TestEdgeSet(NoLockedMixin, TreeObjectTester):
@@ -26,14 +29,15 @@ class TestEdgeSet(NoLockedMixin, TreeObjectTester):
         "limit_angle": -1.0,
         "origin": (0.0, 0.0, 0.0),
     }
-
-    CREATE_METHOD_NAME = "create_edge_set"
+    OBJECT_CLS = EdgeSet
+    ADD_METHOD_NAME = "add_edge_set"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        element_set = model.create_element_set()
+        element_set = ElementSet()
+        model.add_element_set(element_set)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Edge set name"),

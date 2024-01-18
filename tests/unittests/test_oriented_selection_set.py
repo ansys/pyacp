@@ -1,6 +1,17 @@
 import pytest
 from pytest_cases import fixture, parametrize_with_cases
 
+from ansys.acp.core import (
+    BooleanSelectionRule,
+    CylindricalSelectionRule,
+    ElementSet,
+    OrientedSelectionSet,
+    ParallelSelectionRule,
+    Rosette,
+    SphericalSelectionRule,
+    TubeSelectionRule,
+    VariableOffsetSelectionRule,
+)
 from ansys.acp.core._tree_objects.enums import RosetteSelectionMethod
 
 from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
@@ -15,7 +26,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_oriented_selection_set()
+    oriented_selection_set = OrientedSelectionSet()
+    parent_object.add_oriented_selection_set(oriented_selection_set)
+    return oriented_selection_set
 
 
 class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
@@ -37,14 +50,32 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
         "draping_ud_coefficient": 0.0,
         "rotation_angle": 0.0,
     }
-    CREATE_METHOD_NAME = "create_oriented_selection_set"
+    OBJECT_CLS = OrientedSelectionSet
+    ADD_METHOD_NAME = "add_oriented_selection_set"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        element_sets = [model.create_element_set() for _ in range(3)]
-        rosettes = [model.create_rosette() for _ in range(4)]
+        element_sets = [ElementSet() for _ in range(3)]
+        for elset in element_sets:
+            model.add_element_set(elset)
+        rosettes = [Rosette() for _ in range(4)]
+        for rosette in rosettes:
+            model.add_rosette(rosette)
+
+        tube_selection_rule = TubeSelectionRule()
+        model.add_tube_selection_rule(tube_selection_rule)
+        parallel_selection_rule = ParallelSelectionRule()
+        model.add_parallel_selection_rule(parallel_selection_rule)
+        spherical_selection_rule = SphericalSelectionRule()
+        model.add_spherical_selection_rule(spherical_selection_rule)
+        cylindrical_selection_rule = CylindricalSelectionRule()
+        model.add_cylindrical_selection_rule(cylindrical_selection_rule)
+        variable_offset_selection_rule = VariableOffsetSelectionRule()
+        model.add_variable_offset_selection_rule(variable_offset_selection_rule)
+        boolean_selection_rule = BooleanSelectionRule()
+        model.add_boolean_selection_rule(boolean_selection_rule)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "new_name"),
@@ -56,12 +87,12 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
                 (
                     "selection_rules",
                     [
-                        model.create_tube_selection_rule(),
-                        model.create_parallel_selection_rule(),
-                        model.create_spherical_selection_rule(),
-                        model.create_cylindrical_selection_rule(),
-                        model.create_variable_offset_selection_rule(),
-                        model.create_boolean_selection_rule(),
+                        tube_selection_rule,
+                        parallel_selection_rule,
+                        spherical_selection_rule,
+                        cylindrical_selection_rule,
+                        variable_offset_selection_rule,
+                        boolean_selection_rule,
                     ],
                 ),
                 ("draping", True),
@@ -83,44 +114,70 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
 
 def case_link_to_elset_one_existing(parent_object):
     oss = parent_object.oriented_selection_sets["OrientedSelectionSet.1"]
+
+    def _create_elset(name="ElementSet"):
+        element_set = ElementSet(name=name)
+        parent_object.add_element_set(element_set)
+        return element_set
+
     yield LinkedObjectListTestCase(
         parent_object=oss,
         linked_attribute_name="element_sets",
         existing_linked_object_names=tuple(["All_Elements"]),
-        linked_object_constructor=parent_object.create_element_set,
+        linked_object_constructor=_create_elset,
     )
 
 
 def case_link_to_elset_empty(load_model_from_tempfile):
     with load_model_from_tempfile() as model:
-        oss = model.create_oriented_selection_set()
+        oss = OrientedSelectionSet()
+        model.add_oriented_selection_set(oss)
+
+        def _create_elset(name="ElementSet"):
+            element_set = ElementSet(name=name)
+            model.add_element_set(element_set)
+            return element_set
+
         yield LinkedObjectListTestCase(
             parent_object=oss,
             linked_attribute_name="element_sets",
             existing_linked_object_names=tuple(),
-            linked_object_constructor=model.create_element_set,
+            linked_object_constructor=_create_elset,
         )
 
 
 def case_link_to_rosette_empty(load_model_from_tempfile):
     with load_model_from_tempfile() as model:
-        oss = model.create_oriented_selection_set()
+        oss = OrientedSelectionSet()
+        model.add_oriented_selection_set(oss)
+
+        def _create_rosette(name="Rosette"):
+            rosette = Rosette(name=name)
+            model.add_rosette(rosette)
+            return rosette
+
         yield LinkedObjectListTestCase(
             parent_object=oss,
             linked_attribute_name="rosettes",
             existing_linked_object_names=tuple(),
-            linked_object_constructor=model.create_rosette,
+            linked_object_constructor=_create_rosette,
         )
 
 
 def case_link_to_rosette_one_existing(load_model_from_tempfile):
     with load_model_from_tempfile() as model:
         oss = model.oriented_selection_sets["OrientedSelectionSet.1"]
+
+        def _create_rosette(name="Rosette"):
+            rosette = Rosette(name=name)
+            model.add_rosette(rosette)
+            return rosette
+
         yield LinkedObjectListTestCase(
             parent_object=oss,
             linked_attribute_name="rosettes",
             existing_linked_object_names=tuple(["Global Coordinate System"]),
-            linked_object_constructor=model.create_rosette,
+            linked_object_constructor=_create_rosette,
         )
 
 

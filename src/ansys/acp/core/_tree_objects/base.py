@@ -209,7 +209,7 @@ class CreatableTreeObject(TreeObject):
     def _get_stub(self) -> CreatableEditableAndReadableResourceStub:
         return cast(CreatableEditableAndReadableResourceStub, super()._get_stub())
 
-    def store(self: CreatableTreeObject, parent: TreeObject) -> None:
+    def _store(self: CreatableTreeObject, parent: TreeObject) -> None:
         self._channel_store = parent._channel
 
         collection_path = CollectionPath(

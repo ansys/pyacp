@@ -1,5 +1,7 @@
 import pytest
 
+from ansys.acp.core import ModelingGroup
+
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 
@@ -11,18 +13,20 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_oriented_selection_set()
+    modeling_group = ModelingGroup()
+    parent_object.add_modeling_group(modeling_group)
+    return modeling_group
 
 
 class TestModelingGroup(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "modeling_groups"
     DEFAULT_PROPERTIES = {}
-    CREATE_METHOD_NAME = "create_modeling_group"
+    ADD_METHOD_NAME = "add_modeling_group"
+    OBJECT_CLS = ModelingGroup
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
-        model = parent_object
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "new_name"),

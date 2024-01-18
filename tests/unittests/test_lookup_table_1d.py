@@ -1,5 +1,7 @@
 import pytest
 
+from ansys.acp.core import LookUpTable1D
+
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 
@@ -11,7 +13,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_lookup_table_1d()
+    lookup_table_1d = LookUpTable1D()
+    parent_object.add_lookup_table_1d(lookup_table_1d)
+    return lookup_table_1d
 
 
 class TestLookUpTable1D(NoLockedMixin, TreeObjectTester):
@@ -21,8 +25,8 @@ class TestLookUpTable1D(NoLockedMixin, TreeObjectTester):
         "origin": (0.0, 0.0, 0.0),
         "direction": (0.0, 0.0, 0.0),
     }
-
-    CREATE_METHOD_NAME = "create_lookup_table_1d"
+    OBJECT_CLS = LookUpTable1D
+    ADD_METHOD_NAME = "add_lookup_table_1d"
 
     @staticmethod
     @pytest.fixture

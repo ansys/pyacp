@@ -1,6 +1,8 @@
 import grpc
 import pytest
 
+from ansys.acp.core import CADGeometry, ElementSet
+
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 
@@ -12,7 +14,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_cad_geometry()
+    cad_geometry = CADGeometry()
+    parent_object.add_cad_geometry(cad_geometry)
+    return cad_geometry
 
 
 class TestCADGeometry(NoLockedMixin, TreeObjectTester):
@@ -26,14 +30,15 @@ class TestCADGeometry(NoLockedMixin, TreeObjectTester):
         "use_default_offset": True,
         "offset": 0.0,
     }
-
-    CREATE_METHOD_NAME = "create_cad_geometry"
+    OBJECT_CLS = CADGeometry
+    ADD_METHOD_NAME = "add_cad_geometry"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        element_set = model.create_element_set()
+        element_set = ElementSet()
+        model.add_element_set(element_set)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "CAD Geometry name"),

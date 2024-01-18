@@ -301,69 +301,65 @@ class Model(TreeObject):
             )
         )
 
-    create_material, materials = define_mutable_mapping(
-        Material, material_pb2_grpc.ObjectServiceStub
-    )
-    create_fabric, fabrics = define_mutable_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
-    create_stackup, stackups = define_mutable_mapping(Stackup, stackup_pb2_grpc.ObjectServiceStub)
-    create_sublaminate, sublaminates = define_mutable_mapping(
+    add_material, materials = define_mutable_mapping(Material, material_pb2_grpc.ObjectServiceStub)
+    add_fabric, fabrics = define_mutable_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
+    add_stackup, stackups = define_mutable_mapping(Stackup, stackup_pb2_grpc.ObjectServiceStub)
+    add_sublaminate, sublaminates = define_mutable_mapping(
         SubLaminate, sublaminate_pb2_grpc.ObjectServiceStub
     )
-    create_element_set, element_sets = define_mutable_mapping(
+    add_element_set, element_sets = define_mutable_mapping(
         ElementSet, element_set_pb2_grpc.ObjectServiceStub
     )
-    create_edge_set, edge_sets = define_mutable_mapping(
-        EdgeSet, edge_set_pb2_grpc.ObjectServiceStub
-    )
-    create_cad_geometry, cad_geometries = define_mutable_mapping(
+    add_edge_set, edge_sets = define_mutable_mapping(EdgeSet, edge_set_pb2_grpc.ObjectServiceStub)
+    add_cad_geometry, cad_geometries = define_mutable_mapping(
         CADGeometry, cad_geometry_pb2_grpc.ObjectServiceStub
     )
-    create_virtual_geometry, virtual_geometries = define_mutable_mapping(
+    add_virtual_geometry, virtual_geometries = define_mutable_mapping(
         VirtualGeometry, virtual_geometry_pb2_grpc.ObjectServiceStub
     )
-    create_rosette, rosettes = define_mutable_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
+    add_rosette, rosettes = define_mutable_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
 
-    create_lookup_table_1d, lookup_tables_1d = define_mutable_mapping(
+    add_lookup_table_1d, lookup_tables_1d = define_mutable_mapping(
         LookUpTable1D, lookup_table_1d_pb2_grpc.ObjectServiceStub
     )
 
-    create_lookup_table_3d, lookup_tables_3d = define_mutable_mapping(
+    add_lookup_table_3d, lookup_tables_3d = define_mutable_mapping(
         LookUpTable3D, lookup_table_3d_pb2_grpc.ObjectServiceStub
     )
 
-    create_parallel_selection_rule, parallel_selection_rules = define_mutable_mapping(
+    add_parallel_selection_rule, parallel_selection_rules = define_mutable_mapping(
         ParallelSelectionRule, parallel_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    create_cylindrical_selection_rule, cylindrical_selection_rules = define_mutable_mapping(
+    add_cylindrical_selection_rule, cylindrical_selection_rules = define_mutable_mapping(
         CylindricalSelectionRule, cylindrical_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    create_spherical_selection_rule, spherical_selection_rules = define_mutable_mapping(
+    add_spherical_selection_rule, spherical_selection_rules = define_mutable_mapping(
         SphericalSelectionRule, spherical_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    create_tube_selection_rule, tube_selection_rules = define_mutable_mapping(
+    add_tube_selection_rule, tube_selection_rules = define_mutable_mapping(
         TubeSelectionRule, tube_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    create_cutoff_selection_rule, cutoff_selection_rules = define_mutable_mapping(
+    add_cutoff_selection_rule, cutoff_selection_rules = define_mutable_mapping(
         CutoffSelectionRule, cutoff_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    create_geometrical_selection_rule, geometrical_selection_rules = define_mutable_mapping(
+    add_geometrical_selection_rule, geometrical_selection_rules = define_mutable_mapping(
         GeometricalSelectionRule, geometrical_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    create_variable_offset_selection_rule, variable_offset_selection_rules = define_mutable_mapping(
+    add_variable_offset_selection_rule, variable_offset_selection_rules = define_mutable_mapping(
         VariableOffsetSelectionRule, variable_offset_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    create_boolean_selection_rule, boolean_selection_rules = define_mutable_mapping(
+    add_boolean_selection_rule, boolean_selection_rules = define_mutable_mapping(
         BooleanSelectionRule, boolean_selection_rule_pb2_grpc.ObjectServiceStub
     )
 
-    create_oriented_selection_set, oriented_selection_sets = define_mutable_mapping(
+    add_oriented_selection_set, oriented_selection_sets = define_mutable_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub
     )
-    create_modeling_group, modeling_groups = define_mutable_mapping(
+    add_modeling_group, modeling_groups = define_mutable_mapping(
         ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
     )
 
-    create_sensor, sensors = define_mutable_mapping(Sensor, sensor_pb2_grpc.ObjectServiceStub)
+    add_sensor, sensors = define_mutable_mapping(Sensor, sensor_pb2_grpc.ObjectServiceStub)
 
     @property
     def mesh(self) -> MeshData:

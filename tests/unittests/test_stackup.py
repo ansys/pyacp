@@ -1,6 +1,6 @@
 import pytest
 
-from ansys.acp.core import FabricWithAngle
+from ansys.acp.core import Fabric, FabricWithAngle, Material, Stackup
 from ansys.acp.core._tree_objects.enums import (
     CutoffMaterialType,
     DrapingMaterialType,
@@ -19,7 +19,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_stackup()
+    stackup = Stackup()
+    parent_object.add_stackup(stackup)
+    return stackup
 
 
 class TestStackup(NoLockedMixin, TreeObjectTester):
@@ -37,16 +39,20 @@ class TestStackup(NoLockedMixin, TreeObjectTester):
         "draping_material_model": DrapingMaterialType.WOVEN,
         "draping_ud_coefficient": 0.0,
     }
-
-    CREATE_METHOD_NAME = "create_stackup"
+    OBJECT_CLS = Stackup
+    ADD_METHOD_NAME = "add_stackup"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        material = model.create_material()
-        f1 = model.create_fabric(name="fabric 1", thickness=0.1, material=material)
-        f2 = model.create_fabric(name="fabric 2", thickness=0.25, material=material)
+        material = Material()
+        model.add_material(material)
+
+        f1 = Fabric(name="fabric 1", thickness=0.1, material=material)
+        f2 = Fabric(name="fabric 2", thickness=0.25, material=material)
+        model.add_fabric(f1)
+        model.add_fabric(f2)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Stackup name"),

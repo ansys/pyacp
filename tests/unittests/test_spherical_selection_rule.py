@@ -1,5 +1,6 @@
 import pytest
 
+from ansys.acp.core import Rosette, SphericalSelectionRule
 from ansys.acp.core._tree_objects.spherical_selection_rule import (
     SphericalSelectionRuleElementalData,
     SphericalSelectionRuleNodalData,
@@ -16,7 +17,9 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_spherical_selection_rule()
+    spherical_selection_rule = SphericalSelectionRule()
+    parent_object.add_spherical_selection_rule(spherical_selection_rule)
+    return spherical_selection_rule
 
 
 class TestSphericalSelectionRule(NoLockedMixin, TreeObjectTester):
@@ -30,14 +33,15 @@ class TestSphericalSelectionRule(NoLockedMixin, TreeObjectTester):
         "relative_rule_type": False,
         "include_rule_type": True,
     }
-
-    CREATE_METHOD_NAME = "create_spherical_selection_rule"
+    OBJECT_CLS = SphericalSelectionRule
+    ADD_METHOD_NAME = "add_spherical_selection_rule"
 
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        rosette = model.create_rosette()
+        rosette = Rosette()
+        model.add_rosette(rosette)
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Spherical Selection Rule name"),
@@ -56,6 +60,7 @@ class TestSphericalSelectionRule(NoLockedMixin, TreeObjectTester):
 
 
 def test_mesh_data(parent_object):
-    rule = parent_object.create_spherical_selection_rule()
+    rule = SphericalSelectionRule()
+    parent_object.add_spherical_selection_rule(rule)
     assert isinstance(rule.elemental_data, SphericalSelectionRuleElementalData)
     assert isinstance(rule.nodal_data, SphericalSelectionRuleNodalData)

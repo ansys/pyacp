@@ -11,7 +11,7 @@ import docker
 from hypothesis import settings
 import pytest
 
-from ansys.acp.core import Client, launch_acp
+from ansys.acp.core import CADGeometry, Client, launch_acp
 from ansys.acp.core._server import (
     ControllableServerProtocol,
     DirectLaunchConfig,
@@ -210,8 +210,10 @@ def load_cad_geometry(model_data_dir, grpc_server):
     def inner(model, relative_file_path="square_and_solid.stp"):
         client = Client(server=grpc_server)
         cad_file_path = client.upload_file(model_data_dir / relative_file_path)
-        yield model.create_cad_geometry(
+        cad_geometry = CADGeometry(
             external_path=cad_file_path,
         )
+        model.add_cad_geometry(cad_geometry)
+        yield cad_geometry
 
     return inner

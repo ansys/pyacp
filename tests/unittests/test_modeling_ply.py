@@ -4,13 +4,25 @@ import pytest
 import pyvista
 
 from ansys.acp.core import (
+    BooleanSelectionRule,
+    CylindricalSelectionRule,
+    EdgeSet,
     ElementalDataType,
     Fabric,
     LinkedSelectionRule,
+    LookUpTable1D,
+    LookUpTable1DColumn,
+    ModelingPly,
     NodalDataType,
+    OrientedSelectionSet,
+    ParallelSelectionRule,
+    SphericalSelectionRule,
     Stackup,
     SubLaminate,
     TaperEdge,
+    TubeSelectionRule,
+    VariableOffsetSelectionRule,
+    VirtualGeometry,
 )
 from ansys.acp.core._tree_objects.enums import (
     BooleanOperationType,
@@ -37,7 +49,9 @@ def parent_object(parent_model):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_modeling_ply()
+    modeling_ply = ModelingPly()
+    parent_object.add_modeling_ply(modeling_ply)
+    return modeling_ply
 
 
 class TestModelingPly(NoLockedMixin, TreeObjectTester):
@@ -64,19 +78,52 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
         "thickness_field_type": ThicknessFieldType.ABSOLUTE_VALUES,
         "taper_edges": [],
     }
-    CREATE_METHOD_NAME = "create_modeling_ply"
+    OBJECT_CLS = ModelingPly
+    ADD_METHOD_NAME = "add_modeling_ply"
 
     @staticmethod
-    @pytest.fixture(params=["create_fabric", "create_stackup", "create_sublaminate"])
+    @pytest.fixture(
+        params=[("add_fabric", Fabric), ("add_stackup", Stackup), ("add_sublaminate", SubLaminate)]
+    )
     def object_properties(request, parent_model):
-        oriented_selection_sets = [parent_model.create_oriented_selection_set() for _ in range(3)]
-        create_method = getattr(parent_model, request.param)
-        ply_material = create_method()
+        oriented_selection_sets = [OrientedSelectionSet() for _ in range(3)]
+        for oss in oriented_selection_sets:
+            parent_model.add_oriented_selection_set(oss)
+        add_method_name, material_cls = request.param
+        ply_material = material_cls()
+        getattr(parent_model, add_method_name)(ply_material)
         if not isinstance(ply_material, (Fabric, Stackup, SubLaminate)):
             raise RuntimeError("Unsupported ply material!")
-        lookup_table = parent_model.create_lookup_table_1d()
-        column_1 = lookup_table.create_column()
-        column_2 = lookup_table.create_column()
+
+        lookup_table = LookUpTable1D()
+        parent_model.add_lookup_table_1d(lookup_table)
+
+        column_1 = LookUpTable1DColumn()
+        lookup_table.add_column(column_1)
+        column_2 = LookUpTable1DColumn()
+        lookup_table.add_column(column_2)
+
+        parallel_selection_rule = ParallelSelectionRule()
+        parent_model.add_parallel_selection_rule(parallel_selection_rule)
+        cylindrical_selection_rule = CylindricalSelectionRule()
+        parent_model.add_cylindrical_selection_rule(cylindrical_selection_rule)
+        spherical_selection_rule = SphericalSelectionRule()
+        parent_model.add_spherical_selection_rule(spherical_selection_rule)
+        tube_selection_rule = TubeSelectionRule()
+        parent_model.add_tube_selection_rule(tube_selection_rule)
+        variable_offset_selection_rule = VariableOffsetSelectionRule()
+        parent_model.add_variable_offset_selection_rule(variable_offset_selection_rule)
+        boolean_selection_rule = BooleanSelectionRule()
+        parent_model.add_boolean_selection_rule(boolean_selection_rule)
+
+        virtual_geometry = VirtualGeometry()
+        parent_model.add_virtual_geometry(virtual_geometry)
+
+        edge_set_1 = EdgeSet()
+        parent_model.add_edge_set(edge_set_1)
+        edge_set_2 = EdgeSet()
+        parent_model.add_edge_set(edge_set_2)
+
         return ObjectPropertiesToTest(
             read_write=[
                 ("oriented_selection_sets", oriented_selection_sets),
@@ -88,42 +135,42 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
                     "selection_rules",
                     [
                         LinkedSelectionRule(
-                            selection_rule=parent_model.create_parallel_selection_rule(),
+                            selection_rule=parallel_selection_rule,
                             operation_type=BooleanOperationType.INTERSECT,
                             template_rule=False,
                             parameter_1=1.0,
                             parameter_2=2.0,
                         ),
                         LinkedSelectionRule(
-                            selection_rule=parent_model.create_cylindrical_selection_rule(),
+                            selection_rule=cylindrical_selection_rule,
                             operation_type=BooleanOperationType.ADD,
                             template_rule=True,
                             parameter_1=1.1,
                             parameter_2=2.2,
                         ),
                         LinkedSelectionRule(
-                            selection_rule=parent_model.create_spherical_selection_rule(),
+                            selection_rule=spherical_selection_rule,
                             operation_type=BooleanOperationType.REMOVE,
                             template_rule=True,
                             parameter_1=2.3,
                             parameter_2=-1.3,
                         ),
                         LinkedSelectionRule(
-                            selection_rule=parent_model.create_tube_selection_rule(),
+                            selection_rule=tube_selection_rule,
                             operation_type=BooleanOperationType.INTERSECT,
                             template_rule=False,
                             parameter_1=1.3,
                             parameter_2=2.9,
                         ),
                         LinkedSelectionRule(
-                            selection_rule=parent_model.create_variable_offset_selection_rule(),
+                            selection_rule=variable_offset_selection_rule,
                             operation_type=BooleanOperationType.ADD,
                             template_rule=False,
                             parameter_1=0.0,
                             parameter_2=0.0,
                         ),
                         LinkedSelectionRule(
-                            selection_rule=parent_model.create_boolean_selection_rule(),
+                            selection_rule=boolean_selection_rule,
                             operation_type=BooleanOperationType.REMOVE,
                             template_rule=False,
                             parameter_1=4.0,
@@ -140,15 +187,15 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
                 ("draping_angle_1_field", column_1),
                 ("draping_angle_2_field", column_2),
                 ("thickness_type", ThicknessType.FROM_GEOMETRY),
-                ("thickness_geometry", parent_model.create_virtual_geometry()),
+                ("thickness_geometry", virtual_geometry),
                 ("thickness_type", ThicknessType.FROM_TABLE),
                 ("thickness_field", column_1),
                 ("thickness_field_type", ThicknessFieldType.RELATIVE_SCALING_FACTOR),
                 (
                     "taper_edges",
                     [
-                        TaperEdge(edge_set=parent_model.create_edge_set(), angle=1.2, offset=2.3),
-                        TaperEdge(edge_set=parent_model.create_edge_set(), angle=3.4, offset=4.5),
+                        TaperEdge(edge_set=edge_set_1, angle=1.2, offset=2.3),
+                        TaperEdge(edge_set=edge_set_2, angle=3.4, offset=4.5),
                     ],
                 ),
             ],
@@ -161,11 +208,16 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
 
 @pytest.fixture
 def linked_object_case(tree_object, parent_model):
+    def _create_oss(name="OrientedSelectionSet"):
+        oss = OrientedSelectionSet(name=name)
+        parent_model.add_oriented_selection_set(oss)
+        return oss
+
     return LinkedObjectListTestCase(
         parent_object=tree_object,
         linked_attribute_name="oriented_selection_sets",
         existing_linked_object_names=(),
-        linked_object_constructor=parent_model.create_oriented_selection_set,
+        linked_object_constructor=_create_oss,
     )
 
 
@@ -174,12 +226,19 @@ linked_object_case_empty = linked_object_case
 
 @pytest.fixture
 def linked_object_case_nonempty(tree_object, parent_model):
-    tree_object.oriented_selection_sets = [parent_model.create_oriented_selection_set(name="OSS.1")]
+    def _create_oss(name="OrientedSelectionSet"):
+        oss = OrientedSelectionSet(name=name)
+        parent_model.add_oriented_selection_set(oss)
+        return oss
+
+    oss = OrientedSelectionSet(name="OSS.1")
+    parent_model.add_oriented_selection_set(oss)
+    tree_object.oriented_selection_sets = [oss]
     return LinkedObjectListTestCase(
         parent_object=tree_object,
         linked_attribute_name="oriented_selection_sets",
         existing_linked_object_names=("OSS.1",),
-        linked_object_constructor=parent_model.create_oriented_selection_set,
+        linked_object_constructor=_create_oss,
     )
 
 
