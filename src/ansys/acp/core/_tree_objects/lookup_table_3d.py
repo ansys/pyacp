@@ -8,7 +8,7 @@ from ansys.api.acp.v0 import (
     lookup_table_3d_pb2_grpc,
 )
 
-from ._grpc_helpers.mapping import define_mutable_mapping
+from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -93,6 +93,12 @@ class LookUpTable3D(CreatableTreeObject, IdTreeObject):
     search_radius = grpc_data_property("properties.search_radius")
     num_min_neighbors = grpc_data_property("properties.num_min_neighbors")
 
-    create_column, columns = define_mutable_mapping(
+    create_column = define_create_method(
+        LookUpTable3DColumn,
+        func_name="create_column",
+        parent_class_name="LookUpTable3D",
+        module_name=__module__,
+    )
+    columns = define_mutable_mapping(
         LookUpTable3DColumn, lookup_table_3d_column_pb2_grpc.ObjectServiceStub
     )
