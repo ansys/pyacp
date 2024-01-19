@@ -300,7 +300,7 @@ pyacp_client.download_file(
 from ansys.mapdl.core import Mapdl
 
 mapdl = Mapdl(ip="localhost", port=50557, timeout=30)
-
+mapdl.clear()
 # %%
 # Load the CDB file into PyMAPDL
 mapdl.input(str(cdb_file_local_path))

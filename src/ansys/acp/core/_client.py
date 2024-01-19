@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import dataclasses
 import os
 import pathlib
 import shutil
@@ -17,6 +18,25 @@ from ._typing_helper import PATH as _PATH
 
 __all__ = ["Client"]
 
+class WorkingDir:
+    def __init__(self, path: pathlib.Path =None):
+        self._user_defined_working_dir = None
+        self._temp_working_dir = None
+        if path is None:
+            self._temp_working_dir = tempfile.TemporaryDirectory()
+        else:
+            self._user_defined_working_dir = path
+
+    @property
+    def path(self) -> pathlib.Path:
+        if self._user_defined_working_dir is not None:
+            return self._user_defined_working_dir
+        else:
+            return pathlib.Path(self._temp_working_dir.name)
+
+    @property
+    def is_temp_dir(self) -> bool:
+        return self._temp_working_dir is not None
 
 class Client:
     """Top-level controller for the models loaded in a server.
@@ -27,29 +47,38 @@ class Client:
         The ACP gRPC server to which the ``Client`` connects.
     """
 
-    def __init__(self, server: ServerProtocol):
+    def __init__(self, server: ServerProtocol, local_working_dir: _PATH | None = None) -> None:
         self._channel = server.channels[ServerKey.MAIN]
         if ServerKey.FILE_TRANSFER in server.channels:
             self._ft_client: FileTransferClient | None = FileTransferClient(
                 server.channels[ServerKey.FILE_TRANSFER]
             )
-            self._tmp_dir = None
         else:
             self._ft_client = None
-            self._tmp_dir = tempfile.TemporaryDirectory()
+        self._local_working_dir = WorkingDir(local_working_dir)
+
+    @property
+    def local_working_dir(self) -> WorkingDir:
+        return self._local_working_dir
+
+    @property
+    def is_remote(self) -> bool:
+        return self._ft_client is not None
 
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
         if self._ft_client is None:
-            assert self._tmp_dir is not None
-            # TODO: The '_tmp_dir', and file tracking / up-/download in general
-            # should probably be handled by the local server itself.
-            # For now, we just do it client-side.
-            dest_dir = pathlib.Path(self._tmp_dir.name) / uuid.uuid4().hex
-            dest_dir.mkdir(parents=True)
-            filename = os.path.basename(local_path)
-            res_path = dest_dir / filename
-            shutil.copyfile(local_path, res_path)
-            return pathlib.Path(res_path)
+            assert self._local_working_dir is not None
+            if self._local_working_dir.is_temp_dir:
+                # TODO: The '_tmp_dir', and file tracking / up-/download in general
+                # should probably be handled by the local server itself.
+                # For now, we just do it client-side.
+                dest_dir = self._local_working_dir.path / uuid.uuid4().hex
+                dest_dir.mkdir(parents=True, exist_ok=True)
+                filename = os.path.basename(local_path)
+                res_path = dest_dir / filename
+                shutil.copyfile(local_path, res_path)
+                return pathlib.Path(res_path)
+            return pathlib.Path(local_path)
 
         else:
             remote_filename = os.path.basename(local_path)
@@ -61,7 +90,8 @@ class Client:
 
     def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
         if self._ft_client is None:
-            shutil.copyfile(remote_filename, local_path)
+            if self._local_working_dir.is_temp_dir:
+                shutil.copyfile(remote_filename, local_path)
         else:
             self._ft_client.download_file(
                 remote_filename=str(remote_filename), local_filename=str(local_path)
