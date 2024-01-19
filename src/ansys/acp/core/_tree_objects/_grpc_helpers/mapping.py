@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterator
+import textwrap
 from typing import TYPE_CHECKING, Callable, Generic, TypeVar
 
 if TYPE_CHECKING:
@@ -165,7 +166,14 @@ def define_mutable_mapping(
     object_class: type[ValueT], stub_class: type[EditableAndReadableResourceStub]
 ) -> tuple[Callable[[Arg(ParentT, "self"), Arg(ValueT)], None], property]:
     def add_method(self: ParentT, tree_object: ValueT) -> None:
-        f"""
+        if not isinstance(tree_object, object_class):
+            raise TypeError(f"Expected {object_class.__name__}, got {type(tree_object).__name__}.")
+        tree_object._store(parent=self)
+
+    # docstrings need to be regular strings, not f-strings. Hence, we need
+    # to define the __doc__ separately here.
+    add_method.__doc__ = textwrap.dedent(
+        f"""\
         Add a {object_class.__name__} to the collection.
 
         Parameters
@@ -173,9 +181,8 @@ def define_mutable_mapping(
         tree_object :
             The {object_class.__name__} to add.
         """
-        if not isinstance(tree_object, object_class):
-            raise TypeError(f"Expected {object_class.__name__}, got {type(tree_object).__name__}.")
-        tree_object._store(parent=self)
+    )
+    add_method.__annotations__["tree_object"] = object_class
 
     def collection_property(self: ParentT) -> MutableMapping[ValueT]:
         return MutableMapping(

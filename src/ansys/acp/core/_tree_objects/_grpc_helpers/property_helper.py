@@ -37,6 +37,11 @@ def mark_grpc_properties(cls: T) -> T:
     for key, value in vars(cls).items():
         if isinstance(value, _exposed_grpc_property):
             props.append(key)
+        # TODO: hack; explain or remove
+        elif hasattr(value, "__name__") and value.__name__ == "add_method":
+            value.__name__ = key
+            value.__qualname__ = f"{cls.__qualname__}.{key}"
+            value.__module__ = cls.__module__
     props_unique = []
     for name in props:
         if name not in props_unique:

@@ -351,7 +351,6 @@ class Model(TreeObject):
     add_boolean_selection_rule, boolean_selection_rules = define_mutable_mapping(
         BooleanSelectionRule, boolean_selection_rule_pb2_grpc.ObjectServiceStub
     )
-
     add_oriented_selection_set, oriented_selection_sets = define_mutable_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub
     )
