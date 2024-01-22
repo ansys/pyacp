@@ -8,6 +8,7 @@ from typing_extensions import Concatenate, ParamSpec
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 
+from ..._utils.property_protocols import ReadOnlyProperty
 from ..._utils.resource_paths import join as _rp_join
 from ..base import CreatableTreeObject, TreeObject
 from .exceptions import wrap_grpc_errors
@@ -188,7 +189,7 @@ def define_create_method(
 
 def define_mutable_mapping(
     object_class: type[ValueT], stub_class: type[EditableAndReadableResourceStub]
-) -> property:
+) -> ReadOnlyProperty[MutableMapping[ValueT]]:
     def collection_property(self: ParentT) -> MutableMapping[ValueT]:
         return MutableMapping(
             channel=self._channel,
