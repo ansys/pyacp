@@ -32,7 +32,7 @@ __all__ = [
 class ParallelSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a Parallel Selection Rule."""
 
-    normal: npt.NDArray[np.float64]
+    normal: PlotDataWrapper
 
 
 @dataclasses.dataclass

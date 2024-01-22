@@ -17,6 +17,11 @@ The MAPDL and DPF services are run in docker containers which share a volume (wo
 directory).
 """
 
+# Note: It is important to import mapdl before dpf, otherwise the plot defaults are messed up
+# https://github.com/ansys/pydpf-core/issues/1363
+from ansys.mapdl.core import Mapdl, launch_mapdl
+
+
 # %%
 # Import standard library and third-party dependencies
 import os
@@ -137,7 +142,7 @@ print(model.unit_system)
 # %%
 # Visualize the loaded mesh
 mesh = model.mesh.to_pyvista()
-#mesh.plot(show_edges=True)
+mesh.plot(show_edges=True)
 rosette = model.create_rosette(origin=(0.0, 0.0, 0.0), dir1=(1.0, 0.0, 0.0), dir2=(0.0, 0.0, 1.0))
 
 
@@ -187,12 +192,11 @@ model.update()
 plotter = pyvista.Plotter()
 plotter.add_mesh(model.mesh.to_pyvista(), color="white")
 plotter.add_mesh(
-    oss.elemental_data.to_pyvista(
-        mesh=model.mesh, component=pyacp.ElementalDataType.ORIENTATION, factor=0.01, culling_factor=5
+    oss.elemental_data.orientation.to_pyvista(
+        mesh=model.mesh, factor=0.01, culling_factor=5
     ),
     color="blue",
 )
-#plotter.show()
 
 
 modeling_group = model.create_modeling_group(name="modeling_group")
@@ -212,9 +216,7 @@ modeling_ply.elemental_data.normal.to_pyvista(
     mesh=model.mesh,
     factor=0.01
 ).plot()
-modeling_ply.elemental_data.normal.to_pyvista()
 
-modeling_ply.elemental_data
 
 
 # %%
@@ -222,16 +224,13 @@ modeling_ply.elemental_data
 plotter = pyvista.Plotter()
 plotter.add_mesh(model.mesh.to_pyvista(), color="white")
 plotter.add_mesh(
-    modeling_ply.nodal_data.to_pyvista(
-        mesh=model.mesh, component=pyacp.NodalDataType.PLY_OFFSET, factor=0.01
+    modeling_ply.nodal_data.ply_offset.to_pyvista(
+        mesh=model.mesh, factor=0.01
     ),
 )
-#plotter.show()
+plotter.show()
 
 print_model(model)
-
-
-from ansys.mapdl.core import Mapdl, launch_mapdl
 
 mapdl = launch_mapdl()
 #mapdl = Mapdl(ip="localhost", port=50557, timeout=30)

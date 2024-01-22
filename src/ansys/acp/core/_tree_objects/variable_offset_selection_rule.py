@@ -37,7 +37,7 @@ __all__ = [
 class VariableOffsetSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a VariableOffset Selection Rule."""
 
-    normal: npt.NDArray[np.float64]
+    normal: PlotDataWrapper
 
 
 @dataclasses.dataclass

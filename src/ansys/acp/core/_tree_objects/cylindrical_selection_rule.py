@@ -32,7 +32,7 @@ __all__ = [
 class CylindricalSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a Cylindrical Selection Rule."""
 
-    normal: npt.NDArray[np.float64]
+    normal: PlotDataWrapper
 
 
 @dataclasses.dataclass

@@ -31,7 +31,7 @@ __all__ = [
 class BooleanSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a Boolean Selection Rule."""
 
-    normal: npt.NDArray[np.float64]
+    normal: PlotDataWrapper
 
 
 @dataclasses.dataclass

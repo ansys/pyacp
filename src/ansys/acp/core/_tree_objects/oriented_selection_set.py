@@ -50,9 +50,9 @@ __all__ = [
 class OrientedSelectionSetElementalData(ElementalData):
     """Represents elemental data for an Oriented Selection Set."""
 
-    normal: npt.NDArray[np.float64]
-    orientation: npt.NDArray[np.float64]
-    reference_direction: npt.NDArray[np.float64]
+    normal: PlotDataWrapper
+    orientation: PlotDataWrapper
+    reference_direction: PlotDataWrapper
 
 
 @dataclasses.dataclass

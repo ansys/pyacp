@@ -30,7 +30,7 @@ __all__ = [
 class ElementSetElementalData(ElementalData):
     """Represents elemental data for an Element Set."""
 
-    normal: npt.NDArray[np.float64]
+    normal: PlotDataWrapper
 
 
 @dataclasses.dataclass

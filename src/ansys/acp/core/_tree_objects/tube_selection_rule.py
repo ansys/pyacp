@@ -32,7 +32,7 @@ __all__ = [
 class TubeSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a Tube Selection Rule."""
 
-    normal: npt.NDArray[np.float64]
+    normal: PlotDataWrapper
 
 
 @dataclasses.dataclass

@@ -31,6 +31,105 @@ __all__ = [
 ]
 
 
+def _expand_array(
+        *,
+        index_map: dict[int, int],
+        array: npt.NDArray[np.float64],
+        labels: npt.NDArray[np.int32],
+        mesh_labels: npt.NDArray[np.int32],
+        culling_factor: int,
+) -> npt.NDArray[np.float64]:
+    """Expand the array to the size of the mesh."""
+    target_shape = tuple([mesh_labels.size] + list(array.shape[1:]))
+    target_array = np.ones(target_shape, dtype=np.float64) * np.nan
+    for idx, (label, value) in enumerate(zip(labels, array)):
+        if idx % culling_factor == 0:
+            target_array[index_map[label]] = value
+    return target_array
+
+
+def _to_pyvista(
+        mesh_data_base: MeshDataBase,
+        *,
+        mesh: MeshData,
+        values: npt.NDArray[np.float64] | None = None,
+        culling_factor: int = 1,
+        **kwargs: Any,
+) -> PolyData | UnstructuredGrid:
+    current_labels = getattr(mesh_data_base, mesh_data_base._LABEL_FIELD_NAME).values
+    mesh_labels = getattr(mesh, mesh_data_base._LABEL_FIELD_NAME)
+    idx_map = {label: idx for idx, label in enumerate(mesh_labels)}
+    pv_mesh = mesh.to_pyvista()
+
+    mesh_data_field = getattr(pv_mesh, mesh_data_base._PYVISTA_FIELD_NAME)
+
+    if values is None:
+        for name in mesh_data_base._field_names():
+            values = getattr(mesh_data_base, name)
+            target_array = _expand_array(
+                index_map=idx_map,
+                array=values,
+                labels=current_labels,
+                mesh_labels=mesh_labels,
+                culling_factor=culling_factor,
+            )
+            mesh_data_field[name] = target_array
+    else:
+        target_array = _expand_array(
+            index_map=idx_map,
+            array=values,
+            labels=current_labels,
+            mesh_labels=mesh_labels,
+            culling_factor=culling_factor,
+        )
+        component = "component"
+        mesh_data_field[component] = target_array
+        if len(target_array.shape) == 2 and target_array.shape[1] == 3:
+            # handle vector data
+            magnitude_name = f"{component}_magnitude"
+            mesh_data_field[magnitude_name] = np.linalg.norm(target_array, axis=-1)
+            return pv_mesh.glyph(orient=component, scale=magnitude_name, **kwargs)  # type: ignore
+    if kwargs:
+        raise TypeError(
+            "The following keyword arguments were not used: " + ", ".join(kwargs.keys())
+        )
+    return pv_mesh
+
+class PlotDataWrapper:
+    def __init__(self, wrapping_class: MeshDataBase, values: npt.NDArray[np.float64]):
+        self._wrapping_class = wrapping_class
+        self._values = values
+
+    @property
+    def values(self) -> npt.NDArray[np.float64]:
+        return self._values
+
+    def to_pyvista(self,
+        mesh: MeshData,
+        culling_factor: int = 1,
+        **kwargs: Any,):
+        """Convert the mesh data to a PyVista object.
+
+        Parameters
+        ----------
+        mesh :
+            The mesh to which the data is associated.
+        culling_factor :
+            If set to a value other than ``1``, add only every n-th data
+            point to the PyVista object. This is useful especially for
+            vector data, where the arrows can be too dense.
+        kwargs :
+            Keyword arguments passed to the PyVista object constructor.
+        """
+        return _to_pyvista(
+            self._wrapping_class,
+            mesh=mesh,
+            values=self._values,
+            culling_factor=culling_factor,
+            **kwargs,
+        )
+
+
 @dataclasses.dataclass
 class MeshDataBase:
     """
@@ -60,27 +159,23 @@ class MeshDataBase:
             kwargs[field_name] = cast(
                 npt.NDArray[np.float64], dataarray_to_numpy(array, dtype=np.float64)
             )  # todo: handle other dtypes
-        return cls(**kwargs)
 
-    def to_pyvista(
-        self,
-        *,
+
+        instance = cls(**kwargs)
+        for key, value in kwargs.items():
+            setattr(instance, key, PlotDataWrapper(instance, value))
+        return instance
+
+    def to_pyvista(self,
         mesh: MeshData,
-        component: str | None = None,
         culling_factor: int = 1,
-        **kwargs: Any,
-    ) -> PolyData | UnstructuredGrid:
+        **kwargs: Any,):
         """Convert the mesh data to a PyVista object.
 
         Parameters
         ----------
         mesh :
             The mesh to which the data is associated.
-        component :
-            The name of the data attribute to add to the PyVista object.
-            If `None`, all data attributes are added. If the data attribute
-            contains vector data, the PyVista object will be converted to
-            arrows.
         culling_factor :
             If set to a value other than ``1``, add only every n-th data
             point to the PyVista object. This is useful especially for
@@ -88,61 +183,14 @@ class MeshDataBase:
         kwargs :
             Keyword arguments passed to the PyVista object constructor.
         """
-        current_labels = getattr(self, self._LABEL_FIELD_NAME)
-        mesh_labels = getattr(mesh, self._LABEL_FIELD_NAME)
-        idx_map = {label: idx for idx, label in enumerate(mesh_labels)}
-        pv_mesh = mesh.to_pyvista()
+        return _to_pyvista(
+            self,
+            mesh=mesh,
+            culling_factor=culling_factor
+            **kwargs,
+        )
 
-        mesh_data_field = getattr(pv_mesh, self._PYVISTA_FIELD_NAME)
 
-        if component is None:
-            for name in self._field_names():
-                values = getattr(self, name)
-                target_array = self._expand_array(
-                    index_map=idx_map,
-                    array=values,
-                    labels=current_labels,
-                    mesh_labels=mesh_labels,
-                    culling_factor=culling_factor,
-                )
-                mesh_data_field[name] = target_array
-        else:
-            values = getattr(self, component)
-            target_array = self._expand_array(
-                index_map=idx_map,
-                array=values,
-                labels=current_labels,
-                mesh_labels=mesh_labels,
-                culling_factor=culling_factor,
-            )
-            mesh_data_field[component] = target_array
-            if len(target_array.shape) == 2 and target_array.shape[1] == 3:
-                # handle vector data
-                magnitude_name = f"{component}_magnitude"
-                mesh_data_field[magnitude_name] = np.linalg.norm(target_array, axis=-1)
-                return pv_mesh.glyph(orient=component, scale=magnitude_name, **kwargs)  # type: ignore
-        if kwargs:
-            raise TypeError(
-                "The following keyword arguments were not used: " + ", ".join(kwargs.keys())
-            )
-        return pv_mesh
-
-    @staticmethod
-    def _expand_array(
-        *,
-        index_map: dict[int, int],
-        array: npt.NDArray[np.float64],
-        labels: npt.NDArray[np.int32],
-        mesh_labels: npt.NDArray[np.int32],
-        culling_factor: int,
-    ) -> npt.NDArray[np.float64]:
-        """Expand the array to the size of the mesh."""
-        target_shape = tuple([mesh_labels.size] + list(array.shape[1:]))
-        target_array = np.ones(target_shape, dtype=np.float64) * np.nan
-        for idx, (label, value) in enumerate(zip(labels, array)):
-            if idx % culling_factor == 0:
-                target_array[index_map[label]] = value
-        return target_array
 
 
 @dataclasses.dataclass

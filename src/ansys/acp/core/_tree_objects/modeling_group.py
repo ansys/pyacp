@@ -23,7 +23,7 @@ __all__ = ["ModelingGroup"]
 class ModelingGroupElementalData(ElementalData):
     """Represents elemental data for an Modeling Group."""
 
-    normal: npt.NDArray[np.float64]
+    normal: PlotDataWrapper
 
 
 @dataclasses.dataclass

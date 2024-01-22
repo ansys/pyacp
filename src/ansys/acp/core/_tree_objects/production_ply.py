@@ -27,32 +27,32 @@ __all__ = ["ProductionPly", "ProductionPlyElementalData", "ProductionPlyNodalDat
 class ProductionPlyElementalData(ElementalData):
     """Represents elemental data for a Production Ply."""
 
-    normal: npt.NDArray[np.float64]
-    orientation: npt.NDArray[np.float64]
-    reference_direction: npt.NDArray[np.float64]
-    fiber_direction: npt.NDArray[np.float64]
-    draped_fiber_direction: npt.NDArray[np.float64]
-    transverse_direction: npt.NDArray[np.float64]
-    draped_transverse_direction: npt.NDArray[np.float64]
-    thickness: npt.NDArray[np.float64]
-    relative_thickness_correction: npt.NDArray[np.float64]
-    design_angle: npt.NDArray[np.float64]
-    shear_angle: npt.NDArray[np.float64]
-    draped_fiber_angle: npt.NDArray[np.float64]
-    draped_transverse_angle: npt.NDArray[np.float64]
-    area: npt.NDArray[np.float64]
-    price: npt.NDArray[np.float64]
-    volume: npt.NDArray[np.float64]
-    mass: npt.NDArray[np.float64]
-    offset: npt.NDArray[np.float64]
-    cog: npt.NDArray[np.float64]
+    normal: PlotDataWrapper
+    orientation: PlotDataWrapper
+    reference_direction: PlotDataWrapper
+    fiber_direction: PlotDataWrapper
+    draped_fiber_direction: PlotDataWrapper
+    transverse_direction: PlotDataWrapper
+    draped_transverse_direction: PlotDataWrapper
+    thickness: PlotDataWrapper
+    relative_thickness_correction: PlotDataWrapper
+    design_angle: PlotDataWrapper
+    shear_angle: PlotDataWrapper
+    draped_fiber_angle: PlotDataWrapper
+    draped_transverse_angle: PlotDataWrapper
+    area: PlotDataWrapper
+    price: PlotDataWrapper
+    volume: PlotDataWrapper
+    mass: PlotDataWrapper
+    offset: PlotDataWrapper
+    cog: PlotDataWrapper
 
 
 @dataclasses.dataclass
 class ProductionPlyNodalData(NodalData):
     """Represents nodal data for a Production Ply."""
 
-    ply_offset: npt.NDArray[np.float64]
+    ply_offset: PlotDataWrapper
 
 
 @mark_grpc_properties

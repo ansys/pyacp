@@ -87,7 +87,7 @@ class MeshData:
     """Container for the mesh data of an ACP Model."""
 
     node_labels: npt.NDArray[np.int32]
-    node_coordinates: npt.NDArray[np.float64]
+    node_coordinates: PlotDataWrapper
     element_labels: npt.NDArray[np.int32]
     element_types: npt.NDArray[np.int32]
     element_nodes: npt.NDArray[np.int32]
@@ -109,15 +109,15 @@ class MeshData:
 class ModelElementalData(ElementalData):
     """Represents elemental data for a Model."""
 
-    normal: npt.NDArray[np.float64]
-    thickness: npt.NDArray[np.float64]
-    relative_thickness_correction: npt.NDArray[np.float64]
-    area: npt.NDArray[np.float64]
-    price: npt.NDArray[np.float64]
-    volume: npt.NDArray[np.float64]
-    mass: npt.NDArray[np.float64]
-    offset: npt.NDArray[np.float64]
-    cog: npt.NDArray[np.float64]
+    normal: PlotDataWrapper
+    thickness: PlotDataWrapper
+    relative_thickness_correction: PlotDataWrapper
+    area: PlotDataWrapper
+    price: PlotDataWrapper
+    volume: PlotDataWrapper
+    mass: PlotDataWrapper
+    offset: PlotDataWrapper
+    cog: PlotDataWrapper
 
 
 @dataclasses.dataclass
