@@ -18,7 +18,7 @@ from ._typing_helper import PATH as _PATH
 
 __all__ = ["Client"]
 
-class WorkingDir:
+class LocalWorkingDir:
     def __init__(self, path: pathlib.Path =None):
         self._user_defined_working_dir = None
         self._temp_working_dir = None
@@ -55,10 +55,10 @@ class Client:
             )
         else:
             self._ft_client = None
-        self._local_working_dir = WorkingDir(local_working_dir)
+        self._local_working_dir = LocalWorkingDir(local_working_dir)
 
     @property
-    def local_working_dir(self) -> WorkingDir:
+    def local_working_dir(self) -> LocalWorkingDir:
         return self._local_working_dir
 
     @property
@@ -66,9 +66,19 @@ class Client:
         return self._ft_client is not None
 
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
+        """Upload local file.
+
+        If the server is remote, uploads the file to the server and returns the path
+        on the server.
+        If the server is local and the working directory is a temp dir, copies the file to
+        the working directory.
+        If the server is local and the working directory is a user defined dir, does nothing
+        and returns the input path.
+        """
         if self._ft_client is None:
             assert self._local_working_dir is not None
             if self._local_working_dir.is_temp_dir:
+                # Copy file to working dir if it is a temp dir
                 # TODO: The '_tmp_dir', and file tracking / up-/download in general
                 # should probably be handled by the local server itself.
                 # For now, we just do it client-side.
@@ -78,6 +88,8 @@ class Client:
                 res_path = dest_dir / filename
                 shutil.copyfile(local_path, res_path)
                 return pathlib.Path(res_path)
+            # Just return the local path if this is a user defined
+            # working directory
             return pathlib.Path(local_path)
 
         else:
@@ -89,6 +101,14 @@ class Client:
             return pathlib.PurePosixPath(remote_filename)
 
     def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
+        """
+        Download a file from the server.
+
+        If the server is remote, download the file to the local path.
+        If the server is local and the working directory is a temp dir, copy the file to the
+        temp dir.
+        If the server is local and the working directory is a user defined dir, do nothing.
+        """
         if self._ft_client is None:
             if self._local_working_dir.is_temp_dir:
                 shutil.copyfile(remote_filename, local_path)
