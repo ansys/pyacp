@@ -43,6 +43,7 @@ from ansys.api.acp.v0.base_pb2 import CollectionPath
 from .._typing_helper import PATH as _PATH
 from .._utils.array_conversions import to_numpy
 from .._utils.path_to_str import path_to_str_checked
+from .._utils.property_protocols import ReadWriteProperty
 from .._utils.resource_paths import join as rp_join
 from .._utils.visualization import to_pyvista_faces, to_pyvista_types
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
@@ -188,11 +189,21 @@ class Model(TreeObject):
 
     # # TODO: document further properties, or autogenerate docstring from .proto files.
 
-    use_nodal_thicknesses = grpc_data_property("properties.use_nodal_thicknesses")
-    draping_offset_correction = grpc_data_property("properties.draping_offset_correction")
-    angle_tolerance = grpc_data_property("properties.angle_tolerance")
-    relative_thickness_tolerance = grpc_data_property("properties.relative_thickness_tolerance")
-    minimum_analysis_ply_thickness = grpc_data_property("properties.minimum_analysis_ply_thickness")
+    use_nodal_thicknesses: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_nodal_thicknesses"
+    )
+    draping_offset_correction: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.draping_offset_correction"
+    )
+    angle_tolerance: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.angle_tolerance"
+    )
+    relative_thickness_tolerance: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.relative_thickness_tolerance"
+    )
+    minimum_analysis_ply_thickness: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.minimum_analysis_ply_thickness"
+    )
     unit_system = grpc_data_property_read_only(
         "properties.unit_system", from_protobuf=unit_system_type_from_pb
     )

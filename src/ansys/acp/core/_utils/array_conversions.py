@@ -1,3 +1,4 @@
+from collections.abc import Collection
 from typing import Any, Union, overload
 
 import numpy as np
@@ -7,12 +8,12 @@ from ansys.api.acp.v0.array_types_pb2 import DoubleArray, Int32Array, IntArray
 from ansys.api.acp.v0.mesh_query_pb2 import DataArray
 
 
-def to_1D_double_array(data: tuple[float, ...]) -> DoubleArray:
-    return DoubleArray(shape=[len(data)], data=data)
+def to_1D_double_array(data: Collection[float]) -> DoubleArray:
+    return DoubleArray(shape=[len(data)], data=tuple(data))
 
 
-def to_1D_int_array(data: tuple[int, ...]) -> IntArray:
-    return IntArray(shape=[len(data)], data=data)
+def to_1D_int_array(data: Collection[int]) -> IntArray:
+    return IntArray(shape=[len(data)], data=tuple(data))
 
 
 def to_tuple_from_1D_array(array: Union[IntArray, DoubleArray]) -> tuple[Any, ...]:
