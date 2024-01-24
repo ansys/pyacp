@@ -18,7 +18,13 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
-from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
+from ._mesh_data import (
+    ElementalData,
+    NodalData,
+    PlotDataWrapper,
+    elemental_data_property,
+    nodal_data_property,
+)
 from .base import CreatableTreeObject, IdTreeObject
 from .boolean_selection_rule import BooleanSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
