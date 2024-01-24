@@ -1307,8 +1307,52 @@ document.write(`
 <h1>create_modeling_ply<a class="headerlink" href="#create-modeling-ply" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.ModelingGroup.create_modeling_ply">
-<span class="sig-prename descclassname"><span class="pre">ModelingGroup.</span></span><span class="sig-name descname"><span class="pre">create_modeling_ply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ModelingPly'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ply_material</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oriented_selection_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ply_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_ply_nr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selection_rules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DrapingType.NO_DRAPING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_seed_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_draping_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_default_draping_mesh_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_mesh_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_thickness_correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_angle_1_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_angle_2_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ThicknessType.NOMINAL</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness_geometry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness_field_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ThicknessFieldType.ABSOLUTE_VALUES</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taper_edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ModelingGroup.create_modeling_ply" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">ModelingGroup.</span></span><span class="sig-name descname"><span class="pre">create_modeling_ply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ModelingGroup.create_modeling_ply" title="Permalink to this definition">#</a></dt>
+<dd><p>Instantiate an Modeling Ply.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – The name of the ModelingPly</p></li>
+<li><p><strong>ply_material</strong> – The material (fabric, stackup or sub-laminate) of the ply.</p></li>
+<li><p><strong>ply_angle</strong> – Design angle between the reference direction and the ply fiber direction.</p></li>
+<li><p><strong>number_of_layers</strong> – Number of times the plies are generated.</p></li>
+<li><p><strong>active</strong> – Inactive plies are ignored in ACP and the downstream analysis.</p></li>
+<li><p><strong>global_ply_nr</strong> – Defines the global ply order.</p></li>
+<li><p><strong>selection_rules</strong> – Selection Rules which may limit the extent of the ply.</p></li>
+<li><p><strong>draping</strong> – Chooses between different draping formulations.</p></li>
+<li><p><strong>draping_seed_point</strong> – Starting point of the draping algorithm.</p></li>
+<li><p><strong>auto_draping_direction</strong> – <dl class="simple">
+<dt>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the fiber direction of the production ply at the draping</dt><dd><p>seed point is used as draping direction.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>draping_direction</strong> – Set the primary draping direction for the draping algorithm. Only used if
+<code class="docutils literal notranslate"><span class="pre">auto_draping_direction</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>draping_mesh_size</strong> – Defines the mesh size for the draping algorithm.  If set to <code class="docutils literal notranslate"><span class="pre">-1.</span></code>, the
+mesh size is automatically determined based on the average element size.</p></li>
+<li><p><strong>draping_thickness_correction</strong> – Enables the thickness correction of draped plies based on the draping
+shear angle.</p></li>
+<li><p><strong>draping_angle_1_field</strong> – Correction angle between the fiber and draped fiber directions, in degree.</p></li>
+<li><p><strong>draping_angle_2_field</strong> – Correction angle between the transverse and draped transverse directions,
+in degree. Optional, uses the same values as <code class="docutils literal notranslate"><span class="pre">draping_angle_1_field</span></code>
+(no shear) by default.</p></li>
+<li><p><strong>thickness_type</strong> – Choose between <code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_GEOMETRY</span></code> or
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_TABLE</span></code> to define a ply with variable thickness.
+The default value is <code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.NOMINAL</span></code>, which means the ply
+thickness is constant and determined by the thickness of the ply material.</p></li>
+<li><p><strong>thickness_geometry</strong> – Defines the geometry used to determine the ply thickness. Only applies if
+<code class="docutils literal notranslate"><span class="pre">thickness_type</span></code> is <code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_GEOMETRY</span></code>.</p></li>
+<li><p><strong>thickness_field</strong> – Defines the look-up table column used to determine the ply thickness.
+Only applies if <code class="docutils literal notranslate"><span class="pre">thickness_type</span></code> is <code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_TABLE</span></code>.</p></li>
+<li><p><strong>thickness_field_type</strong> – If <code class="docutils literal notranslate"><span class="pre">thickness_type</span></code> is <code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_TABLE</span></code>, this parameter
+determines how the thickness values are interpreted. They can be either
+absolute values (<code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessFieldType.ABSOLUTE_VALUES</span></code>) or relative
+values (<code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessFieldType.RELATIVE_SCALING_FACTOR</span></code>).</p></li>
+<li><p><strong>taper_edges</strong> – Defines the taper edges of the ply.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

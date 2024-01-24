@@ -1307,8 +1307,31 @@ document.write(`
 <h1>create_lookup_table_1d<a class="headerlink" href="#create-lookup-table-1d" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_lookup_table_1d">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_lookup_table_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LookUpTable1D'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_lookup_table_1d" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_lookup_table_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_lookup_table_1d" title="Permalink to this definition">#</a></dt>
+<dd><p>Instantiate a 1D Look-Up Table.</p>
+<p>The one-dimensional look-up table is defined along an axis. The locations
+of the data points along the axis are defined by the <code class="docutils literal notranslate"><span class="pre">Location</span></code> column,
+which:</p>
+<ul class="simple">
+<li><p>contains scalar data. When the column contains <code class="docutils literal notranslate"><span class="pre">N</span></code> data points (rows),
+it has shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">)</span></code>.</p></li>
+<li><p>is automatically created when the look-up table is instantiated</p></li>
+<li><p>cannot be deleted or renamed</p></li>
+</ul>
+<p>When the length of the <code class="docutils literal notranslate"><span class="pre">Location</span></code> column is changed, the data of the
+other columns is automatically either truncated, or extended with <code class="docutils literal notranslate"><span class="pre">NaN</span></code>
+values to fit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>origin</strong> – Origin of the axis w.r.t. which the look-up table locations are
+defined.</p></li>
+<li><p><strong>direction</strong> – Direction of the axis w.r.t. which the look-up table locations are
+defined.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

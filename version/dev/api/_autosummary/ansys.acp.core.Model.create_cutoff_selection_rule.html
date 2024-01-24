@@ -1307,8 +1307,28 @@ document.write(`
 <h1>create_cutoff_selection_rule<a class="headerlink" href="#create-cutoff-selection-rule" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_cutoff_selection_rule">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_cutoff_selection_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CutoffSelectionrule'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff_rule_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">CutoffRuleType.GEOMETRY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff_geometry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taper_edge_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ply_cutoff_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PlyCutoffType.PRODUCTION_PLY_CUTOFF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ply_tapering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_cutoff_selection_rule" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_cutoff_selection_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_cutoff_selection_rule" title="Permalink to this definition">#</a></dt>
+<dd><p>Instantiate a Cutoff Selection Rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the Cutoff Selection Rule.</p></li>
+<li><p><strong>cutoff_rule_type</strong> – Determines if the cut-off is defined by a geometry or by a tapering edge.</p></li>
+<li><p><strong>cutoff_geometry</strong> – Geometry used to define the cut-off. Only applies if
+<code class="docutils literal notranslate"><span class="pre">cutoff_rule_type</span></code> is GEOMETRY.</p></li>
+<li><p><strong>taper_edge_set</strong> – Edge used to define the cut-off. Only applies if
+<code class="docutils literal notranslate"><span class="pre">cutoff_rule_type</span></code> is <code class="xref py py-attr docutils literal notranslate"><span class="pre">CutoffRuleType.TAPER</span></code>.</p></li>
+<li><p><strong>offset</strong> – Moves the cutting plane along the out-of-plane direction. Always measured
+from the reference surface.</p></li>
+<li><p><strong>angle</strong> – Defines the angle between the cutting plane and the reference surface.</p></li>
+<li><p><strong>ply_cutoff_type</strong> – Either the complete production ply is cut-off
+(<code class="xref py py-attr docutils literal notranslate"><span class="pre">PlyCutoffType.PRODUCTION_PLY_CUTOFF</span></code>) or individual analysis plies
+(<code class="xref py py-attr docutils literal notranslate"><span class="pre">PlyCutoffType.ANALYSIS_PLY_CUTOFF</span></code>).</p></li>
+<li><p><strong>ply_tapering</strong> – Whether the tapering of analysis plies is enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

@@ -1307,8 +1307,30 @@ document.write(`
 <h1>create_variable_offset_selection_rule<a class="headerlink" href="#create-variable-offset-selection-rule" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_variable_offset_selection_rule">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_variable_offset_selection_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'VariableOffsetSelectionrule'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offsets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_rule_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_offset_correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inherit_from_lookup_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius_origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_along_edge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_variable_offset_selection_rule" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_variable_offset_selection_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_variable_offset_selection_rule" title="Permalink to this definition">#</a></dt>
+<dd><p>Instantiate a Variable Offset Selection Rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the Variable Offset Selection Rule.</p></li>
+<li><p><strong>edge_set</strong> – Defines the edge along which the rule will be applied to.</p></li>
+<li><p><strong>offsets</strong> – Defines the in-plane offset. Cuts elements which are closer to the edge than this value.</p></li>
+<li><p><strong>angles</strong> – Defines the angle between the reference surface and the cutting plane.</p></li>
+<li><p><strong>include_rule_type</strong> – Include or exclude area in rule. Setting this to <code class="docutils literal notranslate"><span class="pre">False</span></code>
+inverts the selection.</p></li>
+<li><p><strong>use_offset_correction</strong> – If enabled, then the offset is measured along the surface of the selected Element Set.</p></li>
+<li><p><strong>element_set</strong> – Defines the surface on which the offset correction is calculated on.</p></li>
+<li><p><strong>inherit_from_lookup_table</strong> – Specifies whether to inherit the Look-Up Table object properties.</p></li>
+<li><p><strong>radius_origin</strong> – Origin of the look-up table axis. Only applies if <code class="docutils literal notranslate"><span class="pre">inherit_from_lookup_table</span></code>
+is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>radius_direction</strong> – Direction of the look-up table axis. Only applies if <code class="docutils literal notranslate"><span class="pre">inherit_from_lookup_table</span></code>
+is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>distance_along_edge</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the look-up locations are evaluated along the edge, instead of along
+the axis direction.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

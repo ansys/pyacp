@@ -1307,8 +1307,52 @@ document.write(`
 <h1>create_material<a class="headerlink" href="#create-material" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_material">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_material</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Material'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ply_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'undefined'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engineering_constants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stress_limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strain_limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">puck_constants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">woven_characterization</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">woven_puck_constants_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">woven_puck_constants_2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">woven_stress_limits_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">woven_stress_limits_2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tsai_wu_constants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">larc_constants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fabric_fiber_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_material" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_material</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_material" title="Permalink to this definition">#</a></dt>
+<dd><p>Instantiate a Material.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The active material property sets are determined by the <code class="docutils literal notranslate"><span class="pre">ply_type</span></code>. For
+example, <code class="docutils literal notranslate"><span class="pre">puck_constants</span></code> are only active when the <code class="docutils literal notranslate"><span class="pre">ply_type</span></code> is either
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">PlyType.REGULAR</span></code> or <code class="xref py py-attr docutils literal notranslate"><span class="pre">PlyType.WOVEN</span></code>.</p>
+<p>The inactive property sets can still be <em>set</em>, but may not be accessible:</p>
+<ul class="simple">
+<li><p>For <strong>stored</strong> materials, inactive property sets always return <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p>For <strong>unstored</strong> materials, inactive property sets can be accessed. They
+return <code class="docutils literal notranslate"><span class="pre">None</span></code> after storing.</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the Material.</p></li>
+<li><p><strong>ply_type</strong> – Define the type of material such as core, uni-directional (regular), woven, or isotropic.</p></li>
+<li><p><strong>density</strong> – Define the density of the material.</p></li>
+<li><p><strong>engineering_constants</strong> – Define the material stiffness (Young’s moduli, Poisson ratios and shear moduli).</p></li>
+<li><p><strong>stress_limits</strong> – Define the stress limits for the evaluation of failure criteria with ansys.dpf.composites.</p></li>
+<li><p><strong>strain_limits</strong> – Define the strain limits for the evaluation of failure criteria with ansys.dpf.composites.</p></li>
+<li><p><strong>puck_constants</strong> – Define the puck constants for the evaluation of the Puck criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>woven_characterization</strong> – Define the puck constants of woven fabrics for the evaluation of the Puck
+criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>woven_puck_constants_1</strong> – Define the puck constants of woven fabrics for the evaluation of the Puck
+criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>woven_puck_constants_2</strong> – Define the puck constants of woven fabrics for the evaluation of the Puck
+criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>woven_puck_constants_2</strong> – Define the puck constants of woven fabrics for the evaluation of the Puck
+criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>woven_stress_limits_1</strong> – Define the puck constants of woven fabrics for the evaluation of the Puck
+criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>woven_stress_limits_2</strong> – Define the puck constants of woven fabrics for the evaluation of the Puck
+criterion with ansys.dpf.composites.</p></li>
+<li><p><strong>tsai_wu_constants</strong> – Define the Tsai-Wu constants for the evaluation of the Tsai-Wu criterion
+with ansys.dpf.composites.</p></li>
+<li><p><strong>larc_constants</strong> – Define the LaRC constants for the evaluation of the LaRC criterion with
+ansys.dpf.composites.</p></li>
+<li><p><strong>fabric_fiber_angle</strong> – Define the rotation angle between the material coordinate system and the fiber direction.
+Only used for shear dependent material properties which are provided by Material Designer.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

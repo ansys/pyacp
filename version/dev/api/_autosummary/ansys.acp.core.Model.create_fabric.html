@@ -1307,8 +1307,25 @@ document.write(`
 <h1>create_fabric<a class="headerlink" href="#create-fabric" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_fabric">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_fabric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Fabric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_for_postprocessing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_off_material_handling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'global'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut_off_material_handling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'computed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_material_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'woven'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_ud_coefficient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_fabric" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_fabric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_fabric" title="Permalink to this definition">#</a></dt>
+<dd><p>Instantiate a Fabric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the fabric.</p></li>
+<li><p><strong>material</strong> – Material of the fabric.</p></li>
+<li><p><strong>thickness</strong> – Thickness of the fabric.</p></li>
+<li><p><strong>area_price</strong> – Price per area of the fabric.</p></li>
+<li><p><strong>ignore_for_postprocessing</strong> – Enable this option that the failure computation skips all plies made of this fabric.</p></li>
+<li><p><strong>drop_off_material_handling</strong> – Defines the material of drop-off elements in the solid model extrusion.</p></li>
+<li><p><strong>cut_off_material_handling</strong> – Defines the material of cut-off elements in solid models if cut-off geometries are active.</p></li>
+<li><p><strong>draping_material_model</strong> – Specifies the draping model of the fabric.</p></li>
+<li><p><strong>draping_ud_coefficient</strong> – Set the draping coefficient of the uni-directional draping model. Must be in the range of 0 to 1.</p></li>
+<li><p><strong>area_weight</strong> – Weight per area of the fabric. Read only.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

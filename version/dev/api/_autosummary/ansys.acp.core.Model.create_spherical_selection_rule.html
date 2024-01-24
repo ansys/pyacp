@@ -1307,8 +1307,24 @@ document.write(`
 <h1>create_spherical_selection_rule<a class="headerlink" href="#create-spherical-selection-rule" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_spherical_selection_rule">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_spherical_selection_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SphericalSelectionrule'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_global_coordinate_system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rosette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relative_rule_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_rule_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_spherical_selection_rule" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_spherical_selection_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_spherical_selection_rule" title="Permalink to this definition">#</a></dt>
+<dd><p>Instantiate a Spherical Selection Rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the Spherical Selection Rule.</p></li>
+<li><p><strong>use_global_coordinate_system</strong> – Use global coordinate system for origin and direction.</p></li>
+<li><p><strong>rosette</strong> – Rosette used for origin and direction. Only applies if
+<code class="docutils literal notranslate"><span class="pre">use_global_coordinate_system</span></code> is False.</p></li>
+<li><p><strong>origin</strong> – Origin of the sphere.</p></li>
+<li><p><strong>radius</strong> – Radius of the sphere.</p></li>
+<li><p><strong>relative_rule_type</strong> – If True, parameters are evaluated relative to size of the object.</p></li>
+<li><p><strong>include_rule_type</strong> – Include or exclude area in rule. Setting this to <code class="docutils literal notranslate"><span class="pre">False</span></code>
+inverts the selection.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

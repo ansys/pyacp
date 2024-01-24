@@ -1307,8 +1307,33 @@ document.write(`
 <h1>create_lookup_table_3d<a class="headerlink" href="#create-lookup-table-3d" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_lookup_table_3d">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_lookup_table_3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LookUpTable3D'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_default_search_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_min_neighbors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_lookup_table_3d" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_lookup_table_3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_lookup_table_3d" title="Permalink to this definition">#</a></dt>
+<dd><p>Instantiate a 3D Look-Up Table.</p>
+<p>The three-dimensional look-up table is defined by 3D data points. The
+locations of these data points are defined by the <code class="docutils literal notranslate"><span class="pre">Location</span></code> column,
+which:</p>
+<ul class="simple">
+<li><p>has shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">3)</span></code>, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of data points (rows)</p></li>
+<li><p>is automatically created when the look-up table is instantiated</p></li>
+<li><p>cannot be deleted or renamed</p></li>
+</ul>
+<p>When the length of the <code class="docutils literal notranslate"><span class="pre">Location</span></code> column is changed, the data of the
+other columns is automatically either truncated, or extended with <code class="docutils literal notranslate"><span class="pre">NaN</span></code>
+values to fit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interpolation_algorithm</strong> – Algorithm used to interpolate the values of the look-up table.</p></li>
+<li><p><strong>use_default_search_radius</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, estimate the search radius used in the weightest nearest
+neighbor algorithm automatically.</p></li>
+<li><p><strong>search_radius</strong> – Search radius used for the interpolation with the weighted nearest
+neighbor algorithm.</p></li>
+<li><p><strong>num_min_neighbors</strong> – Minimum number of neighbors used for the interpolation when using the
+weighted nearest neighbor algorithm.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

@@ -1307,8 +1307,34 @@ document.write(`
 <h1>create_oriented_selection_set<a class="headerlink" href="#create-oriented-selection-set" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_oriented_selection_set">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_oriented_selection_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'OrientedSelectionSet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rosettes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rosette_selection_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minimum_angle'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_seed_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_draping_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_default_draping_mesh_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_mesh_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_material_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DrapingMaterialType.WOVEN</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_ud_coefficient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_oriented_selection_set" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_oriented_selection_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_oriented_selection_set" title="Permalink to this definition">#</a></dt>
+<dd><p>Instantiate an Oriented Selection Set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – The name of the Oriented Selection Set.</p></li>
+<li><p><strong>element_sets</strong> – Element Sets on which the Oriented Selection Set is defined.</p></li>
+<li><p><strong>orientation_point</strong> – The Orientation Point of the Oriented Selection Set.</p></li>
+<li><p><strong>orientation_direction</strong> – The Orientation Direction of the Oriented Element set.</p></li>
+<li><p><strong>rosettes</strong> – Rosettes of the Oriented Selection Set.</p></li>
+<li><p><strong>rosette_selection_method</strong> – Selection Method for Rosettes of the Oriented Selection Set.</p></li>
+<li><p><strong>selection_rules</strong> – Selection Rules which may limit the extent of the Oriented Selection Set.</p></li>
+<li><p><strong>draping</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, activate draping to adjust the reference directions.</p></li>
+<li><p><strong>draping_seed_point</strong> – Starting point of the draping algorithm.</p></li>
+<li><p><strong>auto_draping_direction</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the reference direction of the Oriented Selection Set at
+the seed point is used as draping direction.</p></li>
+<li><p><strong>draping_direction</strong> – Set the primary draping direction for the draping algorithm. Only used if
+<code class="docutils literal notranslate"><span class="pre">auto_draping_direction</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>draping_mesh_size</strong> – Defines the mesh size for the draping algorithm. If set to <code class="docutils literal notranslate"><span class="pre">-1.</span></code>, the
+mesh size is automatically determined based on the average element size.</p></li>
+<li><p><strong>draping_material_model</strong> – Chooses between different draping formulations.</p></li>
+<li><p><strong>draping_ud_coefficient</strong> – Value between <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code> which determines the amount of deformation
+in the transverse direction if the draping material model is set to
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">DrapingMaterialType.UD</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 
