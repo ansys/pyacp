@@ -13,6 +13,7 @@ from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 
 from ..._utils.resource_paths import join as _rp_join
 from ..base import CreatableTreeObject, TreeObject
+from .exceptions import wrap_grpc_errors
 from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableResourceStub
 
 ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
@@ -48,7 +49,8 @@ class Mapping(Generic[ValueT]):
         return self._object_constructor(obj_info, self._channel)
 
     def _get_objectinfo_list(self) -> list[ObjectInfo]:
-        res = self._stub.List(ListRequest(collection_path=self._collection_path)).objects
+        with wrap_grpc_errors():
+            res = self._stub.List(ListRequest(collection_path=self._collection_path)).objects
         if len({obj.info.id for obj in res}) != len(res):
             raise ValueError("Duplicate ID in Collection.")
         return res
@@ -116,17 +118,21 @@ class MutableMapping(Mapping[ValueT]):
 
     def __delitem__(self, key: str) -> None:
         obj_info = self._get_objectinfo_by_id(key)
-        self._stub.Delete(
-            DeleteRequest(resource_path=obj_info.info.resource_path, version=obj_info.info.version)
-        )
-
-    def clear(self) -> None:
-        for obj_info in self._get_objectinfo_list():
+        with wrap_grpc_errors():
             self._stub.Delete(
                 DeleteRequest(
                     resource_path=obj_info.info.resource_path, version=obj_info.info.version
                 )
             )
+
+    def clear(self) -> None:
+        for obj_info in self._get_objectinfo_list():
+            with wrap_grpc_errors():
+                self._stub.Delete(
+                    DeleteRequest(
+                        resource_path=obj_info.info.resource_path, version=obj_info.info.version
+                    )
+                )
 
     def pop(self, key: str) -> ValueT:
         obj_info = self._get_objectinfo_by_id(key)

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 import dataclasses
+from typing import cast
 
 import numpy as np
 import numpy.typing as npt
@@ -17,6 +18,7 @@ from ansys.api.acp.v0 import (
 
 from .._utils.array_conversions import to_numpy
 from .._utils.path_to_str import path_to_str_checked
+from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
@@ -121,12 +123,13 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
         """The CAD Geometry's surface represented as a triangle mesh."""
         if not self._is_stored:
             raise RuntimeError("Cannot get mesh data from an unstored object")
-        stub = cad_geometry_pb2_grpc.ObjectServiceStub(self._channel)
-        response = stub.GetMesh(
-            request=base_pb2.GetRequest(
-                resource_path=self._resource_path,
-            ),
-        )
+        stub = cast(cad_geometry_pb2_grpc.ObjectServiceStub, self._get_stub())
+        with wrap_grpc_errors():
+            response = stub.GetMesh(
+                request=base_pb2.GetRequest(
+                    resource_path=self._resource_path,
+                ),
+            )
         return TriangleMesh._from_pb(response)
 
     root_shapes = property(
@@ -135,9 +138,10 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
 
     def refresh(self) -> None:
         """Reload the geometry from its external source."""
-        stub = cad_geometry_pb2_grpc.ObjectServiceStub(self._channel)
-        stub.Refresh(
-            request=cad_geometry_pb2.RefreshRequest(
-                resource_path=self._resource_path,
-            ),
-        )
+        stub = cast(cad_geometry_pb2_grpc.ObjectServiceStub, self._get_stub())
+        with wrap_grpc_errors():
+            stub.Refresh(
+                request=cad_geometry_pb2.RefreshRequest(
+                    resource_path=self._resource_path,
+                ),
+            )
