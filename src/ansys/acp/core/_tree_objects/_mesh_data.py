@@ -28,73 +28,109 @@ __all__ = [
     "NodalData",
     "elemental_data_property",
     "nodal_data_property",
-    "PlotDataWrapper",
+    "ScalarData",
 ]
+
+
+@dataclasses.dataclass
+class _Labels:
+    mesh_labels: npt.NDArray[np.int32]
+    data_labels: npt.NDArray[np.int32]
+    mesh_label_to_index_map: dict[int, int]
+
+
+def _get_labels(
+    *,
+    field_names: _LabelAndPyvistaFieldNames,
+    labels: npt.NDArray[np.int32],
+    mesh: MeshData,
+) -> _Labels:
+    mesh_labels = getattr(mesh, field_names.LABEL_FIELD_NAME)
+    mesh_label_to_index_map = {label: idx for idx, label in enumerate(mesh_labels)}
+    return _Labels(
+        mesh_labels=mesh_labels, data_labels=labels, mesh_label_to_index_map=mesh_label_to_index_map
+    )
 
 
 def _expand_array(
     *,
-    index_map: dict[int, int],
     array: npt.NDArray[np.float64],
-    labels: npt.NDArray[np.int32],
-    mesh_labels: npt.NDArray[np.int32],
-    culling_factor: int,
+    labels: _Labels,
+    culling_factor: int = 1,
 ) -> npt.NDArray[np.float64]:
     """Expand the array to the size of the mesh."""
-    target_shape = tuple([mesh_labels.size] + list(array.shape[1:]))
+    target_shape = tuple([labels.mesh_labels.size] + list(array.shape[1:]))
     target_array = np.ones(target_shape, dtype=np.float64) * np.nan
-    for idx, (label, value) in enumerate(zip(labels, array)):
+    for idx, (label, value) in enumerate(zip(labels.data_labels, array)):
         if idx % culling_factor == 0:
-            target_array[index_map[label]] = value
+            target_array[labels.mesh_label_to_index_map[label]] = value
     return target_array
 
 
-def _to_pyvista(
+def _get_pyvista_mesh_with_all_data(
     mesh_data_base: MeshDataBase,
     *,
     mesh: MeshData,
-    component: Component | None = None,
-    culling_factor: int = 1,
-    **kwargs: Any,
-) -> PolyData | UnstructuredGrid:
-    current_labels = getattr(mesh_data_base, mesh_data_base._LABEL_FIELD_NAME).component.values
-    mesh_labels = getattr(mesh, mesh_data_base._LABEL_FIELD_NAME)
-    idx_map = {label: idx for idx, label in enumerate(mesh_labels)}
+) -> UnstructuredGrid:
     pv_mesh = mesh.to_pyvista()
 
-    mesh_data_field = getattr(pv_mesh, mesh_data_base._PYVISTA_FIELD_NAME)
+    mesh_data_field = getattr(
+        pv_mesh, mesh_data_base._LABEL_AND_PYVISTA_FIELD_NAMES.PYVISTA_FIELD_NAME
+    )
+    field_labels = getattr(
+        mesh_data_base, mesh_data_base._LABEL_AND_PYVISTA_FIELD_NAMES.LABEL_FIELD_NAME
+    )
+    labels = _get_labels(
+        field_names=mesh_data_base._LABEL_AND_PYVISTA_FIELD_NAMES, mesh=mesh, labels=field_labels
+    )
 
-    if component is None:
-        for name in mesh_data_base._field_names():
-            values = getattr(mesh_data_base, name).component.values
-            target_array = _expand_array(
-                index_map=idx_map,
-                array=values,
-                labels=current_labels,
-                mesh_labels=mesh_labels,
-                culling_factor=culling_factor,
-            )
-            mesh_data_field[name] = target_array
-    else:
-        target_array = _expand_array(
-            index_map=idx_map,
-            array=component.values,
-            labels=current_labels,
-            mesh_labels=mesh_labels,
-            culling_factor=culling_factor,
-        )
-        component_label = component.label
-        mesh_data_field[component_label] = target_array
-        if len(target_array.shape) == 2 and target_array.shape[1] == 3:
-            # handle vector data
-            magnitude_name = f"{component_label}_magnitude"
-            mesh_data_field[magnitude_name] = np.linalg.norm(target_array, axis=-1)
-            return pv_mesh.glyph(orient=component_label, scale=magnitude_name, **kwargs)  # type: ignore
-    if kwargs:
-        raise TypeError(
-            "The following keyword arguments were not used: " + ", ".join(kwargs.keys())
-        )
+    for name in mesh_data_base._field_names():
+        values = getattr(mesh_data_base, name).values
+        target_array = _expand_array(array=values, labels=labels)
+        mesh_data_field[name] = target_array
     return pv_mesh
+
+
+def _get_mesh_with_scalar_pyvista_data(
+    labels: npt.NDArray[np.int32],
+    field_names: _LabelAndPyvistaFieldNames,
+    mesh: MeshData,
+    values: npt.NDArray[np.float64],
+    component_name: str,
+) -> UnstructuredGrid:
+    all_labels = _get_labels(field_names=field_names, labels=labels, mesh=mesh)
+
+    pv_mesh = mesh.to_pyvista()
+    mesh_data_field = getattr(pv_mesh, field_names.PYVISTA_FIELD_NAME)
+
+    target_array = _expand_array(array=values, labels=all_labels)
+    component_label = component_name
+    mesh_data_field[component_label] = target_array
+    return pv_mesh
+
+
+def _get_pyvista_glyphs(
+    *,
+    labels: npt.NDArray[np.int32],
+    field_names: _LabelAndPyvistaFieldNames,
+    mesh: MeshData,
+    values: npt.NDArray[np.float64],
+    component_name: str,
+    culling_factor: int = 1,
+    **kwargs: Any,
+) -> PolyData:
+    all_labels = _get_labels(field_names=field_names, labels=labels, mesh=mesh)
+
+    pv_mesh = mesh.to_pyvista()
+    mesh_data_field = getattr(pv_mesh, field_names.PYVISTA_FIELD_NAME)
+
+    target_array = _expand_array(array=values, labels=all_labels, culling_factor=culling_factor)
+    component_label = component_name
+    mesh_data_field[component_label] = target_array
+
+    magnitude_name = f"{component_label}_magnitude"
+    mesh_data_field[magnitude_name] = np.linalg.norm(target_array, axis=-1)
+    return pv_mesh.glyph(orient=component_label, scale=magnitude_name, **kwargs)  # type: ignore
 
 
 @dataclasses.dataclass
@@ -103,23 +139,74 @@ class Component:
     label: str
 
 
-class PlotDataWrapper:
+class ScalarData:
     def __init__(
-        self, wrapping_class: MeshDataBase, values: npt.NDArray[np.float64], component_name: str
+        self,
+        field_names: _LabelAndPyvistaFieldNames,
+        labels: npt.NDArray[np.int32],
+        values: npt.NDArray[np.float64],
+        component_name: str,
     ):
-        self._wrapping_class = wrapping_class
-        self._component = Component(values, component_name)
+        self._field_names = field_names
+        self._labels = labels
+        self._values = values
+        self._component_name = component_name
 
     @property
-    def component(self) -> Component:
-        return self._component
+    def values(self) -> npt.NDArray[np.float64]:
+        return self._values
 
-    def to_pyvista(
+    @property
+    def component_name(self) -> str:
+        return self._component_name
+
+    def get_pyvista_mesh(
+        self,
+        mesh: MeshData,
+    ) -> UnstructuredGrid:
+        """Convert the mesh data to a PyVista object.
+
+        Parameters
+        ----------
+        mesh :
+            The mesh to which the data is associated.
+        """
+        return _get_mesh_with_scalar_pyvista_data(
+            labels=self._labels,
+            field_names=self._field_names,
+            mesh=mesh,
+            values=self._values,
+            component_name=self._component_name,
+        )
+
+
+class VectorData:
+    def __init__(
+        self,
+        field_names: _LabelAndPyvistaFieldNames,
+        labels: npt.NDArray[np.int32],
+        values: npt.NDArray[np.float64],
+        component_name: str,
+    ):
+        self._field_names = field_names
+        self._labels = labels
+        self._values = values
+        self._component_name = component_name
+
+    @property
+    def values(self) -> npt.NDArray[np.float64]:
+        return self._values
+
+    @property
+    def component_name(self) -> str:
+        return self._component_name
+
+    def get_pyvista_glyphs(
         self,
         mesh: MeshData,
         culling_factor: int = 1,
         **kwargs: Any,
-    ):
+    ) -> PolyData:
         """Convert the mesh data to a PyVista object.
 
         Parameters
@@ -133,13 +220,21 @@ class PlotDataWrapper:
         kwargs :
             Keyword arguments passed to the PyVista object constructor.
         """
-        return _to_pyvista(
-            self._wrapping_class,
+        return _get_pyvista_glyphs(
+            labels=self._labels,
+            field_names=self._field_names,
             mesh=mesh,
-            component=self._component,
+            values=self._values,
+            component_name=self._component_name,
             culling_factor=culling_factor,
             **kwargs,
         )
+
+
+@dataclasses.dataclass
+class _LabelAndPyvistaFieldNames:
+    LABEL_FIELD_NAME: str
+    PYVISTA_FIELD_NAME: str
 
 
 @dataclasses.dataclass
@@ -149,54 +244,74 @@ class MeshDataBase:
     from a protobuf response and the conversion to a PyVista object.
     """
 
-    _LABEL_FIELD_NAME: ClassVar[str]
-    _PYVISTA_FIELD_NAME: ClassVar[str]
+    _LABEL_AND_PYVISTA_FIELD_NAMES: ClassVar[_LabelAndPyvistaFieldNames]
     _FIELD_NAME_FROM_PB_VALUE: ClassVar[typing.Callable[[int], str]]
     _PB_VALUE_FROM_FIELD_NAME: ClassVar[typing.Callable[[str], int]]
 
     @classmethod
     def _field_names(cls) -> list[str]:
         return [
-            field.name for field in dataclasses.fields(cls) if field.name != cls._LABEL_FIELD_NAME
+            field.name
+            for field in dataclasses.fields(cls)
+            if field.name != cls._LABEL_AND_PYVISTA_FIELD_NAMES.LABEL_FIELD_NAME
         ]
 
     @classmethod
     def _from_pb(cls, response: mesh_query_pb2.ElementalData | mesh_query_pb2.NodalData) -> Self:
         """Construct a mesh data object from a protobuf response."""
         kwargs: dict[str, Any] = {
-            cls._LABEL_FIELD_NAME: to_numpy(response.labels),
+            cls._LABEL_AND_PYVISTA_FIELD_NAMES.LABEL_FIELD_NAME: to_numpy(response.labels),
         }
         for data_type, array in zip(response.data_types, response.data_arrays):
             field_name = cls._FIELD_NAME_FROM_PB_VALUE(data_type)
-            kwargs[field_name] = cast(
+            values = cast(
                 npt.NDArray[np.float64], dataarray_to_numpy(array, dtype=np.float64)
             )  # todo: handle other dtypes
+            kwargs[field_name] = values
+            data_wrapper: VectorData | ScalarData
+            if len(values.shape) == 2 and values.shape[1] == 3:
+                data_wrapper = VectorData(
+                    field_names=cls._LABEL_AND_PYVISTA_FIELD_NAMES,
+                    labels=kwargs[cls._LABEL_AND_PYVISTA_FIELD_NAMES.LABEL_FIELD_NAME],
+                    values=values,
+                    component_name=field_name,
+                )
+            else:
+                data_wrapper = ScalarData(
+                    field_names=cls._LABEL_AND_PYVISTA_FIELD_NAMES,
+                    labels=kwargs[cls._LABEL_AND_PYVISTA_FIELD_NAMES.LABEL_FIELD_NAME],
+                    values=values,
+                    component_name=field_name,
+                )
+            kwargs[field_name] = data_wrapper
 
+        # Todo: check if runtime type matches the declared type
         instance = cls(**kwargs)
-        for key, value in kwargs.items():
-            setattr(instance, key, PlotDataWrapper(instance, value, key))
         return instance
 
-    def to_pyvista(
+    def get_pyvista_mesh(
         self,
         mesh: MeshData,
-        culling_factor: int = 1,
-        **kwargs: Any,
-    ):
+    ) -> UnstructuredGrid:
         """Convert the mesh data to a PyVista object.
 
         Parameters
         ----------
         mesh :
             The mesh to which the data is associated.
-        culling_factor :
-            If set to a value other than ``1``, add only every n-th data
-            point to the PyVista object. This is useful especially for
-            vector data, where the arrows can be too dense.
-        kwargs :
-            Keyword arguments passed to the PyVista object constructor.
         """
-        return _to_pyvista(self, mesh=mesh, culling_factor=culling_factor, **kwargs)
+        return _get_pyvista_mesh_with_all_data(self, mesh=mesh)
+
+
+_NODE_FIELD_NAMES = _LabelAndPyvistaFieldNames(
+    LABEL_FIELD_NAME="node_labels",
+    PYVISTA_FIELD_NAME="point_data",
+)
+
+_ELEMENT_FIELD_NAMES = _LabelAndPyvistaFieldNames(
+    LABEL_FIELD_NAME="element_labels",
+    PYVISTA_FIELD_NAME="cell_data",
+)
 
 
 @dataclasses.dataclass
@@ -204,8 +319,7 @@ class NodalData(MeshDataBase):
     """Base class for nodal data."""
 
     node_labels: npt.NDArray[np.int32]
-    _LABEL_FIELD_NAME: ClassVar[str] = "node_labels"
-    _PYVISTA_FIELD_NAME: ClassVar[str] = "point_data"
+    _LABEL_AND_PYVISTA_FIELD_NAMES = _NODE_FIELD_NAMES
     _PB_VALUE_FROM_FIELD_NAME = nodal_data_type_to_pb
     _FIELD_NAME_FROM_PB_VALUE = nodal_data_type_from_pb
 
@@ -215,8 +329,7 @@ class ElementalData(MeshDataBase):
     """Base class for elemental data."""
 
     element_labels: npt.NDArray[np.int32]
-    _LABEL_FIELD_NAME: ClassVar[str] = "element_labels"
-    _PYVISTA_FIELD_NAME: ClassVar[str] = "cell_data"
+    _LABEL_AND_PYVISTA_FIELD_NAMES = _ELEMENT_FIELD_NAMES
     _PB_VALUE_FROM_FIELD_NAME = elemental_data_type_to_pb
     _FIELD_NAME_FROM_PB_VALUE = elemental_data_type_from_pb
 

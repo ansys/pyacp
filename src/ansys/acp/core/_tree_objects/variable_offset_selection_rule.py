@@ -3,9 +3,6 @@ from __future__ import annotations
 from collections.abc import Iterable
 import dataclasses
 
-import numpy as np
-import numpy.typing as npt
-
 from ansys.api.acp.v0 import (
     variable_offset_selection_rule_pb2,
     variable_offset_selection_rule_pb2_grpc,
@@ -18,7 +15,13 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
-from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
+from ._mesh_data import (
+    ElementalData,
+    NodalData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from .base import CreatableTreeObject, IdTreeObject
 from .edge_set import EdgeSet
 from .element_set import ElementSet
@@ -37,7 +40,7 @@ __all__ = [
 class VariableOffsetSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a VariableOffset Selection Rule."""
 
-    normal: PlotDataWrapper
+    normal: VectorData
 
 
 @dataclasses.dataclass

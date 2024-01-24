@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import dataclasses
 import os
 import pathlib
 import shutil
@@ -18,8 +17,9 @@ from ._typing_helper import PATH as _PATH
 
 __all__ = ["Client"]
 
+
 class LocalWorkingDir:
-    def __init__(self, path: pathlib.Path =None):
+    def __init__(self, path: pathlib.Path | None = None):
         self._user_defined_working_dir = None
         self._temp_working_dir = None
         if path is None:
@@ -32,11 +32,14 @@ class LocalWorkingDir:
         if self._user_defined_working_dir is not None:
             return self._user_defined_working_dir
         else:
+            # Make typechecker happy
+            assert self._temp_working_dir is not None
             return pathlib.Path(self._temp_working_dir.name)
 
     @property
     def is_temp_dir(self) -> bool:
         return self._temp_working_dir is not None
+
 
 class Client:
     """Top-level controller for the models loaded in a server.
@@ -47,7 +50,9 @@ class Client:
         The ACP gRPC server to which the ``Client`` connects.
     """
 
-    def __init__(self, server: ServerProtocol, local_working_dir: _PATH | None = None) -> None:
+    def __init__(
+        self, server: ServerProtocol, local_working_dir: pathlib.Path | None = None
+    ) -> None:
         self._channel = server.channels[ServerKey.MAIN]
         if ServerKey.FILE_TRANSFER in server.channels:
             self._ft_client: FileTransferClient | None = FileTransferClient(

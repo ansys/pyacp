@@ -50,7 +50,7 @@ from ._grpc_helpers.property_helper import (
 from ._mesh_data import (
     ElementalData,
     NodalData,
-    PlotDataWrapper,
+    ScalarData,
     elemental_data_property,
     nodal_data_property,
 )
@@ -93,7 +93,7 @@ class MeshData:
     """Container for the mesh data of an ACP Model."""
 
     node_labels: npt.NDArray[np.int32]
-    node_coordinates: PlotDataWrapper
+    node_coordinates: npt.NDArray[np.float64]
     element_labels: npt.NDArray[np.int32]
     element_types: npt.NDArray[np.int32]
     element_nodes: npt.NDArray[np.int32]
@@ -115,15 +115,15 @@ class MeshData:
 class ModelElementalData(ElementalData):
     """Represents elemental data for a Model."""
 
-    normal: PlotDataWrapper
-    thickness: PlotDataWrapper
-    relative_thickness_correction: PlotDataWrapper
-    area: PlotDataWrapper
-    price: PlotDataWrapper
-    volume: PlotDataWrapper
-    mass: PlotDataWrapper
-    offset: PlotDataWrapper
-    cog: PlotDataWrapper
+    normal: ScalarData
+    thickness: ScalarData
+    relative_thickness_correction: ScalarData
+    area: ScalarData
+    price: ScalarData
+    volume: ScalarData
+    mass: ScalarData
+    offset: ScalarData
+    cog: ScalarData
 
 
 @dataclasses.dataclass

@@ -51,7 +51,7 @@ class LookUpTableColumnBase(CreatableTreeObject, IdTreeObject):
         name: str,
         value_type: LookUpTableColumnValueType = LookUpTableColumnValueType.SCALAR,
         dimension_type: DimensionType = DimensionType.DIMENSIONLESS,
-        data: PlotDataWrapper | None = None,
+        data: npt.NDArray[np.float64] | None = None,
     ):
         super().__init__(name=name)
 

@@ -1,12 +1,15 @@
+from typing import Optional
+
 from ansys.acp.core import Model
 
 
 class Node:
-    def __init__(self, value, children=None):
+    def __init__(self, value: str, children: Optional[list["Node"]] = None):
         self.value = value
-        self.children = children if children else []
+        self.children: list["Node"] = children if children else []
 
-    def __str__(self, level=0):
+    def __str__(self, level: Optional[int] = 0) -> str:
+        assert level is not None
         ret = "\t" * level + repr(self.value) + "\n"
         for child in self.children:
             ret += child.__str__(level + 1)
@@ -17,7 +20,7 @@ def _add_tree_part(
     tree: Node,
     container_name: str,
     model: Model,
-):
+) -> None:
     container = Node(container_name)
     tree.children.append(container)
     for entity_name, entity in getattr(model, container_name).items():
@@ -25,7 +28,7 @@ def _add_tree_part(
         container.children.append(group_node)
 
 
-def print_model(model: Model):
+def print_model(model: Model) -> None:
     tree = Node("Model")
 
     _add_tree_part(tree, "element_sets", model)

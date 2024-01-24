@@ -25,12 +25,14 @@ import pyvista
 
 # %%
 import ansys.acp.core as pyacp
+from ansys.acp.core import OrientedSelectionSet
 from ansys.acp.core._tree_objects.enums import PlyType
 from ansys.acp.core._tree_objects.material.property_sets import (
     ConstantEngineeringConstants,
     ConstantStrainLimits,
 )
-from ansys.acp.core.workflow import ACPWorkflow, get_composite_post_processing_files, print_model
+from ansys.acp.core.model_printer import print_model
+from ansys.acp.core.workflow import ACPWorkflow, get_composite_post_processing_files
 
 # Note: It is important to import mapdl before dpf, otherwise the plot defaults are messed up
 # https://github.com/ansys/pydpf-core/issues/1363
@@ -92,7 +94,7 @@ ud_material = model.create_material(
 
 fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.1)
 
-oss = model.create_oriented_selection_set(
+oss: OrientedSelectionSet = model.create_oriented_selection_set(
     name="oss",
     orientation_point=(0.0, 0.0, 0.0),
     orientation_direction=(0.0, 1.0, 0),
@@ -105,7 +107,7 @@ model.update()
 plotter = pyvista.Plotter()
 plotter.add_mesh(model.mesh.to_pyvista(), color="white")
 plotter.add_mesh(
-    oss.elemental_data.orientation.to_pyvista(mesh=model.mesh, factor=0.01),
+    oss.elemental_data.orientation.get_pyvista_glyphs(mesh=model.mesh, factor=0.01),
     color="blue",
 )
 plotter.show()
@@ -130,7 +132,7 @@ modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45
 plotter = pyvista.Plotter()
 plotter.add_mesh(model.mesh.to_pyvista(), color="white")
 plotter.add_mesh(
-    modeling_ply.nodal_data.ply_offset.to_pyvista(mesh=model.mesh, factor=0.01),
+    modeling_ply.nodal_data.ply_offset.get_pyvista_glyphs(mesh=model.mesh, factor=0.01),
 )
 plotter.show()
 
