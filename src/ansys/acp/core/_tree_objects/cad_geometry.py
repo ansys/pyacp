@@ -19,8 +19,8 @@ from ansys.api.acp.v0 import (
 from .._typing_helper import PATH
 from .._utils.array_conversions import to_numpy
 from .._utils.path_to_str import path_to_str_checked
-from ._grpc_helpers.exceptions import wrap_grpc_errors
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
+from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
