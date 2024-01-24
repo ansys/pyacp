@@ -5,4 +5,6 @@ RUN apt update && apt install -y \
     pandoc \
     && apt clean -y && rm -rf /var/lib/apt/lists/*
 
+RUN poetry install --with=dev,test
+
 RUN echo 'poetry shell' >> /home/codespace/.profile
