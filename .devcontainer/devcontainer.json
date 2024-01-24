@@ -1,0 +1,33 @@
+{
+	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/grpcurl-asdf:2": {},
+		"ghcr.io/devcontainers-contrib/features/poetry:2": {}
+	},
+    "customizations": {
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"GitHub.copilot",
+				"ms-python.python",
+				"ms-python.mypy-type-checker",
+				"ms-python.black-formatter"
+			]
+		},
+		"codespaces": {
+			"repositories": {
+				// allow Codespaces to pull from separate repo when user has access
+				"ansys-internal/ansys-tools-local-product-launcher": {
+					"permissions": {
+						"contents": "read"
+					}
+				},
+				"ansys-internal/ansys-tools-filetransfer": {
+					"permissions": {
+						"contents": "read"
+					}
+				}
+			}
+		}
+	}
+}
