@@ -13,6 +13,6 @@ def assert_allclose(actual, desired, msg=None):
         Reference object to compare against.
     """
     try:
-        numpy.testing.assert_allclose(actual=actual, desired=desired)
+        numpy.testing.assert_allclose(actual=actual, desired=desired, err_msg=msg)
     except TypeError:
         assert actual == desired, msg

@@ -70,7 +70,7 @@ class Fabric(CreatableTreeObject, IdTreeObject):
         name: str = "Fabric",
         material: Material | None = None,
         thickness: float = 0.0,
-        area_price: bool = True,
+        area_price: float = 0.0,
         ignore_for_postprocessing: bool = False,
         drop_off_material_handling: DropoffMaterialType = "global",
         cut_off_material_handling: CutoffMaterialType = "computed",
