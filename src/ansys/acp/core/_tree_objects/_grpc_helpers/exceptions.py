@@ -32,7 +32,6 @@ def wrap_grpc_errors() -> Iterator[None]:
     try:
         yield
     except RpcError as exc:
-        status = exc.code().value[1].upper()
         details = exc.details().split("\n", 1)[0].strip()
         exception_type = STATUS_CODE_TO_EXCEPTION_TYPE.get(exc.code(), RuntimeError)
-        raise exception_type(f"{details} (RPC status code {status})") from exc
+        raise exception_type(details) from exc
