@@ -1,8 +1,12 @@
 {
-	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+		}
+	},
 	"features": {
-		"ghcr.io/devcontainers-contrib/features/grpcurl-asdf:2": {},
 		"ghcr.io/devcontainers-contrib/features/poetry:2": {}
+
 	},
     "customizations": {
 		"vscode": {
@@ -11,7 +15,8 @@
 				"GitHub.copilot",
 				"ms-python.python",
 				"ms-python.mypy-type-checker",
-				"ms-python.black-formatter"
+				"ms-python.black-formatter",
+				"ms-azuretools.vscode-docker"
 			]
 		},
 		"codespaces": {
@@ -27,7 +32,12 @@
 						"contents": "read"
 					}
 				}
-			}
+			},
+			"openFiles": [
+				".devcontainer/README.md"
+			]
 		}
-	}
+	},
+	"postCreateCommand": "./.devcontainer/postCreate.sh"
+	// "postAttachCommand": "poetry shell"
 }
