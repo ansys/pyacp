@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706099999423,
+  "lastUpdate": 1706101129012,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -10964,6 +10964,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00013860807295482507",
             "extra": "mean: 38.66915523077042 msec\nrounds: 26"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "22ec26b30ceea84be51513222c3bc00501103b2e",
+          "message": "Improve autocompletion for grpc properties (#351)\n\nImproves the autocompletion for properties defined via either\r\n'`rpc_data_property` or `grpc_data_property_read_only` by defining\r\nprotocols for read-only and read-write properties.\r\n\r\nAdd type annotations to the properties where they cannot be inferred\r\nfrom the `from_protobuf` or `to_protobuf` methods.\r\n\r\nNote: Some properties may still have type annotations which are\r\ntoo broad, if the `from_protobuf` or `to_protobuf` type annotations\r\nare too broad.",
+          "timestamp": "2024-01-24T12:52:47Z",
+          "tree_id": "e86fc94f65c39628bd16ccf711d6cceff9d6882f",
+          "url": "https://github.com/ansys-internal/pyacp/commit/22ec26b30ceea84be51513222c3bc00501103b2e"
+        },
+        "date": 1706101120313,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 4.8120230497791,
+            "unit": "iter/sec",
+            "range": "stddev: 0.007442078850960647",
+            "extra": "mean: 207.8128033999974 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.169634558716832,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005351810740333245",
+            "extra": "mean: 460.9071126666701 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.37235190155616293,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.685631510999997 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04110927803648174,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.32540895300002 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 3.1809772740889093,
+            "unit": "iter/sec",
+            "range": "stddev: 0.006810111858827245",
+            "extra": "mean: 314.3687973333347 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.6555249627809555,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.525494918999982 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.07672301145474449,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 13.03389923100002 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 989.719147462948,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00036306695175829825",
+            "extra": "mean: 1.0103876463978758 msec\nrounds: 888"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 341.14903938502636,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003631031973605206",
+            "extra": "mean: 2.9312701621632993 msec\nrounds: 333"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 46.81390004773227,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019931652370329007",
+            "extra": "mean: 21.361176893623103 msec\nrounds: 47"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.958423140995839,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0005776975041160952",
+            "extra": "mean: 201.6770193999946 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 743.6858844934867,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003896964514680718",
+            "extra": "mean: 1.3446537319732577 msec\nrounds: 735"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 206.24830346757886,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0004875433610923006",
+            "extra": "mean: 4.848524730566789 msec\nrounds: 193"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.5714186657921,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003550022869718522",
+            "extra": "mean: 39.106160399999226 msec\nrounds: 25"
           }
         ]
       }
