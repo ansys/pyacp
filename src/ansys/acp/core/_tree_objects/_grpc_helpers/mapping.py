@@ -1,16 +1,14 @@
 from __future__ import annotations
 
 from collections.abc import Iterator
-from functools import wraps
-from typing import TYPE_CHECKING, Any, Callable, Generic, TypeVar
-
-if TYPE_CHECKING:
-    from mypy_extensions import KwArg, Arg
+from typing import Callable, Generic, TypeVar
 
 from grpc import Channel
+from typing_extensions import Concatenate, ParamSpec
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 
+from ..._utils.property_protocols import ReadOnlyProperty
 from ..._utils.resource_paths import join as _rp_join
 from ..base import CreatableTreeObject, TreeObject
 from .exceptions import wrap_grpc_errors
@@ -18,7 +16,7 @@ from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableReso
 
 ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
 
-__all__ = ["Mapping", "MutableMapping", "define_mutable_mapping"]
+__all__ = ["Mapping", "MutableMapping", "define_mutable_mapping", "define_create_method"]
 
 
 class Mapping(Generic[ValueT]):
@@ -168,15 +166,30 @@ def get_read_only_collection_property(
     return collection_property
 
 
-def define_mutable_mapping(
-    object_class: type[ValueT], stub_class: type[EditableAndReadableResourceStub]
-) -> tuple[Callable[[Arg(ParentT, "self"), KwArg(Any)], ValueT], property]:
-    @wraps(object_class.__init__)
-    def create_method(self: ParentT, **kwargs: Any) -> ValueT:
-        obj = object_class(**kwargs)
+P = ParamSpec("P")
+
+
+def define_create_method(
+    object_class: Callable[P, ValueT], func_name: str, parent_class_name: str, module_name: str
+) -> Callable[Concatenate[ParentT, P], ValueT]:
+    def inner(self: ParentT, /, *args: P.args, **kwargs: P.kwargs) -> ValueT:
+        obj = object_class(*args, **kwargs)
         obj.store(parent=self)
         return obj
 
+    # NOTE: This relies on our convention to document the tree object classes
+    # on the class itself, instead of the __init__ method.
+    inner.__doc__ = object_class.__doc__
+
+    inner.__name__ = func_name
+    inner.__qualname__ = f"{parent_class_name}.{func_name}"
+    inner.__module__ = module_name
+    return inner
+
+
+def define_mutable_mapping(
+    object_class: type[ValueT], stub_class: type[EditableAndReadableResourceStub]
+) -> ReadOnlyProperty[MutableMapping[ValueT]]:
     def collection_property(self: ParentT) -> MutableMapping[ValueT]:
         return MutableMapping(
             channel=self._channel,
@@ -187,4 +200,4 @@ def define_mutable_mapping(
             stub=stub_class(channel=self._channel),
         )
 
-    return create_method, property(collection_property)
+    return property(collection_property)
