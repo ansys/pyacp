@@ -4,6 +4,7 @@ from collections.abc import Iterable
 
 from ansys.api.acp.v0 import cad_component_pb2, cad_component_pb2_grpc
 
+from .._utils.property_protocols import ReadOnlyProperty
 from ._grpc_helpers.property_helper import grpc_data_property_read_only, mark_grpc_properties
 from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
@@ -31,4 +32,4 @@ class CADComponent(ReadOnlyTreeObject, IdTreeObject):
         return cad_component_pb2_grpc.ObjectServiceStub(self._channel)
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
-    path = grpc_data_property_read_only("properties.path")
+    path: ReadOnlyProperty[str] = grpc_data_property_read_only("properties.path")

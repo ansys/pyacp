@@ -8,6 +8,7 @@ import numpy.typing as npt
 
 from ansys.api.acp.v0 import cutoff_selection_rule_pb2, cutoff_selection_rule_pb2_grpc
 
+from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -116,14 +117,14 @@ class CutoffSelectionRule(CreatableTreeObject, IdTreeObject):
     )
     cutoff_geometry = grpc_link_property("properties.cutoff_geometry")
     taper_edge_set = grpc_link_property("properties.taper_edge_set")
-    offset = grpc_data_property("properties.offset")
-    angle = grpc_data_property("properties.angle")
+    offset: ReadWriteProperty[float, float] = grpc_data_property("properties.offset")
+    angle: ReadWriteProperty[float, float] = grpc_data_property("properties.angle")
     ply_cutoff_type = grpc_data_property(
         "properties.ply_cutoff_type",
         from_protobuf=ply_cutoff_type_from_pb,
         to_protobuf=ply_cutoff_type_to_pb,
     )
-    ply_tapering = grpc_data_property("properties.ply_tapering")
+    ply_tapering: ReadWriteProperty[bool, bool] = grpc_data_property("properties.ply_tapering")
 
     elemental_data = elemental_data_property(CutoffSelectionRuleElementalData)
     nodal_data = nodal_data_property(CutoffSelectionRuleNodalData)

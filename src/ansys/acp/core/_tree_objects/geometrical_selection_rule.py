@@ -8,6 +8,7 @@ import numpy.typing as npt
 
 from ansys.api.acp.v0 import geometrical_selection_rule_pb2, geometrical_selection_rule_pb2_grpc
 
+from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.linked_object_list import define_linked_object_list
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
@@ -115,11 +116,21 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
     )
     geometry = grpc_link_property("properties.geometry")
     element_sets = define_linked_object_list("properties.element_sets", object_class=ElementSet)
-    include_rule_type = grpc_data_property("properties.include_rule_type")
-    use_default_tolerances = grpc_data_property("properties.use_default_tolerances")
-    in_plane_capture_tolerance = grpc_data_property("properties.in_plane_capture_tolerance")
-    negative_capture_tolerance = grpc_data_property("properties.negative_capture_tolerance")
-    positive_capture_tolerance = grpc_data_property("properties.positive_capture_tolerance")
+    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.include_rule_type"
+    )
+    use_default_tolerances: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_default_tolerances"
+    )
+    in_plane_capture_tolerance: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.in_plane_capture_tolerance"
+    )
+    negative_capture_tolerance: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.negative_capture_tolerance"
+    )
+    positive_capture_tolerance: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.positive_capture_tolerance"
+    )
 
     elemental_data = elemental_data_property(GeometricalSelectionRuleElementalData)
     nodal_data = nodal_data_property(GeometricalSelectionRuleNodalData)

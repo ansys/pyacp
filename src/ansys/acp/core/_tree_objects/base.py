@@ -14,6 +14,7 @@ from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, GetRequest, ResourcePath
 
+from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .._utils.resource_paths import common_path
 from .._utils.resource_paths import join as _rp_join
 from .._utils.resource_paths import to_parts
@@ -50,6 +51,7 @@ class TreeObjectBase(GrpcObjectBase):
     OBJECT_INFO_TYPE: type[ObjectInfo]
 
     _pb_object: ObjectInfo
+    name: ReadWriteProperty[str, str]
 
     def __init__(self: TreeObjectBase, name: str = "") -> None:
         self._channel_store: Channel | None = None
@@ -134,7 +136,7 @@ class NamedTreeObject(GrpcObjectBase):
 
     """Implements the 'name' attribute for tree objects."""
 
-    name = grpc_data_property("info.name")
+    name: ReadWriteProperty[str, str] = grpc_data_property("info.name")
     """The name of the object."""
 
     def __repr__(self) -> str:
@@ -255,7 +257,7 @@ class IdTreeObject(TreeObjectBase):
 
     __slots__: Iterable[str] = tuple()
 
-    id = grpc_data_property_read_only("info.id")
+    id: ReadOnlyProperty[str] = grpc_data_property_read_only("info.id")
 
     def __repr__(self) -> str:
         return f"<{type(self).__name__} with id '{self.id}'>"

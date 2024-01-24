@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Collection, Iterable
 
 from ansys.api.acp.v0 import edge_set_pb2, edge_set_pb2_grpc
 
 from .._utils.array_conversions import to_1D_double_array, to_1D_int_array, to_tuple_from_1D_array
+from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -57,7 +58,7 @@ class EdgeSet(CreatableTreeObject, IdTreeObject):
         self,
         name: str = "EdgeSet",
         edge_set_type: EdgeSetType = EdgeSetType.BY_REFERENCE,
-        defining_node_labels: Iterable[int] = tuple(),
+        defining_node_labels: Collection[int] = tuple(),
         element_set: ElementSet | None = None,
         limit_angle: float = -1.0,
         origin: tuple[float, float, float] = (0.0, 0.0, 0.0),
@@ -75,7 +76,7 @@ class EdgeSet(CreatableTreeObject, IdTreeObject):
         return edge_set_pb2_grpc.ObjectServiceStub(self._channel)
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
-    locked = grpc_data_property_read_only("properties.locked")
+    locked: ReadOnlyProperty[bool] = grpc_data_property_read_only("properties.locked")
 
     edge_set_type = grpc_data_property(
         "properties.edge_set_type",
@@ -88,7 +89,7 @@ class EdgeSet(CreatableTreeObject, IdTreeObject):
         to_protobuf=to_1D_int_array,
     )
     element_set = grpc_link_property("properties.element_set")
-    limit_angle = grpc_data_property("properties.limit_angle")
+    limit_angle: ReadWriteProperty[float, float] = grpc_data_property("properties.limit_angle")
     origin = grpc_data_property(
         "properties.origin", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array
     )

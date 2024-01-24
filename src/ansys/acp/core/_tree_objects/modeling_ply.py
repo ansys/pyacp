@@ -12,6 +12,7 @@ from ansys.acp.core._tree_objects.base import CreatableTreeObject
 from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc, production_ply_pb2_grpc
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
+from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.edge_property_list import GenericEdgePropertyType, define_edge_property_list
 from ._grpc_helpers.linked_object_list import define_linked_object_list
 from ._grpc_helpers.mapping import get_read_only_collection_property
@@ -307,10 +308,12 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         "properties.oriented_selection_sets", OrientedSelectionSet
     )
 
-    ply_angle = grpc_data_property("properties.ply_angle")
-    number_of_layers = grpc_data_property("properties.number_of_layers")
-    active = grpc_data_property("properties.active")
-    global_ply_nr = grpc_data_property("properties.global_ply_nr")
+    ply_angle: ReadWriteProperty[float, float] = grpc_data_property("properties.ply_angle")
+    number_of_layers: ReadWriteProperty[int, int] = grpc_data_property(
+        "properties.number_of_layers"
+    )
+    active: ReadWriteProperty[bool, bool] = grpc_data_property("properties.active")
+    global_ply_nr: ReadWriteProperty[int, int] = grpc_data_property("properties.global_ply_nr")
 
     draping = grpc_data_property(
         "properties.draping", from_protobuf=draping_type_from_pb, to_protobuf=draping_type_to_pb
@@ -320,15 +323,23 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_double_array,
     )
-    auto_draping_direction = grpc_data_property("properties.auto_draping_direction")
+    auto_draping_direction: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.auto_draping_direction"
+    )
     draping_direction = grpc_data_property(
         "properties.draping_direction",
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_double_array,
     )
-    use_default_draping_mesh_size = grpc_data_property("properties.use_default_draping_mesh_size")
-    draping_mesh_size = grpc_data_property("properties.draping_mesh_size")
-    draping_thickness_correction = grpc_data_property("properties.draping_thickness_correction")
+    use_default_draping_mesh_size: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_default_draping_mesh_size"
+    )
+    draping_mesh_size: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.draping_mesh_size"
+    )
+    draping_thickness_correction: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.draping_thickness_correction"
+    )
     draping_angle_1_field = grpc_link_property("properties.draping_angle_1_field")
     draping_angle_2_field = grpc_link_property("properties.draping_angle_2_field")
 

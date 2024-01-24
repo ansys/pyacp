@@ -8,6 +8,7 @@ import numpy.typing as npt
 
 from ansys.api.acp.v0 import analysis_ply_pb2, analysis_ply_pb2_grpc
 
+from .._utils.property_protocols import ReadOnlyProperty
 from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     grpc_link_property_read_only,
@@ -82,7 +83,9 @@ class AnalysisPly(ReadOnlyTreeObject, IdTreeObject):
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     material = grpc_link_property_read_only("properties.material")
-    angle = grpc_data_property_read_only("properties.angle")
-    active_in_post_mode = grpc_data_property_read_only("properties.active_in_post_mode")
+    angle: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.angle")
+    active_in_post_mode: ReadOnlyProperty[bool] = grpc_data_property_read_only(
+        "properties.active_in_post_mode"
+    )
     elemental_data = elemental_data_property(AnalysisPlyElementalData)
     nodal_data = nodal_data_property(AnalysisPlyNodalData)

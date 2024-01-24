@@ -16,8 +16,10 @@ from ansys.api.acp.v0 import (
     cad_geometry_pb2_grpc,
 )
 
+from .._typing_helper import PATH
 from .._utils.array_conversions import to_numpy
 from .._utils.path_to_str import path_to_str_checked
+from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
@@ -109,14 +111,20 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
         return cad_geometry_pb2_grpc.ObjectServiceStub(self._channel)
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
-    locked = grpc_data_property_read_only("properties.locked")
+    locked: ReadOnlyProperty[bool] = grpc_data_property_read_only("properties.locked")
 
-    external_path = grpc_data_property("properties.external_path", to_protobuf=path_to_str_checked)
-    scale_factor = grpc_data_property("properties.scale_factor")
-    use_default_precision = grpc_data_property("properties.use_default_precision")
-    precision = grpc_data_property("properties.precision")
-    use_default_offset = grpc_data_property("properties.use_default_offset")
-    offset = grpc_data_property("properties.offset")
+    external_path: ReadWriteProperty[PATH, PATH] = grpc_data_property(
+        "properties.external_path", to_protobuf=path_to_str_checked
+    )
+    scale_factor: ReadWriteProperty[float, float] = grpc_data_property("properties.scale_factor")
+    use_default_precision: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_default_precision"
+    )
+    precision: ReadWriteProperty[float, float] = grpc_data_property("properties.precision")
+    use_default_offset: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_default_offset"
+    )
+    offset: ReadWriteProperty[float, float] = grpc_data_property("properties.offset")
 
     @property
     def visualization_mesh(self) -> TriangleMesh:

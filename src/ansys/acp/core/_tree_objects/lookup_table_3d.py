@@ -8,6 +8,7 @@ from ansys.api.acp.v0 import (
     lookup_table_3d_pb2_grpc,
 )
 
+from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
@@ -89,9 +90,13 @@ class LookUpTable3D(CreatableTreeObject, IdTreeObject):
         from_protobuf=lookup_table_3d_interpolation_algorithm_from_pb,
         to_protobuf=lookup_table_3d_interpolation_algorithm_to_pb,
     )
-    use_default_search_radius = grpc_data_property("properties.use_default_search_radius")
-    search_radius = grpc_data_property("properties.search_radius")
-    num_min_neighbors = grpc_data_property("properties.num_min_neighbors")
+    use_default_search_radius: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_default_search_radius"
+    )
+    search_radius: ReadWriteProperty[float, float] = grpc_data_property("properties.search_radius")
+    num_min_neighbors: ReadWriteProperty[int, int] = grpc_data_property(
+        "properties.num_min_neighbors"
+    )
 
     create_column = define_create_method(
         LookUpTable3DColumn,
