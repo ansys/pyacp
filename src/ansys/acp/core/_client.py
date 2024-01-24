@@ -2,10 +2,7 @@ from __future__ import annotations
 
 import os
 import pathlib
-import shutil
-import tempfile
 from typing import Any, cast
-import uuid
 
 from ansys.api.acp.v0 import control_pb2_grpc, model_pb2_grpc
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, Empty, ListRequest
@@ -18,29 +15,6 @@ from ._typing_helper import PATH as _PATH
 __all__ = ["Client"]
 
 
-class LocalWorkingDir:
-    def __init__(self, path: pathlib.Path | None = None):
-        self._user_defined_working_dir = None
-        self._temp_working_dir = None
-        if path is None:
-            self._temp_working_dir = tempfile.TemporaryDirectory()
-        else:
-            self._user_defined_working_dir = path
-
-    @property
-    def path(self) -> pathlib.Path:
-        if self._user_defined_working_dir is not None:
-            return self._user_defined_working_dir
-        else:
-            # Make typechecker happy
-            assert self._temp_working_dir is not None
-            return pathlib.Path(self._temp_working_dir.name)
-
-    @property
-    def is_temp_dir(self) -> bool:
-        return self._temp_working_dir is not None
-
-
 class Client:
     """Top-level controller for the models loaded in a server.
 
@@ -50,9 +24,7 @@ class Client:
         The ACP gRPC server to which the ``Client`` connects.
     """
 
-    def __init__(
-        self, server: ServerProtocol, local_working_dir: pathlib.Path | None = None
-    ) -> None:
+    def __init__(self, server: ServerProtocol) -> None:
         self._channel = server.channels[ServerKey.MAIN]
         if ServerKey.FILE_TRANSFER in server.channels:
             self._ft_client: FileTransferClient | None = FileTransferClient(
@@ -60,11 +32,6 @@ class Client:
             )
         else:
             self._ft_client = None
-        self._local_working_dir = LocalWorkingDir(local_working_dir)
-
-    @property
-    def local_working_dir(self) -> LocalWorkingDir:
-        return self._local_working_dir
 
     @property
     def is_remote(self) -> bool:
@@ -75,28 +42,10 @@ class Client:
 
         If the server is remote, uploads the file to the server and returns the path
         on the server.
-        If the server is local and the working directory is a temp dir, copies the file to
-        the working directory.
-        If the server is local and the working directory is a user defined dir, does nothing
-        and returns the input path.
+        If the server is local, does nothing and returns the input path.
         """
         if self._ft_client is None:
-            assert self._local_working_dir is not None
-            if self._local_working_dir.is_temp_dir:
-                # Copy file to working dir if it is a temp dir
-                # TODO: The '_tmp_dir', and file tracking / up-/download in general
-                # should probably be handled by the local server itself.
-                # For now, we just do it client-side.
-                dest_dir = self._local_working_dir.path / uuid.uuid4().hex
-                dest_dir.mkdir(parents=True, exist_ok=True)
-                filename = os.path.basename(local_path)
-                res_path = dest_dir / filename
-                shutil.copyfile(local_path, res_path)
-                return pathlib.Path(res_path)
-            # Just return the local path if this is a user defined
-            # working directory
             return pathlib.Path(local_path)
-
         else:
             remote_filename = os.path.basename(local_path)
             self._ft_client.upload_file(
@@ -110,14 +59,9 @@ class Client:
         Download a file from the server.
 
         If the server is remote, download the file to the local path.
-        If the server is local and the working directory is a temp dir, copy the file to the
-        temp dir.
-        If the server is local and the working directory is a user defined dir, do nothing.
+        If the server is local do nothing.
         """
-        if self._ft_client is None:
-            if self._local_working_dir.is_temp_dir:
-                shutil.copyfile(remote_filename, local_path)
-        else:
+        if self._ft_client is not None:
             self._ft_client.download_file(
                 remote_filename=str(remote_filename), local_filename=str(local_path)
             )

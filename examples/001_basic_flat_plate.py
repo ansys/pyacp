@@ -43,20 +43,27 @@ EXAMPLES_DIR = pathlib.Path(__file__).parent
 EXAMPLE_DATA_DIR = EXAMPLES_DIR / "data" / "flat_plate"
 
 WORKING_DIR = pathlib.Path(EXAMPLE_DATA_DIR)
+
+# Use temp directory
+# WORKING_DIR = None
+
 # %%
 # Launch the PyACP server and connect to it.
 pyacp_server = pyacp.launch_acp()
 pyacp_server.wait(timeout=30)
-pyacp_client = pyacp.Client(pyacp_server, local_working_dir=WORKING_DIR)
+pyacp_client = pyacp.Client(pyacp_server)
 
 CDB_FILENAME = "flat_plate_input.dat"
 local_file_path = str(EXAMPLE_DATA_DIR / CDB_FILENAME)
 print(local_file_path)
 workflow = ACPWorkflow(
-    acp_client=pyacp_client, cdb_file_path=str(EXAMPLE_DATA_DIR / "flat_plate_input.dat")
+    acp_client=pyacp_client,
+    cdb_file_path=str(EXAMPLE_DATA_DIR / "flat_plate_input.dat"),
+    local_working_directory=WORKING_DIR,
 )
 
 model = workflow.model
+print(workflow.working_directory.path)
 print(model.unit_system)
 
 # %%
@@ -162,8 +169,8 @@ mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
 # Download RST FILE for further post-processing
 rstfile_name = f"{mapdl.jobname}.rst"
-rst_file_local_path = WORKING_DIR / rstfile_name
-mapdl.download(rstfile_name, str(WORKING_DIR))
+rst_file_local_path = workflow.working_directory.path / rstfile_name
+mapdl.download(rstfile_name, str(workflow.working_directory.path))
 
 
 # %%
@@ -209,3 +216,6 @@ output_all_elements = composite_model.evaluate_failure_criteria(cfc)
 # Query and plot the results
 irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
 irf_field.plot()
+
+# There is a failure on exit when using a temp directory:
+# See https://github.com/ansys/pydpf-core/issues/1373
