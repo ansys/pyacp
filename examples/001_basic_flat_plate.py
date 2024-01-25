@@ -18,6 +18,7 @@ and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDP
 # %%
 # Import standard library and third-party dependencies
 import pathlib
+import tempfile
 
 import pyvista
 
@@ -29,6 +30,7 @@ from ansys.acp.core._tree_objects.material.property_sets import (
     ConstantEngineeringConstants,
     ConstantStrainLimits,
 )
+from ansys.acp.core._utils.example_helpers import ExampleKeys, get_example_file
 from ansys.acp.core.model_printer import print_model
 from ansys.acp.core.workflow import ACPWorkflow, get_composite_post_processing_files
 
@@ -36,11 +38,11 @@ from ansys.acp.core.workflow import ACPWorkflow, get_composite_post_processing_f
 # https://github.com/ansys/pydpf-core/issues/1363
 from ansys.mapdl.core import launch_mapdl
 
-# Todo get example from example-data repo
-EXAMPLES_DIR = pathlib.Path(__file__).parent
-EXAMPLE_DATA_DIR = EXAMPLES_DIR / "data" / "flat_plate"
-
-WORKING_DIR = pathlib.Path(EXAMPLE_DATA_DIR)
+# %%
+# Get example file from server
+tempdir = tempfile.TemporaryDirectory()
+WORKING_DIR = pathlib.Path(tempdir.name)
+input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE, WORKING_DIR)
 
 # %%
 # Launch the PyACP server and connect to it.
@@ -52,12 +54,10 @@ pyacp_client = pyacp.Client(pyacp_server)
 # Define the input file and instantiate an ACPWorkflow
 # The ACPWorkflow class provides convenience methods which simplifies the file handling.
 # It automatically creates a model based on the input file.
-CDB_FILENAME = "flat_plate_input.dat"
-local_file_path = str(EXAMPLE_DATA_DIR / CDB_FILENAME)
-print(local_file_path)
+
 workflow = ACPWorkflow(
     acp_client=pyacp_client,
-    cdb_file_path=str(EXAMPLE_DATA_DIR / "flat_plate_input.dat"),
+    cdb_file_path=input_file,
     local_working_directory=WORKING_DIR,
 )
 
@@ -147,18 +147,19 @@ model.update()
 modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45_UD"]
 
 plotter = pyvista.Plotter()
-plotter.add_mesh(model.mesh.to_pyvista(), color="white")
+plotter.add_mesh(model.mesh.to_pyvista(), color="white", show_edges=True)
 plotter.add_mesh(
-    modeling_ply.nodal_data.ply_offset.get_pyvista_glyphs(mesh=model.mesh, factor=0.01),
+    modeling_ply.elemental_data.fiber_direction.get_pyvista_glyphs(mesh=model.mesh, factor=0.0008),
 )
 plotter.show()
 
+# %%
+# Print the model tree for a quick overview
 print_model(model)
 
+# %%
+# Launch the MAPDL instance
 mapdl = launch_mapdl()
-
-# This is important because otherwise definitions from previous runs are still present
-# in the mapdl instance (for instance materials)
 mapdl.clear()
 
 # %%
@@ -177,7 +178,8 @@ mapdl.post1()
 mapdl.set("last")
 mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
-# Download RST FILE for further post-processing
+# %%
+# Download the rst file for composite specific post-processing
 rstfile_name = f"{mapdl.jobname}.rst"
 rst_file_local_path = workflow.working_directory.path / rstfile_name
 mapdl.download(rstfile_name, str(workflow.working_directory.path))
@@ -219,11 +221,8 @@ composite_model = CompositeModel(
 )
 
 # %%
-# Evaluate the failure criteria
+# Evaluate the failure criteria and plot it
 output_all_elements = composite_model.evaluate_failure_criteria(cfc)
-
-# %%
-# Query and plot the results
 irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
 irf_field.plot()
 

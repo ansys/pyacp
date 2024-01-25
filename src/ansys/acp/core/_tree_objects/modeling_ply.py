@@ -57,13 +57,13 @@ __all__ = ["ModelingPly", "ModelingPlyElementalData", "ModelingPlyNodalData", "T
 class ModelingPlyElementalData(ElementalData):
     """Represents elemental data for a Modeling Ply."""
 
-    normal: ScalarData
-    orientation: ScalarData
-    reference_direction: ScalarData
-    fiber_direction: ScalarData
-    draped_fiber_direction: ScalarData
-    transverse_direction: ScalarData
-    draped_transverse_direction: ScalarData
+    normal: VectorData
+    orientation: VectorData
+    reference_direction: VectorData
+    fiber_direction: VectorData
+    draped_fiber_direction: VectorData
+    transverse_direction: VectorData
+    draped_transverse_direction: VectorData
     thickness: ScalarData
     relative_thickness_correction: ScalarData
     design_angle: ScalarData

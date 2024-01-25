@@ -270,6 +270,11 @@ jobs:
       - name: Build HTML
         run: |
           xvfb-run poetry run make -C doc html SPHINXOPTS="-W --keep-going -v"
+        env:
+          PYMAPDL_PORT: "50557"
+          PYMAPDL_START_INSTANCE: "FALSE"
+          PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT: "50558"
+
 
       - name: Stop and clean up MAPDL and DPF servers
         run: |

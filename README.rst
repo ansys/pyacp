@@ -211,6 +211,7 @@ valid license server (e.g 1055@mylicenseserver.com). Then start the docker conta
 
     docker-compose -f docker-compose/docker-compose-extras.yaml up -d
 
+Todo: Update once the documentation can be built locally.
 In addition, the PyACP server needs to be configured via ``ansys-launcher``, see `Launching ACP <launching_server>`_ above.
 
 It can then be built using `Sphinx`_.

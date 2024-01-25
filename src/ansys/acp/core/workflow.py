@@ -31,10 +31,6 @@ class LocalWorkingDir:
             assert self._temp_working_dir is not None
             return pathlib.Path(self._temp_working_dir.name)
 
-    @property
-    def is_temp_dir(self) -> bool:
-        return self._temp_working_dir is not None
-
 
 class FileStrategy(Protocol):
     def get_file(
