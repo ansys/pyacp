@@ -25,7 +25,7 @@ EXAMPLE_FILES: dict[ExampleKeys, ExampleLocation] = {
 
 def get_example_file(example_key: ExampleKeys, working_directory: pathlib.Path) -> pathlib.Path:
     example_location = EXAMPLE_FILES[example_key]
-    _download_file(example_location, working_directory)
+    _download_file(example_location, working_directory / example_location.filename)
     return working_directory / example_location.filename
 
 
