@@ -10,11 +10,13 @@ from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 
 from ..._utils.property_protocols import ReadOnlyProperty
 from ..._utils.resource_paths import join as _rp_join
-from ..base import CreatableTreeObject, TreeObject
+from ..base import CreatableTreeObject, TreeObject, TreeObjectBase
 from .exceptions import wrap_grpc_errors
+from .property_helper import _exposed_grpc_property, _wrap_doc
 from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableResourceStub
 
-ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
+ValueT = TypeVar("ValueT", bound=TreeObjectBase)
+CreatableValueT = TypeVar("CreatableValueT", bound=CreatableTreeObject)
 
 __all__ = ["Mapping", "MutableMapping", "define_mutable_mapping", "define_create_method"]
 
@@ -99,14 +101,14 @@ class Mapping(Generic[ValueT]):
             return default
 
 
-class MutableMapping(Mapping[ValueT]):
+class MutableMapping(Mapping[CreatableValueT]):
     def __init__(
         self,
         *,
         channel: Channel,
         collection_path: CollectionPath,
         stub: EditableAndReadableResourceStub,
-        object_constructor: Callable[[ObjectInfo, Channel | None], ValueT],
+        object_constructor: Callable[[ObjectInfo, Channel | None], CreatableValueT],
     ) -> None:
         self._collection_path = collection_path
         self._stub: EditableAndReadableResourceStub = stub
@@ -132,15 +134,15 @@ class MutableMapping(Mapping[ValueT]):
                     )
                 )
 
-    def pop(self, key: str) -> ValueT:
+    def pop(self, key: str) -> CreatableValueT:
         obj_info = self._get_objectinfo_by_id(key)
         return self._pop_from_info(obj_info)
 
-    def popitem(self) -> ValueT:
+    def popitem(self) -> CreatableValueT:
         obj_info = self._get_objectinfo_list()[0]
         return self._pop_from_info(obj_info)
 
-    def _pop_from_info(self, object_info: ObjectInfo) -> ValueT:
+    def _pop_from_info(self, object_info: ObjectInfo) -> CreatableValueT:
         obj = self._object_constructor(object_info, self._channel)
         new_obj = obj.clone()
         obj.delete()
@@ -151,8 +153,8 @@ ParentT = TypeVar("ParentT", bound=TreeObject)
 
 
 def get_read_only_collection_property(
-    object_class: type[ValueT], stub_class: type[ReadableResourceStub]
-) -> Callable[[ParentT], Mapping[ValueT]]:
+    object_class: type[ValueT], stub_class: type[ReadableResourceStub], doc: str | None = None
+) -> ReadOnlyProperty[Mapping[ValueT]]:
     def collection_property(self: ParentT) -> Mapping[ValueT]:
         return Mapping(
             channel=self._channel,
@@ -163,16 +165,19 @@ def get_read_only_collection_property(
             stub=stub_class(channel=self._channel),
         )
 
-    return collection_property
+    return _wrap_doc(_exposed_grpc_property(collection_property), doc=doc)
 
 
 P = ParamSpec("P")
 
 
 def define_create_method(
-    object_class: Callable[P, ValueT], func_name: str, parent_class_name: str, module_name: str
-) -> Callable[Concatenate[ParentT, P], ValueT]:
-    def inner(self: ParentT, /, *args: P.args, **kwargs: P.kwargs) -> ValueT:
+    object_class: Callable[P, CreatableValueT],
+    func_name: str,
+    parent_class_name: str,
+    module_name: str,
+) -> Callable[Concatenate[ParentT, P], CreatableValueT]:
+    def inner(self: ParentT, /, *args: P.args, **kwargs: P.kwargs) -> CreatableValueT:
         obj = object_class(*args, **kwargs)
         obj.store(parent=self)
         return obj
@@ -188,9 +193,11 @@ def define_create_method(
 
 
 def define_mutable_mapping(
-    object_class: type[ValueT], stub_class: type[EditableAndReadableResourceStub]
-) -> ReadOnlyProperty[MutableMapping[ValueT]]:
-    def collection_property(self: ParentT) -> MutableMapping[ValueT]:
+    object_class: type[CreatableValueT],
+    stub_class: type[EditableAndReadableResourceStub],
+    doc: str | None = None,
+) -> ReadOnlyProperty[MutableMapping[CreatableValueT]]:
+    def collection_property(self: ParentT) -> MutableMapping[CreatableValueT]:
         return MutableMapping(
             channel=self._channel,
             collection_path=CollectionPath(
@@ -200,4 +207,4 @@ def define_mutable_mapping(
             stub=stub_class(channel=self._channel),
         )
 
-    return property(collection_property)
+    return _wrap_doc(_exposed_grpc_property(collection_property), doc=doc)

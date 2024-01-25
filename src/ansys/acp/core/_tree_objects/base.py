@@ -40,6 +40,7 @@ from ._grpc_helpers.protocols import (
 _T = TypeVar("_T", bound="TreeObjectBase")
 
 
+@mark_grpc_properties
 class TreeObjectBase(GrpcObjectBase):
     """
     Base class for ACP tree objects.
@@ -51,12 +52,15 @@ class TreeObjectBase(GrpcObjectBase):
     OBJECT_INFO_TYPE: type[ObjectInfo]
 
     _pb_object: ObjectInfo
-    name: ReadWriteProperty[str, str]
+    name: ReadOnlyProperty[str]
 
     def __init__(self: TreeObjectBase, name: str = "") -> None:
         self._channel_store: Channel | None = None
         self._pb_object: ObjectInfo = self.OBJECT_INFO_TYPE()
-        self.name = name
+        # We don't want to invoke gRPC requests for setting the name
+        # during object construction, so we set the name directly on
+        # the protobuf object.
+        self._pb_object.info.name = name
 
     def clone(self: _T, *, unlink: bool = False) -> _T:
         """Create a new unstored object with the same properties.
@@ -113,6 +117,11 @@ class TreeObjectBase(GrpcObjectBase):
     def _is_stored(self) -> bool:
         return self._channel_store is not None
 
+    def __repr__(self) -> str:
+        return f"<{type(self).__name__} with name '{self.name}'>"
+
+    name = grpc_data_property_read_only("info.name", doc="The name of the object.")
+
 
 StubT = TypeVar("StubT")
 
@@ -130,21 +139,11 @@ class StubStore(Generic[StubT]):
         return self._stub_store
 
 
-@mark_grpc_properties
-class NamedTreeObject(GrpcObjectBase):
-    __slots__: Iterable[str] = tuple()
-
-    """Implements the 'name' attribute for tree objects."""
-
-    name: ReadWriteProperty[str, str] = grpc_data_property("info.name")
-    """The name of the object."""
-
-    def __repr__(self) -> str:
-        return f"<{type(self).__name__} with name '{self.name}'>"
-
-
-class TreeObject(TreeObjectBase, NamedTreeObject):
+class TreeObject(TreeObjectBase):
     __slots__: Iterable[str] = ("_stub_store",)
+    name: ReadWriteProperty[str, str] = grpc_data_property(
+        "info.name", doc="The name of the object."
+    )
 
     @abstractmethod
     def _create_stub(self) -> EditableAndReadableResourceStub:
@@ -185,7 +184,8 @@ class TreeObject(TreeObjectBase, NamedTreeObject):
         return self._stub_store.get(self._is_stored)
 
 
-class ReadOnlyTreeObject(TreeObjectBase, NamedTreeObject):
+@mark_grpc_properties
+class ReadOnlyTreeObject(TreeObjectBase):
     def __init__(self: ReadOnlyTreeObject) -> None:
         super().__init__()
         self._stub_store = StubStore(self._create_stub)
@@ -257,7 +257,9 @@ class IdTreeObject(TreeObjectBase):
 
     __slots__: Iterable[str] = tuple()
 
-    id: ReadOnlyProperty[str] = grpc_data_property_read_only("info.id")
+    id: ReadOnlyProperty[str] = grpc_data_property_read_only(
+        "info.id", doc="Identifier of the object, used for example as key in maps."
+    )
 
     def __repr__(self) -> str:
         return f"<{type(self).__name__} with id '{self.id}'>"
