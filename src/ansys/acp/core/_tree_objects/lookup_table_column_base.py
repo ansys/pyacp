@@ -49,6 +49,7 @@ class LookUpTableColumnBase(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str,
         value_type: LookUpTableColumnValueType = LookUpTableColumnValueType.SCALAR,
         dimension_type: DimensionType = DimensionType.DIMENSIONLESS,

@@ -248,6 +248,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "ModelingPly",
         ply_material: Fabric | None = None,
         oriented_selection_sets: Container[OrientedSelectionSet] = (),

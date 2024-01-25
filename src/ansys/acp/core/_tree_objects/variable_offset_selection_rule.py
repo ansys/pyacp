@@ -89,6 +89,7 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "VariableOffsetSelectionrule",
         edge_set: EdgeSet | None = None,
         offsets: LookUpTable1DColumn | None = None,

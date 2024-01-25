@@ -43,6 +43,7 @@ class Rosette(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "Rosette",
         origin: tuple[float, float, float] = (0.0, 0.0, 0.0),
         dir1: tuple[float, float, float] = (1.0, 0.0, 0.0),

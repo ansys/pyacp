@@ -67,6 +67,7 @@ class Fabric(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "Fabric",
         material: Material | None = None,
         thickness: float = 0.0,

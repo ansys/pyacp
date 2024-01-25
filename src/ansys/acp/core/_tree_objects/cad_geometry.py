@@ -89,6 +89,7 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "CADGeometry",
         external_path: str = "",
         scale_factor: float = 1.0,

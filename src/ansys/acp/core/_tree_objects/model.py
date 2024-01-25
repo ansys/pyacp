@@ -166,6 +166,7 @@ class Model(TreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "ACP Model",
         use_nodal_thicknesses: bool = False,
         draping_offset_correction: bool = False,
