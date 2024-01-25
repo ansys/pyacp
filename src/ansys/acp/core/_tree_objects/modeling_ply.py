@@ -180,12 +180,12 @@ class TaperEdge(GenericEdgePropertyType):
 @mark_grpc_properties
 @register
 class ModelingPly(CreatableTreeObject, IdTreeObject):
-    """Instantiate an Modeling Ply.
+    """Instantiate a Modeling Ply.
 
     Parameters
     ----------
     name :
-        The name of the ModelingPly
+        The name of the Modeling Ply
     ply_material :
         The material (fabric, stackup or sub-laminate) of the ply.
     ply_angle :
@@ -208,6 +208,8 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     draping_direction :
         Set the primary draping direction for the draping algorithm. Only used if
         ``auto_draping_direction`` is ``False``.
+    use_default_draping_mesh_size :
+        Whether to use the average element size of the shell mesh for the draping.
     draping_mesh_size :
         Defines the mesh size for the draping algorithm.  If set to ``-1.``, the
         mesh size is automatically determined based on the average element size.
@@ -346,8 +348,8 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
 
     selection_rules = define_edge_property_list("properties.selection_rules", LinkedSelectionRule)
 
-    production_plies = property(
-        get_read_only_collection_property(ProductionPly, production_ply_pb2_grpc.ObjectServiceStub)
+    production_plies = get_read_only_collection_property(
+        ProductionPly, production_ply_pb2_grpc.ObjectServiceStub
     )
 
     thickness_type = grpc_data_property(

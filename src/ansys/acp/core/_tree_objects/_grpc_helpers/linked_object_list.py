@@ -12,7 +12,7 @@ from ansys.api.acp.v0.base_pb2 import ResourcePath
 
 from ..base import CreatableTreeObject, TreeObject
 from .polymorphic_from_pb import tree_object_from_resource_path
-from .property_helper import _exposed_grpc_property, grpc_data_getter, grpc_data_setter
+from .property_helper import _exposed_grpc_property, _wrap_doc, grpc_data_getter, grpc_data_setter
 
 ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
 
@@ -155,7 +155,9 @@ class LinkedObjectList(MutableSequence[ValueT]):
 ChildT = TypeVar("ChildT", bound=CreatableTreeObject)
 
 
-def define_linked_object_list(attribute_name: str, object_class: type[ChildT]) -> Any:
+def define_linked_object_list(
+    attribute_name: str, object_class: type[ChildT], doc: str | None = None
+) -> Any:
     def getter(self: ValueT) -> LinkedObjectList[ChildT]:
         return LinkedObjectList(
             parent_object=self,
@@ -166,7 +168,7 @@ def define_linked_object_list(attribute_name: str, object_class: type[ChildT]) -
     def setter(self: ValueT, value: list[ChildT]) -> None:
         getter(self)[:] = value
 
-    return _exposed_grpc_property(getter).setter(setter)
+    return _wrap_doc(_exposed_grpc_property(getter).setter(setter), doc=doc)
 
 
 def define_polymorphic_linked_object_list(

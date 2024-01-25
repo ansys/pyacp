@@ -238,23 +238,45 @@ def grpc_data_property_read_only(
     )
 
 
-def grpc_link_property(name: str) -> Any:
+def grpc_link_property(
+    name: str,
+    doc: str | None = None,
+) -> Any:
     """
     Helper for defining linked properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to get the linked object
+
+    Parameters
+    ----------
+    name :
+        Name of the property.
+    doc :
+        Docstring for the property.
     """
-    return _exposed_grpc_property(grpc_linked_object_getter(name)).setter(
-        # Resource path represents an object that is not set as an empty string
-        grpc_data_setter(
-            name=name,
-            to_protobuf=lambda obj: ResourcePath(value="") if obj is None else obj._resource_path,
-        )
+    return _wrap_doc(
+        _exposed_grpc_property(grpc_linked_object_getter(name)).setter(
+            # Resource path represents an object that is not set as an empty string
+            grpc_data_setter(
+                name=name,
+                to_protobuf=lambda obj: ResourcePath(value="")
+                if obj is None
+                else obj._resource_path,
+            )
+        ),
+        doc=doc,
     )
 
 
-def grpc_link_property_read_only(name: str) -> Any:
+def grpc_link_property_read_only(name: str, doc: str | None = None) -> Any:
     """
     Helper for defining linked properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to get the linked object
+
+    Parameters
+    ----------
+    name :
+        Name of the property.
+    doc :
+        Docstring for the property.
     """
-    return _exposed_grpc_property(grpc_linked_object_getter(name))
+    return _wrap_doc(_exposed_grpc_property(grpc_linked_object_getter(name)), doc=doc)
