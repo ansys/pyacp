@@ -12,10 +12,8 @@ the boundary conditions. This model is imported in PyACP to define the lay-up.
 PyACP exports the resulting model for PyMAPDL. Once the results are available,
 the RST file is loaded in PyDPF composites. The additional input files (material.xml
 and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDPF Composites.
-
-The MAPDL and DPF services are run in docker containers which share a volume (working
-directory).
 """
+
 
 # %%
 # Import standard library and third-party dependencies
@@ -24,6 +22,7 @@ import pathlib
 import pyvista
 
 # %%
+# Import pyACP dependencies
 import ansys.acp.core as pyacp
 from ansys.acp.core import OrientedSelectionSet
 from ansys.acp.core._tree_objects.enums import PlyType
@@ -44,15 +43,16 @@ EXAMPLE_DATA_DIR = EXAMPLES_DIR / "data" / "flat_plate"
 
 WORKING_DIR = pathlib.Path(EXAMPLE_DATA_DIR)
 
-# Use temp directory
-# WORKING_DIR = None
-
 # %%
 # Launch the PyACP server and connect to it.
 pyacp_server = pyacp.launch_acp()
 pyacp_server.wait(timeout=30)
 pyacp_client = pyacp.Client(pyacp_server)
 
+# %%
+# Define the input file and instantiate an ACPWorkflow
+# The ACPWorkflow class provides convenience methods which simplifies the file handling.
+# It automatically creates a model based on the input file.
 CDB_FILENAME = "flat_plate_input.dat"
 local_file_path = str(EXAMPLE_DATA_DIR / CDB_FILENAME)
 print(local_file_path)
@@ -70,8 +70,11 @@ print(model.unit_system)
 # Visualize the loaded mesh
 mesh = model.mesh.to_pyvista()
 mesh.plot(show_edges=True)
-rosette = model.create_rosette(origin=(0.0, 0.0, 0.0), dir1=(1.0, 0.0, 0.0), dir2=(0.0, 0.0, 1.0))
 
+
+# %%
+# Create an orthotropic material and fabric including strain limits, which are later
+# used to post-process the simulation.
 engineering_constants = ConstantEngineeringConstants(
     E1=5e10, E2=1e10, E3=1e10, nu12=0.28, nu13=0.28, nu23=0.3, G12=5e9, G23=4e9, G31=4e9
 )
@@ -101,6 +104,12 @@ ud_material = model.create_material(
 
 fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.1)
 
+
+# %%
+# Define a rosette and an oriented selection set and plot the orientations
+rosette = model.create_rosette(origin=(0.0, 0.0, 0.0), dir1=(1.0, 0.0, 0.0), dir2=(0.0, 0.0, 1.0))
+
+
 oss: OrientedSelectionSet = model.create_oriented_selection_set(
     name="oss",
     orientation_point=(0.0, 0.0, 0.0),
@@ -119,6 +128,9 @@ plotter.add_mesh(
 )
 plotter.show()
 
+
+# %%
+# Create various plies a different angles and add them to a modeling group
 modeling_group = model.create_modeling_group(name="modeling_group")
 angles = [0, 45, -45, 45, -45, 0]
 for idx, angle in enumerate(angles):
@@ -131,11 +143,11 @@ for idx, angle in enumerate(angles):
 
 model.update()
 
-modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45_UD"]
-
 
 # %%
-# Show the ply offsets, scaled by a factor of 200
+# Show the ply offsets of
+modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45_UD"]
+
 plotter = pyvista.Plotter()
 plotter.add_mesh(model.mesh.to_pyvista(), color="white")
 plotter.add_mesh(

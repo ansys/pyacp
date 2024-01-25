@@ -4,6 +4,7 @@ from enum import Enum
 
 from ansys.api.acp.v0 import material_pb2
 
+from ...._utils.property_protocols import ReadWriteProperty
 from ..._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -88,7 +89,9 @@ class ConstantPuckConstants(_PuckConstantsMixin, _ConstantPropertySet):
     s = _constant_material_grpc_data_property("s")
     M = _constant_material_grpc_data_property("M")
     interface_weakening_factor = _constant_material_grpc_data_property("interface_weakening_factor")
-    mat_type = grpc_data_property("mat_type", from_protobuf=PuckMaterialType)
+    mat_type: ReadWriteProperty[PuckMaterialType, PuckMaterialType] = grpc_data_property(
+        "mat_type", from_protobuf=PuckMaterialType
+    )
 
 
 @mark_grpc_properties
@@ -102,4 +105,4 @@ class VariablePuckConstants(_PuckConstantsMixin, _VariablePropertySet):
     s = _variable_material_grpc_data_property("s")
     M = _variable_material_grpc_data_property("M")
     interface_weakening_factor = _variable_material_grpc_data_property("interface_weakening_factor")
-    mat_type = grpc_data_property_read_only("mat_type")
+    mat_type = grpc_data_property_read_only("mat_type", from_protobuf=PuckMaterialType)

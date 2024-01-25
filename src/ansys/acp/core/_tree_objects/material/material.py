@@ -4,6 +4,7 @@ from collections.abc import Iterable
 
 from ansys.api.acp.v0 import material_pb2, material_pb2_grpc
 
+from ..._utils.property_protocols import ReadOnlyProperty
 from .._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -178,9 +179,9 @@ class Material(CreatableTreeObject, IdTreeObject):
     def _create_stub(self) -> material_pb2_grpc.ObjectServiceStub:
         return material_pb2_grpc.ObjectServiceStub(self._channel)
 
-    locked = grpc_data_property_read_only("properties.locked")
+    locked: ReadOnlyProperty[bool] = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
-    ext_id = grpc_data_property_read_only("properties.ext_id")
+    ext_id: ReadOnlyProperty[str] = grpc_data_property_read_only("properties.ext_id")
 
     ply_type = grpc_data_property(
         "properties.ply_type",

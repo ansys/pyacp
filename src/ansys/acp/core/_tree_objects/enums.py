@@ -1,14 +1,18 @@
 from ansys.api.acp.v0 import (
     cut_off_material_pb2,
+    cutoff_selection_rule_pb2,
     drop_off_material_pb2,
     edge_set_pb2,
     enum_types_pb2,
+    geometrical_selection_rule_pb2,
     lookup_table_3d_pb2,
     lookup_table_column_type_pb2,
     mesh_query_pb2,
+    modeling_ply_pb2,
     ply_material_pb2,
     sensor_pb2,
     unit_system_pb2,
+    virtual_geometry_pb2,
 )
 
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
@@ -162,3 +166,40 @@ __all__ = [
     sensor_type_to_pb,
     sensor_type_from_pb,
 ) = wrap_to_string_enum("SensorType", sensor_pb2.SensorType, module=__name__)
+
+(
+    VirtualGeometryDimension,
+    virtual_geometry_dimension_to_pb,
+    virtual_geometry_dimension_from_pb,
+) = wrap_to_string_enum("VirtualGeometryDimension", virtual_geometry_pb2.Dimension, module=__name__)
+
+(
+    CutoffRuleType,
+    cutoff_rule_type_to_pb,
+    cutoff_rule_type_from_pb,
+) = wrap_to_string_enum("CutoffRuleType", cutoff_selection_rule_pb2.CutoffRuleType, module=__name__)
+
+(
+    PlyCutoffType,
+    ply_cutoff_type_to_pb,
+    ply_cutoff_type_from_pb,
+) = wrap_to_string_enum("PlyCutoffType", cutoff_selection_rule_pb2.PlyCutoffType, module=__name__)
+
+(
+    GeometricalRuleType,
+    geometrical_rule_type_to_pb,
+    geometrical_rule_type_from_pb,
+) = wrap_to_string_enum(
+    "GeometricalRuleType", geometrical_selection_rule_pb2.GeometricalRuleType, module=__name__
+)
+(
+    ThicknessType,
+    thickness_type_to_pb,
+    thickness_type_from_pb,
+) = wrap_to_string_enum("ThicknessType", modeling_ply_pb2.ThicknessType, module=__name__)
+
+(
+    ThicknessFieldType,
+    thickness_field_type_to_pb,
+    thickness_field_type_from_pb,
+) = wrap_to_string_enum("ThicknessFieldType", modeling_ply_pb2.ThicknessFieldType, module=__name__)

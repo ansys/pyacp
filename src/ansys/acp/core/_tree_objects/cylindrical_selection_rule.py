@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Collection, Iterable
 import dataclasses
 
 from ansys.api.acp.v0 import cylindrical_selection_rule_pb2, cylindrical_selection_rule_pb2_grpc
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
+from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -101,17 +102,23 @@ class CylindricalSelectionRule(CreatableTreeObject, IdTreeObject):
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
 
-    use_global_coordinate_system = grpc_data_property("properties.use_global_coordinate_system")
+    use_global_coordinate_system: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_global_coordinate_system"
+    )
     rosette = grpc_link_property("properties.rosette")
-    origin = grpc_data_property(
+    origin: ReadWriteProperty[tuple[float, float, float], Collection[float]] = grpc_data_property(
         "properties.origin", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array
     )
     direction = grpc_data_property(
         "properties.direction", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array
     )
-    radius = grpc_data_property("properties.radius")
-    relative_rule_type = grpc_data_property("properties.relative_rule_type")
-    include_rule_type = grpc_data_property("properties.include_rule_type")
+    radius: ReadWriteProperty[float, float] = grpc_data_property("properties.radius")
+    relative_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.relative_rule_type"
+    )
+    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.include_rule_type"
+    )
 
     elemental_data = elemental_data_property(CylindricalSelectionRuleElementalData)
     nodal_data = nodal_data_property(CylindricalSelectionRuleNodalData)

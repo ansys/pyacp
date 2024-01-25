@@ -1,4 +1,3 @@
-from grpc import RpcError
 import pytest
 
 from ansys.acp.core import Model, ModelingPly
@@ -88,7 +87,7 @@ class TestProductionPly(TreeObjectTesterReadOnly):
         parent_model.update()
         assert len(parent_object.production_plies) == 1
 
-        with pytest.raises(RpcError, match="Entity not found") as ex:
+        with pytest.raises(LookupError, match="Entity not found") as ex:
             _ = production_ply_that_gets_removed_on_update.status
 
 

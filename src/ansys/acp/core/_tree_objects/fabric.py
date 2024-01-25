@@ -4,6 +4,7 @@ from collections.abc import Iterable
 
 from ansys.api.acp.v0 import fabric_pb2, fabric_pb2_grpc
 
+from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -90,14 +91,16 @@ class Fabric(CreatableTreeObject, IdTreeObject):
     def _create_stub(self) -> fabric_pb2_grpc.ObjectServiceStub:
         return fabric_pb2_grpc.ObjectServiceStub(self._channel)
 
-    locked = grpc_data_property_read_only("properties.locked")
+    locked: ReadOnlyProperty[bool] = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
-    area_weight = grpc_data_property_read_only("properties.area_weight")
+    area_weight: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.area_weight")
 
     material = grpc_link_property("properties.material")
-    thickness = grpc_data_property("properties.thickness")
-    area_price = grpc_data_property("properties.area_price")
-    ignore_for_postprocessing = grpc_data_property("properties.ignore_for_postprocessing")
+    thickness: ReadWriteProperty[float, float] = grpc_data_property("properties.thickness")
+    area_price: ReadWriteProperty[float, float] = grpc_data_property("properties.area_price")
+    ignore_for_postprocessing: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.ignore_for_postprocessing"
+    )
 
     drop_off_material_handling = grpc_data_property(
         "properties.drop_off_material_handling",
@@ -115,4 +118,6 @@ class Fabric(CreatableTreeObject, IdTreeObject):
         to_protobuf=draping_material_type_to_pb,
     )
 
-    draping_ud_coefficient = grpc_data_property("properties.draping_ud_coefficient")
+    draping_ud_coefficient: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.draping_ud_coefficient"
+    )

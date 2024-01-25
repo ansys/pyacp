@@ -12,10 +12,13 @@ from pyvista.core.pointset import UnstructuredGrid
 from ansys.api.acp.v0 import (
     base_pb2,
     boolean_selection_rule_pb2_grpc,
+    cad_geometry_pb2_grpc,
+    cutoff_selection_rule_pb2_grpc,
     cylindrical_selection_rule_pb2_grpc,
     edge_set_pb2_grpc,
     element_set_pb2_grpc,
     fabric_pb2_grpc,
+    geometrical_selection_rule_pb2_grpc,
     lookup_table_1d_pb2_grpc,
     lookup_table_3d_pb2_grpc,
     material_pb2,
@@ -33,15 +36,19 @@ from ansys.api.acp.v0 import (
     sublaminate_pb2_grpc,
     tube_selection_rule_pb2_grpc,
     variable_offset_selection_rule_pb2_grpc,
+    virtual_geometry_pb2_grpc,
 )
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
 from .._typing_helper import PATH as _PATH
 from .._utils.array_conversions import to_numpy
+from .._utils.path_to_str import path_to_str_checked
+from .._utils.property_protocols import ReadWriteProperty
 from .._utils.resource_paths import join as rp_join
 from .._utils.visualization import to_pyvista_faces, to_pyvista_types
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
-from ._grpc_helpers.mapping import define_mutable_mapping
+from ._grpc_helpers.exceptions import wrap_grpc_errors
+from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -56,11 +63,14 @@ from ._mesh_data import (
 )
 from .base import TreeObject
 from .boolean_selection_rule import BooleanSelectionRule
+from .cad_geometry import CADGeometry
+from .cutoff_selection_rule import CutoffSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import UnitSystemType, unit_system_type_from_pb, unit_system_type_to_pb
 from .fabric import Fabric
+from .geometrical_selection_rule import GeometricalSelectionRule
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_3d import LookUpTable3D
 from .material import Material
@@ -74,6 +84,7 @@ from .stackup import Stackup
 from .sublaminate import SubLaminate
 from .tube_selection_rule import TubeSelectionRule
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
+from .virtual_geometry import VirtualGeometry
 
 __all__ = ["MeshData", "Model", "ModelElementalData", "ModelNodalData"]
 
@@ -184,11 +195,21 @@ class Model(TreeObject):
 
     # # TODO: document further properties, or autogenerate docstring from .proto files.
 
-    use_nodal_thicknesses = grpc_data_property("properties.use_nodal_thicknesses")
-    draping_offset_correction = grpc_data_property("properties.draping_offset_correction")
-    angle_tolerance = grpc_data_property("properties.angle_tolerance")
-    relative_thickness_tolerance = grpc_data_property("properties.relative_thickness_tolerance")
-    minimum_analysis_ply_thickness = grpc_data_property("properties.minimum_analysis_ply_thickness")
+    use_nodal_thicknesses: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_nodal_thicknesses"
+    )
+    draping_offset_correction: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.draping_offset_correction"
+    )
+    angle_tolerance: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.angle_tolerance"
+    )
+    relative_thickness_tolerance: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.relative_thickness_tolerance"
+    )
+    minimum_analysis_ply_thickness: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.minimum_analysis_ply_thickness"
+    )
     unit_system = grpc_data_property_read_only(
         "properties.unit_system", from_protobuf=unit_system_type_from_pb
     )
@@ -197,8 +218,9 @@ class Model(TreeObject):
     def from_file(cls, *, path: _PATH, channel: Channel) -> Model:
         # Send absolute paths to the server, since its CWD may not match
         # the Python CWD.
-        request = model_pb2.LoadFromFileRequest(path=str(path))
-        reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFile(request)
+        request = model_pb2.LoadFromFileRequest(path=path_to_str_checked(path))
+        with wrap_grpc_errors():
+            reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFile(request)
         return cls._from_object_info(object_info=reply, channel=channel)
 
     @classmethod
@@ -216,21 +238,23 @@ class Model(TreeObject):
         ignored_entities_pb = [_ignorable_entity_to_pb(val) for val in ignored_entities]
 
         request = model_pb2.LoadFromFEFileRequest(
-            path=str(path),
+            path=path_to_str_checked(path),
             format=format_pb,
             ignored_entities=ignored_entities_pb,
             convert_section_data=convert_section_data,
             unit_system=unit_system_type_to_pb(unit_system),
         )
-        reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFEFile(request)
+        with wrap_grpc_errors():
+            reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFEFile(request)
         return cls._from_object_info(object_info=reply, channel=channel)
 
     def update(self, *, relations_only: bool = False) -> None:
-        self._get_stub().Update(
-            model_pb2.UpdateRequest(
-                resource_path=self._resource_path, relations_only=relations_only
+        with wrap_grpc_errors():
+            self._get_stub().Update(
+                model_pb2.UpdateRequest(
+                    resource_path=self._resource_path, relations_only=relations_only
+                )
             )
-        )
 
     def save(self, path: _PATH, *, save_cache: bool = True) -> None:
         """
@@ -243,21 +267,23 @@ class Model(TreeObject):
         save_cache:
             Whether to store the update results such as Analysis Plies and solid models.
         """
-        self._get_stub().SaveToFile(
-            model_pb2.SaveToFileRequest(
-                resource_path=self._resource_path,
-                path=str(path),
-                save_cache=save_cache,
+        with wrap_grpc_errors():
+            self._get_stub().SaveToFile(
+                model_pb2.SaveToFileRequest(
+                    resource_path=self._resource_path,
+                    path=path_to_str_checked(path),
+                    save_cache=save_cache,
+                )
             )
-        )
 
     def save_analysis_model(self, path: _PATH) -> None:
-        self._get_stub().SaveAnalysisModel(
-            model_pb2.SaveAnalysisModelRequest(
-                resource_path=self._resource_path,
-                path=str(path),
+        with wrap_grpc_errors():
+            self._get_stub().SaveAnalysisModel(
+                model_pb2.SaveAnalysisModelRequest(
+                    resource_path=self._resource_path,
+                    path=path_to_str_checked(path),
+                )
             )
-        )
 
     def export_shell_composite_definitions(self, path: _PATH) -> None:
         """
@@ -268,11 +294,12 @@ class Model(TreeObject):
         path:
             File path. Eg. /tmp/ACPCompositeDefinitions.h5
         """
-        self._get_stub().SaveShellCompositeDefinitions(
-            model_pb2.SaveShellCompositeDefinitionsRequest(
-                resource_path=self._resource_path, path=str(path)
+        with wrap_grpc_errors():
+            self._get_stub().SaveShellCompositeDefinitions(
+                model_pb2.SaveShellCompositeDefinitionsRequest(
+                    resource_path=self._resource_path, path=path_to_str_checked(path)
+                )
             )
-        )
 
     def export_materials(self, path: _PATH) -> None:
         """
@@ -290,65 +317,197 @@ class Model(TreeObject):
         collection_path = CollectionPath(
             value=rp_join(self._resource_path.value, Material._COLLECTION_LABEL)
         )
-        material_stub.SaveToFile(
-            material_pb2.SaveToFileRequest(
-                collection_path=collection_path,
-                path=str(path),
-                format=material_pb2.SaveToFileRequest.ANSYS_XML,
+        with wrap_grpc_errors():
+            material_stub.SaveToFile(
+                material_pb2.SaveToFileRequest(
+                    collection_path=collection_path,
+                    path=path_to_str_checked(path),
+                    format=material_pb2.SaveToFileRequest.ANSYS_XML,
+                )
             )
-        )
 
-    create_material, materials = define_mutable_mapping(
-        Material, material_pb2_grpc.ObjectServiceStub
+    create_material = define_create_method(
+        Material, func_name="create_material", parent_class_name="Model", module_name=__module__
     )
-    create_fabric, fabrics = define_mutable_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
-    create_stackup, stackups = define_mutable_mapping(Stackup, stackup_pb2_grpc.ObjectServiceStub)
-    create_sublaminate, sublaminates = define_mutable_mapping(
-        SubLaminate, sublaminate_pb2_grpc.ObjectServiceStub
-    )
-    create_element_set, element_sets = define_mutable_mapping(
-        ElementSet, element_set_pb2_grpc.ObjectServiceStub
-    )
-    create_edge_set, edge_sets = define_mutable_mapping(
-        EdgeSet, edge_set_pb2_grpc.ObjectServiceStub
-    )
-    create_rosette, rosettes = define_mutable_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
+    materials = define_mutable_mapping(Material, material_pb2_grpc.ObjectServiceStub)
 
-    create_lookup_table_1d, lookup_tables_1d = define_mutable_mapping(
+    create_fabric = define_create_method(
+        Fabric, func_name="create_fabric", parent_class_name="Model", module_name=__module__
+    )
+    fabrics = define_mutable_mapping(Fabric, fabric_pb2_grpc.ObjectServiceStub)
+
+    create_stackup = define_create_method(
+        Stackup, func_name="create_stackup", parent_class_name="Model", module_name=__module__
+    )
+    stackups = define_mutable_mapping(Stackup, stackup_pb2_grpc.ObjectServiceStub)
+
+    create_sublaminate = define_create_method(
+        SubLaminate,
+        func_name="create_sublaminate",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    sublaminates = define_mutable_mapping(SubLaminate, sublaminate_pb2_grpc.ObjectServiceStub)
+
+    create_element_set = define_create_method(
+        ElementSet,
+        func_name="create_element_set",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    element_sets = define_mutable_mapping(ElementSet, element_set_pb2_grpc.ObjectServiceStub)
+
+    create_edge_set = define_create_method(
+        EdgeSet, func_name="create_edge_set", parent_class_name="Model", module_name=__module__
+    )
+    edge_sets = define_mutable_mapping(EdgeSet, edge_set_pb2_grpc.ObjectServiceStub)
+
+    create_cad_geometry = define_create_method(
+        CADGeometry,
+        func_name="create_cad_geometry",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    cad_geometries = define_mutable_mapping(CADGeometry, cad_geometry_pb2_grpc.ObjectServiceStub)
+
+    create_virtual_geometry = define_create_method(
+        VirtualGeometry,
+        func_name="create_virtual_geometry",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    virtual_geometries = define_mutable_mapping(
+        VirtualGeometry, virtual_geometry_pb2_grpc.ObjectServiceStub
+    )
+
+    create_rosette = define_create_method(
+        Rosette, func_name="create_rosette", parent_class_name="Model", module_name=__module__
+    )
+    rosettes = define_mutable_mapping(Rosette, rosette_pb2_grpc.ObjectServiceStub)
+
+    create_lookup_table_1d = define_create_method(
+        LookUpTable1D,
+        func_name="create_lookup_table_1d",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    lookup_tables_1d = define_mutable_mapping(
         LookUpTable1D, lookup_table_1d_pb2_grpc.ObjectServiceStub
     )
 
-    create_lookup_table_3d, lookup_tables_3d = define_mutable_mapping(
+    create_lookup_table_3d = define_create_method(
+        LookUpTable3D,
+        func_name="create_lookup_table_3d",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    lookup_tables_3d = define_mutable_mapping(
         LookUpTable3D, lookup_table_3d_pb2_grpc.ObjectServiceStub
     )
 
-    create_parallel_selection_rule, parallel_selection_rules = define_mutable_mapping(
+    create_parallel_selection_rule = define_create_method(
+        ParallelSelectionRule,
+        func_name="create_parallel_selection_rule",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    parallel_selection_rules = define_mutable_mapping(
         ParallelSelectionRule, parallel_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    create_cylindrical_selection_rule, cylindrical_selection_rules = define_mutable_mapping(
+
+    create_cylindrical_selection_rule = define_create_method(
+        CylindricalSelectionRule,
+        func_name="create_cylindrical_selection_rule",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    cylindrical_selection_rules = define_mutable_mapping(
         CylindricalSelectionRule, cylindrical_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    create_spherical_selection_rule, spherical_selection_rules = define_mutable_mapping(
+
+    create_spherical_selection_rule = define_create_method(
+        SphericalSelectionRule,
+        func_name="create_spherical_selection_rule",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    spherical_selection_rules = define_mutable_mapping(
         SphericalSelectionRule, spherical_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    create_tube_selection_rule, tube_selection_rules = define_mutable_mapping(
+
+    create_tube_selection_rule = define_create_method(
+        TubeSelectionRule,
+        func_name="create_tube_selection_rule",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    tube_selection_rules = define_mutable_mapping(
         TubeSelectionRule, tube_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    create_variable_offset_selection_rule, variable_offset_selection_rules = define_mutable_mapping(
+
+    create_cutoff_selection_rule = define_create_method(
+        CutoffSelectionRule,
+        func_name="create_cutoff_selection_rule",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    cutoff_selection_rules = define_mutable_mapping(
+        CutoffSelectionRule, cutoff_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+
+    create_geometrical_selection_rule = define_create_method(
+        GeometricalSelectionRule,
+        func_name="create_geometrical_selection_rule",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    geometrical_selection_rules = define_mutable_mapping(
+        GeometricalSelectionRule, geometrical_selection_rule_pb2_grpc.ObjectServiceStub
+    )
+
+    create_variable_offset_selection_rule = define_create_method(
+        VariableOffsetSelectionRule,
+        func_name="create_variable_offset_selection_rule",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    variable_offset_selection_rules = define_mutable_mapping(
         VariableOffsetSelectionRule, variable_offset_selection_rule_pb2_grpc.ObjectServiceStub
     )
-    create_boolean_selection_rule, boolean_selection_rules = define_mutable_mapping(
+
+    create_boolean_selection_rule = define_create_method(
+        BooleanSelectionRule,
+        func_name="create_boolean_selection_rule",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    boolean_selection_rules = define_mutable_mapping(
         BooleanSelectionRule, boolean_selection_rule_pb2_grpc.ObjectServiceStub
     )
 
-    create_oriented_selection_set, oriented_selection_sets = define_mutable_mapping(
+    create_oriented_selection_set = define_create_method(
+        OrientedSelectionSet,
+        func_name="create_oriented_selection_set",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    oriented_selection_sets = define_mutable_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub
     )
-    create_modeling_group, modeling_groups = define_mutable_mapping(
+    create_modeling_group = define_create_method(
+        ModelingGroup,
+        func_name="create_modeling_group",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    modeling_groups = define_mutable_mapping(
         ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
     )
 
-    create_sensor, sensors = define_mutable_mapping(Sensor, sensor_pb2_grpc.ObjectServiceStub)
+    create_sensor = define_create_method(
+        Sensor, func_name="create_sensor", parent_class_name="Model", module_name=__module__
+    )
+    sensors = define_mutable_mapping(Sensor, sensor_pb2_grpc.ObjectServiceStub)
 
     @property
     def mesh(self) -> MeshData:

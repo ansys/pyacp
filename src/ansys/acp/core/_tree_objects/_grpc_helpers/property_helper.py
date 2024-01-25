@@ -5,15 +5,26 @@ via gRPC Put / Get calls.
 from __future__ import annotations
 
 from functools import reduce
-from typing import Any, Callable
+from typing import Any, Callable, TypeVar
+
+from google.protobuf.message import Message
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
+from ..._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .polymorphic_from_pb import CreatableFromResourcePath, tree_object_from_resource_path
 from .protocols import Editable, GrpcObjectBase, ObjectInfo, Readable
 
-_TO_PROTOBUF_T = Callable[[Any], Any]
-_FROM_PROTOBUF_T = Callable[[Any], Any]
+# Note: The typing of the protobuf objects is fairly loose, maybe it could
+# be improved. The main challenge is that we do not encode the structure of
+# messages in the type system, and they can contain different fundamental
+# or protobuf types.
+_PROTOBUF_T = Any
+_GET_T = TypeVar("_GET_T")
+_SET_T = TypeVar("_SET_T")
+
+_TO_PROTOBUF_T = Callable[[_SET_T], _PROTOBUF_T]
+_FROM_PROTOBUF_T = Callable[[_PROTOBUF_T], _GET_T]
 
 
 class _exposed_grpc_property(property):
@@ -25,7 +36,10 @@ class _exposed_grpc_property(property):
     pass
 
 
-def mark_grpc_properties(cls: type[GrpcObjectBase]) -> type[GrpcObjectBase]:
+T = TypeVar("T", bound=type[GrpcObjectBase])
+
+
+def mark_grpc_properties(cls: T) -> T:
     props: list[str] = []
     # Loop is needed because we otherwise get only the _GRPC_PROPERTIES of one of the base classes.
     for base_cls in reversed(cls.__bases__):
@@ -61,8 +75,8 @@ def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
 
 
 def grpc_data_getter(
-    name: str, from_protobuf: _FROM_PROTOBUF_T, check_optional: bool = False
-) -> Callable[[Readable], Any]:
+    name: str, from_protobuf: _FROM_PROTOBUF_T[_GET_T], check_optional: bool = False
+) -> Callable[[Readable], _GET_T]:
     """
     Creates a getter method which obtains the server object via the gRPC
     Get endpoint.
@@ -88,13 +102,15 @@ def grpc_data_getter(
     return inner
 
 
-def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[Editable, Any], None]:
+def grpc_data_setter(
+    name: str, to_protobuf: _TO_PROTOBUF_T[_SET_T]
+) -> Callable[[Editable, _SET_T], None]:
     """
     Creates a setter method which updates the server object via the gRPC
     Put endpoint.
     """
 
-    def inner(self: Editable, value: Any) -> None:
+    def inner(self: Editable, value: _SET_T) -> None:
         self._get_if_stored()
         current_value = _get_data_attribute(self._pb_object, name)
         value_pb = to_protobuf(value)
@@ -109,7 +125,7 @@ def grpc_data_setter(name: str, to_protobuf: _TO_PROTOBUF_T) -> Callable[[Editab
     return inner
 
 
-def _get_data_attribute(pb_obj: ObjectInfo, name: str, check_optional: bool = False) -> Any:
+def _get_data_attribute(pb_obj: Message, name: str, check_optional: bool = False) -> _PROTOBUF_T:
     name_parts = name.split(".")
     if check_optional:
         parent_obj = reduce(getattr, name_parts[:-1], pb_obj)
@@ -118,7 +134,7 @@ def _get_data_attribute(pb_obj: ObjectInfo, name: str, check_optional: bool = Fa
     return reduce(getattr, name_parts, pb_obj)
 
 
-def _set_data_attribute(pb_obj: ObjectInfo, name: str, value: Any) -> None:
+def _set_data_attribute(pb_obj: ObjectInfo, name: str, value: _PROTOBUF_T) -> None:
     name_parts = name.split(".")
 
     try:
@@ -137,7 +153,10 @@ def _set_data_attribute(pb_obj: ObjectInfo, name: str, value: Any) -> None:
                     target_object.add().CopyFrom(item)
 
 
-def _wrap_doc(obj: Any, doc: str | None) -> Any:
+AnyT = TypeVar("AnyT")
+
+
+def _wrap_doc(obj: AnyT, doc: str | None) -> AnyT:
     if doc is not None:
         obj.__doc__ = doc
     return obj
@@ -145,11 +164,11 @@ def _wrap_doc(obj: Any, doc: str | None) -> Any:
 
 def grpc_data_property(
     name: str,
-    to_protobuf: _TO_PROTOBUF_T = lambda x: x,
-    from_protobuf: _FROM_PROTOBUF_T = lambda x: x,
+    to_protobuf: _TO_PROTOBUF_T[_SET_T] = lambda x: x,
+    from_protobuf: _FROM_PROTOBUF_T[_GET_T] = lambda x: x,
     check_optional: bool = False,
     doc: str | None = None,
-) -> Any:
+) -> ReadWriteProperty[_GET_T, _SET_T]:
     """
     Helper for defining properties accessed via gRPC. The property getter
     and setter make calls to the gRPC Get and Put endpoints to synchronize
@@ -188,10 +207,10 @@ def grpc_data_property(
 
 def grpc_data_property_read_only(
     name: str,
-    from_protobuf: _FROM_PROTOBUF_T = lambda x: x,
+    from_protobuf: _FROM_PROTOBUF_T[_GET_T] = lambda x: x,
     check_optional: bool = False,
     doc: str | None = None,
-) -> Any:
+) -> ReadOnlyProperty[_GET_T]:
     """
     Helper for defining properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to synchronize

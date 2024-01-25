@@ -10,6 +10,7 @@ from ansys.tools.filetransfer import Client as FileTransferClient
 
 from ._server import ServerKey, ServerProtocol
 from ._tree_objects import Model
+from ._tree_objects._grpc_helpers.exceptions import wrap_grpc_errors
 from ._typing_helper import PATH as _PATH
 
 __all__ = ["Client"]
@@ -113,9 +114,12 @@ class Client:
         for model in model_stub.List(
             ListRequest(collection_path=CollectionPath(value=Model._COLLECTION_LABEL))
         ).objects:
-            model_stub.Delete(
-                DeleteRequest(resource_path=model.info.resource_path, version=model.info.version)
-            )
+            with wrap_grpc_errors():
+                model_stub.Delete(
+                    DeleteRequest(
+                        resource_path=model.info.resource_path, version=model.info.version
+                    )
+                )
 
     @property
     def server_version(self) -> str:

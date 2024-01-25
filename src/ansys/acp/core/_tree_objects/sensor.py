@@ -6,6 +6,7 @@ from typing import Union, get_args
 from ansys.api.acp.v0 import sensor_pb2, sensor_pb2_grpc
 
 from .._utils.array_conversions import to_tuple_from_1D_array
+from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from ._grpc_helpers.linked_object_list import define_polymorphic_linked_object_list
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
@@ -69,18 +70,18 @@ class Sensor(CreatableTreeObject, IdTreeObject):
     def _create_stub(self) -> sensor_pb2_grpc.ObjectServiceStub:
         return sensor_pb2_grpc.ObjectServiceStub(self._channel)
 
-    locked = grpc_data_property_read_only("properties.locked")
+    locked: ReadOnlyProperty[bool] = grpc_data_property_read_only("properties.locked")
     sensor_type = grpc_data_property(
         "properties.sensor_type", from_protobuf=sensor_type_from_pb, to_protobuf=sensor_type_to_pb
     )
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
 
-    active = grpc_data_property("properties.active")
+    active: ReadWriteProperty[bool, bool] = grpc_data_property("properties.active")
     entities = define_polymorphic_linked_object_list(
         "properties.entities", allowed_types=get_args(_LINKABLE_ENTITY_TYPES)
     )
 
-    covered_area = grpc_data_property_read_only(
+    covered_area: ReadOnlyProperty[float | None] = grpc_data_property_read_only(
         "properties.covered_area",
         check_optional=True,
         doc=(
@@ -89,17 +90,17 @@ class Sensor(CreatableTreeObject, IdTreeObject):
             "the selected Material or Modeling Ply."
         ),
     )
-    modeling_ply_area = grpc_data_property_read_only(
+    modeling_ply_area: ReadOnlyProperty[float | None] = grpc_data_property_read_only(
         "properties.modeling_ply_area",
         check_optional=True,
         doc="The surface area of all Modeling Plies of the selected entity.",
     )
-    production_ply_area = grpc_data_property_read_only(
+    production_ply_area: ReadOnlyProperty[float | None] = grpc_data_property_read_only(
         "properties.production_ply_area",
         check_optional=True,
         doc="The surface area of all production plies of the selected entity.",
     )
-    price = grpc_data_property_read_only(
+    price: ReadOnlyProperty[float | None] = grpc_data_property_read_only(
         "properties.price",
         check_optional=True,
         doc=(
@@ -107,7 +108,7 @@ class Sensor(CreatableTreeObject, IdTreeObject):
             "per area is defined on the Fabrics or Stackups."
         ),
     )
-    weight = grpc_data_property_read_only(
+    weight: ReadOnlyProperty[float | None] = grpc_data_property_read_only(
         "properties.weight", check_optional=True, doc="The mass of the selected entity."
     )
     center_of_gravity = grpc_data_property_read_only(
