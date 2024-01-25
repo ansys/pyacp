@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Container, Iterable
 import dataclasses
 from typing import Any, Callable
 
@@ -240,8 +240,8 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         self,
         *,
         name: str = "ModelingPly",
-        oriented_selection_sets: Iterable[OrientedSelectionSet] = (),
         ply_material: Fabric | None = None,
+        oriented_selection_sets: Container[OrientedSelectionSet] = (),
         ply_angle: float = 0.0,
         number_of_layers: int = 1,
         active: bool = True,
@@ -317,7 +317,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     active: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.active", doc="Inactive plies are ignored in ACP and the downstream analysis."
     )
-    global_ply_nr = grpc_data_property(
+    global_ply_nr: ReadWriteProperty[int, int] = grpc_data_property(
         "properties.global_ply_nr", doc="Defines the global ply order."
     )
 
@@ -333,7 +333,13 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         to_protobuf=to_1D_double_array,
         doc="Starting point of the draping algorithm.",
     )
-    auto_draping_direction = grpc_data_property("properties.auto_draping_direction")
+    auto_draping_direction: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.auto_draping_direction",
+        doc=(
+            "If ``True``, the fiber direction of the production ply at the draping "
+            "seed point is used as draping direction."
+        ),
+    )
     draping_direction = grpc_data_property(
         "properties.draping_direction",
         from_protobuf=to_tuple_from_1D_array,
@@ -343,15 +349,18 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
             "``auto_draping_direction`` is ``False``."
         ),
     )
-    use_default_draping_mesh_size = grpc_data_property("properties.use_default_draping_mesh_size")
-    draping_mesh_size = grpc_data_property(
+    use_default_draping_mesh_size: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_default_draping_mesh_size",
+        doc=("Whether to use the average element size of the shell mesh for the draping."),
+    )
+    draping_mesh_size: ReadWriteProperty[float, float] = grpc_data_property(
         "properties.draping_mesh_size",
         doc=(
             "Defines the mesh size for the draping algorithm.  If set to ``-1.``, the mesh size is "
             "automatically determined based on the average element size."
         ),
     )
-    draping_thickness_correction = grpc_data_property(
+    draping_thickness_correction: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.draping_thickness_correction",
         doc=("Enables the thickness correction of draped plies based on the draping shear angle."),
     )

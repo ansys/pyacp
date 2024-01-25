@@ -61,11 +61,12 @@ def mark_grpc_properties(cls: T) -> T:
         if property_doc is not None:
             setattr(replacement_map, name, property_doc)
 
-    # TODO: we should be consistent in whether the docstring is defined
-    # on the class or on the __init__ method.
-    # TODO: check the performance impact of this on loading the library.
     if cls.__init__.__doc__ is not None:
-        cls.__init__.__doc__ = cls.__init__.__doc__.format(replace_doc=replacement_map)
+        # We should be consistent in whether the docstring is defined
+        # on the class or on the __init__ method.
+        # This is also implicitly relied upon by the 'define_create_method'
+        # helper.
+        raise Exception("Docstring should be defined on object, not __init__.")
     if cls.__doc__ is not None:
         cls.__doc__ = cls.__doc__.format(replace_doc=replacement_map)
     return cls

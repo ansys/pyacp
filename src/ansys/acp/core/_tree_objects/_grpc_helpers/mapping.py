@@ -154,7 +154,7 @@ ParentT = TypeVar("ParentT", bound=TreeObject)
 
 def get_read_only_collection_property(
     object_class: type[ValueT], stub_class: type[ReadableResourceStub], doc: str | None = None
-) -> property:
+) -> ReadOnlyProperty[Mapping[ValueT]]:
     def collection_property(self: ParentT) -> Mapping[ValueT]:
         return Mapping(
             channel=self._channel,
@@ -172,9 +172,12 @@ P = ParamSpec("P")
 
 
 def define_create_method(
-    object_class: Callable[P, ValueT], func_name: str, parent_class_name: str, module_name: str
-) -> Callable[Concatenate[ParentT, P], ValueT]:
-    def inner(self: ParentT, /, *args: P.args, **kwargs: P.kwargs) -> ValueT:
+    object_class: Callable[P, CreatableValueT],
+    func_name: str,
+    parent_class_name: str,
+    module_name: str,
+) -> Callable[Concatenate[ParentT, P], CreatableValueT]:
+    def inner(self: ParentT, /, *args: P.args, **kwargs: P.kwargs) -> CreatableValueT:
         obj = object_class(*args, **kwargs)
         obj.store(parent=self)
         return obj
@@ -190,11 +193,11 @@ def define_create_method(
 
 
 def define_mutable_mapping(
-    object_class: type[ValueT],
+    object_class: type[CreatableValueT],
     stub_class: type[EditableAndReadableResourceStub],
     doc: str | None = None,
-) -> ReadOnlyProperty[MutableMapping[ValueT]]:
-    def collection_property(self: ParentT) -> MutableMapping[ValueT]:
+) -> ReadOnlyProperty[MutableMapping[CreatableValueT]]:
+    def collection_property(self: ParentT) -> MutableMapping[CreatableValueT]:
         return MutableMapping(
             channel=self._channel,
             collection_path=CollectionPath(

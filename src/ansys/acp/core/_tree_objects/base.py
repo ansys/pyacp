@@ -52,7 +52,7 @@ class TreeObjectBase(GrpcObjectBase):
     OBJECT_INFO_TYPE: type[ObjectInfo]
 
     _pb_object: ObjectInfo
-    name: ReadWriteProperty[str, str]
+    name: ReadOnlyProperty[str]
 
     def __init__(self: TreeObjectBase, name: str = "") -> None:
         self._channel_store: Channel | None = None
@@ -139,21 +139,11 @@ class StubStore(Generic[StubT]):
         return self._stub_store
 
 
-@mark_grpc_properties
-class NamedTreeObject(GrpcObjectBase):
-    __slots__: Iterable[str] = tuple()
-
-    """Implements the 'name' attribute for tree objects."""
-
-    name: ReadWriteProperty[str, str] = grpc_data_property("info.name")
-    """The name of the object."""
-
-    def __repr__(self) -> str:
-        return f"<{type(self).__name__} with name '{self.name}'>"
-
-
-class TreeObject(TreeObjectBase, NamedTreeObject):
+class TreeObject(TreeObjectBase):
     __slots__: Iterable[str] = ("_stub_store",)
+    name: ReadWriteProperty[str, str] = grpc_data_property(
+        "info.name", doc="The name of the object."
+    )
 
     @abstractmethod
     def _create_stub(self) -> EditableAndReadableResourceStub:
@@ -192,8 +182,6 @@ class TreeObject(TreeObjectBase, NamedTreeObject):
 
     def _get_stub(self) -> EditableAndReadableResourceStub:
         return self._stub_store.get(self._is_stored)
-
-    name = grpc_data_property("info.name", doc="The name of the object.")
 
 
 @mark_grpc_properties
