@@ -24,7 +24,6 @@ import pyvista
 # %%
 # Import pyACP dependencies
 import ansys.acp.core as pyacp
-from ansys.acp.core import OrientedSelectionSet
 from ansys.acp.core._tree_objects.enums import PlyType
 from ansys.acp.core._tree_objects.material.property_sets import (
     ConstantEngineeringConstants,
@@ -109,8 +108,7 @@ fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.1)
 # Define a rosette and an oriented selection set and plot the orientations
 rosette = model.create_rosette(origin=(0.0, 0.0, 0.0), dir1=(1.0, 0.0, 0.0), dir2=(0.0, 0.0, 1.0))
 
-
-oss: OrientedSelectionSet = model.create_oriented_selection_set(
+oss = model.create_oriented_selection_set(
     name="oss",
     orientation_point=(0.0, 0.0, 0.0),
     orientation_direction=(0.0, 1.0, 0),

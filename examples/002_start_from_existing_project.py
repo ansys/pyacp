@@ -12,7 +12,7 @@ WORKING_DIR = pathlib.Path(EXAMPLE_DATA_DIR)
 # Launch the PyACP server and connect to it.
 pyacp_server = pyacp.launch_acp()
 pyacp_server.wait(timeout=30)
-pyacp_client = pyacp.Client(pyacp_server, local_working_dir=WORKING_DIR)
+pyacp_client = pyacp.Client(pyacp_server)
 
 class40_path = pathlib.Path(r"D:\ANSYSDev\acp_test_model_data\model_data\class40")
 

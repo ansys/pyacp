@@ -12,6 +12,7 @@ from typing_extensions import Self
 from ansys.acp.core._utils.array_conversions import dataarray_to_numpy, to_numpy
 from ansys.api.acp.v0 import mesh_query_pb2, mesh_query_pb2_grpc
 
+from .._utils.property_protocols import ReadOnlyProperty
 from .base import TreeObject
 from .enums import (
     elemental_data_type_from_pb,
@@ -342,7 +343,7 @@ ElementalDataT = typing.TypeVar("ElementalDataT", bound=ElementalData)
 
 def elemental_data_property(
     wrapped_cls: type[ElementalDataT],
-) -> property:
+) -> ReadOnlyProperty[ElementalDataT]:
     """Create a property to get elemental data from a tree object."""
     return _mesh_data_property_impl(
         wrapped_cls=wrapped_cls,
@@ -356,7 +357,7 @@ NodalDataT = typing.TypeVar("NodalDataT", bound=NodalData)
 
 def nodal_data_property(
     wrapped_cls: type[NodalDataT],
-) -> property:
+) -> ReadOnlyProperty[NodalDataT]:
     """Create a property to get nodal data from a tree object."""
     return _mesh_data_property_impl(
         wrapped_cls=wrapped_cls,
@@ -373,7 +374,7 @@ def _mesh_data_property_impl(
     request_name: Literal["GetNodalData", "GetElementalData"],
     request_type: type[mesh_query_pb2.GetNodalDataRequest]
     | type[mesh_query_pb2.GetElementalDataRequest],
-) -> property:
+) -> ReadOnlyProperty[MeshDataT]:
     """Implementation of the mesh data property helpers."""
 
     def getter(self: TreeObject) -> MeshDataT:

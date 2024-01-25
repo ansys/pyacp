@@ -6,7 +6,6 @@ from typing import Any, Callable
 
 from typing_extensions import Self
 
-from ansys.acp.core._tree_objects.base import CreatableTreeObject
 from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc, production_ply_pb2_grpc
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
