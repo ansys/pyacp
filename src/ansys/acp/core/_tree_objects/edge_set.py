@@ -56,6 +56,7 @@ class EdgeSet(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "EdgeSet",
         edge_set_type: EdgeSetType = EdgeSetType.BY_REFERENCE,
         defining_node_labels: Collection[int] = tuple(),

@@ -49,6 +49,7 @@ class ElementSet(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "ElementSet",
         middle_offset: bool = False,
         element_labels: Collection[int] = tuple(),
