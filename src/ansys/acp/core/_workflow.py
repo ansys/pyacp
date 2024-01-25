@@ -1,12 +1,7 @@
 import pathlib
 import shutil
 import tempfile
-from typing import Callable, Optional, Protocol
-
-from ansys.dpf.composites.data_sources import (
-    CompositeDefinitionFiles,
-    ContinuousFiberCompositesFiles,
-)
+from typing import Any, Callable, Optional, Protocol
 
 from ._client import Client
 from ._tree_objects import Model
@@ -185,9 +180,10 @@ class ACPWorkflow:
         return self._file_strategy.upload_input_file_to_server(path=path)
 
 
+# Todo: How should we handle the dependency on pydpf-composites?
 def get_composite_post_processing_files(
     acp_workflow: ACPWorkflow, local_rst_file_path: PATH
-) -> ContinuousFiberCompositesFiles:
+) -> Any:
     """Get the files object needed for pydpf-composites from the workflow and the rst path.
 
     Parameters
@@ -197,6 +193,13 @@ def get_composite_post_processing_files(
     local_rst_file_path:
         Local path to the rst file.
     """
+
+    # Only import here to avoid dependency on ansys.dpf.composites if it is not used
+    from ansys.dpf.composites.data_sources import (
+        CompositeDefinitionFiles,
+        ContinuousFiberCompositesFiles,
+    )
+
     composite_files = ContinuousFiberCompositesFiles(
         rst=local_rst_file_path,
         composite={
