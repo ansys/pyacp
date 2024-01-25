@@ -1,6 +1,6 @@
 from typing import Optional
 
-from ansys.acp.core import Model
+from ._tree_objects.model import Model
 
 
 class Node:

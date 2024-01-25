@@ -1,8 +1,8 @@
 """
 .. _solve_class40_example:
 
-Basic PyACP Example
-===================
+Class 40 example
+================
 
 Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
 a failure analysis with PyDPF-Composites.
@@ -293,9 +293,9 @@ pyacp_client.download_file(
 
 # %%
 # Import PyMAPDL and connect to its server
-from ansys.mapdl.core import Mapdl
+from ansys.mapdl.core import launch_mapdl
 
-mapdl = Mapdl(ip="localhost", port=50557, timeout=30)
+mapdl = launch_mapdl()
 mapdl.clear()
 # %%
 # Load the CDB file into PyMAPDL
@@ -343,7 +343,7 @@ from ansys.dpf.core.unit_system import unit_systems
 # %%
 # Connect to the server. The ``connect_to_or_start_server`` function
 # automatically loads the composites plugin.
-dpf_server = connect_to_or_start_server(ip="127.0.0.1", port=50558)
+dpf_server = connect_to_or_start_server()
 
 # %%
 # Specify the Combined Failure Criterion

@@ -22,17 +22,22 @@ import tempfile
 
 import pyvista
 
+from ansys.acp.core import (
+    ACPWorkflow,
+    Client,
+    get_composite_post_processing_files,
+    launch_acp,
+    print_model,
+)
+
 # %%
 # Import pyACP dependencies
-import ansys.acp.core as pyacp
 from ansys.acp.core._tree_objects.enums import PlyType
 from ansys.acp.core._tree_objects.material.property_sets import (
     ConstantEngineeringConstants,
     ConstantStrainLimits,
 )
 from ansys.acp.core._utils.example_helpers import ExampleKeys, get_example_file
-from ansys.acp.core.model_printer import print_model
-from ansys.acp.core.workflow import ACPWorkflow, get_composite_post_processing_files
 
 # Note: It is important to import mapdl before dpf, otherwise the plot defaults are messed up
 # https://github.com/ansys/pydpf-core/issues/1363
@@ -42,13 +47,13 @@ from ansys.mapdl.core import launch_mapdl
 # Get example file from server
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
-input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE, WORKING_DIR)
+input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR)
 
 # %%
 # Launch the PyACP server and connect to it.
-pyacp_server = pyacp.launch_acp()
+pyacp_server = launch_acp()
 pyacp_server.wait(timeout=30)
-pyacp_client = pyacp.Client(pyacp_server)
+pyacp_client = Client(pyacp_server)
 
 # %%
 # Define the input file and instantiate an ACPWorkflow
@@ -143,7 +148,7 @@ model.update()
 
 
 # %%
-# Show the ply offsets of
+# Show the fiber directions of a specific ply
 modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45_UD"]
 
 plotter = pyvista.Plotter()
@@ -183,7 +188,6 @@ mapdl.post_processing.plot_nodal_displacement(component="NORM")
 rstfile_name = f"{mapdl.jobname}.rst"
 rst_file_local_path = workflow.working_directory.path / rstfile_name
 mapdl.download(rstfile_name, str(workflow.working_directory.path))
-
 
 # %%
 # Post-Processing with DPF composites

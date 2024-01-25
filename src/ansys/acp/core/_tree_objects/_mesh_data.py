@@ -30,6 +30,7 @@ __all__ = [
     "elemental_data_property",
     "nodal_data_property",
     "ScalarData",
+    "VectorData",
 ]
 
 
@@ -69,8 +70,8 @@ def _expand_array(
 
 
 def _get_pyvista_mesh_with_all_data(
-    mesh_data_base: MeshDataBase,
     *,
+    mesh_data_base: MeshDataBase,
     mesh: MeshData,
 ) -> UnstructuredGrid:
     pv_mesh = mesh.to_pyvista()
@@ -93,6 +94,7 @@ def _get_pyvista_mesh_with_all_data(
 
 
 def _get_mesh_with_scalar_pyvista_data(
+    *,
     labels: npt.NDArray[np.int32],
     field_names: _LabelAndPyvistaFieldNames,
     mesh: MeshData,
@@ -134,13 +136,9 @@ def _get_pyvista_glyphs(
     return pv_mesh.glyph(orient=component_label, scale=magnitude_name, **kwargs)  # type: ignore
 
 
-@dataclasses.dataclass
-class Component:
-    values: npt.NDArray[np.float64]
-    label: str
-
-
 class ScalarData:
+    """Class that encapsulates scalar data."""
+
     def __init__(
         self,
         field_names: _LabelAndPyvistaFieldNames,
@@ -155,10 +153,12 @@ class ScalarData:
 
     @property
     def values(self) -> npt.NDArray[np.float64]:
+        """The values as a numpy array."""
         return self._values
 
     @property
     def component_name(self) -> str:
+        """The name of the component."""
         return self._component_name
 
     def get_pyvista_mesh(
@@ -182,6 +182,8 @@ class ScalarData:
 
 
 class VectorData:
+    """Class that encapsulates vector data."""
+
     def __init__(
         self,
         field_names: _LabelAndPyvistaFieldNames,
@@ -196,19 +198,22 @@ class VectorData:
 
     @property
     def values(self) -> npt.NDArray[np.float64]:
+        """The values as a numpy array."""
         return self._values
 
     @property
     def component_name(self) -> str:
+        """The name of the component."""
         return self._component_name
 
     def get_pyvista_glyphs(
         self,
+        *,
         mesh: MeshData,
         culling_factor: int = 1,
         **kwargs: Any,
     ) -> PolyData:
-        """Convert the mesh data to a PyVista object.
+        """Get a pyvista glyph object from the vector data.
 
         Parameters
         ----------
@@ -294,14 +299,14 @@ class MeshDataBase:
         self,
         mesh: MeshData,
     ) -> UnstructuredGrid:
-        """Convert the mesh data to a PyVista object.
+        """Get a pyvista mesh with all data.
 
         Parameters
         ----------
         mesh :
             The mesh to which the data is associated.
         """
-        return _get_pyvista_mesh_with_all_data(self, mesh=mesh)
+        return _get_pyvista_mesh_with_all_data(mesh_data_base=self, mesh=mesh)
 
 
 _NODE_FIELD_NAMES = _LabelAndPyvistaFieldNames(

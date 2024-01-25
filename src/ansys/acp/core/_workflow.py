@@ -8,12 +8,14 @@ from ansys.dpf.composites.data_sources import (
     ContinuousFiberCompositesFiles,
 )
 
-from . import Model
 from ._client import Client
+from ._tree_objects import Model
 from ._typing_helper import PATH
 
+__all__ = ["ACPWorkflow", "get_composite_post_processing_files"]
 
-class LocalWorkingDir:
+
+class _LocalWorkingDir:
     def __init__(self, path: Optional[pathlib.Path] = None):
         self._user_defined_working_dir = None
         self._temp_working_dir = None
@@ -32,7 +34,7 @@ class LocalWorkingDir:
             return pathlib.Path(self._temp_working_dir.name)
 
 
-class FileStrategy(Protocol):
+class _FileStrategy(Protocol):
     def get_file(
         self, get_file_callable: Callable[[pathlib.Path], None], filename: str
     ) -> pathlib.Path:
@@ -53,8 +55,8 @@ def _copy_file_workdir(path: pathlib.Path, working_directory: pathlib.Path) -> p
     return working_directory / path.name
 
 
-class LocalFileTransferStrategy:
-    def __init__(self, local_working_directory: LocalWorkingDir):
+class _LocalFileTransferStrategy:
+    def __init__(self, local_working_directory: _LocalWorkingDir):
         self._local_working_directory = local_working_directory
 
     def get_file(
@@ -71,8 +73,8 @@ class LocalFileTransferStrategy:
         return path
 
 
-class RemoteFileTransferStrategy:
-    def __init__(self, local_working_directory: LocalWorkingDir, acp_client: Client):
+class _RemoteFileTransferStrategy:
+    def __init__(self, local_working_directory: _LocalWorkingDir, acp_client: Client):
         self._local_working_directory = local_working_directory
         self._acp_client = acp_client
 
@@ -92,21 +94,38 @@ class RemoteFileTransferStrategy:
 
 
 def _get_file_transfer_strategy(
-    acp_client: Client, local_working_dir: LocalWorkingDir
-) -> FileStrategy:
+    acp_client: Client, local_working_dir: _LocalWorkingDir
+) -> _FileStrategy:
     if acp_client.is_remote:
-        return RemoteFileTransferStrategy(
+        return _RemoteFileTransferStrategy(
             local_working_directory=local_working_dir,
             acp_client=acp_client,
         )
     else:
-        return LocalFileTransferStrategy(
+        return _LocalFileTransferStrategy(
             local_working_directory=local_working_dir,
         )
 
 
 # Todo: Add automated tests for local and remote workflow
+# Todo: update logic when cdb is part of the acph5
 class ACPWorkflow:
+    r"""Instantiate an ACP Workflow.
+
+    Supports starting from a \*.cbd or \*.acph5 file
+
+    Parameters
+    ----------
+    acp_client
+        The ACP Client
+    local_working_directory:
+        The local working directory. If None, a temporary directory will be created.
+    cdb_file_path:
+        The path to the cdb file.
+    h5_file_path:
+        The path to the h5 file.
+    """
+
     def __init__(
         self,
         *,
@@ -116,7 +135,7 @@ class ACPWorkflow:
         h5_file_path: Optional[PATH] = None,
     ):
         self._acp_client = acp_client
-        self._local_working_dir = LocalWorkingDir(local_working_directory)
+        self._local_working_dir = _LocalWorkingDir(local_working_directory)
         self._file_strategy = _get_file_transfer_strategy(
             acp_client=self._acp_client,
             local_working_dir=self._local_working_dir,
@@ -133,26 +152,32 @@ class ACPWorkflow:
 
     @property
     def model(self) -> Model:
+        """Get the Model."""
         return self._model
 
     @property
-    def working_directory(self) -> LocalWorkingDir:
+    def working_directory(self) -> _LocalWorkingDir:
+        """Get the working directory."""
         return self._local_working_dir
 
     def get_local_cdb_file(self) -> pathlib.Path:
+        """Copy the cdb file to the local working directory and return its path."""
         return self._file_strategy.get_file(
             self._model.save_analysis_model, self._model.name + ".cdb"
         )
 
     def get_local_materials_file(self) -> pathlib.Path:
+        """Copy the materials file to the local working directory and return its path."""
         return self._file_strategy.get_file(self._model.export_materials, "materials.xml")
 
     def get_local_composite_definitions_file(self) -> pathlib.Path:
+        """Copy the composite definitions file to the local working directory and return its path."""
         return self._file_strategy.get_file(
             self._model.export_shell_composite_definitions, "ACPCompositeDefinitions.h5"
         )
 
     def get_local_acp_h5(self) -> pathlib.Path:
+        """Copy the acph5 file to the local working directory and return its path."""
         return self._file_strategy.get_file(self._model.save, "model.acph5")
 
     def _add_input_file(self, path: pathlib.Path) -> pathlib.PurePath:
@@ -161,15 +186,24 @@ class ACPWorkflow:
 
 
 def get_composite_post_processing_files(
-    acp_files: ACPWorkflow, local_rst_file_path: PATH
+    acp_workflow: ACPWorkflow, local_rst_file_path: PATH
 ) -> ContinuousFiberCompositesFiles:
+    """Get the files object needed for pydpf-composites from the workflow and the rst path.
+
+    Parameters
+    ----------
+    acp_workflow:
+        The ACPWorkflow object.
+    local_rst_file_path:
+        Local path to the rst file.
+    """
     composite_files = ContinuousFiberCompositesFiles(
         rst=local_rst_file_path,
         composite={
             "shell": CompositeDefinitionFiles(
-                definition=acp_files.get_local_composite_definitions_file()
+                definition=acp_workflow.get_local_composite_definitions_file()
             ),
         },
-        engineering_data=acp_files.get_local_materials_file(),
+        engineering_data=acp_workflow.get_local_materials_file(),
     )
     return composite_files

@@ -36,6 +36,7 @@ class Client:
 
     @property
     def is_remote(self) -> bool:
+        """Whether the client is connected to a remote server."""
         return self._ft_client is not None
 
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
@@ -44,6 +45,12 @@ class Client:
         If the server is remote, uploads the file to the server and returns the path
         on the server.
         If the server is local, does nothing and returns the input path.
+
+
+        Parameters
+        ----------
+        local_path :
+            Path of the file to be uploaded.
         """
         if self._ft_client is None:
             return pathlib.Path(local_path)
@@ -61,6 +68,13 @@ class Client:
 
         If the server is remote, download the file to the local path.
         If the server is local do nothing.
+
+        Parameters
+        ----------
+        remote_filename :
+            Path of the file to be downloaded.
+        local_path :
+            Path of the local file to be created.
         """
         if self._ft_client is not None:
             self._ft_client.download_file(

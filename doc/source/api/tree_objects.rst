@@ -34,3 +34,5 @@ ACP objects
     ProductionPly
     AnalysisPly
     Sensor
+    ScalarData
+    VectorData
