@@ -6,6 +6,7 @@ import numpy as np
 import numpy.typing as npt
 
 from .._utils.array_conversions import to_ND_double_array_from_numpy, to_numpy
+from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -48,6 +49,7 @@ class LookUpTableColumnBase(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str,
         value_type: LookUpTableColumnValueType = LookUpTableColumnValueType.SCALAR,
         dimension_type: DimensionType = DimensionType.DIMENSIONLESS,
@@ -76,7 +78,7 @@ class LookUpTableColumnBase(CreatableTreeObject, IdTreeObject):
         from_protobuf=dimension_type_from_pb,
         to_protobuf=dimension_type_to_pb,
     )
-    data = grpc_data_property(
+    data: ReadWriteProperty[npt.NDArray[np.float64], npt.NDArray[np.float64]] = grpc_data_property(
         "properties.data",
         from_protobuf=to_numpy,
         to_protobuf=to_ND_double_array_from_numpy,

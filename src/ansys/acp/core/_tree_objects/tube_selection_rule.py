@@ -9,6 +9,7 @@ import numpy.typing as npt
 from ansys.api.acp.v0 import tube_selection_rule_pb2, tube_selection_rule_pb2_grpc
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
+from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -81,6 +82,7 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "TubeSelectionrule",
         edge_set: EdgeSet | None = None,
         outer_radius: float = 1.0,
@@ -109,16 +111,24 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
 
     edge_set = grpc_link_property("properties.edge_set")
-    outer_radius = grpc_data_property("properties.outer_radius")
-    inner_radius = grpc_data_property("properties.inner_radius")
-    include_rule_type = grpc_data_property("properties.include_rule_type")
-    extend_endings = grpc_data_property("properties.extend_endings")
-    symmetrical_extension = grpc_data_property("properties.symmetrical_extension")
+    outer_radius: ReadWriteProperty[float, float] = grpc_data_property("properties.outer_radius")
+    inner_radius: ReadWriteProperty[float, float] = grpc_data_property("properties.inner_radius")
+    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.include_rule_type"
+    )
+    extend_endings: ReadWriteProperty[bool, bool] = grpc_data_property("properties.extend_endings")
+    symmetrical_extension: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.symmetrical_extension"
+    )
     head = grpc_data_property(
         "properties.head", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array
     )
-    head_extension = grpc_data_property("properties.head_extension")
-    tail_extension = grpc_data_property("properties.tail_extension")
+    head_extension: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.head_extension"
+    )
+    tail_extension: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.tail_extension"
+    )
 
     elemental_data = elemental_data_property(TubeSelectionRuleElementalData)
     nodal_data = nodal_data_property(TubeSelectionRuleNodalData)

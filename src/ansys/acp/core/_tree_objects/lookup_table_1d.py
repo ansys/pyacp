@@ -9,7 +9,7 @@ from ansys.api.acp.v0 import (
 )
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
-from ._grpc_helpers.mapping import define_mutable_mapping
+from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -59,6 +59,7 @@ class LookUpTable1D(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "LookUpTable1D",
         origin: tuple[float, float, float] = (0.0, 0.0, 0.0),
         direction: tuple[float, float, float] = (0.0, 0.0, 0.0),
@@ -80,6 +81,12 @@ class LookUpTable1D(CreatableTreeObject, IdTreeObject):
         "properties.direction", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array
     )
 
-    create_column, columns = define_mutable_mapping(
+    create_column = define_create_method(
+        LookUpTable1DColumn,
+        func_name="create_column",
+        parent_class_name="LookUpTable1D",
+        module_name=__module__,
+    )
+    columns = define_mutable_mapping(
         LookUpTable1DColumn, lookup_table_1d_column_pb2_grpc.ObjectServiceStub
     )

@@ -1,25 +1,24 @@
 from __future__ import annotations
 
 from collections.abc import Iterator
-from functools import wraps
-from typing import TYPE_CHECKING, Any, Callable, Generic, TypeVar
-
-if TYPE_CHECKING:
-    from mypy_extensions import KwArg, Arg
+from typing import Callable, Generic, TypeVar
 
 from grpc import Channel
+from typing_extensions import Concatenate, ParamSpec
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 
+from ..._utils.property_protocols import ReadOnlyProperty
 from ..._utils.resource_paths import join as _rp_join
 from ..base import CreatableTreeObject, TreeObject, TreeObjectBase
+from .exceptions import wrap_grpc_errors
 from .property_helper import _exposed_grpc_property, _wrap_doc
 from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableResourceStub
 
 ValueT = TypeVar("ValueT", bound=TreeObjectBase)
 CreatableValueT = TypeVar("CreatableValueT", bound=CreatableTreeObject)
 
-__all__ = ["Mapping", "MutableMapping", "define_mutable_mapping"]
+__all__ = ["Mapping", "MutableMapping", "define_mutable_mapping", "define_create_method"]
 
 
 class Mapping(Generic[ValueT]):
@@ -50,7 +49,8 @@ class Mapping(Generic[ValueT]):
         return self._object_constructor(obj_info, self._channel)
 
     def _get_objectinfo_list(self) -> list[ObjectInfo]:
-        res = self._stub.List(ListRequest(collection_path=self._collection_path)).objects
+        with wrap_grpc_errors():
+            res = self._stub.List(ListRequest(collection_path=self._collection_path)).objects
         if len({obj.info.id for obj in res}) != len(res):
             raise ValueError("Duplicate ID in Collection.")
         return res
@@ -118,17 +118,21 @@ class MutableMapping(Mapping[CreatableValueT]):
 
     def __delitem__(self, key: str) -> None:
         obj_info = self._get_objectinfo_by_id(key)
-        self._stub.Delete(
-            DeleteRequest(resource_path=obj_info.info.resource_path, version=obj_info.info.version)
-        )
-
-    def clear(self) -> None:
-        for obj_info in self._get_objectinfo_list():
+        with wrap_grpc_errors():
             self._stub.Delete(
                 DeleteRequest(
                     resource_path=obj_info.info.resource_path, version=obj_info.info.version
                 )
             )
+
+    def clear(self) -> None:
+        for obj_info in self._get_objectinfo_list():
+            with wrap_grpc_errors():
+                self._stub.Delete(
+                    DeleteRequest(
+                        resource_path=obj_info.info.resource_path, version=obj_info.info.version
+                    )
+                )
 
     def pop(self, key: str) -> CreatableValueT:
         obj_info = self._get_objectinfo_by_id(key)
@@ -164,18 +168,33 @@ def get_read_only_collection_property(
     return _wrap_doc(_exposed_grpc_property(collection_property), doc=doc)
 
 
-def define_mutable_mapping(
-    object_class: type[CreatableValueT],
-    stub_class: type[EditableAndReadableResourceStub],
-    doc: str | None = None,
-) -> tuple[Callable[[Arg(ParentT, "self"), KwArg(Any)], CreatableValueT], property]:
-    @wraps(object_class.__init__)
-    def create_method(self: ParentT, **kwargs: Any) -> CreatableValueT:
-        obj = object_class(**kwargs)
+P = ParamSpec("P")
+
+
+def define_create_method(
+    object_class: Callable[P, ValueT], func_name: str, parent_class_name: str, module_name: str
+) -> Callable[Concatenate[ParentT, P], ValueT]:
+    def inner(self: ParentT, /, *args: P.args, **kwargs: P.kwargs) -> ValueT:
+        obj = object_class(*args, **kwargs)
         obj.store(parent=self)
         return obj
 
-    def collection_property(self: ParentT) -> MutableMapping[CreatableValueT]:
+    # NOTE: This relies on our convention to document the tree object classes
+    # on the class itself, instead of the __init__ method.
+    inner.__doc__ = object_class.__doc__
+
+    inner.__name__ = func_name
+    inner.__qualname__ = f"{parent_class_name}.{func_name}"
+    inner.__module__ = module_name
+    return inner
+
+
+def define_mutable_mapping(
+    object_class: type[ValueT],
+    stub_class: type[EditableAndReadableResourceStub],
+    doc: str | None = None,
+) -> ReadOnlyProperty[MutableMapping[ValueT]]:
+    def collection_property(self: ParentT) -> MutableMapping[ValueT]:
         return MutableMapping(
             channel=self._channel,
             collection_path=CollectionPath(
@@ -185,4 +204,4 @@ def define_mutable_mapping(
             stub=stub_class(channel=self._channel),
         )
 
-    return create_method, _wrap_doc(_exposed_grpc_property(collection_property), doc=doc)
+    return _wrap_doc(_exposed_grpc_property(collection_property), doc=doc)

@@ -12,6 +12,7 @@ from ansys.api.acp.v0 import (
 )
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
+from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -88,6 +89,7 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "VariableOffsetSelectionrule",
         edge_set: EdgeSet | None = None,
         offsets: LookUpTable1DColumn | None = None,
@@ -120,10 +122,16 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
     edge_set = grpc_link_property("properties.edge_set")
     offsets = grpc_link_property("properties.offsets")
     angles = grpc_link_property("properties.angles")
-    include_rule_type = grpc_data_property("properties.include_rule_type")
-    use_offset_correction = grpc_data_property("properties.use_offset_correction")
+    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.include_rule_type"
+    )
+    use_offset_correction: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_offset_correction"
+    )
     element_set = grpc_link_property("properties.element_set")
-    inherit_from_lookup_table = grpc_data_property("properties.inherit_from_lookup_table")
+    inherit_from_lookup_table: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.inherit_from_lookup_table"
+    )
     radius_origin = grpc_data_property(
         "properties.radius_origin",
         from_protobuf=to_tuple_from_1D_array,
@@ -134,7 +142,9 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_double_array,
     )
-    distance_along_edge = grpc_data_property("properties.distance_along_edge")
+    distance_along_edge: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.distance_along_edge"
+    )
 
     elemental_data = elemental_data_property(VariableOffsetSelectionRuleElementalData)
     nodal_data = nodal_data_property(VariableOffsetSelectionRuleNodalData)

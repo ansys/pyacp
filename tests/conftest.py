@@ -202,3 +202,16 @@ def load_model_from_tempfile(model_data_dir, grpc_server):
             yield client.import_model(path=file_path, format=format)
 
     return inner
+
+
+@pytest.fixture
+def load_cad_geometry(model_data_dir, grpc_server):
+    @contextmanager
+    def inner(model, relative_file_path="square_and_solid.stp"):
+        client = Client(server=grpc_server)
+        cad_file_path = client.upload_file(model_data_dir / relative_file_path)
+        yield model.create_cad_geometry(
+            external_path=cad_file_path,
+        )
+
+    return inner

@@ -9,6 +9,7 @@ import numpy.typing as npt
 from ansys.api.acp.v0 import oriented_selection_set_pb2, oriented_selection_set_pb2_grpc
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
+from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.linked_object_list import (
     define_linked_object_list,
     define_polymorphic_linked_object_list,
@@ -111,6 +112,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "OrientedSelectionSet",
         element_sets: Sequence[ElementSet] = tuple(),
         orientation_point: tuple[float, float, float] = (0.0, 0.0, 0.0),
@@ -168,28 +170,38 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         to_protobuf=rosette_selection_method_to_pb,
     )
 
-    draping = grpc_data_property("properties.draping")
+    draping: ReadWriteProperty[bool, bool] = grpc_data_property("properties.draping")
     draping_seed_point = grpc_data_property(
         "properties.draping_seed_point",
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_double_array,
     )
-    auto_draping_direction = grpc_data_property("properties.auto_draping_direction")
+    auto_draping_direction: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.auto_draping_direction"
+    )
     draping_direction = grpc_data_property(
         "properties.draping_direction",
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_double_array,
     )
-    use_default_draping_mesh_size = grpc_data_property("properties.use_default_draping_mesh_size")
-    draping_mesh_size = grpc_data_property("properties.draping_mesh_size")
+    use_default_draping_mesh_size: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_default_draping_mesh_size"
+    )
+    draping_mesh_size: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.draping_mesh_size"
+    )
     draping_material_model = grpc_data_property(
         "properties.draping_material_model",
         from_protobuf=draping_material_type_from_pb,
         to_protobuf=draping_material_type_to_pb,
     )
-    draping_ud_coefficient = grpc_data_property("properties.draping_ud_coefficient")
+    draping_ud_coefficient: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.draping_ud_coefficient"
+    )
 
-    rotation_angle = grpc_data_property("properties.rotation_angle")
+    rotation_angle: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.rotation_angle"
+    )
 
     selection_rules = define_polymorphic_linked_object_list(
         "properties.selection_rules",

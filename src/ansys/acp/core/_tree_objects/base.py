@@ -14,9 +14,11 @@ from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, GetRequest, ResourcePath
 
+from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .._utils.resource_paths import common_path
 from .._utils.resource_paths import join as _rp_join
 from .._utils.resource_paths import to_parts
+from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.linked_object_helpers import linked_path_fields, unlink_objects
 from ._grpc_helpers.property_helper import (
     _get_data_attribute,
@@ -50,6 +52,7 @@ class TreeObjectBase(GrpcObjectBase):
     OBJECT_INFO_TYPE: type[ObjectInfo]
 
     _pb_object: ObjectInfo
+    name: ReadWriteProperty[str, str]
 
     def __init__(self: TreeObjectBase, name: str = "") -> None:
         self._channel_store: Channel | None = None
@@ -136,7 +139,20 @@ class StubStore(Generic[StubT]):
         return self._stub_store
 
 
-class TreeObject(TreeObjectBase):
+@mark_grpc_properties
+class NamedTreeObject(GrpcObjectBase):
+    __slots__: Iterable[str] = tuple()
+
+    """Implements the 'name' attribute for tree objects."""
+
+    name: ReadWriteProperty[str, str] = grpc_data_property("info.name")
+    """The name of the object."""
+
+    def __repr__(self) -> str:
+        return f"<{type(self).__name__} with name '{self.name}'>"
+
+
+class TreeObject(TreeObjectBase, NamedTreeObject):
     __slots__: Iterable[str] = ("_stub_store",)
 
     @abstractmethod
@@ -148,24 +164,27 @@ class TreeObject(TreeObjectBase):
         self._stub_store = StubStore(self._create_stub)
 
     def delete(self) -> None:
-        self._get_stub().Delete(
-            DeleteRequest(
-                resource_path=self._pb_object.info.resource_path,
-                version=self._pb_object.info.version,
+        with wrap_grpc_errors():
+            self._get_stub().Delete(
+                DeleteRequest(
+                    resource_path=self._pb_object.info.resource_path,
+                    version=self._pb_object.info.version,
+                )
             )
-        )
 
     def _get(self) -> None:
-        self._pb_object = self._get_stub().Get(
-            GetRequest(resource_path=self._pb_object.info.resource_path)
-        )
+        with wrap_grpc_errors():
+            self._pb_object = self._get_stub().Get(
+                GetRequest(resource_path=self._pb_object.info.resource_path)
+            )
 
     def _get_if_stored(self) -> None:
         if self._is_stored:
             self._get()
 
     def _put(self) -> None:
-        self._pb_object = self._get_stub().Put(self._pb_object)
+        with wrap_grpc_errors():
+            self._pb_object = self._get_stub().Put(self._pb_object)
 
     def _put_if_stored(self) -> None:
         if self._is_stored:
@@ -191,9 +210,10 @@ class ReadOnlyTreeObject(TreeObjectBase):
         return self._stub_store.get(self._is_stored)
 
     def _get(self) -> None:
-        self._pb_object = self._get_stub().Get(
-            GetRequest(resource_path=self._pb_object.info.resource_path)
-        )
+        with wrap_grpc_errors():
+            self._pb_object = self._get_stub().Get(
+                GetRequest(resource_path=self._pb_object.info.resource_path)
+            )
 
     def _get_if_stored(self) -> None:
         if self._is_stored:
@@ -239,7 +259,8 @@ class CreatableTreeObject(TreeObject):
             name=self._pb_object.info.name,
             properties=self._pb_object.properties,
         )
-        self._pb_object = self._get_stub().Create(request)
+        with wrap_grpc_errors():
+            self._pb_object = self._get_stub().Create(request)
 
 
 @mark_grpc_properties
@@ -248,7 +269,7 @@ class IdTreeObject(TreeObjectBase):
 
     __slots__: Iterable[str] = tuple()
 
-    id = grpc_data_property_read_only(
+    id: ReadOnlyProperty[str] = grpc_data_property_read_only(
         "info.id", doc="Identifier of the object, used for example as key in maps."
     )
 

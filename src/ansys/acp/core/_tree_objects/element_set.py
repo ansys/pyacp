@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import Container, Iterable
+from collections.abc import Collection, Iterable
 import dataclasses
 
 import numpy as np
@@ -9,6 +9,7 @@ import numpy.typing as npt
 from ansys.api.acp.v0 import element_set_pb2, element_set_pb2_grpc
 
 from .._utils.array_conversions import to_1D_int_array, to_tuple_from_1D_array
+from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -48,9 +49,10 @@ class ElementSet(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "ElementSet",
         middle_offset: bool = False,
-        element_labels: Container[int] = tuple(),
+        element_labels: Collection[int] = tuple(),
     ):
         """Instantiate an Element Set.
 
@@ -71,9 +73,9 @@ class ElementSet(CreatableTreeObject, IdTreeObject):
         return element_set_pb2_grpc.ObjectServiceStub(self._channel)
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
-    locked = grpc_data_property_read_only("properties.locked")
-    middle_offset = grpc_data_property("properties.middle_offset")
-    element_labels = grpc_data_property(
+    locked: ReadOnlyProperty[bool] = grpc_data_property_read_only("properties.locked")
+    middle_offset: ReadWriteProperty[bool, bool] = grpc_data_property("properties.middle_offset")
+    element_labels: ReadWriteProperty[tuple[int, ...], Collection[int]] = grpc_data_property(
         "properties.element_labels",
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_int_array,

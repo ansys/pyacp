@@ -6,6 +6,7 @@ from typing import Any, Callable, Union, get_args
 
 from ansys.api.acp.v0 import sublaminate_pb2, sublaminate_pb2_grpc
 
+from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from ._grpc_helpers.edge_property_list import GenericEdgePropertyType, define_edge_property_list
 from ._grpc_helpers.polymorphic_from_pb import tree_object_from_resource_path
 from ._grpc_helpers.property_helper import (
@@ -135,6 +136,7 @@ class SubLaminate(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "SubLaminate",
         symmetry: SymmetryType = "no_symmetry",
         topdown: bool = True,
@@ -149,17 +151,17 @@ class SubLaminate(CreatableTreeObject, IdTreeObject):
     def _create_stub(self) -> sublaminate_pb2_grpc.ObjectServiceStub:
         return sublaminate_pb2_grpc.ObjectServiceStub(self._channel)
 
-    locked = grpc_data_property_read_only("properties.locked")
+    locked: ReadOnlyProperty[bool] = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
-    thickness = grpc_data_property_read_only("properties.thickness")
-    area_weight = grpc_data_property_read_only("properties.area_weight")
-    area_price = grpc_data_property_read_only("properties.area_price")
+    thickness: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.thickness")
+    area_weight: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.area_weight")
+    area_price: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.area_price")
 
     symmetry = grpc_data_property(
         "properties.symmetry",
         from_protobuf=symmetry_type_from_pb,
         to_protobuf=symmetry_type_to_pb,
     )
-    topdown = grpc_data_property("properties.topdown")
+    topdown: ReadWriteProperty[bool, bool] = grpc_data_property("properties.topdown")
 
     materials = define_edge_property_list("properties.materials", Lamina)

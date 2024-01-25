@@ -1,4 +1,3 @@
-from grpc import RpcError
 import pytest
 
 from ansys.acp.core import FabricWithAngle, Model
@@ -106,7 +105,7 @@ class TestAnalysisPly(TreeObjectTesterReadOnly):
             len(get_first_modeling_ply(model).production_plies["ProductionPly"].analysis_plies) == 1
         )
 
-        with pytest.raises(RpcError, match="Entity not found") as ex:
+        with pytest.raises(LookupError, match="Entity not found") as ex:
             _ = analysis_ply_that_gets_removed_on_update.status
 
 

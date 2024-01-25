@@ -5,6 +5,7 @@ from collections.abc import Iterable
 from ansys.api.acp.v0 import rosette_pb2, rosette_pb2_grpc
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
+from .._utils.property_protocols import ReadOnlyProperty
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -42,6 +43,7 @@ class Rosette(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "Rosette",
         origin: tuple[float, float, float] = (0.0, 0.0, 0.0),
         dir1: tuple[float, float, float] = (1.0, 0.0, 0.0),
@@ -56,7 +58,7 @@ class Rosette(CreatableTreeObject, IdTreeObject):
     def _create_stub(self) -> rosette_pb2_grpc.ObjectServiceStub:
         return rosette_pb2_grpc.ObjectServiceStub(self._channel)
 
-    locked = grpc_data_property_read_only("properties.locked")
+    locked: ReadOnlyProperty[bool] = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     origin = grpc_data_property(
         "properties.origin", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array
