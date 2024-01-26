@@ -77,6 +77,7 @@ class SphericalSelectionRule(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "SphericalSelectionrule",
         use_global_coordinate_system: bool = True,
         rosette: Rosette | None = None,

@@ -57,6 +57,7 @@ class Sensor(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "Sensor",
         sensor_type: SensorType = SensorType.SENSOR_BY_AREA,
         active: bool = True,

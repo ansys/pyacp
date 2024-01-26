@@ -43,6 +43,7 @@ class LookUpTable3DColumn(LookUpTableColumnBase):
 
     def __init__(
         self,
+        *,
         name: str = "LookUpTable3DColumn",
         value_type: LookUpTableColumnValueType = LookUpTableColumnValueType.SCALAR,
         dimension_type: DimensionType = DimensionType.DIMENSIONLESS,

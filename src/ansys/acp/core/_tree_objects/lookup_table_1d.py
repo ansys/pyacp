@@ -59,6 +59,7 @@ class LookUpTable1D(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "LookUpTable1D",
         origin: tuple[float, float, float] = (0.0, 0.0, 0.0),
         direction: tuple[float, float, float] = (0.0, 0.0, 0.0),

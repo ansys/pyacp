@@ -115,6 +115,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "OrientedSelectionSet",
         element_sets: Sequence[ElementSet] = tuple(),
         orientation_point: tuple[float, float, float] = (0.0, 0.0, 0.0),

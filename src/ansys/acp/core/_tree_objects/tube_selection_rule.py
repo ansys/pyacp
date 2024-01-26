@@ -85,6 +85,7 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "TubeSelectionrule",
         edge_set: EdgeSet | None = None,
         outer_radius: float = 1.0,

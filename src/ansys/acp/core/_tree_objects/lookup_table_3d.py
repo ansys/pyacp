@@ -68,6 +68,7 @@ class LookUpTable3D(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "LookUpTable3D",
         interpolation_algorithm: LookUpTable3DInterpolationAlgorithm = LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR,  # noqa: E501
         use_default_search_radius: bool = True,

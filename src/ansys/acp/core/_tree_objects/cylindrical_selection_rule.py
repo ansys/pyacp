@@ -79,6 +79,7 @@ class CylindricalSelectionRule(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "CylindricalSelectionrule",
         use_global_coordinate_system: bool = True,
         rosette: Rosette | None = None,

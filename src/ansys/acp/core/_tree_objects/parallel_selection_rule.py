@@ -81,6 +81,7 @@ class ParallelSelectionRule(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "ParallelSelectionrule",
         use_global_coordinate_system: bool = True,
         rosette: Rosette | None = None,

@@ -109,6 +109,7 @@ class Material(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "Material",
         ply_type: PlyType = "undefined",
         density: ConstantDensity | None = None,

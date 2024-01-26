@@ -45,6 +45,18 @@ class ElementSetNodalData(NodalData):
 @mark_grpc_properties
 @register
 class ElementSet(CreatableTreeObject, IdTreeObject):
+    """Instantiate an Element Set.
+
+    Parameters
+    ----------
+    name :
+        The name of the Element Set.
+    middle_offset :
+        TODO
+    element_labels :
+        TODO
+    """
+
     __slots__: Iterable[str] = tuple()
     _COLLECTION_LABEL = "element_sets"
     OBJECT_INFO_TYPE = element_set_pb2.ObjectInfo
@@ -52,21 +64,11 @@ class ElementSet(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "ElementSet",
         middle_offset: bool = False,
         element_labels: Collection[int] = tuple(),
     ):
-        """Instantiate an Element Set.
-
-        Parameters
-        ----------
-        name :
-            The name of the Element Set.
-        middle_offset :
-            TODO
-        element_labels :
-            TODO
-        """
         super().__init__(name=name)
         self.middle_offset = middle_offset
         self.element_labels = element_labels

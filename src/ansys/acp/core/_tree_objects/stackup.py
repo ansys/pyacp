@@ -151,6 +151,7 @@ class Stackup(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "Stackup",
         symmetry: SymmetryType = "no_symmetry",
         topdown: bool = True,

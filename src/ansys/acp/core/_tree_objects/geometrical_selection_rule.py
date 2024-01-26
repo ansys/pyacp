@@ -84,6 +84,7 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "GeometricalSelectionrule",
         geometrical_rule_type: GeometricalRuleType = GeometricalRuleType.GEOMETRY,
         geometry: VirtualGeometry | None = None,

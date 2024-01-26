@@ -108,6 +108,7 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "VirtualGeometry",
         sub_shapes: Iterable[str] = (),
     ):

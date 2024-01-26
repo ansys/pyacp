@@ -87,6 +87,7 @@ class CutoffSelectionRule(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "CutoffSelectionrule",
         cutoff_rule_type: CutoffRuleType = CutoffRuleType.GEOMETRY,
         cutoff_geometry: VirtualGeometry | None = None,

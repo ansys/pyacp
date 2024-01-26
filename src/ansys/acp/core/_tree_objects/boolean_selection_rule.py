@@ -67,6 +67,7 @@ class BooleanSelectionRule(CreatableTreeObject, IdTreeObject):
 
     def __init__(
         self,
+        *,
         name: str = "BooleanSelectionrule",
         selection_rules: Iterable[LinkedSelectionRule] = (),
         include_rule_type: bool = True,
