@@ -1308,11 +1308,11 @@ document.write(`
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.ModelingGroup.create_modeling_ply">
 <span class="sig-prename descclassname"><span class="pre">ModelingGroup.</span></span><span class="sig-name descname"><span class="pre">create_modeling_ply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ModelingGroup.create_modeling_ply" title="Permalink to this definition">#</a></dt>
-<dd><p>Instantiate an Modeling Ply.</p>
+<dd><p>Instantiate a Modeling Ply.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – The name of the ModelingPly</p></li>
+<li><p><strong>name</strong> – The name of the Modeling Ply</p></li>
 <li><p><strong>ply_material</strong> – The material (fabric, stackup or sub-laminate) of the ply.</p></li>
 <li><p><strong>ply_angle</strong> – Design angle between the reference direction and the ply fiber direction.</p></li>
 <li><p><strong>number_of_layers</strong> – Number of times the plies are generated.</p></li>
@@ -1328,6 +1328,7 @@ document.write(`
 </p></li>
 <li><p><strong>draping_direction</strong> – Set the primary draping direction for the draping algorithm. Only used if
 <code class="docutils literal notranslate"><span class="pre">auto_draping_direction</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>use_default_draping_mesh_size</strong> – Whether to use the average element size of the shell mesh for the draping.</p></li>
 <li><p><strong>draping_mesh_size</strong> – Defines the mesh size for the draping algorithm.  If set to <code class="docutils literal notranslate"><span class="pre">-1.</span></code>, the
 mesh size is automatically determined based on the average element size.</p></li>
 <li><p><strong>draping_thickness_correction</strong> – Enables the thickness correction of draped plies based on the draping
