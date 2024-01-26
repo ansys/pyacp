@@ -158,7 +158,7 @@ def test_mesh_data(minimal_complete_model):
 def test_elemental_data(minimal_complete_model):
     data = minimal_complete_model.elemental_data
     # todo: should we also wrap the labels
-    numpy.testing.assert_allclose(data.element_labels, np.array([1]))
+    numpy.testing.assert_allclose(data.element_labels.values, np.array([1]))
     numpy.testing.assert_allclose(data.normal.values, np.array([[0.0, 0.0, 1.0]]))
     numpy.testing.assert_allclose(data.thickness.values, np.array([1e-4]))
     numpy.testing.assert_allclose(data.relative_thickness_correction.values, np.array([1.0]))
@@ -172,7 +172,7 @@ def test_elemental_data(minimal_complete_model):
 
 def test_nodal_data(minimal_complete_model):
     data = minimal_complete_model.nodal_data
-    numpy.testing.assert_allclose(data.node_labels, np.array([1, 2, 3, 4]))
+    numpy.testing.assert_allclose(data.node_labels.values, np.array([1, 2, 3, 4]))
 
 
 def test_mesh_data_to_pyvista(minimal_complete_model):

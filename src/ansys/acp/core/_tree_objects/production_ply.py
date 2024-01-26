@@ -3,6 +3,8 @@ from __future__ import annotations
 from collections.abc import Iterable
 import dataclasses
 
+import numpy as np
+
 from ansys.api.acp.v0 import analysis_ply_pb2_grpc, production_ply_pb2, production_ply_pb2_grpc
 
 from .._utils.property_protocols import ReadOnlyProperty
@@ -39,18 +41,18 @@ class ProductionPlyElementalData(ElementalData):
     draped_fiber_direction: VectorData
     transverse_direction: VectorData
     draped_transverse_direction: VectorData
-    thickness: ScalarData
-    relative_thickness_correction: ScalarData
-    design_angle: ScalarData
-    shear_angle: ScalarData
-    draped_fiber_angle: ScalarData
-    draped_transverse_angle: ScalarData
-    area: ScalarData
-    price: ScalarData
-    volume: ScalarData
-    mass: ScalarData
-    offset: ScalarData
-    cog: ScalarData
+    thickness: ScalarData[np.float64]
+    relative_thickness_correction: ScalarData[np.float64]
+    design_angle: ScalarData[np.float64]
+    shear_angle: ScalarData[np.float64]
+    draped_fiber_angle: ScalarData[np.float64]
+    draped_transverse_angle: ScalarData[np.float64]
+    area: ScalarData[np.float64]
+    price: ScalarData[np.float64]
+    volume: ScalarData[np.float64]
+    mass: ScalarData[np.float64]
+    offset: ScalarData[np.float64]
+    cog: VectorData
 
 
 @dataclasses.dataclass

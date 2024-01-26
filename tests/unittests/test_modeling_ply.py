@@ -201,7 +201,7 @@ def simple_modeling_ply(minimal_complete_model):
 
 def test_elemental_data(simple_modeling_ply):
     data = simple_modeling_ply.elemental_data
-    numpy.testing.assert_allclose(data.element_labels, np.array([1]))
+    numpy.testing.assert_allclose(data.element_labels.values, np.array([1]))
     numpy.testing.assert_allclose(data.normal.values, np.array([[0.0, 0.0, 1.0]]))
 
     numpy.testing.assert_allclose(
@@ -253,7 +253,7 @@ def test_elemental_data(simple_modeling_ply):
 
 def test_nodal_data(simple_modeling_ply):
     data = simple_modeling_ply.nodal_data
-    numpy.testing.assert_allclose(data.node_labels, np.array([1, 2, 3, 4]))
+    numpy.testing.assert_allclose(data.node_labels.values, np.array([1, 2, 3, 4]))
     numpy.testing.assert_allclose(
         data.ply_offset.values,
         np.array([[0.0, 0.0, 5e-5], [0.0, 0.0, 5e-5], [0.0, 0.0, 5e-5], [0.0, 0.0, 5e-5]]),

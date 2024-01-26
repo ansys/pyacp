@@ -58,6 +58,7 @@ from ._mesh_data import (
     ElementalData,
     NodalData,
     ScalarData,
+    VectorData,
     elemental_data_property,
     nodal_data_property,
 )
@@ -126,15 +127,15 @@ class MeshData:
 class ModelElementalData(ElementalData):
     """Represents elemental data for a Model."""
 
-    normal: ScalarData
-    thickness: ScalarData
-    relative_thickness_correction: ScalarData
-    area: ScalarData
-    price: ScalarData
-    volume: ScalarData
-    mass: ScalarData
-    offset: ScalarData
-    cog: ScalarData
+    normal: VectorData
+    thickness: ScalarData[np.float64]
+    relative_thickness_correction: ScalarData[np.float64]
+    area: ScalarData[np.float64]
+    price: ScalarData[np.float64]
+    volume: ScalarData[np.float64]
+    mass: ScalarData[np.float64]
+    offset: ScalarData[np.float64]
+    cog: VectorData
 
 
 @dataclasses.dataclass

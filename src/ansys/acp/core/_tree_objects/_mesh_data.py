@@ -56,7 +56,7 @@ def _get_labels(
 
 def _expand_array(
     *,
-    array: npt.NDArray[np.float64],
+    array: npt.NDArray[ScalarDataT],
     labels: _Labels,
     culling_factor: int = 1,
 ) -> npt.NDArray[np.float64]:
@@ -81,7 +81,7 @@ def _get_pyvista_mesh_with_all_data(
     )
     field_labels = getattr(
         mesh_data_base, mesh_data_base._LABEL_AND_PYVISTA_FIELD_NAMES.LABEL_FIELD_NAME
-    )
+    ).values
     labels = _get_labels(
         field_names=mesh_data_base._LABEL_AND_PYVISTA_FIELD_NAMES, mesh=mesh, labels=field_labels
     )
@@ -98,7 +98,7 @@ def _get_mesh_with_scalar_pyvista_data(
     labels: npt.NDArray[np.int32],
     field_names: _LabelAndPyvistaFieldNames,
     mesh: MeshData,
-    values: npt.NDArray[np.float64],
+    values: npt.NDArray[ScalarDataT],
     component_name: str,
 ) -> UnstructuredGrid:
     all_labels = _get_labels(field_names=field_names, labels=labels, mesh=mesh)
@@ -136,23 +136,26 @@ def _get_pyvista_glyphs(
     return pv_mesh.glyph(orient=component_label, scale=magnitude_name, **kwargs)  # type: ignore
 
 
-class ScalarData:
+ScalarDataT = typing.TypeVar("ScalarDataT", np.float64, np.int32)
+
+
+class ScalarData(typing.Generic[ScalarDataT]):
     """Class that encapsulates scalar data."""
 
     def __init__(
         self,
         field_names: _LabelAndPyvistaFieldNames,
         labels: npt.NDArray[np.int32],
-        values: npt.NDArray[np.float64],
+        values: npt.NDArray[ScalarDataT],
         component_name: str,
     ):
         self._field_names = field_names
         self._labels = labels
-        self._values = values
+        self._values: npt.NDArray[ScalarDataT] = values
         self._component_name = component_name
 
     @property
-    def values(self) -> npt.NDArray[np.float64]:
+    def values(self) -> npt.NDArray[ScalarDataT]:
         """The values as a numpy array."""
         return self._values
 
@@ -237,6 +240,22 @@ class VectorData:
         )
 
 
+def _check_field_type(klass: Any, field_name: str, actual_field_type: str) -> None:
+    declared_field_types: typing.Sequence[str] = cast(
+        typing.Sequence[str],
+        [field.type for field in dataclasses.fields(klass) if field.name == field_name],
+    )
+    if len(declared_field_types) != 1:
+        raise RuntimeError("Failed to find field in dataclass.")
+    declared_field_type = declared_field_types[0]
+    if declared_field_type != actual_field_type:
+        raise RuntimeError(
+            f"Declared type does not match actual data type. "
+            f"Declared type: {declared_field_type}, actual type: {actual_field_type}. "
+            f"Field name: {field_name}"
+        )
+
+
 @dataclasses.dataclass
 class _LabelAndPyvistaFieldNames:
     LABEL_FIELD_NAME: str
@@ -265,8 +284,14 @@ class MeshDataBase:
     @classmethod
     def _from_pb(cls, response: mesh_query_pb2.ElementalData | mesh_query_pb2.NodalData) -> Self:
         """Construct a mesh data object from a protobuf response."""
+        labels = to_numpy(response.labels)
         kwargs: dict[str, Any] = {
-            cls._LABEL_AND_PYVISTA_FIELD_NAMES.LABEL_FIELD_NAME: to_numpy(response.labels),
+            cls._LABEL_AND_PYVISTA_FIELD_NAMES.LABEL_FIELD_NAME: ScalarData(
+                field_names=cls._LABEL_AND_PYVISTA_FIELD_NAMES,
+                labels=labels,
+                values=labels,
+                component_name=cls._LABEL_AND_PYVISTA_FIELD_NAMES.LABEL_FIELD_NAME,
+            )
         }
         for data_type, array in zip(response.data_types, response.data_arrays):
             field_name = cls._FIELD_NAME_FROM_PB_VALUE(data_type)
@@ -274,24 +299,28 @@ class MeshDataBase:
                 npt.NDArray[np.float64], dataarray_to_numpy(array, dtype=np.float64)
             )  # todo: handle other dtypes
             kwargs[field_name] = values
-            data_wrapper: VectorData | ScalarData
+            data_wrapper: VectorData | ScalarData[np.float64]
             if len(values.shape) == 2 and values.shape[1] == 3:
                 data_wrapper = VectorData(
                     field_names=cls._LABEL_AND_PYVISTA_FIELD_NAMES,
-                    labels=kwargs[cls._LABEL_AND_PYVISTA_FIELD_NAMES.LABEL_FIELD_NAME],
+                    labels=labels,
                     values=values,
                     component_name=field_name,
                 )
+                _check_field_type(klass=cls, field_name=field_name, actual_field_type="VectorData")
+
             else:
                 data_wrapper = ScalarData(
                     field_names=cls._LABEL_AND_PYVISTA_FIELD_NAMES,
-                    labels=kwargs[cls._LABEL_AND_PYVISTA_FIELD_NAMES.LABEL_FIELD_NAME],
+                    labels=labels,
                     values=values,
                     component_name=field_name,
                 )
+                _check_field_type(
+                    klass=cls, field_name=field_name, actual_field_type="ScalarData[np.float64]"
+                )
             kwargs[field_name] = data_wrapper
 
-        # Todo: check if runtime type matches the declared type
         instance = cls(**kwargs)
         return instance
 
@@ -324,7 +353,7 @@ _ELEMENT_FIELD_NAMES = _LabelAndPyvistaFieldNames(
 class NodalData(MeshDataBase):
     """Base class for nodal data."""
 
-    node_labels: npt.NDArray[np.int32]
+    node_labels: ScalarData[np.int32]
     _LABEL_AND_PYVISTA_FIELD_NAMES = _NODE_FIELD_NAMES
     _PB_VALUE_FROM_FIELD_NAME = nodal_data_type_to_pb
     _FIELD_NAME_FROM_PB_VALUE = nodal_data_type_from_pb
@@ -334,7 +363,7 @@ class NodalData(MeshDataBase):
 class ElementalData(MeshDataBase):
     """Base class for elemental data."""
 
-    element_labels: npt.NDArray[np.int32]
+    element_labels: ScalarData[np.int32]
     _LABEL_AND_PYVISTA_FIELD_NAMES = _ELEMENT_FIELD_NAMES
     _PB_VALUE_FROM_FIELD_NAME = elemental_data_type_to_pb
     _FIELD_NAME_FROM_PB_VALUE = elemental_data_type_from_pb
