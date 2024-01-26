@@ -8,7 +8,7 @@ from google.protobuf.message import Message
 from typing_extensions import Self
 
 from ..base import CreatableTreeObject
-from .property_helper import _exposed_grpc_property, grpc_data_getter, grpc_data_setter
+from .property_helper import _exposed_grpc_property, _wrap_doc, grpc_data_getter, grpc_data_setter
 
 __all__ = ["EdgePropertyList", "define_edge_property_list", "GenericEdgePropertyType"]
 
@@ -228,7 +228,7 @@ class EdgePropertyList(MutableSequence[ValueT]):
 
 
 def define_edge_property_list(
-    attribute_name: str, value_type: type[GenericEdgePropertyType]
+    attribute_name: str, value_type: type[GenericEdgePropertyType], doc: str | None = None
 ) -> Any:
     def getter(self: CreatableTreeObject) -> EdgePropertyList[GenericEdgePropertyType]:
         return EdgePropertyList(
@@ -241,4 +241,4 @@ def define_edge_property_list(
     def setter(self: CreatableTreeObject, value: list[GenericEdgePropertyType]) -> None:
         getter(self)[:] = value
 
-    return _exposed_grpc_property(getter).setter(setter)
+    return _wrap_doc(_exposed_grpc_property(getter).setter(setter), doc=doc)
