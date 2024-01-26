@@ -171,9 +171,9 @@ class ACPWorkflow:
             self._model.export_shell_composite_definitions, "ACPCompositeDefinitions.h5"
         )
 
-    def get_local_acp_h5(self) -> pathlib.Path:
+    def get_local_acp_h5_file(self) -> pathlib.Path:
         """Copy the acph5 file to the local working directory and return its path."""
-        return self._file_strategy.get_file(self._model.save, "model.acph5")
+        return self._file_strategy.get_file(self._model.save, self._model.name + ".acph5")
 
     def _add_input_file(self, path: pathlib.Path) -> pathlib.PurePath:
         self._file_strategy.copy_input_file_to_local_workdir(path=path)
