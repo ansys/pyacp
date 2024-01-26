@@ -1,7 +1,7 @@
 import importlib.metadata
 
 from ._client import Client
-from ._model_printer import print_model
+from ._model_printer import get_model_tree, print_model
 from ._server import DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode, launch_acp
 from ._tree_objects import (
     AnalysisPly,
@@ -99,6 +99,7 @@ __all__ = [
     "get_example_file",
     "ACPWorkflow",
     "get_composite_post_processing_files",
+    "get_model_tree",
     "print_model",
     "ScalarData",
     "VectorData",

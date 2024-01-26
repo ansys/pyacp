@@ -1,16 +1,28 @@
+import os
 from typing import Optional
 
 from ._tree_objects.model import Model
 
 
 class Node:
-    def __init__(self, value: str, children: Optional[list["Node"]] = None):
-        self.value = value
+    """A node in a tree representation of the model.
+
+    Parameters
+    ----------
+    label:
+        Label of the node.
+    children:
+        Children of the node.
+    """
+
+    def __init__(self, label: str, children: Optional[list["Node"]] = None):
+        self.label = label
         self.children: list["Node"] = children if children else []
 
     def __str__(self, level: Optional[int] = 0) -> str:
         assert level is not None
-        ret = "\t" * level + repr(self.value) + "\n"
+        four_spaces = "    "
+        ret = four_spaces * level + self.label + os.linesep
         for child in self.children:
             ret += child.__str__(level + 1)
         return ret
@@ -21,23 +33,78 @@ def _add_tree_part(
     container_name: str,
     model: Model,
 ) -> None:
+    items = list(getattr(model, container_name).items())
+    if len(items) == 0:
+        return
     container = Node(container_name)
     tree.children.append(container)
-    for entity_name, entity in getattr(model, container_name).items():
+    for entity_name, entity in items:
         group_node = Node(entity_name)
         container.children.append(group_node)
 
 
 def print_model(model: Model) -> None:
-    tree = Node("Model")
+    """Print a tree representation of the model.
 
-    _add_tree_part(tree, "element_sets", model)
-    _add_tree_part(tree, "materials", model)
-    _add_tree_part(tree, "fabrics", model)
-    _add_tree_part(tree, "oriented_selection_sets", model)
 
-    modeling_groups = Node("Modeling Groups")
-    tree.children.append(modeling_groups)
+    Parameters
+    ----------
+    model:
+        pyACP model
+
+    """
+    return print(get_model_tree(model))
+
+
+def get_model_tree(model: Model) -> Node:
+    """Get a tree representation of the model.
+
+    Returns the root node.
+
+    Parameters
+    ----------
+    model:
+        pyACP model.
+    """
+    model_node = Node("Model")
+
+    material_data = Node("material_data")
+    model_node.children.append(material_data)
+    _add_tree_part(material_data, "materials", model)
+    _add_tree_part(material_data, "fabrics", model)
+    _add_tree_part(material_data, "stackups", model)
+    _add_tree_part(material_data, "sublaminates", model)
+
+    _add_tree_part(model_node, "element_sets", model)
+    _add_tree_part(model_node, "edge_sets", model)
+
+    geometry = Node("geometry")
+    model_node.children.append(geometry)
+    _add_tree_part(geometry, "cad_geometries", model)
+    _add_tree_part(geometry, "virtual_geometries", model)
+
+    _add_tree_part(model_node, "rosettes", model)
+
+    lookup_table = Node("lookup_table")
+    model_node.children.append(lookup_table)
+    _add_tree_part(lookup_table, "lookup_tables_1d", model)
+    _add_tree_part(lookup_table, "lookup_tables_3d", model)
+
+    selection_rules = Node("selection_rules")
+    model_node.children.append(selection_rules)
+    _add_tree_part(selection_rules, "parallel_selection_rules", model)
+    _add_tree_part(selection_rules, "cylindrical_selection_rules", model)
+    _add_tree_part(selection_rules, "spherical_selection_rules", model)
+    _add_tree_part(selection_rules, "tube_selection_rules", model)
+    _add_tree_part(selection_rules, "cutoff_selection_rules", model)
+    _add_tree_part(selection_rules, "geometrical_selection_rules", model)
+    _add_tree_part(selection_rules, "variable_offset_selection_rules", model)
+    _add_tree_part(selection_rules, "boolean_selection_rules", model)
+
+    _add_tree_part(model_node, "oriented_selection_sets", model)
+
+    modeling_groups = Node("modeling Groups")
+    model_node.children.append(modeling_groups)
     for modeling_group_name, modeling_group in model.modeling_groups.items():
         group_node = Node(modeling_group_name)
         modeling_groups.children.append(group_node)
@@ -51,4 +118,6 @@ def print_model(model: Model) -> None:
                     analysis_ply_node = Node(analysis_ply_name)
                     production_ply_node.children.append(analysis_ply_node)
 
-    print(tree)
+    _add_tree_part(model_node, "sensors", model)
+
+    return model_node
