@@ -15,6 +15,7 @@ from ._mesh_data import (
     ElementalData,
     NodalData,
     ScalarData,
+    VectorData,
     elemental_data_property,
     nodal_data_property,
 )
@@ -55,7 +56,7 @@ class AnalysisPlyElementalData(ElementalData):
 class AnalysisPlyNodalData(NodalData):
     """Represents nodal data for a Analysis Ply."""
 
-    ply_offset: ScalarData
+    ply_offset: VectorData
 
 
 @mark_grpc_properties
