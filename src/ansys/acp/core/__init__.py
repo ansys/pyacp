@@ -45,7 +45,7 @@ from ._tree_objects import (
     VirtualGeometry,
 )
 from ._utils.example_helpers import ExampleKeys, get_example_file
-from ._workflow import ACPWorkflow, get_composite_post_processing_files
+from ._workflow import ACPWorkflow, get_composite_post_processing_files, get_dpf_unit_system
 
 __version__ = importlib.metadata.version(__name__.replace(".", "-"))
 
@@ -103,4 +103,5 @@ __all__ = [
     "print_model",
     "ScalarData",
     "VectorData",
+    "get_dpf_unit_system",
 ]

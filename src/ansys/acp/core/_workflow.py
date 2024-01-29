@@ -3,11 +3,14 @@ import shutil
 import tempfile
 from typing import Any, Callable, Optional, Protocol
 
+from ansys.dpf.core import UnitSystem, unit_systems
+
+from . import UnitSystemType
 from ._client import Client
 from ._tree_objects import Model
 from ._typing_helper import PATH
 
-__all__ = ["ACPWorkflow", "get_composite_post_processing_files"]
+__all__ = ["ACPWorkflow", "get_composite_post_processing_files", "get_dpf_unit_system"]
 
 
 class _LocalWorkingDir:
@@ -210,3 +213,34 @@ def get_composite_post_processing_files(
         engineering_data=acp_workflow.get_local_materials_file(),
     )
     return composite_files
+
+
+def get_dpf_unit_system(unit_system: UnitSystemType) -> UnitSystem:
+    """Converts pyACP unit system to DPF unit system.
+
+    Parameters
+    ----------
+    unit_system
+        The pyACP unit system.
+    """
+    unit_systems_map = {
+        UnitSystemType.UNDEFINED: unit_systems.undefined,
+        # looks like the only difference from MKS to SI is
+        # that temperature is defined as Kelvin in SI and °C in MKS.
+        # We should still force the user to use MKS in this case.
+        UnitSystemType.SI: None,
+        UnitSystemType.MKS: unit_systems.solver_mks,
+        UnitSystemType.uMKS: unit_systems.solver_umks,
+        UnitSystemType.CGS: unit_systems.solver_cgs,
+        # MPA is equivalent to nmm
+        UnitSystemType.MPA: unit_systems.solver_nmm,
+        UnitSystemType.BFT: unit_systems.solver_bft,
+        UnitSystemType.BIN: unit_systems.solver_bin,
+    }
+
+    if unit_systems_map[unit_system] is None:
+        raise ValueError(f"Unit system {unit_system} not supported. Use MKS instead of SI.")
+    if unit_system not in unit_systems_map:
+        raise ValueError(f"Unit system {unit_system} not supported.")
+
+    return unit_systems_map[unit_system]

@@ -241,6 +241,7 @@ class VectorData:
 
 
 def _check_field_type(klass: Any, field_name: str, actual_field_type: str) -> None:
+    """Checks that the type declared in the dataclass (klass) matches the actual type."""
     declared_field_types: typing.Sequence[str] = cast(
         typing.Sequence[str],
         [field.type for field in dataclasses.fields(klass) if field.name == field_name],

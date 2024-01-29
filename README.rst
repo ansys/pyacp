@@ -218,7 +218,7 @@ On Windows:
 
 The generated HTML files can be viewed with the browser of your choice.
 
-Alternatively you can build the documentation by starting an mapdl and pydpf-composites docker
+Alternatively you can build the documentation by starting a mapdl and pydpf-composites docker
 container. First ensure that you have accepted the DPF Preview License Agreement by setting the
 ANSYS_DPF_ACCEPT_LA environment variable to Y
 (see `DPF Preview License Agreement <https://dpf.docs.pyansys.com/version/stable/user_guide/getting_started_with_dpf_server.html#dpf-preview-license-agreement>`_

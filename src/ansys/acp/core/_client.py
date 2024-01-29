@@ -67,7 +67,7 @@ class Client:
         Download a file from the server.
 
         If the server is remote, download the file to the local path.
-        If the server is local do nothing.
+        If the server is local, do nothing.
 
         Parameters
         ----------

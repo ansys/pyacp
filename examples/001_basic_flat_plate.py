@@ -26,6 +26,7 @@ from ansys.acp.core import (
     ACPWorkflow,
     Client,
     get_composite_post_processing_files,
+    get_dpf_unit_system,
     launch_acp,
     print_model,
 )
@@ -57,7 +58,7 @@ pyacp_client = Client(pyacp_server)
 
 # %%
 # Define the input file and instantiate an ACPWorkflow
-# The ACPWorkflow class provides convenience methods which simplifies the file handling.
+# The ACPWorkflow class provides convenience methods which simplify the file handling.
 # It automatically creates a model based on the input file.
 
 workflow = ACPWorkflow(
@@ -96,9 +97,6 @@ strain_limits = ConstantStrainLimits(
     eSxz=strain_limit,
 )
 
-# Deletes the StructuralSteel Todo should we remove it from the input cdb
-# model.materials["1"]
-
 ud_material = model.create_material(
     name="UD",
     ply_type=PlyType.REGULAR,
@@ -133,7 +131,7 @@ plotter.show()
 
 
 # %%
-# Create various plies a different angles and add them to a modeling group
+# Create various plies with different angles and add them to a modeling group
 modeling_group = model.create_modeling_group(name="modeling_group")
 angles = [0, 45, -45, 45, -45, 0]
 for idx, angle in enumerate(angles):
@@ -200,7 +198,6 @@ from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput
 from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxStrainCriterion
 from ansys.dpf.composites.server_helpers import connect_to_or_start_server
-from ansys.dpf.core.unit_system import unit_systems
 
 # %%
 # Connect to the server. The ``connect_to_or_start_server`` function
@@ -220,7 +217,7 @@ cfc = CombinedFailureCriterion(
 # Create the CompositeModel and configure its input
 composite_model = CompositeModel(
     get_composite_post_processing_files(workflow, rst_file_local_path),
-    default_unit_system=unit_systems.solver_nmm,
+    default_unit_system=get_dpf_unit_system(model.unit_system),
     server=dpf_server,
 )
 

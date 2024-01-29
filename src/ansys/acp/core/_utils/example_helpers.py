@@ -34,7 +34,7 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
 
 
 def get_example_file(example_key: ExampleKeys, working_directory: pathlib.Path) -> pathlib.Path:
-    """Download an example file from the example-data repo to the working directory.
+    """Downloads an example file from the example-data repo to the working directory.
 
     Parameters
     ----------
