@@ -3,8 +3,6 @@ import shutil
 import tempfile
 from typing import Any, Callable, Optional, Protocol
 
-from ansys.dpf.core import UnitSystem, unit_systems
-
 from . import UnitSystemType
 from ._client import Client
 from ._tree_objects import Model
@@ -215,7 +213,7 @@ def get_composite_post_processing_files(
     return composite_files
 
 
-def get_dpf_unit_system(unit_system: UnitSystemType) -> UnitSystem:
+def get_dpf_unit_system(unit_system: UnitSystemType) -> Any:
     """Converts pyACP unit system to DPF unit system.
 
     Parameters
@@ -223,6 +221,8 @@ def get_dpf_unit_system(unit_system: UnitSystemType) -> UnitSystem:
     unit_system
         The pyACP unit system.
     """
+    from ansys.dpf.core import unit_systems
+
     unit_systems_map = {
         UnitSystemType.UNDEFINED: unit_systems.undefined,
         # looks like the only difference from MKS to SI is
