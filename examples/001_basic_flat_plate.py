@@ -30,6 +30,7 @@ from ansys.acp.core import (
     launch_acp,
     print_model,
 )
+from ansys.acp.core._plotter import get_directions_on_mesh_plotter
 
 # %%
 # Import pyACP dependencies
@@ -155,6 +156,13 @@ plotter.add_mesh(
     modeling_ply.elemental_data.fiber_direction.get_pyvista_glyphs(mesh=model.mesh, factor=0.0008),
 )
 plotter.show()
+
+plotter = get_directions_on_mesh_plotter(
+    model, [modeling_ply.elemental_data.fiber_direction, modeling_ply.elemental_data.normal]
+)
+plotter.show()
+
+modeling_ply.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot()
 
 # %%
 # Print the model tree for a quick overview
