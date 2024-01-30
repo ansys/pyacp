@@ -3,13 +3,12 @@ import tempfile
 
 import pytest
 
-from ansys.acp.core import ACPWorkflow, Client
+from ansys.acp.core import ACPWorkflow
 
 
 @pytest.mark.parametrize("explict_temp_dir", [None, tempfile.TemporaryDirectory()])
-def test_workflow(grpc_server, model_data_dir, explict_temp_dir):
+def test_workflow(acp_instance, model_data_dir, explict_temp_dir):
     """Test that workflow can be initialized and files can be retrieved."""
-    client = Client(server=grpc_server)
     input_file_path = model_data_dir / "minimal_model_2.cdb"
 
     if explict_temp_dir is not None:
@@ -18,7 +17,9 @@ def test_workflow(grpc_server, model_data_dir, explict_temp_dir):
         working_dir = None
 
     workflow = ACPWorkflow(
-        acp_client=client, cdb_file_path=input_file_path, local_working_directory=working_dir
+        acp=acp_instance,
+        cdb_file_path=input_file_path,
+        local_working_directory=working_dir,
     )
     workflow.model.update()
 

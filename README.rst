@@ -87,8 +87,7 @@ Having configured the launcher, the server can be started with ``launch_acp``:
 
     import ansys.acp.core as pyacp
 
-    server = pyacp.launch_acp()
-    client = pyacp.Client(server)
+    acp = pyacp.launch_acp()
 
 
 Basic Usage
@@ -99,8 +98,8 @@ Model from an existing file:
 
 .. code-block:: pycon
 
-    >>> remote_filename = client.upload_file(local_path="<MODEL_PATH>")
-    >>> model = client.import_model(path=remote_filename)
+    >>> remote_filename = acp.upload_file(local_path="<MODEL_PATH>")
+    >>> model = acp.import_model(path=remote_filename)
     >>> model.name
     'ACP Model'
 

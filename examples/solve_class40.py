@@ -35,9 +35,7 @@ import ansys.acp.core as pyacp
 
 # %%
 # Launch the PyACP server and connect to it.
-pyacp_server = pyacp.launch_acp()
-pyacp_server.wait(timeout=30)
-pyacp_client = pyacp.Client(pyacp_server)
+acp = pyacp.launch_acp()
 
 # %%
 #
@@ -57,11 +55,11 @@ EXAMPLE_DATA_DIR = EXAMPLES_DIR / "data" / "class40"
 CDB_FILENAME = "class40.cdb"
 local_file_path = str(EXAMPLE_DATA_DIR / CDB_FILENAME)
 print(local_file_path)
-cdb_file_path = pyacp_client.upload_file(local_path=local_file_path)
+cdb_file_path = acp.upload_file(local_path=local_file_path)
 
 # %%
 # Load CDB file into PyACP and set the unit system
-model = pyacp_client.import_model(
+model = acp.import_model(
     path=cdb_file_path, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
 )
 model
@@ -281,9 +279,9 @@ WORKING_DIR = pathlib.Path(tmp_dir.name)
 cdb_file_local_path = pathlib.Path(WORKING_DIR) / CDB_FILENAME_OUT
 matml_file_local_path = pathlib.Path(WORKING_DIR) / MATML_FILE
 composite_definitions_local_path = pathlib.Path(WORKING_DIR) / COMPOSITE_DEFINITIONS_H5
-pyacp_client.download_file(remote_filename=CDB_FILENAME_OUT, local_path=str(cdb_file_local_path))
-pyacp_client.download_file(remote_filename=MATML_FILE, local_path=str(matml_file_local_path))
-pyacp_client.download_file(
+acp.download_file(remote_filename=CDB_FILENAME_OUT, local_path=str(cdb_file_local_path))
+acp.download_file(remote_filename=MATML_FILE, local_path=str(matml_file_local_path))
+acp.download_file(
     remote_filename=COMPOSITE_DEFINITIONS_H5, local_path=str(composite_definitions_local_path)
 )
 

@@ -1,8 +1,7 @@
 import importlib.metadata
 
-from ._client import Client
 from ._model_printer import get_model_tree, print_model
-from ._server import DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode, launch_acp
+from ._server import ACP, DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode, launch_acp
 from ._tree_objects import (
     AnalysisPly,
     BooleanSelectionRule,
@@ -56,7 +55,6 @@ __all__ = [
     "LaunchMode",
     "DirectLaunchConfig",
     "DockerComposeLaunchConfig",
-    "Client",
     "Model",
     "Material",
     "Fabric",

@@ -5,7 +5,8 @@ import typing
 from typing import Callable, Optional, Protocol
 
 from . import UnitSystemType
-from ._client import Client
+from ._server.acp_instance import ACP
+from ._server.common import ServerProtocol
 from ._tree_objects import Model
 from ._typing_helper import PATH
 
@@ -87,32 +88,32 @@ class _RemoteFileTransferStrategy:
     input files to the server.
     """
 
-    def __init__(self, local_working_directory: _LocalWorkingDir, acp_client: Client):
+    def __init__(self, local_working_directory: _LocalWorkingDir, acp: ACP[ServerProtocol]):
         self._local_working_directory = local_working_directory
-        self._acp_client = acp_client
+        self._acp_instance = acp
 
     def get_file(
         self, get_file_callable: Callable[[pathlib.Path], None], filename: str
     ) -> pathlib.Path:
         get_file_callable(pathlib.Path(filename))
         local_path = self._local_working_directory.path / filename
-        self._acp_client.download_file(remote_filename=filename, local_path=str(local_path))
+        self._acp_instance.download_file(remote_filename=filename, local_path=str(local_path))
         return local_path
 
     def copy_input_file_to_local_workdir(self, path: pathlib.Path) -> pathlib.Path:
         return _copy_file_workdir(path=path, working_directory=self._local_working_directory.path)
 
     def upload_input_file_to_server(self, path: pathlib.Path) -> pathlib.PurePath:
-        return self._acp_client.upload_file(local_path=path)
+        return self._acp_instance.upload_file(local_path=path)
 
 
 def _get_file_transfer_strategy(
-    acp_client: Client, local_working_dir: _LocalWorkingDir
+    acp: ACP[ServerProtocol], local_working_dir: _LocalWorkingDir
 ) -> _FileStrategy:
-    if acp_client.is_remote:
+    if acp.is_remote:
         return _RemoteFileTransferStrategy(
             local_working_directory=local_working_dir,
-            acp_client=acp_client,
+            acp=acp,
         )
     else:
         return _LocalFileTransferStrategy(
@@ -129,7 +130,7 @@ class ACPWorkflow:
 
     Parameters
     ----------
-    acp_client
+    acp
         The ACP Client
     local_working_directory:
         The local working directory. If None, a temporary directory will be created.
@@ -142,26 +143,26 @@ class ACPWorkflow:
     def __init__(
         self,
         *,
-        acp_client: Client,
+        acp: ACP[ServerProtocol],
         local_working_directory: Optional[pathlib.Path] = None,
         cdb_file_path: Optional[PATH] = None,
         acph5_file_path: Optional[PATH] = None,
     ):
-        self._acp_client = acp_client
+        self._acp_instance = acp
         self._local_working_dir = _LocalWorkingDir(local_working_directory)
         self._file_transfer_strategy = _get_file_transfer_strategy(
-            acp_client=self._acp_client,
+            acp=self._acp_instance,
             local_working_dir=self._local_working_dir,
         )
 
         if cdb_file_path is not None:
             uploaded_file = self._add_input_file(path=pathlib.Path(cdb_file_path))
             if acph5_file_path is None:
-                self._model = self._acp_client.import_model(path=uploaded_file, format="ansys:cdb")
+                self._model = self._acp_instance.import_model(path=uploaded_file, format="ansys:cdb")
 
         if acph5_file_path is not None:
             uploaded_file = self._add_input_file(path=pathlib.Path(acph5_file_path))
-            self._model = self._acp_client.import_model(path=uploaded_file)
+            self._model = self._acp_instance.import_model(path=uploaded_file)
 
     @property
     def model(self) -> Model:

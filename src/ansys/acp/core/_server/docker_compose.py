@@ -25,6 +25,8 @@ from ansys.tools.local_product_launcher.interface import (
 
 from .common import ServerKey
 
+__all__ = ["DockerComposeLaunchConfig"]
+
 
 def _get_default_license_server() -> str:
     try:
