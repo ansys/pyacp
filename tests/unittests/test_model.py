@@ -57,12 +57,17 @@ def test_unittest(grpc_server, model_data_dir):
         os.makedirs(working_dir)
         # model.solver.working_dir = str(working_dir)
 
-        save_path = os.path.join(os.path.dirname(remote_path), "test_model_serialization.acph5")
-        model.save(save_path, save_cache=True)
-
-        client.clear()
-
-        model = client.import_model(path=save_path)
+        if client.is_remote:
+            save_path = os.path.join(os.path.dirname(remote_path), "test_model_serialization.acph5")
+            model.save(save_path, save_cache=True)
+            client.clear()
+            model = client.import_model(path=save_path)
+        else:
+            with tempfile.TemporaryDirectory() as local_working_dir:
+                save_path = pathlib.Path(local_working_dir) / "test_model_serialization.acph5"
+                model.save(save_path, save_cache=True)
+                client.clear()
+                model = client.import_model(path=save_path)
 
         # TODO: re-activate these tests when the respective features are implemented
         # assert model.unit_system.type == "mks"
@@ -107,12 +112,18 @@ def test_save_analysis_model(grpc_server, model_data_dir):
         name="minimal_model", path=remote_file_path, format="ansys:cdb", unit_system="mpa"
     )
 
-    out_file_path = remote_workdir / "out_file.cdb"
-    model.save_analysis_model(out_file_path)
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        local_file_path = pathlib.Path(tmp_dir, "out_file.cdb")
-        client.download_file(out_file_path, local_file_path)
-        assert local_file_path.exists()
+    if client.is_remote:
+        out_file_path = remote_workdir / "out_file.cdb"
+        model.save_analysis_model(out_file_path)
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            local_file_path = pathlib.Path(tmp_dir, "out_file.cdb")
+            client.download_file(out_file_path, local_file_path)
+            assert local_file_path.exists()
+    else:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            local_file_path = pathlib.Path(tmp_dir) / "out_file.cdb"
+            model.save_analysis_model(local_file_path)
+            assert local_file_path.exists()
 
 
 def test_string_representation(grpc_server, model_data_dir):
@@ -157,7 +168,6 @@ def test_mesh_data(minimal_complete_model):
 
 def test_elemental_data(minimal_complete_model):
     data = minimal_complete_model.elemental_data
-    # todo: should we also wrap the labels
     numpy.testing.assert_allclose(data.element_labels.values, np.array([1]))
     numpy.testing.assert_allclose(data.normal.values, np.array([[0.0, 0.0, 1.0]]))
     numpy.testing.assert_allclose(data.thickness.values, np.array([1e-4]))
