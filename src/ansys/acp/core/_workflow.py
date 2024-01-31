@@ -225,10 +225,16 @@ def get_composite_post_processing_files(
     """
 
     # Only import here to avoid dependency on ansys.dpf.composites if it is not used
-    from ansys.dpf.composites.data_sources import (
-        CompositeDefinitionFiles,
-        ContinuousFiberCompositesFiles,
-    )
+    try:
+        from ansys.dpf.composites.data_sources import (
+            CompositeDefinitionFiles,
+            ContinuousFiberCompositesFiles,
+        )
+    except ImportError as e:
+        raise ImportError(
+            "The composite post processing files can only be retrieved if the "
+            "ansys-dpf-composites package is installed."
+        ) from e
 
     composite_files = ContinuousFiberCompositesFiles(
         rst=local_rst_file_path,
@@ -250,7 +256,13 @@ def get_dpf_unit_system(unit_system: UnitSystemType) -> "UnitSystem":
     unit_system
         The pyACP unit system.
     """
-    from ansys.dpf.core import unit_systems
+    try:
+        from ansys.dpf.core import unit_systems
+    except ImportError as e:
+        raise ImportError(
+            "The pyACP unit system can only be converted to a DPF unit system if the "
+            "ansys-dpf-core package is installed."
+        ) from e
 
     unit_systems_map = {
         UnitSystemType.UNDEFINED: unit_systems.undefined,
