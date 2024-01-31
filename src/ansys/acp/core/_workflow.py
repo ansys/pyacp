@@ -158,7 +158,9 @@ class ACPWorkflow:
         if cdb_file_path is not None:
             uploaded_file = self._add_input_file(path=pathlib.Path(cdb_file_path))
             if acph5_file_path is None:
-                self._model = self._acp_instance.import_model(path=uploaded_file, format="ansys:cdb")
+                self._model = self._acp_instance.import_model(
+                    path=uploaded_file, format="ansys:cdb"
+                )
 
         if acph5_file_path is not None:
             uploaded_file = self._add_input_file(path=pathlib.Path(acph5_file_path))
