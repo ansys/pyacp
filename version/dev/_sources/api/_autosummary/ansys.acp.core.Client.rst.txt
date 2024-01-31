@@ -36,6 +36,7 @@
    .. autosummary::
       :toctree:
    
+      Client.is_remote
       Client.server_version
    
    

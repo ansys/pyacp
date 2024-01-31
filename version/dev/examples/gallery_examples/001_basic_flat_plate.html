@@ -1,0 +1,1008 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Basic PyACP Example &#8212; PyACP</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+ 
+<link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/gallery_examples/001_basic_flat_plate';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://acp.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Start from existing acph5 project" href="002_start_from_existing_project.html" />
+    <link rel="prev" title="Examples" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+
+<!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="PyACP - Home"/>
+    <script>document.write(`<img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="PyACP - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        PyACP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys-internal/pyacp" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        PyACP
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys-internal/pyacp" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic PyACP Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_start_from_existing_project.html">Start from existing acph5 project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solve_class40.html">Class 40 example</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">Examples</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Basic PyACP Example</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="basic-pyacp-example">
+<span id="basic-flat-plate"></span><span id="sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"></span><h1>Basic PyACP Example<a class="headerlink" href="#basic-pyacp-example" title="Permalink to this heading">#</a></h1>
+<p>Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
+a failure analysis with PyDPF-Composites.</p>
+<p>The starting point is a MAPDL CDB file which contains the mesh, material data and
+the boundary conditions. This model is imported in PyACP to define the lay-up.
+PyACP exports the resulting model for PyMAPDL. Once the results are available,
+the RST file is loaded in PyDPF composites. The additional input files (material.xml
+and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDPF Composites.</p>
+<p>Import standard library and third-party dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+
+<span class="kn">import</span> <span class="nn">pyvista</span>
+</pre></div>
+</div>
+<p>Import pyACP dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ACPWorkflow</span><span class="p">,</span>
+    <span class="n">Client</span><span class="p">,</span>
+    <span class="n">ExampleKeys</span><span class="p">,</span>
+    <span class="n">get_composite_post_processing_files</span><span class="p">,</span>
+    <span class="n">get_dpf_unit_system</span><span class="p">,</span>
+    <span class="n">get_example_file</span><span class="p">,</span>
+    <span class="n">launch_acp</span><span class="p">,</span>
+    <span class="n">print_model</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># TODO: Import from top-level when available</span>
+<span class="kn">from</span> <span class="nn">ansys.acp.core._tree_objects.enums</span> <span class="kn">import</span> <span class="n">PlyType</span>
+<span class="kn">from</span> <span class="nn">ansys.acp.core._tree_objects.material.property_sets</span> <span class="kn">import</span> <span class="p">(</span>
+    <a href="https://docs.python.org/dev/library/typing.html#typing.Protocol" title="typing.Protocol" class="sphx-glr-backref-module-typing sphx-glr-backref-type-py-class"><span class="n">ConstantEngineeringConstants</span></a><span class="p">,</span>
+    <a href="https://docs.python.org/dev/library/typing.html#typing.Protocol" title="typing.Protocol" class="sphx-glr-backref-module-typing sphx-glr-backref-type-py-class"><span class="n">ConstantStrainLimits</span></a><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Note: It is important to import mapdl before dpf, otherwise the plot defaults are messed up</span>
+<span class="c1"># https://github.com/ansys/pydpf-core/issues/1363</span>
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+</pre></div>
+</div>
+<p>Get example file from server</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/dev/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tempdir</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class"><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span></a><span class="p">()</span>
+<a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tempdir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
+<a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a> <span class="o">=</span> <span class="n">get_example_file</span><span class="p">(</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">BASIC_FLAT_PLATE_CDB</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>Launch the PyACP server and connect to it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pyacp_server</span> <span class="o">=</span> <span class="n">launch_acp</span><span class="p">()</span>
+<span class="n">pyacp_server</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">pyacp_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">pyacp_server</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Define the input file and instantiate an ACPWorkflow
+The ACPWorkflow class provides convenience methods which simplify the file handling.
+It automatically creates a model based on the input file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span> <span class="o">=</span> <span class="n">ACPWorkflow</span><span class="p">(</span>
+    <span class="n">acp_client</span><span class="o">=</span><span class="n">pyacp_client</span><span class="p">,</span>
+    <span class="n">cdb_file_path</span><span class="o">=</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">,</span>
+    <span class="n">local_working_directory</span><span class="o">=</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">model</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">workflow</span><span class="o">.</span><span class="n">working_directory</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpsj78wh4k
+UnitSystemType.MKS
+</pre></div>
+</div>
+<p>Visualize the loaded mesh</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">()</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Static Scene</label><div class="sd-tab-content docutils">
+<img src="../../_images/sphx_glr_001_basic_flat_plate_001.png" srcset="../../_images/sphx_glr_001_basic_flat_plate_001.png" alt="001 basic flat plate" class = "sphx-glr-single-img"/></div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_001_basic_flat_plate_001.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<p>Create an orthotropic material and fabric including strain limits, which are later
+used to post-process the simulation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">engineering_constants</span> <span class="o">=</span> <a href="https://docs.python.org/dev/library/typing.html#typing.Protocol" title="typing.Protocol" class="sphx-glr-backref-module-typing sphx-glr-backref-type-py-class"><span class="n">ConstantEngineeringConstants</span></a><span class="p">(</span>
+    <span class="n">E1</span><span class="o">=</span><span class="mf">5e10</span><span class="p">,</span> <span class="n">E2</span><span class="o">=</span><span class="mf">1e10</span><span class="p">,</span> <span class="n">E3</span><span class="o">=</span><span class="mf">1e10</span><span class="p">,</span> <span class="n">nu12</span><span class="o">=</span><span class="mf">0.28</span><span class="p">,</span> <span class="n">nu13</span><span class="o">=</span><span class="mf">0.28</span><span class="p">,</span> <span class="n">nu23</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">G12</span><span class="o">=</span><span class="mf">5e9</span><span class="p">,</span> <span class="n">G23</span><span class="o">=</span><span class="mf">4e9</span><span class="p">,</span> <span class="n">G31</span><span class="o">=</span><span class="mf">4e9</span>
+<span class="p">)</span>
+
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">strain_limit</span></a> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">strain_limits</span> <span class="o">=</span> <a href="https://docs.python.org/dev/library/typing.html#typing.Protocol" title="typing.Protocol" class="sphx-glr-backref-module-typing sphx-glr-backref-type-py-class"><span class="n">ConstantStrainLimits</span></a><span class="p">(</span>
+    <span class="n">eXc</span><span class="o">=-</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">strain_limit</span></a><span class="p">,</span>
+    <span class="n">eYc</span><span class="o">=-</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">strain_limit</span></a><span class="p">,</span>
+    <span class="n">eZc</span><span class="o">=-</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">strain_limit</span></a><span class="p">,</span>
+    <span class="n">eXt</span><span class="o">=</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">strain_limit</span></a><span class="p">,</span>
+    <span class="n">eYt</span><span class="o">=</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">strain_limit</span></a><span class="p">,</span>
+    <span class="n">eZt</span><span class="o">=</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">strain_limit</span></a><span class="p">,</span>
+    <span class="n">eSxy</span><span class="o">=</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">strain_limit</span></a><span class="p">,</span>
+    <span class="n">eSyz</span><span class="o">=</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">strain_limit</span></a><span class="p">,</span>
+    <span class="n">eSxz</span><span class="o">=</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">strain_limit</span></a><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">ud_material</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_material</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;UD&quot;</span><span class="p">,</span>
+    <span class="n">ply_type</span><span class="o">=</span><span class="n">PlyType</span><span class="o">.</span><span class="n">REGULAR</span><span class="p">,</span>
+    <span class="n">engineering_constants</span><span class="o">=</span><span class="n">engineering_constants</span><span class="p">,</span>
+    <span class="n">strain_limits</span><span class="o">=</span><span class="n">strain_limits</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">fabric</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;UD&quot;</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">ud_material</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Define a rosette and an oriented selection set and plot the orientations</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosette</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">dir1</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">dir2</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+
+<span class="n">oss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;oss&quot;</span><span class="p">,</span>
+    <span class="n">orientation_point</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">orientation_direction</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">element_sets</span><span class="o">=</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">element_sets</span><span class="p">[</span><span class="s2">&quot;All_Elements&quot;</span><span class="p">]],</span>
+    <span class="n">rosettes</span><span class="o">=</span><span class="p">[</span><span class="n">rosette</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span>
+    <span class="n">oss</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">get_pyvista_glyphs</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Static Scene</label><div class="sd-tab-content docutils">
+<img src="../../_images/sphx_glr_001_basic_flat_plate_002.png" srcset="../../_images/sphx_glr_001_basic_flat_plate_002.png" alt="001 basic flat plate" class = "sphx-glr-single-img"/></div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_001_basic_flat_plate_002.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<p>Create various plies with different angles and add them to a modeling group</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modeling_group</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_modeling_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;modeling_group&quot;</span><span class="p">)</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles</span></a> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">idx</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles</span></a><span class="p">):</span>
+    <span class="n">modeling_group</span><span class="o">.</span><span class="n">create_modeling_ply</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;ply_</span><span class="si">{</span><a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">idx</span></a><span class="si">}</span><span class="s2">_</span><span class="si">{</span><a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">fabric</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">ply_angle</span><span class="o">=</span><a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span>
+        <span class="n">ply_material</span><span class="o">=</span><span class="n">fabric</span><span class="p">,</span>
+        <span class="n">oriented_selection_sets</span><span class="o">=</span><span class="p">[</span><span class="n">oss</span><span class="p">],</span>
+    <span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Show the fiber directions of a specific ply</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modeling_ply</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;modeling_group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">[</span><span class="s2">&quot;ply_4_-45_UD&quot;</span><span class="p">]</span>
+
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span>
+    <span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">fiber_direction</span><span class="o">.</span><span class="n">get_pyvista_glyphs</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.0008</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Static Scene</label><div class="sd-tab-content docutils">
+<img src="../../_images/sphx_glr_001_basic_flat_plate_003.png" srcset="../../_images/sphx_glr_001_basic_flat_plate_003.png" alt="001 basic flat plate" class = "sphx-glr-single-img"/></div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_001_basic_flat_plate_003.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<p>Print the model tree for a quick overview</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">print_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Model
+    Material Data
+        Materials
+            1
+            UD
+        Fabrics
+            UD
+    Element Sets
+        All_Elements
+    Edge Sets
+        _FIXEDSU
+    Geometry
+    Rosettes
+        12
+        Rosette
+    Lookup Table
+    Selection Rules
+    Oriented Selection Sets
+        oss
+    Modeling Groups
+        modeling_group
+            ply_0_0_UD
+                ProductionPly
+                    P1L1__ply_0_0_UD
+            ply_1_45_UD
+                ProductionPly.2
+                    P1L1__ply_1_45_UD
+            ply_2_-45_UD
+                ProductionPly.3
+                    P1L1__ply_2_-45_UD
+            ply_3_45_UD
+                ProductionPly.4
+                    P1L1__ply_3_45_UD
+            ply_4_-45_UD
+                ProductionPly.5
+                    P1L1__ply_4_-45_UD
+            ply_5_0_UD
+                ProductionPly.6
+                    P1L1__ply_5_0_UD
+</pre></div>
+</div>
+<section id="solve-the-model-with-mapdl">
+<h2>Solve the model with MAPDL<a class="headerlink" href="#solve-the-model-with-mapdl" title="Permalink to this heading">#</a></h2>
+<p>Launch the MAPDL instance</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Load the CDB file into PyMAPDL</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">workflow</span><span class="o">.</span><span class="n">get_local_cdb_file</span><span class="p">()))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= ACP Lay-up Model.cdb  LINE=       0\n\n\n\n DO NOT WRITE ELEMENT RESULTS INTO DATABASE\n\n *GET  _WALLSTRT  FROM  ACTI  ITEM=TIME WALL  VALUE=  16.7055556    \n\n TITLE= \n wbnew--Static Structural (A5)                                                 \n\n  ACT Extensions:\n      LSDYNA, 2024.1\n      5f463412-bd3e-484b-87e7-cbc0a665e474, wbex\n /COM,     ANSYSMotion, 2024.2\n      20180725-3f81-49eb-9f31-41364844c769, wbex\n  \n\n SET PARAMETER DIMENSIONS ON  _WB_PROJECTSCRATCH_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_PROJECTSCRATCH_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\dp0\\SYS\\MECH\\\n\n SET PARAMETER DIMENSIONS ON  _WB_SOLVERFILES_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_SOLVERFILES_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\dp0\\SYS\\MECH\\\n\n SET PARAMETER DIMENSIONS ON  _WB_USERFILES_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_USERFILES_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\user_files\\\n --- Data in consistent MKS units. See Solving Units in the help system for more\n\n MKS UNITS SPECIFIED FOR INTERNAL    \n  LENGTH        (l)  = METER (M)\n  MASS          (M)  = KILOGRAM (KG)\n  TIME          (t)  = SECOND (SEC)\n  TEMPERATURE   (T)  = CELSIUS (C)\n  TOFFSET            = 273.0\n  CHARGE        (Q)  = COULOMB\n  FORCE         (f)  = NEWTON (N) (KG-M/SEC2)\n  HEAT               = JOULE (N-M)\n\n  PRESSURE           = PASCAL (NEWTON/M**2)\n  ENERGY        (W)  = JOULE (N-M)\n  POWER         (P)  = WATT (N-M/SEC)\n  CURRENT       (i)  = AMPERE (COULOMBS/SEC)\n  CAPACITANCE   (C)  = FARAD\n  INDUCTANCE    (L)  = HENRY\n  MAGNETIC FLUX      = WEBER\n  RESISTANCE    (R)  = OHM\n  ELECTRIC POTENTIAL = VOLT\n\n INPUT  UNITS ARE ALSO SET TO MKS \n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     16:42:20  JAN 31, 2024 CP=      0.588\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n *********** Nodes for the whole assembly ***********\n *********** Elements for Body 1 &quot;SYS\\Surface&quot; ***********\n *********** Send User Defined Coordinate System(s) ***********\n *********** Set Reference Temperature ***********\n *********** Send Materials ***********\n *********** Send Sheet Properties ***********\n *********** Fixed Supports ***********\n *********** Define Force Using Surface Effect Elements ***********\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.598\n\n\n --- Number of total nodes = 81\n --- Number of contact elements = 8\n --- Number of spring elements = 0\n --- Number of bearing elements = 0\n --- Number of solid elements = 64\n --- Number of condensed parts = 0\n --- Number of total elements = 72\n\n *GET  _WALLBSOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  16.7055556    \n ****************************************************************************\n *************************    SOLUTION       ********************************\n ****************************************************************************\n\n *****  MAPDL SOLUTION ROUTINE  *****\n\n\n PERFORM A STATIC ANALYSIS\n  THIS WILL BE A NEW ANALYSIS\n\n PARAMETER _THICKRATIO =     0.000000000    \n\n USE SPARSE MATRIX DIRECT SOLVER\n\n CONTACT INFORMATION PRINTOUT LEVEL       1\n\n CHECK INITIAL OPEN/CLOSED STATUS OF SELECTED CONTACT ELEMENTS\n      AND LIST DETAILED CONTACT PAIR INFORMATION\n\n SPLIT CONTACT SURFACES AT SOLVE PHASE\n\n DO NOT COMBINE ELEMENT MATRIX FILES (.emat) AFTER DISTRIBUTED PARALLEL SOLUTION\n\n DO NOT COMBINE ELEMENT SAVE DATA FILES (.esav) AFTER DISTRIBUTED PARALLEL SOLUTION\n\n NLDIAG: Nonlinear diagnostics CONT option is set to ON. \n         Writing frequency : each ITERATION.\n\n DO NOT SAVE ANY RESTART FILES AT ALL\n ****************************************************\n ******************* SOLVE FOR LS 1 OF 1 ****************\n\n SELECT       FOR ITEM=TYPE COMPONENT=    \n  IN RANGE         2 TO          2 STEP          1\n\n          8  ELEMENTS (OF         72  DEFINED) SELECTED BY  ESEL  COMMAND.\n\n SELECT      ALL NODES HAVING ANY ELEMENT IN ELEMENT SET.\n\n          9 NODES (OF         81  DEFINED) SELECTED FROM\n        8 SELECTED ELEMENTS BY NSLE COMMAND.\n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  1   KVAL = 1\n     VALUES =     0.0000         0.0000         0.0000         0.0000    \n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  2   KVAL = 1\n     VALUES =    -10000.        -10000.        -10000.        -10000.    \n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  3   KVAL = 1\n     VALUES =     0.0000         0.0000         0.0000         0.0000    \n\n ALL SELECT   FOR ITEM=NODE COMPONENT=    \n  IN RANGE         1 TO         81 STEP          1\n\n         81  NODES (OF         81  DEFINED) SELECTED BY NSEL  COMMAND.\n\n ALL SELECT   FOR ITEM=ELEM COMPONENT=    \n  IN RANGE         1 TO         72 STEP          1\n\n         72  ELEMENTS (OF         72  DEFINED) SELECTED BY  ESEL  COMMAND.\n\n PRINTOUT RESUMED BY /GOP\n\n USE       1 SUBSTEPS INITIALLY THIS LOAD STEP FOR ALL  DEGREES OF FREEDOM\n FOR AUTOMATIC TIME STEPPING:\n   USE      1 SUBSTEPS AS A MAXIMUM\n   USE      1 SUBSTEPS AS A MINIMUM\n\n TIME=  1.0000    \n\n ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.\n\n\n WRITE ALL  ITEMS TO THE DATABASE WITH A FREQUENCY OF NONE\n   FOR ALL APPLICABLE ENTITIES\n\n WRITE NSOL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE RSOL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EANG ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE ETMP ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE VENG ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE STRS ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EPEL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EPPL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE CONT ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n *GET  ANSINTER_  FROM  ACTI  ITEM=INT        VALUE=  0.00000000    \n\n *IF  ANSINTER_                         ( =   0.00000     )  NE  \n      0                                 ( =   0.00000     )  THEN    \n\n *ENDIF\n\n *****  MAPDL SOLVE    COMMAND  *****\n\n *** WARNING ***                         CP =       0.607   TIME= 16:42:20\n Element shape checking is currently inactive.  Issue SHPP,ON or         \n SHPP,WARN to reactivate, if desired.                                    \n\n *** NOTE ***                            CP =       0.608   TIME= 16:42:20\n The model data was checked and warning messages were found.             \n  Please review output or errors file ( /file.err ) for these warning    \n messages.                                                               \n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     16:42:20  JAN 31, 2024 CP=      0.609\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n                       S O L U T I O N   O P T I O N S\n\n   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D                  \n   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   ROTX ROTY ROTZ\n   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)\n   OFFSET TEMPERATURE FROM ABSOLUTE ZERO . . . . .  273.15    \n   EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE             \n   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  \n\n *** NOTE ***                            CP =       0.609   TIME= 16:42:20\n Poisson\&#39;s ratio PR input has been converted to NU input.                \n\n                      L O A D   S T E P   O P T I O N S\n\n   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1\n   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000    \n   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1\n   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO\n   COPY INTEGRATION POINT VALUES TO NODE . . . . .   YES\n   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT\n   DATABASE OUTPUT CONTROLS\n      ITEM     FREQUENCY   COMPONENT\n       ALL       NONE               \n      NSOL        ALL               \n      RSOL        ALL               \n      EANG        ALL               \n      ETMP        ALL               \n      VENG        ALL               \n      STRS        ALL               \n      EPEL        ALL               \n      EPPL        ALL               \n      CONT        ALL               \n\n\n SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           \n\n *** NOTE ***                            CP =       0.623   TIME= 16:42:20\n Predictor is ON by default for structural elements with rotational      \n degrees of freedom.  Use the PRED,OFF command to turn the predictor     \n OFF if it adversely affects the convergence.                            \n\n\n Range of element maximum matrix coefficients in global coordinates\n Maximum = 8.014568245E+11 at element 53.                                \n Minimum = 8.014568181E+11 at element 21.                                \n\n   *** ELEMENT MATRIX FORMULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.027   0.000419\n        2         8  SURF156       0.001   0.000103\n Time at end of element matrix formulation CP = 0.656261981.             \n\n SPARSE MATRIX DIRECT SOLVER.\n  Number of equations =         432,    Maximum wavefront =     42\n  Memory allocated for solver              =     0.629 MB\n  Memory required for in-core solution     =     0.608 MB\n  Memory required for out-of-core solution =     0.415 MB\n\n *** NOTE ***                            CP =       0.665   TIME= 16:42:20\n The Sparse Matrix Solver is currently running in the in-core memory     \n mode.  This memory mode uses the most amount of memory in order to      \n avoid using the hard drive as much as possible, which most often        \n results in the fastest solution time.  This mode is recommended if      \n enough physical memory is present to accommodate all of the solver      \n data.                                                                   \n Sparse solver maximum pivot= 3.20582728E+12 at node 57 UX.              \n Sparse solver minimum pivot= 139631.198 at node 15 ROTY.                \n Sparse solver minimum pivot in absolute value= 139631.198 at node 15    \n ROTY.                                                                   \n\n   *** ELEMENT RESULT CALCULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.051   0.000799\n        2         8  SURF156       0.001   0.000064\n\n   *** NODAL LOAD CALCULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.002   0.000029\n        2         8  SURF156       0.000   0.000009\n *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1\n *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX\n\n\n *** MAPDL BINARY FILE STATISTICS\n  BUFFER SIZE USED= 16384\n        0.062 MB WRITTEN ON ELEMENT MATRIX FILE: file.emat\n        0.125 MB WRITTEN ON ASSEMBLED MATRIX FILE: file.full\n        0.562 MB WRITTEN ON RESULTS FILE: file.rst\n *************** Write FE CONNECTORS *********\n\n WRITE OUT CONSTRAINT EQUATIONS TO FILE= file.ce                                                                                                                                                                                                                                                             \n ****************************************************\n *************** FINISHED SOLVE FOR LS 1 *************\n\n *GET  _WALLASOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  16.7055556    \n\n PRINTOUT RESUMED BY /GOP\n\n FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.734\n\n\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     16:42:21  JAN 31, 2024 CP=      0.735\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL RESULTS INTERPRETATION (POST1) *****\n\n *** NOTE ***                            CP =       0.735   TIME= 16:42:21\n Reading results into the database (SET command) will update the current \n displacement and force boundary conditions in the database with the     \n values from the results file for that load set.  Note that any          \n subsequent solutions will use these values unless action is taken to    \n either SAVE the current values or not overwrite them (/EXIT,NOSAVE).    \n\n Set Encoding of XML File to:ISO-8859-1\n\n Set Output of XML File to:\n     PARM,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,\n         ,     ,     ,     ,     ,     ,     ,\n\n DATABASE WRITTEN ON FILE  parm.xml                                                                                                                                                                                                                                                            \n\n EXIT THE MAPDL POST1 DATABASE PROCESSOR\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.736\n\n\n\n PRINTOUT RESUMED BY /GOP\n\n *GET  _WALLDONE  FROM  ACTI  ITEM=TIME WALL  VALUE=  16.7058333    \n\n PARAMETER _PREPTIME =     0.000000000    \n\n PARAMETER _SOLVTIME =     0.000000000    \n\n PARAMETER _POSTTIME =     1.000000000    \n\n PARAMETER _TOTALTIM =     1.000000000    \n\n *GET  _DLBRATIO  FROM  ACTI  ITEM=SOLU DLBR  VALUE=  0.00000000    \n\n *GET  _COMBTIME  FROM  ACTI  ITEM=SOLU COMB  VALUE=  0.00000000    \n\n *GET  _SSMODE   FROM  ACTI  ITEM=SOLU SSMM  VALUE=  2.00000000    \n\n *GET  _NDOFS    FROM  ACTI  ITEM=SOLU NDOF  VALUE=  432.000000    \n\n *GET  _SOL_END_TIME  FROM  ACTI  ITEM=SET  TIME  VALUE=  1.00000000    \n\n *IF  _sol_end_time                     ( =   1.00000     )  EQ  \n      1.000000                          ( =   1.00000     )  THEN    \n\n /FCLEAN COMMAND REMOVING ALL LOCAL FILES\n\n *ENDIF\n --- Total number of nodes = 81\n --- Total number of elements = 72\n --- Element load balance ratio = 0\n --- Time to combine distributed files = 0\n --- Sparse memory mode = 2\n --- Number of DOF = 432\n&#39;
+</pre></div>
+</div>
+<p>Solve the model</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =       0.758   TIME= 16:42:21
+ Element shape checking is currently inactive.  Issue SHPP,ON or
+ SHPP,WARN to reactivate, if desired.
+
+ *** NOTE ***                            CP =       0.759   TIME= 16:42:21
+ The model data was checked and warning messages were found.
+  Please review output or errors file ( /file.err ) for these warning
+ messages.
+
+ *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
+ Ansys Mechanical Enterprise
+ 00000000  VERSION=LINUX x64     16:42:21  JAN 31, 2024 CP=      0.759
+
+ wbnew--Static Structural (A5)
+
+
+
+ ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA
+  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **
+
+                       S O L U T I O N   O P T I O N S
+
+   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D
+   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   ROTX ROTY ROTZ
+   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
+   OFFSET TEMPERATURE FROM ABSOLUTE ZERO . . . . .  273.15
+   EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
+
+                      L O A D   S T E P   O P T I O N S
+
+   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1
+   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000
+   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1
+   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO
+   COPY INTEGRATION POINT VALUES TO NODE . . . . .   YES
+   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT
+   DATABASE OUTPUT CONTROLS
+      ITEM     FREQUENCY   COMPONENT
+       ALL       NONE
+      NSOL        ALL
+      RSOL        ALL
+      EANG        ALL
+      ETMP        ALL
+      VENG        ALL
+      STRS        ALL
+      EPEL        ALL
+      EPPL        ALL
+      CONT        ALL
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
+
+ *** NOTE ***                            CP =       0.765   TIME= 16:42:21
+ Predictor is ON by default for structural elements with rotational
+ degrees of freedom.  Use the PRED,OFF command to turn the predictor
+ OFF if it adversely affects the convergence.
+
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 8.014568245E+11 at element 53.
+ Minimum = 8.014568181E+11 at element 21.
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        64  SHELL181      0.029   0.000450
+        2         8  SURF156       0.001   0.000086
+ Time at end of element matrix formulation CP = 0.796415031.
+
+ SPARSE MATRIX DIRECT SOLVER.
+  Number of equations =         432,    Maximum wavefront =     42
+  Memory allocated for solver              =     0.629 MB
+  Memory required for in-core solution     =     0.608 MB
+  Memory required for out-of-core solution =     0.415 MB
+
+ *** NOTE ***                            CP =       0.799   TIME= 16:42:21
+ The Sparse Matrix Solver is currently running in the in-core memory
+ mode.  This memory mode uses the most amount of memory in order to
+ avoid using the hard drive as much as possible, which most often
+ results in the fastest solution time.  This mode is recommended if
+ enough physical memory is present to accommodate all of the solver
+ data.
+ Sparse solver maximum pivot= 3.20582728E+12 at node 57 UX.
+ Sparse solver minimum pivot= 139631.198 at node 15 ROTY.
+ Sparse solver minimum pivot in absolute value= 139631.198 at node 15
+ ROTY.
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        64  SHELL181      0.044   0.000689
+        2         8  SURF156       0.000   0.000030
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        64  SHELL181      0.001   0.000022
+        2         8  SURF156       0.000   0.000007
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** MAPDL BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        0.062 MB WRITTEN ON ELEMENT MATRIX FILE: file.emat
+        0.125 MB WRITTEN ON ASSEMBLED MATRIX FILE: file.full
+        0.562 MB WRITTEN ON RESULTS FILE: file.rst
+</pre></div>
+</div>
+<p>Post-processing: show displacements</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span><span class="n">component</span><span class="o">=</span><span class="s2">&quot;NORM&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Static Scene</label><div class="sd-tab-content docutils">
+<img src="../../_images/sphx_glr_001_basic_flat_plate_004.png" srcset="../../_images/sphx_glr_001_basic_flat_plate_004.png" alt="001 basic flat plate" class = "sphx-glr-single-img"/></div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_001_basic_flat_plate_004.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<p>Download the rst file for composite specific post-processing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mapdl</span><span class="o">.</span><span class="n">jobname</span><span class="si">}</span><span class="s2">.rst&quot;</span>
+<a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_local_path</span></a> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">working_directory</span><span class="o">.</span><span class="n">path</span> <span class="o">/</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">workflow</span><span class="o">.</span><span class="n">working_directory</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;file.rst&#39;]
+</pre></div>
+</div>
+</section>
+<section id="post-processing-with-dpf-composites">
+<h2>Post-Processing with DPF composites<a class="headerlink" href="#post-processing-with-dpf-composites" title="Permalink to this heading">#</a></h2>
+<p>Setup: configure imports and connect to the pyDPF Composites server
+and load the dpf composites plugin</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf.composites.composite_model</span> <span class="kn">import</span> <span class="n">CompositeModel</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.composites.constants</span> <span class="kn">import</span> <span class="n">FailureOutput</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.composites.failure_criteria</span> <span class="kn">import</span> <span class="n">CombinedFailureCriterion</span><span class="p">,</span> <span class="n">MaxStrainCriterion</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.composites.server_helpers</span> <span class="kn">import</span> <span class="n">connect_to_or_start_server</span>
+</pre></div>
+</div>
+<p>Connect to the server. The <code class="docutils literal notranslate"><span class="pre">connect_to_or_start_server</span></code> function
+automatically loads the composites plugin.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpf_server</span> <span class="o">=</span> <span class="n">connect_to_or_start_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Specify the Combined Failure Criterion</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">max_strain</span> <span class="o">=</span> <span class="n">MaxStrainCriterion</span><span class="p">()</span>
+
+<span class="n">cfc</span> <span class="o">=</span> <span class="n">CombinedFailureCriterion</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Combined Failure Criterion&quot;</span><span class="p">,</span>
+    <span class="n">failure_criteria</span><span class="o">=</span><span class="p">[</span><span class="n">max_strain</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Create the CompositeModel and configure its input</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">composite_model</span> <span class="o">=</span> <span class="n">CompositeModel</span><span class="p">(</span>
+    <span class="n">get_composite_post_processing_files</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_local_path</span></a><span class="p">),</span>
+    <span class="n">default_unit_system</span><span class="o">=</span><span class="n">get_dpf_unit_system</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">),</span>
+    <span class="n">server</span><span class="o">=</span><span class="n">dpf_server</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Evaluate the failure criteria and plot it</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">output_all_elements</span> <span class="o">=</span> <span class="n">composite_model</span><span class="o">.</span><span class="n">evaluate_failure_criteria</span><span class="p">(</span><span class="n">cfc</span><span class="p">)</span>
+<span class="n">irf_field</span> <span class="o">=</span> <span class="n">output_all_elements</span><span class="o">.</span><span class="n">get_field</span><span class="p">({</span><span class="s2">&quot;failure_label&quot;</span><span class="p">:</span> <span class="n">FailureOutput</span><span class="o">.</span><span class="n">FAILURE_VALUE</span><span class="p">})</span>
+<span class="n">irf_field</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
+Static Scene</label><div class="sd-tab-content docutils">
+<img src="../../_images/sphx_glr_001_basic_flat_plate_005.png" srcset="../../_images/sphx_glr_001_basic_flat_plate_005.png" alt="001 basic flat plate" class = "sphx-glr-single-img"/></div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_001_basic_flat_plate_005.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<p>Release composite model to close open streams to result file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">composite_model</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: ignore</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  31.576 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-001-basic-flat-plate-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/d58e66369552a17a92a7fac0ab7f297d/001_basic_flat_plate.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">001_basic_flat_plate.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/159a80a4f4722b7cef1e55603eddc5fc/001_basic_flat_plate.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">001_basic_flat_plate.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-the-model-with-mapdl">Solve the model with MAPDL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing-with-dpf-composites">Post-Processing with DPF composites</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/examples/gallery_examples/001_basic_flat_plate.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2024 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.13.1. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

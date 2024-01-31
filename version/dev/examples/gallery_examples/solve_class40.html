@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Basic PyACP Example &#8212; PyACP</title>
+    <title>Class 40 example &#8212; PyACP</title>
 
   
   
@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="API reference" href="../../api/index.html" />
-    <link rel="prev" title="Examples" href="../index.html" />
+    <link rel="prev" title="Start from existing acph5 project" href="002_start_from_existing_project.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -369,7 +369,9 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic PyACP Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_basic_flat_plate.html">Basic PyACP Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_start_from_existing_project.html">Start from existing acph5 project</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Class 40 example</a></li>
 </ul>
 </div>
 </nav></div>
@@ -417,7 +419,7 @@ document.write(`
       <a href="../index.html" class="nav-link">Examples</a>
     </li>
       
-    <li class="breadcrumb-item active" aria-current="page">Basic PyACP Example</li>
+    <li class="breadcrumb-item active" aria-current="page">Class 40 example</li>
     
   </ul>
 </nav>
@@ -440,8 +442,8 @@ document.write(`
 <p><a class="reference internal" href="#sphx-glr-download-examples-gallery-examples-solve-class40-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
-<section class="sphx-glr-example-title" id="basic-pyacp-example">
-<span id="solve-class40-example"></span><span id="sphx-glr-examples-gallery-examples-solve-class40-py"></span><h1>Basic PyACP Example<a class="headerlink" href="#basic-pyacp-example" title="Permalink to this heading">#</a></h1>
+<section class="sphx-glr-example-title" id="class-40-example">
+<span id="solve-class40-example"></span><span id="sphx-glr-examples-gallery-examples-solve-class40-py"></span><h1>Class 40 example<a class="headerlink" href="#class-40-example" title="Permalink to this heading">#</a></h1>
 <p>Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
 a failure analysis with PyDPF-Composites.</p>
 <p>The starting point is a MAPDL CDB file which contains the mesh, material data and
@@ -614,8 +616,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <span class="n">plotter</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span>
-    <span class="n">oss_hull</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(</span>
-        <span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">component</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">ElementalDataType</span><span class="o">.</span><span class="n">ORIENTATION</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">culling_factor</span><span class="o">=</span><span class="mi">5</span>
+    <span class="n">oss_hull</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">get_pyvista_glyphs</span><span class="p">(</span>
+        <span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">culling_factor</span><span class="o">=</span><span class="mi">5</span>
     <span class="p">),</span>
     <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -690,9 +692,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <p>Show the thickness of one of the plies</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <span class="n">modeling_ply</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;deck&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">[</span><span class="s2">&quot;eglass_ud_02mm_0.5&quot;</span><span class="p">]</span>
-<span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(</span>
-    <span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">component</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">ElementalDataType</span><span class="o">.</span><span class="n">THICKNESS</span>
-<span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -711,9 +711,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plotter</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span>
-    <span class="n">modeling_ply</span><span class="o">.</span><span class="n">nodal_data</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(</span>
-        <span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">component</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">NodalDataType</span><span class="o">.</span><span class="n">PLY_OFFSET</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mi">200</span>
-    <span class="p">),</span>
+    <span class="n">modeling_ply</span><span class="o">.</span><span class="n">nodal_data</span><span class="o">.</span><span class="n">ply_offset</span><span class="o">.</span><span class="n">get_pyvista_glyphs</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mi">200</span><span class="p">),</span>
 <span class="p">)</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -731,7 +729,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <p>Show the thickness of the entire lay-up</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">component</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">ElementalDataType</span><span class="o">.</span><span class="n">THICKNESS</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -785,16 +783,17 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <section id="solve-with-pymapdl">
 <h2>Solve with PyMAPDL<a class="headerlink" href="#solve-with-pymapdl" title="Permalink to this heading">#</a></h2>
 <p>Import PyMAPDL and connect to its server</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">Mapdl</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
 
-<span class="n">mapdl</span> <span class="o">=</span> <span class="n">Mapdl</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">50557</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Load the CDB file into PyMAPDL</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     08:46:15  JAN 26, 2024 CP=      0.460\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.558\n\n\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     16:43:02  JAN 31, 2024 CP=      1.032\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.162\n\n\n&#39;
 </pre></div>
 </div>
 <p>Solve the model</p>
@@ -805,7 +804,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       0.583   TIME= 08:46:16
+ *** NOTE ***                            CP =       1.190   TIME= 16:43:02
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -830,7 +829,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
  Ansys Mechanical Enterprise
- 00000000  VERSION=LINUX x64     08:46:16  JAN 26, 2024 CP=      0.623
+ 00000000  VERSION=LINUX x64     16:43:02  JAN 31, 2024 CP=      1.237
 
 
 
@@ -846,14 +845,14 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       0.625   TIME= 08:46:16
+ *** NOTE ***                            CP =       1.239   TIME= 16:43:02
  Poisson&#39;s ratio PR input has been converted to NU input.
 
- *** NOTE ***                            CP =       0.631   TIME= 08:46:16
+ *** NOTE ***                            CP =       1.246   TIME= 16:43:02
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       0.632   TIME= 08:46:16
+ *** NOTE ***                            CP =       1.246   TIME= 16:43:02
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -871,7 +870,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       0.727   TIME= 08:46:16
+ *** NOTE ***                            CP =       1.352   TIME= 16:43:02
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -920,10 +919,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      3.177   0.000800
-        2        88  BEAM188       0.006   0.000063
-        3        22  SHELL181      0.005   0.000249
- Time at end of element matrix formulation CP = 3.94558811.
+        1      3973  SHELL181      3.885   0.000978
+        2        88  BEAM188       0.008   0.000087
+        3        22  SHELL181      0.007   0.000332
+ Time at end of element matrix formulation CP = 5.28696918.
 
  SPARSE MATRIX DIRECT SOLVER.
   Number of equations =       24096,    Maximum wavefront =     66
@@ -931,7 +930,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
   Memory required for in-core solution     =    58.542 MB
   Memory required for out-of-core solution =    24.642 MB
 
- *** NOTE ***                            CP =       4.030   TIME= 08:46:19
+ *** NOTE ***                            CP =       5.387   TIME= 16:43:06
  The Sparse Matrix Solver is currently running in the in-core memory
  mode.  This memory mode uses the most amount of memory in order to
  avoid using the hard drive as much as possible, which most often
@@ -946,16 +945,16 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      7.057   0.001776
-        2        88  BEAM188       0.011   0.000124
-        3        22  SHELL181      0.010   0.000449
+        1      3973  SHELL181      8.570   0.002157
+        2        88  BEAM188       0.017   0.000190
+        3        22  SHELL181      0.011   0.000515
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      0.071   0.000018
-        2        88  BEAM188       0.002   0.000018
-        3        22  SHELL181      0.000   0.000016
+        1      3973  SHELL181      0.102   0.000026
+        2        88  BEAM188       0.003   0.000029
+        3        22  SHELL181      0.001   0.000025
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
  *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -1015,7 +1014,7 @@ and load the dpf composites plugin</p>
 </div>
 <p>Connect to the server. The <code class="docutils literal notranslate"><span class="pre">connect_to_or_start_server</span></code> function
 automatically loads the composites plugin.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpf_server</span> <span class="o">=</span> <span class="n">connect_to_or_start_server</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">50558</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpf_server</span> <span class="o">=</span> <span class="n">connect_to_or_start_server</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Specify the Combined Failure Criterion</p>
@@ -1064,7 +1063,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_solve_class40_007.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  45.060 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  33.465 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-solve-class40-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/9534ac29e0bc2250f1fc6a51c9f799b1/solve_class40.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">solve_class40.py</span></code></a></p>

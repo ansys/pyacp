@@ -20,8 +20,8 @@
 
 .. _solve_class40_example:
 
-Basic PyACP Example
-===================
+Class 40 example
+================
 
 Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
 a failure analysis with PyDPF-Composites.
@@ -382,8 +382,8 @@ Note that the Model must be updated before the orientations are available.
     plotter = pyvista.Plotter()
     plotter.add_mesh(model.mesh.to_pyvista(), color="white")
     plotter.add_mesh(
-        oss_hull.elemental_data.to_pyvista(
-            mesh=model.mesh, component=pyacp.ElementalDataType.ORIENTATION, factor=0.2, culling_factor=5
+        oss_hull.elemental_data.orientation.get_pyvista_glyphs(
+            mesh=model.mesh, factor=0.2, culling_factor=5
         ),
         color="blue",
     )
@@ -540,15 +540,13 @@ Inspect the number of modeling groups and plies
 
 Show the thickness of one of the plies
 
-.. GENERATED FROM PYTHON SOURCE LINES 238-244
+.. GENERATED FROM PYTHON SOURCE LINES 238-242
 
 .. code-block:: default
 
     model.update()
     modeling_ply = model.modeling_groups["deck"].modeling_plies["eglass_ud_02mm_0.5"]
-    modeling_ply.elemental_data.to_pyvista(
-        mesh=model.mesh, component=pyacp.ElementalDataType.THICKNESS
-    ).plot()
+    modeling_ply.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot()
 
 
 
@@ -584,20 +582,18 @@ Show the thickness of one of the plies
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 245-246
+.. GENERATED FROM PYTHON SOURCE LINES 243-244
 
 Show the ply offsets, scaled by a factor of 200
 
-.. GENERATED FROM PYTHON SOURCE LINES 246-255
+.. GENERATED FROM PYTHON SOURCE LINES 244-251
 
 .. code-block:: default
 
     plotter = pyvista.Plotter()
     plotter.add_mesh(model.mesh.to_pyvista(), color="white")
     plotter.add_mesh(
-        modeling_ply.nodal_data.to_pyvista(
-            mesh=model.mesh, component=pyacp.NodalDataType.PLY_OFFSET, factor=200
-        ),
+        modeling_ply.nodal_data.ply_offset.get_pyvista_glyphs(mesh=model.mesh, factor=200),
     )
     plotter.show()
 
@@ -635,15 +631,15 @@ Show the ply offsets, scaled by a factor of 200
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 256-257
+.. GENERATED FROM PYTHON SOURCE LINES 252-253
 
 Show the thickness of the entire lay-up
 
-.. GENERATED FROM PYTHON SOURCE LINES 257-259
+.. GENERATED FROM PYTHON SOURCE LINES 253-255
 
 .. code-block:: default
 
-    model.elemental_data.to_pyvista(mesh=model.mesh, component=pyacp.ElementalDataType.THICKNESS).plot()
+    model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot()
 
 
 
@@ -679,12 +675,12 @@ Show the thickness of the entire lay-up
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 260-262
+.. GENERATED FROM PYTHON SOURCE LINES 256-258
 
 Write out ACP Model
 -------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 263-269
+.. GENERATED FROM PYTHON SOURCE LINES 259-265
 
 .. code-block:: default
 
@@ -701,11 +697,11 @@ Write out ACP Model
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 270-271
+.. GENERATED FROM PYTHON SOURCE LINES 266-267
 
 Update and Save the ACP model
 
-.. GENERATED FROM PYTHON SOURCE LINES 271-274
+.. GENERATED FROM PYTHON SOURCE LINES 267-270
 
 .. code-block:: default
 
@@ -719,11 +715,11 @@ Update and Save the ACP model
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 275-276
+.. GENERATED FROM PYTHON SOURCE LINES 271-272
 
 Save the model as CDB for solving with PyMAPDL
 
-.. GENERATED FROM PYTHON SOURCE LINES 276-281
+.. GENERATED FROM PYTHON SOURCE LINES 272-277
 
 .. code-block:: default
 
@@ -739,11 +735,11 @@ Save the model as CDB for solving with PyMAPDL
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 282-283
+.. GENERATED FROM PYTHON SOURCE LINES 278-279
 
 Download files from ACP server to a local directory
 
-.. GENERATED FROM PYTHON SOURCE LINES 283-294
+.. GENERATED FROM PYTHON SOURCE LINES 279-290
 
 .. code-block:: default
 
@@ -765,35 +761,35 @@ Download files from ACP server to a local directory
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 295-297
+.. GENERATED FROM PYTHON SOURCE LINES 291-293
 
 Solve with PyMAPDL
 ------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 299-300
+.. GENERATED FROM PYTHON SOURCE LINES 295-296
 
 Import PyMAPDL and connect to its server
 
-.. GENERATED FROM PYTHON SOURCE LINES 300-304
+.. GENERATED FROM PYTHON SOURCE LINES 296-300
 
 .. code-block:: default
 
-    from ansys.mapdl.core import Mapdl
+    from ansys.mapdl.core import launch_mapdl
 
-    mapdl = Mapdl(ip="localhost", port=50557, timeout=30)
-
-
-
+    mapdl = launch_mapdl()
+    mapdl.clear()
 
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 305-306
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 301-302
 
 Load the CDB file into PyMAPDL
 
-.. GENERATED FROM PYTHON SOURCE LINES 306-308
+.. GENERATED FROM PYTHON SOURCE LINES 302-304
 
 .. code-block:: default
 
@@ -808,15 +804,15 @@ Load the CDB file into PyMAPDL
  .. code-block:: none
 
 
-    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     08:46:15  JAN 26, 2024 CP=      0.460\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.558\n\n\n'
+    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     16:43:02  JAN 31, 2024 CP=      1.032\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.162\n\n\n'
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 309-310
+.. GENERATED FROM PYTHON SOURCE LINES 305-306
 
 Solve the model
 
-.. GENERATED FROM PYTHON SOURCE LINES 310-314
+.. GENERATED FROM PYTHON SOURCE LINES 306-310
 
 .. code-block:: default
 
@@ -835,7 +831,7 @@ Solve the model
 
     *****  MAPDL SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       0.583   TIME= 08:46:16
+     *** NOTE ***                            CP =       1.190   TIME= 16:43:02
      There is no title defined for this analysis.                            
 
      *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -860,7 +856,7 @@ Solve the model
 
      *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
      Ansys Mechanical Enterprise                       
-     00000000  VERSION=LINUX x64     08:46:16  JAN 26, 2024 CP=      0.623
+     00000000  VERSION=LINUX x64     16:43:02  JAN 31, 2024 CP=      1.237
 
                                                                                
 
@@ -876,14 +872,14 @@ Solve the model
        ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
        GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  
 
-     *** NOTE ***                            CP =       0.625   TIME= 08:46:16
+     *** NOTE ***                            CP =       1.239   TIME= 16:43:02
      Poisson's ratio PR input has been converted to NU input.                
 
-     *** NOTE ***                            CP =       0.631   TIME= 08:46:16
+     *** NOTE ***                            CP =       1.246   TIME= 16:43:02
      Present time 0 is less than or equal to the previous time.  Time will   
      default to 1.                                                           
 
-     *** NOTE ***                            CP =       0.632   TIME= 08:46:16
+     *** NOTE ***                            CP =       1.246   TIME= 16:43:02
      The conditions for direct assembly have been met.  No .emat or .erot    
      files will be produced.                                                 
 
@@ -901,7 +897,7 @@ Solve the model
 
      SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           
 
-     *** NOTE ***                            CP =       0.727   TIME= 08:46:16
+     *** NOTE ***                            CP =       1.352   TIME= 16:43:02
      Predictor is ON by default for structural elements with rotational      
      degrees of freedom.  Use the PRED,OFF command to turn the predictor     
      OFF if it adversely affects the convergence.                            
@@ -950,10 +946,10 @@ Solve the model
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      3.177   0.000800
-            2        88  BEAM188       0.006   0.000063
-            3        22  SHELL181      0.005   0.000249
-     Time at end of element matrix formulation CP = 3.94558811.              
+            1      3973  SHELL181      3.885   0.000978
+            2        88  BEAM188       0.008   0.000087
+            3        22  SHELL181      0.007   0.000332
+     Time at end of element matrix formulation CP = 5.28696918.              
 
      SPARSE MATRIX DIRECT SOLVER.
       Number of equations =       24096,    Maximum wavefront =     66
@@ -961,7 +957,7 @@ Solve the model
       Memory required for in-core solution     =    58.542 MB
       Memory required for out-of-core solution =    24.642 MB
 
-     *** NOTE ***                            CP =       4.030   TIME= 08:46:19
+     *** NOTE ***                            CP =       5.387   TIME= 16:43:06
      The Sparse Matrix Solver is currently running in the in-core memory     
      mode.  This memory mode uses the most amount of memory in order to      
      avoid using the hard drive as much as possible, which most often        
@@ -976,16 +972,16 @@ Solve the model
        *** ELEMENT RESULT CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      7.057   0.001776
-            2        88  BEAM188       0.011   0.000124
-            3        22  SHELL181      0.010   0.000449
+            1      3973  SHELL181      8.570   0.002157
+            2        88  BEAM188       0.017   0.000190
+            3        22  SHELL181      0.011   0.000515
 
        *** NODAL LOAD CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      0.071   0.000018
-            2        88  BEAM188       0.002   0.000018
-            3        22  SHELL181      0.000   0.000016
+            1      3973  SHELL181      0.102   0.000026
+            2        88  BEAM188       0.003   0.000029
+            3        22  SHELL181      0.001   0.000025
      *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
      *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -997,11 +993,11 @@ Solve the model
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 315-316
+.. GENERATED FROM PYTHON SOURCE LINES 311-312
 
 Post-processing: show displacements
 
-.. GENERATED FROM PYTHON SOURCE LINES 316-325
+.. GENERATED FROM PYTHON SOURCE LINES 312-321
 
 .. code-block:: default
 
@@ -1054,7 +1050,7 @@ Post-processing: show displacements
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 326-331
+.. GENERATED FROM PYTHON SOURCE LINES 322-327
 
 Post-Processing with DPF composites
 -----------------------------------
@@ -1062,7 +1058,7 @@ Post-Processing with DPF composites
 Setup: configure imports and connect to the pyDPF Composites server
 and load the dpf composites plugin
 
-.. GENERATED FROM PYTHON SOURCE LINES 331-347
+.. GENERATED FROM PYTHON SOURCE LINES 327-343
 
 .. code-block:: default
 
@@ -1089,16 +1085,16 @@ and load the dpf composites plugin
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 348-350
+.. GENERATED FROM PYTHON SOURCE LINES 344-346
 
 Connect to the server. The ``connect_to_or_start_server`` function
 automatically loads the composites plugin.
 
-.. GENERATED FROM PYTHON SOURCE LINES 350-352
+.. GENERATED FROM PYTHON SOURCE LINES 346-348
 
 .. code-block:: default
 
-    dpf_server = connect_to_or_start_server(ip="127.0.0.1", port=50558)
+    dpf_server = connect_to_or_start_server()
 
 
 
@@ -1107,11 +1103,11 @@ automatically loads the composites plugin.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 353-354
+.. GENERATED FROM PYTHON SOURCE LINES 349-350
 
 Specify the Combined Failure Criterion
 
-.. GENERATED FROM PYTHON SOURCE LINES 354-363
+.. GENERATED FROM PYTHON SOURCE LINES 350-359
 
 .. code-block:: default
 
@@ -1131,11 +1127,11 @@ Specify the Combined Failure Criterion
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 364-365
+.. GENERATED FROM PYTHON SOURCE LINES 360-361
 
 Create the CompositeModel and configure its input
 
-.. GENERATED FROM PYTHON SOURCE LINES 365-377
+.. GENERATED FROM PYTHON SOURCE LINES 361-373
 
 .. code-block:: default
 
@@ -1158,11 +1154,11 @@ Create the CompositeModel and configure its input
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 378-379
+.. GENERATED FROM PYTHON SOURCE LINES 374-375
 
 Evaluate the failure criteria
 
-.. GENERATED FROM PYTHON SOURCE LINES 379-381
+.. GENERATED FROM PYTHON SOURCE LINES 375-377
 
 .. code-block:: default
 
@@ -1175,11 +1171,11 @@ Evaluate the failure criteria
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 382-383
+.. GENERATED FROM PYTHON SOURCE LINES 378-379
 
 Query and plot the results
 
-.. GENERATED FROM PYTHON SOURCE LINES 383-385
+.. GENERATED FROM PYTHON SOURCE LINES 379-381
 
 .. code-block:: default
 
@@ -1222,7 +1218,7 @@ Query and plot the results
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  45.060 seconds)
+   **Total running time of the script:** ( 0 minutes  33.465 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_solve_class40.py:

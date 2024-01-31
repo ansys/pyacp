@@ -1,0 +1,6 @@
+model
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ACPWorkflow.model

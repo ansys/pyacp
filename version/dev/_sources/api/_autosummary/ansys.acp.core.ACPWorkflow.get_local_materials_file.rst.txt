@@ -1,0 +1,6 @@
+get\_local\_materials\_file
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPWorkflow.get_local_materials_file

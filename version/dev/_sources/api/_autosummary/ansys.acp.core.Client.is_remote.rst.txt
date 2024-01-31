@@ -1,0 +1,6 @@
+is\_remote
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Client.is_remote

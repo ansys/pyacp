@@ -1,0 +1,6 @@
+get\_local\_composite\_definitions\_file
+========================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPWorkflow.get_local_composite_definitions_file

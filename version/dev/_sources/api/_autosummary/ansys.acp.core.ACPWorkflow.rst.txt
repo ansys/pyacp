@@ -1,0 +1,42 @@
+﻿ACPWorkflow
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ACPWorkflow
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ACPWorkflow.get_local_acp_h5_file
+      
+      
+      ACPWorkflow.get_local_cdb_file
+      
+      
+      ACPWorkflow.get_local_composite_definitions_file
+      
+      
+      ACPWorkflow.get_local_materials_file
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ACPWorkflow.model
+      ACPWorkflow.working_directory
+   
+   

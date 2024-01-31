@@ -1,0 +1,6 @@
+﻿get\_dpf\_unit\_system
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autofunction:: get_dpf_unit_system

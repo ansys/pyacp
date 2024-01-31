@@ -1,0 +1,33 @@
+﻿ScalarData
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ScalarData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ScalarData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ScalarData.component_name
+      ScalarData.values
+   
+   

@@ -1,8 +1,8 @@
 """
 .. _solve_class40_example:
 
-Basic PyACP Example
-===================
+Class 40 example
+================
 
 Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
 a failure analysis with PyDPF-Composites.
@@ -175,8 +175,8 @@ model.update()
 plotter = pyvista.Plotter()
 plotter.add_mesh(model.mesh.to_pyvista(), color="white")
 plotter.add_mesh(
-    oss_hull.elemental_data.to_pyvista(
-        mesh=model.mesh, component=pyacp.ElementalDataType.ORIENTATION, factor=0.2, culling_factor=5
+    oss_hull.elemental_data.orientation.get_pyvista_glyphs(
+        mesh=model.mesh, factor=0.2, culling_factor=5
     ),
     color="blue",
 )
@@ -237,24 +237,20 @@ print(len(model.modeling_groups["keeltower"].modeling_plies))
 # Show the thickness of one of the plies
 model.update()
 modeling_ply = model.modeling_groups["deck"].modeling_plies["eglass_ud_02mm_0.5"]
-modeling_ply.elemental_data.to_pyvista(
-    mesh=model.mesh, component=pyacp.ElementalDataType.THICKNESS
-).plot()
+modeling_ply.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot()
 
 # %%
 # Show the ply offsets, scaled by a factor of 200
 plotter = pyvista.Plotter()
 plotter.add_mesh(model.mesh.to_pyvista(), color="white")
 plotter.add_mesh(
-    modeling_ply.nodal_data.to_pyvista(
-        mesh=model.mesh, component=pyacp.NodalDataType.PLY_OFFSET, factor=200
-    ),
+    modeling_ply.nodal_data.ply_offset.get_pyvista_glyphs(mesh=model.mesh, factor=200),
 )
 plotter.show()
 
 # %%
 # Show the thickness of the entire lay-up
-model.elemental_data.to_pyvista(mesh=model.mesh, component=pyacp.ElementalDataType.THICKNESS).plot()
+model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot()
 
 # %%
 #
@@ -297,10 +293,10 @@ pyacp_client.download_file(
 
 # %%
 # Import PyMAPDL and connect to its server
-from ansys.mapdl.core import Mapdl
+from ansys.mapdl.core import launch_mapdl
 
-mapdl = Mapdl(ip="localhost", port=50557, timeout=30)
-
+mapdl = launch_mapdl()
+mapdl.clear()
 # %%
 # Load the CDB file into PyMAPDL
 mapdl.input(str(cdb_file_local_path))
@@ -347,7 +343,7 @@ from ansys.dpf.core.unit_system import unit_systems
 # %%
 # Connect to the server. The ``connect_to_or_start_server`` function
 # automatically loads the composites plugin.
-dpf_server = connect_to_or_start_server(ip="127.0.0.1", port=50558)
+dpf_server = connect_to_or_start_server()
 
 # %%
 # Specify the Combined Failure Criterion

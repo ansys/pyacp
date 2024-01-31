@@ -1,0 +1,6 @@
+get\_pyvista\_glyphs
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: VectorData.get_pyvista_glyphs

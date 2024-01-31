@@ -1,0 +1,33 @@
+﻿VectorData
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: VectorData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      VectorData.get_pyvista_glyphs
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VectorData.component_name
+      VectorData.values
+   
+   

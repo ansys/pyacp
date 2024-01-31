@@ -1,0 +1,6 @@
+﻿print\_model
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autofunction:: print_model

@@ -1,0 +1,6 @@
+values
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ScalarData.values

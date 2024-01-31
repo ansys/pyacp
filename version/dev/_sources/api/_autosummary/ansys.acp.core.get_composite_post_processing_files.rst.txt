@@ -1,0 +1,6 @@
+﻿get\_composite\_post\_processing\_files
+=======================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autofunction:: get_composite_post_processing_files

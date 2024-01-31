@@ -548,12 +548,9 @@ need to create a commit without running the hooks, you can skip them with <code 
 </section>
 <section id="id2">
 <h4>Documentation<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
-<p>To build the documentation, DPF Composites and MAPDL servers need to be running:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose/docker-compose-extras.yaml<span class="w"> </span>up<span class="w"> </span>-d
-</pre></div>
-</div>
-<p>In addition, the PyACP server needs to be configured via <code class="docutils literal notranslate"><span class="pre">ansys-launcher</span></code>, see <a class="reference external" href="launching_server">Launching ACP</a> above.</p>
-<p>It can then be built using <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>.</p>
+<p>Before generating the documentation, configure the PyACP server via the
+<code class="docutils literal notranslate"><span class="pre">ansys-launcher</span></code>, see <a class="reference external" href="launching_server">Launching ACP</a> above.
+If Ansys is installed the examples can directly built with <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>.</p>
 <p>On Linux &amp; MacOS:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>doc<span class="w"> </span>html
 </pre></div>
@@ -563,6 +560,16 @@ need to create a commit without running the hooks, you can skip them with <code 
 </pre></div>
 </div>
 <p>The generated HTML files can be viewed with the browser of your choice.</p>
+<p>Alternatively you can build the documentation by starting a mapdl and pydpf-composites docker
+container. First ensure that you have accepted the DPF Preview License Agreement by setting the
+ANSYS_DPF_ACCEPT_LA environment variable to Y
+(see <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/user_guide/getting_started_with_dpf_server.html#dpf-preview-license-agreement">DPF Preview License Agreement</a>
+). In addition the  ANSYSLMD_LICENSE_FILE environment variable needs be set to a
+valid license server (e.g <a class="reference external" href="mailto:1055&#37;&#52;&#48;mylicenseserver&#46;com">1055<span>&#64;</span>mylicenseserver<span>&#46;</span>com</a>). Then start the docker containers with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose/docker-compose-extras.yaml<span class="w"> </span>up<span class="w"> </span>-d
+</pre></div>
+</div>
+<p>Then build the documentation with the <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> commands mentioned above.</p>
 </section>
 <section id="distribution">
 <h4>Distribution<a class="headerlink" href="#distribution" title="Permalink to this heading">#</a></h4>

@@ -1,0 +1,6 @@
+component\_name
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ScalarData.component_name

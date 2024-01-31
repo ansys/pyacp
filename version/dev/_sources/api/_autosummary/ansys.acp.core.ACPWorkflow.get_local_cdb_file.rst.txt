@@ -1,0 +1,6 @@
+get\_local\_cdb\_file
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPWorkflow.get_local_cdb_file

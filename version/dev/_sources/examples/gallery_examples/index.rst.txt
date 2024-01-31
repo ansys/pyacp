@@ -1,16 +1,46 @@
 :orphan:
 
-These examples assume that MAPDL and DPF servers are already running. You can start them by running the following command from the root of the PyACP repository:
 
-.. code-block::
-
-    docker-compose -f docker-compose/docker-compose-extras.yaml up -d
 
 
 
 .. raw:: html
 
     <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run a failure...">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/images/thumb/sphx_glr_001_basic_flat_plate_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Basic PyACP Example</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="    TODO: Write descriptions">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/images/thumb/sphx_glr_002_start_from_existing_project_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_examples_gallery_examples_002_start_from_existing_project.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Start from existing acph5 project</div>
+    </div>
 
 
 .. raw:: html
@@ -26,7 +56,7 @@ These examples assume that MAPDL and DPF servers are already running. You can st
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Basic PyACP Example</div>
+      <div class="sphx-glr-thumbnail-title">Class 40 example</div>
     </div>
 
 
@@ -38,6 +68,8 @@ These examples assume that MAPDL and DPF servers are already running. You can st
 .. toctree::
    :hidden:
 
+   /examples/gallery_examples/001_basic_flat_plate
+   /examples/gallery_examples/002_start_from_existing_project
    /examples/gallery_examples/solve_class40
 
 
