@@ -1,6 +1,7 @@
 import importlib.metadata
 
 from ._client import Client
+from ._model_printer import get_model_tree, print_model
 from ._server import DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode, launch_acp
 from ._tree_objects import (
     AnalysisPly,
@@ -31,6 +32,7 @@ from ._tree_objects import (
     ParallelSelectionRule,
     ProductionPly,
     Rosette,
+    ScalarData,
     Sensor,
     SphericalSelectionRule,
     Stackup,
@@ -39,8 +41,11 @@ from ._tree_objects import (
     TubeSelectionRule,
     UnitSystemType,
     VariableOffsetSelectionRule,
+    VectorData,
     VirtualGeometry,
 )
+from ._utils.example_helpers import ExampleKeys, get_example_file
+from ._workflow import ACPWorkflow, get_composite_post_processing_files, get_dpf_unit_system
 
 __version__ = importlib.metadata.version(__name__.replace(".", "-"))
 
@@ -90,4 +95,13 @@ __all__ = [
     "Sensor",
     "ElementalDataType",
     "NodalDataType",
+    "ExampleKeys",
+    "get_example_file",
+    "ACPWorkflow",
+    "get_composite_post_processing_files",
+    "get_model_tree",
+    "print_model",
+    "ScalarData",
+    "VectorData",
+    "get_dpf_unit_system",
 ]

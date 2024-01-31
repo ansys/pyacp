@@ -8,6 +8,7 @@ import pytest
 import pyvista
 
 from ansys.acp.core import Client, ElementalDataType
+from ansys.acp.core._tree_objects._mesh_data import VectorData
 
 from .helpers import check_property
 
@@ -56,12 +57,17 @@ def test_unittest(grpc_server, model_data_dir):
         os.makedirs(working_dir)
         # model.solver.working_dir = str(working_dir)
 
-        save_path = os.path.join(os.path.dirname(remote_path), "test_model_serialization.acph5")
-        model.save(save_path, save_cache=True)
-
-        client.clear()
-
-        model = client.import_model(path=save_path)
+        if client.is_remote:
+            save_path = os.path.join(os.path.dirname(remote_path), "test_model_serialization.acph5")
+            model.save(save_path, save_cache=True)
+            client.clear()
+            model = client.import_model(path=save_path)
+        else:
+            with tempfile.TemporaryDirectory() as local_working_dir:
+                save_path = pathlib.Path(local_working_dir) / "test_model_serialization.acph5"
+                model.save(save_path, save_cache=True)
+                client.clear()
+                model = client.import_model(path=save_path)
 
         # TODO: re-activate these tests when the respective features are implemented
         # assert model.unit_system.type == "mks"
@@ -106,12 +112,18 @@ def test_save_analysis_model(grpc_server, model_data_dir):
         name="minimal_model", path=remote_file_path, format="ansys:cdb", unit_system="mpa"
     )
 
-    out_file_path = remote_workdir / "out_file.cdb"
-    model.save_analysis_model(out_file_path)
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        local_file_path = pathlib.Path(tmp_dir, "out_file.cdb")
-        client.download_file(out_file_path, local_file_path)
-        assert local_file_path.exists()
+    if client.is_remote:
+        out_file_path = remote_workdir / "out_file.cdb"
+        model.save_analysis_model(out_file_path)
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            local_file_path = pathlib.Path(tmp_dir, "out_file.cdb")
+            client.download_file(out_file_path, local_file_path)
+            assert local_file_path.exists()
+    else:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            local_file_path = pathlib.Path(tmp_dir) / "out_file.cdb"
+            model.save_analysis_model(local_file_path)
+            assert local_file_path.exists()
 
 
 def test_string_representation(grpc_server, model_data_dir):
@@ -156,21 +168,21 @@ def test_mesh_data(minimal_complete_model):
 
 def test_elemental_data(minimal_complete_model):
     data = minimal_complete_model.elemental_data
-    numpy.testing.assert_allclose(data.element_labels, np.array([1]))
-    numpy.testing.assert_allclose(data.normal, np.array([[0.0, 0.0, 1.0]]))
-    numpy.testing.assert_allclose(data.thickness, np.array([1e-4]))
-    numpy.testing.assert_allclose(data.relative_thickness_correction, np.array([1.0]))
-    numpy.testing.assert_allclose(data.area, np.array([9e4]))
-    numpy.testing.assert_allclose(data.price, np.array([0.0]))
-    numpy.testing.assert_allclose(data.volume, np.array([9.0]))
-    numpy.testing.assert_allclose(data.mass, np.array([7.065e-08]))
-    numpy.testing.assert_allclose(data.offset, np.array([5e-5]))
-    numpy.testing.assert_allclose(data.cog, np.array([[0.0, 0.0, 5e-5]]))
+    numpy.testing.assert_allclose(data.element_labels.values, np.array([1]))
+    numpy.testing.assert_allclose(data.normal.values, np.array([[0.0, 0.0, 1.0]]))
+    numpy.testing.assert_allclose(data.thickness.values, np.array([1e-4]))
+    numpy.testing.assert_allclose(data.relative_thickness_correction.values, np.array([1.0]))
+    numpy.testing.assert_allclose(data.area.values, np.array([9e4]))
+    numpy.testing.assert_allclose(data.price.values, np.array([0.0]))
+    numpy.testing.assert_allclose(data.volume.values, np.array([9.0]))
+    numpy.testing.assert_allclose(data.mass.values, np.array([7.065e-08]))
+    numpy.testing.assert_allclose(data.offset.values, np.array([5e-5]))
+    numpy.testing.assert_allclose(data.cog.values, np.array([[0.0, 0.0, 5e-5]]))
 
 
 def test_nodal_data(minimal_complete_model):
     data = minimal_complete_model.nodal_data
-    numpy.testing.assert_allclose(data.node_labels, np.array([1, 2, 3, 4]))
+    numpy.testing.assert_allclose(data.node_labels.values, np.array([1, 2, 3, 4]))
 
 
 def test_mesh_data_to_pyvista(minimal_complete_model):
@@ -182,7 +194,7 @@ def test_mesh_data_to_pyvista(minimal_complete_model):
 
 def test_elemental_data_to_pyvista(minimal_complete_model):
     data = minimal_complete_model.elemental_data
-    pv_mesh = data.to_pyvista(mesh=minimal_complete_model.mesh)
+    pv_mesh = data.get_pyvista_mesh(mesh=minimal_complete_model.mesh)
     assert isinstance(pv_mesh, pyvista.core.pointset.UnstructuredGrid)
     assert pv_mesh.n_points == 4
     assert pv_mesh.n_cells == 1
@@ -193,7 +205,11 @@ def test_elemental_data_to_pyvista_with_component(minimal_complete_model, compon
     data = minimal_complete_model.elemental_data
     if not hasattr(data, component):
         pytest.skip(f"Model elemental data does not contain component '{component}'")
-    pv_mesh = data.to_pyvista(mesh=minimal_complete_model.mesh, component=component)
+    component_data = getattr(data, component)
+    if isinstance(component_data, VectorData):
+        pv_mesh = component_data.get_pyvista_glyphs(mesh=minimal_complete_model.mesh)
+    else:
+        pv_mesh = component_data.get_pyvista_mesh(mesh=minimal_complete_model.mesh)
     if component in ["normal", "cog"]:
         assert isinstance(pv_mesh, pyvista.core.pointset.PolyData)
     else:

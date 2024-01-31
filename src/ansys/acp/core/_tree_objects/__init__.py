@@ -1,3 +1,4 @@
+from ._mesh_data import ScalarData, VectorData
 from .analysis_ply import AnalysisPly
 from .boolean_selection_rule import BooleanSelectionRule
 from .cad_component import CADComponent
@@ -69,4 +70,6 @@ __all__ = [
     "EdgeSetType",
     "ElementalDataType",
     "NodalDataType",
+    "ScalarData",
+    "VectorData",
 ]

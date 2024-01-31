@@ -3,9 +3,6 @@ from __future__ import annotations
 from collections.abc import Iterable
 import dataclasses
 
-import numpy as np
-import numpy.typing as npt
-
 from ansys.api.acp.v0 import geometrical_selection_rule_pb2, geometrical_selection_rule_pb2_grpc
 
 from .._utils.property_protocols import ReadWriteProperty
@@ -16,7 +13,13 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
-from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
+from ._mesh_data import (
+    ElementalData,
+    NodalData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from .base import CreatableTreeObject, IdTreeObject
 from .element_set import ElementSet
 from .enums import (
@@ -39,7 +42,7 @@ __all__ = [
 class GeometricalSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a Geometrical Selection Rule."""
 
-    normal: npt.NDArray[np.float64]
+    normal: VectorData
 
 
 @dataclasses.dataclass

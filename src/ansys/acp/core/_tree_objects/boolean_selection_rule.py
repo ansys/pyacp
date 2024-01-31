@@ -3,9 +3,6 @@ from __future__ import annotations
 from collections.abc import Iterable
 import dataclasses
 
-import numpy as np
-import numpy.typing as npt
-
 from ansys.api.acp.v0 import boolean_selection_rule_pb2, boolean_selection_rule_pb2_grpc
 
 from .._utils.property_protocols import ReadWriteProperty
@@ -15,7 +12,13 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
-from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
+from ._mesh_data import (
+    ElementalData,
+    NodalData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .linked_selection_rule import LinkedSelectionRule
@@ -32,7 +35,7 @@ __all__ = [
 class BooleanSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a Boolean Selection Rule."""
 
-    normal: npt.NDArray[np.float64]
+    normal: VectorData
 
 
 @dataclasses.dataclass

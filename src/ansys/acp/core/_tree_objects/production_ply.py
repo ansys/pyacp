@@ -4,7 +4,6 @@ from collections.abc import Iterable
 import dataclasses
 
 import numpy as np
-import numpy.typing as npt
 
 from ansys.api.acp.v0 import analysis_ply_pb2_grpc, production_ply_pb2, production_ply_pb2_grpc
 
@@ -15,7 +14,14 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property_read_only,
     mark_grpc_properties,
 )
-from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
+from ._mesh_data import (
+    ElementalData,
+    NodalData,
+    ScalarData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from .analysis_ply import AnalysisPly
 from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
@@ -28,32 +34,32 @@ __all__ = ["ProductionPly", "ProductionPlyElementalData", "ProductionPlyNodalDat
 class ProductionPlyElementalData(ElementalData):
     """Represents elemental data for a Production Ply."""
 
-    normal: npt.NDArray[np.float64]
-    orientation: npt.NDArray[np.float64]
-    reference_direction: npt.NDArray[np.float64]
-    fiber_direction: npt.NDArray[np.float64]
-    draped_fiber_direction: npt.NDArray[np.float64]
-    transverse_direction: npt.NDArray[np.float64]
-    draped_transverse_direction: npt.NDArray[np.float64]
-    thickness: npt.NDArray[np.float64]
-    relative_thickness_correction: npt.NDArray[np.float64]
-    design_angle: npt.NDArray[np.float64]
-    shear_angle: npt.NDArray[np.float64]
-    draped_fiber_angle: npt.NDArray[np.float64]
-    draped_transverse_angle: npt.NDArray[np.float64]
-    area: npt.NDArray[np.float64]
-    price: npt.NDArray[np.float64]
-    volume: npt.NDArray[np.float64]
-    mass: npt.NDArray[np.float64]
-    offset: npt.NDArray[np.float64]
-    cog: npt.NDArray[np.float64]
+    normal: VectorData
+    orientation: VectorData
+    reference_direction: VectorData
+    fiber_direction: VectorData
+    draped_fiber_direction: VectorData
+    transverse_direction: VectorData
+    draped_transverse_direction: VectorData
+    thickness: ScalarData[np.float64]
+    relative_thickness_correction: ScalarData[np.float64]
+    design_angle: ScalarData[np.float64]
+    shear_angle: ScalarData[np.float64]
+    draped_fiber_angle: ScalarData[np.float64]
+    draped_transverse_angle: ScalarData[np.float64]
+    area: ScalarData[np.float64]
+    price: ScalarData[np.float64]
+    volume: ScalarData[np.float64]
+    mass: ScalarData[np.float64]
+    offset: ScalarData[np.float64]
+    cog: VectorData
 
 
 @dataclasses.dataclass
 class ProductionPlyNodalData(NodalData):
     """Represents nodal data for a Production Ply."""
 
-    ply_offset: npt.NDArray[np.float64]
+    ply_offset: VectorData
 
 
 @mark_grpc_properties

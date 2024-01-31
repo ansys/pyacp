@@ -153,18 +153,8 @@ You will need to follow these steps:
 
         poetry shell
 
-.. TODO: If we add tox, add instructions on its use here.
-
-.. 6. Verify your development installation by running:
-
-..     .. code-block:: bash
-
-..         tox
-
 Testing
 ^^^^^^^
-
-.. TODO: If we add tox, add instructions on its use here.
 
 The PyACP test suite uses `pytest`_. You can run it with
 
@@ -210,16 +200,9 @@ need to create a commit without running the hooks, you can skip them with ``git 
 
 Documentation
 ^^^^^^^^^^^^^
-
-To build the documentation, DPF Composites and MAPDL servers need to be running:
-
-.. code-block:: bash
-
-    docker-compose -f docker-compose/docker-compose-extras.yaml up -d
-
-In addition, the PyACP server needs to be configured via ``ansys-launcher``, see `Launching ACP <launching_server>`_ above.
-
-It can then be built using `Sphinx`_.
+Before generating the documentation, configure the PyACP server via the
+``ansys-launcher``, see `Launching ACP <launching_server>`_ above.
+If Ansys is installed the examples can directly built with `Sphinx`_.
 
 On Linux & MacOS:
 
@@ -234,6 +217,20 @@ On Windows:
     cd doc; .\make.bat html
 
 The generated HTML files can be viewed with the browser of your choice.
+
+Alternatively you can build the documentation by starting a mapdl and pydpf-composites docker
+container. First ensure that you have accepted the DPF Preview License Agreement by setting the
+ANSYS_DPF_ACCEPT_LA environment variable to Y
+(see `DPF Preview License Agreement <https://dpf.docs.pyansys.com/version/stable/user_guide/getting_started_with_dpf_server.html#dpf-preview-license-agreement>`_
+). In addition the  ANSYSLMD_LICENSE_FILE environment variable needs be set to a
+valid license server (e.g 1055@mylicenseserver.com). Then start the docker containers with:
+
+.. code-block:: bash
+
+    docker-compose -f docker-compose/docker-compose-extras.yaml up -d
+
+Then build the documentation with the `Sphinx`_ commands mentioned above.
+
 
 Distribution
 ^^^^^^^^^^^^
@@ -264,4 +261,3 @@ License
 .. _pre-commit: https://pre-commit.com/
 .. _pytest: https://docs.pytest.org/en/stable/
 .. _Sphinx: https://www.sphinx-doc.org/en/master/
-.. _tox: https://tox.wiki/

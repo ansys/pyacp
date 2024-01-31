@@ -126,7 +126,7 @@ src_paths = ["doc", "src", "tests"]
 convention = "numpy"
 
 [tool.codespell]
-skip = '*.cdb'
+skip = '*.cdb,*.dat'
 ignore-words-list = 'ans,uptodate,notuptodate,eyt'
 quiet-level = 3
 

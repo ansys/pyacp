@@ -54,7 +54,14 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
-from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
+from ._mesh_data import (
+    ElementalData,
+    NodalData,
+    ScalarData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from .base import TreeObject
 from .boolean_selection_rule import BooleanSelectionRule
 from .cad_geometry import CADGeometry
@@ -120,15 +127,15 @@ class MeshData:
 class ModelElementalData(ElementalData):
     """Represents elemental data for a Model."""
 
-    normal: npt.NDArray[np.float64]
-    thickness: npt.NDArray[np.float64]
-    relative_thickness_correction: npt.NDArray[np.float64]
-    area: npt.NDArray[np.float64]
-    price: npt.NDArray[np.float64]
-    volume: npt.NDArray[np.float64]
-    mass: npt.NDArray[np.float64]
-    offset: npt.NDArray[np.float64]
-    cog: npt.NDArray[np.float64]
+    normal: VectorData
+    thickness: ScalarData[np.float64]
+    relative_thickness_correction: ScalarData[np.float64]
+    area: ScalarData[np.float64]
+    price: ScalarData[np.float64]
+    volume: ScalarData[np.float64]
+    mass: ScalarData[np.float64]
+    offset: ScalarData[np.float64]
+    cog: VectorData
 
 
 @dataclasses.dataclass

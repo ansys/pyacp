@@ -4,6 +4,7 @@ from contextlib import contextmanager
 import logging
 import os
 import pathlib
+import shutil
 import tempfile
 from typing import cast
 
@@ -198,7 +199,14 @@ def load_model_from_tempfile(model_data_dir, grpc_server):
         with tempfile.TemporaryDirectory() as tmp_dir:
             source_path = model_data_dir / relative_file_path
             client = Client(server=grpc_server)
-            file_path = client.upload_file(source_path)
+
+            if client.is_remote:
+                file_path = client.upload_file(source_path)
+            else:
+                # Copy the file to a temporary directory, so the original file is never
+                # modified. This can happen for example when a geometry reload happens.
+                file_path = shutil.copy(source_path, tmp_dir)
+
             yield client.import_model(path=file_path, format=format)
 
     return inner
