@@ -1,12 +1,18 @@
 import pathlib
 import shutil
 import tempfile
-from typing import Any, Callable, Optional, Protocol
+import typing
+from typing import Callable, Optional, Protocol
 
 from . import UnitSystemType
 from ._client import Client
 from ._tree_objects import Model
 from ._typing_helper import PATH
+
+# Avoid dependencies on pydpf-composites and dpf-core if it is not used
+if typing.TYPE_CHECKING:
+    from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles
+    from ansys.dpf.core import UnitSystem
 
 __all__ = ["ACPWorkflow", "get_composite_post_processing_files", "get_dpf_unit_system"]
 
@@ -52,6 +58,11 @@ def _copy_file_workdir(path: pathlib.Path, working_directory: pathlib.Path) -> p
 
 
 class _LocalFileTransferStrategy:
+    """File transfer strategy for local workflows.
+
+    Save output files to the local working directory and do nothing for input files.
+    """
+
     def __init__(self, local_working_directory: _LocalWorkingDir):
         self._local_working_directory = local_working_directory
 
@@ -70,6 +81,12 @@ class _LocalFileTransferStrategy:
 
 
 class _RemoteFileTransferStrategy:
+    """File transfer strategy for remote workflows.
+
+    Download output files from the server to the local working directory and upload
+    input files to the server.
+    """
+
     def __init__(self, local_working_directory: _LocalWorkingDir, acp_client: Client):
         self._local_working_directory = local_working_directory
         self._acp_client = acp_client
@@ -157,23 +174,34 @@ class ACPWorkflow:
         return self._local_working_dir
 
     def get_local_cdb_file(self) -> pathlib.Path:
-        """Copy the cdb file to the local working directory and return its path."""
+        """Get the cdb file on the local machine.
+
+        Write the analysis model including the layup definition in cdb format,
+        copy it to the local working directory and return its path."""
         return self._file_strategy.get_file(
             self._model.save_analysis_model, self._model.name + ".cdb"
         )
 
     def get_local_materials_file(self) -> pathlib.Path:
-        """Copy the materials file to the local working directory and return its path."""
+        """Get the materials.xml file on the local machine.
+
+        Write the materials.xml file, copy it to the local working directory and return its path."""
         return self._file_strategy.get_file(self._model.export_materials, "materials.xml")
 
     def get_local_composite_definitions_file(self) -> pathlib.Path:
-        """Copy the composite definitions file to the local working directory and return its path."""
+        """Get the composite definitions file on the local machine.
+
+        Write the composite definitions file, copy it
+         to the local working directory and return its path."""
         return self._file_strategy.get_file(
             self._model.export_shell_composite_definitions, "ACPCompositeDefinitions.h5"
         )
 
     def get_local_acp_h5_file(self) -> pathlib.Path:
-        """Copy the acph5 file to the local working directory and return its path."""
+        """Get the ACP Project file (in acph5 format) on the local machine.
+
+        Save the acp model to an acph5 file, copy it
+         to the local working directory and return its path."""
         return self._file_strategy.get_file(self._model.save, self._model.name + ".acph5")
 
     def _add_input_file(self, path: pathlib.Path) -> pathlib.PurePath:
@@ -181,11 +209,12 @@ class ACPWorkflow:
         return self._file_strategy.upload_input_file_to_server(path=path)
 
 
-# Todo: How should we handle the dependency on pydpf-composites?
 def get_composite_post_processing_files(
     acp_workflow: ACPWorkflow, local_rst_file_path: PATH
-) -> Any:
+) -> "ContinuousFiberCompositesFiles":
     """Get the files object needed for pydpf-composites from the workflow and the rst path.
+
+    Only supports the shell workflow.
 
     Parameters
     ----------
@@ -213,7 +242,7 @@ def get_composite_post_processing_files(
     return composite_files
 
 
-def get_dpf_unit_system(unit_system: UnitSystemType) -> Any:
+def get_dpf_unit_system(unit_system: UnitSystemType) -> "UnitSystem":
     """Convert pyACP unit system to DPF unit system.
 
     Parameters

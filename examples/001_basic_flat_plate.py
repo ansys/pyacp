@@ -22,23 +22,25 @@ import tempfile
 
 import pyvista
 
+# %%
+# Import pyACP dependencies
 from ansys.acp.core import (
     ACPWorkflow,
     Client,
+    ExampleKeys,
     get_composite_post_processing_files,
     get_dpf_unit_system,
+    get_example_file,
     launch_acp,
     print_model,
 )
 
-# %%
-# Import pyACP dependencies
+# TODO: Import from top-level when available
 from ansys.acp.core._tree_objects.enums import PlyType
 from ansys.acp.core._tree_objects.material.property_sets import (
     ConstantEngineeringConstants,
     ConstantStrainLimits,
 )
-from ansys.acp.core._utils.example_helpers import ExampleKeys, get_example_file
 
 # Note: It is important to import mapdl before dpf, otherwise the plot defaults are messed up
 # https://github.com/ansys/pydpf-core/issues/1363
@@ -161,6 +163,9 @@ plotter.show()
 print_model(model)
 
 # %%
+# Solve the model with MAPDL
+# --------------------------
+#
 # Launch the MAPDL instance
 mapdl = launch_mapdl()
 mapdl.clear()
