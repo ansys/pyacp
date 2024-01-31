@@ -156,11 +156,11 @@ class ACPWorkflow:
 
         if cdb_file_path is not None:
             uploaded_file = self._add_input_file(path=pathlib.Path(cdb_file_path))
-            if h5_file_path is None:
+            if acph5_file_path is None:
                 self._model = self._acp_client.import_model(path=uploaded_file, format="ansys:cdb")
 
-        if h5_file_path is not None:
-            uploaded_file = self._add_input_file(path=pathlib.Path(h5_file_path))
+        if acph5_file_path is not None:
+            uploaded_file = self._add_input_file(path=pathlib.Path(acph5_file_path))
             self._model = self._acp_client.import_model(path=uploaded_file)
 
     @property
@@ -178,7 +178,7 @@ class ACPWorkflow:
 
         Write the analysis model including the layup definition in cdb format,
         copy it to the local working directory and return its path."""
-        return self._file_strategy.get_file(
+        return self._file_transfer_strategy.get_file(
             self._model.save_analysis_model, self._model.name + ".cdb"
         )
 
@@ -186,14 +186,14 @@ class ACPWorkflow:
         """Get the materials.xml file on the local machine.
 
         Write the materials.xml file, copy it to the local working directory and return its path."""
-        return self._file_strategy.get_file(self._model.export_materials, "materials.xml")
+        return self._file_transfer_strategy.get_file(self._model.export_materials, "materials.xml")
 
     def get_local_composite_definitions_file(self) -> pathlib.Path:
         """Get the composite definitions file on the local machine.
 
         Write the composite definitions file, copy it
          to the local working directory and return its path."""
-        return self._file_strategy.get_file(
+        return self._file_transfer_strategy.get_file(
             self._model.export_shell_composite_definitions, "ACPCompositeDefinitions.h5"
         )
 
@@ -202,11 +202,11 @@ class ACPWorkflow:
 
         Save the acp model to an acph5 file, copy it
          to the local working directory and return its path."""
-        return self._file_strategy.get_file(self._model.save, self._model.name + ".acph5")
+        return self._file_transfer_strategy.get_file(self._model.save, self._model.name + ".acph5")
 
     def _add_input_file(self, path: pathlib.Path) -> pathlib.PurePath:
-        self._file_strategy.copy_input_file_to_local_workdir(path=path)
-        return self._file_strategy.upload_input_file_to_server(path=path)
+        self._file_transfer_strategy.copy_input_file_to_local_workdir(path=path)
+        return self._file_transfer_strategy.upload_input_file_to_server(path=path)
 
 
 def get_composite_post_processing_files(
