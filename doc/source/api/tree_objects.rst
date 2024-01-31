@@ -28,11 +28,10 @@ ACP objects
     ParallelSelectionRule
     ProductionPly
     Rosette
-    ScalarData
     Sensor
     SphericalSelectionRule
     Stackup
+    SubLaminate
     TubeSelectionRule
     VariableOffsetSelectionRule
-    VectorData
     VirtualGeometry
