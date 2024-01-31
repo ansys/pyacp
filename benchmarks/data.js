@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706258926489,
+  "lastUpdate": 1706719434209,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11330,6 +11330,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00018596204428231067",
             "extra": "mean: 38.91081469230183 msec\nrounds: 26"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "cc7c17d6a1919e7c00d76568268fea79ae85afa2",
+          "message": "Various improvements to streamline example code (#350)\n\n* Add self contained example that builds an ACP model from a cdb file that just contains the mesh.\r\n* Add workflow helper to simplify file transfer operations\r\n* Move to_pyvista function one level lower so that the user does not have to specify the component enums.\r\n*Add tree printer\r\n\r\ncloses #343\r\ncloses #232",
+          "timestamp": "2024-01-31T16:38:35Z",
+          "tree_id": "a08a7a5f67db5156c09a782518ed2ddd2aeeafe5",
+          "url": "https://github.com/ansys-internal/pyacp/commit/cc7c17d6a1919e7c00d76568268fea79ae85afa2"
+        },
+        "date": 1706719426349,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 5.992413765967357,
+            "unit": "iter/sec",
+            "range": "stddev: 0.006107977509573573",
+            "extra": "mean: 166.87766216666944 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.362654648268783,
+            "unit": "iter/sec",
+            "range": "stddev: 0.018359825655802617",
+            "extra": "mean: 423.2527173333362 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.37823164903249923,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.6438823999999954 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.041034082937642574,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.36998534899999 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 3.4068755514847164,
+            "unit": "iter/sec",
+            "range": "stddev: 0.002552031203703622",
+            "extra": "mean: 293.524076500006 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.6719406982983358,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 1.4882265690000054 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.07648125122974596,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 13.075099895999983 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1208.1546321924209,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019079406790392471",
+            "extra": "mean: 827.7086172200609 usec\nrounds: 1173"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 363.7982087074781,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00025068131217333644",
+            "extra": "mean: 2.7487765911570974 msec\nrounds: 362"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 47.35427246567263,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002555278072232623",
+            "extra": "mean: 21.117418723408864 msec\nrounds: 47"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.9612686359217335,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00021525420141827232",
+            "extra": "mean: 201.5613491999943 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 826.5471750331095,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002447052343550784",
+            "extra": "mean: 1.2098522990656189 msec\nrounds: 963"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 204.17672678810683,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003143691809485006",
+            "extra": "mean: 4.897717853209553 msec\nrounds: 218"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.743015406050297,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020954170813076173",
+            "extra": "mean: 38.84548815384593 msec\nrounds: 26"
           }
         ]
       }
