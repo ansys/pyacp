@@ -3,7 +3,7 @@ Material property sets
 
 .. TODO: move these to a public module
 
-.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets
+.. currentmodule:: ansys.acp.core
 
 .. autosummary::
     :toctree: _autosummary

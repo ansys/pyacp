@@ -1,6 +1,6 @@
 import pytest
 
-from ansys.acp.core._tree_objects.enums import EdgeSetType
+from ansys.acp.core import EdgeSetType
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 

@@ -1,10 +1,10 @@
 import pytest
 
-from ansys.acp.core import FabricWithAngle
-from ansys.acp.core._tree_objects.enums import (
+from ansys.acp.core import (
     CutoffMaterialType,
     DrapingMaterialType,
     DropoffMaterialType,
+    FabricWithAngle,
     SymmetryType,
 )
 

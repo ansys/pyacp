@@ -4,6 +4,8 @@ import pytest
 import pyvista
 
 from ansys.acp.core import (
+    BooleanOperationType,
+    DrapingType,
     ElementalDataType,
     Fabric,
     LinkedSelectionRule,
@@ -11,13 +13,9 @@ from ansys.acp.core import (
     Stackup,
     SubLaminate,
     TaperEdge,
-)
-from ansys.acp.core._tree_objects._mesh_data import VectorData
-from ansys.acp.core._tree_objects.enums import (
-    BooleanOperationType,
-    DrapingType,
     ThicknessFieldType,
     ThicknessType,
+    VectorData,
 )
 
 from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
