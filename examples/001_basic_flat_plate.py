@@ -232,5 +232,6 @@ output_all_elements = composite_model.evaluate_failure_criteria(cfc)
 irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
 irf_field.plot()
 
-# There is a failure on exit when using a temp directory:
-# See https://github.com/ansys/pydpf-core/issues/1373
+# %%
+# Release composite model to close open streams to result file.
+composite_model = None  # type: ignore
