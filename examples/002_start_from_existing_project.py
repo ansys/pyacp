@@ -27,7 +27,7 @@ pyacp_client = pyacp.Client(pyacp_server)
 
 workflow_reload = ACPWorkflow(
     acp_client=pyacp_client,
-    h5_file_path=input_acph5_file,
+    acph5_file_path=input_acph5_file,
     cdb_file_path=input_cdb_file,
 )
 print_model(workflow_reload.model)
