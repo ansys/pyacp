@@ -165,7 +165,7 @@ class ACPWorkflow:
 
     @property
     def model(self) -> Model:
-        """Get the Model."""
+        """Get the ACP Model."""
         return self._model
 
     @property
