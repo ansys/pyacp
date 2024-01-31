@@ -9,24 +9,24 @@ Material property sets
     :toctree: _autosummary
 
     ConstantDensity
-    VariableDensity
     ConstantEngineeringConstants
-    VariableEngineeringConstants
-    ConstantStressLimits
-    VariableStressLimits
-    ConstantStrainLimits
-    VariableStrainLimits
-    ConstantPuckConstants
-    VariablePuckConstants
-    ConstantWovenCharacterization
-    VariableWovenCharacterization
-    ConstantWovenStressLimits
-    VariableWovenStressLimits
-    ConstantTsaiWuConstants
-    VariableTsaiWuConstants
-    ConstantLaRCConstants
-    VariableLaRCConstants
     ConstantFabricFiberAngle
-    VariableFabricFiberAngle
+    ConstantLaRCConstants
+    ConstantPuckConstants
+    ConstantStrainLimits
+    ConstantStressLimits
+    ConstantTsaiWuConstants
+    ConstantWovenCharacterization
+    ConstantWovenStressLimits
     FieldVariable
     InterpolationOptions
+    VariableDensity
+    VariableEngineeringConstants
+    VariableFabricFiberAngle
+    VariableLaRCConstants
+    VariablePuckConstants
+    VariableStrainLimits
+    VariableStressLimits
+    VariableTsaiWuConstants
+    VariableWovenCharacterization
+    VariableWovenStressLimits
