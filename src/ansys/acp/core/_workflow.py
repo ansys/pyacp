@@ -145,7 +145,7 @@ class ACPWorkflow:
         acp_client: Client,
         local_working_directory: Optional[pathlib.Path] = None,
         cdb_file_path: Optional[PATH] = None,
-        h5_file_path: Optional[PATH] = None,
+        acph5_file_path: Optional[PATH] = None,
     ):
         self._acp_client = acp_client
         self._local_working_dir = _LocalWorkingDir(local_working_directory)
