@@ -149,7 +149,7 @@ class ACPWorkflow:
     ):
         self._acp_client = acp_client
         self._local_working_dir = _LocalWorkingDir(local_working_directory)
-        self._file_strategy = _get_file_transfer_strategy(
+        self._file_transfer_strategy = _get_file_transfer_strategy(
             acp_client=self._acp_client,
             local_working_dir=self._local_working_dir,
         )
