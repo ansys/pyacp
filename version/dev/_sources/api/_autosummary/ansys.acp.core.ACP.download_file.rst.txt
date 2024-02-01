@@ -1,0 +1,6 @@
+download\_file
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACP.download_file

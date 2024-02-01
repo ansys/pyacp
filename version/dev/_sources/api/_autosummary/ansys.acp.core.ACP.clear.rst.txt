@@ -1,0 +1,6 @@
+clear
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACP.clear

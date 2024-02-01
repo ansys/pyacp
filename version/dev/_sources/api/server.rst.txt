@@ -6,7 +6,8 @@ Server management
 .. autosummary::
     :toctree: _autosummary
 
-    launch_acp
-    LaunchMode
+    ACP
     DirectLaunchConfig
     DockerComposeLaunchConfig
+    LaunchMode
+    launch_acp

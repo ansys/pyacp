@@ -1,0 +1,6 @@
+start
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACP.start

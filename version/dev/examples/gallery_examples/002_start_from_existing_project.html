@@ -461,12 +461,10 @@ to download the full example code</p>
 <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_acph5_file</span></a> <span class="o">=</span> <span class="n">get_example_file</span><span class="p">(</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">BASIC_FLAT_PLATE_ACPH5</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">)</span>
 
 <span class="c1"># Launch the PyACP server and connect to it.</span>
-<span class="n">pyacp_server</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
-<span class="n">pyacp_server</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">pyacp_client</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">pyacp_server</span><span class="p">)</span>
+<span class="n">acp</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
 
 <span class="n">workflow_reload</span> <span class="o">=</span> <span class="n">ACPWorkflow</span><span class="p">(</span>
-    <span class="n">acp_client</span><span class="o">=</span><span class="n">pyacp_client</span><span class="p">,</span>
+    <span class="n">acp</span><span class="o">=</span><span class="n">acp</span><span class="p">,</span>
     <span class="n">acph5_file_path</span><span class="o">=</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_acph5_file</span></a><span class="p">,</span>
     <span class="n">cdb_file_path</span><span class="o">=</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_cdb_file</span></a><span class="p">,</span>
 <span class="p">)</span>
@@ -516,10 +514,10 @@ to download the full example code</p>
                     P1L1__ply_5_0_UD
 
 
-PosixPath(&#39;/tmp/tmp3xp4bn34/ACP Lay-up Model.cdb&#39;)
+PosixPath(&#39;/tmp/tmpl3l0qin4/ACP Lay-up Model.cdb&#39;)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.428 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.751 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-002-start-from-existing-project-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/e1c6ebc4681eaea315e77f0ee7596c6d/002_start_from_existing_project.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">002_start_from_existing_project.py</span></code></a></p>

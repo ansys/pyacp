@@ -47,7 +47,7 @@ Start from existing acph5 project
 
 Get example file from server
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-36
+.. GENERATED FROM PYTHON SOURCE LINES 18-34
 
 .. code-block:: default
 
@@ -57,12 +57,10 @@ Get example file from server
     input_acph5_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_ACPH5, WORKING_DIR)
 
     # Launch the PyACP server and connect to it.
-    pyacp_server = pyacp.launch_acp()
-    pyacp_server.wait(timeout=30)
-    pyacp_client = pyacp.Client(pyacp_server)
+    acp = pyacp.launch_acp()
 
     workflow_reload = ACPWorkflow(
-        acp_client=pyacp_client,
+        acp=acp,
         acph5_file_path=input_acph5_file,
         cdb_file_path=input_cdb_file,
     )
@@ -118,14 +116,14 @@ Get example file from server
                         P1L1__ply_5_0_UD
 
 
-    PosixPath('/tmp/tmp3xp4bn34/ACP Lay-up Model.cdb')
+    PosixPath('/tmp/tmpl3l0qin4/ACP Lay-up Model.cdb')
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.428 seconds)
+   **Total running time of the script:** ( 0 minutes  6.751 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_002_start_from_existing_project.py:

@@ -1,0 +1,6 @@
+check
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACP.check

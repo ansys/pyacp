@@ -21,12 +21,10 @@ input_cdb_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR)
 input_acph5_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_ACPH5, WORKING_DIR)
 
 # Launch the PyACP server and connect to it.
-pyacp_server = pyacp.launch_acp()
-pyacp_server.wait(timeout=30)
-pyacp_client = pyacp.Client(pyacp_server)
+acp = pyacp.launch_acp()
 
 workflow_reload = ACPWorkflow(
-    acp_client=pyacp_client,
+    acp=acp,
     acph5_file_path=input_acph5_file,
     cdb_file_path=input_cdb_file,
 )

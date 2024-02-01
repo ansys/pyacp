@@ -1,0 +1,6 @@
+import\_model
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACP.import_model

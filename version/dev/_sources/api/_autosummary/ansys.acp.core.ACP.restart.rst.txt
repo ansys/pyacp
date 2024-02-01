@@ -1,0 +1,6 @@
+restart
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACP.restart

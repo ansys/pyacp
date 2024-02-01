@@ -1,0 +1,6 @@
+wait
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACP.wait

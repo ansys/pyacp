@@ -10,7 +10,6 @@ and attributes.
     :maxdepth: 2
 
     server
-    client
     tree_objects
     linked_object_definitions
     material_property_sets
