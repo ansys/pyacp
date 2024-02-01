@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706719434209,
+  "lastUpdate": 1706775140084,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11452,6 +11452,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020954170813076173",
             "extra": "mean: 38.84548815384593 msec\nrounds: 26"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1bb85ddabcb6d6623edf74249287816a8a723872",
+          "message": "Merge client and server functionality (#359)\n\nMerge the Client and Server classes into a single `ACP` class.\r\nThe server and file transfer functionality is exposed via composition,\r\nwhereas the model-related functions are implemented directly\r\nin the ACP class.",
+          "timestamp": "2024-02-01T09:09:52+01:00",
+          "tree_id": "26290b82f17383a601874fe90264f90d785265cd",
+          "url": "https://github.com/ansys-internal/pyacp/commit/1bb85ddabcb6d6623edf74249287816a8a723872"
+        },
+        "date": 1706775132787,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.838928040567876,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0028207496498770745",
+            "extra": "mean: 146.22174616666447 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1195.8808515020828,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00023419482574818488",
+            "extra": "mean: 836.203706033049 usec\nrounds: 1558"
           }
         ]
       }
