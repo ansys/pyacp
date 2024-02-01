@@ -1,0 +1,6 @@
+REGULAR
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyType.REGULAR

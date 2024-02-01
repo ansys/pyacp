@@ -1,0 +1,6 @@
+NEAREST\_NEIGHBOR
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LookUpTable3DInterpolationAlgorithm.NEAREST_NEIGHBOR

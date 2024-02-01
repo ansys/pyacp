@@ -1,0 +1,6 @@
+field\_variables
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableDensity.field_variables

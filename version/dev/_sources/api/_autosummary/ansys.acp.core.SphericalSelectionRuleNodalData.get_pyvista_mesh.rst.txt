@@ -1,0 +1,6 @@
+get\_pyvista\_mesh
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SphericalSelectionRuleNodalData.get_pyvista_mesh

@@ -1,0 +1,6 @@
+relative\_thickness\_correction
+===============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ProductionPlyElementalData.relative_thickness_correction

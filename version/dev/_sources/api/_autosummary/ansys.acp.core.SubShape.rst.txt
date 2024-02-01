@@ -1,0 +1,30 @@
+﻿SubShape
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SubShape
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SubShape.cad_geometry
+      SubShape.path
+   
+   

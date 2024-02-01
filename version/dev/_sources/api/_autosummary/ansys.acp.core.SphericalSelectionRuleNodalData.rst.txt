@@ -1,0 +1,32 @@
+﻿SphericalSelectionRuleNodalData
+===============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SphericalSelectionRuleNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SphericalSelectionRuleNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SphericalSelectionRuleNodalData.node_labels
+   
+   

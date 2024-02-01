@@ -1,0 +1,6 @@
+volume
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ModelingPlyElementalData.volume

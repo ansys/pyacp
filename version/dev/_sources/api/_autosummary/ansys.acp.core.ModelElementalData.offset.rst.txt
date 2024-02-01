@@ -1,0 +1,6 @@
+offset
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ModelElementalData.offset

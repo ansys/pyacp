@@ -1,0 +1,32 @@
+﻿CutoffSelectionRuleNodalData
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: CutoffSelectionRuleNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      CutoffSelectionRuleNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CutoffSelectionRuleNodalData.node_labels
+   
+   

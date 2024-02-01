@@ -1,0 +1,6 @@
+p\_21\_pos
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariablePuckConstants.p_21_pos

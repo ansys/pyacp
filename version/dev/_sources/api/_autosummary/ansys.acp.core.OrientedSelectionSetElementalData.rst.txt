@@ -1,0 +1,35 @@
+﻿OrientedSelectionSetElementalData
+=================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: OrientedSelectionSetElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      OrientedSelectionSetElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      OrientedSelectionSetElementalData.normal
+      OrientedSelectionSetElementalData.orientation
+      OrientedSelectionSetElementalData.reference_direction
+      OrientedSelectionSetElementalData.element_labels
+   
+   

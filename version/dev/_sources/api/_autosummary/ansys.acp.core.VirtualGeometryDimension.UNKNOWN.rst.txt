@@ -1,0 +1,6 @@
+UNKNOWN
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: VirtualGeometryDimension.UNKNOWN

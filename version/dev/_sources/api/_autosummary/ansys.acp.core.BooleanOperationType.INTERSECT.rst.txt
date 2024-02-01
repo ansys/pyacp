@@ -1,0 +1,6 @@
+INTERSECT
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: BooleanOperationType.INTERSECT

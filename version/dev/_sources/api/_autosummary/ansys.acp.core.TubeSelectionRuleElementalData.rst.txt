@@ -1,0 +1,33 @@
+﻿TubeSelectionRuleElementalData
+==============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: TubeSelectionRuleElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      TubeSelectionRuleElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      TubeSelectionRuleElementalData.normal
+      TubeSelectionRuleElementalData.element_labels
+   
+   

@@ -1,0 +1,6 @@
+LENGTH
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DimensionType.LENGTH

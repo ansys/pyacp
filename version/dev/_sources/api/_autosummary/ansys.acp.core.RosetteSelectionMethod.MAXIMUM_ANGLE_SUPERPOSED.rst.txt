@@ -1,0 +1,6 @@
+MAXIMUM\_ANGLE\_SUPERPOSED
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteSelectionMethod.MAXIMUM_ANGLE_SUPERPOSED

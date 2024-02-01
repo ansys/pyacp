@@ -1,0 +1,6 @@
+orientation
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ModelingPlyElementalData.orientation

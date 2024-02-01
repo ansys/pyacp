@@ -1,0 +1,6 @@
+eXc
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableStrainLimits.eXc

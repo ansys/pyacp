@@ -52,6 +52,7 @@
       :toctree:
    
       ACP.is_remote
+      ACP.models
       ACP.server_version
    
    

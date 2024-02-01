@@ -1,0 +1,6 @@
+effective\_strain
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableStrainLimits.effective_strain

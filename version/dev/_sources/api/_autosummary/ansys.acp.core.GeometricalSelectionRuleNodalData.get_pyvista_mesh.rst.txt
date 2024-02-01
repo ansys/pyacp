@@ -1,0 +1,6 @@
+get\_pyvista\_mesh
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: GeometricalSelectionRuleNodalData.get_pyvista_mesh

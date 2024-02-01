@@ -1,0 +1,6 @@
+interpolation\_options
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariablePuckConstants.interpolation_options

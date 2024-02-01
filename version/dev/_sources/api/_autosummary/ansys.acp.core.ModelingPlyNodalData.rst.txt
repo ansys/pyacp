@@ -1,0 +1,33 @@
+﻿ModelingPlyNodalData
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ModelingPlyNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ModelingPlyNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ModelingPlyNodalData.ply_offset
+      ModelingPlyNodalData.node_labels
+   
+   

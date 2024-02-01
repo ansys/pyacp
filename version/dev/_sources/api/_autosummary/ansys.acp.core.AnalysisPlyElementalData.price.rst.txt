@@ -1,0 +1,6 @@
+price
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: AnalysisPlyElementalData.price

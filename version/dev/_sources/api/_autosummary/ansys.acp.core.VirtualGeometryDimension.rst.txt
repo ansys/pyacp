@@ -1,0 +1,25 @@
+﻿VirtualGeometryDimension
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: VirtualGeometryDimension
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VirtualGeometryDimension.UNKNOWN
+      VirtualGeometryDimension.LINE
+      VirtualGeometryDimension.SURFACE
+      VirtualGeometryDimension.SOLID
+   
+   

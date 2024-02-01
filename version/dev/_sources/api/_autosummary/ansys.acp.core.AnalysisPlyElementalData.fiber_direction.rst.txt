@@ -1,0 +1,6 @@
+fiber\_direction
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: AnalysisPlyElementalData.fiber_direction

@@ -1,0 +1,6 @@
+FORCE
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DimensionType.FORCE

@@ -1,0 +1,6 @@
+eYt
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableStrainLimits.eYt

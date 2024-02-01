@@ -1,0 +1,6 @@
+MINIMUM\_ANGLE
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteSelectionMethod.MINIMUM_ANGLE

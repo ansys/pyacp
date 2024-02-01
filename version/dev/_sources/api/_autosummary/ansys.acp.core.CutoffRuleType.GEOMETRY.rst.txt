@@ -1,0 +1,6 @@
+GEOMETRY
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CutoffRuleType.GEOMETRY

@@ -1,0 +1,6 @@
+draped\_transverse\_angle
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ModelingPlyElementalData.draped_transverse_angle

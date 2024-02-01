@@ -1,0 +1,6 @@
+ISOTROPIC\_HOMOGENEOUS\_CORE
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyType.ISOTROPIC_HOMOGENEOUS_CORE

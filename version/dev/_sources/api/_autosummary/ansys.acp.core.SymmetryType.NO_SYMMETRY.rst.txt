@@ -1,0 +1,6 @@
+NO\_SYMMETRY
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SymmetryType.NO_SYMMETRY

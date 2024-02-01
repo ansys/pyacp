@@ -1,0 +1,23 @@
+﻿GeometricalRuleType
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: GeometricalRuleType
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      GeometricalRuleType.GEOMETRY
+      GeometricalRuleType.ELEMENT_SETS
+   
+   

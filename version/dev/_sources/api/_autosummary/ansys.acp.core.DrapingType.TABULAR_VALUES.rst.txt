@@ -1,0 +1,6 @@
+TABULAR\_VALUES
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DrapingType.TABULAR_VALUES

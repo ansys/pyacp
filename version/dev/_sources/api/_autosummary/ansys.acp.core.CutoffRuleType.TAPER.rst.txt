@@ -1,0 +1,6 @@
+TAPER
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CutoffRuleType.TAPER

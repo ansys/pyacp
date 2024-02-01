@@ -1,0 +1,6 @@
+area
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ProductionPlyElementalData.area

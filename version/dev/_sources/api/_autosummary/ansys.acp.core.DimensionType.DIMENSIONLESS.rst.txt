@@ -1,0 +1,6 @@
+DIMENSIONLESS
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DimensionType.DIMENSIONLESS

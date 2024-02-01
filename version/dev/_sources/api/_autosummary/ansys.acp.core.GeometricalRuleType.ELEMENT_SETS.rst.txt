@@ -1,0 +1,6 @@
+ELEMENT\_SETS
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: GeometricalRuleType.ELEMENT_SETS

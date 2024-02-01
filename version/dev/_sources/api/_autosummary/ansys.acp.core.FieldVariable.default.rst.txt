@@ -1,0 +1,6 @@
+default
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: FieldVariable.default

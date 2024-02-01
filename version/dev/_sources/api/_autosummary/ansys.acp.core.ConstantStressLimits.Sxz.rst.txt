@@ -1,0 +1,6 @@
+Sxz
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantStressLimits.Sxz

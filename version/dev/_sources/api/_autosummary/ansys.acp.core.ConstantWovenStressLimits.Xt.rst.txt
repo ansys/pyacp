@@ -1,0 +1,6 @@
+Xt
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantWovenStressLimits.Xt

@@ -1,0 +1,6 @@
+interface\_weakening\_factor
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantPuckConstants.interface_weakening_factor

@@ -1,0 +1,6 @@
+topdown
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SubLaminate.topdown

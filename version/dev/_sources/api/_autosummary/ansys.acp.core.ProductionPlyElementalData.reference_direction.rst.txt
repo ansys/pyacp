@@ -1,0 +1,6 @@
+reference\_direction
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ProductionPlyElementalData.reference_direction

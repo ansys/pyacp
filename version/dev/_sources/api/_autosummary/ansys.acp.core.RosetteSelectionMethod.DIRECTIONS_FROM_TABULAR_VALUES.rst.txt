@@ -1,0 +1,6 @@
+DIRECTIONS\_FROM\_TABULAR\_VALUES
+=================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteSelectionMethod.DIRECTIONS_FROM_TABULAR_VALUES

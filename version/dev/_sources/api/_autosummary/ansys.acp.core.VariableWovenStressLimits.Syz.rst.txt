@@ -1,0 +1,6 @@
+Syz
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableWovenStressLimits.Syz

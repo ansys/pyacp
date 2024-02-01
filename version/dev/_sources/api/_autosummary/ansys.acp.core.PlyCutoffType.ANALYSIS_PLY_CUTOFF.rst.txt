@@ -1,0 +1,6 @@
+ANALYSIS\_PLY\_CUTOFF
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyCutoffType.ANALYSIS_PLY_CUTOFF

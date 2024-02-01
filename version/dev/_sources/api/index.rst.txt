@@ -11,6 +11,7 @@ and attributes.
 
     server
     tree_objects
+    mesh_data
     linked_object_definitions
     material_property_sets
     other_types

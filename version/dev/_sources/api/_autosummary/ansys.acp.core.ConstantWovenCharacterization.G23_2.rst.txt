@@ -1,0 +1,6 @@
+G23\_2
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantWovenCharacterization.G23_2

@@ -1,0 +1,6 @@
+values
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: FieldVariable.values

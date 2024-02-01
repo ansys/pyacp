@@ -1,0 +1,6 @@
+ISOTROPIC
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyType.ISOTROPIC

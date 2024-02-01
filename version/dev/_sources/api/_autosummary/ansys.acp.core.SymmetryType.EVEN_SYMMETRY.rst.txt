@@ -1,0 +1,6 @@
+EVEN\_SYMMETRY
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SymmetryType.EVEN_SYMMETRY

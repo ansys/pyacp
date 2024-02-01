@@ -1,0 +1,6 @@
+FROM\_TABLE
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ThicknessType.FROM_TABLE

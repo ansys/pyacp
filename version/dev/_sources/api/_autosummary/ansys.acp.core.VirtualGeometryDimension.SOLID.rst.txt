@@ -1,0 +1,6 @@
+SOLID
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: VirtualGeometryDimension.SOLID

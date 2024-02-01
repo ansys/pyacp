@@ -1,0 +1,6 @@
+UPTODATE
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: StatusType.UPTODATE

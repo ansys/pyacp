@@ -1,0 +1,6 @@
+element\_labels
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CutoffSelectionRuleElementalData.element_labels

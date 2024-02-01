@@ -1,0 +1,6 @@
+shear\_angle
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: AnalysisPlyElementalData.shear_angle

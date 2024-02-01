@@ -1,0 +1,52 @@
+﻿AnalysisPlyElementalData
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: AnalysisPlyElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      AnalysisPlyElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      AnalysisPlyElementalData.normal
+      AnalysisPlyElementalData.orientation
+      AnalysisPlyElementalData.reference_direction
+      AnalysisPlyElementalData.fiber_direction
+      AnalysisPlyElementalData.draped_fiber_direction
+      AnalysisPlyElementalData.transverse_direction
+      AnalysisPlyElementalData.draped_transverse_direction
+      AnalysisPlyElementalData.thickness
+      AnalysisPlyElementalData.relative_thickness_correction
+      AnalysisPlyElementalData.design_angle
+      AnalysisPlyElementalData.shear_angle
+      AnalysisPlyElementalData.draped_fiber_angle
+      AnalysisPlyElementalData.draped_transverse_angle
+      AnalysisPlyElementalData.area
+      AnalysisPlyElementalData.price
+      AnalysisPlyElementalData.volume
+      AnalysisPlyElementalData.mass
+      AnalysisPlyElementalData.offset
+      AnalysisPlyElementalData.material_1_direction
+      AnalysisPlyElementalData.cog
+      AnalysisPlyElementalData.element_labels
+   
+   

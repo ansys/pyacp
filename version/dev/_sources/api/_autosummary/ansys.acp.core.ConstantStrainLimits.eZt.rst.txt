@@ -1,0 +1,6 @@
+eZt
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantStrainLimits.eZt

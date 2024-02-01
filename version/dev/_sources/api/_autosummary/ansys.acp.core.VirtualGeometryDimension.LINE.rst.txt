@@ -1,0 +1,6 @@
+LINE
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: VirtualGeometryDimension.LINE

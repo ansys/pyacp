@@ -1,0 +1,6 @@
+draped\_transverse\_direction
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: AnalysisPlyElementalData.draped_transverse_direction

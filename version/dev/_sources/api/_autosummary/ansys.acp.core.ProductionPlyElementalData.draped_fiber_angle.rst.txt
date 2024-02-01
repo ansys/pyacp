@@ -1,0 +1,6 @@
+draped\_fiber\_angle
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ProductionPlyElementalData.draped_fiber_angle

@@ -1,0 +1,6 @@
+Yt
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableStressLimits.Yt

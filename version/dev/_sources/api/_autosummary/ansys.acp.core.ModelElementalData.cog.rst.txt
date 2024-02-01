@@ -1,0 +1,6 @@
+cog
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ModelElementalData.cog

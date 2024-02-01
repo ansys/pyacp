@@ -1,0 +1,6 @@
+UNDEFINED
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyType.UNDEFINED

@@ -1,0 +1,30 @@
+﻿Lamina
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Lamina
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Lamina.angle
+      Lamina.material
+   
+   

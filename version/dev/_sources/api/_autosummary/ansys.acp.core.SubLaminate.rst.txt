@@ -1,0 +1,47 @@
+﻿SubLaminate
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SubLaminate
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SubLaminate.clone
+      
+      
+      SubLaminate.delete
+      
+      
+      SubLaminate.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SubLaminate.area_price
+      SubLaminate.area_weight
+      SubLaminate.id
+      SubLaminate.locked
+      SubLaminate.materials
+      SubLaminate.name
+      SubLaminate.status
+      SubLaminate.symmetry
+      SubLaminate.thickness
+      SubLaminate.topdown
+   
+   

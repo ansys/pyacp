@@ -1,0 +1,6 @@
+HONEYCOMB\_CORE
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyType.HONEYCOMB_CORE

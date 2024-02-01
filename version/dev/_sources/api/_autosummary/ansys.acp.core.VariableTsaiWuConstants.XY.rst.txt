@@ -1,0 +1,6 @@
+XY
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableTsaiWuConstants.XY

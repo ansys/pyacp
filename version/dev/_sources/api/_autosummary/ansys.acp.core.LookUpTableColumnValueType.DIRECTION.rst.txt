@@ -1,0 +1,6 @@
+DIRECTION
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LookUpTableColumnValueType.DIRECTION

@@ -1,0 +1,24 @@
+﻿DrapingType
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: DrapingType
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      DrapingType.NO_DRAPING
+      DrapingType.INTERNAL_DRAPING
+      DrapingType.TABULAR_VALUES
+   
+   

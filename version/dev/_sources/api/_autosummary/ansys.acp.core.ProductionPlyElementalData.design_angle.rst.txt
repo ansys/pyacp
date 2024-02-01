@@ -1,0 +1,6 @@
+design\_angle
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ProductionPlyElementalData.design_angle

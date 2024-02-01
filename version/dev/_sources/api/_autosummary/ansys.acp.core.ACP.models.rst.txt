@@ -1,0 +1,6 @@
+models
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ACP.models

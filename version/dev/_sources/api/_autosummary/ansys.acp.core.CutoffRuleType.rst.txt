@@ -1,0 +1,23 @@
+﻿CutoffRuleType
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: CutoffRuleType
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CutoffRuleType.GEOMETRY
+      CutoffRuleType.TAPER
+   
+   

@@ -1,0 +1,24 @@
+﻿StatusType
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: StatusType
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      StatusType.UNKNOWN
+      StatusType.UPTODATE
+      StatusType.NOTUPTODATE
+   
+   

@@ -1,0 +1,6 @@
+G23
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantEngineeringConstants.G23

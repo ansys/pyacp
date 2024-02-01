@@ -1,0 +1,6 @@
+material\_1\_direction
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: AnalysisPlyElementalData.material_1_direction

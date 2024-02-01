@@ -1,0 +1,6 @@
+normal
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: BooleanSelectionRuleElementalData.normal

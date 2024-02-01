@@ -1,0 +1,6 @@
+ADD
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: BooleanOperationType.ADD

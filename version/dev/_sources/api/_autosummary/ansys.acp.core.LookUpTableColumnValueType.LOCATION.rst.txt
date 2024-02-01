@@ -1,0 +1,6 @@
+LOCATION
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LookUpTableColumnValueType.LOCATION

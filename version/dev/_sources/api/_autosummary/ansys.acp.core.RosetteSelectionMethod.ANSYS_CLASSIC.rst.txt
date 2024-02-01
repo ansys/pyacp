@@ -1,0 +1,6 @@
+ANSYS\_CLASSIC
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteSelectionMethod.ANSYS_CLASSIC

@@ -1,0 +1,6 @@
+p\_22\_neg
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantPuckConstants.p_22_neg

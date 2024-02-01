@@ -1,0 +1,6 @@
+CURRENCY
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DimensionType.CURRENCY

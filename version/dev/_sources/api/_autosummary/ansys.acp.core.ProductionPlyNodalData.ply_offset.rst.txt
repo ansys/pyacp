@@ -1,0 +1,6 @@
+ply\_offset
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ProductionPlyNodalData.ply_offset

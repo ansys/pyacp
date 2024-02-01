@@ -1,0 +1,24 @@
+﻿SymmetryType
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SymmetryType
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SymmetryType.NO_SYMMETRY
+      SymmetryType.EVEN_SYMMETRY
+      SymmetryType.ODD_SYMMETRY
+   
+   

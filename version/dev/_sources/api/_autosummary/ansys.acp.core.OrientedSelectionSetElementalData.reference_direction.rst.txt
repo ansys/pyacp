@@ -1,0 +1,6 @@
+reference\_direction
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: OrientedSelectionSetElementalData.reference_direction

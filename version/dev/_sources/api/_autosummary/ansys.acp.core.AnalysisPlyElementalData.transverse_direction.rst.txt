@@ -1,0 +1,6 @@
+transverse\_direction
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: AnalysisPlyElementalData.transverse_direction

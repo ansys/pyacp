@@ -1,0 +1,6 @@
+FROM\_GEOMETRY
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ThicknessType.FROM_GEOMETRY

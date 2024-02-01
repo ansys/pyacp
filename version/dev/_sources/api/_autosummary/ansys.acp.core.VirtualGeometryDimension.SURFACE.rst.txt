@@ -1,0 +1,6 @@
+SURFACE
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: VirtualGeometryDimension.SURFACE

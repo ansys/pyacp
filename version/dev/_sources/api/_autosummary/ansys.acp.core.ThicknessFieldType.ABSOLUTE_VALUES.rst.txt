@@ -1,0 +1,6 @@
+ABSOLUTE\_VALUES
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ThicknessFieldType.ABSOLUTE_VALUES

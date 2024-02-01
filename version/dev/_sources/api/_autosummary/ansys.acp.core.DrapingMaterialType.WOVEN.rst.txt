@@ -1,0 +1,6 @@
+WOVEN
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DrapingMaterialType.WOVEN

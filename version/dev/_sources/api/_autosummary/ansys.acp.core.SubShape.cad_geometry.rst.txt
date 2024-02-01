@@ -1,0 +1,6 @@
+cad\_geometry
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SubShape.cad_geometry

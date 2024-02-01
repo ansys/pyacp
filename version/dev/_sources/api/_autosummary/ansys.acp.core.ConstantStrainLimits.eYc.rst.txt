@@ -1,0 +1,6 @@
+eYc
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantStrainLimits.eYc

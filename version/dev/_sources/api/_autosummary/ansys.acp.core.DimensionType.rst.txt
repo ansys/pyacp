@@ -1,0 +1,28 @@
+﻿DimensionType
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: DimensionType
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      DimensionType.DIMENSIONLESS
+      DimensionType.LENGTH
+      DimensionType.MASS
+      DimensionType.FORCE
+      DimensionType.TIME
+      DimensionType.TEMPERATURE
+      DimensionType.CURRENCY
+   
+   

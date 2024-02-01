@@ -1,0 +1,6 @@
+ODD\_SYMMETRY
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SymmetryType.ODD_SYMMETRY

@@ -1,0 +1,6 @@
+ADHESIVE
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyType.ADHESIVE

@@ -1,0 +1,6 @@
+mass
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ModelElementalData.mass

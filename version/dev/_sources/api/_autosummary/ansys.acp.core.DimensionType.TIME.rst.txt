@@ -1,0 +1,6 @@
+TIME
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DimensionType.TIME

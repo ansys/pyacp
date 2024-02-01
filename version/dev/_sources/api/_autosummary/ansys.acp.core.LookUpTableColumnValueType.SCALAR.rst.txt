@@ -1,0 +1,6 @@
+SCALAR
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LookUpTableColumnValueType.SCALAR
