@@ -123,6 +123,7 @@ StubT = TypeVar("StubT")
 
 class StubStore(Generic[StubT]):
     """Stores a gRPC stub, and creates it on demand."""
+
     def __init__(self, create_stub_fun: Callable[[], StubT]) -> None:
         self._stub_store: StubT | None = None
         self._create_stub_fun = create_stub_fun
@@ -138,6 +139,7 @@ class StubStore(Generic[StubT]):
 
 class TreeObject(TreeObjectBase):
     """Base class for ACP objects which can be modified or deleted."""
+
     __slots__: Iterable[str] = ("_stub_store",)
     name: ReadWriteProperty[str, str] = grpc_data_property(
         "info.name", doc="The name of the object."
@@ -186,6 +188,7 @@ class TreeObject(TreeObjectBase):
 @mark_grpc_properties
 class ReadOnlyTreeObject(TreeObjectBase):
     """Base class for read-only ACP objects."""
+
     def __init__(self: ReadOnlyTreeObject) -> None:
         super().__init__()
         self._stub_store = StubStore(self._create_stub)
@@ -211,6 +214,7 @@ class ReadOnlyTreeObject(TreeObjectBase):
 @mark_grpc_properties
 class CreatableTreeObject(TreeObject):
     """Base class for ACP objects which can be created."""
+
     __slots__: Iterable[str] = tuple()
     CREATE_REQUEST_TYPE: type[CreateRequest]
 

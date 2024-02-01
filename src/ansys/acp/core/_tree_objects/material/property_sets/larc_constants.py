@@ -20,6 +20,7 @@ class _LaRCConstantsMixin:
 @mark_grpc_properties
 class ConstantLaRCConstants(_LaRCConstantsMixin, _ConstantPropertySet):
     """Constant LaRC failure criterion properties."""
+
     _GRPC_PROPERTIES = tuple()
 
     def __init__(
@@ -54,6 +55,7 @@ class ConstantLaRCConstants(_LaRCConstantsMixin, _ConstantPropertySet):
 @mark_grpc_properties
 class VariableLaRCConstants(_LaRCConstantsMixin, _VariablePropertySet):
     """Variable LaRC failure criterion properties."""
+
     _GRPC_PROPERTIES = tuple()
 
     fracture_angle_under_compression = variable_material_grpc_data_property(

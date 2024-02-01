@@ -110,6 +110,7 @@ class Mapping(Generic[ValueT]):
 
 class MutableMapping(Mapping[CreatableValueT]):
     """Mutable mapping interface for collections of TreeObjects."""
+
     def __init__(
         self,
         *,
@@ -167,6 +168,7 @@ def get_read_only_collection_property(
     object_class: type[ValueT], stub_class: type[ReadableResourceStub], doc: str | None = None
 ) -> ReadOnlyProperty[Mapping[ValueT]]:
     """Define a read-only mapping of child tree objects."""
+
     def collection_property(self: ParentT) -> Mapping[ValueT]:
         return Mapping(
             channel=self._channel,
@@ -190,6 +192,7 @@ def define_create_method(
     module_name: str,
 ) -> Callable[Concatenate[ParentT, P], CreatableValueT]:
     """Define a create method for child tree objects."""
+
     def inner(self: ParentT, /, *args: P.args, **kwargs: P.kwargs) -> CreatableValueT:
         obj = object_class(*args, **kwargs)
         obj.store(parent=self)
@@ -211,6 +214,7 @@ def define_mutable_mapping(
     doc: str | None = None,
 ) -> ReadOnlyProperty[MutableMapping[CreatableValueT]]:
     """Define a mutable mapping of child tree objects."""
+
     def collection_property(self: ParentT) -> MutableMapping[CreatableValueT]:
         return MutableMapping(
             channel=self._channel,

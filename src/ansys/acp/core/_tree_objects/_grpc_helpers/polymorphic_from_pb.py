@@ -12,6 +12,7 @@ __all__ = ["CreatableFromResourcePath", "tree_object_from_resource_path"]
 
 class CreatableFromResourcePath(Protocol):
     """Interface for objects that can be created from a resource path."""
+
     @classmethod
     def _from_resource_path(cls, resource_path: ResourcePath, channel: grpc.Channel) -> Self:
         ...

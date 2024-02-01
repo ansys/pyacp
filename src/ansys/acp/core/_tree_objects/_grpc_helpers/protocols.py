@@ -22,6 +22,7 @@ class CreateRequest(Protocol):
 
     The CreateRequest message is used to create a new object in a collection.
     """
+
     def __init__(self, collection_path: CollectionPath, name: str, properties: Message):
         ...
 
@@ -31,6 +32,7 @@ class ObjectInfo(Protocol):
 
     The ObjectInfo message contains the full information about an object.
     """
+
     @property
     def info(self) -> BasicInfo:
         """Provide basic information about the object."""
@@ -47,6 +49,7 @@ class ListReply(Protocol):
 
     The ListReply message contains a list of objects in a collection.
     """
+
     @property
     def objects(self) -> list[ObjectInfo]:
         """List of objects in the collection."""
@@ -91,6 +94,7 @@ class EditableAndReadableResourceStub(EditableResourceStub, ReadableResourceStub
 
     This interface defines the edit and read methods for ACP Resource service stubs.
     """
+
     ...
 
 
@@ -99,6 +103,7 @@ class CreatableResourceStub(Protocol):
 
     This interface defines the create methods for ACP Resource service stubs.
     """
+
     def Create(self, request: CreateRequest) -> ObjectInfo:
         """RPC method for creating an object."""
         ...
@@ -111,11 +116,13 @@ class CreatableEditableAndReadableResourceStub(
 
     This interface defines the create, edit, and read methods for ACP Resource service stubs.
     """
+
     ...
 
 
 class GrpcObjectBase(Protocol):
     """Interface definition for objects which are backed by a gRPC API."""
+
     __slots__: Iterable[str] = tuple()
     _GRPC_PROPERTIES: tuple[str, ...]
 
@@ -140,6 +147,7 @@ class GrpcObjectBase(Protocol):
 
 class Readable(Protocol):
     """Interface definition for readable objects."""
+
     def _get(self) -> None:
         ...
 
@@ -159,6 +167,7 @@ class Readable(Protocol):
 
 class Editable(Readable, Protocol):
     """Interface definition for editable objects."""
+
     def _put(self) -> None:
         ...
 

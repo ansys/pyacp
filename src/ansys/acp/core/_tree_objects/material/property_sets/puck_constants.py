@@ -22,6 +22,7 @@ __all__ = ["ConstantPuckConstants", "VariablePuckConstants", "PuckMaterialType"]
 
 class PuckMaterialType(str, Enum):
     """Possible Puck material types."""
+
     IGNORED = "ignored"
     CARBON = "carbon"
     GLASS = "glass"
@@ -35,6 +36,7 @@ class _PuckConstantsMixin:
 @mark_grpc_properties
 class ConstantPuckConstants(_PuckConstantsMixin, _ConstantPropertySet):
     """Constant Puck constants material property set."""
+
     _GRPC_PROPERTIES = tuple()
 
     def __init__(
@@ -99,6 +101,7 @@ class ConstantPuckConstants(_PuckConstantsMixin, _ConstantPropertySet):
 @mark_grpc_properties
 class VariablePuckConstants(_PuckConstantsMixin, _VariablePropertySet):
     """Variable Puck constants material property set."""
+
     _GRPC_PROPERTIES = tuple()
 
     p_21_pos = variable_material_grpc_data_property("p_21_pos")

@@ -287,6 +287,7 @@ def define_edge_property_list(
     attribute_name: str, value_type: type[GenericEdgePropertyType], doc: str | None = None
 ) -> Any:
     """Define a list of linked tree objects with link properties."""
+
     def getter(self: CreatableTreeObject) -> EdgePropertyList[GenericEdgePropertyType]:
         return EdgePropertyList(
             parent_object=self,

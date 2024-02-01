@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 import dataclasses
-from typing import Any
 
 from ansys.api.acp.v0 import modeling_group_pb2, modeling_group_pb2_grpc, modeling_ply_pb2_grpc
 
@@ -44,6 +43,7 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
     name
         Name of the modeling group.
     """
+
     __slots__: Iterable[str] = tuple()
 
     _COLLECTION_LABEL = "modeling_groups"

@@ -9,6 +9,7 @@ from pyvista.core.celltype import CellType as pv_CellType
 
 class ElementType(IntEnum):
     """Enumeration of ACP element types."""
+
     VERTEX_ELEMENT = 100
     LINK2N3D = 101
     BEAM2N3D = 111

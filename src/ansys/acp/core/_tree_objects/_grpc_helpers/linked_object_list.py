@@ -22,6 +22,7 @@ __all__ = ["LinkedObjectList", "define_linked_object_list"]
 
 class LinkedObjectList(MutableSequence[ValueT]):
     """List of linked tree objects."""
+
     def __init__(
         self,
         *,
@@ -221,6 +222,7 @@ def define_linked_object_list(
     attribute_name: str, object_class: type[ChildT], doc: str | None = None
 ) -> Any:
     """Define a list of linked tree objects."""
+
     def getter(self: ValueT) -> LinkedObjectList[ChildT]:
         return LinkedObjectList(
             parent_object=self,
@@ -238,6 +240,7 @@ def define_polymorphic_linked_object_list(
     attribute_name: str, allowed_types: tuple[Any, ...]
 ) -> Any:
     """Define a list of linked tree objects with polymorphic types."""
+
     def getter(self: ValueT) -> LinkedObjectList[Any]:
         return LinkedObjectList(
             parent_object=self,

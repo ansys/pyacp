@@ -81,7 +81,7 @@ from .material import (
     VariableWovenCharacterization,
     VariableWovenStressLimits,
 )
-from .model import Model, ModelElementalData, ModelNodalData, FeFormat, IgnorableEntity
+from .model import FeFormat, IgnorableEntity, Model, ModelElementalData, ModelNodalData
 from .modeling_group import ModelingGroup
 from .modeling_ply import ModelingPly, ModelingPlyElementalData, ModelingPlyNodalData, TaperEdge
 from .oriented_selection_set import (

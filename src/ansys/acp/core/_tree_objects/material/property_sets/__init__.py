@@ -2,7 +2,7 @@ from .density import ConstantDensity, VariableDensity
 from .engineering_constants import ConstantEngineeringConstants, VariableEngineeringConstants
 from .fabric_fiber_angle import ConstantFabricFiberAngle, VariableFabricFiberAngle
 from .larc_constants import ConstantLaRCConstants, VariableLaRCConstants
-from .puck_constants import ConstantPuckConstants, VariablePuckConstants, PuckMaterialType
+from .puck_constants import ConstantPuckConstants, PuckMaterialType, VariablePuckConstants
 from .strain_limits import ConstantStrainLimits, VariableStrainLimits
 from .stress_limits import ConstantStressLimits, VariableStressLimits
 from .tsai_wu_constants import ConstantTsaiWuConstants, VariableTsaiWuConstants

@@ -24,6 +24,7 @@ class ConstantFabricFiberAngle(_FabricFiberAngleMixin, _ConstantPropertySet):
     Defines the rotation angle between the material coordinate system and the fiber direction.
     Only used for shear dependent material properties which are provided by Material Designer.
     """
+
     _GRPC_PROPERTIES = tuple()
 
     def __init__(
@@ -48,6 +49,7 @@ class VariableFabricFiberAngle(_FabricFiberAngleMixin, _VariablePropertySet):
     Defines the rotation angle between the material coordinate system and the fiber direction.
     Only used for shear dependent material properties which are provided by Material Designer.
     """
+
     _GRPC_PROPERTIES = tuple()
 
     fabric_fiber_angle = variable_material_grpc_data_property("fabric_fiber_angle")

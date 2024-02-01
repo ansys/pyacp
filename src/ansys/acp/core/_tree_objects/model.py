@@ -87,7 +87,14 @@ from .tube_selection_rule import TubeSelectionRule
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
 from .virtual_geometry import VirtualGeometry
 
-__all__ = ["MeshData", "Model", "ModelElementalData", "ModelNodalData", "FeFormat", "IgnorableEntity"]
+__all__ = [
+    "MeshData",
+    "Model",
+    "ModelElementalData",
+    "ModelNodalData",
+    "FeFormat",
+    "IgnorableEntity",
+]
 
 FeFormat, fe_format_to_pb, _ = wrap_to_string_enum(
     "FeFormat",
