@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 import enum
-from typing import Optional, Protocol
+from typing import Protocol
 
 import grpc
 
@@ -15,12 +17,17 @@ except ImportError:
         pass
 
 
+__all__ = ["LaunchMode"]
+
+
 class ServerKey(StrEnum):  # type: ignore
     MAIN = "main"
     FILE_TRANSFER = "file_transfer"
 
 
 class LaunchMode(StrEnum):  # type: ignore
+    """Available launch modes for ACP."""
+
     DIRECT = "direct"
     DOCKER_COMPOSE = "docker_compose"
 
@@ -32,13 +39,21 @@ class ServerProtocol(Protocol):
     def channels(self) -> dict[str, grpc.Channel]:
         ...
 
+    def check(self, timeout: float | None = None) -> bool:
+        ...
+
     def wait(self, timeout: float) -> None:
         ...
 
-    # def restart(self) -> None:
-    #     ...
 
+class ControllableServerProtocol(ServerProtocol, Protocol):
+    """Interface definition for ACP servers which can be remotely started / stopped."""
 
-class ControllableServerProtocol(ServerProtocol):
-    def restart(self, *, stop_timeout: Optional[float] = None) -> None:
+    def start(self) -> None:
+        ...
+
+    def stop(self, *, timeout: float | None = None) -> None:
+        ...
+
+    def restart(self, *, stop_timeout: float | None = None) -> None:
         ...

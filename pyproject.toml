@@ -124,6 +124,7 @@ src_paths = ["doc", "src", "tests"]
 
 [tool.pydocstyle]
 convention = "numpy"
+add-ignore = "D201,D202,D203,D204" # blank line rules before / after docstring
 
 [tool.codespell]
 skip = '*.cdb,*.dat'

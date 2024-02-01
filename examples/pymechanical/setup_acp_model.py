@@ -11,14 +11,12 @@ def setup_and_update_acp_model(output_path, mesh_path, is_local=False):
     definition file to output_path.
     is_local specifies if ACP runs locally (True) or in a docker container.
     """
-    pyacp_server = pyacp.launch_acp()
-    pyacp_server.wait(timeout=30)
-    pyacp_client = pyacp.Client(pyacp_server)
+    acp = pyacp.launch_acp()
 
     if not is_local:
-        mesh_path = pyacp_client.upload_file(mesh_path)
+        mesh_path = acp.upload_file(mesh_path)
 
-    model = pyacp_client.import_model(path=mesh_path, format="ansys:h5")
+    model = acp.import_model(path=mesh_path, format="ansys:h5")
 
     mat = model.create_material(name="mat")
 

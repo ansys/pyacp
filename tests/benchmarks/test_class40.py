@@ -8,10 +8,9 @@ from ..conftest import SOURCE_ROOT_DIR
 @pytest.mark.benchmark(
     min_rounds=1,
 )
-def test_class40(benchmark, grpc_server):
+def test_class40(benchmark, acp_instance):
     """Benchmark for creating a composite lay-up for the Class40 model."""
-    pyacp_client = pyacp.Client(grpc_server)
-    benchmark(create_class40, pyacp_client)
+    benchmark(create_class40, acp_instance)
 
 
 def create_class40(pyacp_client):

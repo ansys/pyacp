@@ -22,24 +22,25 @@ import tempfile
 
 import pyvista
 
+# %%
+# Import pyACP dependencies
 from ansys.acp.core import (
     ACPWorkflow,
-    Client,
+    ExampleKeys,
     get_composite_post_processing_files,
     get_dpf_unit_system,
+    get_example_file,
     launch_acp,
     print_model,
 )
 from ansys.acp.core._plotter import get_directions_on_mesh_plotter
 
-# %%
-# Import pyACP dependencies
+# TODO: Import from top-level when available
 from ansys.acp.core._tree_objects.enums import PlyType
 from ansys.acp.core._tree_objects.material.property_sets import (
     ConstantEngineeringConstants,
     ConstantStrainLimits,
 )
-from ansys.acp.core._utils.example_helpers import ExampleKeys, get_example_file
 
 # Note: It is important to import mapdl before dpf, otherwise the plot defaults are messed up
 # https://github.com/ansys/pydpf-core/issues/1363
@@ -53,9 +54,7 @@ input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR)
 
 # %%
 # Launch the PyACP server and connect to it.
-pyacp_server = launch_acp()
-pyacp_server.wait(timeout=30)
-pyacp_client = Client(pyacp_server)
+acp = launch_acp()
 
 # %%
 # Define the input file and instantiate an ACPWorkflow
@@ -63,7 +62,7 @@ pyacp_client = Client(pyacp_server)
 # It automatically creates a model based on the input file.
 
 workflow = ACPWorkflow(
-    acp_client=pyacp_client,
+    acp=acp,
     cdb_file_path=input_file,
     local_working_directory=WORKING_DIR,
 )
@@ -169,6 +168,9 @@ modeling_ply.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot()
 print_model(model)
 
 # %%
+# Solve the model with MAPDL
+# --------------------------
+#
 # Launch the MAPDL instance
 mapdl = launch_mapdl()
 mapdl.clear()
@@ -235,5 +237,6 @@ output_all_elements = composite_model.evaluate_failure_criteria(cfc)
 irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
 irf_field.plot()
 
-# There is a failure on exit when using a temp directory:
-# See https://github.com/ansys/pydpf-core/issues/1373
+# %%
+# Release composite model to close open streams to result file.
+composite_model = None  # type: ignore

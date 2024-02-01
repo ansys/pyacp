@@ -28,6 +28,10 @@ class Node:
         return ret
 
 
+def _replace_underscores_and_capitalize(input_string: str) -> str:
+    return " ".join(part.capitalize() for part in input_string.split("_"))
+
+
 def _add_tree_part(
     tree: Node,
     container_name: str,
@@ -36,7 +40,7 @@ def _add_tree_part(
     items = list(getattr(model, container_name).items())
     if len(items) == 0:
         return
-    container = Node(container_name)
+    container = Node(_replace_underscores_and_capitalize(container_name))
     tree.children.append(container)
     for entity_name, entity in items:
         group_node = Node(entity_name)
@@ -68,7 +72,7 @@ def get_model_tree(model: Model) -> Node:
     """
     model_node = Node("Model")
 
-    material_data = Node("material_data")
+    material_data = Node("Material Data")
     model_node.children.append(material_data)
     _add_tree_part(material_data, "materials", model)
     _add_tree_part(material_data, "fabrics", model)
@@ -78,19 +82,19 @@ def get_model_tree(model: Model) -> Node:
     _add_tree_part(model_node, "element_sets", model)
     _add_tree_part(model_node, "edge_sets", model)
 
-    geometry = Node("geometry")
+    geometry = Node("Geometry")
     model_node.children.append(geometry)
     _add_tree_part(geometry, "cad_geometries", model)
     _add_tree_part(geometry, "virtual_geometries", model)
 
     _add_tree_part(model_node, "rosettes", model)
 
-    lookup_table = Node("lookup_table")
+    lookup_table = Node("Lookup Table")
     model_node.children.append(lookup_table)
     _add_tree_part(lookup_table, "lookup_tables_1d", model)
     _add_tree_part(lookup_table, "lookup_tables_3d", model)
 
-    selection_rules = Node("selection_rules")
+    selection_rules = Node("Selection Rules")
     model_node.children.append(selection_rules)
     _add_tree_part(selection_rules, "parallel_selection_rules", model)
     _add_tree_part(selection_rules, "cylindrical_selection_rules", model)
@@ -103,7 +107,7 @@ def get_model_tree(model: Model) -> Node:
 
     _add_tree_part(model_node, "oriented_selection_sets", model)
 
-    modeling_groups = Node("modeling Groups")
+    modeling_groups = Node("Modeling Groups")
     model_node.children.append(modeling_groups)
     for modeling_group_name, modeling_group in model.modeling_groups.items():
         group_node = Node(modeling_group_name)

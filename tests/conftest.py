@@ -4,27 +4,22 @@ from contextlib import contextmanager
 import logging
 import os
 import pathlib
+import shutil
 import tempfile
-from typing import cast
 
 import docker
 from hypothesis import settings
 import pytest
 
-from ansys.acp.core import Client, launch_acp
-from ansys.acp.core._server import (
-    ControllableServerProtocol,
-    DirectLaunchConfig,
-    DockerComposeLaunchConfig,
-    LaunchMode,
-)
+from ansys.acp.core import ACP, launch_acp
+from ansys.acp.core._server import DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode
 from ansys.acp.core._typing_helper import PATH
 from ansys.tools.local_product_launcher.config import set_config_for
 
 __all__ = [
     "pytest_addoption",
     "model_data_dir",
-    "grpc_server",
+    "acp_instance",
     "check_grpc_server_before_run",
     "clear_models_before_run",
     "load_model_from_tempfile",
@@ -165,51 +160,54 @@ def model_data_dir() -> pathlib.Path:
 
 
 @pytest.fixture(scope="session")
-def grpc_server(_configure_launcher) -> Generator[ControllableServerProtocol, None, None]:
+def acp_instance(_configure_launcher) -> Generator[ACP, None, None]:
     """Provide the currently active gRPC server."""
-    server = cast(ControllableServerProtocol, launch_acp())
-    server.wait(timeout=SERVER_STARTUP_TIMEOUT)
-    yield server
+    yield launch_acp(timeout=SERVER_STARTUP_TIMEOUT)
 
 
 @pytest.fixture(autouse=True)
 def check_grpc_server_before_run(
-    grpc_server: ControllableServerProtocol,
+    acp_instance: ACP,
 ) -> Generator[None, None, None]:
     """Check if the server still responds before running each test, otherwise restart it."""
     try:
-        grpc_server.wait(timeout=1.0)
+        acp_instance.wait(timeout=1.0)
     except RuntimeError:
-        grpc_server.restart(stop_timeout=SERVER_STOP_TIMEOUT)
-        grpc_server.wait(timeout=SERVER_STARTUP_TIMEOUT)
+        acp_instance.restart(stop_timeout=SERVER_STOP_TIMEOUT)
+        acp_instance.wait(timeout=SERVER_STARTUP_TIMEOUT)
     yield
 
 
 @pytest.fixture(autouse=True)
-def clear_models_before_run(grpc_server):
+def clear_models_before_run(acp_instance):
     """Delete all existing models before the test is executed."""
-    Client(server=grpc_server).clear()
+    acp_instance.clear()
 
 
 @pytest.fixture
-def load_model_from_tempfile(model_data_dir, grpc_server):
+def load_model_from_tempfile(model_data_dir, acp_instance):
     @contextmanager
     def inner(relative_file_path="minimal_complete_model.acph5", format="acp:h5"):
         with tempfile.TemporaryDirectory() as tmp_dir:
             source_path = model_data_dir / relative_file_path
-            client = Client(server=grpc_server)
-            file_path = client.upload_file(source_path)
-            yield client.import_model(path=file_path, format=format)
+
+            if acp_instance.is_remote:
+                file_path = acp_instance.upload_file(source_path)
+            else:
+                # Copy the file to a temporary directory, so the original file is never
+                # modified. This can happen for example when a geometry reload happens.
+                file_path = shutil.copy(source_path, tmp_dir)
+
+            yield acp_instance.import_model(path=file_path, format=format)
 
     return inner
 
 
 @pytest.fixture
-def load_cad_geometry(model_data_dir, grpc_server):
+def load_cad_geometry(model_data_dir, acp_instance):
     @contextmanager
     def inner(model, relative_file_path="square_and_solid.stp"):
-        client = Client(server=grpc_server)
-        cad_file_path = client.upload_file(model_data_dir / relative_file_path)
+        cad_file_path = acp_instance.upload_file(model_data_dir / relative_file_path)
         yield model.create_cad_geometry(
             external_path=cad_file_path,
         )

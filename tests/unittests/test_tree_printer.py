@@ -1,18 +1,16 @@
 import os
 
-from ansys.acp.core import Client, get_model_tree
+from ansys.acp.core import get_model_tree
 
 
-def test_printed_model(grpc_server, model_data_dir):
+def test_printed_model(acp_instance, model_data_dir):
     """
     Test that model tree looks correct.
     """
-    client = Client(server=grpc_server)
-
     input_file_path = model_data_dir / "minimal_complete_model.acph5"
-    remote_path = client.upload_file(input_file_path)
+    remote_path = acp_instance.upload_file(input_file_path)
 
-    model = client.import_model(name="minimal_complete", path=remote_path)
+    model = acp_instance.import_model(name="minimal_complete", path=remote_path)
 
     model.update()
     tree = get_model_tree(model)
@@ -21,23 +19,23 @@ def test_printed_model(grpc_server, model_data_dir):
         os.linesep + str(tree)
         == """
 Model
-    material_data
-        materials
+    Material Data
+        Materials
             Structural Steel
-        fabrics
+        Fabrics
             Fabric.1
-    element_sets
+    Element Sets
         All_Elements
-    edge_sets
+    Edge Sets
         ns_edge
-    geometry
-    rosettes
+    Geometry
+    Rosettes
         Global Coordinate System
-    lookup_table
-    selection_rules
-    oriented_selection_sets
+    Lookup Table
+    Selection Rules
+    Oriented Selection Sets
         OrientedSelectionSet.1
-    modeling Groups
+    Modeling Groups
         ModelingGroup.1
             ModelingPly.1
                 ProductionPly
@@ -68,53 +66,53 @@ Model
         os.linesep + str(tree)
         == """
 Model
-    material_data
-        materials
+    Material Data
+        Materials
             Structural Steel
-        fabrics
+        Fabrics
             Fabric.1
-        stackups
+        Stackups
             Stackup
-        sublaminates
+        Sublaminates
             SubLaminate
-    element_sets
+    Element Sets
         All_Elements
-    edge_sets
+    Edge Sets
         ns_edge
         EdgeSet
-    geometry
-        cad_geometries
+    Geometry
+        Cad Geometries
             CADGeometry
-        virtual_geometries
+        Virtual Geometries
             VirtualGeometry
-    rosettes
+    Rosettes
         Global Coordinate System
-    lookup_table
-        lookup_tables_1d
+    Lookup Table
+        Lookup Tables 1d
             LookUpTable1D
-        lookup_tables_3d
+        Lookup Tables 3d
             LookUpTable3D
-    selection_rules
-        parallel_selection_rules
+    Selection Rules
+        Parallel Selection Rules
             ParallelSelectionrule
-        cylindrical_selection_rules
+        Cylindrical Selection Rules
             CylindricalSelectionrule
-        tube_selection_rules
+        Tube Selection Rules
             TubeSelectionrule
-        cutoff_selection_rules
+        Cutoff Selection Rules
             CutoffSelectionrule
-        geometrical_selection_rules
+        Geometrical Selection Rules
             GeometricalSelectionrule
-        boolean_selection_rules
+        Boolean Selection Rules
             BooleanSelectionrule
-    oriented_selection_sets
+    Oriented Selection Sets
         OrientedSelectionSet.1
-    modeling Groups
+    Modeling Groups
         ModelingGroup.1
             ModelingPly.1
                 ProductionPly
                     P1L1__ModelingPly.1
-    sensors
+    Sensors
         Sensor
 """.replace(
             "\n", os.linesep

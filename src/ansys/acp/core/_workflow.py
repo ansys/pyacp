@@ -1,12 +1,19 @@
 import pathlib
 import shutil
 import tempfile
-from typing import Any, Callable, Optional, Protocol
+import typing
+from typing import Callable, Optional, Protocol
 
 from . import UnitSystemType
-from ._client import Client
+from ._server.acp_instance import ACP
+from ._server.common import ServerProtocol
 from ._tree_objects import Model
 from ._typing_helper import PATH
+
+# Avoid dependencies on pydpf-composites and dpf-core if it is not used
+if typing.TYPE_CHECKING:
+    from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles
+    from ansys.dpf.core import UnitSystem
 
 __all__ = ["ACPWorkflow", "get_composite_post_processing_files", "get_dpf_unit_system"]
 
@@ -52,6 +59,11 @@ def _copy_file_workdir(path: pathlib.Path, working_directory: pathlib.Path) -> p
 
 
 class _LocalFileTransferStrategy:
+    """File transfer strategy for local workflows.
+
+    Save output files to the local working directory and do nothing for input files.
+    """
+
     def __init__(self, local_working_directory: _LocalWorkingDir):
         self._local_working_directory = local_working_directory
 
@@ -70,32 +82,38 @@ class _LocalFileTransferStrategy:
 
 
 class _RemoteFileTransferStrategy:
-    def __init__(self, local_working_directory: _LocalWorkingDir, acp_client: Client):
+    """File transfer strategy for remote workflows.
+
+    Download output files from the server to the local working directory and upload
+    input files to the server.
+    """
+
+    def __init__(self, local_working_directory: _LocalWorkingDir, acp: ACP[ServerProtocol]):
         self._local_working_directory = local_working_directory
-        self._acp_client = acp_client
+        self._acp_instance = acp
 
     def get_file(
         self, get_file_callable: Callable[[pathlib.Path], None], filename: str
     ) -> pathlib.Path:
         get_file_callable(pathlib.Path(filename))
         local_path = self._local_working_directory.path / filename
-        self._acp_client.download_file(remote_filename=filename, local_path=str(local_path))
+        self._acp_instance.download_file(remote_filename=filename, local_path=str(local_path))
         return local_path
 
     def copy_input_file_to_local_workdir(self, path: pathlib.Path) -> pathlib.Path:
         return _copy_file_workdir(path=path, working_directory=self._local_working_directory.path)
 
     def upload_input_file_to_server(self, path: pathlib.Path) -> pathlib.PurePath:
-        return self._acp_client.upload_file(local_path=path)
+        return self._acp_instance.upload_file(local_path=path)
 
 
 def _get_file_transfer_strategy(
-    acp_client: Client, local_working_dir: _LocalWorkingDir
+    acp: ACP[ServerProtocol], local_working_dir: _LocalWorkingDir
 ) -> _FileStrategy:
-    if acp_client.is_remote:
+    if acp.is_remote:
         return _RemoteFileTransferStrategy(
             local_working_directory=local_working_dir,
-            acp_client=acp_client,
+            acp=acp,
         )
     else:
         return _LocalFileTransferStrategy(
@@ -112,7 +130,7 @@ class ACPWorkflow:
 
     Parameters
     ----------
-    acp_client
+    acp
         The ACP Client
     local_working_directory:
         The local working directory. If None, a temporary directory will be created.
@@ -125,30 +143,32 @@ class ACPWorkflow:
     def __init__(
         self,
         *,
-        acp_client: Client,
+        acp: ACP[ServerProtocol],
         local_working_directory: Optional[pathlib.Path] = None,
         cdb_file_path: Optional[PATH] = None,
-        h5_file_path: Optional[PATH] = None,
+        acph5_file_path: Optional[PATH] = None,
     ):
-        self._acp_client = acp_client
+        self._acp_instance = acp
         self._local_working_dir = _LocalWorkingDir(local_working_directory)
-        self._file_strategy = _get_file_transfer_strategy(
-            acp_client=self._acp_client,
+        self._file_transfer_strategy = _get_file_transfer_strategy(
+            acp=self._acp_instance,
             local_working_dir=self._local_working_dir,
         )
 
         if cdb_file_path is not None:
             uploaded_file = self._add_input_file(path=pathlib.Path(cdb_file_path))
-            if h5_file_path is None:
-                self._model = self._acp_client.import_model(path=uploaded_file, format="ansys:cdb")
+            if acph5_file_path is None:
+                self._model = self._acp_instance.import_model(
+                    path=uploaded_file, format="ansys:cdb"
+                )
 
-        if h5_file_path is not None:
-            uploaded_file = self._add_input_file(path=pathlib.Path(h5_file_path))
-            self._model = self._acp_client.import_model(path=uploaded_file)
+        if acph5_file_path is not None:
+            uploaded_file = self._add_input_file(path=pathlib.Path(acph5_file_path))
+            self._model = self._acp_instance.import_model(path=uploaded_file)
 
     @property
     def model(self) -> Model:
-        """Get the Model."""
+        """Get the ACP Model."""
         return self._model
 
     @property
@@ -157,35 +177,47 @@ class ACPWorkflow:
         return self._local_working_dir
 
     def get_local_cdb_file(self) -> pathlib.Path:
-        """Copy the cdb file to the local working directory and return its path."""
-        return self._file_strategy.get_file(
+        """Get the cdb file on the local machine.
+
+        Write the analysis model including the layup definition in cdb format,
+        copy it to the local working directory and return its path."""
+        return self._file_transfer_strategy.get_file(
             self._model.save_analysis_model, self._model.name + ".cdb"
         )
 
     def get_local_materials_file(self) -> pathlib.Path:
-        """Copy the materials file to the local working directory and return its path."""
-        return self._file_strategy.get_file(self._model.export_materials, "materials.xml")
+        """Get the materials.xml file on the local machine.
+
+        Write the materials.xml file, copy it to the local working directory and return its path."""
+        return self._file_transfer_strategy.get_file(self._model.export_materials, "materials.xml")
 
     def get_local_composite_definitions_file(self) -> pathlib.Path:
-        """Copy the composite definitions file to the local working directory and return its path."""
-        return self._file_strategy.get_file(
+        """Get the composite definitions file on the local machine.
+
+        Write the composite definitions file, copy it
+         to the local working directory and return its path."""
+        return self._file_transfer_strategy.get_file(
             self._model.export_shell_composite_definitions, "ACPCompositeDefinitions.h5"
         )
 
     def get_local_acp_h5_file(self) -> pathlib.Path:
-        """Copy the acph5 file to the local working directory and return its path."""
-        return self._file_strategy.get_file(self._model.save, self._model.name + ".acph5")
+        """Get the ACP Project file (in acph5 format) on the local machine.
+
+        Save the acp model to an acph5 file, copy it
+         to the local working directory and return its path."""
+        return self._file_transfer_strategy.get_file(self._model.save, self._model.name + ".acph5")
 
     def _add_input_file(self, path: pathlib.Path) -> pathlib.PurePath:
-        self._file_strategy.copy_input_file_to_local_workdir(path=path)
-        return self._file_strategy.upload_input_file_to_server(path=path)
+        self._file_transfer_strategy.copy_input_file_to_local_workdir(path=path)
+        return self._file_transfer_strategy.upload_input_file_to_server(path=path)
 
 
-# Todo: How should we handle the dependency on pydpf-composites?
 def get_composite_post_processing_files(
     acp_workflow: ACPWorkflow, local_rst_file_path: PATH
-) -> Any:
+) -> "ContinuousFiberCompositesFiles":
     """Get the files object needed for pydpf-composites from the workflow and the rst path.
+
+    Only supports the shell workflow.
 
     Parameters
     ----------
@@ -196,10 +228,16 @@ def get_composite_post_processing_files(
     """
 
     # Only import here to avoid dependency on ansys.dpf.composites if it is not used
-    from ansys.dpf.composites.data_sources import (
-        CompositeDefinitionFiles,
-        ContinuousFiberCompositesFiles,
-    )
+    try:
+        from ansys.dpf.composites.data_sources import (
+            CompositeDefinitionFiles,
+            ContinuousFiberCompositesFiles,
+        )
+    except ImportError as e:
+        raise ImportError(
+            "The composite post processing files can only be retrieved if the "
+            "ansys-dpf-composites package is installed."
+        ) from e
 
     composite_files = ContinuousFiberCompositesFiles(
         rst=local_rst_file_path,
@@ -213,15 +251,21 @@ def get_composite_post_processing_files(
     return composite_files
 
 
-def get_dpf_unit_system(unit_system: UnitSystemType) -> Any:
-    """Converts pyACP unit system to DPF unit system.
+def get_dpf_unit_system(unit_system: UnitSystemType) -> "UnitSystem":
+    """Convert pyACP unit system to DPF unit system.
 
     Parameters
     ----------
     unit_system
         The pyACP unit system.
     """
-    from ansys.dpf.core import unit_systems
+    try:
+        from ansys.dpf.core import unit_systems
+    except ImportError as e:
+        raise ImportError(
+            "The pyACP unit system can only be converted to a DPF unit system if the "
+            "ansys-dpf-core package is installed."
+        ) from e
 
     unit_systems_map = {
         UnitSystemType.UNDEFINED: unit_systems.undefined,
