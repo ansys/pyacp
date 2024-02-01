@@ -30,6 +30,11 @@ from .enums import status_type_from_pb
 from .lookup_table_1d_column import LookUpTable1DColumn
 from .object_registry import register
 
+# Workaround: these imports are needed to make sphinx_autodoc_typehints understand
+# the inherited members of the Elemental- and NodalData classes.
+import numpy as np  # noqa: F401 isort:skip
+from ._mesh_data import ScalarData  # noqa: F401 isort:skip
+
 __all__ = [
     "VariableOffsetSelectionRule",
     "VariableOffsetSelectionRuleElementalData",
