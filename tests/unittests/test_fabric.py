@@ -1,10 +1,6 @@
 import pytest
 
-from ansys.acp.core._tree_objects.enums import (
-    CutoffMaterialType,
-    DrapingMaterialType,
-    DropoffMaterialType,
-)
+from ansys.acp.core import CutoffMaterialType, DrapingMaterialType, DropoffMaterialType
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 

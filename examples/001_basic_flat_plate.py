@@ -26,19 +26,15 @@ import pyvista
 # Import pyACP dependencies
 from ansys.acp.core import (
     ACPWorkflow,
+    ConstantEngineeringConstants,
+    ConstantStrainLimits,
     ExampleKeys,
+    PlyType,
     get_composite_post_processing_files,
     get_dpf_unit_system,
     get_example_file,
     launch_acp,
     print_model,
-)
-
-# TODO: Import from top-level when available
-from ansys.acp.core._tree_objects.enums import PlyType
-from ansys.acp.core._tree_objects.material.property_sets import (
-    ConstantEngineeringConstants,
-    ConstantStrainLimits,
 )
 
 # Note: It is important to import mapdl before dpf, otherwise the plot defaults are messed up

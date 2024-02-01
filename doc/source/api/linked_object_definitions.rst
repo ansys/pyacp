@@ -8,3 +8,6 @@ Linked object definitions
 
     FabricWithAngle
     LinkedSelectionRule
+    TaperEdge
+    SubShape
+    Lamina

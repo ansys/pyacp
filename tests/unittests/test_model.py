@@ -7,8 +7,7 @@ import numpy.testing
 import pytest
 import pyvista
 
-from ansys.acp.core import ElementalDataType
-from ansys.acp.core._tree_objects._mesh_data import VectorData
+from ansys.acp.core import ElementalDataType, VectorData
 
 from .helpers import check_property
 

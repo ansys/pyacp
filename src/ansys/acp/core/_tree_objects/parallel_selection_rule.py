@@ -25,6 +25,11 @@ from .enums import status_type_from_pb
 from .object_registry import register
 from .rosette import Rosette
 
+# Workaround: these imports are needed to make sphinx_autodoc_typehints understand
+# the inherited members of the Elemental- and NodalData classes.
+import numpy as np  # noqa: F401 isort:skip
+from ._mesh_data import ScalarData  # noqa: F401 isort:skip
+
 __all__ = [
     "ParallelSelectionRule",
     "ParallelSelectionRuleElementalData",

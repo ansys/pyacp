@@ -6,7 +6,29 @@ Other data types
 .. autosummary::
     :toctree: _autosummary
 
-    UnitSystemType
+    BooleanOperationType
+    CutoffMaterialType
+    CutoffRuleType
+    DimensionType
+    DrapingMaterialType
+    DrapingType
+    DropoffMaterialType
+    EdgeSetType
     EdgeSetType
     ElementalDataType
+    FieldVariable
+    GeometricalRuleType
+    InterpolationOptions
+    LookUpTable3DInterpolationAlgorithm
+    LookUpTableColumnValueType
     NodalDataType
+    PlyCutoffType
+    PlyType
+    RosetteSelectionMethod
+    SensorType
+    StatusType
+    SymmetryType
+    ThicknessFieldType
+    ThicknessType
+    UnitSystemType
+    VirtualGeometryDimension

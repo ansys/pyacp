@@ -1,9 +1,6 @@
 import pytest
 
-from ansys.acp.core._tree_objects.tube_selection_rule import (
-    TubeSelectionRuleElementalData,
-    TubeSelectionRuleNodalData,
-)
+from ansys.acp.core import TubeSelectionRuleElementalData, TubeSelectionRuleNodalData
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 

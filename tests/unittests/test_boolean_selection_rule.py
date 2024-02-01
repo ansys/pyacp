@@ -1,11 +1,11 @@
 import pytest
 
-from ansys.acp.core import LinkedSelectionRule
-from ansys.acp.core._tree_objects.boolean_selection_rule import (
+from ansys.acp.core import (
+    BooleanOperationType,
     BooleanSelectionRuleElementalData,
     BooleanSelectionRuleNodalData,
+    LinkedSelectionRule,
 )
-from ansys.acp.core._tree_objects.enums import BooleanOperationType
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 

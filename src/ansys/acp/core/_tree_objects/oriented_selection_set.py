@@ -43,6 +43,11 @@ from .spherical_selection_rule import SphericalSelectionRule
 from .tube_selection_rule import TubeSelectionRule
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
 
+# Workaround: these imports are needed to make sphinx_autodoc_typehints understand
+# the inherited members of the Elemental- and NodalData classes.
+import numpy as np  # noqa: F401 isort:skip
+from ._mesh_data import ScalarData  # noqa: F401 isort:skip
+
 __all__ = [
     "OrientedSelectionSet",
     "OrientedSelectionSetElementalData",

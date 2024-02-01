@@ -1,6 +1,6 @@
 import pytest
 
-from ansys.acp.core._tree_objects.variable_offset_selection_rule import (
+from ansys.acp.core import (
     VariableOffsetSelectionRuleElementalData,
     VariableOffsetSelectionRuleNodalData,
 )

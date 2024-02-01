@@ -2,7 +2,7 @@
 from constants import COMPOSITE_DEFINITIONS_H5, MATML_FILE
 
 import ansys.acp.core as pyacp
-from ansys.acp.core._tree_objects.material.property_sets import ConstantStrainLimits
+from ansys.acp.core import ConstantStrainLimits
 
 
 def setup_and_update_acp_model(output_path, mesh_path, is_local=False):

@@ -6,33 +6,32 @@ ACP objects
 .. autosummary::
     :toctree: _autosummary
 
-    Model
-    Material
-    Fabric
-    Stackup
-    ElementSet
-    EdgeSet
-    CADGeometry
+    AnalysisPly
+    BooleanSelectionRule
     CADComponent
-    VirtualGeometry
-    Rosette
+    CADGeometry
+    CutoffSelectionRule
+    CylindricalSelectionRule
+    EdgeSet
+    ElementSet
+    Fabric
+    GeometricalSelectionRule
     LookUpTable1D
     LookUpTable1DColumn
     LookUpTable3D
     LookUpTable3DColumn
-    ParallelSelectionRule
-    CylindricalSelectionRule
-    SphericalSelectionRule
-    TubeSelectionRule
-    CutoffSelectionRule
-    GeometricalSelectionRule
-    VariableOffsetSelectionRule
-    BooleanSelectionRule
-    OrientedSelectionSet
+    Material
+    Model
     ModelingGroup
     ModelingPly
+    OrientedSelectionSet
+    ParallelSelectionRule
     ProductionPly
-    AnalysisPly
+    Rosette
     Sensor
-    ScalarData
-    VectorData
+    SphericalSelectionRule
+    Stackup
+    SubLaminate
+    TubeSelectionRule
+    VariableOffsetSelectionRule
+    VirtualGeometry

@@ -1,7 +1,6 @@
 import pytest
 
-from ansys.acp.core._tree_objects.enums import VirtualGeometryDimension
-from ansys.acp.core._tree_objects.virtual_geometry import SubShape
+from ansys.acp.core import SubShape, VirtualGeometryDimension
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 

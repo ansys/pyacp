@@ -1,6 +1,6 @@
 import pytest
 
-from ansys.acp.core._tree_objects.enums import LookUpTable3DInterpolationAlgorithm
+from ansys.acp.core import LookUpTable3DInterpolationAlgorithm
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 

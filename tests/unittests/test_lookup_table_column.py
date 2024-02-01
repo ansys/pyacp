@@ -3,8 +3,12 @@
 import numpy as np
 import pytest
 
-from ansys.acp.core import LookUpTable1DColumn, LookUpTable3DColumn
-from ansys.acp.core._tree_objects.enums import DimensionType, LookUpTableColumnValueType
+from ansys.acp.core import (
+    DimensionType,
+    LookUpTable1DColumn,
+    LookUpTable3DColumn,
+    LookUpTableColumnValueType,
+)
 
 from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
 
