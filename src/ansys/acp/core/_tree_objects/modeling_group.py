@@ -37,17 +37,21 @@ class ModelingGroupNodalData(NodalData):
 @mark_grpc_properties
 @register
 class ModelingGroup(CreatableTreeObject, IdTreeObject):
+    """Instantiate a modeling group.
+
+    Parameters
+    ----------
+    name
+        Name of the modeling group.
+    """
     __slots__: Iterable[str] = tuple()
 
     _COLLECTION_LABEL = "modeling_groups"
     OBJECT_INFO_TYPE = modeling_group_pb2.ObjectInfo
     CREATE_REQUEST_TYPE = modeling_group_pb2.CreateRequest
 
-    def __init__(self, name: str = "ModelingGroup", **kwargs: Any):
+    def __init__(self, *, name: str = "ModelingGroup"):
         super().__init__(name=name)
-
-        for key, value in kwargs.items():
-            setattr(self, key, value)
 
     def _create_stub(self) -> modeling_group_pb2_grpc.ObjectServiceStub:
         return modeling_group_pb2_grpc.ObjectServiceStub(self._channel)

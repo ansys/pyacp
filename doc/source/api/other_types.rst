@@ -26,6 +26,7 @@ Other data types
     NodalDataType
     PlyCutoffType
     PlyType
+    PuckMaterialType
     RosetteSelectionMethod
     SensorType
     StatusType

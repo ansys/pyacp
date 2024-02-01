@@ -19,6 +19,7 @@ class _WovenStressLimitsMixin:
 
 @mark_grpc_properties
 class ConstantWovenStressLimits(_WovenStressLimitsMixin, _ConstantPropertySet):
+    """Constant stress limits property set for woven materials."""
     _GRPC_PROPERTIES = tuple()
 
     def __init__(
@@ -62,6 +63,7 @@ class ConstantWovenStressLimits(_WovenStressLimitsMixin, _ConstantPropertySet):
 
 @mark_grpc_properties
 class VariableWovenStressLimits(_WovenStressLimitsMixin, _VariablePropertySet):
+    """Variable stress limits property set for woven materials."""
     _GRPC_PROPERTIES = tuple()
 
     Xc = variable_material_grpc_data_property("Xc")

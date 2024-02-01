@@ -94,6 +94,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
 
     @property
     def selection_rule(self) -> _LINKABLE_SELECTION_RULE_TYPES:
+        """Link to an existing selection rule."""
         return self._selection_rule
 
     @selection_rule.setter
@@ -104,6 +105,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
 
     @property
     def operation_type(self) -> BooleanOperationType:
+        """Operation to combine the selection rule with other selection rules."""
         return self._operation_type
 
     @operation_type.setter
@@ -114,6 +116,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
 
     @property
     def template_rule(self) -> bool:
+        """Whether the selection rule is a template rule."""
         return self._template_rule
 
     @template_rule.setter
@@ -124,6 +127,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
 
     @property
     def parameter_1(self) -> float:
+        """First template parameter of the selection rule."""
         return self._parameter_1
 
     @parameter_1.setter
@@ -134,6 +138,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
 
     @property
     def parameter_2(self) -> float:
+        """Second template parameter of the selection rule."""
         return self._parameter_2
 
     @parameter_2.setter
