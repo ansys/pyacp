@@ -180,7 +180,8 @@ class ACPWorkflow:
         """Get the cdb file on the local machine.
 
         Write the analysis model including the layup definition in cdb format,
-        copy it to the local working directory and return its path."""
+        copy it to the local working directory and return its path.
+        """
         return self._file_transfer_strategy.get_file(
             self._model.save_analysis_model, self._model.name + ".cdb"
         )
@@ -188,14 +189,16 @@ class ACPWorkflow:
     def get_local_materials_file(self) -> pathlib.Path:
         """Get the materials.xml file on the local machine.
 
-        Write the materials.xml file, copy it to the local working directory and return its path."""
+        Write the materials.xml file, copy it to the local working directory and return its path.
+        """
         return self._file_transfer_strategy.get_file(self._model.export_materials, "materials.xml")
 
     def get_local_composite_definitions_file(self) -> pathlib.Path:
         """Get the composite definitions file on the local machine.
 
-        Write the composite definitions file, copy it
-         to the local working directory and return its path."""
+        Write the composite definitions file, copy it to the local working
+        directory and return its path.
+        """
         return self._file_transfer_strategy.get_file(
             self._model.export_shell_composite_definitions, "ACPCompositeDefinitions.h5"
         )
@@ -203,8 +206,9 @@ class ACPWorkflow:
     def get_local_acp_h5_file(self) -> pathlib.Path:
         """Get the ACP Project file (in acph5 format) on the local machine.
 
-        Save the acp model to an acph5 file, copy it
-         to the local working directory and return its path."""
+        Save the acp model to an acph5 file, copy it to the local working
+        directory and return its path.
+        """
         return self._file_transfer_strategy.get_file(self._model.save, self._model.name + ".acph5")
 
     def _add_input_file(self, path: pathlib.Path) -> pathlib.PurePath:

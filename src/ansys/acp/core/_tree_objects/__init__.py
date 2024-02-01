@@ -80,7 +80,7 @@ from .material import (
     VariableWovenCharacterization,
     VariableWovenStressLimits,
 )
-from .model import Model, ModelElementalData, ModelNodalData
+from .model import Model, ModelElementalData, ModelNodalData, FeFormat, IgnorableEntity
 from .modeling_group import ModelingGroup
 from .modeling_ply import ModelingPly, ModelingPlyElementalData, ModelingPlyNodalData, TaperEdge
 from .oriented_selection_set import (
@@ -155,11 +155,13 @@ __all__ = [
     "ElementSetNodalData",
     "Fabric",
     "FabricWithAngle",
+    "FeFormat",
     "FieldVariable",
     "GeometricalRuleType",
     "GeometricalSelectionRule",
     "GeometricalSelectionRuleElementalData",
     "GeometricalSelectionRuleNodalData",
+    "IgnorableEntity",
     "InterpolationOptions",
     "Lamina",
     "LinkedSelectionRule",
@@ -172,11 +174,11 @@ __all__ = [
     "Material",
     "Model",
     "ModelElementalData",
-    "ModelNodalData",
     "ModelingGroup",
     "ModelingPly",
     "ModelingPlyElementalData",
     "ModelingPlyNodalData",
+    "ModelNodalData",
     "NodalDataType",
     "OrientedSelectionSet",
     "OrientedSelectionSetElementalData",

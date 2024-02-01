@@ -22,7 +22,8 @@ __all__ = ["Mapping", "MutableMapping", "define_mutable_mapping", "define_create
 
 
 class Mapping(Generic[ValueT]):
-    """
+    """Mapping interface for collections of TreeObjects.
+
     Note: We could derive from collections.abc.Mapping to make sure
     this class conforms to the Mapping interface.
     """
