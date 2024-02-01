@@ -7,22 +7,20 @@ import numpy.testing
 import pytest
 import pyvista
 
-from ansys.acp.core import Client, ElementalDataType
+from ansys.acp.core import ElementalDataType
 from ansys.acp.core._tree_objects._mesh_data import VectorData
 
 from .helpers import check_property
 
 
-def test_unittest(grpc_server, model_data_dir):
+def test_unittest(acp_instance, model_data_dir):
     """
     Test basic properties of the model object
     """
-    client = Client(server=grpc_server)
-
     input_file_path = model_data_dir / "ACP-Pre.h5"
-    remote_path = client.upload_file(input_file_path)
+    remote_path = acp_instance.upload_file(input_file_path)
 
-    model = client.import_model(name="kiteboard", path=remote_path, format="ansys:h5")
+    model = acp_instance.import_model(name="kiteboard", path=remote_path, format="ansys:h5")
 
     # TODO: re-activate these tests when the respective features are implemented
     # assert model.unit_system.type == "mks"
@@ -57,17 +55,17 @@ def test_unittest(grpc_server, model_data_dir):
         os.makedirs(working_dir)
         # model.solver.working_dir = str(working_dir)
 
-        if client.is_remote:
+        if acp_instance.is_remote:
             save_path = os.path.join(os.path.dirname(remote_path), "test_model_serialization.acph5")
             model.save(save_path, save_cache=True)
-            client.clear()
-            model = client.import_model(path=save_path)
+            acp_instance.clear()
+            model = acp_instance.import_model(path=save_path)
         else:
             with tempfile.TemporaryDirectory() as local_working_dir:
                 save_path = pathlib.Path(local_working_dir) / "test_model_serialization.acph5"
-                model.save(save_path, save_cache=True)
-                client.clear()
-                model = client.import_model(path=save_path)
+                acp_instance.save(save_path, save_cache=True)
+                acp_instance.clear()
+                model = acp_instance.import_model(path=save_path)
 
         # TODO: re-activate these tests when the respective features are implemented
         # assert model.unit_system.type == "mks"
@@ -99,25 +97,24 @@ def test_unittest(grpc_server, model_data_dir):
         # assert model.solver.working_dir == rel_path_posix
 
 
-def test_save_analysis_model(grpc_server, model_data_dir):
+def test_save_analysis_model(acp_instance, model_data_dir):
     """
     Test that 'save_analysis_model' produces a file. The contents of the file
     are not checked.
     """
-    client = Client(server=grpc_server)
     input_file_path = model_data_dir / "minimal_model_2.cdb"
-    remote_file_path = client.upload_file(input_file_path)
+    remote_file_path = acp_instance.upload_file(input_file_path)
     remote_workdir = remote_file_path.parent
-    model = client.import_model(
+    model = acp_instance.import_model(
         name="minimal_model", path=remote_file_path, format="ansys:cdb", unit_system="mpa"
     )
 
-    if client.is_remote:
+    if acp_instance.is_remote:
         out_file_path = remote_workdir / "out_file.cdb"
         model.save_analysis_model(out_file_path)
         with tempfile.TemporaryDirectory() as tmp_dir:
             local_file_path = pathlib.Path(tmp_dir, "out_file.cdb")
-            client.download_file(out_file_path, local_file_path)
+            acp_instance.download_file(out_file_path, local_file_path)
             assert local_file_path.exists()
     else:
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -126,11 +123,12 @@ def test_save_analysis_model(grpc_server, model_data_dir):
             assert local_file_path.exists()
 
 
-def test_string_representation(grpc_server, model_data_dir):
-    client = Client(server=grpc_server)
+def test_string_representation(acp_instance, model_data_dir):
     input_file_path = model_data_dir / "ACP-Pre.h5"
-    remote_file_path = client.upload_file(input_file_path)
-    model = client.import_model(name="minimal_model", path=remote_file_path, format="ansys:cdb")
+    remote_file_path = acp_instance.upload_file(input_file_path)
+    model = acp_instance.import_model(
+        name="minimal_model", path=remote_file_path, format="ansys:cdb"
+    )
 
     assert repr(model) == "<Model with name 'minimal_model'>"
 

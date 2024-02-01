@@ -1,18 +1,16 @@
 import os
 
-from ansys.acp.core import Client, get_model_tree
+from ansys.acp.core import get_model_tree
 
 
-def test_printed_model(grpc_server, model_data_dir):
+def test_printed_model(acp_instance, model_data_dir):
     """
     Test that model tree looks correct.
     """
-    client = Client(server=grpc_server)
-
     input_file_path = model_data_dir / "minimal_complete_model.acph5"
-    remote_path = client.upload_file(input_file_path)
+    remote_path = acp_instance.upload_file(input_file_path)
 
-    model = client.import_model(name="minimal_complete", path=remote_path)
+    model = acp_instance.import_model(name="minimal_complete", path=remote_path)
 
     model.update()
     tree = get_model_tree(model)

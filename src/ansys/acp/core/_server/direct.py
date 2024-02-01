@@ -16,6 +16,8 @@ from ansys.tools.path import get_available_ansys_installations
 
 from .common import ServerKey
 
+__all__ = ["DirectLaunchConfig"]
+
 
 def _get_latest_ansys_installation() -> str:
     """Get the latest installed Ansys installation."""

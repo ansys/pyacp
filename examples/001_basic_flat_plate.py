@@ -26,7 +26,6 @@ import pyvista
 # Import pyACP dependencies
 from ansys.acp.core import (
     ACPWorkflow,
-    Client,
     ExampleKeys,
     get_composite_post_processing_files,
     get_dpf_unit_system,
@@ -54,9 +53,7 @@ input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR)
 
 # %%
 # Launch the PyACP server and connect to it.
-pyacp_server = launch_acp()
-pyacp_server.wait(timeout=30)
-pyacp_client = Client(pyacp_server)
+acp = launch_acp()
 
 # %%
 # Define the input file and instantiate an ACPWorkflow
@@ -64,7 +61,7 @@ pyacp_client = Client(pyacp_server)
 # It automatically creates a model based on the input file.
 
 workflow = ACPWorkflow(
-    acp_client=pyacp_client,
+    acp=acp,
     cdb_file_path=input_file,
     local_working_directory=WORKING_DIR,
 )
