@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706775140084,
+  "lastUpdate": 1706801341609,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11490,6 +11490,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023419482574818488",
             "extra": "mean: 836.203706033049 usec\nrounds: 1558"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c40819f68eb497267993be081bfb520bea48ad73",
+          "message": "Update install instructions (#365)\n\nAdd explicit install for internal dependencies to the install\r\ninstructions in `README.rst`. This can be replaced by a simple\r\ninstall from PyPI once released.",
+          "timestamp": "2024-02-01T16:25:57+01:00",
+          "tree_id": "fe2c22225043dbd81000d85a37578a3fe3ebb992",
+          "url": "https://github.com/ansys-internal/pyacp/commit/c40819f68eb497267993be081bfb520bea48ad73"
+        },
+        "date": 1706801332553,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.647525952486905,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00847411237144519",
+            "extra": "mean: 215.16824439999027 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 879.0805074570835,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003862562618363171",
+            "extra": "mean: 1.1375522395470927 msec\nrounds: 1148"
           }
         ]
       }
