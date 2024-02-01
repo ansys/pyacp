@@ -26,7 +26,6 @@ import pyvista
 # Import pyACP dependencies
 from ansys.acp.core import (
     ACPWorkflow,
-    ExampleKeys,
     ConstantEngineeringConstants,
     ConstantStrainLimits,
     ExampleKeys,
