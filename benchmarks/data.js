@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706801341609,
+  "lastUpdate": 1706801889234,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11528,6 +11528,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0003862562618363171",
             "extra": "mean: 1.1375522395470927 msec\nrounds: 1148"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "775b36fb300beb9ba8cb5d8cf130e7f04c1e5649",
+          "message": "Enable listing the currently loaded Models (#358)\n\nAdd a `models` property to the `ACP` class, which returns a tuple containing\r\nall currently loaded models on the server.\r\n\r\nNote that we use a tuple instead of `MutableMapping` because the backend\r\ndoes not have a concept of `id` for the `Model`. The name cannot be used to\r\nreplace it, since it is not necessarily unique.\r\n\r\nCloses #271.",
+          "timestamp": "2024-02-01T16:35:19+01:00",
+          "tree_id": "1172609a04ee716414fc098adf1359c60b3a6880",
+          "url": "https://github.com/ansys-internal/pyacp/commit/775b36fb300beb9ba8cb5d8cf130e7f04c1e5649"
+        },
+        "date": 1706801880767,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.316722847661868,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004570596166875719",
+            "extra": "mean: 188.0857867999964 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1069.2296937937494,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00025103801443333444",
+            "extra": "mean: 935.2527392424779 usec\nrounds: 1162"
           }
         ]
       }
