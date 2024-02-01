@@ -6,8 +6,8 @@ from ..._grpc_helpers.property_helper import mark_grpc_properties
 from ...base import TreeObject
 from .base import _ConstantPropertySet, _PolymorphicMixin, _VariablePropertySet
 from .property_helper import (
-    _constant_material_grpc_data_property,
-    _variable_material_grpc_data_property,
+    constant_material_grpc_data_property,
+    variable_material_grpc_data_property,
 )
 
 __all__ = [
@@ -27,6 +27,7 @@ class _StrainLimitsMixin(_PolymorphicMixin):
 
 @mark_grpc_properties
 class ConstantStrainLimits(_StrainLimitsMixin, _ConstantPropertySet):
+    """Constant strain limits material property set."""
     _GRPC_PROPERTIES = tuple()
 
     def __init__(
@@ -57,29 +58,30 @@ class ConstantStrainLimits(_StrainLimitsMixin, _ConstantPropertySet):
         self.eSyz = eSyz
         self.eSxz = eSxz
 
-    effective_strain = _constant_material_grpc_data_property("effective_strain")
-    eXc = _constant_material_grpc_data_property("eXc")
-    eYc = _constant_material_grpc_data_property("eYc")
-    eZc = _constant_material_grpc_data_property("eZc")
-    eXt = _constant_material_grpc_data_property("eXt")
-    eYt = _constant_material_grpc_data_property("eYt")
-    eZt = _constant_material_grpc_data_property("eZt")
-    eSxy = _constant_material_grpc_data_property("eSxy")
-    eSyz = _constant_material_grpc_data_property("eSyz")
-    eSxz = _constant_material_grpc_data_property("eSxz")
+    effective_strain = constant_material_grpc_data_property("effective_strain")
+    eXc = constant_material_grpc_data_property("eXc")
+    eYc = constant_material_grpc_data_property("eYc")
+    eZc = constant_material_grpc_data_property("eZc")
+    eXt = constant_material_grpc_data_property("eXt")
+    eYt = constant_material_grpc_data_property("eYt")
+    eZt = constant_material_grpc_data_property("eZt")
+    eSxy = constant_material_grpc_data_property("eSxy")
+    eSyz = constant_material_grpc_data_property("eSyz")
+    eSxz = constant_material_grpc_data_property("eSxz")
 
 
 @mark_grpc_properties
 class VariableStrainLimits(_StrainLimitsMixin, _VariablePropertySet):
+    """Variable strain limits material property set."""
     _GRPC_PROPERTIES = tuple()
 
-    effective_strain = _variable_material_grpc_data_property("effective_strain")
-    eXc = _variable_material_grpc_data_property("eXc")
-    eYc = _variable_material_grpc_data_property("eYc")
-    eZc = _variable_material_grpc_data_property("eZc")
-    eXt = _variable_material_grpc_data_property("eXt")
-    eYt = _variable_material_grpc_data_property("eYt")
-    eZt = _variable_material_grpc_data_property("eZt")
-    eSxy = _variable_material_grpc_data_property("eSxy")
-    eSyz = _variable_material_grpc_data_property("eSyz")
-    eSxz = _variable_material_grpc_data_property("eSxz")
+    effective_strain = variable_material_grpc_data_property("effective_strain")
+    eXc = variable_material_grpc_data_property("eXc")
+    eYc = variable_material_grpc_data_property("eYc")
+    eZc = variable_material_grpc_data_property("eZc")
+    eXt = variable_material_grpc_data_property("eXt")
+    eYt = variable_material_grpc_data_property("eYt")
+    eZt = variable_material_grpc_data_property("eZt")
+    eSxy = variable_material_grpc_data_property("eSxy")
+    eSyz = variable_material_grpc_data_property("eSyz")
+    eSxz = variable_material_grpc_data_property("eSxz")

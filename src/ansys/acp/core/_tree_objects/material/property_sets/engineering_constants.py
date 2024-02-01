@@ -6,8 +6,8 @@ from ..._grpc_helpers.property_helper import mark_grpc_properties
 from ...base import TreeObject
 from .base import _ConstantPropertySet, _PolymorphicMixin, _VariablePropertySet
 from .property_helper import (
-    _constant_material_grpc_data_property,
-    _variable_material_grpc_data_property,
+    constant_material_grpc_data_property,
+    variable_material_grpc_data_property,
 )
 
 __all__ = [
@@ -57,31 +57,31 @@ class ConstantEngineeringConstants(_EngineeringConstantsMixin, _ConstantProperty
         self.G23 = G23
         self.G31 = G31
 
-    E = _constant_material_grpc_data_property("E")
-    nu = _constant_material_grpc_data_property("nu")
-    E1 = _constant_material_grpc_data_property("E1")
-    E2 = _constant_material_grpc_data_property("E2")
-    E3 = _constant_material_grpc_data_property("E3")
-    G12 = _constant_material_grpc_data_property("G12")
-    G23 = _constant_material_grpc_data_property("G23")
-    G31 = _constant_material_grpc_data_property("G31")
-    nu12 = _constant_material_grpc_data_property("nu12")
-    nu23 = _constant_material_grpc_data_property("nu23")
-    nu13 = _constant_material_grpc_data_property("nu13")
+    E = constant_material_grpc_data_property("E")
+    nu = constant_material_grpc_data_property("nu")
+    E1 = constant_material_grpc_data_property("E1")
+    E2 = constant_material_grpc_data_property("E2")
+    E3 = constant_material_grpc_data_property("E3")
+    G12 = constant_material_grpc_data_property("G12")
+    G23 = constant_material_grpc_data_property("G23")
+    G31 = constant_material_grpc_data_property("G31")
+    nu12 = constant_material_grpc_data_property("nu12")
+    nu23 = constant_material_grpc_data_property("nu23")
+    nu13 = constant_material_grpc_data_property("nu13")
 
 
 @mark_grpc_properties
 class VariableEngineeringConstants(_EngineeringConstantsMixin, _VariablePropertySet):
     _GRPC_PROPERTIES = tuple()
 
-    E = _variable_material_grpc_data_property("E")
-    nu = _variable_material_grpc_data_property("nu")
-    E1 = _variable_material_grpc_data_property("E1")
-    E2 = _variable_material_grpc_data_property("E2")
-    E3 = _variable_material_grpc_data_property("E3")
-    G12 = _variable_material_grpc_data_property("G12")
-    G23 = _variable_material_grpc_data_property("G23")
-    G31 = _variable_material_grpc_data_property("G31")
-    nu12 = _variable_material_grpc_data_property("nu12")
-    nu23 = _variable_material_grpc_data_property("nu23")
-    nu13 = _variable_material_grpc_data_property("nu13")
+    E = variable_material_grpc_data_property("E")
+    nu = variable_material_grpc_data_property("nu")
+    E1 = variable_material_grpc_data_property("E1")
+    E2 = variable_material_grpc_data_property("E2")
+    E3 = variable_material_grpc_data_property("E3")
+    G12 = variable_material_grpc_data_property("G12")
+    G23 = variable_material_grpc_data_property("G23")
+    G31 = variable_material_grpc_data_property("G31")
+    nu12 = variable_material_grpc_data_property("nu12")
+    nu23 = variable_material_grpc_data_property("nu23")
+    nu13 = variable_material_grpc_data_property("nu13")

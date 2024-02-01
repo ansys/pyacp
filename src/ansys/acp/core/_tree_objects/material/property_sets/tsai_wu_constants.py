@@ -6,8 +6,8 @@ from ..._grpc_helpers.property_helper import mark_grpc_properties
 from ...base import TreeObject
 from .base import _ConstantPropertySet, _VariablePropertySet
 from .property_helper import (
-    _constant_material_grpc_data_property,
-    _variable_material_grpc_data_property,
+    constant_material_grpc_data_property,
+    variable_material_grpc_data_property,
 )
 
 __all__ = ["ConstantTsaiWuConstants", "VariableTsaiWuConstants"]
@@ -37,15 +37,15 @@ class ConstantTsaiWuConstants(_TsaiWuConstantsMixin, _ConstantPropertySet):
         self.XZ = XZ
         self.YZ = YZ
 
-    XY = _constant_material_grpc_data_property("XY")
-    XZ = _constant_material_grpc_data_property("XZ")
-    YZ = _constant_material_grpc_data_property("YZ")
+    XY = constant_material_grpc_data_property("XY")
+    XZ = constant_material_grpc_data_property("XZ")
+    YZ = constant_material_grpc_data_property("YZ")
 
 
 @mark_grpc_properties
 class VariableTsaiWuConstants(_TsaiWuConstantsMixin, _VariablePropertySet):
     _GRPC_PROPERTIES = tuple()
 
-    XY = _variable_material_grpc_data_property("XY")
-    XZ = _variable_material_grpc_data_property("XZ")
-    YZ = _variable_material_grpc_data_property("YZ")
+    XY = variable_material_grpc_data_property("XY")
+    XZ = variable_material_grpc_data_property("XZ")
+    YZ = variable_material_grpc_data_property("YZ")

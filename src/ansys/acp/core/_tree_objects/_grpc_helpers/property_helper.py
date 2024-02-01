@@ -1,6 +1,7 @@
-"""
-Defines helpers for synchronizing object properties with the backend
-via gRPC Put / Get calls.
+"""Helpers for synchronizing object properties with the backend via gRPC.
+
+Defines helpers which can be used to define properties which are
+automatically synchronized with the backend via gRPC.
 """
 from __future__ import annotations
 
@@ -28,7 +29,8 @@ _FROM_PROTOBUF_T = Callable[[_PROTOBUF_T], _GET_T]
 
 
 class _exposed_grpc_property(property):
-    """
+    """Mark a property as exposed via gRPC.
+
     Wrapper around 'property', used to signal that the object should
     be collected into the '_GRPC_PROPERTIES' class attribute.
     """
@@ -40,6 +42,11 @@ T = TypeVar("T", bound=type[GrpcObjectBase])
 
 
 def mark_grpc_properties(cls: T) -> T:
+    """Class decorator to collect properties marked as exposed via gRPC.
+
+    This decorator should be applied to all classes which define gRPC
+    properties.
+    """
     props: list[str] = []
     # Loop is needed because we otherwise get only the _GRPC_PROPERTIES of one of the base classes.
     for base_cls in reversed(cls.__bases__):
@@ -57,9 +64,7 @@ def mark_grpc_properties(cls: T) -> T:
 
 
 def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
-    """
-    Creates a getter method which obtains the linked server object
-    """
+    """Create a getter method which obtains the linked server object."""
 
     def inner(self: Readable) -> CreatableFromResourcePath | None:
         #  Import here to avoid circular references. Cannot use the registry before
@@ -77,9 +82,7 @@ def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
 def grpc_data_getter(
     name: str, from_protobuf: _FROM_PROTOBUF_T[_GET_T], check_optional: bool = False
 ) -> Callable[[Readable], _GET_T]:
-    """
-    Creates a getter method which obtains the server object via the gRPC
-    Get endpoint.
+    """Create a getter method which obtains the server object via the gRPC Get endpoint.
 
     Parameters
     ----------
@@ -105,10 +108,7 @@ def grpc_data_getter(
 def grpc_data_setter(
     name: str, to_protobuf: _TO_PROTOBUF_T[_SET_T]
 ) -> Callable[[Editable, _SET_T], None]:
-    """
-    Creates a setter method which updates the server object via the gRPC
-    Put endpoint.
-    """
+    """Create a setter method which updates the server object via the gRPC Put endpoint."""
 
     def inner(self: Editable, value: _SET_T) -> None:
         self._get_if_stored()
@@ -169,7 +169,8 @@ def grpc_data_property(
     check_optional: bool = False,
     doc: str | None = None,
 ) -> ReadWriteProperty[_GET_T, _SET_T]:
-    """
+    """Define a property which is synchronized with the backend via gRPC.
+
     Helper for defining properties accessed via gRPC. The property getter
     and setter make calls to the gRPC Get and Put endpoints to synchronize
     the local object with the remote backend.
@@ -211,7 +212,8 @@ def grpc_data_property_read_only(
     check_optional: bool = False,
     doc: str | None = None,
 ) -> ReadOnlyProperty[_GET_T]:
-    """
+    """Define a read-only property which is synchronized with the backend via gRPC.
+
     Helper for defining properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to synchronize
     the local object with the remote backend.
@@ -242,7 +244,8 @@ def grpc_link_property(
     name: str,
     doc: str | None = None,
 ) -> Any:
-    """
+    """Define a gRPC-backed property linking to another object.
+
     Helper for defining linked properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to get the linked object
 
@@ -268,7 +271,8 @@ def grpc_link_property(
 
 
 def grpc_link_property_read_only(name: str, doc: str | None = None) -> Any:
-    """
+    """Define a read-only gRPC-backed property linking to another object.
+
     Helper for defining linked properties accessed via gRPC. The property getter
     makes call to the gRPC Get endpoints to get the linked object
 

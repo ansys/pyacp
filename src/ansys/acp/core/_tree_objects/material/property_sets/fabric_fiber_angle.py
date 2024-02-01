@@ -6,8 +6,8 @@ from ..._grpc_helpers.property_helper import mark_grpc_properties
 from ...base import TreeObject
 from .base import _ConstantPropertySet, _VariablePropertySet
 from .property_helper import (
-    _constant_material_grpc_data_property,
-    _variable_material_grpc_data_property,
+    constant_material_grpc_data_property,
+    variable_material_grpc_data_property,
 )
 
 __all__ = ["ConstantFabricFiberAngle", "VariableFabricFiberAngle"]
@@ -33,11 +33,11 @@ class ConstantFabricFiberAngle(_FabricFiberAngleMixin, _ConstantPropertySet):
             return
         self.fabric_fiber_angle = fabric_fiber_angle
 
-    fabric_fiber_angle = _constant_material_grpc_data_property("fabric_fiber_angle")
+    fabric_fiber_angle = constant_material_grpc_data_property("fabric_fiber_angle")
 
 
 @mark_grpc_properties
 class VariableFabricFiberAngle(_FabricFiberAngleMixin, _VariablePropertySet):
     _GRPC_PROPERTIES = tuple()
 
-    fabric_fiber_angle = _variable_material_grpc_data_property("fabric_fiber_angle")
+    fabric_fiber_angle = variable_material_grpc_data_property("fabric_fiber_angle")

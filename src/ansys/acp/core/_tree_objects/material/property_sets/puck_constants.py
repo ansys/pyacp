@@ -13,8 +13,8 @@ from ..._grpc_helpers.property_helper import (
 from ...base import TreeObject
 from .base import _ConstantPropertySet, _VariablePropertySet
 from .property_helper import (
-    _constant_material_grpc_data_property,
-    _variable_material_grpc_data_property,
+    constant_material_grpc_data_property,
+    variable_material_grpc_data_property,
 )
 
 __all__ = ["ConstantPuckConstants", "VariablePuckConstants"]
@@ -82,13 +82,13 @@ class ConstantPuckConstants(_PuckConstantsMixin, _ConstantPropertySet):
         self.M = M
         self.interface_weakening_factor = interface_weakening_factor
 
-    p_21_pos = _constant_material_grpc_data_property("p_21_pos")
-    p_21_neg = _constant_material_grpc_data_property("p_21_neg")
-    p_22_pos = _constant_material_grpc_data_property("p_22_pos")
-    p_22_neg = _constant_material_grpc_data_property("p_22_neg")
-    s = _constant_material_grpc_data_property("s")
-    M = _constant_material_grpc_data_property("M")
-    interface_weakening_factor = _constant_material_grpc_data_property("interface_weakening_factor")
+    p_21_pos = constant_material_grpc_data_property("p_21_pos")
+    p_21_neg = constant_material_grpc_data_property("p_21_neg")
+    p_22_pos = constant_material_grpc_data_property("p_22_pos")
+    p_22_neg = constant_material_grpc_data_property("p_22_neg")
+    s = constant_material_grpc_data_property("s")
+    M = constant_material_grpc_data_property("M")
+    interface_weakening_factor = constant_material_grpc_data_property("interface_weakening_factor")
     mat_type: ReadWriteProperty[PuckMaterialType, PuckMaterialType] = grpc_data_property(
         "mat_type", from_protobuf=PuckMaterialType
     )
@@ -98,11 +98,11 @@ class ConstantPuckConstants(_PuckConstantsMixin, _ConstantPropertySet):
 class VariablePuckConstants(_PuckConstantsMixin, _VariablePropertySet):
     _GRPC_PROPERTIES = tuple()
 
-    p_21_pos = _variable_material_grpc_data_property("p_21_pos")
-    p_21_neg = _variable_material_grpc_data_property("p_21_neg")
-    p_22_pos = _variable_material_grpc_data_property("p_22_pos")
-    p_22_neg = _variable_material_grpc_data_property("p_22_neg")
-    s = _variable_material_grpc_data_property("s")
-    M = _variable_material_grpc_data_property("M")
-    interface_weakening_factor = _variable_material_grpc_data_property("interface_weakening_factor")
+    p_21_pos = variable_material_grpc_data_property("p_21_pos")
+    p_21_neg = variable_material_grpc_data_property("p_21_neg")
+    p_22_pos = variable_material_grpc_data_property("p_22_pos")
+    p_22_neg = variable_material_grpc_data_property("p_22_neg")
+    s = variable_material_grpc_data_property("s")
+    M = variable_material_grpc_data_property("M")
+    interface_weakening_factor = variable_material_grpc_data_property("interface_weakening_factor")
     mat_type = grpc_data_property_read_only("mat_type", from_protobuf=PuckMaterialType)

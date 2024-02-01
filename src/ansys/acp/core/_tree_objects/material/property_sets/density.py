@@ -6,8 +6,8 @@ from ..._grpc_helpers.property_helper import mark_grpc_properties
 from ...base import TreeObject
 from .base import _ConstantPropertySet, _VariablePropertySet
 from .property_helper import (
-    _constant_material_grpc_data_property,
-    _variable_material_grpc_data_property,
+    constant_material_grpc_data_property,
+    variable_material_grpc_data_property,
 )
 
 __all__ = ["ConstantDensity", "VariableDensity"]
@@ -19,6 +19,7 @@ class _DensityMixin:
 
 @mark_grpc_properties
 class ConstantDensity(_DensityMixin, _ConstantPropertySet):
+    """Constant density material property set."""
     _GRPC_PROPERTIES = tuple()
 
     def __init__(
@@ -33,11 +34,12 @@ class ConstantDensity(_DensityMixin, _ConstantPropertySet):
             return
         self.rho = rho
 
-    rho = _constant_material_grpc_data_property("rho")
+    rho = constant_material_grpc_data_property("rho")
 
 
 @mark_grpc_properties
 class VariableDensity(_DensityMixin, _VariablePropertySet):
+    """Variable density material property set."""
     _GRPC_PROPERTIES = tuple()
 
-    rho = _variable_material_grpc_data_property("rho")
+    rho = variable_material_grpc_data_property("rho")

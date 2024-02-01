@@ -48,6 +48,7 @@ def to_numpy(array_pb: DoubleArray) -> npt.NDArray[np.float64]:
 def to_numpy(
     array_pb: Union[IntArray, Int32Array, DoubleArray]
 ) -> Union[npt.NDArray[np.int64], npt.NDArray[np.int32], npt.NDArray[np.float64]]:
+    """Convert a protubuf array message to a numpy array."""
     dtype = {
         IntArray: np.int64,
         Int32Array: np.int32,
@@ -60,6 +61,7 @@ def dataarray_to_numpy(
     array_pb: DataArray,
     dtype: Union[type[np.int32], type[np.int64], type[np.float64]],
 ) -> Union[npt.NDArray[np.int64], npt.NDArray[np.int32], npt.NDArray[np.float64]]:
+    """Convert a DataArray protobuf message to a numpy array."""
     data_array_attribute = array_pb.WhichOneof("data")
     if data_array_attribute is None:
         raise RuntimeError("None of the 'DataArray' data attributes are set!")
