@@ -163,6 +163,22 @@ class ACP(Generic[ServerT]):
                     )
                 )
 
+    @property
+    def models(self) -> tuple[Model, ...]:
+        """The models currently loaded on the server.
+
+        Note that the models are returned in arbitrary order.
+        """
+        model_stub = model_pb2_grpc.ObjectServiceStub(self._channel)
+        return tuple(
+            [
+                Model._from_object_info(model_info, self._channel)
+                for model_info in model_stub.List(
+                    ListRequest(collection_path=CollectionPath(value=Model._COLLECTION_LABEL))
+                ).objects
+            ]
+        )
+
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
         """Upload a file to the server.
 
