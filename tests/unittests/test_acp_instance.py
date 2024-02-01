@@ -3,6 +3,7 @@ def test_server_version(acp_instance):
     assert isinstance(version, str)
     assert version != ""
 
+
 def test_models(acp_instance, load_model_from_tempfile):
     with load_model_from_tempfile() as m1:
         assert acp_instance.models == (m1,)
