@@ -75,8 +75,9 @@ extensions = [
     "sphinx_autodoc_typehints",
     "numpydoc",
     "sphinx_copybutton",
-    "ansys_sphinx_theme",
 ]
+if not QUICK_DOC_BUILD:
+    extensions += ["ansys_sphinx_theme"]
 if not SKIP_GALLERY:
     extensions += ["sphinx_gallery.gen_gallery"]
 extensions += [
