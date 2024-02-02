@@ -94,9 +94,13 @@ _FeFormat, _fe_format_to_pb, _ = wrap_to_string_enum(
     model_pb2.Format,
     module=__name__,
     value_converter=lambda val: val.lower().replace("_", ":"),
+    doc="Options for the format of the FE file.",
 )
 _IgnorableEntity, _ignorable_entity_to_pb, _ = wrap_to_string_enum(
-    "_IgnorableEntity", model_pb2.LoadFromFEFileRequest.IgnorableEntity, module=__name__
+    "_IgnorableEntity",
+    model_pb2.LoadFromFEFileRequest.IgnorableEntity,
+    module=__name__,
+    doc="Options for the entities to ignore when loading an FE file.",
 )
 
 
