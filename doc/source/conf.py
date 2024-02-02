@@ -21,7 +21,6 @@ from sphinx_gallery.sorting import FileNameSortKey
 
 from ansys.acp.core import __version__
 
-QUICK_DOC_BUILD = os.environ.get("PYACP_DOC_QUICK_BUILD", "0").lower() in ("1", "true")
 SKIP_GALLERY = os.environ.get("PYACP_DOC_SKIP_GALLERY", "0").lower() in ("1", "true")
 
 # Manage errors
@@ -44,26 +43,24 @@ release = version = __version__
 
 # use the default pyansys logo
 html_logo = pyansys_logo_black
-if not QUICK_DOC_BUILD:
-    html_theme = "ansys_sphinx_theme"
+html_theme = "ansys_sphinx_theme"
 
 
 cname = os.getenv("DOCUMENTATION_CNAME", "acp.docs.pyansys.com")
 """The canonical name of the webpage hosting the documentation."""
 
-if not QUICK_DOC_BUILD:
-    # specify the location of your github repo
-    html_theme_options = {
-        "github_url": "https://github.com/ansys-internal/pyacp",
-        "show_prev_next": False,
-        "show_breadcrumbs": True,
-        "additional_breadcrumbs": [("PyAnsys", "https://docs.pyansys.com/")],
-        "switcher": {
-            "json_url": f"https://{cname}/versions.json",
-            "version_match": get_version_match(__version__),
-        },
-        "check_switcher": False,
-    }
+# specify the location of your github repo
+html_theme_options = {
+    "github_url": "https://github.com/ansys-internal/pyacp",
+    "show_prev_next": False,
+    "show_breadcrumbs": True,
+    "additional_breadcrumbs": [("PyAnsys", "https://docs.pyansys.com/")],
+    "switcher": {
+        "json_url": f"https://{cname}/versions.json",
+        "version_match": get_version_match(__version__),
+    },
+    "check_switcher": False,
+}
 html_title = html_short_title = "PyACP"
 
 # Sphinx extensions
@@ -75,9 +72,8 @@ extensions = [
     "sphinx_autodoc_typehints",
     "numpydoc",
     "sphinx_copybutton",
+    "ansys_sphinx_theme",
 ]
-if not QUICK_DOC_BUILD:
-    extensions += ["ansys_sphinx_theme"]
 if not SKIP_GALLERY:
     extensions += ["sphinx_gallery.gen_gallery"]
 extensions += [

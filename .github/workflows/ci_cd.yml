@@ -274,8 +274,6 @@ jobs:
           PYMAPDL_PORT: "50557"
           PYMAPDL_START_INSTANCE: "FALSE"
           PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT: "50558"
-          # Set to TRUE only on non-main branches to speed up the build
-          PYACP_DOC_QUICK_BUILD: ${{ ( startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main' ) && 'FALSE' || 'TRUE'}}
 
 
       - name: Stop and clean up MAPDL and DPF servers
