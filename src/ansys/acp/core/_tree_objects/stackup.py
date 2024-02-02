@@ -133,7 +133,7 @@ class Stackup(CreatableTreeObject, IdTreeObject):
     drop_off_material :
         Specify the material of drop-off elements in the solid model.
     cut_off_material_handling :
-        Defines the material of cut-off elements in solid models if cut-off geometries are active.
+        Defines how cut-off material is used in cut-off areas of this stackup.
     cut_off_material :
         Define the cut-off material if a ply with this material is shaped by a cut-off geometry.
     draping_material_model :
