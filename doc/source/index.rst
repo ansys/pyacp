@@ -17,8 +17,8 @@ PyACP documentation |version|
 
         PyACP <self>
         {% if not skip_gallery %}
-            examples/index
+        examples/index
         {% endif %}
         {% if not skip_api %}
-            api/index
+        api/index
         {% endif %}
