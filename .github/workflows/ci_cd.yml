@@ -274,6 +274,7 @@ jobs:
           PYMAPDL_PORT: "50557"
           PYMAPDL_START_INSTANCE: "FALSE"
           PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT: "50558"
+          PYACP_DOC_QUICK_BUILD: ${{ github.ref == 'refs/heads/main' && 'FALSE' || 'TRUE'}}
 
 
       - name: Stop and clean up MAPDL and DPF servers

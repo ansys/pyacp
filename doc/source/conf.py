@@ -21,6 +21,8 @@ from sphinx_gallery.sorting import FileNameSortKey
 
 from ansys.acp.core import __version__
 
+QUICK_DOC_BUILD = os.environ.get("PYACP_DOC_QUICK_BUILD", "0").lower() in ("1", "true")
+
 # Manage errors
 pyvista.set_error_output_file("errors.txt")
 
@@ -41,7 +43,8 @@ release = version = __version__
 
 # use the default pyansys logo
 html_logo = pyansys_logo_black
-html_theme = "ansys_sphinx_theme"
+if not QUICK_DOC_BUILD:
+    html_theme = "ansys_sphinx_theme"
 
 
 cname = os.getenv("DOCUMENTATION_CNAME", "acp.docs.pyansys.com")
