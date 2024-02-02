@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706801889234,
+  "lastUpdate": 1706878400018,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11566,6 +11566,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00025103801443333444",
             "extra": "mean: 935.2527392424779 usec\nrounds: 1162"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c63008af5ddea28af8fe8f2f1fb2aa0e357f5f87",
+          "message": "Use the 'direct' launcher as fallback (#367)\n\nDefine the direct launcher as fallback launch mode, to be used\r\nwhen no launch mode is configured.\r\n\r\nSee https://github.com/ansys-internal/ansys-tools-local-product-launcher/pull/126",
+          "timestamp": "2024-02-02T13:50:54+01:00",
+          "tree_id": "0f410f3fb6a2b7d24a0d5908028aebc5a91ef2e6",
+          "url": "https://github.com/ansys-internal/pyacp/commit/c63008af5ddea28af8fe8f2f1fb2aa0e357f5f87"
+        },
+        "date": 1706878392980,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.404315066957067,
+            "unit": "iter/sec",
+            "range": "stddev: 0.006156835238427721",
+            "extra": "mean: 156.14472266667198 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1191.8312748990008,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00021919089472377596",
+            "extra": "mean: 839.0449395487989 usec\nrounds: 1373"
           }
         ]
       }
