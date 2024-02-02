@@ -43,7 +43,7 @@ from ansys.api.acp.v0.base_pb2 import CollectionPath
 from .._typing_helper import PATH as _PATH
 from .._utils.array_conversions import to_numpy
 from .._utils.path_to_str import path_to_str_checked
-from .._utils.property_protocols import ReadWriteProperty
+from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .._utils.resource_paths import join as rp_join
 from .._utils.visualization import to_pyvista_faces, to_pyvista_types
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
@@ -214,6 +214,10 @@ class Model(TreeObject):
     )
     unit_system = grpc_data_property_read_only(
         "properties.unit_system", from_protobuf=unit_system_type_from_pb
+    )
+
+    average_element_size: ReadOnlyProperty[float] = grpc_data_property_read_only(
+        "properties.average_element_size"
     )
 
     @classmethod
