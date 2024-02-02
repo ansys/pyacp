@@ -13,6 +13,7 @@ from ansys.acp.core._utils.array_conversions import dataarray_to_numpy, to_numpy
 from ansys.api.acp.v0 import mesh_query_pb2, mesh_query_pb2_grpc
 
 from .._utils.property_protocols import ReadOnlyProperty
+from ._grpc_helpers.enum_wrapper import StrEnum
 from .base import TreeObject
 from .enums import (
     elemental_data_type_from_pb,
@@ -271,8 +272,8 @@ class MeshDataBase:
     """
 
     _LABEL_AND_PYVISTA_FIELD_NAMES: ClassVar[_LabelAndPyvistaFieldNames]
-    _FIELD_NAME_FROM_PB_VALUE: ClassVar[typing.Callable[[int], str]]
-    _PB_VALUE_FROM_FIELD_NAME: ClassVar[typing.Callable[[str], int]]
+    _FIELD_NAME_FROM_PB_VALUE: ClassVar[typing.Callable[[int], StrEnum]]
+    _PB_VALUE_FROM_FIELD_NAME: ClassVar[typing.Callable[[StrEnum], int]]
 
     @classmethod
     def _field_names(cls) -> list[str]:
@@ -295,7 +296,7 @@ class MeshDataBase:
             )
         }
         for data_type, array in zip(response.data_types, response.data_arrays):
-            field_name = cls._FIELD_NAME_FROM_PB_VALUE(data_type)
+            field_name = cls._FIELD_NAME_FROM_PB_VALUE(data_type).value
             values = cast(
                 npt.NDArray[np.float64], dataarray_to_numpy(array, dtype=np.float64)
             )  # todo: handle other dtypes

@@ -1,7 +1,19 @@
-from enum import Enum
 from typing import Any, Callable
 
-__all__ = ["wrap_to_string_enum"]
+__all__ = ["wrap_to_string_enum", "StrEnum"]
+
+try:
+    from enum import StrEnum  # type: ignore
+except ImportError:
+    # For Python 3.10 and below, emulate the behavior of StrEnum by
+    # inheriting from str and enum.Enum.
+    # Note that this does *not* work on Python 3.11+, since the default
+    # Enum format method has changed and will not return the value of
+    # the enum member.
+    import enum
+
+    class StrEnum(str, enum.Enum):  # type: ignore
+        pass
 
 
 # mypy doesn't understand this dynamically created Enum, so we have to
@@ -13,7 +25,7 @@ def wrap_to_string_enum(
     *,
     key_converter: Callable[[str], str] = lambda val: val,
     value_converter: Callable[[str], str] = lambda val: val.lower(),
-) -> Any:
+) -> tuple[StrEnum, Callable[[StrEnum], int], Callable[[int], StrEnum]]:
     """Create a string Enum with the same keys as the given protobuf Enum.
 
     Values of the enum are the keys, converted to lowercase.
@@ -35,12 +47,12 @@ def wrap_to_string_enum(
         to_pb_conversion_dict[enum_value] = pb_value
         from_pb_conversion_dict[pb_value] = enum_value
 
-    res_enum = Enum(class_name, fields, type=str, module=module)  # type: ignore
+    res_enum = StrEnum(class_name, fields, module=module)
 
-    def to_pb_conversion_func(val: res_enum) -> int:
+    def to_pb_conversion_func(val: StrEnum) -> int:
         return to_pb_conversion_dict[val]
 
-    def from_pb_conversion_func(val: int) -> res_enum:
+    def from_pb_conversion_func(val: int) -> StrEnum:
         return res_enum(from_pb_conversion_dict[val])
 
     return (

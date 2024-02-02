@@ -147,7 +147,12 @@ model.update()
 
 # %%
 # Show the fiber directions of a specific ply
-modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45_UD"]
+modeling_ply = (
+    model.modeling_groups["modeling_group"]
+    .modeling_plies["ply_4_-45_UD"]
+    .production_plies["ProductionPly.5"]
+    .analysis_plies["P1L1__ply_4_-45_UD"]
+)
 
 plotter = pyvista.Plotter()
 plotter.add_mesh(model.mesh.to_pyvista(), color="white", show_edges=True)
@@ -157,7 +162,16 @@ plotter.add_mesh(
 plotter.show()
 
 plotter = get_directions_on_mesh_plotter(
-    model, [modeling_ply.elemental_data.fiber_direction, modeling_ply.elemental_data.normal]
+    model,
+    [
+        modeling_ply.elemental_data.fiber_direction,
+        modeling_ply.elemental_data.orientation,
+        modeling_ply.elemental_data.normal,
+        modeling_ply.elemental_data.transverse_direction,
+        modeling_ply.elemental_data.draped_fiber_direction,
+        modeling_ply.elemental_data.draped_transverse_direction,
+        modeling_ply.elemental_data.material_1_direction,
+    ],
 )
 plotter.show()
 
