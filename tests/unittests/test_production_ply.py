@@ -1,10 +1,6 @@
 import pytest
 
-from ansys.acp.core import Model, ModelingPly
-from ansys.acp.core._tree_objects.production_ply import (
-    ProductionPlyElementalData,
-    ProductionPlyNodalData,
-)
+from ansys.acp.core import Model, ModelingPly, ProductionPlyElementalData, ProductionPlyNodalData
 
 from .common.tree_object_tester import TreeObjectTesterReadOnly
 

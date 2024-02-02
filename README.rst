@@ -49,7 +49,12 @@ Install PyACP with:
 
 .. code-block::
 
+    pip install --index-url=https://<TOKEN>@pkgs.dev.azure.com/pyansys/_packaging/pyansys/pypi/simple/ ansys-api-tools-filetransfer ansys-api-acp
     pip install git+https://github.com/ansys-internal/pyacp
+
+.. note::
+
+    The ``<TOKEN>`` in the above command should be replaced with the PAT for the internal PyPI instance. Reach out to a team member or the PyAnsys team for access instructions.
 
 For installing PyACP in development mode, see the `Development Setup`_ instructions below.
 

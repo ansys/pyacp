@@ -1,6 +1,6 @@
 import pytest
 
-from ansys.acp.core._tree_objects.enums import SensorType
+from ansys.acp.core import SensorType
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 

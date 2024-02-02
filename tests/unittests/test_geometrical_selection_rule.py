@@ -1,7 +1,7 @@
 import pytest
 
-from ansys.acp.core._tree_objects.enums import GeometricalRuleType
-from ansys.acp.core._tree_objects.geometrical_selection_rule import (
+from ansys.acp.core import (
+    GeometricalRuleType,
     GeometricalSelectionRuleElementalData,
     GeometricalSelectionRuleNodalData,
 )

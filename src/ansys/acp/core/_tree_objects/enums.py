@@ -24,13 +24,23 @@ __all__ = [
     "DropoffMaterialType",
     "DrapingType",
     "DrapingMaterialType",
+    "SymmetryType",
+    "EdgeSetType",
     "PlyType",
+    "BooleanOperationType",
     "UnitSystemType",
     "DimensionType",
     "ElementalDataType",
     "NodalDataType",
     "LookUpTableColumnValueType",
+    "LookUpTable3DInterpolationAlgorithm",
     "SensorType",
+    "VirtualGeometryDimension",
+    "CutoffRuleType",
+    "PlyCutoffType",
+    "GeometricalRuleType",
+    "ThicknessType",
+    "ThicknessFieldType",
 ]
 
 (StatusType, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(

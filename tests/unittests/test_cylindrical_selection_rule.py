@@ -1,9 +1,6 @@
 import pytest
 
-from ansys.acp.core._tree_objects.cylindrical_selection_rule import (
-    CylindricalSelectionRuleElementalData,
-    CylindricalSelectionRuleNodalData,
-)
+from ansys.acp.core import CylindricalSelectionRuleElementalData, CylindricalSelectionRuleNodalData
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 

@@ -1,9 +1,6 @@
 import pytest
 
-from ansys.acp.core._tree_objects.spherical_selection_rule import (
-    SphericalSelectionRuleElementalData,
-    SphericalSelectionRuleNodalData,
-)
+from ansys.acp.core import SphericalSelectionRuleElementalData, SphericalSelectionRuleNodalData
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 

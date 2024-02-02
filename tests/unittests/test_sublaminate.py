@@ -1,7 +1,6 @@
 import pytest
 
-from ansys.acp.core import FabricWithAngle, Lamina
-from ansys.acp.core._tree_objects.enums import SymmetryType
+from ansys.acp.core import FabricWithAngle, Lamina, SymmetryType
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
