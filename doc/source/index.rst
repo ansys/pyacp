@@ -9,10 +9,16 @@ PyACP documentation |version|
 
 .. include:: ../../README.rst
 
-.. toctree::
-    :hidden:
-    :maxdepth: 3
+.. jinja:: main_toctree
 
-    PyACP <self>
-    examples/index
-    api/index
+    .. toctree::
+        :hidden:
+        :maxdepth: 3
+
+        PyACP <self>
+        {% if not skip_gallery %}
+            examples/index
+        {% endif %}
+        {% if not skip_api %}
+            api/index
+        {% endif %}
