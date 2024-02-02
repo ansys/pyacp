@@ -13,7 +13,7 @@
         {% if not skip_api %}
         api/index
         {% endif %}
-        contribute
+        contributing
 
 
 PyACP
@@ -66,8 +66,8 @@ optimization of composite structures.
 
             Describes the public Python classes, methods, and functions.
 
-        .. grid-item-card:: :octicon:`code` Contribute
-            :link: contribute
+        .. grid-item-card:: :octicon:`code` Contributing
+            :link: contributing
             :link-type: doc
             :columns: 12
 
