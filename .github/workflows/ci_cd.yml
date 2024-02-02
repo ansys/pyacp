@@ -282,6 +282,7 @@ jobs:
           PYMAPDL_START_INSTANCE: "FALSE"
           PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT: "50558"
           PYACP_DOC_SKIP_GALLERY: ${{ matrix.quick_build && 'true' || 'false' }}
+          PYACP_DOC_SKIP_API: ${{ matrix.quick_build && 'true' || 'false' }}
 
       - name: Stop and clean up MAPDL and DPF servers
         run: |
