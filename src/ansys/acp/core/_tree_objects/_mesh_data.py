@@ -12,8 +12,8 @@ from typing_extensions import Self
 from ansys.acp.core._utils.array_conversions import dataarray_to_numpy, to_numpy
 from ansys.api.acp.v0 import mesh_query_pb2, mesh_query_pb2_grpc
 
+from .._typing_helper import StrEnum
 from .._utils.property_protocols import ReadOnlyProperty
-from ._grpc_helpers.enum_wrapper import StrEnum
 from .base import TreeObject
 from .enums import (
     elemental_data_type_from_pb,

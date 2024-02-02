@@ -20,20 +20,18 @@ and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDP
 import pathlib
 import tempfile
 
-import pyvista
-
 # %%
 # Import pyACP dependencies
 from ansys.acp.core import (
     ACPWorkflow,
     ExampleKeys,
     get_composite_post_processing_files,
+    get_directions_plotter,
     get_dpf_unit_system,
     get_example_file,
     launch_acp,
     print_model,
 )
-from ansys.acp.core._plotter import get_directions_on_mesh_plotter
 
 # TODO: Import from top-level when available
 from ansys.acp.core._tree_objects.enums import PlyType
@@ -121,12 +119,7 @@ oss = model.create_oriented_selection_set(
 
 model.update()
 
-plotter = pyvista.Plotter()
-plotter.add_mesh(model.mesh.to_pyvista(), color="white")
-plotter.add_mesh(
-    oss.elemental_data.orientation.get_pyvista_glyphs(mesh=model.mesh, factor=0.01),
-    color="blue",
-)
+plotter = get_directions_plotter(model=model, vector_datas=[oss.elemental_data.orientation])
 plotter.show()
 
 
@@ -154,28 +147,14 @@ modeling_ply = (
     .analysis_plies["P1L1__ply_4_-45_UD"]
 )
 
-plotter = pyvista.Plotter()
-plotter.add_mesh(model.mesh.to_pyvista(), color="white", show_edges=True)
-plotter.add_mesh(
-    modeling_ply.elemental_data.fiber_direction.get_pyvista_glyphs(mesh=model.mesh, factor=0.0008),
+
+plotter = get_directions_plotter(
+    model=model,
+    vector_datas=[modeling_ply.elemental_data.fiber_direction],
 )
+
 plotter.show()
 
-plotter = get_directions_on_mesh_plotter(
-    model,
-    [
-        modeling_ply.elemental_data.fiber_direction,
-        modeling_ply.elemental_data.orientation,
-        modeling_ply.elemental_data.normal,
-        modeling_ply.elemental_data.transverse_direction,
-        modeling_ply.elemental_data.draped_fiber_direction,
-        modeling_ply.elemental_data.draped_transverse_direction,
-        modeling_ply.elemental_data.material_1_direction,
-    ],
-)
-plotter.show()
-
-modeling_ply.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot()
 
 # %%
 # Print the model tree for a quick overview

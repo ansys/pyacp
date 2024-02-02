@@ -4,6 +4,8 @@ from typing import Optional
 from ._tree_objects.model import Model
 from ._utils.visualization import _replace_underscores_and_capitalize
 
+__all__ = ["Node", "print_model", "get_model_tree"]
+
 
 class Node:
     """A node in a tree representation of the model.
