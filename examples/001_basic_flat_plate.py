@@ -140,12 +140,7 @@ model.update()
 
 # %%
 # Show the fiber directions of a specific ply
-modeling_ply = (
-    model.modeling_groups["modeling_group"]
-    .modeling_plies["ply_4_-45_UD"]
-    .production_plies["ProductionPly.5"]
-    .analysis_plies["P1L1__ply_4_-45_UD"]
-)
+modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45_UD"]
 
 
 plotter = get_directions_plotter(

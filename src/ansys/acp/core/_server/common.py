@@ -4,7 +4,7 @@ from typing import Protocol
 
 import grpc
 
-from .._tree_objects._grpc_helpers.enum_wrapper import StrEnum
+from .._typing_helper import StrEnum
 
 __all__ = ["LaunchMode"]
 
