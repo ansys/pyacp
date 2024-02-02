@@ -102,6 +102,7 @@ examples = ["ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites", "ansys
 [tool.poetry.plugins."ansys.tools.local_product_launcher.launcher"]
 "ACP.direct" = "ansys.acp.core._server.direct:DirectLauncher"
 "ACP.docker_compose" = "ansys.acp.core._server.docker_compose:DockerComposeLauncher"
+"ACP.__fallback__" = "ansys.acp.core._server.direct:DirectLauncher"
 
 [[tool.poetry.source]]
 name = "PyPI"
