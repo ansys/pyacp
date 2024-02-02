@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706878400018,
+  "lastUpdate": 1706881327221,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11604,6 +11604,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00021919089472377596",
             "extra": "mean: 839.0449395487989 usec\nrounds: 1373"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6961ca0a83406590111fb70e07ac99d849af173a",
+          "message": "Add options for partial documentation builds (#368)\n\nAdd the following options to run a partial doc build, controlled\r\nvia environment variables:\r\n- `PYACP_DOC_SKIP_GALLERY=true`: do not build the examples\r\n  gallery\r\n- `PYACP_DOC_SKIP_API=true`: do not build the API reference\r\n\r\nAdd a quick variant of the documentation build in CI which only\r\nbuilds the main pages (no API / examples). This build runs in parallel\r\nwith the full documentation build, to provider quicker feedback\r\non errors.\r\n\r\nAdd docstrings to the enum classes.",
+          "timestamp": "2024-02-02T13:38:50Z",
+          "tree_id": "8035eeedbaf676b6fd6b0de1a9c9caea8b98dcd7",
+          "url": "https://github.com/ansys-internal/pyacp/commit/6961ca0a83406590111fb70e07ac99d849af173a"
+        },
+        "date": 1706881316860,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.453186281670784,
+            "unit": "iter/sec",
+            "range": "stddev: 0.006555512399374841",
+            "extra": "mean: 224.5583132499931 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 897.970234488952,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003563358395559134",
+            "extra": "mean: 1.113622658738922 msec\nrounds: 967"
           }
         ]
       }
