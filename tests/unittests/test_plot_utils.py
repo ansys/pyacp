@@ -8,8 +8,7 @@ def test_direction_plotter(acp_instance, load_model_from_tempfile):
         analysis_ply = modeling_ply.production_plies["ProductionPly"].analysis_plies[
             "P1L1__ModelingPly.1"
         ]
-
-        vector_datas = [
+        components = [
             analysis_ply.elemental_data.orientation,
             analysis_ply.elemental_data.normal,
             analysis_ply.elemental_data.reference_direction,
@@ -21,10 +20,10 @@ def test_direction_plotter(acp_instance, load_model_from_tempfile):
         ]
         plotter = get_directions_plotter(
             model=model,
-            vector_datas=vector_datas,
+            components=components,
         )
 
-        for idx, data in enumerate(vector_datas):
+        for idx, data in enumerate(components):
             assert plotter.legend.GetEntryString(idx) == _replace_underscores_and_capitalize(
                 data.component_name
             )

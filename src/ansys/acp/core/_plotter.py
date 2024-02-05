@@ -26,7 +26,7 @@ _acp_direction_colors = {
 def get_directions_plotter(
     *,
     model: "Model",
-    vector_datas: Sequence["VectorData"],
+    components: Sequence["VectorData"],
     culling_factor: int = 1,
     length_factor: float = 1.0,
     **kwargs: Any,
@@ -37,8 +37,8 @@ def get_directions_plotter(
     ----------
     model:
         ACP Model.
-    vector_datas:
-        List of vector data to plot.
+    components:
+        List of components to plot.
     culling_factor :
         If set to a value other than ``1``, add only every n-th data
         point to the PyVista object. This is useful especially for
@@ -52,7 +52,7 @@ def get_directions_plotter(
     plotter = pyvista.Plotter()
     plotter.add_mesh(model.mesh.to_pyvista(), color="white", show_edges=True)
 
-    for vector_data in vector_datas:
+    for vector_data in components:
         color = _acp_direction_colors.get(vector_data.component_name, "black")
         plotter.add_mesh(
             vector_data.get_pyvista_glyphs(
