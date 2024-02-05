@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707124711188,
+  "lastUpdate": 1707138159150,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11756,6 +11756,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023122925590295763",
             "extra": "mean: 821.1681698638782 usec\nrounds: 1460"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1eb256ad9484cafd798f5ac331f00b08cc37a7af",
+          "message": "Update dev notebooks (#383)\n\n- Remove the dev notebooks, except for `connection_test.ipynb`\r\n- Update to the latest API\r\n- Add a note mentioning that these notebooks may be outdated",
+          "timestamp": "2024-02-05T13:00:13Z",
+          "tree_id": "51f8267c1dcf3235fbd6797be3adceae14adc995",
+          "url": "https://github.com/ansys-internal/pyacp/commit/1eb256ad9484cafd798f5ac331f00b08cc37a7af"
+        },
+        "date": 1707138151117,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.329558535477247,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0035286363908076388",
+            "extra": "mean: 157.98890150000014 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1268.4870720025908,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020739086356894243",
+            "extra": "mean: 788.3407108132968 usec\nrounds: 1193"
           }
         ]
       }
