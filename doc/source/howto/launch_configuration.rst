@@ -24,10 +24,9 @@ To change this behavior, you can use the ``ansys-launcher`` command line tool to
     direct
     docker_compose
 
-From the output above, we learn that two methods are available to start ACP: ``direct``
-and ``docker_compose``:
-- ``direct``: Start ACP directly by providing the path to the ``acp_grpcserver`` executable.
-- ``docker_compose``: Start ACP using Docker Compose.
+In the preceding output, the two available methods for starting ACP are listed:
+- ``direct``: start ACP directly by providing the path to the ``acp_grpcserver`` executable.
+- ``docker_compose``: start ACP using Docker Compose.
 
 Either method can be configured with ``ansys-launcher``. For example, to use the
 ``direct`` method, you can run ``ansys-launcher configure ACP direct``.
