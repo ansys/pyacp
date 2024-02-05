@@ -6,8 +6,8 @@ from ..._grpc_helpers.property_helper import mark_grpc_properties
 from ...base import TreeObject
 from .base import _ConstantPropertySet, _VariablePropertySet
 from .property_helper import (
-    _constant_material_grpc_data_property,
-    _variable_material_grpc_data_property,
+    constant_material_grpc_data_property,
+    variable_material_grpc_data_property,
 )
 
 __all__ = ["ConstantLaRCConstants", "VariableLaRCConstants"]
@@ -19,6 +19,8 @@ class _LaRCConstantsMixin:
 
 @mark_grpc_properties
 class ConstantLaRCConstants(_LaRCConstantsMixin, _ConstantPropertySet):
+    """Constant LaRC failure criterion properties."""
+
     _GRPC_PROPERTIES = tuple()
 
     def __init__(
@@ -41,23 +43,25 @@ class ConstantLaRCConstants(_LaRCConstantsMixin, _ConstantPropertySet):
         self.fracture_toughness_mode_2 = fracture_toughness_mode_2
         self.thin_ply_thickness_limit = thin_ply_thickness_limit
 
-    fracture_angle_under_compression = _constant_material_grpc_data_property(
+    fracture_angle_under_compression = constant_material_grpc_data_property(
         "fracture_angle_under_compression"
     )
-    fracture_toughness_ratio = _constant_material_grpc_data_property("fracture_toughness_ratio")
-    fracture_toughness_mode_1 = _constant_material_grpc_data_property("fracture_toughness_mode_1")
-    fracture_toughness_mode_2 = _constant_material_grpc_data_property("fracture_toughness_mode_2")
-    thin_ply_thickness_limit = _constant_material_grpc_data_property("thin_ply_thickness_limit")
+    fracture_toughness_ratio = constant_material_grpc_data_property("fracture_toughness_ratio")
+    fracture_toughness_mode_1 = constant_material_grpc_data_property("fracture_toughness_mode_1")
+    fracture_toughness_mode_2 = constant_material_grpc_data_property("fracture_toughness_mode_2")
+    thin_ply_thickness_limit = constant_material_grpc_data_property("thin_ply_thickness_limit")
 
 
 @mark_grpc_properties
 class VariableLaRCConstants(_LaRCConstantsMixin, _VariablePropertySet):
+    """Variable LaRC failure criterion properties."""
+
     _GRPC_PROPERTIES = tuple()
 
-    fracture_angle_under_compression = _variable_material_grpc_data_property(
+    fracture_angle_under_compression = variable_material_grpc_data_property(
         "fracture_angle_under_compression"
     )
-    fracture_toughness_ratio = _variable_material_grpc_data_property("fracture_toughness_ratio")
-    fracture_toughness_mode_1 = _variable_material_grpc_data_property("fracture_toughness_mode_1")
-    fracture_toughness_mode_2 = _variable_material_grpc_data_property("fracture_toughness_mode_2")
-    thin_ply_thickness_limit = _variable_material_grpc_data_property("thin_ply_thickness_limit")
+    fracture_toughness_ratio = variable_material_grpc_data_property("fracture_toughness_ratio")
+    fracture_toughness_mode_1 = variable_material_grpc_data_property("fracture_toughness_mode_1")
+    fracture_toughness_mode_2 = variable_material_grpc_data_property("fracture_toughness_mode_2")
+    thin_ply_thickness_limit = variable_material_grpc_data_property("thin_ply_thickness_limit")

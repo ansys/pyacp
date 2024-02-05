@@ -18,7 +18,8 @@ def unlink_objects(pb_object: Message) -> None:
 def linked_path_fields(
     pb_object: Message,
 ) -> Iterable[tuple[Message, FieldDescriptor, Union[ResourcePath, CollectionPath]]]:
-    """
+    """Get all linked paths from a protobuf object.
+
     Get tuples (parent_message, field_descriptor, {resource_path or collection_path})
     describing all resource or collection paths present in the protobuf
     object.

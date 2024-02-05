@@ -45,6 +45,7 @@ class Lamina(GenericEdgePropertyType):
 
     @property
     def material(self) -> _LINKABLE_MATERIAL_TYPES:
+        """Link to an existing fabric or stackup."""
         return self._material
 
     @material.setter
@@ -55,6 +56,7 @@ class Lamina(GenericEdgePropertyType):
 
     @property
     def angle(self) -> float:
+        """Orientation angle in degree of the material with respect to the reference direction."""
         return self._angle
 
     @angle.setter

@@ -15,9 +15,7 @@ class _ExampleLocation:
 
 
 class ExampleKeys(Enum):
-    """
-    Keys for the example files.
-    """
+    """Keys for the example files."""
 
     BASIC_FLAT_PLATE_CDB = auto()
     BASIC_FLAT_PLATE_ACPH5 = auto()
@@ -34,7 +32,7 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
 
 
 def get_example_file(example_key: ExampleKeys, working_directory: pathlib.Path) -> pathlib.Path:
-    """Downloads an example file from the example-data repo to the working directory.
+    """Download an example file from the example-data repo to the working directory.
 
     Parameters
     ----------

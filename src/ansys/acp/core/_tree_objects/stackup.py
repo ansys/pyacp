@@ -56,6 +56,7 @@ class FabricWithAngle(GenericEdgePropertyType):
 
     @property
     def fabric(self) -> Fabric:
+        """Linked fabric."""
         return self._fabric
 
     @fabric.setter
@@ -66,6 +67,7 @@ class FabricWithAngle(GenericEdgePropertyType):
 
     @property
     def angle(self) -> float:
+        """Orientation angle in degree of the fabric with respect to the reference direction."""
         return self._angle
 
     @angle.setter

@@ -9,20 +9,24 @@ from ansys.api.acp.v0.mesh_query_pb2 import DataArray
 
 
 def to_1D_double_array(data: Collection[float]) -> DoubleArray:
+    """Convert a 1D collection of floats to a DoubleArray protobuf message."""
     return DoubleArray(shape=[len(data)], data=tuple(data))
 
 
 def to_1D_int_array(data: Collection[int]) -> IntArray:
+    """Convert a 1D collection of ints to a IntArray protobuf message."""
     return IntArray(shape=[len(data)], data=tuple(data))
 
 
 def to_tuple_from_1D_array(array: Union[IntArray, DoubleArray]) -> tuple[Any, ...]:
+    """Convert a 1D IntArray or DoubleArray protobuf message to a tuple."""
     if not len(array.shape) == 1:
         raise RuntimeError(f"Cannot convert {len(array.shape)}-dimensional array to tuple!")
     return tuple(array.data)
 
 
 def to_ND_double_array_from_numpy(data: npt.NDArray[np.float64]) -> DoubleArray:
+    """Convert a numpy array to a DoubleArray protobuf message."""
     return DoubleArray(shape=list(data.shape), data=data.flatten())
 
 
@@ -44,6 +48,7 @@ def to_numpy(array_pb: DoubleArray) -> npt.NDArray[np.float64]:
 def to_numpy(
     array_pb: Union[IntArray, Int32Array, DoubleArray]
 ) -> Union[npt.NDArray[np.int64], npt.NDArray[np.int32], npt.NDArray[np.float64]]:
+    """Convert a protubuf array message to a numpy array."""
     dtype = {
         IntArray: np.int64,
         Int32Array: np.int32,
@@ -56,6 +61,7 @@ def dataarray_to_numpy(
     array_pb: DataArray,
     dtype: Union[type[np.int32], type[np.int64], type[np.float64]],
 ) -> Union[npt.NDArray[np.int64], npt.NDArray[np.int32], npt.NDArray[np.float64]]:
+    """Convert a DataArray protobuf message to a numpy array."""
     data_array_attribute = array_pb.WhichOneof("data")
     if data_array_attribute is None:
         raise RuntimeError("None of the 'DataArray' data attributes are set!")
