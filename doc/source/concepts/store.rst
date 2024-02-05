@@ -1,5 +1,5 @@
-Stored vs. unstored objects
----------------------------
+Stored versus unstored objects
+------------------------------
 
 General concept
 ~~~~~~~~~~~~~~~
