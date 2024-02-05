@@ -122,22 +122,22 @@ def _get_file_transfer_strategy(
 
 
 # Todo: Add automated tests for local and remote workflow
-# Todo: update logic when cdb is part of the acph5
 class ACPWorkflow:
     r"""Instantiate an ACP Workflow.
 
-    Supports starting from a \*.cbd or \*.acph5 file
+    Use the class methods :meth:`.from_cdb_file` and
+    :meth:`.from_acph5_file` to instantiate the workflow.
 
     Parameters
     ----------
     acp
-        The ACP Client
+        The ACP Client.
     local_working_directory:
         The local working directory. If None, a temporary directory will be created.
     cdb_file_path:
         The path to the cdb file.
-    h5_file_path:
-        The path to the h5 file.
+    acph5_file_path:
+        The path to the acph5 file.
     """
 
     def __init__(
@@ -155,16 +155,67 @@ class ACPWorkflow:
             local_working_dir=self._local_working_dir,
         )
 
+        if cdb_file_path is not None and acph5_file_path is not None:
+            raise RuntimeError("Only one of cdb_file_path or acph5_file_path can be provided.")
+
+        if cdb_file_path is None and acph5_file_path is None:
+            raise RuntimeError("One of cdb_file_path or acph5_file_path must be provided.")
+
         if cdb_file_path is not None:
             uploaded_file = self._add_input_file(path=pathlib.Path(cdb_file_path))
-            if acph5_file_path is None:
-                self._model = self._acp_instance.import_model(
-                    path=uploaded_file, format="ansys:cdb"
-                )
+            self._model = self._acp_instance.import_model(path=uploaded_file, format="ansys:cdb")
 
         if acph5_file_path is not None:
             uploaded_file = self._add_input_file(path=pathlib.Path(acph5_file_path))
             self._model = self._acp_instance.import_model(path=uploaded_file)
+
+    @classmethod
+    def from_acph5_file(
+        cls,
+        acp: ACP[ServerProtocol],
+        acph5_file_path: PATH,
+        local_working_directory: Optional[pathlib.Path] = None,
+    ) -> "ACPWorkflow":
+        """Instantiate an ACP Workflow from an acph5 file.
+
+        Parameters
+        ----------
+        acp
+            The ACP Client.
+        acph5_file_path:
+            The path to the acph5 file.
+        local_working_directory:
+            The local working directory. If None, a temporary directory will be created.
+        """
+
+        return cls(
+            acp=acp,
+            acph5_file_path=acph5_file_path,
+            local_working_directory=local_working_directory,
+        )
+
+    @classmethod
+    def from_cdb_file(
+        cls,
+        acp: ACP[ServerProtocol],
+        cdb_file_path: PATH,
+        local_working_directory: Optional[pathlib.Path] = None,
+    ) -> "ACPWorkflow":
+        """Instantiate an ACP Workflow from a cdb file.
+
+        Parameters
+        ----------
+        acp
+            The ACP Client.
+        cdb_file_path:
+            The path to the cdb file.
+        local_working_directory:
+            The local working directory. If None, a temporary directory will be created.
+        """
+
+        return cls(
+            acp=acp, cdb_file_path=cdb_file_path, local_working_directory=local_working_directory
+        )
 
     @property
     def model(self) -> Model:
