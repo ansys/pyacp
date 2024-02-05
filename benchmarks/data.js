@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707122890423,
+  "lastUpdate": 1707123905575,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11680,6 +11680,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00041645176909600257",
             "extra": "mean: 1.029901471840947 msec\nrounds: 799"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "dd0ed346b3b63e32c661739a5ca590c44a389435",
+          "message": "Ensure all exposed classes are documented (#363)\n\nEnable the `pydocstyle` pre-commit hook, and fix / add all reported docstrings.\r\n\r\nAdd `FeFormat`, `IgnorableEntity` and `PuckMaterialType` enums to the list of\r\npublic classes.\r\n\r\nNote: there is no explicit automated check that all exposed objects are included in the \r\ndocumentation's `.rst` files.",
+          "timestamp": "2024-02-05T10:02:09+01:00",
+          "tree_id": "1498baa5fa4d9bfca7c268591690eeaaa96b751b",
+          "url": "https://github.com/ansys-internal/pyacp/commit/dd0ed346b3b63e32c661739a5ca590c44a389435"
+        },
+        "date": 1707123897530,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.488340685908835,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005102573157361824",
+            "extra": "mean: 154.1226098333226 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1220.3516443632468,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000208910831258352",
+            "extra": "mean: 819.4359425981503 usec\nrounds: 1324"
           }
         ]
       }
