@@ -21,6 +21,8 @@ __all__ = ["LinkedObjectList", "define_linked_object_list"]
 
 
 class LinkedObjectList(MutableSequence[ValueT]):
+    """List of linked tree objects."""
+
     def __init__(
         self,
         *,
@@ -103,43 +105,104 @@ class LinkedObjectList(MutableSequence[ValueT]):
         )
 
     def append(self, object: ValueT) -> None:
+        """Append an object to the list.
+
+        Parameters
+        ----------
+        object:
+            Object to append.
+        """
         resource_path_list = self._get_resourcepath_list()
         resource_path_list.append(object._resource_path)
         self._set_resourcepath_list(resource_path_list)
 
     def count(self, value: ValueT) -> int:
+        """Count the number of occurrences of an object in the list.
+
+        Parameters
+        ----------
+        value:
+            Object to count.
+        """
         return self._get_resourcepath_list().count(value._resource_path)
 
     def index(self, value: ValueT, start: int = 0, stop: int = sys.maxsize) -> int:
+        """Return the index of the first occurrence of an object in the list.
+
+        Parameters
+        ----------
+        value:
+            Object to find.
+        """
         return self._get_resourcepath_list().index(value._resource_path, start, stop)
 
     def extend(self, iterable: Iterable[ValueT]) -> None:
+        """Extend the list with an iterable of objects.
+
+        Parameters
+        ----------
+        iterable:
+            Iterable of objects to append.
+        """
         resource_path_list = self._get_resourcepath_list()
         resource_path_list.extend([it._resource_path for it in iterable])
         self._set_resourcepath_list(resource_path_list)
 
     def insert(self, index: int, object: ValueT) -> None:
+        """Insert an object at a given index.
+
+        Parameters
+        ----------
+        index:
+            Index to insert at.
+        object:
+            Object to insert.
+        """
         resource_path_list = self._get_resourcepath_list()
         resource_path_list.insert(index, object._resource_path)
         self._set_resourcepath_list(resource_path_list)
 
     def pop(self, index: int = -1) -> ValueT:
+        """Remove and return an object from the list.
+
+        Parameters
+        ----------
+        index:
+            Index of the object to be removed.
+        """
         resource_path_list = self._get_resourcepath_list()
         rp = resource_path_list.pop(index)
         self._set_resourcepath_list(resource_path_list)
         return self._object_constructor(rp)
 
     def remove(self, value: ValueT) -> None:
+        """Remove the first occurrence of an object from the list.
+
+        Parameters
+        ----------
+        value:
+            Object to remove.
+        """
         resource_path_list = self._get_resourcepath_list()
         resource_path_list.remove(value._resource_path)
         self._set_resourcepath_list(resource_path_list)
 
     def reverse(self) -> None:
+        """Reverse the list in-place."""
         self._set_resourcepath_list(list(reversed(self._get_resourcepath_list())))
 
     def sort(
         self, *, key: Callable[[ValueT], Any] = lambda obj: obj.name, reverse: bool = False
     ) -> None:
+        """Sort the list in-place.
+
+        Parameters
+        ----------
+        key:
+            Key function to sort by.
+        reverse:
+            Whether to sort in reverse order.
+        """
         resource_path_list = self._get_resourcepath_list()
         evaluated_key_list = [key(self._object_constructor(rp)) for rp in resource_path_list]
         idx_list = np.argsort(evaluated_key_list)
@@ -158,6 +221,8 @@ ChildT = TypeVar("ChildT", bound=CreatableTreeObject)
 def define_linked_object_list(
     attribute_name: str, object_class: type[ChildT], doc: str | None = None
 ) -> Any:
+    """Define a list of linked tree objects."""
+
     def getter(self: ValueT) -> LinkedObjectList[ChildT]:
         return LinkedObjectList(
             parent_object=self,
@@ -174,6 +239,8 @@ def define_linked_object_list(
 def define_polymorphic_linked_object_list(
     attribute_name: str, allowed_types: tuple[Any, ...]
 ) -> Any:
+    """Define a list of linked tree objects with polymorphic types."""
+
     def getter(self: ValueT) -> LinkedObjectList[Any]:
         return LinkedObjectList(
             parent_object=self,

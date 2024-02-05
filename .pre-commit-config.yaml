@@ -37,11 +37,12 @@ repos:
         name: "poetry: check poetry.lock consistency"
         args: ["--lock"]
         files: '^(pyproject\.toml|poetry\.lock)$'
-  # - repo: https://github.com/pycqa/pydocstyle
-  #   rev: 6.1.1
-  #   hooks:
-  #   - id: pydocstyle
-  #     additional_dependencies: [toml]
+  - repo: https://github.com/pycqa/pydocstyle
+    rev: 6.1.1
+    hooks:
+    - id: pydocstyle
+      additional_dependencies: [toml]
+      exclude: "^(tests/)|(type_checks/)|(examples/)"
   - repo: https://github.com/kynan/nbstripout
     rev: 0.6.1
     hooks:

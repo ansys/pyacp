@@ -20,6 +20,7 @@ def wrap_to_string_enum(
     Values of the enum are the keys, converted to lowercase.
 
     Returns
+    -------
     :
         A tuple containing
         - the string enum

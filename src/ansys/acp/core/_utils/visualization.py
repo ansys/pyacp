@@ -8,6 +8,8 @@ from pyvista.core.celltype import CellType as pv_CellType
 
 
 class ElementType(IntEnum):
+    """Enumeration of ACP element types."""
+
     VERTEX_ELEMENT = 100
     LINK2N3D = 101
     BEAM2N3D = 111
@@ -94,7 +96,7 @@ def to_pyvista_faces(
     element_nodes: npt.NDArray[np.int32],
     element_nodes_offsets: npt.NDArray[np.int32],
 ) -> npt.NDArray[np.int32]:
-    """Converts ACP element data to PyVista faces."""
+    """Convert ACP element data to PyVista faces."""
     target_size = element_types.size + element_nodes.size
     # InterfaceElement12N and InterfaceElement16N are not supported by VTK;
     # they are shown as shell 3n and 4n, respectively.
@@ -128,5 +130,5 @@ def to_pyvista_faces(
 
 
 def to_pyvista_types(element_types: npt.NDArray[np.int32]) -> npt.NDArray[np.int32]:
-    """Converts ACP element types to PyVista cell types."""
+    """Convert ACP element types to PyVista cell types."""
     return np.array([ELEMENT_TO_PYVISTA_TYPE[el_type] for el_type in element_types])

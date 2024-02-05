@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from packaging import version
+
 from ansys.tools.local_product_launcher.config import get_launch_mode_for
 from ansys.tools.local_product_launcher.interface import FALLBACK_LAUNCH_MODE_NAME
 from ansys.tools.local_product_launcher.launch import launch_product
@@ -71,4 +73,12 @@ def launch_acp(
     )
     if timeout is not None:
         acp._server.wait(timeout=timeout)
+        # We can only check the server version after the server has started;
+        # if the timeout is set to 'None', we skip this check.
+        MIN_VERSION = "24.2"
+        if version.parse(acp.server_version) < version.parse(MIN_VERSION):
+            raise RuntimeError(
+                f"ACP version {acp.server_version} is not supported. "
+                f"Please use ACP version {MIN_VERSION} or later."
+            )
     return acp
