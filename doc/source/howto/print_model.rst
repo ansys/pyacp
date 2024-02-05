@@ -44,6 +44,7 @@ You can print the tree structure using the :func:`.print_model` function:
                 ModelingPly.1
                     ProductionPly
                         P1L1__ModelingPly.1
+        <BLANKLINE>
 
 
 Alternatively, you can use :func:`.get_model_tree` to get a tree representation. This allows manually iterating over the tree structure:
