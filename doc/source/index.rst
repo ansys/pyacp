@@ -51,16 +51,14 @@ optimization of composite structures.
             Guides on how to achieve specific tasks with PyACP.
 
         .. grid-item-card:: :octicon:`play` Examples
-            {% if not skip_gallery %}
-            :link: examples/index
+            {% if not skip_gallery %}:link: examples/index
             :link-type: doc
             {% endif %}
 
             A collection of examples demonstrating the capabilities of PyACP.
 
         .. grid-item-card:: :octicon:`file-code` API reference
-            {% if not skip_api %}
-            :link: api/index
+            {% if not skip_api %}:link: api/index
             :link-type: doc
             {% endif %}
 
