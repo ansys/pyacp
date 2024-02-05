@@ -13,7 +13,7 @@ An unstored object is a local representation of an ACP object. It can be used to
 Creating stored and unstored objects
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Let's look at an example. First, we launch an ACP instance and import a model. This creates a *stored* model object.
+Consider the following example. First, launch an ACP instance and import a model. This creates a *stored* model object.
 
 .. doctest::
 
@@ -33,14 +33,14 @@ Let's look at an example. First, we launch an ACP instance and import a model. T
     >>> model
     <Model with name 'ACP Model'>
 
-We can create a new *stored* material object by calling the :meth:`.create_material` method of the model object.
+To create a new *stored* material object, call the :meth:`.create_material` method of the model object.
 
 .. doctest::
 
     >>> model.create_material(name="New Material")
     <Material with id 'New Material'>
 
-We can also create an *unstored* material object by calling the :class:`.Material` constructor:
+To instead create an *unstored* material object, directly call the :class:`.Material` constructor:
 
 .. doctest::
 
@@ -53,13 +53,13 @@ Notice that the *unstored* material object has an empty ID. This is because the 
 Storing objects
 ~~~~~~~~~~~~~~~
 
-We can make changes to the unstored material, but these are lost when our Python session ends.
+You can make changes to the unstored material, but these are lost when the Python session ends.
 
 .. doctest::
 
     >>> material.density.rho = 8000
 
-To store the material on an ACP model, we call the material's :meth:`.store` method. The ``parent`` parameter determines where in the ACP model the material is stored. In this case, the root of the model is the parent.
+To store the material on an ACP model, call the material's :meth:`store <.Material.store>` method. The ``parent`` parameter determines where in the ACP model the material is stored. In this case, the root of the model is the parent.
 
 .. doctest::
 
@@ -70,7 +70,7 @@ To store the material on an ACP model, we call the material's :meth:`.store` met
 Cloning objects
 ~~~~~~~~~~~~~~~
 
-We can also create an *unstored* copy of an object by calling the :meth:`.clone` method. The source object can be either stored or unstored.
+You can create an *unstored* copy of an existing object by calling the :meth:`clone <.Material.clone>` method. The source object can be either stored or unstored.
 
 .. doctest::
 
@@ -104,4 +104,4 @@ Performance considerations
 
 When building up ACP models, performance can vary depending on whether objects are stored or unstored. In general, it is best to first build up an unstored object, and then store its finished form. This is because otherwise each change to the object is sent to the server, which can be slow depending on the network connection.
 
-However, this doesn't mean that you necessarily need to use the :meth:`.store` method. It is just as efficient to use the ``create_*`` methods, and simply pass all the defining properties at once.
+However, this doesn't mean that you necessarily need to use the ``store`` method. It is just as efficient to use the ``create_*`` methods, and simply pass all the defining properties at once.
