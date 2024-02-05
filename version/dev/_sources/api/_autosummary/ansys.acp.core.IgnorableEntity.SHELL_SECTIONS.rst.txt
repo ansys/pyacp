@@ -1,0 +1,6 @@
+SHELL\_SECTIONS
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: IgnorableEntity.SHELL_SECTIONS

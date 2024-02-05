@@ -1,0 +1,6 @@
+MATERIALS
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: IgnorableEntity.MATERIALS

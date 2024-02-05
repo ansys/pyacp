@@ -1,0 +1,6 @@
+COORDINATE\_SYSTEMS
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: IgnorableEntity.COORDINATE_SYSTEMS

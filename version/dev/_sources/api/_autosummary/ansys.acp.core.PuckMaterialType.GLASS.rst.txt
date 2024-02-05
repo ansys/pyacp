@@ -1,0 +1,6 @@
+GLASS
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PuckMaterialType.GLASS

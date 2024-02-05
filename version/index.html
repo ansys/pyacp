@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>PyACP documentation 0.0.dev0 &#8212; PyACP</title>
+    <title>PyACP &#8212; PyACP</title>
 
   
   
@@ -65,7 +65,7 @@
     <link rel="icon" href="dev/_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Examples" href="examples/index.html" />
+    <link rel="next" title="Getting started" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,8 +175,22 @@
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="intro.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="examples/index.html">
                         Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="howto/index.html">
+                        How-to guides
                       </a>
                     </li>
                 
@@ -187,6 +201,21 @@
                       </a>
                     </li>
                 
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -309,8 +338,22 @@ document.write(`
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="intro.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="examples/index.html">
                         Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="howto/index.html">
+                        How-to guides
                       </a>
                     </li>
                 
@@ -321,6 +364,21 @@ document.write(`
                       </a>
                     </li>
                 
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
         
@@ -416,185 +474,78 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="pyacp-documentation-version">
-<h1>PyACP documentation 0.0.dev0<a class="headerlink" href="#pyacp-documentation-version" title="Permalink to this heading">#</a></h1>
-<section id="pyacp">
-<h2>PyACP<a class="headerlink" href="#pyacp" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://docs.pyansys.com/"><img alt="PyAnsys" src="https://img.shields.io/badge/Py-Ansys-ffc107.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAABDklEQVQ4jWNgoDfg5mD8vE7q/3bpVyskbW0sMRUwofHD7Dh5OBkZGBgW7/3W2tZpa2tLQEOyOzeEsfumlK2tbVpaGj4N6jIs1lpsDAwMJ278sveMY2BgCA0NFRISwqkhyQ1q/Nyd3zg4OBgYGNjZ2ePi4rB5loGBhZnhxTLJ/9ulv26Q4uVk1NXV/f///////69du4Zdg78lx//t0v+3S88rFISInD59GqIH2esIJ8G9O2/XVwhjzpw5EAam1xkkBJn/bJX+v1365hxxuCAfH9+3b9/+////48cPuNehNsS7cDEzMTAwMMzb+Q2u4dOnT2vWrMHu9ZtzxP9vl/69RVpCkBlZ3N7enoDXBwEAAA+YYitOilMVAAAAAElFTkSuQmCC" /></a> <a class="reference external" href="https://pypi.org/project/ansys-acp-core"><img alt="Python" src="https://img.shields.io/badge/Python-3.9%20%7C%203.9%20%7C%203.9%20%7C%203.10%20%7C%203.12-blue.svg" /></a> <a class="reference external" href="https://pypi.org/project/ansys-acp-core"><img alt="PyPI" src="https://img.shields.io/pypi/v/pyacp.svg?logo=python&amp;logoColor=white" /></a> <a class="reference external" href="https://github.com/ansys-internal/pyacp/actions/workflows/ci_cd.yml"><img alt="GH-CI" src="https://github.com/ansys-internal/pyacp/actions/workflows/ci_cd.yml/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/ansys-internal/pyacp"><img alt="Codecov" src="https://codecov.io/gh/ansys-internal/pyacp/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/MIT"><img alt="MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a> <a class="reference external" href="https://github.com/psf/black"><img alt="Black" src="https://img.shields.io/badge/code%20style-black-000000.svg?style=flat" /></a></p>
-<p>A Python client for Ansys Composite PrepPost (ACP).</p>
-<section id="overview">
-<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="installation">
-<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h3>
-<p>Install PyACP with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">index</span><span class="o">-</span><span class="n">url</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">TOKEN</span><span class="o">&gt;</span><span class="nd">@pkgs</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">azure</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyansys</span><span class="o">/</span><span class="n">_packaging</span><span class="o">/</span><span class="n">pyansys</span><span class="o">/</span><span class="n">pypi</span><span class="o">/</span><span class="n">simple</span><span class="o">/</span> <span class="n">ansys</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">tools</span><span class="o">-</span><span class="n">filetransfer</span> <span class="n">ansys</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">acp</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ansys</span><span class="o">-</span><span class="n">internal</span><span class="o">/</span><span class="n">pyacp</span>
-</pre></div>
+  <div class="toctree-wrapper compound">
 </div>
+<section id="pyacp">
+<h1>PyACP<a class="headerlink" href="#pyacp" title="Permalink to this heading">#</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">&lt;TOKEN&gt;</span></code> in the above command should be replaced with the PAT for the internal PyPI instance. Reach out to a team member or the PyAnsys team for access instructions.</p>
+<p>PyACP is currently released as a beta version. This means that the API may
+change in future releases. We encourage you to try PyACP and provide us with
+feedback.</p>
 </div>
-<p>For installing PyACP in development mode, see the <a class="reference internal" href="#development-setup">Development Setup</a> instructions below.</p>
+<p>PyACP enables modelling continuous-fiber composite structures from within your
+Python environment. It provides access to the features of Ansys Composite
+PrepPost (ACP) through a Python interface.</p>
+<p>This makes PyACP a powerful tool for automating the design, analysis and
+optimization of composite structures.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-2 sd-g-xs-2 sd-g-sm-2 sd-g-md-2 sd-g-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-rocket" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M14.064 0a8.75 8.75 0 00-6.187 2.563l-.459.458c-.314.314-.616.641-.904.979H3.31a1.75 1.75 0 00-1.49.833L.11 7.607a.75.75 0 00.418 1.11l3.102.954c.037.051.079.1.124.145l2.429 2.428c.046.046.094.088.145.125l.954 3.102a.75.75 0 001.11.418l2.774-1.707a1.75 1.75 0 00.833-1.49V9.485c.338-.288.665-.59.979-.904l.458-.459A8.75 8.75 0 0016 1.936V1.75A1.75 1.75 0 0014.25 0h-.186zM10.5 10.625c-.088.06-.177.118-.266.175l-2.35 1.521.548 1.783 1.949-1.2a.25.25 0 00.119-.213v-2.066zM3.678 8.116L5.2 5.766c.058-.09.117-.178.176-.266H3.309a.25.25 0 00-.213.119l-1.2 1.95 1.782.547zm5.26-4.493A7.25 7.25 0 0114.063 1.5h.186a.25.25 0 01.25.25v.186a7.25 7.25 0 01-2.123 5.127l-.459.458a15.21 15.21 0 01-2.499 2.02l-2.317 1.5-2.143-2.143 1.5-2.317a15.25 15.25 0 012.02-2.5l.458-.458h.002zM12 5a1 1 0 11-2 0 1 1 0 012 0zm-8.44 9.56a1.5 1.5 0 10-2.12-2.12c-.734.73-1.047 2.332-1.15 3.003a.23.23 0 00.265.265c.671-.103 2.273-.416 3.005-1.148z"></path></svg> Getting started</div>
+<p class="sd-card-text">Contains installation instructions and a simple example to get you
+started with PyACP.</p>
+</div>
+<a class="sd-stretched-link reference internal" href="intro.html"><span class="doc"></span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-light-bulb" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 01-1.484.211c-.04-.282-.163-.547-.37-.847a8.695 8.695 0 00-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.75.75 0 01-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75zM6 15.25a.75.75 0 01.75-.75h2.5a.75.75 0 010 1.5h-2.5a.75.75 0 01-.75-.75zM5.75 12a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5z"></path></svg> How-to guides</div>
+<p class="sd-card-text">Guides on how to achieve specific tasks with PyACP.</p>
+</div>
+<a class="sd-stretched-link reference internal" href="howto/index.html"><span class="doc"></span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-play" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM6.379 5.227A.25.25 0 006 5.442v5.117a.25.25 0 00.379.214l4.264-2.559a.25.25 0 000-.428L6.379 5.227z"></path></svg> Examples</div>
+<p class="sd-card-text">A collection of examples demonstrating the capabilities of PyACP.</p>
+</div>
+<a class="sd-stretched-link reference internal" href="examples/index.html"><span class="doc"></span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-file-code" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0114.25 15h-9a.75.75 0 010-1.5h9a.25.25 0 00.25-.25V6h-2.75A1.75 1.75 0 0110 4.25V1.5H5.75a.25.25 0 00-.25.25v2.5a.75.75 0 01-1.5 0v-2.5zm7.5-.188V4.25c0 .138.112.25.25.25h2.688a.252.252 0 00-.011-.013l-2.914-2.914a.272.272 0 00-.013-.011zM5.72 6.72a.75.75 0 000 1.06l1.47 1.47-1.47 1.47a.75.75 0 101.06 1.06l2-2a.75.75 0 000-1.06l-2-2a.75.75 0 00-1.06 0zM3.28 7.78a.75.75 0 00-1.06-1.06l-2 2a.75.75 0 000 1.06l2 2a.75.75 0 001.06-1.06L1.81 9.25l1.47-1.47z"></path></svg> API reference</div>
+<p class="sd-card-text">Describes the public Python classes, methods, and functions.</p>
+</div>
+<a class="sd-stretched-link reference internal" href="api/index.html"><span class="doc"></span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row sd-col-12 sd-col-xs-12 sd-col-sm-12 sd-col-md-12 sd-col-lg-12 docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-code" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M4.72 3.22a.75.75 0 011.06 1.06L2.06 8l3.72 3.72a.75.75 0 11-1.06 1.06L.47 8.53a.75.75 0 010-1.06l4.25-4.25zm6.56 0a.75.75 0 10-1.06 1.06L13.94 8l-3.72 3.72a.75.75 0 101.06 1.06l4.25-4.25a.75.75 0 000-1.06l-4.25-4.25z"></path></svg> Contributing</div>
+<p class="sd-card-text">Information on how to contribute to PyACP.</p>
+</div>
+<a class="sd-stretched-link reference internal" href="contributing.html"><span class="doc"></span></a></div>
+</div>
+</div>
+</div>
+<section id="key-features">
+<h2>Key features<a class="headerlink" href="#key-features" title="Permalink to this heading">#</a></h2>
+<p>TODO</p>
 </section>
-<section id="documentation">
-<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">#</a></h3>
-<p>The PyACP documentation can be viewed online at <a class="reference external" href="https://acp.docs.pyansys.com">https://acp.docs.pyansys.com</a>.</p>
-</section>
-<section id="getting-started">
-<span id="launching-server"></span><h3>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h3>
-<section id="launching-acp">
-<h4>Launching ACP<a class="headerlink" href="#launching-acp" title="Permalink to this heading">#</a></h4>
-<p>Configure ACP using the <a class="reference external" href="https://local-product-launcher.tools.docs.pyansys.com">ansys-launcher</a> command line tool:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ansys-launcher<span class="w"> </span>configure<span class="w"> </span>ACP<span class="w"> </span>&lt;launch_mode&gt;
-</pre></div>
-</div>
-<p>where <code class="docutils literal notranslate"><span class="pre">&lt;launch_mode&gt;</span></code> is one of</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">direct</span></code>: run ACP as a sub-process</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docker_compose</span></code>: run ACP in a docker container, using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> and the <a class="reference external" href="https://github.com/ansys-internal/ansys-tools-filetransfer-server">filetransfer service</a> to manage files</p></li>
-</ul>
-<p>The <code class="docutils literal notranslate"><span class="pre">ansys-launcher</span></code> prompts for the relevant options for each mode.</p>
-<p>Having configured the launcher, the server can be started with <code class="docutils literal notranslate"><span class="pre">launch_acp</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
-
-<span class="n">acp</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
-</pre></div>
-</div>
-</section>
-<section id="basic-usage">
-<h4>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this heading">#</a></h4>
-<p>Once the server is running, we can start working with PyACP. For example, to load an ACP
-Model from an existing file:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">remote_filename</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">local_path</span><span class="o">=</span><span class="s2">&quot;&lt;MODEL_PATH&gt;&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">remote_filename</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">name</span>
-<span class="go">&#39;ACP Model&#39;</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="development-setup">
-<h3>Development Setup<a class="headerlink" href="#development-setup" title="Permalink to this heading">#</a></h3>
-<section id="id1">
-<h4>Installation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
-<p>Installing PyACP in developer mode allows you to modify the source and enhance it. Before contributing to the project,
-please refer to the <a class="reference external" href="https://dev.docs.pyansys.com/">PyAnsys Developer’s guide</a>.</p>
-<p>You will need to follow these steps:</p>
-<ol class="arabic">
-<li><p>Start by cloning this repository, and entering the newly created directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ansys-internal/pyacp
-<span class="nb">cd</span><span class="w"> </span>pyacp
-</pre></div>
-</div>
-</li>
-<li><p>Make sure you have the latest version of poetry:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pipx
-pipx<span class="w"> </span>ensurepath
-pipx<span class="w"> </span>install<span class="w"> </span>poetry
-</pre></div>
-</div>
-</li>
-<li><p>Set up credentials for the PyAnsys internal PyPI instance</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>config<span class="w"> </span>http-basic.pyansys_private_pypi<span class="w"> </span>TOKEN<span class="w"> </span>&lt;TOKEN&gt;
-</pre></div>
-</div>
-<p>Where <cite>&lt;TOKEN&gt;</cite> should be replaced with the PAT for the internal PyPI instance. Reach out to a team member or the PyAnsys team for access instructions.</p>
-</div></blockquote>
-</li>
-<li><p>Install the project and all its development dependencies using poetry. This also takes care of
-creating a new virtual environment:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>install<span class="w"> </span>--with<span class="w"> </span>dev,test
-</pre></div>
-</div>
-<p>This step installs PyACP in an editable mode (no build step is needed, no re-install when changing the code).</p>
-</li>
-<li><p>Activate your development virtual environment with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>shell
-</pre></div>
-</div>
-</li>
-</ol>
-</section>
-<section id="testing">
-<h4>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h4>
-<p>The PyACP test suite uses <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a>. You can run it with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--license-server<span class="o">=</span>&lt;YOUR_LICENSE_SERVER&gt;<span class="w"> </span>tests/unittests
-</pre></div>
-</div>
-</section>
-<section id="benchmarking">
-<h4>Benchmarking<a class="headerlink" href="#benchmarking" title="Permalink to this heading">#</a></h4>
-<p>As part of the test suite, we run some performance benchmarks. These can be run with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--license-server<span class="o">=</span>&lt;YOUR_LICENSE_SERVER&gt;<span class="w"> </span>tests/benchmarks
-</pre></div>
-</div>
-<p>Additional options can be found in the <a class="reference external" href="https://pytest-benchmark.readthedocs.io/en/latest/usage.html">pytest-benchmark documentation</a>.</p>
-<p><strong>NOTE:</strong> The benchmarks use the <code class="docutils literal notranslate"><span class="pre">tc-netem</span></code> Linux kernel module to simulate a slow network
-connection within a Docker container. This is available only on Linux, not on Docker for MacOS
-or Windows.</p>
-<p>The benchmark results from the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch are uploaded to <a class="reference external" href="https://acp.docs.pyansys.com/benchmarks">https://acp.docs.pyansys.com/benchmarks</a>.</p>
-</section>
-<section id="pre-commit-hooks">
-<h4>Pre-commit hooks<a class="headerlink" href="#pre-commit-hooks" title="Permalink to this heading">#</a></h4>
-<p>Style and linter checks are run through the <a class="reference external" href="https://pre-commit.com/">pre-commit</a> tool. You can run these checks with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>run<span class="w"> </span>--all-files
-</pre></div>
-</div>
-<p>We also recommend installing pre-commit into your repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>install
-</pre></div>
-</div>
-<p>This will run the pre-commit hooks on the changed files before every <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>. If you ever
-need to create a commit without running the hooks, you can skip them with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-n</span></code>.</p>
-</section>
-<section id="id2">
-<h4>Documentation<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
-<p>Before generating the documentation, configure the PyACP server via the
-<code class="docutils literal notranslate"><span class="pre">ansys-launcher</span></code>, see <a class="reference external" href="launching_server">Launching ACP</a> above.
-If Ansys is installed the examples can directly built with <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>.</p>
-<p>On Linux &amp; MacOS:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>doc<span class="w"> </span>html
-</pre></div>
-</div>
-<p>On Windows:</p>
-<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">cd</span> doc; .\make.bat html
-</pre></div>
-</div>
-<p>The generated HTML files can be viewed with the browser of your choice.</p>
-<p>Alternatively you can build the documentation by starting a mapdl and pydpf-composites docker
-container. First ensure that you have accepted the DPF Preview License Agreement by setting the
-ANSYS_DPF_ACCEPT_LA environment variable to Y
-(see <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/user_guide/getting_started_with_dpf_server.html#dpf-preview-license-agreement">DPF Preview License Agreement</a>
-). In addition the  ANSYSLMD_LICENSE_FILE environment variable needs be set to a
-valid license server (e.g <a class="reference external" href="mailto:1055&#37;&#52;&#48;mylicenseserver&#46;com">1055<span>&#64;</span>mylicenseserver<span>&#46;</span>com</a>). Then start the docker containers with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose/docker-compose-extras.yaml<span class="w"> </span>up<span class="w"> </span>-d
-</pre></div>
-</div>
-<p>Then build the documentation with the <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> commands mentioned above.</p>
-</section>
-<section id="distribution">
-<h4>Distribution<a class="headerlink" href="#distribution" title="Permalink to this heading">#</a></h4>
-<p>The following commands can be used to build and check the PyACP package:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>build
-twine<span class="w"> </span>check<span class="w"> </span>dist/*
-</pre></div>
-</div>
-<p>This creates both a source distribution, and a wheel file. An alternative is</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>build
-python<span class="w"> </span>-m<span class="w"> </span>build<span class="w"> </span>--wheel
-</pre></div>
-</div>
-</section>
-</section>
-<section id="license">
-<h3>License<a class="headerlink" href="#license" title="Permalink to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">PyACP</span></code> is licensed under the MIT license. Please see the <a class="reference external" href="https://github.com/ansys-internal/pyacp/raw/main/LICENSE">LICENSE</a> for more details.</p>
-<div class="toctree-wrapper compound">
-</div>
-</section>
+<section id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this heading">#</a></h2>
+<p>TODO</p>
 </section>
 </section>
 
@@ -618,27 +569,8 @@ python<span class="w"> </span>-m<span class="w"> </span>build<span class="w"> </
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyacp">PyACP</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-acp">Launching ACP</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-usage">Basic Usage</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#development-setup">Development Setup</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Installation</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmarking">Benchmarking</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-commit-hooks">Pre-commit hooks</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Documentation</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution">Distribution</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
 </ul>
   </nav></div>
 

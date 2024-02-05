@@ -1,0 +1,6 @@
+NASTRAN\_BDF
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: FeFormat.NASTRAN_BDF

@@ -65,7 +65,7 @@
     <link rel="icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="API reference" href="../../api/index.html" />
+    <link rel="next" title="How-to guides" href="../../howto/index.html" />
     <link rel="prev" title="Start from existing acph5 project" href="002_start_from_existing_project.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -175,9 +175,23 @@
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../intro.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../index.html">
                         Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../howto/index.html">
+                        How-to guides
                       </a>
                     </li>
                 
@@ -188,6 +202,21 @@
                       </a>
                     </li>
                 
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -309,9 +338,23 @@ document.write(`
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../intro.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../index.html">
                         Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../howto/index.html">
+                        How-to guides
                       </a>
                     </li>
                 
@@ -322,6 +365,21 @@ document.write(`
                       </a>
                     </li>
                 
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
         
@@ -791,7 +849,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     13:42:13  FEB 02, 2024 CP=      0.928\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.012\n\n\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     09:19:44  FEB 05, 2024 CP=      0.937\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.025\n\n\n&#39;
 </pre></div>
 </div>
 <p>Solve the model</p>
@@ -802,7 +860,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       1.033   TIME= 13:42:14
+ *** NOTE ***                            CP =       1.045   TIME= 09:19:44
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -827,7 +885,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
  Ansys Mechanical Enterprise
- 00000000  VERSION=LINUX x64     13:42:14  FEB 02, 2024 CP=      1.071
+ 00000000  VERSION=LINUX x64     09:19:44  FEB 05, 2024 CP=      1.083
 
 
 
@@ -843,14 +901,14 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       1.072   TIME= 13:42:14
+ *** NOTE ***                            CP =       1.085   TIME= 09:19:44
  Poisson&#39;s ratio PR input has been converted to NU input.
 
- *** NOTE ***                            CP =       1.078   TIME= 13:42:14
+ *** NOTE ***                            CP =       1.091   TIME= 09:19:44
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       1.078   TIME= 13:42:14
+ *** NOTE ***                            CP =       1.091   TIME= 09:19:44
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -868,7 +926,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       1.163   TIME= 13:42:14
+ *** NOTE ***                            CP =       1.181   TIME= 09:19:44
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -917,10 +975,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      3.083   0.000776
-        2        88  BEAM188       0.004   0.000043
-        3        22  SHELL181      0.005   0.000240
- Time at end of element matrix formulation CP = 4.28023911.
+        1      3973  SHELL181      3.104   0.000781
+        2        88  BEAM188       0.004   0.000051
+        3        22  SHELL181      0.005   0.000244
+ Time at end of element matrix formulation CP = 4.32069683.
 
  SPARSE MATRIX DIRECT SOLVER.
   Number of equations =       24096,    Maximum wavefront =     66
@@ -928,7 +986,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
   Memory required for in-core solution     =    58.542 MB
   Memory required for out-of-core solution =    24.642 MB
 
- *** NOTE ***                            CP =       4.360   TIME= 13:42:17
+ *** NOTE ***                            CP =       4.400   TIME= 09:19:48
  The Sparse Matrix Solver is currently running in the in-core memory
  mode.  This memory mode uses the most amount of memory in order to
  avoid using the hard drive as much as possible, which most often
@@ -943,16 +1001,16 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      6.658   0.001676
-        2        88  BEAM188       0.008   0.000096
-        3        22  SHELL181      0.009   0.000399
+        1      3973  SHELL181      6.682   0.001682
+        2        88  BEAM188       0.009   0.000105
+        3        22  SHELL181      0.009   0.000394
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
         1      3973  SHELL181      0.062   0.000016
         2        88  BEAM188       0.001   0.000017
-        3        22  SHELL181      0.000   0.000015
+        3        22  SHELL181      0.000   0.000016
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
  *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -1061,7 +1119,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_solve_class40_007.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  26.549 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  27.477 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-solve-class40-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/9534ac29e0bc2250f1fc6a51c9f799b1/solve_class40.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">solve_class40.py</span></code></a></p>

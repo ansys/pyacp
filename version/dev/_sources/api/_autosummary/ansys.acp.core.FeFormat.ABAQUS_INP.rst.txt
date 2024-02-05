@@ -1,0 +1,6 @@
+ABAQUS\_INP
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: FeFormat.ABAQUS_INP

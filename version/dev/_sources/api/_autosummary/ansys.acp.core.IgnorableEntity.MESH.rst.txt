@@ -1,0 +1,6 @@
+MESH
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: IgnorableEntity.MESH
