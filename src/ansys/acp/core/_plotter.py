@@ -64,5 +64,5 @@ def get_directions_plotter(
             color=color,
             label=_replace_underscores_and_capitalize(vector_data.component_name),
         )
-        plotter.add_legend(face=None, bcolor="w")
+        plotter.add_legend(face=None, bcolor=[0.2, 0.2, 0.2], size=(0.25, 0.25))
     return plotter
