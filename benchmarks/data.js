@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707123905575,
+  "lastUpdate": 1707124711188,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11718,6 +11718,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000208910831258352",
             "extra": "mean: 819.4359425981503 usec\nrounds: 1324"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9b6ea413ea2aaef1b1ab41a695bdce2dcd31b887",
+          "message": "Add 'usage' section to the getting started documentation (#379)\n\nExtend the getting started section by providing some usage examples.\r\n\r\nCloses #374",
+          "timestamp": "2024-02-05T09:15:38Z",
+          "tree_id": "d8af6bc3c309e1be10f2437359b26723e26aa397",
+          "url": "https://github.com/ansys-internal/pyacp/commit/9b6ea413ea2aaef1b1ab41a695bdce2dcd31b887"
+        },
+        "date": 1707124703066,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.882556076870006,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004074446259995418",
+            "extra": "mean: 145.29485685713033 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1217.7773526776691,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00023122925590295763",
+            "extra": "mean: 821.1681698638782 usec\nrounds: 1460"
           }
         ]
       }
