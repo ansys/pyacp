@@ -55,7 +55,7 @@ acp = launch_acp()
 # The ACPWorkflow class provides convenience methods which simplify the file handling.
 # It automatically creates a model based on the input file.
 
-workflow = ACPWorkflow(
+workflow = ACPWorkflow.from_cdb_file(
     acp=acp,
     cdb_file_path=input_file,
     local_working_directory=WORKING_DIR,
