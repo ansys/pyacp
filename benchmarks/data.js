@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706881327221,
+  "lastUpdate": 1707122890423,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11642,6 +11642,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0003563358395559134",
             "extra": "mean: 1.113622658738922 msec\nrounds: 967"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d2922c7836360ac8931f420c4c826ace73210023",
+          "message": "Add scaffolding for improved documentation (#373)\n\nAdd a landing page using a grid to the documentation, containing the following sections:\r\n- Getting started\r\n- How-to guides\r\n- Examples\r\n- API reference\r\n- Contributing\r\n\r\nThe individual sections are still incomplete.\r\n\r\nCloses #372, #364",
+          "timestamp": "2024-02-05T09:44:51+01:00",
+          "tree_id": "46fcf980558b90de8caec05f4d61f05bf57372a8",
+          "url": "https://github.com/ansys-internal/pyacp/commit/d2922c7836360ac8931f420c4c826ace73210023"
+        },
+        "date": 1707122881642,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.925888359459489,
+            "unit": "iter/sec",
+            "range": "stddev: 0.009673793017557476",
+            "extra": "mean: 203.0090669999936 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 970.9666675322853,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00041645176909600257",
+            "extra": "mean: 1.029901471840947 msec\nrounds: 799"
           }
         ]
       }
