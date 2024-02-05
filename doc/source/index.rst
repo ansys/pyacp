@@ -6,11 +6,11 @@
 
         self
         intro
+        howto/index
+        concepts/index
         {% if not skip_gallery %}
         examples/index
         {% endif %}
-        howto/index
-        concepts/index
         {% if not skip_api %}
         api/index
         {% endif %}
