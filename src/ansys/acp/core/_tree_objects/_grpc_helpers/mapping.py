@@ -107,6 +107,16 @@ class Mapping(Generic[ValueT]):
         except KeyError:
             return default
 
+    def __repr__(self) -> str:
+        try:
+            from ..object_registry import object_registry
+
+            collection_label = self._collection_path.value.rsplit("/", 1)[-1]
+            value_type = object_registry[collection_label]
+            return f"<{self.__class__.__name__}[{value_type.__name__}] with keys {list(self)}>"
+        except:
+            return super().__repr__()
+
 
 class MutableMapping(Mapping[CreatableValueT]):
     """Mutable mapping interface for collections of TreeObjects."""

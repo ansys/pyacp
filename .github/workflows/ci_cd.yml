@@ -201,6 +201,86 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
         if: matrix.python-version == '3.9' && github.ref == 'refs/heads/main'
 
+  doctest:
+    name: Test documentation snippets
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+
+      - name: Pip cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-doctest
+          restore-keys: |
+            pip-${{ runner.os }}
+
+      - name: Install library, with test,dev groups
+        run: |
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
+          pip install -U pip
+          pip install 'poetry!=1.7.0'
+          poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
+          poetry install --with test,dev
+
+      - name: Build API package from custom branch
+        if: "${{ github.event.inputs.api_branch != '' }}"
+        run: |
+          python3.10 -m venv .api_builder_venv
+          . .api_builder_venv/bin/activate
+          python -m pip install --upgrade pip wheel
+          mkdir .api_package
+          python -m pip wheel --no-deps --wheel-dir .api_package git+https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
+
+      - name: Install custom API branch package
+        if: "${{ github.event.inputs.api_branch != '' }}"
+        run: |
+          poetry run pip install --force-reinstall .api_package/*.whl
+
+      - name: Login in Github Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install OS packages
+        run: |
+          sudo apt update
+          sudo apt-get install pandoc xvfb
+
+      - name: Configure Local Product Launcher for ACP
+        working-directory: tests/unittests
+        run: >
+          poetry run
+          ansys-launcher configure ACP docker_compose
+          --image_name_pyacp=ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}
+          --image_name_filetransfer=ghcr.io/ansys-internal/tools-filetransfer:latest
+          --license_server=1055@$LICENSE_SERVER
+          --keep_volume=False
+          --overwrite_default
+        env:
+          LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
+
+      - name: Run doctest
+        run: |
+          docker pull $IMAGE_NAME
+          docker pull ghcr.io/ansys-internal/tools-filetransfer:latest
+          xvfb-run poetry run make -C doc doctest
+        env:
+          LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
+          IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+          PYACP_DOC_SKIP_GALLERY: "true"
+          PYACP_DOC_SKIP_API: "true"
+
   docs:
     name: Build Documentation
     runs-on: ubuntu-latest
