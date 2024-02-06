@@ -1,4 +1,5 @@
 import pathlib
+import shutil
 import tempfile
 
 import pytest
@@ -38,3 +39,35 @@ def test_workflow(acp_instance, model_data_dir, explict_temp_dir):
     composite_definitions = workflow.get_local_composite_definitions_file()
     assert composite_definitions == workflow.working_directory.path / "ACPCompositeDefinitions.h5"
     assert composite_definitions.is_file()
+
+
+def test_reload_cad_geometry(acp_instance, model_data_dir, load_cad_geometry):
+    input_file_path = model_data_dir / "minimal_model_2.cdb"
+
+    workflow = ACPWorkflow(
+        acp=acp_instance,
+        cdb_file_path=input_file_path,
+    )
+    workflow.model.update()
+
+    cad_geometry_file_path = model_data_dir / "square_and_solid.stp"
+    cad_file_path = workflow.add_local_cad_geometry(cad_geometry_file_path)
+    cad_geometry = workflow.model.create_cad_geometry(
+        external_path=str(cad_file_path),
+    )
+
+    with tempfile.TemporaryDirectory() as tempdir:
+        copied_path = pathlib.Path(shutil.copy(cad_geometry_file_path, tempdir))
+
+        workflow.refresh_cad_geometry_from_local_file(copied_path, cad_geometry)
+        assert cad_geometry.external_path == str(copied_path)
+
+        # Test that refresh works twice with the same local file.
+        workflow.refresh_cad_geometry_from_local_file(copied_path, cad_geometry)
+        assert cad_geometry.external_path == str(copied_path)
+
+        # Test error when local file does not exist.
+        pathlib.Path.unlink(copied_path)
+        with pytest.raises(FileNotFoundError) as excinfo:
+            workflow.refresh_cad_geometry_from_local_file(copied_path, cad_geometry)
+            assert "No such file or directory" in str(excinfo.value)

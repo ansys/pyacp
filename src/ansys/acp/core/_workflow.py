@@ -4,7 +4,7 @@ import tempfile
 import typing
 from typing import Callable, Optional, Protocol
 
-from . import UnitSystemType
+from . import CADGeometry, UnitSystemType
 from ._server.acp_instance import ACP
 from ._server.common import ServerProtocol
 from ._tree_objects import Model
@@ -206,6 +206,33 @@ class ACPWorkflow:
         Save the acp model to an acph5 file, copy it
          to the local working directory and return its path."""
         return self._file_transfer_strategy.get_file(self._model.save, self._model.name + ".acph5")
+
+    def add_local_cad_geometry(self, path: pathlib.Path) -> CADGeometry:
+        """Add a local CAD geometry to the ACP model.
+
+        Parameters
+        ----------
+        path:
+            The path to the CAD geometry file.
+        """
+        uploaded_file = self._add_input_file(path=path)
+        return self._model.create_cad_geometry(external_path=str(uploaded_file))
+
+    def refresh_cad_geometry_from_local_file(
+        self, path: pathlib.Path, cad_geometry: CADGeometry
+    ) -> None:
+        """Refresh the CAD geometry from a local file.
+
+        Parameters
+        ----------
+        path:
+            The path to the CAD geometry file.
+        cad_geometry:
+            The CADGeometry object to refresh.
+        """
+        uploaded_file_path = self._add_input_file(path=path)
+        cad_geometry.external_path = uploaded_file_path
+        cad_geometry.refresh()
 
     def _add_input_file(self, path: pathlib.Path) -> pathlib.PurePath:
         self._file_transfer_strategy.copy_input_file_to_local_workdir(path=path)
