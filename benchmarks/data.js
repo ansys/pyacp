@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707138159150,
+  "lastUpdate": 1707222476726,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11794,6 +11794,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020739086356894243",
             "extra": "mean: 788.3407108132968 usec\nrounds: 1193"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0d3d18c7e07bd5352d38b4a374750891ba192872",
+          "message": "Add a howto for printing the model tree (#390)\n\n- Add a howto section for printing the model tree\r\n- Change ``Lookup Table`` label to ``Lookup Tables``.",
+          "timestamp": "2024-02-06T13:24:20+01:00",
+          "tree_id": "eb86a56ad3008401693d58ffb311c5a513ad09c4",
+          "url": "https://github.com/ansys-internal/pyacp/commit/0d3d18c7e07bd5352d38b4a374750891ba192872"
+        },
+        "date": 1707222465795,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.327148450624998,
+            "unit": "iter/sec",
+            "range": "stddev: 0.017009947827554602",
+            "extra": "mean: 231.0990740000065 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 810.1513318202091,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0005289815980005683",
+            "extra": "mean: 1.2343372907296815 msec\nrounds: 1111"
           }
         ]
       }
