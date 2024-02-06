@@ -76,6 +76,7 @@ html_title = html_short_title = "PyACP"
 
 # Sphinx extensions
 extensions = [
+    "sphinx.ext.doctest",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
