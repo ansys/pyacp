@@ -109,6 +109,7 @@ class TaperEdge(GenericEdgePropertyType):
 
     @property
     def edge_set(self) -> EdgeSet:
+        """Edge along which the ply tapering is applied."""
         return self._edge_set
 
     @edge_set.setter
@@ -119,6 +120,7 @@ class TaperEdge(GenericEdgePropertyType):
 
     @property
     def angle(self) -> float:
+        """Angle between the cutting plane and  the reference surface."""
         return self._angle
 
     @angle.setter
@@ -129,6 +131,11 @@ class TaperEdge(GenericEdgePropertyType):
 
     @property
     def offset(self) -> float:
+        """Move the cutting plane along the out-of-plane direction.
+
+        A negative value cuts the elements at the edge where the in-plane
+        offset is ``-offset/tan(angle)``.
+        """
         return self._offset
 
     @offset.setter

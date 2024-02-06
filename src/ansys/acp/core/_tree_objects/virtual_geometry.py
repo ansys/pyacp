@@ -27,6 +27,7 @@ class SubShape(GenericEdgePropertyType):
 
     @property
     def cad_geometry(self) -> CADGeometry:
+        """Linked CAD geometry."""
         return self._cad_geometry
 
     @cad_geometry.setter
@@ -37,6 +38,7 @@ class SubShape(GenericEdgePropertyType):
 
     @property
     def path(self) -> str:
+        """Topological path of the sub-shape within the CAD geometry."""
         return self._path
 
     @path.setter

@@ -129,7 +129,10 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
 
     @property
     def visualization_mesh(self) -> TriangleMesh:
-        """The CAD Geometry's surface represented as a triangle mesh."""
+        """Surface mesh for visualization.
+
+        The CAD Geometry's surface represented as a triangle mesh.
+        """
         if not self._is_stored:
             raise RuntimeError("Cannot get mesh data from an unstored object")
         stub = cast(cad_geometry_pb2_grpc.ObjectServiceStub, self._get_stub())

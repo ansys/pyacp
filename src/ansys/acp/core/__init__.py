@@ -1,3 +1,8 @@
+"""PyACP: Ansys Composite PrepPost (ACP) module for Python.
+
+PyACP enables you to design and analyze layered composite structures.
+"""
+
 import importlib.metadata
 
 from ._model_printer import get_model_tree, print_model
@@ -42,11 +47,13 @@ from ._tree_objects import (
     ElementSetNodalData,
     Fabric,
     FabricWithAngle,
+    FeFormat,
     FieldVariable,
     GeometricalRuleType,
     GeometricalSelectionRule,
     GeometricalSelectionRuleElementalData,
     GeometricalSelectionRuleNodalData,
+    IgnorableEntity,
     InterpolationOptions,
     Lamina,
     LinkedSelectionRule,
@@ -76,6 +83,7 @@ from ._tree_objects import (
     ProductionPly,
     ProductionPlyElementalData,
     ProductionPlyNodalData,
+    PuckMaterialType,
     Rosette,
     RosetteSelectionMethod,
     ScalarData,
@@ -165,6 +173,7 @@ __all__ = [
     "ExampleKeys",
     "Fabric",
     "FabricWithAngle",
+    "FeFormat",
     "FieldVariable",
     "GeometricalRuleType",
     "GeometricalSelectionRule",
@@ -174,6 +183,7 @@ __all__ = [
     "get_dpf_unit_system",
     "get_example_file",
     "get_model_tree",
+    "IgnorableEntity",
     "InterpolationOptions",
     "Lamina",
     "launch_acp",
@@ -206,6 +216,7 @@ __all__ = [
     "ProductionPly",
     "ProductionPlyElementalData",
     "ProductionPlyNodalData",
+    "PuckMaterialType",
     "Rosette",
     "RosetteSelectionMethod",
     "ScalarData",

@@ -21,6 +21,19 @@ from sphinx_gallery.sorting import FileNameSortKey
 
 from ansys.acp.core import __version__
 
+SKIP_GALLERY = os.environ.get("PYACP_DOC_SKIP_GALLERY", "0").lower() in ("1", "true")
+SKIP_API = os.environ.get("PYACP_DOC_SKIP_API", "0").lower() in ("1", "true")
+
+exclude_patterns = []
+if SKIP_GALLERY:
+    exclude_patterns.append("examples/*")
+if SKIP_API:
+    exclude_patterns.append("api/*")
+
+jinja_contexts = {
+    "main_toctree": {"skip_api": SKIP_API, "skip_gallery": SKIP_GALLERY},
+}
+
 # Manage errors
 pyvista.set_error_output_file("errors.txt")
 
@@ -71,8 +84,12 @@ extensions = [
     "numpydoc",
     "sphinx_copybutton",
     "ansys_sphinx_theme",
-    "sphinx_gallery.gen_gallery",
+]
+if not SKIP_GALLERY:
+    extensions += ["sphinx_gallery.gen_gallery"]
+extensions += [
     "sphinx_design",  # needed for pyvista offlineviewer directive
+    "sphinx_jinja",
     "pyvista.ext.viewer_directive",
 ]
 
