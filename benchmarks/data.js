@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707226344385,
+  "lastUpdate": 1707234576646,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11870,6 +11870,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0005910237993356624",
             "extra": "mean: 1.174493200001653 msec\nrounds: 965"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9b2a437dc755367c1a084b35af3bca5a9ea8c437",
+          "message": "Adapt ACPWorkflow to embedded cdb file (#395)\n\n* Update the workflow so it expects either a acph5 or a cdb file as input.",
+          "timestamp": "2024-02-06T15:46:33Z",
+          "tree_id": "c8f830beea19c71e413c13518aaf7339de639120",
+          "url": "https://github.com/ansys-internal/pyacp/commit/9b2a437dc755367c1a084b35af3bca5a9ea8c437"
+        },
+        "date": 1707234565927,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.287477671687147,
+            "unit": "iter/sec",
+            "range": "stddev: 0.01158305887728952",
+            "extra": "mean: 233.2373662500018 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 902.1781022516735,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0004904193550453345",
+            "extra": "mean: 1.1084285879962956 msec\nrounds: 983"
           }
         ]
       }
