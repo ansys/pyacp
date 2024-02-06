@@ -113,9 +113,9 @@ class Mapping(Generic[ValueT]):
 
             collection_label = self._collection_path.value.rsplit("/", 1)[-1]
             value_type = object_registry[collection_label]
-            return f"{self.__class__.__name__}[{value_type.__name__}] with keys {list(self)}"
+            return f"<{self.__class__.__name__}[{value_type.__name__}] with keys {list(self)}>"
         except:
-            return super().__str__()
+            return super().__repr__()
 
 
 class MutableMapping(Mapping[CreatableValueT]):
