@@ -1,6 +1,10 @@
 Stored versus unstored objects
 ------------------------------
 
+.. note::
+
+    This is an advanced PyACP concept. It is not required knowledge for most modelling tasks.
+
 General concept
 ~~~~~~~~~~~~~~~
 
