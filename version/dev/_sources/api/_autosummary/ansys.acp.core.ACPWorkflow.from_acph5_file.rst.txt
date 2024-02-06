@@ -1,0 +1,6 @@
+from\_acph5\_file
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPWorkflow.from_acph5_file

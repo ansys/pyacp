@@ -1,0 +1,6 @@
+from\_cdb\_file
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPWorkflow.from_cdb_file
