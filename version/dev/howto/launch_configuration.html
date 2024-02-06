@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="API reference" href="../api/index.html" />
-    <link rel="prev" title="How-to guides" href="index.html" />
+    <link rel="prev" title="Printing the model tree" href="print_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -427,6 +427,7 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="print_model.html">Printing the model tree</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Changing how ACP is started</a></li>
 </ul>
 </div>
@@ -495,7 +496,84 @@ document.write(`
                   
   <section id="changing-how-acp-is-started">
 <h1>Changing how ACP is started<a class="headerlink" href="#changing-how-acp-is-started" title="Permalink to this heading">#</a></h1>
-<p>TODO</p>
+<p>By default, the <a class="reference internal" href="../api/_autosummary/ansys.acp.core.launch_acp.html#ansys.acp.core.launch_acp" title="ansys.acp.core.launch_acp"><code class="xref py py-func docutils literal notranslate"><span class="pre">launch_acp()</span></code></a> function will start ACP from the unified installer, using the latest available version.</p>
+<section id="change-the-default-launch-configuration">
+<h2>Change the default launch configuration<a class="headerlink" href="#change-the-default-launch-configuration" title="Permalink to this heading">#</a></h2>
+<p>To change this behavior, you can use the <code class="docutils literal notranslate"><span class="pre">ansys-launcher</span></code> command line tool to configure how ACP is started.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On Windows, the executable may be called <code class="docutils literal notranslate"><span class="pre">ansys-launcher.exe</span></code>.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ansys-launcher<span class="w"> </span>configure<span class="w"> </span>ACP
+Usage:<span class="w"> </span>ansys-launcher<span class="w"> </span>configure<span class="w"> </span>ACP<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
+
+Options:
+--help<span class="w">  </span>Show<span class="w"> </span>this<span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span>exit.
+
+Commands:
+direct
+docker_compose
+</pre></div>
+</div>
+<p>In the preceding output, the two available methods for starting ACP are listed:
+- <code class="docutils literal notranslate"><span class="pre">direct</span></code>: start ACP directly by providing the path to the <code class="docutils literal notranslate"><span class="pre">acp_grpcserver</span></code> executable.
+- <code class="docutils literal notranslate"><span class="pre">docker_compose</span></code>: start ACP using Docker Compose.</p>
+<p>Either method can be configured with <code class="docutils literal notranslate"><span class="pre">ansys-launcher</span></code>. For example, to use the
+<code class="docutils literal notranslate"><span class="pre">direct</span></code> method, you can run <code class="docutils literal notranslate"><span class="pre">ansys-launcher</span> <span class="pre">configure</span> <span class="pre">ACP</span> <span class="pre">direct</span></code>.
+The tool will prompt you for the required information, providing a default value
+in square brackets. You can press Enter to accept the default value, or type a
+new value and press Enter.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ansys-launcher<span class="w"> </span>configure<span class="w"> </span>ACP<span class="w"> </span>direct
+
+binary_path:
+<span class="w">    </span>Path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>ACP<span class="w"> </span>gRPC<span class="w"> </span>server<span class="w"> </span>executable.
+<span class="o">[</span>/usr/ansys_inc/v242/ACP/acp_grpcserver<span class="o">]</span>:
+
+stdout_file:
+<span class="w">    </span>File<span class="w"> </span><span class="k">in</span><span class="w"> </span>which<span class="w"> </span>the<span class="w"> </span>server<span class="w"> </span>stdout<span class="w"> </span>is<span class="w"> </span>stored.
+<span class="o">[</span>/dev/null<span class="o">]</span>:
+
+stderr_file:
+<span class="w">    </span>File<span class="w"> </span><span class="k">in</span><span class="w"> </span>which<span class="w"> </span>the<span class="w"> </span>server<span class="w"> </span>stderr<span class="w"> </span>is<span class="w"> </span>stored.
+<span class="o">[</span>/dev/null<span class="o">]</span>:
+
+Overwrite<span class="w"> </span>default<span class="w"> </span>launch<span class="w"> </span>mode<span class="w"> </span><span class="k">for</span><span class="w"> </span>ACP<span class="w"> </span><span class="o">(</span>currently<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span><span class="s1">&#39;docker_compose&#39;</span><span class="o">)</span>?<span class="w"> </span><span class="o">[</span>y/N<span class="o">]</span>:<span class="w"> </span>Y
+
+Updated<span class="w"> </span>~/.config/ansys_tools_local_product_launcher/config.json
+</pre></div>
+</div>
+<p>The new configuration will be used by the <a class="reference internal" href="../api/_autosummary/ansys.acp.core.launch_acp.html#ansys.acp.core.launch_acp" title="ansys.acp.core.launch_acp"><code class="xref py py-func docutils literal notranslate"><span class="pre">launch_acp()</span></code></a> function. Note that you
+may have to restart your Python session for the changes to take effect.</p>
+</section>
+<section id="choosing-the-launch-mode-at-runtime">
+<h2>Choosing the launch mode at runtime<a class="headerlink" href="#choosing-the-launch-mode-at-runtime" title="Permalink to this heading">#</a></h2>
+<p>To switch between the launch modes, you can specify the <code class="docutils literal notranslate"><span class="pre">launch_mode</span></code> argument
+when calling <a class="reference internal" href="../api/_autosummary/ansys.acp.core.launch_acp.html#ansys.acp.core.launch_acp" title="ansys.acp.core.launch_acp"><code class="xref py py-func docutils literal notranslate"><span class="pre">launch_acp()</span></code></a>. Note that the selected launch mode must be
+already configured with <code class="docutils literal notranslate"><span class="pre">ansys-launcher</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
+
+<span class="n">acp</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">(</span><span class="n">launch_mode</span><span class="o">=</span><span class="s2">&quot;docker_compose&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">config</span></code> parameter can be used to fully customize the launch of ACP at runtime.
+This parameter expects a configuration object matching the selected <code class="docutils literal notranslate"><span class="pre">launch_mode</span></code>:
+- <a class="reference internal" href="../api/_autosummary/ansys.acp.core.DirectLaunchConfig.html#ansys.acp.core.DirectLaunchConfig" title="ansys.acp.core.DirectLaunchConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">DirectLaunchConfig</span></code></a> for the <code class="docutils literal notranslate"><span class="pre">direct</span></code> launch mode.
+- <a class="reference internal" href="../api/_autosummary/ansys.acp.core.DockerComposeLaunchConfig.html#ansys.acp.core.DockerComposeLaunchConfig" title="ansys.acp.core.DockerComposeLaunchConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig</span></code></a> for the <code class="docutils literal notranslate"><span class="pre">docker_compose</span></code> launch mode.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
+
+<span class="n">acp</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">(</span>
+    <span class="n">config</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">DockerComposeLaunchConfig</span><span class="p">(</span>
+        <span class="n">image_name_pyacp</span><span class="o">=</span><span class="s2">&quot;ghcr.io/ansys-internal/pyacp:latest&quot;</span><span class="p">,</span>
+        <span class="n">image_name_filetransfer</span><span class="o">=</span><span class="s2">&quot;ghcr.io/ansys-internal/tools-filetransfer:latest&quot;</span><span class="p">,</span>
+        <span class="n">keep_volume</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">license_server</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;1055@</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;LICENSE_SERVER&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">launch_mode</span><span class="o">=</span><span class="s2">&quot;docker_compose&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -510,6 +588,18 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#change-the-default-launch-configuration">Change the default launch configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-launch-mode-at-runtime">Choosing the launch mode at runtime</a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 <!-- If there is no fix edit button function, use the PyData edit-this-button-->

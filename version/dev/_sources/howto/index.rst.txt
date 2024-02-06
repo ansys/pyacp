@@ -6,4 +6,5 @@ These short guides are designed to illustrate one particular aspect of using PyA
 .. toctree::
     :maxdepth: 2
 
+    print_model
     launch_configuration

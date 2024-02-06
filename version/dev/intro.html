@@ -493,7 +493,7 @@ because it keeps Python packages isolated from your system Python.</p>
 <section id="start-acp">
 <h3>Start ACP<a class="headerlink" href="#start-acp" title="Permalink to this heading">#</a></h3>
 <p>Start a Python interpreter and import the PyACP package:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ansys_acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
 </pre></div>
 </div>
 <p>Next, start an ACP instance:</p>
@@ -504,12 +504,12 @@ because it keeps Python packages isolated from your system Python.</p>
 <section id="load-a-model">
 <h3>Load a model<a class="headerlink" href="#load-a-model" title="Permalink to this heading">#</a></h3>
 <p>To load a model in ACP, use the <a class="reference internal" href="api/_autosummary/ansys.acp.core.ACP.import_model.html#ansys.acp.core.ACP.import_model" title="ansys.acp.core.ACP.import_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">import_model</span></code></a> method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;path/to/model.acph5&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;model.acph5&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This can be either an existing ACP model (<code class="docutils literal notranslate"><span class="pre">.acph5</span></code> format) or an FE model.
 When an FE model is loaded, the format needs to be specified:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;path/to/model.cdb&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;model.cdb&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="api/_autosummary/ansys.acp.core.FeFormat.html#ansys.acp.core.FeFormat" title="ansys.acp.core.FeFormat"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeFormat</span></code></a> for a list of supported FE formats.</p>
@@ -536,18 +536,21 @@ For example, refer to the documentation of <a class="reference internal" href="a
 <section id="save-the-model">
 <h3>Save the model<a class="headerlink" href="#save-the-model" title="Permalink to this heading">#</a></h3>
 <p>To save the model, use the <a class="reference internal" href="api/_autosummary/ansys.acp.core.Model.save.html#ansys.acp.core.Model.save" title="ansys.acp.core.Model.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">save</span></code></a> method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;path/to/saved/model.acph5&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;saved_model.acph5&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="update-and-plot-the-model">
 <h3>Update and plot the model<a class="headerlink" href="#update-and-plot-the-model" title="Permalink to this heading">#</a></h3>
 <p>To update the model, use the <a class="reference internal" href="api/_autosummary/ansys.acp.core.Model.update.html#ansys.acp.core.Model.update" title="ansys.acp.core.Model.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">update</span></code></a> method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>  <span class="c1"># Note: our model is still incomplete, so this will raise an error</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>  <span class="c1"># Note: our model is still incomplete, so this will raise an error</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="c">...</span>
+<span class="gr">RuntimeError</span>: <span class="n">Unknown error: No orthotropic material assigned to fabric Fabric 1!</span>
 </pre></div>
 </div>
 <p>Many PyACP objects provide data which can be plotted. For example, to show the mesh:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Or to show the thickness of a modeling ply:</p>

@@ -90,7 +90,7 @@ Get example file from server
         Rosettes
             12
             Rosette
-        Lookup Table
+        Lookup Tables
         Selection Rules
         Oriented Selection Sets
             oss
@@ -116,14 +116,14 @@ Get example file from server
                         P1L1__ply_5_0_UD
 
 
-    PosixPath('/tmp/tmp9idjmhd7/ACP Lay-up Model.cdb')
+    PosixPath('/tmp/tmpr773j2hz/ACP Lay-up Model.cdb')
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.397 seconds)
+   **Total running time of the script:** ( 0 minutes  7.494 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_002_start_from_existing_project.py:
