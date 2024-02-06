@@ -211,7 +211,7 @@ class ACPWorkflow:
         """
         return self._file_transfer_strategy.get_file(self._model.save, self._model.name + ".acph5")
 
-    def add_local_cad_geometry(self, path: pathlib.Path) -> CADGeometry:
+    def load_cad_geometry_from_local_file(self, path: pathlib.Path) -> CADGeometry:
         """Add a local CAD geometry to the ACP model.
 
         Parameters
