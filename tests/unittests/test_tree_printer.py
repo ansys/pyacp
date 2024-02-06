@@ -31,7 +31,7 @@ Model
     Geometry
     Rosettes
         Global Coordinate System
-    Lookup Table
+    Lookup Tables
     Selection Rules
     Oriented Selection Sets
         OrientedSelectionSet.1
@@ -87,7 +87,7 @@ Model
             VirtualGeometry
     Rosettes
         Global Coordinate System
-    Lookup Table
+    Lookup Tables
         Lookup Tables 1d
             LookUpTable1D
         Lookup Tables 3d
