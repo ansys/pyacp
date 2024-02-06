@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707222476726,
+  "lastUpdate": 1707226344385,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11832,6 +11832,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0005289815980005683",
             "extra": "mean: 1.2343372907296815 msec\nrounds: 1111"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "67fbbb645e7ac7845b677052c4fa24637bc803ad",
+          "message": "Add concept page, explain 'store' concept (#388)\n\n* Add a separate page for concept explanations\r\n* Add an explanation of the stored / unstored concept\r\n\r\nCloses #382",
+          "timestamp": "2024-02-06T13:29:24Z",
+          "tree_id": "4bc8cb4bc72abd4a1dda595b46faa8166b984cf6",
+          "url": "https://github.com/ansys-internal/pyacp/commit/67fbbb645e7ac7845b677052c4fa24637bc803ad"
+        },
+        "date": 1707226334545,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.774164686097351,
+            "unit": "iter/sec",
+            "range": "stddev: 0.001594603069635418",
+            "extra": "mean: 209.46072575000585 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 851.4310683097974,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0005910237993356624",
+            "extra": "mean: 1.174493200001653 msec\nrounds: 965"
           }
         ]
       }
