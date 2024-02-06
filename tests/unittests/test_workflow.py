@@ -51,10 +51,7 @@ def test_reload_cad_geometry(acp_instance, model_data_dir, load_cad_geometry):
     workflow.model.update()
 
     cad_geometry_file_path = model_data_dir / "square_and_solid.stp"
-    cad_file_path = workflow.add_local_cad_geometry(cad_geometry_file_path)
-    cad_geometry = workflow.model.create_cad_geometry(
-        external_path=str(cad_file_path),
-    )
+    cad_geometry = workflow.add_local_cad_geometry(cad_geometry_file_path)
 
     with tempfile.TemporaryDirectory() as tempdir:
         copied_path = pathlib.Path(shutil.copy(cad_geometry_file_path, tempdir))
