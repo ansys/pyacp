@@ -165,9 +165,9 @@ class ACP(Generic[ServerT]):
 
     @property
     def models(self) -> tuple[Model, ...]:
-        """The models currently loaded on the server.
+        """Models currently loaded on the server.
 
-        Note that the models are returned in arbitrary order.
+        Note that the models are listed in arbitrary order.
         """
         model_stub = model_pb2_grpc.ObjectServiceStub(self._channel)
         return tuple(

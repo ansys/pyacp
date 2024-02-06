@@ -13,12 +13,14 @@ def wrap_to_string_enum(
     *,
     key_converter: Callable[[str], str] = lambda val: val,
     value_converter: Callable[[str], str] = lambda val: val.lower(),
+    doc: str,
 ) -> Any:
     """Create a string Enum with the same keys as the given protobuf Enum.
 
     Values of the enum are the keys, converted to lowercase.
 
     Returns
+    -------
     :
         A tuple containing
         - the string enum
@@ -36,6 +38,7 @@ def wrap_to_string_enum(
         from_pb_conversion_dict[pb_value] = enum_value
 
     res_enum = Enum(class_name, fields, type=str, module=module)  # type: ignore
+    res_enum.__doc__ = doc
 
     def to_pb_conversion_func(val: res_enum) -> int:
         return to_pb_conversion_dict[val]

@@ -69,6 +69,7 @@ from .material import (
     FieldVariable,
     InterpolationOptions,
     Material,
+    PuckMaterialType,
     VariableDensity,
     VariableEngineeringConstants,
     VariableFabricFiberAngle,
@@ -80,7 +81,7 @@ from .material import (
     VariableWovenCharacterization,
     VariableWovenStressLimits,
 )
-from .model import Model, ModelElementalData, ModelNodalData
+from .model import FeFormat, IgnorableEntity, Model, ModelElementalData, ModelNodalData
 from .modeling_group import ModelingGroup
 from .modeling_ply import ModelingPly, ModelingPlyElementalData, ModelingPlyNodalData, TaperEdge
 from .oriented_selection_set import (
@@ -155,11 +156,13 @@ __all__ = [
     "ElementSetNodalData",
     "Fabric",
     "FabricWithAngle",
+    "FeFormat",
     "FieldVariable",
     "GeometricalRuleType",
     "GeometricalSelectionRule",
     "GeometricalSelectionRuleElementalData",
     "GeometricalSelectionRuleNodalData",
+    "IgnorableEntity",
     "InterpolationOptions",
     "Lamina",
     "LinkedSelectionRule",
@@ -172,11 +175,11 @@ __all__ = [
     "Material",
     "Model",
     "ModelElementalData",
-    "ModelNodalData",
     "ModelingGroup",
     "ModelingPly",
     "ModelingPlyElementalData",
     "ModelingPlyNodalData",
+    "ModelNodalData",
     "NodalDataType",
     "OrientedSelectionSet",
     "OrientedSelectionSetElementalData",
@@ -189,6 +192,7 @@ __all__ = [
     "ProductionPly",
     "ProductionPlyElementalData",
     "ProductionPlyNodalData",
+    "PuckMaterialType",
     "Rosette",
     "RosetteSelectionMethod",
     "ScalarData",

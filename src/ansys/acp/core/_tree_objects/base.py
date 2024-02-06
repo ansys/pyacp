@@ -1,7 +1,4 @@
-"""
-Defines helpers for synchronizing object properties with the backend
-via gRPC Put / Get calls.
-"""
+"""Base classes for tree objects backed via gRPC API."""
 from __future__ import annotations
 
 from abc import abstractmethod
@@ -42,9 +39,7 @@ _T = TypeVar("_T", bound="TreeObjectBase")
 
 @mark_grpc_properties
 class TreeObjectBase(GrpcObjectBase):
-    """
-    Base class for ACP tree objects.
-    """
+    """Base class for ACP tree objects."""
 
     __slots__: Iterable[str] = ("_channel_store", "_pb_object")
 
@@ -127,11 +122,14 @@ StubT = TypeVar("StubT")
 
 
 class StubStore(Generic[StubT]):
+    """Stores a gRPC stub, and creates it on demand."""
+
     def __init__(self, create_stub_fun: Callable[[], StubT]) -> None:
         self._stub_store: StubT | None = None
         self._create_stub_fun = create_stub_fun
 
     def get(self, is_stored: bool) -> StubT:
+        """Get the stored stub, or create it if it does not exist."""
         if not is_stored:
             raise RuntimeError("The server connection is uninitialized.")
         if self._stub_store is None:
@@ -140,6 +138,8 @@ class StubStore(Generic[StubT]):
 
 
 class TreeObject(TreeObjectBase):
+    """Base class for ACP objects which can be modified or deleted."""
+
     __slots__: Iterable[str] = ("_stub_store",)
     name: ReadWriteProperty[str, str] = grpc_data_property(
         "info.name", doc="The name of the object."
@@ -154,6 +154,7 @@ class TreeObject(TreeObjectBase):
         self._stub_store = StubStore(self._create_stub)
 
     def delete(self) -> None:
+        """Delete the object."""
         with wrap_grpc_errors():
             self._get_stub().Delete(
                 DeleteRequest(
@@ -186,6 +187,8 @@ class TreeObject(TreeObjectBase):
 
 @mark_grpc_properties
 class ReadOnlyTreeObject(TreeObjectBase):
+    """Base class for read-only ACP objects."""
+
     def __init__(self: ReadOnlyTreeObject) -> None:
         super().__init__()
         self._stub_store = StubStore(self._create_stub)
@@ -210,6 +213,8 @@ class ReadOnlyTreeObject(TreeObjectBase):
 
 @mark_grpc_properties
 class CreatableTreeObject(TreeObject):
+    """Base class for ACP objects which can be created."""
+
     __slots__: Iterable[str] = tuple()
     CREATE_REQUEST_TYPE: type[CreateRequest]
 
@@ -217,6 +222,13 @@ class CreatableTreeObject(TreeObject):
         return cast(CreatableEditableAndReadableResourceStub, super()._get_stub())
 
     def store(self: CreatableTreeObject, parent: TreeObject) -> None:
+        """Store the object on the server.
+
+        Parameters
+        ----------
+        parent :
+            Parent object to store the object under.
+        """
         self._channel_store = parent._channel
 
         collection_path = CollectionPath(
@@ -266,10 +278,7 @@ class IdTreeObject(TreeObjectBase):
 
 
 class TreeObjectAttributeReadOnly(GrpcObjectBase):
-    """
-    Defines an attribute which is defined as a sub-component of a parent
-    object's protobuf object (read-only).
-    """
+    """Read-only object backed by a sub-component of a parent object's protobuf object."""
 
     __slots__: Iterable[str] = ("_parent_object", "_attribute_path")
 
@@ -313,10 +322,7 @@ class TreeObjectAttributeReadOnly(GrpcObjectBase):
 
 
 class PolymorphicMixin(TreeObjectAttributeReadOnly):
-    """
-    Mixin class for attributes which can have multiple types, through a
-    'oneof' definition.
-    """
+    """Mixin class for attributes which can have multiple types, through a 'oneof' definition."""
 
     @property
     def _pb_object_impl(self) -> Any:
@@ -328,10 +334,7 @@ class PolymorphicMixin(TreeObjectAttributeReadOnly):
 
 
 class TreeObjectAttribute(TreeObjectAttributeReadOnly):
-    """
-    Defines an attribute which is defined as a sub-component of a parent
-    object's protobuf object (read-write).
-    """
+    """Editable object backed by a sub-component of a parent object's protobuf object."""
 
     __slots__: Iterable[str] = ("_parent_object", "_attribute_path", "_pb_object_store")
 

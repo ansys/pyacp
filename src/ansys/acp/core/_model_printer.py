@@ -50,7 +50,6 @@ def _add_tree_part(
 def print_model(model: Model) -> None:
     """Print a tree representation of the model.
 
-
     Parameters
     ----------
     model:

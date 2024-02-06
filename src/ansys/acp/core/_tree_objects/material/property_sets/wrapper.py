@@ -1,4 +1,5 @@
-"""
+"""Helpers for defining material property sets.
+
 Implements a helper function ``wrap_property_set`` to expose property sets on the
 Material, as a property.
 """
@@ -92,7 +93,7 @@ def _property_set_deleter(name: str) -> Any:
 
 
 def wrap_property_set(name: str, type_constant: type[TC], type_variable: type[TV]) -> Any:
-    """Helper function to define a material property set on the material.
+    """Define a material property set on the material.
 
     Expose a property set on the ``Material``, as a property. The property
     automatically chooses the appropriate type (``type_constant`` or ``type_variable``),

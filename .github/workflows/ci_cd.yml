@@ -206,6 +206,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
+    strategy:
+      matrix:
+        build_type: ["quick", "full"]
+
     steps:
       - uses: actions/checkout@v4
       - name: Setup Python
@@ -227,6 +231,7 @@ jobs:
           registry: ghcr.io
           username: pyansys-ci-bot
           password: ${{ secrets.PYANSYS_CI_BOT_PACKAGE_TOKEN }}
+        if: ${{ matrix.build_type == 'full' }}
 
       - name: Install OS packages
         run: |
@@ -259,6 +264,7 @@ jobs:
           --overwrite_default
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
+        if: ${{ matrix.build_type == 'full' }}
 
       - name: Launch MAPDL and DPF servers via docker-compose
         run: |
@@ -266,6 +272,7 @@ jobs:
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
           ANSYS_DPF_ACCEPT_LA: "Y"
+        if: ${{ matrix.build_type == 'full' }}
 
       - name: Build HTML
         run: |
@@ -274,7 +281,8 @@ jobs:
           PYMAPDL_PORT: "50557"
           PYMAPDL_START_INSTANCE: "FALSE"
           PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT: "50558"
-
+          PYACP_DOC_SKIP_GALLERY: ${{ matrix.build_type == 'quick' && 'true' || 'false' }}
+          PYACP_DOC_SKIP_API: ${{ matrix.build_type == 'quick' && 'true' || 'false' }}
 
       - name: Stop and clean up MAPDL and DPF servers
         run: |
@@ -286,20 +294,25 @@ jobs:
           name: documentation-html
           path: doc/build/html
           retention-days: 7
+        if: ${{ matrix.build_type == 'full' }}
 
       - name: Install OS packages for PDF build
         run: |
           sudo apt update
           sudo apt install build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks
+        if: ${{ matrix.build_type == 'full' }}
+
       - name: Restart MAPDL and DPF servers via docker-compose
         run: |
           docker-compose -f ./docker-compose/docker-compose-extras.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
           ANSYS_DPF_ACCEPT_LA: "Y"
+        if: ${{ matrix.build_type == 'full' }}
 
       - name: Build PDF Documentation
         run: xvfb-run poetry run make -C doc pdf
+        if: ${{ matrix.build_type == 'full' }}
 
       - name: Upload PDF Documentation
         uses: actions/upload-artifact@v4
@@ -307,6 +320,7 @@ jobs:
           name: Documentation-pdf
           path: doc/build/latex/ansys-acp-core.pdf
           retention-days: 7
+        if: ${{ matrix.build_type == 'full' }}
 
   upload_dev_docs:
     name: "Upload dev documentation"
