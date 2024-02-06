@@ -132,12 +132,11 @@ class ACPWorkflow:
     ----------
     acp
         The ACP Client.
-    local_working_directory:
-        The local working directory. If None, a temporary directory will be created.
-    cdb_file_path:
-        The path to the cdb file.
-    acph5_file_path:
-        The path to the acph5 file.
+    local_file_path :
+        Path of the file to be loaded.
+    file_format :
+        Format of the file to be loaded. Can be one of (TODO: list options).
+
     """
 
     def __init__(
@@ -145,8 +144,8 @@ class ACPWorkflow:
         *,
         acp: ACP[ServerProtocol],
         local_working_directory: Optional[pathlib.Path] = None,
-        cdb_file_path: Optional[PATH] = None,
-        acph5_file_path: Optional[PATH] = None,
+        local_file_path: PATH,
+        file_format: str,
     ):
         self._acp_instance = acp
         self._local_working_dir = _LocalWorkingDir(local_working_directory)
@@ -155,19 +154,8 @@ class ACPWorkflow:
             local_working_dir=self._local_working_dir,
         )
 
-        if cdb_file_path is not None and acph5_file_path is not None:
-            raise RuntimeError("Only one of cdb_file_path or acph5_file_path can be provided.")
-
-        if cdb_file_path is None and acph5_file_path is None:
-            raise RuntimeError("One of cdb_file_path or acph5_file_path must be provided.")
-
-        if cdb_file_path is not None:
-            uploaded_file = self._add_input_file(path=pathlib.Path(cdb_file_path))
-            self._model = self._acp_instance.import_model(path=uploaded_file, format="ansys:cdb")
-
-        if acph5_file_path is not None:
-            uploaded_file = self._add_input_file(path=pathlib.Path(acph5_file_path))
-            self._model = self._acp_instance.import_model(path=uploaded_file)
+        uploaded_file = self._add_input_file(path=pathlib.Path(local_file_path))
+        self._model = self._acp_instance.import_model(path=uploaded_file, format=file_format)
 
     @classmethod
     def from_acph5_file(
@@ -190,8 +178,9 @@ class ACPWorkflow:
 
         return cls(
             acp=acp,
-            acph5_file_path=acph5_file_path,
+            local_file_path=acph5_file_path,
             local_working_directory=local_working_directory,
+            file_format="acp:h5",
         )
 
     @classmethod
@@ -214,7 +203,10 @@ class ACPWorkflow:
         """
 
         return cls(
-            acp=acp, cdb_file_path=cdb_file_path, local_working_directory=local_working_directory
+            acp=acp,
+            local_file_path=cdb_file_path,
+            local_working_directory=local_working_directory,
+            file_format="ansys:cdb",
         )
 
     @property
