@@ -6,10 +6,11 @@
 
         self
         intro
+        howto/index
+        concepts/index
         {% if not skip_gallery %}
         examples/index
         {% endif %}
-        howto/index
         {% if not skip_api %}
         api/index
         {% endif %}
@@ -44,11 +45,17 @@ optimization of composite structures.
             Contains installation instructions and a simple example to get you
             started with PyACP.
 
-        .. grid-item-card:: :octicon:`light-bulb` How-to guides
+        .. grid-item-card:: :octicon:`tools` How-to guides
             :link: howto/index
             :link-type: doc
 
             Guides on how to achieve specific tasks with PyACP.
+
+        .. grid-item-card:: :octicon:`light-bulb` Concepts
+            :link: concepts/index
+            :link-type: doc
+
+            Explains the concepts and terminology used in PyACP.
 
         .. grid-item-card:: :octicon:`play` Examples
             {% if not skip_gallery %}:link: examples/index
@@ -67,7 +74,6 @@ optimization of composite structures.
         .. grid-item-card:: :octicon:`code` Contributing
             :link: contributing
             :link-type: doc
-            :columns: 12
 
             Information on how to contribute to PyACP.
 
