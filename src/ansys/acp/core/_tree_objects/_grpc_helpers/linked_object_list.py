@@ -214,6 +214,9 @@ class LinkedObjectList(MutableSequence[ValueT]):
     def __eq__(self, other: Any) -> Any:
         return list(self) == other
 
+    def __repr__(self) -> str:
+        return f"<LinkedObjectList([{', '.join(repr(val) for val in self)}])>"
+
 
 ChildT = TypeVar("ChildT", bound=CreatableTreeObject)
 

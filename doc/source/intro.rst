@@ -21,14 +21,14 @@ Start ACP
 
 Start a Python interpreter and import the PyACP package:
 
-.. code-block:: python
+.. testcode::
 
-    import ansys_acp.core as pyacp
+    import ansys.acp.core as pyacp
 
 
 Next, start an ACP instance:
 
-.. code-block:: python
+.. testcode::
 
     acp = pyacp.launch_acp()
 
@@ -37,16 +37,36 @@ Load a model
 
 To load a model in ACP, use the :meth:`import_model <.ACP.import_model>` method:
 
-.. code-block:: python
+.. testcode::
+    :hide:
 
-    model = acp.import_model(path="path/to/model.acph5")
+    import os
+    import shutil
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as tempdir:
+        tmp_file = os.path.join(tempdir, "model.acph5")
+        shutil.copy("../tests/data/minimal_complete_model.acph5", tmp_file)
+        acp.upload_file(tmp_file)
+
+.. testcode::
+
+    model = acp.import_model(path="model.acph5")
 
 This can be either an existing ACP model (``.acph5`` format) or an FE model.
 When an FE model is loaded, the format needs to be specified:
 
-.. code-block:: python
+.. testcode::
+    :hide:
 
-    model = acp.load_model(path="path/to/model.cdb", format="ansys:cdb")
+    with tempfile.TemporaryDirectory() as tempdir:
+        tmp_file = os.path.join(tempdir, "model.cdb")
+        shutil.copy("../tests/data/minimal_model_2.cdb", tmp_file)
+        acp.upload_file(tmp_file)
+
+.. testcode::
+
+    model = acp.import_model(path="model.cdb", format="ansys:cdb")
 
 See :class:`.FeFormat` for a list of supported FE formats.
 
@@ -56,7 +76,7 @@ Start modelling
 
 Start defining new objects in the model. For example, to create a new modeling group and modeling ply:
 
-.. code-block:: python
+.. testcode::
 
     modeling_group = model.create_modeling_group(name="Modeling Group 1")
     modeling_ply = modeling_group.create_modeling_ply(name="Ply 1", ply_angle=10.0)
@@ -66,7 +86,7 @@ For example, refer to the documentation of :meth:`create_modeling_ply <.Modeling
 
 Alternatively, you can always set the properties of an object after it has been created:
 
-.. code-block:: python
+.. testcode::
 
     fabric = model.create_fabric(name="Fabric 1")
     modeling_ply.ply_material = fabric
@@ -81,9 +101,9 @@ Save the model
 
 To save the model, use the :meth:`save <.Model.save>` method:
 
-.. code-block:: python
+.. testcode::
 
-    model.save("path/to/saved/model.acph5")
+    model.save("saved_model.acph5")
 
 
 Update and plot the model
@@ -91,21 +111,24 @@ Update and plot the model
 
 To update the model, use the :meth:`update <.Model.update>` method:
 
-.. code-block:: python
+.. doctest::
 
-    model.update()  # Note: our model is still incomplete, so this will raise an error
+    >>> model.update()  # Note: our model is still incomplete, so this will raise an error
+    Traceback (most recent call last):
+    ...
+    RuntimeError: Unknown error: No orthotropic material assigned to fabric Fabric 1!
 
 
 Many PyACP objects provide data which can be plotted. For example, to show the mesh:
 
-.. code-block:: python
+.. testcode::
 
-    model.mesh.to_pyvista.plot()
+    model.mesh.to_pyvista().plot()
 
 
 Or to show the thickness of a modeling ply:
 
-.. code-block:: python
+.. testcode::
 
     modeling_ply.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot()
 

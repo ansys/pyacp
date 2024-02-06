@@ -279,8 +279,10 @@ class EdgePropertyList(MutableSequence[ValueT]):
         return list(self) == other
 
     def __repr__(self) -> str:
-        entries = ", ".join(f"{item}" for item in self._object_list)
-        return f"{self._parent_object.name} - {self._name}({entries})"
+        return (
+            f"<{self.__class__.__name__}[{self._object_type.__name__}] "
+            + f"with parent {self._parent_object!r}, entries {self._object_list!r}>"
+        )
 
 
 def define_edge_property_list(
