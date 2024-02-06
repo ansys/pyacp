@@ -28,11 +28,10 @@ from ansys.acp.core import (
     ACPWorkflow,
     ConstantEngineeringConstants,
     ConstantStrainLimits,
-    ExampleKeys,
     PlyType,
+    example_helpers,
     get_composite_post_processing_files,
     get_dpf_unit_system,
-    get_example_file,
     launch_acp,
     print_model,
 )
@@ -45,7 +44,9 @@ from ansys.mapdl.core import launch_mapdl
 # Get example file from server
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
-input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR)
+input_file = example_helpers.get_example_file(
+    example_helpers.ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR
+)
 
 # %%
 # Launch the PyACP server and connect to it.

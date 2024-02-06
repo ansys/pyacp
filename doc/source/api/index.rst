@@ -16,3 +16,4 @@ and attributes.
     material_property_sets
     other_types
     workflow
+    example_helpers

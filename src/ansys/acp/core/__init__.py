@@ -5,6 +5,7 @@ PyACP enables you to design and analyze layered composite structures.
 
 import importlib.metadata
 
+from . import example_helpers
 from ._model_printer import get_model_tree, print_model
 from ._server import ACP, DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode, launch_acp
 from ._tree_objects import (
@@ -121,7 +122,6 @@ from ._tree_objects import (
     VirtualGeometry,
     VirtualGeometryDimension,
 )
-from ._utils.example_helpers import ExampleKeys, get_example_file
 from ._workflow import ACPWorkflow, get_composite_post_processing_files, get_dpf_unit_system
 
 __version__ = importlib.metadata.version(__name__.replace(".", "-"))
@@ -170,7 +170,7 @@ __all__ = [
     "ElementSet",
     "ElementSetElementalData",
     "ElementSetNodalData",
-    "ExampleKeys",
+    "example_helpers",
     "Fabric",
     "FabricWithAngle",
     "FeFormat",
@@ -181,7 +181,6 @@ __all__ = [
     "GeometricalSelectionRuleNodalData",
     "get_composite_post_processing_files",
     "get_dpf_unit_system",
-    "get_example_file",
     "get_model_tree",
     "IgnorableEntity",
     "InterpolationOptions",
