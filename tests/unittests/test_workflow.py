@@ -16,7 +16,7 @@ def test_workflow(acp_instance, model_data_dir, explict_temp_dir):
     else:
         working_dir = None
 
-    workflow = ACPWorkflow(
+    workflow = ACPWorkflow.from_cdb_file(
         acp=acp_instance,
         cdb_file_path=input_file_path,
         local_working_directory=working_dir,
