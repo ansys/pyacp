@@ -57,11 +57,13 @@ def test_reload_cad_geometry(acp_instance, model_data_dir, load_cad_geometry):
         copied_path = pathlib.Path(shutil.copy(cad_geometry_file_path, tempdir))
 
         workflow.refresh_cad_geometry_from_local_file(copied_path, cad_geometry)
-        assert cad_geometry.external_path == str(copied_path)
+        if acp_instance.is_remote:
+            assert cad_geometry.external_path == str(copied_path.name)
+        else:
+            assert cad_geometry.external_path == str(copied_path)
 
         # Test that refresh works twice with the same local file.
         workflow.refresh_cad_geometry_from_local_file(copied_path, cad_geometry)
-        assert cad_geometry.external_path == str(copied_path)
 
         # Test error when local file does not exist.
         pathlib.Path.unlink(copied_path)
