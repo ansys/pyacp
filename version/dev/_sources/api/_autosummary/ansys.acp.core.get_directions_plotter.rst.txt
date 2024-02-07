@@ -1,0 +1,6 @@
+﻿get\_directions\_plotter
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autofunction:: get_directions_plotter

@@ -118,6 +118,7 @@
       :toctree:
    
       Model.angle_tolerance
+      Model.average_element_size
       Model.boolean_selection_rules
       Model.cad_geometries
       Model.cutoff_selection_rules

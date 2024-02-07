@@ -36,14 +36,13 @@ and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDP
 
 Import standard library and third-party dependencies
 
-.. GENERATED FROM PYTHON SOURCE LINES 20-25
+.. GENERATED FROM PYTHON SOURCE LINES 20-23
 
 .. code-block:: default
 
     import pathlib
     import tempfile
 
-    import pyvista
 
 
 
@@ -51,12 +50,11 @@ Import standard library and third-party dependencies
 
 
 
-
-.. GENERATED FROM PYTHON SOURCE LINES 26-27
+.. GENERATED FROM PYTHON SOURCE LINES 24-25
 
 Import pyACP dependencies
 
-.. GENERATED FROM PYTHON SOURCE LINES 27-44
+.. GENERATED FROM PYTHON SOURCE LINES 25-43
 
 .. code-block:: default
 
@@ -67,6 +65,7 @@ Import pyACP dependencies
         ExampleKeys,
         PlyType,
         get_composite_post_processing_files,
+        get_directions_plotter,
         get_dpf_unit_system,
         get_example_file,
         launch_acp,
@@ -84,11 +83,11 @@ Import pyACP dependencies
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 45-46
+.. GENERATED FROM PYTHON SOURCE LINES 44-45
 
 Get example file from server
 
-.. GENERATED FROM PYTHON SOURCE LINES 46-50
+.. GENERATED FROM PYTHON SOURCE LINES 45-49
 
 .. code-block:: default
 
@@ -103,11 +102,11 @@ Get example file from server
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 51-52
+.. GENERATED FROM PYTHON SOURCE LINES 50-51
 
 Launch the PyACP server and connect to it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 52-54
+.. GENERATED FROM PYTHON SOURCE LINES 51-53
 
 .. code-block:: default
 
@@ -120,13 +119,13 @@ Launch the PyACP server and connect to it.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 55-58
+.. GENERATED FROM PYTHON SOURCE LINES 54-57
 
 Define the input file and instantiate an ACPWorkflow
 The ACPWorkflow class provides convenience methods which simplify the file handling.
 It automatically creates a model based on the input file.
 
-.. GENERATED FROM PYTHON SOURCE LINES 58-69
+.. GENERATED FROM PYTHON SOURCE LINES 57-68
 
 .. code-block:: default
 
@@ -149,17 +148,17 @@ It automatically creates a model based on the input file.
 
  .. code-block:: none
 
-    /tmp/tmp8d_u1rqg
+    /tmp/tmpu1fr34y2
     UnitSystemType.MKS
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 70-71
+.. GENERATED FROM PYTHON SOURCE LINES 69-70
 
 Visualize the loaded mesh
 
-.. GENERATED FROM PYTHON SOURCE LINES 71-75
+.. GENERATED FROM PYTHON SOURCE LINES 70-74
 
 .. code-block:: default
 
@@ -201,12 +200,12 @@ Visualize the loaded mesh
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 76-78
+.. GENERATED FROM PYTHON SOURCE LINES 75-77
 
 Create an orthotropic material and fabric including strain limits, which are later
 used to post-process the simulation.
 
-.. GENERATED FROM PYTHON SOURCE LINES 78-105
+.. GENERATED FROM PYTHON SOURCE LINES 77-104
 
 .. code-block:: default
 
@@ -244,11 +243,11 @@ used to post-process the simulation.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 106-107
+.. GENERATED FROM PYTHON SOURCE LINES 105-106
 
 Define a rosette and an oriented selection set and plot the orientations
 
-.. GENERATED FROM PYTHON SOURCE LINES 107-128
+.. GENERATED FROM PYTHON SOURCE LINES 106-122
 
 .. code-block:: default
 
@@ -264,12 +263,7 @@ Define a rosette and an oriented selection set and plot the orientations
 
     model.update()
 
-    plotter = pyvista.Plotter()
-    plotter.add_mesh(model.mesh.to_pyvista(), color="white")
-    plotter.add_mesh(
-        oss.elemental_data.orientation.get_pyvista_glyphs(mesh=model.mesh, factor=0.01),
-        color="blue",
-    )
+    plotter = get_directions_plotter(model=model, components=[oss.elemental_data.orientation])
     plotter.show()
 
 
@@ -307,11 +301,11 @@ Define a rosette and an oriented selection set and plot the orientations
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 129-130
+.. GENERATED FROM PYTHON SOURCE LINES 123-124
 
 Create various plies with different angles and add them to a modeling group
 
-.. GENERATED FROM PYTHON SOURCE LINES 130-143
+.. GENERATED FROM PYTHON SOURCE LINES 124-137
 
 .. code-block:: default
 
@@ -335,22 +329,24 @@ Create various plies with different angles and add them to a modeling group
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 144-145
+.. GENERATED FROM PYTHON SOURCE LINES 138-139
 
 Show the fiber directions of a specific ply
 
-.. GENERATED FROM PYTHON SOURCE LINES 145-154
+.. GENERATED FROM PYTHON SOURCE LINES 139-150
 
 .. code-block:: default
 
     modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45_UD"]
 
-    plotter = pyvista.Plotter()
-    plotter.add_mesh(model.mesh.to_pyvista(), color="white", show_edges=True)
-    plotter.add_mesh(
-        modeling_ply.elemental_data.fiber_direction.get_pyvista_glyphs(mesh=model.mesh, factor=0.0008),
+
+    plotter = get_directions_plotter(
+        model=model,
+        components=[modeling_ply.elemental_data.fiber_direction],
     )
+
     plotter.show()
+
 
 
 
@@ -386,11 +382,11 @@ Show the fiber directions of a specific ply
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 155-156
+.. GENERATED FROM PYTHON SOURCE LINES 151-152
 
 Print the model tree for a quick overview
 
-.. GENERATED FROM PYTHON SOURCE LINES 156-158
+.. GENERATED FROM PYTHON SOURCE LINES 152-154
 
 .. code-block:: default
 
@@ -448,14 +444,14 @@ Print the model tree for a quick overview
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 159-163
+.. GENERATED FROM PYTHON SOURCE LINES 155-159
 
 Solve the model with MAPDL
 --------------------------
 
 Launch the MAPDL instance
 
-.. GENERATED FROM PYTHON SOURCE LINES 163-166
+.. GENERATED FROM PYTHON SOURCE LINES 159-162
 
 .. code-block:: default
 
@@ -469,11 +465,11 @@ Launch the MAPDL instance
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 167-168
+.. GENERATED FROM PYTHON SOURCE LINES 163-164
 
 Load the CDB file into PyMAPDL
 
-.. GENERATED FROM PYTHON SOURCE LINES 168-170
+.. GENERATED FROM PYTHON SOURCE LINES 164-166
 
 .. code-block:: default
 
@@ -488,15 +484,15 @@ Load the CDB file into PyMAPDL
  .. code-block:: none
 
 
-    '\n /INPUT FILE= ACP Lay-up Model.cdb  LINE=       0\n\n\n\n DO NOT WRITE ELEMENT RESULTS INTO DATABASE\n\n *GET  _WALLSTRT  FROM  ACTI  ITEM=TIME WALL  VALUE=  13.4750000    \n\n TITLE= \n wbnew--Static Structural (A5)                                                 \n\n  ACT Extensions:\n      LSDYNA, 2024.1\n      5f463412-bd3e-484b-87e7-cbc0a665e474, wbex\n /COM,     ANSYSMotion, 2024.2\n      20180725-3f81-49eb-9f31-41364844c769, wbex\n  \n\n SET PARAMETER DIMENSIONS ON  _WB_PROJECTSCRATCH_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_PROJECTSCRATCH_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\dp0\\SYS\\MECH\\\n\n SET PARAMETER DIMENSIONS ON  _WB_SOLVERFILES_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_SOLVERFILES_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\dp0\\SYS\\MECH\\\n\n SET PARAMETER DIMENSIONS ON  _WB_USERFILES_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_USERFILES_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\user_files\\\n --- Data in consistent MKS units. See Solving Units in the help system for more\n\n MKS UNITS SPECIFIED FOR INTERNAL    \n  LENGTH        (l)  = METER (M)\n  MASS          (M)  = KILOGRAM (KG)\n  TIME          (t)  = SECOND (SEC)\n  TEMPERATURE   (T)  = CELSIUS (C)\n  TOFFSET            = 273.0\n  CHARGE        (Q)  = COULOMB\n  FORCE         (f)  = NEWTON (N) (KG-M/SEC2)\n  HEAT               = JOULE (N-M)\n\n  PRESSURE           = PASCAL (NEWTON/M**2)\n  ENERGY        (W)  = JOULE (N-M)\n  POWER         (P)  = WATT (N-M/SEC)\n  CURRENT       (i)  = AMPERE (COULOMBS/SEC)\n  CAPACITANCE   (C)  = FARAD\n  INDUCTANCE    (L)  = HENRY\n  MAGNETIC FLUX      = WEBER\n  RESISTANCE    (R)  = OHM\n  ELECTRIC POTENTIAL = VOLT\n\n INPUT  UNITS ARE ALSO SET TO MKS \n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     13:28:30  FEB 07, 2024 CP=      0.572\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n *********** Nodes for the whole assembly ***********\n *********** Elements for Body 1 "SYS\\Surface" ***********\n *********** Send User Defined Coordinate System(s) ***********\n *********** Set Reference Temperature ***********\n *********** Send Materials ***********\n *********** Send Sheet Properties ***********\n *********** Fixed Supports ***********\n *********** Define Force Using Surface Effect Elements ***********\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.578\n\n\n --- Number of total nodes = 81\n --- Number of contact elements = 8\n --- Number of spring elements = 0\n --- Number of bearing elements = 0\n --- Number of solid elements = 64\n --- Number of condensed parts = 0\n --- Number of total elements = 72\n\n *GET  _WALLBSOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  13.4750000    \n ****************************************************************************\n *************************    SOLUTION       ********************************\n ****************************************************************************\n\n *****  MAPDL SOLUTION ROUTINE  *****\n\n\n PERFORM A STATIC ANALYSIS\n  THIS WILL BE A NEW ANALYSIS\n\n PARAMETER _THICKRATIO =     0.000000000    \n\n USE SPARSE MATRIX DIRECT SOLVER\n\n CONTACT INFORMATION PRINTOUT LEVEL       1\n\n CHECK INITIAL OPEN/CLOSED STATUS OF SELECTED CONTACT ELEMENTS\n      AND LIST DETAILED CONTACT PAIR INFORMATION\n\n SPLIT CONTACT SURFACES AT SOLVE PHASE\n\n DO NOT COMBINE ELEMENT MATRIX FILES (.emat) AFTER DISTRIBUTED PARALLEL SOLUTION\n\n DO NOT COMBINE ELEMENT SAVE DATA FILES (.esav) AFTER DISTRIBUTED PARALLEL SOLUTION\n\n NLDIAG: Nonlinear diagnostics CONT option is set to ON. \n         Writing frequency : each ITERATION.\n\n DO NOT SAVE ANY RESTART FILES AT ALL\n ****************************************************\n ******************* SOLVE FOR LS 1 OF 1 ****************\n\n SELECT       FOR ITEM=TYPE COMPONENT=    \n  IN RANGE         2 TO          2 STEP          1\n\n          8  ELEMENTS (OF         72  DEFINED) SELECTED BY  ESEL  COMMAND.\n\n SELECT      ALL NODES HAVING ANY ELEMENT IN ELEMENT SET.\n\n          9 NODES (OF         81  DEFINED) SELECTED FROM\n        8 SELECTED ELEMENTS BY NSLE COMMAND.\n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  1   KVAL = 1\n     VALUES =     0.0000         0.0000         0.0000         0.0000    \n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  2   KVAL = 1\n     VALUES =    -10000.        -10000.        -10000.        -10000.    \n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  3   KVAL = 1\n     VALUES =     0.0000         0.0000         0.0000         0.0000    \n\n ALL SELECT   FOR ITEM=NODE COMPONENT=    \n  IN RANGE         1 TO         81 STEP          1\n\n         81  NODES (OF         81  DEFINED) SELECTED BY NSEL  COMMAND.\n\n ALL SELECT   FOR ITEM=ELEM COMPONENT=    \n  IN RANGE         1 TO         72 STEP          1\n\n         72  ELEMENTS (OF         72  DEFINED) SELECTED BY  ESEL  COMMAND.\n\n PRINTOUT RESUMED BY /GOP\n\n USE       1 SUBSTEPS INITIALLY THIS LOAD STEP FOR ALL  DEGREES OF FREEDOM\n FOR AUTOMATIC TIME STEPPING:\n   USE      1 SUBSTEPS AS A MAXIMUM\n   USE      1 SUBSTEPS AS A MINIMUM\n\n TIME=  1.0000    \n\n ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.\n\n\n WRITE ALL  ITEMS TO THE DATABASE WITH A FREQUENCY OF NONE\n   FOR ALL APPLICABLE ENTITIES\n\n WRITE NSOL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE RSOL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EANG ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE ETMP ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE VENG ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE STRS ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EPEL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EPPL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE CONT ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n *GET  ANSINTER_  FROM  ACTI  ITEM=INT        VALUE=  0.00000000    \n\n *IF  ANSINTER_                         ( =   0.00000     )  NE  \n      0                                 ( =   0.00000     )  THEN    \n\n *ENDIF\n\n *****  MAPDL SOLVE    COMMAND  *****\n\n *** WARNING ***                         CP =       0.583   TIME= 13:28:30\n Element shape checking is currently inactive.  Issue SHPP,ON or         \n SHPP,WARN to reactivate, if desired.                                    \n\n *** NOTE ***                            CP =       0.584   TIME= 13:28:30\n The model data was checked and warning messages were found.             \n  Please review output or errors file ( /file.err ) for these warning    \n messages.                                                               \n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     13:28:30  FEB 07, 2024 CP=      0.585\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n                       S O L U T I O N   O P T I O N S\n\n   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D                  \n   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   ROTX ROTY ROTZ\n   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)\n   OFFSET TEMPERATURE FROM ABSOLUTE ZERO . . . . .  273.15    \n   EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE             \n   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  \n\n *** NOTE ***                            CP =       0.585   TIME= 13:28:30\n Poisson\'s ratio PR input has been converted to NU input.                \n\n                      L O A D   S T E P   O P T I O N S\n\n   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1\n   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000    \n   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1\n   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO\n   COPY INTEGRATION POINT VALUES TO NODE . . . . .   YES\n   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT\n   DATABASE OUTPUT CONTROLS\n      ITEM     FREQUENCY   COMPONENT\n       ALL       NONE               \n      NSOL        ALL               \n      RSOL        ALL               \n      EANG        ALL               \n      ETMP        ALL               \n      VENG        ALL               \n      STRS        ALL               \n      EPEL        ALL               \n      EPPL        ALL               \n      CONT        ALL               \n\n\n SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           \n\n *** NOTE ***                            CP =       0.595   TIME= 13:28:30\n Predictor is ON by default for structural elements with rotational      \n degrees of freedom.  Use the PRED,OFF command to turn the predictor     \n OFF if it adversely affects the convergence.                            \n\n\n Range of element maximum matrix coefficients in global coordinates\n Maximum = 8.014568245E+11 at element 53.                                \n Minimum = 8.014568181E+11 at element 21.                                \n\n   *** ELEMENT MATRIX FORMULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.018   0.000283\n        2         8  SURF156       0.000   0.000054\n Time at end of element matrix formulation CP = 0.61619705.              \n\n SPARSE MATRIX DIRECT SOLVER.\n  Number of equations =         432,    Maximum wavefront =     42\n  Memory allocated for solver              =     0.629 MB\n  Memory required for in-core solution     =     0.608 MB\n  Memory required for out-of-core solution =     0.415 MB\n\n *** NOTE ***                            CP =       0.622   TIME= 13:28:30\n The Sparse Matrix Solver is currently running in the in-core memory     \n mode.  This memory mode uses the most amount of memory in order to      \n avoid using the hard drive as much as possible, which most often        \n results in the fastest solution time.  This mode is recommended if      \n enough physical memory is present to accommodate all of the solver      \n data.                                                                   \n Sparse solver maximum pivot= 3.20582728E+12 at node 57 UX.              \n Sparse solver minimum pivot= 139631.198 at node 15 ROTY.                \n Sparse solver minimum pivot in absolute value= 139631.198 at node 15    \n ROTY.                                                                   \n\n   *** ELEMENT RESULT CALCULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.034   0.000535\n        2         8  SURF156       0.000   0.000025\n\n   *** NODAL LOAD CALCULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.001   0.000021\n        2         8  SURF156       0.000   0.000005\n *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1\n *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX\n\n\n *** MAPDL BINARY FILE STATISTICS\n  BUFFER SIZE USED= 16384\n        0.062 MB WRITTEN ON ELEMENT MATRIX FILE: file.emat\n        0.125 MB WRITTEN ON ASSEMBLED MATRIX FILE: file.full\n        0.562 MB WRITTEN ON RESULTS FILE: file.rst\n *************** Write FE CONNECTORS *********\n\n WRITE OUT CONSTRAINT EQUATIONS TO FILE= file.ce                                                                                                                                                                                                                                                             \n ****************************************************\n *************** FINISHED SOLVE FOR LS 1 *************\n\n *GET  _WALLASOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  13.4750000    \n\n PRINTOUT RESUMED BY /GOP\n\n FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.667\n\n\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     13:28:30  FEB 07, 2024 CP=      0.668\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL RESULTS INTERPRETATION (POST1) *****\n\n *** NOTE ***                            CP =       0.668   TIME= 13:28:30\n Reading results into the database (SET command) will update the current \n displacement and force boundary conditions in the database with the     \n values from the results file for that load set.  Note that any          \n subsequent solutions will use these values unless action is taken to    \n either SAVE the current values or not overwrite them (/EXIT,NOSAVE).    \n\n Set Encoding of XML File to:ISO-8859-1\n\n Set Output of XML File to:\n     PARM,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,\n         ,     ,     ,     ,     ,     ,     ,\n\n DATABASE WRITTEN ON FILE  parm.xml                                                                                                                                                                                                                                                            \n\n EXIT THE MAPDL POST1 DATABASE PROCESSOR\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.669\n\n\n\n PRINTOUT RESUMED BY /GOP\n\n *GET  _WALLDONE  FROM  ACTI  ITEM=TIME WALL  VALUE=  13.4750000    \n\n PARAMETER _PREPTIME =     0.000000000    \n\n PARAMETER _SOLVTIME =     0.000000000    \n\n PARAMETER _POSTTIME =     0.000000000    \n\n PARAMETER _TOTALTIM =     0.000000000    \n\n *GET  _DLBRATIO  FROM  ACTI  ITEM=SOLU DLBR  VALUE=  0.00000000    \n\n *GET  _COMBTIME  FROM  ACTI  ITEM=SOLU COMB  VALUE=  0.00000000    \n\n *GET  _SSMODE   FROM  ACTI  ITEM=SOLU SSMM  VALUE=  2.00000000    \n\n *GET  _NDOFS    FROM  ACTI  ITEM=SOLU NDOF  VALUE=  432.000000    \n\n *GET  _SOL_END_TIME  FROM  ACTI  ITEM=SET  TIME  VALUE=  1.00000000    \n\n *IF  _sol_end_time                     ( =   1.00000     )  EQ  \n      1.000000                          ( =   1.00000     )  THEN    \n\n /FCLEAN COMMAND REMOVING ALL LOCAL FILES\n\n *ENDIF\n --- Total number of nodes = 81\n --- Total number of elements = 72\n --- Element load balance ratio = 0\n --- Time to combine distributed files = 0\n --- Sparse memory mode = 2\n --- Number of DOF = 432\n'
+    '\n /INPUT FILE= ACP Lay-up Model.cdb  LINE=       0\n\n\n\n DO NOT WRITE ELEMENT RESULTS INTO DATABASE\n\n *GET  _WALLSTRT  FROM  ACTI  ITEM=TIME WALL  VALUE=  16.4394444    \n\n TITLE= \n wbnew--Static Structural (A5)                                                 \n\n  ACT Extensions:\n      LSDYNA, 2024.1\n      5f463412-bd3e-484b-87e7-cbc0a665e474, wbex\n /COM,     ANSYSMotion, 2024.2\n      20180725-3f81-49eb-9f31-41364844c769, wbex\n  \n\n SET PARAMETER DIMENSIONS ON  _WB_PROJECTSCRATCH_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_PROJECTSCRATCH_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\dp0\\SYS\\MECH\\\n\n SET PARAMETER DIMENSIONS ON  _WB_SOLVERFILES_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_SOLVERFILES_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\dp0\\SYS\\MECH\\\n\n SET PARAMETER DIMENSIONS ON  _WB_USERFILES_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_USERFILES_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\user_files\\\n --- Data in consistent MKS units. See Solving Units in the help system for more\n\n MKS UNITS SPECIFIED FOR INTERNAL    \n  LENGTH        (l)  = METER (M)\n  MASS          (M)  = KILOGRAM (KG)\n  TIME          (t)  = SECOND (SEC)\n  TEMPERATURE   (T)  = CELSIUS (C)\n  TOFFSET            = 273.0\n  CHARGE        (Q)  = COULOMB\n  FORCE         (f)  = NEWTON (N) (KG-M/SEC2)\n  HEAT               = JOULE (N-M)\n\n  PRESSURE           = PASCAL (NEWTON/M**2)\n  ENERGY        (W)  = JOULE (N-M)\n  POWER         (P)  = WATT (N-M/SEC)\n  CURRENT       (i)  = AMPERE (COULOMBS/SEC)\n  CAPACITANCE   (C)  = FARAD\n  INDUCTANCE    (L)  = HENRY\n  MAGNETIC FLUX      = WEBER\n  RESISTANCE    (R)  = OHM\n  ELECTRIC POTENTIAL = VOLT\n\n INPUT  UNITS ARE ALSO SET TO MKS \n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     16:26:22  FEB 07, 2024 CP=      0.539\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n *********** Nodes for the whole assembly ***********\n *********** Elements for Body 1 "SYS\\Surface" ***********\n *********** Send User Defined Coordinate System(s) ***********\n *********** Set Reference Temperature ***********\n *********** Send Materials ***********\n *********** Send Sheet Properties ***********\n *********** Fixed Supports ***********\n *********** Define Force Using Surface Effect Elements ***********\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.548\n\n\n --- Number of total nodes = 81\n --- Number of contact elements = 8\n --- Number of spring elements = 0\n --- Number of bearing elements = 0\n --- Number of solid elements = 64\n --- Number of condensed parts = 0\n --- Number of total elements = 72\n\n *GET  _WALLBSOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  16.4394444    \n ****************************************************************************\n *************************    SOLUTION       ********************************\n ****************************************************************************\n\n *****  MAPDL SOLUTION ROUTINE  *****\n\n\n PERFORM A STATIC ANALYSIS\n  THIS WILL BE A NEW ANALYSIS\n\n PARAMETER _THICKRATIO =     0.000000000    \n\n USE SPARSE MATRIX DIRECT SOLVER\n\n CONTACT INFORMATION PRINTOUT LEVEL       1\n\n CHECK INITIAL OPEN/CLOSED STATUS OF SELECTED CONTACT ELEMENTS\n      AND LIST DETAILED CONTACT PAIR INFORMATION\n\n SPLIT CONTACT SURFACES AT SOLVE PHASE\n\n DO NOT COMBINE ELEMENT MATRIX FILES (.emat) AFTER DISTRIBUTED PARALLEL SOLUTION\n\n DO NOT COMBINE ELEMENT SAVE DATA FILES (.esav) AFTER DISTRIBUTED PARALLEL SOLUTION\n\n NLDIAG: Nonlinear diagnostics CONT option is set to ON. \n         Writing frequency : each ITERATION.\n\n DO NOT SAVE ANY RESTART FILES AT ALL\n ****************************************************\n ******************* SOLVE FOR LS 1 OF 1 ****************\n\n SELECT       FOR ITEM=TYPE COMPONENT=    \n  IN RANGE         2 TO          2 STEP          1\n\n          8  ELEMENTS (OF         72  DEFINED) SELECTED BY  ESEL  COMMAND.\n\n SELECT      ALL NODES HAVING ANY ELEMENT IN ELEMENT SET.\n\n          9 NODES (OF         81  DEFINED) SELECTED FROM\n        8 SELECTED ELEMENTS BY NSLE COMMAND.\n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  1   KVAL = 1\n     VALUES =     0.0000         0.0000         0.0000         0.0000    \n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  2   KVAL = 1\n     VALUES =    -10000.        -10000.        -10000.        -10000.    \n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  3   KVAL = 1\n     VALUES =     0.0000         0.0000         0.0000         0.0000    \n\n ALL SELECT   FOR ITEM=NODE COMPONENT=    \n  IN RANGE         1 TO         81 STEP          1\n\n         81  NODES (OF         81  DEFINED) SELECTED BY NSEL  COMMAND.\n\n ALL SELECT   FOR ITEM=ELEM COMPONENT=    \n  IN RANGE         1 TO         72 STEP          1\n\n         72  ELEMENTS (OF         72  DEFINED) SELECTED BY  ESEL  COMMAND.\n\n PRINTOUT RESUMED BY /GOP\n\n USE       1 SUBSTEPS INITIALLY THIS LOAD STEP FOR ALL  DEGREES OF FREEDOM\n FOR AUTOMATIC TIME STEPPING:\n   USE      1 SUBSTEPS AS A MAXIMUM\n   USE      1 SUBSTEPS AS A MINIMUM\n\n TIME=  1.0000    \n\n ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.\n\n\n WRITE ALL  ITEMS TO THE DATABASE WITH A FREQUENCY OF NONE\n   FOR ALL APPLICABLE ENTITIES\n\n WRITE NSOL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE RSOL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EANG ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE ETMP ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE VENG ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE STRS ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EPEL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EPPL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE CONT ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n *GET  ANSINTER_  FROM  ACTI  ITEM=INT        VALUE=  0.00000000    \n\n *IF  ANSINTER_                         ( =   0.00000     )  NE  \n      0                                 ( =   0.00000     )  THEN    \n\n *ENDIF\n\n *****  MAPDL SOLVE    COMMAND  *****\n\n *** WARNING ***                         CP =       0.555   TIME= 16:26:22\n Element shape checking is currently inactive.  Issue SHPP,ON or         \n SHPP,WARN to reactivate, if desired.                                    \n\n *** NOTE ***                            CP =       0.556   TIME= 16:26:22\n The model data was checked and warning messages were found.             \n  Please review output or errors file ( /file.err ) for these warning    \n messages.                                                               \n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     16:26:22  FEB 07, 2024 CP=      0.557\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n                       S O L U T I O N   O P T I O N S\n\n   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D                  \n   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   ROTX ROTY ROTZ\n   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)\n   OFFSET TEMPERATURE FROM ABSOLUTE ZERO . . . . .  273.15    \n   EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE             \n   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  \n\n *** NOTE ***                            CP =       0.557   TIME= 16:26:22\n Poisson\'s ratio PR input has been converted to NU input.                \n\n                      L O A D   S T E P   O P T I O N S\n\n   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1\n   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000    \n   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1\n   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO\n   COPY INTEGRATION POINT VALUES TO NODE . . . . .   YES\n   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT\n   DATABASE OUTPUT CONTROLS\n      ITEM     FREQUENCY   COMPONENT\n       ALL       NONE               \n      NSOL        ALL               \n      RSOL        ALL               \n      EANG        ALL               \n      ETMP        ALL               \n      VENG        ALL               \n      STRS        ALL               \n      EPEL        ALL               \n      EPPL        ALL               \n      CONT        ALL               \n\n\n SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           \n\n *** NOTE ***                            CP =       0.569   TIME= 16:26:22\n Predictor is ON by default for structural elements with rotational      \n degrees of freedom.  Use the PRED,OFF command to turn the predictor     \n OFF if it adversely affects the convergence.                            \n\n\n Range of element maximum matrix coefficients in global coordinates\n Maximum = 8.014568245E+11 at element 53.                                \n Minimum = 8.014568181E+11 at element 21.                                \n\n   *** ELEMENT MATRIX FORMULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.019   0.000297\n        2         8  SURF156       0.001   0.000082\n Time at end of element matrix formulation CP = 0.593045056.             \n\n SPARSE MATRIX DIRECT SOLVER.\n  Number of equations =         432,    Maximum wavefront =     42\n  Memory allocated for solver              =     0.629 MB\n  Memory required for in-core solution     =     0.608 MB\n  Memory required for out-of-core solution =     0.415 MB\n\n *** NOTE ***                            CP =       0.601   TIME= 16:26:22\n The Sparse Matrix Solver is currently running in the in-core memory     \n mode.  This memory mode uses the most amount of memory in order to      \n avoid using the hard drive as much as possible, which most often        \n results in the fastest solution time.  This mode is recommended if      \n enough physical memory is present to accommodate all of the solver      \n data.                                                                   \n Sparse solver maximum pivot= 3.20582728E+12 at node 57 UX.              \n Sparse solver minimum pivot= 139631.198 at node 15 ROTY.                \n Sparse solver minimum pivot in absolute value= 139631.198 at node 15    \n ROTY.                                                                   \n\n   *** ELEMENT RESULT CALCULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.034   0.000529\n        2         8  SURF156       0.000   0.000038\n\n   *** NODAL LOAD CALCULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.001   0.000018\n        2         8  SURF156       0.000   0.000005\n *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1\n *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX\n\n\n *** MAPDL BINARY FILE STATISTICS\n  BUFFER SIZE USED= 16384\n        0.062 MB WRITTEN ON ELEMENT MATRIX FILE: file.emat\n        0.125 MB WRITTEN ON ASSEMBLED MATRIX FILE: file.full\n        0.562 MB WRITTEN ON RESULTS FILE: file.rst\n *************** Write FE CONNECTORS *********\n\n WRITE OUT CONSTRAINT EQUATIONS TO FILE= file.ce                                                                                                                                                                                                                                                             \n ****************************************************\n *************** FINISHED SOLVE FOR LS 1 *************\n\n *GET  _WALLASOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  16.4394444    \n\n PRINTOUT RESUMED BY /GOP\n\n FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.649\n\n\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     16:26:22  FEB 07, 2024 CP=      0.650\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL RESULTS INTERPRETATION (POST1) *****\n\n *** NOTE ***                            CP =       0.650   TIME= 16:26:22\n Reading results into the database (SET command) will update the current \n displacement and force boundary conditions in the database with the     \n values from the results file for that load set.  Note that any          \n subsequent solutions will use these values unless action is taken to    \n either SAVE the current values or not overwrite them (/EXIT,NOSAVE).    \n\n Set Encoding of XML File to:ISO-8859-1\n\n Set Output of XML File to:\n     PARM,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,\n         ,     ,     ,     ,     ,     ,     ,\n\n DATABASE WRITTEN ON FILE  parm.xml                                                                                                                                                                                                                                                            \n\n EXIT THE MAPDL POST1 DATABASE PROCESSOR\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.651\n\n\n\n PRINTOUT RESUMED BY /GOP\n\n *GET  _WALLDONE  FROM  ACTI  ITEM=TIME WALL  VALUE=  16.4394444    \n\n PARAMETER _PREPTIME =     0.000000000    \n\n PARAMETER _SOLVTIME =     0.000000000    \n\n PARAMETER _POSTTIME =     0.000000000    \n\n PARAMETER _TOTALTIM =     0.000000000    \n\n *GET  _DLBRATIO  FROM  ACTI  ITEM=SOLU DLBR  VALUE=  0.00000000    \n\n *GET  _COMBTIME  FROM  ACTI  ITEM=SOLU COMB  VALUE=  0.00000000    \n\n *GET  _SSMODE   FROM  ACTI  ITEM=SOLU SSMM  VALUE=  2.00000000    \n\n *GET  _NDOFS    FROM  ACTI  ITEM=SOLU NDOF  VALUE=  432.000000    \n\n *GET  _SOL_END_TIME  FROM  ACTI  ITEM=SET  TIME  VALUE=  1.00000000    \n\n *IF  _sol_end_time                     ( =   1.00000     )  EQ  \n      1.000000                          ( =   1.00000     )  THEN    \n\n /FCLEAN COMMAND REMOVING ALL LOCAL FILES\n\n *ENDIF\n --- Total number of nodes = 81\n --- Total number of elements = 72\n --- Element load balance ratio = 0\n --- Time to combine distributed files = 0\n --- Sparse memory mode = 2\n --- Number of DOF = 432\n'
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 171-172
+.. GENERATED FROM PYTHON SOURCE LINES 167-168
 
 Solve the model
 
-.. GENERATED FROM PYTHON SOURCE LINES 172-176
+.. GENERATED FROM PYTHON SOURCE LINES 168-172
 
 .. code-block:: default
 
@@ -515,18 +511,18 @@ Solve the model
 
     *****  MAPDL SOLVE    COMMAND  *****
 
-     *** WARNING ***                         CP =       0.682   TIME= 13:28:30
+     *** WARNING ***                         CP =       0.667   TIME= 16:26:22
      Element shape checking is currently inactive.  Issue SHPP,ON or         
      SHPP,WARN to reactivate, if desired.                                    
 
-     *** NOTE ***                            CP =       0.683   TIME= 13:28:30
+     *** NOTE ***                            CP =       0.667   TIME= 16:26:22
      The model data was checked and warning messages were found.             
       Please review output or errors file ( /file.err ) for these warning    
      messages.                                                               
 
      *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
      Ansys Mechanical Enterprise                       
-     00000000  VERSION=LINUX x64     13:28:30  FEB 07, 2024 CP=      0.683
+     00000000  VERSION=LINUX x64     16:26:22  FEB 07, 2024 CP=      0.668
 
      wbnew--Static Structural (A5)                                                 
 
@@ -568,7 +564,7 @@ Solve the model
 
      SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           
 
-     *** NOTE ***                            CP =       0.686   TIME= 13:28:30
+     *** NOTE ***                            CP =       0.672   TIME= 16:26:22
      Predictor is ON by default for structural elements with rotational      
      degrees of freedom.  Use the PRED,OFF command to turn the predictor     
      OFF if it adversely affects the convergence.                            
@@ -581,9 +577,9 @@ Solve the model
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1        64  SHELL181      0.016   0.000251
-            2         8  SURF156       0.000   0.000020
-     Time at end of element matrix formulation CP = 0.703144968.             
+            1        64  SHELL181      0.016   0.000246
+            2         8  SURF156       0.000   0.000029
+     Time at end of element matrix formulation CP = 0.688877046.             
 
      SPARSE MATRIX DIRECT SOLVER.
       Number of equations =         432,    Maximum wavefront =     42
@@ -591,7 +587,7 @@ Solve the model
       Memory required for in-core solution     =     0.608 MB
       Memory required for out-of-core solution =     0.415 MB
 
-     *** NOTE ***                            CP =       0.705   TIME= 13:28:30
+     *** NOTE ***                            CP =       0.691   TIME= 16:26:22
      The Sparse Matrix Solver is currently running in the in-core memory     
      mode.  This memory mode uses the most amount of memory in order to      
      avoid using the hard drive as much as possible, which most often        
@@ -606,14 +602,14 @@ Solve the model
        *** ELEMENT RESULT CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1        64  SHELL181      0.033   0.000516
-            2         8  SURF156       0.000   0.000017
+            1        64  SHELL181      0.032   0.000494
+            2         8  SURF156       0.000   0.000025
 
        *** NODAL LOAD CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1        64  SHELL181      0.001   0.000020
-            2         8  SURF156       0.000   0.000004
+            1        64  SHELL181      0.001   0.000017
+            2         8  SURF156       0.000   0.000005
      *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
      *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -626,11 +622,11 @@ Solve the model
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 177-178
+.. GENERATED FROM PYTHON SOURCE LINES 173-174
 
 Post-processing: show displacements
 
-.. GENERATED FROM PYTHON SOURCE LINES 178-182
+.. GENERATED FROM PYTHON SOURCE LINES 174-178
 
 .. code-block:: default
 
@@ -672,11 +668,11 @@ Post-processing: show displacements
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 183-184
+.. GENERATED FROM PYTHON SOURCE LINES 179-180
 
 Download the rst file for composite specific post-processing
 
-.. GENERATED FROM PYTHON SOURCE LINES 184-188
+.. GENERATED FROM PYTHON SOURCE LINES 180-184
 
 .. code-block:: default
 
@@ -697,7 +693,7 @@ Download the rst file for composite specific post-processing
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 189-194
+.. GENERATED FROM PYTHON SOURCE LINES 185-190
 
 Post-Processing with DPF composites
 -----------------------------------
@@ -705,7 +701,7 @@ Post-Processing with DPF composites
 Setup: configure imports and connect to the pyDPF Composites server
 and load the dpf composites plugin
 
-.. GENERATED FROM PYTHON SOURCE LINES 194-200
+.. GENERATED FROM PYTHON SOURCE LINES 190-196
 
 .. code-block:: default
 
@@ -722,12 +718,12 @@ and load the dpf composites plugin
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 201-203
+.. GENERATED FROM PYTHON SOURCE LINES 197-199
 
 Connect to the server. The ``connect_to_or_start_server`` function
 automatically loads the composites plugin.
 
-.. GENERATED FROM PYTHON SOURCE LINES 203-205
+.. GENERATED FROM PYTHON SOURCE LINES 199-201
 
 .. code-block:: default
 
@@ -740,11 +736,11 @@ automatically loads the composites plugin.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 206-207
+.. GENERATED FROM PYTHON SOURCE LINES 202-203
 
 Specify the Combined Failure Criterion
 
-.. GENERATED FROM PYTHON SOURCE LINES 207-214
+.. GENERATED FROM PYTHON SOURCE LINES 203-210
 
 .. code-block:: default
 
@@ -762,11 +758,11 @@ Specify the Combined Failure Criterion
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 215-216
+.. GENERATED FROM PYTHON SOURCE LINES 211-212
 
 Create the CompositeModel and configure its input
 
-.. GENERATED FROM PYTHON SOURCE LINES 216-222
+.. GENERATED FROM PYTHON SOURCE LINES 212-218
 
 .. code-block:: default
 
@@ -783,11 +779,11 @@ Create the CompositeModel and configure its input
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 223-224
+.. GENERATED FROM PYTHON SOURCE LINES 219-220
 
 Evaluate the failure criteria and plot it
 
-.. GENERATED FROM PYTHON SOURCE LINES 224-228
+.. GENERATED FROM PYTHON SOURCE LINES 220-224
 
 .. code-block:: default
 
@@ -829,11 +825,11 @@ Evaluate the failure criteria and plot it
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 229-230
+.. GENERATED FROM PYTHON SOURCE LINES 225-226
 
 Release composite model to close open streams to result file.
 
-.. GENERATED FROM PYTHON SOURCE LINES 230-231
+.. GENERATED FROM PYTHON SOURCE LINES 226-227
 
 .. code-block:: default
 
@@ -848,7 +844,7 @@ Release composite model to close open streams to result file.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  30.915 seconds)
+   **Total running time of the script:** ( 0 minutes  26.668 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_001_basic_flat_plate.py:

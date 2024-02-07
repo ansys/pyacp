@@ -15,4 +15,5 @@ and attributes.
     linked_object_definitions
     material_property_sets
     other_types
+    plot_utils
     workflow
