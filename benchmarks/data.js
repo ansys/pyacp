@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707312485723,
+  "lastUpdate": 1707323225142,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11984,6 +11984,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002094629632393532",
             "extra": "mean: 795.4439466093352 usec\nrounds: 1180"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "211e4d73b120739de98e3fb82913baef76a95ae3",
+          "message": "Direction Plots (#371)\n\n* Add plotter function",
+          "timestamp": "2024-02-07T16:23:19Z",
+          "tree_id": "64e37b5922a9036aca4ea128a7db95b350abbcfc",
+          "url": "https://github.com/ansys-internal/pyacp/commit/211e4d73b120739de98e3fb82913baef76a95ae3"
+        },
+        "date": 1707323210273,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 3.9421107579103305,
+            "unit": "iter/sec",
+            "range": "stddev: 0.01842360242534613",
+            "extra": "mean: 253.67120850000902 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 864.5123581690141,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0004556434361082738",
+            "extra": "mean: 1.1567214633205947 msec\nrounds: 777"
           }
         ]
       }
