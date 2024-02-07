@@ -1,8 +1,6 @@
 Material property sets
 ----------------------
 
-.. TODO: move these to a public module
-
 .. currentmodule:: ansys.acp.core
 
 .. autosummary::

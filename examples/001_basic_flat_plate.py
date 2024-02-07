@@ -26,13 +26,12 @@ import pyvista
 # Import pyACP dependencies
 from ansys.acp.core import (
     ACPWorkflow,
-    ConstantEngineeringConstants,
-    ConstantStrainLimits,
     PlyType,
     example_helpers,
     get_composite_post_processing_files,
     get_dpf_unit_system,
     launch_acp,
+    material_property_sets,
     print_model,
 )
 
@@ -76,12 +75,12 @@ mesh.plot(show_edges=True)
 # %%
 # Create an orthotropic material and fabric including strain limits, which are later
 # used to post-process the simulation.
-engineering_constants = ConstantEngineeringConstants(
+engineering_constants = material_property_sets.ConstantEngineeringConstants(
     E1=5e10, E2=1e10, E3=1e10, nu12=0.28, nu13=0.28, nu23=0.3, G12=5e9, G23=4e9, G31=4e9
 )
 
 strain_limit = 0.01
-strain_limits = ConstantStrainLimits(
+strain_limits = material_property_sets.ConstantStrainLimits(
     eXc=-strain_limit,
     eYc=-strain_limit,
     eZc=-strain_limit,
