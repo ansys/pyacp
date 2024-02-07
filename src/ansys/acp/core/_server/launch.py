@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+from packaging import version
+
 from ansys.tools.local_product_launcher.config import get_launch_mode_for
+from ansys.tools.local_product_launcher.interface import FALLBACK_LAUNCH_MODE_NAME
 from ansys.tools.local_product_launcher.launch import launch_product
 
 from .acp_instance import (
@@ -34,7 +37,7 @@ def launch_acp(
     launch_mode :
         Specifies which ACP launcher is used. One of ``direct`` or
         ``docker_compose``. If unspecified, the configured default is
-        used.
+        used. If no default is configured, ``direct`` is used.
     timeout :
         Timeout to wait until ACP responds. If ``None`` is specified,
         the check that ACP has started is skipped.
@@ -49,7 +52,8 @@ def launch_acp(
     server_instance: ControllableServerProtocol = launch_product(
         product_name="ACP", config=config, launch_mode=launch_mode_evaluated
     )
-    if launch_mode_evaluated == LaunchMode.DIRECT:
+    # The fallback launch mode for ACP is the direct launch mode.
+    if launch_mode_evaluated in (LaunchMode.DIRECT, FALLBACK_LAUNCH_MODE_NAME):
         filetransfer_strategy: FiletransferStrategy = LocalFileTransferStrategy()
         is_remote = False
     elif launch_mode_evaluated == LaunchMode.DOCKER_COMPOSE:
@@ -69,4 +73,12 @@ def launch_acp(
     )
     if timeout is not None:
         acp._server.wait(timeout=timeout)
+        # We can only check the server version after the server has started;
+        # if the timeout is set to 'None', we skip this check.
+        MIN_VERSION = "24.2"
+        if version.parse(acp.server_version) < version.parse(MIN_VERSION):
+            raise RuntimeError(
+                f"ACP version {acp.server_version} is not supported. "
+                f"Please use ACP version {MIN_VERSION} or later."
+            )
     return acp

@@ -6,7 +6,7 @@ __all__ = ["path_to_str_checked"]
 
 
 def path_to_str_checked(path: PATH) -> str:
-    """Converts a path to a string, with a type check."""
+    """Convert a path to a string, with a type check."""
     if isinstance(path, str):
         return path
     elif isinstance(path, PurePath):

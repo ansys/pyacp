@@ -42,11 +42,10 @@ ValueT = TypeVar("ValueT", bound=GenericEdgePropertyType)
 
 
 class EdgePropertyList(MutableSequence[ValueT]):
-    """
-    The edge property list is used to wrap graph edges of a specific type.
+    """Wrap graph edges of a specific type.
 
-    For instance FabricWithAngle of a stackup.
-    This object handles the conversion of the protobuf messages to the
+    Wraps links between objects of a specific type, for instance FabricWithAngle
+    of a stackup. This object handles the conversion of the protobuf messages to the
     corresponding Python object and vice-versa.
     self._object_list holds the Python object. The python objects are stored
     to support editing in-place editing. This is achieved by passing a callback
@@ -163,42 +162,99 @@ class EdgePropertyList(MutableSequence[ValueT]):
         return item in self._object_list
 
     def append(self, value: ValueT) -> None:
+        """Append an object to the list.
+
+        Parameters
+        ----------
+        value :
+            The object to append.
+        """
         obj_list = self._object_list
         obj_list.append(value)
         self._set_object_list(obj_list)
 
     def count(self, value: ValueT) -> int:
+        """Count the number of occurrences of an object in the list.
+
+        Parameters
+        ----------
+        value : ValueT
+            The object to count.
+        """
         return self._object_list.count(value)
 
     def index(self, value: ValueT, start: int = 0, stop: int = sys.maxsize) -> int:
+        """Return the index of the first occurrence of an object in the list.
+
+        Parameters
+        ----------
+        value :
+            The object to search for.
+        start :
+            The index to start searching from.
+        stop :
+            The index to stop searching at.
+        """
         return self._object_list.index(value, start, stop)
 
     def extend(self, iterable: Iterable[ValueT]) -> None:
+        """Extend the list by appending all the items from the iterable.
+
+        Parameters
+        ----------
+        iterable :
+            The iterable to append.
+        """
         obj_list = self._object_list
         obj_list.extend([it for it in iterable])
         self._set_object_list(obj_list)
 
     def insert(self, index: int, value: ValueT) -> None:
+        """Insert an object at a given position.
+
+        Parameters
+        ----------
+        index :
+            The index to insert at.
+        value :
+            The object to insert.
+        """
         obj_list = self._object_list
         obj_list.insert(index, value)
         self._set_object_list(obj_list)
 
     def pop(self, index: int = -1) -> ValueT:
+        """Remove and return the object at the given index.
+
+        Parameters
+        ----------
+        index :
+            The index of the object to remove.
+        """
         obj_list = self._object_list
         obj = obj_list.pop(index)
         self._set_object_list(obj_list)
         return obj
 
     def remove(self, value: ValueT) -> None:
+        """Remove the first occurrence of an object from the list.
+
+        Parameters
+        ----------
+        value :
+            The object to remove.
+        """
         obj_list = self._object_list
         obj_list.remove(value)
         self._set_object_list(obj_list)
 
     def reverse(self) -> None:
+        """Reverse the list in-place."""
         self._set_object_list(list(reversed(self._object_list)))
 
     def _apply_changes(self) -> None:
-        """
+        """Apply changes to the list.
+
         Use to support in-place modification.
         This function applies the changes if someone edits one entry of the list.
         """
@@ -223,13 +279,17 @@ class EdgePropertyList(MutableSequence[ValueT]):
         return list(self) == other
 
     def __repr__(self) -> str:
-        entries = ", ".join(f"{item}" for item in self._object_list)
-        return f"{self._parent_object.name} - {self._name}({entries})"
+        return (
+            f"<{self.__class__.__name__}[{self._object_type.__name__}] "
+            + f"with parent {self._parent_object!r}, entries {self._object_list!r}>"
+        )
 
 
 def define_edge_property_list(
     attribute_name: str, value_type: type[GenericEdgePropertyType], doc: str | None = None
 ) -> Any:
+    """Define a list of linked tree objects with link properties."""
+
     def getter(self: CreatableTreeObject) -> EdgePropertyList[GenericEdgePropertyType]:
         return EdgePropertyList(
             parent_object=self,

@@ -6,8 +6,8 @@ from ..._grpc_helpers.property_helper import mark_grpc_properties
 from ...base import TreeObject
 from .base import _ConstantPropertySet, _VariablePropertySet
 from .property_helper import (
-    _constant_material_grpc_data_property,
-    _variable_material_grpc_data_property,
+    constant_material_grpc_data_property,
+    variable_material_grpc_data_property,
 )
 
 __all__ = ["ConstantWovenCharacterization", "VariableWovenCharacterization"]
@@ -19,6 +19,8 @@ class _WovenCharacterizationMixin:
 
 @mark_grpc_properties
 class ConstantWovenCharacterization(_WovenCharacterizationMixin, _ConstantPropertySet):
+    """Constant woven characterization material property set."""
+
     _GRPC_PROPERTIES = tuple()
 
     def __init__(
@@ -55,32 +57,34 @@ class ConstantWovenCharacterization(_WovenCharacterizationMixin, _ConstantProper
         self.G23_2 = G23_2
         self.nu12_2 = nu12_2
 
-    orientation_1 = _constant_material_grpc_data_property("orientation_1")
-    E1_1 = _constant_material_grpc_data_property("E1_1")
-    E2_1 = _constant_material_grpc_data_property("E2_1")
-    G12_1 = _constant_material_grpc_data_property("G12_1")
-    G23_1 = _constant_material_grpc_data_property("G23_1")
-    nu12_1 = _constant_material_grpc_data_property("nu12_1")
-    orientation_2 = _constant_material_grpc_data_property("orientation_2")
-    E1_2 = _constant_material_grpc_data_property("E1_2")
-    E2_2 = _constant_material_grpc_data_property("E2_2")
-    G12_2 = _constant_material_grpc_data_property("G12_2")
-    G23_2 = _constant_material_grpc_data_property("G23_2")
-    nu12_2 = _constant_material_grpc_data_property("nu12_2")
+    orientation_1 = constant_material_grpc_data_property("orientation_1")
+    E1_1 = constant_material_grpc_data_property("E1_1")
+    E2_1 = constant_material_grpc_data_property("E2_1")
+    G12_1 = constant_material_grpc_data_property("G12_1")
+    G23_1 = constant_material_grpc_data_property("G23_1")
+    nu12_1 = constant_material_grpc_data_property("nu12_1")
+    orientation_2 = constant_material_grpc_data_property("orientation_2")
+    E1_2 = constant_material_grpc_data_property("E1_2")
+    E2_2 = constant_material_grpc_data_property("E2_2")
+    G12_2 = constant_material_grpc_data_property("G12_2")
+    G23_2 = constant_material_grpc_data_property("G23_2")
+    nu12_2 = constant_material_grpc_data_property("nu12_2")
 
 
 @mark_grpc_properties
 class VariableWovenCharacterization(_WovenCharacterizationMixin, _VariablePropertySet):
+    """Variable woven characterization material property set."""
+
     _GRPC_PROPERTIES = tuple()
 
-    E1_1 = _variable_material_grpc_data_property("E1_1")
-    E2_1 = _variable_material_grpc_data_property("E2_1")
-    G12_1 = _variable_material_grpc_data_property("G12_1")
-    G23_1 = _variable_material_grpc_data_property("G23_1")
-    nu12_1 = _variable_material_grpc_data_property("nu12_1")
-    orientation_2 = _variable_material_grpc_data_property("orientation_2")
-    E1_2 = _variable_material_grpc_data_property("E1_2")
-    E2_2 = _variable_material_grpc_data_property("E2_2")
-    G12_2 = _variable_material_grpc_data_property("G12_2")
-    G23_2 = _variable_material_grpc_data_property("G23_2")
-    nu12_2 = _variable_material_grpc_data_property("nu12_2")
+    E1_1 = variable_material_grpc_data_property("E1_1")
+    E2_1 = variable_material_grpc_data_property("E2_1")
+    G12_1 = variable_material_grpc_data_property("G12_1")
+    G23_1 = variable_material_grpc_data_property("G23_1")
+    nu12_1 = variable_material_grpc_data_property("nu12_1")
+    orientation_2 = variable_material_grpc_data_property("orientation_2")
+    E1_2 = variable_material_grpc_data_property("E1_2")
+    E2_2 = variable_material_grpc_data_property("E2_2")
+    G12_2 = variable_material_grpc_data_property("G12_2")
+    G23_2 = variable_material_grpc_data_property("G23_2")
+    nu12_2 = variable_material_grpc_data_property("nu12_2")

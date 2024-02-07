@@ -87,16 +87,27 @@ from .tube_selection_rule import TubeSelectionRule
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
 from .virtual_geometry import VirtualGeometry
 
-__all__ = ["MeshData", "Model", "ModelElementalData", "ModelNodalData"]
+__all__ = [
+    "MeshData",
+    "Model",
+    "ModelElementalData",
+    "ModelNodalData",
+    "FeFormat",
+    "IgnorableEntity",
+]
 
-_FeFormat, _fe_format_to_pb, _ = wrap_to_string_enum(
-    "_FeFormat",
+FeFormat, fe_format_to_pb, _ = wrap_to_string_enum(
+    "FeFormat",
     model_pb2.Format,
     module=__name__,
     value_converter=lambda val: val.lower().replace("_", ":"),
+    doc="Options for the format of the FE file.",
 )
-_IgnorableEntity, _ignorable_entity_to_pb, _ = wrap_to_string_enum(
-    "_IgnorableEntity", model_pb2.LoadFromFEFileRequest.IgnorableEntity, module=__name__
+IgnorableEntity, ignorable_entity_to_pb, _ = wrap_to_string_enum(
+    "IgnorableEntity",
+    model_pb2.LoadFromFEFileRequest.IgnorableEntity,
+    module=__name__,
+    doc="Options for the entities to ignore when loading an FE file.",
 )
 
 
@@ -112,6 +123,7 @@ class MeshData:
     element_nodes_offsets: npt.NDArray[np.int32]
 
     def to_pyvista(self) -> UnstructuredGrid:
+        """Convert the mesh data to a PyVista mesh."""
         return UnstructuredGrid(
             to_pyvista_faces(
                 element_types=self.element_types,
@@ -222,6 +234,15 @@ class Model(TreeObject):
 
     @classmethod
     def from_file(cls, *, path: _PATH, channel: Channel) -> Model:
+        """Instantiate a Model from an ACPH5 file.
+
+        Parameters
+        ----------
+        path:
+            File path, on the server.
+        channel:
+            gRPC channel to the server.
+        """
         # Send absolute paths to the server, since its CWD may not match
         # the Python CWD.
         request = model_pb2.LoadFromFileRequest(path=path_to_str_checked(path))
@@ -235,13 +256,36 @@ class Model(TreeObject):
         *,
         path: _PATH,
         channel: Channel,
-        format: _FeFormat,  # type: ignore
-        ignored_entities: Iterable[_IgnorableEntity] = (),  # type: ignore
+        format: FeFormat,  # type: ignore
+        ignored_entities: Iterable[IgnorableEntity] = (),  # type: ignore
         convert_section_data: bool = False,
         unit_system: UnitSystemType = UnitSystemType.UNDEFINED,
     ) -> Model:
-        format_pb = _fe_format_to_pb(format)
-        ignored_entities_pb = [_ignorable_entity_to_pb(val) for val in ignored_entities]
+        """Load the model from an FE file.
+
+        Parameters
+        ----------
+        path:
+            File path, on the server.
+        channel:
+            gRPC channel to the server.
+        format:
+            Format of the FE file. Can be one of ``"ansys:h5"``, ``"ansys:cdb"``,
+            ``"ansys:dat"``, ``"abaqus:inp"``, or ``"nastran:bdf"``.
+        ignored_entities:
+            Entities to ignore when loading the FE file. Can be a subset of
+            the following values:
+            ``"coordinate_systems"``, ``"element_sets"``, ``"materials"``,
+            ``"mesh"``, or ``"shell_sections"``.
+        convert_section_data:
+            Whether to import the section data of a shell model and convert it
+            into ACP composite definitions.
+        unit_system:
+            Set the unit system of the model to the given value. Ignored
+            if the unit system is already set in the FE file.
+        """
+        format_pb = fe_format_to_pb(format)
+        ignored_entities_pb = [ignorable_entity_to_pb(val) for val in ignored_entities]
 
         request = model_pb2.LoadFromFEFileRequest(
             path=path_to_str_checked(path),
@@ -255,6 +299,13 @@ class Model(TreeObject):
         return cls._from_object_info(object_info=reply, channel=channel)
 
     def update(self, *, relations_only: bool = False) -> None:
+        """Update the model.
+
+        Parameters
+        ----------
+        relations_only :
+            Whether to update and propagate only the status of all objects.
+        """
         with wrap_grpc_errors():
             self._get_stub().Update(
                 model_pb2.UpdateRequest(
@@ -283,6 +334,13 @@ class Model(TreeObject):
             )
 
     def save_analysis_model(self, path: _PATH) -> None:
+        """Save the analysis model to a CDB file.
+
+        Parameters
+        ----------
+        path:
+            Target file path. E.g. /tmp/ACPAnalysisModel.cdb
+        """
         with wrap_grpc_errors():
             self._get_stub().SaveAnalysisModel(
                 model_pb2.SaveAnalysisModelRequest(
@@ -517,6 +575,7 @@ class Model(TreeObject):
 
     @property
     def mesh(self) -> MeshData:
+        """Mesh on which the model is defined."""
         mesh_query_stub = mesh_query_pb2_grpc.MeshQueryServiceStub(self._channel)
         reply = mesh_query_stub.GetMeshData(base_pb2.GetRequest(resource_path=self._resource_path))
         return MeshData(

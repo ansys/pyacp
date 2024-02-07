@@ -6,8 +6,8 @@ from ..._grpc_helpers.property_helper import mark_grpc_properties
 from ...base import TreeObject
 from .base import _ConstantPropertySet, _VariablePropertySet
 from .property_helper import (
-    _constant_material_grpc_data_property,
-    _variable_material_grpc_data_property,
+    constant_material_grpc_data_property,
+    variable_material_grpc_data_property,
 )
 
 __all__ = ["ConstantWovenStressLimits", "VariableWovenStressLimits"]
@@ -19,6 +19,8 @@ class _WovenStressLimitsMixin:
 
 @mark_grpc_properties
 class ConstantWovenStressLimits(_WovenStressLimitsMixin, _ConstantPropertySet):
+    """Constant stress limits property set for woven materials."""
+
     _GRPC_PROPERTIES = tuple()
 
     def __init__(
@@ -49,27 +51,29 @@ class ConstantWovenStressLimits(_WovenStressLimitsMixin, _ConstantPropertySet):
         self.Syz = Syz
         self.Sxz = Sxz
 
-    Xc = _constant_material_grpc_data_property("Xc")
-    Yc = _constant_material_grpc_data_property("Yc")
-    Zc = _constant_material_grpc_data_property("Zc")
-    Xt = _constant_material_grpc_data_property("Xt")
-    Yt = _constant_material_grpc_data_property("Yt")
-    Zt = _constant_material_grpc_data_property("Zt")
-    Sxy = _constant_material_grpc_data_property("Sxy")
-    Syz = _constant_material_grpc_data_property("Syz")
-    Sxz = _constant_material_grpc_data_property("Sxz")
+    Xc = constant_material_grpc_data_property("Xc")
+    Yc = constant_material_grpc_data_property("Yc")
+    Zc = constant_material_grpc_data_property("Zc")
+    Xt = constant_material_grpc_data_property("Xt")
+    Yt = constant_material_grpc_data_property("Yt")
+    Zt = constant_material_grpc_data_property("Zt")
+    Sxy = constant_material_grpc_data_property("Sxy")
+    Syz = constant_material_grpc_data_property("Syz")
+    Sxz = constant_material_grpc_data_property("Sxz")
 
 
 @mark_grpc_properties
 class VariableWovenStressLimits(_WovenStressLimitsMixin, _VariablePropertySet):
+    """Variable stress limits property set for woven materials."""
+
     _GRPC_PROPERTIES = tuple()
 
-    Xc = _variable_material_grpc_data_property("Xc")
-    Yc = _variable_material_grpc_data_property("Yc")
-    Zc = _variable_material_grpc_data_property("Zc")
-    Xt = _variable_material_grpc_data_property("Xt")
-    Yt = _variable_material_grpc_data_property("Yt")
-    Zt = _variable_material_grpc_data_property("Zt")
-    Sxy = _variable_material_grpc_data_property("Sxy")
-    Syz = _variable_material_grpc_data_property("Syz")
-    Sxz = _variable_material_grpc_data_property("Sxz")
+    Xc = variable_material_grpc_data_property("Xc")
+    Yc = variable_material_grpc_data_property("Yc")
+    Zc = variable_material_grpc_data_property("Zc")
+    Xt = variable_material_grpc_data_property("Xt")
+    Yt = variable_material_grpc_data_property("Yt")
+    Zt = variable_material_grpc_data_property("Zt")
+    Sxy = variable_material_grpc_data_property("Sxy")
+    Syz = variable_material_grpc_data_property("Syz")
+    Sxz = variable_material_grpc_data_property("Sxz")

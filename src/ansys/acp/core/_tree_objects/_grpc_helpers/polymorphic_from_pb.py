@@ -11,6 +11,8 @@ __all__ = ["CreatableFromResourcePath", "tree_object_from_resource_path"]
 
 
 class CreatableFromResourcePath(Protocol):
+    """Interface for objects that can be created from a resource path."""
+
     @classmethod
     def _from_resource_path(cls, resource_path: ResourcePath, channel: grpc.Channel) -> Self:
         ...
@@ -21,6 +23,17 @@ def tree_object_from_resource_path(
     channel: grpc.Channel,
     allowed_types: tuple[type[CreatableFromResourcePath], ...] | None = None,
 ) -> CreatableFromResourcePath | None:
+    """Instantiate a tree object from its resource path.
+
+    Parameters
+    ----------
+    resource_path :
+        Resource path of the object.
+    channel :
+        gRPC channel to the server.
+    allowed_types :
+        Allowed types of the object. If None, all registered types are allowed.
+    """
     #  Import here to avoid circular references. Cannot use the registry before
     #  all the object have been imported.
     from ..object_registry import object_registry

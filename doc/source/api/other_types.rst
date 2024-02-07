@@ -16,14 +16,17 @@ Other data types
     EdgeSetType
     EdgeSetType
     ElementalDataType
+    FeFormat
     FieldVariable
     GeometricalRuleType
+    IgnorableEntity
     InterpolationOptions
     LookUpTable3DInterpolationAlgorithm
     LookUpTableColumnValueType
     NodalDataType
     PlyCutoffType
     PlyType
+    PuckMaterialType
     RosetteSelectionMethod
     SensorType
     StatusType

@@ -157,12 +157,12 @@ class ScalarData(typing.Generic[ScalarDataT]):
 
     @property
     def values(self) -> npt.NDArray[ScalarDataT]:
-        """The values as a numpy array."""
+        """Scalar data values as a numpy array."""
         return self._values
 
     @property
     def component_name(self) -> str:
-        """The name of the component."""
+        """Name of the component."""
         return self._component_name
 
     def get_pyvista_mesh(
@@ -202,12 +202,12 @@ class VectorData:
 
     @property
     def values(self) -> npt.NDArray[np.float64]:
-        """The values as a numpy array."""
+        """Vector data values as a numpy array."""
         return self._values
 
     @property
     def component_name(self) -> str:
-        """The name of the component."""
+        """Name of the component."""
         return self._component_name
 
     def get_pyvista_glyphs(
@@ -242,7 +242,7 @@ class VectorData:
 
 
 def _check_field_type(klass: Any, field_name: str, actual_field_type: str) -> None:
-    """Checks that the type declared in the dataclass (klass) matches the actual type."""
+    """Check that the type declared in the dataclass (klass) matches the actual type."""
     declared_field_types: typing.Sequence[str] = cast(
         typing.Sequence[str],
         [field.type for field in dataclasses.fields(klass) if field.name == field_name],
@@ -266,9 +266,10 @@ class _LabelAndPyvistaFieldNames:
 
 @dataclasses.dataclass
 class MeshDataBase:
-    """
-    Base class for nodal or elemental mesh data. Implements the construction
-    from a protobuf response and the conversion to a PyVista object.
+    """Base class for nodal or elemental mesh data.
+
+    Implements the construction from a protobuf response and the conversion
+    to a PyVista object.
     """
 
     _LABEL_AND_PYVISTA_FIELD_NAMES: ClassVar[_LabelAndPyvistaFieldNames]
@@ -411,7 +412,11 @@ def _mesh_data_property_impl(
     request_type: type[mesh_query_pb2.GetNodalDataRequest]
     | type[mesh_query_pb2.GetElementalDataRequest],
 ) -> ReadOnlyProperty[MeshDataT]:
-    """Implementation of the mesh data property helpers."""
+    """Create a mesh data property.
+
+    Implementation of the mesh data property helpers ``nodal_data_property``
+    and ``elemental_data_property``.
+    """
 
     def getter(self: TreeObject) -> MeshDataT:
         if not self._is_stored:

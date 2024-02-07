@@ -17,17 +17,12 @@ from ansys.acp.core import ACPWorkflow, ExampleKeys, get_example_file, print_mod
 # Get example file from server
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
-input_cdb_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR)
 input_acph5_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_ACPH5, WORKING_DIR)
 
 # Launch the PyACP server and connect to it.
 acp = pyacp.launch_acp()
 
-workflow_reload = ACPWorkflow(
-    acp=acp,
-    acph5_file_path=input_acph5_file,
-    cdb_file_path=input_cdb_file,
-)
+workflow_reload = ACPWorkflow.from_acph5_file(acp=acp, acph5_file_path=input_acph5_file)
 print_model(workflow_reload.model)
 workflow_reload.model.update()
 workflow_reload.get_local_cdb_file()
