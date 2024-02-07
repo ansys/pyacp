@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import os
 import pathlib
 import tempfile
@@ -55,7 +57,9 @@ def test_unittest(acp_instance, model_data_dir):
         # model.solver.working_dir = str(working_dir)
 
         if acp_instance.is_remote:
-            save_path = os.path.join(os.path.dirname(remote_path), "test_model_serialization.acph5")
+            save_path: str | pathlib.Path = os.path.join(
+                os.path.dirname(remote_path), "test_model_serialization.acph5"
+            )
             model.save(save_path, save_cache=True)
             acp_instance.clear()
             model = acp_instance.import_model(path=save_path)
