@@ -4,10 +4,8 @@
         :hidden:
         :maxdepth: 3
 
-        self
         intro
-        howto/index
-        concepts/index
+        user_guide/index
         {% if not skip_gallery %}
         examples/index
         {% endif %}
@@ -46,13 +44,13 @@ optimization of composite structures.
             started with PyACP.
 
         .. grid-item-card:: :octicon:`tools` How-to guides
-            :link: howto/index
+            :link: user_guide/howto/index
             :link-type: doc
 
             Guides on how to achieve specific tasks with PyACP.
 
         .. grid-item-card:: :octicon:`light-bulb` Concepts
-            :link: concepts/index
+            :link: user_guide/concepts/index
             :link-type: doc
 
             Explains the concepts and terminology used in PyACP.
