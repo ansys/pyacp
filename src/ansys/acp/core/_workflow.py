@@ -4,7 +4,7 @@ import tempfile
 import typing
 from typing import Callable, Optional, Protocol
 
-from . import UnitSystemType
+from . import CADGeometry, UnitSystemType
 from ._server.acp_instance import ACP
 from ._server.common import ServerProtocol
 from ._tree_objects import Model
@@ -132,12 +132,11 @@ class ACPWorkflow:
     ----------
     acp
         The ACP Client.
-    local_working_directory:
-        The local working directory. If None, a temporary directory will be created.
-    cdb_file_path:
-        The path to the cdb file.
-    acph5_file_path:
-        The path to the acph5 file.
+    local_file_path :
+        Path of the file to be loaded.
+    file_format :
+        Format of the file to be loaded. Can be one of (TODO: list options).
+
     """
 
     def __init__(
@@ -145,8 +144,8 @@ class ACPWorkflow:
         *,
         acp: ACP[ServerProtocol],
         local_working_directory: Optional[pathlib.Path] = None,
-        cdb_file_path: Optional[PATH] = None,
-        acph5_file_path: Optional[PATH] = None,
+        local_file_path: PATH,
+        file_format: str,
     ):
         self._acp_instance = acp
         self._local_working_dir = _LocalWorkingDir(local_working_directory)
@@ -155,19 +154,8 @@ class ACPWorkflow:
             local_working_dir=self._local_working_dir,
         )
 
-        if cdb_file_path is not None and acph5_file_path is not None:
-            raise RuntimeError("Only one of cdb_file_path or acph5_file_path can be provided.")
-
-        if cdb_file_path is None and acph5_file_path is None:
-            raise RuntimeError("One of cdb_file_path or acph5_file_path must be provided.")
-
-        if cdb_file_path is not None:
-            uploaded_file = self._add_input_file(path=pathlib.Path(cdb_file_path))
-            self._model = self._acp_instance.import_model(path=uploaded_file, format="ansys:cdb")
-
-        if acph5_file_path is not None:
-            uploaded_file = self._add_input_file(path=pathlib.Path(acph5_file_path))
-            self._model = self._acp_instance.import_model(path=uploaded_file)
+        uploaded_file = self._add_input_file(path=pathlib.Path(local_file_path))
+        self._model = self._acp_instance.import_model(path=uploaded_file, format=file_format)
 
     @classmethod
     def from_acph5_file(
@@ -190,8 +178,9 @@ class ACPWorkflow:
 
         return cls(
             acp=acp,
-            acph5_file_path=acph5_file_path,
+            local_file_path=acph5_file_path,
             local_working_directory=local_working_directory,
+            file_format="acp:h5",
         )
 
     @classmethod
@@ -214,7 +203,10 @@ class ACPWorkflow:
         """
 
         return cls(
-            acp=acp, cdb_file_path=cdb_file_path, local_working_directory=local_working_directory
+            acp=acp,
+            local_file_path=cdb_file_path,
+            local_working_directory=local_working_directory,
+            file_format="ansys:cdb",
         )
 
     @property
@@ -231,7 +223,8 @@ class ACPWorkflow:
         """Get the cdb file on the local machine.
 
         Write the analysis model including the layup definition in cdb format,
-        copy it to the local working directory and return its path."""
+        copy it to the local working directory and return its path.
+        """
         return self._file_transfer_strategy.get_file(
             self._model.save_analysis_model, self._model.name + ".cdb"
         )
@@ -239,14 +232,16 @@ class ACPWorkflow:
     def get_local_materials_file(self) -> pathlib.Path:
         """Get the materials.xml file on the local machine.
 
-        Write the materials.xml file, copy it to the local working directory and return its path."""
+        Write the materials.xml file, copy it to the local working directory and return its path.
+        """
         return self._file_transfer_strategy.get_file(self._model.export_materials, "materials.xml")
 
     def get_local_composite_definitions_file(self) -> pathlib.Path:
         """Get the composite definitions file on the local machine.
 
-        Write the composite definitions file, copy it
-         to the local working directory and return its path."""
+        Write the composite definitions file, copy it to the local working
+        directory and return its path.
+        """
         return self._file_transfer_strategy.get_file(
             self._model.export_shell_composite_definitions, "ACPCompositeDefinitions.h5"
         )
@@ -254,9 +249,37 @@ class ACPWorkflow:
     def get_local_acp_h5_file(self) -> pathlib.Path:
         """Get the ACP Project file (in acph5 format) on the local machine.
 
-        Save the acp model to an acph5 file, copy it
-         to the local working directory and return its path."""
+        Save the acp model to an acph5 file, copy it to the local working
+        directory and return its path.
+        """
         return self._file_transfer_strategy.get_file(self._model.save, self._model.name + ".acph5")
+
+    def add_cad_geometry_from_local_file(self, path: pathlib.Path) -> CADGeometry:
+        """Add a local CAD geometry to the ACP model.
+
+        Parameters
+        ----------
+        path:
+            The path to the CAD geometry file.
+        """
+        uploaded_file = self._add_input_file(path=path)
+        return self._model.create_cad_geometry(external_path=str(uploaded_file))
+
+    def refresh_cad_geometry_from_local_file(
+        self, path: pathlib.Path, cad_geometry: CADGeometry
+    ) -> None:
+        """Refresh the CAD geometry from a local file.
+
+        Parameters
+        ----------
+        path:
+            The path to the CAD geometry file.
+        cad_geometry:
+            The CADGeometry object to refresh.
+        """
+        uploaded_file_path = self._add_input_file(path=path)
+        cad_geometry.external_path = uploaded_file_path
+        cad_geometry.refresh()
 
     def _add_input_file(self, path: pathlib.Path) -> pathlib.PurePath:
         self._file_transfer_strategy.copy_input_file_to_local_workdir(path=path)

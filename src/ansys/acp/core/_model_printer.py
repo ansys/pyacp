@@ -49,7 +49,6 @@ def _add_tree_part(
 def print_model(model: Model) -> None:
     """Print a tree representation of the model.
 
-
     Parameters
     ----------
     model:
@@ -88,7 +87,7 @@ def get_model_tree(model: Model) -> Node:
 
     _add_tree_part(model_node, "rosettes", model)
 
-    lookup_table = Node("Lookup Table")
+    lookup_table = Node("Lookup Tables")
     model_node.children.append(lookup_table)
     _add_tree_part(lookup_table, "lookup_tables_1d", model)
     _add_tree_part(lookup_table, "lookup_tables_3d", model)

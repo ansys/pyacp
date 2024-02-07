@@ -108,6 +108,8 @@ Model from an existing file:
     >>> model.name
     'ACP Model'
 
+.. START_MARKER_FOR_SPHINX_DOCS
+
 Development Setup
 -----------------
 
@@ -134,13 +136,15 @@ You will need to follow these steps:
         pipx ensurepath
         pipx install poetry
 
-3. Set up credentials for the PyAnsys internal PyPI instance
+3.  Set up credentials for the PyAnsys internal PyPI instance
 
     .. code-block:: bash
 
         poetry config http-basic.pyansys_private_pypi TOKEN <TOKEN>
 
-    Where `<TOKEN>` should be replaced with the PAT for the internal PyPI instance. Reach out to a team member or the PyAnsys team for access instructions.
+    Where ``<TOKEN>`` should be replaced with the PAT for the internal PyPI instance. Reach out to a team member or the PyAnsys team for access instructions.
+
+    .. TODO: REMOVE BEFORE RELEASE: this will no longer be needed once PyACP and its dependencies are public
 
 4.  Install the project and all its development dependencies using poetry. This also takes care of
     creating a new virtual environment:
@@ -252,6 +256,8 @@ This creates both a source distribution, and a wheel file. An alternative is
 
     pip install build
     python -m build --wheel
+
+.. END_MARKER_FOR_SPHINX_DOCS
 
 License
 -------

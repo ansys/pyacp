@@ -17,4 +17,6 @@ except ImportError:
     import enum
 
     class StrEnum(str, enum.Enum):  # type: ignore
+        """String enum."""
+
         pass
