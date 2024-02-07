@@ -20,8 +20,6 @@ and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDP
 import pathlib
 import tempfile
 
-import pyvista
-
 # %%
 # Import pyACP dependencies
 from ansys.acp.core import (
@@ -31,6 +29,7 @@ from ansys.acp.core import (
     ExampleKeys,
     PlyType,
     get_composite_post_processing_files,
+    get_directions_plotter,
     get_dpf_unit_system,
     get_example_file,
     launch_acp,
@@ -56,7 +55,7 @@ acp = launch_acp()
 # The ACPWorkflow class provides convenience methods which simplify the file handling.
 # It automatically creates a model based on the input file.
 
-workflow = ACPWorkflow(
+workflow = ACPWorkflow.from_cdb_file(
     acp=acp,
     cdb_file_path=input_file,
     local_working_directory=WORKING_DIR,
@@ -116,12 +115,7 @@ oss = model.create_oriented_selection_set(
 
 model.update()
 
-plotter = pyvista.Plotter()
-plotter.add_mesh(model.mesh.to_pyvista(), color="white")
-plotter.add_mesh(
-    oss.elemental_data.orientation.get_pyvista_glyphs(mesh=model.mesh, factor=0.01),
-    color="blue",
-)
+plotter = get_directions_plotter(model=model, components=[oss.elemental_data.orientation])
 plotter.show()
 
 
@@ -144,12 +138,14 @@ model.update()
 # Show the fiber directions of a specific ply
 modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45_UD"]
 
-plotter = pyvista.Plotter()
-plotter.add_mesh(model.mesh.to_pyvista(), color="white", show_edges=True)
-plotter.add_mesh(
-    modeling_ply.elemental_data.fiber_direction.get_pyvista_glyphs(mesh=model.mesh, factor=0.0008),
+
+plotter = get_directions_plotter(
+    model=model,
+    components=[modeling_ply.elemental_data.fiber_direction],
 )
+
 plotter.show()
+
 
 # %%
 # Print the model tree for a quick overview

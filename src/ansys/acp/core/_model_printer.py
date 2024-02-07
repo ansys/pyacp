@@ -2,6 +2,9 @@ import os
 from typing import Optional
 
 from ._tree_objects.model import Model
+from ._utils.visualization import _replace_underscores_and_capitalize
+
+__all__ = ["Node", "print_model", "get_model_tree"]
 
 
 class Node:
@@ -26,10 +29,6 @@ class Node:
         for child in self.children:
             ret += child.__str__(level + 1)
         return ret
-
-
-def _replace_underscores_and_capitalize(input_string: str) -> str:
-    return " ".join(part.capitalize() for part in input_string.split("_"))
 
 
 def _add_tree_part(
