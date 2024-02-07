@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707234576646,
+  "lastUpdate": 1707296947569,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -11908,6 +11908,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0004904193550453345",
             "extra": "mean: 1.1084285879962956 msec\nrounds: 983"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1a5c7a29e15b5d8229929b899767b568792d6371",
+          "message": "Support adding cad geometry from local files and refresh  (#394)\n\n* Support adding cad geometry from local files and refresh the cad geometry",
+          "timestamp": "2024-02-07T09:06:32Z",
+          "tree_id": "3467faa633c64b40b55d31121452df32e72aeb83",
+          "url": "https://github.com/ansys-internal/pyacp/commit/1a5c7a29e15b5d8229929b899767b568792d6371"
+        },
+        "date": 1707296937446,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.9064393558263815,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0007314931381950251",
+            "extra": "mean: 144.79241016666342 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1097.2749215686085,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002800775452417004",
+            "extra": "mean: 911.3486331852465 usec\nrounds: 1802"
           }
         ]
       }
