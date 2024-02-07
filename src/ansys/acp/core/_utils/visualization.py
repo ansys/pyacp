@@ -132,3 +132,7 @@ def to_pyvista_faces(
 def to_pyvista_types(element_types: npt.NDArray[np.int32]) -> npt.NDArray[np.int32]:
     """Convert ACP element types to PyVista cell types."""
     return np.array([ELEMENT_TO_PYVISTA_TYPE[el_type] for el_type in element_types])
+
+
+def _replace_underscores_and_capitalize(input_string: str) -> str:
+    return " ".join(part.capitalize() for part in input_string.split("_"))

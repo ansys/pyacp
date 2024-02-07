@@ -6,6 +6,7 @@ PyACP enables you to design and analyze layered composite structures.
 import importlib.metadata
 
 from ._model_printer import get_model_tree, print_model
+from ._plotter import get_directions_plotter
 from ._server import ACP, DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode, launch_acp
 from ._tree_objects import (
     AnalysisPly,
@@ -253,4 +254,5 @@ __all__ = [
     "VectorData",
     "VirtualGeometry",
     "VirtualGeometryDimension",
+    "get_directions_plotter",
 ]

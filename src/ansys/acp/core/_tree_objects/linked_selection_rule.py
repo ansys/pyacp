@@ -193,7 +193,9 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     def _to_pb_object(self) -> linked_selection_rule_pb2.LinkedSelectionRule:
         return linked_selection_rule_pb2.LinkedSelectionRule(
             resource_path=self.selection_rule._resource_path,
-            operation_type=boolean_operation_type_to_pb(self.operation_type),
+            operation_type=typing.cast(
+                typing.Any, boolean_operation_type_to_pb(self.operation_type)
+            ),
             template_rule=self.template_rule,
             parameter_1=self.parameter_1,
             parameter_2=self.parameter_2,

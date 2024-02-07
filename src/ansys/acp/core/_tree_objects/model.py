@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 import dataclasses
-from typing import cast
+from typing import Any, cast
 
 from grpc import Channel
 import numpy as np
@@ -43,7 +43,7 @@ from ansys.api.acp.v0.base_pb2 import CollectionPath
 from .._typing_helper import PATH as _PATH
 from .._utils.array_conversions import to_numpy
 from .._utils.path_to_str import path_to_str_checked
-from .._utils.property_protocols import ReadWriteProperty
+from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .._utils.resource_paths import join as rp_join
 from .._utils.visualization import to_pyvista_faces, to_pyvista_types
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
@@ -228,6 +228,10 @@ class Model(TreeObject):
         "properties.unit_system", from_protobuf=unit_system_type_from_pb
     )
 
+    average_element_size: ReadOnlyProperty[float] = grpc_data_property_read_only(
+        "properties.average_element_size"
+    )
+
     @classmethod
     def from_file(cls, *, path: _PATH, channel: Channel) -> Model:
         """Instantiate a Model from an ACPH5 file.
@@ -285,10 +289,10 @@ class Model(TreeObject):
 
         request = model_pb2.LoadFromFEFileRequest(
             path=path_to_str_checked(path),
-            format=format_pb,
-            ignored_entities=ignored_entities_pb,
+            format=cast(Any, format_pb),
+            ignored_entities=cast(Any, ignored_entities_pb),
             convert_section_data=convert_section_data,
-            unit_system=unit_system_type_to_pb(unit_system),
+            unit_system=cast(Any, unit_system_type_to_pb(unit_system)),
         )
         with wrap_grpc_errors():
             reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFEFile(request)
