@@ -17,7 +17,9 @@ from ansys.acp.core import ACPWorkflow, example_helpers, print_model
 # Get example file from server
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
-input_acph5_file = example_helpers.get_example_file(example_helpers.ExampleKeys.BASIC_FLAT_PLATE_ACPH5, WORKING_DIR)
+input_acph5_file = example_helpers.get_example_file(
+    example_helpers.ExampleKeys.BASIC_FLAT_PLATE_ACPH5, WORKING_DIR
+)
 
 # Launch the PyACP server and connect to it.
 acp = pyacp.launch_acp()
