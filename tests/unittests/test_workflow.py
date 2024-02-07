@@ -44,7 +44,7 @@ def test_workflow(acp_instance, model_data_dir, explict_temp_dir):
 def test_reload_cad_geometry(acp_instance, model_data_dir, load_cad_geometry):
     input_file_path = model_data_dir / "minimal_model_2.cdb"
 
-    workflow = ACPWorkflow(
+    workflow = ACPWorkflow.from_cdb_file(
         acp=acp_instance,
         cdb_file_path=input_file_path,
     )
