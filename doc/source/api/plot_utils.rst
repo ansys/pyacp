@@ -6,7 +6,7 @@ Plot Utilities
 .. autosummary::
     :toctree: _autosummary
 
-    get_direction_plotter
+    get_directions_plotter
 
 
 

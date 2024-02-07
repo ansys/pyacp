@@ -31,7 +31,7 @@ def get_directions_plotter(
     length_factor: float = 1.0,
     **kwargs: Any,
 ) -> pyvista.Plotter:
-    """
+    """Get a pyvista plotter that shows the specified directions on the mesh.
 
     Parameters
     ----------

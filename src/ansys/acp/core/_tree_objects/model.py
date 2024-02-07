@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 import dataclasses
-from typing import cast
+from typing import Any, cast
 
 from grpc import Channel
 import numpy as np
@@ -289,10 +289,10 @@ class Model(TreeObject):
 
         request = model_pb2.LoadFromFEFileRequest(
             path=path_to_str_checked(path),
-            format=format_pb,
-            ignored_entities=ignored_entities_pb,
+            format=cast(Any, format_pb),
+            ignored_entities=cast(Any, ignored_entities_pb),
             convert_section_data=convert_section_data,
-            unit_system=unit_system_type_to_pb(unit_system),
+            unit_system=cast(Any, unit_system_type_to_pb(unit_system)),
         )
         with wrap_grpc_errors():
             reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFEFile(request)
