@@ -147,6 +147,9 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         if self._callback_apply_changes is not None:
             self._callback_apply_changes()
 
+    def _set_callback_apply_changes(self, callback_apply_changes: Callable[[], None]) -> None:
+        self._callback_apply_changes = callback_apply_changes
+
     @classmethod
     def _from_pb_object(
         cls,

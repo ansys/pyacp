@@ -330,3 +330,20 @@ def test_nodal_data_to_pyvista_with_component(
         ), f"Created wrong mesh type UnstructuredGrid for component '{component}'"
         assert pv_mesh.n_points == 4
         assert pv_mesh.n_cells == 1
+
+
+def test_linked_selection_rule_parameters(simple_modeling_ply, minimal_complete_model):
+    parallel_selection_rule = minimal_complete_model.create_parallel_selection_rule(
+        origin=(0.0, 0.0, 0.0), direction=(1.0, 0.0, 0.0), lower_limit=0.005, upper_limit=1.0
+    )
+    linked_parallel_rule = LinkedSelectionRule(parallel_selection_rule, template_rule=True)
+    simple_modeling_ply.selection_rules = [linked_parallel_rule]
+
+    linked_parallel_rule.parameter_1 = 1.0
+    minimal_complete_model.update()
+
+    assert linked_parallel_rule.parameter_1 == simple_modeling_ply.selection_rules[0].parameter_1
+
+    linked_rule_in_ply = simple_modeling_ply.selection_rules[0]
+    linked_rule_in_ply.parameter_1 = 1
+    assert linked_parallel_rule.parameter_1 == simple_modeling_ply.selection_rules[0].parameter_1
