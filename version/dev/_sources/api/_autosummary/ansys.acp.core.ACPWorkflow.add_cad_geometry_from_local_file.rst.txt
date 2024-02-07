@@ -1,0 +1,6 @@
+add\_cad\_geometry\_from\_local\_file
+=====================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPWorkflow.add_cad_geometry_from_local_file

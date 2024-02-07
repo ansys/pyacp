@@ -15,6 +15,9 @@
    
       
       
+      ACPWorkflow.add_cad_geometry_from_local_file
+      
+      
       ACPWorkflow.from_acph5_file
       
       
@@ -31,6 +34,9 @@
       
       
       ACPWorkflow.get_local_materials_file
+      
+      
+      ACPWorkflow.refresh_cad_geometry_from_local_file
       
    
    
