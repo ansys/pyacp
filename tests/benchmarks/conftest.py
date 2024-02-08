@@ -107,7 +107,7 @@ def _benchmark_servers(launcher_configuration):
             "PYACP_DELAY": f"{network_options.delay_ms}ms",
             "PYACP_RATE": f"{network_options.rate_kbit}kbit",
         }
-        acp = pyacp.launch_acp(config=conf, launch_mode=pyacp.LaunchMode.DOCKER_COMPOSE)
+        acp = pyacp.launch_acp(config=conf, launch_mode=pyacp.LaunchMode.DOCKER_COMPOSE)  # type: ignore
         acp.wait(SERVER_STARTUP_TIMEOUT)
         return acp
 

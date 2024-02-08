@@ -41,7 +41,7 @@ __all__ = [
 class TubeSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a Tube Selection Rule."""
 
-    normal: VectorData
+    normal: VectorData | None = None
 
 
 @dataclasses.dataclass

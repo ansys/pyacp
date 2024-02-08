@@ -5,7 +5,8 @@ from hypothesis import strategies as st
 import numpy.testing as npt
 import pytest
 
-from ansys.acp.core import (
+from ansys.acp.core import PlyType
+from ansys.acp.core.material_property_sets import (
     ConstantDensity,
     ConstantEngineeringConstants,
     ConstantFabricFiberAngle,
@@ -18,7 +19,6 @@ from ansys.acp.core import (
     ConstantWovenStressLimits,
     FieldVariable,
     InterpolationOptions,
-    PlyType,
     VariableDensity,
     VariableEngineeringConstants,
     VariableStrainLimits,

@@ -126,7 +126,7 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
             object_collection[ref_id]
 
 
-class NoLockedMixin:
+class NoLockedMixin(TreeObjectTester):
     @pytest.fixture
     def collection_test_data(self, parent_object):
         object_collection = getattr(parent_object, self.COLLECTION_NAME)
@@ -147,7 +147,7 @@ class NoLockedMixin:
         assert len(object_collection) == 0
 
 
-class WithLockedMixin:
+class WithLockedMixin(TreeObjectTester):
     INITIAL_OBJECT_NAMES: tuple[str, ...]
 
     @pytest.fixture

@@ -69,4 +69,10 @@ repos:
         types: [python]
         require_serial: true
         files: "^(tests/)|^(examples/)"
-        args: ["--namespace-packages", "--explicit-package-bases"]
+        args: [
+          "--strict",
+          "--namespace-packages",
+          "--explicit-package-bases",
+          "--disable-error-code", "no-untyped-def",
+          "--disable-error-code", "no-untyped-call"
+        ]

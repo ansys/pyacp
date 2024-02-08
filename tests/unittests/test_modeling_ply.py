@@ -249,6 +249,56 @@ def test_elemental_data(simple_modeling_ply):
     numpy.testing.assert_allclose(data.cog.values, np.array([[0.0, 0.0, 5e-5]]))
 
 
+def test_elemental_data_incomplete(simple_modeling_ply, minimal_complete_model):
+    """Test the elemental data when draping properties are missing."""
+    # draping-related properties are not propagated up to the modeling ply
+    # when it has more than one production ply
+    simple_modeling_ply.number_of_layers = 2
+    minimal_complete_model.update()
+
+    data = simple_modeling_ply.elemental_data
+    numpy.testing.assert_allclose(data.element_labels.values, np.array([1]))
+    numpy.testing.assert_allclose(data.normal.values, np.array([[0.0, 0.0, 1.0]]))
+
+    numpy.testing.assert_allclose(
+        data.orientation.values,
+        np.array([[0.0, 0.0, 1.0]]),
+        atol=1e-12,
+    )
+    numpy.testing.assert_allclose(
+        data.reference_direction.values,
+        np.array([[1.0, 0.0, 0.0]]),
+        atol=1e-12,
+    )
+    numpy.testing.assert_allclose(
+        data.fiber_direction.values,
+        np.array([[1.0, 0.0, 0.0]]),
+        atol=1e-12,
+    )
+    assert data.draped_fiber_direction is None
+    numpy.testing.assert_allclose(
+        data.transverse_direction.values,
+        np.array([[0.0, 1.0, 0.0]]),
+        atol=1e-12,
+    )
+    assert data.draped_transverse_direction is None
+
+    numpy.testing.assert_allclose(data.thickness.values, np.array([2e-4]))
+    numpy.testing.assert_allclose(data.relative_thickness_correction.values, np.array([1.0]))
+
+    numpy.testing.assert_allclose(data.design_angle.values, np.array([0.0]))
+    assert data.shear_angle is None
+    assert data.draped_fiber_angle is None
+    assert data.draped_transverse_angle is None
+
+    numpy.testing.assert_allclose(data.area.values, np.array([9e4]))
+    numpy.testing.assert_allclose(data.price.values, np.array([0.0]))
+    numpy.testing.assert_allclose(data.volume.values, np.array([18.0]))
+    numpy.testing.assert_allclose(data.mass.values, np.array([14.130e-08]))
+    numpy.testing.assert_allclose(data.offset.values, np.array([1e-4]))
+    numpy.testing.assert_allclose(data.cog.values, np.array([[0.0, 0.0, 1e-4]]))
+
+
 def test_nodal_data(simple_modeling_ply):
     data = simple_modeling_ply.nodal_data
     numpy.testing.assert_allclose(data.node_labels.values, np.array([1, 2, 3, 4]))
@@ -330,3 +380,20 @@ def test_nodal_data_to_pyvista_with_component(
         ), f"Created wrong mesh type UnstructuredGrid for component '{component}'"
         assert pv_mesh.n_points == 4
         assert pv_mesh.n_cells == 1
+
+
+def test_linked_selection_rule_parameters(simple_modeling_ply, minimal_complete_model):
+    parallel_selection_rule = minimal_complete_model.create_parallel_selection_rule(
+        origin=(0.0, 0.0, 0.0), direction=(1.0, 0.0, 0.0), lower_limit=0.005, upper_limit=1.0
+    )
+    linked_parallel_rule = LinkedSelectionRule(parallel_selection_rule, template_rule=True)
+    simple_modeling_ply.selection_rules = [linked_parallel_rule]
+
+    linked_parallel_rule.parameter_1 = 1.0
+    minimal_complete_model.update()
+
+    assert linked_parallel_rule.parameter_1 == simple_modeling_ply.selection_rules[0].parameter_1
+
+    linked_rule_in_ply = simple_modeling_ply.selection_rules[0]
+    linked_rule_in_ply.parameter_1 = 1
+    assert linked_parallel_rule.parameter_1 == simple_modeling_ply.selection_rules[0].parameter_1

@@ -47,7 +47,7 @@ __all__ = [
 class GeometricalSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a Geometrical Selection Rule."""
 
-    normal: VectorData
+    normal: VectorData | None = None
 
 
 @dataclasses.dataclass

@@ -39,7 +39,7 @@ __all__ = [
 class ElementSetElementalData(ElementalData):
     """Represents elemental data for an Element Set."""
 
-    normal: VectorData
+    normal: VectorData | None = None
 
 
 @dataclasses.dataclass

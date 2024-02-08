@@ -46,7 +46,7 @@ __all__ = [
 class VariableOffsetSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a VariableOffset Selection Rule."""
 
-    normal: VectorData
+    normal: VectorData | None = None
 
 
 @dataclasses.dataclass

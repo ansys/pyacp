@@ -40,7 +40,7 @@ __all__ = [
 class BooleanSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a Boolean Selection Rule."""
 
-    normal: VectorData
+    normal: VectorData | None = None
 
 
 @dataclasses.dataclass

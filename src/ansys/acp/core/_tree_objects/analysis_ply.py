@@ -32,33 +32,33 @@ __all__ = ["AnalysisPly", "AnalysisPlyElementalData", "AnalysisPlyNodalData"]
 class AnalysisPlyElementalData(ElementalData):
     """Represents elemental data for a Analysis Ply."""
 
-    normal: VectorData
-    orientation: VectorData
-    reference_direction: VectorData
-    fiber_direction: VectorData
-    draped_fiber_direction: VectorData
-    transverse_direction: VectorData
-    draped_transverse_direction: VectorData
-    thickness: ScalarData[np.float64]
-    relative_thickness_correction: ScalarData[np.float64]
-    design_angle: ScalarData[np.float64]
-    shear_angle: ScalarData[np.float64]
-    draped_fiber_angle: ScalarData[np.float64]
-    draped_transverse_angle: ScalarData[np.float64]
-    area: ScalarData[np.float64]
-    price: ScalarData[np.float64]
-    volume: ScalarData[np.float64]
-    mass: ScalarData[np.float64]
-    offset: ScalarData[np.float64]
-    material_1_direction: VectorData
-    cog: VectorData
+    normal: VectorData | None = None
+    orientation: VectorData | None = None
+    reference_direction: VectorData | None = None
+    fiber_direction: VectorData | None = None
+    draped_fiber_direction: VectorData | None = None
+    transverse_direction: VectorData | None = None
+    draped_transverse_direction: VectorData | None = None
+    thickness: ScalarData[np.float64] | None = None
+    relative_thickness_correction: ScalarData[np.float64] | None = None
+    design_angle: ScalarData[np.float64] | None = None
+    shear_angle: ScalarData[np.float64] | None = None
+    draped_fiber_angle: ScalarData[np.float64] | None = None
+    draped_transverse_angle: ScalarData[np.float64] | None = None
+    area: ScalarData[np.float64] | None = None
+    price: ScalarData[np.float64] | None = None
+    volume: ScalarData[np.float64] | None = None
+    mass: ScalarData[np.float64] | None = None
+    offset: ScalarData[np.float64] | None = None
+    material_1_direction: VectorData | None = None
+    cog: VectorData | None = None
 
 
 @dataclasses.dataclass
 class AnalysisPlyNodalData(NodalData):
     """Represents nodal data for a Analysis Ply."""
 
-    ply_offset: VectorData
+    ply_offset: VectorData | None = None
 
 
 @mark_grpc_properties

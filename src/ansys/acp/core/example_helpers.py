@@ -1,3 +1,9 @@
+"""Helpers used in the PyACP examples.
+
+These utilities can download the input files used in the PyACP examples.
+"""
+
+
 import dataclasses
 from enum import Enum, auto
 import pathlib

@@ -139,15 +139,15 @@ class MeshData:
 class ModelElementalData(ElementalData):
     """Represents elemental data for a Model."""
 
-    normal: VectorData
-    thickness: ScalarData[np.float64]
-    relative_thickness_correction: ScalarData[np.float64]
-    area: ScalarData[np.float64]
-    price: ScalarData[np.float64]
-    volume: ScalarData[np.float64]
-    mass: ScalarData[np.float64]
-    offset: ScalarData[np.float64]
-    cog: VectorData
+    normal: VectorData | None = None
+    thickness: ScalarData[np.float64] | None = None
+    relative_thickness_correction: ScalarData[np.float64] | None = None
+    area: ScalarData[np.float64] | None = None
+    price: ScalarData[np.float64] | None = None
+    volume: ScalarData[np.float64] | None = None
+    mass: ScalarData[np.float64] | None = None
+    offset: ScalarData[np.float64] | None = None
+    cog: VectorData | None = None
 
 
 @dataclasses.dataclass
