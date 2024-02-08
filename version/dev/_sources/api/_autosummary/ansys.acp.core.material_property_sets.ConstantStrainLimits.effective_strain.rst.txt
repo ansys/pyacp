@@ -1,0 +1,6 @@
+effective\_strain
+=================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantStrainLimits.effective_strain

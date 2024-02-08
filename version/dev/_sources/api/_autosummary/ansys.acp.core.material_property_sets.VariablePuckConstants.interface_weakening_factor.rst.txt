@@ -1,0 +1,6 @@
+interface\_weakening\_factor
+============================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariablePuckConstants.interface_weakening_factor

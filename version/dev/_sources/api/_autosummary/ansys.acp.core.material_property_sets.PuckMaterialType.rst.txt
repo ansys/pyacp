@@ -1,0 +1,25 @@
+﻿PuckMaterialType
+================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: PuckMaterialType
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      PuckMaterialType.IGNORED
+      PuckMaterialType.CARBON
+      PuckMaterialType.GLASS
+      PuckMaterialType.MATERIAL_SPECIFIC
+   
+   

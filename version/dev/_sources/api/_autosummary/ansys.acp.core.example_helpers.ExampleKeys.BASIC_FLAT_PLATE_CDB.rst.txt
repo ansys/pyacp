@@ -1,0 +1,6 @@
+BASIC\_FLAT\_PLATE\_CDB
+=======================
+
+.. currentmodule:: ansys.acp.core.example_helpers
+
+.. autoattribute:: ExampleKeys.BASIC_FLAT_PLATE_CDB

@@ -1,0 +1,6 @@
+p\_21\_neg
+==========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariablePuckConstants.p_21_neg

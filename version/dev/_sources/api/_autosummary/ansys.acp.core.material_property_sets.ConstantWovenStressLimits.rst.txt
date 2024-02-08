@@ -1,0 +1,37 @@
+﻿ConstantWovenStressLimits
+=========================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: ConstantWovenStressLimits
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConstantWovenStressLimits.Sxy
+      ConstantWovenStressLimits.Sxz
+      ConstantWovenStressLimits.Syz
+      ConstantWovenStressLimits.Xc
+      ConstantWovenStressLimits.Xt
+      ConstantWovenStressLimits.Yc
+      ConstantWovenStressLimits.Yt
+      ConstantWovenStressLimits.Zc
+      ConstantWovenStressLimits.Zt
+   
+   

@@ -1,0 +1,6 @@
+nu23
+====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantEngineeringConstants.nu23

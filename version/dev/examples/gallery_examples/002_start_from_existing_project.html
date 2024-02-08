@@ -169,13 +169,6 @@
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../index.html">
-                        PyACP
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../intro.html">
                         Getting started
                       </a>
@@ -183,15 +176,8 @@
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../howto/index.html">
-                        How-to guides
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../concepts/index.html">
-                        Concepts
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User guide
                       </a>
                     </li>
                 
@@ -202,28 +188,20 @@
                       </a>
                     </li>
                 
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
+
                     <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="../../api/index.html">
+                      <a class="nav-link nav-internal" href="../../api/index.html">
                         API reference
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
+                      <a class="nav-link nav-internal" href="../../contributing.html">
                         Contributing
                       </a>
                     </li>
                 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -339,13 +317,6 @@ document.write(`
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../index.html">
-                        PyACP
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../intro.html">
                         Getting started
                       </a>
@@ -353,15 +324,8 @@ document.write(`
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../howto/index.html">
-                        How-to guides
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../concepts/index.html">
-                        Concepts
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User guide
                       </a>
                     </li>
                 
@@ -372,28 +336,20 @@ document.write(`
                       </a>
                     </li>
                 
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
-                    More
-                </button>
-                <ul id="pst-nav-more-links-2" class="dropdown-menu">
-                    
+
                     <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="../../api/index.html">
+                      <a class="nav-link nav-internal" href="../../api/index.html">
                         API reference
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
+                      <a class="nav-link nav-internal" href="../../contributing.html">
                         Contributing
                       </a>
                     </li>
                 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
         
@@ -523,13 +479,15 @@ to download the full example code</p>
 <span class="kn">import</span> <span class="nn">tempfile</span>
 
 <span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
-<span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">ACPWorkflow</span><span class="p">,</span> <span class="n">ExampleKeys</span><span class="p">,</span> <span class="n">get_example_file</span><span class="p">,</span> <span class="n">print_model</span>
+<span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">ACPWorkflow</span><span class="p">,</span> <span class="n">example_helpers</span><span class="p">,</span> <span class="n">print_model</span>
 </pre></div>
 </div>
 <p>Get example file from server</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/dev/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tempdir</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class"><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span></a><span class="p">()</span>
 <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tempdir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
-<a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_acph5_file</span></a> <span class="o">=</span> <span class="n">get_example_file</span><span class="p">(</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">BASIC_FLAT_PLATE_ACPH5</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">)</span>
+<a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_acph5_file</span></a> <span class="o">=</span> <span class="n">example_helpers</span><span class="o">.</span><span class="n">get_example_file</span><span class="p">(</span>
+    <span class="n">example_helpers</span><span class="o">.</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">BASIC_FLAT_PLATE_ACPH5</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a>
+<span class="p">)</span>
 
 <span class="c1"># Launch the PyACP server and connect to it.</span>
 <span class="n">acp</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
@@ -581,10 +539,10 @@ to download the full example code</p>
                     P1L1__ply_5_0_UD
 
 
-PosixPath(&#39;/tmp/tmpip666s5n/ACP Lay-up Model.cdb&#39;)
+PosixPath(&#39;/tmp/tmpg3y_cjt9/ACP Lay-up Model.cdb&#39;)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.461 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.354 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-002-start-from-existing-project-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/e1c6ebc4681eaea315e77f0ee7596c6d/002_start_from_existing_project.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">002_start_from_existing_project.py</span></code></a></p>

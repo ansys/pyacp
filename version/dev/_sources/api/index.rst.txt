@@ -17,3 +17,4 @@ and attributes.
     other_types
     plot_utils
     workflow
+    example_helpers

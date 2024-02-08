@@ -1,0 +1,6 @@
+normalized
+==========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoattribute:: InterpolationOptions.normalized

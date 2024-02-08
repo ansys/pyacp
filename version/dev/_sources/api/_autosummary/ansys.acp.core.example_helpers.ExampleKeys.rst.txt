@@ -1,0 +1,23 @@
+﻿ExampleKeys
+===========
+
+.. currentmodule:: ansys.acp.core.example_helpers
+
+.. autoclass:: ExampleKeys
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ExampleKeys.BASIC_FLAT_PLATE_CDB
+      ExampleKeys.BASIC_FLAT_PLATE_ACPH5
+   
+   

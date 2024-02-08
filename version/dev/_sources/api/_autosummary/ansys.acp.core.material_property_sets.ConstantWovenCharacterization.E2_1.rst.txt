@@ -1,0 +1,6 @@
+E2\_1
+=====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantWovenCharacterization.E2_1

@@ -1,0 +1,29 @@
+﻿ConstantFabricFiberAngle
+========================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: ConstantFabricFiberAngle
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConstantFabricFiberAngle.fabric_fiber_angle
+   
+   

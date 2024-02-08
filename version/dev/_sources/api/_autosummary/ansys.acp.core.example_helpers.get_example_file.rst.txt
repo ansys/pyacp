@@ -1,0 +1,6 @@
+﻿get\_example\_file
+==================
+
+.. currentmodule:: ansys.acp.core.example_helpers
+
+.. autofunction:: get_example_file

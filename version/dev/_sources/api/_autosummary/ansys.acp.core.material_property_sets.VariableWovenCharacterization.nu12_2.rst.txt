@@ -1,0 +1,6 @@
+nu12\_2
+=======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableWovenCharacterization.nu12_2

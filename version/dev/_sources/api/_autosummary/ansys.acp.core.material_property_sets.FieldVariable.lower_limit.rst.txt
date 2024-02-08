@@ -1,0 +1,6 @@
+lower\_limit
+============
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoattribute:: FieldVariable.lower_limit

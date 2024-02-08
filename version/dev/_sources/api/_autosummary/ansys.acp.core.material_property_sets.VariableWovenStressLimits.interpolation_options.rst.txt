@@ -1,0 +1,6 @@
+interpolation\_options
+======================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableWovenStressLimits.interpolation_options

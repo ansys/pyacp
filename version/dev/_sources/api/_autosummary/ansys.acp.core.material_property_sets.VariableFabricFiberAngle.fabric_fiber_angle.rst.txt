@@ -1,0 +1,6 @@
+fabric\_fiber\_angle
+====================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableFabricFiberAngle.fabric_fiber_angle

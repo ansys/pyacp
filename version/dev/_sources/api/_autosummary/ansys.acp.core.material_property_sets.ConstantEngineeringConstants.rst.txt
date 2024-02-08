@@ -1,0 +1,39 @@
+﻿ConstantEngineeringConstants
+============================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: ConstantEngineeringConstants
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConstantEngineeringConstants.E
+      ConstantEngineeringConstants.E1
+      ConstantEngineeringConstants.E2
+      ConstantEngineeringConstants.E3
+      ConstantEngineeringConstants.G12
+      ConstantEngineeringConstants.G23
+      ConstantEngineeringConstants.G31
+      ConstantEngineeringConstants.nu
+      ConstantEngineeringConstants.nu12
+      ConstantEngineeringConstants.nu13
+      ConstantEngineeringConstants.nu23
+   
+   

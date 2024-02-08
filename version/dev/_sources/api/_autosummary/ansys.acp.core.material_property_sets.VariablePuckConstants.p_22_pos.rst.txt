@@ -1,0 +1,6 @@
+p\_22\_pos
+==========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariablePuckConstants.p_22_pos

@@ -1,0 +1,33 @@
+﻿FieldVariable
+=============
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: FieldVariable
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      FieldVariable.name
+      FieldVariable.values
+      FieldVariable.default
+      FieldVariable.lower_limit
+      FieldVariable.upper_limit
+   
+   

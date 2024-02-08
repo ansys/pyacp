@@ -1,0 +1,6 @@
+name
+====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoattribute:: FieldVariable.name
