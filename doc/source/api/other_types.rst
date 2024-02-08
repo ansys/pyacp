@@ -21,6 +21,7 @@ Other data types
     IgnorableEntity
     LookUpTable3DInterpolationAlgorithm
     LookUpTableColumnValueType
+    MeshData
     NodalDataType
     PlyCutoffType
     PlyType

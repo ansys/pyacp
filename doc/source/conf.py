@@ -91,6 +91,7 @@ if not SKIP_GALLERY:
 extensions += [
     "sphinx_design",  # needed for pyvista offlineviewer directive
     "sphinx_jinja",
+    "pyvista.ext.plot_directive",
     "pyvista.ext.viewer_directive",
 ]
 
@@ -100,7 +101,7 @@ intersphinx_mapping = {
     # kept here as an example
     # "scipy": ("https://docs.scipy.org/doc/scipy/reference", None),
     "numpy": ("https://numpy.org/doc/stable", None),
-    "matplotlib": ("https://matplotlib.org/stable", None),
+    # "matplotlib": ("https://matplotlib.org/stable", None),
     # "pandas": ("https://pandas.pydata.org/pandas-docs/stable", None),
     "grpc": ("https://grpc.github.io/grpc/python/", None),
     "protobuf": ("https://googleapis.dev/python/protobuf/latest/", None),
