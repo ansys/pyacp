@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707323225142,
+  "lastUpdate": 1707406061718,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12022,6 +12022,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0004556434361082738",
             "extra": "mean: 1.1567214633205947 msec\nrounds: 777"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f2ec33099ebb923c392da135cde2897fa498a81b",
+          "message": "Add limitations section (#406)\n\nAdd 'Limitations' section to landing page. Remove 'Key features', since the header blurb already contains these.\r\n\r\nCloses #375",
+          "timestamp": "2024-02-08T16:24:37+01:00",
+          "tree_id": "afc25b5f75cef88db3b19173f49605ab0d46d6cf",
+          "url": "https://github.com/ansys-internal/pyacp/commit/f2ec33099ebb923c392da135cde2897fa498a81b"
+        },
+        "date": 1707406048305,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.274919432568546,
+            "unit": "iter/sec",
+            "range": "stddev: 0.008421085279784118",
+            "extra": "mean: 189.57635520000053 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1146.728343368477,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00033675304819828474",
+            "extra": "mean: 872.0461177950243 usec\nrounds: 798"
           }
         ]
       }
