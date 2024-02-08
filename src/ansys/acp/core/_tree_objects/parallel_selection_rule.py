@@ -41,7 +41,7 @@ __all__ = [
 class ParallelSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a Parallel Selection Rule."""
 
-    normal: VectorData
+    normal: VectorData | None = None
 
 
 @dataclasses.dataclass

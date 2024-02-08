@@ -41,7 +41,7 @@ __all__ = [
 class CylindricalSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a Cylindrical Selection Rule."""
 
-    normal: VectorData
+    normal: VectorData | None = None
 
 
 @dataclasses.dataclass

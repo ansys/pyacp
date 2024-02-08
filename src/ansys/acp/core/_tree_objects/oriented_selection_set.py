@@ -59,9 +59,9 @@ __all__ = [
 class OrientedSelectionSetElementalData(ElementalData):
     """Represents elemental data for an Oriented Selection Set."""
 
-    normal: VectorData
-    orientation: VectorData
-    reference_direction: VectorData
+    normal: VectorData | None = None
+    orientation: VectorData | None = None
+    reference_direction: VectorData | None = None
 
 
 @dataclasses.dataclass
