@@ -1,9 +1,7 @@
 Material property sets
 ----------------------
 
-.. TODO: move these to a public module
-
-.. currentmodule:: ansys.acp.core
+.. currentmodule:: ansys.acp.core.material_property_sets
 
 .. autosummary::
     :toctree: _autosummary
@@ -20,6 +18,7 @@ Material property sets
     ConstantWovenStressLimits
     FieldVariable
     InterpolationOptions
+    PuckMaterialType
     VariableDensity
     VariableEngineeringConstants
     VariableFabricFiberAngle
