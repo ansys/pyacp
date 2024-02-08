@@ -27,25 +27,25 @@
    .. autosummary::
       :toctree:
    
-      ModelingPlyElementalData.normal
-      ModelingPlyElementalData.orientation
-      ModelingPlyElementalData.reference_direction
-      ModelingPlyElementalData.fiber_direction
-      ModelingPlyElementalData.draped_fiber_direction
-      ModelingPlyElementalData.transverse_direction
-      ModelingPlyElementalData.draped_transverse_direction
-      ModelingPlyElementalData.thickness
-      ModelingPlyElementalData.relative_thickness_correction
-      ModelingPlyElementalData.design_angle
-      ModelingPlyElementalData.shear_angle
-      ModelingPlyElementalData.draped_fiber_angle
-      ModelingPlyElementalData.draped_transverse_angle
       ModelingPlyElementalData.area
-      ModelingPlyElementalData.price
-      ModelingPlyElementalData.volume
-      ModelingPlyElementalData.mass
-      ModelingPlyElementalData.offset
       ModelingPlyElementalData.cog
+      ModelingPlyElementalData.design_angle
+      ModelingPlyElementalData.draped_fiber_angle
+      ModelingPlyElementalData.draped_fiber_direction
+      ModelingPlyElementalData.draped_transverse_angle
+      ModelingPlyElementalData.draped_transverse_direction
+      ModelingPlyElementalData.fiber_direction
+      ModelingPlyElementalData.mass
+      ModelingPlyElementalData.normal
+      ModelingPlyElementalData.offset
+      ModelingPlyElementalData.orientation
+      ModelingPlyElementalData.price
+      ModelingPlyElementalData.reference_direction
+      ModelingPlyElementalData.relative_thickness_correction
+      ModelingPlyElementalData.shear_angle
+      ModelingPlyElementalData.thickness
+      ModelingPlyElementalData.transverse_direction
+      ModelingPlyElementalData.volume
       ModelingPlyElementalData.element_labels
    
    

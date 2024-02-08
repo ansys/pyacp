@@ -27,15 +27,15 @@
    .. autosummary::
       :toctree:
    
-      ModelElementalData.normal
-      ModelElementalData.thickness
-      ModelElementalData.relative_thickness_correction
       ModelElementalData.area
-      ModelElementalData.price
-      ModelElementalData.volume
-      ModelElementalData.mass
-      ModelElementalData.offset
       ModelElementalData.cog
+      ModelElementalData.mass
+      ModelElementalData.normal
+      ModelElementalData.offset
+      ModelElementalData.price
+      ModelElementalData.relative_thickness_correction
+      ModelElementalData.thickness
+      ModelElementalData.volume
       ModelElementalData.element_labels
    
    

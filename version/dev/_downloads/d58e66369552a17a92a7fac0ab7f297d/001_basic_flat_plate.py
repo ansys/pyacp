@@ -115,7 +115,9 @@ oss = model.create_oriented_selection_set(
 
 model.update()
 
-plotter = get_directions_plotter(model=model, components=[oss.elemental_data.orientation])
+orientation = oss.elemental_data.orientation
+assert orientation is not None
+plotter = get_directions_plotter(model=model, components=[orientation])
 plotter.show()
 
 
@@ -139,9 +141,11 @@ model.update()
 modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45_UD"]
 
 
+fiber_direction = modeling_ply.elemental_data.fiber_direction
+assert fiber_direction is not None
 plotter = get_directions_plotter(
     model=model,
-    components=[modeling_ply.elemental_data.fiber_direction],
+    components=[fiber_direction],
 )
 
 plotter.show()

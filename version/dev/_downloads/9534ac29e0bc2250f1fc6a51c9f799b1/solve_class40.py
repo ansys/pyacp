@@ -172,10 +172,10 @@ model.update()
 
 plotter = pyvista.Plotter()
 plotter.add_mesh(model.mesh.to_pyvista(), color="white")
+orientation = oss_hull.elemental_data.orientation
+assert orientation is not None
 plotter.add_mesh(
-    oss_hull.elemental_data.orientation.get_pyvista_glyphs(
-        mesh=model.mesh, factor=0.2, culling_factor=5
-    ),
+    orientation.get_pyvista_glyphs(mesh=model.mesh, factor=0.2, culling_factor=5),
     color="blue",
 )
 plotter.show()
@@ -235,20 +235,26 @@ print(len(model.modeling_groups["keeltower"].modeling_plies))
 # Show the thickness of one of the plies
 model.update()
 modeling_ply = model.modeling_groups["deck"].modeling_plies["eglass_ud_02mm_0.5"]
-modeling_ply.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot()
+thickness = modeling_ply.elemental_data.thickness
+assert thickness is not None
+thickness.get_pyvista_mesh(mesh=model.mesh).plot()
 
 # %%
 # Show the ply offsets, scaled by a factor of 200
 plotter = pyvista.Plotter()
 plotter.add_mesh(model.mesh.to_pyvista(), color="white")
+ply_offset = modeling_ply.nodal_data.ply_offset
+assert ply_offset is not None
 plotter.add_mesh(
-    modeling_ply.nodal_data.ply_offset.get_pyvista_glyphs(mesh=model.mesh, factor=200),
+    ply_offset.get_pyvista_glyphs(mesh=model.mesh, factor=200),
 )
 plotter.show()
 
 # %%
 # Show the thickness of the entire lay-up
-model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot()
+thickness = model.elemental_data.thickness
+assert thickness is not None
+thickness.get_pyvista_mesh(mesh=model.mesh).plot()
 
 # %%
 #
