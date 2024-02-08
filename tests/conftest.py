@@ -18,6 +18,7 @@ from ansys.acp.core import (
     LaunchMode,
     launch_acp,
 )
+from ansys.acp.core._server.common import ServerProtocol
 from ansys.acp.core._typing_helper import PATH
 from ansys.tools.local_product_launcher.config import set_config_for
 
@@ -165,14 +166,14 @@ def model_data_dir() -> pathlib.Path:
 
 
 @pytest.fixture(scope="session")
-def acp_instance(_configure_launcher) -> Generator[ACP, None, None]:
+def acp_instance(_configure_launcher) -> Generator[ACP[ServerProtocol], None, None]:
     """Provide the currently active gRPC server."""
     yield launch_acp(timeout=SERVER_STARTUP_TIMEOUT)
 
 
 @pytest.fixture(autouse=True)
 def check_grpc_server_before_run(
-    acp_instance: ACP,
+    acp_instance: ACP[ServerProtocol],
 ) -> Generator[None, None, None]:
     """Check if the server still responds before running each test, otherwise restart it."""
     try:
