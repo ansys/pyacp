@@ -464,3 +464,13 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         assert material.ext_id != ""
         # the next check fails if ext_id is not a valid uuid
         assert uuid.UUID(material.ext_id)
+
+    def test_wrong_attribute_access_1(self, tree_object):
+        eng_constants = tree_object.engineering_constants
+        with pytest.raises(AttributeError, match="orthotropic"):
+            eng_constants.E
+
+    def test_wrong_attribute_access_2(self, variable_material):
+        variable_material.engineering_constants.E1
+        with pytest.raises(AttributeError, match="This property is only available"):
+            variable_material.engineering_constants.E

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, TypedDict
 
 from google.protobuf.message import Message
 
@@ -9,7 +9,28 @@ from ...base import PolymorphicMixin as _BasePolymorphicMixin
 from ...base import TreeObjectAttribute, TreeObjectAttributeReadOnly
 from .variable_property_set_attributes import FieldVariable, InterpolationOptions
 
-__all__ = ("_ConstantPropertySet", "_PolymorphicMixin", "_VariablePropertySet")
+__all__ = (
+    "_ConstantPropertySet",
+    "_PolymorphicMixin",
+    "_VariablePropertySet",
+    "_ISOTROPIC_PROPERTY_UNAVAILABLE_MSG",
+    "_ORTHOTROPIC_PROPERTY_UNAVAILABLE_MSG",
+)
+
+
+_ISOTROPIC_PROPERTY_UNAVAILABLE_MSG = (
+    "This property is only available for isotropic material property sets. "
+    "The property set is currently orthotropic"
+)
+_ORTHOTROPIC_PROPERTY_UNAVAILABLE_MSG = (
+    "This property is only available for orthotropic material property sets. "
+    "The property set is currently isotropic"
+)
+
+
+class _PolymorphicPropertyKwargs(TypedDict):
+    available_on_pb_type: type[Message]
+    unavailable_msg: str
 
 
 class _ConstantPropertySet(TreeObjectAttribute):

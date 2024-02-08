@@ -4,7 +4,14 @@ from ansys.api.acp.v0 import material_pb2
 
 from ..._grpc_helpers.property_helper import mark_grpc_properties
 from ...base import TreeObject
-from .base import _ConstantPropertySet, _PolymorphicMixin, _VariablePropertySet
+from .base import (
+    _ISOTROPIC_PROPERTY_UNAVAILABLE_MSG,
+    _ORTHOTROPIC_PROPERTY_UNAVAILABLE_MSG,
+    _ConstantPropertySet,
+    _PolymorphicMixin,
+    _PolymorphicPropertyKwargs,
+    _VariablePropertySet,
+)
 from .property_helper import (
     constant_material_grpc_data_property,
     variable_material_grpc_data_property,
@@ -23,6 +30,16 @@ class _EngineeringConstantsMixin(_PolymorphicMixin):
         material_pb2.IsotropicEngineeringConstantsPropertySet: "_isotropic",
         material_pb2.OrthotropicEngineeringConstantsPropertySet: "_orthotropic",
     }
+
+
+_ISOTROPIC_KWARGS: _PolymorphicPropertyKwargs = {
+    "available_on_pb_type": material_pb2.IsotropicEngineeringConstantsPropertySet,
+    "unavailable_msg": _ISOTROPIC_PROPERTY_UNAVAILABLE_MSG,
+}
+_ORTHOTROPIC_KWARGS: _PolymorphicPropertyKwargs = {
+    "available_on_pb_type": material_pb2.OrthotropicEngineeringConstantsPropertySet,
+    "unavailable_msg": _ORTHOTROPIC_PROPERTY_UNAVAILABLE_MSG,
+}
 
 
 @mark_grpc_properties
@@ -59,17 +76,17 @@ class ConstantEngineeringConstants(_EngineeringConstantsMixin, _ConstantProperty
         self.G23 = G23
         self.G31 = G31
 
-    E = constant_material_grpc_data_property("E")
-    nu = constant_material_grpc_data_property("nu")
-    E1 = constant_material_grpc_data_property("E1")
-    E2 = constant_material_grpc_data_property("E2")
-    E3 = constant_material_grpc_data_property("E3")
-    G12 = constant_material_grpc_data_property("G12")
-    G23 = constant_material_grpc_data_property("G23")
-    G31 = constant_material_grpc_data_property("G31")
-    nu12 = constant_material_grpc_data_property("nu12")
-    nu23 = constant_material_grpc_data_property("nu23")
-    nu13 = constant_material_grpc_data_property("nu13")
+    E = constant_material_grpc_data_property("E", **_ISOTROPIC_KWARGS)
+    nu = constant_material_grpc_data_property("nu", **_ISOTROPIC_KWARGS)
+    E1 = constant_material_grpc_data_property("E1", **_ORTHOTROPIC_KWARGS)
+    E2 = constant_material_grpc_data_property("E2", **_ORTHOTROPIC_KWARGS)
+    E3 = constant_material_grpc_data_property("E3", **_ORTHOTROPIC_KWARGS)
+    G12 = constant_material_grpc_data_property("G12", **_ORTHOTROPIC_KWARGS)
+    G23 = constant_material_grpc_data_property("G23", **_ORTHOTROPIC_KWARGS)
+    G31 = constant_material_grpc_data_property("G31", **_ORTHOTROPIC_KWARGS)
+    nu12 = constant_material_grpc_data_property("nu12", **_ORTHOTROPIC_KWARGS)
+    nu23 = constant_material_grpc_data_property("nu23", **_ORTHOTROPIC_KWARGS)
+    nu13 = constant_material_grpc_data_property("nu13", **_ORTHOTROPIC_KWARGS)
 
 
 @mark_grpc_properties
@@ -78,14 +95,14 @@ class VariableEngineeringConstants(_EngineeringConstantsMixin, _VariableProperty
 
     _GRPC_PROPERTIES = tuple()
 
-    E = variable_material_grpc_data_property("E")
-    nu = variable_material_grpc_data_property("nu")
-    E1 = variable_material_grpc_data_property("E1")
-    E2 = variable_material_grpc_data_property("E2")
-    E3 = variable_material_grpc_data_property("E3")
-    G12 = variable_material_grpc_data_property("G12")
-    G23 = variable_material_grpc_data_property("G23")
-    G31 = variable_material_grpc_data_property("G31")
-    nu12 = variable_material_grpc_data_property("nu12")
-    nu23 = variable_material_grpc_data_property("nu23")
-    nu13 = variable_material_grpc_data_property("nu13")
+    E = variable_material_grpc_data_property("E", **_ISOTROPIC_KWARGS)
+    nu = variable_material_grpc_data_property("nu", **_ISOTROPIC_KWARGS)
+    E1 = variable_material_grpc_data_property("E1", **_ORTHOTROPIC_KWARGS)
+    E2 = variable_material_grpc_data_property("E2", **_ORTHOTROPIC_KWARGS)
+    E3 = variable_material_grpc_data_property("E3", **_ORTHOTROPIC_KWARGS)
+    G12 = variable_material_grpc_data_property("G12", **_ORTHOTROPIC_KWARGS)
+    G23 = variable_material_grpc_data_property("G23", **_ORTHOTROPIC_KWARGS)
+    G31 = variable_material_grpc_data_property("G31", **_ORTHOTROPIC_KWARGS)
+    nu12 = variable_material_grpc_data_property("nu12", **_ORTHOTROPIC_KWARGS)
+    nu23 = variable_material_grpc_data_property("nu23", **_ORTHOTROPIC_KWARGS)
+    nu13 = variable_material_grpc_data_property("nu13", **_ORTHOTROPIC_KWARGS)
