@@ -25,7 +25,7 @@ __all__ = ["ModelingGroup"]
 class ModelingGroupElementalData(ElementalData):
     """Represents elemental data for an Modeling Group."""
 
-    normal: VectorData
+    normal: VectorData | None = None
 
 
 @dataclasses.dataclass

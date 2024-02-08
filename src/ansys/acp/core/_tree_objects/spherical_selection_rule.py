@@ -41,7 +41,7 @@ __all__ = [
 class SphericalSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a Spherical Selection Rule."""
 
-    normal: VectorData
+    normal: VectorData | None = None
 
 
 @dataclasses.dataclass

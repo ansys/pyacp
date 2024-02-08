@@ -249,6 +249,56 @@ def test_elemental_data(simple_modeling_ply):
     numpy.testing.assert_allclose(data.cog.values, np.array([[0.0, 0.0, 5e-5]]))
 
 
+def test_elemental_data_incomplete(simple_modeling_ply, minimal_complete_model):
+    """Test the elemental data when draping properties are missing."""
+    # draping-related properties are not propagated up to the modeling ply
+    # when it has more than one production ply
+    simple_modeling_ply.number_of_layers = 2
+    minimal_complete_model.update()
+
+    data = simple_modeling_ply.elemental_data
+    numpy.testing.assert_allclose(data.element_labels.values, np.array([1]))
+    numpy.testing.assert_allclose(data.normal.values, np.array([[0.0, 0.0, 1.0]]))
+
+    numpy.testing.assert_allclose(
+        data.orientation.values,
+        np.array([[0.0, 0.0, 1.0]]),
+        atol=1e-12,
+    )
+    numpy.testing.assert_allclose(
+        data.reference_direction.values,
+        np.array([[1.0, 0.0, 0.0]]),
+        atol=1e-12,
+    )
+    numpy.testing.assert_allclose(
+        data.fiber_direction.values,
+        np.array([[1.0, 0.0, 0.0]]),
+        atol=1e-12,
+    )
+    assert data.draped_fiber_direction is None
+    numpy.testing.assert_allclose(
+        data.transverse_direction.values,
+        np.array([[0.0, 1.0, 0.0]]),
+        atol=1e-12,
+    )
+    assert data.draped_transverse_direction is None
+
+    numpy.testing.assert_allclose(data.thickness.values, np.array([2e-4]))
+    numpy.testing.assert_allclose(data.relative_thickness_correction.values, np.array([1.0]))
+
+    numpy.testing.assert_allclose(data.design_angle.values, np.array([0.0]))
+    assert data.shear_angle is None
+    assert data.draped_fiber_angle is None
+    assert data.draped_transverse_angle is None
+
+    numpy.testing.assert_allclose(data.area.values, np.array([9e4]))
+    numpy.testing.assert_allclose(data.price.values, np.array([0.0]))
+    numpy.testing.assert_allclose(data.volume.values, np.array([18.0]))
+    numpy.testing.assert_allclose(data.mass.values, np.array([14.130e-08]))
+    numpy.testing.assert_allclose(data.offset.values, np.array([1e-4]))
+    numpy.testing.assert_allclose(data.cog.values, np.array([[0.0, 0.0, 1e-4]]))
+
+
 def test_nodal_data(simple_modeling_ply):
     data = simple_modeling_ply.nodal_data
     numpy.testing.assert_allclose(data.node_labels.values, np.array([1, 2, 3, 4]))

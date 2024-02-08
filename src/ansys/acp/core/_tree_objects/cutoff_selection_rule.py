@@ -50,7 +50,7 @@ __all__ = [
 class CutoffSelectionRuleElementalData(ElementalData):
     """Represents elemental data for a Cutoff Selection Rule."""
 
-    normal: VectorData
+    normal: VectorData | None = None
 
 
 @dataclasses.dataclass

@@ -249,7 +249,7 @@ def _check_field_type(klass: Any, field_name: str, actual_field_type: str) -> No
     )
     if len(declared_field_types) != 1:
         raise RuntimeError("Failed to find field in dataclass.")
-    declared_field_type = declared_field_types[0]
+    declared_field_type = declared_field_types[0].removesuffix(" | None")
     if declared_field_type != actual_field_type:
         raise RuntimeError(
             f"Declared type does not match actual data type. "
