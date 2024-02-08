@@ -75,12 +75,8 @@ optimization of composite structures.
 
             Information on how to contribute to PyACP.
 
-Key features
-^^^^^^^^^^^^
-
-TODO
 
 Limitations
 ^^^^^^^^^^^
 
-TODO
+Currently, only shell workflows are supported. Solid models can not yet be defined using PyACP.
