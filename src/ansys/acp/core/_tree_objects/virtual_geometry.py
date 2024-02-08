@@ -112,12 +112,12 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
         self,
         *,
         name: str = "VirtualGeometry",
-        sub_shapes: Iterable[str] = (),
+        cad_components: Iterable[CADComponent] = (),
     ):
         super().__init__(
             name=name,
         )
-        self.sub_shapes = sub_shapes
+        self.set_cad_components(cad_components=cad_components)
 
     def _create_stub(self) -> virtual_geometry_pb2_grpc.ObjectServiceStub:
         return virtual_geometry_pb2_grpc.ObjectServiceStub(self._channel)
@@ -126,6 +126,10 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
     dimension = grpc_data_property_read_only(
         "properties.dimension", from_protobuf=virtual_geometry_dimension_from_pb
     )
+
+    # Todo: What is the reason we expose SubShapes to the user?
+    # Would it not be enough the expose the CADComponents
+    # It looks like the reason is that a user cannot create CADComponents
     sub_shapes = define_edge_property_list(
         "properties.sub_shapes",
         SubShape,

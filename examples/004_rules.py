@@ -44,7 +44,7 @@ from ansys.acp.core import (
 # %%
 # Get example file from server
 tempdir = tempfile.TemporaryDirectory()
-WORKING_DIR = pathlib.Path(tempdir.name)
+WORKING_DIR = pathlib.Path(r"D:\ANSYSDev\pyacp-private\tests\data")
 input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR)
 
 # %%
@@ -98,7 +98,7 @@ ud_material = model.create_material(
     strain_limits=strain_limits,
 )
 
-ud_fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.2)
+ud_fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.002)
 
 # %%
 # Define a rosette and an oriented selection set and plot the orientations
@@ -144,6 +144,7 @@ partial_ply = modeling_group.create_modeling_ply(
     # Todo: error message when passing plain SelectionRules is cryptic for the user.
     # Should we allow to pass plain selection rules?
     selection_rules=[linked_parallel_rule],
+    number_of_layers=10,
 )
 
 # partial_ply.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
@@ -164,23 +165,71 @@ linked_cylindrical_rule = LinkedSelectionRule(cylindrical_rule)
 # that gets plotted
 model.update()
 
-partial_ply.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
+model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
 
 linked_parallel_rule.template_rule = True
 linked_parallel_rule.parameter_1 = 0.002
 linked_parallel_rule.parameter_2 = 0.1
 
 model.update()
-partial_ply.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
+model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
 
 
 # %%
 # Create a geometrical selection rule
 
-workflow.add_cad
-model.create_geometrical_selection_rule(
-    name="geometrical_rule",
+triangle = workflow.add_cad_geometry_from_local_file(
+    pathlib.Path("D:\\ANSYSDev\\pyacp-private\\tests\\data\\rule_geometry_triangle.stp")
 )
+
+cut_off_plane = workflow.add_cad_geometry_from_local_file(
+    pathlib.Path("D:\\ANSYSDev\\pyacp-private\\tests\\data\\cut_off_geometry.stp")
+)
+
+
+# TBD should we update the geometry automatically before we request root shapes?
+model.update()
+
+triangle_virtual_geometry = model.create_virtual_geometry(
+    name="triangle_virtual_geometry", cad_components=triangle.root_shapes.values()
+)
+
+cutoff_virtual_geometry = model.create_virtual_geometry(
+    name="cutoff_virtual_geometry", cad_components=cut_off_plane.root_shapes.values()
+)
+
+
+geometrical_selection_rule = model.create_geometrical_selection_rule(
+    name="geometrical_rule",
+    geometry=triangle_virtual_geometry,
+)
+
+partial_ply.selection_rules = [LinkedSelectionRule(geometrical_selection_rule)]
+model.update()
+
+plotter = pyvista.Plotter()
+plotter.add_mesh(
+    triangle.visualization_mesh.to_pyvista(), style="wireframe", line_width=4, color="white"
+)
+plotter.add_mesh(model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh), show_edges=True)
+plotter.show()
+
+
+cutoff_selection_rule = model.create_cutoff_selection_rule(
+    name="cutoff_rule",
+    cutoff_geometry=cutoff_virtual_geometry,
+)
+
+
+partial_ply.selection_rules = [LinkedSelectionRule(cutoff_selection_rule)]
+model.update()
+
+plotter = pyvista.Plotter()
+plotter.add_mesh(cut_off_plane.visualization_mesh.to_pyvista(), color="white")
+plotter.add_mesh(model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh))
+plotter.show()
+
+workflow.get_local_acp_h5_file()
 
 pass
 # Just to make sure the analysis actually runs. Todo: remove
