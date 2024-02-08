@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707406061718,
+  "lastUpdate": 1707407835822,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12060,6 +12060,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00033675304819828474",
             "extra": "mean: 872.0461177950243 usec\nrounds: 798"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "26a0427943a3253e14f563ffe95d51eab718a290",
+          "message": "Handle missing mesh query data (#403)\n\nAllow for missing data in mesh queries, setting the corresponding\r\ncomponent of the ElementalData or NodalData to None.\r\n\r\nAdapt example code to check for None where necessary.\r\n\r\nAdd test for partial elemental data on a ModelingPly.\r\n\r\nCloses #272",
+          "timestamp": "2024-02-08T15:54:09Z",
+          "tree_id": "962a6114bb5e8d8dd9fcf8175fb8244fc28d139b",
+          "url": "https://github.com/ansys-internal/pyacp/commit/26a0427943a3253e14f563ffe95d51eab718a290"
+        },
+        "date": 1707407823928,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.780001740765375,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003739492164622553",
+            "extra": "mean: 147.49258750000158 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1233.1113555845782,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022536427770333722",
+            "extra": "mean: 810.9567683982056 usec\nrounds: 1386"
           }
         ]
       }
