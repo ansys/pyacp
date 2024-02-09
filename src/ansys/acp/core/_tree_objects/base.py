@@ -94,15 +94,16 @@ class TreeObjectBase(GrpcObjectBase):
     ) -> Self:
         resource_path_value = object_info.info.resource_path.value
         if not resource_path_value:
-            raise ValueError("The resource path must not be empty.")
-        try:
-            return cast(Self, cls._OBJECT_CACHE[resource_path_value])
-        except KeyError:
-            instance = cls()
-            instance._pb_object = object_info
-            instance._channel_store = channel
+            try:
+                return cast(Self, cls._OBJECT_CACHE[resource_path_value])
+            except KeyError:
+                pass
+        instance = cls()
+        instance._pb_object = object_info
+        instance._channel_store = channel
+        if resource_path_value:
             cls._OBJECT_CACHE[resource_path_value] = instance
-            return instance
+        return instance
 
     @classmethod
     def _from_resource_path(cls, resource_path: ResourcePath, channel: Channel) -> Self:
@@ -280,7 +281,10 @@ class CreatableTreeObject(TreeObject):
         )
         with wrap_grpc_errors():
             self._pb_object = self._get_stub().Create(request)
-        self._OBJECT_CACHE[self._resource_path.value] = self
+        resource_path_value = self._resource_path.value
+        if not resource_path_value:
+            raise ValueError("The resource path must not be empty.")
+        self._OBJECT_CACHE[resource_path_value] = self
 
 
 @mark_grpc_properties
