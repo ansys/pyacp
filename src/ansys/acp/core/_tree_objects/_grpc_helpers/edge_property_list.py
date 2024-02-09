@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections.abc import Iterable, Iterator, MutableSequence
 import sys
 from typing import Any, Callable, Protocol, TypeVar, cast, overload
+from weakref import WeakValueDictionary
 
 from google.protobuf.message import Message
 from typing_extensions import Self
@@ -60,6 +61,23 @@ class EdgePropertyList(MutableSequence[ValueT]):
     The LinkedObjectList should be used for graph edges without a specific type.
     For instance, element sets of an oriented element set.
     """
+
+    _OBJECT_CACHE: WeakValueDictionary[tuple[str, str], Self] = WeakValueDictionary()
+
+    @classmethod
+    def _initialize_with_cache(
+        cls: type[Self],
+        *,
+        parent_object: CreatableTreeObject,
+        attribute_name: str,
+        **kwargs: Any,
+    ) -> Self:
+        cache_key = (parent_object._resource_path.value, attribute_name)
+        if cache_key in cls._OBJECT_CACHE:
+            return cast(Self, cls._OBJECT_CACHE[cache_key])
+        res = cls(parent_object=parent_object, attribute_name=attribute_name, **kwargs)
+        cls._OBJECT_CACHE[cache_key] = res
+        return res
 
     def __init__(
         self,
@@ -291,7 +309,7 @@ def define_edge_property_list(
     """Define a list of linked tree objects with link properties."""
 
     def getter(self: CreatableTreeObject) -> EdgePropertyList[GenericEdgePropertyType]:
-        return EdgePropertyList(
+        return EdgePropertyList._initialize_with_cache(
             parent_object=self,
             object_type=value_type,
             attribute_name=attribute_name,
