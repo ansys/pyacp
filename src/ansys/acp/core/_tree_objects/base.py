@@ -5,6 +5,7 @@ from abc import abstractmethod
 from collections.abc import Iterable
 import typing
 from typing import Any, Callable, Generic, TypeVar, cast
+from weakref import WeakValueDictionary
 
 from grpc import Channel
 from typing_extensions import Self
@@ -41,13 +42,18 @@ _T = TypeVar("_T", bound="TreeObjectBase")
 class TreeObjectBase(GrpcObjectBase):
     """Base class for ACP tree objects."""
 
-    __slots__: Iterable[str] = ("_channel_store", "_pb_object")
+    __slots__: Iterable[str] = ("__weakref__", "_channel_store", "_pb_object")
 
+    _OBJECT_CACHE: WeakValueDictionary[str, Self]
     _COLLECTION_LABEL: str
     OBJECT_INFO_TYPE: type[ObjectInfo]
 
     _pb_object: ObjectInfo
     name: ReadOnlyProperty[str]
+
+    def __init_subclass__(cls: type[Self]) -> None:
+        cls._OBJECT_CACHE = WeakValueDictionary()
+        return super().__init_subclass__()
 
     def __init__(self: TreeObjectBase, name: str = "") -> None:
         self._channel_store: Channel | None = None
@@ -84,19 +90,27 @@ class TreeObjectBase(GrpcObjectBase):
 
     @classmethod
     def _from_object_info(
-        cls: type[_T], object_info: ObjectInfo, channel: Channel | None = None
-    ) -> _T:
-        instance = cls()
-        instance._pb_object = object_info
-        instance._channel_store = channel
-        return instance
+        cls: type[Self], object_info: ObjectInfo, channel: Channel | None = None
+    ) -> Self:
+        try:
+            return cast(Self, cls._OBJECT_CACHE[object_info.info.resource_path.value])
+        except KeyError:
+            instance = cls()
+            instance._pb_object = object_info
+            instance._channel_store = channel
+            cls._OBJECT_CACHE[object_info.info.resource_path.value] = instance
+            return instance
 
     @classmethod
     def _from_resource_path(cls, resource_path: ResourcePath, channel: Channel) -> Self:
-        instance = cls()
-        instance._pb_object.info.resource_path.CopyFrom(resource_path)
-        instance._channel_store = channel
-        return instance
+        try:
+            return cast(Self, cls._OBJECT_CACHE[resource_path.value])
+        except KeyError:
+            instance = cls()
+            instance._pb_object.info.resource_path.CopyFrom(resource_path)
+            instance._channel_store = channel
+            cls._OBJECT_CACHE[resource_path.value] = instance
+            return instance
 
     @property
     def _resource_path(self) -> ResourcePath:
@@ -221,7 +235,7 @@ class CreatableTreeObject(TreeObject):
     def _get_stub(self) -> CreatableEditableAndReadableResourceStub:
         return cast(CreatableEditableAndReadableResourceStub, super()._get_stub())
 
-    def store(self: CreatableTreeObject, parent: TreeObject) -> None:
+    def store(self: Self, parent: TreeObject) -> None:
         """Store the object on the server.
 
         Parameters
@@ -261,6 +275,7 @@ class CreatableTreeObject(TreeObject):
         )
         with wrap_grpc_errors():
             self._pb_object = self._get_stub().Create(request)
+        self._OBJECT_CACHE[self._resource_path.value] = self
 
 
 @mark_grpc_properties
