@@ -93,7 +93,7 @@ class TreeObjectBase(GrpcObjectBase):
         cls: type[Self], object_info: ObjectInfo, channel: Channel | None = None
     ) -> Self:
         resource_path_value = object_info.info.resource_path.value
-        if not resource_path_value:
+        if resource_path_value:
             try:
                 return cast(Self, cls._OBJECT_CACHE[resource_path_value])
             except KeyError:
