@@ -5,7 +5,8 @@ Basic sandwich panel
 ====================
 
 Define a Composite Lay-up for a sandwich panel with PyACP. This example shows just the
-pyACP part of the setup. For a complete Composite analysis, see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
+pyACP part of the setup. For a complete Composite analysis,
+see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
 """
 
 
@@ -14,29 +15,23 @@ pyACP part of the setup. For a complete Composite analysis, see the :ref:`sphx_g
 import pathlib
 import tempfile
 
-import pyvista
-
 # %%
 # Import pyACP dependencies
 from ansys.acp.core import (
     ACPWorkflow,
-    ConstantEngineeringConstants,
-    ConstantStrainLimits,
-    ExampleKeys,
     FabricWithAngle,
     Lamina,
     PlyType,
-    get_composite_post_processing_files,
-    get_dpf_unit_system,
-    get_example_file,
+    get_directions_plotter,
     launch_acp,
-    print_model,
 )
-from ansys.acp.core._utils.example_helpers import run_analysis
+from ansys.acp.core.example_helpers import ExampleKeys, get_example_file, run_analysis
+from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, ConstantStrainLimits
 
 # Note: It is important to import mapdl before dpf, otherwise the plot defaults are messed up
 # https://github.com/ansys/pydpf-core/issues/1363
-from ansys.mapdl.core import launch_mapdl
+# from ansys.mapdl.core import launch_mapdl
+
 
 # %%
 # Get example file from server
@@ -95,7 +90,7 @@ ud_material = model.create_material(
     strain_limits=strain_limits,
 )
 
-ud_fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.2)
+ud_fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.002)
 
 # %%
 # Create a multi-axial Stackup and a Sublaminate. Sublaminates and Stackups help to quickly
@@ -142,7 +137,7 @@ core = model.create_material(
     strain_limits=strain_limits,
 )
 
-core_fabric = model.create_fabric(name="core", material=ud_material, thickness=15)
+core_fabric = model.create_fabric(name="core", material=ud_material, thickness=0.015)
 
 # %%
 # Define a rosette and an oriented selection set and plot the orientations
@@ -157,15 +152,9 @@ oss = model.create_oriented_selection_set(
 )
 
 model.update()
-
-plotter = pyvista.Plotter()
-plotter.add_mesh(model.mesh.to_pyvista(), color="white")
-plotter.add_mesh(
-    oss.elemental_data.orientation.get_pyvista_glyphs(mesh=model.mesh, factor=0.01),
-    color="blue",
-)
+assert oss.elemental_data.orientation is not None
+plotter = get_directions_plotter(model=model, components=[oss.elemental_data.orientation])
 plotter.show()
-
 
 # %%
 # Create the modeling plies which define the layup of the sandwich panel.

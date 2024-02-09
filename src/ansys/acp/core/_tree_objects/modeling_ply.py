@@ -49,6 +49,8 @@ from .lookup_table_3d_column import LookUpTable3DColumn
 from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
 from .production_ply import ProductionPly
+from .stackup import Stackup
+from .sublaminate import SubLaminate
 from .virtual_geometry import VirtualGeometry
 
 __all__ = ["ModelingPly", "ModelingPlyElementalData", "ModelingPlyNodalData", "TaperEdge"]
@@ -267,7 +269,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         self,
         *,
         name: str = "ModelingPly",
-        ply_material: Fabric | None = None,
+        ply_material: Fabric | Stackup | SubLaminate | None = None,
         oriented_selection_sets: Container[OrientedSelectionSet] = (),
         ply_angle: float = 0.0,
         number_of_layers: int = 1,

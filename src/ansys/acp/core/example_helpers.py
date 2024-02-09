@@ -32,6 +32,8 @@ class ExampleKeys(Enum):
 
     BASIC_FLAT_PLATE_CDB = auto()
     BASIC_FLAT_PLATE_ACPH5 = auto()
+    CUT_OFF_GEOMETRY = auto()
+    RULE_GEOMETRY_TRIANGLE = auto()
 
 
 EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
@@ -40,6 +42,12 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
     ),
     ExampleKeys.BASIC_FLAT_PLATE_ACPH5: _ExampleLocation(
         directory="basic_flat_plate_example", filename="flat_plate.acph5"
+    ),
+    ExampleKeys.CUT_OFF_GEOMETRY: _ExampleLocation(
+        directory="geometries", filename="cut_off_geometry.stp"
+    ),
+    ExampleKeys.RULE_GEOMETRY_TRIANGLE: _ExampleLocation(
+        directory="geometries", filename="rule_geometry_triangle.stp"
     ),
 }
 
@@ -68,7 +76,7 @@ def _download_file(example_location: _ExampleLocation, local_path: pathlib.Path)
     urllib.request.urlretrieve(file_url, local_path)
 
 
-def run_analysis(workflow: "ACPWorkflow"):
+def run_analysis(workflow: "ACPWorkflow") -> None:
     model = workflow.model
     model.update()
 

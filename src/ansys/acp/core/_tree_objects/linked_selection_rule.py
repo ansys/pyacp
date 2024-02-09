@@ -10,6 +10,7 @@ from ansys.api.acp.v0 import linked_selection_rule_pb2
 from ._grpc_helpers.edge_property_list import GenericEdgePropertyType
 from ._grpc_helpers.polymorphic_from_pb import tree_object_from_resource_path
 from .base import CreatableTreeObject
+from .cutoff_selection_rule import CutoffSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .enums import (
     BooleanOperationType,
@@ -34,6 +35,7 @@ if typing.TYPE_CHECKING:
         TubeSelectionRule,
         GeometricalSelectionRule,
         VariableOffsetSelectionRule,
+        CutoffSelectionRule,
         BooleanSelectionRule,
     ]
 
@@ -170,6 +172,8 @@ class LinkedSelectionRule(GenericEdgePropertyType):
                 GeometricalSelectionRule,
                 VariableOffsetSelectionRule,
                 BooleanSelectionRule,
+                # Todo: just added temporarily so the example works see #412
+                CutoffSelectionRule,
             ]
             if not isinstance(parent_object, type_)
         )
