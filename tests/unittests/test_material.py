@@ -1,3 +1,4 @@
+from typing import Any, Callable
 import uuid
 
 from hypothesis import HealthCheck, given, settings
@@ -81,11 +82,11 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
             "G31": 0.0,
         },
     }
-    DEFAULT_TYPE_BY_PROPERTY_SET = {
+    DEFAULT_CONSTRUCTOR_BY_PROPERTY_SET: dict[str, Callable[..., Any]] = {
         "density": ConstantDensity,
-        "engineering_constants": ConstantEngineeringConstants,
-        "stress_limits": ConstantStressLimits,
-        "strain_limits": ConstantStrainLimits,
+        "engineering_constants": ConstantEngineeringConstants.from_orthotropic_constants,
+        "stress_limits": ConstantStressLimits.from_orthotropic_constants,
+        "strain_limits": ConstantStrainLimits.from_orthotropic_constants,
         "puck_constants": ConstantPuckConstants,
         "woven_characterization": ConstantWovenCharacterization,
         "woven_puck_constants_1": ConstantPuckConstants,
@@ -433,7 +434,7 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         setattr(
             tree_object,
             property_set_name,
-            self.DEFAULT_TYPE_BY_PROPERTY_SET[property_set_name](**{attr_name: val}),
+            self.DEFAULT_CONSTRUCTOR_BY_PROPERTY_SET[property_set_name](**{attr_name: val}),
         )
 
         property_set = getattr(tree_object, property_set_name)
@@ -458,7 +459,7 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         setattr(
             tree_object,
             property_set_name,
-            self.DEFAULT_TYPE_BY_PROPERTY_SET[property_set_name](**{attr_name: val}),
+            self.DEFAULT_CONSTRUCTOR_BY_PROPERTY_SET[property_set_name](**{attr_name: val}),
         )
         npt.assert_allclose(
             getattr(getattr(tree_object, property_set_name), attr_name), val, rtol=0.0, atol=0.0
