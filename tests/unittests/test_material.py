@@ -211,6 +211,17 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         ]:
             assert getattr(tree_object, propset_name) is None
 
+    def test_assign_isotropic_propertyset(self, tree_object):
+        tree_object.engineering_constants = ConstantEngineeringConstants.from_isotropic_constants(
+            E=2.0, nu=0.3
+        )
+        assert tree_object.engineering_constants.E1 == 2.0
+        assert tree_object.engineering_constants.E2 == 2.0
+        assert tree_object.engineering_constants.E3 == 2.0
+        assert tree_object.engineering_constants.nu12 == 0.3
+        assert tree_object.engineering_constants.nu23 == 0.3
+        assert tree_object.engineering_constants.nu13 == 0.3
+
     @pytest.mark.parametrize(
         "property_set_name,property_set_value,attributes_to_check",
         [
