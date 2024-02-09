@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+from typing_extensions import Self
+
 from ansys.api.acp.v0 import material_pb2
 
 from ..._grpc_helpers.property_helper import mark_grpc_properties
-from ...base import TreeObject
 from .base import (
     _ISOTROPIC_PROPERTY_UNAVAILABLE_MSG,
     _ORTHOTROPIC_PROPERTY_UNAVAILABLE_MSG,
@@ -48,8 +49,39 @@ class ConstantEngineeringConstants(_EngineeringConstantsMixin, _ConstantProperty
 
     _GRPC_PROPERTIES = tuple()
 
-    def __init__(
-        self,
+    @classmethod
+    def from_isotropic_constants(
+        cls,
+        *,
+        E: float = 0.0,
+        nu: float = 0.0,  # correct??
+    ) -> Self:
+        """Create an isotropic engineering constants property set.
+
+        Parameters
+        ----------
+        E :
+            Young's modulus.
+        nu :
+            Poisson's ratio.
+
+        Returns
+        -------
+        :
+            An isotropic engineering constants property set.
+        """
+        obj = cls(
+            _pb_object=cls._create_pb_object_from_propertyset_type(
+                material_pb2.IsotropicEngineeringConstantsPropertySet
+            )
+        )
+        obj.E = E
+        obj.nu = nu
+        return obj
+
+    @classmethod
+    def from_orthotropic_constants(
+        cls,
         *,
         E1: float = 0.0,
         E2: float = 0.0,
@@ -60,21 +92,46 @@ class ConstantEngineeringConstants(_EngineeringConstantsMixin, _ConstantProperty
         G12: float = 0.0,
         G23: float = 0.0,
         G31: float = 0.0,
-        _parent_object: TreeObject | None = None,
-        _attribute_path: str | None = None,
-    ):
-        super().__init__(_parent_object=_parent_object, _attribute_path=_attribute_path)
-        if _parent_object is not None:
-            return
-        self.E1 = E1
-        self.E2 = E2
-        self.E3 = E3
-        self.nu12 = nu12
-        self.nu23 = nu23
-        self.nu13 = nu13
-        self.G12 = G12
-        self.G23 = G23
-        self.G31 = G31
+    ) -> Self:
+        r"""Create an orthotropic engineering constants property set.
+
+        Parameters
+        ----------
+        E1 :
+            Young's modulus in material 1 direction.
+        E2 :
+            Young's modulus in material 2 direction.
+        E3 :
+            Young's modulus in out-of-plane direction.
+        nu12 :
+            Poisson's ratio :math:`\nu_{12}`.
+        nu23 :
+            Poisson's ratio :math:`\nu_{23}`.
+        nu13 :
+            Poisson's ratio :math:`\nu_{13}`.
+        G12 :
+            Shear modulus :math:`G_{12}`.
+        G23 :
+            Shear modulus :math:`G_{23}`.
+        G31 :
+            Shear modulus :math:`G_{31}`.
+
+        Returns
+        -------
+        :
+            An orthotropic engineering constants property set.
+        """
+        obj = cls()
+        obj.E1 = E1
+        obj.E2 = E2
+        obj.E3 = E3
+        obj.nu12 = nu12
+        obj.nu23 = nu23
+        obj.nu13 = nu13
+        obj.G12 = G12
+        obj.G23 = G23
+        obj.G31 = G31
+        return obj
 
     E = constant_material_grpc_data_property("E", **_ISOTROPIC_KWARGS)
     nu = constant_material_grpc_data_property("nu", **_ISOTROPIC_KWARGS)

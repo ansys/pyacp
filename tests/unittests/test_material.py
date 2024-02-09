@@ -474,3 +474,9 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         variable_material.engineering_constants.E1
         with pytest.raises(AttributeError, match="This property is only available"):
             variable_material.engineering_constants.E
+
+
+def test_engineering_constants_from_isotropic():
+    engineering_constants = ConstantEngineeringConstants.from_isotropic_constants(E=2.0, nu=0.3)
+    assert engineering_constants.E == 2.0
+    assert engineering_constants.nu == 0.3

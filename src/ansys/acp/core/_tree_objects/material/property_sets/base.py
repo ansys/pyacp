@@ -15,6 +15,7 @@ __all__ = (
     "_VariablePropertySet",
     "_ISOTROPIC_PROPERTY_UNAVAILABLE_MSG",
     "_ORTHOTROPIC_PROPERTY_UNAVAILABLE_MSG",
+    "_PolymorphicPropertyKwargs",
 )
 
 
@@ -29,6 +30,8 @@ _ORTHOTROPIC_PROPERTY_UNAVAILABLE_MSG = (
 
 
 class _PolymorphicPropertyKwargs(TypedDict):
+    """Type for the extra keyword arguments for properties on polymorphic material property sets."""
+
     available_on_pb_type: type[Message]
     unavailable_msg: str
 
@@ -40,7 +43,11 @@ class _ConstantPropertySet(TreeObjectAttribute):
 
     @classmethod
     def _create_default_pb_object(cls) -> Any:
-        return cls._DEFAULT_PB_PROPERTYSET_TYPE(values=[cls._DEFAULT_PB_PROPERTYSET_TYPE.Data()])
+        return cls._create_pb_object_from_propertyset_type(cls._DEFAULT_PB_PROPERTYSET_TYPE)
+
+    @staticmethod
+    def _create_pb_object_from_propertyset_type(pb_type: Any) -> Any:
+        return pb_type(values=[pb_type.Data()])
 
 
 @mark_grpc_properties

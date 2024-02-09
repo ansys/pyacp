@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+from typing_extensions import Self
+
 from ansys.api.acp.v0 import material_pb2
 
 from ..._grpc_helpers.property_helper import mark_grpc_properties
-from ...base import TreeObject
 from .base import (
     _ISOTROPIC_PROPERTY_UNAVAILABLE_MSG,
     _ORTHOTROPIC_PROPERTY_UNAVAILABLE_MSG,
@@ -48,8 +49,35 @@ class ConstantStressLimits(_StressLimitsMixin, _ConstantPropertySet):
 
     _GRPC_PROPERTIES = tuple()
 
-    def __init__(
-        self,
+    @classmethod
+    def from_isotropic_constants(
+        cls,
+        *,
+        effective_stress: float = 0.0,
+    ) -> Self:
+        """Create an isotropic stress limits property set.
+
+        Parameters
+        ----------
+        effective_stress:
+            Effective stress limit.
+
+        Returns
+        -------
+        :
+            An isotropic stress limits property set.
+        """
+        obj = cls(
+            _pb_object=cls._create_pb_object_from_propertyset_type(
+                material_pb2.IsotropicStressLimitsPropertySet
+            )
+        )
+        obj.effective_stress = effective_stress
+        return obj
+
+    @classmethod
+    def from_orthotropic_constants(
+        cls,
         *,
         Xc: float = 0.0,
         Yc: float = 0.0,
@@ -60,21 +88,50 @@ class ConstantStressLimits(_StressLimitsMixin, _ConstantPropertySet):
         Sxy: float = 0.0,
         Syz: float = 0.0,
         Sxz: float = 0.0,
-        _parent_object: TreeObject | None = None,
-        _attribute_path: str | None = None,
-    ):
-        super().__init__(_parent_object=_parent_object, _attribute_path=_attribute_path)
-        if _parent_object is not None:
-            return
-        self.Xc = Xc
-        self.Yc = Yc
-        self.Zc = Zc
-        self.Xt = Xt
-        self.Yt = Yt
-        self.Zt = Zt
-        self.Sxy = Sxy
-        self.Syz = Syz
-        self.Sxz = Sxz
+    ) -> Self:
+        """Create an orthotropic stress limits property set.
+
+        Parameters
+        ----------
+        Xc:
+            Compressive stress limit in material 1 direction.
+        Yc:
+            Compressive stress limit in material 2 direction.
+        Zc:
+            Compressive stress limit in out-of-plane direction.
+        Xt:
+            Tensile stress limit in material 1 direction.
+        Yt:
+            Tensile stress limit in material 2 direction.
+        Zt:
+            Tensile stress limit in out-of-plane direction.
+        Sxy:
+            Shear stress limit in-plane (:math:`e_{12}`).
+        Syz:
+            Shear stress limit out-of-plane (:math:`e_{23}`).
+        Sxz:
+            Shear stress limit out-of-plane (:math:`e_{13}`).
+
+        Returns
+        -------
+        :
+            An orthotropic stress limits property set.
+        """
+        obj = cls(
+            _pb_object=cls._create_pb_object_from_propertyset_type(
+                material_pb2.OrthotropicStressLimitsPropertySet
+            )
+        )
+        obj.Xc = Xc
+        obj.Yc = Yc
+        obj.Zc = Zc
+        obj.Xt = Xt
+        obj.Yt = Yt
+        obj.Zt = Zt
+        obj.Sxy = Sxy
+        obj.Syz = Syz
+        obj.Sxz = Sxz
+        return obj
 
     effective_stress = constant_material_grpc_data_property("effective_stress", **_ISOTROPIC_KWARGS)
     Xc = constant_material_grpc_data_property("Xc", **_ORTHOTROPIC_KWARGS)

@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+from typing_extensions import Self
+
 from ansys.api.acp.v0 import material_pb2
 
 from ..._grpc_helpers.property_helper import mark_grpc_properties
-from ...base import TreeObject
 from .base import (
     _ISOTROPIC_PROPERTY_UNAVAILABLE_MSG,
     _ORTHOTROPIC_PROPERTY_UNAVAILABLE_MSG,
@@ -48,8 +49,35 @@ class ConstantStrainLimits(_StrainLimitsMixin, _ConstantPropertySet):
 
     _GRPC_PROPERTIES = tuple()
 
-    def __init__(
-        self,
+    @classmethod
+    def from_isotropic_constants(
+        cls,
+        *,
+        effective_strain: float = 0.0,
+    ) -> Self:
+        """Create an isotropic strain limits property set.
+
+        Parameters
+        ----------
+        effective_strain:
+            Effective strain limit.
+
+        Returns
+        -------
+        :
+            An isotropic strain limits property set.
+        """
+        obj = cls(
+            _pb_object=cls._create_pb_object_from_propertyset_type(
+                material_pb2.IsotropicStrainLimitsPropertySet
+            )
+        )
+        obj.effective_strain = effective_strain
+        return obj
+
+    @classmethod
+    def from_orthotropic_constants(
+        cls,
         *,
         eXc: float = 0.0,
         eYc: float = 0.0,
@@ -60,21 +88,50 @@ class ConstantStrainLimits(_StrainLimitsMixin, _ConstantPropertySet):
         eSxy: float = 0.0,
         eSyz: float = 0.0,
         eSxz: float = 0.0,
-        _parent_object: TreeObject | None = None,
-        _attribute_path: str | None = None,
-    ):
-        super().__init__(_parent_object=_parent_object, _attribute_path=_attribute_path)
-        if _parent_object is not None:
-            return
-        self.eXc = eXc
-        self.eYc = eYc
-        self.eZc = eZc
-        self.eXt = eXt
-        self.eYt = eYt
-        self.eZt = eZt
-        self.eSxy = eSxy
-        self.eSyz = eSyz
-        self.eSxz = eSxz
+    ) -> Self:
+        """Create an orthotropic strain limits property set.
+
+        Parameters
+        ----------
+        eXc:
+            Compressive strain limit in material 1 direction.
+        eYc:
+            Compressive strain limit in material 2 direction.
+        eZc:
+            Compressive strain limit in out-of-plane direction.
+        eXt:
+            Tensile strain limit in material 1 direction.
+        eYt:
+            Tensile strain limit in material 2 direction.
+        eZt:
+            Tensile strain limit in out-of-plane direction.
+        eSxy:
+            Shear strain limit in-plane (:math:`e_{12}`).
+        eSyz:
+            Shear strain limit out-of-plane (:math:`e_{23}`).
+        eSxz:
+            Shear strain limit out-of-plane (:math:`e_{13}`).
+
+        Returns
+        -------
+        :
+            An orthotropic strain limits property set.
+        """
+        obj = cls(
+            _pb_object=cls._create_pb_object_from_propertyset_type(
+                material_pb2.OrthotropicStrainLimitsPropertySet
+            )
+        )
+        obj.eXc = eXc
+        obj.eYc = eYc
+        obj.eZc = eZc
+        obj.eXt = eXt
+        obj.eYt = eYt
+        obj.eZt = eZt
+        obj.eSxy = eSxy
+        obj.eSyz = eSyz
+        obj.eSxz = eSxz
+        return obj
 
     effective_strain = constant_material_grpc_data_property("effective_strain", **_ISOTROPIC_KWARGS)
     eXc = constant_material_grpc_data_property("eXc", **_ORTHOTROPIC_KWARGS)
