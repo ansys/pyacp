@@ -92,7 +92,6 @@ class Fabric(CreatableTreeObject, IdTreeObject):
     def _create_stub(self) -> fabric_pb2_grpc.ObjectServiceStub:
         return fabric_pb2_grpc.ObjectServiceStub(self._channel)
 
-    locked: ReadOnlyProperty[bool] = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     area_weight: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.area_weight")
 
