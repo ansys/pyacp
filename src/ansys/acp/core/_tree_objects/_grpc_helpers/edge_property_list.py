@@ -62,7 +62,7 @@ class EdgePropertyList(MutableSequence[ValueT]):
     For instance, element sets of an oriented element set.
     """
 
-    _OBJECT_CACHE: WeakValueDictionary[tuple[str, str], Self] = WeakValueDictionary()
+    _OBJECT_CACHE: WeakValueDictionary[tuple[int, str], Self] = WeakValueDictionary()
 
     @classmethod
     def _initialize_with_cache(
@@ -72,7 +72,8 @@ class EdgePropertyList(MutableSequence[ValueT]):
         attribute_name: str,
         **kwargs: Any,
     ) -> Self:
-        cache_key = (parent_object._resource_path.value, attribute_name)
+        # TODO: check the logic w.r.t. reuse of id in the Python interpreter
+        cache_key = (id(parent_object), attribute_name)
         if cache_key in cls._OBJECT_CACHE:
             return cast(Self, cls._OBJECT_CACHE[cache_key])
         res = cls(parent_object=parent_object, attribute_name=attribute_name, **kwargs)
