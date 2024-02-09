@@ -1,5 +1,7 @@
 import gc
 
+import ansys.acp.core as pyacp
+
 
 def test_object_identity(load_model_from_tempfile):
     with load_model_from_tempfile() as model:
@@ -27,3 +29,8 @@ def test_object_identity_after_deletion(load_model_from_tempfile):
         gc.collect()
         id2 = id(model.modeling_groups[key])
         assert id1 == id2
+
+
+def test_unstored():
+    """Check that unstored objects have unique identities."""
+    assert pyacp.ModelingPly() is not pyacp.ModelingPly()  # type: ignore
