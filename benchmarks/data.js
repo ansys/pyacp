@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707407835822,
+  "lastUpdate": 1707686268347,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12098,6 +12098,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00022536427770333722",
             "extra": "mean: 810.9567683982056 usec\nrounds: 1386"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fbcf2ec43f6c2f1fc3e6dbc56544f66ffe593025",
+          "message": "Remove Fabric.locked (#417)\n\nThe `locked` attribute of the fabric is not present in the API; remove it.\r\n\r\nCloses #98",
+          "timestamp": "2024-02-11T22:15:06+01:00",
+          "tree_id": "26717f82ca03e48cef7e256b2c5a9b1b1d1651dd",
+          "url": "https://github.com/ansys-internal/pyacp/commit/fbcf2ec43f6c2f1fc3e6dbc56544f66ffe593025"
+        },
+        "date": 1707686257653,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.929662896114526,
+            "unit": "iter/sec",
+            "range": "stddev: 0.01207357749563526",
+            "extra": "mean: 168.64365100000214 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1233.7157733442039,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00021901190107533581",
+            "extra": "mean: 810.5594672663736 usec\nrounds: 1222"
           }
         ]
       }
