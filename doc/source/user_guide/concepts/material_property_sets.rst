@@ -123,12 +123,12 @@ Continuing from the preceding example, we can assign either an orthotropic or is
 
 .. doctest::
 
-    >>> from ansys.acp.core.material_property_sets import ConstantEngineeringConstants
     >>> material.ply_type
     <PlyType.WOVEN: 'woven'>
 
 .. doctest::
 
+    >>> from ansys.acp.core.material_property_sets import ConstantEngineeringConstants
     >>> material.engineering_constants = (
     ...     ConstantEngineeringConstants.from_orthotropic_constants(
     ...         E1=1e9,
