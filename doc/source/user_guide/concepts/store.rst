@@ -1,3 +1,5 @@
+.. _stored_vs_unstored:
+
 Stored versus unstored objects
 ------------------------------
 
