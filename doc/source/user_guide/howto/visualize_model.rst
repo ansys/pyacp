@@ -7,9 +7,17 @@ For this how-to guide, we will use an example model of a race car front wing.
     :nofigs:
     :context:
 
+    >>> import tempfile
+    >>> import pathlib
     >>> import ansys.acp.core as pyacp
+    >>> from ansys.acp.core import example_helpers
+
     >>> acp = pyacp.launch_acp()
-    >>> path = acp.upload_file('/home/dgresch/tmp/race_car_nose.acph5')
+    >>> tempdir = tempfile.TemporaryDirectory()
+    >>> input_file = example_helpers.get_example_file(
+    ...     example_helpers.ExampleKeys.RACE_CAR_NOSE_ACPH5, pathlib.Path(tempdir.name)
+    ... )
+    >>> path = acp.upload_file(input_file)
     >>> model = acp.import_model(path=path)
     >>> model.update()
 
