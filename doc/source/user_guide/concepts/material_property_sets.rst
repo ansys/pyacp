@@ -30,9 +30,11 @@ The following material property sets can be defined as either isotropic or ortho
 Whether a material has isotropic or orthotropic properties is determined by its
 ply type. The isotropic ply types are:
 
-- :attr:`.PlyType.ISOTROPIC_HOMOGENEOUS_CORE`
 - :attr:`.PlyType.ISOTROPIC`
 - :attr:`.PlyType.ADHESIVE`
+
+The :attr:`.PlyType.ISOTROPIC_HOMOGENEOUS_CORE` ply type has isotropic Engineering Constants,
+but orthotropic stress and strain limits.
 
 .. note::
 
