@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707686268347,
+  "lastUpdate": 1707732593694,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12136,6 +12136,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00021901190107533581",
             "extra": "mean: 810.5594672663736 usec\nrounds: 1222"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9dae1188245e405be2fd869a4b5bf0f44a23f706",
+          "message": "Improve usability of isotropic / orthotropic material property sets (#414)\n\nImprove the usability of property sets which can be either isotropic\r\nor orthotropic in the following ways (details below)\r\n1. Improve error message on unavailable attributes\r\n2. Allow constructing isotropic property sets directly\r\n3. Add concept documentation\r\n\r\nDetails:\r\n\r\n1.\r\nWhen a material property which is currently unavailable (due to\r\nthe difference between isotropic / orthotropic material property\r\nsets) is accessed (getter or setter), raise an AttributeError with\r\na specific exception message.\r\nTo achieve this, the property helpers for material properties get\r\ntwo new keyword arguments ``available_on_pb_type`` and\r\n``unavailable_msg``. The former determines which protobuf type\r\nneeds to be present for the property to be available, and the\r\nlatter gives the error message (enhanced automatically with\r\nthe attribute name).\r\n\r\n2.\r\nAdd classmethod constructors `from_isotropic_constants` and\r\n`from_orthotropic_constants` for directly creating a property\r\nset which is either isotropic or orthotropic. Previously, directly\r\nconstructed property sets would always be orthotropic. This\r\nchange removes the ability to pass the parameters on the\r\nmain constructor (`__init__`).\r\n\r\n3.\r\nAdd a concept page for material property sets, explaining the\r\ndifference between constant / variable property sets, as well\r\nas isotropic / orthotropic. Includes the validation rules for\r\nchanging ply type or assigning property sets.\r\n\r\nCloses #398",
+          "timestamp": "2024-02-12T10:07:14Z",
+          "tree_id": "07fd6f242a9d7e00229d1b49d067585c8d4d2de2",
+          "url": "https://github.com/ansys-internal/pyacp/commit/9dae1188245e405be2fd869a4b5bf0f44a23f706"
+        },
+        "date": 1707732580975,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.90628181107446,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0038382105289549804",
+            "extra": "mean: 144.7957131428471 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1172.6341263483262,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00024792066388204883",
+            "extra": "mean: 852.7809122476059 usec\nrounds: 1584"
           }
         ]
       }
