@@ -11,6 +11,7 @@ For this how-to guide, we will use an example model of a race car front wing.
     >>> acp = pyacp.launch_acp()
     >>> path = acp.upload_file('/home/dgresch/tmp/race_car_nose.acph5')
     >>> model = acp.import_model(path=path)
+    >>> model.update()
 
 Showing the mesh
 ~~~~~~~~~~~~~~~~
