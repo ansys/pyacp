@@ -1,0 +1,6 @@
+from\_isotropic\_constants
+==========================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: ConstantStressLimits.from_isotropic_constants

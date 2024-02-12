@@ -65,7 +65,7 @@
     <link rel="icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="eSxy" href="ansys.acp.core.material_property_sets.ConstantStrainLimits.eSxy.html" />
+    <link rel="next" title="from_isotropic_constants" href="ansys.acp.core.material_property_sets.ConstantStrainLimits.from_isotropic_constants.html" />
     <link rel="prev" title="s" href="ansys.acp.core.material_property_sets.ConstantPuckConstants.s.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -1254,6 +1254,8 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantEngineeringConstants.html">ConstantEngineeringConstants</a><input class="toctree-checkbox" id="toctree-checkbox-75" name="toctree-checkbox-75" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-75"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantEngineeringConstants.from_isotropic_constants.html">from_isotropic_constants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantEngineeringConstants.from_orthotropic_constants.html">from_orthotropic_constants</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantEngineeringConstants.E.html">E</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantEngineeringConstants.E1.html">E1</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantEngineeringConstants.E2.html">E2</a></li>
@@ -1291,6 +1293,8 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">ConstantStrainLimits</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-79" name="toctree-checkbox-79" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-79"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantStrainLimits.from_isotropic_constants.html">from_isotropic_constants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantStrainLimits.from_orthotropic_constants.html">from_orthotropic_constants</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantStrainLimits.eSxy.html">eSxy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantStrainLimits.eSxz.html">eSxz</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantStrainLimits.eSyz.html">eSyz</a></li>
@@ -1304,6 +1308,8 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantStressLimits.html">ConstantStressLimits</a><input class="toctree-checkbox" id="toctree-checkbox-80" name="toctree-checkbox-80" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-80"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantStressLimits.from_isotropic_constants.html">from_isotropic_constants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantStressLimits.from_orthotropic_constants.html">from_orthotropic_constants</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantStressLimits.Sxy.html">Sxy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantStressLimits.Sxz.html">Sxz</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantStressLimits.Syz.html">Syz</a></li>
@@ -1789,11 +1795,17 @@ document.write(`
 <h1>ConstantStrainLimits<a class="headerlink" href="#constantstrainlimits" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ansys.acp.core.material_property_sets.ConstantStrainLimits">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.material_property_sets.</span></span><span class="sig-name descname"><span class="pre">ConstantStrainLimits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eXc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eYc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eZc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eXt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eYt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eZt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eSxy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eSyz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eSxz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_parent_object</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_attribute_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.material_property_sets.ConstantStrainLimits" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.material_property_sets.</span></span><span class="sig-name descname"><span class="pre">ConstantStrainLimits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_parent_object</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_attribute_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_pb_object</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.material_property_sets.ConstantStrainLimits" title="Permalink to this definition">#</a></dt>
 <dd><p>Constant strain limits material property set.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantStrainLimits.from_isotropic_constants.html#ansys.acp.core.material_property_sets.ConstantStrainLimits.from_isotropic_constants" title="ansys.acp.core.material_property_sets.ConstantStrainLimits.from_isotropic_constants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConstantStrainLimits.from_isotropic_constants</span></code></a>(*)</p></td>
+<td><p>Create an isotropic strain limits property set.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.material_property_sets.ConstantStrainLimits.from_orthotropic_constants.html#ansys.acp.core.material_property_sets.ConstantStrainLimits.from_orthotropic_constants" title="ansys.acp.core.material_property_sets.ConstantStrainLimits.from_orthotropic_constants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConstantStrainLimits.from_orthotropic_constants</span></code></a>(*)</p></td>
+<td><p>Create an orthotropic strain limits property set.</p></td>
+</tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
