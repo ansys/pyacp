@@ -3,11 +3,11 @@ from __future__ import annotations
 from collections.abc import Iterable, Iterator, MutableSequence
 import sys
 from typing import Any, Callable, Protocol, TypeVar, cast, overload
-from weakref import WeakValueDictionary
 
 from google.protobuf.message import Message
 from typing_extensions import Self
 
+from .._object_cache import ObjectCacheMixin, constructor_with_cache
 from ..base import CreatableTreeObject
 from .property_helper import _exposed_grpc_property, _wrap_doc, grpc_data_getter, grpc_data_setter
 
@@ -42,7 +42,7 @@ class GenericEdgePropertyType(Protocol):
 ValueT = TypeVar("ValueT", bound=GenericEdgePropertyType)
 
 
-class EdgePropertyList(MutableSequence[ValueT]):
+class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
     """Wrap graph edges of a specific type.
 
     Wraps links between objects of a specific type, for instance FabricWithAngle
@@ -62,49 +62,67 @@ class EdgePropertyList(MutableSequence[ValueT]):
     For instance, element sets of an oriented element set.
     """
 
-    _OBJECT_CACHE: WeakValueDictionary[tuple[int, str], Self] = WeakValueDictionary()
-
     @classmethod
+    @constructor_with_cache(
+        # TODO: check the logic w.r.t. reuse of id in the Python interpreter
+        key_getter=lambda *args, parent_object, attribute_name, **kwargs: (
+            id(parent_object),
+            attribute_name,
+        ),
+        raise_on_invalid_key=True,
+    )
     def _initialize_with_cache(
         cls: type[Self],
-        *,
-        parent_object: CreatableTreeObject,
-        attribute_name: str,
-        **kwargs: Any,
-    ) -> Self:
-        # TODO: check the logic w.r.t. reuse of id in the Python interpreter
-        cache_key = (id(parent_object), attribute_name)
-        if cache_key in cls._OBJECT_CACHE:
-            return cast(Self, cls._OBJECT_CACHE[cache_key])
-        res = cls(parent_object=parent_object, attribute_name=attribute_name, **kwargs)
-        cls._OBJECT_CACHE[cache_key] = res
-        return res
-
-    def __init__(
-        self,
         *,
         parent_object: CreatableTreeObject,
         object_type: type[GenericEdgePropertyType],
         attribute_name: str,
         from_pb_constructor: Callable[[CreatableTreeObject, Message, Callable[[], None]], ValueT],
-    ) -> None:
-        getter = grpc_data_getter(attribute_name, from_protobuf=list)
-        setter = grpc_data_setter(attribute_name, to_protobuf=lambda x: x)
+    ) -> Self:
+        return cls(
+            _parent_object=parent_object,
+            _object_type=object_type,
+            _attribute_name=attribute_name,
+            _from_pb_constructor=from_pb_constructor,
+        )
 
-        self._parent_object = parent_object
-        self._object_type = object_type
-        self._name = attribute_name.split(".")[-1]
+    @staticmethod
+    def _cache_key_valid(key: Any) -> bool:
+        try:
+            (parent_object_id, attribute_name) = key
+            if not attribute_name:
+                return False
+            if not isinstance(parent_object_id, int):
+                return False
+            return True
+        except Exception:
+            return False
+
+    def __init__(
+        self,
+        *,
+        _parent_object: CreatableTreeObject,
+        _object_type: type[GenericEdgePropertyType],
+        _attribute_name: str,
+        _from_pb_constructor: Callable[[CreatableTreeObject, Message, Callable[[], None]], ValueT],
+    ) -> None:
+        getter = grpc_data_getter(_attribute_name, from_protobuf=list)
+        setter = grpc_data_setter(_attribute_name, to_protobuf=lambda x: x)
+
+        self._parent_object = _parent_object
+        self._object_type = _object_type
+        self._name = _attribute_name.split(".")[-1]
 
         self._object_constructor: Callable[
             [Message], ValueT
-        ] = lambda pb_object: from_pb_constructor(
+        ] = lambda pb_object: _from_pb_constructor(
             self._parent_object, pb_object, self._apply_changes
         )
 
         # get initial object list
         def get_object_list_from_parent_object() -> list[ValueT]:
             obj_list = []
-            for item in getter(parent_object):
+            for item in getter(_parent_object):
                 obj_list.append(self._object_constructor(item))
             return obj_list
 
@@ -120,7 +138,7 @@ class EdgePropertyList(MutableSequence[ValueT]):
                 # update callback in case item was copied from another tree object
                 # or if it is a new object
                 item._set_callback_apply_changes(self._apply_changes)
-            setter(parent_object, pb_obj_list)
+            setter(_parent_object, pb_obj_list)
             # keep object list in sync with the backend. This is needed for the in-place editing
             self._object_list = items
 

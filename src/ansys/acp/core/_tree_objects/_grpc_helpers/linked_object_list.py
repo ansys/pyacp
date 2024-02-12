@@ -7,9 +7,11 @@ from typing import Any, Callable, TypeVar, cast, overload
 
 from grpc import Channel
 import numpy as np
+from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
+from .._object_cache import ObjectCacheMixin, constructor_with_cache
 from ..base import CreatableTreeObject, TreeObject
 from .polymorphic_from_pb import tree_object_from_resource_path
 from .property_helper import _exposed_grpc_property, _wrap_doc, grpc_data_getter, grpc_data_setter
@@ -20,33 +22,67 @@ ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
 __all__ = ["LinkedObjectList", "define_linked_object_list"]
 
 
-class LinkedObjectList(MutableSequence[ValueT]):
+class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
     """List of linked tree objects."""
 
-    def __init__(
-        self,
+    @classmethod
+    @constructor_with_cache(
+        # TODO: check the logic w.r.t. reuse of id in the Python interpreter
+        key_getter=lambda *args, parent_object, attribute_name, **kwargs: (
+            id(parent_object),
+            attribute_name,
+        ),
+        raise_on_invalid_key=True,
+    )
+    def _initialize_with_cache(
+        cls: type[Self],
         *,
         parent_object: TreeObject,
         attribute_name: str,
         object_constructor: Callable[[ResourcePath, Channel], ValueT],
+    ) -> Self:
+        return cls(
+            _parent_object=parent_object,
+            _attribute_name=attribute_name,
+            _object_constructor=object_constructor,
+        )
+
+    @staticmethod
+    def _cache_key_valid(key: Any) -> bool:
+        try:
+            (parent_object_id, attribute_name) = key
+            if not attribute_name:
+                return False
+            if not isinstance(parent_object_id, int):
+                return False
+            return True
+        except Exception:
+            return False
+
+    def __init__(
+        self,
+        *,
+        _parent_object: TreeObject,
+        _attribute_name: str,
+        _object_constructor: Callable[[ResourcePath, Channel], ValueT],
     ) -> None:
-        getter = grpc_data_getter(attribute_name, from_protobuf=list)
-        setter = grpc_data_setter(attribute_name, to_protobuf=lambda x: x)
+        getter = grpc_data_getter(_attribute_name, from_protobuf=list)
+        setter = grpc_data_setter(_attribute_name, to_protobuf=lambda x: x)
 
         self._get_resourcepath_list = cast(
-            Callable[[], list[ResourcePath]], lambda: getter(parent_object)
+            Callable[[], list[ResourcePath]], lambda: getter(_parent_object)
         )
 
         def set_resourcepath_list(value: list[ResourcePath]) -> None:
             if not all([rp.value for rp in value]):
                 # Check for empty resource paths
                 raise RuntimeError("Cannot link to unstored objects.")
-            setter(parent_object, value)
+            setter(_parent_object, value)
 
         self._set_resourcepath_list = set_resourcepath_list
         self._object_constructor: Callable[
             [ResourcePath], ValueT
-        ] = lambda resource_path: object_constructor(resource_path, parent_object._channel)
+        ] = lambda resource_path: _object_constructor(resource_path, _parent_object._channel)
 
     def __len__(self) -> int:
         return len(self._get_resourcepath_list())
@@ -227,7 +263,7 @@ def define_linked_object_list(
     """Define a list of linked tree objects."""
 
     def getter(self: ValueT) -> LinkedObjectList[ChildT]:
-        return LinkedObjectList(
+        return LinkedObjectList._initialize_with_cache(
             parent_object=self,
             attribute_name=attribute_name,
             object_constructor=object_class._from_resource_path,
@@ -246,9 +282,11 @@ def define_polymorphic_linked_object_list(
 
     def getter(self: ValueT) -> LinkedObjectList[Any]:
         return LinkedObjectList(
-            parent_object=self,
-            attribute_name=attribute_name,
-            object_constructor=partial(tree_object_from_resource_path, allowed_types=allowed_types),
+            _parent_object=self,
+            _attribute_name=attribute_name,
+            _object_constructor=partial(
+                tree_object_from_resource_path, allowed_types=allowed_types
+            ),
         )
 
     def setter(self: ValueT, value: list[Any]) -> None:
