@@ -1,3 +1,4 @@
+from typing import Any, Callable
 import uuid
 
 from hypothesis import HealthCheck, given, settings
@@ -81,11 +82,11 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
             "G31": 0.0,
         },
     }
-    DEFAULT_TYPE_BY_PROPERTY_SET = {
+    DEFAULT_CONSTRUCTOR_BY_PROPERTY_SET: dict[str, Callable[..., Any]] = {
         "density": ConstantDensity,
-        "engineering_constants": ConstantEngineeringConstants,
-        "stress_limits": ConstantStressLimits,
-        "strain_limits": ConstantStrainLimits,
+        "engineering_constants": ConstantEngineeringConstants.from_orthotropic_constants,
+        "stress_limits": ConstantStressLimits.from_orthotropic_constants,
+        "strain_limits": ConstantStrainLimits.from_orthotropic_constants,
         "puck_constants": ConstantPuckConstants,
         "woven_characterization": ConstantWovenCharacterization,
         "woven_puck_constants_1": ConstantPuckConstants,
@@ -210,6 +211,17 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
             "fabric_fiber_angle",
         ]:
             assert getattr(tree_object, propset_name) is None
+
+    def test_assign_isotropic_propertyset(self, tree_object):
+        tree_object.engineering_constants = ConstantEngineeringConstants.from_isotropic_constants(
+            E=2.0, nu=0.3
+        )
+        assert tree_object.engineering_constants.E1 == 2.0
+        assert tree_object.engineering_constants.E2 == 2.0
+        assert tree_object.engineering_constants.E3 == 2.0
+        assert tree_object.engineering_constants.nu12 == 0.3
+        assert tree_object.engineering_constants.nu23 == 0.3
+        assert tree_object.engineering_constants.nu13 == 0.3
 
     @pytest.mark.parametrize(
         "property_set_name,property_set_value,attributes_to_check",
@@ -422,7 +434,7 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         setattr(
             tree_object,
             property_set_name,
-            self.DEFAULT_TYPE_BY_PROPERTY_SET[property_set_name](**{attr_name: val}),
+            self.DEFAULT_CONSTRUCTOR_BY_PROPERTY_SET[property_set_name](**{attr_name: val}),
         )
 
         property_set = getattr(tree_object, property_set_name)
@@ -447,7 +459,7 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         setattr(
             tree_object,
             property_set_name,
-            self.DEFAULT_TYPE_BY_PROPERTY_SET[property_set_name](**{attr_name: val}),
+            self.DEFAULT_CONSTRUCTOR_BY_PROPERTY_SET[property_set_name](**{attr_name: val}),
         )
         npt.assert_allclose(
             getattr(getattr(tree_object, property_set_name), attr_name), val, rtol=0.0, atol=0.0
@@ -464,3 +476,19 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         assert material.ext_id != ""
         # the next check fails if ext_id is not a valid uuid
         assert uuid.UUID(material.ext_id)
+
+    def test_wrong_attribute_access_1(self, tree_object):
+        eng_constants = tree_object.engineering_constants
+        with pytest.raises(AttributeError, match="orthotropic"):
+            eng_constants.E
+
+    def test_wrong_attribute_access_2(self, variable_material):
+        variable_material.engineering_constants.E1
+        with pytest.raises(AttributeError, match="This property is only available"):
+            variable_material.engineering_constants.E
+
+
+def test_engineering_constants_from_isotropic():
+    engineering_constants = ConstantEngineeringConstants.from_isotropic_constants(E=2.0, nu=0.3)
+    assert engineering_constants.E == 2.0
+    assert engineering_constants.nu == 0.3

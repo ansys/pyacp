@@ -344,10 +344,19 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly):
         ...
 
     def __init__(
-        self, *, _parent_object: Editable | None = None, _attribute_path: str | None = None
+        self,
+        *,
+        _parent_object: Editable | None = None,
+        _attribute_path: str | None = None,
+        _pb_object: Any | None = None,
     ):
+        if (_pb_object is not None) and (_parent_object is not None):
+            raise TypeError("The '_pb_object' parameter is not allowed if '_parent_object' is set.")
         if _parent_object is None:
-            self._pb_object_store: Any = self._create_default_pb_object()
+            if _pb_object is None:
+                self._pb_object_store: Any = self._create_default_pb_object()
+            else:
+                self._pb_object_store = _pb_object
         else:
             self._pb_object_store = None
         self._parent_object: Editable | None
