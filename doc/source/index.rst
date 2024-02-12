@@ -1,4 +1,4 @@
-.. jinja:: main_toctree
+.. jinja:: conditional_skip
 
     .. toctree::
         :hidden:
@@ -31,7 +31,7 @@ PrepPost (ACP) through a Python interface.
 This makes PyACP a powerful tool for automating the design, analysis and
 optimization of composite structures.
 
-.. jinja:: main_toctree
+.. jinja:: conditional_skip
 
     .. grid:: 1 1 2 2
         :gutter: 2

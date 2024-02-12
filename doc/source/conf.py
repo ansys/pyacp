@@ -32,7 +32,7 @@ if SKIP_API:
 
 
 jinja_contexts = {
-    "main_toctree": {"skip_api": SKIP_API, "skip_gallery": SKIP_GALLERY},
+    "conditional_skip": {"skip_api": SKIP_API, "skip_gallery": SKIP_GALLERY},
 }
 
 # Manage errors
