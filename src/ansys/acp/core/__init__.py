@@ -8,7 +8,14 @@ import importlib.metadata
 from . import example_helpers, material_property_sets
 from ._model_printer import get_model_tree, print_model
 from ._plotter import get_directions_plotter
-from ._server import ACP, DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode, launch_acp
+from ._server import (
+    ACP,
+    ConnectLaunchConfig,
+    DirectLaunchConfig,
+    DockerComposeLaunchConfig,
+    LaunchMode,
+    launch_acp,
+)
 from ._tree_objects import (
     AnalysisPly,
     AnalysisPlyElementalData,
@@ -118,6 +125,7 @@ __all__ = [
     "BooleanSelectionRuleNodalData",
     "CADComponent",
     "CADGeometry",
+    "ConnectLaunchConfig",
     "CutoffMaterialType",
     "CutoffRuleType",
     "CutoffSelectionRule",

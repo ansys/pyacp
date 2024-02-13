@@ -73,20 +73,7 @@ Getting Started
 Launching ACP
 ^^^^^^^^^^^^^
 
-Configure ACP using the `ansys-launcher <https://local-product-launcher.tools.docs.pyansys.com>`_ command line tool:
-
-.. code-block:: bash
-
-    ansys-launcher configure ACP <launch_mode>
-
-where ``<launch_mode>`` is one of
-
-* ``direct``: run ACP as a sub-process
-* ``docker_compose``: run ACP in a docker container, using ``docker-compose`` and the `filetransfer service <https://github.com/ansys-internal/ansys-tools-filetransfer-server>`_ to manage files
-
-The ``ansys-launcher`` prompts for the relevant options for each mode.
-
-Having configured the launcher, the server can be started with ``launch_acp``:
+The ACP server can be started with ``launch_acp``:
 
 .. code-block:: python
 
