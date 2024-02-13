@@ -28,11 +28,6 @@ from ansys.acp.core import (
 from ansys.acp.core.example_helpers import ExampleKeys, get_example_file, run_analysis
 from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, ConstantStrainLimits
 
-# Note: It is important to import mapdl before dpf, otherwise the plot defaults are messed up
-# https://github.com/ansys/pydpf-core/issues/1363
-# from ansys.mapdl.core import launch_mapdl
-
-
 # %%
 # Get example file from server
 tempdir = tempfile.TemporaryDirectory()
@@ -66,12 +61,12 @@ mesh.plot(show_edges=True)
 
 # %%
 # Create the UD material and  its corresponding fabric
-engineering_constants_ud = ConstantEngineeringConstants(
+engineering_constants_ud = ConstantEngineeringConstants.from_orthotropic_constants(
     E1=5e10, E2=1e10, E3=1e10, nu12=0.28, nu13=0.28, nu23=0.3, G12=5e9, G23=4e9, G31=4e9
 )
 
 strain_limit = 0.01
-strain_limits = ConstantStrainLimits(
+strain_limits = ConstantStrainLimits.from_orthotropic_constants(
     eXc=-strain_limit,
     eYc=-strain_limit,
     eZc=-strain_limit,
@@ -82,7 +77,7 @@ strain_limits = ConstantStrainLimits(
     eSyz=strain_limit,
     eSxz=strain_limit,
 )
-# TBD: Should we add strain limits?
+
 ud_material = model.create_material(
     name="UD",
     ply_type=PlyType.REGULAR,
@@ -119,20 +114,15 @@ sublaminate = model.create_sublaminate(
 )
 
 
-# Todo: it looks like the arguments for isotropic materials are missing
-engineering_constants_core = ConstantEngineeringConstants(
-    E1=5e10, E2=1e10, E3=1e10, nu12=0.28, nu13=0.28, nu23=0.3, G12=5e9, G23=4e9, G31=4e9
-)
+engineering_constants_core = ConstantEngineeringConstants.from_isotropic_constants(E=8.5e7, nu=0.3)
 
-# engineering_constants_core.E = 8.5E7
-# engineering_constants_core.nu = 0.3
 
 # %%
 # Create the Core Material and its corresponding Fabric
 core = model.create_material(
     name="Core",
-    # ply_type=PlyType.ISOTROPIC_HOMOGENEOUS_CORE,
-    ply_type=PlyType.REGULAR,
+    ply_type=PlyType.ISOTROPIC_HOMOGENEOUS_CORE,
+    # ply_type=PlyType.REGULAR,
     engineering_constants=engineering_constants_core,
     strain_limits=strain_limits,
 )
