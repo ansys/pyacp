@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, TypedDict
 
 from google.protobuf.message import Message
 
@@ -9,7 +9,31 @@ from ...base import PolymorphicMixin as _BasePolymorphicMixin
 from ...base import TreeObjectAttribute, TreeObjectAttributeReadOnly
 from .variable_property_set_attributes import FieldVariable, InterpolationOptions
 
-__all__ = ("_ConstantPropertySet", "_PolymorphicMixin", "_VariablePropertySet")
+__all__ = (
+    "_ConstantPropertySet",
+    "_PolymorphicMixin",
+    "_VariablePropertySet",
+    "_ISOTROPIC_PROPERTY_UNAVAILABLE_MSG",
+    "_ORTHOTROPIC_PROPERTY_UNAVAILABLE_MSG",
+    "_PolymorphicPropertyKwargs",
+)
+
+
+_ISOTROPIC_PROPERTY_UNAVAILABLE_MSG = (
+    "This property is only available for isotropic material property sets. "
+    "The property set is currently orthotropic"
+)
+_ORTHOTROPIC_PROPERTY_UNAVAILABLE_MSG = (
+    "This property is only available for orthotropic material property sets. "
+    "The property set is currently isotropic"
+)
+
+
+class _PolymorphicPropertyKwargs(TypedDict):
+    """Type for the extra keyword arguments for properties on polymorphic material property sets."""
+
+    available_on_pb_type: type[Message]
+    unavailable_msg: str
 
 
 class _ConstantPropertySet(TreeObjectAttribute):
@@ -19,7 +43,11 @@ class _ConstantPropertySet(TreeObjectAttribute):
 
     @classmethod
     def _create_default_pb_object(cls) -> Any:
-        return cls._DEFAULT_PB_PROPERTYSET_TYPE(values=[cls._DEFAULT_PB_PROPERTYSET_TYPE.Data()])
+        return cls._create_pb_object_from_propertyset_type(cls._DEFAULT_PB_PROPERTYSET_TYPE)
+
+    @staticmethod
+    def _create_pb_object_from_propertyset_type(pb_type: Any) -> Any:
+        return pb_type(values=[pb_type.Data()])
 
 
 @mark_grpc_properties
