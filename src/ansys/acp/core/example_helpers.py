@@ -13,8 +13,6 @@ __all__ = ["ExampleKeys", "get_example_file"]
 
 from typing import TYPE_CHECKING
 
-from ansys.mapdl.core import launch_mapdl
-
 if TYPE_CHECKING:
     from ansys.acp.core import ACPWorkflow
 
@@ -77,6 +75,8 @@ def _download_file(example_location: _ExampleLocation, local_path: pathlib.Path)
 
 
 def run_analysis(workflow: "ACPWorkflow") -> None:
+    from ansys.mapdl.core import launch_mapdl
+
     model = workflow.model
     model.update()
 
