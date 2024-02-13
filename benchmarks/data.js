@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707829425911,
+  "lastUpdate": 1707840057851,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12288,6 +12288,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023504023524151775",
             "extra": "mean: 827.327159814108 usec\nrounds: 1508"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "77b25bab9c7e875792739aa361b3515d2f526020",
+          "message": "Add plotting how-to (#409)\n\nAdd a how-to section for plotting the model, showcasing:\r\n- plotting the mesh\r\n- directions plotter\r\n- scalar data plot\r\n- vector data plot (on its own, and with mesh)\r\n- plotting CAD geometries\r\n\r\nAdd a 'scaling_factor' parameter to 'get_pyvista_glyphs', since this was needed to reasonably show the vector data (ply offset).\r\n\r\nAdd an example data key for the race car nose `.acph5`.\r\n\r\nSince the how-to needs to execute code, it's not run when `PYACP_DOC_SKIP_GALLERY=true` is set. If we need to individually control it, we can always add a separate env var later. In any case, it shouldn't be included in the \"quick\" CI doc build.\r\n\r\nCloses #380",
+          "timestamp": "2024-02-13T15:58:06Z",
+          "tree_id": "2b645ddbf0210332997d93dde49b72181927e85f",
+          "url": "https://github.com/ansys-internal/pyacp/commit/77b25bab9c7e875792739aa361b3515d2f526020"
+        },
+        "date": 1707840044221,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.735424930264023,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003134232309414982",
+            "extra": "mean: 148.46873216665793 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1209.5710771645868,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00023351721354033936",
+            "extra": "mean: 826.7393449454394 usec\nrounds: 1464"
           }
         ]
       }
