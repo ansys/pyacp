@@ -4,9 +4,9 @@
 Advanced rules example
 ======================
 
-Shows advanced usage of selection rules. This example shows just the
-pyACP part of the setup. See the :ref:`sphx_glr_examples_gallery_examples_004_basic_rules.py`
-example for more basic rule examples. For a complete Composite analysis,
+Shows advanced usage of selection rules. See the
+:ref:`sphx_glr_examples_gallery_examples_004_basic_rules.py` for more basic rule examples.
+This example shows just the pyACP part of the setup.  For a complete Composite analysis,
 see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
 """
 

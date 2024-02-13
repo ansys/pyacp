@@ -24,8 +24,9 @@ from ansys.acp.core import (
     PlyType,
     get_directions_plotter,
     launch_acp,
+    print_model,
 )
-from ansys.acp.core.example_helpers import ExampleKeys, get_example_file, run_analysis
+from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
 from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, ConstantStrainLimits
 
 # %%
@@ -99,10 +100,6 @@ biax_carbon_ud = model.create_stackup(
     ),
 )
 
-fabric_with_angle = biax_carbon_ud.fabrics[0]
-fabric_with_angle.angle = 20
-assert fabric_with_angle.angle == biax_carbon_ud.fabrics[0].angle
-
 
 sublaminate = model.create_sublaminate(
     name="Sublaminate",
@@ -114,15 +111,13 @@ sublaminate = model.create_sublaminate(
 )
 
 
-engineering_constants_core = ConstantEngineeringConstants.from_isotropic_constants(E=8.5e7, nu=0.3)
-
-
 # %%
 # Create the Core Material and its corresponding Fabric
+engineering_constants_core = ConstantEngineeringConstants.from_isotropic_constants(E=8.5e7, nu=0.3)
+
 core = model.create_material(
     name="Core",
     ply_type=PlyType.ISOTROPIC_HOMOGENEOUS_CORE,
-    # ply_type=PlyType.REGULAR,
     engineering_constants=engineering_constants_core,
     strain_limits=strain_limits,
 )
@@ -173,5 +168,10 @@ top_ply = modeling_group.create_modeling_ply(
     number_of_layers=3,
 )
 
+# %%
+# Update and print the model.
+model.update()
+print_model(workflow.model)
+
 # Just to make sure the analysis actually runs. Todo: remove
-run_analysis(workflow)
+# run_analysis(workflow)
