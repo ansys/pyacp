@@ -116,9 +116,6 @@ nitpick_ignore = [
     ("py:class", "numpy.int64"),
     # Ignore TypeVar / TypeAlias defined within PyACP: they are either not recognized correctly,
     # or misidentified as a class.
-    ("py:class", "ValueT"),
-    ("py:class", "TC"),
-    ("py:class", "TV"),
     ("py:class", "_PATH"),
 ]
 nitpick_ignore_regex = [
@@ -126,6 +123,9 @@ nitpick_ignore_regex = [
     ("py:class", "None -- .*"),  # from collections.abc
     # Ignore TypeVars defined within PyACP: they are either not recognized correctly,
     # or misidentified as a class.
+    ("py:class", r"^(.*\.)?ValueT$"),
+    ("py:class", r"^(.*\.)?TC$"),
+    ("py:class", r"^(.*\.)?TV$"),
     ("py:class", r"ansys\.acp.core\..*\.ChildT"),
     ("py:class", r"ansys\.acp.core\..*\.CreatableValueT"),
     ("py:class", r"ansys\.acp.core\..*\.MeshDataT"),
