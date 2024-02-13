@@ -6,7 +6,7 @@ from .boolean_selection_rule import (
     BooleanSelectionRuleNodalData,
 )
 from .cad_component import CADComponent
-from .cad_geometry import CADGeometry
+from .cad_geometry import CADGeometry, TriangleMesh
 from .cutoff_selection_rule import (
     CutoffSelectionRule,
     CutoffSelectionRuleElementalData,
@@ -175,6 +175,7 @@ __all__ = [
     "TaperEdge",
     "ThicknessFieldType",
     "ThicknessType",
+    "TriangleMesh",
     "TubeSelectionRule",
     "TubeSelectionRuleElementalData",
     "TubeSelectionRuleNodalData",

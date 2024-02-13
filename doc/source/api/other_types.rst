@@ -31,5 +31,6 @@ Other data types
     SymmetryType
     ThicknessFieldType
     ThicknessType
+    TriangleMesh
     UnitSystemType
     VirtualGeometryDimension
