@@ -114,7 +114,12 @@ nitpick_ignore = [
     ("py:class", "numpy.float64"),
     ("py:class", "numpy.int32"),
     ("py:class", "numpy.int64"),
+    # Ignore TypeVar / TypeAlias defined within PyACP: they are either not recognized correctly,
+    # or misidentified as a class.
     ("py:class", "ValueT"),
+    ("py:class", "TC"),
+    ("py:class", "TV"),
+    ("py:class", "_PATH"),
 ]
 nitpick_ignore_regex = [
     ("py:class", r"ansys\.api\.acp\..*"),
@@ -125,9 +130,6 @@ nitpick_ignore_regex = [
     ("py:class", r"ansys\.acp.core\..*\.CreatableValueT"),
     ("py:class", r"ansys\.acp.core\..*\.MeshDataT"),
     ("py:class", r"ansys\.acp.core\..*\.ScalarDataT"),
-    ("py:class", r"ansys\.acp.core\..*\.TC"),
-    ("py:class", r"ansys\.acp.core\..*\.TV"),
-    ("py:class", r"ansys\.acp.core\..*\.ValueT"),
 ]
 # sphinx_autodoc_typehints configuration
 typehints_defaults = "comma"

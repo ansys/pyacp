@@ -356,7 +356,7 @@ jobs:
 
       - name: Build HTML
         run: |
-          xvfb-run poetry run make -C doc html SPHINXOPTS="-W --keep-going -v -j auto $SPHINXOPT_NITPICKY"
+          xvfb-run poetry run make -C doc html SPHINXOPTS="-W --keep-going -v $SPHINXOPT_NITPICKY"
         env:
           PYMAPDL_PORT: "50557"
           PYMAPDL_START_INSTANCE: "FALSE"
