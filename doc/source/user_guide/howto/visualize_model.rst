@@ -22,6 +22,13 @@ Visualizing the model
         ... )
         >>> path = acp.upload_file(input_file)
         >>> model = acp.import_model(path=path)
+
+        >>> input_file_geometry = example_helpers.get_example_file(
+        ...     example_helpers.ExampleKeys.RACE_CAR_NOSE_STEP, pathlib.Path(tempdir.name)
+        ... )
+        >>> path_geometry = acp.upload_file(input_file_geometry)
+        >>> model.create_cad_geometry(name="nose_geometry", external_path=path_geometry)
+
         >>> model.update()
 
     Showing the mesh
@@ -118,11 +125,27 @@ Visualizing the model
 
         The preceding plot may not render correctly as a static scene. See the interactive scene instead.
 
+    Showing geometries
+    ~~~~~~~~~~~~~~~~~~
+
+    CAD Geometries can be visualized using their :attr:`visualization_mesh <.CADGeometry.visualization_mesh>` attribute. This attribute contains a tessellated (triangle) mesh representing the geometry.
+
+    For plotting, the tessellated mesh has a :meth:`.to_pyvista <.TriangleMesh.to_pyvista>` method that returns a PyVista :class:`PolyData <pyvista.PolyData>` object. To see the triangle nature of the mesh, you can plot the mesh with the ``show_edges`` option set to ``True``.
+
+    .. pyvista-plot::
+        :context:
+
+        >>> cad_geometry = model.cad_geometries['nose_geometry']
+        >>> tessellated_mesh = cad_geometry.visualization_mesh
+        >>> tessellated_mesh.to_pyvista().plot(show_edges=True)
+
+
     .. pyvista-plot::
         :context:
         :include-source: false
 
         >>> acp.stop(timeout=0)
+
 
     {% else %}
     .. note::
