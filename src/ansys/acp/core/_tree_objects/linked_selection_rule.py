@@ -75,7 +75,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     :class:`.BooleanSelectionRule`         \-                                 \-
     ====================================== ================================== ===================
 
-    Note that :class:`.CutoffSelectionRule` and :class:`.BooleanSelectionRule`` objects cannot be linked to
+    Note that :class:`.CutoffSelectionRule` and :class:`.BooleanSelectionRule` objects cannot be linked to
     a Boolean Selection Rule, only to a Modeling Ply.
     """
 
