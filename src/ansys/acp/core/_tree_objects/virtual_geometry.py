@@ -127,9 +127,6 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
         "properties.dimension", from_protobuf=virtual_geometry_dimension_from_pb
     )
 
-    # Todo: What is the reason we expose SubShapes to the user?
-    # Would it not be enough the expose the CADComponents
-    # It looks like the reason is that a user cannot create CADComponents
     sub_shapes = define_edge_property_list(
         "properties.sub_shapes",
         SubShape,
