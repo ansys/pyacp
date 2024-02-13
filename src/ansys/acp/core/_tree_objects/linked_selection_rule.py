@@ -10,6 +10,7 @@ from ansys.api.acp.v0 import linked_selection_rule_pb2
 from ._grpc_helpers.edge_property_list import GenericEdgePropertyType
 from ._grpc_helpers.polymorphic_from_pb import tree_object_from_resource_path
 from .base import CreatableTreeObject
+from .cutoff_selection_rule import CutoffSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .enums import (
     BooleanOperationType,
@@ -74,7 +75,8 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     :class:`.BooleanSelectionRule`         \-                                 \-
     ====================================== ================================== ===================
 
-    Note that ``CutoffSelectionRule`` and  ``BooleanSelectionRule`` objects cannot be linked.
+    Note that :class:`.CutoffSelectionRule` and :class:`.BooleanSelectionRule`` objects cannot be linked to
+    a Boolean Selection Rule, only to a Modeling Ply.
     """
 
     def __init__(
@@ -110,6 +112,15 @@ class LinkedSelectionRule(GenericEdgePropertyType):
 
     @operation_type.setter
     def operation_type(self, value: BooleanOperationType) -> None:
+        # The backend converts the operation automatically; this is confusing
+        # in the scripting context where the associated warning may not be visible.
+        if isinstance(self._selection_rule, CutoffSelectionRule):
+            if value != BooleanOperationType.INTERSECT:
+                raise ValueError(
+                    "Cannot use a boolean operation other than 'INTERSECT' with a "
+                    "CutoffSelectionRule."
+                )
+
         self._operation_type = value
         if self._callback_apply_changes is not None:
             self._callback_apply_changes()
@@ -160,19 +171,20 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         from .boolean_selection_rule import BooleanSelectionRule
 
         # Cannot link to objects of the same type as the parent.
-        allowed_types = tuple(
-            type_
-            for type_ in [
-                ParallelSelectionRule,
-                CylindricalSelectionRule,
-                SphericalSelectionRule,
-                TubeSelectionRule,
-                GeometricalSelectionRule,
-                VariableOffsetSelectionRule,
+        allowed_types_list = [
+            ParallelSelectionRule,
+            CylindricalSelectionRule,
+            SphericalSelectionRule,
+            TubeSelectionRule,
+            GeometricalSelectionRule,
+            VariableOffsetSelectionRule,
+        ]
+        if not isinstance(parent_object, BooleanSelectionRule):
+            allowed_types_list += [
+                CutoffSelectionRule,
                 BooleanSelectionRule,
             ]
-            if not isinstance(parent_object, type_)
-        )
+        allowed_types = tuple(allowed_types_list)
 
         selection_rule = tree_object_from_resource_path(
             resource_path=message.resource_path, channel=parent_object._channel

@@ -122,6 +122,13 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
                             parameter_2=0.0,
                         ),
                         LinkedSelectionRule(
+                            selection_rule=parent_model.create_cutoff_selection_rule(),
+                            operation_type=BooleanOperationType.INTERSECT,
+                            template_rule=True,
+                            parameter_1=1.2,
+                            parameter_2=3.9,
+                        ),
+                        LinkedSelectionRule(
                             selection_rule=parent_model.create_boolean_selection_rule(),
                             operation_type=BooleanOperationType.REMOVE,
                             template_rule=False,
