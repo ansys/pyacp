@@ -64,7 +64,15 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
 
     @classmethod
     @constructor_with_cache(
-        # TODO: check the logic w.r.t. reuse of id in the Python interpreter
+        # NOTE greschd Feb'23:
+        # We use the parent object's id() as part of the cache key since
+        # the LinkedObjectList keeps its parent alive. This means the
+        # id() does not change (and cannot be reused) as long as the
+        # cache entry is alive.
+        # This is somewhat incidental, but checked (indirectly) by the
+        # object permanence tests. If we want to get rid of this, we
+        # would instead need to find a way to handle the case where the
+        # parent object is being stored.
         key_getter=lambda *args, parent_object, attribute_name, **kwargs: (
             id(parent_object),
             attribute_name,

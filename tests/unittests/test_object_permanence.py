@@ -79,3 +79,57 @@ def test_edge_property_list_identity(model):
     selection_rules_2 = modeling_ply.selection_rules
     assert isinstance(selection_rules_1, EdgePropertyList)
     assert selection_rules_1 is selection_rules_2
+
+
+def test_linked_object_list_parent_deleted(model):
+    """Check that the linked object list identity is unique even if its parent is no
+    longer explicitly referenced."""
+    oss = list(model.oriented_selection_sets.values())[0]
+    element_sets = oss.element_sets
+
+    del oss
+    gc.collect()
+
+    oss = list(model.oriented_selection_sets.values())[0]
+    assert oss.element_sets is element_sets
+
+
+def test_linked_object_list_parent_store(model):
+    """Check that the linked object list identity is unique even after its parent is stored."""
+    oss = pyacp.OrientedSelectionSet()  # type: ignore
+    element_sets = oss.element_sets
+    oss.store(parent=model)
+    oss_id = oss.id
+
+    del oss
+    gc.collect()
+
+    oss = model.oriented_selection_sets[oss_id]
+    assert oss.element_sets is element_sets
+
+
+def test_edge_property_list_parent_deleted(model):
+    """Check that the edge_property list identity is unique even if its parent is no
+    longer explicitly referenced."""
+    stackup = model.create_stackup()
+    fabrics = stackup.fabrics
+
+    del stackup
+    gc.collect()
+
+    stackup = list(model.stackups.values())[-1]
+    assert stackup.fabrics is fabrics
+
+
+def test_edge_property_list_parent_store(model):
+    """Check that the edge property list identity is unique even after its parent is stored."""
+    stackup = pyacp.Stackup()  # type: ignore
+    fabrics = stackup.fabrics
+    stackup.store(parent=model)
+    stackup_id = stackup.id
+
+    del stackup
+    gc.collect()
+
+    stackup = model.stackups[stackup_id]
+    assert stackup.fabrics is fabrics
