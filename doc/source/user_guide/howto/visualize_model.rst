@@ -35,6 +35,8 @@ Visualizing the model
         >>> model.mesh.to_pyvista().plot()
 
 
+    .. _directions_plotter:
+
     Showing the directions
     ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -82,6 +84,8 @@ Visualizing the model
 
     Vector data
     '''''''''''
+
+    Vector data can be visualized using the :func:`.get_directions_plotter` function shown in the preceding section :ref:`directions_plotter`. If you need more fine-grained control over the visualization, you can use the method shown in this section instead.
 
     Vector data can be converted to PyVista glyphs using the :meth:`get_pyvista_glyphs <.VectorData.get_pyvista_glyphs>` method. Again, the base model mesh needs to be passed to this method.
 
