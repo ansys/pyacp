@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707828344641,
+  "lastUpdate": 1707829425911,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12250,6 +12250,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00030054313361589045",
             "extra": "mean: 1.0336823284227197 msec\nrounds: 1154"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a1e6c98b7f18903a328c0341b4d78685b1731611",
+          "message": "Enable nitpicky doc build, add internal API docs (#421)\n\nEnable nitpicky mode when building the full docs in CI / CD.\r\n\r\nAdd an 'Internal objects' page to the API documentation. A warning is displayed on these objects not to use them directly (via a custom autosummary template).",
+          "timestamp": "2024-02-13T13:00:59Z",
+          "tree_id": "cff8e4a3c2432d481480a6b160304248c0505d04",
+          "url": "https://github.com/ansys-internal/pyacp/commit/a1e6c98b7f18903a328c0341b4d78685b1731611"
+        },
+        "date": 1707829411827,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.769528165365165,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004871057060287109",
+            "extra": "mean: 147.72078283332726 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1208.7116784908762,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00023504023524151775",
+            "extra": "mean: 827.327159814108 usec\nrounds: 1508"
           }
         ]
       }
