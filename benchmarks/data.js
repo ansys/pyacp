@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707732593694,
+  "lastUpdate": 1707818030776,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12174,6 +12174,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00024792066388204883",
             "extra": "mean: 852.7809122476059 usec\nrounds: 1584"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ca4339f5fc919e4f5b55f2ddd7e606050bd71fee",
+          "message": "Add 'connect' launch mode (#416)\n\nAdd a launch mode which connects to an existing ACP + Filetransfer server.\r\nCurrently, it is not supported to use only an ACP server (without filetransfer, e.g. on a local machine).\r\n\r\nAdapt the documentation to mention the connect launch mode.\r\n\r\nExpose the connect mode in the test configuration via the --server-urls CLI option.\r\n\r\nThe immediate use case for the 'connect' launch mode is quick iterations on tests: connecting to an existing docker-compose setup avoids the startup time present in both 'direct' and 'docker_compose' mode due to the license checkout.\r\n\r\nOther changes:\r\n- In the main README, remove the mention of configuring the launch mode, since the default (use unified install) should be enough for the common quickstart scenario\r\n- Update poetry lockfile",
+          "timestamp": "2024-02-13T10:50:42+01:00",
+          "tree_id": "5fc7d6b73000644965ac5fe04bae2c2e0b02c46b",
+          "url": "https://github.com/ansys-internal/pyacp/commit/ca4339f5fc919e4f5b55f2ddd7e606050bd71fee"
+        },
+        "date": 1707818019213,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.413357138246848,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004769616531639138",
+            "extra": "mean: 155.9245771666724 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1288.3896028115603,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018933169073277392",
+            "extra": "mean: 776.162736658051 usec\nrounds: 1143"
           }
         ]
       }
