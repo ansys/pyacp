@@ -7,6 +7,7 @@ Server management
     :toctree: _autosummary
 
     ACP
+    ConnectLaunchConfig
     DirectLaunchConfig
     DockerComposeLaunchConfig
     launch_acp
