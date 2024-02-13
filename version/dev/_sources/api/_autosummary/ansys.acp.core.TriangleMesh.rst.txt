@@ -1,0 +1,33 @@
+﻿TriangleMesh
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: TriangleMesh
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      TriangleMesh.to_pyvista
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      TriangleMesh.node_coordinates
+      TriangleMesh.element_nodes
+   
+   

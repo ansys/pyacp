@@ -1,0 +1,6 @@
+node\_coordinates
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: TriangleMesh.node_coordinates

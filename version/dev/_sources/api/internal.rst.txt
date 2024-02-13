@@ -31,8 +31,6 @@ Internal objects
     _tree_objects.base.CreatableTreeObject
     _tree_objects.base.TreeObject
     _tree_objects.base.TreeObjectBase
-    _tree_objects.cad_geometry.TriangleMesh
     _tree_objects.material.property_sets.wrapper.TC
     _tree_objects.material.property_sets.wrapper.TV
-    _tree_objects.model.MeshData
     _workflow._LocalWorkingDir

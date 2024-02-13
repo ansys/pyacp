@@ -6,12 +6,12 @@
 
 Computation times
 =================
-**00:58.651** total execution time for **examples_gallery_examples** files:
+**01:04.691** total execution time for **examples_gallery_examples** files:
 
 +-----------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` (``001_basic_flat_plate.py``)                       | 00:27.361 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` (``001_basic_flat_plate.py``)                       | 00:32.812 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_solve_class40.py` (``solve_class40.py``)                                     | 00:26.195 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_solve_class40.py` (``solve_class40.py``)                                     | 00:26.325 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_002_start_from_existing_project.py` (``002_start_from_existing_project.py``) | 00:05.095 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_002_start_from_existing_project.py` (``002_start_from_existing_project.py``) | 00:05.554 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------------------+-----------+--------+

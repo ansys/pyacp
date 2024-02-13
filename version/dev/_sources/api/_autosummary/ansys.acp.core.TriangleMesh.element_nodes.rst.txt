@@ -1,0 +1,6 @@
+element\_nodes
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: TriangleMesh.element_nodes

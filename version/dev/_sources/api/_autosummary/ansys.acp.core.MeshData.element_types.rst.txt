@@ -1,0 +1,6 @@
+element\_types
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: MeshData.element_types

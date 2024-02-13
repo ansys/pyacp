@@ -1,0 +1,6 @@
+element\_nodes\_offsets
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: MeshData.element_nodes_offsets

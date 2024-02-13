@@ -1,0 +1,832 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Visualizing the model &#8212; PyACP</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+ 
+<link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/howto/visualize_model';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://acp.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Printing the model tree" href="print_model.html" />
+    <link rel="prev" title="How-to guides" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+
+<!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="PyACP - Home"/>
+    <script>document.write(`<img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="PyACP - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../intro.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys-internal/pyacp" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../intro.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys-internal/pyacp" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">How-to guides</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Visualizing the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="print_model.html">Printing the model tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="launch_configuration.html">Changing how ACP is started</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">Concepts</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">User guide</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">How-to guides</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Visualizing the model</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="visualizing-the-model">
+<h1>Visualizing the model<a class="headerlink" href="#visualizing-the-model" title="Permalink to this heading">#</a></h1>
+<p>For this how-to guide, we will use an example model of a race car front wing.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">example_helpers</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">acp</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tempdir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">input_file</span> <span class="o">=</span> <span class="n">example_helpers</span><span class="o">.</span><span class="n">get_example_file</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">example_helpers</span><span class="o">.</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">RACE_CAR_NOSE_ACPH5</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">tempdir</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">path</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">input_file_geometry</span> <span class="o">=</span> <span class="n">example_helpers</span><span class="o">.</span><span class="n">get_example_file</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">example_helpers</span><span class="o">.</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">RACE_CAR_NOSE_STEP</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">tempdir</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">path_geometry</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">input_file_geometry</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">create_cad_geometry</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;nose_geometry&quot;</span><span class="p">,</span> <span class="n">external_path</span><span class="o">=</span><span class="n">path_geometry</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="showing-the-mesh">
+<h2>Showing the mesh<a class="headerlink" href="#showing-the-mesh" title="Permalink to this heading">#</a></h2>
+<p>The mesh data can be accessed using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.Model.mesh.html#ansys.acp.core.Model.mesh" title="ansys.acp.core.Model.mesh"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Model.mesh</span></code></a> attribute. This attribute is an instance of the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.MeshData.html#ansys.acp.core.MeshData" title="ansys.acp.core.MeshData"><code class="xref py py-class docutils literal notranslate"><span class="pre">MeshData</span></code></a> class, and can be converted to a PyVista mesh using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.MeshData.to_pyvista.html#ansys.acp.core.MeshData.to_pyvista" title="ansys.acp.core.MeshData.to_pyvista"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MeshData.to_pyvista()</span></code></a> method.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="../../_images/visualize_model-2_00_00.png" src="../../_images/visualize_model-2_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/plot_directive/user_guide/howto/visualize_model-2_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="showing-the-directions">
+<span id="directions-plotter"></span><h2>Showing the directions<a class="headerlink" href="#showing-the-directions" title="Permalink to this heading">#</a></h2>
+<p>To show the directions (for example normals, fiber directions, orientations, etc.) of the model, we can use the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.get_directions_plotter.html#ansys.acp.core.get_directions_plotter" title="ansys.acp.core.get_directions_plotter"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_directions_plotter()</span></code></a> helper function. This function takes the model, the components to visualize, and some optional parameters.</p>
+<p>The following example shows the orientation and fiber direction of a modeling ply.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">modeling_ply</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s1">&#39;nose&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">[</span><span class="s1">&#39;mp.nose.4&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elemental_data</span> <span class="o">=</span> <span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directions_plotter</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">get_directions_plotter</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">components</span><span class="o">=</span><span class="p">[</span>
+<span class="gp">... </span>        <span class="n">elemental_data</span><span class="o">.</span><span class="n">orientation</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">elemental_data</span><span class="o">.</span><span class="n">fiber_direction</span>
+<span class="gp">... </span>    <span class="p">],</span>
+<span class="gp">... </span>    <span class="n">length_factor</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">culling_factor</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directions_plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="../../_images/visualize_model-3_00_00.png" src="../../_images/visualize_model-3_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/plot_directive/user_guide/howto/visualize_model-3_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<p>The color scheme used in this plot for the various components matches the ACP GUI.</p>
+</section>
+<section id="showing-mesh-data">
+<h2>Showing mesh data<a class="headerlink" href="#showing-mesh-data" title="Permalink to this heading">#</a></h2>
+<p>In general, the mesh data relating to a specific ACP object can be accessed using the <code class="docutils literal notranslate"><span class="pre">elemental_data</span></code> and <code class="docutils literal notranslate"><span class="pre">nodal_data</span></code> attributes. These attributes represent either scalar or vector data.</p>
+<section id="scalar-data">
+<h3>Scalar data<a class="headerlink" href="#scalar-data" title="Permalink to this heading">#</a></h3>
+<p>Scalar data can be converted to a PyVista mesh using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ScalarData.get_pyvista_mesh.html#ansys.acp.core.ScalarData.get_pyvista_mesh" title="ansys.acp.core.ScalarData.get_pyvista_mesh"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_pyvista_mesh</span></code></a> method. The base model mesh needs to be passed to this method.</p>
+<p>For example, we can plot the total thickness of the model using the following code:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">thickness_data</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pyvista_mesh</span> <span class="o">=</span> <span class="n">thickness_data</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pyvista_mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="../../_images/visualize_model-4_00_00.png" src="../../_images/visualize_model-4_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/plot_directive/user_guide/howto/visualize_model-4_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="vector-data">
+<h3>Vector data<a class="headerlink" href="#vector-data" title="Permalink to this heading">#</a></h3>
+<p>Vector data can be visualized using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.get_directions_plotter.html#ansys.acp.core.get_directions_plotter" title="ansys.acp.core.get_directions_plotter"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_directions_plotter()</span></code></a> function shown in the preceding section <a class="reference internal" href="#directions-plotter"><span class="std std-ref">Showing the directions</span></a>. If you need more fine-grained control over the visualization, you can use the method shown in this section instead.</p>
+<p>Vector data can be converted to PyVista glyphs using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.VectorData.get_pyvista_glyphs.html#ansys.acp.core.VectorData.get_pyvista_glyphs" title="ansys.acp.core.VectorData.get_pyvista_glyphs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_pyvista_glyphs</span></code></a> method. Again, the base model mesh needs to be passed to this method.</p>
+<p>We can also choose a scaling factor to change the size of the vector glyphs, and a culling factor to reduce the number of glyphs plotted.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">production_ply</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s1">&#39;nose&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">[</span><span class="s1">&#39;mp.nose.6&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">production_plies</span><span class="p">[</span><span class="s1">&#39;ProductionPly.20&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ply_offset</span> <span class="o">=</span> <span class="n">production_ply</span><span class="o">.</span><span class="n">nodal_data</span><span class="o">.</span><span class="n">ply_offset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ply_offset</span><span class="o">.</span><span class="n">get_pyvista_glyphs</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">scaling_factor</span><span class="o">=</span><span class="mf">6.</span><span class="p">,</span> <span class="n">culling_factor</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="../../_images/visualize_model-5_00_00.png" src="../../_images/visualize_model-5_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/plot_directive/user_guide/howto/visualize_model-5_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<p>When plotting vector data in this way, the base mesh is not shown. To additionally show the mesh, we can combine the mesh and the glyphs using a PyVista plotter.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyvista</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plotter</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">ply_offset</span><span class="o">.</span><span class="n">get_pyvista_glyphs</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">scaling_factor</span><span class="o">=</span><span class="mf">6.</span><span class="p">,</span> <span class="n">culling_factor</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="../../_images/visualize_model-6_00_00.png" src="../../_images/visualize_model-6_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/plot_directive/user_guide/howto/visualize_model-6_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The preceding plot may not render correctly as a static scene. See the interactive scene instead.</p>
+</div>
+</section>
+</section>
+<section id="showing-geometries">
+<h2>Showing geometries<a class="headerlink" href="#showing-geometries" title="Permalink to this heading">#</a></h2>
+<p>CAD Geometries can be visualized using their <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.CADGeometry.visualization_mesh.html#ansys.acp.core.CADGeometry.visualization_mesh" title="ansys.acp.core.CADGeometry.visualization_mesh"><code class="xref py py-attr docutils literal notranslate"><span class="pre">visualization_mesh</span></code></a> attribute. This attribute contains a tessellated (triangle) mesh representing the geometry.</p>
+<p>For plotting, the tessellated mesh has a <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.TriangleMesh.to_pyvista.html#ansys.acp.core.TriangleMesh.to_pyvista" title="ansys.acp.core.TriangleMesh.to_pyvista"><code class="xref py py-meth docutils literal notranslate"><span class="pre">.to_pyvista</span></code></a> method that returns a PyVista <a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.PolyData.html#pyvista.PolyData" title="(in PyVista v0.43.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyData</span></code></a> object. To see the triangle nature of the mesh, you can plot the mesh with the <code class="docutils literal notranslate"><span class="pre">show_edges</span></code> option set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cad_geometry</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">cad_geometries</span><span class="p">[</span><span class="s1">&#39;nose_geometry&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tessellated_mesh</span> <span class="o">=</span> <span class="n">cad_geometry</span><span class="o">.</span><span class="n">visualization_mesh</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tessellated_mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="../../_images/visualize_model-7_00_00.png" src="../../_images/visualize_model-7_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-11">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/plot_directive/user_guide/howto/visualize_model-7_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#showing-the-mesh">Showing the mesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#showing-the-directions">Showing the directions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#showing-mesh-data">Showing mesh data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scalar-data">Scalar data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-data">Vector data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#showing-geometries">Showing geometries</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/user_guide/howto/visualize_model.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2024 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.13.4. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

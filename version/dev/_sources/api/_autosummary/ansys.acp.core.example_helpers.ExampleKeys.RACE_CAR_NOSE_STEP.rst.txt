@@ -1,0 +1,6 @@
+RACE\_CAR\_NOSE\_STEP
+=====================
+
+.. currentmodule:: ansys.acp.core.example_helpers
+
+.. autoattribute:: ExampleKeys.RACE_CAR_NOSE_STEP
