@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707818030776,
+  "lastUpdate": 1707828344641,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12212,6 +12212,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00018933169073277392",
             "extra": "mean: 776.162736658051 usec\nrounds: 1143"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d6fcff87e5bd4b27255881c12d05b529e332ce44",
+          "message": "Get ansys-api-tools-filetransfer from public PyPI (#422)\n\nRemove the entry in ``pyproject.toml`` to get the filetransfer\r\nAPI package from the private PyPI instance.",
+          "timestamp": "2024-02-13T13:42:32+01:00",
+          "tree_id": "44aa48f05e3b4639c5ec0780524fac52e0bf3654",
+          "url": "https://github.com/ansys-internal/pyacp/commit/d6fcff87e5bd4b27255881c12d05b529e332ce44"
+        },
+        "date": 1707828328732,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.21040981733316,
+            "unit": "iter/sec",
+            "range": "stddev: 0.007233892814003938",
+            "extra": "mean: 191.92348300000504 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 967.4152033980157,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00030054313361589045",
+            "extra": "mean: 1.0336823284227197 msec\nrounds: 1154"
           }
         ]
       }
