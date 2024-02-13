@@ -496,11 +496,13 @@ Options:
 Commands:
 direct
 docker_compose
+connect
 </pre></div>
 </div>
-<p>In the preceding output, the two available methods for starting ACP are listed:
+<p>In the preceding output, the three available methods for starting ACP are listed:
 - <code class="docutils literal notranslate"><span class="pre">direct</span></code>: start ACP directly by providing the path to the <code class="docutils literal notranslate"><span class="pre">acp_grpcserver</span></code> executable.
-- <code class="docutils literal notranslate"><span class="pre">docker_compose</span></code>: start ACP using Docker Compose.</p>
+- <code class="docutils literal notranslate"><span class="pre">docker_compose</span></code>: start ACP using Docker Compose.
+- <code class="docutils literal notranslate"><span class="pre">connect</span></code>: connect to an already running ACP server.</p>
 <p>Either method can be configured with <code class="docutils literal notranslate"><span class="pre">ansys-launcher</span></code>. For example, to use the
 <code class="docutils literal notranslate"><span class="pre">direct</span></code> method, you can run <code class="docutils literal notranslate"><span class="pre">ansys-launcher</span> <span class="pre">configure</span> <span class="pre">ACP</span> <span class="pre">direct</span></code>.
 The tool will prompt you for the required information, providing a default value
@@ -541,7 +543,8 @@ already configured with <code class="docutils literal notranslate"><span class="
 <p>The <code class="docutils literal notranslate"><span class="pre">config</span></code> parameter can be used to fully customize the launch of ACP at runtime.
 This parameter expects a configuration object matching the selected <code class="docutils literal notranslate"><span class="pre">launch_mode</span></code>:
 - <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.DirectLaunchConfig.html#ansys.acp.core.DirectLaunchConfig" title="ansys.acp.core.DirectLaunchConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">DirectLaunchConfig</span></code></a> for the <code class="docutils literal notranslate"><span class="pre">direct</span></code> launch mode.
-- <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.DockerComposeLaunchConfig.html#ansys.acp.core.DockerComposeLaunchConfig" title="ansys.acp.core.DockerComposeLaunchConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig</span></code></a> for the <code class="docutils literal notranslate"><span class="pre">docker_compose</span></code> launch mode.</p>
+- <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.DockerComposeLaunchConfig.html#ansys.acp.core.DockerComposeLaunchConfig" title="ansys.acp.core.DockerComposeLaunchConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig</span></code></a> for the <code class="docutils literal notranslate"><span class="pre">docker_compose</span></code> launch mode.
+- <code class="xref py py-class docutils literal notranslate"><span class="pre">ConnectLaunchConfig</span></code> for the <code class="docutils literal notranslate"><span class="pre">connect</span></code> launch mode.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
 

@@ -19,5 +19,6 @@
    
       LaunchMode.DIRECT
       LaunchMode.DOCKER_COMPOSE
+      LaunchMode.CONNECT
    
    

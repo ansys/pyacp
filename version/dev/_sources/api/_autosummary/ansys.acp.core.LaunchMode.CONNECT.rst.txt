@@ -1,0 +1,6 @@
+CONNECT
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LaunchMode.CONNECT

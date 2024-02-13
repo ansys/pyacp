@@ -23,10 +23,12 @@ To change this behavior, you can use the ``ansys-launcher`` command line tool to
     Commands:
     direct
     docker_compose
+    connect
 
-In the preceding output, the two available methods for starting ACP are listed:
+In the preceding output, the three available methods for starting ACP are listed:
 - ``direct``: start ACP directly by providing the path to the ``acp_grpcserver`` executable.
 - ``docker_compose``: start ACP using Docker Compose.
+- ``connect``: connect to an already running ACP server.
 
 Either method can be configured with ``ansys-launcher``. For example, to use the
 ``direct`` method, you can run ``ansys-launcher configure ACP direct``.
@@ -74,6 +76,7 @@ The ``config`` parameter can be used to fully customize the launch of ACP at run
 This parameter expects a configuration object matching the selected ``launch_mode``:
 - :class:`.DirectLaunchConfig` for the ``direct`` launch mode.
 - :class:`.DockerComposeLaunchConfig` for the ``docker_compose`` launch mode.
+- :class:`.ConnectLaunchConfig` for the ``connect`` launch mode.
 
 .. testcode::
 
