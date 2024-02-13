@@ -32,12 +32,12 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -224,6 +224,30 @@
       
       
         <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
 
 <script>
 document.write(`
@@ -358,6 +382,30 @@ document.write(`
       <div class="sidebar-header-items__end">
         
           <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
 
 <script>
 document.write(`
@@ -447,19 +495,19 @@ document.write(`
                   
   <section id="computation-times">
 <span id="sphx-glr-examples-gallery-examples-sg-execution-times"></span><h1>Computation times<a class="headerlink" href="#computation-times" title="Permalink to this heading">#</a></h1>
-<p><strong>00:59.267</strong> total execution time for <strong>examples_gallery_examples</strong> files:</p>
+<p><strong>00:58.651</strong> total execution time for <strong>examples_gallery_examples</strong> files:</p>
 <table class="table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP Example</span></a> (<code class="docutils literal notranslate"><span class="pre">001_basic_flat_plate.py</span></code>)</p></td>
-<td><p>00:28.121</p></td>
+<td><p>00:27.361</p></td>
 <td><p>0.0 MB</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="solve_class40.html#sphx-glr-examples-gallery-examples-solve-class40-py"><span class="std std-ref">Class 40 example</span></a> (<code class="docutils literal notranslate"><span class="pre">solve_class40.py</span></code>)</p></td>
-<td><p>00:25.639</p></td>
+<td><p>00:26.195</p></td>
 <td><p>0.0 MB</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="002_start_from_existing_project.html#sphx-glr-examples-gallery-examples-002-start-from-existing-project-py"><span class="std std-ref">Start from existing acph5 project</span></a> (<code class="docutils literal notranslate"><span class="pre">002_start_from_existing_project.py</span></code>)</p></td>
-<td><p>00:05.507</p></td>
+<td><p>00:05.095</p></td>
 <td><p>0.0 MB</p></td>
 </tr>
 </tbody>
@@ -542,7 +590,7 @@ document.write(`
   <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
     >Ansys Sphinx Theme</a
   >
-  0.13.3. <br />Last updated on
+  0.13.4. <br />Last updated on
   <span id="date"></span>
 </p>
 <script>

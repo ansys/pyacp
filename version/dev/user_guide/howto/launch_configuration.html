@@ -32,12 +32,12 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -226,6 +226,30 @@
       
       
         <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
 
 <script>
 document.write(`
@@ -360,6 +384,30 @@ document.write(`
       <div class="sidebar-header-items__end">
         
           <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
 
 <script>
 document.write(`
@@ -403,11 +451,7 @@ document.write(`
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Changing how ACP is started</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../concepts/index.html">Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/material_property_sets.html">Material property sets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../concepts/store.html">Stored versus unstored objects</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">Concepts</a></li>
 </ul>
 </div>
 </nav></div>
@@ -544,7 +588,7 @@ already configured with <code class="docutils literal notranslate"><span class="
 This parameter expects a configuration object matching the selected <code class="docutils literal notranslate"><span class="pre">launch_mode</span></code>:
 - <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.DirectLaunchConfig.html#ansys.acp.core.DirectLaunchConfig" title="ansys.acp.core.DirectLaunchConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">DirectLaunchConfig</span></code></a> for the <code class="docutils literal notranslate"><span class="pre">direct</span></code> launch mode.
 - <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.DockerComposeLaunchConfig.html#ansys.acp.core.DockerComposeLaunchConfig" title="ansys.acp.core.DockerComposeLaunchConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerComposeLaunchConfig</span></code></a> for the <code class="docutils literal notranslate"><span class="pre">docker_compose</span></code> launch mode.
-- <code class="xref py py-class docutils literal notranslate"><span class="pre">ConnectLaunchConfig</span></code> for the <code class="docutils literal notranslate"><span class="pre">connect</span></code> launch mode.</p>
+- <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ConnectLaunchConfig.html#ansys.acp.core.ConnectLaunchConfig" title="ansys.acp.core.ConnectLaunchConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConnectLaunchConfig</span></code></a> for the <code class="docutils literal notranslate"><span class="pre">connect</span></code> launch mode.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
 
@@ -650,7 +694,7 @@ This parameter expects a configuration object matching the selected <code class=
   <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
     >Ansys Sphinx Theme</a
   >
-  0.13.3. <br />Last updated on
+  0.13.4. <br />Last updated on
   <span id="date"></span>
 </p>
 <script>

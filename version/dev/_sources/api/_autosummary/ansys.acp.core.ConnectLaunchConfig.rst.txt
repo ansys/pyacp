@@ -1,0 +1,30 @@
+﻿ConnectLaunchConfig
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ConnectLaunchConfig
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConnectLaunchConfig.url_acp
+      ConnectLaunchConfig.url_filetransfer
+   
+   

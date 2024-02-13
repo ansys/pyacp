@@ -1,0 +1,10 @@
+﻿MeshData
+========
+
+.. currentmodule:: ansys.acp.core._tree_objects.model
+
+.. warning::
+
+    This is an internal object. It should not be used directly, and subject to change without notice.
+
+.. autoclass:: MeshData

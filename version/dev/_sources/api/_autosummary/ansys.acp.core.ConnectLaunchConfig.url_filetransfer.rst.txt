@@ -1,0 +1,6 @@
+url\_filetransfer
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLaunchConfig.url_filetransfer

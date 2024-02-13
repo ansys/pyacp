@@ -18,3 +18,4 @@ and attributes.
     plot_utils
     workflow
     example_helpers
+    internal

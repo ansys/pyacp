@@ -1,0 +1,6 @@
+url\_acp
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLaunchConfig.url_acp
