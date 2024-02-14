@@ -105,11 +105,12 @@ class TestLookUpTableColumn(WithLockedMixin, TreeObjectTester):
                 ("value_type", LookUpTableColumnValueType.SCALAR),
                 ("value_type", LookUpTableColumnValueType.DIRECTION),
             ],
-            use_read_write_for_create=False,
-            create_args={
-                "name": "some_name",
-                "data": column_data,
-                "dimension_type": DimensionType.TIME,
-                "value_type": column_value_type,
-            },
+            create_args=[
+                {
+                    "name": "some_name",
+                    "data": column_data,
+                    "dimension_type": DimensionType.TIME,
+                    "value_type": column_value_type,
+                }
+            ],
         )

@@ -46,3 +46,35 @@ class TestVirtualGeometry(NoLockedMixin, TreeObjectTester):
                 ("dimension", VirtualGeometryDimension.SOLID),
             ],
         )
+
+
+def test_virtual_geometry_creation_from_cad_components(parent_object, load_cad_geometry):
+    model = parent_object
+    with load_cad_geometry(model) as cad_geometry:
+        model.update()
+        virtual_geometry = model.create_virtual_geometry(
+            cad_components=cad_geometry.root_shapes.values()
+        )
+
+        assert len(virtual_geometry.sub_shapes) == 2
+        assert virtual_geometry.sub_shapes[0].cad_geometry == cad_geometry
+        assert virtual_geometry.sub_shapes[0].path == "SOLID"
+        assert virtual_geometry.sub_shapes[1].cad_geometry == cad_geometry
+        assert virtual_geometry.sub_shapes[1].path == "SHELL"
+
+
+def test_virtual_geometry_no_or_invalid_links(parent_object, load_cad_geometry):
+    model = parent_object
+    with load_cad_geometry(model) as cad_geometry:
+        model.update()
+
+        # No sub_shapes or cad_components is ok
+        virtual_geometry_no_shapes = model.create_virtual_geometry()
+        assert len(virtual_geometry_no_shapes.sub_shapes) == 0
+
+        # Cannot specify both sub_shapes and cad_components
+        with pytest.raises(ValueError):
+            model.create_virtual_geometry(
+                cad_components=cad_geometry.root_shapes.values(),
+                sub_shapes=[SubShape(cad_geometry=cad_geometry, path="some/path/to/shape")],
+            )

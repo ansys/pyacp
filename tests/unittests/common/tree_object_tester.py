@@ -10,12 +10,14 @@ from .compare import assert_allclose
 class ObjectPropertiesToTest:
     read_write: list[tuple[str, Any]]
     read_only: list[tuple[str, Any]]
-    # If true, the create method will use read-write properties to create the object
+    # If create_args do not exist, the create method will use read-write properties
+    # to create the object
     # Note: the read-write properties can contain the same property twice, with different values.
     # The last value will be used to create the object.
-    # If False the create method will use the create_args dictionary to create the object
-    use_read_write_for_create: bool = True
-    create_args: Optional[dict[str, Any]] = None
+    # If create_args exists the create method will use the create_args dictionaries
+    # to create the object. The object
+    # will be created for each dictionary in the list.
+    create_args: Optional[list[dict[str, Any]]] = None
 
 
 class TreeObjectTesterReadOnly:
@@ -102,23 +104,28 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
         self, parent_object, object_properties: ObjectPropertiesToTest
     ):
         """Test the creation of objects with properties defined in object_properties."""
-        create_method = getattr(parent_object, self.CREATE_METHOD_NAME)
 
-        if object_properties.use_read_write_for_create:
+        def create_and_check(init_args: dict[str, Any]):
+            create_method = getattr(parent_object, self.CREATE_METHOD_NAME)
+
+            new_object = create_method(**init_args)
+            for key, val in init_args.items():
+                assert_allclose(
+                    actual=getattr(new_object, key),
+                    desired=val,
+                    msg=f"Attribute {key} not set correctly. Expected {val}, got {getattr(new_object, key)}",
+                ),
+
+        if object_properties.create_args is None:
             # Note: The object_properties.read_write can contain the same property twice,
             # with different values. By converting it to a dictionary, we just keep the last value
             # that was set and use it to construct the object.
-            kwargs = {key: value for key, value in object_properties.read_write}
+            init_args = {key: value for key, value in object_properties.read_write}
+            create_and_check(init_args)
         else:
             assert object_properties.create_args is not None
-            kwargs = object_properties.create_args
-        new_object = create_method(**kwargs)
-        for key, val in kwargs.items():
-            assert_allclose(
-                actual=getattr(new_object, key),
-                desired=val,
-                msg=f"Attribute {key} not set correctly. Expected {val}, got {getattr(new_object, key)}",
-            ),
+            for init_args in object_properties.create_args:
+                create_and_check(init_args)
 
     @staticmethod
     def test_properties(tree_object, object_properties: ObjectPropertiesToTest):
