@@ -28,3 +28,4 @@ workflow_reload = ACPWorkflow.from_acph5_file(acp=acp, acph5_file_path=input_acp
 print_model(workflow_reload.model)
 workflow_reload.model.update()
 workflow_reload.get_local_cdb_file()
+print_model(workflow_reload.model)

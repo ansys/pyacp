@@ -45,7 +45,7 @@ input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR)
 acp = launch_acp()
 
 # %%
-# Define the input file and instantiate an ACPWorkflow
+# Define the input file and instantiate an ACPWorkflow.
 # The ACPWorkflow class provides convenience methods which simplify the file handling.
 # It automatically creates a model based on the input file.
 

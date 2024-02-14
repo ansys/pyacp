@@ -51,7 +51,7 @@ input_file = example_helpers.get_example_file(
 acp = launch_acp()
 
 # %%
-# Define the input file and instantiate an ACPWorkflow
+# Define the input file and instantiate an ACPWorkflow.
 # The ACPWorkflow class provides convenience methods which simplify the file handling.
 # It automatically creates a model based on the input file.
 
