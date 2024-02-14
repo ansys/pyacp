@@ -60,7 +60,7 @@ if typing.TYPE_CHECKING:
     # this would cause a circular import at run-time.
     from .. import BooleanSelectionRule, CutoffSelectionRule, GeometricalSelectionRule
 
-    _LINKABLE_SELECTION_RULE_TYPES = typing.Union[
+    _SELECTION_RULES_LINKABLE_TO_OSS = typing.Union[
         ParallelSelectionRule,
         CylindricalSelectionRule,
         SphericalSelectionRule,
@@ -144,7 +144,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         orientation_direction: tuple[float, float, float] = (0.0, 0.0, 0.0),
         rosettes: Sequence[Rosette] = tuple(),
         rosette_selection_method: RosetteSelectionMethod = "minimum_angle",
-        selection_rules: Sequence[_LINKABLE_SELECTION_RULE_TYPES] = tuple(),
+        selection_rules: Sequence[_SELECTION_RULES_LINKABLE_TO_OSS] = tuple(),
         draping: bool = False,
         draping_seed_point: tuple[float, float, float] = (0.0, 0.0, 0.0),
         auto_draping_direction: bool = True,
