@@ -121,6 +121,7 @@ def _get_pyvista_glyphs(
     values: npt.NDArray[np.float64],
     component_name: str,
     culling_factor: int = 1,
+    scaling_factor: float = 1.0,
     **kwargs: Any,
 ) -> PolyData:
     all_labels = _get_labels(field_names=field_names, labels=labels, mesh=mesh)
@@ -133,7 +134,7 @@ def _get_pyvista_glyphs(
     mesh_data_field[component_label] = target_array
 
     magnitude_name = f"{component_label}_magnitude"
-    mesh_data_field[magnitude_name] = np.linalg.norm(target_array, axis=-1)
+    mesh_data_field[magnitude_name] = np.linalg.norm(target_array, axis=-1) * scaling_factor
     return pv_mesh.glyph(orient=component_label, scale=magnitude_name, **kwargs)  # type: ignore
 
 
@@ -215,6 +216,7 @@ class VectorData:
         *,
         mesh: MeshData,
         culling_factor: int = 1,
+        scaling_factor: float = 1.0,
         **kwargs: Any,
     ) -> PolyData:
         """Get a pyvista glyph object from the vector data.
@@ -227,6 +229,8 @@ class VectorData:
             If set to a value other than ``1``, add only every n-th data
             point to the PyVista object. This is useful especially for
             vector data, where the arrows can be too dense.
+        scaling_factor :
+            Factor to scale the length of the arrows.
         kwargs :
             Keyword arguments passed to the PyVista object constructor.
         """
@@ -237,6 +241,7 @@ class VectorData:
             values=self._values,
             component_name=self._component_name,
             culling_factor=culling_factor,
+            scaling_factor=scaling_factor,
             **kwargs,
         )
 

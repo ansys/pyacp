@@ -48,11 +48,6 @@ ansys-dpf-composites = { version = ">=0.3,<1", optional = true }
 ansys-dpf-core = { version = ">=0.7,<1", optional = true }
 ansys-mechanical-core = { version = ">=0.10.0", optional = true, python = "<3.12" }
 
-# Only listed explicitly to specify the private PyPI instance as source.
-ansys-api-tools-filetransfer = { version="*", source="pyansys_private_pypi" }
-
-
-
 [tool.poetry.group.dev]
 optional = true
 
@@ -102,6 +97,7 @@ examples = ["ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites", "ansys
 [tool.poetry.plugins."ansys.tools.local_product_launcher.launcher"]
 "ACP.direct" = "ansys.acp.core._server.direct:DirectLauncher"
 "ACP.docker_compose" = "ansys.acp.core._server.docker_compose:DockerComposeLauncher"
+"ACP.connect" = "ansys.acp.core._server.connect:ConnectLauncher"
 "ACP.__fallback__" = "ansys.acp.core._server.direct:DirectLauncher"
 
 [[tool.poetry.source]]

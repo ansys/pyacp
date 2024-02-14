@@ -19,6 +19,7 @@ class LaunchMode(StrEnum):  # type: ignore
 
     DIRECT = "direct"
     DOCKER_COMPOSE = "docker_compose"
+    CONNECT = "connect"
 
 
 class ServerProtocol(Protocol):

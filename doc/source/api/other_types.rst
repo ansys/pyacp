@@ -21,6 +21,7 @@ Other data types
     IgnorableEntity
     LookUpTable3DInterpolationAlgorithm
     LookUpTableColumnValueType
+    MeshData
     NodalDataType
     PlyCutoffType
     PlyType
@@ -30,5 +31,6 @@ Other data types
     SymmetryType
     ThicknessFieldType
     ThicknessType
+    TriangleMesh
     UnitSystemType
     VirtualGeometryDimension
