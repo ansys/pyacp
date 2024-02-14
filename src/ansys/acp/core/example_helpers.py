@@ -82,48 +82,34 @@ def _download_file(example_location: _ExampleLocation, local_path: pathlib.Path)
     urllib.request.urlretrieve(file_url, local_path)
 
 
-def run_analysis(workflow: "ACPWorkflow") -> None:
+def _run_analysis(workflow: "ACPWorkflow") -> None:
+    """Run the model with mapdl and do a post-processing analysis.
+
+    Uses a max strain criteria, which means strain limits have to be defined.
+    This function can be called in the end of examples to verify the prepared model
+    actually solves and can be post-processed.
+    """
     from ansys.mapdl.core import launch_mapdl
 
     model = workflow.model
     model.update()
 
-    # %%
-    # Solve the model with MAPDL
-    # --------------------------
-    #
     # Launch the MAPDL instance
     mapdl = launch_mapdl()
     mapdl.clear()
 
-    # %%
     # Load the CDB file into PyMAPDL
     mapdl.input(str(workflow.get_local_cdb_file()))
 
-    # %%
     # Solve the model
     mapdl.allsel()
     mapdl.slashsolu()
     mapdl.solve()
 
-    # %%
-    # Post-processing: show displacements
-    mapdl.post1()
-    mapdl.set("last")
-    mapdl.post_processing.plot_nodal_displacement(component="NORM")
-
-    # %%
     # Download the rst file for composite specific post-processing
     rstfile_name = f"{mapdl.jobname}.rst"
     rst_file_local_path = workflow.working_directory.path / rstfile_name
     mapdl.download(rstfile_name, str(workflow.working_directory.path))
-
-    # %%
-    # Post-Processing with DPF composites
-    # -----------------------------------
-    #
-    # Setup: configure imports and connect to the pyDPF Composites server
-    # and load the dpf composites plugin
 
     from ansys.acp.core import get_composite_post_processing_files, get_dpf_unit_system
     from ansys.dpf.composites.composite_model import CompositeModel
@@ -131,13 +117,8 @@ def run_analysis(workflow: "ACPWorkflow") -> None:
     from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxStrainCriterion
     from ansys.dpf.composites.server_helpers import connect_to_or_start_server
 
-    # %%
-    # Connect to the server. The ``connect_to_or_start_server`` function
-    # automatically loads the composites plugin.
     dpf_server = connect_to_or_start_server()
 
-    # %%
-    # Specify the Combined Failure Criterion
     max_strain = MaxStrainCriterion()
 
     cfc = CombinedFailureCriterion(
@@ -145,19 +126,14 @@ def run_analysis(workflow: "ACPWorkflow") -> None:
         failure_criteria=[max_strain],
     )
 
-    # %%
-    # Create the CompositeModel and configure its input
     composite_model = CompositeModel(
         get_composite_post_processing_files(workflow, rst_file_local_path),
         default_unit_system=get_dpf_unit_system(model.unit_system),
         server=dpf_server,
     )
 
-    # %%
-    # Evaluate the failure criteria and plot it
     output_all_elements = composite_model.evaluate_failure_criteria(cfc)
     irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
-    irf_field.plot()
 
     # %%
     # Release composite model to close open streams to result file.

@@ -121,7 +121,7 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # %%
 # Rules can be parametrized. This makes sense when a rule is used multiple times with different
 # parameters. :class:`.LinkedSelectionRule` shows what parameters are available for each rule.
-# Here the extent of the parallel rule modified.
+# Here, the extent of the parallel rule modified.
 linked_parallel_rule.template_rule = True
 linked_parallel_rule.parameter_1 = 0.002
 linked_parallel_rule.parameter_2 = 0.1
@@ -272,11 +272,12 @@ parallel_rule_boolean = model.create_parallel_selection_rule(
     upper_limit=1,
 )
 
-linked_cylindrical_rule = LinkedSelectionRule(cylindrical_rule_boolean)
+linked_cylindrical_rule_boolean = LinkedSelectionRule(cylindrical_rule_boolean)
+linked_parallel_rule_boolean = LinkedSelectionRule(parallel_rule_boolean)
 
 boolean_selection_rule = model.create_boolean_selection_rule(
     name="boolean_rule",
-    selection_rules=[LinkedSelectionRule(parallel_rule_boolean), linked_cylindrical_rule],
+    selection_rules=[linked_parallel_rule_boolean, linked_cylindrical_rule_boolean],
 )
 
 partial_ply.selection_rules = [LinkedSelectionRule(boolean_selection_rule)]
@@ -288,8 +289,8 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 
 # %%
 # Modify the operation type of the boolean selection rule
-linked_parallel_rule.operation_type = BooleanOperationType.INTERSECT
-linked_cylindrical_rule.operation_type = BooleanOperationType.ADD
+linked_parallel_rule_boolean.operation_type = BooleanOperationType.INTERSECT
+linked_cylindrical_rule_boolean.operation_type = BooleanOperationType.ADD
 
 # Plot the ply extent
 model.update()
