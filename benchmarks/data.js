@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707916618359,
+  "lastUpdate": 1707918035337,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12364,6 +12364,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0005418441338572378",
             "extra": "mean: 1.2191776501219662 msec\nrounds: 1229"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c1255f78f870d80388cfc154bae7fab4943d2bdb",
+          "message": "Allow linking to CutoffSelectionRule from ModelingPly (#424)\n\nAdd the CutoffSelectionRule to the allowed selection rule types if the parent is not a BooleanSelectionRule.\r\n\r\nFix the docstring of LinkedSelectionRule, since CutoffSelectionRule and BooleanSelectionRule are disallowed only when the parent is a BoolenSelectionRule (not for ModelingPly).\r\n\r\nAdd a check for the operation type when linking to a CutoffSelectionRule, to avoid a hidden conversion.\r\n\r\nCloses #412",
+          "timestamp": "2024-02-14T13:38:03Z",
+          "tree_id": "551372b515dfb5e7f39c54f27e943c1934f31924",
+          "url": "https://github.com/ansys-internal/pyacp/commit/c1255f78f870d80388cfc154bae7fab4943d2bdb"
+        },
+        "date": 1707918020686,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.525209868285993,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00301342494052015",
+            "extra": "mean: 153.25177583333036 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1108.2935215400441,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002617961475046732",
+            "extra": "mean: 902.2880496589357 usec\nrounds: 1611"
           }
         ]
       }
