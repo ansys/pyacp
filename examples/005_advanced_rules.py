@@ -218,7 +218,6 @@ lookup_table = model.create_lookup_table_1d(
 
 # Add the location data. The "Location" column of the lookup table
 # is always created by default.
-# Todo: should we allow setting the data from a list?
 lookup_table.columns["Location"].data = np.array([0, 0.005, 0.01])
 
 # Create the offset column that defines the offsets from the edge.
