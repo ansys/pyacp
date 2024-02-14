@@ -87,11 +87,11 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         parameter_1: float = 0.0,
         parameter_2: float = 0.0,
     ):
-        self._selection_rule = selection_rule
-        self._operation_type = operation_type
-        self._template_rule = template_rule
-        self._parameter_1 = parameter_1
-        self._parameter_2 = parameter_2
+        self.selection_rule = selection_rule
+        self.operation_type = operation_type
+        self.template_rule = template_rule
+        self.parameter_1 = parameter_1
+        self.parameter_2 = parameter_2
         self._callback_apply_changes: Callable[[], None] | None = None
 
     @property
