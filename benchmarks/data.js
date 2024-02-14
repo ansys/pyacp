@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707840057851,
+  "lastUpdate": 1707916618359,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12326,6 +12326,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023351721354033936",
             "extra": "mean: 826.7393449454394 usec\nrounds: 1464"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "86c3806d8dd353f9f5a39fe82d93387ca3f4374a",
+          "message": "Ensure only a single object instance exists per tree object (#415)\n\nEnsure only a single instance refers to the same tree object or container.\r\n\r\nAdd a mixin class `ObjectCacheMixin` which adds a class attribute \r\n`_OBJECT_CACHE` to each of its subclasses. The object cache is a \r\n`WeakValueDictionary`, meaning the instances will be properly deleted\r\nonce their refcount _outside_ of the object cache goes to zero.\r\n\r\nThe `ObjectCacheMixin` subclasses need to provide a method `_cache_key_valid`; \r\nthis enables making certain cache key values disallowed. In particular, empty \r\nresource paths are not considered valid for tree objects.\r\n\r\nA decorator `constructor_with_cache` is provided to decorate constructor\r\nclassmethods s.t. they use the cache.\r\n\r\nThe arguments to the `__init__` method in the container classes `Mapping`, \r\n`MutableMapping`, `LinkedObjectList` and `EdgePropertyList` are prefixed\r\nwith underscores, to prevent accidental use of the direct constructor.\r\n\r\nTree objects which are directly instantiated are added to the cache during \r\n`.store()`.",
+          "timestamp": "2024-02-14T14:13:45+01:00",
+          "tree_id": "88b6a53485d2a14ff8e63c9fb2d5e581607b32b4",
+          "url": "https://github.com/ansys-internal/pyacp/commit/86c3806d8dd353f9f5a39fe82d93387ca3f4374a"
+        },
+        "date": 1707916601067,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.3041847377573905,
+            "unit": "iter/sec",
+            "range": "stddev: 0.015220732032072538",
+            "extra": "mean: 232.33203520001098 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 820.2250097842266,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0005418441338572378",
+            "extra": "mean: 1.2191776501219662 msec\nrounds: 1229"
           }
         ]
       }
