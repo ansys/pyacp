@@ -5,6 +5,7 @@ import pyvista
 
 from ansys.acp.core import (
     BooleanOperationType,
+    CutoffSelectionRule,
     DrapingType,
     ElementalDataType,
     Fabric,
@@ -125,6 +126,13 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
                             template_rule=False,
                             parameter_1=0.0,
                             parameter_2=0.0,
+                        ),
+                        LinkedSelectionRule(
+                            selection_rule=parent_model.create_cutoff_selection_rule(),
+                            operation_type=BooleanOperationType.INTERSECT,
+                            template_rule=True,
+                            parameter_1=1.2,
+                            parameter_2=3.9,
                         ),
                         LinkedSelectionRule(
                             selection_rule=parent_model.create_boolean_selection_rule(),
@@ -402,3 +410,16 @@ def test_linked_selection_rule_parameters(simple_modeling_ply, minimal_complete_
     linked_rule_in_ply = simple_modeling_ply.selection_rules[0]
     linked_rule_in_ply.parameter_1 = 1
     assert linked_parallel_rule.parameter_1 == simple_modeling_ply.selection_rules[0].parameter_1
+
+
+@pytest.mark.parametrize(
+    "operation_type", [e for e in BooleanOperationType if e != BooleanOperationType.INTERSECT]
+)
+def test_linked_cutoff_selection_rule_operation_type(operation_type):
+    """Check that CutoffSelectionRule only allows INTERSECT operation type."""
+    with pytest.raises(ValueError) as exc:
+        LinkedSelectionRule(
+            selection_rule=CutoffSelectionRule(),  # type: ignore
+            operation_type=operation_type,
+        )
+    assert "INTERSECT" in str(exc.value)

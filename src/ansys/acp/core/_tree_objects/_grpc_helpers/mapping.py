@@ -1,15 +1,16 @@
 from __future__ import annotations
 
 from collections.abc import Iterator
-from typing import Callable, Generic, TypeVar
+from typing import Any, Callable, Generic, TypeVar
 
 from grpc import Channel
-from typing_extensions import Concatenate, ParamSpec
+from typing_extensions import Concatenate, ParamSpec, Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 
 from ..._utils.property_protocols import ReadOnlyProperty
 from ..._utils.resource_paths import join as _rp_join
+from .._object_cache import ObjectCacheMixin, constructor_with_cache
 from ..base import CreatableTreeObject, TreeObject, TreeObjectBase
 from .exceptions import wrap_grpc_errors
 from .property_helper import _exposed_grpc_property, _wrap_doc
@@ -21,26 +22,52 @@ CreatableValueT = TypeVar("CreatableValueT", bound=CreatableTreeObject)
 __all__ = ["Mapping", "MutableMapping", "define_mutable_mapping", "define_create_method"]
 
 
-class Mapping(Generic[ValueT]):
+class Mapping(ObjectCacheMixin, Generic[ValueT]):
     """Mapping interface for collections of TreeObjects.
 
     Note: We could derive from collections.abc.Mapping to make sure
     this class conforms to the Mapping interface.
     """
 
-    def __init__(
-        self,
+    @classmethod
+    @constructor_with_cache(
+        key_getter=lambda *args, collection_path, **kwargs: collection_path.value,
+        raise_on_invalid_key=True,
+    )
+    def _initialize_with_cache(
+        cls,
         *,
         channel: Channel,
         collection_path: CollectionPath,
         stub: ReadableResourceStub,
         object_constructor: Callable[[ObjectInfo, Channel | None], ValueT],
-    ) -> None:
-        self._collection_path = collection_path
-        self._stub = stub
+    ) -> Self:
+        return cls(
+            _channel=channel,
+            _collection_path=collection_path,
+            _stub=stub,
+            _object_constructor=object_constructor,
+        )
 
-        self._channel = channel
-        self._object_constructor = object_constructor
+    def __init__(
+        self,
+        *,
+        _channel: Channel,
+        _collection_path: CollectionPath,
+        _stub: ReadableResourceStub,
+        _object_constructor: Callable[[ObjectInfo, Channel | None], ValueT],
+    ) -> None:
+        self._collection_path = _collection_path
+        self._stub = _stub
+
+        self._channel = _channel
+        self._object_constructor = _object_constructor
+
+    @staticmethod
+    def _cache_key_valid(key: Any) -> bool:
+        if isinstance(key, str):
+            return bool(key)
+        return False
 
     def __iter__(self) -> Iterator[str]:
         yield from (obj.info.id for obj in self._get_objectinfo_list())
@@ -121,19 +148,38 @@ class Mapping(Generic[ValueT]):
 class MutableMapping(Mapping[CreatableValueT]):
     """Mutable mapping interface for collections of TreeObjects."""
 
-    def __init__(
-        self,
+    @classmethod
+    @constructor_with_cache(
+        key_getter=lambda *args, collection_path, **kwargs: collection_path.value,
+        raise_on_invalid_key=True,
+    )
+    def _initialize_with_cache(
+        cls,
         *,
         channel: Channel,
         collection_path: CollectionPath,
-        stub: EditableAndReadableResourceStub,
+        stub: EditableAndReadableResourceStub,  # type: ignore # violates Liskov substitution
         object_constructor: Callable[[ObjectInfo, Channel | None], CreatableValueT],
-    ) -> None:
-        self._collection_path = collection_path
-        self._stub: EditableAndReadableResourceStub = stub
+    ) -> Self:
+        return cls(
+            _channel=channel,
+            _collection_path=collection_path,
+            _stub=stub,
+            _object_constructor=object_constructor,
+        )
 
-        self._channel = channel
-        self._object_constructor = object_constructor
+    def __init__(
+        self,
+        *,
+        _channel: Channel,
+        _collection_path: CollectionPath,
+        _stub: EditableAndReadableResourceStub,
+        _object_constructor: Callable[[ObjectInfo, Channel | None], CreatableValueT],
+    ) -> None:
+        self._collection_path = _collection_path
+        self._stub: EditableAndReadableResourceStub = _stub
+        self._channel = _channel
+        self._object_constructor = _object_constructor
 
     def __delitem__(self, key: str) -> None:
         obj_info = self._get_objectinfo_by_id(key)
@@ -180,7 +226,7 @@ def get_read_only_collection_property(
     """Define a read-only mapping of child tree objects."""
 
     def collection_property(self: ParentT) -> Mapping[ValueT]:
-        return Mapping(
+        return Mapping._initialize_with_cache(
             channel=self._channel,
             collection_path=CollectionPath(
                 value=_rp_join(self._resource_path.value, object_class._COLLECTION_LABEL)
@@ -226,7 +272,7 @@ def define_mutable_mapping(
     """Define a mutable mapping of child tree objects."""
 
     def collection_property(self: ParentT) -> MutableMapping[CreatableValueT]:
-        return MutableMapping(
+        return MutableMapping._initialize_with_cache(
             channel=self._channel,
             collection_path=CollectionPath(
                 value=_rp_join(self._resource_path.value, object_class._COLLECTION_LABEL)

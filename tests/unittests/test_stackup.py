@@ -79,3 +79,66 @@ class TestStackup(NoLockedMixin, TreeObjectTester):
                 # ("draping_ud_coefficient", 4.32), # TODO: enable this check, see backend issue #778698
             ],
         )
+
+
+def test_regression_413(parent_object):
+    """
+    Regression test for issue #413:
+    Modifying the linked fabrics from two instances of the EdgePropertyList
+    produces inconsistent results.
+    """
+    model = parent_object
+
+    material = model.create_material()
+    fabric_1 = model.create_fabric(material=material)
+    fabric_2 = model.create_fabric(material=material)
+
+    stackup = model.create_stackup(
+        fabrics=[
+            FabricWithAngle(fabric=fabric_1, angle=0.0),
+            FabricWithAngle(fabric=fabric_2, angle=0.0),
+        ]
+    )
+    edge_property_list_1 = stackup.fabrics
+    edge_property_list_2 = stackup.fabrics
+
+    edge_property_list_1[0].angle = 45.0
+    edge_property_list_2[1].angle = 90.0
+
+    assert edge_property_list_1[0].angle == 45.0
+    assert edge_property_list_1[1].angle == 90.0
+
+    assert edge_property_list_2[0].angle == 45.0
+    assert edge_property_list_2[1].angle == 90.0
+
+
+def test_regression_413_v2(parent_object):
+    """
+    Regression test for issue #413:
+    Modifying the linked fabrics from two instances of the EdgePropertyList
+    produces inconsistent results.
+    """
+    model = parent_object
+
+    material = model.create_material()
+    fabric_1 = model.create_fabric(material=material)
+    fabric_2 = model.create_fabric(material=material)
+
+    stackup = model.create_stackup(
+        fabrics=[
+            FabricWithAngle(fabric=fabric_1, angle=0.0),
+            FabricWithAngle(fabric=fabric_2, angle=0.0),
+        ]
+    )
+    edge_property_list_1 = stackup.fabrics
+    # Stricter test: also get the stackup instance independently
+    edge_property_list_2 = model.stackups[stackup.id].fabrics
+
+    edge_property_list_1[0].angle = 45.0
+    edge_property_list_2[1].angle = 90.0
+
+    assert edge_property_list_1[0].angle == 45.0
+    assert edge_property_list_1[1].angle == 90.0
+
+    assert edge_property_list_2[0].angle == 45.0
+    assert edge_property_list_2[1].angle == 90.0
