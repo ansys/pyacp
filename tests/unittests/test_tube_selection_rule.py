@@ -18,18 +18,22 @@ def tree_object(parent_object):
 
 class TestTubeSelectionRule(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "tube_selection_rules"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "edge_set": None,
-        "outer_radius": 1.0,
-        "inner_radius": 0.0,
-        "include_rule_type": True,
-        "extend_endings": False,
-        "symmetrical_extension": True,
-        "head": (0.0, 0.0, 0.0),
-        "head_extension": 0.0,
-        "tail_extension": 0.0,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "edge_set": None,
+            "outer_radius": 1.0,
+            "inner_radius": 0.0,
+            "include_rule_type": True,
+            "extend_endings": False,
+            "symmetrical_extension": True,
+            "head": (0.0, 0.0, 0.0),
+            "head_extension": 0.0,
+            "tail_extension": 0.0,
+        }
 
     CREATE_METHOD_NAME = "create_tube_selection_rule"
 

@@ -21,19 +21,23 @@ def tree_object(parent_object):
 
 class TestVariableOffsetSelectionRule(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "variable_offset_selection_rules"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "edge_set": None,
-        "offsets": None,
-        "angles": None,
-        "include_rule_type": True,
-        "use_offset_correction": False,
-        "element_set": None,
-        "inherit_from_lookup_table": True,
-        "radius_origin": (0.0, 0.0, 0.0),
-        "radius_direction": (1.0, 0.0, 0.0),
-        "distance_along_edge": False,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "edge_set": None,
+            "offsets": None,
+            "angles": None,
+            "include_rule_type": True,
+            "use_offset_correction": False,
+            "element_set": None,
+            "inherit_from_lookup_table": True,
+            "radius_origin": (0.0, 0.0, 0.0),
+            "radius_direction": (1.0, 0.0, 0.0),
+            "distance_along_edge": False,
+        }
 
     CREATE_METHOD_NAME = "create_variable_offset_selection_rule"
 

@@ -16,7 +16,12 @@ def tree_object(parent_object):
 
 class TestModelingGroup(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "modeling_groups"
-    DEFAULT_PROPERTIES = {}
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {}
+
     CREATE_METHOD_NAME = "create_modeling_group"
 
     @staticmethod

@@ -18,11 +18,15 @@ def tree_object(parent_object):
 
 class TestVirtualGeometry(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "virtual_geometries"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "dimension": VirtualGeometryDimension.UNKNOWN,
-        "sub_shapes": [],
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "dimension": VirtualGeometryDimension.UNKNOWN,
+            "sub_shapes": [],
+        }
 
     CREATE_METHOD_NAME = "create_virtual_geometry"
 

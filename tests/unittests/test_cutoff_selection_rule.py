@@ -23,16 +23,20 @@ def tree_object(parent_object):
 
 class TestCutoffSelectionRule(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "cutoff_selection_rules"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "cutoff_rule_type": CutoffRuleType.GEOMETRY,
-        "cutoff_geometry": None,
-        "taper_edge_set": None,
-        "offset": 0.0,
-        "angle": 0.0,
-        "ply_cutoff_type": PlyCutoffType.PRODUCTION_PLY_CUTOFF,
-        "ply_tapering": False,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "cutoff_rule_type": CutoffRuleType.GEOMETRY,
+            "cutoff_geometry": None,
+            "taper_edge_set": None,
+            "offset": 0.0,
+            "angle": 0.0,
+            "ply_cutoff_type": PlyCutoffType.PRODUCTION_PLY_CUTOFF,
+            "ply_tapering": False,
+        }
 
     CREATE_METHOD_NAME = "create_cutoff_selection_rule"
 

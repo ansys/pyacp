@@ -97,10 +97,11 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
     ----------
     name :
         Name of the Virtual Geometry.
-    dimension :
-        Dimension of the Virtual Geometry, if it is uniquely defined.
+    cad_components :
+        CAD Components that make up the virtual geometry.
     sub_shapes :
-        Paths of the CAD Components that make up the virtual geometry.
+        Subshapes that make up the virtual geometry.
+
     """
 
     __slots__: Iterable[str] = tuple()
@@ -112,12 +113,24 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
         self,
         *,
         name: str = "VirtualGeometry",
-        cad_components: Iterable[CADComponent] = (),
+        cad_components: Iterable[CADComponent] | None = None,
+        sub_shapes: Iterable[SubShape] | None = None,
     ):
         super().__init__(
             name=name,
         )
-        self.set_cad_components(cad_components=cad_components)
+
+        if cad_components is not None and sub_shapes is not None:
+            raise ValueError("cad_components and sub_shapes cannot be set at the same time")
+
+        if cad_components is None and sub_shapes is None:
+            self.sub_shapes = []
+
+        if cad_components is not None:
+            self.set_cad_components(cad_components=cad_components)
+
+        if sub_shapes is not None:
+            self.sub_shapes = sub_shapes
 
     def _create_stub(self) -> virtual_geometry_pb2_grpc.ObjectServiceStub:
         return virtual_geometry_pb2_grpc.ObjectServiceStub(self._channel)

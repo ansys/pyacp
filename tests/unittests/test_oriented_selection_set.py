@@ -20,23 +20,28 @@ def tree_object(parent_object):
 
 class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "oriented_selection_sets"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "element_sets": [],
-        "rosettes": [],
-        "orientation_point": (0.0, 0.0, 0.0),
-        "orientation_direction": (0.0, 0.0, 0.0),
-        "rosette_selection_method": "minimum_angle",
-        "draping": False,
-        "draping_seed_point": (0.0, 0.0, 0.0),
-        "auto_draping_direction": True,
-        "draping_direction": (0.0, 0.0, 1.0),
-        "use_default_draping_mesh_size": True,
-        "draping_mesh_size": 0.0,
-        "draping_material_model": "woven",
-        "draping_ud_coefficient": 0.0,
-        "rotation_angle": 0.0,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "element_sets": [],
+            "rosettes": [],
+            "orientation_point": (0.0, 0.0, 0.0),
+            "orientation_direction": (0.0, 0.0, 0.0),
+            "rosette_selection_method": "minimum_angle",
+            "draping": False,
+            "draping_seed_point": (0.0, 0.0, 0.0),
+            "auto_draping_direction": True,
+            "draping_direction": (0.0, 0.0, 1.0),
+            "use_default_draping_mesh_size": True,
+            "draping_mesh_size": 0.0,
+            "draping_material_model": "woven",
+            "draping_ud_coefficient": 0.0,
+            "rotation_angle": 0.0,
+        }
+
     CREATE_METHOD_NAME = "create_oriented_selection_set"
 
     @staticmethod
