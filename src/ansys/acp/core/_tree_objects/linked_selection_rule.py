@@ -29,13 +29,14 @@ if typing.TYPE_CHECKING:
     from .boolean_selection_rule import BooleanSelectionRule
 
     _LINKABLE_SELECTION_RULE_TYPES = Union[
-        ParallelSelectionRule,
+        BooleanSelectionRule,
+        CutoffSelectionRule,
         CylindricalSelectionRule,
+        GeometricalSelectionRule,
+        ParallelSelectionRule,
         SphericalSelectionRule,
         TubeSelectionRule,
-        GeometricalSelectionRule,
         VariableOffsetSelectionRule,
-        BooleanSelectionRule,
     ]
 
 
@@ -87,12 +88,16 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         parameter_1: float = 0.0,
         parameter_2: float = 0.0,
     ):
+        # The '_callback_apply_changes' needs to be set first, otherwise the
+        # setter methods will not work. We go through the setters instead of
+        # directly setting the attributes to ensure the setter validation is
+        # performed.
+        self._callback_apply_changes: Callable[[], None] | None = None
         self.selection_rule = selection_rule
         self.operation_type = operation_type
         self.template_rule = template_rule
         self.parameter_1 = parameter_1
         self.parameter_2 = parameter_2
-        self._callback_apply_changes: Callable[[], None] | None = None
 
     @property
     def selection_rule(self) -> _LINKABLE_SELECTION_RULE_TYPES:
