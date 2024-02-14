@@ -119,15 +119,13 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 
 
 # %%
-# Parametrize the rule
-# Todo: Extend example once #413 is fixed
-
-# linked_parallel_rule.template_rule = True
+# Rules can be parametrized. This makes sense when a rule is used multiple times with different
+# parameters. :class:`.LinkedSelectionRule` shows what parameters are available for each rule.
+# Here the extent of the parallel rule modified.
+linked_parallel_rule.template_rule = True
 linked_parallel_rule.parameter_1 = 0.002
-# linked_parallel_rule.parameter_2 = 0.1
+linked_parallel_rule.parameter_2 = 0.1
 
-
-assert len(partial_ply.selection_rules) == 1
 model.update()
 assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
@@ -259,22 +257,29 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # because they help to organize the rules and can be used to create more complex rules.
 
 # Create a cylindrical selection rule which will be combined with the parallel rule.
-cylindrical_rule = model.create_cylindrical_selection_rule(
+cylindrical_rule_boolean = model.create_cylindrical_selection_rule(
     name="cylindrical_rule",
     origin=(0.005, 0, 0.005),
     direction=(0, 1, 0),
     radius=0.002,
 )
 
-linked_cylindrical_rule = LinkedSelectionRule(cylindrical_rule)
+parallel_rule_boolean = model.create_parallel_selection_rule(
+    name="parallel_rule",
+    origin=(0, 0, 0),
+    direction=(1, 0, 0),
+    lower_limit=0.005,
+    upper_limit=1,
+)
+
+linked_cylindrical_rule = LinkedSelectionRule(cylindrical_rule_boolean)
 
 boolean_selection_rule = model.create_boolean_selection_rule(
     name="boolean_rule",
-    selection_rules=[linked_parallel_rule, linked_cylindrical_rule],
+    selection_rules=[LinkedSelectionRule(parallel_rule_boolean), linked_cylindrical_rule],
 )
 
 partial_ply.selection_rules = [LinkedSelectionRule(boolean_selection_rule)]
-
 
 # Plot the ply extent
 model.update()

@@ -188,7 +188,6 @@ class LinkedSelectionRule(GenericEdgePropertyType):
             allowed_types_list += [
                 CutoffSelectionRule,
                 BooleanSelectionRule,
-                # Todo: just added temporarily so the example works see #412
                 CutoffSelectionRule,
             ]
         allowed_types = tuple(allowed_types_list)
