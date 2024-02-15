@@ -6,6 +6,7 @@ automatically synchronized with the backend via gRPC.
 from __future__ import annotations
 
 from functools import reduce
+import typing
 from typing import Any, Callable, TypeVar
 
 from google.protobuf.message import Message
@@ -243,6 +244,7 @@ def grpc_data_property_read_only(
 def grpc_link_property(
     name: str,
     doc: str | None = None,
+    allowed_types: type[GrpcObjectBase] | tuple[type[GrpcObjectBase], ...] | None = None,
 ) -> Any:
     """Define a gRPC-backed property linking to another object.
 
@@ -255,16 +257,28 @@ def grpc_link_property(
         Name of the property.
     doc :
         Docstring for the property.
+    allowed_types :
+        Types which are allowed to be set on the property. If not None, an
+        error will be raised if an object of a different type is set.
     """
+    if typing.TYPE_CHECKING:
+        from ..base import TreeObjectBase
+
+    def to_protobuf(obj: TreeObjectBase | None) -> ResourcePath:
+        if obj is None:
+            return ResourcePath(value="")
+        if allowed_types is not None and not isinstance(obj, allowed_types):
+            name_part = name.split(".")[-1]
+            raise TypeError(
+                f"Cannot set '{name_part}': Expected object of type {allowed_types}, "
+                f"got type {type(obj)} instead. Given object: {obj}"
+            )
+        return obj._resource_path
+
     return _wrap_doc(
         _exposed_grpc_property(grpc_linked_object_getter(name)).setter(
             # Resource path represents an object that is not set as an empty string
-            grpc_data_setter(
-                name=name,
-                to_protobuf=lambda obj: ResourcePath(value="")
-                if obj is None
-                else obj._resource_path,
-            )
+            grpc_data_setter(name=name, to_protobuf=to_protobuf)
         ),
         doc=doc,
     )

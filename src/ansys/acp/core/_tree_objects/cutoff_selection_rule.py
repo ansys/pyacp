@@ -125,8 +125,10 @@ class CutoffSelectionRule(CreatableTreeObject, IdTreeObject):
         from_protobuf=cutoff_rule_type_from_pb,
         to_protobuf=cutoff_rule_type_to_pb,
     )
-    cutoff_geometry = grpc_link_property("properties.cutoff_geometry")
-    taper_edge_set = grpc_link_property("properties.taper_edge_set")
+    cutoff_geometry = grpc_link_property(
+        "properties.cutoff_geometry", allowed_types=VirtualGeometry
+    )
+    taper_edge_set = grpc_link_property("properties.taper_edge_set", allowed_types=EdgeSet)
     offset: ReadWriteProperty[float, float] = grpc_data_property("properties.offset")
     angle: ReadWriteProperty[float, float] = grpc_data_property("properties.angle")
     ply_cutoff_type = grpc_data_property(
