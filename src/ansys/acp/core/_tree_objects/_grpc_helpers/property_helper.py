@@ -243,8 +243,9 @@ def grpc_data_property_read_only(
 
 def grpc_link_property(
     name: str,
+    *,
     doc: str | None = None,
-    allowed_types: type[GrpcObjectBase] | tuple[type[GrpcObjectBase], ...] | None = None,
+    allowed_types: type[GrpcObjectBase] | tuple[type[GrpcObjectBase], ...],
 ) -> Any:
     """Define a gRPC-backed property linking to another object.
 
@@ -258,7 +259,7 @@ def grpc_link_property(
     doc :
         Docstring for the property.
     allowed_types :
-        Types which are allowed to be set on the property. If not None, an
+        Types which are allowed to be set on the property. An
         error will be raised if an object of a different type is set.
     """
     if typing.TYPE_CHECKING:
@@ -267,7 +268,7 @@ def grpc_link_property(
     def to_protobuf(obj: TreeObjectBase | None) -> ResourcePath:
         if obj is None:
             return ResourcePath(value="")
-        if allowed_types is not None and not isinstance(obj, allowed_types):
+        if not isinstance(obj, allowed_types):
             name_part = name.split(".")[-1]
             raise TypeError(
                 f"Cannot set '{name_part}': Expected object of type {allowed_types}, "
