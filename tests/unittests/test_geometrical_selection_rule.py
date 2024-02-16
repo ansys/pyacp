@@ -69,3 +69,14 @@ def test_mesh_data(parent_object):
     rule = parent_object.create_geometrical_selection_rule()
     assert isinstance(rule.elemental_data, GeometricalSelectionRuleElementalData)
     assert isinstance(rule.nodal_data, GeometricalSelectionRuleNodalData)
+
+
+def test_error_message_when_cad_geometry_passed(parent_object):
+    """Test that passing a CAD Geometry instead of a Virtual Geometry produces a nice error message."""
+
+    rule = parent_object.create_geometrical_selection_rule()
+    cad_geometry = parent_object.create_cad_geometry()
+    with pytest.raises(TypeError) as exc_info:
+        rule.geometry = cad_geometry
+    assert "VirtualGeometry" in str(exc_info.value)
+    assert "CADGeometry" in str(exc_info.value)

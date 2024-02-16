@@ -322,7 +322,9 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
 
-    ply_material = grpc_link_property("properties.ply_material")
+    ply_material = grpc_link_property(
+        "properties.ply_material", allowed_types=(Fabric, Stackup, SubLaminate)
+    )
 
     oriented_selection_sets = define_linked_object_list(
         "properties.oriented_selection_sets", OrientedSelectionSet
@@ -360,8 +362,12 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     draping_thickness_correction: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.draping_thickness_correction"
     )
-    draping_angle_1_field = grpc_link_property("properties.draping_angle_1_field")
-    draping_angle_2_field = grpc_link_property("properties.draping_angle_2_field")
+    draping_angle_1_field = grpc_link_property(
+        "properties.draping_angle_1_field", allowed_types=(LookUpTable1DColumn, LookUpTable3DColumn)
+    )
+    draping_angle_2_field = grpc_link_property(
+        "properties.draping_angle_2_field", allowed_types=(LookUpTable1DColumn, LookUpTable3DColumn)
+    )
 
     selection_rules = define_edge_property_list("properties.selection_rules", LinkedSelectionRule)
 
@@ -374,8 +380,12 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         from_protobuf=thickness_type_from_pb,
         to_protobuf=thickness_type_to_pb,
     )
-    thickness_geometry = grpc_link_property("properties.thickness_geometry")
-    thickness_field = grpc_link_property("properties.thickness_field")
+    thickness_geometry = grpc_link_property(
+        "properties.thickness_geometry", allowed_types=VirtualGeometry
+    )
+    thickness_field = grpc_link_property(
+        "properties.thickness_field", allowed_types=(LookUpTable1DColumn, LookUpTable3DColumn)
+    )
     thickness_field_type = grpc_data_property(
         "properties.thickness_field_type",
         from_protobuf=thickness_field_type_from_pb,

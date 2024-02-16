@@ -118,7 +118,7 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
 
-    edge_set = grpc_link_property("properties.edge_set")
+    edge_set = grpc_link_property("properties.edge_set", allowed_types=EdgeSet)
     outer_radius: ReadWriteProperty[float, float] = grpc_data_property("properties.outer_radius")
     inner_radius: ReadWriteProperty[float, float] = grpc_data_property("properties.inner_radius")
     include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
