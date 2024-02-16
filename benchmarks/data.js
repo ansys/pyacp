@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708072106072,
+  "lastUpdate": 1708084048038,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12440,6 +12440,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00029571498691788713",
             "extra": "mean: 937.5256550443537 usec\nrounds: 1893"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "105842014+roosre@users.noreply.github.com",
+            "name": "René Roos",
+            "username": "roosre"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a8775827e34061f8594afb5ccf0147ecb869c035",
+          "message": "use latest version of ansys-tools-path to ensure that also the latest… (#430)\n\nuse latest version of ansys-tools-path to ensure that also the latest dev version of the unified installer is found",
+          "timestamp": "2024-02-16T12:44:20+01:00",
+          "tree_id": "b49b1710e09c25c93e536eed8dd5af059f200db3",
+          "url": "https://github.com/ansys-internal/pyacp/commit/a8775827e34061f8594afb5ccf0147ecb869c035"
+        },
+        "date": 1708084029198,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.757041534142661,
+            "unit": "iter/sec",
+            "range": "stddev: 0.007218400645921581",
+            "extra": "mean: 210.21468759999493 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 917.1837531522006,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00039782444450165794",
+            "extra": "mean: 1.090294062191109 msec\nrounds: 1013"
           }
         ]
       }
