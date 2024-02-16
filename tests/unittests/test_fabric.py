@@ -48,6 +48,8 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
                 ("draping_material_model", DrapingMaterialType.UD),
                 ("draping_ud_coefficient", 0.55),
                 ("material", material),
+                ("material", None),
+                ("material", material),
             ],
             read_only=[
                 ("id", "some_id"),
