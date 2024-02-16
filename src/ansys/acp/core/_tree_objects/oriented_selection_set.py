@@ -58,7 +58,7 @@ __all__ = [
 if typing.TYPE_CHECKING:
     # Since the 'LinkedSelectionRule' class is used by the boolean selection rule,
     # this would cause a circular import at run-time.
-    from .. import BooleanSelectionRule, CutoffSelectionRule, GeometricalSelectionRule
+    from .. import BooleanSelectionRule, GeometricalSelectionRule
 
     _SELECTION_RULES_LINKABLE_TO_OSS = typing.Union[
         ParallelSelectionRule,
@@ -67,7 +67,6 @@ if typing.TYPE_CHECKING:
         TubeSelectionRule,
         GeometricalSelectionRule,
         VariableOffsetSelectionRule,
-        CutoffSelectionRule,
         BooleanSelectionRule,
     ]
 

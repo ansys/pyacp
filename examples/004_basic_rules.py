@@ -4,7 +4,10 @@
 Basic rule example
 ==================
 
-Shows the basic usage of selection rules. This example shows just the
+Shows the basic usage of selection rules.
+Selection Rules enable you to select elements through
+geometrical operations and thus to shape plies.
+This example shows just the
 pyACP part of the setup. See the :ref:`sphx_glr_examples_gallery_examples_005_advanced_rules.py`
 for more advanced rule examples. For a complete Composite analysis,
 see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example

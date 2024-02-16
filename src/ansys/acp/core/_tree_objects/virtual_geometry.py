@@ -93,6 +93,9 @@ class SubShape(GenericEdgePropertyType):
 class VirtualGeometry(CreatableTreeObject, IdTreeObject):
     """Instantiate a Virtual Geometry.
 
+    The virtual geometry can be created from a set of CAD components or from a set of SubShapes.
+    Combining CAD Components and SubShapes is not allowed.
+
     Parameters
     ----------
     name :
@@ -100,7 +103,7 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
     cad_components :
         CAD Components that make up the virtual geometry.
     sub_shapes :
-        Subshapes that make up the virtual geometry.
+        SubShapes that make up the virtual geometry.
 
     """
 

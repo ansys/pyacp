@@ -4,8 +4,10 @@
 Advanced rules example
 ======================
 
-Shows advanced usage of selection rules. See the
-:ref:`sphx_glr_examples_gallery_examples_004_basic_rules.py` for more basic rule examples.
+This example shows the usage of advanced rules such as geometrical rule,
+cut-off rule and variable offset rule. It also demonstrates how rules can be templated
+and reused with different parameters.
+See the :ref:`sphx_glr_examples_gallery_examples_004_basic_rules.py` for more basic rule examples.
 This example shows just the pyACP part of the setup.  For a complete Composite analysis,
 see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
 """
