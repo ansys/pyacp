@@ -89,7 +89,7 @@ class EdgeSet(CreatableTreeObject, IdTreeObject):
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_int_array,
     )
-    element_set = grpc_link_property("properties.element_set")
+    element_set = grpc_link_property("properties.element_set", allowed_types=ElementSet)
     limit_angle: ReadWriteProperty[float, float] = grpc_data_property("properties.limit_angle")
     origin = grpc_data_property(
         "properties.origin", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array

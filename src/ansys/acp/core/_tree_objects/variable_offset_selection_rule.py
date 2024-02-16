@@ -127,16 +127,16 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
 
-    edge_set = grpc_link_property("properties.edge_set")
-    offsets = grpc_link_property("properties.offsets")
-    angles = grpc_link_property("properties.angles")
+    edge_set = grpc_link_property("properties.edge_set", allowed_types=EdgeSet)
+    offsets = grpc_link_property("properties.offsets", allowed_types=LookUpTable1DColumn)
+    angles = grpc_link_property("properties.angles", allowed_types=LookUpTable1DColumn)
     include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.include_rule_type"
     )
     use_offset_correction: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.use_offset_correction"
     )
-    element_set = grpc_link_property("properties.element_set")
+    element_set = grpc_link_property("properties.element_set", allowed_types=ElementSet)
     inherit_from_lookup_table: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.inherit_from_lookup_table"
     )

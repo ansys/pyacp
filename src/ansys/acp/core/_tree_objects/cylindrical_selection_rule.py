@@ -111,7 +111,7 @@ class CylindricalSelectionRule(CreatableTreeObject, IdTreeObject):
     use_global_coordinate_system: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.use_global_coordinate_system"
     )
-    rosette = grpc_link_property("properties.rosette")
+    rosette = grpc_link_property("properties.rosette", allowed_types=Rosette)
     origin: ReadWriteProperty[tuple[float, float, float], Collection[float]] = grpc_data_property(
         "properties.origin", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array
     )
