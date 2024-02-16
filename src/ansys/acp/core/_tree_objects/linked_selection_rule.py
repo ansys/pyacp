@@ -83,6 +83,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     def __init__(
         self,
         selection_rule: _LINKABLE_SELECTION_RULE_TYPES,
+        *,
         operation_type: BooleanOperationType = BooleanOperationType.INTERSECT,
         template_rule: bool = False,
         parameter_1: float = 0.0,

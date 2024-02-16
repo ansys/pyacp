@@ -138,3 +138,20 @@ def test_regression_413_v2(parent_object):
 
     assert edge_property_list_2[0].angle == 45.0
     assert edge_property_list_2[1].angle == 90.0
+
+
+def test_wrong_fabrics_type_error_message(parent_object):
+    stackup = parent_object.create_stackup()
+    modeling_group = parent_object.create_modeling_group()
+    with pytest.raises(TypeError) as exc:
+        stackup.fabrics = [modeling_group]
+    assert "FabricWithAngle" in str(exc.value)
+    assert "ModelingGroup" in str(exc.value)
+
+
+def test_fabrics_autoconversion(parent_object):
+    stackup = parent_object.create_stackup()
+    fabric = parent_object.create_fabric()
+    fabric.material = parent_object.create_material()
+    stackup.fabrics = [fabric]
+    assert stackup.fabrics[0].fabric == fabric

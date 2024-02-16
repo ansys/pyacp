@@ -99,3 +99,10 @@ def test_mesh_data(parent_object):
     rule = parent_object.create_boolean_selection_rule()
     assert isinstance(rule.elemental_data, BooleanSelectionRuleElementalData)
     assert isinstance(rule.nodal_data, BooleanSelectionRuleNodalData)
+
+
+def test_add_method(parent_object):
+    boolean_rule = parent_object.create_boolean_selection_rule()
+    parallel_rule = parent_object.create_parallel_selection_rule()
+    linked_rule = boolean_rule.add_selection_rule(parallel_rule)
+    assert linked_rule.selection_rule == parallel_rule
