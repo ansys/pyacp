@@ -5,7 +5,7 @@ from collections.abc import Iterable
 import numpy as np
 import numpy.typing as npt
 
-from .._utils.array_conversions import to_ND_double_array_from_numpy, to_numpy
+from .._utils.array_conversions import to_ND_double_array_from_numpy_or_list, to_numpy
 from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
@@ -81,5 +81,5 @@ class LookUpTableColumnBase(CreatableTreeObject, IdTreeObject):
     data: ReadWriteProperty[npt.NDArray[np.float64], npt.NDArray[np.float64]] = grpc_data_property(
         "properties.data",
         from_protobuf=to_numpy,
-        to_protobuf=to_ND_double_array_from_numpy,
+        to_protobuf=to_ND_double_array_from_numpy_or_list,
     )
