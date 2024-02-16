@@ -4,7 +4,7 @@ import tempfile
 
 import pytest
 
-from ansys.acp.core import ACPWorkflow
+from ansys.acp.core import ACPWorkflow, UnitSystemType
 
 
 @pytest.mark.parametrize("explict_temp_dir", [None, tempfile.TemporaryDirectory()])
@@ -70,3 +70,16 @@ def test_reload_cad_geometry(acp_instance, model_data_dir, load_cad_geometry):
         with pytest.raises(FileNotFoundError) as excinfo:
             workflow.refresh_cad_geometry_from_local_file(copied_path, cad_geometry)
             assert "No such file or directory" in str(excinfo.value)
+
+
+@pytest.mark.parametrize("unit_system", UnitSystemType)
+def test_workflow_unit_system(acp_instance, model_data_dir, unit_system):
+    """Test that workflow can be initialized and files can be retrieved."""
+    input_file_path = model_data_dir / "minimal_model_2.cdb"
+
+    workflow = ACPWorkflow.from_cdb_file(
+        acp=acp_instance,
+        cdb_file_path=input_file_path,
+        unit_system=unit_system,
+    )
+    assert workflow.model.unit_system == unit_system

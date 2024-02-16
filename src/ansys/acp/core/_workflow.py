@@ -2,7 +2,7 @@ import pathlib
 import shutil
 import tempfile
 import typing
-from typing import Callable, Optional, Protocol
+from typing import Any, Callable, Optional, Protocol
 
 from . import CADGeometry, UnitSystemType
 from ._server.acp_instance import ACP
@@ -135,7 +135,10 @@ class ACPWorkflow:
     local_file_path :
         Path of the file to be loaded.
     file_format :
-        Format of the file to be loaded. Can be one of (TODO: list options).
+        Format of the file to be loaded. Can be one of ``"acp:h5"``, ``"ansys:h5"``,
+        ``"ansys:cdb"``, ``"ansys:dat"``, ``"abaqus:inp"``, or ``"nastran:bdf"``.
+    kwargs :
+        Additional keyword arguments passed to the :meth:`.ACP.import_model` method.
 
     """
 
@@ -146,6 +149,7 @@ class ACPWorkflow:
         local_working_directory: Optional[pathlib.Path] = None,
         local_file_path: PATH,
         file_format: str,
+        **kwargs: Any,
     ):
         self._acp_instance = acp
         self._local_working_dir = _LocalWorkingDir(local_working_directory)
@@ -155,7 +159,9 @@ class ACPWorkflow:
         )
 
         uploaded_file = self._add_input_file(path=pathlib.Path(local_file_path))
-        self._model = self._acp_instance.import_model(path=uploaded_file, format=file_format)
+        self._model = self._acp_instance.import_model(
+            path=uploaded_file, format=file_format, **kwargs
+        )
 
     @classmethod
     def from_acph5_file(
@@ -186,9 +192,11 @@ class ACPWorkflow:
     @classmethod
     def from_cdb_file(
         cls,
+        *,
         acp: ACP[ServerProtocol],
         cdb_file_path: PATH,
         local_working_directory: Optional[pathlib.Path] = None,
+        unit_system: UnitSystemType = UnitSystemType.UNDEFINED,
     ) -> "ACPWorkflow":
         """Instantiate an ACP Workflow from a cdb file.
 
@@ -207,6 +215,7 @@ class ACPWorkflow:
             local_file_path=cdb_file_path,
             local_working_directory=local_working_directory,
             file_format="ansys:cdb",
+            unit_system=unit_system,
         )
 
     @property
