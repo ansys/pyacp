@@ -6,7 +6,7 @@ from .boolean_selection_rule import (
     BooleanSelectionRuleNodalData,
 )
 from .cad_component import CADComponent
-from .cad_geometry import CADGeometry
+from .cad_geometry import CADGeometry, TriangleMesh
 from .cutoff_selection_rule import (
     CutoffSelectionRule,
     CutoffSelectionRuleElementalData,
@@ -56,7 +56,7 @@ from .lookup_table_1d_column import LookUpTable1DColumn
 from .lookup_table_3d import LookUpTable3D
 from .lookup_table_3d_column import LookUpTable3DColumn
 from .material import Material
-from .model import FeFormat, IgnorableEntity, Model, ModelElementalData, ModelNodalData
+from .model import FeFormat, IgnorableEntity, MeshData, Model, ModelElementalData, ModelNodalData
 from .modeling_group import ModelingGroup
 from .modeling_ply import ModelingPly, ModelingPlyElementalData, ModelingPlyNodalData, TaperEdge
 from .oriented_selection_set import (
@@ -138,6 +138,7 @@ __all__ = [
     "LookUpTable3DInterpolationAlgorithm",
     "LookUpTableColumnValueType",
     "Material",
+    "MeshData",
     "Model",
     "ModelElementalData",
     "ModelingGroup",
@@ -174,6 +175,7 @@ __all__ = [
     "TaperEdge",
     "ThicknessFieldType",
     "ThicknessType",
+    "TriangleMesh",
     "TubeSelectionRule",
     "TubeSelectionRuleElementalData",
     "TubeSelectionRuleNodalData",

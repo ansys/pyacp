@@ -8,7 +8,14 @@ import importlib.metadata
 from . import example_helpers, material_property_sets
 from ._model_printer import get_model_tree, print_model
 from ._plotter import get_directions_plotter
-from ._server import ACP, DirectLaunchConfig, DockerComposeLaunchConfig, LaunchMode, launch_acp
+from ._server import (
+    ACP,
+    ConnectLaunchConfig,
+    DirectLaunchConfig,
+    DockerComposeLaunchConfig,
+    LaunchMode,
+    launch_acp,
+)
 from ._tree_objects import (
     AnalysisPly,
     AnalysisPlyElementalData,
@@ -54,6 +61,7 @@ from ._tree_objects import (
     LookUpTable3DInterpolationAlgorithm,
     LookUpTableColumnValueType,
     Material,
+    MeshData,
     Model,
     ModelElementalData,
     ModelingGroup,
@@ -89,6 +97,7 @@ from ._tree_objects import (
     TaperEdge,
     ThicknessFieldType,
     ThicknessType,
+    TriangleMesh,
     TubeSelectionRule,
     TubeSelectionRuleElementalData,
     TubeSelectionRuleNodalData,
@@ -118,6 +127,7 @@ __all__ = [
     "BooleanSelectionRuleNodalData",
     "CADComponent",
     "CADGeometry",
+    "ConnectLaunchConfig",
     "CutoffMaterialType",
     "CutoffRuleType",
     "CutoffSelectionRule",
@@ -160,8 +170,9 @@ __all__ = [
     "LookUpTable3DColumn",
     "LookUpTable3DInterpolationAlgorithm",
     "LookUpTableColumnValueType",
-    "Material",
     "material_property_sets",
+    "Material",
+    "MeshData",
     "Model",
     "ModelElementalData",
     "ModelingGroup",
@@ -198,6 +209,7 @@ __all__ = [
     "TaperEdge",
     "ThicknessFieldType",
     "ThicknessType",
+    "TriangleMesh",
     "TubeSelectionRule",
     "TubeSelectionRuleElementalData",
     "TubeSelectionRuleNodalData",

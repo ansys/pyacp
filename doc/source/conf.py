@@ -30,8 +30,9 @@ if SKIP_GALLERY:
 if SKIP_API:
     exclude_patterns.append("api/*")
 
+
 jinja_contexts = {
-    "main_toctree": {"skip_api": SKIP_API, "skip_gallery": SKIP_GALLERY},
+    "conditional_skip": {"skip_api": SKIP_API, "skip_gallery": SKIP_GALLERY},
 }
 
 # Manage errors
@@ -84,27 +85,53 @@ extensions = [
     "sphinx_autodoc_typehints",
     "numpydoc",
     "sphinx_copybutton",
-    "ansys_sphinx_theme",
 ]
 if not SKIP_GALLERY:
     extensions += ["sphinx_gallery.gen_gallery"]
 extensions += [
     "sphinx_design",  # needed for pyvista offlineviewer directive
     "sphinx_jinja",
+    "pyvista.ext.plot_directive",
     "pyvista.ext.viewer_directive",
 ]
 
 # Intersphinx mapping
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/dev", None),
+    "python": ("https://docs.python.org/3", None),
     # kept here as an example
     # "scipy": ("https://docs.scipy.org/doc/scipy/reference", None),
-    # "numpy": ("https://numpy.org/devdocs", None),
+    "numpy": ("https://numpy.org/doc/stable", None),
     # "matplotlib": ("https://matplotlib.org/stable", None),
     # "pandas": ("https://pandas.pydata.org/pandas-docs/stable", None),
-    # "pyvista": ("https://docs.pyvista.org/", None),
+    "grpc": ("https://grpc.github.io/grpc/python/", None),
+    "protobuf": ("https://googleapis.dev/python/protobuf/latest/", None),
+    "pyvista": ("https://docs.pyvista.org/version/stable", None),
+    "ansys-dpf-core": ("https://dpf.docs.pyansys.com/version/stable/", None),
+    "ansys-dpf-composites": ("https://composites.dpf.docs.pyansys.com/version/stable/", None),
 }
 
+nitpick_ignore = [
+    ("py:class", "typing.Self"),
+    ("py:class", "numpy.float64"),
+    ("py:class", "numpy.int32"),
+    ("py:class", "numpy.int64"),
+    # Ignore TypeVar / TypeAlias defined within PyACP: they are either not recognized correctly,
+    # or misidentified as a class.
+    ("py:class", "_PATH"),
+]
+nitpick_ignore_regex = [
+    ("py:class", r"ansys\.api\.acp\..*"),
+    ("py:class", "None -- .*"),  # from collections.abc
+    # Ignore TypeVars defined within PyACP: they are either not recognized correctly,
+    # or misidentified as a class.
+    ("py:class", r"^(.*\.)?ValueT$"),
+    ("py:class", r"^(.*\.)?TC$"),
+    ("py:class", r"^(.*\.)?TV$"),
+    ("py:class", r"ansys\.acp.core\..*\.ChildT"),
+    ("py:class", r"ansys\.acp.core\..*\.CreatableValueT"),
+    ("py:class", r"ansys\.acp.core\..*\.MeshDataT"),
+    ("py:class", r"ansys\.acp.core\..*\.ScalarDataT"),
+]
 # sphinx_autodoc_typehints configuration
 typehints_defaults = "comma"
 simplify_optional_unions = False
@@ -129,6 +156,12 @@ numpydoc_validation_checks = {
     "SS05",  # Summary must start with infinitive verb, not third person
     "RT02",  # The first line of the Returns section should contain only the
     # type, unless multiple values are being returned"
+}
+numpydoc_validation_exclude = {
+    # Inherited from collections.abc; since these are internal-only it
+    # doesn't make sense to overwrite the __doc__.fex
+    r".*\.LinkedObjectList\.clear",
+    r".*\.EdgePropertyList\.clear",
 }
 
 # sphinx gallery options
@@ -159,6 +192,9 @@ html_favicon = ansys_favicon
 
 # static path
 html_static_path = ["_static"]
+
+# Add any paths that contain templates here, relative to this directory.
+templates_path = ["_templates"]
 
 # The suffix(es) of source filenames.
 source_suffix = ".rst"

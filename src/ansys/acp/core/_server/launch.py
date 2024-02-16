@@ -61,7 +61,11 @@ def launch_acp(
             channel=server_instance.channels[ServerKey.FILE_TRANSFER]
         )
         is_remote = True
-
+    elif launch_mode_evaluated == LaunchMode.CONNECT:
+        filetransfer_strategy = RemoteFileTransferStrategy(
+            channel=server_instance.channels[ServerKey.FILE_TRANSFER]
+        )
+        is_remote = True
     else:
         raise ValueError("Invalid launch mode for ACP: " + str(launch_mode_evaluated))
 
