@@ -36,7 +36,7 @@ grpcio-health-checking = "^1.43"
 packaging = ">=15.0"
 typing-extensions = "^4.5.0"
 ansys-api-acp = { version="*", source="pyansys_private_pypi" }
-ansys-tools-path = "^0.3.0"
+ansys-tools-path = "^0"
 ansys-tools-local-product-launcher = { git = "https://github.com/ansys-internal/ansys-tools-local-product-launcher.git", branch = "main" }
 ansys-tools-filetransfer = { git = "https://github.com/ansys-internal/ansys-tools-filetransfer.git", branch = "main" }
 pyvista = ">=0.42.0"
