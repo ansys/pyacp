@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707918035337,
+  "lastUpdate": 1708072106072,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12402,6 +12402,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002617961475046732",
             "extra": "mean: 902.2880496589357 usec\nrounds: 1611"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "699f7cfe2c1fcd021b4b79720e4d5cdcb24c51e6",
+          "message": "Add runtime type check for grpc_link_property (#429)\n\nAdd a runtime type check in the setter of grpc_link_property, which\r\ngives a nice error when the wrong object type is passed.\r\n\r\nAddresses the second point in #408.",
+          "timestamp": "2024-02-16T08:25:53Z",
+          "tree_id": "2f74072ad5cd6410c2b8628450c4919c778eb913",
+          "url": "https://github.com/ansys-internal/pyacp/commit/699f7cfe2c1fcd021b4b79720e4d5cdcb24c51e6"
+        },
+        "date": 1708072088517,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.775791312764555,
+            "unit": "iter/sec",
+            "range": "stddev: 0.002741846490869992",
+            "extra": "mean: 147.58423833333723 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1066.6374777260796,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00029571498691788713",
+            "extra": "mean: 937.5256550443537 usec\nrounds: 1893"
           }
         ]
       }
