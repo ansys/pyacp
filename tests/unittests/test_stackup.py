@@ -149,9 +149,15 @@ def test_wrong_fabrics_type_error_message(parent_object):
     assert "ModelingGroup" in str(exc.value)
 
 
-def test_fabrics_autoconversion(parent_object):
+def test_add_fabric(parent_object):
     stackup = parent_object.create_stackup()
-    fabric = parent_object.create_fabric()
-    fabric.material = parent_object.create_material()
-    stackup.fabrics = [fabric]
-    assert stackup.fabrics[0].fabric == fabric
+    fabric1 = parent_object.create_fabric()
+    fabric1.material = parent_object.create_material()
+    stackup.add_fabric(fabric1)
+    assert stackup.fabrics[-1].fabric == fabric1
+    assert stackup.fabrics[-1].angle == 0.0
+    fabric2 = fabric1.clone()
+    fabric2.store(parent=parent_object)
+    stackup.add_fabric(fabric2, angle=45.0)
+    assert stackup.fabrics[-1].fabric == fabric2
+    assert stackup.fabrics[-1].angle == 45.0
