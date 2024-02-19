@@ -136,7 +136,7 @@ class ACPWorkflow:
         Path of the file to be loaded.
     file_format :
         Format of the file to be loaded. Can be one of ``"acp:h5"``, ``"ansys:h5"``,
-        ``"ansys:cdb"``, ``"ansys:dat"``, ``"abaqus:inp"``, or ``"nastran:bdf"``.
+        ``"ansys:cdb"`` or ``"ansys:dat"``.
     kwargs :
         Additional keyword arguments passed to the :meth:`.ACP.import_model` method.
 
@@ -195,8 +195,8 @@ class ACPWorkflow:
         *,
         acp: ACP[ServerProtocol],
         cdb_file_path: PATH,
+        unit_system: UnitSystemType,
         local_working_directory: Optional[pathlib.Path] = None,
-        unit_system: UnitSystemType = UnitSystemType.UNDEFINED,
     ) -> "ACPWorkflow":
         """Instantiate an ACP Workflow from a cdb file.
 
@@ -206,6 +206,8 @@ class ACPWorkflow:
             The ACP Client.
         cdb_file_path:
             The path to the cdb file.
+        unit_system:
+            Unit System.
         local_working_directory:
             The local working directory. If None, a temporary directory will be created.
         """
