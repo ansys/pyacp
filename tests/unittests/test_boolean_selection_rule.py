@@ -23,11 +23,15 @@ def tree_object(parent_object):
 
 class TestBooleanSelectionRule(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "boolean_selection_rules"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "selection_rules": [],
-        "include_rule_type": True,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "selection_rules": [],
+            "include_rule_type": True,
+        }
 
     CREATE_METHOD_NAME = "create_boolean_selection_rule"
 

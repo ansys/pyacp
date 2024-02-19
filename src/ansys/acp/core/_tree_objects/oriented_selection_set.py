@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable, Sequence
 import dataclasses
+import typing
 
 from ansys.api.acp.v0 import oriented_selection_set_pb2, oriented_selection_set_pb2_grpc
 
@@ -53,6 +54,21 @@ __all__ = [
     "OrientedSelectionSetElementalData",
     "OrientedSelectionSetNodalData",
 ]
+
+if typing.TYPE_CHECKING:
+    # Since the 'LinkedSelectionRule' class is used by the boolean selection rule,
+    # this would cause a circular import at run-time.
+    from .. import BooleanSelectionRule, GeometricalSelectionRule
+
+    _SELECTION_RULES_LINKABLE_TO_OSS = typing.Union[
+        ParallelSelectionRule,
+        CylindricalSelectionRule,
+        SphericalSelectionRule,
+        TubeSelectionRule,
+        GeometricalSelectionRule,
+        VariableOffsetSelectionRule,
+        BooleanSelectionRule,
+    ]
 
 
 @dataclasses.dataclass
@@ -127,6 +143,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         orientation_direction: tuple[float, float, float] = (0.0, 0.0, 0.0),
         rosettes: Sequence[Rosette] = tuple(),
         rosette_selection_method: RosetteSelectionMethod = "minimum_angle",
+        selection_rules: Sequence[_SELECTION_RULES_LINKABLE_TO_OSS] = tuple(),
         draping: bool = False,
         draping_seed_point: tuple[float, float, float] = (0.0, 0.0, 0.0),
         auto_draping_direction: bool = True,
@@ -143,6 +160,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         self.orientation_direction = orientation_direction
         self.rosettes = rosettes
         self.rosette_selection_method = RosetteSelectionMethod(rosette_selection_method)
+        self.selection_rules = selection_rules
         self.draping = draping
         self.draping_seed_point = draping_seed_point
         self.auto_draping_direction = auto_draping_direction

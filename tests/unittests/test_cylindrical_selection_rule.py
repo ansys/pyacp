@@ -18,16 +18,20 @@ def tree_object(parent_object):
 
 class TestCylindricalSelectionRule(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "cylindrical_selection_rules"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "use_global_coordinate_system": True,
-        "rosette": None,
-        "origin": (0.0, 0.0, 0.0),
-        "direction": (0.0, 0.0, 1.0),
-        "radius": 0.0,
-        "relative_rule_type": False,
-        "include_rule_type": True,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "use_global_coordinate_system": True,
+            "rosette": None,
+            "origin": (0.0, 0.0, 0.0),
+            "direction": (0.0, 0.0, 1.0),
+            "radius": 0.0,
+            "relative_rule_type": False,
+            "include_rule_type": True,
+        }
 
     CREATE_METHOD_NAME = "create_cylindrical_selection_rule"
 

@@ -93,14 +93,18 @@ class SubShape(GenericEdgePropertyType):
 class VirtualGeometry(CreatableTreeObject, IdTreeObject):
     """Instantiate a Virtual Geometry.
 
+    The virtual geometry can be created from a set of CAD components or from a set of SubShapes.
+    Combining CAD Components and SubShapes is not allowed.
+
     Parameters
     ----------
     name :
         Name of the Virtual Geometry.
-    dimension :
-        Dimension of the Virtual Geometry, if it is uniquely defined.
+    cad_components :
+        CAD Components that make up the virtual geometry.
     sub_shapes :
-        Paths of the CAD Components that make up the virtual geometry.
+        SubShapes that make up the virtual geometry.
+
     """
 
     __slots__: Iterable[str] = tuple()
@@ -112,12 +116,24 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
         self,
         *,
         name: str = "VirtualGeometry",
-        sub_shapes: Iterable[str] = (),
+        cad_components: Iterable[CADComponent] | None = None,
+        sub_shapes: Iterable[SubShape] | None = None,
     ):
         super().__init__(
             name=name,
         )
-        self.sub_shapes = sub_shapes
+
+        if cad_components is not None and sub_shapes is not None:
+            raise ValueError("cad_components and sub_shapes cannot be set at the same time")
+
+        if cad_components is None and sub_shapes is None:
+            self.sub_shapes = []
+
+        if cad_components is not None:
+            self.set_cad_components(cad_components=cad_components)
+
+        if sub_shapes is not None:
+            self.sub_shapes = sub_shapes
 
     def _create_stub(self) -> virtual_geometry_pb2_grpc.ObjectServiceStub:
         return virtual_geometry_pb2_grpc.ObjectServiceStub(self._channel)
@@ -126,6 +142,7 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
     dimension = grpc_data_property_read_only(
         "properties.dimension", from_protobuf=virtual_geometry_dimension_from_pb
     )
+
     sub_shapes = define_edge_property_list(
         "properties.sub_shapes",
         SubShape,

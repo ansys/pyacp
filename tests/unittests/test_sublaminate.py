@@ -18,12 +18,16 @@ def tree_object(parent_object):
 
 class TestSubLaminate(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "sublaminates"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "topdown": True,
-        "materials": [],
-        "symmetry": SymmetryType.NO_SYMMETRY,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "topdown": True,
+            "materials": [],
+            "symmetry": SymmetryType.NO_SYMMETRY,
+        }
 
     CREATE_METHOD_NAME = "create_sublaminate"
 
