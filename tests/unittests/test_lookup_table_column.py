@@ -41,12 +41,17 @@ def column_value_type(request):
     return request.param
 
 
-@pytest.fixture
-def column_data(num_points, column_value_type):
+@pytest.fixture(params=[False, True])  # Param controls whether the data is converted to a list
+def column_data(num_points, column_value_type, request):
     if column_value_type == LookUpTableColumnValueType.SCALAR:
-        return np.random.rand(num_points)
+        res = np.random.rand(num_points)
     elif column_value_type == LookUpTableColumnValueType.DIRECTION:
-        return np.random.rand(num_points, 3)
+        res = np.random.rand(num_points, 3)
+    if request.param:
+        if num_points == 0 and column_value_type == LookUpTableColumnValueType.DIRECTION:
+            pytest.xfail("Passing empty lists as directional data is not yet supported.")
+        return res.tolist()
+    return res
 
 
 @pytest.fixture
