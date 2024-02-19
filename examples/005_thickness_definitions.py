@@ -34,10 +34,14 @@ input_file = get_example_file(ExampleKeys.MINIMAL_FLAT_PLATE, WORKING_DIR)
 acp = launch_acp()
 
 # %%
+# Load the existing model
+# -----------------------
+
+# %%
 # Define the input file and instantiate an ACPWorkflow.
 # The ACPWorkflow class provides convenience methods which simplify the file handling.
 # It automatically creates a model based on the input file.
-
+# The input file contains a flat plate with a single ply.
 workflow = ACPWorkflow.from_acph5_file(
     acp=acp,
     acph5_file_path=input_file,
@@ -55,14 +59,16 @@ mesh.plot(show_edges=True)
 
 
 # Plot the nominal ply thickness
-modeling_ply = model.modeling_groups["ModelingGroup"].modeling_plies["ply"]
+modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
 model.update()
 assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
 
 # %%
-# Define the thickness with a geometry
+# Define the thickness from a geometry
+# ------------------------------------
 
+# %%
 # Add the solid geometry to the model that defines the thickness
 thickness_geometry_file = example_helpers.get_example_file(
     example_helpers.ExampleKeys.THICKNESS_GEOMETRY, WORKING_DIR
@@ -73,15 +79,18 @@ thickness_geometry = workflow.add_cad_geometry_from_local_file(thickness_geometr
 # cad_geometry are not available until the model is updated.
 model.update()
 
+# %%
 # Create a virtual geometry from the CAD geometry
 thickness_virtual_geometry = model.create_virtual_geometry(
     name="thickness_virtual_geometry", cad_components=thickness_geometry.root_shapes.values()
 )
 
+# %%
 # Set the thickness type to "from geometry" and define the virtual geometry
 modeling_ply.thickness_type = ThicknessType.FROM_GEOMETRY
 modeling_ply.thickness_geometry = thickness_virtual_geometry
 
+# %%
 # Plot the ply thickness together with the geometry that defines the thickness.
 model.update()
 assert model.elemental_data.thickness is not None
@@ -95,7 +104,9 @@ plotter.show()
 
 # %%
 # Define the thickness from a lookup table
+# ----------------------------------------
 
+# %%
 # Create the data for the lookup table.
 # Create a 20x20 grid of points on which a thickness function is defined. In this case
 # the mesh of the lookup table is finer than the FE mesh and the thickness is interpolated
@@ -105,15 +116,15 @@ plate_side_length = 0.01
 num_points = 20
 x_coordinates = np.linspace(0, plate_side_length, num_points)
 z_coordinates = np.linspace(0, plate_side_length, num_points)
-
-center_x = 0.005
-center_z = 0.005
-
 xx, zz = np.meshgrid(x_coordinates, z_coordinates)
 
+# %%
 # Create a thickness equal to the distance to the center of the plate
+center_x = 0.005
+center_z = 0.005
 thickness = np.sqrt((xx - center_x) ** 2 + (zz - center_z) ** 2)
 
+# %%
 # Create the point coordinates for the lookup table
 # The y coordinate is always zero.
 points = np.stack(
@@ -125,6 +136,7 @@ points = np.stack(
     axis=1,
 )
 
+# %%
 # Create the lookup table and add the coordinates and thickness data
 lookup_table = model.create_lookup_table_3d()
 lookup_table.columns["Location"].data = points
@@ -132,10 +144,12 @@ thickness_column = lookup_table.create_column(
     data=thickness.ravel(), dimension_type=DimensionType.LENGTH
 )
 
+# %%
 # Set the thickness type to "from table" and assign the thickness column
 modeling_ply.thickness_type = ThicknessType.FROM_TABLE
 modeling_ply.thickness_field = thickness_column
 
+# %%
 # Plot the ply thickness
 model.update()
 assert model.elemental_data.thickness is not None

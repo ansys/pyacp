@@ -30,6 +30,10 @@ from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
 from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, ConstantStrainLimits
 
 # %%
+# Start ACP and load the model
+# ----------------------------
+
+# %%
 # Get example file from server
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
@@ -59,6 +63,9 @@ print(model.unit_system)
 mesh = model.mesh.to_pyvista()
 mesh.plot(show_edges=True)
 
+# %%
+# Create the sandwich materials
+# -----------------------------
 
 # %%
 # Create the UD material and  its corresponding fabric
@@ -87,6 +94,7 @@ ud_material = model.create_material(
 )
 
 ud_fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.002)
+
 
 # %%
 # Create a multi-axial Stackup and a Sublaminate. Sublaminates and Stackups help to quickly
@@ -123,6 +131,10 @@ core = model.create_material(
 )
 
 core_fabric = model.create_fabric(name="core", material=ud_material, thickness=0.015)
+
+# %%
+# Create the Layup
+# ----------------
 
 # %%
 # Define a rosette and an oriented selection set and plot the orientations
