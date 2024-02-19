@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708084048038,
+  "lastUpdate": 1708340685465,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12478,6 +12478,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00039782444450165794",
             "extra": "mean: 1.090294062191109 msec\nrounds: 1013"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4b4d4a1244e9dd6b533d3299bc47823a87684b4d",
+          "message": "Sandwich and selection rule examples (#423)\n\n* Add new examples for a sandwich panel, basic and advanced selection rules.\r\n* Small improvement to the Virtual Geometries API\r\n* Add tests for the create method with non-default arguments for all the objects.",
+          "timestamp": "2024-02-19T12:01:24+01:00",
+          "tree_id": "bfe078d998aec95dd40d6f95234cc1048c7495c8",
+          "url": "https://github.com/ansys-internal/pyacp/commit/4b4d4a1244e9dd6b533d3299bc47823a87684b4d"
+        },
+        "date": 1708340667379,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.714491133554726,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005114748324784435",
+            "extra": "mean: 212.1119695999937 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 890.4382059383754,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000423666987564717",
+            "extra": "mean: 1.1230425573958436 msec\nrounds: 906"
           }
         ]
       }
