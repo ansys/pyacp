@@ -631,12 +631,14 @@ document.write(`
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_virtual_geometry">
 <span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_virtual_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_virtual_geometry" title="Permalink to this definition">#</a></dt>
 <dd><p>Instantiate a Virtual Geometry.</p>
+<p>The virtual geometry can be created from a set of CAD components or from a set of SubShapes.
+Combining CAD Components and SubShapes is not allowed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> – Name of the Virtual Geometry.</p></li>
-<li><p><strong>dimension</strong> – Dimension of the Virtual Geometry, if it is uniquely defined.</p></li>
-<li><p><strong>sub_shapes</strong> – Paths of the CAD Components that make up the virtual geometry.</p></li>
+<li><p><strong>cad_components</strong> – CAD Components that make up the virtual geometry.</p></li>
+<li><p><strong>sub_shapes</strong> – SubShapes that make up the virtual geometry.</p></li>
 </ul>
 </dd>
 </dl>

@@ -21,5 +21,7 @@
       ExampleKeys.BASIC_FLAT_PLATE_ACPH5
       ExampleKeys.RACE_CAR_NOSE_ACPH5
       ExampleKeys.RACE_CAR_NOSE_STEP
+      ExampleKeys.CUT_OFF_GEOMETRY
+      ExampleKeys.RULE_GEOMETRY_TRIANGLE
    
    

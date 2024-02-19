@@ -1,0 +1,6 @@
+CUT\_OFF\_GEOMETRY
+==================
+
+.. currentmodule:: ansys.acp.core.example_helpers
+
+.. autoattribute:: ExampleKeys.CUT_OFF_GEOMETRY

@@ -1,0 +1,6 @@
+RULE\_GEOMETRY\_TRIANGLE
+========================
+
+.. currentmodule:: ansys.acp.core.example_helpers
+
+.. autoattribute:: ExampleKeys.RULE_GEOMETRY_TRIANGLE
