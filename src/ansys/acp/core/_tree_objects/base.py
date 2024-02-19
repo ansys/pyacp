@@ -33,12 +33,11 @@ from ._grpc_helpers.protocols import (
     Readable,
     ReadableResourceStub,
 )
-
-_T = TypeVar("_T", bound="TreeObjectBase")
+from ._object_cache import ObjectCacheMixin, constructor_with_cache
 
 
 @mark_grpc_properties
-class TreeObjectBase(GrpcObjectBase):
+class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
     """Base class for ACP tree objects."""
 
     __slots__: Iterable[str] = ("_channel_store", "_pb_object")
@@ -57,7 +56,13 @@ class TreeObjectBase(GrpcObjectBase):
         # the protobuf object.
         self._pb_object.info.name = name
 
-    def clone(self: _T, *, unlink: bool = False) -> _T:
+    @staticmethod
+    def _cache_key_valid(key: Any) -> bool:
+        if not isinstance(key, str):
+            return False
+        return bool(key)
+
+    def clone(self: Self, *, unlink: bool = False) -> Self:
         """Create a new unstored object with the same properties.
 
         Parameters
@@ -74,7 +79,7 @@ class TreeObjectBase(GrpcObjectBase):
         new_object_info.info.name = self._pb_object.info.name
         return type(self)._from_object_info(object_info=new_object_info)
 
-    def __eq__(self: _T, other: Any) -> bool:
+    def __eq__(self: Self, other: Any) -> bool:
         if not isinstance(other, TreeObject):
             return False
         if not self._is_stored:
@@ -83,16 +88,24 @@ class TreeObjectBase(GrpcObjectBase):
         return self._resource_path.value == other._resource_path.value
 
     @classmethod
+    @constructor_with_cache(
+        key_getter=lambda object_info, *args, **kwargs: object_info.info.resource_path.value,
+        raise_on_invalid_key=False,
+    )
     def _from_object_info(
-        cls: type[_T], object_info: ObjectInfo, channel: Channel | None = None
-    ) -> _T:
+        cls: type[Self], /, object_info: ObjectInfo, channel: Channel | None = None
+    ) -> Self:
         instance = cls()
         instance._pb_object = object_info
         instance._channel_store = channel
         return instance
 
     @classmethod
-    def _from_resource_path(cls, resource_path: ResourcePath, channel: Channel) -> Self:
+    @constructor_with_cache(
+        key_getter=lambda resource_path, *args, **kwargs: resource_path.value,
+        raise_on_invalid_key=True,
+    )
+    def _from_resource_path(cls, /, resource_path: ResourcePath, channel: Channel) -> Self:
         instance = cls()
         instance._pb_object.info.resource_path.CopyFrom(resource_path)
         instance._channel_store = channel
@@ -221,7 +234,7 @@ class CreatableTreeObject(TreeObject):
     def _get_stub(self) -> CreatableEditableAndReadableResourceStub:
         return cast(CreatableEditableAndReadableResourceStub, super()._get_stub())
 
-    def store(self: CreatableTreeObject, parent: TreeObject) -> None:
+    def store(self: Self, parent: TreeObject) -> None:
         """Store the object on the server.
 
         Parameters
@@ -261,6 +274,10 @@ class CreatableTreeObject(TreeObject):
         )
         with wrap_grpc_errors():
             self._pb_object = self._get_stub().Create(request)
+        resource_path_value = self._resource_path.value
+        if not resource_path_value:
+            raise ValueError("The resource path must not be empty.")
+        self._OBJECT_CACHE[resource_path_value] = self
 
 
 @mark_grpc_properties

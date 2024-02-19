@@ -123,7 +123,7 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
         from_protobuf=geometrical_rule_type_from_pb,
         to_protobuf=geometrical_rule_type_to_pb,
     )
-    geometry = grpc_link_property("properties.geometry")
+    geometry = grpc_link_property("properties.geometry", allowed_types=VirtualGeometry)
     element_sets = define_linked_object_list("properties.element_sets", object_class=ElementSet)
     include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.include_rule_type"

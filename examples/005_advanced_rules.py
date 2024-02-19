@@ -4,8 +4,10 @@
 Advanced rules example
 ======================
 
-Shows advanced usage of selection rules. See the
-:ref:`sphx_glr_examples_gallery_examples_004_basic_rules.py` for more basic rule examples.
+This example shows the usage of advanced rules such as geometrical rule,
+cut-off rule and variable offset rule. It also demonstrates how rules can be templated
+and reused with different parameters.
+See the :ref:`sphx_glr_examples_gallery_examples_004_basic_rules.py` for more basic rule examples.
 This example shows just the pyACP part of the setup.  For a complete Composite analysis,
 see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
 """
@@ -119,15 +121,13 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 
 
 # %%
-# Parametrize the rule
-# Todo: Extend example once #413 is fixed
-
-# linked_parallel_rule.template_rule = True
+# Rules can be parametrized. This makes sense when a rule is used multiple times with different
+# parameters. :class:`.LinkedSelectionRule` shows what parameters are available for each rule.
+# Here, the extent of the parallel rule modified.
+linked_parallel_rule.template_rule = True
 linked_parallel_rule.parameter_1 = 0.002
-# linked_parallel_rule.parameter_2 = 0.1
+linked_parallel_rule.parameter_2 = 0.1
 
-
-assert len(partial_ply.selection_rules) == 1
 model.update()
 assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
@@ -220,7 +220,6 @@ lookup_table = model.create_lookup_table_1d(
 
 # Add the location data. The "Location" column of the lookup table
 # is always created by default.
-# Todo: should we allow setting the data from a list?
 lookup_table.columns["Location"].data = np.array([0, 0.005, 0.01])
 
 # Create the offset column that defines the offsets from the edge.
@@ -259,22 +258,30 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # because they help to organize the rules and can be used to create more complex rules.
 
 # Create a cylindrical selection rule which will be combined with the parallel rule.
-cylindrical_rule = model.create_cylindrical_selection_rule(
+cylindrical_rule_boolean = model.create_cylindrical_selection_rule(
     name="cylindrical_rule",
     origin=(0.005, 0, 0.005),
     direction=(0, 1, 0),
     radius=0.002,
 )
 
-linked_cylindrical_rule = LinkedSelectionRule(cylindrical_rule)
+parallel_rule_boolean = model.create_parallel_selection_rule(
+    name="parallel_rule",
+    origin=(0, 0, 0),
+    direction=(1, 0, 0),
+    lower_limit=0.005,
+    upper_limit=1,
+)
+
+linked_cylindrical_rule_boolean = LinkedSelectionRule(cylindrical_rule_boolean)
+linked_parallel_rule_boolean = LinkedSelectionRule(parallel_rule_boolean)
 
 boolean_selection_rule = model.create_boolean_selection_rule(
     name="boolean_rule",
-    selection_rules=[linked_parallel_rule, linked_cylindrical_rule],
+    selection_rules=[linked_parallel_rule_boolean, linked_cylindrical_rule_boolean],
 )
 
 partial_ply.selection_rules = [LinkedSelectionRule(boolean_selection_rule)]
-
 
 # Plot the ply extent
 model.update()
@@ -283,8 +290,8 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 
 # %%
 # Modify the operation type of the boolean selection rule
-linked_parallel_rule.operation_type = BooleanOperationType.INTERSECT
-linked_cylindrical_rule.operation_type = BooleanOperationType.ADD
+linked_parallel_rule_boolean.operation_type = BooleanOperationType.INTERSECT
+linked_cylindrical_rule_boolean.operation_type = BooleanOperationType.ADD
 
 # Plot the ply extent
 model.update()

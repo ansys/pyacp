@@ -1,6 +1,10 @@
 import pytest
 
-from ansys.acp.core import ParallelSelectionRuleElementalData, ParallelSelectionRuleNodalData
+from ansys.acp.core import (
+    LinkedSelectionRule,
+    ParallelSelectionRuleElementalData,
+    ParallelSelectionRuleNodalData,
+)
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
@@ -71,3 +75,29 @@ def test_mesh_data(parent_object):
     )
     assert isinstance(rule.elemental_data, ParallelSelectionRuleElementalData)
     assert isinstance(rule.nodal_data, ParallelSelectionRuleNodalData)
+
+
+def test_regression_413(parent_object):
+    """
+    Regression test for issue #413:
+    Setting property on linked rule removes it from the modeling ply
+    """
+    model = parent_object
+
+    parallel_rule = model.create_parallel_selection_rule()
+
+    linked_parallel_rule = LinkedSelectionRule(parallel_rule)
+
+    modeling_group = model.create_modeling_group()
+    modeling_ply = modeling_group.create_modeling_ply(selection_rules=[linked_parallel_rule])
+
+    cylindrical_rule = model.create_cylindrical_selection_rule()
+    linked_cylindrical_rule = LinkedSelectionRule(cylindrical_rule)
+    modeling_ply.selection_rules.append(linked_cylindrical_rule)
+
+    assert len(modeling_ply.selection_rules) == 2
+
+    # Original bug: changing a property on the linked rule
+    # removes it from the modeling ply, making the assertion fail.
+    linked_parallel_rule.parameter_1 = 0.002
+    assert len(modeling_ply.selection_rules) == 2

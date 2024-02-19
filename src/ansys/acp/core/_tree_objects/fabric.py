@@ -95,7 +95,7 @@ class Fabric(CreatableTreeObject, IdTreeObject):
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     area_weight: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.area_weight")
 
-    material = grpc_link_property("properties.material")
+    material = grpc_link_property("properties.material", allowed_types=Material)
     thickness: ReadWriteProperty[float, float] = grpc_data_property("properties.thickness")
     area_price: ReadWriteProperty[float, float] = grpc_data_property("properties.area_price")
     ignore_for_postprocessing: ReadWriteProperty[bool, bool] = grpc_data_property(

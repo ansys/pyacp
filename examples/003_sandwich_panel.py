@@ -172,6 +172,10 @@ top_ply = modeling_group.create_modeling_ply(
 # Update and print the model.
 model.update()
 print_model(workflow.model)
+# sphinx_gallery_start_ignore
+from ansys.acp.core.example_helpers import _run_analysis
 
-# Just to make sure the analysis actually runs. Todo: remove
-# run_analysis(workflow)
+# Run the analysis so we are sure all the material properties have been correctly
+# defined.
+_run_analysis(workflow)
+# sphinx_gallery_end_ignore

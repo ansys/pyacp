@@ -123,6 +123,10 @@ You will need to follow these steps:
         pipx ensurepath
         pipx install poetry
 
+    .. note::
+
+        At this point, you may need to restart your shell or editor to ensure that the new ``poetry`` command is available.
+
 3.  Set up credentials for the PyAnsys internal PyPI instance
 
     .. code-block:: bash
