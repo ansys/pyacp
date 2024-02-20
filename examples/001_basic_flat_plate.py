@@ -25,6 +25,7 @@ import tempfile
 from ansys.acp.core import (
     ACPWorkflow,
     PlyType,
+    UnitSystemType,
     example_helpers,
     get_composite_post_processing_files,
     get_directions_plotter,
@@ -59,6 +60,7 @@ workflow = ACPWorkflow.from_cdb_file(
     acp=acp,
     cdb_file_path=input_file,
     local_working_directory=WORKING_DIR,
+    unit_system=UnitSystemType.MPA,
 )
 
 model = workflow.model
