@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708340685465,
+  "lastUpdate": 1708434200916,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12516,6 +12516,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000423666987564717",
             "extra": "mean: 1.1230425573958436 msec\nrounds: 906"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1a4b36cc7700a596d494681ceab4cfc48723354c",
+          "message": "Improve usability of edge property lists (#433)\n\n* Improve usability of edge property lists\r\n\r\n* Add type checks to the GenericEdgePropertyType classes (FabricWithAngle,\r\n  LinkedSelectionRule etc.), to check that the linked object is of\r\n  the right type. This avoids raising an obscure resource path\r\n  validation error.\r\n* In the EdgePropertyList, check that the linked objects are of the\r\n  correct type (e.g. FabricWithAngle), and raise a nice exception\r\n  otherwise\r\n* Add ``add_*`` methods to append a linked object, using the same\r\n  parameters as instantiating the GenericEdgePropertyType.\r\n\r\n* Update stackup.fabric test\r\n\r\n* add more unit tests\r\n\r\n* fix the new unit test of sub-laminate\r\n\r\n* run pre-commit hook\r\n\r\n---------\r\n\r\nCo-authored-by: René Roos <rene.roos@ansys.com>",
+          "timestamp": "2024-02-20T13:59:30+01:00",
+          "tree_id": "e79f9a843bc6180e832a97db771ed60b27feee20",
+          "url": "https://github.com/ansys-internal/pyacp/commit/1a4b36cc7700a596d494681ceab4cfc48723354c"
+        },
+        "date": 1708434181045,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.3119344445222945,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00992292176060049",
+            "extra": "mean: 231.9144719999997 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 797.9125537096762,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0006155822149049252",
+            "extra": "mean: 1.2532701677029312 msec\nrounds: 1127"
           }
         ]
       }
