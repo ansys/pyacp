@@ -16,15 +16,19 @@ def tree_object(parent_object):
 
 class TestCADGeometry(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "cad_geometries"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "external_path": "",
-        "scale_factor": 1.0,
-        "use_default_precision": True,
-        "precision": 1e-3,
-        "use_default_offset": True,
-        "offset": 0.0,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "external_path": "",
+            "scale_factor": 1.0,
+            "use_default_precision": True,
+            "precision": 1e-3,
+            "use_default_offset": True,
+            "offset": 0.0,
+        }
 
     CREATE_METHOD_NAME = "create_cad_geometry"
 

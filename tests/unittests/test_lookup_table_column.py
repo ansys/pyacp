@@ -25,10 +25,17 @@ def column_type_to_test(request):
 
 
 @pytest.fixture
-def parent_object(parent_model, column_type_to_test):
+def parent_object(parent_model, column_type_to_test, num_points):
+    # Note: We need to add dummy values to the location column. Otherwise
+    # a "shape mismatch" error occurs when we try to create columns
+    # with data.
     if column_type_to_test == LookUpTable1DColumn:
-        return parent_model.create_lookup_table_1d()
-    return parent_model.create_lookup_table_3d()
+        lookup_table = parent_model.create_lookup_table_1d()
+        lookup_table.columns["Location"].data = np.random.rand(num_points)
+        return lookup_table
+    lookup_table = parent_model.create_lookup_table_3d()
+    lookup_table.columns["Location"].data = np.random.rand(num_points, 3)
+    return lookup_table
 
 
 @pytest.fixture(params=[0, 1, 5])
@@ -41,12 +48,17 @@ def column_value_type(request):
     return request.param
 
 
-@pytest.fixture
-def column_data(num_points, column_value_type):
+@pytest.fixture(params=[False, True])  # Param controls whether the data is converted to a list
+def column_data(num_points, column_value_type, request):
     if column_value_type == LookUpTableColumnValueType.SCALAR:
-        return np.random.rand(num_points)
+        res = np.random.rand(num_points)
     elif column_value_type == LookUpTableColumnValueType.DIRECTION:
-        return np.random.rand(num_points, 3)
+        res = np.random.rand(num_points, 3)
+    if request.param:
+        if num_points == 0 and column_value_type == LookUpTableColumnValueType.DIRECTION:
+            pytest.xfail("Passing empty lists as directional data is not yet supported.")
+        return res.tolist()
+    return res
 
 
 @pytest.fixture
@@ -59,19 +71,32 @@ def tree_object(parent_object, column_value_type, num_points, column_type_to_tes
     return parent_object.create_column(value_type=column_value_type)
 
 
+@pytest.fixture
+def default_data(num_points):
+    # Default data is a NaN array with the same number of entries as as the location column.
+    # The default value_type is LookUpTableColumnValueType.SCALAR, so we have one
+    # scalar value per location
+    return np.full(num_points, np.nan)
+
+
 class TestLookUpTableColumn(WithLockedMixin, TreeObjectTester):
     INITIAL_OBJECT_NAMES = ("Location",)
     COLLECTION_NAME = "columns"
-    DEFAULT_PROPERTIES = {
-        "value_type": LookUpTableColumnValueType.SCALAR,
-        "dimension_type": DimensionType.DIMENSIONLESS,
-        "data": np.array([]),
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties(default_data):
+        return {
+            "value_type": LookUpTableColumnValueType.SCALAR,
+            "dimension_type": DimensionType.DIMENSIONLESS,
+            "data": default_data,
+        }
+
     CREATE_METHOD_NAME = "create_column"
 
     @staticmethod
     @pytest.fixture
-    def object_properties(column_data):
+    def object_properties(column_data, column_value_type):
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "some_name"),
@@ -84,5 +109,13 @@ class TestLookUpTableColumn(WithLockedMixin, TreeObjectTester):
                 ("id", "some_id"),
                 ("value_type", LookUpTableColumnValueType.SCALAR),
                 ("value_type", LookUpTableColumnValueType.DIRECTION),
+            ],
+            create_args=[
+                {
+                    "name": "some_name",
+                    "data": column_data,
+                    "dimension_type": DimensionType.TIME,
+                    "value_type": column_value_type,
+                }
             ],
         )

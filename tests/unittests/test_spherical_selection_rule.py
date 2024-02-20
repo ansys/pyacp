@@ -18,15 +18,19 @@ def tree_object(parent_object):
 
 class TestSphericalSelectionRule(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "spherical_selection_rules"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "use_global_coordinate_system": True,
-        "rosette": None,
-        "origin": (0.0, 0.0, 0.0),
-        "radius": 0.0,
-        "relative_rule_type": False,
-        "include_rule_type": True,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "use_global_coordinate_system": True,
+            "rosette": None,
+            "origin": (0.0, 0.0, 0.0),
+            "radius": 0.0,
+            "relative_rule_type": False,
+            "include_rule_type": True,
+        }
 
     CREATE_METHOD_NAME = "create_spherical_selection_rule"
 

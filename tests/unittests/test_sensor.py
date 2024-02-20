@@ -18,17 +18,21 @@ def tree_object(parent_object):
 
 class TestSensor(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "sensors"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "active": True,
-        "entities": [],
-        "covered_area": None,
-        "modeling_ply_area": None,
-        "production_ply_area": None,
-        "price": None,
-        "weight": None,
-        "center_of_gravity": None,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "active": True,
+            "entities": [],
+            "covered_area": None,
+            "modeling_ply_area": None,
+            "production_ply_area": None,
+            "price": None,
+            "weight": None,
+            "center_of_gravity": None,
+        }
 
     CREATE_METHOD_NAME = "create_sensor"
 
@@ -52,6 +56,7 @@ class TestSensor(NoLockedMixin, TreeObjectTester):
                 ("sensor_type", SensorType.SENSOR_BY_PLIES),
                 ("entities", [modeling_ply]),
                 ("sensor_type", SensorType.SENSOR_BY_SOLID_MODEL),
+                ("entities", []),
                 ("active", False),
             ],
             read_only=[

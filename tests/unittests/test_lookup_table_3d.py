@@ -18,13 +18,17 @@ def tree_object(parent_object):
 
 class TestLookUpTable1D(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "lookup_tables_3d"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "interpolation_algorithm": LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR,
-        "use_default_search_radius": True,
-        "search_radius": 0.0,
-        "num_min_neighbors": 1,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "interpolation_algorithm": LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR,
+            "use_default_search_radius": True,
+            "search_radius": 0.0,
+            "num_min_neighbors": 1,
+        }
 
     CREATE_METHOD_NAME = "create_lookup_table_3d"
 

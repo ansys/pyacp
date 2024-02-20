@@ -16,11 +16,15 @@ def tree_object(parent_object):
 
 class TestLookUpTable1D(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "lookup_tables_1d"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "origin": (0.0, 0.0, 0.0),
-        "direction": (0.0, 0.0, 0.0),
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "origin": (0.0, 0.0, 0.0),
+            "direction": (0.0, 0.0, 0.0),
+        }
 
     CREATE_METHOD_NAME = "create_lookup_table_1d"
 

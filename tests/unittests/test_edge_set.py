@@ -18,14 +18,18 @@ def tree_object(parent_object):
 
 class TestEdgeSet(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "edge_sets"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "edge_set_type": EdgeSetType.BY_REFERENCE,
-        "element_set": None,
-        "defining_node_labels": tuple(),
-        "limit_angle": -1.0,
-        "origin": (0.0, 0.0, 0.0),
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "edge_set_type": EdgeSetType.BY_REFERENCE,
+            "element_set": None,
+            "defining_node_labels": tuple(),
+            "limit_angle": -1.0,
+            "origin": (0.0, 0.0, 0.0),
+        }
 
     CREATE_METHOD_NAME = "create_edge_set"
 

@@ -18,17 +18,21 @@ def tree_object(parent_object):
 
 class TestFabric(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "fabrics"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "thickness": 0.0,
-        "area_price": 0.0,
-        "ignore_for_postprocessing": False,
-        "drop_off_material_handling": DropoffMaterialType.GLOBAL,
-        "cut_off_material_handling": CutoffMaterialType.COMPUTED,
-        "draping_material_model": DrapingMaterialType.WOVEN,
-        "draping_ud_coefficient": 0.0,
-        "material": None,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "thickness": 0.0,
+            "area_price": 0.0,
+            "ignore_for_postprocessing": False,
+            "drop_off_material_handling": DropoffMaterialType.GLOBAL,
+            "cut_off_material_handling": CutoffMaterialType.COMPUTED,
+            "draping_material_model": DrapingMaterialType.WOVEN,
+            "draping_ud_coefficient": 0.0,
+            "material": None,
+        }
 
     CREATE_METHOD_NAME = "create_fabric"
 

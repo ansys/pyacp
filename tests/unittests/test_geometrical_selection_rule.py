@@ -22,17 +22,21 @@ def tree_object(parent_object):
 
 class TestGeometricalSelectionRule(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "geometrical_selection_rules"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "geometrical_rule_type": GeometricalRuleType.GEOMETRY,
-        "geometry": None,
-        "element_sets": [],
-        "include_rule_type": True,
-        "use_default_tolerances": True,
-        "in_plane_capture_tolerance": 0.0,
-        "negative_capture_tolerance": 0.0,
-        "positive_capture_tolerance": 0.0,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "geometrical_rule_type": GeometricalRuleType.GEOMETRY,
+            "geometry": None,
+            "element_sets": [],
+            "include_rule_type": True,
+            "use_default_tolerances": True,
+            "in_plane_capture_tolerance": 0.0,
+            "negative_capture_tolerance": 0.0,
+            "positive_capture_tolerance": 0.0,
+        }
 
     CREATE_METHOD_NAME = "create_geometrical_selection_rule"
 

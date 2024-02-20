@@ -25,9 +25,10 @@ def to_tuple_from_1D_array(array: Union[IntArray, DoubleArray]) -> tuple[Any, ..
     return tuple(array.data)
 
 
-def to_ND_double_array_from_numpy(data: npt.NDArray[np.float64]) -> DoubleArray:
-    """Convert a numpy array to a DoubleArray protobuf message."""
-    return DoubleArray(shape=list(data.shape), data=data.flatten())
+def to_ND_double_array_from_numpy_or_list(data: npt.NDArray[np.float64]) -> DoubleArray:
+    """Convert a list or numpy array to a DoubleArray protobuf message."""
+    data_np = np.array(data)
+    return DoubleArray(shape=list(data_np.shape), data=data_np.flatten())
 
 
 @overload

@@ -24,19 +24,23 @@ def tree_object(parent_object):
 
 class TestStackup(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "stackups"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "area_price": 0.0,
-        "topdown": True,
-        "fabrics": [],
-        "symmetry": SymmetryType.NO_SYMMETRY,
-        "drop_off_material_handling": DropoffMaterialType.GLOBAL,
-        "drop_off_material": None,
-        "cut_off_material_handling": CutoffMaterialType.COMPUTED,
-        "cut_off_material": None,
-        "draping_material_model": DrapingMaterialType.WOVEN,
-        "draping_ud_coefficient": 0.0,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "area_price": 0.0,
+            "topdown": True,
+            "fabrics": [],
+            "symmetry": SymmetryType.NO_SYMMETRY,
+            "drop_off_material_handling": DropoffMaterialType.GLOBAL,
+            "drop_off_material": None,
+            "cut_off_material_handling": CutoffMaterialType.COMPUTED,
+            "cut_off_material": None,
+            "draping_material_model": DrapingMaterialType.WOVEN,
+            "draping_ud_coefficient": 0.0,
+        }
 
     CREATE_METHOD_NAME = "create_stackup"
 
