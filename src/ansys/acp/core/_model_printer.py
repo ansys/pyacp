@@ -110,12 +110,12 @@ def get_model_tree(model: Model) -> Node:
     for modeling_group_name, modeling_group in model.modeling_groups.items():
         group_node = Node(modeling_group_name)
         modeling_groups.children.append(group_node)
-        for modeling_ply_name, modeling_ply in modeling_group.modeling_plies.items():
-            modeling_ply_node = Node(modeling_ply_name)
-            group_node.children.append(modeling_ply_node)
+        for ply_name, modeling_ply in modeling_group.plies.items():
+            ply_node = Node(ply_name)
+            group_node.children.append(ply_node)
             for production_ply_name, production_ply in modeling_ply.production_plies.items():
                 production_ply_node = Node(production_ply_name)
-                modeling_ply_node.children.append(production_ply_node)
+                ply_node.children.append(production_ply_node)
                 for analysis_ply_name, analysis_ply in production_ply.analysis_plies.items():
                     analysis_ply_node = Node(analysis_ply_name)
                     production_ply_node.children.append(analysis_ply_node)

@@ -13,7 +13,7 @@ def parent_model(load_model_from_tempfile):
 
 @pytest.fixture
 def parent_object(parent_model):
-    return parent_model.modeling_groups["ModelingGroup.1"].modeling_plies["ModelingPly.1"]
+    return parent_model.modeling_groups["ModelingGroup.1"].plies["ModelingPly.1"]
 
 
 class TestProductionPly(TreeObjectTesterReadOnly):
