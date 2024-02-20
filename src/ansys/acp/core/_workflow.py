@@ -190,12 +190,12 @@ class ACPWorkflow:
         )
 
     @classmethod
-    def from_cdb_file(
+    def from_cdb_or_dat_file(
         cls,
         *,
         acp: ACP[ServerProtocol],
-        cdb_file_path: PATH,
-        unit_system: UnitSystemType,
+        cdb_or_dat_file_path: PATH,
+        unit_system: UnitSystemType = UnitSystemType.UNDEFINED,
         local_working_directory: Optional[pathlib.Path] = None,
     ) -> "ACPWorkflow":
         """Instantiate an ACP Workflow from a cdb file.
@@ -204,21 +204,29 @@ class ACPWorkflow:
         ----------
         acp
             The ACP Client.
-        cdb_file_path:
-            The path to the cdb file.
+        cdb_or_dat_file_path:
+            The path to the cdb or dat file.
         unit_system:
-            Unit System.
+            Has to be ``UnitSystemType.UNDEFINED`` if the unit system
+            is specified in the cdb or dat file. Needs to be set to a defined unit system
+            if the unit system is not set in the cdb or dat file.
         local_working_directory:
             The local working directory. If None, a temporary directory will be created.
         """
 
-        return cls(
+        instance = cls(
             acp=acp,
-            local_file_path=cdb_file_path,
+            local_file_path=cdb_or_dat_file_path,
             local_working_directory=local_working_directory,
             file_format="ansys:cdb",
             unit_system=unit_system,
         )
+
+        if instance.model.unit_system == UnitSystemType.UNDEFINED:
+            raise ValueError(
+                "Unit system not defined in the model. Please specify the unit system."
+            )
+        return instance
 
     @property
     def model(self) -> Model:

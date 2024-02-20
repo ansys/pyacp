@@ -30,7 +30,6 @@ from ansys.acp.core import (
     EdgeSetType,
     LinkedSelectionRule,
     PlyType,
-    UnitSystemType,
     example_helpers,
     launch_acp,
 )
@@ -52,11 +51,10 @@ acp = launch_acp()
 # The ACPWorkflow class provides convenience methods which simplify the file handling.
 # It automatically creates a model based on the input file.
 
-workflow = ACPWorkflow.from_cdb_file(
+workflow = ACPWorkflow.from_cdb_or_dat_file(
     acp=acp,
-    cdb_file_path=input_file,
+    cdb_or_dat_file_path=input_file,
     local_working_directory=WORKING_DIR,
-    unit_system=UnitSystemType.MPA,
 )
 
 model = workflow.model

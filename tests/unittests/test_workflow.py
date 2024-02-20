@@ -17,9 +17,9 @@ def test_workflow(acp_instance, model_data_dir, explict_temp_dir):
     else:
         working_dir = None
 
-    workflow = ACPWorkflow.from_cdb_file(
+    workflow = ACPWorkflow.from_cdb_or_dat_file(
         acp=acp_instance,
-        cdb_file_path=input_file_path,
+        cdb_or_dat_file_path=input_file_path,
         local_working_directory=working_dir,
         unit_system=UnitSystemType.MPA,
     )
@@ -45,9 +45,9 @@ def test_workflow(acp_instance, model_data_dir, explict_temp_dir):
 def test_reload_cad_geometry(acp_instance, model_data_dir, load_cad_geometry):
     input_file_path = model_data_dir / "minimal_model_2.cdb"
 
-    workflow = ACPWorkflow.from_cdb_file(
+    workflow = ACPWorkflow.from_cdb_or_dat_file(
         acp=acp_instance,
-        cdb_file_path=input_file_path,
+        cdb_or_dat_file_path=input_file_path,
         unit_system=UnitSystemType.MPA,
     )
     workflow.model.update()
@@ -75,13 +75,49 @@ def test_reload_cad_geometry(acp_instance, model_data_dir, load_cad_geometry):
 
 
 @pytest.mark.parametrize("unit_system", UnitSystemType)
-def test_workflow_unit_system(acp_instance, model_data_dir, unit_system):
+def test_workflow_unit_system_dat(acp_instance, model_data_dir, unit_system):
     """Test that workflow can be initialized and files can be retrieved."""
+
+    input_file_path = model_data_dir / "flat_plate_input.dat"
+
+    if unit_system != UnitSystemType.UNDEFINED:
+        with pytest.raises(ValueError) as ex:
+            # Initializing a workflow with a defined unit system is not allowed
+            # if the input file does contain the unit system.
+            ACPWorkflow.from_cdb_or_dat_file(
+                acp=acp_instance,
+                cdb_or_dat_file_path=input_file_path,
+                unit_system=unit_system,
+            )
+    else:
+        workflow = ACPWorkflow.from_cdb_or_dat_file(
+            acp=acp_instance,
+            cdb_or_dat_file_path=input_file_path,
+            unit_system=unit_system,
+        )
+        # Unit system in the dat file is MKS
+        assert workflow.model.unit_system == UnitSystemType.MKS
+
+
+@pytest.mark.parametrize("unit_system", UnitSystemType)
+def test_workflow_unit_system_cdb(acp_instance, model_data_dir, unit_system):
+    """Test that workflow can be initialized and files can be retrieved."""
+
     input_file_path = model_data_dir / "minimal_model_2.cdb"
 
-    workflow = ACPWorkflow.from_cdb_file(
-        acp=acp_instance,
-        cdb_file_path=input_file_path,
-        unit_system=unit_system,
-    )
-    assert workflow.model.unit_system == unit_system
+    if unit_system != UnitSystemType.UNDEFINED:
+        with pytest.raises(ValueError) as ex:
+            # Initializing a workflow with an undefined unit system is not allowed
+            # if the input file does not contain the unit system.
+            ACPWorkflow.from_cdb_or_dat_file(
+                acp=acp_instance,
+                cdb_or_dat_file_path=input_file_path,
+                unit_system=unit_system,
+            )
+    else:
+        workflow = ACPWorkflow.from_cdb_or_dat_file(
+            acp=acp_instance,
+            cdb_or_dat_file_path=input_file_path,
+            unit_system=unit_system,
+        )
+        assert workflow.model.unit_system == unit_system
