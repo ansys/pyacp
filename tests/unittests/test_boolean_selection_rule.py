@@ -102,7 +102,22 @@ def test_mesh_data(parent_object):
 
 
 def test_add_method(parent_object):
+    """Verify add method for selection rule."""
     boolean_rule = parent_object.create_boolean_selection_rule()
     parallel_rule = parent_object.create_parallel_selection_rule()
     linked_rule = boolean_rule.add_selection_rule(parallel_rule)
     assert linked_rule.selection_rule == parallel_rule
+
+    tube_rule = parent_object.create_tube_selection_rule()
+    linked_rule = boolean_rule.add_selection_rule(
+        tube_rule,
+        operation_type=BooleanOperationType.REMOVE,
+        template_rule=True,
+        parameter_1=3.2,
+        parameter_2=5.4
+    )
+    assert linked_rule.selection_rule == tube_rule
+    assert linked_rule.operation_type == BooleanOperationType.REMOVE
+    assert linked_rule.template_rule
+    assert linked_rule.parameter_1 == 3.2
+    assert linked_rule.parameter_2 == 5.4

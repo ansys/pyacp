@@ -150,9 +150,10 @@ def test_wrong_fabrics_type_error_message(parent_object):
 
 
 def test_add_fabric(parent_object):
-    stackup = parent_object.create_stackup()
+    """Verify add method for fabric."""
     fabric1 = parent_object.create_fabric()
     fabric1.material = parent_object.create_material()
+    stackup = parent_object.create_stackup()
     stackup.add_fabric(fabric1)
     assert stackup.fabrics[-1].fabric == fabric1
     assert stackup.fabrics[-1].angle == 0.0
