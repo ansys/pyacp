@@ -11,7 +11,11 @@ from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc, production
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadWriteProperty
-from ._grpc_helpers.edge_property_list import GenericEdgePropertyType, define_edge_property_list
+from ._grpc_helpers.edge_property_list import (
+    GenericEdgePropertyType,
+    define_add_method,
+    define_edge_property_list,
+)
 from ._grpc_helpers.linked_object_list import define_linked_object_list
 from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
@@ -103,11 +107,11 @@ class TaperEdge(GenericEdgePropertyType):
         offset is ``-offset/tan(angle)``.
     """
 
-    def __init__(self, edge_set: EdgeSet, angle: float, offset: float):
-        self._edge_set = edge_set
-        self._angle = angle
-        self._offset = offset
+    def __init__(self, edge_set: EdgeSet, *, angle: float, offset: float):
         self._callback_apply_changes: Callable[[], None] | None = None
+        self.edge_set = edge_set
+        self.angle = angle
+        self.offset = offset
 
     @property
     def edge_set(self) -> EdgeSet:
@@ -116,6 +120,8 @@ class TaperEdge(GenericEdgePropertyType):
 
     @edge_set.setter
     def edge_set(self, edge_set: EdgeSet) -> None:
+        if not isinstance(edge_set, EdgeSet):
+            raise TypeError(f"Expected an EdgeSet, got {type(edge_set)}.")
         self._edge_set = edge_set
         if self._callback_apply_changes is not None:
             self._callback_apply_changes()
@@ -370,6 +376,13 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     )
 
     selection_rules = define_edge_property_list("properties.selection_rules", LinkedSelectionRule)
+    add_selection_rule = define_add_method(
+        LinkedSelectionRule,
+        attribute_name="selection_rules",
+        func_name="add_selection_rule",
+        parent_class_name="ModelingPly",
+        module_name=__module__,
+    )
 
     production_plies = get_read_only_collection_property(
         ProductionPly, production_ply_pb2_grpc.ObjectServiceStub
@@ -393,6 +406,13 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     )
 
     taper_edges = define_edge_property_list("properties.taper_edges", TaperEdge)
+    add_taper_edge = define_add_method(
+        TaperEdge,
+        attribute_name="taper_edges",
+        func_name="add_taper_edge",
+        parent_class_name="ModelingPly",
+        module_name=__module__,
+    )
 
     elemental_data = elemental_data_property(ModelingPlyElementalData)
     nodal_data = nodal_data_property(ModelingPlyNodalData)
