@@ -105,7 +105,7 @@ def test_workflow_unit_system_cdb(acp_instance, model_data_dir, unit_system):
 
     input_file_path = model_data_dir / "minimal_model_2.cdb"
 
-    if unit_system != UnitSystemType.UNDEFINED:
+    if unit_system == UnitSystemType.UNDEFINED:
         with pytest.raises(ValueError) as ex:
             # Initializing a workflow with an undefined unit system is not allowed
             # if the input file does not contain the unit system.
