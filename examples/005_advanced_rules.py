@@ -30,6 +30,7 @@ from ansys.acp.core import (
     EdgeSetType,
     LinkedSelectionRule,
     PlyType,
+    UnitSystemType,
     example_helpers,
     launch_acp,
 )
@@ -55,6 +56,7 @@ workflow = ACPWorkflow.from_cdb_file(
     acp=acp,
     cdb_file_path=input_file,
     local_working_directory=WORKING_DIR,
+    unit_system=UnitSystemType.MPA,
 )
 
 model = workflow.model

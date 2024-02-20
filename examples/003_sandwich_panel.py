@@ -22,6 +22,7 @@ from ansys.acp.core import (
     FabricWithAngle,
     Lamina,
     PlyType,
+    UnitSystemType,
     get_directions_plotter,
     launch_acp,
     print_model,
@@ -48,6 +49,7 @@ workflow = ACPWorkflow.from_cdb_file(
     acp=acp,
     cdb_file_path=input_file,
     local_working_directory=WORKING_DIR,
+    unit_system=UnitSystemType.MPA,
 )
 
 model = workflow.model
