@@ -114,7 +114,7 @@ def test_add_method(parent_object):
         operation_type=BooleanOperationType.REMOVE,
         template_rule=True,
         parameter_1=3.2,
-        parameter_2=5.4
+        parameter_2=5.4,
     )
     assert linked_rule.selection_rule == tube_rule
     assert linked_rule.operation_type == BooleanOperationType.REMOVE

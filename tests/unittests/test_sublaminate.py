@@ -66,15 +66,15 @@ def test_add_lamina(parent_object):
     fabric1 = parent_object.create_fabric()
     fabric1.material = parent_object.create_material()
     stackup = parent_object.create_stackup()
-    stackup.add_fabric(fabric1, angle=30.)
-    stackup.add_fabric(fabric1, angle=-30.)
+    stackup.add_fabric(fabric1, angle=30.0)
+    stackup.add_fabric(fabric1, angle=-30.0)
 
     sublaminate = parent_object.create_sublaminate()
-    sublaminate.add_material(fabric1, angle=45.)
-    sublaminate.add_material(stackup, angle=0.)
-    sublaminate.add_material(fabric1, angle=-45.)
+    sublaminate.add_material(fabric1, angle=45.0)
+    sublaminate.add_material(stackup, angle=0.0)
+    sublaminate.add_material(fabric1, angle=-45.0)
     assert len(sublaminate.materials) == 3
     assert sublaminate.materials[1].material == stackup
-    assert sublaminate.materials[1].angle == 0.
+    assert sublaminate.materials[1].angle == 0.0
     assert sublaminate.materials[2].material == fabric1
-    assert sublaminate.materials[2].angle == -45.
+    assert sublaminate.materials[2].angle == -45.0
