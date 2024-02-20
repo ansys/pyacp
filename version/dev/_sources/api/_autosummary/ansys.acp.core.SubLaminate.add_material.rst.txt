@@ -1,0 +1,6 @@
+add\_material
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SubLaminate.add_material

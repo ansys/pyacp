@@ -1,0 +1,6 @@
+add\_taper\_edge
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ModelingPly.add_taper_edge

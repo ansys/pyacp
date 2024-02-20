@@ -15,6 +15,9 @@
    
       
       
+      SubLaminate.add_material
+      
+      
       SubLaminate.clone
       
       

@@ -15,6 +15,12 @@
    
       
       
+      ModelingPly.add_selection_rule
+      
+      
+      ModelingPly.add_taper_edge
+      
+      
       ModelingPly.clone
       
       

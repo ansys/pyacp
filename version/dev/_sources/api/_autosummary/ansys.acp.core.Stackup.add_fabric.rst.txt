@@ -1,0 +1,6 @@
+add\_fabric
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Stackup.add_fabric

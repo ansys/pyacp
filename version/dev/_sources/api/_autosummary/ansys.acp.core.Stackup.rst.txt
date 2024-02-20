@@ -15,6 +15,9 @@
    
       
       
+      Stackup.add_fabric
+      
+      
       Stackup.clone
       
       

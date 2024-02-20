@@ -15,6 +15,9 @@
    
       
       
+      BooleanSelectionRule.add_selection_rule
+      
+      
       BooleanSelectionRule.clone
       
       

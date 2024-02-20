@@ -1,0 +1,6 @@
+add\_sub\_shape
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: VirtualGeometry.add_sub_shape

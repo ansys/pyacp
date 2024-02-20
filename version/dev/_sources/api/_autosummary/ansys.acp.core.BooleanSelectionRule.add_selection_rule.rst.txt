@@ -1,0 +1,6 @@
+add\_selection\_rule
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: BooleanSelectionRule.add_selection_rule

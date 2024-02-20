@@ -15,6 +15,9 @@
    
       
       
+      VirtualGeometry.add_sub_shape
+      
+      
       VirtualGeometry.clone
       
       
