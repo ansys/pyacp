@@ -125,7 +125,7 @@ def _get_file_transfer_strategy(
 class ACPWorkflow:
     r"""Instantiate an ACP Workflow.
 
-    Use the class methods :meth:`.from_cdb_file` and
+    Use the class methods :meth:`.from_cdb_or_dat_file` and
     :meth:`.from_acph5_file` to instantiate the workflow.
 
     Parameters
