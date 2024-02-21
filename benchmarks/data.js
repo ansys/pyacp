@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708434200916,
+  "lastUpdate": 1708528823291,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12554,6 +12554,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0006155822149049252",
             "extra": "mean: 1.2532701677029312 msec\nrounds: 1127"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "133802577+nshum4@users.noreply.github.com",
+            "name": "Nellie Shum",
+            "username": "nshum4"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8ff834a71761b940e2f13d9334045cb74408e862",
+          "message": "Changed header to lowercase (#434)\n\nchanged to lower case",
+          "timestamp": "2024-02-21T10:17:39-05:00",
+          "tree_id": "e1627ce958589b68fed90d1028186aedb5205666",
+          "url": "https://github.com/ansys-internal/pyacp/commit/8ff834a71761b940e2f13d9334045cb74408e862"
+        },
+        "date": 1708528807221,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.381317150614403,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003093817854115896",
+            "extra": "mean: 156.70745966664867 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1197.6395152113525,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00021016072651389256",
+            "extra": "mean: 834.975789708747 usec\nrounds: 1341"
           }
         ]
       }
