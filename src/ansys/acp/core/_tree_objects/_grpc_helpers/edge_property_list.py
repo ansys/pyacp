@@ -2,16 +2,22 @@ from __future__ import annotations
 
 from collections.abc import Iterable, Iterator, MutableSequence
 import sys
+import textwrap
 from typing import Any, Callable, Protocol, TypeVar, cast, overload
 
 from google.protobuf.message import Message
-from typing_extensions import Self
+from typing_extensions import Concatenate, ParamSpec, Self
 
 from .._object_cache import ObjectCacheMixin, constructor_with_cache
 from ..base import CreatableTreeObject
 from .property_helper import _exposed_grpc_property, _wrap_doc, grpc_data_getter, grpc_data_setter
 
-__all__ = ["EdgePropertyList", "define_edge_property_list", "GenericEdgePropertyType"]
+__all__ = [
+    "EdgePropertyList",
+    "define_edge_property_list",
+    "define_add_method",
+    "GenericEdgePropertyType",
+]
 
 
 class GenericEdgePropertyType(Protocol):
@@ -83,7 +89,7 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
         cls: type[Self],
         *,
         parent_object: CreatableTreeObject,
-        object_type: type[GenericEdgePropertyType],
+        object_type: type[ValueT],
         attribute_name: str,
         from_pb_constructor: Callable[[CreatableTreeObject, Message, Callable[[], None]], ValueT],
     ) -> Self:
@@ -110,7 +116,7 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
         self,
         *,
         _parent_object: CreatableTreeObject,
-        _object_type: type[GenericEdgePropertyType],
+        _object_type: type[ValueT],
         _attribute_name: str,
         _from_pb_constructor: Callable[[CreatableTreeObject, Message, Callable[[], None]], ValueT],
     ) -> None:
@@ -139,7 +145,13 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
         def set_object_list(items: list[ValueT]) -> None:
             """Set the object list on the parent AND updates the internal object list."""
             pb_obj_list = []
+
             for item in items:
+                if not isinstance(item, _object_type):
+                    raise TypeError(
+                        f"Expected items of type {_object_type}, got type {type(item)} instead. "
+                        f"Item: {item}."
+                    )
                 if not item._check():
                     raise RuntimeError("Cannot initialize incomplete object.")
                 pb_obj_list.append(item._to_pb_object())
@@ -167,7 +179,7 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
         obj_list = self._object_list[index]
         if not isinstance(obj_list, list):
             assert isinstance(obj_list, self._object_type)
-            return cast(ValueT, obj_list)
+            return obj_list
         return [item for item in obj_list]
 
     @overload
@@ -179,6 +191,7 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
         ...
 
     def __setitem__(self, key: int | slice, value: ValueT | Iterable[ValueT]) -> None:
+        # TODO: convert / check
         obj_list = self._object_list
         if isinstance(value, Iterable):
             if not isinstance(key, slice):
@@ -331,7 +344,10 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
 
 
 def define_edge_property_list(
-    attribute_name: str, value_type: type[GenericEdgePropertyType], doc: str | None = None
+    attribute_name: str,
+    value_type: type[GenericEdgePropertyType],
+    *,
+    doc: str | None = None,
 ) -> Any:
     """Define a list of linked tree objects with link properties."""
 
@@ -347,3 +363,36 @@ def define_edge_property_list(
         getter(self)[:] = value
 
     return _wrap_doc(_exposed_grpc_property(getter).setter(setter), doc=doc)
+
+
+P = ParamSpec("P")
+ParentT = TypeVar("ParentT", bound=CreatableTreeObject)
+
+
+def define_add_method(
+    value_type: Callable[P, ValueT],
+    *,
+    attribute_name: str,
+    func_name: str,
+    parent_class_name: str,
+    module_name: str,
+) -> Callable[Concatenate[ParentT, P], ValueT]:
+    """Define a method to add a linked tree object with link properties."""
+
+    def inner(self: ParentT, /, *args: P.args, **kwargs: P.kwargs) -> ValueT:
+        edge_prop_list = cast(EdgePropertyList[ValueT], getattr(self, attribute_name))
+        edge_prop_list.append(value_type(*args, **kwargs))
+        return edge_prop_list[-1]
+
+    inner.__doc__ = textwrap.dedent(
+        f"""\
+        Add a {value_type.__name__} to the {parent_class_name}.
+
+        See :class:`.{value_type.__name__}` for the available parameters.
+        """
+    )
+
+    inner.__name__ = func_name
+    inner.__qualname__ = f"{parent_class_name}.{func_name}"
+    inner.__module__ = module_name
+    return inner

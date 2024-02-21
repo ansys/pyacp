@@ -6,7 +6,11 @@ from typing import Any, Callable
 from ansys.api.acp.v0 import stackup_pb2, stackup_pb2_grpc
 
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
-from ._grpc_helpers.edge_property_list import GenericEdgePropertyType, define_edge_property_list
+from ._grpc_helpers.edge_property_list import (
+    GenericEdgePropertyType,
+    define_add_method,
+    define_edge_property_list,
+)
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -37,8 +41,7 @@ __all__ = ["Stackup", "FabricWithAngle"]
 
 
 class FabricWithAngle(GenericEdgePropertyType):
-    """
-    Class to define a fabric of a stackup.
+    """Defines a fabric of a stackup.
 
     Parameters
     ----------
@@ -50,9 +53,9 @@ class FabricWithAngle(GenericEdgePropertyType):
     """
 
     def __init__(self, fabric: Fabric, angle: float = 0.0):
-        self._fabric = fabric
-        self._angle = angle
         self._callback_apply_changes: Callable[[], None] | None = None
+        self.fabric = fabric
+        self.angle = angle
 
     @property
     def fabric(self) -> Fabric:
@@ -61,6 +64,8 @@ class FabricWithAngle(GenericEdgePropertyType):
 
     @fabric.setter
     def fabric(self, value: Fabric) -> None:
+        if not isinstance(value, Fabric):
+            raise TypeError(f"Expected a Fabric, got {type(value)}")
         self._fabric = value
         if self._callback_apply_changes:
             self._callback_apply_changes()
@@ -220,3 +225,10 @@ class Stackup(CreatableTreeObject, IdTreeObject):
     )
 
     fabrics = define_edge_property_list("properties.fabrics", FabricWithAngle)
+    add_fabric = define_add_method(
+        FabricWithAngle,
+        attribute_name="fabrics",
+        func_name="add_fabric",
+        parent_class_name="Stackup",
+        module_name=__module__,
+    )

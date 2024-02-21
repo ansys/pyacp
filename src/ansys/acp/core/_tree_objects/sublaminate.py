@@ -7,7 +7,11 @@ from typing import Any, Callable, Union, get_args
 from ansys.api.acp.v0 import sublaminate_pb2, sublaminate_pb2_grpc
 
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
-from ._grpc_helpers.edge_property_list import GenericEdgePropertyType, define_edge_property_list
+from ._grpc_helpers.edge_property_list import (
+    GenericEdgePropertyType,
+    define_add_method,
+    define_edge_property_list,
+)
 from ._grpc_helpers.polymorphic_from_pb import tree_object_from_resource_path
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
@@ -39,9 +43,9 @@ class Lamina(GenericEdgePropertyType):
     """
 
     def __init__(self, material: _LINKABLE_MATERIAL_TYPES, angle: float = 0.0):
-        self._material = material
-        self._angle = angle
         self._callback_apply_changes: Callable[[], None] | None = None
+        self.material = material
+        self.angle = angle
 
     @property
     def material(self) -> _LINKABLE_MATERIAL_TYPES:
@@ -50,7 +54,12 @@ class Lamina(GenericEdgePropertyType):
 
     @material.setter
     def material(self, value: _LINKABLE_MATERIAL_TYPES) -> None:
-        self._material = value
+        if not isinstance(value, get_args(_LINKABLE_MATERIAL_TYPES)):
+            raise TypeError(
+                f"Expected material to be of type {get_args(_LINKABLE_MATERIAL_TYPES)}, "
+                f"got {type(value)}."
+            )
+        self._material: _LINKABLE_MATERIAL_TYPES = value
         if self._callback_apply_changes:
             self._callback_apply_changes()
 
@@ -167,3 +176,10 @@ class SubLaminate(CreatableTreeObject, IdTreeObject):
     topdown: ReadWriteProperty[bool, bool] = grpc_data_property("properties.topdown")
 
     materials = define_edge_property_list("properties.materials", Lamina)
+    add_material = define_add_method(
+        Lamina,
+        attribute_name="materials",
+        func_name="add_material",
+        parent_class_name="SubLaminate",
+        module_name=__module__,
+    )
