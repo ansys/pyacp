@@ -6,7 +6,7 @@ import dataclasses
 from ansys.api.acp.v0 import boolean_selection_rule_pb2, boolean_selection_rule_pb2_grpc
 
 from .._utils.property_protocols import ReadWriteProperty
-from ._grpc_helpers.edge_property_list import define_edge_property_list
+from ._grpc_helpers.edge_property_list import define_add_method, define_edge_property_list
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -87,6 +87,14 @@ class BooleanSelectionRule(CreatableTreeObject, IdTreeObject):
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
 
     selection_rules = define_edge_property_list("properties.selection_rules", LinkedSelectionRule)
+    add_selection_rule = define_add_method(
+        LinkedSelectionRule,
+        attribute_name="selection_rules",
+        func_name="add_selection_rule",
+        parent_class_name="BooleanSelectionRule",
+        module_name=__module__,
+    )
+
     include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.include_rule_type"
     )
