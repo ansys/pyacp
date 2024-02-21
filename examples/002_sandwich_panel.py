@@ -11,7 +11,7 @@ see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` exampl
 
 
 # %%
-# Import standard library and third-party dependencies
+# Import standard library and third-party dependencies.
 import pathlib
 import tempfile
 
@@ -34,7 +34,7 @@ from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, 
 # ----------------------------
 
 # %%
-# Get example file from server
+# Get example file from server.
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
 input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR)
@@ -59,7 +59,7 @@ print(workflow.working_directory.path)
 print(model.unit_system)
 
 # %%
-# Visualize the loaded mesh
+# Visualize the loaded mesh.
 mesh = model.mesh.to_pyvista()
 mesh.plot(show_edges=True)
 
@@ -68,7 +68,7 @@ mesh.plot(show_edges=True)
 # -----------------------------
 
 # %%
-# Create the UD material and  its corresponding fabric
+# Create the UD material and  its corresponding fabric.
 engineering_constants_ud = ConstantEngineeringConstants.from_orthotropic_constants(
     E1=5e10, E2=1e10, E3=1e10, nu12=0.28, nu13=0.28, nu23=0.3, G12=5e9, G23=4e9, G31=4e9
 )
@@ -120,7 +120,7 @@ sublaminate = model.create_sublaminate(
 
 
 # %%
-# Create the Core Material and its corresponding Fabric
+# Create the Core Material and its corresponding Fabric.
 engineering_constants_core = ConstantEngineeringConstants.from_isotropic_constants(E=8.5e7, nu=0.3)
 
 core = model.create_material(
@@ -137,7 +137,7 @@ core_fabric = model.create_fabric(name="core", material=ud_material, thickness=0
 # ----------------
 
 # %%
-# Define a rosette and an oriented selection set and plot the orientations
+# Define a rosette and an oriented selection set and plot the orientations.
 rosette = model.create_rosette(origin=(0.0, 0.0, 0.0), dir1=(1.0, 0.0, 0.0), dir2=(0.0, 1.0, 0.0))
 
 oss = model.create_oriented_selection_set(

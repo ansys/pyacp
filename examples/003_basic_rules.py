@@ -1,8 +1,8 @@
 """
 .. _basic_rules_example:
 
-Basic rule example
-==================
+Basic selection rules example
+=============================
 
 Shows the basic usage of selection rules. This example shows just the
 pyACP part of the setup. See the :ref:`sphx_glr_examples_gallery_examples_004_advanced_rules.py`
@@ -12,12 +12,12 @@ see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` exampl
 
 
 # %%
-# Import standard library and third-party dependencies
+# Import standard library and third-party dependencies.
 import pathlib
 import tempfile
 
 # %%
-# Import pyACP dependencies
+# Import pyACP dependencies.
 from ansys.acp.core import ACPWorkflow, LinkedSelectionRule, launch_acp
 from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
 
@@ -27,7 +27,7 @@ from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
 
 
 # %%
-# Get example file from server
+# Get example file from server.
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
 input_file = get_example_file(ExampleKeys.MINIMAL_FLAT_PLATE, WORKING_DIR)
@@ -53,7 +53,7 @@ print(workflow.working_directory.path)
 print(model.unit_system)
 
 # %%
-# Visualize the loaded mesh
+# Visualize the loaded mesh.
 mesh = model.mesh.to_pyvista()
 mesh.plot(show_edges=True)
 

@@ -16,7 +16,7 @@ and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDP
 
 
 # %%
-# Import standard library and third-party dependencies
+# Import standard library and third-party dependencies.
 import pathlib
 import tempfile
 
@@ -66,7 +66,7 @@ print(workflow.working_directory.path)
 print(model.unit_system)
 
 # %%
-# Visualize the loaded mesh
+# Visualize the loaded mesh.
 mesh = model.mesh.to_pyvista()
 mesh.plot(show_edges=True)
 
@@ -104,7 +104,7 @@ fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.1)
 
 
 # %%
-# Define a rosette and an oriented selection set and plot the orientations
+# Define a rosette and an oriented selection set and plot the orientations.
 rosette = model.create_rosette(origin=(0.0, 0.0, 0.0), dir1=(1.0, 0.0, 0.0), dir2=(0.0, 0.0, 1.0))
 
 oss = model.create_oriented_selection_set(
@@ -124,7 +124,7 @@ plotter.show()
 
 
 # %%
-# Create various plies with different angles and add them to a modeling group
+# Create various plies with different angles and add them to a modeling group.
 modeling_group = model.create_modeling_group(name="modeling_group")
 angles = [0, 45, -45, 45, -45, 0]
 for idx, angle in enumerate(angles):
@@ -139,7 +139,7 @@ model.update()
 
 
 # %%
-# Show the fiber directions of a specific ply
+# Show the fiber directions of a specific ply.
 modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45_UD"]
 
 
@@ -154,19 +154,19 @@ plotter.show()
 
 
 # %%
-# Print the model tree for a quick overview
+# Print the model tree for a quick overview.
 print_model(model)
 
 # %%
 # Solve the model with MAPDL
 # --------------------------
 #
-# Launch the MAPDL instance
+# Launch the MAPDL instance.
 mapdl = launch_mapdl()
 mapdl.clear()
 
 # %%
-# Load the CDB file into PyMAPDL
+# Load the CDB file into PyMAPDL.
 mapdl.input(str(workflow.get_local_cdb_file()))
 
 # %%
@@ -176,13 +176,13 @@ mapdl.slashsolu()
 mapdl.solve()
 
 # %%
-# Post-processing: show displacements
+# Post-processing: show displacements.
 mapdl.post1()
 mapdl.set("last")
 mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
 # %%
-# Download the rst file for composite specific post-processing
+# Download the rst file for composite specific post-processing.
 rstfile_name = f"{mapdl.jobname}.rst"
 rst_file_local_path = workflow.working_directory.path / rstfile_name
 mapdl.download(rstfile_name, str(workflow.working_directory.path))
@@ -192,7 +192,7 @@ mapdl.download(rstfile_name, str(workflow.working_directory.path))
 # -----------------------------------
 #
 # Setup: configure imports and connect to the pyDPF Composites server
-# and load the dpf composites plugin
+# and load the dpf composites plugin.
 
 from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput
@@ -205,7 +205,7 @@ from ansys.dpf.composites.server_helpers import connect_to_or_start_server
 dpf_server = connect_to_or_start_server()
 
 # %%
-# Specify the Combined Failure Criterion
+# Specify the Combined Failure Criterion.
 max_strain = MaxStrainCriterion()
 
 cfc = CombinedFailureCriterion(
@@ -214,7 +214,7 @@ cfc = CombinedFailureCriterion(
 )
 
 # %%
-# Create the CompositeModel and configure its input
+# Create the CompositeModel and configure its input.
 composite_model = CompositeModel(
     get_composite_post_processing_files(workflow, rst_file_local_path),
     default_unit_system=get_dpf_unit_system(model.unit_system),
@@ -222,7 +222,7 @@ composite_model = CompositeModel(
 )
 
 # %%
-# Evaluate the failure criteria and plot it
+# Evaluate the failure criteria and plot it.
 output_all_elements = composite_model.evaluate_failure_criteria(cfc)
 irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
 irf_field.plot()

@@ -65,9 +65,15 @@ print(workflow.working_directory.path)
 print(model.unit_system)
 
 # %%
-# Visualize the loaded mesh
-mesh = model.mesh.to_pyvista()
-mesh.plot(show_edges=True)
+# Add more layers to the modeling ply, so it easier to see the effects of the selection rules.
+# Plot the thickness of all the plies without any rules.
+
+modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
+modeling_ply.number_of_layers = 10
+
+model.update()
+assert model.elemental_data.thickness is not None
+model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
 
 # %%
 # Parametrized Parallel Rule
@@ -79,7 +85,7 @@ mesh.plot(show_edges=True)
 # Here, the extent of the parallel rule is modified.
 
 # %%
-# Create a parallel rule
+# Create a parallel rule.
 parallel_rule = model.create_parallel_selection_rule(
     name="parallel_rule",
     origin=(0, 0, 0),
@@ -89,19 +95,20 @@ parallel_rule = model.create_parallel_selection_rule(
 )
 
 # %%
-# Assign it the modeling ply
+# Assign it the modeling ply.
+
 linked_parallel_rule = LinkedSelectionRule(parallel_rule)
-modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
 modeling_ply.selection_rules = [linked_parallel_rule]
 
 # %%
-# Plot the thickness of the ply
+# Plot the thickness of the ply before the parametrization.
 model.update()
 assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
 
 # %%
-# Modify the parallel rule by changing the parameters of the linked rule
+# Modify the parallel rule by changing the parameters of the linked rule.
+# Parameters defined on the linked rule override the parameters of the original rule.
 linked_parallel_rule.template_rule = True
 linked_parallel_rule.parameter_1 = 0.002
 linked_parallel_rule.parameter_2 = 0.1
@@ -130,21 +137,21 @@ triangle = workflow.add_cad_geometry_from_local_file(triangle_path)
 model.update()
 
 # %%
-# Create a virtual geometry from the CAD geometry
+# Create a virtual geometry from the CAD geometry.
 triangle_virtual_geometry = model.create_virtual_geometry(
     name="triangle_virtual_geometry", cad_components=triangle.root_shapes.values()
 )
 
 # %%
-# Create the geometrical selection rule
+# Create the geometrical selection rule.
 geometrical_selection_rule = model.create_geometrical_selection_rule(
     name="geometrical_rule",
     geometry=triangle_virtual_geometry,
 )
 
 # %%
-# Assign the geometrical selection rule to the ply and plot the ply extend with
-# the outline of the geometry
+# Assign the geometrical selection rule to the ply and plot the ply extent with
+# the outline of the geometry.
 modeling_ply.selection_rules = [LinkedSelectionRule(geometrical_selection_rule)]
 model.update()
 assert model.elemental_data.thickness is not None
@@ -161,7 +168,7 @@ plotter.show()
 # ------------------------------
 
 # %%
-# Add the cutoff CAD geometry to the model
+# Add the cutoff CAD geometry to the model.
 cutoff_plane_path = example_helpers.get_example_file(
     example_helpers.ExampleKeys.CUT_OFF_GEOMETRY, WORKING_DIR
 )
@@ -172,22 +179,24 @@ cut_off_plane = workflow.add_cad_geometry_from_local_file(cutoff_plane_path)
 model.update()
 
 # %%
-# Create a virtual geometry from the CAD geometry
+# Create a virtual geometry from the CAD geometry.
 cutoff_virtual_geometry = model.create_virtual_geometry(
     name="cutoff_virtual_geometry", cad_components=cut_off_plane.root_shapes.values()
 )
 
 # %%
-# Create the cutoff selection rule
+# Create the cutoff selection rule.
 cutoff_selection_rule = model.create_cutoff_selection_rule(
     name="cutoff_rule",
     cutoff_geometry=cutoff_virtual_geometry,
 )
 
-modeling_ply.selection_rules = [LinkedSelectionRule(cutoff_selection_rule)]
 
 # %%
-# Plot the ply extent together with the cutoff geometry
+# Assign the cutoff selection rule to the ply and plot the ply extent with
+# the outline of the geometry.
+modeling_ply.selection_rules = [LinkedSelectionRule(cutoff_selection_rule)]
+
 model.update()
 assert model.elemental_data.thickness is not None
 plotter = pyvista.Plotter()
@@ -202,7 +211,7 @@ plotter.show()
 # ---------------------------------------
 
 # %%
-# Create the lookup table
+# Create the lookup table.
 lookup_table = model.create_lookup_table_1d(
     name="lookup_table",
     origin=(0, 0, 0),
@@ -234,7 +243,7 @@ edge_set = model.create_edge_set(
 )
 
 # %%
-# Create the variable offset rule and assign it to the ply
+# Create the variable offset rule and assign it to the ply.
 variable_offset_rule = model.create_variable_offset_selection_rule(
     name="variable_offset_rule", edge_set=edge_set, offsets=offsets_column, distance_along_edge=True
 )
@@ -242,7 +251,7 @@ variable_offset_rule = model.create_variable_offset_selection_rule(
 modeling_ply.selection_rules = [LinkedSelectionRule(variable_offset_rule)]
 
 # %%
-# Plot the ply extent
+# Plot the ply extent.
 model.update()
 assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
@@ -255,7 +264,6 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # Note: Creating a boolean selection rule and assigning it to a ply has the same
 # effect as linking the individual rules to the ply directly. Boolean rules are still useful
 # because they help to organize the rules and can be used to create more complex rules.
-
 # Create a cylindrical selection rule which will be combined with the parallel rule.
 cylindrical_rule_boolean = model.create_cylindrical_selection_rule(
     name="cylindrical_rule",
@@ -283,18 +291,18 @@ boolean_selection_rule = model.create_boolean_selection_rule(
 modeling_ply.selection_rules = [LinkedSelectionRule(boolean_selection_rule)]
 
 # %%
-# Plot the ply extent
+# Plot the ply extent.
 model.update()
 assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
 
 # %%
-# Modify the operation type of the boolean selection rule
+# Modify the operation type of the boolean selection rule, such that the two rules are added.
 linked_parallel_rule_boolean.operation_type = BooleanOperationType.INTERSECT
 linked_cylindrical_rule_boolean.operation_type = BooleanOperationType.ADD
 
 # %%
-# Plot the ply extent
+# Plot the ply extent.
 model.update()
 assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
