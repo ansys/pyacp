@@ -22,17 +22,21 @@ def tree_object(parent_object):
 
 class TestParallelSelectionRule(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "parallel_selection_rules"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "use_global_coordinate_system": True,
-        "rosette": None,
-        "origin": (0.0, 0.0, 0.0),
-        "direction": (1.0, 0.0, 0.0),
-        "lower_limit": 0.0,
-        "upper_limit": 0.0,
-        "relative_rule_type": False,
-        "include_rule_type": True,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "use_global_coordinate_system": True,
+            "rosette": None,
+            "origin": (0.0, 0.0, 0.0),
+            "direction": (1.0, 0.0, 0.0),
+            "lower_limit": 0.0,
+            "upper_limit": 0.0,
+            "relative_rule_type": False,
+            "include_rule_type": True,
+        }
 
     CREATE_METHOD_NAME = "create_parallel_selection_rule"
 

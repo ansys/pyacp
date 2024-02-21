@@ -42,28 +42,33 @@ def tree_object(parent_object):
 
 class TestModelingPly(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "modeling_plies"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "oriented_selection_sets": [],
-        "ply_material": None,
-        "ply_angle": 0.0,
-        "active": True,
-        "global_ply_nr": AnyThing(),
-        "draping": DrapingType.NO_DRAPING,
-        "draping_seed_point": (0.0, 0.0, 0.0),
-        "auto_draping_direction": True,
-        "draping_direction": (1.0, 0.0, 0.0),
-        "use_default_draping_mesh_size": True,
-        "draping_mesh_size": 0.0,
-        "draping_thickness_correction": True,
-        "draping_angle_1_field": None,
-        "draping_angle_2_field": None,
-        "thickness_type": ThicknessType.NOMINAL,
-        "thickness_geometry": None,
-        "thickness_field": None,
-        "thickness_field_type": ThicknessFieldType.ABSOLUTE_VALUES,
-        "taper_edges": [],
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "oriented_selection_sets": [],
+            "ply_material": None,
+            "ply_angle": 0.0,
+            "active": True,
+            "global_ply_nr": AnyThing(),
+            "draping": DrapingType.NO_DRAPING,
+            "draping_seed_point": (0.0, 0.0, 0.0),
+            "auto_draping_direction": True,
+            "draping_direction": (1.0, 0.0, 0.0),
+            "use_default_draping_mesh_size": True,
+            "draping_mesh_size": 0.0,
+            "draping_thickness_correction": True,
+            "draping_angle_1_field": None,
+            "draping_angle_2_field": None,
+            "thickness_type": ThicknessType.NOMINAL,
+            "thickness_geometry": None,
+            "thickness_field": None,
+            "thickness_field_type": ThicknessFieldType.ABSOLUTE_VALUES,
+            "taper_edges": [],
+        }
+
     CREATE_METHOD_NAME = "create_modeling_ply"
 
     @staticmethod

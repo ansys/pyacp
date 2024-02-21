@@ -63,9 +63,14 @@ def object_properties():
 
 class TestMaterial(WithLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "materials"
-    DEFAULT_PROPERTIES = {
-        "ply_type": PlyType.UNDEFINED,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "ply_type": PlyType.UNDEFINED,
+        }
+
     CREATE_METHOD_NAME = "create_material"
     INITIAL_OBJECT_NAMES = ("Structural Steel",)
     DEFAULT_VALUES_BY_PROPERTY_SET = {

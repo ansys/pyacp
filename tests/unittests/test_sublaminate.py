@@ -18,12 +18,16 @@ def tree_object(parent_object):
 
 class TestSubLaminate(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "sublaminates"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "topdown": True,
-        "materials": [],
-        "symmetry": SymmetryType.NO_SYMMETRY,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "topdown": True,
+            "materials": [],
+            "symmetry": SymmetryType.NO_SYMMETRY,
+        }
 
     CREATE_METHOD_NAME = "create_sublaminate"
 
@@ -59,3 +63,22 @@ class TestSubLaminate(NoLockedMixin, TreeObjectTester):
                 ("area_price", 47.5),
             ],
         )
+
+
+def test_add_lamina(parent_object):
+    """Verify add method for lamina."""
+    fabric1 = parent_object.create_fabric()
+    fabric1.material = parent_object.create_material()
+    stackup = parent_object.create_stackup()
+    stackup.add_fabric(fabric1, angle=30.0)
+    stackup.add_fabric(fabric1, angle=-30.0)
+
+    sublaminate = parent_object.create_sublaminate()
+    sublaminate.add_material(fabric1, angle=45.0)
+    sublaminate.add_material(stackup, angle=0.0)
+    sublaminate.add_material(fabric1, angle=-45.0)
+    assert len(sublaminate.materials) == 3
+    assert sublaminate.materials[1].material == stackup
+    assert sublaminate.materials[1].angle == 0.0
+    assert sublaminate.materials[2].material == fabric1
+    assert sublaminate.materials[2].angle == -45.0

@@ -83,6 +83,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     def __init__(
         self,
         selection_rule: _LINKABLE_SELECTION_RULE_TYPES,
+        *,
         operation_type: BooleanOperationType = BooleanOperationType.INTERSECT,
         template_rule: bool = False,
         parameter_1: float = 0.0,
@@ -185,10 +186,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
             VariableOffsetSelectionRule,
         ]
         if not isinstance(parent_object, BooleanSelectionRule):
-            allowed_types_list += [
-                CutoffSelectionRule,
-                BooleanSelectionRule,
-            ]
+            allowed_types_list += [CutoffSelectionRule, BooleanSelectionRule]
         allowed_types = tuple(allowed_types_list)
 
         selection_rule = tree_object_from_resource_path(

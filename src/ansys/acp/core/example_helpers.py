@@ -11,6 +11,11 @@ import urllib.request
 
 __all__ = ["ExampleKeys", "get_example_file"]
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ansys.acp.core import ACPWorkflow
+
 _EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/master/pyacp/"
 
 
@@ -27,6 +32,8 @@ class ExampleKeys(Enum):
     BASIC_FLAT_PLATE_ACPH5 = auto()
     RACE_CAR_NOSE_ACPH5 = auto()
     RACE_CAR_NOSE_STEP = auto()
+    CUT_OFF_GEOMETRY = auto()
+    RULE_GEOMETRY_TRIANGLE = auto()
 
 
 EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
@@ -41,6 +48,12 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
     ),
     ExampleKeys.RACE_CAR_NOSE_STEP: _ExampleLocation(
         directory="race_car_nose", filename="race_car_nose.stp"
+    ),
+    ExampleKeys.CUT_OFF_GEOMETRY: _ExampleLocation(
+        directory="geometries", filename="cut_off_geometry.stp"
+    ),
+    ExampleKeys.RULE_GEOMETRY_TRIANGLE: _ExampleLocation(
+        directory="geometries", filename="rule_geometry_triangle.stp"
     ),
 }
 
@@ -67,3 +80,61 @@ def _get_file_url(example_location: _ExampleLocation) -> str:
 def _download_file(example_location: _ExampleLocation, local_path: pathlib.Path) -> None:
     file_url = _get_file_url(example_location)
     urllib.request.urlretrieve(file_url, local_path)
+
+
+def _run_analysis(workflow: "ACPWorkflow") -> None:
+    """Run the model with mapdl and do a post-processing analysis.
+
+    Uses a max strain criteria, which means strain limits have to be defined.
+    This function can be called in the end of examples to verify the prepared model
+    actually solves and can be post-processed.
+    """
+    from ansys.mapdl.core import launch_mapdl
+
+    model = workflow.model
+    model.update()
+
+    # Launch the MAPDL instance
+    mapdl = launch_mapdl()
+    mapdl.clear()
+
+    # Load the CDB file into PyMAPDL
+    mapdl.input(str(workflow.get_local_cdb_file()))
+
+    # Solve the model
+    mapdl.allsel()
+    mapdl.slashsolu()
+    mapdl.solve()
+
+    # Download the rst file for composite specific post-processing
+    rstfile_name = f"{mapdl.jobname}.rst"
+    rst_file_local_path = workflow.working_directory.path / rstfile_name
+    mapdl.download(rstfile_name, str(workflow.working_directory.path))
+
+    from ansys.acp.core import get_composite_post_processing_files, get_dpf_unit_system
+    from ansys.dpf.composites.composite_model import CompositeModel
+    from ansys.dpf.composites.constants import FailureOutput
+    from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxStrainCriterion
+    from ansys.dpf.composites.server_helpers import connect_to_or_start_server
+
+    dpf_server = connect_to_or_start_server()
+
+    max_strain = MaxStrainCriterion()
+
+    cfc = CombinedFailureCriterion(
+        name="Combined Failure Criterion",
+        failure_criteria=[max_strain],
+    )
+
+    composite_model = CompositeModel(
+        get_composite_post_processing_files(workflow, rst_file_local_path),
+        default_unit_system=get_dpf_unit_system(model.unit_system),
+        server=dpf_server,
+    )
+
+    output_all_elements = composite_model.evaluate_failure_criteria(cfc)
+    irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
+
+    # %%
+    # Release composite model to close open streams to result file.
+    composite_model = None  # type: ignore

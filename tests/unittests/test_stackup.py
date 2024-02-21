@@ -24,19 +24,23 @@ def tree_object(parent_object):
 
 class TestStackup(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "stackups"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "area_price": 0.0,
-        "topdown": True,
-        "fabrics": [],
-        "symmetry": SymmetryType.NO_SYMMETRY,
-        "drop_off_material_handling": DropoffMaterialType.GLOBAL,
-        "drop_off_material": None,
-        "cut_off_material_handling": CutoffMaterialType.COMPUTED,
-        "cut_off_material": None,
-        "draping_material_model": DrapingMaterialType.WOVEN,
-        "draping_ud_coefficient": 0.0,
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "area_price": 0.0,
+            "topdown": True,
+            "fabrics": [],
+            "symmetry": SymmetryType.NO_SYMMETRY,
+            "drop_off_material_handling": DropoffMaterialType.GLOBAL,
+            "drop_off_material": None,
+            "cut_off_material_handling": CutoffMaterialType.COMPUTED,
+            "cut_off_material": None,
+            "draping_material_model": DrapingMaterialType.WOVEN,
+            "draping_ud_coefficient": 0.0,
+        }
 
     CREATE_METHOD_NAME = "create_stackup"
 
@@ -138,3 +142,27 @@ def test_regression_413_v2(parent_object):
 
     assert edge_property_list_2[0].angle == 45.0
     assert edge_property_list_2[1].angle == 90.0
+
+
+def test_wrong_fabrics_type_error_message(parent_object):
+    stackup = parent_object.create_stackup()
+    modeling_group = parent_object.create_modeling_group()
+    with pytest.raises(TypeError) as exc:
+        stackup.fabrics = [modeling_group]
+    assert "FabricWithAngle" in str(exc.value)
+    assert "ModelingGroup" in str(exc.value)
+
+
+def test_add_fabric(parent_object):
+    """Verify add method for fabric."""
+    fabric1 = parent_object.create_fabric()
+    fabric1.material = parent_object.create_material()
+    stackup = parent_object.create_stackup()
+    stackup.add_fabric(fabric1)
+    assert stackup.fabrics[-1].fabric == fabric1
+    assert stackup.fabrics[-1].angle == 0.0
+    fabric2 = fabric1.clone()
+    fabric2.store(parent=parent_object)
+    stackup.add_fabric(fabric2, angle=45.0)
+    assert stackup.fabrics[-1].fabric == fabric2
+    assert stackup.fabrics[-1].angle == 45.0

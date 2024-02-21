@@ -31,11 +31,16 @@ def object_properties():
 
 class TestElementSet(WithLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "element_sets"
-    DEFAULT_PROPERTIES = {
-        "status": "NOTUPTODATE",
-        "locked": False,
-        "middle_offset": False,
-        "element_labels": tuple(),
-    }
+
+    @staticmethod
+    @pytest.fixture
+    def default_properties():
+        return {
+            "status": "NOTUPTODATE",
+            "locked": False,
+            "middle_offset": False,
+            "element_labels": tuple(),
+        }
+
     CREATE_METHOD_NAME = "create_element_set"
     INITIAL_OBJECT_NAMES = ("All_Elements",)
