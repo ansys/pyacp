@@ -1,4 +1,4 @@
-modeling_ply = model.modeling_groups['nose'].modeling_plies['mp.nose.4']
+modeling_ply = model.modeling_groups['nose'].plies['mp.nose.4']
 elemental_data = modeling_ply.elemental_data
 directions_plotter = pyacp.get_directions_plotter(
     model=model,
