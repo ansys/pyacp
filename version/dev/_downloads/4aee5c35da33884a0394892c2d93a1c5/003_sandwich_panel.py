@@ -33,7 +33,7 @@ from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, 
 # Get example file from server
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
-input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR)
+input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
 
 # %%
 # Launch the PyACP server and connect to it.

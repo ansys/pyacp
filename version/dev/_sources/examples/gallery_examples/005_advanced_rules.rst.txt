@@ -89,7 +89,7 @@ Get example file from server
 
     tempdir = tempfile.TemporaryDirectory()
     WORKING_DIR = pathlib.Path(tempdir.name)
-    input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR)
+    input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
 
 
 
@@ -144,7 +144,7 @@ It automatically creates a model based on the input file.
 
  .. code-block:: none
 
-    /tmp/tmph92rhqrf
+    /tmp/tmptx13dehw
     UnitSystemType.MKS
 
 
@@ -735,7 +735,7 @@ Modify the operation type of the boolean selection rule
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  9.521 seconds)
+   **Total running time of the script:** ( 0 minutes  9.408 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_005_advanced_rules.py:

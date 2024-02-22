@@ -113,14 +113,14 @@ Get example file from server
                         P1L1__ply_5_0_UD
 
 
-    PosixPath('/tmp/tmp30vdm6gk/ACP Lay-up Model.cdb')
+    PosixPath('/tmp/tmpg85nry3u/ACP Lay-up Model.cdb')
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.577 seconds)
+   **Total running time of the script:** ( 0 minutes  5.449 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_002_start_from_existing_project.py:

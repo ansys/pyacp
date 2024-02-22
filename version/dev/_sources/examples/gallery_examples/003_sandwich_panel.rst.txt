@@ -82,7 +82,7 @@ Get example file from server
 
     tempdir = tempfile.TemporaryDirectory()
     WORKING_DIR = pathlib.Path(tempdir.name)
-    input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR)
+    input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
 
 
 
@@ -137,7 +137,7 @@ It automatically creates a model based on the input file.
 
  .. code-block:: none
 
-    /tmp/tmpm3__qtnk
+    /tmp/tmpunvwyfsa
     UnitSystemType.MKS
 
 
@@ -461,7 +461,7 @@ Update and print the model.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.766 seconds)
+   **Total running time of the script:** ( 0 minutes  8.928 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_003_sandwich_panel.py:

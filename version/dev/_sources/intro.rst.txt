@@ -68,7 +68,8 @@ When an FE model is loaded, the format needs to be specified:
 
     model = acp.import_model(path="model.cdb", format="ansys:cdb")
 
-See :class:`.FeFormat` for a list of supported FE formats.
+See :class:`.FeFormat` for a list of supported FE formats. Check out the
+`Create Input File  <user_guide/howto/create_input_file>`_ section to see how input files can be created.
 
 
 Start modelling

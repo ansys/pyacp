@@ -17,7 +17,7 @@
    .. autosummary::
       :toctree:
    
-      ExampleKeys.BASIC_FLAT_PLATE_CDB
+      ExampleKeys.BASIC_FLAT_PLATE_DAT
       ExampleKeys.BASIC_FLAT_PLATE_ACPH5
       ExampleKeys.RACE_CAR_NOSE_ACPH5
       ExampleKeys.RACE_CAR_NOSE_STEP
