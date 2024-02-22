@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708611735016,
+  "lastUpdate": 1708613293472,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12706,6 +12706,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00021949773579564048",
             "extra": "mean: 838.7030129478568 usec\nrounds: 1313"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "66c33a64b4a9d274bd02b6568227af299eb1d440",
+          "message": "Add unit_system kwarg to Workflow.from_cdb_file (#436)\n\n* Add unit_system kwarg to Workflow\r\n\r\n* Don't mention abaqus and nastran files as input for workflow. \r\n\r\n* Make unit system mandatory iff it is not defined in the unit input file\r\n\r\n* Add tests to check unit system behaviour",
+          "timestamp": "2024-02-22T14:45:17Z",
+          "tree_id": "7bbb5d9a498254867ccd8cfdd77e7f565bb1c2cb",
+          "url": "https://github.com/ansys-internal/pyacp/commit/66c33a64b4a9d274bd02b6568227af299eb1d440"
+        },
+        "date": 1708613274122,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.402209045525757,
+            "unit": "iter/sec",
+            "range": "stddev: 0.002623387273671273",
+            "extra": "mean: 156.19608683331876 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1245.8787377693554,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002251154849132537",
+            "extra": "mean: 802.6463328127894 usec\nrounds: 1283"
           }
         ]
       }
