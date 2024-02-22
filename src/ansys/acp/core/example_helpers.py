@@ -34,6 +34,8 @@ class ExampleKeys(Enum):
     RACE_CAR_NOSE_STEP = auto()
     CUT_OFF_GEOMETRY = auto()
     RULE_GEOMETRY_TRIANGLE = auto()
+    THICKNESS_GEOMETRY = auto()
+    MINIMAL_FLAT_PLATE = auto()
 
 
 EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
@@ -54,6 +56,12 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
     ),
     ExampleKeys.RULE_GEOMETRY_TRIANGLE: _ExampleLocation(
         directory="geometries", filename="rule_geometry_triangle.stp"
+    ),
+    ExampleKeys.THICKNESS_GEOMETRY: _ExampleLocation(
+        directory="geometries", filename="thickness_geometry.stp"
+    ),
+    ExampleKeys.MINIMAL_FLAT_PLATE: _ExampleLocation(
+        directory="basic_flat_plate_example", filename="minimal_model_single_ply.acph5"
     ),
 }
 
