@@ -561,7 +561,11 @@ document.write(`
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (str | None, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Name of the newly loaded model.</p></li>
 <li><p><strong>path</strong> (<em>_PATH</em>) – Path of the file to be loaded.</p></li>
-<li><p><strong>format</strong> (str, default: <code class="docutils literal notranslate"><span class="pre">'acp:h5'</span></code>) – Format of the file to be loaded. Can be one of (TODO: list options).</p></li>
+<li><p><strong>format</strong> (str, default: <code class="docutils literal notranslate"><span class="pre">'acp:h5'</span></code>) – Format of the file to be loaded. Can be one of <code class="docutils literal notranslate"><span class="pre">&quot;acp:h5&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;ansys:h5&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ansys:cdb&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ansys:dat&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;abaqus:inp&quot;</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">&quot;nastran:bdf&quot;</span></code>.</p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>) – Additional parameters to be passed to <a class="reference internal" href="ansys.acp.core.Model.from_fe_file.html#ansys.acp.core.Model.from_fe_file" title="ansys.acp.core.Model.from_fe_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Model.from_fe_file()</span></code></a>.
+Not available when <code class="docutils literal notranslate"><span class="pre">format</span></code> is “acp:h5”.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>

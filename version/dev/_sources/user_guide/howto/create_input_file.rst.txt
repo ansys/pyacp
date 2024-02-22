@@ -2,7 +2,7 @@ Input file for PyACP
 --------------------
 
 To start working with PyACP, an input file that contains the mesh is required. PyACP supports reading
-the mesh from \*.cdb and \*.dat files with :meth:`.ACPWorkflow.from_cdb_file`. PyACP will read the mesh including - if they exist - coordinate systems, element, edge sets, and materials from the
+the mesh from \*.cdb and \*.dat files with :meth:`.ACPWorkflow.from_cdb_or_dat_file`. PyACP will read the mesh including - if they exist - coordinate systems, element, edge sets, and materials from the
 input file. After the layup has been created with PyACP a \*.cdb file can be exported with :meth:`.ACPWorkflow.get_local_cdb_file`. This file
 contains all the information contained in the initial input file plus the layup information and
 materials added by PyACP. An attempt is made to preserve the original input file as much as possible.
@@ -24,7 +24,7 @@ One way to create an input file for PyACP is to create a static structural setup
 * Save the input file in \*.dat format in the desired location.
 
 
-The created input file can be read with :meth:`.ACPWorkflow.from_cdb_file`. See
+The created input file can be read with :meth:`.ACPWorkflow.from_cdb_or_dat_file`. See
 :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` for a complete example.
 
 .. note::
@@ -43,7 +43,7 @@ Create an input file with Ansys Mechanical APDL
 
         CDWRITE,ALL,FILE,cdbfile.cdb
 
-The created input file can be read with :meth:`.ACPWorkflow.from_cdb_file`. See
+The created input file can be read with :meth:`.ACPWorkflow.from_cdb_or_dat_file`. See
 :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` for a complete example.
 
 Notes on material handling

@@ -126,9 +126,9 @@ It automatically creates a model based on the input file.
 .. code-block:: default
 
 
-    workflow = ACPWorkflow.from_cdb_file(
+    workflow = ACPWorkflow.from_cdb_or_dat_file(
         acp=acp,
-        cdb_file_path=input_file,
+        cdb_or_dat_file_path=input_file,
         local_working_directory=WORKING_DIR,
     )
 
@@ -144,7 +144,7 @@ It automatically creates a model based on the input file.
 
  .. code-block:: none
 
-    /tmp/tmptx13dehw
+    /tmp/tmpi3pplv80
     UnitSystemType.MKS
 
 
@@ -735,7 +735,7 @@ Modify the operation type of the boolean selection rule
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  9.408 seconds)
+   **Total running time of the script:** ( 0 minutes  9.365 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_005_advanced_rules.py:

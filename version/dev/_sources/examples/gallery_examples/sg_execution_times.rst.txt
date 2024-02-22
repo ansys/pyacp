@@ -6,18 +6,18 @@
 
 Computation times
 =================
-**01:25.877** total execution time for **examples_gallery_examples** files:
+**01:24.656** total execution time for **examples_gallery_examples** files:
 
 +-----------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` (``001_basic_flat_plate.py``)                       | 00:28.638 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` (``001_basic_flat_plate.py``)                       | 00:28.535 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_solve_class40.py` (``solve_class40.py``)                                     | 00:26.319 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_solve_class40.py` (``solve_class40.py``)                                     | 00:26.092 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_005_advanced_rules.py` (``005_advanced_rules.py``)                           | 00:09.408 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_005_advanced_rules.py` (``005_advanced_rules.py``)                           | 00:09.365 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_003_sandwich_panel.py` (``003_sandwich_panel.py``)                           | 00:08.928 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_003_sandwich_panel.py` (``003_sandwich_panel.py``)                           | 00:08.313 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_004_basic_rules.py` (``004_basic_rules.py``)                                 | 00:07.134 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_004_basic_rules.py` (``004_basic_rules.py``)                                 | 00:06.794 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_002_start_from_existing_project.py` (``002_start_from_existing_project.py``) | 00:05.449 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_002_start_from_existing_project.py` (``002_start_from_existing_project.py``) | 00:05.556 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------------------+-----------+--------+
