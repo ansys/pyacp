@@ -74,7 +74,7 @@ parallel_rule = model.create_parallel_selection_rule(
     upper_limit=1,
 )
 
-modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
+modeling_ply = model.modeling_groups["modeling_group"].plies["ply"]
 modeling_ply.selection_rules = [LinkedSelectionRule(parallel_rule)]
 
 # %%

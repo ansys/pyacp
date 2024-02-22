@@ -1,4 +1,4 @@
-"""
+r"""
 .. _basic_flat_plate:
 
 Basic PyACP Example
@@ -7,11 +7,13 @@ Basic PyACP Example
 Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
 a failure analysis with PyDPF-Composites.
 
-The starting point is a MAPDL CDB file which contains the mesh, material data and
-the boundary conditions. This model is imported in PyACP to define the lay-up.
-PyACP exports the resulting model for PyMAPDL. Once the results are available,
-the RST file is loaded in PyDPF composites. The additional input files (material.xml
-and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDPF Composites.
+The starting point is a MAPDL DAT file which contains the mesh, material data and
+the boundary conditions. The `Create Input File  <../../user_guide/howto/create_input_file.html>`_
+section describes how input files can be created.
+The \*.dat file is imported in PyACP to define the lay-up. PyACP exports the resulting model for PyMAPDL.
+Once the results are available, the RST file is loaded in PyDPF composites.
+The additional input files (material.xml and ACPCompositeDefinitions.h5) can also be stored
+with PyACP and passed to PyDPF Composites.
 """
 
 
@@ -43,7 +45,7 @@ from ansys.mapdl.core import launch_mapdl
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
 input_file = example_helpers.get_example_file(
-    example_helpers.ExampleKeys.BASIC_FLAT_PLATE_CDB, WORKING_DIR
+    example_helpers.ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR
 )
 
 # %%
@@ -140,7 +142,7 @@ model.update()
 
 # %%
 # Show the fiber directions of a specific ply.
-modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45_UD"]
+modeling_ply = model.modeling_groups["modeling_group"].plies["ply_4_-45_UD"]
 
 
 fiber_direction = modeling_ply.elemental_data.fiber_direction

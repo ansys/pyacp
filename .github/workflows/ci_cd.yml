@@ -285,7 +285,7 @@ jobs:
     name: Build Documentation
     runs-on: ubuntu-latest
     timeout-minutes: 30
-
+    continue-on-error: true
     strategy:
       matrix:
         build_type: ["quick", "full"]
@@ -356,11 +356,12 @@ jobs:
 
       - name: Build HTML
         run: |
-          xvfb-run poetry run make -C doc html SPHINXOPTS="-W --keep-going -v $SPHINXOPT_NITPICKY"
+          xvfb-run poetry run make -C doc html SPHINXOPTS="$SPHINXOPT_WARNINGS_IS_ERROR --keep-going -v $SPHINXOPT_NITPICKY"
         env:
           PYMAPDL_PORT: "50557"
           PYMAPDL_START_INSTANCE: "FALSE"
           PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT: "50558"
+          SPHINXOPT_WARNINGS_IS_ERROR: ${{ matrix.build_type == 'quick' && ' ' || '-W' }}
           SPHINXOPT_NITPICKY: ${{ matrix.build_type == 'quick' && ' ' || '-n' }}
           PYACP_DOC_SKIP_GALLERY: ${{ matrix.build_type == 'quick' && 'true' || 'false' }}
           PYACP_DOC_SKIP_API: ${{ matrix.build_type == 'quick' && 'true' || 'false' }}

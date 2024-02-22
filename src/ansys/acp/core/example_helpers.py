@@ -28,7 +28,7 @@ class _ExampleLocation:
 class ExampleKeys(Enum):
     """Keys for the example files."""
 
-    BASIC_FLAT_PLATE_CDB = auto()
+    BASIC_FLAT_PLATE_DAT = auto()
     BASIC_FLAT_PLATE_ACPH5 = auto()
     RACE_CAR_NOSE_ACPH5 = auto()
     RACE_CAR_NOSE_STEP = auto()
@@ -39,7 +39,7 @@ class ExampleKeys(Enum):
 
 
 EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
-    ExampleKeys.BASIC_FLAT_PLATE_CDB: _ExampleLocation(
+    ExampleKeys.BASIC_FLAT_PLATE_DAT: _ExampleLocation(
         directory="basic_flat_plate_example", filename="flat_plate_input.dat"
     ),
     ExampleKeys.BASIC_FLAT_PLATE_ACPH5: _ExampleLocation(

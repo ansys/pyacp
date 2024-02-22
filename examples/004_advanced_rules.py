@@ -68,7 +68,7 @@ print(model.unit_system)
 # Add more layers to the modeling ply, so it easier to see the effects of the selection rules.
 # Plot the thickness of all the plies without any rules.
 
-modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
+modeling_ply = model.modeling_groups["modeling_group"].plies["ply"]
 modeling_ply.number_of_layers = 10
 
 model.update()
