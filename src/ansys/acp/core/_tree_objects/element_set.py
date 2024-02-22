@@ -57,9 +57,9 @@ class ElementSet(CreatableTreeObject, IdTreeObject):
     name :
         The name of the Element Set.
     middle_offset :
-        TODO
+        If True, enforce that the laminate mid-plane is moved onto the reference surface.
     element_labels :
-        TODO
+        Label of elements to be assigned to Element Set
     """
 
     __slots__: Iterable[str] = tuple()
