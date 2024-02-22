@@ -54,7 +54,7 @@ print(model.unit_system)
 
 
 # Plot the nominal ply thickness.
-modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
+modeling_ply = model.modeling_groups["modeling_group"].plies["ply"]
 model.update()
 assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
