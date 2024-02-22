@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708613293472,
+  "lastUpdate": 1708614320626,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12744,6 +12744,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002251154849132537",
             "extra": "mean: 802.6463328127894 usec\nrounds: 1283"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5e88c1180f536941c546f7719782500ef767f403",
+          "message": "Feat/thickness definition example (#439)\n\n* Add thickness definition example\r\n* Remove start from existing project examples.\r\n* Start from existing projects for more complex examples.",
+          "timestamp": "2024-02-22T15:01:42Z",
+          "tree_id": "7804b6bf7beec3014c09a740ff06c098b1d62a5f",
+          "url": "https://github.com/ansys-internal/pyacp/commit/5e88c1180f536941c546f7719782500ef767f403"
+        },
+        "date": 1708614300776,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.954290531481187,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005240697454282062",
+            "extra": "mean: 201.8452477999972 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 822.5021280593986,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00044728293980320245",
+            "extra": "mean: 1.2158023254716528 msec\nrounds: 1484"
           }
         ]
       }
