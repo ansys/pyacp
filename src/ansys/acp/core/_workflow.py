@@ -224,7 +224,7 @@ class ACPWorkflow:
 
         if instance.model.unit_system == UnitSystemType.UNDEFINED:
             raise ValueError(
-                "Unit system not defined in the model. Please specify the unit system."
+                "The input file does not provide a unit system. Please specify the unit system."
             )
         return instance
 
