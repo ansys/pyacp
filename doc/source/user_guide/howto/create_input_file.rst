@@ -1,5 +1,5 @@
-Create input file for PyACP
----------------------------
+Input file for PyACP
+--------------------
 
 To start working with PyACP, an input file that contains the mesh is required. PyACP supports reading
 the mesh from \*.cdb and \*.dat files with :meth:`.ACPWorkflow.from_cdb_file`. PyACP will read the mesh including - if they exist - coordinate systems, element, edge sets, and materials from the
@@ -32,10 +32,12 @@ The created input file can be read with :meth:`.ACPWorkflow.from_cdb_file`. See
     The imported model will always contain the dummy material that was assigned to the geometry with the name "1".
 
 
-Create an input file with Ansys APDL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create an input file with Ansys Mechanical APDL
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* A \*.cdb can be written with the ``CDWRITE`` command:
+* Open Ansys Mechanical APDL
+* Load or create a model with APDL commands
+* Write the \*.cdb file with the the ``CDWRITE`` command:
 
     .. code-block:: apdl
 
