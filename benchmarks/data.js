@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708528823291,
+  "lastUpdate": 1708608648545,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12592,6 +12592,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00021016072651389256",
             "extra": "mean: 834.975789708747 usec\nrounds: 1341"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "105842014+roosre@users.noreply.github.com",
+            "name": "René Roos",
+            "username": "roosre"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "49d68449916c45a39fc6341d602cd3455e050b1a",
+          "message": "rename property modeling_plies of ModelingGroup to plies because the … (#440)\n\n* rename property modeling_plies of ModelingGroup to plies because the entries of plies can be of type modeling ply, interface layer, butt-joint sequence.\r\n\r\n* update docu (plot ply data)",
+          "timestamp": "2024-02-22T14:27:55+01:00",
+          "tree_id": "c114c3cd012f84cf35396c50e2309e7fc7483fe8",
+          "url": "https://github.com/ansys-internal/pyacp/commit/49d68449916c45a39fc6341d602cd3455e050b1a"
+        },
+        "date": 1708608632989,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.71098908988982,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0039374614078341585",
+            "extra": "mean: 175.10101739999868 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1040.3397121464384,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0006373592969069215",
+            "extra": "mean: 961.2244811233736 usec\nrounds: 1139"
           }
         ]
       }
