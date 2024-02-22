@@ -23,5 +23,7 @@
       ExampleKeys.RACE_CAR_NOSE_STEP
       ExampleKeys.CUT_OFF_GEOMETRY
       ExampleKeys.RULE_GEOMETRY_TRIANGLE
+      ExampleKeys.THICKNESS_GEOMETRY
+      ExampleKeys.MINIMAL_FLAT_PLATE
    
    

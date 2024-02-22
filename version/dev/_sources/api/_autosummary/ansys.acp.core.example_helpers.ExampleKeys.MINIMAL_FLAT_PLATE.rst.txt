@@ -1,0 +1,6 @@
+MINIMAL\_FLAT\_PLATE
+====================
+
+.. currentmodule:: ansys.acp.core.example_helpers
+
+.. autoattribute:: ExampleKeys.MINIMAL_FLAT_PLATE

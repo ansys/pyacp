@@ -1,0 +1,6 @@
+THICKNESS\_GEOMETRY
+===================
+
+.. currentmodule:: ansys.acp.core.example_helpers
+
+.. autoattribute:: ExampleKeys.THICKNESS_GEOMETRY
