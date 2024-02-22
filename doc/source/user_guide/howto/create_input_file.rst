@@ -37,7 +37,7 @@ Create an input file with Ansys Mechanical APDL
 
 * Open Ansys Mechanical APDL
 * Load or create a model with APDL commands
-* Write the \*.cdb file with the the ``CDWRITE`` command:
+* Write the \*.cdb file with the ``CDWRITE`` command:
 
     .. code-block:: apdl
 
