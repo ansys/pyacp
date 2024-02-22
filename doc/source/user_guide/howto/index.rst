@@ -8,5 +8,6 @@ These short guides are designed to illustrate one particular aspect of using PyA
 
     create_input_file
     visualize_model
+    view_model_in_acp_gui
     print_model
     launch_configuration

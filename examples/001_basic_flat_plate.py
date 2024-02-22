@@ -7,8 +7,8 @@ Basic PyACP Example
 Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
 a failure analysis with PyDPF-Composites.
 
-The starting point is a MAPDL DAT file which contains the mesh, material data and
-the boundary conditions. The `Create Input File  <../../user_guide/howto/create_input_file.html>`_
+The starting point is a MAPDL \*.dat file which contains the mesh, material data and
+the boundary conditions. The :ref:`input_file_for_pyacp`
 section describes how input files can be created.
 The \*.dat file is imported in PyACP to define the lay-up. PyACP exports the resulting model for PyMAPDL.
 Once the results are available, the RST file is loaded in PyDPF composites.
@@ -156,7 +156,9 @@ plotter.show()
 
 
 # %%
-# Print the model tree for a quick overview.
+# Print the model tree for a quick overview. Note:
+# The model can also be opened in the ACP GUI.
+# See :ref:`view_the_model_in_the_acp_gui`.
 print_model(model)
 
 # %%
