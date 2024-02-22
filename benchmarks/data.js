@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708608648545,
+  "lastUpdate": 1708611088744,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12630,6 +12630,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0006373592969069215",
             "extra": "mean: 961.2244811233736 usec\nrounds: 1139"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "297257be55830218aa1ac953b60baeff27d3cb07",
+          "message": "Complete docs for element set (#442)\n\nComplete docs for element set",
+          "timestamp": "2024-02-22T14:07:49Z",
+          "tree_id": "2b3c7df56c2c4d1e8665549c9be76f0ed611fdc9",
+          "url": "https://github.com/ansys-internal/pyacp/commit/297257be55830218aa1ac953b60baeff27d3cb07"
+        },
+        "date": 1708611066305,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.5049808189675655,
+            "unit": "iter/sec",
+            "range": "stddev: 0.014017841708610649",
+            "extra": "mean: 221.97652779999544 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 906.6716753302462,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003148053462238284",
+            "extra": "mean: 1.1029350835689886 msec\nrounds: 1065"
           }
         ]
       }
