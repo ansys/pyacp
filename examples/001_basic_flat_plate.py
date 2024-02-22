@@ -142,7 +142,7 @@ model.update()
 
 # %%
 # Show the fiber directions of a specific ply
-modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45_UD"]
+modeling_ply = model.modeling_groups["modeling_group"].plies["ply_4_-45_UD"]
 
 
 fiber_direction = modeling_ply.elemental_data.fiber_direction

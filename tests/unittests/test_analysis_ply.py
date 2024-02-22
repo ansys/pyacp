@@ -12,7 +12,7 @@ def model(load_model_from_tempfile):
 
 
 def get_first_modeling_ply(parent_model: Model):
-    return parent_model.modeling_groups["ModelingGroup.1"].modeling_plies["ModelingPly.1"]
+    return parent_model.modeling_groups["ModelingGroup.1"].plies["ModelingPly.1"]
 
 
 def get_first_production_ply(parent_model: Model):
