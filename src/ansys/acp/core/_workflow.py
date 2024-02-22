@@ -2,7 +2,7 @@ import pathlib
 import shutil
 import tempfile
 import typing
-from typing import Callable, Optional, Protocol
+from typing import Any, Callable, Optional, Protocol
 
 from . import CADGeometry, UnitSystemType
 from ._server.acp_instance import ACP
@@ -125,7 +125,7 @@ def _get_file_transfer_strategy(
 class ACPWorkflow:
     r"""Instantiate an ACP Workflow.
 
-    Use the class methods :meth:`.from_cdb_file` and
+    Use the class methods :meth:`.from_cdb_or_dat_file` and
     :meth:`.from_acph5_file` to instantiate the workflow.
 
     Parameters
@@ -135,7 +135,10 @@ class ACPWorkflow:
     local_file_path :
         Path of the file to be loaded.
     file_format :
-        Format of the file to be loaded. Can be one of (TODO: list options).
+        Format of the file to be loaded. Can be one of ``"acp:h5"``, ``"ansys:h5"``,
+        ``"ansys:cdb"`` or ``"ansys:dat"``.
+    kwargs :
+        Additional keyword arguments passed to the :meth:`.ACP.import_model` method.
 
     """
 
@@ -146,6 +149,7 @@ class ACPWorkflow:
         local_working_directory: Optional[pathlib.Path] = None,
         local_file_path: PATH,
         file_format: str,
+        **kwargs: Any,
     ):
         self._acp_instance = acp
         self._local_working_dir = _LocalWorkingDir(local_working_directory)
@@ -155,7 +159,9 @@ class ACPWorkflow:
         )
 
         uploaded_file = self._add_input_file(path=pathlib.Path(local_file_path))
-        self._model = self._acp_instance.import_model(path=uploaded_file, format=file_format)
+        self._model = self._acp_instance.import_model(
+            path=uploaded_file, format=file_format, **kwargs
+        )
 
     @classmethod
     def from_acph5_file(
@@ -184,10 +190,12 @@ class ACPWorkflow:
         )
 
     @classmethod
-    def from_cdb_file(
+    def from_cdb_or_dat_file(
         cls,
+        *,
         acp: ACP[ServerProtocol],
-        cdb_file_path: PATH,
+        cdb_or_dat_file_path: PATH,
+        unit_system: UnitSystemType = UnitSystemType.UNDEFINED,
         local_working_directory: Optional[pathlib.Path] = None,
     ) -> "ACPWorkflow":
         """Instantiate an ACP Workflow from a cdb file.
@@ -196,18 +204,29 @@ class ACPWorkflow:
         ----------
         acp
             The ACP Client.
-        cdb_file_path:
-            The path to the cdb file.
+        cdb_or_dat_file_path:
+            The path to the cdb or dat file.
+        unit_system:
+            Has to be ``UnitSystemType.UNDEFINED`` if the unit system
+            is specified in the cdb or dat file. Needs to be set to a defined unit system
+            if the unit system is not set in the cdb or dat file.
         local_working_directory:
             The local working directory. If None, a temporary directory will be created.
         """
 
-        return cls(
+        instance = cls(
             acp=acp,
-            local_file_path=cdb_file_path,
+            local_file_path=cdb_or_dat_file_path,
             local_working_directory=local_working_directory,
             file_format="ansys:cdb",
+            unit_system=unit_system,
         )
+
+        if instance.model.unit_system == UnitSystemType.UNDEFINED:
+            raise ValueError(
+                "The input file does not provide a unit system. Please specify the unit system."
+            )
+        return instance
 
     @property
     def model(self) -> Model:

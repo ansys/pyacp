@@ -126,7 +126,12 @@ class ACP(Generic[ServerT]):
         path :
             Path of the file to be loaded.
         format :
-            Format of the file to be loaded. Can be one of (TODO: list options).
+            Format of the file to be loaded. Can be one of ``"acp:h5"``,
+            ``"ansys:h5"``, ``"ansys:cdb"``, ``"ansys:dat"``, ``"abaqus:inp"``,
+            or ``"nastran:bdf"``.
+        kwargs :
+            Additional parameters to be passed to :meth:`Model.from_fe_file`.
+            Not available when ``format`` is "acp:h5".
 
         Returns
         -------
