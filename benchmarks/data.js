@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708611088744,
+  "lastUpdate": 1708611735016,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12668,6 +12668,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0003148053462238284",
             "extra": "mean: 1.1029350835689886 msec\nrounds: 1065"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "76f6a28e446c07099ae692aa0df9819420a9900b",
+          "message": "Document creation of input files. (#446)\n\n* Document creation of input files\r\n\r\n* Disable warning is error for quick builds, because some links from doc to gallery cannot resolved",
+          "timestamp": "2024-02-22T14:19:16Z",
+          "tree_id": "e5d478301ad6c25d34f0086f3f808c447bc0ecff",
+          "url": "https://github.com/ansys-internal/pyacp/commit/76f6a28e446c07099ae692aa0df9819420a9900b"
+        },
+        "date": 1708611715104,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.242794774364614,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0031253229265014557",
+            "extra": "mean: 160.18466666666598 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1192.3171665798836,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00021949773579564048",
+            "extra": "mean: 838.7030129478568 usec\nrounds: 1313"
           }
         ]
       }
