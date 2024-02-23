@@ -119,9 +119,7 @@ oss = model.create_oriented_selection_set(
 
 model.update()
 
-orientation = oss.elemental_data.orientation
-assert orientation is not None
-plotter = get_directions_plotter(model=model, components=[orientation])
+plotter = get_directions_plotter(model=model, components=[oss.elemental_data.orientation])
 plotter.show()
 
 

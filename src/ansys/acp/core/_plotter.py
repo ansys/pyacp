@@ -1,5 +1,5 @@
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Optional
 
 import pyvista
 
@@ -26,7 +26,7 @@ _acp_direction_colors = {
 def get_directions_plotter(
     *,
     model: "Model",
-    components: Sequence["VectorData"],
+    components: Sequence[Optional["VectorData"]],
     culling_factor: int = 1,
     length_factor: float = 1.0,
     **kwargs: Any,
@@ -53,6 +53,8 @@ def get_directions_plotter(
     plotter.add_mesh(model.mesh.to_pyvista(), color="white", show_edges=True)
 
     for vector_data in components:
+        if vector_data is None:
+            continue
         color = _acp_direction_colors.get(vector_data.component_name, "black")
         plotter.add_mesh(
             vector_data.get_pyvista_glyphs(
