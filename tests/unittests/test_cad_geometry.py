@@ -77,8 +77,8 @@ class TestCADGeometry(NoLockedMixin, TreeObjectTester):
         with load_model_from_tempfile() as model, load_cad_geometry(model=model) as cad_geometry:
             assert cad_geometry.status == "NOTUPTODATE"
             with pytest.raises(
-                    RuntimeError,
-                    match="The object CADGeometry must be up-to-date to access CADComponent."
+                RuntimeError,
+                match="The object CADGeometry must be up-to-date to access CADComponent.",
             ):
                 _ = cad_geometry.root_shapes
             model.update()

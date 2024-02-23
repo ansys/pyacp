@@ -229,9 +229,9 @@ def get_read_only_collection_property(
     """Define a read-only mapping of child tree objects."""
 
     def collection_property(self: ParentT) -> Mapping[ValueT]:
-        if requires_uptodate and not self.status == "UPTODATE":
+        if requires_uptodate and hasattr(self, "status") and not self.status == "UPTODATE":
             raise RuntimeError(
-                f"The object {self.id} must be up-to-date to access {object_class.__name__}."
+                f"The object {self.name} must be up-to-date to access {object_class.__name__}."
             )
         return Mapping._initialize_with_cache(
             channel=self._channel,
