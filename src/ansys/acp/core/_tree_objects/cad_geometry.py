@@ -145,7 +145,9 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
         return TriangleMesh._from_pb(response)
 
     root_shapes = get_read_only_collection_property(
-        CADComponent, cad_component_pb2_grpc.ObjectServiceStub
+        object_class=CADComponent,
+        stub_class=cad_component_pb2_grpc.ObjectServiceStub,
+        requires_uptodate=True,
     )
 
     def refresh(self) -> None:

@@ -56,7 +56,7 @@ class AnalysisPlyElementalData(ElementalData):
 
 @dataclasses.dataclass
 class AnalysisPlyNodalData(NodalData):
-    """Represents nodal data for a Analysis Ply."""
+    """Represents nodal data for an Analysis Ply."""
 
     ply_offset: VectorData | None = None
 
