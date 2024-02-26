@@ -1,3 +1,5 @@
+.. _launch_configuration:
+
 Changing how ACP is started
 ---------------------------
 
