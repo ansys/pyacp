@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708614320626,
+  "lastUpdate": 1708937885945,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12782,6 +12782,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00044728293980320245",
             "extra": "mean: 1.2158023254716528 msec\nrounds: 1484"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "105842014+roosre@users.noreply.github.com",
+            "name": "René Roos",
+            "username": "roosre"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "913f1fb92b3995e8b9830e0035a984be35e09029",
+          "message": "Block accessing root_shapes if cad geometry is out-of-date (#450)\n\n* add optional check for grpc properties that they can be accessed only if the parent object is up-to-date\r\n\r\n* patch of pre-commit run\r\n\r\n* use StatusType instead of string value.",
+          "timestamp": "2024-02-26T08:55:01Z",
+          "tree_id": "2a74945d32e9b6df46a631d84d2c54e66740a7df",
+          "url": "https://github.com/ansys-internal/pyacp/commit/913f1fb92b3995e8b9830e0035a984be35e09029"
+        },
+        "date": 1708937869551,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.482290272236488,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0037480166887044154",
+            "extra": "mean: 154.26646416668177 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1311.2528012782197,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018687796004101907",
+            "extra": "mean: 762.6294479792089 usec\nrounds: 1163"
           }
         ]
       }
