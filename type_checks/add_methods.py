@@ -16,7 +16,7 @@ from ansys.acp.core import (
     VariableOffsetSelectionRule,
 )
 
-boolean_rule = BooleanSelectionRule()  # type: ignore
+boolean_rule = BooleanSelectionRule()
 
 # Test that one of the generated 'create_*' methods has the correct type
 # signature. This ensures that the type checker understands the

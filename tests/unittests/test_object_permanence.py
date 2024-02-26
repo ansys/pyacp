@@ -42,7 +42,7 @@ def test_object_identity_after_deletion(model):
 
 def test_unstored():
     """Check that unstored objects have unique identities."""
-    assert pyacp.ModelingPly() is not pyacp.ModelingPly()  # type: ignore
+    assert pyacp.ModelingPly() is not pyacp.ModelingPly()
 
 
 def test_mapping_identity(model):
@@ -96,7 +96,7 @@ def test_linked_object_list_parent_deleted(model):
 
 def test_linked_object_list_parent_store(model):
     """Check that the linked object list identity is unique even after its parent is stored."""
-    oss = pyacp.OrientedSelectionSet()  # type: ignore
+    oss = pyacp.OrientedSelectionSet()
     element_sets = oss.element_sets
     oss.store(parent=model)
     oss_id = oss.id
@@ -123,7 +123,7 @@ def test_edge_property_list_parent_deleted(model):
 
 def test_edge_property_list_parent_store(model):
     """Check that the edge property list identity is unique even after its parent is stored."""
-    stackup = pyacp.Stackup()  # type: ignore
+    stackup = pyacp.Stackup()
     fabrics = stackup.fabrics
     stackup.store(parent=model)
     stackup_id = stackup.id
