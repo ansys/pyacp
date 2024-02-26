@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708945285324,
+  "lastUpdate": 1708983439128,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12858,6 +12858,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002474039252874205",
             "extra": "mean: 845.0766272436081 usec\nrounds: 1505"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ae66fdf03067dfcc3c68f5220905dabc7d1e2e85",
+          "message": "Revert renaming 'modeling_plies' to 'plies' (#456)\n\nRevert the rename of 'modeling_plies' to 'plies'. This change\r\nwas originally made to accommodate butt joint sequences and\r\ninterface layers in the collection.\r\nHowever, the current type of the collection (MutableMapping)\r\nis not well-suited to this since it is\r\n- not polymorphic\r\n- not ordered\r\n\r\nThe current plan is to add MutableMapping exposure also for\r\n``butt_joint_sequences`` and ``interface_layers``, and then\r\nadd a _different_ collection as ``plies``, which contains\r\nall different objects which are to be sorted by global ply\r\nnumber.\r\n\r\nThis reverts commit 49d68449916c45a39fc6341d602cd3455e050b1a.",
+          "timestamp": "2024-02-26T22:33:23+01:00",
+          "tree_id": "2d113cacff4a4a6771a9ac888cd2f297ec7be071",
+          "url": "https://github.com/ansys-internal/pyacp/commit/ae66fdf03067dfcc3c68f5220905dabc7d1e2e85"
+        },
+        "date": 1708983417177,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.16305091894636,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004188737470234343",
+            "extra": "mean: 193.68393140001672 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1052.009680875362,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002580462740154326",
+            "extra": "mean: 950.5615948019744 usec\nrounds: 1039"
           }
         ]
       }
