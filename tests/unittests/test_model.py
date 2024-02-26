@@ -217,3 +217,13 @@ def test_elemental_data_to_pyvista_with_component(minimal_complete_model, compon
         assert isinstance(pv_mesh, pyvista.core.pointset.UnstructuredGrid)
         assert pv_mesh.n_points == 4
         assert pv_mesh.n_cells == 1
+
+
+def test_regression_454(minimal_complete_model):
+    """
+    Regression test for issue #454
+    The 'Model' object should not be clonable, as it is not directly
+    constructible from its client-side representation.
+    """
+    assert not hasattr(minimal_complete_model, "clone")
+    assert not hasattr(minimal_complete_model, "store")

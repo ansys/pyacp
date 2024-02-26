@@ -62,23 +62,6 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
             return False
         return bool(key)
 
-    def clone(self: Self, *, unlink: bool = False) -> Self:
-        """Create a new unstored object with the same properties.
-
-        Parameters
-        ----------
-        unlink:
-            If `True`, remove all links to other objects. This can be
-            used to store the object to another model, where the links
-            would be invalid.
-        """
-        new_object_info = self.OBJECT_INFO_TYPE()
-        new_object_info.properties.CopyFrom(self._pb_object.properties)
-        if unlink:
-            unlink_objects(new_object_info.properties)
-        new_object_info.info.name = self._pb_object.info.name
-        return type(self)._from_object_info(object_info=new_object_info)
-
     def __eq__(self: Self, other: Any) -> bool:
         if not isinstance(other, TreeObject):
             return False
@@ -233,6 +216,23 @@ class CreatableTreeObject(TreeObject):
 
     def _get_stub(self) -> CreatableEditableAndReadableResourceStub:
         return cast(CreatableEditableAndReadableResourceStub, super()._get_stub())
+
+    def clone(self: Self, *, unlink: bool = False) -> Self:
+        """Create a new unstored object with the same properties.
+
+        Parameters
+        ----------
+        unlink:
+            If ``True``, remove all links to other objects. This can be
+            used to store the object to another model, where the links
+            would be invalid.
+        """
+        new_object_info = self.OBJECT_INFO_TYPE()
+        new_object_info.properties.CopyFrom(self._pb_object.properties)
+        if unlink:
+            unlink_objects(new_object_info.properties)
+        new_object_info.info.name = self._pb_object.info.name
+        return type(self)._from_object_info(object_info=new_object_info)
 
     def store(self: Self, parent: TreeObject) -> None:
         """Store the object on the server.
