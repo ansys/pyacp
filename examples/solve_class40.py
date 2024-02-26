@@ -225,16 +225,16 @@ for angle in angles:
 # %%
 # Inspect the number of modeling groups and plies
 print(len(model.modeling_groups))
-print(len(model.modeling_groups["hull"].plies))
-print(len(model.modeling_groups["deck"].plies))
-print(len(model.modeling_groups["bulkhead"].plies))
-print(len(model.modeling_groups["keeltower"].plies))
+print(len(model.modeling_groups["hull"].modeling_plies))
+print(len(model.modeling_groups["deck"].modeling_plies))
+print(len(model.modeling_groups["bulkhead"].modeling_plies))
+print(len(model.modeling_groups["keeltower"].modeling_plies))
 
 
 # %%
 # Show the thickness of one of the plies
 model.update()
-modeling_ply = model.modeling_groups["deck"].plies["eglass_ud_02mm_0.5"]
+modeling_ply = model.modeling_groups["deck"].modeling_plies["eglass_ud_02mm_0.5"]
 thickness = modeling_ply.elemental_data.thickness
 assert thickness is not None
 thickness.get_pyvista_mesh(mesh=model.mesh).plot()
