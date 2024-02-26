@@ -77,13 +77,13 @@ Getting output files
 
 The ``get_local_*`` methods of the workflow can be used to create and download
 output files. For example, to get the ``.acph5`` file of the model, use the
-:meth:`.get_local_acp_h5_file` method:
+:meth:`.get_local_acph5_file` method:
 
 .. doctest::
 
     >>> model = workflow.model
     >>> model.name = "My model"
-    >>> workflow.get_local_acp_h5_file()
+    >>> workflow.get_local_acph5_file()
     PosixPath('/tmp/.../My model.acph5')
 
 Note that the file name is based on the model name.
