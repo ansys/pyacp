@@ -85,8 +85,8 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
     __slots__: Iterable[str] = tuple()
 
     _COLLECTION_LABEL = "tube_selection_rules"
-    OBJECT_INFO_TYPE = tube_selection_rule_pb2.ObjectInfo
-    CREATE_REQUEST_TYPE = tube_selection_rule_pb2.CreateRequest
+    _OBJECT_INFO_TYPE = tube_selection_rule_pb2.ObjectInfo
+    _CREATE_REQUEST_TYPE = tube_selection_rule_pb2.CreateRequest
 
     def __init__(
         self,

@@ -181,7 +181,7 @@ class Model(TreeObject):
     __slots__: Iterable[str] = tuple()
 
     _COLLECTION_LABEL = "models"
-    OBJECT_INFO_TYPE = model_pb2.ObjectInfo
+    _OBJECT_INFO_TYPE = model_pb2.ObjectInfo
 
     def __init__(
         self,
