@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708984099688,
+  "lastUpdate": 1708984958230,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12934,6 +12934,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002471738105552616",
             "extra": "mean: 1.0414005074820845 msec\nrounds: 802"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8cee8df84269d9fb354bd4db83bb57fa17feabf3",
+          "message": "Add file management how-to (#462)\n\nAdd how-to section for file management, covering\r\n- using a workflow\r\n- using manual file up- and download\r\n\r\nfor creating a model from a ``.cdb``, and storing the ``.acph5``.\r\n\r\nCloses #381",
+          "timestamp": "2024-02-26T21:59:16Z",
+          "tree_id": "46fdd363c93c3ad2a469199f6dc99b09298dbde1",
+          "url": "https://github.com/ansys-internal/pyacp/commit/8cee8df84269d9fb354bd4db83bb57fa17feabf3"
+        },
+        "date": 1708984939242,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.108142283054474,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004907273784572324",
+            "extra": "mean: 163.71589816665733 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1245.6182809106351,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018720944583621796",
+            "extra": "mean: 802.8141649213187 usec\nrounds: 1146"
           }
         ]
       }
