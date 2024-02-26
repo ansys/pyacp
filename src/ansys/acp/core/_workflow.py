@@ -245,7 +245,7 @@ class ACPWorkflow:
         copy it to the local working directory and return its path.
         """
         return self._file_transfer_strategy.get_file(
-            self._model.save_analysis_model, self._model.name + ".cdb"
+            self._model.export_analysis_model, self._model.name + ".cdb"
         )
 
     def get_local_materials_file(self) -> pathlib.Path:
