@@ -25,8 +25,6 @@ SKIP_GALLERY = os.environ.get("PYACP_DOC_SKIP_GALLERY", "0").lower() in ("1", "t
 SKIP_API = os.environ.get("PYACP_DOC_SKIP_API", "0").lower() in ("1", "true")
 
 exclude_patterns = []
-if SKIP_GALLERY:
-    exclude_patterns.append("examples/*")
 if SKIP_API:
     exclude_patterns.append("api/*")
 
