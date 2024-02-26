@@ -333,7 +333,7 @@ class Model(TreeObject):
                 )
             )
 
-    def save_analysis_model(self, path: _PATH) -> None:
+    def export_analysis_model(self, path: _PATH) -> None:
         """Save the analysis model to a CDB file.
 
         Parameters
