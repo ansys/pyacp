@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708983439128,
+  "lastUpdate": 1708984099688,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12896,6 +12896,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002580462740154326",
             "extra": "mean: 950.5615948019744 usec\nrounds: 1039"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "db58936e167db93697d341e68703136b11d3376a",
+          "message": "Move clone definition to CreatableTreeObject (#459)\n\nOnly objects which can be created directly should be clonable,\r\nsince the 'unlinked' representation doesn't have any value\r\notherwise.\r\n\r\nCloses #454.",
+          "timestamp": "2024-02-26T21:44:15Z",
+          "tree_id": "bad402e2b75d5add9ea5842c144a9e4e7b4985a3",
+          "url": "https://github.com/ansys-internal/pyacp/commit/db58936e167db93697d341e68703136b11d3376a"
+        },
+        "date": 1708984078086,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.507695430016811,
+            "unit": "iter/sec",
+            "range": "stddev: 0.006632982774446517",
+            "extra": "mean: 221.84284975000423 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 960.2453549958573,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002471738105552616",
+            "extra": "mean: 1.0414005074820845 msec\nrounds: 802"
           }
         ]
       }
