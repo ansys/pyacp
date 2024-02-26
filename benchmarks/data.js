@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708937885945,
+  "lastUpdate": 1708945285324,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12820,6 +12820,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00018687796004101907",
             "extra": "mean: 762.6294479792089 usec\nrounds: 1163"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "74d843a45b500cf30507c2d5230966a0ba8e5b88",
+          "message": "Define _GRPC_PROPERTIES in GrpcObjectBase (#452)\n\nDefine the _GRPC_PROPERTIES class attribute as an empty tuple\r\nin the GrpcObjectBase class, instead of only declaring its type.\r\n\r\nThis makes mypy understand that the attribute is set; otherwise\r\nit does not recognize this since the attribute is set dynamically\r\nin the `mark_grpc_properties` class decorator.\r\n\r\nCloses #419.",
+          "timestamp": "2024-02-26T11:58:23+01:00",
+          "tree_id": "88d374e595f9b01245ca0a9c69fae1f2f04a7891",
+          "url": "https://github.com/ansys-internal/pyacp/commit/74d843a45b500cf30507c2d5230966a0ba8e5b88"
+        },
+        "date": 1708945266311,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.631278561268666,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0038334121704749037",
+            "extra": "mean: 150.80048150000871 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1183.324645081839,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002474039252874205",
+            "extra": "mean: 845.0766272436081 usec\nrounds: 1505"
           }
         ]
       }
