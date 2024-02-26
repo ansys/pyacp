@@ -419,7 +419,7 @@ def test_linked_cutoff_selection_rule_operation_type(operation_type):
     """Check that CutoffSelectionRule only allows INTERSECT operation type."""
     with pytest.raises(ValueError) as exc:
         LinkedSelectionRule(
-            selection_rule=CutoffSelectionRule(),  # type: ignore
+            selection_rule=CutoffSelectionRule(),
             operation_type=operation_type,
         )
     assert "INTERSECT" in str(exc.value)

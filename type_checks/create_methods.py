@@ -5,7 +5,7 @@ from typing_extensions import assert_type
 
 from ansys.acp.core import CADGeometry, Model
 
-model = Model()  # type: ignore
+model = Model()
 
 # Test that one of the generated 'create_*' methods has the correct type
 # signature. This ensures that the type checker understands the
