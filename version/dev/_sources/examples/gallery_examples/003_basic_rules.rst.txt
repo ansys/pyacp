@@ -136,7 +136,7 @@ The input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmpyec1dwpk
+    /tmp/tmpynqq2kah
     UnitSystemType.MKS
 
 
@@ -210,7 +210,7 @@ Create parallel selection rule and assign it to the existing ply.
         upper_limit=1,
     )
 
-    modeling_ply = model.modeling_groups["modeling_group"].plies["ply"]
+    modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
     modeling_ply.selection_rules = [LinkedSelectionRule(parallel_rule)]
 
 
@@ -496,7 +496,7 @@ Plot the ply thickness.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.365 seconds)
+   **Total running time of the script:** ( 0 minutes  8.647 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_003_basic_rules.py:

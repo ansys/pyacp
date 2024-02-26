@@ -511,10 +511,10 @@ Inspect the number of modeling groups and plies
 .. code-block:: default
 
     print(len(model.modeling_groups))
-    print(len(model.modeling_groups["hull"].plies))
-    print(len(model.modeling_groups["deck"].plies))
-    print(len(model.modeling_groups["bulkhead"].plies))
-    print(len(model.modeling_groups["keeltower"].plies))
+    print(len(model.modeling_groups["hull"].modeling_plies))
+    print(len(model.modeling_groups["deck"].modeling_plies))
+    print(len(model.modeling_groups["bulkhead"].modeling_plies))
+    print(len(model.modeling_groups["keeltower"].modeling_plies))
 
 
 
@@ -543,7 +543,7 @@ Show the thickness of one of the plies
 .. code-block:: default
 
     model.update()
-    modeling_ply = model.modeling_groups["deck"].plies["eglass_ud_02mm_0.5"]
+    modeling_ply = model.modeling_groups["deck"].modeling_plies["eglass_ud_02mm_0.5"]
     thickness = modeling_ply.elemental_data.thickness
     assert thickness is not None
     thickness.get_pyvista_mesh(mesh=model.mesh).plot()
@@ -727,7 +727,7 @@ Save the model as CDB for solving with PyMAPDL
 
 .. code-block:: default
 
-    model.save_analysis_model(CDB_FILENAME_OUT)
+    model.export_analysis_model(CDB_FILENAME_OUT)
     # Export the shell lay-up and material file for DPF Composites
     model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
     model.export_materials(MATML_FILE)
@@ -808,7 +808,7 @@ Load the CDB file into PyMAPDL
  .. code-block:: none
 
 
-    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     11:03:17  FEB 26, 2024 CP=      1.210\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.299\n\n\n'
+    '\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     21:50:29  FEB 26, 2024 CP=      1.242\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.345\n\n\n'
 
 
 
@@ -835,7 +835,7 @@ Solve the model
 
     *****  MAPDL SOLVE    COMMAND  *****
 
-     *** NOTE ***                            CP =       1.322   TIME= 11:03:17
+     *** NOTE ***                            CP =       1.370   TIME= 21:50:30
      There is no title defined for this analysis.                            
 
      *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -860,7 +860,7 @@ Solve the model
 
      *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
      Ansys Mechanical Enterprise                       
-     00000000  VERSION=LINUX x64     11:03:17  FEB 26, 2024 CP=      1.359
+     00000000  VERSION=LINUX x64     21:50:30  FEB 26, 2024 CP=      1.416
 
                                                                                
 
@@ -876,14 +876,14 @@ Solve the model
        ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
        GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  
 
-     *** NOTE ***                            CP =       1.361   TIME= 11:03:17
+     *** NOTE ***                            CP =       1.418   TIME= 21:50:30
      Poisson's ratio PR input has been converted to NU input.                
 
-     *** NOTE ***                            CP =       1.366   TIME= 11:03:17
+     *** NOTE ***                            CP =       1.424   TIME= 21:50:30
      Present time 0 is less than or equal to the previous time.  Time will   
      default to 1.                                                           
 
-     *** NOTE ***                            CP =       1.367   TIME= 11:03:17
+     *** NOTE ***                            CP =       1.425   TIME= 21:50:30
      The conditions for direct assembly have been met.  No .emat or .erot    
      files will be produced.                                                 
 
@@ -901,7 +901,7 @@ Solve the model
 
      SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           
 
-     *** NOTE ***                            CP =       1.451   TIME= 11:03:17
+     *** NOTE ***                            CP =       1.522   TIME= 21:50:30
      Predictor is ON by default for structural elements with rotational      
      degrees of freedom.  Use the PRED,OFF command to turn the predictor     
      OFF if it adversely affects the convergence.                            
@@ -950,10 +950,10 @@ Solve the model
        *** ELEMENT MATRIX FORMULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      2.831   0.000712
-            2        88  BEAM188       0.006   0.000069
-            3        22  SHELL181      0.005   0.000237
-     Time at end of element matrix formulation CP = 4.32343578.              
+            1      3973  SHELL181      3.333   0.000839
+            2        88  BEAM188       0.006   0.000068
+            3        22  SHELL181      0.006   0.000274
+     Time at end of element matrix formulation CP = 4.89622021.              
 
      SPARSE MATRIX DIRECT SOLVER.
       Number of equations =       24096,    Maximum wavefront =     66
@@ -961,7 +961,7 @@ Solve the model
       Memory required for in-core solution     =    58.542 MB
       Memory required for out-of-core solution =    24.642 MB
 
-     *** NOTE ***                            CP =       4.413   TIME= 11:03:20
+     *** NOTE ***                            CP =       4.993   TIME= 21:50:33
      The Sparse Matrix Solver is currently running in the in-core memory     
      mode.  This memory mode uses the most amount of memory in order to      
      avoid using the hard drive as much as possible, which most often        
@@ -976,16 +976,16 @@ Solve the model
        *** ELEMENT RESULT CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      6.192   0.001558
-            2        88  BEAM188       0.012   0.000142
-            3        22  SHELL181      0.008   0.000386
+            1      3973  SHELL181      7.291   0.001835
+            2        88  BEAM188       0.013   0.000148
+            3        22  SHELL181      0.010   0.000451
 
        *** NODAL LOAD CALCULATION TIMES
          TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-            1      3973  SHELL181      0.071   0.000018
-            2        88  BEAM188       0.002   0.000019
-            3        22  SHELL181      0.000   0.000018
+            1      3973  SHELL181      0.083   0.000021
+            2        88  BEAM188       0.002   0.000023
+            3        22  SHELL181      0.000   0.000021
      *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
      *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -1222,7 +1222,7 @@ Query and plot the results
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  25.581 seconds)
+   **Total running time of the script:** ( 0 minutes  31.663 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_solve_class40.py:

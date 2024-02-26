@@ -15,9 +15,6 @@
    
       
       
-      Model.clone
-      
-      
       Model.create_boolean_selection_rule
       
       
@@ -87,6 +84,9 @@
       Model.delete
       
       
+      Model.export_analysis_model
+      
+      
       Model.export_materials
       
       
@@ -100,9 +100,6 @@
       
       
       Model.save
-      
-      
-      Model.save_analysis_model
       
       
       Model.update

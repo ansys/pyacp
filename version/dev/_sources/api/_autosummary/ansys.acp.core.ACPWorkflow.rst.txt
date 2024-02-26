@@ -24,7 +24,7 @@
       ACPWorkflow.from_cdb_or_dat_file
       
       
-      ACPWorkflow.get_local_acp_h5_file
+      ACPWorkflow.get_local_acph5_file
       
       
       ACPWorkflow.get_local_cdb_file

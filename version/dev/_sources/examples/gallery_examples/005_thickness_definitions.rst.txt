@@ -130,7 +130,7 @@ The input file contains a flat plate with a single ply.
 
 
     # Plot the nominal ply thickness.
-    modeling_ply = model.modeling_groups["modeling_group"].plies["ply"]
+    modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
     model.update()
     assert model.elemental_data.thickness is not None
     model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
@@ -170,7 +170,7 @@ The input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmp42qt8zmk
+    /tmp/tmpzvfnrgia
     UnitSystemType.MKS
 
 
@@ -508,7 +508,7 @@ Plot the ply thickness
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.774 seconds)
+   **Total running time of the script:** ( 0 minutes  8.131 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_005_thickness_definitions.py:

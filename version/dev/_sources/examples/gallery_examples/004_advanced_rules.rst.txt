@@ -148,7 +148,7 @@ The input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmpaotfrnev
+    /tmp/tmpcr9hjpdd
     UnitSystemType.MKS
 
 
@@ -164,7 +164,7 @@ Plot the thickness of all the plies without any rules.
 .. code-block:: default
 
 
-    modeling_ply = model.modeling_groups["modeling_group"].plies["ply"]
+    modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
     modeling_ply.number_of_layers = 10
 
     model.update()
@@ -933,7 +933,7 @@ Plot the ply extent.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  9.247 seconds)
+   **Total running time of the script:** ( 0 minutes  10.945 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_004_advanced_rules.py:
