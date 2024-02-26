@@ -265,7 +265,7 @@ class ACPWorkflow:
             self._model.export_shell_composite_definitions, "ACPCompositeDefinitions.h5"
         )
 
-    def get_local_acp_h5_file(self) -> pathlib.Path:
+    def get_local_acph5_file(self) -> pathlib.Path:
         """Get the ACP Project file (in acph5 format) on the local machine.
 
         Save the acp model to an acph5 file, copy it to the local working

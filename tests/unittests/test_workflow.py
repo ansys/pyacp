@@ -29,7 +29,7 @@ def test_workflow(acp_instance, model_data_dir, explict_temp_dir):
     assert cbd_path == workflow.working_directory.path / f"{workflow.model.name}.cdb"
     assert cbd_path.is_file()
 
-    acph5_path = workflow.get_local_acp_h5_file()
+    acph5_path = workflow.get_local_acph5_file()
     assert acph5_path == workflow.working_directory.path / f"{workflow.model.name}.acph5"
     assert acph5_path.is_file()
 
