@@ -47,8 +47,8 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
     __slots__: Iterable[str] = tuple()
 
     _COLLECTION_LABEL = "modeling_groups"
-    OBJECT_INFO_TYPE = modeling_group_pb2.ObjectInfo
-    CREATE_REQUEST_TYPE = modeling_group_pb2.CreateRequest
+    _OBJECT_INFO_TYPE = modeling_group_pb2.ObjectInfo
+    _CREATE_REQUEST_TYPE = modeling_group_pb2.CreateRequest
 
     def __init__(self, *, name: str = "ModelingGroup"):
         super().__init__(name=name)
@@ -62,7 +62,7 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
         parent_class_name="ModelingGroup",
         module_name=__module__,
     )
-    plies = define_mutable_mapping(ModelingPly, modeling_ply_pb2_grpc.ObjectServiceStub)
+    modeling_plies = define_mutable_mapping(ModelingPly, modeling_ply_pb2_grpc.ObjectServiceStub)
 
     elemental_data = elemental_data_property(ModelingGroupElementalData)
     nodal_data = nodal_data_property(ModelingGroupNodalData)

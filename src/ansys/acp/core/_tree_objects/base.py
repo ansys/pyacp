@@ -43,14 +43,14 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
     __slots__: Iterable[str] = ("_channel_store", "_pb_object")
 
     _COLLECTION_LABEL: str
-    OBJECT_INFO_TYPE: type[ObjectInfo]
+    _OBJECT_INFO_TYPE: type[ObjectInfo]
 
     _pb_object: ObjectInfo
     name: ReadOnlyProperty[str]
 
     def __init__(self: TreeObjectBase, name: str = "") -> None:
         self._channel_store: Channel | None = None
-        self._pb_object: ObjectInfo = self.OBJECT_INFO_TYPE()
+        self._pb_object: ObjectInfo = self._OBJECT_INFO_TYPE()
         # We don't want to invoke gRPC requests for setting the name
         # during object construction, so we set the name directly on
         # the protobuf object.
@@ -72,7 +72,7 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
             used to store the object to another model, where the links
             would be invalid.
         """
-        new_object_info = self.OBJECT_INFO_TYPE()
+        new_object_info = self._OBJECT_INFO_TYPE()
         new_object_info.properties.CopyFrom(self._pb_object.properties)
         if unlink:
             unlink_objects(new_object_info.properties)
@@ -229,7 +229,7 @@ class CreatableTreeObject(TreeObject):
     """Base class for ACP objects which can be created."""
 
     __slots__: Iterable[str] = tuple()
-    CREATE_REQUEST_TYPE: type[CreateRequest]
+    _CREATE_REQUEST_TYPE: type[CreateRequest]
 
     def _get_stub(self) -> CreatableEditableAndReadableResourceStub:
         return cast(CreatableEditableAndReadableResourceStub, super()._get_stub())
@@ -267,7 +267,7 @@ class CreatableTreeObject(TreeObject):
                 + "\n]"
             )
 
-        request = self.CREATE_REQUEST_TYPE(
+        request = self._CREATE_REQUEST_TYPE(
             collection_path=collection_path,
             name=self._pb_object.info.name,
             properties=self._pb_object.properties,

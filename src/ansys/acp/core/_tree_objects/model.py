@@ -181,7 +181,7 @@ class Model(TreeObject):
     __slots__: Iterable[str] = tuple()
 
     _COLLECTION_LABEL = "models"
-    OBJECT_INFO_TYPE = model_pb2.ObjectInfo
+    _OBJECT_INFO_TYPE = model_pb2.ObjectInfo
 
     def __init__(
         self,
@@ -333,7 +333,7 @@ class Model(TreeObject):
                 )
             )
 
-    def save_analysis_model(self, path: _PATH) -> None:
+    def export_analysis_model(self, path: _PATH) -> None:
         """Save the analysis model to a CDB file.
 
         Parameters

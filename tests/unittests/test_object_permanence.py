@@ -47,7 +47,7 @@ def test_unstored():
 
 def test_mapping_identity(model):
     """Check that Mapping objects have the same ID when accessed twice."""
-    modeling_ply = list(list(model.modeling_groups.values())[0].plies.values())[0]
+    modeling_ply = list(list(model.modeling_groups.values())[0].modeling_plies.values())[0]
     production_ply_mapping_1 = modeling_ply.production_plies
     production_ply_mapping_2 = modeling_ply.production_plies
     assert isinstance(production_ply_mapping_1, Mapping)
@@ -74,7 +74,7 @@ def test_linked_object_list_identity(model):
 
 def test_edge_property_list_identity(model):
     """Check that EdgePropertyList objects have the same ID when accessed twice."""
-    modeling_ply = list(list(model.modeling_groups.values())[0].plies.values())[0]
+    modeling_ply = list(list(model.modeling_groups.values())[0].modeling_plies.values())[0]
     selection_rules_1 = modeling_ply.selection_rules
     selection_rules_2 = modeling_ply.selection_rules
     assert isinstance(selection_rules_1, EdgePropertyList)

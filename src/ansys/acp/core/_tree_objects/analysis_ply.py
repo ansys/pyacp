@@ -82,7 +82,7 @@ class AnalysisPly(ReadOnlyTreeObject, IdTreeObject):
     __slots__: Iterable[str] = tuple()
 
     _COLLECTION_LABEL = "analysis_plies"
-    OBJECT_INFO_TYPE = analysis_ply_pb2.ObjectInfo
+    _OBJECT_INFO_TYPE = analysis_ply_pb2.ObjectInfo
 
     def _create_stub(self) -> analysis_ply_pb2_grpc.ObjectServiceStub:
         return analysis_ply_pb2_grpc.ObjectServiceStub(self._channel)
