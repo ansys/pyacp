@@ -4,7 +4,7 @@ from ansys.acp.core._utils.visualization import _replace_underscores_and_capital
 
 def test_direction_plotter(acp_instance, load_model_from_tempfile):
     with load_model_from_tempfile() as model:
-        modeling_ply = model.modeling_groups["ModelingGroup.1"].plies["ModelingPly.1"]
+        modeling_ply = model.modeling_groups["ModelingGroup.1"].modeling_plies["ModelingPly.1"]
         analysis_ply = modeling_ply.production_plies["ProductionPly"].analysis_plies[
             "P1L1__ModelingPly.1"
         ]

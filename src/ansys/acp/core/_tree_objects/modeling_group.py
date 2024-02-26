@@ -62,7 +62,7 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
         parent_class_name="ModelingGroup",
         module_name=__module__,
     )
-    plies = define_mutable_mapping(ModelingPly, modeling_ply_pb2_grpc.ObjectServiceStub)
+    modeling_plies = define_mutable_mapping(ModelingPly, modeling_ply_pb2_grpc.ObjectServiceStub)
 
     elemental_data = elemental_data_property(ModelingGroupElementalData)
     nodal_data = nodal_data_property(ModelingGroupNodalData)
