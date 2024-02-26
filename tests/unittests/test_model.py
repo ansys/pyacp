@@ -100,9 +100,9 @@ def test_unittest(acp_instance, model_data_dir):
         # assert model.solver.working_dir == rel_path_posix
 
 
-def test_save_analysis_model(acp_instance, model_data_dir):
+def test_export_analysis_model(acp_instance, model_data_dir):
     """
-    Test that 'save_analysis_model' produces a file. The contents of the file
+    Test that 'export_analysis_model' produces a file. The contents of the file
     are not checked.
     """
     input_file_path = model_data_dir / "minimal_model_2.cdb"
@@ -114,7 +114,7 @@ def test_save_analysis_model(acp_instance, model_data_dir):
 
     if acp_instance.is_remote:
         out_file_path = remote_workdir / "out_file.cdb"
-        model.save_analysis_model(out_file_path)
+        model.export_analysis_model(out_file_path)
         with tempfile.TemporaryDirectory() as tmp_dir:
             local_file_path = pathlib.Path(tmp_dir, "out_file.cdb")
             acp_instance.download_file(out_file_path, local_file_path)
@@ -122,7 +122,7 @@ def test_save_analysis_model(acp_instance, model_data_dir):
     else:
         with tempfile.TemporaryDirectory() as tmp_dir:
             local_file_path = pathlib.Path(tmp_dir) / "out_file.cdb"
-            model.save_analysis_model(local_file_path)
+            model.export_analysis_model(local_file_path)
             assert local_file_path.exists()
 
 

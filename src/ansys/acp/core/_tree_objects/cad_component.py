@@ -26,7 +26,7 @@ class CADComponent(ReadOnlyTreeObject, IdTreeObject):
 
     __slots__: Iterable[str] = tuple()
     _COLLECTION_LABEL = "cad_components"
-    OBJECT_INFO_TYPE = cad_component_pb2.ObjectInfo
+    _OBJECT_INFO_TYPE = cad_component_pb2.ObjectInfo
 
     def _create_stub(self) -> cad_component_pb2_grpc.ObjectServiceStub:
         return cad_component_pb2_grpc.ObjectServiceStub(self._channel)

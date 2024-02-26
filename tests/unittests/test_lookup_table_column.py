@@ -10,7 +10,12 @@ from ansys.acp.core import (
     LookUpTableColumnValueType,
 )
 
-from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
+from .common.tree_object_tester import (
+    ObjectPropertiesToTest,
+    PropertyWithConversion,
+    TreeObjectTester,
+    WithLockedMixin,
+)
 
 
 @pytest.fixture
@@ -56,7 +61,7 @@ def column_data(num_points, column_value_type, request):
         res = np.random.rand(num_points, 3)
     if request.param:
         if num_points == 0 and column_value_type == LookUpTableColumnValueType.DIRECTION:
-            pytest.xfail("Passing empty lists as directional data is not yet supported.")
+            return PropertyWithConversion(res.tolist(), np.zeros(shape=(0, 3)))
         return res.tolist()
     return res
 

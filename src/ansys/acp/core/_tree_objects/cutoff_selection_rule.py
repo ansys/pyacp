@@ -91,8 +91,8 @@ class CutoffSelectionRule(CreatableTreeObject, IdTreeObject):
     __slots__: Iterable[str] = tuple()
 
     _COLLECTION_LABEL = "cutoff_selection_rules"
-    OBJECT_INFO_TYPE = cutoff_selection_rule_pb2.ObjectInfo
-    CREATE_REQUEST_TYPE = cutoff_selection_rule_pb2.CreateRequest
+    _OBJECT_INFO_TYPE = cutoff_selection_rule_pb2.ObjectInfo
+    _CREATE_REQUEST_TYPE = cutoff_selection_rule_pb2.CreateRequest
 
     def __init__(
         self,

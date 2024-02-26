@@ -7,6 +7,14 @@ from .compare import assert_allclose
 
 
 @dataclass
+class PropertyWithConversion:
+    """A class to store a property which is converted when set."""
+
+    initial_value: Any
+    converted_value: Any
+
+
+@dataclass
 class ObjectPropertiesToTest:
     read_write: list[tuple[str, Any]]
     read_only: list[tuple[str, Any]]
@@ -107,9 +115,14 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
 
         def create_and_check(init_args: dict[str, Any]):
             create_method = getattr(parent_object, self.CREATE_METHOD_NAME)
+            init_args_final = {
+                key: getattr(val, "initial_value", val) for key, val in init_args.items()
+            }
 
-            new_object = create_method(**init_args)
+            new_object = create_method(**init_args_final)
             for key, val in init_args.items():
+                if isinstance(val, PropertyWithConversion):
+                    val = val.converted_value
                 assert_allclose(
                     actual=getattr(new_object, key),
                     desired=val,
@@ -130,10 +143,15 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
     @staticmethod
     def test_properties(tree_object, object_properties: ObjectPropertiesToTest):
         for prop, value in object_properties.read_write:
-            setattr(tree_object, prop, value)
+            if isinstance(value, PropertyWithConversion):
+                initial_value = value.initial_value
+                converted_value = value.converted_value
+            else:
+                initial_value = converted_value = value
+            setattr(tree_object, prop, initial_value)
             assert_allclose(
                 actual=getattr(tree_object, prop),
-                desired=value,
+                desired=converted_value,
             )
 
         for prop, value in object_properties.read_only:

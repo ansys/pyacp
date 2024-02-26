@@ -81,7 +81,7 @@ class ProductionPly(ReadOnlyTreeObject, IdTreeObject):
     __slots__: Iterable[str] = tuple()
 
     _COLLECTION_LABEL = "production_plies"
-    OBJECT_INFO_TYPE = production_ply_pb2.ObjectInfo
+    _OBJECT_INFO_TYPE = production_ply_pb2.ObjectInfo
 
     def _create_stub(self) -> production_ply_pb2_grpc.ObjectServiceStub:
         return production_ply_pb2_grpc.ObjectServiceStub(self._channel)
