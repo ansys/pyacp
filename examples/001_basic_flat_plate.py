@@ -38,14 +38,13 @@ The additional input files (material.xml and ACPCompositeDefinitions.h5) can als
 with PyACP and passed to PyDPF Composites.
 """
 
-
 # %%
 # Import standard library and third-party dependencies.
 import pathlib
 import tempfile
 
 # %%
-# Import pyACP dependencies
+# Import PyACP dependencies
 from ansys.acp.core import (
     ACPWorkflow,
     PlyType,
@@ -61,6 +60,9 @@ from ansys.acp.core import (
 # Note: It is important to import mapdl before dpf, otherwise the plot defaults are messed up
 # https://github.com/ansys/pydpf-core/issues/1363
 from ansys.mapdl.core import launch_mapdl
+
+# sphinx_gallery_thumbnail_number = 3
+
 
 # %%
 # Get example file from server

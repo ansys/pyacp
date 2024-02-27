@@ -3,7 +3,6 @@
 from datetime import datetime
 import os
 
-import numpy as np
 import pyvista
 from pyvista.plotting.utilities.sphinx_gallery import DynamicScraper
 from sphinx.builders.latex import LaTeXBuilder
@@ -34,6 +33,12 @@ jinja_contexts = {
     "conditional_skip": {"skip_api": SKIP_API, "skip_gallery": SKIP_GALLERY},
 }
 
+
+# PyMAPDL and PyDPF override the default PyVista theme, so we need to import it
+# here to have a chance of re-setting it.
+import ansys.mapdl.core  # isort:skip
+import ansys.dpf.core  # isort:skip # noqa: F401
+
 # Manage errors
 pyvista.set_error_output_file("errors.txt")
 
@@ -44,7 +49,6 @@ pyvista.OFF_SCREEN = True
 pyvista.BUILDING_GALLERY = True
 
 pyvista.set_plot_theme("document")
-pyvista.global_theme.window_size = np.array([1024, 768]) * 2
 
 # Project information
 project = "ansys-acp-core"
@@ -184,6 +188,7 @@ sphinx_gallery_conf = {
     "image_scrapers": (DynamicScraper(), "matplotlib"),
     "ignore_pattern": r"__init__\.py",
     "thumbnail_size": (350, 350),
+    "remove_config_comments": True,
 }
 
 # Favicon
