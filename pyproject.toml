@@ -155,3 +155,11 @@ ignore_missing_imports = true
 # This section is required even if empty, so that pytest recognizes this
 # file as a pytest configuration file, and sets the containing directory
 # as its 'rootdir'.
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+exclude_also = [
+    "if (typing\\.)?TYPE_CHECKING:",
+]
