@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709030949416,
+  "lastUpdate": 1709035211151,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13048,6 +13048,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002040856970127773",
             "extra": "mean: 820.6879977112092 usec\nrounds: 1311"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "318a183dabbdf5abff62008680b8bbdb3c43cdca",
+          "message": "Update pre-commit hooks (#465)\n\nUpdate the pre-commit hooks to the latest version. Includes the\r\n2024 style of the black formatter.",
+          "timestamp": "2024-02-27T12:56:24+01:00",
+          "tree_id": "b994f189828290934d5010f0683e0d2b8f2acb1b",
+          "url": "https://github.com/ansys-internal/pyacp/commit/318a183dabbdf5abff62008680b8bbdb3c43cdca"
+        },
+        "date": 1709035188947,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.552164974610254,
+            "unit": "iter/sec",
+            "range": "stddev: 0.011881651725002223",
+            "extra": "mean: 219.67569400000002 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 908.6788748705967,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00034318944749410415",
+            "extra": "mean: 1.1004987874758374 msec\nrounds: 974"
           }
         ]
       }
