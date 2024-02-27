@@ -92,8 +92,8 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
     __slots__: Iterable[str] = tuple()
 
     _COLLECTION_LABEL = "variable_offset_selection_rules"
-    OBJECT_INFO_TYPE = variable_offset_selection_rule_pb2.ObjectInfo
-    CREATE_REQUEST_TYPE = variable_offset_selection_rule_pb2.CreateRequest
+    _OBJECT_INFO_TYPE = variable_offset_selection_rule_pb2.ObjectInfo
+    _CREATE_REQUEST_TYPE = variable_offset_selection_rule_pb2.CreateRequest
 
     def __init__(
         self,

@@ -142,8 +142,8 @@ class SubLaminate(CreatableTreeObject, IdTreeObject):
     __slots__: Iterable[str] = tuple()
 
     _COLLECTION_LABEL = "sublaminates"
-    OBJECT_INFO_TYPE = sublaminate_pb2.ObjectInfo
-    CREATE_REQUEST_TYPE = sublaminate_pb2.CreateRequest
+    _OBJECT_INFO_TYPE = sublaminate_pb2.ObjectInfo
+    _CREATE_REQUEST_TYPE = sublaminate_pb2.CreateRequest
 
     def __init__(
         self,
