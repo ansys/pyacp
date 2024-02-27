@@ -30,6 +30,7 @@ Define a Composite Lay-up for a sandwich panel with PyACP. This example shows ju
 pyACP part of the setup. For a complete Composite analysis,
 see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
 """
+
 # %%
 # Import standard library and third-party dependencies.
 import pathlib

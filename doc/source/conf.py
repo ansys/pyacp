@@ -48,7 +48,8 @@ pyvista.OFF_SCREEN = True
 # necessary when building the sphinx gallery
 pyvista.BUILDING_GALLERY = True
 
-pyvista.set_plot_theme("document")
+pyvista.global_theme = pyvista.themes.DocumentTheme()
+pyvista.global_theme.cmap = "viridis_r"
 
 # Project information
 project = "ansys-acp-core"
