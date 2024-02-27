@@ -45,8 +45,7 @@ class CreateRequest(Protocol):
     The CreateRequest message is used to create a new object in a collection.
     """
 
-    def __init__(self, collection_path: CollectionPath, name: str, properties: Message):
-        ...
+    def __init__(self, collection_path: CollectionPath, name: str, properties: Message): ...
 
 
 class ObjectInfo(Protocol):
@@ -99,8 +98,7 @@ class ReadableResourceStub(Protocol):
     This interface defines the read methods for ACP Resource service stubs.
     """
 
-    def __init__(self, channel: grpc.Channel):
-        ...
+    def __init__(self, channel: grpc.Channel): ...
 
     def Get(self, request: GetRequest) -> ObjectInfo:
         """RPC method for getting an object's information."""
@@ -170,19 +168,15 @@ class GrpcObjectBase(Protocol):
 class Readable(Protocol):
     """Interface definition for readable objects."""
 
-    def _get(self) -> None:
-        ...
+    def _get(self) -> None: ...
 
-    def _get_if_stored(self) -> None:
-        ...
+    def _get_if_stored(self) -> None: ...
 
     @property
-    def _is_stored(self) -> bool:
-        ...
+    def _is_stored(self) -> bool: ...
 
     @property
-    def _channel(self) -> grpc.Channel:
-        ...
+    def _channel(self) -> grpc.Channel: ...
 
     _pb_object: Any
 
@@ -190,8 +184,6 @@ class Readable(Protocol):
 class Editable(Readable, Protocol):
     """Interface definition for editable objects."""
 
-    def _put(self) -> None:
-        ...
+    def _put(self) -> None: ...
 
-    def _put_if_stored(self) -> None:
-        ...
+    def _put_if_stored(self) -> None: ...

@@ -164,8 +164,7 @@ class TreeObject(TreeObjectBase):
     )
 
     @abstractmethod
-    def _create_stub(self) -> EditableAndReadableResourceStub:
-        ...
+    def _create_stub(self) -> EditableAndReadableResourceStub: ...
 
     def __init__(self: TreeObject, name: str = "") -> None:
         super().__init__(name=name)
@@ -212,8 +211,7 @@ class ReadOnlyTreeObject(TreeObjectBase):
         self._stub_store = StubStore(self._create_stub)
 
     @abstractmethod
-    def _create_stub(self) -> ReadableResourceStub:
-        ...
+    def _create_stub(self) -> ReadableResourceStub: ...
 
     def _get_stub(self) -> ReadableResourceStub:
         return self._stub_store.get(self._is_stored)
@@ -379,8 +377,7 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly):
 
     @classmethod
     @abstractmethod
-    def _create_default_pb_object(cls) -> Any:
-        ...
+    def _create_default_pb_object(cls) -> Any: ...
 
     def __init__(
         self,

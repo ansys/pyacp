@@ -436,8 +436,9 @@ MeshDataT = typing.TypeVar("MeshDataT", bound=MeshDataBase)
 def _mesh_data_property_impl(
     wrapped_cls: type[MeshDataT],
     request_name: Literal["GetNodalData", "GetElementalData"],
-    request_type: type[mesh_query_pb2.GetNodalDataRequest]
-    | type[mesh_query_pb2.GetElementalDataRequest],
+    request_type: (
+        type[mesh_query_pb2.GetNodalDataRequest] | type[mesh_query_pb2.GetElementalDataRequest]
+    ),
 ) -> ReadOnlyProperty[MeshDataT]:
     """Create a mesh data property.
 

@@ -110,20 +110,18 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
             setter(_parent_object, value)
 
         self._set_resourcepath_list = set_resourcepath_list
-        self._object_constructor: Callable[
-            [ResourcePath], ValueT
-        ] = lambda resource_path: _object_constructor(resource_path, _parent_object._channel)
+        self._object_constructor: Callable[[ResourcePath], ValueT] = (
+            lambda resource_path: _object_constructor(resource_path, _parent_object._channel)
+        )
 
     def __len__(self) -> int:
         return len(self._get_resourcepath_list())
 
     @overload
-    def __getitem__(self, index: int) -> ValueT:
-        ...
+    def __getitem__(self, index: int) -> ValueT: ...
 
     @overload
-    def __getitem__(self, index: slice) -> list[ValueT]:
-        ...
+    def __getitem__(self, index: slice) -> list[ValueT]: ...
 
     def __getitem__(self, index: int | slice) -> ValueT | list[ValueT]:
         resource_path = self._get_resourcepath_list()[index]
@@ -133,12 +131,10 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
         return [self._object_constructor(item) for item in resource_path]
 
     @overload
-    def __setitem__(self, key: int, value: ValueT) -> None:
-        ...
+    def __setitem__(self, key: int, value: ValueT) -> None: ...
 
     @overload
-    def __setitem__(self, key: slice, value: Iterable[ValueT]) -> None:
-        ...
+    def __setitem__(self, key: slice, value: Iterable[ValueT]) -> None: ...
 
     def __setitem__(self, key: int | slice, value: ValueT | Iterable[ValueT]) -> None:
         resource_path_list = self._get_resourcepath_list()
