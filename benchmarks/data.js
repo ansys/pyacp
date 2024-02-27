@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709030205567,
+  "lastUpdate": 1709030949416,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13010,6 +13010,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000237013679134342",
             "extra": "mean: 829.3960959181903 usec\nrounds: 1470"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "eba2434dabd61a9cc341f9ce4af9f0c7119c76fa",
+          "message": "Reenable warning as error on quick doc build (#461)\n\nAdd back the '-W' flag to the 'quick' doc build, by manually\r\ncreating a placeholder reference for interlinked gallery examples\r\nwhich don't exist.",
+          "timestamp": "2024-02-27T10:46:09Z",
+          "tree_id": "fa95444fc2ac99311d20f61e517d399b881a2845",
+          "url": "https://github.com/ansys-internal/pyacp/commit/eba2434dabd61a9cc341f9ce4af9f0c7119c76fa"
+        },
+        "date": 1709030931509,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.355288535189111,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005319448231010199",
+            "extra": "mean: 157.34926816666453 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1218.489855814717,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002040856970127773",
+            "extra": "mean: 820.6879977112092 usec\nrounds: 1311"
           }
         ]
       }
