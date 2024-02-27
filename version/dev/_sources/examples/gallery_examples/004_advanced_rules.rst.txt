@@ -30,11 +30,11 @@ See the :ref:`sphx_glr_examples_gallery_examples_003_basic_rules.py` for more ba
 This example shows just the pyACP part of the setup.  For a complete Composite analysis,
 see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
 
-.. GENERATED FROM PYTHON SOURCE LINES 17-18
+.. GENERATED FROM PYTHON SOURCE LINES 39-40
 
 Import standard library and third-party dependencies
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-24
+.. GENERATED FROM PYTHON SOURCE LINES 40-46
 
 .. code-block:: default
 
@@ -51,11 +51,11 @@ Import standard library and third-party dependencies
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 25-26
+.. GENERATED FROM PYTHON SOURCE LINES 47-48
 
 Import pyACP dependencies
 
-.. GENERATED FROM PYTHON SOURCE LINES 26-37
+.. GENERATED FROM PYTHON SOURCE LINES 48-59
 
 .. code-block:: default
 
@@ -77,16 +77,16 @@ Import pyACP dependencies
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 38-40
+.. GENERATED FROM PYTHON SOURCE LINES 60-62
 
 Start ACP and load the model
 ----------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 42-43
+.. GENERATED FROM PYTHON SOURCE LINES 64-65
 
 Get example file from server
 
-.. GENERATED FROM PYTHON SOURCE LINES 43-47
+.. GENERATED FROM PYTHON SOURCE LINES 65-69
 
 .. code-block:: default
 
@@ -101,11 +101,11 @@ Get example file from server
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 48-49
+.. GENERATED FROM PYTHON SOURCE LINES 70-71
 
 Launch the PyACP server and connect to it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 49-51
+.. GENERATED FROM PYTHON SOURCE LINES 71-73
 
 .. code-block:: default
 
@@ -118,14 +118,14 @@ Launch the PyACP server and connect to it.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 52-56
+.. GENERATED FROM PYTHON SOURCE LINES 74-78
 
 Define the input file and instantiate an ACPWorkflow.
 The ACPWorkflow class provides convenience methods which simplify the file handling.
 It automatically creates a model based on the input file.
 The input file contains a flat plate with a single ply.
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-67
+.. GENERATED FROM PYTHON SOURCE LINES 78-89
 
 .. code-block:: default
 
@@ -148,18 +148,18 @@ The input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmpk6da6752
+    /tmp/tmp7rcdptwv
     UnitSystemType.MKS
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 68-70
+.. GENERATED FROM PYTHON SOURCE LINES 90-92
 
 Add more layers to the modeling ply, so it easier to see the effects of the selection rules.
 Plot the thickness of all the plies without any rules.
 
-.. GENERATED FROM PYTHON SOURCE LINES 70-78
+.. GENERATED FROM PYTHON SOURCE LINES 92-100
 
 .. code-block:: default
 
@@ -205,22 +205,22 @@ Plot the thickness of all the plies without any rules.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 79-81
+.. GENERATED FROM PYTHON SOURCE LINES 101-103
 
 Parametrized Parallel Rule
 --------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 83-86
+.. GENERATED FROM PYTHON SOURCE LINES 105-108
 
 Rules can be parametrized. This makes sense when a rule is used multiple times with different
 parameters. :class:`.LinkedSelectionRule` shows what parameters are available for each rule.
 Here, the extent of the parallel rule is modified.
 
-.. GENERATED FROM PYTHON SOURCE LINES 88-89
+.. GENERATED FROM PYTHON SOURCE LINES 110-111
 
 Create a parallel rule.
 
-.. GENERATED FROM PYTHON SOURCE LINES 89-97
+.. GENERATED FROM PYTHON SOURCE LINES 111-119
 
 .. code-block:: default
 
@@ -239,11 +239,11 @@ Create a parallel rule.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 98-99
+.. GENERATED FROM PYTHON SOURCE LINES 120-121
 
 Assign it the modeling ply.
 
-.. GENERATED FROM PYTHON SOURCE LINES 99-103
+.. GENERATED FROM PYTHON SOURCE LINES 121-125
 
 .. code-block:: default
 
@@ -258,11 +258,11 @@ Assign it the modeling ply.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 104-105
+.. GENERATED FROM PYTHON SOURCE LINES 126-127
 
 Plot the thickness of the ply before the parametrization.
 
-.. GENERATED FROM PYTHON SOURCE LINES 105-109
+.. GENERATED FROM PYTHON SOURCE LINES 127-131
 
 .. code-block:: default
 
@@ -304,12 +304,12 @@ Plot the thickness of the ply before the parametrization.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 110-112
+.. GENERATED FROM PYTHON SOURCE LINES 132-134
 
 Modify the parallel rule by changing the parameters of the linked rule.
 Parameters defined on the linked rule override the parameters of the original rule.
 
-.. GENERATED FROM PYTHON SOURCE LINES 112-116
+.. GENERATED FROM PYTHON SOURCE LINES 134-138
 
 .. code-block:: default
 
@@ -324,11 +324,11 @@ Parameters defined on the linked rule override the parameters of the original ru
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 117-118
+.. GENERATED FROM PYTHON SOURCE LINES 139-140
 
 Plot the thickness of the ply with the modified rule.
 
-.. GENERATED FROM PYTHON SOURCE LINES 118-123
+.. GENERATED FROM PYTHON SOURCE LINES 140-145
 
 .. code-block:: default
 
@@ -371,16 +371,16 @@ Plot the thickness of the ply with the modified rule.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 124-126
+.. GENERATED FROM PYTHON SOURCE LINES 146-148
 
 Create a geometrical selection rule
 -----------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 128-129
+.. GENERATED FROM PYTHON SOURCE LINES 150-151
 
 Add CAD geometry to the model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 129-139
+.. GENERATED FROM PYTHON SOURCE LINES 151-161
 
 .. code-block:: default
 
@@ -401,11 +401,11 @@ Add CAD geometry to the model.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 140-141
+.. GENERATED FROM PYTHON SOURCE LINES 162-163
 
 Create a virtual geometry from the CAD geometry.
 
-.. GENERATED FROM PYTHON SOURCE LINES 141-145
+.. GENERATED FROM PYTHON SOURCE LINES 163-167
 
 .. code-block:: default
 
@@ -420,11 +420,11 @@ Create a virtual geometry from the CAD geometry.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 146-147
+.. GENERATED FROM PYTHON SOURCE LINES 168-169
 
 Create the geometrical selection rule.
 
-.. GENERATED FROM PYTHON SOURCE LINES 147-152
+.. GENERATED FROM PYTHON SOURCE LINES 169-174
 
 .. code-block:: default
 
@@ -440,12 +440,12 @@ Create the geometrical selection rule.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 153-155
+.. GENERATED FROM PYTHON SOURCE LINES 175-177
 
 Assign the geometrical selection rule to the ply and plot the ply extent with
 the outline of the geometry.
 
-.. GENERATED FROM PYTHON SOURCE LINES 155-166
+.. GENERATED FROM PYTHON SOURCE LINES 177-188
 
 .. code-block:: default
 
@@ -494,16 +494,16 @@ the outline of the geometry.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 167-169
+.. GENERATED FROM PYTHON SOURCE LINES 189-191
 
 Create a cutoff selection rule
 ------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 171-172
+.. GENERATED FROM PYTHON SOURCE LINES 193-194
 
 Add the cutoff CAD geometry to the model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 172-181
+.. GENERATED FROM PYTHON SOURCE LINES 194-203
 
 .. code-block:: default
 
@@ -523,11 +523,11 @@ Add the cutoff CAD geometry to the model.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 182-183
+.. GENERATED FROM PYTHON SOURCE LINES 204-205
 
 Create a virtual geometry from the CAD geometry.
 
-.. GENERATED FROM PYTHON SOURCE LINES 183-187
+.. GENERATED FROM PYTHON SOURCE LINES 205-209
 
 .. code-block:: default
 
@@ -542,11 +542,11 @@ Create a virtual geometry from the CAD geometry.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 188-189
+.. GENERATED FROM PYTHON SOURCE LINES 210-211
 
 Create the cutoff selection rule.
 
-.. GENERATED FROM PYTHON SOURCE LINES 189-195
+.. GENERATED FROM PYTHON SOURCE LINES 211-217
 
 .. code-block:: default
 
@@ -563,12 +563,12 @@ Create the cutoff selection rule.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 196-198
+.. GENERATED FROM PYTHON SOURCE LINES 218-220
 
 Assign the cutoff selection rule to the ply and plot the ply extent with
 the outline of the geometry.
 
-.. GENERATED FROM PYTHON SOURCE LINES 198-209
+.. GENERATED FROM PYTHON SOURCE LINES 220-231
 
 .. code-block:: default
 
@@ -617,16 +617,16 @@ the outline of the geometry.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 210-212
+.. GENERATED FROM PYTHON SOURCE LINES 232-234
 
 Create a variable offset selection rule
 ---------------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 214-215
+.. GENERATED FROM PYTHON SOURCE LINES 236-237
 
 Create the lookup table.
 
-.. GENERATED FROM PYTHON SOURCE LINES 215-221
+.. GENERATED FROM PYTHON SOURCE LINES 237-243
 
 .. code-block:: default
 
@@ -643,12 +643,12 @@ Create the lookup table.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 222-224
+.. GENERATED FROM PYTHON SOURCE LINES 244-246
 
 Add the location data. The "Location" column of the lookup table
 is always created by default.
 
-.. GENERATED FROM PYTHON SOURCE LINES 224-226
+.. GENERATED FROM PYTHON SOURCE LINES 246-248
 
 .. code-block:: default
 
@@ -661,11 +661,11 @@ is always created by default.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 227-228
+.. GENERATED FROM PYTHON SOURCE LINES 249-250
 
 Create the offset column that defines the offsets from the edge.
 
-.. GENERATED FROM PYTHON SOURCE LINES 228-234
+.. GENERATED FROM PYTHON SOURCE LINES 250-256
 
 .. code-block:: default
 
@@ -682,12 +682,12 @@ Create the offset column that defines the offsets from the edge.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 235-237
+.. GENERATED FROM PYTHON SOURCE LINES 257-259
 
 Create the edge set from the "All_Elements" element set. Because we set
 the limit angle to 30°, only one edge at x=0 will be selected.
 
-.. GENERATED FROM PYTHON SOURCE LINES 237-245
+.. GENERATED FROM PYTHON SOURCE LINES 259-267
 
 .. code-block:: default
 
@@ -706,11 +706,11 @@ the limit angle to 30°, only one edge at x=0 will be selected.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 246-247
+.. GENERATED FROM PYTHON SOURCE LINES 268-269
 
 Create the variable offset rule and assign it to the ply.
 
-.. GENERATED FROM PYTHON SOURCE LINES 247-253
+.. GENERATED FROM PYTHON SOURCE LINES 269-275
 
 .. code-block:: default
 
@@ -727,11 +727,11 @@ Create the variable offset rule and assign it to the ply.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 254-255
+.. GENERATED FROM PYTHON SOURCE LINES 276-277
 
 Plot the ply extent.
 
-.. GENERATED FROM PYTHON SOURCE LINES 255-259
+.. GENERATED FROM PYTHON SOURCE LINES 277-281
 
 .. code-block:: default
 
@@ -773,19 +773,19 @@ Plot the ply extent.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 260-262
+.. GENERATED FROM PYTHON SOURCE LINES 282-284
 
 Create a boolean selection rule.
 --------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 264-268
+.. GENERATED FROM PYTHON SOURCE LINES 286-290
 
 Note: Creating a boolean selection rule and assigning it to a ply has the same
 effect as linking the individual rules to the ply directly. Boolean rules are still useful
 because they help to organize the rules and can be used to create more complex rules.
 Create a cylindrical selection rule which will be combined with the parallel rule.
 
-.. GENERATED FROM PYTHON SOURCE LINES 268-293
+.. GENERATED FROM PYTHON SOURCE LINES 290-315
 
 .. code-block:: default
 
@@ -821,11 +821,11 @@ Create a cylindrical selection rule which will be combined with the parallel rul
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 294-295
+.. GENERATED FROM PYTHON SOURCE LINES 316-317
 
 Plot the ply extent.
 
-.. GENERATED FROM PYTHON SOURCE LINES 295-299
+.. GENERATED FROM PYTHON SOURCE LINES 317-321
 
 .. code-block:: default
 
@@ -867,11 +867,11 @@ Plot the ply extent.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 300-301
+.. GENERATED FROM PYTHON SOURCE LINES 322-323
 
 Modify the operation type of the boolean selection rule, such that the two rules are added.
 
-.. GENERATED FROM PYTHON SOURCE LINES 301-304
+.. GENERATED FROM PYTHON SOURCE LINES 323-326
 
 .. code-block:: default
 
@@ -885,11 +885,11 @@ Modify the operation type of the boolean selection rule, such that the two rules
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 305-306
+.. GENERATED FROM PYTHON SOURCE LINES 327-328
 
 Plot the ply extent.
 
-.. GENERATED FROM PYTHON SOURCE LINES 306-309
+.. GENERATED FROM PYTHON SOURCE LINES 328-331
 
 .. code-block:: default
 
@@ -933,7 +933,7 @@ Plot the ply extent.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  9.435 seconds)
+   **Total running time of the script:** ( 0 minutes  8.753 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_004_advanced_rules.py:

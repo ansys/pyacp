@@ -1,3 +1,5 @@
+.. _input_file_for_pyacp:
+
 Input file for PyACP
 --------------------
 

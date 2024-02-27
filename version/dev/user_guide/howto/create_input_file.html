@@ -449,6 +449,7 @@ document.write(`
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">How-to guides</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Input file for PyACP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="visualize_model.html">Visualizing the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_model_in_acp_gui.html">View the model in the ACP GUI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="print_model.html">Printing the model tree</a></li>
 <li class="toctree-l2"><a class="reference internal" href="file_management.html">Managing input and output files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="launch_configuration.html">Changing how ACP is started</a></li>
@@ -525,7 +526,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section id="input-file-for-pyacp">
-<h1>Input file for PyACP<a class="headerlink" href="#input-file-for-pyacp" title="Permalink to this heading">#</a></h1>
+<span id="id1"></span><h1>Input file for PyACP<a class="headerlink" href="#input-file-for-pyacp" title="Permalink to this heading">#</a></h1>
 <p>To start working with PyACP, an input file that contains the mesh is required. PyACP supports reading
 the mesh from *.cdb and *.dat files with <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file.html#ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file" title="ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.from_cdb_or_dat_file()</span></code></a>. PyACP will read the mesh including - if they exist - coordinate systems, element, edge sets, and materials from the
 input file. After the layup has been created with PyACP a *.cdb file can be exported with <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.get_local_cdb_file.html#ansys.acp.core.ACPWorkflow.get_local_cdb_file" title="ansys.acp.core.ACPWorkflow.get_local_cdb_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.get_local_cdb_file()</span></code></a>. This file
