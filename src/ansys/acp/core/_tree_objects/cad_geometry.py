@@ -84,8 +84,8 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
 
     __slots__: Iterable[str] = tuple()
     _COLLECTION_LABEL = "cad_geometries"
-    OBJECT_INFO_TYPE = cad_geometry_pb2.ObjectInfo
-    CREATE_REQUEST_TYPE = cad_geometry_pb2.CreateRequest
+    _OBJECT_INFO_TYPE = cad_geometry_pb2.ObjectInfo
+    _CREATE_REQUEST_TYPE = cad_geometry_pb2.CreateRequest
 
     def __init__(
         self,
@@ -145,7 +145,9 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
         return TriangleMesh._from_pb(response)
 
     root_shapes = get_read_only_collection_property(
-        CADComponent, cad_component_pb2_grpc.ObjectServiceStub
+        object_class=CADComponent,
+        stub_class=cad_component_pb2_grpc.ObjectServiceStub,
+        requires_uptodate=True,
     )
 
     def refresh(self) -> None:

@@ -124,7 +124,7 @@ class GrpcObjectBase(Protocol):
     """Interface definition for objects which are backed by a gRPC API."""
 
     __slots__: Iterable[str] = tuple()
-    _GRPC_PROPERTIES: tuple[str, ...]
+    _GRPC_PROPERTIES: tuple[str, ...] = tuple()
 
     def __str__(self) -> str:
         string_items = []

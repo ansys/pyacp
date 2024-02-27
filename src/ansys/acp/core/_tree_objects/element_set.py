@@ -64,8 +64,8 @@ class ElementSet(CreatableTreeObject, IdTreeObject):
 
     __slots__: Iterable[str] = tuple()
     _COLLECTION_LABEL = "element_sets"
-    OBJECT_INFO_TYPE = element_set_pb2.ObjectInfo
-    CREATE_REQUEST_TYPE = element_set_pb2.CreateRequest
+    _OBJECT_INFO_TYPE = element_set_pb2.ObjectInfo
+    _CREATE_REQUEST_TYPE = element_set_pb2.CreateRequest
 
     def __init__(
         self,

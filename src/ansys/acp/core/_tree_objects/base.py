@@ -43,14 +43,14 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
     __slots__: Iterable[str] = ("_channel_store", "_pb_object")
 
     _COLLECTION_LABEL: str
-    OBJECT_INFO_TYPE: type[ObjectInfo]
+    _OBJECT_INFO_TYPE: type[ObjectInfo]
 
     _pb_object: ObjectInfo
     name: ReadOnlyProperty[str]
 
     def __init__(self: TreeObjectBase, name: str = "") -> None:
         self._channel_store: Channel | None = None
-        self._pb_object: ObjectInfo = self.OBJECT_INFO_TYPE()
+        self._pb_object: ObjectInfo = self._OBJECT_INFO_TYPE()
         # We don't want to invoke gRPC requests for setting the name
         # during object construction, so we set the name directly on
         # the protobuf object.
@@ -61,23 +61,6 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
         if not isinstance(key, str):
             return False
         return bool(key)
-
-    def clone(self: Self, *, unlink: bool = False) -> Self:
-        """Create a new unstored object with the same properties.
-
-        Parameters
-        ----------
-        unlink:
-            If `True`, remove all links to other objects. This can be
-            used to store the object to another model, where the links
-            would be invalid.
-        """
-        new_object_info = self.OBJECT_INFO_TYPE()
-        new_object_info.properties.CopyFrom(self._pb_object.properties)
-        if unlink:
-            unlink_objects(new_object_info.properties)
-        new_object_info.info.name = self._pb_object.info.name
-        return type(self)._from_object_info(object_info=new_object_info)
 
     def __eq__(self: Self, other: Any) -> bool:
         if not isinstance(other, TreeObject):
@@ -229,10 +212,27 @@ class CreatableTreeObject(TreeObject):
     """Base class for ACP objects which can be created."""
 
     __slots__: Iterable[str] = tuple()
-    CREATE_REQUEST_TYPE: type[CreateRequest]
+    _CREATE_REQUEST_TYPE: type[CreateRequest]
 
     def _get_stub(self) -> CreatableEditableAndReadableResourceStub:
         return cast(CreatableEditableAndReadableResourceStub, super()._get_stub())
+
+    def clone(self: Self, *, unlink: bool = False) -> Self:
+        """Create a new unstored object with the same properties.
+
+        Parameters
+        ----------
+        unlink:
+            If ``True``, remove all links to other objects. This can be
+            used to store the object to another model, where the links
+            would be invalid.
+        """
+        new_object_info = self._OBJECT_INFO_TYPE()
+        new_object_info.properties.CopyFrom(self._pb_object.properties)
+        if unlink:
+            unlink_objects(new_object_info.properties)
+        new_object_info.info.name = self._pb_object.info.name
+        return type(self)._from_object_info(object_info=new_object_info)
 
     def store(self: Self, parent: TreeObject) -> None:
         """Store the object on the server.
@@ -267,7 +267,7 @@ class CreatableTreeObject(TreeObject):
                 + "\n]"
             )
 
-        request = self.CREATE_REQUEST_TYPE(
+        request = self._CREATE_REQUEST_TYPE(
             collection_path=collection_path,
             name=self._pb_object.info.name,
             properties=self._pb_object.properties,

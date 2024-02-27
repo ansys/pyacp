@@ -56,7 +56,7 @@ class AnalysisPlyElementalData(ElementalData):
 
 @dataclasses.dataclass
 class AnalysisPlyNodalData(NodalData):
-    """Represents nodal data for a Analysis Ply."""
+    """Represents nodal data for an Analysis Ply."""
 
     ply_offset: VectorData | None = None
 
@@ -82,7 +82,7 @@ class AnalysisPly(ReadOnlyTreeObject, IdTreeObject):
     __slots__: Iterable[str] = tuple()
 
     _COLLECTION_LABEL = "analysis_plies"
-    OBJECT_INFO_TYPE = analysis_ply_pb2.ObjectInfo
+    _OBJECT_INFO_TYPE = analysis_ply_pb2.ObjectInfo
 
     def _create_stub(self) -> analysis_ply_pb2_grpc.ObjectServiceStub:
         return analysis_ply_pb2_grpc.ObjectServiceStub(self._channel)

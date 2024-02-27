@@ -13,7 +13,7 @@ def parent_model(load_model_from_tempfile):
 
 @pytest.fixture
 def parent_object(parent_model):
-    return parent_model.modeling_groups["ModelingGroup.1"].plies["ModelingPly.1"]
+    return parent_model.modeling_groups["ModelingGroup.1"].modeling_plies["ModelingPly.1"]
 
 
 class TestProductionPly(TreeObjectTesterReadOnly):
@@ -97,3 +97,14 @@ def test_mesh_data_existence(parent_object):
     assert isinstance(elemental_data, ProductionPlyElementalData)
     nodal_data = production_ply.nodal_data
     assert isinstance(nodal_data, ProductionPlyNodalData)
+
+
+def test_regression_454(parent_object):
+    """
+    Regression test for issue #454
+    The 'ProductionPly' object should not be clonable, as it is not a
+    defining object.
+    """
+    production_ply = list(parent_object.production_plies.values())[0]
+    assert not hasattr(production_ply, "clone")
+    assert not hasattr(production_ply, "store")

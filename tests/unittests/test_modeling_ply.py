@@ -41,7 +41,7 @@ def tree_object(parent_object):
 
 
 class TestModelingPly(NoLockedMixin, TreeObjectTester):
-    COLLECTION_NAME = "plies"
+    COLLECTION_NAME = "modeling_plies"
 
     @staticmethod
     @pytest.fixture
@@ -207,7 +207,7 @@ def minimal_complete_model(load_model_from_tempfile):
 
 @pytest.fixture
 def simple_modeling_ply(minimal_complete_model):
-    return minimal_complete_model.modeling_groups["ModelingGroup.1"].plies["ModelingPly.1"]
+    return minimal_complete_model.modeling_groups["ModelingGroup.1"].modeling_plies["ModelingPly.1"]
 
 
 def test_elemental_data(simple_modeling_ply):
@@ -419,7 +419,7 @@ def test_linked_cutoff_selection_rule_operation_type(operation_type):
     """Check that CutoffSelectionRule only allows INTERSECT operation type."""
     with pytest.raises(ValueError) as exc:
         LinkedSelectionRule(
-            selection_rule=CutoffSelectionRule(),  # type: ignore
+            selection_rule=CutoffSelectionRule(),
             operation_type=operation_type,
         )
     assert "INTERSECT" in str(exc.value)
