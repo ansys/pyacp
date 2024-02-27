@@ -45,8 +45,7 @@ __all__ = [
 class GenericEdgePropertyType(Protocol):
     """Protocol for the definition of ACP edge properties such as FabricWithAngle."""
 
-    def __init__(self, *kwargs: Any) -> None:
-        ...
+    def __init__(self, *kwargs: Any) -> None: ...
 
     @classmethod
     def _from_pb_object(
@@ -54,17 +53,13 @@ class GenericEdgePropertyType(Protocol):
         parent_object: CreatableTreeObject,
         message: Any,
         callback_apply_changes: Callable[[], None],
-    ) -> Self:
-        ...
+    ) -> Self: ...
 
-    def _to_pb_object(self) -> Message:
-        ...
+    def _to_pb_object(self) -> Message: ...
 
-    def _check(self) -> bool:
-        ...
+    def _check(self) -> bool: ...
 
-    def _set_callback_apply_changes(self, callback_apply_changes: Callable[[], None]) -> None:
-        ...
+    def _set_callback_apply_changes(self, callback_apply_changes: Callable[[], None]) -> None: ...
 
 
 ValueT = TypeVar("ValueT", bound=GenericEdgePropertyType)
@@ -149,10 +144,10 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
         self._object_type = _object_type
         self._name = _attribute_name.split(".")[-1]
 
-        self._object_constructor: Callable[
-            [Message], ValueT
-        ] = lambda pb_object: _from_pb_constructor(
-            self._parent_object, pb_object, self._apply_changes
+        self._object_constructor: Callable[[Message], ValueT] = (
+            lambda pb_object: _from_pb_constructor(
+                self._parent_object, pb_object, self._apply_changes
+            )
         )
 
         # get initial object list
@@ -190,12 +185,10 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
         return len(self._object_list)
 
     @overload
-    def __getitem__(self, index: int) -> ValueT:
-        ...
+    def __getitem__(self, index: int) -> ValueT: ...
 
     @overload
-    def __getitem__(self, index: slice) -> list[ValueT]:
-        ...
+    def __getitem__(self, index: slice) -> list[ValueT]: ...
 
     def __getitem__(self, index: int | slice) -> ValueT | list[ValueT]:
         obj_list = self._object_list[index]
@@ -205,12 +198,10 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
         return [item for item in obj_list]
 
     @overload
-    def __setitem__(self, key: int, value: ValueT) -> None:
-        ...
+    def __setitem__(self, key: int, value: ValueT) -> None: ...
 
     @overload
-    def __setitem__(self, key: slice, value: Iterable[ValueT]) -> None:
-        ...
+    def __setitem__(self, key: slice, value: Iterable[ValueT]) -> None: ...
 
     def __setitem__(self, key: int | slice, value: ValueT | Iterable[ValueT]) -> None:
         # TODO: convert / check

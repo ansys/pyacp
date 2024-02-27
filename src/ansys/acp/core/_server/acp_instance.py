@@ -42,11 +42,9 @@ __all__ = ["ACP"]
 
 
 class FiletransferStrategy(Protocol):
-    def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
-        ...
+    def upload_file(self, local_path: _PATH) -> pathlib.PurePath: ...
 
-    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
-        ...
+    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None: ...
 
 
 class LocalFileTransferStrategy(FiletransferStrategy):

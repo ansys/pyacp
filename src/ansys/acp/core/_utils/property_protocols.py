@@ -35,8 +35,7 @@ class ReadOnlyProperty(Generic[GetValueT_co], Protocol):
     properties which are created from helper functions.
     """
 
-    def __get__(self, obj: object, objtype: type | None = None) -> GetValueT_co:
-        ...
+    def __get__(self, obj: object, objtype: type | None = None) -> GetValueT_co: ...
 
 
 class ReadWriteProperty(Generic[GetValueT_co, SetValueT_contra], Protocol):
@@ -46,8 +45,6 @@ class ReadWriteProperty(Generic[GetValueT_co, SetValueT_contra], Protocol):
     properties which are created from helper functions.
     """
 
-    def __get__(self, obj: object, objtype: type | None = None) -> GetValueT_co:
-        ...
+    def __get__(self, obj: object, objtype: type | None = None) -> GetValueT_co: ...
 
-    def __set__(self, obj: object, value: SetValueT_contra) -> None:
-        ...
+    def __set__(self, obj: object, value: SetValueT_contra) -> None: ...
