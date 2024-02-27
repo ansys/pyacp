@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      LaunchMode.capitalize
+      
+      
+      LaunchMode.casefold
+      
+      
+      LaunchMode.center
+      
+      
+      LaunchMode.count
+      
+      
+      LaunchMode.encode
+      
+      
+      LaunchMode.endswith
+      
+      
+      LaunchMode.expandtabs
+      
+      
+      LaunchMode.find
+      
+      
+      LaunchMode.format
+      
+      
+      LaunchMode.format_map
+      
+      
+      LaunchMode.index
+      
+      
+      LaunchMode.isalnum
+      
+      
+      LaunchMode.isalpha
+      
+      
+      LaunchMode.isascii
+      
+      
+      LaunchMode.isdecimal
+      
+      
+      LaunchMode.isdigit
+      
+      
+      LaunchMode.isidentifier
+      
+      
+      LaunchMode.islower
+      
+      
+      LaunchMode.isnumeric
+      
+      
+      LaunchMode.isprintable
+      
+      
+      LaunchMode.isspace
+      
+      
+      LaunchMode.istitle
+      
+      
+      LaunchMode.isupper
+      
+      
+      LaunchMode.join
+      
+      
+      LaunchMode.ljust
+      
+      
+      LaunchMode.lower
+      
+      
+      LaunchMode.lstrip
+      
+      
+      LaunchMode.maketrans
+      
+      
+      LaunchMode.partition
+      
+      
+      LaunchMode.removeprefix
+      
+      
+      LaunchMode.removesuffix
+      
+      
+      LaunchMode.replace
+      
+      
+      LaunchMode.rfind
+      
+      
+      LaunchMode.rindex
+      
+      
+      LaunchMode.rjust
+      
+      
+      LaunchMode.rpartition
+      
+      
+      LaunchMode.rsplit
+      
+      
+      LaunchMode.rstrip
+      
+      
+      LaunchMode.split
+      
+      
+      LaunchMode.splitlines
+      
+      
+      LaunchMode.startswith
+      
+      
+      LaunchMode.strip
+      
+      
+      LaunchMode.swapcase
+      
+      
+      LaunchMode.title
+      
+      
+      LaunchMode.translate
+      
+      
+      LaunchMode.upper
+      
+      
+      LaunchMode.zfill
+      
+   
    
 
    

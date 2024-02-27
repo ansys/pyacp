@@ -1,0 +1,6 @@
+startswith
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LookUpTableColumnValueType.startswith

@@ -1,0 +1,6 @@
+format\_map
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: BooleanOperationType.format_map

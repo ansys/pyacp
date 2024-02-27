@@ -1,0 +1,6 @@
+zfill
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LookUpTable3DInterpolationAlgorithm.zfill

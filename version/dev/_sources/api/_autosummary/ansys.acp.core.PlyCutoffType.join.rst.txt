@@ -1,0 +1,6 @@
+join
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: PlyCutoffType.join

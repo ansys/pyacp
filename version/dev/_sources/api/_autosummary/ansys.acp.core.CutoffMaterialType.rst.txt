@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      CutoffMaterialType.capitalize
+      
+      
+      CutoffMaterialType.casefold
+      
+      
+      CutoffMaterialType.center
+      
+      
+      CutoffMaterialType.count
+      
+      
+      CutoffMaterialType.encode
+      
+      
+      CutoffMaterialType.endswith
+      
+      
+      CutoffMaterialType.expandtabs
+      
+      
+      CutoffMaterialType.find
+      
+      
+      CutoffMaterialType.format
+      
+      
+      CutoffMaterialType.format_map
+      
+      
+      CutoffMaterialType.index
+      
+      
+      CutoffMaterialType.isalnum
+      
+      
+      CutoffMaterialType.isalpha
+      
+      
+      CutoffMaterialType.isascii
+      
+      
+      CutoffMaterialType.isdecimal
+      
+      
+      CutoffMaterialType.isdigit
+      
+      
+      CutoffMaterialType.isidentifier
+      
+      
+      CutoffMaterialType.islower
+      
+      
+      CutoffMaterialType.isnumeric
+      
+      
+      CutoffMaterialType.isprintable
+      
+      
+      CutoffMaterialType.isspace
+      
+      
+      CutoffMaterialType.istitle
+      
+      
+      CutoffMaterialType.isupper
+      
+      
+      CutoffMaterialType.join
+      
+      
+      CutoffMaterialType.ljust
+      
+      
+      CutoffMaterialType.lower
+      
+      
+      CutoffMaterialType.lstrip
+      
+      
+      CutoffMaterialType.maketrans
+      
+      
+      CutoffMaterialType.partition
+      
+      
+      CutoffMaterialType.removeprefix
+      
+      
+      CutoffMaterialType.removesuffix
+      
+      
+      CutoffMaterialType.replace
+      
+      
+      CutoffMaterialType.rfind
+      
+      
+      CutoffMaterialType.rindex
+      
+      
+      CutoffMaterialType.rjust
+      
+      
+      CutoffMaterialType.rpartition
+      
+      
+      CutoffMaterialType.rsplit
+      
+      
+      CutoffMaterialType.rstrip
+      
+      
+      CutoffMaterialType.split
+      
+      
+      CutoffMaterialType.splitlines
+      
+      
+      CutoffMaterialType.startswith
+      
+      
+      CutoffMaterialType.strip
+      
+      
+      CutoffMaterialType.swapcase
+      
+      
+      CutoffMaterialType.title
+      
+      
+      CutoffMaterialType.translate
+      
+      
+      CutoffMaterialType.upper
+      
+      
+      CutoffMaterialType.zfill
+      
+   
    
 
    

@@ -1,0 +1,6 @@
+isspace
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: StatusType.isspace

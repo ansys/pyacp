@@ -1,0 +1,6 @@
+isupper
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LookUpTable3DInterpolationAlgorithm.isupper

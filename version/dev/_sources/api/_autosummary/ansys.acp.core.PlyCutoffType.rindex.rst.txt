@@ -1,0 +1,6 @@
+rindex
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: PlyCutoffType.rindex

@@ -1,0 +1,6 @@
+lower
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CutoffRuleType.lower

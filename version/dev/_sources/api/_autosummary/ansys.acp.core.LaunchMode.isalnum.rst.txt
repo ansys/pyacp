@@ -1,0 +1,6 @@
+isalnum
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.isalnum

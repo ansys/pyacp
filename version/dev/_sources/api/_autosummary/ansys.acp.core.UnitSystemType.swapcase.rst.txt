@@ -1,0 +1,6 @@
+swapcase
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: UnitSystemType.swapcase

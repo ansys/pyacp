@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SymmetryType.capitalize
+      
+      
+      SymmetryType.casefold
+      
+      
+      SymmetryType.center
+      
+      
+      SymmetryType.count
+      
+      
+      SymmetryType.encode
+      
+      
+      SymmetryType.endswith
+      
+      
+      SymmetryType.expandtabs
+      
+      
+      SymmetryType.find
+      
+      
+      SymmetryType.format
+      
+      
+      SymmetryType.format_map
+      
+      
+      SymmetryType.index
+      
+      
+      SymmetryType.isalnum
+      
+      
+      SymmetryType.isalpha
+      
+      
+      SymmetryType.isascii
+      
+      
+      SymmetryType.isdecimal
+      
+      
+      SymmetryType.isdigit
+      
+      
+      SymmetryType.isidentifier
+      
+      
+      SymmetryType.islower
+      
+      
+      SymmetryType.isnumeric
+      
+      
+      SymmetryType.isprintable
+      
+      
+      SymmetryType.isspace
+      
+      
+      SymmetryType.istitle
+      
+      
+      SymmetryType.isupper
+      
+      
+      SymmetryType.join
+      
+      
+      SymmetryType.ljust
+      
+      
+      SymmetryType.lower
+      
+      
+      SymmetryType.lstrip
+      
+      
+      SymmetryType.maketrans
+      
+      
+      SymmetryType.partition
+      
+      
+      SymmetryType.removeprefix
+      
+      
+      SymmetryType.removesuffix
+      
+      
+      SymmetryType.replace
+      
+      
+      SymmetryType.rfind
+      
+      
+      SymmetryType.rindex
+      
+      
+      SymmetryType.rjust
+      
+      
+      SymmetryType.rpartition
+      
+      
+      SymmetryType.rsplit
+      
+      
+      SymmetryType.rstrip
+      
+      
+      SymmetryType.split
+      
+      
+      SymmetryType.splitlines
+      
+      
+      SymmetryType.startswith
+      
+      
+      SymmetryType.strip
+      
+      
+      SymmetryType.swapcase
+      
+      
+      SymmetryType.title
+      
+      
+      SymmetryType.translate
+      
+      
+      SymmetryType.upper
+      
+      
+      SymmetryType.zfill
+      
+   
    
 
    

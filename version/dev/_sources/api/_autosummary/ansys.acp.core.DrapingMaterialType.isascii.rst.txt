@@ -1,0 +1,6 @@
+isascii
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: DrapingMaterialType.isascii

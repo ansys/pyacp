@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      PuckMaterialType.capitalize
+      
+      
+      PuckMaterialType.casefold
+      
+      
+      PuckMaterialType.center
+      
+      
+      PuckMaterialType.count
+      
+      
+      PuckMaterialType.encode
+      
+      
+      PuckMaterialType.endswith
+      
+      
+      PuckMaterialType.expandtabs
+      
+      
+      PuckMaterialType.find
+      
+      
+      PuckMaterialType.format
+      
+      
+      PuckMaterialType.format_map
+      
+      
+      PuckMaterialType.index
+      
+      
+      PuckMaterialType.isalnum
+      
+      
+      PuckMaterialType.isalpha
+      
+      
+      PuckMaterialType.isascii
+      
+      
+      PuckMaterialType.isdecimal
+      
+      
+      PuckMaterialType.isdigit
+      
+      
+      PuckMaterialType.isidentifier
+      
+      
+      PuckMaterialType.islower
+      
+      
+      PuckMaterialType.isnumeric
+      
+      
+      PuckMaterialType.isprintable
+      
+      
+      PuckMaterialType.isspace
+      
+      
+      PuckMaterialType.istitle
+      
+      
+      PuckMaterialType.isupper
+      
+      
+      PuckMaterialType.join
+      
+      
+      PuckMaterialType.ljust
+      
+      
+      PuckMaterialType.lower
+      
+      
+      PuckMaterialType.lstrip
+      
+      
+      PuckMaterialType.maketrans
+      
+      
+      PuckMaterialType.partition
+      
+      
+      PuckMaterialType.removeprefix
+      
+      
+      PuckMaterialType.removesuffix
+      
+      
+      PuckMaterialType.replace
+      
+      
+      PuckMaterialType.rfind
+      
+      
+      PuckMaterialType.rindex
+      
+      
+      PuckMaterialType.rjust
+      
+      
+      PuckMaterialType.rpartition
+      
+      
+      PuckMaterialType.rsplit
+      
+      
+      PuckMaterialType.rstrip
+      
+      
+      PuckMaterialType.split
+      
+      
+      PuckMaterialType.splitlines
+      
+      
+      PuckMaterialType.startswith
+      
+      
+      PuckMaterialType.strip
+      
+      
+      PuckMaterialType.swapcase
+      
+      
+      PuckMaterialType.title
+      
+      
+      PuckMaterialType.translate
+      
+      
+      PuckMaterialType.upper
+      
+      
+      PuckMaterialType.zfill
+      
+   
    
 
    

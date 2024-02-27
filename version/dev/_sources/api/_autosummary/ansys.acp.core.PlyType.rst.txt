@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      PlyType.capitalize
+      
+      
+      PlyType.casefold
+      
+      
+      PlyType.center
+      
+      
+      PlyType.count
+      
+      
+      PlyType.encode
+      
+      
+      PlyType.endswith
+      
+      
+      PlyType.expandtabs
+      
+      
+      PlyType.find
+      
+      
+      PlyType.format
+      
+      
+      PlyType.format_map
+      
+      
+      PlyType.index
+      
+      
+      PlyType.isalnum
+      
+      
+      PlyType.isalpha
+      
+      
+      PlyType.isascii
+      
+      
+      PlyType.isdecimal
+      
+      
+      PlyType.isdigit
+      
+      
+      PlyType.isidentifier
+      
+      
+      PlyType.islower
+      
+      
+      PlyType.isnumeric
+      
+      
+      PlyType.isprintable
+      
+      
+      PlyType.isspace
+      
+      
+      PlyType.istitle
+      
+      
+      PlyType.isupper
+      
+      
+      PlyType.join
+      
+      
+      PlyType.ljust
+      
+      
+      PlyType.lower
+      
+      
+      PlyType.lstrip
+      
+      
+      PlyType.maketrans
+      
+      
+      PlyType.partition
+      
+      
+      PlyType.removeprefix
+      
+      
+      PlyType.removesuffix
+      
+      
+      PlyType.replace
+      
+      
+      PlyType.rfind
+      
+      
+      PlyType.rindex
+      
+      
+      PlyType.rjust
+      
+      
+      PlyType.rpartition
+      
+      
+      PlyType.rsplit
+      
+      
+      PlyType.rstrip
+      
+      
+      PlyType.split
+      
+      
+      PlyType.splitlines
+      
+      
+      PlyType.startswith
+      
+      
+      PlyType.strip
+      
+      
+      PlyType.swapcase
+      
+      
+      PlyType.title
+      
+      
+      PlyType.translate
+      
+      
+      PlyType.upper
+      
+      
+      PlyType.zfill
+      
+   
    
 
    

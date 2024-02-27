@@ -1,0 +1,6 @@
+removeprefix
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LookUpTable3DInterpolationAlgorithm.removeprefix

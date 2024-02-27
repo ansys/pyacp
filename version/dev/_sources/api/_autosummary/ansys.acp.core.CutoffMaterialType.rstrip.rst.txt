@@ -1,0 +1,6 @@
+rstrip
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CutoffMaterialType.rstrip

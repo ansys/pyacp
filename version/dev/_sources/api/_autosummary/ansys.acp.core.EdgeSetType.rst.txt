@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      EdgeSetType.capitalize
+      
+      
+      EdgeSetType.casefold
+      
+      
+      EdgeSetType.center
+      
+      
+      EdgeSetType.count
+      
+      
+      EdgeSetType.encode
+      
+      
+      EdgeSetType.endswith
+      
+      
+      EdgeSetType.expandtabs
+      
+      
+      EdgeSetType.find
+      
+      
+      EdgeSetType.format
+      
+      
+      EdgeSetType.format_map
+      
+      
+      EdgeSetType.index
+      
+      
+      EdgeSetType.isalnum
+      
+      
+      EdgeSetType.isalpha
+      
+      
+      EdgeSetType.isascii
+      
+      
+      EdgeSetType.isdecimal
+      
+      
+      EdgeSetType.isdigit
+      
+      
+      EdgeSetType.isidentifier
+      
+      
+      EdgeSetType.islower
+      
+      
+      EdgeSetType.isnumeric
+      
+      
+      EdgeSetType.isprintable
+      
+      
+      EdgeSetType.isspace
+      
+      
+      EdgeSetType.istitle
+      
+      
+      EdgeSetType.isupper
+      
+      
+      EdgeSetType.join
+      
+      
+      EdgeSetType.ljust
+      
+      
+      EdgeSetType.lower
+      
+      
+      EdgeSetType.lstrip
+      
+      
+      EdgeSetType.maketrans
+      
+      
+      EdgeSetType.partition
+      
+      
+      EdgeSetType.removeprefix
+      
+      
+      EdgeSetType.removesuffix
+      
+      
+      EdgeSetType.replace
+      
+      
+      EdgeSetType.rfind
+      
+      
+      EdgeSetType.rindex
+      
+      
+      EdgeSetType.rjust
+      
+      
+      EdgeSetType.rpartition
+      
+      
+      EdgeSetType.rsplit
+      
+      
+      EdgeSetType.rstrip
+      
+      
+      EdgeSetType.split
+      
+      
+      EdgeSetType.splitlines
+      
+      
+      EdgeSetType.startswith
+      
+      
+      EdgeSetType.strip
+      
+      
+      EdgeSetType.swapcase
+      
+      
+      EdgeSetType.title
+      
+      
+      EdgeSetType.translate
+      
+      
+      EdgeSetType.upper
+      
+      
+      EdgeSetType.zfill
+      
+   
    
 
    

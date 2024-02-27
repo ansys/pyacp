@@ -65,7 +65,7 @@
     <link rel="icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ABSOLUTE_VALUES" href="ansys.acp.core.ThicknessFieldType.ABSOLUTE_VALUES.html" />
+    <link rel="next" title="capitalize" href="ansys.acp.core.ThicknessFieldType.capitalize.html" />
     <link rel="prev" title="ODD_SYMMETRY" href="ansys.acp.core.SymmetryType.ODD_SYMMETRY.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -475,6 +475,53 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.StatusType.html">StatusType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SymmetryType.html">SymmetryType</a></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">ThicknessFieldType</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.capitalize.html">capitalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.casefold.html">casefold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.center.html">center</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.count.html">count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.encode.html">encode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.endswith.html">endswith</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.expandtabs.html">expandtabs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.find.html">find</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.format.html">format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.format_map.html">format_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.index.html">index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isalnum.html">isalnum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isalpha.html">isalpha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isascii.html">isascii</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isdecimal.html">isdecimal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isdigit.html">isdigit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isidentifier.html">isidentifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.islower.html">islower</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isnumeric.html">isnumeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isprintable.html">isprintable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isspace.html">isspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.istitle.html">istitle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isupper.html">isupper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.join.html">join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.ljust.html">ljust</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.lower.html">lower</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.lstrip.html">lstrip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.maketrans.html">maketrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.partition.html">partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.removeprefix.html">removeprefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.removesuffix.html">removesuffix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.replace.html">replace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.rfind.html">rfind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.rindex.html">rindex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.rjust.html">rjust</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.rpartition.html">rpartition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.rsplit.html">rsplit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.rstrip.html">rstrip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.split.html">split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.splitlines.html">splitlines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.startswith.html">startswith</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.strip.html">strip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.swapcase.html">swapcase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.title.html">title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.translate.html">translate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.upper.html">upper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.zfill.html">zfill</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.ABSOLUTE_VALUES.html">ABSOLUTE_VALUES</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.RELATIVE_SCALING_FACTOR.html">RELATIVE_SCALING_FACTOR</a></li>
 </ul>
@@ -562,8 +609,154 @@ document.write(`
 <h1>ThicknessFieldType<a class="headerlink" href="#thicknessfieldtype" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ansys.acp.core.ThicknessFieldType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">ThicknessFieldType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ThicknessFieldType" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">ThicknessFieldType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ThicknessFieldType" title="Permalink to this definition">#</a></dt>
 <dd><p>Options for how thickness from a table is defined.</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.capitalize.html#ansys.acp.core.ThicknessFieldType.capitalize" title="ansys.acp.core.ThicknessFieldType.capitalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.capitalize</span></code></a>(/)</p></td>
+<td><p>Return a capitalized version of the string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.casefold.html#ansys.acp.core.ThicknessFieldType.casefold" title="ansys.acp.core.ThicknessFieldType.casefold"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.casefold</span></code></a>(/)</p></td>
+<td><p>Return a version of the string suitable for caseless comparisons.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.center.html#ansys.acp.core.ThicknessFieldType.center" title="ansys.acp.core.ThicknessFieldType.center"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.center</span></code></a>(width[, fillchar])</p></td>
+<td><p>Return a centered string of length width.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.count.html#ansys.acp.core.ThicknessFieldType.count" title="ansys.acp.core.ThicknessFieldType.count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.count</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the number of non-overlapping occurrences of substring sub in string S[start:end].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.encode.html#ansys.acp.core.ThicknessFieldType.encode" title="ansys.acp.core.ThicknessFieldType.encode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.encode</span></code></a>(/[, encoding, errors])</p></td>
+<td><p>Encode the string using the codec registered for encoding.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.endswith.html#ansys.acp.core.ThicknessFieldType.endswith" title="ansys.acp.core.ThicknessFieldType.endswith"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.endswith</span></code></a>(suffix[, start[, ...)</p></td>
+<td><p>Return True if S ends with the specified suffix, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.expandtabs.html#ansys.acp.core.ThicknessFieldType.expandtabs" title="ansys.acp.core.ThicknessFieldType.expandtabs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.expandtabs</span></code></a>(/[, tabsize])</p></td>
+<td><p>Return a copy where all tab characters are expanded using spaces.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.find.html#ansys.acp.core.ThicknessFieldType.find" title="ansys.acp.core.ThicknessFieldType.find"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.find</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the lowest index in S where substring sub is found, such that sub is contained within S[start:end].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.format.html#ansys.acp.core.ThicknessFieldType.format" title="ansys.acp.core.ThicknessFieldType.format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.format</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Return a formatted version of S, using substitutions from args and kwargs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.format_map.html#ansys.acp.core.ThicknessFieldType.format_map" title="ansys.acp.core.ThicknessFieldType.format_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.format_map</span></code></a>(mapping)</p></td>
+<td><p>Return a formatted version of S, using substitutions from mapping.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.index.html#ansys.acp.core.ThicknessFieldType.index" title="ansys.acp.core.ThicknessFieldType.index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.index</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the lowest index in S where substring sub is found, such that sub is contained within S[start:end].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isalnum.html#ansys.acp.core.ThicknessFieldType.isalnum" title="ansys.acp.core.ThicknessFieldType.isalnum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.isalnum</span></code></a>(/)</p></td>
+<td><p>Return True if the string is an alpha-numeric string, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isalpha.html#ansys.acp.core.ThicknessFieldType.isalpha" title="ansys.acp.core.ThicknessFieldType.isalpha"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.isalpha</span></code></a>(/)</p></td>
+<td><p>Return True if the string is an alphabetic string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isascii.html#ansys.acp.core.ThicknessFieldType.isascii" title="ansys.acp.core.ThicknessFieldType.isascii"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.isascii</span></code></a>(/)</p></td>
+<td><p>Return True if all characters in the string are ASCII, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isdecimal.html#ansys.acp.core.ThicknessFieldType.isdecimal" title="ansys.acp.core.ThicknessFieldType.isdecimal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.isdecimal</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a decimal string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isdigit.html#ansys.acp.core.ThicknessFieldType.isdigit" title="ansys.acp.core.ThicknessFieldType.isdigit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.isdigit</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a digit string, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isidentifier.html#ansys.acp.core.ThicknessFieldType.isidentifier" title="ansys.acp.core.ThicknessFieldType.isidentifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.isidentifier</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a valid Python identifier, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.islower.html#ansys.acp.core.ThicknessFieldType.islower" title="ansys.acp.core.ThicknessFieldType.islower"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.islower</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a lowercase string, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isnumeric.html#ansys.acp.core.ThicknessFieldType.isnumeric" title="ansys.acp.core.ThicknessFieldType.isnumeric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.isnumeric</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a numeric string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isprintable.html#ansys.acp.core.ThicknessFieldType.isprintable" title="ansys.acp.core.ThicknessFieldType.isprintable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.isprintable</span></code></a>(/)</p></td>
+<td><p>Return True if the string is printable, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isspace.html#ansys.acp.core.ThicknessFieldType.isspace" title="ansys.acp.core.ThicknessFieldType.isspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.isspace</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a whitespace string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.istitle.html#ansys.acp.core.ThicknessFieldType.istitle" title="ansys.acp.core.ThicknessFieldType.istitle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.istitle</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a title-cased string, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.isupper.html#ansys.acp.core.ThicknessFieldType.isupper" title="ansys.acp.core.ThicknessFieldType.isupper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.isupper</span></code></a>(/)</p></td>
+<td><p>Return True if the string is an uppercase string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.join.html#ansys.acp.core.ThicknessFieldType.join" title="ansys.acp.core.ThicknessFieldType.join"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.join</span></code></a>(iterable, /)</p></td>
+<td><p>Concatenate any number of strings.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.ljust.html#ansys.acp.core.ThicknessFieldType.ljust" title="ansys.acp.core.ThicknessFieldType.ljust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.ljust</span></code></a>(width[, fillchar])</p></td>
+<td><p>Return a left-justified string of length width.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.lower.html#ansys.acp.core.ThicknessFieldType.lower" title="ansys.acp.core.ThicknessFieldType.lower"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.lower</span></code></a>(/)</p></td>
+<td><p>Return a copy of the string converted to lowercase.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.lstrip.html#ansys.acp.core.ThicknessFieldType.lstrip" title="ansys.acp.core.ThicknessFieldType.lstrip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.lstrip</span></code></a>([chars])</p></td>
+<td><p>Return a copy of the string with leading whitespace removed.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.maketrans.html#ansys.acp.core.ThicknessFieldType.maketrans" title="ansys.acp.core.ThicknessFieldType.maketrans"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.maketrans</span></code></a>(x[, y, z])</p></td>
+<td><p>Return a translation table usable for str.translate().</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.partition.html#ansys.acp.core.ThicknessFieldType.partition" title="ansys.acp.core.ThicknessFieldType.partition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.partition</span></code></a>(sep, /)</p></td>
+<td><p>Partition the string into three parts using the given separator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.removeprefix.html#ansys.acp.core.ThicknessFieldType.removeprefix" title="ansys.acp.core.ThicknessFieldType.removeprefix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.removeprefix</span></code></a>(prefix, /)</p></td>
+<td><p>Return a str with the given prefix string removed if present.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.removesuffix.html#ansys.acp.core.ThicknessFieldType.removesuffix" title="ansys.acp.core.ThicknessFieldType.removesuffix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.removesuffix</span></code></a>(suffix, /)</p></td>
+<td><p>Return a str with the given suffix string removed if present.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.replace.html#ansys.acp.core.ThicknessFieldType.replace" title="ansys.acp.core.ThicknessFieldType.replace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.replace</span></code></a>(old, new[, count])</p></td>
+<td><p>Return a copy with all occurrences of substring old replaced by new.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.rfind.html#ansys.acp.core.ThicknessFieldType.rfind" title="ansys.acp.core.ThicknessFieldType.rfind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.rfind</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the highest index in S where substring sub is found, such that sub is contained within S[start:end].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.rindex.html#ansys.acp.core.ThicknessFieldType.rindex" title="ansys.acp.core.ThicknessFieldType.rindex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.rindex</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the highest index in S where substring sub is found, such that sub is contained within S[start:end].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.rjust.html#ansys.acp.core.ThicknessFieldType.rjust" title="ansys.acp.core.ThicknessFieldType.rjust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.rjust</span></code></a>(width[, fillchar])</p></td>
+<td><p>Return a right-justified string of length width.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.rpartition.html#ansys.acp.core.ThicknessFieldType.rpartition" title="ansys.acp.core.ThicknessFieldType.rpartition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.rpartition</span></code></a>(sep, /)</p></td>
+<td><p>Partition the string into three parts using the given separator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.rsplit.html#ansys.acp.core.ThicknessFieldType.rsplit" title="ansys.acp.core.ThicknessFieldType.rsplit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.rsplit</span></code></a>(/[, sep, maxsplit])</p></td>
+<td><p>Return a list of the substrings in the string, using sep as the separator string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.rstrip.html#ansys.acp.core.ThicknessFieldType.rstrip" title="ansys.acp.core.ThicknessFieldType.rstrip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.rstrip</span></code></a>([chars])</p></td>
+<td><p>Return a copy of the string with trailing whitespace removed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.split.html#ansys.acp.core.ThicknessFieldType.split" title="ansys.acp.core.ThicknessFieldType.split"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.split</span></code></a>(/[, sep, maxsplit])</p></td>
+<td><p>Return a list of the substrings in the string, using sep as the separator string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.splitlines.html#ansys.acp.core.ThicknessFieldType.splitlines" title="ansys.acp.core.ThicknessFieldType.splitlines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.splitlines</span></code></a>(/[, keepends])</p></td>
+<td><p>Return a list of the lines in the string, breaking at line boundaries.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.startswith.html#ansys.acp.core.ThicknessFieldType.startswith" title="ansys.acp.core.ThicknessFieldType.startswith"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.startswith</span></code></a>(prefix[, ...)</p></td>
+<td><p>Return True if S starts with the specified prefix, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.strip.html#ansys.acp.core.ThicknessFieldType.strip" title="ansys.acp.core.ThicknessFieldType.strip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.strip</span></code></a>([chars])</p></td>
+<td><p>Return a copy of the string with leading and trailing whitespace removed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.swapcase.html#ansys.acp.core.ThicknessFieldType.swapcase" title="ansys.acp.core.ThicknessFieldType.swapcase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.swapcase</span></code></a>(/)</p></td>
+<td><p>Convert uppercase characters to lowercase and lowercase characters to uppercase.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.title.html#ansys.acp.core.ThicknessFieldType.title" title="ansys.acp.core.ThicknessFieldType.title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.title</span></code></a>(/)</p></td>
+<td><p>Return a version of the string where each word is titlecased.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.translate.html#ansys.acp.core.ThicknessFieldType.translate" title="ansys.acp.core.ThicknessFieldType.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.translate</span></code></a>(table, /)</p></td>
+<td><p>Replace each character in the string using the given translation table.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.upper.html#ansys.acp.core.ThicknessFieldType.upper" title="ansys.acp.core.ThicknessFieldType.upper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.upper</span></code></a>(/)</p></td>
+<td><p>Return a copy of the string converted to uppercase.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.zfill.html#ansys.acp.core.ThicknessFieldType.zfill" title="ansys.acp.core.ThicknessFieldType.zfill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType.zfill</span></code></a>(width, /)</p></td>
+<td><p>Pad a numeric string with zeros on the left, to fill a field of the given width.</p></td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable table autosummary">
 <tbody>

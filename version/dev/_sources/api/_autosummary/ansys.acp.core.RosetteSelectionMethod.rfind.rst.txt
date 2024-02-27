@@ -1,0 +1,6 @@
+rfind
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: RosetteSelectionMethod.rfind

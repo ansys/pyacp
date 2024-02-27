@@ -1,0 +1,6 @@
+endswith
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: FeFormat.endswith

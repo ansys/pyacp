@@ -1,0 +1,6 @@
+title
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: StatusType.title

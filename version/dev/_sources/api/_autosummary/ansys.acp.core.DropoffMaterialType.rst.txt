@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      DropoffMaterialType.capitalize
+      
+      
+      DropoffMaterialType.casefold
+      
+      
+      DropoffMaterialType.center
+      
+      
+      DropoffMaterialType.count
+      
+      
+      DropoffMaterialType.encode
+      
+      
+      DropoffMaterialType.endswith
+      
+      
+      DropoffMaterialType.expandtabs
+      
+      
+      DropoffMaterialType.find
+      
+      
+      DropoffMaterialType.format
+      
+      
+      DropoffMaterialType.format_map
+      
+      
+      DropoffMaterialType.index
+      
+      
+      DropoffMaterialType.isalnum
+      
+      
+      DropoffMaterialType.isalpha
+      
+      
+      DropoffMaterialType.isascii
+      
+      
+      DropoffMaterialType.isdecimal
+      
+      
+      DropoffMaterialType.isdigit
+      
+      
+      DropoffMaterialType.isidentifier
+      
+      
+      DropoffMaterialType.islower
+      
+      
+      DropoffMaterialType.isnumeric
+      
+      
+      DropoffMaterialType.isprintable
+      
+      
+      DropoffMaterialType.isspace
+      
+      
+      DropoffMaterialType.istitle
+      
+      
+      DropoffMaterialType.isupper
+      
+      
+      DropoffMaterialType.join
+      
+      
+      DropoffMaterialType.ljust
+      
+      
+      DropoffMaterialType.lower
+      
+      
+      DropoffMaterialType.lstrip
+      
+      
+      DropoffMaterialType.maketrans
+      
+      
+      DropoffMaterialType.partition
+      
+      
+      DropoffMaterialType.removeprefix
+      
+      
+      DropoffMaterialType.removesuffix
+      
+      
+      DropoffMaterialType.replace
+      
+      
+      DropoffMaterialType.rfind
+      
+      
+      DropoffMaterialType.rindex
+      
+      
+      DropoffMaterialType.rjust
+      
+      
+      DropoffMaterialType.rpartition
+      
+      
+      DropoffMaterialType.rsplit
+      
+      
+      DropoffMaterialType.rstrip
+      
+      
+      DropoffMaterialType.split
+      
+      
+      DropoffMaterialType.splitlines
+      
+      
+      DropoffMaterialType.startswith
+      
+      
+      DropoffMaterialType.strip
+      
+      
+      DropoffMaterialType.swapcase
+      
+      
+      DropoffMaterialType.title
+      
+      
+      DropoffMaterialType.translate
+      
+      
+      DropoffMaterialType.upper
+      
+      
+      DropoffMaterialType.zfill
+      
+   
    
 
    

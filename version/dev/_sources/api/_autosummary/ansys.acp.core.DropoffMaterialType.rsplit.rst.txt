@@ -1,0 +1,6 @@
+rsplit
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: DropoffMaterialType.rsplit

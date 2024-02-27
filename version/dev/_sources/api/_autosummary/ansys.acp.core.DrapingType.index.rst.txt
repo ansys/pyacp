@@ -1,0 +1,6 @@
+index
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: DrapingType.index

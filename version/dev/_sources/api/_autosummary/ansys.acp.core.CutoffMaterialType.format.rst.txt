@@ -1,0 +1,6 @@
+format
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CutoffMaterialType.format

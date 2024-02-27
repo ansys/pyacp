@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      IgnorableEntity.capitalize
+      
+      
+      IgnorableEntity.casefold
+      
+      
+      IgnorableEntity.center
+      
+      
+      IgnorableEntity.count
+      
+      
+      IgnorableEntity.encode
+      
+      
+      IgnorableEntity.endswith
+      
+      
+      IgnorableEntity.expandtabs
+      
+      
+      IgnorableEntity.find
+      
+      
+      IgnorableEntity.format
+      
+      
+      IgnorableEntity.format_map
+      
+      
+      IgnorableEntity.index
+      
+      
+      IgnorableEntity.isalnum
+      
+      
+      IgnorableEntity.isalpha
+      
+      
+      IgnorableEntity.isascii
+      
+      
+      IgnorableEntity.isdecimal
+      
+      
+      IgnorableEntity.isdigit
+      
+      
+      IgnorableEntity.isidentifier
+      
+      
+      IgnorableEntity.islower
+      
+      
+      IgnorableEntity.isnumeric
+      
+      
+      IgnorableEntity.isprintable
+      
+      
+      IgnorableEntity.isspace
+      
+      
+      IgnorableEntity.istitle
+      
+      
+      IgnorableEntity.isupper
+      
+      
+      IgnorableEntity.join
+      
+      
+      IgnorableEntity.ljust
+      
+      
+      IgnorableEntity.lower
+      
+      
+      IgnorableEntity.lstrip
+      
+      
+      IgnorableEntity.maketrans
+      
+      
+      IgnorableEntity.partition
+      
+      
+      IgnorableEntity.removeprefix
+      
+      
+      IgnorableEntity.removesuffix
+      
+      
+      IgnorableEntity.replace
+      
+      
+      IgnorableEntity.rfind
+      
+      
+      IgnorableEntity.rindex
+      
+      
+      IgnorableEntity.rjust
+      
+      
+      IgnorableEntity.rpartition
+      
+      
+      IgnorableEntity.rsplit
+      
+      
+      IgnorableEntity.rstrip
+      
+      
+      IgnorableEntity.split
+      
+      
+      IgnorableEntity.splitlines
+      
+      
+      IgnorableEntity.startswith
+      
+      
+      IgnorableEntity.strip
+      
+      
+      IgnorableEntity.swapcase
+      
+      
+      IgnorableEntity.title
+      
+      
+      IgnorableEntity.translate
+      
+      
+      IgnorableEntity.upper
+      
+      
+      IgnorableEntity.zfill
+      
+   
    
 
    

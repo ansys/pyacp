@@ -1,0 +1,6 @@
+isidentifier
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LookUpTableColumnValueType.isidentifier

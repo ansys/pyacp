@@ -1,0 +1,6 @@
+ljust
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: DimensionType.ljust

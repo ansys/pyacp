@@ -1,0 +1,6 @@
+replace
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.replace

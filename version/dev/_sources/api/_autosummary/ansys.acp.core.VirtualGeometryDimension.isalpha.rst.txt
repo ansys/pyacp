@@ -1,0 +1,6 @@
+isalpha
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: VirtualGeometryDimension.isalpha

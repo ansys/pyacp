@@ -1,0 +1,6 @@
+removesuffix
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: FeFormat.removesuffix

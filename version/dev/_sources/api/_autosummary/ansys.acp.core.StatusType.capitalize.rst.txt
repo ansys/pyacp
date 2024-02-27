@@ -1,0 +1,6 @@
+capitalize
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: StatusType.capitalize

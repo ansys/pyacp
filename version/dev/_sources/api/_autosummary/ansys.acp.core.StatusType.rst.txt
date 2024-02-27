@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      StatusType.capitalize
+      
+      
+      StatusType.casefold
+      
+      
+      StatusType.center
+      
+      
+      StatusType.count
+      
+      
+      StatusType.encode
+      
+      
+      StatusType.endswith
+      
+      
+      StatusType.expandtabs
+      
+      
+      StatusType.find
+      
+      
+      StatusType.format
+      
+      
+      StatusType.format_map
+      
+      
+      StatusType.index
+      
+      
+      StatusType.isalnum
+      
+      
+      StatusType.isalpha
+      
+      
+      StatusType.isascii
+      
+      
+      StatusType.isdecimal
+      
+      
+      StatusType.isdigit
+      
+      
+      StatusType.isidentifier
+      
+      
+      StatusType.islower
+      
+      
+      StatusType.isnumeric
+      
+      
+      StatusType.isprintable
+      
+      
+      StatusType.isspace
+      
+      
+      StatusType.istitle
+      
+      
+      StatusType.isupper
+      
+      
+      StatusType.join
+      
+      
+      StatusType.ljust
+      
+      
+      StatusType.lower
+      
+      
+      StatusType.lstrip
+      
+      
+      StatusType.maketrans
+      
+      
+      StatusType.partition
+      
+      
+      StatusType.removeprefix
+      
+      
+      StatusType.removesuffix
+      
+      
+      StatusType.replace
+      
+      
+      StatusType.rfind
+      
+      
+      StatusType.rindex
+      
+      
+      StatusType.rjust
+      
+      
+      StatusType.rpartition
+      
+      
+      StatusType.rsplit
+      
+      
+      StatusType.rstrip
+      
+      
+      StatusType.split
+      
+      
+      StatusType.splitlines
+      
+      
+      StatusType.startswith
+      
+      
+      StatusType.strip
+      
+      
+      StatusType.swapcase
+      
+      
+      StatusType.title
+      
+      
+      StatusType.translate
+      
+      
+      StatusType.upper
+      
+      
+      StatusType.zfill
+      
+   
    
 
    

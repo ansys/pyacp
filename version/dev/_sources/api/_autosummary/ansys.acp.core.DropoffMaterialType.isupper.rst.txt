@@ -1,0 +1,6 @@
+isupper
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: DropoffMaterialType.isupper

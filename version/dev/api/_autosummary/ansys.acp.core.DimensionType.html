@@ -65,7 +65,7 @@
     <link rel="icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="DIMENSIONLESS" href="ansys.acp.core.DimensionType.DIMENSIONLESS.html" />
+    <link rel="next" title="capitalize" href="ansys.acp.core.DimensionType.capitalize.html" />
     <link rel="prev" title="TAPER" href="ansys.acp.core.CutoffRuleType.TAPER.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -455,6 +455,53 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutoffMaterialType.html">CutoffMaterialType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutoffRuleType.html">CutoffRuleType</a></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">DimensionType</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.capitalize.html">capitalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.casefold.html">casefold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.center.html">center</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.count.html">count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.encode.html">encode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.endswith.html">endswith</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.expandtabs.html">expandtabs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.find.html">find</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.format.html">format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.format_map.html">format_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.index.html">index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.isalnum.html">isalnum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.isalpha.html">isalpha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.isascii.html">isascii</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.isdecimal.html">isdecimal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.isdigit.html">isdigit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.isidentifier.html">isidentifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.islower.html">islower</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.isnumeric.html">isnumeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.isprintable.html">isprintable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.isspace.html">isspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.istitle.html">istitle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.isupper.html">isupper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.join.html">join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.ljust.html">ljust</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.lower.html">lower</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.lstrip.html">lstrip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.maketrans.html">maketrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.partition.html">partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.removeprefix.html">removeprefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.removesuffix.html">removesuffix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.replace.html">replace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.rfind.html">rfind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.rindex.html">rindex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.rjust.html">rjust</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.rpartition.html">rpartition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.rsplit.html">rsplit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.rstrip.html">rstrip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.split.html">split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.splitlines.html">splitlines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.startswith.html">startswith</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.strip.html">strip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.swapcase.html">swapcase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.title.html">title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.translate.html">translate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.upper.html">upper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.zfill.html">zfill</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.DIMENSIONLESS.html">DIMENSIONLESS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.LENGTH.html">LENGTH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.DimensionType.MASS.html">MASS</a></li>
@@ -567,8 +614,154 @@ document.write(`
 <h1>DimensionType<a class="headerlink" href="#dimensiontype" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ansys.acp.core.DimensionType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">DimensionType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.DimensionType" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">DimensionType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.DimensionType" title="Permalink to this definition">#</a></dt>
 <dd><p>Options for the dimension (time, length, currency, …) of data.</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.capitalize.html#ansys.acp.core.DimensionType.capitalize" title="ansys.acp.core.DimensionType.capitalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.capitalize</span></code></a>(/)</p></td>
+<td><p>Return a capitalized version of the string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.casefold.html#ansys.acp.core.DimensionType.casefold" title="ansys.acp.core.DimensionType.casefold"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.casefold</span></code></a>(/)</p></td>
+<td><p>Return a version of the string suitable for caseless comparisons.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.center.html#ansys.acp.core.DimensionType.center" title="ansys.acp.core.DimensionType.center"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.center</span></code></a>(width[, fillchar])</p></td>
+<td><p>Return a centered string of length width.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.count.html#ansys.acp.core.DimensionType.count" title="ansys.acp.core.DimensionType.count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.count</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the number of non-overlapping occurrences of substring sub in string S[start:end].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.encode.html#ansys.acp.core.DimensionType.encode" title="ansys.acp.core.DimensionType.encode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.encode</span></code></a>(/[, encoding, errors])</p></td>
+<td><p>Encode the string using the codec registered for encoding.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.endswith.html#ansys.acp.core.DimensionType.endswith" title="ansys.acp.core.DimensionType.endswith"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.endswith</span></code></a>(suffix[, start[, end]])</p></td>
+<td><p>Return True if S ends with the specified suffix, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.expandtabs.html#ansys.acp.core.DimensionType.expandtabs" title="ansys.acp.core.DimensionType.expandtabs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.expandtabs</span></code></a>(/[, tabsize])</p></td>
+<td><p>Return a copy where all tab characters are expanded using spaces.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.find.html#ansys.acp.core.DimensionType.find" title="ansys.acp.core.DimensionType.find"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.find</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the lowest index in S where substring sub is found, such that sub is contained within S[start:end].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.format.html#ansys.acp.core.DimensionType.format" title="ansys.acp.core.DimensionType.format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.format</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Return a formatted version of S, using substitutions from args and kwargs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.format_map.html#ansys.acp.core.DimensionType.format_map" title="ansys.acp.core.DimensionType.format_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.format_map</span></code></a>(mapping)</p></td>
+<td><p>Return a formatted version of S, using substitutions from mapping.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.index.html#ansys.acp.core.DimensionType.index" title="ansys.acp.core.DimensionType.index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.index</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the lowest index in S where substring sub is found, such that sub is contained within S[start:end].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.isalnum.html#ansys.acp.core.DimensionType.isalnum" title="ansys.acp.core.DimensionType.isalnum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.isalnum</span></code></a>(/)</p></td>
+<td><p>Return True if the string is an alpha-numeric string, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.isalpha.html#ansys.acp.core.DimensionType.isalpha" title="ansys.acp.core.DimensionType.isalpha"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.isalpha</span></code></a>(/)</p></td>
+<td><p>Return True if the string is an alphabetic string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.isascii.html#ansys.acp.core.DimensionType.isascii" title="ansys.acp.core.DimensionType.isascii"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.isascii</span></code></a>(/)</p></td>
+<td><p>Return True if all characters in the string are ASCII, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.isdecimal.html#ansys.acp.core.DimensionType.isdecimal" title="ansys.acp.core.DimensionType.isdecimal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.isdecimal</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a decimal string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.isdigit.html#ansys.acp.core.DimensionType.isdigit" title="ansys.acp.core.DimensionType.isdigit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.isdigit</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a digit string, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.isidentifier.html#ansys.acp.core.DimensionType.isidentifier" title="ansys.acp.core.DimensionType.isidentifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.isidentifier</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a valid Python identifier, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.islower.html#ansys.acp.core.DimensionType.islower" title="ansys.acp.core.DimensionType.islower"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.islower</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a lowercase string, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.isnumeric.html#ansys.acp.core.DimensionType.isnumeric" title="ansys.acp.core.DimensionType.isnumeric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.isnumeric</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a numeric string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.isprintable.html#ansys.acp.core.DimensionType.isprintable" title="ansys.acp.core.DimensionType.isprintable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.isprintable</span></code></a>(/)</p></td>
+<td><p>Return True if the string is printable, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.isspace.html#ansys.acp.core.DimensionType.isspace" title="ansys.acp.core.DimensionType.isspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.isspace</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a whitespace string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.istitle.html#ansys.acp.core.DimensionType.istitle" title="ansys.acp.core.DimensionType.istitle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.istitle</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a title-cased string, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.isupper.html#ansys.acp.core.DimensionType.isupper" title="ansys.acp.core.DimensionType.isupper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.isupper</span></code></a>(/)</p></td>
+<td><p>Return True if the string is an uppercase string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.join.html#ansys.acp.core.DimensionType.join" title="ansys.acp.core.DimensionType.join"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.join</span></code></a>(iterable, /)</p></td>
+<td><p>Concatenate any number of strings.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.ljust.html#ansys.acp.core.DimensionType.ljust" title="ansys.acp.core.DimensionType.ljust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.ljust</span></code></a>(width[, fillchar])</p></td>
+<td><p>Return a left-justified string of length width.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.lower.html#ansys.acp.core.DimensionType.lower" title="ansys.acp.core.DimensionType.lower"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.lower</span></code></a>(/)</p></td>
+<td><p>Return a copy of the string converted to lowercase.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.lstrip.html#ansys.acp.core.DimensionType.lstrip" title="ansys.acp.core.DimensionType.lstrip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.lstrip</span></code></a>([chars])</p></td>
+<td><p>Return a copy of the string with leading whitespace removed.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.maketrans.html#ansys.acp.core.DimensionType.maketrans" title="ansys.acp.core.DimensionType.maketrans"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.maketrans</span></code></a>(x[, y, z])</p></td>
+<td><p>Return a translation table usable for str.translate().</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.partition.html#ansys.acp.core.DimensionType.partition" title="ansys.acp.core.DimensionType.partition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.partition</span></code></a>(sep, /)</p></td>
+<td><p>Partition the string into three parts using the given separator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.removeprefix.html#ansys.acp.core.DimensionType.removeprefix" title="ansys.acp.core.DimensionType.removeprefix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.removeprefix</span></code></a>(prefix, /)</p></td>
+<td><p>Return a str with the given prefix string removed if present.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.removesuffix.html#ansys.acp.core.DimensionType.removesuffix" title="ansys.acp.core.DimensionType.removesuffix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.removesuffix</span></code></a>(suffix, /)</p></td>
+<td><p>Return a str with the given suffix string removed if present.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.replace.html#ansys.acp.core.DimensionType.replace" title="ansys.acp.core.DimensionType.replace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.replace</span></code></a>(old, new[, count])</p></td>
+<td><p>Return a copy with all occurrences of substring old replaced by new.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.rfind.html#ansys.acp.core.DimensionType.rfind" title="ansys.acp.core.DimensionType.rfind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.rfind</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the highest index in S where substring sub is found, such that sub is contained within S[start:end].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.rindex.html#ansys.acp.core.DimensionType.rindex" title="ansys.acp.core.DimensionType.rindex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.rindex</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the highest index in S where substring sub is found, such that sub is contained within S[start:end].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.rjust.html#ansys.acp.core.DimensionType.rjust" title="ansys.acp.core.DimensionType.rjust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.rjust</span></code></a>(width[, fillchar])</p></td>
+<td><p>Return a right-justified string of length width.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.rpartition.html#ansys.acp.core.DimensionType.rpartition" title="ansys.acp.core.DimensionType.rpartition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.rpartition</span></code></a>(sep, /)</p></td>
+<td><p>Partition the string into three parts using the given separator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.rsplit.html#ansys.acp.core.DimensionType.rsplit" title="ansys.acp.core.DimensionType.rsplit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.rsplit</span></code></a>(/[, sep, maxsplit])</p></td>
+<td><p>Return a list of the substrings in the string, using sep as the separator string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.rstrip.html#ansys.acp.core.DimensionType.rstrip" title="ansys.acp.core.DimensionType.rstrip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.rstrip</span></code></a>([chars])</p></td>
+<td><p>Return a copy of the string with trailing whitespace removed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.split.html#ansys.acp.core.DimensionType.split" title="ansys.acp.core.DimensionType.split"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.split</span></code></a>(/[, sep, maxsplit])</p></td>
+<td><p>Return a list of the substrings in the string, using sep as the separator string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.splitlines.html#ansys.acp.core.DimensionType.splitlines" title="ansys.acp.core.DimensionType.splitlines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.splitlines</span></code></a>(/[, keepends])</p></td>
+<td><p>Return a list of the lines in the string, breaking at line boundaries.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.startswith.html#ansys.acp.core.DimensionType.startswith" title="ansys.acp.core.DimensionType.startswith"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.startswith</span></code></a>(prefix[, start[, end]])</p></td>
+<td><p>Return True if S starts with the specified prefix, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.strip.html#ansys.acp.core.DimensionType.strip" title="ansys.acp.core.DimensionType.strip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.strip</span></code></a>([chars])</p></td>
+<td><p>Return a copy of the string with leading and trailing whitespace removed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.swapcase.html#ansys.acp.core.DimensionType.swapcase" title="ansys.acp.core.DimensionType.swapcase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.swapcase</span></code></a>(/)</p></td>
+<td><p>Convert uppercase characters to lowercase and lowercase characters to uppercase.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.title.html#ansys.acp.core.DimensionType.title" title="ansys.acp.core.DimensionType.title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.title</span></code></a>(/)</p></td>
+<td><p>Return a version of the string where each word is titlecased.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.translate.html#ansys.acp.core.DimensionType.translate" title="ansys.acp.core.DimensionType.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.translate</span></code></a>(table, /)</p></td>
+<td><p>Replace each character in the string using the given translation table.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.upper.html#ansys.acp.core.DimensionType.upper" title="ansys.acp.core.DimensionType.upper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.upper</span></code></a>(/)</p></td>
+<td><p>Return a copy of the string converted to uppercase.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.DimensionType.zfill.html#ansys.acp.core.DimensionType.zfill" title="ansys.acp.core.DimensionType.zfill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimensionType.zfill</span></code></a>(width, /)</p></td>
+<td><p>Pad a numeric string with zeros on the left, to fill a field of the given width.</p></td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable table autosummary">
 <tbody>

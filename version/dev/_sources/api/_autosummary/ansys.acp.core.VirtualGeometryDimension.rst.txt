@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      VirtualGeometryDimension.capitalize
+      
+      
+      VirtualGeometryDimension.casefold
+      
+      
+      VirtualGeometryDimension.center
+      
+      
+      VirtualGeometryDimension.count
+      
+      
+      VirtualGeometryDimension.encode
+      
+      
+      VirtualGeometryDimension.endswith
+      
+      
+      VirtualGeometryDimension.expandtabs
+      
+      
+      VirtualGeometryDimension.find
+      
+      
+      VirtualGeometryDimension.format
+      
+      
+      VirtualGeometryDimension.format_map
+      
+      
+      VirtualGeometryDimension.index
+      
+      
+      VirtualGeometryDimension.isalnum
+      
+      
+      VirtualGeometryDimension.isalpha
+      
+      
+      VirtualGeometryDimension.isascii
+      
+      
+      VirtualGeometryDimension.isdecimal
+      
+      
+      VirtualGeometryDimension.isdigit
+      
+      
+      VirtualGeometryDimension.isidentifier
+      
+      
+      VirtualGeometryDimension.islower
+      
+      
+      VirtualGeometryDimension.isnumeric
+      
+      
+      VirtualGeometryDimension.isprintable
+      
+      
+      VirtualGeometryDimension.isspace
+      
+      
+      VirtualGeometryDimension.istitle
+      
+      
+      VirtualGeometryDimension.isupper
+      
+      
+      VirtualGeometryDimension.join
+      
+      
+      VirtualGeometryDimension.ljust
+      
+      
+      VirtualGeometryDimension.lower
+      
+      
+      VirtualGeometryDimension.lstrip
+      
+      
+      VirtualGeometryDimension.maketrans
+      
+      
+      VirtualGeometryDimension.partition
+      
+      
+      VirtualGeometryDimension.removeprefix
+      
+      
+      VirtualGeometryDimension.removesuffix
+      
+      
+      VirtualGeometryDimension.replace
+      
+      
+      VirtualGeometryDimension.rfind
+      
+      
+      VirtualGeometryDimension.rindex
+      
+      
+      VirtualGeometryDimension.rjust
+      
+      
+      VirtualGeometryDimension.rpartition
+      
+      
+      VirtualGeometryDimension.rsplit
+      
+      
+      VirtualGeometryDimension.rstrip
+      
+      
+      VirtualGeometryDimension.split
+      
+      
+      VirtualGeometryDimension.splitlines
+      
+      
+      VirtualGeometryDimension.startswith
+      
+      
+      VirtualGeometryDimension.strip
+      
+      
+      VirtualGeometryDimension.swapcase
+      
+      
+      VirtualGeometryDimension.title
+      
+      
+      VirtualGeometryDimension.translate
+      
+      
+      VirtualGeometryDimension.upper
+      
+      
+      VirtualGeometryDimension.zfill
+      
+   
    
 
    

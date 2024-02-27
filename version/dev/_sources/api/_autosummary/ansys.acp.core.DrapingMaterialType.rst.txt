@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      DrapingMaterialType.capitalize
+      
+      
+      DrapingMaterialType.casefold
+      
+      
+      DrapingMaterialType.center
+      
+      
+      DrapingMaterialType.count
+      
+      
+      DrapingMaterialType.encode
+      
+      
+      DrapingMaterialType.endswith
+      
+      
+      DrapingMaterialType.expandtabs
+      
+      
+      DrapingMaterialType.find
+      
+      
+      DrapingMaterialType.format
+      
+      
+      DrapingMaterialType.format_map
+      
+      
+      DrapingMaterialType.index
+      
+      
+      DrapingMaterialType.isalnum
+      
+      
+      DrapingMaterialType.isalpha
+      
+      
+      DrapingMaterialType.isascii
+      
+      
+      DrapingMaterialType.isdecimal
+      
+      
+      DrapingMaterialType.isdigit
+      
+      
+      DrapingMaterialType.isidentifier
+      
+      
+      DrapingMaterialType.islower
+      
+      
+      DrapingMaterialType.isnumeric
+      
+      
+      DrapingMaterialType.isprintable
+      
+      
+      DrapingMaterialType.isspace
+      
+      
+      DrapingMaterialType.istitle
+      
+      
+      DrapingMaterialType.isupper
+      
+      
+      DrapingMaterialType.join
+      
+      
+      DrapingMaterialType.ljust
+      
+      
+      DrapingMaterialType.lower
+      
+      
+      DrapingMaterialType.lstrip
+      
+      
+      DrapingMaterialType.maketrans
+      
+      
+      DrapingMaterialType.partition
+      
+      
+      DrapingMaterialType.removeprefix
+      
+      
+      DrapingMaterialType.removesuffix
+      
+      
+      DrapingMaterialType.replace
+      
+      
+      DrapingMaterialType.rfind
+      
+      
+      DrapingMaterialType.rindex
+      
+      
+      DrapingMaterialType.rjust
+      
+      
+      DrapingMaterialType.rpartition
+      
+      
+      DrapingMaterialType.rsplit
+      
+      
+      DrapingMaterialType.rstrip
+      
+      
+      DrapingMaterialType.split
+      
+      
+      DrapingMaterialType.splitlines
+      
+      
+      DrapingMaterialType.startswith
+      
+      
+      DrapingMaterialType.strip
+      
+      
+      DrapingMaterialType.swapcase
+      
+      
+      DrapingMaterialType.title
+      
+      
+      DrapingMaterialType.translate
+      
+      
+      DrapingMaterialType.upper
+      
+      
+      DrapingMaterialType.zfill
+      
+   
    
 
    

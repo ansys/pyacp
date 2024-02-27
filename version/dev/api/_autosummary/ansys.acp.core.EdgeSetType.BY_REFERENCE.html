@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="BY_NODES" href="ansys.acp.core.EdgeSetType.BY_NODES.html" />
-    <link rel="prev" title="EdgeSetType" href="ansys.acp.core.EdgeSetType.html" />
+    <link rel="prev" title="zfill" href="ansys.acp.core.EdgeSetType.zfill.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -459,11 +459,105 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.DrapingType.html">DrapingType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.DropoffMaterialType.html">DropoffMaterialType</a></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="ansys.acp.core.EdgeSetType.html">EdgeSetType</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.capitalize.html">capitalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.casefold.html">casefold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.center.html">center</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.count.html">count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.encode.html">encode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.endswith.html">endswith</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.expandtabs.html">expandtabs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.find.html">find</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.format.html">format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.format_map.html">format_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.index.html">index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isalnum.html">isalnum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isalpha.html">isalpha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isascii.html">isascii</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isdecimal.html">isdecimal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isdigit.html">isdigit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isidentifier.html">isidentifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.islower.html">islower</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isnumeric.html">isnumeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isprintable.html">isprintable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isspace.html">isspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.istitle.html">istitle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isupper.html">isupper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.join.html">join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.ljust.html">ljust</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.lower.html">lower</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.lstrip.html">lstrip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.maketrans.html">maketrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.partition.html">partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.removeprefix.html">removeprefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.removesuffix.html">removesuffix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.replace.html">replace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.rfind.html">rfind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.rindex.html">rindex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.rjust.html">rjust</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.rpartition.html">rpartition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.rsplit.html">rsplit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.rstrip.html">rstrip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.split.html">split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.splitlines.html">splitlines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.startswith.html">startswith</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.strip.html">strip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.swapcase.html">swapcase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.title.html">title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.translate.html">translate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.upper.html">upper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.zfill.html">zfill</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">BY_REFERENCE</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.BY_NODES.html">BY_NODES</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="ansys.acp.core.EdgeSetType.html">EdgeSetType</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.capitalize.html">capitalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.casefold.html">casefold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.center.html">center</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.count.html">count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.encode.html">encode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.endswith.html">endswith</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.expandtabs.html">expandtabs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.find.html">find</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.format.html">format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.format_map.html">format_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.index.html">index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isalnum.html">isalnum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isalpha.html">isalpha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isascii.html">isascii</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isdecimal.html">isdecimal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isdigit.html">isdigit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isidentifier.html">isidentifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.islower.html">islower</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isnumeric.html">isnumeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isprintable.html">isprintable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isspace.html">isspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.istitle.html">istitle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.isupper.html">isupper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.join.html">join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.ljust.html">ljust</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.lower.html">lower</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.lstrip.html">lstrip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.maketrans.html">maketrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.partition.html">partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.removeprefix.html">removeprefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.removesuffix.html">removesuffix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.replace.html">replace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.rfind.html">rfind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.rindex.html">rindex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.rjust.html">rjust</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.rpartition.html">rpartition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.rsplit.html">rsplit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.rstrip.html">rstrip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.split.html">split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.splitlines.html">splitlines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.startswith.html">startswith</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.strip.html">strip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.swapcase.html">swapcase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.title.html">title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.translate.html">translate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.upper.html">upper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.zfill.html">zfill</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">BY_REFERENCE</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.EdgeSetType.BY_NODES.html">BY_NODES</a></li>
 </ul>

@@ -1,0 +1,6 @@
+isspace
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: DrapingMaterialType.isspace

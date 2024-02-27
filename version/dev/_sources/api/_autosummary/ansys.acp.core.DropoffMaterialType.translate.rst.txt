@@ -1,0 +1,6 @@
+translate
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: DropoffMaterialType.translate

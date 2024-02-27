@@ -1,0 +1,6 @@
+strip
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SensorType.strip

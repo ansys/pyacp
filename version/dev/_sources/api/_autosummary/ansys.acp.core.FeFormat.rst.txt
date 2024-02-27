@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      FeFormat.capitalize
+      
+      
+      FeFormat.casefold
+      
+      
+      FeFormat.center
+      
+      
+      FeFormat.count
+      
+      
+      FeFormat.encode
+      
+      
+      FeFormat.endswith
+      
+      
+      FeFormat.expandtabs
+      
+      
+      FeFormat.find
+      
+      
+      FeFormat.format
+      
+      
+      FeFormat.format_map
+      
+      
+      FeFormat.index
+      
+      
+      FeFormat.isalnum
+      
+      
+      FeFormat.isalpha
+      
+      
+      FeFormat.isascii
+      
+      
+      FeFormat.isdecimal
+      
+      
+      FeFormat.isdigit
+      
+      
+      FeFormat.isidentifier
+      
+      
+      FeFormat.islower
+      
+      
+      FeFormat.isnumeric
+      
+      
+      FeFormat.isprintable
+      
+      
+      FeFormat.isspace
+      
+      
+      FeFormat.istitle
+      
+      
+      FeFormat.isupper
+      
+      
+      FeFormat.join
+      
+      
+      FeFormat.ljust
+      
+      
+      FeFormat.lower
+      
+      
+      FeFormat.lstrip
+      
+      
+      FeFormat.maketrans
+      
+      
+      FeFormat.partition
+      
+      
+      FeFormat.removeprefix
+      
+      
+      FeFormat.removesuffix
+      
+      
+      FeFormat.replace
+      
+      
+      FeFormat.rfind
+      
+      
+      FeFormat.rindex
+      
+      
+      FeFormat.rjust
+      
+      
+      FeFormat.rpartition
+      
+      
+      FeFormat.rsplit
+      
+      
+      FeFormat.rstrip
+      
+      
+      FeFormat.split
+      
+      
+      FeFormat.splitlines
+      
+      
+      FeFormat.startswith
+      
+      
+      FeFormat.strip
+      
+      
+      FeFormat.swapcase
+      
+      
+      FeFormat.title
+      
+      
+      FeFormat.translate
+      
+      
+      FeFormat.upper
+      
+      
+      FeFormat.zfill
+      
+   
    
 
    

@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ThicknessType.capitalize
+      
+      
+      ThicknessType.casefold
+      
+      
+      ThicknessType.center
+      
+      
+      ThicknessType.count
+      
+      
+      ThicknessType.encode
+      
+      
+      ThicknessType.endswith
+      
+      
+      ThicknessType.expandtabs
+      
+      
+      ThicknessType.find
+      
+      
+      ThicknessType.format
+      
+      
+      ThicknessType.format_map
+      
+      
+      ThicknessType.index
+      
+      
+      ThicknessType.isalnum
+      
+      
+      ThicknessType.isalpha
+      
+      
+      ThicknessType.isascii
+      
+      
+      ThicknessType.isdecimal
+      
+      
+      ThicknessType.isdigit
+      
+      
+      ThicknessType.isidentifier
+      
+      
+      ThicknessType.islower
+      
+      
+      ThicknessType.isnumeric
+      
+      
+      ThicknessType.isprintable
+      
+      
+      ThicknessType.isspace
+      
+      
+      ThicknessType.istitle
+      
+      
+      ThicknessType.isupper
+      
+      
+      ThicknessType.join
+      
+      
+      ThicknessType.ljust
+      
+      
+      ThicknessType.lower
+      
+      
+      ThicknessType.lstrip
+      
+      
+      ThicknessType.maketrans
+      
+      
+      ThicknessType.partition
+      
+      
+      ThicknessType.removeprefix
+      
+      
+      ThicknessType.removesuffix
+      
+      
+      ThicknessType.replace
+      
+      
+      ThicknessType.rfind
+      
+      
+      ThicknessType.rindex
+      
+      
+      ThicknessType.rjust
+      
+      
+      ThicknessType.rpartition
+      
+      
+      ThicknessType.rsplit
+      
+      
+      ThicknessType.rstrip
+      
+      
+      ThicknessType.split
+      
+      
+      ThicknessType.splitlines
+      
+      
+      ThicknessType.startswith
+      
+      
+      ThicknessType.strip
+      
+      
+      ThicknessType.swapcase
+      
+      
+      ThicknessType.title
+      
+      
+      ThicknessType.translate
+      
+      
+      ThicknessType.upper
+      
+      
+      ThicknessType.zfill
+      
+   
    
 
    

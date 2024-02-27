@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ElementalDataType.capitalize
+      
+      
+      ElementalDataType.casefold
+      
+      
+      ElementalDataType.center
+      
+      
+      ElementalDataType.count
+      
+      
+      ElementalDataType.encode
+      
+      
+      ElementalDataType.endswith
+      
+      
+      ElementalDataType.expandtabs
+      
+      
+      ElementalDataType.find
+      
+      
+      ElementalDataType.format
+      
+      
+      ElementalDataType.format_map
+      
+      
+      ElementalDataType.index
+      
+      
+      ElementalDataType.isalnum
+      
+      
+      ElementalDataType.isalpha
+      
+      
+      ElementalDataType.isascii
+      
+      
+      ElementalDataType.isdecimal
+      
+      
+      ElementalDataType.isdigit
+      
+      
+      ElementalDataType.isidentifier
+      
+      
+      ElementalDataType.islower
+      
+      
+      ElementalDataType.isnumeric
+      
+      
+      ElementalDataType.isprintable
+      
+      
+      ElementalDataType.isspace
+      
+      
+      ElementalDataType.istitle
+      
+      
+      ElementalDataType.isupper
+      
+      
+      ElementalDataType.join
+      
+      
+      ElementalDataType.ljust
+      
+      
+      ElementalDataType.lower
+      
+      
+      ElementalDataType.lstrip
+      
+      
+      ElementalDataType.maketrans
+      
+      
+      ElementalDataType.partition
+      
+      
+      ElementalDataType.removeprefix
+      
+      
+      ElementalDataType.removesuffix
+      
+      
+      ElementalDataType.replace
+      
+      
+      ElementalDataType.rfind
+      
+      
+      ElementalDataType.rindex
+      
+      
+      ElementalDataType.rjust
+      
+      
+      ElementalDataType.rpartition
+      
+      
+      ElementalDataType.rsplit
+      
+      
+      ElementalDataType.rstrip
+      
+      
+      ElementalDataType.split
+      
+      
+      ElementalDataType.splitlines
+      
+      
+      ElementalDataType.startswith
+      
+      
+      ElementalDataType.strip
+      
+      
+      ElementalDataType.swapcase
+      
+      
+      ElementalDataType.title
+      
+      
+      ElementalDataType.translate
+      
+      
+      ElementalDataType.upper
+      
+      
+      ElementalDataType.zfill
+      
+   
    
 
    

@@ -1,0 +1,6 @@
+isdecimal
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ElementalDataType.isdecimal

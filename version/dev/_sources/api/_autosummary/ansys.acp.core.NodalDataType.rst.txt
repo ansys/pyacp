@@ -8,6 +8,154 @@
    
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      NodalDataType.capitalize
+      
+      
+      NodalDataType.casefold
+      
+      
+      NodalDataType.center
+      
+      
+      NodalDataType.count
+      
+      
+      NodalDataType.encode
+      
+      
+      NodalDataType.endswith
+      
+      
+      NodalDataType.expandtabs
+      
+      
+      NodalDataType.find
+      
+      
+      NodalDataType.format
+      
+      
+      NodalDataType.format_map
+      
+      
+      NodalDataType.index
+      
+      
+      NodalDataType.isalnum
+      
+      
+      NodalDataType.isalpha
+      
+      
+      NodalDataType.isascii
+      
+      
+      NodalDataType.isdecimal
+      
+      
+      NodalDataType.isdigit
+      
+      
+      NodalDataType.isidentifier
+      
+      
+      NodalDataType.islower
+      
+      
+      NodalDataType.isnumeric
+      
+      
+      NodalDataType.isprintable
+      
+      
+      NodalDataType.isspace
+      
+      
+      NodalDataType.istitle
+      
+      
+      NodalDataType.isupper
+      
+      
+      NodalDataType.join
+      
+      
+      NodalDataType.ljust
+      
+      
+      NodalDataType.lower
+      
+      
+      NodalDataType.lstrip
+      
+      
+      NodalDataType.maketrans
+      
+      
+      NodalDataType.partition
+      
+      
+      NodalDataType.removeprefix
+      
+      
+      NodalDataType.removesuffix
+      
+      
+      NodalDataType.replace
+      
+      
+      NodalDataType.rfind
+      
+      
+      NodalDataType.rindex
+      
+      
+      NodalDataType.rjust
+      
+      
+      NodalDataType.rpartition
+      
+      
+      NodalDataType.rsplit
+      
+      
+      NodalDataType.rstrip
+      
+      
+      NodalDataType.split
+      
+      
+      NodalDataType.splitlines
+      
+      
+      NodalDataType.startswith
+      
+      
+      NodalDataType.strip
+      
+      
+      NodalDataType.swapcase
+      
+      
+      NodalDataType.title
+      
+      
+      NodalDataType.translate
+      
+      
+      NodalDataType.upper
+      
+      
+      NodalDataType.zfill
+      
+   
    
 
    
