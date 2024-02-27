@@ -38,8 +38,7 @@ from ..._grpc_helpers.protocols import Editable, Readable
 @overload
 def variable_material_grpc_data_property(
     name: str, available_on_pb_type: None = None, unavailable_msg: None = None
-) -> Any:
-    ...
+) -> Any: ...
 
 
 @overload
@@ -47,8 +46,7 @@ def variable_material_grpc_data_property(
     name: str,
     available_on_pb_type: type[_PROTOBUF_T],
     unavailable_msg: str,
-) -> Any:
-    ...
+) -> Any: ...
 
 
 def variable_material_grpc_data_property(
@@ -119,8 +117,7 @@ def _constant_material_grpc_data_setter(
 @overload
 def constant_material_grpc_data_property(
     name: str, available_on_pb_type: None = None, unavailable_msg: None = None
-) -> Any:
-    ...
+) -> Any: ...
 
 
 @overload
@@ -128,8 +125,7 @@ def constant_material_grpc_data_property(
     name: str,
     available_on_pb_type: type[_PROTOBUF_T],
     unavailable_msg: str,
-) -> Any:
-    ...
+) -> Any: ...
 
 
 def constant_material_grpc_data_property(

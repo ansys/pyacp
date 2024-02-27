@@ -54,18 +54,15 @@ def to_ND_double_array_from_numpy_or_list(data: npt.NDArray[np.float64]) -> Doub
 
 
 @overload
-def to_numpy(array_pb: IntArray) -> npt.NDArray[np.int64]:
-    ...
+def to_numpy(array_pb: IntArray) -> npt.NDArray[np.int64]: ...
 
 
 @overload
-def to_numpy(array_pb: Int32Array) -> npt.NDArray[np.int32]:
-    ...
+def to_numpy(array_pb: Int32Array) -> npt.NDArray[np.int32]: ...
 
 
 @overload
-def to_numpy(array_pb: DoubleArray) -> npt.NDArray[np.float64]:
-    ...
+def to_numpy(array_pb: DoubleArray) -> npt.NDArray[np.float64]: ...
 
 
 def to_numpy(

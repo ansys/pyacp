@@ -6,9 +6,7 @@
 
         intro
         user_guide/index
-        {% if not skip_gallery %}
         examples/index
-        {% endif %}
         {% if not skip_api %}
         api/index
         {% endif %}
@@ -56,9 +54,8 @@ optimization of composite structures.
             Explains the concepts and terminology used in PyACP.
 
         .. grid-item-card:: :octicon:`play` Examples
-            {% if not skip_gallery %}:link: examples/index
+            :link: examples/index
             :link-type: doc
-            {% endif %}
 
             A collection of examples demonstrating the capabilities of PyACP.
 
