@@ -1,3 +1,25 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 from __future__ import annotations
 
 from collections.abc import Iterator
@@ -12,6 +34,7 @@ from ..._utils.property_protocols import ReadOnlyProperty
 from ..._utils.resource_paths import join as _rp_join
 from .._object_cache import ObjectCacheMixin, constructor_with_cache
 from ..base import CreatableTreeObject, TreeObject, TreeObjectBase
+from ..enums import StatusType
 from .exceptions import wrap_grpc_errors
 from .property_helper import _exposed_grpc_property, _wrap_doc
 from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableResourceStub
@@ -221,11 +244,18 @@ ParentT = TypeVar("ParentT", bound=TreeObject)
 
 
 def get_read_only_collection_property(
-    object_class: type[ValueT], stub_class: type[ReadableResourceStub], doc: str | None = None
+    object_class: type[ValueT],
+    stub_class: type[ReadableResourceStub],
+    doc: str | None = None,
+    requires_uptodate: bool = False,
 ) -> ReadOnlyProperty[Mapping[ValueT]]:
     """Define a read-only mapping of child tree objects."""
 
     def collection_property(self: ParentT) -> Mapping[ValueT]:
+        if requires_uptodate and hasattr(self, "status") and not self.status == StatusType.UPTODATE:
+            raise RuntimeError(
+                f"The object {self.name} must be up-to-date to access {object_class.__name__}."
+            )
         return Mapping._initialize_with_cache(
             channel=self._channel,
             collection_path=CollectionPath(

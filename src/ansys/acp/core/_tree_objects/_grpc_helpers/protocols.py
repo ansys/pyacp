@@ -1,3 +1,25 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 from __future__ import annotations
 
 from collections.abc import Iterable
@@ -23,8 +45,7 @@ class CreateRequest(Protocol):
     The CreateRequest message is used to create a new object in a collection.
     """
 
-    def __init__(self, collection_path: CollectionPath, name: str, properties: Message):
-        ...
+    def __init__(self, collection_path: CollectionPath, name: str, properties: Message): ...
 
 
 class ObjectInfo(Protocol):
@@ -77,8 +98,7 @@ class ReadableResourceStub(Protocol):
     This interface defines the read methods for ACP Resource service stubs.
     """
 
-    def __init__(self, channel: grpc.Channel):
-        ...
+    def __init__(self, channel: grpc.Channel): ...
 
     def Get(self, request: GetRequest) -> ObjectInfo:
         """RPC method for getting an object's information."""
@@ -124,7 +144,7 @@ class GrpcObjectBase(Protocol):
     """Interface definition for objects which are backed by a gRPC API."""
 
     __slots__: Iterable[str] = tuple()
-    _GRPC_PROPERTIES: tuple[str, ...]
+    _GRPC_PROPERTIES: tuple[str, ...] = tuple()
 
     def __str__(self) -> str:
         string_items = []
@@ -148,19 +168,15 @@ class GrpcObjectBase(Protocol):
 class Readable(Protocol):
     """Interface definition for readable objects."""
 
-    def _get(self) -> None:
-        ...
+    def _get(self) -> None: ...
 
-    def _get_if_stored(self) -> None:
-        ...
+    def _get_if_stored(self) -> None: ...
 
     @property
-    def _is_stored(self) -> bool:
-        ...
+    def _is_stored(self) -> bool: ...
 
     @property
-    def _channel(self) -> grpc.Channel:
-        ...
+    def _channel(self) -> grpc.Channel: ...
 
     _pb_object: Any
 
@@ -168,8 +184,6 @@ class Readable(Protocol):
 class Editable(Readable, Protocol):
     """Interface definition for editable objects."""
 
-    def _put(self) -> None:
-        ...
+    def _put(self) -> None: ...
 
-    def _put_if_stored(self) -> None:
-        ...
+    def _put_if_stored(self) -> None: ...

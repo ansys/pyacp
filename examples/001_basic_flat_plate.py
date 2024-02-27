@@ -1,3 +1,25 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 r"""
 .. _basic_flat_plate:
 
@@ -7,8 +29,8 @@ Basic PyACP Example
 Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
 a failure analysis with PyDPF-Composites.
 
-The starting point is a MAPDL DAT file which contains the mesh, material data and
-the boundary conditions. The `Create Input File  <../../user_guide/howto/create_input_file.html>`_
+The starting point is a MAPDL \*.dat file which contains the mesh, material data and
+the boundary conditions. The :ref:`input_file_for_pyacp`
 section describes how input files can be created.
 The \*.dat file is imported in PyACP to define the lay-up. PyACP exports the resulting model for PyMAPDL.
 Once the results are available, the RST file is loaded in PyDPF composites.
@@ -142,7 +164,7 @@ model.update()
 
 # %%
 # Show the fiber directions of a specific ply.
-modeling_ply = model.modeling_groups["modeling_group"].plies["ply_4_-45_UD"]
+modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply_4_-45_UD"]
 
 
 fiber_direction = modeling_ply.elemental_data.fiber_direction
@@ -156,7 +178,9 @@ plotter.show()
 
 
 # %%
-# Print the model tree for a quick overview.
+# Print the model tree for a quick overview. Note:
+# The model can also be opened in the ACP GUI.
+# See :ref:`view_the_model_in_the_acp_gui`.
 print_model(model)
 
 # %%

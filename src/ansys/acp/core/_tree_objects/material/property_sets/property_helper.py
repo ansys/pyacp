@@ -1,3 +1,25 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 from __future__ import annotations
 
 from typing import Any, overload
@@ -16,8 +38,7 @@ from ..._grpc_helpers.protocols import Editable, Readable
 @overload
 def variable_material_grpc_data_property(
     name: str, available_on_pb_type: None = None, unavailable_msg: None = None
-) -> Any:
-    ...
+) -> Any: ...
 
 
 @overload
@@ -25,8 +46,7 @@ def variable_material_grpc_data_property(
     name: str,
     available_on_pb_type: type[_PROTOBUF_T],
     unavailable_msg: str,
-) -> Any:
-    ...
+) -> Any: ...
 
 
 def variable_material_grpc_data_property(
@@ -97,8 +117,7 @@ def _constant_material_grpc_data_setter(
 @overload
 def constant_material_grpc_data_property(
     name: str, available_on_pb_type: None = None, unavailable_msg: None = None
-) -> Any:
-    ...
+) -> Any: ...
 
 
 @overload
@@ -106,8 +125,7 @@ def constant_material_grpc_data_property(
     name: str,
     available_on_pb_type: type[_PROTOBUF_T],
     unavailable_msg: str,
-) -> Any:
-    ...
+) -> Any: ...
 
 
 def constant_material_grpc_data_property(

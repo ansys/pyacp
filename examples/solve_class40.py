@@ -1,3 +1,25 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 """
 .. _solve_class40_example:
 
@@ -225,16 +247,16 @@ for angle in angles:
 # %%
 # Inspect the number of modeling groups and plies
 print(len(model.modeling_groups))
-print(len(model.modeling_groups["hull"].plies))
-print(len(model.modeling_groups["deck"].plies))
-print(len(model.modeling_groups["bulkhead"].plies))
-print(len(model.modeling_groups["keeltower"].plies))
+print(len(model.modeling_groups["hull"].modeling_plies))
+print(len(model.modeling_groups["deck"].modeling_plies))
+print(len(model.modeling_groups["bulkhead"].modeling_plies))
+print(len(model.modeling_groups["keeltower"].modeling_plies))
 
 
 # %%
 # Show the thickness of one of the plies
 model.update()
-modeling_ply = model.modeling_groups["deck"].plies["eglass_ud_02mm_0.5"]
+modeling_ply = model.modeling_groups["deck"].modeling_plies["eglass_ud_02mm_0.5"]
 thickness = modeling_ply.elemental_data.thickness
 assert thickness is not None
 thickness.get_pyvista_mesh(mesh=model.mesh).plot()
@@ -273,7 +295,7 @@ model.save(ACPH5_FILE, save_cache=True)
 
 # %%
 # Save the model as CDB for solving with PyMAPDL
-model.save_analysis_model(CDB_FILENAME_OUT)
+model.export_analysis_model(CDB_FILENAME_OUT)
 # Export the shell lay-up and material file for DPF Composites
 model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
 model.export_materials(MATML_FILE)

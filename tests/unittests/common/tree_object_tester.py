@@ -1,9 +1,39 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 from dataclasses import dataclass
 from typing import Any, Optional
 
 import pytest
 
 from .compare import assert_allclose
+
+
+@dataclass
+class PropertyWithConversion:
+    """A class to store a property which is converted when set."""
+
+    initial_value: Any
+    converted_value: Any
 
 
 @dataclass
@@ -107,9 +137,14 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
 
         def create_and_check(init_args: dict[str, Any]):
             create_method = getattr(parent_object, self.CREATE_METHOD_NAME)
+            init_args_final = {
+                key: getattr(val, "initial_value", val) for key, val in init_args.items()
+            }
 
-            new_object = create_method(**init_args)
+            new_object = create_method(**init_args_final)
             for key, val in init_args.items():
+                if isinstance(val, PropertyWithConversion):
+                    val = val.converted_value
                 assert_allclose(
                     actual=getattr(new_object, key),
                     desired=val,
@@ -130,10 +165,15 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
     @staticmethod
     def test_properties(tree_object, object_properties: ObjectPropertiesToTest):
         for prop, value in object_properties.read_write:
-            setattr(tree_object, prop, value)
+            if isinstance(value, PropertyWithConversion):
+                initial_value = value.initial_value
+                converted_value = value.converted_value
+            else:
+                initial_value = converted_value = value
+            setattr(tree_object, prop, initial_value)
             assert_allclose(
                 actual=getattr(tree_object, prop),
-                desired=value,
+                desired=converted_value,
             )
 
         for prop, value in object_properties.read_only:
