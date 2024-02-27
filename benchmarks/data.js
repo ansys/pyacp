@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708984958230,
+  "lastUpdate": 1709030205567,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -12972,6 +12972,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00018720944583621796",
             "extra": "mean: 802.8141649213187 usec\nrounds: 1146"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "da4a72a651067b433c288ff2a22f41dae1f2fc30",
+          "message": "Document loading an pyACP project in the ACP gui (#447)\n\n* Document loading an pyACP project in the ACP gui. \r\n* Rename get_local_acp_h5_file to get_local_acph5_file",
+          "timestamp": "2024-02-27T10:33:27Z",
+          "tree_id": "ea756304fe2296006e6a56b53085a27bab7ef9f0",
+          "url": "https://github.com/ansys-internal/pyacp/commit/da4a72a651067b433c288ff2a22f41dae1f2fc30"
+        },
+        "date": 1709030187060,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.419021934462526,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0036678207838257947",
+            "extra": "mean: 155.78697349999496 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1205.6965362164397,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000237013679134342",
+            "extra": "mean: 829.3960959181903 usec\nrounds: 1470"
           }
         ]
       }
