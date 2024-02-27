@@ -69,7 +69,7 @@ When an FE model is loaded, the format needs to be specified:
     model = acp.import_model(path="model.cdb", format="ansys:cdb")
 
 See :class:`.FeFormat` for a list of supported FE formats. Check out the
-`Create Input File  <user_guide/howto/create_input_file>`_ section to see how input files can be created.
+:ref:`input_file_for_pyacp` section to see how input files can be created.
 
 
 Start modelling
@@ -132,6 +132,8 @@ Or to show the thickness of a modeling ply:
 .. testcode::
 
     modeling_ply.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot()
+
+The model can also be opened in the ACP GUI. See :ref:`view_the_model_in_the_acp_gui`.
 
 
 Continue exploring
