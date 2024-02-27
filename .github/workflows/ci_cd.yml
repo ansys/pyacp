@@ -19,7 +19,7 @@ on:
         required: false
 
 env:
-  MAIN_PYTHON_VERSION: "3.9"
+  MAIN_PYTHON_VERSION: "3.12"
   PACKAGE_NAME: "ansys-acp-core"
   DOCUMENTATION_CNAME: "acp.docs.pyansys.com"
 
