@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709035211151,
+  "lastUpdate": 1709035979231,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13086,6 +13086,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00034318944749410415",
             "extra": "mean: 1.1004987874758374 msec\nrounds: 974"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "cd188e5569ba867ef0399632f72ae27cbdfc674f",
+          "message": "Add missing CI stages (#466)\n\nAdd or update the following CI stages:\r\n- `build-wheelhouse`: added, but commented-out while dependencies are private\r\n- `release`: added\r\n- `upload_docs_release`: added\r\n- `upload_docs_dev`: changed `needs` to `build` instead of `docs`\r\n- `build`: added `needs`",
+          "timestamp": "2024-02-27T12:10:03Z",
+          "tree_id": "1fd3952b662e22a14fcef327587cd290ce77f1bb",
+          "url": "https://github.com/ansys-internal/pyacp/commit/cd188e5569ba867ef0399632f72ae27cbdfc674f"
+        },
+        "date": 1709035959275,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.476151130385574,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005823377238320227",
+            "extra": "mean: 154.41270283333589 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1253.7735121454061,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022167346582783307",
+            "extra": "mean: 797.5922208540206 usec\nrounds: 1381"
           }
         ]
       }
