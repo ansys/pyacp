@@ -46,7 +46,7 @@
  
 <link href="_static/css/breadcrumbs.css" rel="stylesheet" />
 
-    <script src="_static/documentation_options.js?v=1a8b4908"></script>
+    <script src="_static/documentation_options.js?v=e7fb764e"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -537,12 +537,8 @@ pipx<span class="w"> </span>install<span class="w"> </span>poetry
 <p>At this point, you may need to restart your shell or editor to ensure that the new <code class="docutils literal notranslate"><span class="pre">poetry</span></code> command is available.</p>
 </div>
 </li>
-<li><p>Set up credentials for the PyAnsys internal PyPI instance</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>config<span class="w"> </span>http-basic.pyansys_private_pypi<span class="w"> </span>TOKEN<span class="w"> </span>&lt;TOKEN&gt;
-</pre></div>
-</div>
-<p>Where <code class="docutils literal notranslate"><span class="pre">&lt;TOKEN&gt;</span></code> should be replaced with the PAT for the internal PyPI instance. Reach out to a team member or the PyAnsys team for access instructions.</p>
-</li>
+</ol>
+<ol class="arabic" start="4">
 <li><p>Install the project and all its development dependencies using poetry. This also takes care of
 creating a new virtual environment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>install<span class="w"> </span>--with<span class="w"> </span>dev,test
@@ -608,7 +604,7 @@ container. First ensure that you have accepted the DPF Preview License Agreement
 ANSYS_DPF_ACCEPT_LA environment variable to Y
 (see <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/user_guide/getting_started_with_dpf_server.html#dpf-preview-license-agreement">DPF Preview License Agreement</a>
 ). In addition the  ANSYSLMD_LICENSE_FILE environment variable needs be set to a
-valid license server (e.g <a class="reference external" href="mailto:1055&#37;&#52;&#48;mylicenseserver&#46;com">1055<span>&#64;</span>mylicenseserver<span>&#46;</span>com</a>). Then start the docker containers with:</p>
+valid license server (e.g <code class="docutils literal notranslate"><span class="pre">1055&#64;mylicenseserver.com</span></code>). Then start the docker containers with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose/docker-compose-extras.yaml<span class="w"> </span>up<span class="w"> </span>-d
 </pre></div>
 </div>
