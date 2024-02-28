@@ -75,6 +75,7 @@ jobs:
       - uses: ansys/actions/doc-style@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          vale-version: "3.1.0"
 
   # TODO: uncomment once the dependencies are public
   # build-wheelhouse:
