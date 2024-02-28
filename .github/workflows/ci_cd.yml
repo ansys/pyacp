@@ -61,8 +61,8 @@ jobs:
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
-          poetry run pip install --force-reinstall git+https://github.com/ansys-internal/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp".insteadOf "https://github.com/ansys/ansys-api-acp"
+          poetry run pip install --force-reinstall git+https://github.com/ansys/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
 
       - name: Run pre-commit
         run: |
@@ -139,7 +139,7 @@ jobs:
           . .api_builder_venv/bin/activate
           python -m pip install --upgrade pip wheel
           mkdir .api_package
-          python -m pip wheel --no-deps --wheel-dir .api_package git+https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
+          python -m pip wheel --no-deps --wheel-dir .api_package git+https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
 
       - name: Install custom API branch package
         if: "${{ github.event.inputs.api_branch != '' }}"
@@ -235,7 +235,7 @@ jobs:
           . .api_builder_venv/bin/activate
           python -m pip install --upgrade pip wheel
           mkdir .api_package
-          python -m pip wheel --no-deps --wheel-dir .api_package git+https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
+          python -m pip wheel --no-deps --wheel-dir .api_package git+https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
 
       - name: Install custom API branch package
         if: "${{ github.event.inputs.api_branch != '' }}"
@@ -326,8 +326,8 @@ jobs:
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
-          poetry run pip install --force-reinstall git+https://github.com/ansys-internal/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-api-acp".insteadOf "https://github.com/ansys/ansys-api-acp"
+          poetry run pip install --force-reinstall git+https://github.com/ansys/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
 
       - name: Configure Local Product Launcher for ACP
         run: >
