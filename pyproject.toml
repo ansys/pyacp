@@ -10,22 +10,27 @@ description = "Python library for ACP - Ansys Composite PrepPost"
 readme = "README.rst"
 homepage = "https://acp.docs.pyansys.com"
 repository = "https://github.com/ansys-internal/pyacp/"
-
-authors = ["Ansys, Inc."]                                        # this is required
-maintainers = ["PyAnsys developers <pyansys.support@ansys.com>"]
+documentation = "https://acp.docs.pyansys.com"
+authors = ["ANSYS, Inc. <pyansys.core@ansys.com>"]                # this is required
+maintainers = ["ANSYS, Inc. <pyansys.core@ansys.com>"]
 license = "MIT"
+packages = [{ include = "ansys", from = "src" }]
+include = ["src/**/docker-compose.yaml"]
 
 # Less than critical but helpful
 classifiers = [
     "Development Status :: 4 - Beta",
-    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 
-packages = [{ include = "ansys", from = "src" }]
-
-include = ["src/**/docker-compose.yaml"]
+[tool.poetry.urls]
+Issues = "https://github.com/ansys-internal/pyacp/issues"
+Releases = "https://github.com/ansys-internal/pyacp/releases"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
