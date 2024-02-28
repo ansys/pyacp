@@ -89,7 +89,7 @@ def launcher_configuration(request):
     # check that the benchmark image exists
     docker.from_env().images.get(name=BENCHMARK_IMAGE_NAME)
 
-    image_name_filetransfer = "ghcr.io/ansys-internal/tools-filetransfer:latest"
+    image_name_filetransfer = "ghcr.io/ansys/tools-filetransfer:latest"
     docker.from_env().images.pull(image_name_filetransfer)
 
     license_server = request.config.getoption(LICENSE_SERVER_OPTION_KEY)

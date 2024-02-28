@@ -13,7 +13,7 @@ services:
     user: "1000:1000"
   ansys-tools-filetransfer:
     restart: unless-stopped
-    image: ${IMAGE_NAME_FILETRANSFER:-ghcr.io/ansys-internal/tools-filetransfer:latest}
+    image: ${IMAGE_NAME_FILETRANSFER:-ghcr.io/ansys/tools-filetransfer:latest}
     ports:
       - "${PORT_FILETRANSFER:-50556}:50000"
     working_dir: /home/container/workdir

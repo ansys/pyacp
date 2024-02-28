@@ -177,7 +177,7 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
         # If no binary is provided, use docker-compose for running
         # the ACP server.
         image_name = request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY)
-        image_name_filetransfer = "ghcr.io/ansys-internal/tools-filetransfer:latest"
+        image_name_filetransfer = "ghcr.io/ansys/tools-filetransfer:latest"
         # We distinguish between local and remote images by checking if
         # the image name contains a slash. This is somewhat crude, but works
         # for now.

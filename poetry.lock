@@ -469,7 +469,7 @@ grpcio = "^1.17"
 
 [package.source]
 type = "git"
-url = "https://github.com/ansys-internal/ansys-tools-filetransfer.git"
+url = "https://github.com/ansys/ansys-tools-filetransfer.git"
 reference = "main"
 resolved_reference = "9ec749b4ff649afca8be85b379330febb831d6df"
 
@@ -491,7 +491,7 @@ grpcio-health-checking = "^1.43"
 
 [package.source]
 type = "git"
-url = "https://github.com/ansys-internal/ansys-tools-local-product-launcher.git"
+url = "https://github.com/ansys/ansys-tools-local-product-launcher.git"
 reference = "main"
 resolved_reference = "7ba17aa7fe60f5a6c747c24341f15fe5318897d5"
 

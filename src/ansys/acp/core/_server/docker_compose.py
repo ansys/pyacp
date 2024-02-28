@@ -69,7 +69,7 @@ class DockerComposeLaunchConfig:
         metadata={METADATA_KEY_DOC: "Docker image running the ACP gRPC server."},
     )
     image_name_filetransfer: str = dataclasses.field(
-        default="ghcr.io/ansys-internal/tools-filetransfer:latest",
+        default="ghcr.io/ansys/tools-filetransfer:latest",
         metadata={METADATA_KEY_DOC: "Docker image running the file transfer service."},
     )
     license_server: str = dataclasses.field(
