@@ -2,7 +2,7 @@ version: '3.8'
 services:
   acp-grpc-server:
     restart: unless-stopped
-    image: ${IMAGE_NAME_PYACP:-ghcr.io/ansys-internal/pyacp:latest}
+    image: ${IMAGE_NAME_PYACP:-ghcr.io/ansys/pyacp:latest}
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
     ports:

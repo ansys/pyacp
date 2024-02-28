@@ -160,7 +160,7 @@ jobs:
           poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+          IMAGE_NAME: "ghcr.io/ansys/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
 
       - name: "Upload coverage report (HTML)"
         uses: actions/upload-artifact@v4
@@ -186,7 +186,7 @@ jobs:
           poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == '3.9' && github.ref == 'refs/heads/main') && ' ' || '--validate-benchmarks-only' }}
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+          IMAGE_NAME: "ghcr.io/ansys/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
 
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
@@ -259,7 +259,7 @@ jobs:
         run: >
           poetry run
           ansys-launcher configure ACP docker_compose
-          --image_name_pyacp=ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}
+          --image_name_pyacp=ghcr.io/ansys/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}
           --image_name_filetransfer=ghcr.io/ansys-internal/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False
@@ -274,7 +274,7 @@ jobs:
           xvfb-run poetry run make -C doc doctest
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+          IMAGE_NAME: "ghcr.io/ansys/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
           PYACP_DOC_SKIP_GALLERY: "true"
           PYACP_DOC_SKIP_API: "true"
 
@@ -333,7 +333,7 @@ jobs:
         run: >
           poetry run
           ansys-launcher configure ACP docker_compose
-          --image_name_pyacp=ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}
+          --image_name_pyacp=ghcr.io/ansys/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}
           --image_name_filetransfer=ghcr.io/ansys-internal/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False

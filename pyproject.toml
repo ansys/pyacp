@@ -9,7 +9,7 @@ version = "0.1.dev0"
 description = "Python library for ACP - Ansys Composite PrepPost"
 readme = "README.rst"
 homepage = "https://acp.docs.pyansys.com"
-repository = "https://github.com/ansys-internal/pyacp/"
+repository = "https://github.com/ansys/pyacp/"
 documentation = "https://acp.docs.pyansys.com"
 authors = ["ANSYS, Inc. <pyansys.core@ansys.com>"]                # this is required
 maintainers = ["ANSYS, Inc. <pyansys.core@ansys.com>"]
@@ -29,8 +29,8 @@ classifiers = [
 ]
 
 [tool.poetry.urls]
-Issues = "https://github.com/ansys-internal/pyacp/issues"
-Releases = "https://github.com/ansys-internal/pyacp/releases"
+Issues = "https://github.com/ansys/pyacp/issues"
+Releases = "https://github.com/ansys/pyacp/releases"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"

@@ -16,12 +16,12 @@ PyACP
     :target: https://pypi.org/project/ansys-acp-core
     :alt: PyPI
 
-.. |codecov| image:: https://codecov.io/gh/ansys-internal/pyacp/branch/main/graph/badge.svg
-    :target: https://codecov.io/gh/ansys-internal/pyacp
+.. |codecov| image:: https://codecov.io/gh/ansys/pyacp/branch/main/graph/badge.svg
+    :target: https://codecov.io/gh/ansys/pyacp
     :alt: Codecov
 
-.. |GH-CI| image:: https://github.com/ansys-internal/pyacp/actions/workflows/ci_cd.yml/badge.svg
-    :target: https://github.com/ansys-internal/pyacp/actions/workflows/ci_cd.yml
+.. |GH-CI| image:: https://github.com/ansys/pyacp/actions/workflows/ci_cd.yml/badge.svg
+    :target: https://github.com/ansys/pyacp/actions/workflows/ci_cd.yml
     :alt: GH-CI
 
 .. |MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
@@ -104,7 +104,7 @@ You will need to follow these steps:
 
     .. code-block:: bash
 
-        git clone https://github.com/ansys-internal/pyacp
+        git clone https://github.com/ansys/pyacp
         cd pyacp
 
 2.  Make sure you have the latest version of poetry:
@@ -235,7 +235,7 @@ This creates both a source distribution, and a wheel file. An alternative is
 License
 -------
 
-``PyACP`` is licensed under the MIT license. Please see the `LICENSE <https://github.com/ansys-internal/pyacp/raw/main/LICENSE>`_ for more details.
+``PyACP`` is licensed under the MIT license. Please see the `LICENSE <https://github.com/ansys/pyacp/raw/main/LICENSE>`_ for more details.
 
 .. _black: https://github.com/psf/black
 .. _flake8: https://flake8.pycqa.org/en/latest/
