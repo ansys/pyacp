@@ -158,10 +158,28 @@ jobs:
         working-directory: tests/unittests
         run: |
           docker pull $IMAGE_NAME
-          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME
+          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+
+      - name: "Upload coverage report (HTML)"
+        uses: actions/upload-artifact@v4
+        if: matrix.python-version == env.MAIN_PYTHON_VERSION
+        with:
+          name: coverage-report-html
+          path: htmlcov
+          retention-days: 7
+
+      # TODO: Uncomment once publicly released
+      #
+      # - name: "Upload coverage to Codecov"
+      #   uses: codecov/codecov-action@v4
+      #   if: matrix.python-version == env.MAIN_PYTHON_VERSION
+      #   env:
+      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      #   with:
+      #     files: coverage.xml
 
       - name: Benchmarks
         working-directory: tests/benchmarks
