@@ -52,8 +52,8 @@ jobs:
       # pre-commit needs all dev dependencies, since it also checks the test and example files
       - name: Install library, with all optional groups
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-tools-filetransfer".insteadOf "https://github.com/ansys/ansys-tools-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
           poetry install --with dev,test
@@ -126,8 +126,8 @@ jobs:
 
       - name: Install library, with test group
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-tools-filetransfer".insteadOf "https://github.com/ansys/ansys-tools-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
           poetry install --with test
@@ -160,7 +160,7 @@ jobs:
           poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+          IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
 
       - name: "Upload coverage report (HTML)"
         uses: actions/upload-artifact@v4
@@ -186,7 +186,7 @@ jobs:
           poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == '3.9' && github.ref == 'refs/heads/main') && ' ' || '--validate-benchmarks-only' }}
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+          IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
 
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
@@ -222,8 +222,8 @@ jobs:
 
       - name: Install library, with test,dev groups
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-tools-filetransfer".insteadOf "https://github.com/ansys/ansys-tools-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
           poetry install --with test,dev
@@ -259,8 +259,8 @@ jobs:
         run: >
           poetry run
           ansys-launcher configure ACP docker_compose
-          --image_name_pyacp=ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}
-          --image_name_filetransfer=ghcr.io/ansys-internal/tools-filetransfer:latest
+          --image_name_pyacp=ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}
+          --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False
           --overwrite_default
@@ -270,11 +270,11 @@ jobs:
       - name: Run doctest
         run: |
           docker pull $IMAGE_NAME
-          docker pull ghcr.io/ansys-internal/tools-filetransfer:latest
+          docker pull ghcr.io/ansys/tools-filetransfer:latest
           xvfb-run poetry run make -C doc doctest
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+          IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
           PYACP_DOC_SKIP_GALLERY: "true"
           PYACP_DOC_SKIP_API: "true"
 
@@ -317,8 +317,8 @@ jobs:
 
       - name: Install library, with dev group
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-tools-filetransfer".insteadOf "https://github.com/ansys/ansys-tools-filetransfer"
+          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
           poetry install --with dev
@@ -333,8 +333,8 @@ jobs:
         run: >
           poetry run
           ansys-launcher configure ACP docker_compose
-          --image_name_pyacp=ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}
-          --image_name_filetransfer=ghcr.io/ansys-internal/tools-filetransfer:latest
+          --image_name_pyacp=ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}
+          --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False
           --overwrite_default
