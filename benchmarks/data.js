@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709105160978,
+  "lastUpdate": 1709109230192,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13162,6 +13162,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002253401431633526",
             "extra": "mean: 910.9475393616242 usec\nrounds: 940"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "08c39db15dd5cd4160720179b6571851098110a7",
+          "message": "Add CONTRIBUTORS.md file (#470)",
+          "timestamp": "2024-02-28T09:30:12+01:00",
+          "tree_id": "ea16ebe12b88b6c2b71fe876c5c4c952f837b066",
+          "url": "https://github.com/ansys-internal/pyacp/commit/08c39db15dd5cd4160720179b6571851098110a7"
+        },
+        "date": 1709109207415,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 7.496678545699534,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004212581421357301",
+            "extra": "mean: 133.39240757143702 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1320.9031335290429,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018233782858097675",
+            "extra": "mean: 757.0577846448972 usec\nrounds: 1537"
           }
         ]
       }
