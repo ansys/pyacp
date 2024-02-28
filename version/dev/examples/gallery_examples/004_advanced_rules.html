@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Advanced rules example &#8212; PyACP</title>
 
@@ -30,15 +29,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=e5fbc548" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=f64ca0e9" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
@@ -47,14 +46,14 @@
  
 <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/js/table.js"></script>
+    <script src="../../_static/documentation_options.js?v=1a8b4908"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/table.js?v=b64f5182"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'examples/gallery_examples/004_advanced_rules';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
@@ -522,7 +521,7 @@ document.write(`
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="advanced-rules-example">
-<span id="sphx-glr-examples-gallery-examples-004-advanced-rules-py"></span><span id="id1"></span><h1>Advanced rules example<a class="headerlink" href="#advanced-rules-example" title="Permalink to this heading">#</a></h1>
+<span id="sphx-glr-examples-gallery-examples-004-advanced-rules-py"></span><span id="id1"></span><h1>Advanced rules example<a class="headerlink" href="#advanced-rules-example" title="Link to this heading">#</a></h1>
 <p>This example shows the usage of advanced rules such as geometrical rule,
 cut-off rule and variable offset rule. It also demonstrates how rules can be templated
 and reused with different parameters.
@@ -551,7 +550,7 @@ see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-e
 </pre></div>
 </div>
 <section id="start-acp-and-load-the-model">
-<h2>Start ACP and load the model<a class="headerlink" href="#start-acp-and-load-the-model" title="Permalink to this heading">#</a></h2>
+<h2>Start ACP and load the model<a class="headerlink" href="#start-acp-and-load-the-model" title="Link to this heading">#</a></h2>
 <p>Get example file from server</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tempdir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class"><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span></a><span class="p">()</span>
 <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tempdir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
@@ -577,7 +576,7 @@ The input file contains a flat plate with a single ply.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpwv5r25te
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmps8_pah8_
 mks
 </pre></div>
 </div>
@@ -605,7 +604,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="parametrized-parallel-rule">
-<h2>Parametrized Parallel Rule<a class="headerlink" href="#parametrized-parallel-rule" title="Permalink to this heading">#</a></h2>
+<h2>Parametrized Parallel Rule<a class="headerlink" href="#parametrized-parallel-rule" title="Link to this heading">#</a></h2>
 <p>Rules can be parametrized. This makes sense when a rule is used multiple times with different
 parameters. <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.LinkedSelectionRule.html#ansys.acp.core.LinkedSelectionRule" title="ansys.acp.core.LinkedSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinkedSelectionRule</span></code></a> shows what parameters are available for each rule.
 Here, the extent of the parallel rule is modified.</p>
@@ -669,7 +668,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="create-a-geometrical-selection-rule">
-<h2>Create a geometrical selection rule<a class="headerlink" href="#create-a-geometrical-selection-rule" title="Permalink to this heading">#</a></h2>
+<h2>Create a geometrical selection rule<a class="headerlink" href="#create-a-geometrical-selection-rule" title="Link to this heading">#</a></h2>
 <p>Add CAD geometry to the model.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">triangle_path</span></a> <span class="o">=</span> <span class="n">example_helpers</span><span class="o">.</span><span class="n">get_example_file</span><span class="p">(</span>
     <span class="n">example_helpers</span><span class="o">.</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">RULE_GEOMETRY_TRIANGLE</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a>
@@ -723,7 +722,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="create-a-cutoff-selection-rule">
-<h2>Create a cutoff selection rule<a class="headerlink" href="#create-a-cutoff-selection-rule" title="Permalink to this heading">#</a></h2>
+<h2>Create a cutoff selection rule<a class="headerlink" href="#create-a-cutoff-selection-rule" title="Link to this heading">#</a></h2>
 <p>Add the cutoff CAD geometry to the model.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cutoff_plane_path</span></a> <span class="o">=</span> <span class="n">example_helpers</span><span class="o">.</span><span class="n">get_example_file</span><span class="p">(</span>
     <span class="n">example_helpers</span><span class="o">.</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">CUT_OFF_GEOMETRY</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a>
@@ -776,7 +775,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="create-a-variable-offset-selection-rule">
-<h2>Create a variable offset selection rule<a class="headerlink" href="#create-a-variable-offset-selection-rule" title="Permalink to this heading">#</a></h2>
+<h2>Create a variable offset selection rule<a class="headerlink" href="#create-a-variable-offset-selection-rule" title="Link to this heading">#</a></h2>
 <p>Create the lookup table.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lookup_table</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_lookup_table_1d</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;lookup_table&quot;</span><span class="p">,</span>
@@ -837,7 +836,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="create-a-boolean-selection-rule">
-<h2>Create a boolean selection rule.<a class="headerlink" href="#create-a-boolean-selection-rule" title="Permalink to this heading">#</a></h2>
+<h2>Create a boolean selection rule.<a class="headerlink" href="#create-a-boolean-selection-rule" title="Link to this heading">#</a></h2>
 <p>Note: Creating a boolean selection rule and assigning it to a ply has the same
 effect as linking the individual rules to the ply directly. Boolean rules are still useful
 because they help to organize the rules and can be used to create more complex rules.
@@ -909,7 +908,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_004_advanced_rules_008.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.493 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.747 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-004-advanced-rules-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/0cf196fc9660b7411bd1ddcd17b24015/004_advanced_rules.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">004_advanced_rules.py</span></code></a></p>
@@ -998,7 +997,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>

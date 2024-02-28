@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Basic sandwich panel &#8212; PyACP</title>
 
@@ -30,15 +29,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=e5fbc548" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=f64ca0e9" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
@@ -47,14 +46,14 @@
  
 <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/js/table.js"></script>
+    <script src="../../_static/documentation_options.js?v=1a8b4908"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/table.js?v=b64f5182"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'examples/gallery_examples/002_sandwich_panel';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
@@ -522,7 +521,7 @@ document.write(`
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="basic-sandwich-panel">
-<span id="sphx-glr-examples-gallery-examples-002-sandwich-panel-py"></span><span id="id1"></span><h1>Basic sandwich panel<a class="headerlink" href="#basic-sandwich-panel" title="Permalink to this heading">#</a></h1>
+<span id="sphx-glr-examples-gallery-examples-002-sandwich-panel-py"></span><span id="id1"></span><h1>Basic sandwich panel<a class="headerlink" href="#basic-sandwich-panel" title="Link to this heading">#</a></h1>
 <p>Define a Composite Lay-up for a sandwich panel with PyACP. This example shows just the
 pyACP part of the setup. For a complete Composite analysis,
 see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP Example</span></a> example</p>
@@ -546,7 +545,7 @@ see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-e
 </pre></div>
 </div>
 <section id="start-acp-and-load-the-model">
-<h2>Start ACP and load the model<a class="headerlink" href="#start-acp-and-load-the-model" title="Permalink to this heading">#</a></h2>
+<h2>Start ACP and load the model<a class="headerlink" href="#start-acp-and-load-the-model" title="Link to this heading">#</a></h2>
 <p>Get example file from server.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tempdir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class"><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span></a><span class="p">()</span>
 <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tempdir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
@@ -571,7 +570,7 @@ It automatically creates a model based on the input file.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmprxswufyp
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpy3oyg_zl
 mks
 </pre></div>
 </div>
@@ -594,7 +593,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="create-the-sandwich-materials">
-<h2>Create the sandwich materials<a class="headerlink" href="#create-the-sandwich-materials" title="Permalink to this heading">#</a></h2>
+<h2>Create the sandwich materials<a class="headerlink" href="#create-the-sandwich-materials" title="Link to this heading">#</a></h2>
 <p>Create the UD material and  its corresponding fabric.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">engineering_constants_ud</span> <span class="o">=</span> <span class="n">ConstantEngineeringConstants</span><span class="o">.</span><span class="n">from_orthotropic_constants</span><span class="p">(</span>
     <span class="n">E1</span><span class="o">=</span><span class="mf">5e10</span><span class="p">,</span> <span class="n">E2</span><span class="o">=</span><span class="mf">1e10</span><span class="p">,</span> <span class="n">E3</span><span class="o">=</span><span class="mf">1e10</span><span class="p">,</span> <span class="n">nu12</span><span class="o">=</span><span class="mf">0.28</span><span class="p">,</span> <span class="n">nu13</span><span class="o">=</span><span class="mf">0.28</span><span class="p">,</span> <span class="n">nu23</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">G12</span><span class="o">=</span><span class="mf">5e9</span><span class="p">,</span> <span class="n">G23</span><span class="o">=</span><span class="mf">4e9</span><span class="p">,</span> <span class="n">G31</span><span class="o">=</span><span class="mf">4e9</span>
@@ -659,7 +658,7 @@ build repeating laminates.</p>
 </div>
 </section>
 <section id="create-the-layup">
-<h2>Create the Layup<a class="headerlink" href="#create-the-layup" title="Permalink to this heading">#</a></h2>
+<h2>Create the Layup<a class="headerlink" href="#create-the-layup" title="Link to this heading">#</a></h2>
 <p>Define a rosette and an oriented selection set and plot the orientations.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosette</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">dir1</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">dir2</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
 
@@ -769,7 +768,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
                     P3L1__top_ply
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.375 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  10.597 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-002-sandwich-panel-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/4c944221fcab68168f218e34d86697cc/002_sandwich_panel.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">002_sandwich_panel.py</span></code></a></p>
@@ -855,7 +854,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>

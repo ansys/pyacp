@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Visualizing the model &#8212; PyACP</title>
 
@@ -30,15 +29,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=e5fbc548" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=f64ca0e9" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
@@ -47,14 +46,14 @@
  
 <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/js/table.js"></script>
+    <script src="../../_static/documentation_options.js?v=1a8b4908"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/table.js?v=b64f5182"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/howto/visualize_model';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
@@ -526,7 +525,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section id="visualizing-the-model">
-<h1>Visualizing the model<a class="headerlink" href="#visualizing-the-model" title="Permalink to this heading">#</a></h1>
+<h1>Visualizing the model<a class="headerlink" href="#visualizing-the-model" title="Link to this heading">#</a></h1>
 <p>For this how-to guide, we will use an example model of a race car front wing.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tempfile</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pathlib</span>
@@ -554,7 +553,7 @@ document.write(`
 </pre></div>
 </div>
 <section id="showing-the-mesh">
-<h2>Showing the mesh<a class="headerlink" href="#showing-the-mesh" title="Permalink to this heading">#</a></h2>
+<h2>Showing the mesh<a class="headerlink" href="#showing-the-mesh" title="Link to this heading">#</a></h2>
 <p>The mesh data can be accessed using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.Model.mesh.html#ansys.acp.core.Model.mesh" title="ansys.acp.core.Model.mesh"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Model.mesh</span></code></a> attribute. This attribute is an instance of the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.MeshData.html#ansys.acp.core.MeshData" title="ansys.acp.core.MeshData"><code class="xref py py-class docutils literal notranslate"><span class="pre">MeshData</span></code></a> class, and can be converted to a PyVista mesh using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.MeshData.to_pyvista.html#ansys.acp.core.MeshData.to_pyvista" title="ansys.acp.core.MeshData.to_pyvista"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MeshData.to_pyvista()</span></code></a> method.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
@@ -576,7 +575,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="showing-the-directions">
-<span id="directions-plotter"></span><h2>Showing the directions<a class="headerlink" href="#showing-the-directions" title="Permalink to this heading">#</a></h2>
+<span id="directions-plotter"></span><h2>Showing the directions<a class="headerlink" href="#showing-the-directions" title="Link to this heading">#</a></h2>
 <p>To show the directions (for example normals, fiber directions, orientations, etc.) of the model, we can use the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.get_directions_plotter.html#ansys.acp.core.get_directions_plotter" title="ansys.acp.core.get_directions_plotter"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_directions_plotter()</span></code></a> helper function. This function takes the model, the components to visualize, and some optional parameters.</p>
 <p>The following example shows the orientation and fiber direction of a modeling ply.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">modeling_ply</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s1">&#39;nose&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">[</span><span class="s1">&#39;mp.nose.4&#39;</span><span class="p">]</span>
@@ -611,10 +610,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <p>The color scheme used in this plot for the various components matches the ACP GUI.</p>
 </section>
 <section id="showing-mesh-data">
-<h2>Showing mesh data<a class="headerlink" href="#showing-mesh-data" title="Permalink to this heading">#</a></h2>
+<h2>Showing mesh data<a class="headerlink" href="#showing-mesh-data" title="Link to this heading">#</a></h2>
 <p>In general, the mesh data relating to a specific ACP object can be accessed using the <code class="docutils literal notranslate"><span class="pre">elemental_data</span></code> and <code class="docutils literal notranslate"><span class="pre">nodal_data</span></code> attributes. These attributes represent either scalar or vector data.</p>
 <section id="scalar-data">
-<h3>Scalar data<a class="headerlink" href="#scalar-data" title="Permalink to this heading">#</a></h3>
+<h3>Scalar data<a class="headerlink" href="#scalar-data" title="Link to this heading">#</a></h3>
 <p>Scalar data can be converted to a PyVista mesh using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ScalarData.get_pyvista_mesh.html#ansys.acp.core.ScalarData.get_pyvista_mesh" title="ansys.acp.core.ScalarData.get_pyvista_mesh"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_pyvista_mesh</span></code></a> method. The base model mesh needs to be passed to this method.</p>
 <p>For example, we can plot the total thickness of the model using the following code:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">thickness_data</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span>
@@ -639,7 +638,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="vector-data">
-<h3>Vector data<a class="headerlink" href="#vector-data" title="Permalink to this heading">#</a></h3>
+<h3>Vector data<a class="headerlink" href="#vector-data" title="Link to this heading">#</a></h3>
 <p>Vector data can be visualized using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.get_directions_plotter.html#ansys.acp.core.get_directions_plotter" title="ansys.acp.core.get_directions_plotter"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_directions_plotter()</span></code></a> function shown in the preceding section <a class="reference internal" href="#directions-plotter"><span class="std std-ref">Showing the directions</span></a>. If you need more fine-grained control over the visualization, you can use the method shown in this section instead.</p>
 <p>Vector data can be converted to PyVista glyphs using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.VectorData.get_pyvista_glyphs.html#ansys.acp.core.VectorData.get_pyvista_glyphs" title="ansys.acp.core.VectorData.get_pyvista_glyphs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_pyvista_glyphs</span></code></a> method. Again, the base model mesh needs to be passed to this method.</p>
 <p>We can also choose a scaling factor to change the size of the vector glyphs, and a culling factor to reduce the number of glyphs plotted.</p>
@@ -696,7 +695,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </section>
 </section>
 <section id="showing-geometries">
-<h2>Showing geometries<a class="headerlink" href="#showing-geometries" title="Permalink to this heading">#</a></h2>
+<h2>Showing geometries<a class="headerlink" href="#showing-geometries" title="Link to this heading">#</a></h2>
 <p>CAD Geometries can be visualized using their <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.CADGeometry.visualization_mesh.html#ansys.acp.core.CADGeometry.visualization_mesh" title="ansys.acp.core.CADGeometry.visualization_mesh"><code class="xref py py-attr docutils literal notranslate"><span class="pre">visualization_mesh</span></code></a> attribute. This attribute contains a tessellated (triangle) mesh representing the geometry.</p>
 <p>For plotting, the tessellated mesh has a <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.TriangleMesh.to_pyvista.html#ansys.acp.core.TriangleMesh.to_pyvista" title="ansys.acp.core.TriangleMesh.to_pyvista"><code class="xref py py-meth docutils literal notranslate"><span class="pre">.to_pyvista</span></code></a> method that returns a PyVista <a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.PolyData.html#pyvista.PolyData" title="(in PyVista v0.43.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolyData</span></code></a> object. To see the triangle nature of the mesh, you can plot the mesh with the <code class="docutils literal notranslate"><span class="pre">show_edges</span></code> option set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cad_geometry</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">cad_geometries</span><span class="p">[</span><span class="s1">&#39;nose_geometry&#39;</span><span class="p">]</span>
@@ -800,7 +799,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>

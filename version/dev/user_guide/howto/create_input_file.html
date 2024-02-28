@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Input file for PyACP &#8212; PyACP</title>
 
@@ -30,15 +29,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=e5fbc548" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=f64ca0e9" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
@@ -47,14 +46,14 @@
  
 <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/js/table.js"></script>
+    <script src="../../_static/documentation_options.js?v=1a8b4908"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/table.js?v=b64f5182"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/howto/create_input_file';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
@@ -526,7 +525,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section id="input-file-for-pyacp">
-<span id="id1"></span><h1>Input file for PyACP<a class="headerlink" href="#input-file-for-pyacp" title="Permalink to this heading">#</a></h1>
+<span id="id1"></span><h1>Input file for PyACP<a class="headerlink" href="#input-file-for-pyacp" title="Link to this heading">#</a></h1>
 <p>To start working with PyACP, an input file that contains the mesh is required. PyACP supports reading
 the mesh from *.cdb and *.dat files with <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file.html#ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file" title="ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.from_cdb_or_dat_file()</span></code></a>. PyACP will read the mesh including - if they exist - coordinate systems, element, edge sets, and materials from the
 input file. After the layup has been created with PyACP a *.cdb file can be exported with <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.get_local_cdb_file.html#ansys.acp.core.ACPWorkflow.get_local_cdb_file" title="ansys.acp.core.ACPWorkflow.get_local_cdb_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.get_local_cdb_file()</span></code></a>. This file
@@ -534,7 +533,7 @@ contains all the information contained in the initial input file plus the layup 
 materials added by PyACP. An attempt is made to preserve the original input file as much as possible.
 This includes the original mesh, materials and boundary conditions.</p>
 <section id="create-an-input-file-with-ansys-mechanical">
-<h2>Create an input file with Ansys Mechanical<a class="headerlink" href="#create-an-input-file-with-ansys-mechanical" title="Permalink to this heading">#</a></h2>
+<h2>Create an input file with Ansys Mechanical<a class="headerlink" href="#create-an-input-file-with-ansys-mechanical" title="Link to this heading">#</a></h2>
 <p>One way to create an input file for PyACP is to create a static structural setup and export the solver input file. To do this, follow these steps:</p>
 <ul class="simple">
 <li><p>Open Ansys workbench</p></li>
@@ -554,7 +553,7 @@ This includes the original mesh, materials and boundary conditions.</p>
 </div>
 </section>
 <section id="create-an-input-file-with-ansys-mechanical-apdl">
-<h2>Create an input file with Ansys Mechanical APDL<a class="headerlink" href="#create-an-input-file-with-ansys-mechanical-apdl" title="Permalink to this heading">#</a></h2>
+<h2>Create an input file with Ansys Mechanical APDL<a class="headerlink" href="#create-an-input-file-with-ansys-mechanical-apdl" title="Link to this heading">#</a></h2>
 <ul>
 <li><p>Open Ansys Mechanical APDL</p></li>
 <li><p>Load or create a model with APDL commands</p></li>
@@ -570,7 +569,7 @@ This includes the original mesh, materials and boundary conditions.</p>
 <a class="reference internal" href="../../examples/gallery_examples/001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP Example</span></a> for a complete example.</p>
 </section>
 <section id="notes-on-material-handling">
-<h2>Notes on material handling<a class="headerlink" href="#notes-on-material-handling" title="Permalink to this heading">#</a></h2>
+<h2>Notes on material handling<a class="headerlink" href="#notes-on-material-handling" title="Link to this heading">#</a></h2>
 <p>Materials present in the input file (*.cdb or *.dat) are read into PyACP. The following rules apply:</p>
 <ul class="simple">
 <li><p>If the material has defined a UVID, the material is imported as locked. This means the material cannot be edited in PyACP. This is the case if the input file was created with Ansys Mechanical (see above). A UVID can be defined with the <code class="docutils literal notranslate"><span class="pre">MP,UVID</span></code> or <code class="docutils literal notranslate"><span class="pre">MPDATAT,UNBL,16,UVID</span></code> command.</p></li>
@@ -652,7 +651,7 @@ This includes the original mesh, materials and boundary conditions.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>

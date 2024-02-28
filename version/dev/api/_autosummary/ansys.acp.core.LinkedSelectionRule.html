@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>LinkedSelectionRule &#8212; PyACP</title>
 
@@ -30,15 +29,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=e5fbc548" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=f64ca0e9" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
@@ -47,14 +46,14 @@
  
 <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/js/table.js"></script>
+    <script src="../../_static/documentation_options.js?v=1a8b4908"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/table.js?v=b64f5182"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/ansys.acp.core.LinkedSelectionRule';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
@@ -539,22 +538,22 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section id="linkedselectionrule">
-<h1>LinkedSelectionRule<a class="headerlink" href="#linkedselectionrule" title="Permalink to this heading">#</a></h1>
+<h1>LinkedSelectionRule<a class="headerlink" href="#linkedselectionrule" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ansys.acp.core.LinkedSelectionRule">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">LinkedSelectionRule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selection_rule</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operation_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">BooleanOperationType.INTERSECT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_rule</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.LinkedSelectionRule" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">LinkedSelectionRule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selection_rule</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operation_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">BooleanOperationType.INTERSECT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_rule</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.LinkedSelectionRule" title="Link to this definition">#</a></dt>
 <dd><p>Defines selection rules linked to a Boolean Selection Rule or Modeling Ply.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>selection_rule</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.html#ansys.acp.core.BooleanSelectionRule" title="ansys.acp.core._tree_objects.boolean_selection_rule.BooleanSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">BooleanSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.CutoffSelectionRule.html#ansys.acp.core.CutoffSelectionRule" title="ansys.acp.core._tree_objects.cutoff_selection_rule.CutoffSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">CutoffSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.CylindricalSelectionRule.html#ansys.acp.core.CylindricalSelectionRule" title="ansys.acp.core._tree_objects.cylindrical_selection_rule.CylindricalSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">CylindricalSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.GeometricalSelectionRule.html#ansys.acp.core.GeometricalSelectionRule" title="ansys.acp.core._tree_objects.geometrical_selection_rule.GeometricalSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeometricalSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.ParallelSelectionRule.html#ansys.acp.core.ParallelSelectionRule" title="ansys.acp.core._tree_objects.parallel_selection_rule.ParallelSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParallelSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html#ansys.acp.core.SphericalSelectionRule" title="ansys.acp.core._tree_objects.spherical_selection_rule.SphericalSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphericalSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.TubeSelectionRule.html#ansys.acp.core.TubeSelectionRule" title="ansys.acp.core._tree_objects.tube_selection_rule.TubeSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">TubeSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.VariableOffsetSelectionRule.html#ansys.acp.core.VariableOffsetSelectionRule" title="ansys.acp.core._tree_objects.variable_offset_selection_rule.VariableOffsetSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">VariableOffsetSelectionRule</span></code></a>]) – Link to an existing selection rule.</p></li>
-<li><p><strong>operation_type</strong> (<a class="reference internal" href="ansys.acp.core.BooleanOperationType.html#ansys.acp.core.BooleanOperationType" title="ansys.acp.core._tree_objects.enums.BooleanOperationType"><code class="xref py py-class docutils literal notranslate"><span class="pre">BooleanOperationType</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">&lt;BooleanOperationType.INTERSECT:</span> <span class="pre">'intersect'&gt;</span></code>) – Determines how the selection rule is combined with other selection rules.</p></li>
-<li><p><strong>template_rule</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">False</span></code>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the selection rule is a template rule. This means the parameter
+<li><p><strong>selection_rule</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.html#ansys.acp.core.BooleanSelectionRule" title="ansys.acp.core._tree_objects.boolean_selection_rule.BooleanSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">BooleanSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.CutoffSelectionRule.html#ansys.acp.core.CutoffSelectionRule" title="ansys.acp.core._tree_objects.cutoff_selection_rule.CutoffSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">CutoffSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.CylindricalSelectionRule.html#ansys.acp.core.CylindricalSelectionRule" title="ansys.acp.core._tree_objects.cylindrical_selection_rule.CylindricalSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">CylindricalSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.GeometricalSelectionRule.html#ansys.acp.core.GeometricalSelectionRule" title="ansys.acp.core._tree_objects.geometrical_selection_rule.GeometricalSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeometricalSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.ParallelSelectionRule.html#ansys.acp.core.ParallelSelectionRule" title="ansys.acp.core._tree_objects.parallel_selection_rule.ParallelSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParallelSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html#ansys.acp.core.SphericalSelectionRule" title="ansys.acp.core._tree_objects.spherical_selection_rule.SphericalSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphericalSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.TubeSelectionRule.html#ansys.acp.core.TubeSelectionRule" title="ansys.acp.core._tree_objects.tube_selection_rule.TubeSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">TubeSelectionRule</span></code></a>, <a class="reference internal" href="ansys.acp.core.VariableOffsetSelectionRule.html#ansys.acp.core.VariableOffsetSelectionRule" title="ansys.acp.core._tree_objects.variable_offset_selection_rule.VariableOffsetSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">VariableOffsetSelectionRule</span></code></a>]</span>) – Link to an existing selection rule.</p></li>
+<li><p><strong>operation_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.BooleanOperationType.html#ansys.acp.core.BooleanOperationType" title="ansys.acp.core._tree_objects.enums.BooleanOperationType"><code class="xref py py-class docutils literal notranslate"><span class="pre">BooleanOperationType</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">&lt;BooleanOperationType.INTERSECT:</span> <span class="pre">'intersect'&gt;</span></code>) – Determines how the selection rule is combined with other selection rules.</p></li>
+<li><p><strong>template_rule</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">False</span></code>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the selection rule is a template rule. This means the parameter
 values are taken from the <code class="docutils literal notranslate"><span class="pre">parameter_1</span></code> and <code class="docutils literal notranslate"><span class="pre">parameter_2</span></code> attributes,
 not from the linked selection rule.</p></li>
-<li><p><strong>parameter_1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – First parameter value of the selection rule. Only applies if <code class="docutils literal notranslate"><span class="pre">template_rule</span></code>
+<li><p><strong>parameter_1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – First parameter value of the selection rule. Only applies if <code class="docutils literal notranslate"><span class="pre">template_rule</span></code>
 is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
-<li><p><strong>parameter_2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Second parameter value of the selection rule. Only applies if <code class="docutils literal notranslate"><span class="pre">template_rule</span></code>
+<li><p><strong>parameter_2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Second parameter value of the selection rule. Only applies if <code class="docutils literal notranslate"><span class="pre">template_rule</span></code>
 is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
 </ul>
 </dd>
@@ -701,7 +700,7 @@ a Boolean Selection Rule, only to a Modeling Ply.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>

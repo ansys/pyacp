@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Class 40 example &#8212; PyACP</title>
 
@@ -30,15 +29,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=e5fbc548" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=f64ca0e9" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
@@ -47,14 +46,14 @@
  
 <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/js/table.js"></script>
+    <script src="../../_static/documentation_options.js?v=1a8b4908"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/table.js?v=b64f5182"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'examples/gallery_examples/solve_class40';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
@@ -522,7 +521,7 @@ document.write(`
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="class-40-example">
-<span id="solve-class40-example"></span><span id="sphx-glr-examples-gallery-examples-solve-class40-py"></span><h1>Class 40 example<a class="headerlink" href="#class-40-example" title="Permalink to this heading">#</a></h1>
+<span id="solve-class40-example"></span><span id="sphx-glr-examples-gallery-examples-solve-class40-py"></span><h1>Class 40 example<a class="headerlink" href="#class-40-example" title="Link to this heading">#</a></h1>
 <p>Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
 a failure analysis with PyDPF-Composites.</p>
 <p>The starting point is a MAPDL CDB file which contains the mesh, material data and
@@ -533,7 +532,7 @@ and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDP
 <p>The MAPDL and DPF services are run in docker containers which share a volume (working
 directory).</p>
 <section id="setup-connect-to-pyacp-server">
-<h2>Setup: Connect to PyACP Server<a class="headerlink" href="#setup-connect-to-pyacp-server" title="Permalink to this heading">#</a></h2>
+<h2>Setup: Connect to PyACP Server<a class="headerlink" href="#setup-connect-to-pyacp-server" title="Link to this heading">#</a></h2>
 <p>Import standard library and third-party dependencies</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
@@ -552,7 +551,7 @@ directory).</p>
 </div>
 </section>
 <section id="load-mesh-and-materials-from-cdb-file">
-<h2>Load mesh and materials from CDB file<a class="headerlink" href="#load-mesh-and-materials-from-cdb-file" title="Permalink to this heading">#</a></h2>
+<h2>Load mesh and materials from CDB file<a class="headerlink" href="#load-mesh-and-materials-from-cdb-file" title="Link to this heading">#</a></h2>
 <p>Define the directory in which the input files are stored.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">EXAMPLES_DIR</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/os.html#os.environ" title="os.environ" class="sphx-glr-backref-module-os sphx-glr-backref-type-py-data"><span class="n">os</span><span class="o">.</span><span class="n">environ</span></a><span class="p">[</span><span class="s2">&quot;REPO_ROOT&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="s2">&quot;examples&quot;</span>
@@ -600,10 +599,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="build-composite-lay-up">
-<h2>Build Composite Lay-up<a class="headerlink" href="#build-composite-lay-up" title="Permalink to this heading">#</a></h2>
+<h2>Build Composite Lay-up<a class="headerlink" href="#build-composite-lay-up" title="Link to this heading">#</a></h2>
 <p>Create the model (unit system is MPA)</p>
 <section id="materials">
-<h3>Materials<a class="headerlink" href="#materials" title="Permalink to this heading">#</a></h3>
+<h3>Materials<a class="headerlink" href="#materials" title="Link to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat_corecell_81kg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span>
 <span class="n">mat_corecell_81kg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Core Cell 81kg&quot;</span>
 <span class="n">mat_corecell_81kg</span><span class="o">.</span><span class="n">ply_type</span> <span class="o">=</span> <span class="s2">&quot;isotropic_homogeneous_core&quot;</span>
@@ -619,7 +618,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="fabrics">
-<h3>Fabrics<a class="headerlink" href="#fabrics" title="Permalink to this heading">#</a></h3>
+<h3>Fabrics<a class="headerlink" href="#fabrics" title="Link to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">corecell_81kg_5mm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Corecell 81kg&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">mat_corecell_81kg</span>
 <span class="p">)</span>
@@ -631,7 +630,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="rosettes">
-<h3>Rosettes<a class="headerlink" href="#rosettes" title="Permalink to this heading">#</a></h3>
+<h3>Rosettes<a class="headerlink" href="#rosettes" title="Link to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros_deck</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ros_deck&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.9334</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0481</span><span class="p">,</span> <span class="mf">1.693</span><span class="p">))</span>
 <span class="n">ros_hull</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ros_hull&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.3711</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0506</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2551</span><span class="p">))</span>
 <span class="n">ros_bulkhead</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span>
@@ -644,7 +643,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="oriented-selection-sets">
-<h3>Oriented Selection Sets<a class="headerlink" href="#oriented-selection-sets" title="Permalink to this heading">#</a></h3>
+<h3>Oriented Selection Sets<a class="headerlink" href="#oriented-selection-sets" title="Link to this heading">#</a></h3>
 <p>Note: the element sets are imported from the initial mesh (CDB)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oss_deck</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;oss_deck&quot;</span><span class="p">,</span>
@@ -715,7 +714,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="modeling-plies">
-<h3>Modeling Plies<a class="headerlink" href="#modeling-plies" title="Permalink to this heading">#</a></h3>
+<h3>Modeling Plies<a class="headerlink" href="#modeling-plies" title="Link to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">ply_material</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span> <span class="n">oss</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">mg</span><span class="o">.</span><span class="n">create_modeling_ply</span><span class="p">(</span>
         <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
@@ -830,7 +829,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </section>
 </section>
 <section id="write-out-acp-model">
-<h2>Write out ACP Model<a class="headerlink" href="#write-out-acp-model" title="Permalink to this heading">#</a></h2>
+<h2>Write out ACP Model<a class="headerlink" href="#write-out-acp-model" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ACPH5_FILE</span></a> <span class="o">=</span> <span class="s2">&quot;class40.acph5&quot;</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME_OUT</span></a> <span class="o">=</span> <span class="s2">&quot;class40_analysis_model.cdb&quot;</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">COMPOSITE_DEFINITIONS_H5</span></a> <span class="o">=</span> <span class="s2">&quot;ACPCompositeDefinitions.h5&quot;</span>
@@ -864,7 +863,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="solve-with-pymapdl">
-<h2>Solve with PyMAPDL<a class="headerlink" href="#solve-with-pymapdl" title="Permalink to this heading">#</a></h2>
+<h2>Solve with PyMAPDL<a class="headerlink" href="#solve-with-pymapdl" title="Link to this heading">#</a></h2>
 <p>Import PyMAPDL and connect to its server</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
 
@@ -876,7 +875,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     08:35:40  FEB 28, 2024 CP=      1.361\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.461\n\n\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     09:15:48  FEB 28, 2024 CP=      1.291\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 23.1BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.379\n\n\n&#39;
 </pre></div>
 </div>
 <p>Solve the model</p>
@@ -887,7 +886,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       1.486   TIME= 08:35:40
+ *** NOTE ***                            CP =       1.399   TIME= 09:15:48
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -912,7 +911,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  23.1BETA ***
  Ansys Mechanical Enterprise
- 00000000  VERSION=LINUX x64     08:35:40  FEB 28, 2024 CP=      1.529
+ 00000000  VERSION=LINUX x64     09:15:48  FEB 28, 2024 CP=      1.438
 
 
 
@@ -928,14 +927,14 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       1.530   TIME= 08:35:40
+ *** NOTE ***                            CP =       1.439   TIME= 09:15:48
  Poisson&#39;s ratio PR input has been converted to NU input.
 
- *** NOTE ***                            CP =       1.536   TIME= 08:35:40
+ *** NOTE ***                            CP =       1.445   TIME= 09:15:48
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       1.537   TIME= 08:35:40
+ *** NOTE ***                            CP =       1.445   TIME= 09:15:48
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -953,7 +952,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       1.630   TIME= 08:35:41
+ *** NOTE ***                            CP =       1.531   TIME= 09:15:48
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -1002,10 +1001,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      3.222   0.000811
-        2        88  BEAM188       0.006   0.000067
-        3        22  SHELL181      0.006   0.000267
- Time at end of element matrix formulation CP = 4.89842796.
+        1      3973  SHELL181      3.134   0.000789
+        2        88  BEAM188       0.005   0.000053
+        3        22  SHELL181      0.005   0.000245
+ Time at end of element matrix formulation CP = 4.70019293.
 
  SPARSE MATRIX DIRECT SOLVER.
   Number of equations =       24096,    Maximum wavefront =     66
@@ -1013,7 +1012,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
   Memory required for in-core solution     =    58.542 MB
   Memory required for out-of-core solution =    24.642 MB
 
- *** NOTE ***                            CP =       4.996   TIME= 08:35:44
+ *** NOTE ***                            CP =       4.778   TIME= 09:15:51
  The Sparse Matrix Solver is currently running in the in-core memory
  mode.  This memory mode uses the most amount of memory in order to
  avoid using the hard drive as much as possible, which most often
@@ -1028,16 +1027,16 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      7.094   0.001785
-        2        88  BEAM188       0.013   0.000146
-        3        22  SHELL181      0.010   0.000435
+        1      3973  SHELL181      6.663   0.001677
+        2        88  BEAM188       0.009   0.000105
+        3        22  SHELL181      0.009   0.000405
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      0.081   0.000020
-        2        88  BEAM188       0.002   0.000022
-        3        22  SHELL181      0.000   0.000021
+        1      3973  SHELL181      0.063   0.000016
+        2        88  BEAM188       0.001   0.000017
+        3        22  SHELL181      0.000   0.000016
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
  *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -1076,7 +1075,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="post-processing-with-dpf-composites">
-<h2>Post-Processing with DPF composites<a class="headerlink" href="#post-processing-with-dpf-composites" title="Permalink to this heading">#</a></h2>
+<h2>Post-Processing with DPF composites<a class="headerlink" href="#post-processing-with-dpf-composites" title="Link to this heading">#</a></h2>
 <p>Setup: configure imports and connect to the pyDPF Composites server
 and load the dpf composites plugin</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf.composites.composite_model</span> <span class="kn">import</span> <span class="n">CompositeModel</span>
@@ -1146,7 +1145,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_solve_class40_007.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  27.507 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  29.174 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-solve-class40-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/9534ac29e0bc2250f1fc6a51c9f799b1/solve_class40.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">solve_class40.py</span></code></a></p>
@@ -1242,7 +1241,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>
