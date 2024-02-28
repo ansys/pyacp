@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709111704496,
+  "lastUpdate": 1709132163573,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13238,6 +13238,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00060131183378858",
             "extra": "mean: 996.7652797503945 usec\nrounds: 479"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "37798125+RobPasMue@users.noreply.github.com",
+            "name": "Roberto Pastor Muela",
+            "username": "RobPasMue"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9f828bab7fb9668023369baa1d226741c14f7350",
+          "message": "feat: tech review (#471)\n\n- Update badge on main README\r\n- Clean up of main README refs to private PyPI and tokens\r\n- Ordering contributors in alphabetical order\r\n- Use ``ansys-api-acp`` package version from public PyPI\r\n- Formatting ``pyproject.toml`` and missing classifiers\r\n- Remove private PyPI refs\r\n- Add AUTHORS file\r\n- Add year range to LICENSE file\r\n- Update to vale 3.1.0 (foreseeing change in ansys/actions v6)\r\n- Build wheel using ansys/actions v5\r\n- Change ansys-api-acp URLs\r\n- Upload benchmark tests on MAIN_PYTHON_VERSION",
+          "timestamp": "2024-02-28T15:51:59+01:00",
+          "tree_id": "bbdc5c8aa7f0349679ab3a4c761af3bf94bba158",
+          "url": "https://github.com/ansys-internal/pyacp/commit/9f828bab7fb9668023369baa1d226741c14f7350"
+        },
+        "date": 1709132142614,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 3.849928819821059,
+            "unit": "iter/sec",
+            "range": "stddev: 0.017785110404899763",
+            "extra": "mean: 259.745061999998 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 879.1896476139943,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0003560319194097233",
+            "extra": "mean: 1.1374110269767952 msec\nrounds: 1075"
           }
         ]
       }
