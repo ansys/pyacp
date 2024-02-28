@@ -148,7 +148,7 @@ The input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmpo4w3rr3d
+    /tmp/tmp70c73_hn
     mks
 
 
@@ -933,7 +933,7 @@ Plot the ply extent.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  10.893 seconds)
+   **Total running time of the script:** ( 0 minutes  10.020 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_004_advanced_rules.py:
