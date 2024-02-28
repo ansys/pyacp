@@ -394,7 +394,7 @@ jobs:
       - name: Upload PDF Documentation
         uses: actions/upload-artifact@v4
         with:
-          name: Documentation-pdf
+          name: documentation-pdf
           path: doc/build/latex/ansys-acp-core.pdf
           retention-days: 7
         if: ${{ matrix.build_type == 'full' }}
@@ -407,31 +407,11 @@ jobs:
     needs: [code-style, testing, doc-style, docs, doctest]
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Build library source and wheel artifacts
+        uses: ansys/actions/build-library@v5
         with:
+          library-name: ${{ env.PACKAGE_NAME }}
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
-
-      - name: Build packages
-        run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
-          pip install -U pip
-          pip install 'poetry!=1.7.0'
-          poetry build
-
-      - name: Validate packages
-        run: |
-          pip install twine
-          twine check dist/*
-
-      - name: Upload packages
-        uses: actions/upload-artifact@v4
-        with:
-          name: Packages
-          path: dist/
-          retention-days: 7
 
   release:
     name: Release project
