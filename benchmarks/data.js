@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709035979231,
+  "lastUpdate": 1709105160978,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13124,6 +13124,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00022167346582783307",
             "extra": "mean: 797.5922208540206 usec\nrounds: 1381"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e8945ee87338284d3d1603b985ddcbcf39dd5713",
+          "message": "Add coverage upload in CI testing (#467)\n\n* Generate and upload coverage information in CI.\r\n* Add coverage configuration to ``pyproject.toml``.",
+          "timestamp": "2024-02-28T08:22:16+01:00",
+          "tree_id": "798417b05ba9137f25c2eed86abbdfa3c715ace4",
+          "url": "https://github.com/ansys-internal/pyacp/commit/e8945ee87338284d3d1603b985ddcbcf39dd5713"
+        },
+        "date": 1709105136922,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.127167920540115,
+            "unit": "iter/sec",
+            "range": "stddev: 0.015359454909083909",
+            "extra": "mean: 195.03944779999642 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1097.7580560794777,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002253401431633526",
+            "extra": "mean: 910.9475393616242 usec\nrounds: 940"
           }
         ]
       }
