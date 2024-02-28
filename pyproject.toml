@@ -9,7 +9,7 @@ version = "0.1.dev0"
 description = "Python library for ACP - Ansys Composite PrepPost"
 readme = "README.rst"
 homepage = "https://acp.docs.pyansys.com"
-repository = "https://github.com/ansys-internal/pyacp/"
+repository = "https://github.com/ansys/pyacp/"
 documentation = "https://acp.docs.pyansys.com"
 authors = ["ANSYS, Inc. <pyansys.core@ansys.com>"]                # this is required
 maintainers = ["ANSYS, Inc. <pyansys.core@ansys.com>"]
@@ -29,8 +29,8 @@ classifiers = [
 ]
 
 [tool.poetry.urls]
-Issues = "https://github.com/ansys-internal/pyacp/issues"
-Releases = "https://github.com/ansys-internal/pyacp/releases"
+Issues = "https://github.com/ansys/pyacp/issues"
+Releases = "https://github.com/ansys/pyacp/releases"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
@@ -40,8 +40,8 @@ packaging = ">=15.0"
 typing-extensions = "^4.5.0"
 ansys-api-acp = "^0.1.dev7"
 ansys-tools-path = "^0"
-ansys-tools-local-product-launcher = { git = "https://github.com/ansys-internal/ansys-tools-local-product-launcher.git", branch = "main" }
-ansys-tools-filetransfer = { git = "https://github.com/ansys-internal/ansys-tools-filetransfer.git", branch = "main" }
+ansys-tools-local-product-launcher = { git = "https://github.com/ansys/ansys-tools-local-product-launcher.git", branch = "main" }
+ansys-tools-filetransfer = { git = "https://github.com/ansys/ansys-tools-filetransfer.git", branch = "main" }
 pyvista = ">=0.42.0"
 
 # Dependencies for the examples. Update also the 'dev' group when

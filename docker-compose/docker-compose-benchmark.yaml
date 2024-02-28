@@ -6,7 +6,12 @@ services:
     # 'ConnectionTest.Dockerfile', since that image switches from the 'root' user
     # to the 'container' user in the ENTRYPOINT script.
     image: ${IMAGE_NAME_PYACP:-pyacp-benchmark-runner}
-    command: ["${PYACP_DELAY:-100ms}", "${PYACP_RATE:-1mbit}", "--server-address=0.0.0.0:50051"]
+    command:
+      [
+        "${PYACP_DELAY:-100ms}",
+        "${PYACP_RATE:-1mbit}",
+        "--server-address=0.0.0.0:50051"
+      ]
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
     ports:
@@ -19,7 +24,7 @@ services:
       - NET_ADMIN
   ansys-tools-filetransfer:
     restart: unless-stopped
-    image: ${IMAGE_NAME_FILETRANSFER:-ghcr.io/ansys-internal/tools-filetransfer:latest}
+    image: ${IMAGE_NAME_FILETRANSFER:-ghcr.io/ansys/tools-filetransfer:latest}
     ports:
       - "${PORT_FILETRANSFER:-50556}:50000"
     working_dir: /home/container/workdir
