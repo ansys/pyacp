@@ -4,14 +4,14 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "ansys-acp-core"
-version = "0.0.dev0"
+version = "0.1.dev0"
 
 description = "Python library for ACP - Ansys Composite PrepPost"
 readme = "README.rst"
 homepage = "https://acp.docs.pyansys.com"
 repository = "https://github.com/ansys-internal/pyacp/"
 
-authors = ["Ansys, Inc."] # this is required
+authors = ["Ansys, Inc."]                                        # this is required
 maintainers = ["PyAnsys developers <pyansys.support@ansys.com>"]
 license = "MIT"
 
@@ -23,9 +23,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
-packages = [
-    { include = "ansys", from = "src" },
-]
+packages = [{ include = "ansys", from = "src" }]
 
 include = ["src/**/docker-compose.yaml"]
 
@@ -65,10 +63,10 @@ numpydoc = "^1.6.0"
 ansys-sphinx-theme = "^0"
 pypandoc = "^1.13"
 sphinx-gallery = "^0.13.0"
-sphinx-design = "^0.5.0" # undeclared indirect dependency via PyVista
+sphinx-design = "^0.5.0"                                          # undeclared indirect dependency via PyVista
 sphinx-jinja = "^2.0.2"
 ipykernel = "^6.22.0"
-pyvista = { version = ">=0.42.0", extras=["jupyter", "trame"] }
+pyvista = { version = ">=0.42.0", extras = ["jupyter", "trame"] }
 
 # Repeat optional dependencies from the main group which are
 # included in the 'examples' extra. This is done s.t. the install
@@ -92,7 +90,12 @@ docker = "^7.0"
 [tool.poetry.extras]
 # For the examples, we keep an extra to simplify installing these dependencies for the
 # end user.
-examples = ["ansys-mapdl-core", "ansys-dpf-core", "ansys-dpf-composites", "ansys-mechanical-core"]
+examples = [
+    "ansys-mapdl-core",
+    "ansys-dpf-core",
+    "ansys-dpf-composites",
+    "ansys-mechanical-core",
+]
 
 [tool.poetry.plugins."ansys.tools.local_product_launcher.launcher"]
 "ACP.direct" = "ansys.acp.core._server.direct:DirectLauncher"
@@ -131,7 +134,7 @@ ignore-words-list = 'ans,uptodate,notuptodate,eyt'
 quiet-level = 3
 
 [tool.mypy]
-python_version = 3.9
+python_version = "3.9"
 mypy_path = "$MYPY_CONFIG_FILE_DIR/src:$MYPY_CONFIG_FILE_DIR/tests"
 disable_error_code = "type-abstract"
 show_error_context = true
@@ -147,7 +150,7 @@ module = [
     "ansys.dpf.core.core",
     "ansys.dpf.core.*",
     "ansys.tools.path",
-    ".conftest", # mypy doesn't seem to find the root 'conftest.py' when imported in 'benchmarks/conftest.py'
+    ".conftest",           # mypy doesn't seem to find the root 'conftest.py' when imported in 'benchmarks/conftest.py'
 ]
 ignore_missing_imports = true
 
@@ -160,6 +163,4 @@ ignore_missing_imports = true
 branch = true
 
 [tool.coverage.report]
-exclude_also = [
-    "if (typing\\.)?TYPE_CHECKING:",
-]
+exclude_also = ["if (typing\\.)?TYPE_CHECKING:"]
