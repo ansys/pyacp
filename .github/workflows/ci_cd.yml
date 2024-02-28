@@ -197,7 +197,7 @@ jobs:
           benchmark-data-dir-path: benchmarks
           auto-push: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-        if: matrix.python-version == '3.9' && github.ref == 'refs/heads/main'
+        if: matrix.python-version == env.MAIN_PYTHON_VERSION && github.ref == 'refs/heads/main'
 
   doctest:
     name: Test documentation snippets
