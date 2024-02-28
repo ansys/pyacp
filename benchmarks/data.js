@@ -1,6 +1,6 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709132163573,
-  "repoUrl": "https://github.com/ansys-internal/pyacp",
+  "lastUpdate": 1709137607841,
+  "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
       {
@@ -13276,6 +13276,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0003560319194097233",
             "extra": "mean: 1.1374110269767952 msec\nrounds: 1075"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "37798125+RobPasMue@users.noreply.github.com",
+            "name": "Roberto Pastor Muela",
+            "username": "RobPasMue"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b6bd26c8a4698c38c97332ded792dfd8980d8a44",
+          "message": "fix: urls (#474)\n\n* fix: urls\r\n\r\n* fix: ghcr.io urls\r\n\r\n* fix: other repo URLs\r\n\r\n* update lock file",
+          "timestamp": "2024-02-28T16:22:24Z",
+          "tree_id": "3621c5883c9f2a284ee8b57acc7468e5e2445a9f",
+          "url": "https://github.com/ansys/pyacp/commit/b6bd26c8a4698c38c97332ded792dfd8980d8a44"
+        },
+        "date": 1709137586985,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.790350111792092,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00118239866703262",
+            "extra": "mean: 208.75300899998214 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1239.6268295695204,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018442714445654148",
+            "extra": "mean: 806.6943826532582 usec\nrounds: 980"
           }
         ]
       }
