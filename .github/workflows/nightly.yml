@@ -34,12 +34,6 @@ jobs:
           python -m venv test_env
           . test_env/bin/activate
 
-          # Install the dependencies from internal PyPI. These need to be listed
-          # separately in '.ci/internal_requirements.txt' to allow installing them
-          # in a separate step, without relying on the unsafe '--extra-index-url'
-          # option.
-          pip install --index-url https://${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}@pkgs.dev.azure.com/pyansys/_packaging/pyansys/pypi/simple -r .ci/internal_requirements.txt
-
           pip install $(echo dist/*.whl)
 
           poetry config virtualenvs.create false --local
