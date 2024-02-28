@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709109230192,
+  "lastUpdate": 1709111704496,
   "repoUrl": "https://github.com/ansys-internal/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13200,6 +13200,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00018233782858097675",
             "extra": "mean: 757.0577846448972 usec\nrounds: 1537"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4fb9df91318bec1a73eb372bfc6980886f9d9ec3",
+          "message": "Update documentation dependencies (#468)",
+          "timestamp": "2024-02-28T09:10:52Z",
+          "tree_id": "abedef0f379f311dff1d261ba07239dc4576f832",
+          "url": "https://github.com/ansys-internal/pyacp/commit/4fb9df91318bec1a73eb372bfc6980886f9d9ec3"
+        },
+        "date": 1709111677631,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.204936830474913,
+            "unit": "iter/sec",
+            "range": "stddev: 0.007354181619906273",
+            "extra": "mean: 237.81570099997396 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1003.2452176207578,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00060131183378858",
+            "extra": "mean: 996.7652797503945 usec\nrounds: 479"
           }
         ]
       }
