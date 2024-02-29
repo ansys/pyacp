@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709137607841,
+  "lastUpdate": 1709202190922,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13314,6 +13314,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00018442714445654148",
             "extra": "mean: 806.6943826532582 usec\nrounds: 980"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fc72cd3caecdb2c0e8f864ad523c44ff2c6eaed9",
+          "message": "Fix material property sets concept page (#451)\n\nClarify the difference between stress-/strain limits and engineering constants\r\nin the material property sets concept page.\r\n\r\nMake it clear that the stress-/strain limits use independent attributes in the\r\nisotropic / orthotropic cases, whereas the engineering constants are related\r\nfor the two cases and must follow the conversion and assignment rules.\r\n\r\nCloses #428.",
+          "timestamp": "2024-02-29T11:19:06+01:00",
+          "tree_id": "0510b5ece126674df5c3bbaf3d7b3e03a81221df",
+          "url": "https://github.com/ansys/pyacp/commit/fc72cd3caecdb2c0e8f864ad523c44ff2c6eaed9"
+        },
+        "date": 1709202165097,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.17531454916553,
+            "unit": "iter/sec",
+            "range": "stddev: 0.013349482282079208",
+            "extra": "mean: 239.50291366667406 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1006.9708253802836,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0004610123625741243",
+            "extra": "mean: 993.0774306418945 usec\nrounds: 966"
           }
         ]
       }
