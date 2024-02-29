@@ -170,7 +170,7 @@ The input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmpuidawyhe
+    /tmp/tmp14m8kpzv
     mks
 
 
@@ -508,7 +508,7 @@ Plot the ply thickness
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.636 seconds)
+   **Total running time of the script:** ( 0 minutes  8.353 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_005_thickness_definitions.py:

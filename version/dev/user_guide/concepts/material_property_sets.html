@@ -54,6 +54,7 @@
     <script src="../../_static/js/table.js?v=b64f5182"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/concepts/material_property_sets';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
@@ -559,25 +560,55 @@ material, the backend will check that the material definition is consistent.</p>
 <section id="available-attributes">
 <h3>Available attributes<a class="headerlink" href="#available-attributes" title="Link to this heading">#</a></h3>
 <p>The available attributes for a given property set type changes depending on whether
-the material is isotropic or orthotropic. For example, the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.material_property_sets.ConstantEngineeringConstants.html#ansys.acp.core.material_property_sets.ConstantEngineeringConstants" title="ansys.acp.core.material_property_sets.ConstantEngineeringConstants"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConstantEngineeringConstants</span></code></a>
-provides the following attributes for isotropic materials:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">E</span></code>, <code class="docutils literal notranslate"><span class="pre">nu</span></code></p></li>
-</ul>
-<p>whereas for the orthotropic case, the following attributes are available:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">E1</span></code>, <code class="docutils literal notranslate"><span class="pre">E2</span></code>, <code class="docutils literal notranslate"><span class="pre">E3</span></code>, <code class="docutils literal notranslate"><span class="pre">nu12</span></code>, <code class="docutils literal notranslate"><span class="pre">nu13</span></code>, <code class="docutils literal notranslate"><span class="pre">nu23</span></code>, <code class="docutils literal notranslate"><span class="pre">G12</span></code>, <code class="docutils literal notranslate"><span class="pre">G13</span></code>, <code class="docutils literal notranslate"><span class="pre">G23</span></code></p></li>
-</ul>
+the material is isotropic or orthotropic.
+The following table lists the available attributes for the different property sets in
+isotropic and orthotropic materials, respectively.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property set</p></th>
+<th class="head"><p>Isotropic attributes</p></th>
+<th class="head"><p>Orthotropic attributes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Engineering constants</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">E</span></code>, <code class="docutils literal notranslate"><span class="pre">nu</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">E1</span></code>, <code class="docutils literal notranslate"><span class="pre">E2</span></code>, <code class="docutils literal notranslate"><span class="pre">E3</span></code>, <code class="docutils literal notranslate"><span class="pre">nu12</span></code>, <code class="docutils literal notranslate"><span class="pre">nu13</span></code>, <code class="docutils literal notranslate"><span class="pre">nu23</span></code>, <code class="docutils literal notranslate"><span class="pre">G12</span></code>, <code class="docutils literal notranslate"><span class="pre">G13</span></code>, <code class="docutils literal notranslate"><span class="pre">G23</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Stress limits</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">effective_stress</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Xc</span></code>, <code class="docutils literal notranslate"><span class="pre">Yc</span></code>, <code class="docutils literal notranslate"><span class="pre">Zc</span></code>, <code class="docutils literal notranslate"><span class="pre">Xt</span></code>, <code class="docutils literal notranslate"><span class="pre">Yt</span></code>, <code class="docutils literal notranslate"><span class="pre">Zt</span></code>, <code class="docutils literal notranslate"><span class="pre">Sxy</span></code>, <code class="docutils literal notranslate"><span class="pre">Syz</span></code>, <code class="docutils literal notranslate"><span class="pre">Sxz</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Strain limits</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">effective_strain</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eXc</span></code>, <code class="docutils literal notranslate"><span class="pre">eYc</span></code>, <code class="docutils literal notranslate"><span class="pre">eZc</span></code>, <code class="docutils literal notranslate"><span class="pre">eXt</span></code>, <code class="docutils literal notranslate"><span class="pre">eYt</span></code>, <code class="docutils literal notranslate"><span class="pre">eZt</span></code>, <code class="docutils literal notranslate"><span class="pre">eSxy</span></code>, <code class="docutils literal notranslate"><span class="pre">eSyz</span></code>, <code class="docutils literal notranslate"><span class="pre">eSxz</span></code></p></td>
+</tr>
+</tbody>
+</table>
 </section>
+<section id="relation-between-isotropic-and-orthotropic-property-sets">
+<h3>Relation between isotropic and orthotropic property sets<a class="headerlink" href="#relation-between-isotropic-and-orthotropic-property-sets" title="Link to this heading">#</a></h3>
+<p>For the stress and strain limits, the isotropic and orthotropic attributes are
+independently defined. This means that when changing the ply type of a material,
+the stress and strain limits must be redefined.</p>
+<p>For the engineering constants however, the orthotropic and isotropic definitions
+are interlinked. This means that when changing the ply type of a material, the
+engineering constants will be automatically converted.
+To avoid accidentally using incorrect engineering constants, PyACP enforces some
+conversion and assignment rules, as described in the following sections.</p>
 <section id="conversion-rules">
-<h3>Conversion rules<a class="headerlink" href="#conversion-rules" title="Link to this heading">#</a></h3>
-<p>To avoid accidentally using the wrong property set for a given material, PyACP
-restricts how the ply type of a material can be changed. The following rules apply:</p>
-<ul class="simple">
+<h4>Conversion rules<a class="headerlink" href="#conversion-rules" title="Link to this heading">#</a></h4>
+<p>When changing the ply type of a material, the following rules apply:</p>
+<ul>
 <li><p>The ply type can always be changed from an isotropic to an orthotropic type.</p></li>
-<li><p>When changing from an orthotropic to an isotropic type, the property sets must
-be <em>consistent</em> with their isotropic counterpart. For example, the
-<code class="docutils literal notranslate"><span class="pre">E1</span></code>, <code class="docutils literal notranslate"><span class="pre">E2</span></code>, and <code class="docutils literal notranslate"><span class="pre">E3</span></code> values must all be the same.</p></li>
+<li><p>When changing from an orthotropic to an isotropic type, the engineering constants must
+be <em>consistent</em> with their isotropic counterpart. In particular, the
+following relations must hold:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}E_1 &amp;= E_2 = E_3 \\
+\nu_{12} &amp;= \nu_{13} = \nu_{23} \\
+G_{12} &amp;= G_{13} = G_{23} = \frac{E_1}{2 \cdot (1 + \nu_{12})}\end{split}\]</div>
+</li>
 </ul>
 <p>Consider the following example:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">material</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;New Material&quot;</span><span class="p">)</span>
@@ -585,7 +616,7 @@ be <em>consistent</em> with their isotropic counterpart. For example, the
 <span class="go">&lt;Material with id &#39;New Material&#39;&gt;</span>
 </pre></div>
 </div>
-<p>First, convert to an isotropic ply type. This is allowed since the properties values are
+<p>First, convert to an isotropic ply type. This is allowed since the engineering constants are
 consistent with an isotropic material.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">material</span><span class="o">.</span><span class="n">ply_type</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">PlyType</span><span class="o">.</span><span class="n">ISOTROPIC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">material</span><span class="o">.</span><span class="n">engineering_constants</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="mf">1e9</span>
@@ -597,7 +628,7 @@ consistent with an isotropic material.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">material</span><span class="o">.</span><span class="n">engineering_constants</span><span class="o">.</span><span class="n">E1</span> <span class="o">=</span> <span class="mf">2e9</span>
 </pre></div>
 </div>
-<p>Now, the properties are no longer consistent with an isotropic material, so converting
+<p>Now, the engineering constants are no longer consistent with an isotropic material, so converting
 back to an isotropic ply type is not allowed.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">material</span><span class="o">.</span><span class="n">ply_type</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">PlyType</span><span class="o">.</span><span class="n">ISOTROPIC</span>
 <span class="gt">Traceback (most recent call last):</span>
@@ -607,18 +638,18 @@ back to an isotropic ply type is not allowed.</p>
 </div>
 </section>
 <section id="assignment-rules">
-<h3>Assignment rules<a class="headerlink" href="#assignment-rules" title="Link to this heading">#</a></h3>
-<p>Similar rules apply when assigning a new property set to a material:</p>
+<h4>Assignment rules<a class="headerlink" href="#assignment-rules" title="Link to this heading">#</a></h4>
+<p>Similar rules apply when assigning engineering constants to a material:</p>
 <ul class="simple">
-<li><p>isotropic property sets can be assigned to both isotropic and orthotropic materials.</p></li>
-<li><p>orthotropic property can be assigned:</p>
+<li><p>isotropic engineering constants can be assigned to both isotropic and orthotropic materials.</p></li>
+<li><p>orthotropic engineering constants can be assigned:</p>
 <ul>
 <li><p>to orthotropic materials.</p></li>
 <li><p>to isotropic materials, if their values are consistent with an isotropic material.</p></li>
 </ul>
 </li>
 </ul>
-<p>Continuing from the preceding example, we can assign either an orthotropic or isotropic property set to the orthotropic material:</p>
+<p>Continuing from the preceding example, we can assign either an orthotropic or isotropic engineering constants to the orthotropic material:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">material</span><span class="o">.</span><span class="n">ply_type</span>
 <span class="go">&lt;PlyType.WOVEN: &#39;woven&#39;&gt;</span>
 </pre></div>
@@ -640,13 +671,13 @@ back to an isotropic ply type is not allowed.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">material</span><span class="o">.</span><span class="n">ply_type</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">PlyType</span><span class="o">.</span><span class="n">ISOTROPIC</span>
 </pre></div>
 </div>
-<p>An isotropic material property set can always be assigned to an isotropic material.</p>
+<p>Isotropic engineering constants can always be assigned to an isotropic material.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">material</span><span class="o">.</span><span class="n">engineering_constants</span> <span class="o">=</span> <span class="n">ConstantEngineeringConstants</span><span class="o">.</span><span class="n">from_isotropic_constants</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">E</span><span class="o">=</span><span class="mf">1.3e9</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
-<p>An orthotropic material property set can be assigned only if the values are consistent with an isotropic material.</p>
+<p>Orthotropic engineering constants can be assigned only if the values are consistent with an isotropic material.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">material</span><span class="o">.</span><span class="n">engineering_constants</span> <span class="o">=</span> <span class="p">(</span>
 <span class="gp">... </span>    <span class="n">ConstantEngineeringConstants</span><span class="o">.</span><span class="n">from_orthotropic_constants</span><span class="p">(</span>
 <span class="gp">... </span>        <span class="n">E1</span><span class="o">=</span><span class="mf">1e9</span><span class="p">,</span>
@@ -669,6 +700,7 @@ back to an isotropic ply type is not allowed.</p>
 <span class="gr">ValueError</span>: <span class="n">Invalid argument: Cannot set an isotropic ply type, since the given engineering constants are orthotropic: The G12 value does not match &#39;E1 / (2. * (1. + nu12))&#39;.</span>
 </pre></div>
 </div>
+</section>
 </section>
 </section>
 </section>
@@ -696,8 +728,11 @@ back to an isotropic ply type is not allowed.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-versus-variable-property-sets">Constant versus variable property sets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isotropic-versus-orthotropic-property-sets">Isotropic versus orthotropic property sets</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#available-attributes">Available attributes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-rules">Conversion rules</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-rules">Assignment rules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relation-between-isotropic-and-orthotropic-property-sets">Relation between isotropic and orthotropic property sets</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-rules">Conversion rules</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-rules">Assignment rules</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

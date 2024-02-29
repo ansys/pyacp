@@ -46,25 +46,48 @@ Available attributes
 ''''''''''''''''''''
 
 The available attributes for a given property set type changes depending on whether
-the material is isotropic or orthotropic. For example, the :class:`.ConstantEngineeringConstants`
-provides the following attributes for isotropic materials:
+the material is isotropic or orthotropic.
+The following table lists the available attributes for the different property sets in
+isotropic and orthotropic materials, respectively.
 
-- ``E``, ``nu``
++-----------------------------+-----------------------+------------------------------------------------------------------------------------+
+| Property set                | Isotropic attributes  | Orthotropic attributes                                                             |
++=============================+=======================+====================================================================================+
+| Engineering constants       | ``E``, ``nu``         | ``E1``, ``E2``, ``E3``, ``nu12``, ``nu13``, ``nu23``, ``G12``, ``G13``, ``G23``    |
++-----------------------------+-----------------------+------------------------------------------------------------------------------------+
+| Stress limits               | ``effective_stress``  | ``Xc``, ``Yc``, ``Zc``, ``Xt``, ``Yt``, ``Zt``, ``Sxy``, ``Syz``, ``Sxz``          |
++-----------------------------+-----------------------+------------------------------------------------------------------------------------+
+| Strain limits               | ``effective_strain``  | ``eXc``, ``eYc``, ``eZc``, ``eXt``, ``eYt``, ``eZt``, ``eSxy``, ``eSyz``, ``eSxz`` |
++-----------------------------+-----------------------+------------------------------------------------------------------------------------+
 
-whereas for the orthotropic case, the following attributes are available:
+Relation between isotropic and orthotropic property sets
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-- ``E1``, ``E2``, ``E3``, ``nu12``, ``nu13``, ``nu23``, ``G12``, ``G13``, ``G23``
+For the stress and strain limits, the isotropic and orthotropic attributes are
+independently defined. This means that when changing the ply type of a material,
+the stress and strain limits must be redefined.
+
+For the engineering constants however, the orthotropic and isotropic definitions
+are interlinked. This means that when changing the ply type of a material, the
+engineering constants will be automatically converted.
+To avoid accidentally using incorrect engineering constants, PyACP enforces some
+conversion and assignment rules, as described in the following sections.
 
 Conversion rules
-''''''''''''''''
+^^^^^^^^^^^^^^^^
 
-To avoid accidentally using the wrong property set for a given material, PyACP
-restricts how the ply type of a material can be changed. The following rules apply:
+When changing the ply type of a material, the following rules apply:
 
 - The ply type can always be changed from an isotropic to an orthotropic type.
-- When changing from an orthotropic to an isotropic type, the property sets must
-  be *consistent* with their isotropic counterpart. For example, the
-  ``E1``, ``E2``, and ``E3`` values must all be the same.
+- When changing from an orthotropic to an isotropic type, the engineering constants must
+  be *consistent* with their isotropic counterpart. In particular, the
+  following relations must hold:
+
+  .. math::
+
+      E_1 &= E_2 = E_3 \\
+      \nu_{12} &= \nu_{13} = \nu_{23} \\
+      G_{12} &= G_{13} = G_{23} = \frac{E_1}{2 \cdot (1 + \nu_{12})}
 
 .. doctest::
     :hide:
@@ -82,7 +105,7 @@ Consider the following example:
     >>> material
     <Material with id 'New Material'>
 
-First, convert to an isotropic ply type. This is allowed since the properties values are
+First, convert to an isotropic ply type. This is allowed since the engineering constants are
 consistent with an isotropic material.
 
 .. doctest::
@@ -98,7 +121,7 @@ Then convert to an orthotropic material. This is always allowed.
     >>> material.ply_type = pyacp.PlyType.WOVEN
     >>> material.engineering_constants.E1 = 2e9
 
-Now, the properties are no longer consistent with an isotropic material, so converting
+Now, the engineering constants are no longer consistent with an isotropic material, so converting
 back to an isotropic ply type is not allowed.
 
 .. doctest::
@@ -109,17 +132,17 @@ back to an isotropic ply type is not allowed.
     ValueError: Invalid argument: Cannot set an isotropic ply type, since the given engineering constants are orthotropic: The G12 value does not match 'E1 / (2. * (1. + nu12))'.
 
 Assignment rules
-''''''''''''''''
+^^^^^^^^^^^^^^^^
 
-Similar rules apply when assigning a new property set to a material:
+Similar rules apply when assigning engineering constants to a material:
 
-- isotropic property sets can be assigned to both isotropic and orthotropic materials.
-- orthotropic property can be assigned:
+- isotropic engineering constants can be assigned to both isotropic and orthotropic materials.
+- orthotropic engineering constants can be assigned:
 
   - to orthotropic materials.
   - to isotropic materials, if their values are consistent with an isotropic material.
 
-Continuing from the preceding example, we can assign either an orthotropic or isotropic property set to the orthotropic material:
+Continuing from the preceding example, we can assign either an orthotropic or isotropic engineering constants to the orthotropic material:
 
 .. doctest::
 
@@ -146,7 +169,7 @@ Now we can switch back to an isotropic ply type.
 
     >>> material.ply_type = pyacp.PlyType.ISOTROPIC
 
-An isotropic material property set can always be assigned to an isotropic material.
+Isotropic engineering constants can always be assigned to an isotropic material.
 
 .. doctest::
 
@@ -154,7 +177,7 @@ An isotropic material property set can always be assigned to an isotropic materi
     ...     E=1.3e9, nu=0.5
     ... )
 
-An orthotropic material property set can be assigned only if the values are consistent with an isotropic material.
+Orthotropic engineering constants can be assigned only if the values are consistent with an isotropic material.
 
 .. doctest::
 
