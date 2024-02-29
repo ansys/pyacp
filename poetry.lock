@@ -263,13 +263,13 @@ plotting = ["imageio (<2.28.1)", "imageio-ffmpeg", "matplotlib (>=3.2)", "pyvist
 
 [[package]]
 name = "ansys-mapdl-core"
-version = "0.67.0"
+version = "0.68.0"
 description = "A Python wrapper for Ansys MAPDL."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9,<3.13"
 files = [
-    {file = "ansys_mapdl_core-0.67.0-py3-none-any.whl", hash = "sha256:a859a2b9b558150a95e3f97c2da56850d23cbe9815f8e1e3ecb3f42fe23e43cd"},
-    {file = "ansys_mapdl_core-0.67.0.tar.gz", hash = "sha256:c2270639b8f6c5c92898d0c32184bf5c37de4599e78f23386dd75b3fee2067ad"},
+    {file = "ansys_mapdl_core-0.68.0-py3-none-any.whl", hash = "sha256:800e514db8ae0858fc7088802fb5906ebbf1d4a5cbcda20c95fc4109fca0c12f"},
+    {file = "ansys_mapdl_core-0.68.0.tar.gz", hash = "sha256:4dacb62aba57374c3af8eb0a6c3c8cc9c51d8e7758c7c48b8984eca7a64d7588"},
 ]
 
 [package.dependencies]
@@ -282,21 +282,23 @@ click = ">=8.1.3"
 grpcio = ">=1.30.0"
 importlib-metadata = ">=4.0"
 matplotlib = ">=3.0.0"
-numpy = {version = ">=1.14.0", markers = "python_version >= \"3.9\""}
+numpy = {version = ">=1.14.0,<2.0.0", markers = "python_version >= \"3.9\""}
 pexpect = {version = ">=4.8.0", markers = "platform_system == \"Linux\""}
 platformdirs = ">=3.6.0"
 protobuf = ">=3.12.2"
 psutil = ">=5.9.4"
 pyansys-tools-versioning = ">=0.3.3"
 pyiges = {version = ">=0.3.1", extras = ["full"]}
-pyvista = ">=0.33.0"
+pyvista = ">=0.38.1"
 scipy = ">=1.3.0"
+tabulate = ">=0.8.0"
 tqdm = ">=4.45.0"
 vtk = ">=9.0.0"
 
 [package.extras]
-doc = ["ansys-dpf-core (==0.9.0)", "ansys-mapdl-reader (==0.52.20)", "ansys-sphinx-theme (==0.12.2)", "grpcio (==1.51.1)", "imageio (==2.31.5)", "imageio-ffmpeg (==0.4.9)", "jupyter_sphinx (==0.4.0)", "jupyterlab (>=3.2.8)", "matplotlib (==3.8.0)", "numpydoc (==1.6.0)", "pandas (==2.1.1)", "plotly (==5.17.0)", "pyiges[full] (==0.3.1)", "pypandoc (==1.11)", "pytest-sphinx (==0.5.0)", "pythreejs (==2.4.2)", "pyvista[trame] (==0.42.2)", "sphinx (==7.2.6)", "sphinx-autobuild (==2021.3.14)", "sphinx-autodoc-typehints (==1.24.0)", "sphinx-copybutton (==0.5.2)", "sphinx-gallery (==0.14.0)", "sphinx-reredirects (==0.1.2)", "sphinxcontrib-websupport (==1.2.6)", "sphinxemoji (==0.2.0)", "vtk (==9.2.6)"]
-tests = ["ansys-dpf-core (==0.9.0)", "autopep8 (==2.0.4)", "matplotlib (==3.8.0)", "pandas (==2.1.1)", "pyansys-tools-report (==0.7.0)", "pyiges[full] (==0.3.1)", "pytest (==7.4.2)", "pytest-cov (==4.1.0)", "pytest-pyvista (==0.1.9)", "pytest-rerunfailures (==12.0)", "pyvista (==0.42.2)", "scipy (==1.10.1)", "scipy (==1.11.3)", "vtk (==9.2.6)"]
+doc = ["ansys-dpf-core (==0.10.1)", "ansys-mapdl-reader (==0.53.0)", "ansys-sphinx-theme (==0.14.0)", "grpcio (==1.62.0)", "imageio (==2.34.0)", "imageio-ffmpeg (==0.4.9)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.8.3)", "numpydoc (==1.6.0)", "pandas (==2.2.1)", "plotly (==5.19.0)", "pyiges[full] (==0.3.1)", "pypandoc (==1.13)", "pytest-sphinx (==0.6.0)", "pythreejs (==2.4.2)", "pyvista[trame] (==0.43.3)", "sphinx (==7.2.6)", "sphinx-autobuild (==2024.2.4)", "sphinx-autodoc-typehints (==1.25.2)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.5.0)", "sphinx-gallery (==0.15.0)", "sphinx-notfound-page (==1.0.0)", "sphinx-reredirects (==0.1.3)", "sphinx_design (==0.5.0)", "sphinxcontrib-websupport (==1.2.7)", "sphinxemoji (==0.3.1)", "vtk (==9.3.0)"]
+jupyter = ["ipywidgets", "jupyterlab (>=3)", "pyvista[jupyter]"]
+tests = ["ansys-dpf-core (==0.10.1)", "autopep8 (==2.0.4)", "matplotlib (==3.8.3)", "pandas (==2.2.1)", "pyansys-tools-report (==0.7.0)", "pyiges[full] (==0.3.1)", "pytest (==8.0.1)", "pytest-cov (==4.1.0)", "pytest-memprof (<0.3.0)", "pytest-pyvista (==0.1.9)", "pytest-rerunfailures (==13.0)", "pyvista (==0.43.3)", "scipy (==1.12.0)", "vtk (==9.3.0)"]
 
 [[package]]
 name = "ansys-mapdl-reader"
@@ -456,44 +458,36 @@ doc = ["Sphinx (==7.2.6)", "numpydoc (==1.6.0)", "requests (==2.31.0)", "sphinx-
 
 [[package]]
 name = "ansys-tools-filetransfer"
-version = "0.1.dev0"
+version = "0.1.0"
 description = "A Python client for uploading and downloading files via gRPC."
 optional = false
 python-versions = ">=3.9,<4.0"
-files = []
-develop = false
+files = [
+    {file = "ansys_tools_filetransfer-0.1.0-py3-none-any.whl", hash = "sha256:8700a51e7b58030722e9ab990c02f65664b4f8955d4654c4fddf2b0f5a636173"},
+    {file = "ansys_tools_filetransfer-0.1.0.tar.gz", hash = "sha256:12e61e59bc2e0532ec17e04f7114e0a30d1d6232e47e50c201a82d91959e8a5d"},
+]
 
 [package.dependencies]
-ansys-api-tools-filetransfer = "^0.1.0"
-grpcio = "^1.17"
-
-[package.source]
-type = "git"
-url = "https://github.com/ansys/ansys-tools-filetransfer.git"
-reference = "main"
-resolved_reference = "9ec749b4ff649afca8be85b379330febb831d6df"
+ansys-api-tools-filetransfer = ">=0.1.0,<0.2.0"
+grpcio = ">=1.17,<2.0"
 
 [[package]]
 name = "ansys-tools-local-product-launcher"
-version = "0.1.dev0"
+version = "0.1.0"
 description = "A utility for launching Ansys products on a local machine"
 optional = false
 python-versions = ">=3.9,<4.0"
-files = []
-develop = false
+files = [
+    {file = "ansys_tools_local_product_launcher-0.1.0-py3-none-any.whl", hash = "sha256:7b6c0237d8c91f91cd6f294ebefda6550ad46045aa896dcb6711d3b25b76f00b"},
+    {file = "ansys_tools_local_product_launcher-0.1.0.tar.gz", hash = "sha256:4ed2a01a01b26ef468fcb1776f86ff8f338c063ad915c725d745133c635f3b67"},
+]
 
 [package.dependencies]
-appdirs = "^1.4.4"
-backports-entry-points-selectable = "^1.3.0"
-click = "^8.1.3"
-grpcio = "^1.51.1"
-grpcio-health-checking = "^1.43"
-
-[package.source]
-type = "git"
-url = "https://github.com/ansys/ansys-tools-local-product-launcher.git"
-reference = "main"
-resolved_reference = "7ba17aa7fe60f5a6c747c24341f15fe5318897d5"
+appdirs = ">=1.4.4,<2.0.0"
+backports-entry-points-selectable = ">=1.3.0,<2.0.0"
+click = ">=8.1.3,<9.0.0"
+grpcio = ">=1.51.1,<2.0.0"
+grpcio-health-checking = ">=1.43,<2.0"
 
 [[package]]
 name = "ansys-tools-path"
@@ -1727,13 +1721,13 @@ pyparsing = {version = ">=2.4.2,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.0.2 || >3.0
 
 [[package]]
 name = "hypothesis"
-version = "6.98.13"
+version = "6.98.15"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "hypothesis-6.98.13-py3-none-any.whl", hash = "sha256:42ba2cc2d1fe04a65124fadfc6a305dbf62607aa9f8f94a10efadee9cfa1c4dd"},
-    {file = "hypothesis-6.98.13.tar.gz", hash = "sha256:746b5316da2c7af4c3816c34af675909fcb1a6a0e5c7af5cfc36c450be2dca34"},
+    {file = "hypothesis-6.98.15-py3-none-any.whl", hash = "sha256:5b40fd81fce9e0b35f0a47e10eb41f375a6b9e8551d0e1084c83b8b0d0d1bb6b"},
+    {file = "hypothesis-6.98.15.tar.gz", hash = "sha256:1e31210951511b24ce8b3b6e04d791c466385a30ac3af571bf2223954b025d77"},
 ]
 
 [package.dependencies]
@@ -3497,7 +3491,6 @@ files = [
     {file = "PyYAML-6.0.1-cp311-cp311-win_amd64.whl", hash = "sha256:bf07ee2fef7014951eeb99f56f39c9bb4af143d8aa3c21b1677805985307da34"},
     {file = "PyYAML-6.0.1-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:855fb52b0dc35af121542a76b9a84f8d1cd886ea97c84703eaa6d88e37a2ad28"},
     {file = "PyYAML-6.0.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:40df9b996c2b73138957fe23a16a4f0ba614f4c0efce1e9406a184b6d07fa3a9"},
-    {file = "PyYAML-6.0.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a08c6f0fe150303c1c6b71ebcd7213c2858041a7e01975da3a99aed1e7a378ef"},
     {file = "PyYAML-6.0.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:6c22bec3fbe2524cde73d7ada88f6566758a8f7227bfbf93a408a9d86bcc12a0"},
     {file = "PyYAML-6.0.1-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:8d4e9c88387b0f5c7d5f281e55304de64cf7f9c0021a3525bd3b1c542da3b0e4"},
     {file = "PyYAML-6.0.1-cp312-cp312-win32.whl", hash = "sha256:d483d2cdf104e7c9fa60c544d92981f12ad66a457afae824d146093b8c294c54"},
@@ -4747,4 +4740,4 @@ examples = ["ansys-dpf-composites", "ansys-dpf-core", "ansys-mapdl-core", "ansys
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "af9626593e37c20817cbb78bfb1f1db96d174fc19b7381b7fe1e8e55b2d3cd74"
+content-hash = "e9094b9d5288eddf0012ca99b96c631d43d5b0cb9efe4b8e0ffc286a83b85f03"
