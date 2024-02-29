@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709202190922,
+  "lastUpdate": 1709218078747,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13352,6 +13352,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0004610123625741243",
             "extra": "mean: 993.0774306418945 usec\nrounds: 966"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b352381d631cd8dc32e265607981ba8129159059",
+          "message": "Use released version of internal dependencies (#476)\n\n- Use the released version of ``ansys-tools-filetransfer`` and\r\n  ``ansys-tools-local-product-launcher``.\r\n- Remove now-unnecessary token injection in CI.\r\n\r\nCloses #399.",
+          "timestamp": "2024-02-29T15:44:12+01:00",
+          "tree_id": "1b07291bd8c4c42129e4f19027d446c510a952ae",
+          "url": "https://github.com/ansys/pyacp/commit/b352381d631cd8dc32e265607981ba8129159059"
+        },
+        "date": 1709218058288,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 3.961120001609929,
+            "unit": "iter/sec",
+            "range": "stddev: 0.007737539983727772",
+            "extra": "mean: 252.45385133335202 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 866.4197496270936,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00040387274000148766",
+            "extra": "mean: 1.1541749832346264 msec\nrounds: 1193"
           }
         ]
       }
