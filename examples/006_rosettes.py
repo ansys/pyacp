@@ -20,7 +20,14 @@ import numpy as np
 
 # %%
 # Import pyACP dependencies
-from ansys.acp.core import ACPWorkflow, PlyType, get_directions_plotter, launch_acp
+from ansys.acp.core import (
+    ACPWorkflow,
+    PlyType,
+    RosetteSelectionMethod,
+    RosetteType,
+    get_directions_plotter,
+    launch_acp,
+)
 from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
 
 # %%
@@ -67,8 +74,9 @@ fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.1)
 
 # %%
 # Create a parallel rosette where the first direction is rotated by 45 degrees around the y-axis.
-rosette = model.create_rosette(
+parallel_rosette_45_deg = model.create_rosette(
     name="ParallelRosette",
+    rosette_type=RosetteType.PARALLEL,
     origin=(0, 0, 0),
     dir1=(np.sqrt(2) / 2, 0, np.sqrt(2) / 2),
     dir2=(-np.sqrt(2) / 2, 0, np.sqrt(2) / 2),
@@ -81,7 +89,7 @@ oss = model.create_oriented_selection_set(
     orientation_point=(0.0, 0.0, 0.0),
     orientation_direction=(0.0, 1.0, 0),
     element_sets=[model.element_sets["All_Elements"]],
-    rosettes=[rosette],
+    rosettes=[parallel_rosette_45_deg],
 )
 
 model.update()
@@ -116,3 +124,102 @@ plotter = get_directions_plotter(
     ],
 )
 plotter.show()
+
+# %%
+# Define directions with a radial rosette
+# ---------------------------------------
+# %%
+# Create a radial rosette and plot the resulting reference direction.
+# For a radial rosette, a line is constructed that goes through the origin and its
+# direction vector is normal to a plane spanned by ``dir1`` and ``dir2``.
+# The reference direction are then parallel to the shortest connection from the line to each point
+# for which the reference direction is computed.
+radial_rosette = model.create_rosette(
+    name="RadialRosette",
+    rosette_type=RosetteType.RADIAL,
+    origin=(0.005, 0, 0.005),
+    dir1=(1, 0, 0),
+    dir2=(0, 0, 1),
+)
+
+oss.rosettes = [radial_rosette]
+model.update()
+
+plotter = get_directions_plotter(model=model, components=[oss.elemental_data.reference_direction])
+plotter.show()
+
+# %%
+# Define directions with a cylindrical rosette
+# --------------------------------------------
+# %%
+# Create a cylindrical rosette and plot the resulting reference direction.
+# For a cylindrical rosette, the reference directions are tangential to circles around the origin
+# that lie in a plane spanned by ``dir1`` and ``dir2``.
+cylindrical_rosette = model.create_rosette(
+    name="CylindricalRosette",
+    rosette_type=RosetteType.CYLINDRICAL,
+    origin=(0.005, 0, 0.005),
+    dir1=(1, 0, 0),
+    dir2=(0, 0, 1),
+)
+
+oss.rosettes = [cylindrical_rosette]
+model.update()
+
+plotter = get_directions_plotter(model=model, components=[oss.elemental_data.reference_direction])
+plotter.show()
+
+# %%
+# Define directions with a spherical rosette
+# ------------------------------------------
+# %%
+# Create a spherical rosette and plot the resulting reference direction.
+# For a spherical rosette, the reference directions are tangential to a sphere around the origin.
+# Note: This is the same as the cylindrical rosette for the current example.
+spherical_rosette = model.create_rosette(
+    name="SphericalRosette",
+    rosette_type=RosetteType.SPHERICAL,
+    origin=(0.005, 0, 0.005),
+    dir1=(1, 0, 0),
+    dir2=(0, 0, 1),
+)
+
+oss.rosettes = [spherical_rosette]
+model.update()
+
+plotter = get_directions_plotter(model=model, components=[oss.elemental_data.reference_direction])
+plotter.show()
+
+
+# %%
+# Combine rosettes
+# ----------------
+
+# %%
+# Create and additional parallel rosette which points along the x direction and has its origin
+# at (0.01, 0, 0.01).
+parallel_rosette_0_deg = model.create_rosette(
+    name="ParallelRosette",
+    rosette_type=RosetteType.PARALLEL,
+    origin=(0.01, 0, 0.01),
+    dir1=(1, 0, 0),
+    dir2=(0, 0, 1),
+)
+
+# %%
+# Assign both rosettes to the oriented selection set and set the rosette selection method to
+# ``RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED``. This implies that the reference direction
+# is weighted by the inverse distance to each rosette. Note that the origin of
+# the rotated rosette is at (0,0,0).
+oss.rosettes = [parallel_rosette_45_deg, parallel_rosette_0_deg]
+oss.rosette_selection_method = RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED
+
+# %%
+# Plot the resulting reference direction.
+model.update()
+plotter = get_directions_plotter(model=model, components=[oss.elemental_data.reference_direction])
+plotter.show()
+
+workflow.get_local_acp_h5_file()
+
+pass

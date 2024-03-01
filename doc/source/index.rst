@@ -80,7 +80,6 @@ Limitations
 ^^^^^^^^^^^
 
 * Only shell workflows are supported, solid models can not yet be defined using PyACP
-* Only Parallel Rosettes are supported
 * FieldDefinitions for variable material properties are not supported
 * Butt joint sequences and interface layers are not supported
 * Section cuts are not supported

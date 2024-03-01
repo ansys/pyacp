@@ -10,6 +10,7 @@ from ansys.api.acp.v0 import (
     mesh_query_pb2,
     modeling_ply_pb2,
     ply_material_pb2,
+    rosette_pb2,
     sensor_pb2,
     unit_system_pb2,
     virtual_geometry_pb2,
@@ -34,6 +35,7 @@ __all__ = [
     "NodalDataType",
     "LookUpTableColumnValueType",
     "LookUpTable3DInterpolationAlgorithm",
+    "RosetteType",
     "SensorType",
     "VirtualGeometryDimension",
     "CutoffRuleType",
@@ -125,6 +127,17 @@ __all__ = [
     edge_set_pb2.EdgeSetType,
     module=__name__,
     doc="Options for how an edge set is defined.",
+)
+
+(
+    RosetteType,
+    rosette_type_to_pb,
+    rosette_type_from_pb,
+) = wrap_to_string_enum(
+    "RosetteType",
+    rosette_pb2.Type,
+    module=__name__,
+    doc="Options for the type of a Rosette.",
 )
 
 (

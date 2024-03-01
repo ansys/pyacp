@@ -12,7 +12,7 @@ from ._grpc_helpers.property_helper import (
     mark_grpc_properties,
 )
 from .base import CreatableTreeObject, IdTreeObject
-from .enums import status_type_from_pb
+from .enums import RosetteType, rosette_type_from_pb, rosette_type_to_pb, status_type_from_pb
 from .object_registry import register
 
 __all__ = ["Rosette"]
@@ -27,6 +27,8 @@ class Rosette(CreatableTreeObject, IdTreeObject):
     ----------
     name :
         Name of the Rosette.
+    rosette_type :
+        Type of the Rosette.
     origin :
         Coordinates of the Rosette origin.
     dir1 :
@@ -45,12 +47,14 @@ class Rosette(CreatableTreeObject, IdTreeObject):
         self,
         *,
         name: str = "Rosette",
+        rosette_type: RosetteType = RosetteType.PARALLEL,
         origin: tuple[float, float, float] = (0.0, 0.0, 0.0),
         dir1: tuple[float, float, float] = (1.0, 0.0, 0.0),
         dir2: tuple[float, float, float] = (0.0, 1.0, 0.0),
     ):
         super().__init__(name=name)
 
+        self.rosette_type = rosette_type
         self.origin = origin
         self.dir1 = dir1
         self.dir2 = dir2
@@ -68,4 +72,10 @@ class Rosette(CreatableTreeObject, IdTreeObject):
     )
     dir2 = grpc_data_property(
         "properties.dir2", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array
+    )
+
+    rosette_type = grpc_data_property(
+        "properties.rosette_type",
+        from_protobuf=rosette_type_from_pb,
+        to_protobuf=rosette_type_to_pb,
     )
