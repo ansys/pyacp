@@ -1,3 +1,25 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 import gc
 
 import pytest
@@ -42,12 +64,12 @@ def test_object_identity_after_deletion(model):
 
 def test_unstored():
     """Check that unstored objects have unique identities."""
-    assert pyacp.ModelingPly() is not pyacp.ModelingPly()  # type: ignore
+    assert pyacp.ModelingPly() is not pyacp.ModelingPly()
 
 
 def test_mapping_identity(model):
     """Check that Mapping objects have the same ID when accessed twice."""
-    modeling_ply = list(list(model.modeling_groups.values())[0].plies.values())[0]
+    modeling_ply = list(list(model.modeling_groups.values())[0].modeling_plies.values())[0]
     production_ply_mapping_1 = modeling_ply.production_plies
     production_ply_mapping_2 = modeling_ply.production_plies
     assert isinstance(production_ply_mapping_1, Mapping)
@@ -74,7 +96,7 @@ def test_linked_object_list_identity(model):
 
 def test_edge_property_list_identity(model):
     """Check that EdgePropertyList objects have the same ID when accessed twice."""
-    modeling_ply = list(list(model.modeling_groups.values())[0].plies.values())[0]
+    modeling_ply = list(list(model.modeling_groups.values())[0].modeling_plies.values())[0]
     selection_rules_1 = modeling_ply.selection_rules
     selection_rules_2 = modeling_ply.selection_rules
     assert isinstance(selection_rules_1, EdgePropertyList)
@@ -96,7 +118,7 @@ def test_linked_object_list_parent_deleted(model):
 
 def test_linked_object_list_parent_store(model):
     """Check that the linked object list identity is unique even after its parent is stored."""
-    oss = pyacp.OrientedSelectionSet()  # type: ignore
+    oss = pyacp.OrientedSelectionSet()
     element_sets = oss.element_sets
     oss.store(parent=model)
     oss_id = oss.id
@@ -123,7 +145,7 @@ def test_edge_property_list_parent_deleted(model):
 
 def test_edge_property_list_parent_store(model):
     """Check that the edge property list identity is unique even after its parent is stored."""
-    stackup = pyacp.Stackup()  # type: ignore
+    stackup = pyacp.Stackup()
     fabrics = stackup.fabrics
     stackup.store(parent=model)
     stackup_id = stackup.id

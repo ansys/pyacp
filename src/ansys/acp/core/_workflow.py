@@ -1,3 +1,25 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 import pathlib
 import shutil
 import tempfile
@@ -40,14 +62,11 @@ class _LocalWorkingDir:
 class _FileStrategy(Protocol):
     def get_file(
         self, get_file_callable: Callable[[pathlib.Path], None], filename: str
-    ) -> pathlib.Path:
-        ...
+    ) -> pathlib.Path: ...
 
-    def copy_input_file_to_local_workdir(self, path: pathlib.Path) -> pathlib.Path:
-        ...
+    def copy_input_file_to_local_workdir(self, path: pathlib.Path) -> pathlib.Path: ...
 
-    def upload_input_file_to_server(self, path: pathlib.Path) -> pathlib.PurePath:
-        ...
+    def upload_input_file_to_server(self, path: pathlib.Path) -> pathlib.PurePath: ...
 
 
 def _copy_file_workdir(path: pathlib.Path, working_directory: pathlib.Path) -> pathlib.Path:
@@ -245,7 +264,7 @@ class ACPWorkflow:
         copy it to the local working directory and return its path.
         """
         return self._file_transfer_strategy.get_file(
-            self._model.save_analysis_model, self._model.name + ".cdb"
+            self._model.export_analysis_model, self._model.name + ".cdb"
         )
 
     def get_local_materials_file(self) -> pathlib.Path:
@@ -265,7 +284,7 @@ class ACPWorkflow:
             self._model.export_shell_composite_definitions, "ACPCompositeDefinitions.h5"
         )
 
-    def get_local_acp_h5_file(self) -> pathlib.Path:
+    def get_local_acph5_file(self) -> pathlib.Path:
         """Get the ACP Project file (in acph5 format) on the local machine.
 
         Save the acp model to an acph5 file, copy it to the local working

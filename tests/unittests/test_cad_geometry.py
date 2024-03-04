@@ -1,3 +1,25 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 import pytest
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
@@ -67,3 +89,20 @@ class TestCADGeometry(NoLockedMixin, TreeObjectTester):
         """Test refreshing the geometry from an inexistent file."""
         with pytest.raises(RuntimeError, match="source file `[^`]*` does not exist"):
             tree_object.refresh()
+
+    @staticmethod
+    def test_accessing_root_shapes(load_cad_geometry, load_model_from_tempfile):
+        """
+        Ensure that the property root_shapes can only be accessed if
+        the CADGeometry is up-to-date.
+        """
+        with load_model_from_tempfile() as model, load_cad_geometry(model=model) as cad_geometry:
+            assert cad_geometry.status == "NOTUPTODATE"
+            with pytest.raises(
+                RuntimeError,
+                match="The object CADGeometry must be up-to-date to access CADComponent.",
+            ):
+                _ = cad_geometry.root_shapes
+            model.update()
+            assert cad_geometry.status == "UPTODATE"
+            assert len(cad_geometry.root_shapes) == 2

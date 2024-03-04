@@ -1,3 +1,25 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 from ansys.api.acp.v0 import (
     cut_off_material_pb2,
     cutoff_selection_rule_pb2,
@@ -10,6 +32,7 @@ from ansys.api.acp.v0 import (
     mesh_query_pb2,
     modeling_ply_pb2,
     ply_material_pb2,
+    rosette_pb2,
     sensor_pb2,
     unit_system_pb2,
     virtual_geometry_pb2,
@@ -34,6 +57,7 @@ __all__ = [
     "NodalDataType",
     "LookUpTableColumnValueType",
     "LookUpTable3DInterpolationAlgorithm",
+    "RosetteType",
     "SensorType",
     "VirtualGeometryDimension",
     "CutoffRuleType",
@@ -125,6 +149,17 @@ __all__ = [
     edge_set_pb2.EdgeSetType,
     module=__name__,
     doc="Options for how an edge set is defined.",
+)
+
+(
+    RosetteType,
+    rosette_type_to_pb,
+    rosette_type_from_pb,
+) = wrap_to_string_enum(
+    "RosetteType",
+    rosette_pb2.Type,
+    module=__name__,
+    doc="Options for the type of a rosette.",
 )
 
 (

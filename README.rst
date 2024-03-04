@@ -2,13 +2,11 @@ PyACP
 =====
 |pyansys| |python| |pypi| |GH-CI| |codecov| |MIT| |black|
 
-.. TODO: Replace `ansys-internal` with `ansys` everywhere before release.
-
 .. |pyansys| image:: https://img.shields.io/badge/Py-Ansys-ffc107.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAABDklEQVQ4jWNgoDfg5mD8vE7q/3bpVyskbW0sMRUwofHD7Dh5OBkZGBgW7/3W2tZpa2tLQEOyOzeEsfumlK2tbVpaGj4N6jIs1lpsDAwMJ278sveMY2BgCA0NFRISwqkhyQ1q/Nyd3zg4OBgYGNjZ2ePi4rB5loGBhZnhxTLJ/9ulv26Q4uVk1NXV/f///////69du4Zdg78lx//t0v+3S88rFISInD59GqIH2esIJ8G9O2/XVwhjzpw5EAam1xkkBJn/bJX+v1365hxxuCAfH9+3b9/+////48cPuNehNsS7cDEzMTAwMMzb+Q2u4dOnT2vWrMHu9ZtzxP9vl/69RVpCkBlZ3N7enoDXBwEAAA+YYitOilMVAAAAAElFTkSuQmCC
     :target: https://docs.pyansys.com/
     :alt: PyAnsys
 
-.. |python| image:: https://img.shields.io/badge/Python-3.9%20%7C%203.9%20%7C%203.9%20%7C%203.10%20%7C%203.12-blue.svg
+.. |python| image:: https://img.shields.io/pypi/pyversions/ansys-acp-core?logo=pypi
     :target: https://pypi.org/project/ansys-acp-core
     :alt: Python
 
@@ -16,12 +14,12 @@ PyACP
     :target: https://pypi.org/project/ansys-acp-core
     :alt: PyPI
 
-.. |codecov| image:: https://codecov.io/gh/ansys-internal/pyacp/branch/main/graph/badge.svg
-    :target: https://codecov.io/gh/ansys-internal/pyacp
+.. |codecov| image:: https://codecov.io/gh/ansys/pyacp/branch/main/graph/badge.svg
+    :target: https://codecov.io/gh/ansys/pyacp
     :alt: Codecov
 
-.. |GH-CI| image:: https://github.com/ansys-internal/pyacp/actions/workflows/ci_cd.yml/badge.svg
-    :target: https://github.com/ansys-internal/pyacp/actions/workflows/ci_cd.yml
+.. |GH-CI| image:: https://github.com/ansys/pyacp/actions/workflows/ci_cd.yml/badge.svg
+    :target: https://github.com/ansys/pyacp/actions/workflows/ci_cd.yml
     :alt: GH-CI
 
 .. |MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
@@ -43,27 +41,19 @@ Overview
 Installation
 ------------
 
-.. TODO: Update install instructions before release, to refer to the final package locations.
-
 Install PyACP with:
 
 .. code-block::
 
-    pip install --index-url=https://<TOKEN>@pkgs.dev.azure.com/pyansys/_packaging/pyansys/pypi/simple/ ansys-api-tools-filetransfer ansys-api-acp
-    pip install git+https://github.com/ansys-internal/pyacp
+    pip install ansys-acp-core
 
-.. note::
-
-    The ``<TOKEN>`` in the above command should be replaced with the PAT for the internal PyPI instance. Reach out to a team member or the PyAnsys team for access instructions.
 
 For installing PyACP in development mode, see the `Development Setup`_ instructions below.
-
 
 Documentation
 -------------
 
 The PyACP documentation can be viewed online at https://acp.docs.pyansys.com.
-
 
 .. _launching_server:
 
@@ -112,7 +102,7 @@ You will need to follow these steps:
 
     .. code-block:: bash
 
-        git clone https://github.com/ansys-internal/pyacp
+        git clone https://github.com/ansys/pyacp
         cd pyacp
 
 2.  Make sure you have the latest version of poetry:
@@ -126,16 +116,6 @@ You will need to follow these steps:
     .. note::
 
         At this point, you may need to restart your shell or editor to ensure that the new ``poetry`` command is available.
-
-3.  Set up credentials for the PyAnsys internal PyPI instance
-
-    .. code-block:: bash
-
-        poetry config http-basic.pyansys_private_pypi TOKEN <TOKEN>
-
-    Where ``<TOKEN>`` should be replaced with the PAT for the internal PyPI instance. Reach out to a team member or the PyAnsys team for access instructions.
-
-    .. TODO: REMOVE BEFORE RELEASE: this will no longer be needed once PyACP and its dependencies are public
 
 4.  Install the project and all its development dependencies using poetry. This also takes care of
     creating a new virtual environment:
@@ -222,7 +202,7 @@ container. First ensure that you have accepted the DPF Preview License Agreement
 ANSYS_DPF_ACCEPT_LA environment variable to Y
 (see `DPF Preview License Agreement <https://dpf.docs.pyansys.com/version/stable/user_guide/getting_started_with_dpf_server.html#dpf-preview-license-agreement>`_
 ). In addition the  ANSYSLMD_LICENSE_FILE environment variable needs be set to a
-valid license server (e.g 1055@mylicenseserver.com). Then start the docker containers with:
+valid license server (e.g ``1055@mylicenseserver.com``). Then start the docker containers with:
 
 .. code-block:: bash
 
@@ -252,8 +232,8 @@ This creates both a source distribution, and a wheel file. An alternative is
 
 License
 -------
-``PyACP`` is licensed under the MIT license. Please see the `LICENSE <https://github.com/ansys-internal/pyacp/raw/main/LICENSE>`_ for more details.
 
+``PyACP`` is licensed under the MIT license. Please see the `LICENSE <https://github.com/ansys/pyacp/raw/main/LICENSE>`_ for more details.
 
 .. _black: https://github.com/psf/black
 .. _flake8: https://flake8.pycqa.org/en/latest/

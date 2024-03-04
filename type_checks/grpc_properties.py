@@ -2,8 +2,8 @@ from typing_extensions import assert_type
 
 from ansys.acp.core import Fabric, Rosette
 
-rosette = Rosette()  # type: ignore
-fabric = Fabric()  # type: ignore
+rosette = Rosette()
+fabric = Fabric()
 
 # Test that the type checker understands the grpc properties.
 

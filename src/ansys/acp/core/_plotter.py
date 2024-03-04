@@ -1,5 +1,27 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Optional
 
 import pyvista
 
@@ -26,7 +48,7 @@ _acp_direction_colors = {
 def get_directions_plotter(
     *,
     model: "Model",
-    components: Sequence["VectorData"],
+    components: Sequence[Optional["VectorData"]],
     culling_factor: int = 1,
     length_factor: float = 1.0,
     **kwargs: Any,
@@ -53,6 +75,8 @@ def get_directions_plotter(
     plotter.add_mesh(model.mesh.to_pyvista(), color="white", show_edges=True)
 
     for vector_data in components:
+        if vector_data is None:
+            continue
         color = _acp_direction_colors.get(vector_data.component_name, "black")
         plotter.add_mesh(
             vector_data.get_pyvista_glyphs(

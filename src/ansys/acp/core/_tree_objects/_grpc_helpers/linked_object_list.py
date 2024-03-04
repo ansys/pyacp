@@ -1,3 +1,25 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 from __future__ import annotations
 
 from collections.abc import Iterable, Iterator, MutableSequence
@@ -88,20 +110,18 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
             setter(_parent_object, value)
 
         self._set_resourcepath_list = set_resourcepath_list
-        self._object_constructor: Callable[
-            [ResourcePath], ValueT
-        ] = lambda resource_path: _object_constructor(resource_path, _parent_object._channel)
+        self._object_constructor: Callable[[ResourcePath], ValueT] = (
+            lambda resource_path: _object_constructor(resource_path, _parent_object._channel)
+        )
 
     def __len__(self) -> int:
         return len(self._get_resourcepath_list())
 
     @overload
-    def __getitem__(self, index: int) -> ValueT:
-        ...
+    def __getitem__(self, index: int) -> ValueT: ...
 
     @overload
-    def __getitem__(self, index: slice) -> list[ValueT]:
-        ...
+    def __getitem__(self, index: slice) -> list[ValueT]: ...
 
     def __getitem__(self, index: int | slice) -> ValueT | list[ValueT]:
         resource_path = self._get_resourcepath_list()[index]
@@ -111,12 +131,10 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
         return [self._object_constructor(item) for item in resource_path]
 
     @overload
-    def __setitem__(self, key: int, value: ValueT) -> None:
-        ...
+    def __setitem__(self, key: int, value: ValueT) -> None: ...
 
     @overload
-    def __setitem__(self, key: slice, value: Iterable[ValueT]) -> None:
-        ...
+    def __setitem__(self, key: slice, value: Iterable[ValueT]) -> None: ...
 
     def __setitem__(self, key: int | slice, value: ValueT | Iterable[ValueT]) -> None:
         resource_path_list = self._get_resourcepath_list()
