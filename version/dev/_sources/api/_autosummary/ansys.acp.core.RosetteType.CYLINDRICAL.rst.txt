@@ -1,0 +1,6 @@
+CYLINDRICAL
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteType.CYLINDRICAL

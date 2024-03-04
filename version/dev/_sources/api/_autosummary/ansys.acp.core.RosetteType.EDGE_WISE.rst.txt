@@ -1,0 +1,6 @@
+EDGE\_WISE
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteType.EDGE_WISE

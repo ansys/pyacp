@@ -26,6 +26,7 @@ Other data types
     PlyCutoffType
     PlyType
     RosetteSelectionMethod
+    RosetteType
     SensorType
     StatusType
     SymmetryType

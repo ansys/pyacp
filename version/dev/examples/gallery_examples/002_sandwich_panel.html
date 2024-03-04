@@ -449,6 +449,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="003_basic_rules.html">Basic selection rules example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="004_advanced_rules.html">Advanced rules example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="005_thickness_definitions.html">Thickness definition example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="006_rosettes.html">Rosette example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="solve_class40.html">Class 40 example</a></li>
 </ul>
 </div>
@@ -570,7 +571,7 @@ It automatically creates a model based on the input file.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmplq70umus
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmp3s5bmkhj
 mks
 </pre></div>
 </div>
@@ -671,7 +672,6 @@ build repeating laminates.</p>
 <span class="p">)</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-<span class="k">assert</span> <span class="n">oss</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">orientation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 <a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="p">[</span><span class="n">oss</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">orientation</span><span class="p">])</span>
 <a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
@@ -768,7 +768,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
                     P3L1__top_ply
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.292 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.338 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-002-sandwich-panel-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/4c944221fcab68168f218e34d86697cc/002_sandwich_panel.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">002_sandwich_panel.py</span></code></a></p>

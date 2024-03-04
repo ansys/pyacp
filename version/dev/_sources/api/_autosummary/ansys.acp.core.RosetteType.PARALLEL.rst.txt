@@ -1,0 +1,6 @@
+PARALLEL
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteType.PARALLEL

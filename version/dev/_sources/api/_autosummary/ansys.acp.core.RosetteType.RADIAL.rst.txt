@@ -1,0 +1,6 @@
+RADIAL
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteType.RADIAL

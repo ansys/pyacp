@@ -35,10 +35,12 @@
    
       Rosette.dir1
       Rosette.dir2
+      Rosette.edge_set
       Rosette.id
       Rosette.locked
       Rosette.name
       Rosette.origin
+      Rosette.rosette_type
       Rosette.status
    
    
