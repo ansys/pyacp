@@ -56,6 +56,9 @@ from ansys.acp.core import (
 )
 from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
 
+# sphinx_gallery_thumbnail_number = 5
+
+
 # %%
 # Start ACP and load the model
 # ----------------------------
