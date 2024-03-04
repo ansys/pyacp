@@ -58,7 +58,9 @@ class TestRosette(WithLockedMixin, TreeObjectTester):
 
     @staticmethod
     @pytest.fixture
-    def object_properties():
+    def object_properties(parent_object):
+        model = parent_object
+
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "new_name"),
@@ -66,6 +68,7 @@ class TestRosette(WithLockedMixin, TreeObjectTester):
                 ("origin", (2.0, 3.0, 1.0)),
                 ("dir1", (0.0, 0.0, 1.0)),
                 ("dir2", (1.0, 0.0, 0.0)),
+                ("edge_set", model.create_edge_set()),
             ],
             read_only=[
                 ("id", "some_id"),
