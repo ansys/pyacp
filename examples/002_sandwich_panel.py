@@ -31,7 +31,6 @@ pyACP part of the setup. For a complete Composite analysis,
 see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
 """
 
-
 # %%
 # Import standard library and third-party dependencies.
 import pathlib
@@ -50,6 +49,9 @@ from ansys.acp.core import (
 )
 from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
 from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, ConstantStrainLimits
+
+# sphinx_gallery_thumbnail_number = 2
+
 
 # %%
 # Start ACP and load the model
