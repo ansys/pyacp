@@ -27,11 +27,11 @@ Define a Composite Lay-up for a sandwich panel with PyACP. This example shows ju
 pyACP part of the setup. For a complete Composite analysis,
 see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
 
-.. GENERATED FROM PYTHON SOURCE LINES 36-37
+.. GENERATED FROM PYTHON SOURCE LINES 35-36
 
 Import standard library and third-party dependencies.
 
-.. GENERATED FROM PYTHON SOURCE LINES 37-40
+.. GENERATED FROM PYTHON SOURCE LINES 36-39
 
 .. code-block:: default
 
@@ -45,11 +45,11 @@ Import standard library and third-party dependencies.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 41-42
+.. GENERATED FROM PYTHON SOURCE LINES 40-41
 
 Import pyACP dependencies
 
-.. GENERATED FROM PYTHON SOURCE LINES 42-54
+.. GENERATED FROM PYTHON SOURCE LINES 41-55
 
 .. code-block:: default
 
@@ -72,16 +72,18 @@ Import pyACP dependencies
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 55-57
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 57-59
 
 Start ACP and load the model
 ----------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 59-60
+.. GENERATED FROM PYTHON SOURCE LINES 61-62
 
 Get example file from server.
 
-.. GENERATED FROM PYTHON SOURCE LINES 60-64
+.. GENERATED FROM PYTHON SOURCE LINES 62-66
 
 .. code-block:: default
 
@@ -96,11 +98,11 @@ Get example file from server.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 65-66
+.. GENERATED FROM PYTHON SOURCE LINES 67-68
 
 Launch the PyACP server and connect to it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 66-68
+.. GENERATED FROM PYTHON SOURCE LINES 68-70
 
 .. code-block:: default
 
@@ -113,13 +115,13 @@ Launch the PyACP server and connect to it.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 69-72
+.. GENERATED FROM PYTHON SOURCE LINES 71-74
 
 Define the input file and instantiate an ACPWorkflow.
 The ACPWorkflow class provides convenience methods which simplify the file handling.
 It automatically creates a model based on the input file.
 
-.. GENERATED FROM PYTHON SOURCE LINES 72-83
+.. GENERATED FROM PYTHON SOURCE LINES 74-85
 
 .. code-block:: default
 
@@ -142,17 +144,17 @@ It automatically creates a model based on the input file.
 
  .. code-block:: none
 
-    /tmp/tmpir6afibi
+    /tmp/tmplq70umus
     mks
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 84-85
+.. GENERATED FROM PYTHON SOURCE LINES 86-87
 
 Visualize the loaded mesh.
 
-.. GENERATED FROM PYTHON SOURCE LINES 85-88
+.. GENERATED FROM PYTHON SOURCE LINES 87-90
 
 .. code-block:: default
 
@@ -193,16 +195,16 @@ Visualize the loaded mesh.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 89-91
+.. GENERATED FROM PYTHON SOURCE LINES 91-93
 
 Create the sandwich materials
 -----------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 93-94
+.. GENERATED FROM PYTHON SOURCE LINES 95-96
 
 Create the UD material and  its corresponding fabric.
 
-.. GENERATED FROM PYTHON SOURCE LINES 94-121
+.. GENERATED FROM PYTHON SOURCE LINES 96-123
 
 .. code-block:: default
 
@@ -240,12 +242,12 @@ Create the UD material and  its corresponding fabric.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 122-124
+.. GENERATED FROM PYTHON SOURCE LINES 124-126
 
 Create a multi-axial Stackup and a Sublaminate. Sublaminates and Stackups help to quickly
 build repeating laminates.
 
-.. GENERATED FROM PYTHON SOURCE LINES 124-144
+.. GENERATED FROM PYTHON SOURCE LINES 126-146
 
 .. code-block:: default
 
@@ -276,11 +278,11 @@ build repeating laminates.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 145-146
+.. GENERATED FROM PYTHON SOURCE LINES 147-148
 
 Create the Core Material and its corresponding Fabric.
 
-.. GENERATED FROM PYTHON SOURCE LINES 146-157
+.. GENERATED FROM PYTHON SOURCE LINES 148-159
 
 .. code-block:: default
 
@@ -302,16 +304,16 @@ Create the Core Material and its corresponding Fabric.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 158-160
+.. GENERATED FROM PYTHON SOURCE LINES 160-162
 
 Create the Layup
 ----------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 162-163
+.. GENERATED FROM PYTHON SOURCE LINES 164-165
 
 Define a rosette and an oriented selection set and plot the orientations.
 
-.. GENERATED FROM PYTHON SOURCE LINES 163-178
+.. GENERATED FROM PYTHON SOURCE LINES 165-180
 
 .. code-block:: default
 
@@ -364,11 +366,11 @@ Define a rosette and an oriented selection set and plot the orientations.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 179-180
+.. GENERATED FROM PYTHON SOURCE LINES 181-182
 
 Create the modeling plies which define the layup of the sandwich panel.
 
-.. GENERATED FROM PYTHON SOURCE LINES 180-205
+.. GENERATED FROM PYTHON SOURCE LINES 182-207
 
 .. code-block:: default
 
@@ -404,11 +406,11 @@ Create the modeling plies which define the layup of the sandwich panel.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 206-207
+.. GENERATED FROM PYTHON SOURCE LINES 208-209
 
 Update and print the model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 207-209
+.. GENERATED FROM PYTHON SOURCE LINES 209-211
 
 .. code-block:: default
 
@@ -476,7 +478,7 @@ Update and print the model.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.412 seconds)
+   **Total running time of the script:** ( 0 minutes  6.292 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_002_sandwich_panel.py:

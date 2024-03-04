@@ -44,6 +44,9 @@ import tempfile
 from ansys.acp.core import ACPWorkflow, LinkedSelectionRule, launch_acp
 from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
 
+# sphinx_gallery_thumbnail_number = -1
+
+
 # %%
 # Start ACP and load the model
 # ----------------------------

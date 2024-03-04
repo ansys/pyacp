@@ -55,6 +55,9 @@ import pyvista
 # Import Ansys libraries
 import ansys.acp.core as pyacp
 
+# sphinx_gallery_thumbnail_number = -1
+
+
 # %%
 # Launch the PyACP server and connect to it.
 acp = pyacp.launch_acp()
