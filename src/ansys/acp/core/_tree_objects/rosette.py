@@ -26,11 +26,11 @@ class Rosette(CreatableTreeObject, IdTreeObject):
     Parameters
     ----------
     name :
-        Name of the Rosette.
+        Name of the rosette.
     rosette_type :
-        Type of the Rosette.
+        Type of the rosette.
     origin :
-        Coordinates of the Rosette origin.
+        Coordinates of the rosette origin.
     dir1 :
         Direction 1 (x-direction) vector of the Rosette.
     dir2 :

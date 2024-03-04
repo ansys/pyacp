@@ -137,7 +137,7 @@ __all__ = [
     "RosetteType",
     rosette_pb2.Type,
     module=__name__,
-    doc="Options for the type of a Rosette.",
+    doc="Options for the type of a rosette.",
 )
 
 (

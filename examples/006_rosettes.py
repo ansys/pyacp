@@ -102,7 +102,7 @@ plotter = get_directions_plotter(
 plotter.show()
 
 # %%
-# Create a ply with which uses the reference direction defined by the rosette.
+# Create a ply that uses the reference direction defined by the rosette.
 # The ply angle is set to 20 degrees, which means the fiber direction is rotated by 20 degrees
 # from the reference direction.
 modeling_group = model.create_modeling_group(name="modeling_group")
@@ -114,7 +114,7 @@ modeling_ply = modeling_group.create_modeling_ply(
 )
 
 # %%
-# Plot the reference direction, the fiber direction and the transverse direction of the ply.
+# Plot the reference direction, fiber direction, and transverse direction of the ply.
 plotter = get_directions_plotter(
     model=model,
     components=[
@@ -130,7 +130,7 @@ plotter.show()
 # ---------------------------------------
 # %%
 # Create a radial rosette and plot the resulting reference direction.
-# For a radial rosette, a line is constructed that goes through the origin and its
+# For a radial rosette, a line is constructed that goes through the origin. Its
 # direction vector is normal to a plane spanned by ``dir1`` and ``dir2``.
 # The reference direction are then parallel to the shortest connection from the line to each point
 # for which the reference direction is computed.
@@ -175,7 +175,7 @@ plotter.show()
 # %%
 # Create a spherical rosette and plot the resulting reference direction.
 # For a spherical rosette, the reference directions are tangential to a sphere around the origin.
-# Note: This is the same as the cylindrical rosette for the current example.
+# Note that this is the same as the cylindrical rosette for the current example.
 spherical_rosette = model.create_rosette(
     name="SphericalRosette",
     rosette_type=RosetteType.SPHERICAL,
@@ -196,8 +196,8 @@ plotter.show()
 # ----------------
 
 # %%
-# Create and additional parallel rosette which points along the x direction and has its origin
-# at (0.01, 0, 0.01).
+# Create an additional parallel rosette that points along the x direction and has its origin
+# at ``(0.01, 0, 0.01)``.
 parallel_rosette_0_deg = model.create_rosette(
     name="ParallelRosette",
     rosette_type=RosetteType.PARALLEL,
@@ -210,7 +210,7 @@ parallel_rosette_0_deg = model.create_rosette(
 # Assign both rosettes to the oriented selection set and set the rosette selection method to
 # ``RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED``. This implies that the reference direction
 # is weighted by the inverse distance to each rosette. Note that the origin of
-# the rotated rosette is at (0,0,0).
+# the rotated rosette is at ``(0,0,0)``.
 oss.rosettes = [parallel_rosette_45_deg, parallel_rosette_0_deg]
 oss.rosette_selection_method = RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED
 
