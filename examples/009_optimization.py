@@ -179,7 +179,7 @@ MATERIALS_FILE
 # Create functions used in the optimization
 # -----------------------------------------
 #
-# To optimize the ply angles, you need to define functions to update, solve and post-process
+# To optimize the ply angles, you must define functions to update, solve, and postprocess
 # the ACP model for a given set of ply angles.
 #
 # The ``generate_acp_outputs_for_parameters`` function generates the ACP outputs for a given
@@ -219,7 +219,7 @@ def solve_cdb(*, mapdl, cdb_file, workdir):
     mapdl.time(2.0)
     mapdl.solve()
 
-    # Download RST FILE for further post-processing
+    # Download RST FILE for further postprocessing.
     rstfile_name = f"{mapdl.jobname}.rst"
     rst_file_local_path = workdir / rstfile_name
     mapdl.download(rstfile_name, str(workdir))
@@ -296,7 +296,7 @@ get_max_irf(
 # %%
 # Optimize the ply angles
 # -----------------------
-# For the optimization, you need to define a single function that takes the ply angles
+# For the optimization, you must define a single function that takes the ply angles
 # as input and returns the maximum IRF.
 # The ``get_max_irf_for_parameters`` function combines the previously defined functions
 # to perform all the necessary steps for a given set of ply angles.
