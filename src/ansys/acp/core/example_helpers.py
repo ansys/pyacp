@@ -58,6 +58,7 @@ class ExampleKeys(Enum):
     RULE_GEOMETRY_TRIANGLE = auto()
     THICKNESS_GEOMETRY = auto()
     MINIMAL_FLAT_PLATE = auto()
+    OPTIMIZATION_EXAMPLE_DAT = auto()
 
 
 EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
@@ -84,6 +85,9 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
     ),
     ExampleKeys.MINIMAL_FLAT_PLATE: _ExampleLocation(
         directory="basic_flat_plate_example", filename="minimal_model_single_ply.acph5"
+    ),
+    ExampleKeys.OPTIMIZATION_EXAMPLE_DAT: _ExampleLocation(
+        directory="optimization_example", filename="optimization_model.dat"
     ),
 }
 
