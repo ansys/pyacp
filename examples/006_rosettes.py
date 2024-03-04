@@ -73,7 +73,7 @@ ud_material = model.create_material(
 fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.1)
 
 # %%
-# Create a parallel rosette where the first direction is rotated by 45 degrees around the y-axis.
+# Create a parallel rosette where the first direction is rotated by 45 degrees around the y axis.
 parallel_rosette_45_deg = model.create_rosette(
     name="ParallelRosette",
     rosette_type=RosetteType.PARALLEL,
