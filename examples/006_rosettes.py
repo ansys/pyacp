@@ -4,10 +4,10 @@
 Rosette example
 ===============
 
-This example shows how rosettes can be used to define the reference directions of a ply. Note
-that only parallel rosettes are supported in pyACP.
-This example shows just the pyACP part of the setup.  For a complete Composite analysis,
-see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
+This example shows how to use rosettes to define the reference directions of a ply. Note
+that only parallel rosettes are supported in PyACP.
+This example shows just the PyACP part of the setup.  For a complete composite analysis,
+see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example.
 """
 
 
