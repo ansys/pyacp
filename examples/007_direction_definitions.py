@@ -1,13 +1,34 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 """
 .. _direction_definition_example:
 
 Direction definition example
 ============================
 This example shows how directions can be defined from lookup tables.
-This example shows just the pyACP part of the setup.  For a complete Composite analysis,
+This example shows just the PyACP part of the setup.  For a complete Composite analysis,
 see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
 """
-
 
 # %%
 # Import standard library and third-party dependencies.
@@ -17,13 +38,14 @@ import tempfile
 import numpy as np
 
 # %%
-# Import pyACP dependencies
+# Import PyACP dependencies
 from ansys.acp.core import (
     ACPWorkflow,
     DimensionType,
     DrapingType,
     LookUpTableColumnValueType,
     PlyType,
+    RosetteSelectionMethod,
     get_directions_plotter,
     launch_acp,
 )
@@ -130,8 +152,8 @@ direction_column = lookup_table.create_column(
 
 # %%
 # Assign the lookup table to the oriented selection set.
-# Todo: currently not working because lookup table column assignment is missing
-# oss.rosette_selection_method = RosetteSelectionMethod.DIRECTIONS_FROM_TABULAR_VALUES
+oss.rosette_selection_method = RosetteSelectionMethod.DIRECTIONS_FROM_TABULAR_VALUES
+oss.reference_direction_field = direction_column
 
 # %%
 # Plot the orientation and the reference direction of the oriented selection set.
