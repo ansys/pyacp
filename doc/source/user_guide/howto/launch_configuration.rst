@@ -58,7 +58,7 @@ new value and press Enter.
 
     Updated ~/.config/ansys_tools_local_product_launcher/config.json
 
-The new configuration will be used by the :func:`.launch_acp` function. Note that you
+The new configuration is used by the :func:`.launch_acp` function. Note that you
 may have to restart your Python session for the changes to take effect.
 
 Choosing the launch mode at runtime

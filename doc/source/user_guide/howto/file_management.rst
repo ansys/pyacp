@@ -2,7 +2,7 @@ Managing input and output files
 -------------------------------
 
 When defining your workflow using PyACP and other tools, you may need control
-over where input and output files are stored. This guide will show you different
+over where input and output files are stored. This guide shows you different
 ways to achieve this.
 
 For now, let's assume the ACP instance is launched on a remote server. The
@@ -36,7 +36,7 @@ Using a predefined workflow
 '''''''''''''''''''''''''''
 
 The simplest way to manage files is by using the :class:`.ACPWorkflow` class. This class
-manages the most common use case, using predetermined output file names.
+manages the most common use case, using predetermined output filenames.
 
 Loading input files
 ~~~~~~~~~~~~~~~~~~~
@@ -44,7 +44,7 @@ Loading input files
 To get started, you must define a workflow. This can be done using either an
 FE model (``.cdb`` or ``.dat``) file, or an ACP model (``.acph5``) file.
 
-Let us assume you have a directory ``DATA_DIRECTORY`` containing a file ``input_file.cdb``.
+In the following, assume you have a directory ``DATA_DIRECTORY`` containing a file ``input_file.cdb``.
 
 .. doctest::
 
@@ -86,7 +86,7 @@ output files. For example, to get the ``.acph5`` file of the model, use the
     >>> workflow.get_local_acph5_file()
     PosixPath('/tmp/.../My model.acph5')
 
-Note that the file name is based on the model name.
+Note that the filename is based on the model name.
 
 Using a custom working directory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -112,7 +112,7 @@ Manual file management
 ''''''''''''''''''''''
 
 To get more control over where files are stored, you can manually upload and
-download files to the server, and specify the file names.
+download files to the server, and specify the filenames.
 
 Loading input files
 ~~~~~~~~~~~~~~~~~~~

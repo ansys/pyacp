@@ -69,7 +69,7 @@ the stress and strain limits must be redefined.
 
 For the engineering constants however, the orthotropic and isotropic definitions
 are interlinked. This means that when changing the ply type of a material, the
-engineering constants will be automatically converted.
+engineering constants are converted automatically.
 To avoid accidentally using incorrect engineering constants, PyACP enforces some
 conversion and assignment rules, as described in the following sections.
 
@@ -142,7 +142,7 @@ Similar rules apply when assigning engineering constants to a material:
   - to orthotropic materials.
   - to isotropic materials, if their values are consistent with an isotropic material.
 
-Continuing from the preceding example, we can assign either an orthotropic or isotropic engineering constants to the orthotropic material:
+Continuing from the preceding example, you can assign either an orthotropic or isotropic engineering constants to the orthotropic material:
 
 .. doctest::
 
@@ -163,7 +163,7 @@ Continuing from the preceding example, we can assign either an orthotropic or is
     ...     E=1e9, nu=0.3
     ... )
 
-Now we can switch back to an isotropic ply type.
+Now you can switch back to an isotropic ply type.
 
 .. doctest::
 

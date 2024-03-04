@@ -3,3 +3,8 @@ Ansys
 ansys
 PyACP
 unstored
+ACP
+GUI
+Mechanical
+APDL
+API
