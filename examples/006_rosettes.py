@@ -19,7 +19,7 @@ import tempfile
 import numpy as np
 
 # %%
-# Import pyACP dependencies
+# Import PyACP dependencies
 from ansys.acp.core import (
     ACPWorkflow,
     PlyType,
