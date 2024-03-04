@@ -22,6 +22,8 @@
 
 import pytest
 
+from ansys.acp.core import RosetteType
+
 from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
 
 
@@ -44,6 +46,7 @@ class TestRosette(WithLockedMixin, TreeObjectTester):
     def default_properties():
         return {
             "status": "NOTUPTODATE",
+            "rosette_type": RosetteType.PARALLEL,
             "locked": False,
             "origin": (0.0, 0.0, 0.0),
             "dir1": (1.0, 0.0, 0.0),
@@ -55,13 +58,17 @@ class TestRosette(WithLockedMixin, TreeObjectTester):
 
     @staticmethod
     @pytest.fixture
-    def object_properties():
+    def object_properties(parent_object):
+        model = parent_object
+
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "new_name"),
+                ("rosette_type", RosetteType.RADIAL),
                 ("origin", (2.0, 3.0, 1.0)),
                 ("dir1", (0.0, 0.0, 1.0)),
                 ("dir2", (1.0, 0.0, 0.0)),
+                ("edge_set", model.create_edge_set()),
             ],
             read_only=[
                 ("id", "some_id"),
