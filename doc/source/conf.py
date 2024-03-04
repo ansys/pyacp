@@ -1,8 +1,8 @@
 """Sphinx documentation configuration file."""
+
 from datetime import datetime
 import os
 
-import numpy as np
 import pyvista
 from pyvista.plotting.utilities.sphinx_gallery import DynamicScraper
 from sphinx.builders.latex import LaTeXBuilder
@@ -25,8 +25,6 @@ SKIP_GALLERY = os.environ.get("PYACP_DOC_SKIP_GALLERY", "0").lower() in ("1", "t
 SKIP_API = os.environ.get("PYACP_DOC_SKIP_API", "0").lower() in ("1", "true")
 
 exclude_patterns = []
-if SKIP_GALLERY:
-    exclude_patterns.append("examples/*")
 if SKIP_API:
     exclude_patterns.append("api/*")
 
@@ -34,6 +32,12 @@ if SKIP_API:
 jinja_contexts = {
     "conditional_skip": {"skip_api": SKIP_API, "skip_gallery": SKIP_GALLERY},
 }
+
+
+# PyMAPDL and PyDPF override the default PyVista theme, so we need to import it
+# here to have a chance of re-setting it.
+import ansys.mapdl.core  # isort:skip
+import ansys.dpf.core  # isort:skip # noqa: F401
 
 # Manage errors
 pyvista.set_error_output_file("errors.txt")
@@ -44,8 +48,8 @@ pyvista.OFF_SCREEN = True
 # necessary when building the sphinx gallery
 pyvista.BUILDING_GALLERY = True
 
-pyvista.set_plot_theme("document")
-pyvista.global_theme.window_size = np.array([1024, 768]) * 2
+pyvista.global_theme = pyvista.themes.DocumentTheme()
+pyvista.global_theme.cmap = "viridis_r"
 
 # Project information
 project = "ansys-acp-core"
@@ -63,7 +67,7 @@ cname = os.getenv("DOCUMENTATION_CNAME", "acp.docs.pyansys.com")
 
 # specify the location of your github repo
 html_theme_options = {
-    "github_url": "https://github.com/ansys-internal/pyacp",
+    "github_url": "https://github.com/ansys/pyacp",
     "show_prev_next": False,
     "show_breadcrumbs": True,
     "additional_breadcrumbs": [("PyAnsys", "https://docs.pyansys.com/")],
@@ -185,6 +189,7 @@ sphinx_gallery_conf = {
     "image_scrapers": (DynamicScraper(), "matplotlib"),
     "ignore_pattern": r"__init__\.py",
     "thumbnail_size": (350, 350),
+    "remove_config_comments": True,
 }
 
 # Favicon

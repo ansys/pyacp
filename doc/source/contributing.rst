@@ -14,9 +14,9 @@ For example, you could contribute by:
 - Reporting your use case, and how PyACP helped you or what is still missing
 
 For feedback, suggestions, or bug reports, please open an `issue
-<https://github.com/ansys-internal/pyacp/issues>`_ on our GitHub repository.
+<https://github.com/ansys/pyacp/issues>`_ on our GitHub repository.
 For code changes or documentation improvements, please open a `pull request
-<https://github.com/ansys-internal/pyacp/pulls>`_.
+<https://github.com/ansys/pyacp/pulls>`_.
 
 
 .. include:: ../../README.rst

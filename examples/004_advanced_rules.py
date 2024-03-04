@@ -1,3 +1,25 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 """
 .. _advanced_rules_example:
 
@@ -34,6 +56,9 @@ from ansys.acp.core import (
 )
 from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
 
+# sphinx_gallery_thumbnail_number = 5
+
+
 # %%
 # Start ACP and load the model
 # ----------------------------
@@ -68,7 +93,7 @@ print(model.unit_system)
 # Add more layers to the modeling ply, so it easier to see the effects of the selection rules.
 # Plot the thickness of all the plies without any rules.
 
-modeling_ply = model.modeling_groups["modeling_group"].plies["ply"]
+modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
 modeling_ply.number_of_layers = 10
 
 model.update()

@@ -19,7 +19,7 @@ on:
         required: false
 
 env:
-  MAIN_PYTHON_VERSION: "3.9"
+  MAIN_PYTHON_VERSION: "3.12"
   PACKAGE_NAME: "ansys-acp-core"
   DOCUMENTATION_CNAME: "acp.docs.pyansys.com"
 
@@ -52,18 +52,14 @@ jobs:
       # pre-commit needs all dev dependencies, since it also checks the test and example files
       - name: Install library, with all optional groups
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
           poetry install --with dev,test
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
-          poetry run pip install --force-reinstall git+https://github.com/ansys-internal/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
+          poetry run pip install --force-reinstall git+https://github.com/ansys/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
 
       - name: Run pre-commit
         run: |
@@ -76,46 +72,28 @@ jobs:
       - uses: ansys/actions/doc-style@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          vale-version: "3.1.0"
 
-  build:
-    name: Build packages
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
-
-      - name: Pip cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: pip-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-precommit
-          restore-keys: |
-            pip-${{ runner.os }}
-
-      - name: Build packages
-        run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
-          pip install -U pip
-          pip install 'poetry!=1.7.0'
-          poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
-          poetry build
-
-      - name: Validate packages
-        run: |
-          pip install twine
-          twine check dist/*
-
-      - name: Upload packages
-        uses: actions/upload-artifact@v4
-        with:
-          name: Packages
-          path: dist/
-          retention-days: 7
+  # TODO: uncomment once the dependencies are public
+  # build-wheelhouse:
+  #   name: "Build wheelhouse"
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest, windows-latest, macos-latest]
+  #       python-version: ['3.9', '3.10', '3.11', '3.12']
+  #       should-release:
+  #         - ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags') }}
+  #       exclude:
+  #         - should-release: false
+  #           os: macos-latest
+  #   steps:
+  #     - name: "Build wheelhouse and perform smoke test"
+  #       uses: ansys/actions/build-wheelhouse@v5
+  #       with:
+  #         library-name: ${{ env.PACKAGE_NAME }}
+  #         operating-system: ${{ matrix.os }}
+  #         python-version: ${{ matrix.python-version }}
 
   testing:
     name: Testing
@@ -145,11 +123,8 @@ jobs:
 
       - name: Install library, with test group
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
           poetry install --with test
 
       - name: Build API package from custom branch
@@ -159,7 +134,7 @@ jobs:
           . .api_builder_venv/bin/activate
           python -m pip install --upgrade pip wheel
           mkdir .api_package
-          python -m pip wheel --no-deps --wheel-dir .api_package git+https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
+          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
 
       - name: Install custom API branch package
         if: "${{ github.event.inputs.api_branch != '' }}"
@@ -177,10 +152,28 @@ jobs:
         working-directory: tests/unittests
         run: |
           docker pull $IMAGE_NAME
-          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME
+          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+          IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+
+      - name: "Upload coverage report (HTML)"
+        uses: actions/upload-artifact@v4
+        if: matrix.python-version == env.MAIN_PYTHON_VERSION
+        with:
+          name: coverage-report-html
+          path: htmlcov
+          retention-days: 7
+
+      # TODO: Uncomment once publicly released
+      #
+      # - name: "Upload coverage to Codecov"
+      #   uses: codecov/codecov-action@v4
+      #   if: matrix.python-version == env.MAIN_PYTHON_VERSION
+      #   env:
+      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      #   with:
+      #     files: coverage.xml
 
       - name: Benchmarks
         working-directory: tests/benchmarks
@@ -188,7 +181,7 @@ jobs:
           poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == '3.9' && github.ref == 'refs/heads/main') && ' ' || '--validate-benchmarks-only' }}
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+          IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
 
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
@@ -199,7 +192,7 @@ jobs:
           benchmark-data-dir-path: benchmarks
           auto-push: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-        if: matrix.python-version == '3.9' && github.ref == 'refs/heads/main'
+        if: matrix.python-version == env.MAIN_PYTHON_VERSION && github.ref == 'refs/heads/main'
 
   doctest:
     name: Test documentation snippets
@@ -224,11 +217,8 @@ jobs:
 
       - name: Install library, with test,dev groups
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
           poetry install --with test,dev
 
       - name: Build API package from custom branch
@@ -238,7 +228,7 @@ jobs:
           . .api_builder_venv/bin/activate
           python -m pip install --upgrade pip wheel
           mkdir .api_package
-          python -m pip wheel --no-deps --wheel-dir .api_package git+https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
+          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
 
       - name: Install custom API branch package
         if: "${{ github.event.inputs.api_branch != '' }}"
@@ -262,8 +252,8 @@ jobs:
         run: >
           poetry run
           ansys-launcher configure ACP docker_compose
-          --image_name_pyacp=ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}
-          --image_name_filetransfer=ghcr.io/ansys-internal/tools-filetransfer:latest
+          --image_name_pyacp=ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}
+          --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False
           --overwrite_default
@@ -273,11 +263,11 @@ jobs:
       - name: Run doctest
         run: |
           docker pull $IMAGE_NAME
-          docker pull ghcr.io/ansys-internal/tools-filetransfer:latest
+          docker pull ghcr.io/ansys/tools-filetransfer:latest
           xvfb-run poetry run make -C doc doctest
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+          IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
           PYACP_DOC_SKIP_GALLERY: "true"
           PYACP_DOC_SKIP_API: "true"
 
@@ -320,25 +310,21 @@ jobs:
 
       - name: Install library, with dev group
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry config http-basic.pyansys_private_pypi TOKEN ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
           poetry install --with dev
 
       - name: Install custom API branch if needed
         if: "${{ github.event.inputs.api_branch != '' }}"
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-api-acp".insteadOf "https://github.com/ansys-internal/ansys-api-acp"
-          poetry run pip install --force-reinstall git+https://github.com/ansys-internal/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
+          poetry run pip install --force-reinstall git+https://github.com/ansys/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
 
       - name: Configure Local Product Launcher for ACP
         run: >
           poetry run
           ansys-launcher configure ACP docker_compose
-          --image_name_pyacp=ghcr.io/ansys-internal/pyacp${{ github.event.inputs.docker_image_suffix || ':latest' }}
-          --image_name_filetransfer=ghcr.io/ansys-internal/tools-filetransfer:latest
+          --image_name_pyacp=ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}
+          --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False
           --overwrite_default
@@ -356,12 +342,11 @@ jobs:
 
       - name: Build HTML
         run: |
-          xvfb-run poetry run make -C doc html SPHINXOPTS="$SPHINXOPT_WARNINGS_IS_ERROR --keep-going -v $SPHINXOPT_NITPICKY"
+          xvfb-run poetry run make -C doc html SPHINXOPTS="-W --keep-going -v $SPHINXOPT_NITPICKY"
         env:
           PYMAPDL_PORT: "50557"
           PYMAPDL_START_INSTANCE: "FALSE"
           PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT: "50558"
-          SPHINXOPT_WARNINGS_IS_ERROR: ${{ matrix.build_type == 'quick' && ' ' || '-W' }}
           SPHINXOPT_NITPICKY: ${{ matrix.build_type == 'quick' && ' ' || '-n' }}
           PYACP_DOC_SKIP_GALLERY: ${{ matrix.build_type == 'quick' && 'true' || 'false' }}
           PYACP_DOC_SKIP_API: ${{ matrix.build_type == 'quick' && 'true' || 'false' }}
@@ -399,16 +384,48 @@ jobs:
       - name: Upload PDF Documentation
         uses: actions/upload-artifact@v4
         with:
-          name: Documentation-pdf
+          name: documentation-pdf
           path: doc/build/latex/ansys-acp-core.pdf
           retention-days: 7
         if: ${{ matrix.build_type == 'full' }}
 
-  upload_dev_docs:
+  build:
+    name: Build library
+    runs-on: ubuntu-latest
+    # TODO: add build-wheelhouse once it is uncommented above
+    # needs: [code-style, testing, doc-style, docs, build-wheelhouse, doctest]
+    needs: [code-style, testing, doc-style, docs, doctest]
+    timeout-minutes: 30
+    steps:
+      - name: Build library source and wheel artifacts
+        uses: ansys/actions/build-library@v5
+        with:
+          library-name: ${{ env.PACKAGE_NAME }}
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+
+  release:
+    name: Release project
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release to the public PyPI repository
+        uses: ansys/actions/release-pypi-public@v5
+        with:
+          library-name: ${{ env.PACKAGE_NAME }}
+          twine-username: "__token__"
+          twine-token: ${{ secrets.PYPI_TOKEN }}
+
+      - name: Release to GitHub
+        uses: ansys/actions/release-github@v5
+        with:
+          library-name: ${{ env.PACKAGE_NAME }}
+
+  upload_docs_dev:
     name: "Upload dev documentation"
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: [docs]
+    needs: [build]
     steps:
       - name: Deploy the latest documentation
         uses: ansys/actions/doc-deploy-dev@v5
@@ -417,55 +434,14 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           force-orphan: false
 
-  # Release:
-  #   if: contains(github.ref, 'refs/tags')
-  #   needs: [main, style, docs]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Set up Python
-  #       uses: actions/setup-python@v1
-  #       with:
-  #         python-version: 3.9
-
-  #     - uses: actions/checkout@v4
-
-  #     - uses: actions/download-artifact@v2
-  #       with:
-  #         name: ansys-acp-core-wheel
-
-  #     - uses: actions/download-artifact@v2
-  #       with:
-  #         name: Documentation-pdf
-
-  #     - uses: actions/download-artifact@v2
-  #       with:
-  #         name: Documentation-html
-  #         path: ~/html
-
-  #     # list current directory
-  #     - name: List directory structure
-  #       run: ls -R
-
-  #     - name: Deploy
-  #       uses: JamesIves/github-pages-deploy-action@4.1.5
-  #       with:
-  #         BRANCH: gh-pages
-  #         FOLDER: ~/html
-  #         CLEAN: true
-
-  #     # note how we use the PyPI tokens
-  #     - name: Upload to Azure PyPi (disabled)
-  #       run: |
-  #         pip install twine
-  #         # twine upload --skip-existing ./**/*.whl
-  #       env:
-  #         TWINE_USERNAME: __token__
-  #         TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-
-  #     - name: Release
-  #       uses: softprops/action-gh-release@v1
-  #       with:
-  #         files: |
-  #           ./**/*.whl
-  #           ./**/*.zip
-  #           ./**/*.pdf
+  upload_docs_release:
+    name: Upload release documentation
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
+    runs-on: ubuntu-latest
+    needs: [release]
+    steps:
+      - name: Deploy the stable documentation
+        uses: ansys/actions/doc-deploy-stable@v5
+        with:
+          cname: ${{ env.DOCUMENTATION_CNAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}

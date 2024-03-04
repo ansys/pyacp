@@ -1,3 +1,25 @@
+# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# SPDX-License-Identifier: MIT
+#
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 """Pytest configuration file for ansys-acp-core tests."""
 from collections.abc import Generator
 from contextlib import contextmanager
@@ -79,7 +101,7 @@ def pytest_addoption(parser: pytest.Parser) -> None:
             "Docker image to be used for running the test. Only used if "
             f"'{SERVER_BIN_OPTION_KEY}' and '{SERVER_URLS_OPTION_KEY}' are not set."
         ),
-        default="ghcr.io/ansys-internal/pyacp:latest",
+        default="ghcr.io/ansys/acp:latest",
     )
     parser.addoption(
         LICENSE_SERVER_OPTION_KEY,
@@ -155,7 +177,7 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
         # If no binary is provided, use docker-compose for running
         # the ACP server.
         image_name = request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY)
-        image_name_filetransfer = "ghcr.io/ansys-internal/tools-filetransfer:latest"
+        image_name_filetransfer = "ghcr.io/ansys/tools-filetransfer:latest"
         # We distinguish between local and remote images by checking if
         # the image name contains a slash. This is somewhat crude, but works
         # for now.

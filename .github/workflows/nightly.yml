@@ -29,16 +29,8 @@ jobs:
 
       - name: Install library from wheel, test dependencies from poetry.lock
         run: |
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-filetransfer".insteadOf "https://github.com/ansys-internal/ansys-tools-filetransfer"
-          git config --global url."https://${{ secrets.PYANSYS_CI_BOT_TOKEN }}@github.com/ansys-internal/ansys-tools-local-product-launcher".insteadOf "https://github.com/ansys-internal/ansys-tools-local-product-launcher"
           python -m venv test_env
           . test_env/bin/activate
-
-          # Install the dependencies from internal PyPI. These need to be listed
-          # separately in '.ci/internal_requirements.txt' to allow installing them
-          # in a separate step, without relying on the unsafe '--extra-index-url'
-          # option.
-          pip install --index-url https://${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}@pkgs.dev.azure.com/pyansys/_packaging/pyansys/pypi/simple -r .ci/internal_requirements.txt
 
           pip install $(echo dist/*.whl)
 
@@ -59,4 +51,4 @@ jobs:
           pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files tests/unittests
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: 'ghcr.io/ansys-internal/pyacp:latest'
+          IMAGE_NAME: 'ghcr.io/ansys/acp:latest'
