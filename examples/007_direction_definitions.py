@@ -25,7 +25,8 @@
 
 Direction definition example
 ============================
-This example shows how directions can be defined from lookup tables.
+This example shows how directions can be defined from lookup tables. This can be either
+reference directions for oriented selection sets or draping angles for modeling plies.
 This example shows just the PyACP part of the setup.  For a complete Composite analysis,
 see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
 """
@@ -109,6 +110,7 @@ oss = model.create_oriented_selection_set(
 
 # %%
 # Plot the orientation and the reference direction of the oriented selection set.
+# The reference direction is defined by the rosette.
 model.update()
 plotter = get_directions_plotter(
     model=model, components=[oss.elemental_data.orientation, oss.elemental_data.reference_direction]
@@ -164,6 +166,10 @@ plotter = get_directions_plotter(
 plotter.show()
 
 # %%
+# Reset the oss so that it uses again the rosette for the reference directions.
+oss.rosette_selection_method = RosetteSelectionMethod.MINIMUM_ANGLE
+
+# %%
 # Define the draping angles from a lookup table
 # ---------------------------------------------
 
@@ -177,9 +183,9 @@ angle_column_1 = lookup_table.create_column(
 )
 
 # %%
-# Compute the transverse correction angle, assuming a constant shear angle of 60°.
-shear_angle = 60
-transverse_correction_angle = correction_angle + shear_angle - 90
+# Compute the transverse correction angle, assuming a constant shear angle of -30°.
+shear_angle = -30
+transverse_correction_angle = correction_angle + shear_angle
 angle_column_2 = lookup_table.create_column(
     data=transverse_correction_angle,
     dimension_type=DimensionType.DIMENSIONLESS,
