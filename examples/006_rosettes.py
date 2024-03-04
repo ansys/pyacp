@@ -4,8 +4,7 @@
 Rosette example
 ===============
 
-This example shows how to use rosettes to define the reference directions of a ply. Note
-that only parallel rosettes are supported in PyACP.
+This example shows how to use rosettes to define the reference directions of a ply.
 This example shows just the PyACP part of the setup.  For a complete composite analysis,
 see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example.
 """
@@ -115,7 +114,7 @@ modeling_ply = modeling_group.create_modeling_ply(
 )
 
 # %%
-# Plot the reference directions, fiber direction, and transverse direction of the ply.
+# Plot the reference directions, fiber directions, and transverse directions of the ply.
 plotter = get_directions_plotter(
     model=model,
     components=[
