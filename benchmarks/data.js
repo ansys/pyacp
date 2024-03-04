@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709218078747,
+  "lastUpdate": 1709545350837,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13390,6 +13390,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00040387274000148766",
             "extra": "mean: 1.1541749832346264 msec\nrounds: 1193"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "221121ab9c3469bff38dc768c5629fc869070b67",
+          "message": "Improve gallery thumbnails and theme (#469)\n\nSelect gallery thumbnails by setting the \r\n``# sphinx_gallery_thumbnail_number = <nr>`` comment.\r\nTo avoid this comment showing up in the rendered example, the\r\n``remove_config_comments`` option is set to ``True``, and the\r\ncomment itself is hidden within a code block (i.e., it cannot\r\nbe on its own, otherwise the rendered example has an empty code\r\nblock).\r\n\r\nImport ``ansys.mapdl.core`` and ``ansys.dpf.core`` in ``conf.py``\r\nbefore setting the PyVista theme, otherwise these imports\r\noverride the theme.\r\nRemove the workaround of manually importing PyMAPDL in\r\nthe example, since it should anyway become obsolete with the\r\nupcoming PyMAPDL release.\r\n\r\nRemove setting the PyVista window size, otherwise text within\r\nthe plot is too small.\r\n\r\nUse the reversed ``viridis_r`` colormap (instead of the default \r\n``viridis``), so that small values are light, and large values dark.",
+          "timestamp": "2024-03-04T09:39:03Z",
+          "tree_id": "5b136e17c7927d3640ba00f4fb103020e6d003b2",
+          "url": "https://github.com/ansys/pyacp/commit/221121ab9c3469bff38dc768c5629fc869070b67"
+        },
+        "date": 1709545327085,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.284050173942662,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0057119626155935875",
+            "extra": "mean: 189.24877075000524 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1168.8566175096234,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002300658719816166",
+            "extra": "mean: 855.536928156859 usec\nrounds: 1378"
           }
         ]
       }
