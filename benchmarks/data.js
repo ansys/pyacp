@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709545350837,
+  "lastUpdate": 1709559089710,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13428,6 +13428,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002300658719816166",
             "extra": "mean: 855.536928156859 usec\nrounds: 1378"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "eb7f1710ec0a0939b32ecf115c36d4ea82405468",
+          "message": "Add rosette example (#448)\n\n* Add rosette example\r\n* Allow passing Optional VectorData objects to the plotter.\r\n* Add edge set to Rosette and Rosette example.\r\n* Update lock file",
+          "timestamp": "2024-03-04T14:28:01+01:00",
+          "tree_id": "1f1e98f2a205063122a5736f6ce2db960351b0da",
+          "url": "https://github.com/ansys/pyacp/commit/eb7f1710ec0a0939b32ecf115c36d4ea82405468"
+        },
+        "date": 1709559065114,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.210123410982077,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003838508662231823",
+            "extra": "mean: 191.9340332499928 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1598.8972751390875,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00010571168023650065",
+            "extra": "mean: 625.4310489790599 usec\nrounds: 490"
           }
         ]
       }
