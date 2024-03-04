@@ -5,8 +5,8 @@ When defining your workflow using PyACP and other tools, you may need control
 over where input and output files are stored. This guide shows you different
 ways to achieve this.
 
-For now, let's assume the ACP instance is launched on a remote server. The
-final section :ref:`local_vs_remote` will discuss the differences between local and
+For now, consider the case where the ACP instance is launched on a remote server. The
+final section :ref:`local_vs_remote` discusses the differences between local and
 remote ACP instances in terms of file management.
 
 .. doctest::
@@ -104,7 +104,7 @@ the :class:`.ACPWorkflow` constructor:
     ...     local_working_directory=pathlib.Path("."),
     ... )
 
-Now the output files will be stored in the custom working directory. Input files
+Any produced output files are now stored in the custom working directory. Input files
 are also copied to this directory before being uploaded to the ACP instance.
 
 
@@ -142,7 +142,7 @@ be used to create a new model:
 Getting output files
 ~~~~~~~~~~~~~~~~~~~~
 
-To get the ``.acph5`` file, we first need to store it on the server. This is done
+To get the ``.acph5`` file, you first need to store it on the server. This is done
 using the :meth:`.save` method of the model:
 
 .. doctest::
@@ -164,7 +164,7 @@ instance:
 Local vs remote ACP instance
 ''''''''''''''''''''''''''''
 
-In the preceding examples, we have assumed that ACP runs on a remote server. However,
+In the preceding examples, the case where ACP runs on a remote server was described. However,
 you can also launch ACP as a process on your local machine. Refer to the :ref:`launch_configuration` guide
 for details on how to do this.
 
