@@ -10,6 +10,7 @@
 
 * [Dominik Gresch](https://github.com/greschd)
 * [Jan von Rickenbach](https://github.com/janvonrickenbach)
+* [Kathy Pippert](https://github.com/PipKat)
 * [Nellie Shum](https://github.com/nshum4)
 * [René Roos](https://github.com/roosre)
 * [Revathy Venugopal](https://github.com/Revathyvenugopal162)
