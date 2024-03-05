@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709635382027,
+  "lastUpdate": 1709637056736,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13504,6 +13504,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020167098019902051",
             "extra": "mean: 855.1578406490435 usec\nrounds: 1230"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a183fdcc36eb089adb4e6cfed91a71b87721c93e",
+          "message": "Rosette example: change thumbnail (#482)\n\nUse the fourth image (radial rosette) as thumbnail for the rosette\r\nexample.",
+          "timestamp": "2024-03-05T11:06:31Z",
+          "tree_id": "749589d6454bd6f5fb528a423e74739231357d57",
+          "url": "https://github.com/ansys/pyacp/commit/a183fdcc36eb089adb4e6cfed91a71b87721c93e"
+        },
+        "date": 1709637026621,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 3.822571354710033,
+            "unit": "iter/sec",
+            "range": "stddev: 0.014000247633908091",
+            "extra": "mean: 261.6040113333232 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 786.0067129570928,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000533161439492904",
+            "extra": "mean: 1.272253765159114 msec\nrounds: 1039"
           }
         ]
       }
