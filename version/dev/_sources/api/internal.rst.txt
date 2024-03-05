@@ -10,7 +10,7 @@ Internal objects
 
 .. autosummary::
     :toctree: _autosummary
-    :template: autosummary/internal/base.rst
+    :template: autosummary/internal/base.rst.jinja2
 
     _model_printer.Node
     _server.common.ControllableServerProtocol

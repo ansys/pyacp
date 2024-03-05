@@ -1,5 +1,5 @@
-Elemental and nodal data objects
---------------------------------
+Mesh data objects
+-----------------
 
 .. currentmodule:: ansys.acp.core
 
@@ -18,6 +18,7 @@ Elemental and nodal data objects
     ElementSetNodalData
     GeometricalSelectionRuleElementalData
     GeometricalSelectionRuleNodalData
+    MeshData
     ModelElementalData
     ModelingPlyElementalData
     ModelingPlyNodalData
@@ -31,6 +32,7 @@ Elemental and nodal data objects
     ScalarData
     SphericalSelectionRuleElementalData
     SphericalSelectionRuleNodalData
+    TriangleMesh
     TubeSelectionRuleElementalData
     TubeSelectionRuleNodalData
     VariableOffsetSelectionRuleElementalData

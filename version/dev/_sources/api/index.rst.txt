@@ -14,7 +14,7 @@ and attributes.
     mesh_data
     linked_object_definitions
     material_property_sets
-    other_types
+    enum_types
     plot_utils
     workflow
     example_helpers

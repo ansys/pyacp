@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Elemental and nodal data objects &#8212; PyACP</title>
+    <title>Mesh data objects &#8212; PyACP</title>
 
   
   
@@ -446,7 +446,7 @@ document.write(`
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree_objects.html">ACP objects</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Elemental and nodal data objects</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Mesh data objects</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.AnalysisPlyElementalData.html">AnalysisPlyElementalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.AnalysisPlyNodalData.html">AnalysisPlyNodalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.BooleanSelectionRuleElementalData.html">BooleanSelectionRuleElementalData</a></li>
@@ -459,6 +459,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ElementSetNodalData.html">ElementSetNodalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.GeometricalSelectionRuleElementalData.html">GeometricalSelectionRuleElementalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.GeometricalSelectionRuleNodalData.html">GeometricalSelectionRuleNodalData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.MeshData.html">MeshData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ModelElementalData.html">ModelElementalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ModelingPlyElementalData.html">ModelingPlyElementalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ModelingPlyNodalData.html">ModelingPlyNodalData</a></li>
@@ -472,6 +473,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ScalarData.html">ScalarData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SphericalSelectionRuleElementalData.html">SphericalSelectionRuleElementalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SphericalSelectionRuleNodalData.html">SphericalSelectionRuleNodalData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.TriangleMesh.html">TriangleMesh</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.TubeSelectionRuleElementalData.html">TubeSelectionRuleElementalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.TubeSelectionRuleNodalData.html">TubeSelectionRuleNodalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.VariableOffsetSelectionRuleElementalData.html">VariableOffsetSelectionRuleElementalData</a></li>
@@ -481,7 +483,7 @@ document.write(`
 </li>
 <li class="toctree-l1"><a class="reference internal" href="linked_object_definitions.html">Linked object definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="material_property_sets.html">Material property sets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="other_types.html">Other data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enum_types.html">Enumeration data types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot_utils.html">Plot utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_helpers.html">Example helpers</a></li>
@@ -533,7 +535,7 @@ document.write(`
       <a href="index.html" class="nav-link">API reference</a>
     </li>
       
-    <li class="breadcrumb-item active" aria-current="page">Elemental and nodal data objects</li>
+    <li class="breadcrumb-item active" aria-current="page">Mesh data objects</li>
     
   </ul>
 </nav>
@@ -551,8 +553,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="elemental-and-nodal-data-objects">
-<h1>Elemental and nodal data objects<a class="headerlink" href="#elemental-and-nodal-data-objects" title="Link to this heading">#</a></h1>
+  <section id="mesh-data-objects">
+<h1>Mesh data objects<a class="headerlink" href="#mesh-data-objects" title="Link to this heading">#</a></h1>
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.AnalysisPlyElementalData.html#ansys.acp.core.AnalysisPlyElementalData" title="ansys.acp.core.AnalysisPlyElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnalysisPlyElementalData</span></code></a>(element_labels[, ...])</p></td>
@@ -591,44 +593,50 @@ document.write(`
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.GeometricalSelectionRuleNodalData.html#ansys.acp.core.GeometricalSelectionRuleNodalData" title="ansys.acp.core.GeometricalSelectionRuleNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeometricalSelectionRuleNodalData</span></code></a>(node_labels)</p></td>
 <td><p>Represents nodal data for a Geometrical Selection Rule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ModelElementalData.html#ansys.acp.core.ModelElementalData" title="ansys.acp.core.ModelElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelElementalData</span></code></a>(element_labels[, normal, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.MeshData.html#ansys.acp.core.MeshData" title="ansys.acp.core.MeshData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshData</span></code></a>(node_labels, node_coordinates, ...)</p></td>
+<td><p>Container for the mesh data of an ACP Model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ModelElementalData.html#ansys.acp.core.ModelElementalData" title="ansys.acp.core.ModelElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelElementalData</span></code></a>(element_labels[, normal, ...])</p></td>
 <td><p>Represents elemental data for a Model.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ModelingPlyElementalData.html#ansys.acp.core.ModelingPlyElementalData" title="ansys.acp.core.ModelingPlyElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPlyElementalData</span></code></a>(element_labels[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ModelingPlyElementalData.html#ansys.acp.core.ModelingPlyElementalData" title="ansys.acp.core.ModelingPlyElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPlyElementalData</span></code></a>(element_labels[, ...])</p></td>
 <td><p>Represents elemental data for a Modeling Ply.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ModelingPlyNodalData.html#ansys.acp.core.ModelingPlyNodalData" title="ansys.acp.core.ModelingPlyNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPlyNodalData</span></code></a>(node_labels[, ply_offset])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ModelingPlyNodalData.html#ansys.acp.core.ModelingPlyNodalData" title="ansys.acp.core.ModelingPlyNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPlyNodalData</span></code></a>(node_labels[, ply_offset])</p></td>
 <td><p>Represents nodal data for a Modeling Ply.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ModelNodalData.html#ansys.acp.core.ModelNodalData" title="ansys.acp.core.ModelNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelNodalData</span></code></a>(node_labels)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ModelNodalData.html#ansys.acp.core.ModelNodalData" title="ansys.acp.core.ModelNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelNodalData</span></code></a>(node_labels)</p></td>
 <td><p>Represents nodal data for a Model.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.OrientedSelectionSetElementalData.html#ansys.acp.core.OrientedSelectionSetElementalData" title="ansys.acp.core.OrientedSelectionSetElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSetElementalData</span></code></a>(element_labels)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.OrientedSelectionSetElementalData.html#ansys.acp.core.OrientedSelectionSetElementalData" title="ansys.acp.core.OrientedSelectionSetElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSetElementalData</span></code></a>(element_labels)</p></td>
 <td><p>Represents elemental data for an Oriented Selection Set.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.OrientedSelectionSetNodalData.html#ansys.acp.core.OrientedSelectionSetNodalData" title="ansys.acp.core.OrientedSelectionSetNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSetNodalData</span></code></a>(node_labels)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.OrientedSelectionSetNodalData.html#ansys.acp.core.OrientedSelectionSetNodalData" title="ansys.acp.core.OrientedSelectionSetNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSetNodalData</span></code></a>(node_labels)</p></td>
 <td><p>Represents nodal data for an Oriented Selection Set.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ParallelSelectionRuleElementalData.html#ansys.acp.core.ParallelSelectionRuleElementalData" title="ansys.acp.core.ParallelSelectionRuleElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParallelSelectionRuleElementalData</span></code></a>(...[, normal])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ParallelSelectionRuleElementalData.html#ansys.acp.core.ParallelSelectionRuleElementalData" title="ansys.acp.core.ParallelSelectionRuleElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParallelSelectionRuleElementalData</span></code></a>(...[, normal])</p></td>
 <td><p>Represents elemental data for a Parallel Selection Rule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ParallelSelectionRuleNodalData.html#ansys.acp.core.ParallelSelectionRuleNodalData" title="ansys.acp.core.ParallelSelectionRuleNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParallelSelectionRuleNodalData</span></code></a>(node_labels)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ParallelSelectionRuleNodalData.html#ansys.acp.core.ParallelSelectionRuleNodalData" title="ansys.acp.core.ParallelSelectionRuleNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParallelSelectionRuleNodalData</span></code></a>(node_labels)</p></td>
 <td><p>Represents nodal data for a Parallel Selection Rule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ProductionPlyElementalData.html#ansys.acp.core.ProductionPlyElementalData" title="ansys.acp.core.ProductionPlyElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPlyElementalData</span></code></a>(element_labels[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ProductionPlyElementalData.html#ansys.acp.core.ProductionPlyElementalData" title="ansys.acp.core.ProductionPlyElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPlyElementalData</span></code></a>(element_labels[, ...])</p></td>
 <td><p>Represents elemental data for a Production Ply.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ProductionPlyNodalData.html#ansys.acp.core.ProductionPlyNodalData" title="ansys.acp.core.ProductionPlyNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPlyNodalData</span></code></a>(node_labels, ply_offset)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ProductionPlyNodalData.html#ansys.acp.core.ProductionPlyNodalData" title="ansys.acp.core.ProductionPlyNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionPlyNodalData</span></code></a>(node_labels, ply_offset)</p></td>
 <td><p>Represents nodal data for a Production Ply.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ScalarData.html#ansys.acp.core.ScalarData" title="ansys.acp.core.ScalarData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScalarData</span></code></a>(field_names, labels, values, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ScalarData.html#ansys.acp.core.ScalarData" title="ansys.acp.core.ScalarData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScalarData</span></code></a>(field_names, labels, values, ...)</p></td>
 <td><p>Class that encapsulates scalar data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SphericalSelectionRuleElementalData.html#ansys.acp.core.SphericalSelectionRuleElementalData" title="ansys.acp.core.SphericalSelectionRuleElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SphericalSelectionRuleElementalData</span></code></a>(...[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SphericalSelectionRuleElementalData.html#ansys.acp.core.SphericalSelectionRuleElementalData" title="ansys.acp.core.SphericalSelectionRuleElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SphericalSelectionRuleElementalData</span></code></a>(...[, ...])</p></td>
 <td><p>Represents elemental data for a Spherical Selection Rule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SphericalSelectionRuleNodalData.html#ansys.acp.core.SphericalSelectionRuleNodalData" title="ansys.acp.core.SphericalSelectionRuleNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SphericalSelectionRuleNodalData</span></code></a>(node_labels)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SphericalSelectionRuleNodalData.html#ansys.acp.core.SphericalSelectionRuleNodalData" title="ansys.acp.core.SphericalSelectionRuleNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SphericalSelectionRuleNodalData</span></code></a>(node_labels)</p></td>
 <td><p>Represents nodal data for a Spherical Selection Rule.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.TriangleMesh.html#ansys.acp.core.TriangleMesh" title="ansys.acp.core.TriangleMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TriangleMesh</span></code></a>(node_coordinates, element_nodes)</p></td>
+<td><p>Represents a mesh consisting of triangle faces only.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.TubeSelectionRuleElementalData.html#ansys.acp.core.TubeSelectionRuleElementalData" title="ansys.acp.core.TubeSelectionRuleElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TubeSelectionRuleElementalData</span></code></a>(element_labels)</p></td>
 <td><p>Represents elemental data for a Tube Selection Rule.</p></td>
