@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709639351846,
+  "lastUpdate": 1709641966400,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13580,6 +13580,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00019779174205365396",
             "extra": "mean: 839.3458852589476 usec\nrounds: 1194"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bcb55bd80ca66b1e5322db27563d335db64a1aeb",
+          "message": "Fix vale warnings (#479)\n\n* Fix some vale warnings\r\n\r\n* Fix more vale warnings\r\n\r\n* Update doc/source/user_guide/howto/create_input_file.rst\r\n\r\nCo-authored-by: Kathy Pippert <84872299+PipKat@users.noreply.github.com>\r\n\r\n* Update doc/source/user_guide/howto/file_management.rst\r\n\r\nCo-authored-by: Kathy Pippert <84872299+PipKat@users.noreply.github.com>\r\n\r\n---------\r\n\r\nCo-authored-by: Kathy Pippert <84872299+PipKat@users.noreply.github.com>",
+          "timestamp": "2024-03-05T12:29:28Z",
+          "tree_id": "7fe9f9d753f95644ca214b9354c67eac637b9832",
+          "url": "https://github.com/ansys/pyacp/commit/bcb55bd80ca66b1e5322db27563d335db64a1aeb"
+        },
+        "date": 1709641941256,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.43599674152267,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0037883339610546947",
+            "extra": "mean: 183.95890349998467 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1167.7981533466004,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00023900343770377535",
+            "extra": "mean: 856.3123662546174 usec\nrounds: 1458"
           }
         ]
       }
