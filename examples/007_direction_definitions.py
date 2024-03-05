@@ -57,7 +57,7 @@ from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
 # ----------------------------
 
 # %%
-# Get example file from server
+# Get the example file from the server.
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
 input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
@@ -82,9 +82,9 @@ print(workflow.working_directory.path)
 print(model.unit_system)
 
 # %%
-# Define reference directions
-# ---------------------------
-# Define the reference directions from a lookup table.
+# Setup materials and oriented selection set
+# ------------------------------------------
+
 #
 # %%
 # Create a material and a fabric
@@ -117,6 +117,11 @@ plotter = get_directions_plotter(
     model=model, components=[oss.elemental_data.orientation, oss.elemental_data.reference_direction]
 )
 plotter.show()
+
+# %%
+# Define reference directions
+# ---------------------------
+# Define the reference directions from a lookup table.
 
 # %%
 # Create a 3D lookup table to store the directions and angle corrections.
