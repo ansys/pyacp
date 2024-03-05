@@ -134,14 +134,31 @@
 
 .. only:: html
 
-  .. image:: /examples/gallery_examples/images/thumb/sphx_glr_solve_class40_thumb.png
+  .. image:: /examples/gallery_examples/images/thumb/sphx_glr_008_solve_class40_thumb.png
     :alt:
 
-  :ref:`sphx_glr_examples_gallery_examples_solve_class40.py`
+  :ref:`sphx_glr_examples_gallery_examples_008_solve_class40.py`
 
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Class 40 example</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to use the ACP, MAPDL, and DPF servers to perform an optimization...">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/images/thumb/sphx_glr_009_optimization_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_examples_gallery_examples_009_optimization.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Optimization example</div>
     </div>
 
 
@@ -160,7 +177,8 @@
    /examples/gallery_examples/005_thickness_definitions
    /examples/gallery_examples/006_rosettes
    /examples/gallery_examples/007_direction_definitions
-   /examples/gallery_examples/solve_class40
+   /examples/gallery_examples/008_solve_class40
+   /examples/gallery_examples/009_optimization
 
 
 

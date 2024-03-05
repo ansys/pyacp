@@ -6,22 +6,24 @@
 
 Computation times
 =================
-**01:36.756** total execution time for **examples_gallery_examples** files:
+**03:43.369** total execution time for **examples_gallery_examples** files:
 
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_solve_class40.py` (``solve_class40.py``)                         | 00:27.066 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_009_optimization.py` (``009_optimization.py``)                   | 01:22.296 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` (``001_basic_flat_plate.py``)           | 00:24.640 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` (``001_basic_flat_plate.py``)           | 00:44.928 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_002_sandwich_panel.py` (``002_sandwich_panel.py``)               | 00:08.955 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_008_solve_class40.py` (``008_solve_class40.py``)                 | 00:36.793 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_004_advanced_rules.py` (``004_advanced_rules.py``)               | 00:08.758 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_002_sandwich_panel.py` (``002_sandwich_panel.py``)               | 00:11.828 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_006_rosettes.py` (``006_rosettes.py``)                           | 00:07.522 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_004_advanced_rules.py` (``004_advanced_rules.py``)               | 00:11.802 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_003_basic_rules.py` (``003_basic_rules.py``)                     | 00:06.781 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_006_rosettes.py` (``006_rosettes.py``)                           | 00:09.738 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_007_direction_definitions.py` (``007_direction_definitions.py``) | 00:06.566 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_003_basic_rules.py` (``003_basic_rules.py``)                     | 00:08.875 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_gallery_examples_005_thickness_definitions.py` (``005_thickness_definitions.py``) | 00:06.467 | 0.0 MB |
+| :ref:`sphx_glr_examples_gallery_examples_005_thickness_definitions.py` (``005_thickness_definitions.py``) | 00:08.615 | 0.0 MB |
++-----------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_007_direction_definitions.py` (``007_direction_definitions.py``) | 00:08.495 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+

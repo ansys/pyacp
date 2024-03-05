@@ -1,0 +1,6 @@
+OPTIMIZATION\_EXAMPLE\_DAT
+==========================
+
+.. currentmodule:: ansys.acp.core.example_helpers
+
+.. autoattribute:: ExampleKeys.OPTIMIZATION_EXAMPLE_DAT

@@ -25,5 +25,6 @@
       ExampleKeys.RULE_GEOMETRY_TRIANGLE
       ExampleKeys.THICKNESS_GEOMETRY
       ExampleKeys.MINIMAL_FLAT_PLATE
+      ExampleKeys.OPTIMIZATION_EXAMPLE_DAT
    
    
