@@ -514,6 +514,26 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         with pytest.raises(AttributeError, match="This property is only available"):
             variable_material.engineering_constants.E
 
+    @pytest.mark.parametrize("num_materials_to_create", [1, 2])
+    def test_create_twice_same_name(self, parent_object, acp_instance, num_materials_to_create):
+        """Regression test for #491.
+
+        This test checks that materials created with PyACP are still present after saving
+        and loading the model.
+        """
+        model = parent_object
+        initial_num_materials = len(model.materials)
+        name = "Test Material"
+        for _ in range(num_materials_to_create):
+            model.create_material(name=name)
+
+        assert len(model.materials) == initial_num_materials + num_materials_to_create
+        relative_save_path = "model_updated.acph5"
+        model.save(relative_save_path)
+
+        model2 = acp_instance.import_model(path=relative_save_path)
+        assert len(model2.materials) == initial_num_materials + num_materials_to_create
+
 
 def test_engineering_constants_from_isotropic():
     engineering_constants = ConstantEngineeringConstants.from_isotropic_constants(E=2.0, nu=0.3)

@@ -451,6 +451,8 @@ plt.show()
 angles_degree = [7.826e01, 1.777e00, 1.042e02, 8.848e01, 1.083e01, -1.288e01]
 
 fig, ax = plt.subplots()
+fig.subplots_adjust(right=0.65)
+
 circle = patches.Circle((0, 0), radius=1, edgecolor="black", facecolor="none", zorder=10)
 ax.add_patch(circle)
 
@@ -476,10 +478,12 @@ for i, angle_deg in enumerate(angles_degree):
         label=f"Ply {i + 1}, direction 2",
     )
 
-    ax.text(x * 1.1, y * 1.1, f"{angle_deg:.1f}°", ha="center", va="center", color=f"C{i}")
+    ax.text(x * 1.15, y * 1.15, f"{angle_deg:.1f}°", ha="center", va="center", color=f"C{i}")
 
 ax.set_aspect("equal")
 ax.legend(title="Fiber directions", loc="center left", bbox_to_anchor=(1.1, 0.5))
 
 ax.axis("off")  # Hide the x and y axes
+
+plt.tight_layout()
 plt.show()
