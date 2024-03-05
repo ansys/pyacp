@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709641966400,
+  "lastUpdate": 1709653287089,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13618,6 +13618,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023900343770377535",
             "extra": "mean: 856.3123662546174 usec\nrounds: 1458"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0b2db26d91dae9b530cb7f30d9f5df976a443964",
+          "message": "Add optimization example (#480)\n\nAdd an example which optimizes ply angles to minize the maximum\r\nIRF, considering only maximum stress.\r\n\r\nThe optimization uses the Nelder-Mead (downhill simplex) method\r\nas implemented in scipy.optimize.minimize to find a local minimum.\r\n\r\nSince the full optimization takes too long to build as part of\r\nthe documentation (~30 min), only a single iteration is performed\r\nas part of the build.\r\n\r\n---------\r\n\r\nCo-authored-by: Kathy Pippert <84872299+PipKat@users.noreply.github.com>",
+          "timestamp": "2024-03-05T15:38:13Z",
+          "tree_id": "19c0f05ca3a9fc4592fcdaef5112ae392b7515b9",
+          "url": "https://github.com/ansys/pyacp/commit/0b2db26d91dae9b530cb7f30d9f5df976a443964"
+        },
+        "date": 1709653260532,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.071452087897012,
+            "unit": "iter/sec",
+            "range": "stddev: 0.002456121750284102",
+            "extra": "mean: 164.7052444000053 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1258.2052195625386,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018374592179400728",
+            "extra": "mean: 794.7829054052779 usec\nrounds: 1554"
           }
         ]
       }
