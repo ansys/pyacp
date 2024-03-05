@@ -28,7 +28,7 @@ Direction definition example
 This example shows how directions can be defined from lookup tables. This can be either
 reference directions for oriented selection sets or draping angles for modeling plies.
 This example shows just the PyACP part of the setup.  For a complete Composite analysis,
-see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
+see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example.
 """
 
 # %%
@@ -39,7 +39,7 @@ import tempfile
 import numpy as np
 
 # %%
-# Import PyACP dependencies
+# Import PyACP dependencies.
 from ansys.acp.core import (
     ACPWorkflow,
     DimensionType,
@@ -67,8 +67,8 @@ input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
 acp = launch_acp()
 
 # %%
-# Define the input file and instantiate an ACPWorkflow.
-# The ACPWorkflow class provides convenience methods which simplify the file handling.
+# Define the input file and instantiate an ``ACPWorkflow`` instance.
+# The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
 # It automatically creates a model based on the input file.
 # The input file contains a flat plate with a single ply.
 workflow = ACPWorkflow.from_cdb_or_dat_file(
@@ -82,9 +82,10 @@ print(workflow.working_directory.path)
 print(model.unit_system)
 
 # %%
-# Define the reference directions from a lookup table
-# ---------------------------------------------------
-
+# Define reference directions
+# ---------------------------
+# Define the reference directions from a lookup table.
+#
 # %%
 # Create a material and a fabric
 ud_material = model.create_material(
@@ -118,7 +119,7 @@ plotter = get_directions_plotter(
 plotter.show()
 
 # %%
-# Create a 3d lookup table to store the directions and angle corrections.
+# Create a 3D lookup table to store the directions and angle corrections.
 lookup_table = model.create_lookup_table_3d()
 
 # %%
@@ -170,9 +171,10 @@ plotter.show()
 oss.rosette_selection_method = RosetteSelectionMethod.MINIMUM_ANGLE
 
 # %%
-# Define the draping angles from a lookup table
-# ---------------------------------------------
-
+# Define draping angles
+# ---------------------
+# Define the draping angles from a lookup table.
+#
 # %%
 # Compute a correction angle to define circular fiber paths.
 correction_angle = np.arctan2(xx.ravel(), zz.ravel()) * 180 / np.pi
@@ -206,7 +208,7 @@ modeling_ply = modeling_group.create_modeling_ply(
 )
 
 # %%
-# Plot the directions of the modeling ply. First the directions without correction angles.
+# Plot the directions of the modeling ply. First plot the directions without correction angles.
 model.update()
 plotter = get_directions_plotter(
     model=model,
@@ -218,7 +220,7 @@ plotter = get_directions_plotter(
 plotter.show()
 
 # %%
-# And the draped directions including the correction angles from the lookup table.
+# Next plot the draped directions, including the correction angles, from the lookup table.
 plotter = get_directions_plotter(
     model=model,
     components=[

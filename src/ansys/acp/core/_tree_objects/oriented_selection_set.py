@@ -150,7 +150,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         in the transverse direction if the draping material model is set to
         :attr:`DrapingMaterialType.UD`.
     reference_direction_field :
-        A 3D look up table column that defines the reference directions.
+        A 3D lookup table column that defines the reference directions.
 
     """
 
