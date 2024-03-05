@@ -52,7 +52,9 @@ import pathlib
 import random
 import tempfile
 
+from matplotlib import patches
 import matplotlib.pyplot as plt
+import numpy as np
 from scipy.optimize import minimize
 
 # %%
@@ -61,79 +63,86 @@ import ansys.acp.core as pyacp
 import ansys.dpf.composites as pydpf_composites
 import ansys.mapdl.core as pymapdl
 
-# sphinx_gallery_thumbnail_number = -1
+# sphinx_gallery_thumbnail_number = -2
 
 
 # %%
 # Launch the PyACP server.
-ACP_INSTANCE = pyacp.launch_acp()
-ACP_INSTANCE.clear()
+acp_instance = pyacp.launch_acp()
+acp_instance.clear()
 
 # %%
 # Launch the MAPDL server.
-MAPDL = pymapdl.launch_mapdl()
+mapdl = pymapdl.launch_mapdl()
 
 # %%
 # Launch the DPF server.
-DPF_SERVER = pydpf_composites.server_helpers.connect_to_or_start_server()
+dpf_server = pydpf_composites.server_helpers.connect_to_or_start_server()
 
 
 # %%
 # Create a temporary directory to store the input and output files.
-TMPDIR = tempfile.TemporaryDirectory()
-WORKDIR = pathlib.Path(TMPDIR.name)
+tmpdir = tempfile.TemporaryDirectory()
+workdir = pathlib.Path(tmpdir.name)
 
 # %%
 # Prepare the ACP model
 # ---------------------
 # The example uses the ``optimization_model.dat`` file, which contains a simple ACP model
-# of a rounded square tube. The model contains one material, which is a Woven Epoxy Carbon
-# Prepreg (230 GPa).
+# of a rounded square tube.
 #
 # The ``prepare_acp_model`` function imports the ``optimization_model.dat`` file into a new
 # ACP model and creates a lay-up with six plies.
 # It returns a :class:`.ACPWorkflow` object, which can be used to access the model and
 # generate the output files.
 
-INPUT_FILE = pyacp.example_helpers.get_example_file(
+input_file = pyacp.example_helpers.get_example_file(
     example_key=pyacp.example_helpers.ExampleKeys.OPTIMIZATION_EXAMPLE_DAT,
-    working_directory=WORKDIR,
+    working_directory=workdir,
 )
 
 
 def prepare_acp_model(*, acp, workdir, input_file):
     # Import the input file ``*.dat`` into a new ACP model.
-    workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
+    acp_workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
         acp=acp,
         cdb_or_dat_file_path=input_file,
         local_working_directory=workdir,
     )
-    model = workflow.model
+    model = acp_workflow.model
     model.name = "optimization_example"
 
     element_set = model.element_sets["All_Elements"]
-
-    # The ``.dat`` file contains one material, which is a Woven Epoxy Carbon Prepreg (230 GPa).
-    # The material is locked, so it needs to be cloned to modify its properties.
-    material_to_copy = list(model.materials.values())[0]
-    material = material_to_copy.clone()
-    material.name = "Epoxy_Carbon_Woven_230GPa_Prepreg"
-    material.store(parent=model)
-    material.ply_type = pyacp.PlyType.WOVEN
-    material.stress_limits = (
-        pyacp.material_property_sets.ConstantStressLimits.from_orthotropic_constants(
-            Xt=8.05e8,
-            Yt=8.05e8,
-            Zt=5.0e7,
-            Xc=-5.09e8,
-            Yc=-5.09e8,
-            Zc=-1.7e8,
-            Sxy=1.25e8,
-            Syz=6.5e7,
-            Sxz=6.5e7,
-        )
+    material = model.create_material(
+        name="Epoxy_Carbon_Woven_230GPa_Prepreg",
+        ply_type=pyacp.PlyType.WOVEN,
+        engineering_constants=(
+            pyacp.material_property_sets.ConstantEngineeringConstants.from_orthotropic_constants(
+                E1=6.134e10,
+                E2=6.134e10,
+                E3=6.9e9,
+                nu12=0.04,
+                nu23=0.3,
+                nu13=0.3,
+                G12=1.95e10,
+                G23=2.7e9,
+                G31=2.7e9,
+            )
+        ),
+        stress_limits=(
+            pyacp.material_property_sets.ConstantStressLimits.from_orthotropic_constants(
+                Xt=8.05e8,
+                Yt=8.05e8,
+                Zt=5.0e7,
+                Xc=-5.09e8,
+                Yc=-5.09e8,
+                Zc=-1.7e8,
+                Sxy=1.25e8,
+                Syz=6.5e7,
+                Sxz=6.5e7,
+            )
+        ),
     )
-
     fabric = model.create_fabric(
         material=material,
         thickness=0.000254,  # 0.01 in
@@ -160,20 +169,20 @@ def prepare_acp_model(*, acp, workdir, input_file):
             oriented_selection_sets=[oss],
             number_of_layers=1,
         )
-    return workflow
+    acp_workflow.model.update()
+    return acp_workflow
 
 
 # %%
-# Create the ACP model and visualize the mesh.
-WORKFLOW = prepare_acp_model(acp=ACP_INSTANCE, workdir=WORKDIR, input_file=INPUT_FILE)
-WORKFLOW.model.mesh.to_pyvista().plot(show_edges=True)
-
-# %%
-# The materials remain unchanged during the optimization, so the materials file can
-# be generated once and reused for all iterations.
-
-MATERIALS_FILE = WORKFLOW.get_local_materials_file()
-MATERIALS_FILE
+# Create the ACP model and visualize the first ply's fiber direction.
+acp_workflow = prepare_acp_model(acp=acp_instance, workdir=workdir, input_file=input_file)
+ply = list(acp_workflow.model.modeling_groups["Modeling_Group"].modeling_plies.values())[0]
+pyacp.get_directions_plotter(
+    model=acp_workflow.model,
+    components=[ply.elemental_data.fiber_direction],
+    length_factor=5.0,
+    culling_factor=5,
+).show()
 
 # %%
 # Create functions used in the optimization
@@ -182,26 +191,21 @@ MATERIALS_FILE
 # To optimize the ply angles, you must define functions to update, solve, and postprocess
 # the ACP model for a given set of ply angles.
 #
-# The ``generate_acp_outputs_for_parameters`` function generates the ACP outputs for a given
-# set of ply angles.
-# It updates the ACP model with the new ply angles, updates the model, and returns the paths
-# to the composite definitions and CDB files.
+# The ``update_ply_angles`` changes the ply angles in the model to the given values, and
+# updates the model.
 
 
-def generate_acp_outputs_for_parameters(*, workflow, parameters):
-    model = workflow.model
+def update_ply_angles(*, acp_workflow, parameters):
+    model = acp_workflow.model
     modeling_plies = list(model.modeling_groups["Modeling_Group"].modeling_plies.values())
     assert len(modeling_plies) == len(parameters)
     for angle, modeling_ply in zip(parameters, modeling_plies):
         modeling_ply.ply_angle = angle
 
     model.update()
-    return workflow.get_local_composite_definitions_file(), workflow.get_local_cdb_file()
 
 
-composite_definitions_file, cdb_file = generate_acp_outputs_for_parameters(
-    workflow=WORKFLOW, parameters=[0, 45, 90, 135, 180, 225]
-)
+update_ply_angles(acp_workflow=acp_workflow, parameters=[0, 45, 90, 135, 180, 225])
 
 
 # %%
@@ -226,7 +230,8 @@ def solve_cdb(*, mapdl, cdb_file, workdir):
     return rst_file_local_path
 
 
-rst_file = solve_cdb(mapdl=MAPDL, cdb_file=cdb_file, workdir=WORKDIR)
+cdb_file = acp_workflow.get_local_cdb_file()
+rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file, workdir=workdir)
 
 # %%
 # The ``get_max_irf`` function uses PyDPF Composites to calculate the maximum
@@ -238,34 +243,26 @@ rst_file = solve_cdb(mapdl=MAPDL, cdb_file=cdb_file, workdir=WORKDIR)
 #
 # It considers only the maximum stress failure criterion.
 
-MAX_STRESS = pydpf_composites.failure_criteria.MaxStressCriterion()
-COMBINED_FAILURE_CRITERION = pydpf_composites.failure_criteria.CombinedFailureCriterion(
+max_stress_criterion = pydpf_composites.failure_criteria.MaxStressCriterion()
+combined_failure_criterion = pydpf_composites.failure_criteria.CombinedFailureCriterion(
     name="Combined Failure Criterion",
-    failure_criteria=[MAX_STRESS],
+    failure_criteria=[max_stress_criterion],
 )
-DPF_UNIT_SYSTEM = pyacp.get_dpf_unit_system(WORKFLOW.model.unit_system)
 
 
 def get_max_irf(
     *,
+    acp_workflow,
     dpf_server,
     rst_file,
-    composite_definitions_file,
-    materials_file,
-    failure_criterion=COMBINED_FAILURE_CRITERION,
+    failure_criterion,
 ):
     # Create the CompositeModel and configure its input
     composite_model = pydpf_composites.composite_model.CompositeModel(
-        composite_files=pydpf_composites.data_sources.ContinuousFiberCompositesFiles(
-            rst=rst_file,
-            composite={
-                "shell": pydpf_composites.data_sources.CompositeDefinitionFiles(
-                    definition=composite_definitions_file
-                ),
-            },
-            engineering_data=materials_file,
+        composite_files=pyacp.get_composite_post_processing_files(
+            acp_workflow=acp_workflow,
+            local_rst_file_path=rst_file,
         ),
-        default_unit_system=DPF_UNIT_SYSTEM,
         server=dpf_server,
     )
 
@@ -286,10 +283,10 @@ def get_max_irf(
 
 
 get_max_irf(
-    dpf_server=DPF_SERVER,
+    acp_workflow=acp_workflow,
+    dpf_server=dpf_server,
     rst_file=rst_file,
-    composite_definitions_file=composite_definitions_file,
-    materials_file=MATERIALS_FILE,
+    failure_criterion=combined_failure_criterion,
 )
 
 
@@ -302,16 +299,17 @@ get_max_irf(
 # to perform all the necessary steps for a given set of ply angles.
 
 
-def get_max_irf_for_parameters(parameters, *, acp_workflow, mapdl, dpf_server, workdir, results):
-    composite_definitions_file, cdb_file = generate_acp_outputs_for_parameters(
-        workflow=acp_workflow, parameters=parameters
-    )
+def get_max_irf_for_parameters(
+    parameters, *, acp_workflow, mapdl, dpf_server, failure_criterion, workdir, results
+):
+    update_ply_angles(acp_workflow=acp_workflow, parameters=parameters)
+    cdb_file = acp_workflow.get_local_cdb_file()
     rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file, workdir=workdir)
     res = get_max_irf(
+        acp_workflow=acp_workflow,
         dpf_server=dpf_server,
         rst_file=rst_file,
-        composite_definitions_file=composite_definitions_file,
-        materials_file=MATERIALS_FILE,
+        failure_criterion=failure_criterion,
     )
     results.append(res)
     print(f"Parameters: {parameters}, Max IRF: {res}")
@@ -325,10 +323,11 @@ def get_max_irf_for_parameters(parameters, *, acp_workflow, mapdl, dpf_server, w
 results: list[float] = []
 optimization_function = partial(
     get_max_irf_for_parameters,
-    acp_workflow=WORKFLOW,
-    mapdl=MAPDL,
-    dpf_server=DPF_SERVER,
-    workdir=WORKDIR,
+    acp_workflow=acp_workflow,
+    mapdl=mapdl,
+    dpf_server=dpf_server,
+    failure_criterion=combined_failure_criterion,
+    workdir=workdir,
     results=results,
 )
 optimization_function([0, 45, 90, 135, 180, 225])
@@ -351,7 +350,7 @@ initial_simplex = [[random.uniform(0, 90) for _ in range(6)] for _ in range(7)]
 # %%
 # To build the example, the number of function evaluations is limited to 1. In practice, you
 # should increase or remove this limit.
-MAXFEV = 1
+maxfev = 1
 res = minimize(
     optimization_function,
     [0, 0, 0, 0, 0, 0],
@@ -361,7 +360,7 @@ res = minimize(
         "initial_simplex": initial_simplex,
         "xatol": 1.0,
         "fatol": 0.001,
-        "maxfev": MAXFEV,
+        "maxfev": maxfev,
     },
 )
 
@@ -441,4 +440,38 @@ fig, ax = plt.subplots()
 ax.plot(results)
 ax.set_xlabel("Function evaluation number")
 ax.set_ylabel("Maximum IRF")
+plt.show()
+
+
+# %%
+# Visualize the resulting ply angles.
+angles_degree = [7.826e01, 1.777e00, 1.042e02, 8.848e01, 1.083e01, -1.288e01]
+
+fig, ax = plt.subplots()
+circle = patches.Circle((0, 0), radius=1, edgecolor="black", facecolor="none", zorder=10)
+ax.add_patch(circle)
+
+for i, angle_deg in enumerate(angles_degree):
+    angle_rad = np.deg2rad(angle_deg)
+    ax.plot(
+        [-np.cos(angle_rad), np.cos(angle_rad)],
+        [-np.sin(angle_rad), np.sin(angle_rad)],
+        color=f"C{i}",
+        label=f"Ply {i + 1}",
+    )
+    # plot also the orthogonal direction, since the ply material is woven
+    angle_ortho = angle_rad + np.pi / 2.0
+    ax.plot(
+        [-np.cos(angle_ortho), np.cos(angle_ortho)],
+        [-np.sin(angle_ortho), np.sin(angle_ortho)],
+        color=f"C{i}",
+    )
+
+ax.set_aspect("equal")
+ax.legend(title="Ply Angles", loc="center left", bbox_to_anchor=(1.1, 0.5))
+
+ax.axis("off")  # Hide the x and y axes
+ax.text(1.1, 0, "0°", ha="center", va="center")
+ax.text(0, 1.1, "90°", ha="center", va="center")
+
 plt.show()
