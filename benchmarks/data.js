@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709637056736,
+  "lastUpdate": 1709639351846,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13542,6 +13542,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000533161439492904",
             "extra": "mean: 1.272253765159114 msec\nrounds: 1039"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d5b48fd57256f4aa70def36caa0aeb6f909d9b85",
+          "message": "Add direction definition example (#449)\n\n* Add direction definition example\r\n* Add reference direction field and use it in example",
+          "timestamp": "2024-03-05T11:45:48Z",
+          "tree_id": "ca033407f6d79d175df8d1e9f728ef986e1e2a43",
+          "url": "https://github.com/ansys/pyacp/commit/d5b48fd57256f4aa70def36caa0aeb6f909d9b85"
+        },
+        "date": 1709639328660,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.04369031164537,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005551181205192892",
+            "extra": "mean: 198.26752599998088 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1191.4039462902576,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019779174205365396",
+            "extra": "mean: 839.3458852589476 usec\nrounds: 1194"
           }
         ]
       }
