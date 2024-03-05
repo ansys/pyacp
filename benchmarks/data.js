@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709653287089,
+  "lastUpdate": 1709656070211,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13656,6 +13656,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00018374592179400728",
             "extra": "mean: 794.7829054052779 usec\nrounds: 1554"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a3ad63252408bb76a9e116f1ca4ac48bc104298c",
+          "message": "Do not document methods on enum types (#485)\n\n* Rename the 'Other data types' API section to 'Enumeration data types'\r\n* Create an autosummary template which skips the methods section, and use\r\n  it for the enum data types\r\n* Rename \"Elemental and nodal data types\" to \"Mesh data types\"\r\n* Move non-enum classes ``MeshData`` and ``TriangleMesh`` to\r\n  \"Mesh data types\"\r\n* Rename the custom autosummary templates by adding the `.jinja2` suffix, to\r\n  make the vale style check ignore them.",
+          "timestamp": "2024-03-05T16:23:19Z",
+          "tree_id": "e26d42ad9946f3f4c6adccfcdc56afcd30b4409e",
+          "url": "https://github.com/ansys/pyacp/commit/a3ad63252408bb76a9e116f1ca4ac48bc104298c"
+        },
+        "date": 1709656029347,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.439288628324289,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003000150325753273",
+            "extra": "mean: 225.26131633334975 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1016.6126540589098,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0005492868749305254",
+            "extra": "mean: 983.6588163716217 usec\nrounds: 904"
           }
         ]
       }
