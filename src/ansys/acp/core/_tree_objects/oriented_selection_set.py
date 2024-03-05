@@ -37,6 +37,7 @@ from ._grpc_helpers.linked_object_list import (
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
+    grpc_link_property,
     mark_grpc_properties,
 )
 from ._mesh_data import (
@@ -59,6 +60,7 @@ from .enums import (
     rosette_selection_method_to_pb,
     status_type_from_pb,
 )
+from .lookup_table_3d_column import LookUpTable3DColumn
 from .object_registry import register
 from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
@@ -147,6 +149,8 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         Value between ``0`` and ``1`` which determines the amount of deformation
         in the transverse direction if the draping material model is set to
         :attr:`DrapingMaterialType.UD`.
+    reference_direction_field :
+        A 3D lookup table column that defines the reference directions.
 
     """
 
@@ -175,6 +179,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         draping_material_model: DrapingMaterialType = DrapingMaterialType.WOVEN,
         draping_ud_coefficient: float = 0.0,
         rotation_angle: float = 0.0,
+        reference_direction_field: LookUpTable3DColumn | None = None,
     ):
         super().__init__(name=name)
         self.element_sets = element_sets
@@ -192,6 +197,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         self.draping_material_model = DrapingMaterialType(draping_material_model)
         self.draping_ud_coefficient = draping_ud_coefficient
         self.rotation_angle = rotation_angle
+        self.reference_direction_field = reference_direction_field
 
     def _create_stub(self) -> oriented_selection_set_pb2_grpc.ObjectServiceStub:
         return oriented_selection_set_pb2_grpc.ObjectServiceStub(self._channel)
@@ -261,6 +267,10 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
             VariableOffsetSelectionRule,
             BooleanSelectionRule,
         ),
+    )
+
+    reference_direction_field = grpc_link_property(
+        "properties.reference_direction_field", allowed_types=LookUpTable3DColumn
     )
 
     elemental_data = elemental_data_property(OrientedSelectionSetElementalData)

@@ -23,7 +23,7 @@
 import pytest
 from pytest_cases import fixture, parametrize_with_cases
 
-from ansys.acp.core import RosetteSelectionMethod
+from ansys.acp.core import LookUpTableColumnValueType, RosetteSelectionMethod
 
 from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
@@ -72,6 +72,7 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
         model = parent_object
         element_sets = [model.create_element_set() for _ in range(3)]
         rosettes = [model.create_rosette() for _ in range(4)]
+        lookup_table_3d = model.create_lookup_table_3d()
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "new_name"),
@@ -100,6 +101,10 @@ class TestOrientedSelectionSet(NoLockedMixin, TreeObjectTester):
                 ("draping_material_model", "ud"),
                 ("draping_ud_coefficient", 0.5),
                 ("rotation_angle", 22.35),
+                (
+                    "reference_direction_field",
+                    lookup_table_3d.create_column(value_type=LookUpTableColumnValueType.DIRECTION),
+                ),
             ],
             read_only=[
                 ("id", "some_id"),
