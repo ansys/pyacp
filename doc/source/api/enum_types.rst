@@ -1,10 +1,11 @@
-Other data types
-----------------
+Enumeration data types
+----------------------
 
 .. currentmodule:: ansys.acp.core
 
 .. autosummary::
     :toctree: _autosummary
+    :template: autosummary/no_methods_doc/class.rst
 
     BooleanOperationType
     CutoffMaterialType
@@ -21,7 +22,6 @@ Other data types
     IgnorableEntity
     LookUpTable3DInterpolationAlgorithm
     LookUpTableColumnValueType
-    MeshData
     NodalDataType
     PlyCutoffType
     PlyType
@@ -32,6 +32,5 @@ Other data types
     SymmetryType
     ThicknessFieldType
     ThicknessType
-    TriangleMesh
     UnitSystemType
     VirtualGeometryDimension
