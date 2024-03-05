@@ -2,6 +2,7 @@
 
 from datetime import datetime
 import os
+import warnings
 
 import pyvista
 from pyvista.plotting.utilities.sphinx_gallery import DynamicScraper
@@ -50,6 +51,9 @@ pyvista.BUILDING_GALLERY = True
 
 pyvista.global_theme = pyvista.themes.DocumentTheme()
 pyvista.global_theme.cmap = "viridis_r"
+
+# ignore the matplotlib warning when .show() is called
+warnings.filterwarnings("ignore", category=UserWarning, message=".*is non-interactive.*")
 
 # Project information
 project = "ansys-acp-core"

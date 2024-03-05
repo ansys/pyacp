@@ -365,7 +365,10 @@ res = minimize(
 )
 
 # %%
-# Without the ``MAXFEV`` limit, the optimization would take roughly 30 minutes to complete, and
+# Results
+# -------
+#
+# Without the ``maxfev`` limit, the optimization would take roughly 30 minutes to complete, and
 # converge to the following result:
 #
 # .. code :: python
@@ -444,7 +447,7 @@ plt.show()
 
 
 # %%
-# Visualize the resulting ply angles.
+# Visualize the resulting fiber directions.
 angles_degree = [7.826e01, 1.777e00, 1.042e02, 8.848e01, 1.083e01, -1.288e01]
 
 fig, ax = plt.subplots()
@@ -453,25 +456,30 @@ ax.add_patch(circle)
 
 for i, angle_deg in enumerate(angles_degree):
     angle_rad = np.deg2rad(angle_deg)
+    x = np.cos(angle_rad)
+    y = np.sin(angle_rad)
     ax.plot(
-        [-np.cos(angle_rad), np.cos(angle_rad)],
-        [-np.sin(angle_rad), np.sin(angle_rad)],
+        [-x, x],
+        [-y, y],
         color=f"C{i}",
-        label=f"Ply {i + 1}",
+        label=f"Ply {i + 1}, direction 1",
     )
     # plot also the orthogonal direction, since the ply material is woven
     angle_ortho = angle_rad + np.pi / 2.0
+    x_ortho = np.cos(angle_ortho)
+    y_ortho = np.sin(angle_ortho)
     ax.plot(
-        [-np.cos(angle_ortho), np.cos(angle_ortho)],
-        [-np.sin(angle_ortho), np.sin(angle_ortho)],
+        [-x_ortho, x_ortho],
+        [-y_ortho, y_ortho],
         color=f"C{i}",
+        linestyle="--",
+        label=f"Ply {i + 1}, direction 2",
     )
 
+    ax.text(x * 1.1, y * 1.1, f"{angle_deg:.1f}°", ha="center", va="center", color=f"C{i}")
+
 ax.set_aspect("equal")
-ax.legend(title="Ply Angles", loc="center left", bbox_to_anchor=(1.1, 0.5))
+ax.legend(title="Fiber directions", loc="center left", bbox_to_anchor=(1.1, 0.5))
 
 ax.axis("off")  # Hide the x and y axes
-ax.text(1.1, 0, "0°", ha="center", va="center")
-ax.text(0, 1.1, "90°", ha="center", va="center")
-
 plt.show()
