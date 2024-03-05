@@ -113,6 +113,23 @@
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Direction definition example">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/images/thumb/sphx_glr_007_direction_definitions_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_examples_gallery_examples_007_direction_definitions.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Direction definition example</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run a failure...">
 
 .. only:: html
@@ -142,6 +159,7 @@
    /examples/gallery_examples/004_advanced_rules
    /examples/gallery_examples/005_thickness_definitions
    /examples/gallery_examples/006_rosettes
+   /examples/gallery_examples/007_direction_definitions
    /examples/gallery_examples/solve_class40
 
 

@@ -58,7 +58,7 @@ from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, 
 # ----------------------------
 
 # %%
-# Get example file from server.
+# Get the example file from the server.
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
 input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
@@ -68,8 +68,8 @@ input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
 acp = launch_acp()
 
 # %%
-# Define the input file and instantiate an ACPWorkflow.
-# The ACPWorkflow class provides convenience methods which simplify the file handling.
+# Define the input file and instantiate an ``ACPWorkflow`` instance.
+# The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
 # It automatically creates a model based on the input file.
 
 workflow = ACPWorkflow.from_cdb_or_dat_file(

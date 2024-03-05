@@ -86,7 +86,7 @@ Start ACP and load the model
 
 .. GENERATED FROM PYTHON SOURCE LINES 67-68
 
-Get example file from server
+Get the example file from the server.
 
 .. GENERATED FROM PYTHON SOURCE LINES 68-72
 
@@ -122,8 +122,8 @@ Launch the PyACP server and connect to it.
 
 .. GENERATED FROM PYTHON SOURCE LINES 77-81
 
-Define the input file and instantiate an ACPWorkflow.
-The ACPWorkflow class provides convenience methods which simplify the file handling.
+Define the input file and instantiate an ``ACPWorkflow`` instance.
+The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
 It automatically creates a model based on the input file.
 The input file contains a flat plate with a single ply.
 
@@ -150,7 +150,7 @@ The input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmpsgmtaooo
+    /tmp/tmpk7llm4wl
     mks
 
 
@@ -935,7 +935,7 @@ Plot the ply extent.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.163 seconds)
+   **Total running time of the script:** ( 0 minutes  7.718 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_004_advanced_rules.py:

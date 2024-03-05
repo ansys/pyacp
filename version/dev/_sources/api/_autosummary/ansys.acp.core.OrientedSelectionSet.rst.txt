@@ -47,6 +47,7 @@
       OrientedSelectionSet.nodal_data
       OrientedSelectionSet.orientation_direction
       OrientedSelectionSet.orientation_point
+      OrientedSelectionSet.reference_direction_field
       OrientedSelectionSet.rosette_selection_method
       OrientedSelectionSet.rosettes
       OrientedSelectionSet.rotation_angle

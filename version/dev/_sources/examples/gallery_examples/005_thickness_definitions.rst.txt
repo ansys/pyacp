@@ -75,7 +75,7 @@ Start ACP and load the model
 
 .. GENERATED FROM PYTHON SOURCE LINES 56-57
 
-Get example file from server
+Get the example file from the server.
 
 .. GENERATED FROM PYTHON SOURCE LINES 57-61
 
@@ -111,8 +111,8 @@ Launch the PyACP server and connect to it.
 
 .. GENERATED FROM PYTHON SOURCE LINES 66-70
 
-Define the input file and instantiate an ACPWorkflow.
-The ACPWorkflow class provides convenience methods which simplify the file handling.
+Define the input file and instantiate an ``ACPWorkflow`` instance.
+The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
 It automatically creates a model based on the input file.
 The input file contains a flat plate with a single ply.
 
@@ -172,7 +172,7 @@ The input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmpiitcxl3n
+    /tmp/tmp1flws60j
     mks
 
 
@@ -510,7 +510,7 @@ Plot the ply thickness
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.239 seconds)
+   **Total running time of the script:** ( 0 minutes  5.385 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_005_thickness_definitions.py:

@@ -450,6 +450,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="004_advanced_rules.html">Advanced rules example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="005_thickness_definitions.html">Thickness definition example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="006_rosettes.html">Rosette example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="007_direction_definitions.html">Direction definition example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="solve_class40.html">Class 40 example</a></li>
 </ul>
 </div>
@@ -540,7 +541,7 @@ see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-e
 </div>
 <section id="start-acp-and-load-the-model">
 <h2>Start ACP and load the model<a class="headerlink" href="#start-acp-and-load-the-model" title="Link to this heading">#</a></h2>
-<p>Get example file from server.</p>
+<p>Get the example file from the server.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tempdir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class"><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span></a><span class="p">()</span>
 <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tempdir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
 <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a> <span class="o">=</span> <span class="n">get_example_file</span><span class="p">(</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">MINIMAL_FLAT_PLATE</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">)</span>
@@ -550,8 +551,8 @@ see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-e
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">acp</span> <span class="o">=</span> <span class="n">launch_acp</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Define the input file and instantiate an ACPWorkflow.
-The ACPWorkflow class provides convenience methods which simplify the file handling.
+<p>Define the input file and instantiate an <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> instance.
+The <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> class provides convenience methods that simplify the file handling.
 It automatically creates a model based on the input file.
 The input file contains a flat plate with a single ply.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span> <span class="o">=</span> <span class="n">ACPWorkflow</span><span class="o">.</span><span class="n">from_acph5_file</span><span class="p">(</span>
@@ -565,7 +566,7 @@ The input file contains a flat plate with a single ply.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpgr2zn4ql
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpvy5017cf
 mks
 </pre></div>
 </div>
@@ -718,7 +719,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_003_basic_rules_005.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.473 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.903 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-003-basic-rules-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8b78a3bbb5edbac255687a3019ed537e/003_basic_rules.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">003_basic_rules.py</span></code></a></p>
