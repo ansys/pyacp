@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709559089710,
+  "lastUpdate": 1709635382027,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13466,6 +13466,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00010571168023650065",
             "extra": "mean: 625.4310489790599 usec\nrounds: 490"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "186eddc83abb0606c896761db9fec36492b23d50",
+          "message": "Add missing newlines in launch_configuration.rst (#484)\n\nAdd missing newlines before bullet lists in the\r\n``launch_configuration.rst`` file.",
+          "timestamp": "2024-03-05T10:39:39Z",
+          "tree_id": "72a9cc1abf4a20d8952856a4f67d7c4f26b0d62a",
+          "url": "https://github.com/ansys/pyacp/commit/186eddc83abb0606c896761db9fec36492b23d50"
+        },
+        "date": 1709635358509,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.101038859082055,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0025259448864629625",
+            "extra": "mean: 196.03849875002766 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1169.3747662314888,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020167098019902051",
+            "extra": "mean: 855.1578406490435 usec\nrounds: 1230"
           }
         ]
       }
