@@ -50,6 +50,8 @@ ansys-mapdl-core = { version = ">=0.62.1,<1", optional = true }
 ansys-dpf-composites = { version = ">=0.3,<1", optional = true }
 ansys-dpf-core = { version = ">=0.7,<1", optional = true }
 ansys-mechanical-core = { version = ">=0.10.0", optional = true, python = "<3.12" }
+matplotlib = { version = "^3.8.3", optional = true }
+scipy = { version = "^1.12.0", optional = true }
 
 [tool.poetry.group.dev]
 optional = true
@@ -80,6 +82,8 @@ ansys-mapdl-core = ">=0.62.1,<1"
 ansys-dpf-composites = { version = ">=0.3,<1" }
 ansys-dpf-core = ">=0.7,<1"
 ansys-mechanical-core = { version = ">=0.10.0", python = "<3.12" }
+matplotlib = "^3.8.3"
+scipy = "^1.12.0"
 
 [tool.poetry.group.test]
 optional = true
@@ -100,6 +104,8 @@ examples = [
     "ansys-dpf-core",
     "ansys-dpf-composites",
     "ansys-mechanical-core",
+    "matplotlib",
+    "scipy",
 ]
 
 [tool.poetry.plugins."ansys.tools.local_product_launcher.launcher"]
@@ -145,6 +151,8 @@ module = [
     "docker.*",
     "grpc.*",
     "grpc_health.*",
+    "scipy.optimize",
+    "ansys.mapdl",
     "ansys.mapdl.core",
     "ansys.dpf.core",
     "ansys.dpf.core.core",
