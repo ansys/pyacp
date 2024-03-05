@@ -5,7 +5,7 @@ Enumeration data types
 
 .. autosummary::
     :toctree: _autosummary
-    :template: autosummary/no_methods_doc/class.rst
+    :template: autosummary/no_methods_doc/class.rst.jinja2
 
     BooleanOperationType
     CutoffMaterialType
