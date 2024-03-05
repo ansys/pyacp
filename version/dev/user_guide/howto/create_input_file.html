@@ -533,16 +533,16 @@ contains all the information contained in the initial input file plus the layup 
 materials added by PyACP. An attempt is made to preserve the original input file as much as possible.
 This includes the original mesh, materials and boundary conditions.</p>
 <section id="create-an-input-file-with-ansys-mechanical">
-<h2>Create an input file with Ansys Mechanical<a class="headerlink" href="#create-an-input-file-with-ansys-mechanical" title="Link to this heading">#</a></h2>
+<span id="input-file-from-mechanical"></span><h2>Create an input file with Ansys Mechanical<a class="headerlink" href="#create-an-input-file-with-ansys-mechanical" title="Link to this heading">#</a></h2>
 <p>One way to create an input file for PyACP is to create a static structural setup and export the solver input file. To do this, follow these steps:</p>
 <ul class="simple">
 <li><p>Open Ansys workbench</p></li>
 <li><p>Add a “Static Structural” system</p></li>
 <li><p>Create or import a geometry in the geometry part of the static structural system (A3). Note: PyACP only supports shell geometries</p></li>
 <li><p>Open the Mechanical Model (A4)</p></li>
-<li><p>Assign a thickness and a material to the geometry (will be later overwritten by PyACP)</p></li>
+<li><p>Assign a thickness and a material to the geometry (this is later overwritten by PyACP)</p></li>
 <li><p>Optional: Define boundary conditions</p></li>
-<li><p>Click on Static Structural (A5) in the tree and click on “Environment/Write Input File..” in the navigation bar.</p></li>
+<li><p>Select “Static Structural (A5)” in the tree and then click “Environment/Write Input File” in the navigation bar.</p></li>
 <li><p>Save the input file in *.dat format in the desired location.</p></li>
 </ul>
 <p>The created input file can be read with <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file.html#ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file" title="ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.from_cdb_or_dat_file()</span></code></a>. See
@@ -572,8 +572,8 @@ This includes the original mesh, materials and boundary conditions.</p>
 <h2>Notes on material handling<a class="headerlink" href="#notes-on-material-handling" title="Link to this heading">#</a></h2>
 <p>Materials present in the input file (*.cdb or *.dat) are read into PyACP. The following rules apply:</p>
 <ul class="simple">
-<li><p>If the material has defined a UVID, the material is imported as locked. This means the material cannot be edited in PyACP. This is the case if the input file was created with Ansys Mechanical (see above). A UVID can be defined with the <code class="docutils literal notranslate"><span class="pre">MP,UVID</span></code> or <code class="docutils literal notranslate"><span class="pre">MPDATAT,UNBL,16,UVID</span></code> command.</p></li>
-<li><p>If the material has no UVID, the material is copied on import. Only the copied material appears in PyACP. The original material is not changed and will appear unmodified in the output file.</p></li>
+<li><p>If the material has defined a UVID, the material is imported as locked. This means the material cannot be edited in PyACP. If the input file was created with Ansys Mechanical (see the section <a class="reference internal" href="#input-file-from-mechanical"><span class="std std-ref">Create an input file with Ansys Mechanical</span></a>), this is always the case. In MAPDL, a UVID can be defined with the <code class="docutils literal notranslate"><span class="pre">MP,UVID</span></code> or <code class="docutils literal notranslate"><span class="pre">MPDATAT,UNBL,16,UVID</span></code> command.</p></li>
+<li><p>If the material has no UVID, the material is copied on import. Only the copied material appears in PyACP. The original material is not changed and appears unmodified in the output file.</p></li>
 </ul>
 </section>
 </section>

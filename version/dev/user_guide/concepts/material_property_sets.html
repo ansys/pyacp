@@ -593,7 +593,7 @@ independently defined. This means that when changing the ply type of a material,
 the stress and strain limits must be redefined.</p>
 <p>For the engineering constants however, the orthotropic and isotropic definitions
 are interlinked. This means that when changing the ply type of a material, the
-engineering constants will be automatically converted.
+engineering constants are converted automatically.
 To avoid accidentally using incorrect engineering constants, PyACP enforces some
 conversion and assignment rules, as described in the following sections.</p>
 <section id="conversion-rules">
@@ -649,7 +649,7 @@ back to an isotropic ply type is not allowed.</p>
 </ul>
 </li>
 </ul>
-<p>Continuing from the preceding example, we can assign either an orthotropic or isotropic engineering constants to the orthotropic material:</p>
+<p>Continuing from the preceding example, you can assign either an orthotropic or isotropic engineering constants to the orthotropic material:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">material</span><span class="o">.</span><span class="n">ply_type</span>
 <span class="go">&lt;PlyType.WOVEN: &#39;woven&#39;&gt;</span>
 </pre></div>
@@ -667,7 +667,7 @@ back to an isotropic ply type is not allowed.</p>
 <span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now we can switch back to an isotropic ply type.</p>
+<p>Now you can switch back to an isotropic ply type.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">material</span><span class="o">.</span><span class="n">ply_type</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">PlyType</span><span class="o">.</span><span class="n">ISOTROPIC</span>
 </pre></div>
 </div>

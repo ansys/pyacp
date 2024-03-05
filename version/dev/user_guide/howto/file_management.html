@@ -527,10 +527,10 @@ document.write(`
   <section id="managing-input-and-output-files">
 <h1>Managing input and output files<a class="headerlink" href="#managing-input-and-output-files" title="Link to this heading">#</a></h1>
 <p>When defining your workflow using PyACP and other tools, you may need control
-over where input and output files are stored. This guide will show you different
+over where input and output files are stored. This guide shows you different
 ways to achieve this.</p>
-<p>For now, let’s assume the ACP instance is launched on a remote server. The
-final section <a class="reference internal" href="#local-vs-remote"><span class="std std-ref">Local vs remote ACP instance</span></a> will discuss the differences between local and
+<p>For now, consider the case where the ACP instance is launched on a remote server. The
+final section <a class="reference internal" href="#local-vs-remote"><span class="std std-ref">Local vs remote ACP instance</span></a> discusses the differences between local and
 remote ACP instances in terms of file management.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">acp</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
@@ -539,12 +539,12 @@ remote ACP instances in terms of file management.</p>
 <section id="using-a-predefined-workflow">
 <h2>Using a predefined workflow<a class="headerlink" href="#using-a-predefined-workflow" title="Link to this heading">#</a></h2>
 <p>The simplest way to manage files is by using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.html#ansys.acp.core.ACPWorkflow" title="ansys.acp.core.ACPWorkflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">ACPWorkflow</span></code></a> class. This class
-manages the most common use case, using predetermined output file names.</p>
+manages the most common use case, using predetermined output filenames.</p>
 <section id="loading-input-files">
 <h3>Loading input files<a class="headerlink" href="#loading-input-files" title="Link to this heading">#</a></h3>
 <p>To get started, you must define a workflow. This can be done using either an
 FE model (<code class="docutils literal notranslate"><span class="pre">.cdb</span></code> or <code class="docutils literal notranslate"><span class="pre">.dat</span></code>) file, or an ACP model (<code class="docutils literal notranslate"><span class="pre">.acph5</span></code>) file.</p>
-<p>Let us assume you have a directory <code class="docutils literal notranslate"><span class="pre">DATA_DIRECTORY</span></code> containing a file <code class="docutils literal notranslate"><span class="pre">input_file.cdb</span></code>.</p>
+<p>In the following example, assume you have a directory <code class="docutils literal notranslate"><span class="pre">DATA_DIRECTORY</span></code> containing a <code class="docutils literal notranslate"><span class="pre">input_file.cdb</span></code> file.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">DATA_DIRECTORY</span>
 <span class="go">PosixPath(&#39;...&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">DATA_DIRECTORY</span><span class="o">.</span><span class="n">iterdir</span><span class="p">())</span>
@@ -578,7 +578,7 @@ output files. For example, to get the <code class="docutils literal notranslate"
 <span class="go">PosixPath(&#39;/tmp/.../My model.acph5&#39;)</span>
 </pre></div>
 </div>
-<p>Note that the file name is based on the model name.</p>
+<p>Note that the filename is based on the model name.</p>
 </section>
 <section id="using-a-custom-working-directory">
 <h3>Using a custom working directory<a class="headerlink" href="#using-a-custom-working-directory" title="Link to this heading">#</a></h3>
@@ -593,14 +593,14 @@ the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.AC
 <span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now the output files will be stored in the custom working directory. Input files
+<p>Any produced output files are now stored in the custom working directory. Input files
 are also copied to this directory before being uploaded to the ACP instance.</p>
 </section>
 </section>
 <section id="manual-file-management">
 <h2>Manual file management<a class="headerlink" href="#manual-file-management" title="Link to this heading">#</a></h2>
 <p>To get more control over where files are stored, you can manually upload and
-download files to the server, and specify the file names.</p>
+download files to the server, and specify the filenames.</p>
 <section id="id1">
 <h3>Loading input files<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>If you again want to load the file <code class="docutils literal notranslate"><span class="pre">input_file.cdb</span></code> into the ACP instance, you
@@ -624,7 +624,7 @@ be used to create a new model:</p>
 </section>
 <section id="id2">
 <h3>Getting output files<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>To get the <code class="docutils literal notranslate"><span class="pre">.acph5</span></code> file, we first need to store it on the server. This is done
+<p>To get the <code class="docutils literal notranslate"><span class="pre">.acph5</span></code> file, you first need to store it on the server. This is done
 using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.Model.save.html#ansys.acp.core.Model.save" title="ansys.acp.core.Model.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">save()</span></code></a> method of the model:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;output_file.acph5&quot;</span><span class="p">)</span>
 </pre></div>
@@ -640,7 +640,7 @@ instance:</p>
 </section>
 <section id="local-vs-remote-acp-instance">
 <span id="local-vs-remote"></span><h2>Local vs remote ACP instance<a class="headerlink" href="#local-vs-remote-acp-instance" title="Link to this heading">#</a></h2>
-<p>In the preceding examples, we have assumed that ACP runs on a remote server. However,
+<p>In the preceding examples, the case where ACP runs on a remote server was described. However,
 you can also launch ACP as a process on your local machine. Refer to the <a class="reference internal" href="launch_configuration.html#launch-configuration"><span class="std std-ref">Changing how ACP is started</span></a> guide
 for details on how to do this.</p>
 <p>When the ACP instance is local, you can use the same code described previously. However,

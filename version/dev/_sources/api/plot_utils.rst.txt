@@ -1,4 +1,4 @@
-Plot Utilities
+Plot utilities
 --------------
 
 .. currentmodule:: ansys.acp.core
@@ -7,6 +7,3 @@ Plot Utilities
     :toctree: _autosummary
 
     get_directions_plotter
-
-
-
