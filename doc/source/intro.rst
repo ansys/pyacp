@@ -116,7 +116,7 @@ The following example imports a CDB file.
 .. testcode::
     :hide:
 
-    model.materials['2'].name = "Carbon Woven"
+    model.materials["2"].name = "Carbon Woven"
 
 See :class:`.FeFormat` for a list of supported FE formats. Check out the
 :ref:`input_file_for_pyacp` section to see how input files can be created.
@@ -133,8 +133,8 @@ Start defining new objects in the model. For example, to create a ply and all it
     oss = model.create_oriented_selection_set(
         name="OSS",
         orientation_direction=(-0.0, 1.0, 0.0),
-        element_sets=[model.element_sets['All_Elements']],
-        rosettes=[model.rosettes['12']]
+        element_sets=[model.element_sets["All_Elements"]],
+        rosettes=[model.rosettes["12"]],
     )
     modeling_group = model.create_modeling_group(name="Modeling Group 1")
     modeling_ply = modeling_group.create_modeling_ply(name="Ply 1", ply_angle=10.0)
@@ -145,7 +145,7 @@ For example, refer to the documentation of :meth:`create_modeling_ply <.Modeling
 Alternatively, you can always set the properties of an object after it has been created:
 
 .. testcode::
-    fabric.material=model.materials['Carbon Woven']
+    fabric.material = model.materials["Carbon Woven"]
     modeling_ply.ply_material = fabric
     modeling_ply.oriented_selection_sets = [oss]
 
