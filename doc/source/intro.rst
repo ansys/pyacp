@@ -23,7 +23,7 @@ Since the module is not yet public, please install from GitHub:
     pip install git+https://github.com/ansys/pyacp.git
 
 .. note::
-    Ensure that a recent version of Ansys WB 2024 R2 is installed on your machine before you start using pyACP.
+    Ensure that a recent version of Ansys WB 2024 R2 is installed on your machine before you start using PyACP.
 
 Reporting
 ~~~~~~~~~
