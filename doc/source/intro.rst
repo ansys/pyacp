@@ -9,20 +9,24 @@ The documentation below is still valid for the Ansys internal testing session ex
 Installation
 ~~~~~~~~~~~~
 
-It is recommended to use a `virtual environment <https://docs.python.org/3/library/venv.html>`_,
-because it keeps Python packages isolated from your system Python,
-and activate it before installing PyACP:
+Before installing PyACP, it is recommended to create a
+`virtual environment <https://docs.python.org/3/library/venv.html>`_,
+because it keeps Python packages isolated from your system Python.
+And don't forget to activate it.
 
 .. code::
+
     python -m venv C:\pyacp_venv
     C:\pyacp_venv\Scripts\activate
 
-Since the module is not yet public, please install from GitHub:
+Since PyACP is not yet public, please install from GitHub:
 
 .. code::
+
     pip install git+https://github.com/ansys/pyacp.git
 
 .. note::
+
     Ensure that a recent version of Ansys WB 2024 R2 is installed on your machine before you start using PyACP.
 
 Reporting
@@ -33,8 +37,8 @@ Please add issues on the `GitHub repository <https://github.com/ansys/pyacp/issu
 Or write to us on the
 `pyACP Testing channel <https://teams.microsoft.com/l/channel/19%3An30o8gW_b9zH7hJo4gOhTNPCzCPfCjtIy2iJiGH_m701%40thread.tacv2/?groupId=abd72c46-92b0-4bf7-9599-de8b4d52404b&tenantId=>`_.
 
-Installation (not for testing session)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Installation (ignore for testing session)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 PyACP supports Ansys version 2024R2 and later. To install PyACP, run the following command:
 
@@ -70,7 +74,7 @@ Get a model
 A model can be resumed from an existing ACP DB (acph5) file or built from
 scratch by importing an FE model (mesh).
 
-To load an existing model with pyACP, use the :meth:`ACPWorkflow.from_acph5_file <.ACP.ACPWorkflow.from_acph5_file>` method:
+To load an existing model with pyACP, use the :meth:`.ACPWorkflow.from_acph5_file` method:
 
 .. testcode::
     :hide:
@@ -92,8 +96,7 @@ To load an existing model with pyACP, use the :meth:`ACPWorkflow.from_acph5_file
     )
     model = workflow.model
 
-To import an FE model, use the
-:meth:`ACPWorkflow.from_cdb_or_dat_file <.ACP.ACPWorkflow.from_cdb_or_dat_file>` method.
+To import an FE model, use the :meth:`.ACPWorkflow.from_cdb_or_dat_file` method.
 The following example imports a CDB file.
 
 .. testcode::
@@ -145,6 +148,7 @@ For example, refer to the documentation of :meth:`create_modeling_ply <.Modeling
 Alternatively, you can always set the properties of an object after it has been created:
 
 .. testcode::
+
     fabric.material = model.materials["Carbon Woven"]
     modeling_ply.ply_material = fabric
     modeling_ply.oriented_selection_sets = [oss]
