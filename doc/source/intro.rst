@@ -26,7 +26,7 @@ Because PyACP is not yet public, use this command to install from GitHub:
 
 .. note::
 
-    Ensure that a recent version of Ansys WB 2024 R2 is installed on your machine before you start using PyACP.
+    Before you start using PyACP, ensure that a recent version of Ansys Workbench 2024 R2 is installed on your machine.
 
 Reporting
 ~~~~~~~~~
