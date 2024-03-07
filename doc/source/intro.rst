@@ -18,7 +18,7 @@ to keep Python packages isolated from your system Python.
     python -m venv C:\pyacp_venv
     C:\pyacp_venv\Scripts\activate
 
-Since PyACP is not yet public, please install from GitHub:
+Because PyACP is not yet public, use this command to install from GitHub:
 
 .. code::
 
