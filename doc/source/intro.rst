@@ -78,13 +78,22 @@ To load an existing model with PyACP, use the :meth:`.ACPWorkflow.from_acph5_fil
 .. testcode::
     :hide:
 
-    my_acph5_file = "../tests/data/minimal_complete_model.acph5"
+    import tempfile
+    import shutil
+
+    workdir_doctest = tempfile.TemporaryDirectory()
+    DATA_DIRECTORY = pathlib.Path(workdir_doctest.name)
+    _ = shutil.copyfile(
+        "../tests/data/minimal_complete_model.acph5", DATA_DIRECTORY / "model.acph5"
+    )
+    old_cwd = os.getcwd()
+    os.chdir(DATA_DIRECTORY)
 
 .. testcode::
 
     workflow = pyacp.ACPWorkflow.from_acph5_file(
         acp=acp,
-        acph5_file_path=my_acph5_file,
+        acph5_file_path="model.acph5",
     )
     model = workflow.model
 
@@ -94,13 +103,16 @@ The following example imports a CDB file.
 .. testcode::
     :hide:
 
-    my_cdb_file = "../tests/data/minimal_model_2.cdb"
+    DATA_DIRECTORY = pathlib.Path(workdir_doctest.name)
+    _ = shutil.copyfile(
+        "../tests/data/minimal_model_2.cdb", DATA_DIRECTORY / "model.cdb"
+    )
 
 .. testcode::
 
     workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
         acp=acp,
-        cdb_or_dat_file_path=my_cdb_file,
+        cdb_or_dat_file_path="model.cdb",
         unit_system=pyacp.UnitSystemType.MPA,
     )
     model = workflow.model
@@ -184,3 +196,8 @@ This is just a brief introduction to PyACP. To learn more:
 - Check out the `examples <examples/index>`_ to see complete examples of how to use PyACP.
 - The `how-to guides <howto/index>`_ provide instructions on how to perform specific tasks.
 - The `API reference <api/index>`_ provides detailed information on all available classes and methods.
+
+.. testcode::
+    :hide:
+
+    os.chdir(old_cwd)
