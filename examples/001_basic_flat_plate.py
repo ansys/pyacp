@@ -23,10 +23,10 @@
 r"""
 .. _basic_flat_plate:
 
-Basic PyACP Example
-===================
+Basic PyACP workflow
+====================
 
-Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
+Define a composite lay-up with PyACP, solve the resulting model with PyMAPDL, and run
 a failure analysis with PyDPF-Composites.
 
 The starting point is a MAPDL \*.dat file which contains the mesh, material data and
