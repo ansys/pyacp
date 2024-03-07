@@ -70,7 +70,7 @@ Next, start an ACP instance:
 Get a model
 ~~~~~~~~~~~
 
-A model can be resumed from an existing ACP DB (acph5) file or built from
+You can resume a model from an existing ACP DB (ACPH5) or built it from
 scratch by importing an FE model (mesh).
 
 To load an existing model with PyACP, use the :meth:`.ACPWorkflow.from_acph5_file` method:
