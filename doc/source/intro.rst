@@ -74,7 +74,7 @@ Get a model
 A model can be resumed from an existing ACP DB (acph5) file or built from
 scratch by importing an FE model (mesh).
 
-To load an existing model with pyACP, use the :meth:`.ACPWorkflow.from_acph5_file` method:
+To load an existing model with PyACP, use the :meth:`.ACPWorkflow.from_acph5_file` method:
 
 .. testcode::
     :hide:
