@@ -39,7 +39,7 @@ Or write to us on the
 Installation (ignore for testing session)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-PyACP supports Ansys version 2024R2 and later. To install PyACP, run the following command:
+PyACP supports Ansys 2024 R2 and later. To install PyACP, run the following command:
 
 .. code-block:: bash
 
