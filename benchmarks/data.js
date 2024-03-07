@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709657476304,
+  "lastUpdate": 1709818279022,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13732,6 +13732,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00018745054905827904",
             "extra": "mean: 849.1077529499152 usec\nrounds: 1186"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "105842014+roosre@users.noreply.github.com",
+            "name": "René Roos",
+            "username": "roosre"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "dd7da226426489b47524bdcd248f7cfddc04f825",
+          "message": "Make intro ready for the testing session (#488)\n\n* Add temporary section for the testing session of pyACP\r\n\r\n* some unrelated cosmetic changes\r\n\r\nCo-authored-by: Dominik Gresch <greschd@users.noreply.github.com>\r\n\r\n---------\r\n\r\nCo-authored-by: Dominik Gresch <greschd@users.noreply.github.com>\r\nCo-authored-by: Kathy Pippert <84872299+PipKat@users.noreply.github.com>",
+          "timestamp": "2024-03-07T14:27:17+01:00",
+          "tree_id": "eafe40f038a01d97969e055056496da478fb5f18",
+          "url": "https://github.com/ansys/pyacp/commit/dd7da226426489b47524bdcd248f7cfddc04f825"
+        },
+        "date": 1709818250256,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.147995618053151,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004094357013144911",
+            "extra": "mean: 241.08029325000757 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1009.2637457559613,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00031147581180920566",
+            "extra": "mean: 990.821283539693 usec\nrounds: 1051"
           }
         ]
       }
