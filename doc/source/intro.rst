@@ -9,10 +9,9 @@ The documentation below is still valid for the Ansys internal testing session ex
 Installation
 ~~~~~~~~~~~~
 
-Before installing PyACP, it is recommended to create a
-`virtual environment <https://docs.python.org/3/library/venv.html>`_,
-because it keeps Python packages isolated from your system Python.
-And don't forget to activate it.
+Before installing PyACP, you should create and activate a
+`virtual environment <https://docs.python.org/3/library/venv.html>`_
+to keep Python packages isolated from your system Python.
 
 .. code::
 
