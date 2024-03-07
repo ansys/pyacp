@@ -23,7 +23,7 @@
 r"""
 .. _basic_flat_plate:
 
-Basic PyACP Workflow
+Basic PyACP workflow
 ====================
 
 Define a composite lay-up with PyACP, solve the resulting model with PyMAPDL, and run
