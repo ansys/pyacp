@@ -78,20 +78,13 @@ To load an existing model with PyACP, use the :meth:`.ACPWorkflow.from_acph5_fil
 .. testcode::
     :hide:
 
-    import os
-    import shutil
-    import tempfile
-
-    with tempfile.TemporaryDirectory() as tempdir:
-        tmp_file = os.path.join(tempdir, "model.acph5")
-        shutil.copy("../tests/data/minimal_complete_model.acph5", tmp_file)
-        acp.upload_file(tmp_file)
+    my_acph5_file = "../tests/data/minimal_complete_model.acph5"
 
 .. testcode::
 
     workflow = pyacp.ACPWorkflow.from_acph5_file(
         acp=acp,
-        acph5_file_path="model.acph5",
+        acph5_file_path=my_acph5_file,
     )
     model = workflow.model
 
@@ -101,16 +94,13 @@ The following example imports a CDB file.
 .. testcode::
     :hide:
 
-    with tempfile.TemporaryDirectory() as tempdir:
-        tmp_file = os.path.join(tempdir, "model.cdb")
-        shutil.copy("../tests/data/minimal_model_2.cdb", tmp_file)
-        acp.upload_file(tmp_file)
+    my_cdb_file = "../tests/data/minimal_model_2.cdb"
 
 .. testcode::
 
     workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
         acp=acp,
-        cdb_or_dat_file_path="model.cdb",
+        cdb_or_dat_file_path=my_cdb_file,
         unit_system=pyacp.UnitSystemType.MPA,
     )
     model = workflow.model
