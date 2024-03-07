@@ -69,9 +69,7 @@ Start a Python interpreter and import the PyACP package:
     _ = shutil.copyfile(
         "../tests/data/minimal_complete_model.acph5", DATA_DIRECTORY / "model.acph5"
     )
-    _ = shutil.copyfile(
-        "../tests/data/minimal_model_2.cdb", DATA_DIRECTORY / "model.cdb"
-    )
+    _ = shutil.copyfile("../tests/data/minimal_model_2.cdb", DATA_DIRECTORY / "model.cdb")
     old_cwd = os.getcwd()
     os.chdir(DATA_DIRECTORY)
 
