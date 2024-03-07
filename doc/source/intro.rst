@@ -4,7 +4,9 @@ Getting started
 Testing session (to be removed)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The documentation below is still valid for the Ansys internal testing session except Installation.
+Follow these special installation and reporting instructions during the PyACP testing session. 
+
+The "Usage" section below is also still valid.
 
 Installation
 ~~~~~~~~~~~~
