@@ -57,9 +57,27 @@ Start ACP
 Start a Python interpreter and import the PyACP package:
 
 .. testcode::
+    :hide:
+
+    import tempfile
+    import shutil
+    import pathlib
+    import os
+
+    workdir_doctest = tempfile.TemporaryDirectory()
+    DATA_DIRECTORY = pathlib.Path(workdir_doctest.name)
+    _ = shutil.copyfile(
+        "../tests/data/minimal_complete_model.acph5", DATA_DIRECTORY / "model.acph5"
+    )
+    _ = shutil.copyfile(
+        "../tests/data/minimal_model_2.cdb", DATA_DIRECTORY / "model.cdb"
+    )
+    old_cwd = os.getcwd()
+    os.chdir(DATA_DIRECTORY)
+
+.. testcode::
 
     import ansys.acp.core as pyacp
-
 
 Next, start an ACP instance:
 
@@ -76,20 +94,6 @@ scratch by importing an FE model (mesh).
 To load an existing model with PyACP, use the :meth:`.ACPWorkflow.from_acph5_file` method:
 
 .. testcode::
-    :hide:
-
-    import tempfile
-    import shutil
-
-    workdir_doctest = tempfile.TemporaryDirectory()
-    DATA_DIRECTORY = pathlib.Path(workdir_doctest.name)
-    _ = shutil.copyfile(
-        "../tests/data/minimal_complete_model.acph5", DATA_DIRECTORY / "model.acph5"
-    )
-    old_cwd = os.getcwd()
-    os.chdir(DATA_DIRECTORY)
-
-.. testcode::
 
     workflow = pyacp.ACPWorkflow.from_acph5_file(
         acp=acp,
@@ -99,14 +103,6 @@ To load an existing model with PyACP, use the :meth:`.ACPWorkflow.from_acph5_fil
 
 To import an FE model, use the :meth:`.ACPWorkflow.from_cdb_or_dat_file` method.
 The following example imports a CDB file.
-
-.. testcode::
-    :hide:
-
-    DATA_DIRECTORY = pathlib.Path(workdir_doctest.name)
-    _ = shutil.copyfile(
-        "../tests/data/minimal_model_2.cdb", DATA_DIRECTORY / "model.cdb"
-    )
 
 .. testcode::
 
