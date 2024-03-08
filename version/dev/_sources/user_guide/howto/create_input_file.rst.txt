@@ -4,11 +4,13 @@ Input file for PyACP
 --------------------
 
 To start working with PyACP, an input file that contains the mesh is required. PyACP supports reading
-the mesh from \*.cdb and \*.dat files with :meth:`.ACPWorkflow.from_cdb_or_dat_file`. PyACP will read the mesh including - if they exist - coordinate systems, element, edge sets, and materials from the
-input file. After the layup has been created with PyACP a \*.cdb file can be exported with :meth:`.ACPWorkflow.get_local_cdb_file`. This file
+the mesh from \*.cdb and \*.dat files with :meth:`.ACPWorkflow.from_cdb_or_dat_file`. PyACP will read the mesh including - if they exist - coordinate systems, element sets,
+edge sets, and materials from the input file. After the layup has been created with PyACP a \*.cdb file can be exported with :meth:`.ACPWorkflow.get_local_cdb_file`. This file
 contains all the information contained in the initial input file plus the layup information and
 materials added by PyACP. An attempt is made to preserve the original input file as much as possible.
-This includes the original mesh, materials and boundary conditions.
+This includes the original mesh, materials and boundary conditions. You can therefore use the exported \*.cdb file
+directly for an analysis using PyMAPDL. See
+:ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
 
 .. _input_file_from_mechanical:
 

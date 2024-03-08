@@ -11,7 +11,7 @@
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run a failure...">
+    <div class="sphx-glr-thumbcontainer" tooltip="Define a composite lay-up with PyACP, solve the resulting model with PyMAPDL, and run a failure...">
 
 .. only:: html
 
@@ -22,7 +22,7 @@
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Basic PyACP Example</div>
+      <div class="sphx-glr-thumbnail-title">Basic PyACP workflow</div>
     </div>
 
 
