@@ -1,17 +1,17 @@
 Material property sets
 ----------------------
 
-Material property sets are used to define a certain aspect of the properties
+Material property sets define certain aspects of the properties
 of a material.
-The attributes described in the following subsections determine how the
-material property set can be used within PyACP.
+The attributes described in the following subsections explain how
+you may use material property sets within PyACP.
 
 
 Constant versus variable property sets
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Material property sets can either be constant or variable. Constant property
-sets are defined by a single value for each property, while variable property
+sets are defined by a single value per property. Variable property
 sets depend on field variables such as temperature, fiber volume content, etc.
 
 Currently, only the constant property sets can be modified with PyACP. Variable

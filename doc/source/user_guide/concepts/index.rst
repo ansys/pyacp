@@ -1,7 +1,7 @@
 Concepts
 --------
 
-These guides explain the concepts used in PyACP.
+These guides explain the PyACP concepts.
 
 .. toctree::
     :maxdepth: 2
