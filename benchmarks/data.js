@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1709818279022,
+  "lastUpdate": 1710141203160,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13770,6 +13770,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00031147581180920566",
             "extra": "mean: 990.821283539693 usec\nrounds: 1051"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1e790bb17376d580cb8e968f9da078eaed9c55eb",
+          "message": "Bump the dependencies group with 4 updates (#492)\n\nBumps the dependencies group with 4 updates: [packaging](https://github.com/pypa/packaging), [mypy](https://github.com/python/mypy), [pytest-cases](https://github.com/smarie/python-pytest-cases) and [hypothesis](https://github.com/HypothesisWorks/hypothesis).\r\n\r\n\r\nUpdates `packaging` from 23.2 to 24.0\r\n- [Release notes](https://github.com/pypa/packaging/releases)\r\n- [Changelog](https://github.com/pypa/packaging/blob/main/CHANGELOG.rst)\r\n- [Commits](https://github.com/pypa/packaging/compare/23.2...24.0)\r\n\r\nUpdates `mypy` from 1.8.0 to 1.9.0\r\n- [Changelog](https://github.com/python/mypy/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/python/mypy/compare/v1.8.0...1.9.0)\r\n\r\nUpdates `pytest-cases` from 3.8.2 to 3.8.3\r\n- [Release notes](https://github.com/smarie/python-pytest-cases/releases)\r\n- [Changelog](https://github.com/smarie/python-pytest-cases/blob/main/docs/changelog.md)\r\n- [Commits](https://github.com/smarie/python-pytest-cases/compare/3.8.2...3.8.3)\r\n\r\nUpdates `hypothesis` from 6.98.17 to 6.99.2\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.98.17...hypothesis-python-6.99.2)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: packaging\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-major\r\n  dependency-group: dependencies\r\n- dependency-name: mypy\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: pytest-cases\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-03-11T08:09:48+01:00",
+          "tree_id": "2ca4645e2e88f979318bb435cf110600b834e188",
+          "url": "https://github.com/ansys/pyacp/commit/1e790bb17376d580cb8e968f9da078eaed9c55eb"
+        },
+        "date": 1710141177385,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.825615187701294,
+            "unit": "iter/sec",
+            "range": "stddev: 0.007771790114750139",
+            "extra": "mean: 207.22746449999363 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1247.2204552803585,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019144086036763193",
+            "extra": "mean: 801.7828730809368 usec\nrounds: 977"
           }
         ]
       }
