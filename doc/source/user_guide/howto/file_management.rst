@@ -1,4 +1,4 @@
-Managing input and output files
+Manage input and output files
 -------------------------------
 
 When defining your workflow using PyACP and other tools, you may need control

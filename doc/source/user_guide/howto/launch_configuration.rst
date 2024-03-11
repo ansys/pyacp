@@ -1,6 +1,6 @@
 .. _launch_configuration:
 
-Changing how ACP is started
+Change ACP startup
 ---------------------------
 
 By default, the :func:`.launch_acp` function will start ACP from the unified installer, using the latest available version.

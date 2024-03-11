@@ -1,6 +1,6 @@
 .. _input_file_for_pyacp:
 
-Input file for PyACP
+Create input file for PyACP
 --------------------
 
 To start working with PyACP, an input file that contains the mesh is required. PyACP supports reading

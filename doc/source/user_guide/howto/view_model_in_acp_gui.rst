@@ -1,6 +1,6 @@
 .. _view_the_model_in_the_acp_gui:
 
-View the model in the ACP GUI
+View model in ACP GUI
 -----------------------------
 
 To view the PyACP model in the ACP GUI, save the model to a file with :meth:`.ACPWorkflow.get_local_acph5_file` and then open the saved file in ACP (File/Open).

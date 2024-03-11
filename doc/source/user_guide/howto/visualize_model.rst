@@ -1,4 +1,4 @@
-Visualizing the model
+Visualize model
 ---------------------
 
 .. jinja:: conditional_skip
