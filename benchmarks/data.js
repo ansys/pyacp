@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1710141203160,
+  "lastUpdate": 1710241389707,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13808,6 +13808,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00019144086036763193",
             "extra": "mean: 801.7828730809368 usec\nrounds: 977"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "66a1dedef4577dcf03e4cb8e9fa6bea47265bdf6",
+          "message": "Improve install instructions (#495)\n\n* Add `examples` extra in default install instructions\r\n* Add note about token in testing session instructions",
+          "timestamp": "2024-03-12T10:59:05Z",
+          "tree_id": "007ef644332b4eee0a358c387fbbe52817c824a2",
+          "url": "https://github.com/ansys/pyacp/commit/66a1dedef4577dcf03e4cb8e9fa6bea47265bdf6"
+        },
+        "date": 1710241360099,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 4.33952184588074,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0055357469699484855",
+            "extra": "mean: 230.4401349999523 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1036.5862644476467,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020893078761779254",
+            "extra": "mean: 964.705046070486 usec\nrounds: 1107"
           }
         ]
       }
