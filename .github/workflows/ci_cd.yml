@@ -344,6 +344,7 @@ jobs:
         run: |
           xvfb-run poetry run make -C doc html SPHINXOPTS="-W --keep-going -v $SPHINXOPT_NITPICKY"
         env:
+          PYMAPDL_IP: "127.0.0.1"
           PYMAPDL_PORT: "50557"
           PYMAPDL_START_INSTANCE: "FALSE"
           PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT: "50558"
