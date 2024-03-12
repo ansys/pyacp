@@ -4,7 +4,7 @@ Getting started
 Testing session (to be removed)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Follow these special installation and reporting instructions during the PyACP testing session. 
+Follow these special installation and reporting instructions during the PyACP testing session.
 
 The "Usage" section below is also still valid.
 
@@ -24,11 +24,13 @@ Because PyACP is not yet public, use this command to install from GitHub:
 
 .. code::
 
-    pip install git+https://github.com/ansys/pyacp.git
+    pip install git+https://github.com/ansys/pyacp.git[examples]
 
 .. note::
 
     Before you start using PyACP, ensure that a recent version of Ansys Workbench 2024 R2 is installed on your machine.
+
+If you encounter issues due to permissions, check the `PyACP Testing channel <https://teams.microsoft.com/l/channel/19%3An30o8gW_b9zH7hJo4gOhTNPCzCPfCjtIy2iJiGH_m701%40thread.tacv2/?groupId=abd72c46-92b0-4bf7-9599-de8b4d52404b&tenantId=>`_ for an install command including credentials.
 
 Reporting
 ~~~~~~~~~
@@ -45,7 +47,7 @@ PyACP supports Ansys 2024 R2 and later. To install PyACP, run the following comm
 
 .. code-block:: bash
 
-    pip install ansys-acp-core
+    pip install ansys-acp-core[examples]
 
 You should use a `virtual environment <https://docs.python.org/3/library/venv.html>`_,
 because it keeps Python packages isolated from your system Python.
