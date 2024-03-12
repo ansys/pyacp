@@ -2,7 +2,7 @@ version: '3.8'
 services:
   mapdl:
     restart: unless-stopped
-    image: ${IMAGE_NAME_MAPDL:-ghcr.io/ansys/mapdl:latest}
+    image: ${IMAGE_NAME_MAPDL:-ghcr.io/ansys/mapdl:latest_daily}
     # By default, run on a single core only. Otherwise the command may
     # fail in restricted environments.
     # For example, the default Github Actions runner only has two cores.
