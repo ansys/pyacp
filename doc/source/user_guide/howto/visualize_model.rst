@@ -96,7 +96,7 @@ Visualize model
 
     Vector data can be converted to PyVista glyphs using the :meth:`get_pyvista_glyphs <.VectorData.get_pyvista_glyphs>` method. This method requires the base model mesh.
 
-    You can also choose a scaling factor to change the size of the vector glyphs, and a culling factor to reduce the number of glyphs plotted.
+    You can also choose a scaling factor to change the size of the vector glyphs and a culling factor to reduce the number of glyphs plotted.
 
 
     .. pyvista-plot::
@@ -107,7 +107,7 @@ Visualize model
         >>> ply_offset.get_pyvista_glyphs(mesh=model.mesh, scaling_factor=6., culling_factor=5).plot()
 
 
-    When plotting vector data in this way, the base mesh is not shown. To additionally show the mesh, we can combine the mesh and the glyphs using a PyVista plotter.
+    The base mesh is not shown when plotting vector data using PyVista glyphs. To visualize the mesh, you can combine the mesh and glyphs together using a PyVista plotter.
 
     .. pyvista-plot::
         :context:
@@ -123,14 +123,14 @@ Visualize model
 
     .. note::
 
-        The preceding plot may not render correctly as a static scene. See the interactive scene instead.
+        The preceding plot may not render correctly as a static scene. For better visualization of the plot, see the interactive scene.
 
     Showing geometries
     ~~~~~~~~~~~~~~~~~~
 
-    CAD Geometries can be visualized using their :attr:`visualization_mesh <.CADGeometry.visualization_mesh>` attribute. This attribute contains a tessellated (triangle) mesh representing the geometry.
+    You can view CAD geometries using their :attr:`visualization_mesh <.CADGeometry.visualization_mesh>` attribute. This attribute contains a tessellated (triangular) mesh that represents the geometry.
 
-    For plotting, the tessellated mesh has a :meth:`.to_pyvista <.TriangleMesh.to_pyvista>` method that returns a PyVista :class:`PolyData <pyvista.PolyData>` object. To see the triangle nature of the mesh, you can plot the mesh with the ``show_edges`` option set to ``True``.
+    For plotting, the tessellated mesh has a :meth:`.to_pyvista <.TriangleMesh.to_pyvista>` method that returns a PyVista :class:`PolyData <pyvista.PolyData>` object. To see its triangular nature, plot the mesh with the ``show_edges`` option set to ``True``.
 
     .. pyvista-plot::
         :context:
