@@ -41,13 +41,13 @@ __all__ = ["ACPWorkflow", "get_composite_post_processing_files", "get_dpf_unit_s
 
 
 class _LocalWorkingDir:
-    def __init__(self, path: Optional[pathlib.Path] = None):
+    def __init__(self, path: Optional[PATH] = None):
         self._user_defined_working_dir = None
         self._temp_working_dir = None
         if path is None:
             self._temp_working_dir = tempfile.TemporaryDirectory()
         else:
-            self._user_defined_working_dir = path
+            self._user_defined_working_dir = pathlib.Path(path)
 
     @property
     def path(self) -> pathlib.Path:
@@ -165,7 +165,7 @@ class ACPWorkflow:
         self,
         *,
         acp: ACP[ServerProtocol],
-        local_working_directory: Optional[pathlib.Path] = None,
+        local_working_directory: Optional[PATH] = None,
         local_file_path: PATH,
         file_format: str,
         **kwargs: Any,
@@ -187,7 +187,7 @@ class ACPWorkflow:
         cls,
         acp: ACP[ServerProtocol],
         acph5_file_path: PATH,
-        local_working_directory: Optional[pathlib.Path] = None,
+        local_working_directory: Optional[PATH] = None,
     ) -> "ACPWorkflow":
         """Instantiate an ACP Workflow from an acph5 file.
 
@@ -215,7 +215,7 @@ class ACPWorkflow:
         acp: ACP[ServerProtocol],
         cdb_or_dat_file_path: PATH,
         unit_system: UnitSystemType = UnitSystemType.UNDEFINED,
-        local_working_directory: Optional[pathlib.Path] = None,
+        local_working_directory: Optional[PATH] = None,
     ) -> "ACPWorkflow":
         """Instantiate an ACP Workflow from a cdb file.
 
