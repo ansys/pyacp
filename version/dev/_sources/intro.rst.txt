@@ -24,7 +24,7 @@ Because PyACP is not yet public, use this command to install from GitHub:
 
 .. code::
 
-    pip install git+https://github.com/ansys/pyacp.git[examples]
+    pip install ansys-acp-core[examples]@git+https://github.com/ansys/pyacp.git
 
 .. note::
 
