@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import tempfile
 from typing import Any, Callable
 import uuid
 
@@ -28,7 +29,7 @@ from hypothesis import strategies as st
 import numpy.testing as npt
 import pytest
 
-from ansys.acp.core import PlyType
+from ansys.acp.core import ACPWorkflow, PlyType
 from ansys.acp.core.material_property_sets import (
     ConstantDensity,
     ConstantEngineeringConstants,
@@ -514,25 +515,58 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         with pytest.raises(AttributeError, match="This property is only available"):
             variable_material.engineering_constants.E
 
-    @pytest.mark.parametrize("num_materials_to_create", [1, 2])
-    def test_create_twice_same_name(self, parent_object, acp_instance, num_materials_to_create):
+    @pytest.fixture(params=[1, 2])
+    def num_materials_to_create(self, request):
+        return request.param
+
+    @pytest.mark.parametrize("model_file", ["minimal_composite.acph5", "flat_plate_input.dat"])
+    def test_create_save_load(
+        self, model_data_dir, acp_instance, model_file, num_materials_to_create
+    ):
         """Regression test for #491.
 
         This test checks that materials created with PyACP are still present after saving
         and loading the model.
+
+        There are two regressions tested here:
+        - When the model is created from a ``.dat`` file, one material is lost if two are
+          created with the same name.
+        - When the model is created with materials from a MatML file, they are lost after
+          save / load. This is currently a known limitation, and the test is an expected
+          failure.
         """
-        model = parent_object
-        initial_num_materials = len(model.materials)
-        name = "Test Material"
-        for _ in range(num_materials_to_create):
-            model.create_material(name=name)
-
-        assert len(model.materials) == initial_num_materials + num_materials_to_create
-        relative_save_path = "model_updated.acph5"
-        model.save(relative_save_path)
-
-        model2 = acp_instance.import_model(path=relative_save_path)
-        assert len(model2.materials) == initial_num_materials + num_materials_to_create
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            source_path = model_data_dir / model_file
+            if model_file.endswith(".acph5"):
+                pytest.xfail(
+                    "Creating materials in a model created from a workbench workflow is not yet supported."
+                )
+                workflow = ACPWorkflow.from_acph5_file(
+                    acp=acp_instance,
+                    local_working_directory=tmp_dir,
+                    acph5_file_path=source_path,
+                )
+            else:
+                workflow = ACPWorkflow.from_cdb_or_dat_file(
+                    acp=acp_instance,
+                    local_working_directory=tmp_dir,
+                    cdb_or_dat_file_path=source_path,
+                )
+            model = workflow.model
+            initial_num_materials = len(model.materials)
+            name = "Test Material"
+            mats = []
+            for _ in range(num_materials_to_create):
+                mats.append(model.create_material(name=name))
+            expected_num_materials = initial_num_materials + num_materials_to_create
+            assert len(model.materials) == expected_num_materials
+            saved_acph5 = workflow.get_local_acph5_file()
+            workflow2 = ACPWorkflow.from_acph5_file(
+                acp=acp_instance,
+                local_working_directory=tmp_dir,
+                acph5_file_path=saved_acph5,
+            )
+            assert len(workflow2.model.materials) == expected_num_materials
 
 
 def test_engineering_constants_from_isotropic():
