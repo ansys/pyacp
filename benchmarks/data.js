@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1710241389707,
+  "lastUpdate": 1710337706651,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13846,6 +13846,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020893078761779254",
             "extra": "mean: 964.705046070486 usec\nrounds: 1107"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3d62124a66279cf67e3cf9787efb9716071f877d",
+          "message": "Fix syntax for specifying extras with git install (#496)",
+          "timestamp": "2024-03-13T14:45:03+01:00",
+          "tree_id": "19bf49ac641820749e767e8407253556628dd14e",
+          "url": "https://github.com/ansys/pyacp/commit/3d62124a66279cf67e3cf9787efb9716071f877d"
+        },
+        "date": 1710337676903,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.063921960137607,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005376327781876439",
+            "extra": "mean: 164.90977400001157 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1223.9193075367523,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018472257141212002",
+            "extra": "mean: 817.0473280731146 usec\nrounds: 1521"
           }
         ]
       }
