@@ -2,12 +2,12 @@ Manage input and output files
 -------------------------------
 
 When defining your workflow using PyACP and other tools, you may need control
-over where input and output files are stored. This guide shows you different
-ways to achieve this.
+over where the input and output files are stored. This guide shows you two
+ways to manage them.
 
-For now, consider the case where the ACP instance is launched on a remote server. The
-final section :ref:`local_vs_remote` discusses the differences between local and
-remote ACP instances in terms of file management.
+In the following examples, the ACP instance is launched on a remote server. The
+differences between local and remote ACP instances, in terms of file management,
+are explained afterwards in the :ref:`local_vs_remote` section.
 
 .. doctest::
     :hide:
@@ -36,13 +36,13 @@ Using a predefined workflow
 '''''''''''''''''''''''''''
 
 The simplest way to manage files is by using the :class:`.ACPWorkflow` class. This class
-manages the most common use case, using predetermined output filenames.
+manages the use of predetermined output filenames, which is the most common use case.
 
 Loading input files
 ~~~~~~~~~~~~~~~~~~~
 
-To get started, you must define a workflow. This can be done using either an
-FE model (``.cdb`` or ``.dat``) file, or an ACP model (``.acph5``) file.
+To get started with loading input files, you must define a workflow using either an
+FE model (``.cdb`` or ``.dat``) file or an ACP model (``.acph5``) file.
 
 In the following example, assume you have a directory ``DATA_DIRECTORY`` containing a ``input_file.cdb`` file.
 
@@ -53,8 +53,8 @@ In the following example, assume you have a directory ``DATA_DIRECTORY`` contain
     >>> list(DATA_DIRECTORY.iterdir())
     [PosixPath('.../input_file.cdb')]
 
-To create an :class:`.ACPWorkflow` instance for working with this file, use the
-:meth:`.ACPWorkflow.from_cdb_or_dat_file` method as follows:
+Create an :class:`.ACPWorkflow` instance that works with this file using 
+the :meth:`.ACPWorkflow.from_cdb_or_dat_file` method:
 
 .. doctest::
 
@@ -64,8 +64,8 @@ To create an :class:`.ACPWorkflow` instance for working with this file, use the
     ...     unit_system=pyacp.UnitSystemType.MPA,
     ... )
 
-This uploads the file the ACP instance and creates a new model from it. The
-newly created model is accessible as ``workflow.model``:
+That uploads the file to the ACP instance and creates a new model from it. You
+can access the newly created model using ``workflow.model``:
 
 .. doctest::
 
@@ -75,7 +75,7 @@ newly created model is accessible as ``workflow.model``:
 Getting output files
 ~~~~~~~~~~~~~~~~~~~~
 
-The ``get_local_*`` methods of the workflow can be used to create and download
+Use the workflow's ``get_local_*`` methods to create and download
 output files. For example, to get the ``.acph5`` file of the model, use the
 :meth:`.get_local_acph5_file` method:
 
@@ -112,13 +112,13 @@ Manual file management
 ''''''''''''''''''''''
 
 To get more control over where files are stored, you can manually upload and
-download files to the server, and specify the filenames.
+download them to the server, and specify their names.
 
 Loading input files
 ~~~~~~~~~~~~~~~~~~~
 
-If you again want to load the file ``input_file.cdb`` into the ACP instance, you
-can use the :meth:`.upload_file` method of the ACP instance:
+You can manually load the file ``input_file.cdb`` to the ACP instance by
+using the :meth:`.upload_file` method:
 
 .. doctest::
 
@@ -126,8 +126,8 @@ can use the :meth:`.upload_file` method of the ACP instance:
     >>> uploaded_path
     PurePosixPath('input_file.cdb')
 
-This method returns the path of the uploaded file on the server. This path can
-be used to create a new model:
+This method returns the path of the uploaded file on the server. You can
+use the path to create a new model:
 
 .. doctest::
 
@@ -142,14 +142,14 @@ be used to create a new model:
 Getting output files
 ~~~~~~~~~~~~~~~~~~~~
 
-To get the ``.acph5`` file, you first need to store it on the server. This is done
-using the :meth:`.save` method of the model:
+To get the ``.acph5`` file, it needs to be stored on the server. You can
+manually do that using the model's :meth:`.save` method:
 
 .. doctest::
 
     >>> model.save("output_file.acph5")
 
-This file can then be downloaded using the :meth:`.download_file` method of the ACP
+Then, you can download the file using the :meth:`.download_file` method of the ACP
 instance:
 
 .. doctest::
@@ -161,12 +161,12 @@ instance:
 
 .. _local_vs_remote:
 
-Local vs remote ACP instance
+Local versus remote ACP instance
 ''''''''''''''''''''''''''''
 
-In the preceding examples, the case where ACP runs on a remote server was described. However,
-you can also launch ACP as a process on your local machine. Refer to the :ref:`launch_configuration` guide
-for details on how to do this.
+In the preceding examples, ACP ran on a remote server. However,
+you can also launch ACP as a process on your local machine. For information on launching
+ACP locally, see the :ref:`launch_configuration` guide.
 
 When the ACP instance is local, you can use the same code described previously. However,
 the effects are slightly different:
