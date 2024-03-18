@@ -171,26 +171,25 @@ ACP locally, see the :ref:`launch_configuration` guide.
 When the ACP instance is local, you can use the same code described previously. However,
 the effects are slightly different:
 
-When using the workflow
+When using a workflow
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-- The input file is still copied to the ``local_working_directory``, but then loaded directly
-  into the ACP instance. There is no separate upload step.
-- The output files are directly stored in the ``local_working_directory``.
+- The input file is still copied to the ``local_working_directory``, but then it is loaded
+  directly into the ACP instance. There is no separate upload step.
+- The output files are stored in the ``local_working_directory`` by default.
 
 
 When using manual upload and download
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- The :meth:`.upload_file` method has no effect, and simply returns the input file path.
-- The :meth:`.download_file` method copies the file to the specified ``local_path``, unless
-  ``remote_filename`` and ``local_path`` are the same. In that case, nothing is done.
+- The :meth:`.upload_file` method has no effect and simply returns the input file path.
+- The :meth:`.download_file` method copies the file to the specified ``local_path`` if the
+  ``local_path`` and ``remote_filename`` are not the same.
 
 .. hint::
 
     Even when they have no effect, it is good practice to include the upload and download
-    steps in your code. In this way, the same code can be used for both local and remote ACP
-    instances.
+    steps in your code. That way, both local and remote ACP instances can use it.
 
 
 .. doctest::

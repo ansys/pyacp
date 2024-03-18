@@ -14,7 +14,7 @@ PyACP objects can exist in two states: stored and unstored.
 
 A stored object is one that has been sent to the ACP server. When any of its properties change, the change is automatically propagated to the server. Similarly, when an attribute is accessed, the value is retrieved from the server.
 
-An unstored object is a local representation of an ACP object. It can be used to specify the defining properties of the object, but all computed properties are unavailable. When an unstored object is stored, it is sent to the server and becomes a stored object.
+An unstored object is a local representation of an ACP object. It can be used to specify the defining properties of the object, but all computed properties are unavailable. When it is stored, it is sent to the server and becomes a stored object.
 
 Creating stored and unstored objects
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

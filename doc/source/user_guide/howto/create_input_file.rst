@@ -33,11 +33,13 @@ The created input file can be read with :meth:`.ACPWorkflow.from_cdb_or_dat_file
 
 .. note::
 
-    The imported model will always contain the "dummy" material that was assigned to the geometry with the name "1".
+    The imported model will always contain the dummy material named "1" that was assigned to the geometry.
 
 
 Create an input file with Ansys Mechanical APDL
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also create an input file for PyACP through the following steps:
 
 * Open Ansys Mechanical APDL
 * Load or create a model with APDL commands
