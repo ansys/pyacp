@@ -30,7 +30,7 @@ Because PyACP is not yet public, use this command to install from GitHub:
 
     Before you start using PyACP, ensure that a recent version of Ansys Workbench 2024 R2 is installed on your machine.
 
-If you encounter issues due to permissions, check the `PyACP Testing channel <https://teams.microsoft.com/l/channel/19%3An30o8gW_b9zH7hJo4gOhTNPCzCPfCjtIy2iJiGH_m701%40thread.tacv2/?groupId=abd72c46-92b0-4bf7-9599-de8b4d52404b&tenantId=>`_ for an install command including credentials.
+If you encounter issues due to permissions, consult the `PyACP Testing channel <https://teams.microsoft.com/l/channel/19%3An30o8gW_b9zH7hJo4gOhTNPCzCPfCjtIy2iJiGH_m701%40thread.tacv2/?groupId=abd72c46-92b0-4bf7-9599-de8b4d52404b&tenantId=>`_ for an install command including credentials.
 
 Reporting
 ~~~~~~~~~
