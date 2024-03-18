@@ -438,13 +438,13 @@ clr-loader = ">=0.2.6,<0.3.0"
 
 [[package]]
 name = "ansys-sphinx-theme"
-version = "0.14.0"
+version = "0.14.1"
 description = "A theme devised by ANSYS, Inc. for Sphinx documentation."
 optional = false
 python-versions = ">=3.9,<4"
 files = [
-    {file = "ansys_sphinx_theme-0.14.0-py3-none-any.whl", hash = "sha256:3ef0dcb5f6c491c876f1e5f4ed63f7acff7b5763ffc991b7bbf9336b11c3f029"},
-    {file = "ansys_sphinx_theme-0.14.0.tar.gz", hash = "sha256:e576f1a61a660d01e186e8413ebc6bc9c6c132c66e5b626a24a8a0ba9de5e138"},
+    {file = "ansys_sphinx_theme-0.14.1-py3-none-any.whl", hash = "sha256:b8f6bd0a5d2ac13db6e8c45cb1fb8120cbbd843f58606a9b37a15f40ed3352c6"},
+    {file = "ansys_sphinx_theme-0.14.1.tar.gz", hash = "sha256:ac1fdf744591cb2021dd4a088715802ba01a0f810ffa3af081c1dc0800f32e60"},
 ]
 
 [package.dependencies]
@@ -1721,13 +1721,13 @@ pyparsing = {version = ">=2.4.2,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.0.2 || >3.0
 
 [[package]]
 name = "hypothesis"
-version = "6.99.2"
+version = "6.99.6"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "hypothesis-6.99.2-py3-none-any.whl", hash = "sha256:f277f6ccb074f39d51c7f32ba5a0ff640dba9b71ef69ea1e1e09b6f7c25302f5"},
-    {file = "hypothesis-6.99.2.tar.gz", hash = "sha256:24453b1a86151be83d26e81834e29022b3e3f0fc5d71275cc3d096649a13c53c"},
+    {file = "hypothesis-6.99.6-py3-none-any.whl", hash = "sha256:f5287e0ca8be94b2129483e1268639f8675c8c041d1b1756561a374575659940"},
+    {file = "hypothesis-6.99.6.tar.gz", hash = "sha256:397e362c8d7e3a5f4654644db964759f6a7f26a8c8a46d2a9e909595d9769ed1"},
 ]
 
 [package.dependencies]
@@ -3339,13 +3339,13 @@ histogram = ["pygal", "pygaljs"]
 
 [[package]]
 name = "pytest-cases"
-version = "3.8.3"
+version = "3.8.4"
 description = "Separate test code from test cases in pytest."
 optional = false
 python-versions = "*"
 files = [
-    {file = "pytest-cases-3.8.3.tar.gz", hash = "sha256:27d24445b9f66cb56528b05088789db4782a2da41eb4856ef170f73476b6d953"},
-    {file = "pytest_cases-3.8.3-py2.py3-none-any.whl", hash = "sha256:04f728c9b93c2983fe4e0daa262a6f05d17549203e8823a3f3b96f10f38b5bab"},
+    {file = "pytest-cases-3.8.4.tar.gz", hash = "sha256:b4cec335156f44f3bcfa85e79f2b34b5fa52e6332a8542ddf3e84fa13faacd76"},
+    {file = "pytest_cases-3.8.4-py2.py3-none-any.whl", hash = "sha256:d03575a375f953f35ae6840ee35fd1df9f7b6c54194845f81a0fe3d726a395dc"},
 ]
 
 [package.dependencies]
@@ -3398,13 +3398,13 @@ files = [
 
 [[package]]
 name = "pyvista"
-version = "0.43.3"
+version = "0.43.4"
 description = "Easier Pythonic interface to VTK"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pyvista-0.43.3-py3-none-any.whl", hash = "sha256:5eb589bbea294761cd44aed0330481019e8eca2ddb950a1f332a5a132000e93d"},
-    {file = "pyvista-0.43.3.tar.gz", hash = "sha256:e039cdeb0c7cbb42a16fbdfbbede65a7dc656def787e76c79a43eb0badc88c9b"},
+    {file = "pyvista-0.43.4-py3-none-any.whl", hash = "sha256:f1fc56ac9ea1447660dec91e06b37f48736fd6983a2ed9fb2780252724b1caeb"},
+    {file = "pyvista-0.43.4.tar.gz", hash = "sha256:e0b950d8283ba4e1333801d1d5fcdb2fa2f03a64e085b5b04ed8b7dcca6a7ac7"},
 ]
 
 [package.dependencies]
@@ -4403,13 +4403,13 @@ trame-client = "*"
 
 [[package]]
 name = "types-protobuf"
-version = "4.24.0.20240302"
+version = "4.24.0.20240311"
 description = "Typing stubs for protobuf"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "types-protobuf-4.24.0.20240302.tar.gz", hash = "sha256:f22c00cc0cea9722e71e14d389bba429af9e35a74a949719c167203a5abbe2e4"},
-    {file = "types_protobuf-4.24.0.20240302-py3-none-any.whl", hash = "sha256:5c607990f50f14606c2edaf379f8acc7418fef1451b227aa3c6a8a2cbc6ff14a"},
+    {file = "types-protobuf-4.24.0.20240311.tar.gz", hash = "sha256:c80426f9fb9b21aee514691e96ab32a5cd694a82e2ac07964b352c3e7e0182bc"},
+    {file = "types_protobuf-4.24.0.20240311-py3-none-any.whl", hash = "sha256:8e039486df058141cb221ab99f88c5878c08cca4376db1d84f63279860aa09cd"},
 ]
 
 [[package]]
