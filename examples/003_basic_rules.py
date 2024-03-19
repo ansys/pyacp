@@ -26,21 +26,24 @@
 Basic selection rules example
 =============================
 
-Shows the basic usage of selection rules. Selection Rules enable you to select elements through
-geometrical operations and thus to shape plies. This example shows just the
-pyACP part of the setup. See the :ref:`sphx_glr_examples_gallery_examples_004_advanced_rules.py`
-for more advanced rule examples. For a complete Composite analysis,
-see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
+This example shows the basic usage of selection rules, which enable you to select elements through
+geometrical operations and thus to shape plies. The example only shows the PyACP part of the setup.
+For more advanced selection rule usage, see the :ref:`sphx_glr_examples_gallery_examples_004_advanced_rules.py`
+exampl. For a complete composite analysis,
+see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example.
 """
 
 
 # %%
-# Import standard library and third-party dependencies.
+# Import modules
+# ----------------------------
+#
+# Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
 
 # %%
-# Import pyACP dependencies.
+# Import the PyACP dependencies.
 from ansys.acp.core import ACPWorkflow, LinkedSelectionRule, launch_acp
 from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
 
@@ -64,9 +67,9 @@ acp = launch_acp()
 
 # %%
 # Define the input file and instantiate an ``ACPWorkflow`` instance.
-# The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
+# The ``ACPWorkflow`` class provides convenience methods that simplify file handling.
 # It automatically creates a model based on the input file.
-# The input file contains a flat plate with a single ply.
+# This example's input file contains a flat plate with a single ply.
 
 workflow = ACPWorkflow.from_acph5_file(
     acp=acp,
@@ -135,7 +138,7 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # -----------------------
 
 # %%
-# Create a spherical selection rule and assign it to the ply. Now only the spherical rule is
+# Create a spherical selection rule and assign it to the ply. Now, only the spherical rule is
 # active.
 spherical_rule = model.create_spherical_selection_rule(
     name="spherical_rule",
@@ -156,7 +159,7 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # ------------------
 
 # %%
-# Create a tube selection rule and assign it to the ply. Now only the tube rule is
+# Create a tube selection rule and assign it to the ply. Now, only the tube rule is
 # active.
 tube_rule = model.create_tube_selection_rule(
     name="spherical_rule",

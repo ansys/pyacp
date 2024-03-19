@@ -26,18 +26,20 @@
 Basic sandwich panel
 ====================
 
-Define a Composite Lay-up for a sandwich panel with PyACP. This example shows just the
-pyACP part of the setup. For a complete Composite analysis,
-see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
+This example defines a composite lay-up for a sandwich panel using PyACP.
+It only shows the PyACP part of the setup. For a complete composite analysis,
+see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example.
 """
 
-# %%
-# Import standard library and third-party dependencies.
+# %%# Import modules
+# ----------------------------
+#
+# Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
 
 # %%
-# Import pyACP dependencies
+# Import the PyACP dependencies.
 from ansys.acp.core import (
     ACPWorkflow,
     FabricWithAngle,
@@ -69,7 +71,7 @@ acp = launch_acp()
 
 # %%
 # Define the input file and instantiate an ``ACPWorkflow`` instance.
-# The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
+# The ``ACPWorkflow`` class provides convenience methods that simplify file handling.
 # It automatically creates a model based on the input file.
 
 workflow = ACPWorkflow.from_cdb_or_dat_file(
@@ -121,7 +123,7 @@ ud_fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.002
 
 
 # %%
-# Create a multi-axial Stackup and a Sublaminate. Sublaminates and Stackups help to quickly
+# Create a multi-axial stackup and a sublaminate. Stackups and sublaminates help quickly
 # build repeating laminates.
 
 biax_carbon_ud = model.create_stackup(
@@ -144,7 +146,7 @@ sublaminate = model.create_sublaminate(
 
 
 # %%
-# Create the Core Material and its corresponding Fabric.
+# Create the core material and its corresponding fabric.
 engineering_constants_core = ConstantEngineeringConstants.from_isotropic_constants(E=8.5e7, nu=0.3)
 
 core = model.create_material(
@@ -161,7 +163,7 @@ core_fabric = model.create_fabric(name="core", material=ud_material, thickness=0
 # ----------------
 
 # %%
-# Define a rosette and an oriented selection set and plot the orientations.
+# Define a rosette and oriented selection set. Plot the orientations.
 rosette = model.create_rosette(origin=(0.0, 0.0, 0.0), dir1=(1.0, 0.0, 0.0), dir2=(0.0, 1.0, 0.0))
 
 oss = model.create_oriented_selection_set(
@@ -210,7 +212,7 @@ print_model(workflow.model)
 # sphinx_gallery_start_ignore
 from ansys.acp.core.example_helpers import _run_analysis
 
-# Run the analysis so we are sure all the material properties have been correctly
+# Run the analysis to ensure that all the material properties have been correctly
 # defined.
 _run_analysis(workflow)
 # sphinx_gallery_end_ignore
