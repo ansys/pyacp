@@ -159,7 +159,7 @@ core = model.create_material(
 core_fabric = model.create_fabric(name="core", material=ud_material, thickness=0.015)
 
 # %%
-# Create the Layup
+# Create the Lay-up
 # ----------------
 
 # %%
@@ -179,7 +179,7 @@ plotter = get_directions_plotter(model=model, components=[oss.elemental_data.ori
 plotter.show()
 
 # %%
-# Create the modeling plies which define the layup of the sandwich panel.
+# Create the modeling plies which define the lay-up of the sandwich panel.
 modeling_group = model.create_modeling_group(name="modeling_group")
 
 bottom_ply = modeling_group.create_modeling_ply(

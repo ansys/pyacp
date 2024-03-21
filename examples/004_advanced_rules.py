@@ -109,9 +109,9 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # --------------------------
 
 # %%
-# Rules can be parametrized. This makes sense when a rule is used multiple times with different
+# Rules can be parametrized. This is useful when a rule is used multiple times but with different
 # parameters. :class:`.LinkedSelectionRule` shows what parameters are available for each rule.
-# Here, the extent of the parallel rule is modified.
+# In this example, the extent of the parallel rule is modified.
 
 # %%
 # Create a parallel rule.
@@ -154,7 +154,7 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # -----------------------------------
 
 # %%
-# Add CAD geometry to the model.
+# Add a CAD geometry to the model.
 triangle_path = example_helpers.get_example_file(
     example_helpers.ExampleKeys.RULE_GEOMETRY_TRIANGLE, WORKING_DIR
 )
@@ -179,7 +179,7 @@ geometrical_selection_rule = model.create_geometrical_selection_rule(
 )
 
 # %%
-# Assign the geometrical selection rule to the ply and plot the ply extent with
+# Assign the geometrical selection rule to the ply. Plot the ply extent with
 # the outline of the geometry.
 modeling_ply.selection_rules = [LinkedSelectionRule(geometrical_selection_rule)]
 model.update()
@@ -222,7 +222,7 @@ cutoff_selection_rule = model.create_cutoff_selection_rule(
 
 
 # %%
-# Assign the cutoff selection rule to the ply and plot the ply extent with
+# Assign the cutoff selection rule to the ply. Plot the ply extent with
 # the outline of the geometry.
 modeling_ply.selection_rules = [LinkedSelectionRule(cutoff_selection_rule)]
 
@@ -261,8 +261,8 @@ offsets_column = lookup_table.create_column(
 )
 
 # %%
-# Create the edge set from the "All_Elements" element set. Because we set
-# the limit angle to 30°, only one edge at x=0 will be selected.
+# Create the edge set from the "All_Elements" element set. Since you 
+# assigned 30° to the limit angle, only one edge at x=0 will be selected.
 edge_set = model.create_edge_set(
     name="edge_set",
     edge_set_type=EdgeSetType.BY_REFERENCE,
@@ -286,13 +286,14 @@ assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
 
 # %%
-# Create a boolean selection rule.
+# Create a boolean selection rule
 # --------------------------------
 
 # %%
-# Note: Creating a boolean selection rule and assigning it to a ply has the same
-# effect as linking the individual rules to the ply directly. Boolean rules are still useful
-# because they help to organize the rules and can be used to create more complex rules.
+# Creating a boolean selection rule and assigning it to a ply has the same
+# effect as linking the individual rules directly to the ply. Boolean rules are still useful
+# because they can help organize rules and make more complex ones.
+#
 # Create a cylindrical selection rule which will be combined with the parallel rule.
 cylindrical_rule_boolean = model.create_cylindrical_selection_rule(
     name="cylindrical_rule",
@@ -326,7 +327,7 @@ assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
 
 # %%
-# Modify the operation type of the boolean selection rule, such that the two rules are added.
+# Modify the operation type of the boolean selection rule so that the two rules are added.
 linked_parallel_rule_boolean.operation_type = BooleanOperationType.INTERSECT
 linked_cylindrical_rule_boolean.operation_type = BooleanOperationType.ADD
 

@@ -26,20 +26,23 @@
 Rosette example
 ===============
 
-This example shows how to use rosettes to define the reference directions of a ply.
-This example shows just the PyACP part of the setup.  For a complete composite analysis,
-see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example.
+This example illustrates how you can use rosettes to define the reference directions of a ply.
+It only shows the PyACP part of the setup. For a complete composite analysis,
+see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
 """
 
 # %%
-# Import standard library and third-party dependencies.
+# Import modules
+# ----------------------------
+#
+# Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
 
 import numpy as np
 
 # %%
-# Import PyACP dependencies
+# Import the PyACP dependencies.
 from ansys.acp.core import (
     ACPWorkflow,
     EdgeSetType,
@@ -69,9 +72,9 @@ acp = launch_acp()
 
 # %%
 # Define the input file and instantiate an ``ACPWorkflow`` instance.
-# The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
+# The ``ACPWorkflow`` class provides convenience methods that simplify file handling.
 # It automatically creates a model based on the input file.
-# The input file contains a flat plate with a single ply.
+# This example's input file contains a flat plate with a single ply.
 workflow = ACPWorkflow.from_cdb_or_dat_file(
     acp=acp,
     cdb_or_dat_file_path=input_file,
@@ -87,7 +90,7 @@ print(model.unit_system)
 # -----------------------------------------
 
 # %%
-# Create a material and a fabric
+# Create a material and fabric.
 ud_material = model.create_material(
     name="UD",
     ply_type=PlyType.REGULAR,
@@ -96,7 +99,7 @@ ud_material = model.create_material(
 fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.1)
 
 # %%
-# Create a parallel rosette where the first direction is rotated by 45 degrees around the y axis.
+# Create a parallel rosette where the first direction is rotated by 45° around the y axis.
 parallel_rosette_45_deg = model.create_rosette(
     name="ParallelRosette",
     rosette_type=RosetteType.PARALLEL,
@@ -106,7 +109,7 @@ parallel_rosette_45_deg = model.create_rosette(
 )
 
 # %%
-# Create an oriented selection set and assign the rosette.
+# Create an oriented selection set (OSS) and assign the rosette.
 oss = model.create_oriented_selection_set(
     name="oss",
     orientation_point=(0.0, 0.0, 0.0),
@@ -118,7 +121,7 @@ oss = model.create_oriented_selection_set(
 model.update()
 
 # %%
-# Plot the orientation and the reference directions of the oriented selection set.
+# Plot the orientation and reference directions of the OSS.
 plotter = get_directions_plotter(
     model=model, components=[oss.elemental_data.orientation, oss.elemental_data.reference_direction]
 )
@@ -126,7 +129,7 @@ plotter.show()
 
 # %%
 # Create a ply that uses the reference directions defined by the rosette.
-# The ply angle is set to 20 degrees, which means the fiber direction is rotated by 20 degrees
+# The ply angle is set to 20°, which means the fiber direction is rotated by 20°
 # from the reference direction.
 modeling_group = model.create_modeling_group(name="modeling_group")
 modeling_ply = modeling_group.create_modeling_ply(
@@ -137,7 +140,7 @@ modeling_ply = modeling_group.create_modeling_ply(
 )
 
 # %%
-# Plot the reference directions, fiber directions, and transverse directions of the ply.
+# Plot the reference direction, fiber direction, and transverse direction of the ply.
 plotter = get_directions_plotter(
     model=model,
     components=[
@@ -152,11 +155,11 @@ plotter.show()
 # Define directions with a radial rosette
 # ---------------------------------------
 # %%
-# Create a radial rosette and plot the resulting reference directions.
+# Create a radial rosette and plot the resulting reference direction.
 # For a radial rosette, a line is constructed that goes through the origin. Its
 # direction vector is normal to a plane spanned by ``dir1`` and ``dir2``.
-# The reference directions are then parallel to the shortest connection from the line to each point
-# for which the reference direction is computed.
+# Therefore, the reference direction is parallel to the shortest connection from the line to
+# each point for which it is computed.
 radial_rosette = model.create_rosette(
     name="RadialRosette",
     rosette_type=RosetteType.RADIAL,
@@ -175,8 +178,8 @@ plotter.show()
 # Define directions with a cylindrical rosette
 # --------------------------------------------
 # %%
-# Create a cylindrical rosette and plot the resulting reference directions.
-# For a cylindrical rosette, the reference directions are tangential to circles around the origin
+# Create a cylindrical rosette and plot the resulting reference direction.
+# For a cylindrical rosette, the reference direction is tangential to the circles around the origin
 # that lie in a plane spanned by ``dir1`` and ``dir2``.
 cylindrical_rosette = model.create_rosette(
     name="CylindricalRosette",
@@ -196,9 +199,10 @@ plotter.show()
 # Define directions with a spherical rosette
 # ------------------------------------------
 # %%
-# Create a spherical rosette and plot the resulting reference directions.
-# For a spherical rosette, the reference directions are tangential to a sphere around the origin.
-# Note that this is the same as the cylindrical rosette for the current example.
+# Create a spherical rosette and plot the resulting reference direction.
+# For a spherical rosette, the reference direction is tangential to a sphere around the origin.
+# Note that for this example, the reference direction of the spherical rosette is the same as
+# that of the cylindrical rosette.
 spherical_rosette = model.create_rosette(
     name="SphericalRosette",
     rosette_type=RosetteType.SPHERICAL,
@@ -214,20 +218,21 @@ plotter = get_directions_plotter(model=model, components=[oss.elemental_data.ref
 plotter.show()
 
 # %%
-# Define directions with an edge wise rosette
+# Define directions with an edge-wise rosette
 # -------------------------------------------
 # %%
-# Create an edge wise rosette and plot the resulting reference directions.
+# Create an edge-wise rosette and plot the resulting reference direction.
 # The reference direction is given by a projection of ``dir1``
-# and the path of the edge set. The ``dir1`` of the rosette is projected on to the point
-# on the edge that is closest to the origin of the rosette. This determines the reference direction
-# along the edge set. The reference direction is reversed by inverting ``dir1``.
+# and the path of the edge set. ``dir1`` of the rosette is projected onto the point
+# on the edge that is closest to the rosette's origin. This determines the reference direction
+# along the edge set.
+# You can reverse the reference direction by inverting ``dir1``.
 # An element within an oriented selection set gets its reference direction from the direction
 # of the point on the edge that is closest to the element centroid.
 
 # %%
-# Create the edge set from the "All_Elements" element set. Because we set
-# the limit angle to 120°, all the edges are selected.
+# Create the edge set from the "All_Elements" element set. Since you assigned
+# 120° to the limit angle, all the edges are selected.
 edge_set = model.create_edge_set(
     name="edge_set",
     edge_set_type=EdgeSetType.BY_REFERENCE,
@@ -268,7 +273,7 @@ parallel_rosette_0_deg = model.create_rosette(
 )
 
 # %%
-# Assign both rosettes to the oriented selection set and set the rosette selection method to
+# Assign both rosettes to the OSS and set the rosette selection method to
 # ``RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED``. This implies that the reference direction
 # is weighted by the inverse distance to each rosette. Note that the origin of
 # the rotated rosette is at ``(0,0,0)``.
@@ -276,7 +281,7 @@ oss.rosettes = [parallel_rosette_45_deg, parallel_rosette_0_deg]
 oss.rosette_selection_method = RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED
 
 # %%
-# Plot the resulting reference directions.
+# Plot the resulting reference direction.
 model.update()
 plotter = get_directions_plotter(model=model, components=[oss.elemental_data.reference_direction])
 plotter.show()

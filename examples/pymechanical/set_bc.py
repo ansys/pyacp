@@ -22,7 +22,7 @@
 
 # type: ignore
 """
-Generate a structural analysis and set the boundary conditions. Used in remote_workflow.py
+Generate a structural analysis and set the boundary conditions. Used in remote_workflow.py.
 """
 
 analysis = Model.AddStaticStructuralAnalysis()

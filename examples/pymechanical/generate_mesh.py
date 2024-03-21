@@ -26,7 +26,7 @@ import os
 import Ansys
 
 """
-Generate the a mesh based on a geometry and export it. Used in remote_workflow.py
+Generate the mesh based on a geometry and export it. Used in remote_workflow.py.
 """
 
 script_dir = os.path.dirname(os.path.abspath(__file__))

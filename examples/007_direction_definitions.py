@@ -25,21 +25,24 @@
 
 Direction definition example
 ============================
-This example shows how directions can be defined from lookup tables. This can be either
+This example shows how you can define directions from lookup tables. They can be either
 reference directions for oriented selection sets or draping angles for modeling plies.
-This example shows just the PyACP part of the setup.  For a complete Composite analysis,
-see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example.
+The example only shows the PyACP part of the setup. For a complete composite analysis,
+see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
 """
 
 # %%
-# Import standard library and third-party dependencies.
+# Import modules
+# ----------------------------
+#
+# Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
 
 import numpy as np
 
 # %%
-# Import PyACP dependencies.
+# Import the PyACP dependencies.
 from ansys.acp.core import (
     ACPWorkflow,
     DimensionType,
@@ -68,9 +71,9 @@ acp = launch_acp()
 
 # %%
 # Define the input file and instantiate an ``ACPWorkflow`` instance.
-# The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
+# The ``ACPWorkflow`` class provides convenience methods that simplify the handling.
 # It automatically creates a model based on the input file.
-# The input file contains a flat plate with a single ply.
+# This example's input file contains a flat plate with a single ply.
 workflow = ACPWorkflow.from_cdb_or_dat_file(
     acp=acp,
     cdb_or_dat_file_path=input_file,
@@ -87,7 +90,7 @@ print(model.unit_system)
 
 #
 # %%
-# Create a material and a fabric
+# Create a material and fabric.
 ud_material = model.create_material(
     name="UD",
     ply_type=PlyType.REGULAR,
@@ -100,7 +103,7 @@ fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.1)
 rosette = model.create_rosette()
 
 # %%
-# Create an oriented selection set and assign the rosette.
+# Create an oriented selection set (OSS) and assign the rosette.
 oss = model.create_oriented_selection_set(
     name="oss",
     orientation_direction=(0.0, 1.0, 0),
@@ -110,7 +113,7 @@ oss = model.create_oriented_selection_set(
 
 
 # %%
-# Plot the orientation and the reference direction of the oriented selection set.
+# Plot the orientation and reference direction of the OSS.
 # The reference direction is defined by the rosette.
 model.update()
 plotter = get_directions_plotter(
@@ -119,16 +122,15 @@ plotter = get_directions_plotter(
 plotter.show()
 
 # %%
-# Define reference directions
+# Define reference direction from lookup table
 # ---------------------------
-# Define the reference directions from a lookup table.
 
 # %%
-# Create a 3D lookup table to store the directions and angle corrections.
+# Create a 3D lookup table to store the direction and angle corrections.
 lookup_table = model.create_lookup_table_3d()
 
 # %%
-# Create a grid of points on the plate, where the lookup table values are stored.
+# Create a grid of points on the plate wherein the lookup table values are stored.
 plate_side_length = 0.01
 num_points = 10
 x_coordinates = np.linspace(0, plate_side_length, num_points)
@@ -145,7 +147,7 @@ points = np.stack(
 )
 
 # %%
-# Compute directions tangential to circles around the point (0,0,0).
+# Compute the directions tangential to circles around the point (0,0,0).
 normal = np.array([0, 1, 0])
 directions = np.cross(points, normal)
 
@@ -159,12 +161,12 @@ direction_column = lookup_table.create_column(
 )
 
 # %%
-# Assign the lookup table to the oriented selection set.
+# Assign the lookup table to the OSS.
 oss.rosette_selection_method = RosetteSelectionMethod.DIRECTIONS_FROM_TABULAR_VALUES
 oss.reference_direction_field = direction_column
 
 # %%
-# Plot the orientation and the reference direction of the oriented selection set.
+# Plot the orientation and the reference direction of the OSS.
 model.update()
 plotter = get_directions_plotter(
     model=model, components=[oss.elemental_data.orientation, oss.elemental_data.reference_direction]
@@ -172,13 +174,12 @@ plotter = get_directions_plotter(
 plotter.show()
 
 # %%
-# Reset the oss so that it uses again the rosette for the reference directions.
+# Reset the OSS so that it may use the rosette again for the reference direction.
 oss.rosette_selection_method = RosetteSelectionMethod.MINIMUM_ANGLE
 
 # %%
-# Define draping angles
+# Define draping angles from lookup table
 # ---------------------
-# Define the draping angles from a lookup table.
 #
 # %%
 # Compute a correction angle to define circular fiber paths.
@@ -213,7 +214,7 @@ modeling_ply = modeling_group.create_modeling_ply(
 )
 
 # %%
-# Plot the directions of the modeling ply. First plot the directions without correction angles.
+# Plot the directions of the modeling ply. First, plot the directions without correction angles.
 model.update()
 plotter = get_directions_plotter(
     model=model,
@@ -225,7 +226,7 @@ plotter = get_directions_plotter(
 plotter.show()
 
 # %%
-# Next plot the draped directions, including the correction angles, from the lookup table.
+# Next, plot the draped directions, including the correction angles, from the lookup table.
 plotter = get_directions_plotter(
     model=model,
     components=[
