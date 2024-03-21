@@ -154,7 +154,7 @@ plotter.show()
 # %%
 # Define directions with a radial rosette
 # ---------------------------------------
-# %%
+# 
 # Create a radial rosette and plot the resulting reference direction.
 # For a radial rosette, a line is constructed that goes through the origin. Its
 # direction vector is normal to a plane spanned by ``dir1`` and ``dir2``.
@@ -177,7 +177,7 @@ plotter.show()
 # %%
 # Define directions with a cylindrical rosette
 # --------------------------------------------
-# %%
+# 
 # Create a cylindrical rosette and plot the resulting reference direction.
 # For a cylindrical rosette, the reference direction is tangential to the circles around the origin
 # that lie in a plane spanned by ``dir1`` and ``dir2``.
@@ -198,7 +198,7 @@ plotter.show()
 # %%
 # Define directions with a spherical rosette
 # ------------------------------------------
-# %%
+# 
 # Create a spherical rosette and plot the resulting reference direction.
 # For a spherical rosette, the reference direction is tangential to a sphere around the origin.
 # Note that for this example, the reference direction of the spherical rosette is the same as
@@ -220,14 +220,14 @@ plotter.show()
 # %%
 # Define directions with an edge-wise rosette
 # -------------------------------------------
-# %%
+# 
 # Create an edge-wise rosette and plot the resulting reference direction.
 # The reference direction is given by a projection of ``dir1``
 # and the path of the edge set. ``dir1`` of the rosette is projected onto the point
 # on the edge that is closest to the rosette's origin. This determines the reference direction
 # along the edge set.
 # You can reverse the reference direction by inverting ``dir1``.
-# An element within an oriented selection set gets its reference direction from the direction
+# An element within an oriented selection set (OSS) gets its reference direction from the direction
 # of the point on the edge that is closest to the element centroid.
 
 # %%
