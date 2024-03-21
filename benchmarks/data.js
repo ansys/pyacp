@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1710337706651,
+  "lastUpdate": 1711039947340,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13884,6 +13884,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00018472257141212002",
             "extra": "mean: 817.0473280731146 usec\nrounds: 1521"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0a88ccc53c53413ad2a2fa585ce191c72afca229",
+          "message": "Adapt to changes in material handling (#502)\n\nAdapt to the changes made in material handling:\r\n\r\nMaterial names are deduplicated on creation, and changing a name to an\r\nexisting one raises an error. This required changes to the material unittests.\r\n\r\nOn models which have a link to a MatML file, creating materials is no longer\r\nallowed since storing them back to the MatML file is not implemented (and they\r\nwould be lost upon save).\r\nUse a variant of the `minimal_complete_model.acph5` which does not have this\r\nlink in tests + doctests to fix this.",
+          "timestamp": "2024-03-21T16:49:26Z",
+          "tree_id": "0fad2cec0dceafeb0fd30c7c431aed0f0d6b94ea",
+          "url": "https://github.com/ansys/pyacp/commit/0a88ccc53c53413ad2a2fa585ce191c72afca229"
+        },
+        "date": 1711039921936,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.3434506122448635,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003635578418522532",
+            "extra": "mean: 157.64290780000465 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1207.6305498944716,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019848275410895043",
+            "extra": "mean: 828.0678226361404 usec\nrounds: 1714"
           }
         ]
       }
