@@ -71,7 +71,8 @@ Start a Python interpreter and import the PyACP package:
     workdir_doctest = tempfile.TemporaryDirectory()
     DATA_DIRECTORY = pathlib.Path(workdir_doctest.name)
     _ = shutil.copyfile(
-        "../tests/data/minimal_complete_model.acph5", DATA_DIRECTORY / "model.acph5"
+        "../tests/data/minimal_complete_model_no_matml_link.acph5",
+        DATA_DIRECTORY / "model.acph5",
     )
     _ = shutil.copyfile("../tests/data/minimal_model_2.cdb", DATA_DIRECTORY / "model.cdb")
     old_cwd = os.getcwd()
