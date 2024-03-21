@@ -26,13 +26,13 @@
 Class 40 example
 ================
 
-Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
-a failure analysis with PyDPF-Composites.
+This example shows how to define a composite lay-up with PyACP, solve the resulting 
+model with PyMAPDL, and run a failure analysis with PyDPF Composites.
 
-The starting point is a MAPDL CDB file which contains the mesh, material data and
-the boundary conditions. This model is imported in PyACP to define the lay-up.
-PyACP exports the resulting model for PyMAPDL. Once the results are available,
-the RST file is loaded in PyDPF composites. The additional input files (material.xml
+Begin with an MAPDL .cdb file that contains the mesh, material data, and
+boundary conditions. Import the file to PyACP to define the lay-up, and then export the 
+resulting model to PyMAPDL. Once the results are available, the .rst file is loaded in 
+PyDPF Composites for postprocessing. The additional input files (material.xml
 and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDPF Composites.
 
 The MAPDL and DPF services are run in docker containers that share a volume (working

@@ -140,7 +140,7 @@ modeling_ply = modeling_group.create_modeling_ply(
 )
 
 # %%
-# Plot the reference direction, fiber direction, and transverse direction of the ply.
+# Plot the reference directions, fiber directions, and transverse directions of the ply.
 plotter = get_directions_plotter(
     model=model,
     components=[
@@ -155,10 +155,10 @@ plotter.show()
 # Define directions with a radial rosette
 # ---------------------------------------
 # 
-# Create a radial rosette and plot the resulting reference direction.
+# Create a radial rosette and plot the resulting reference directions.
 # For a radial rosette, a line is constructed that goes through the origin. Its
 # direction vector is normal to a plane spanned by ``dir1`` and ``dir2``.
-# Therefore, the reference direction is parallel to the shortest connection from the line to
+# Therefore, the reference directions are parallel to the shortest connection from the line to
 # each point for which it is computed.
 radial_rosette = model.create_rosette(
     name="RadialRosette",
@@ -178,8 +178,8 @@ plotter.show()
 # Define directions with a cylindrical rosette
 # --------------------------------------------
 # 
-# Create a cylindrical rosette and plot the resulting reference direction.
-# For a cylindrical rosette, the reference direction is tangential to the circles around the origin
+# Create a cylindrical rosette and plot the resulting reference directions.
+# For a cylindrical rosette, the reference directions are tangential to the circles around the origin
 # that lie in a plane spanned by ``dir1`` and ``dir2``.
 cylindrical_rosette = model.create_rosette(
     name="CylindricalRosette",
@@ -199,10 +199,10 @@ plotter.show()
 # Define directions with a spherical rosette
 # ------------------------------------------
 # 
-# Create a spherical rosette and plot the resulting reference direction.
-# For a spherical rosette, the reference direction is tangential to a sphere around the origin.
-# Note that for this example, the reference direction of the spherical rosette is the same as
-# that of the cylindrical rosette.
+# Create a spherical rosette and plot the resulting reference directions.
+# For a spherical rosette, the reference directions are tangential to a sphere around the origin.
+# Note that for this example, the reference directions of the spherical rosette are the same as
+# those of the cylindrical rosette.
 spherical_rosette = model.create_rosette(
     name="SphericalRosette",
     rosette_type=RosetteType.SPHERICAL,
@@ -221,13 +221,13 @@ plotter.show()
 # Define directions with an edge-wise rosette
 # -------------------------------------------
 # 
-# Create an edge-wise rosette and plot the resulting reference direction.
-# The reference direction is given by a projection of ``dir1``
+# Create an edge-wise rosette and plot the resulting reference directions.
+# The reference directions are given by a projection of ``dir1``
 # and the path of the edge set. ``dir1`` of the rosette is projected onto the point
-# on the edge that is closest to the rosette's origin. This determines the reference direction
+# on the edge that is closest to the rosette's origin. This determines the reference directions
 # along the edge set.
-# You can reverse the reference direction by inverting ``dir1``.
-# An element within an oriented selection set (OSS) gets its reference direction from the direction
+# You can reverse the reference directions by inverting ``dir1``.
+# An element within an oriented selection set (OSS) gets its reference directions from the direction
 # of the point on the edge that is closest to the element centroid.
 
 # %%
@@ -274,14 +274,14 @@ parallel_rosette_0_deg = model.create_rosette(
 
 # %%
 # Assign both rosettes to the OSS and set the rosette selection method to
-# ``RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED``. This implies that the reference direction
-# is weighted by the inverse distance to each rosette. Note that the origin of
+# ``RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED``. This implies that the reference directions
+# are weighted by the inverse distance to each rosette. Note that the origin of
 # the rotated rosette is at ``(0,0,0)``.
 oss.rosettes = [parallel_rosette_45_deg, parallel_rosette_0_deg]
 oss.rosette_selection_method = RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED
 
 # %%
-# Plot the resulting reference direction.
+# Plot the resulting reference directions.
 model.update()
 plotter = get_directions_plotter(model=model, components=[oss.elemental_data.reference_direction])
 plotter.show()
