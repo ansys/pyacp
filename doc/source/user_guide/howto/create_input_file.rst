@@ -1,7 +1,7 @@
 .. _input_file_for_pyacp:
 
 Create input file for PyACP
---------------------
+---------------------------
 
 To start working with PyACP, an input file that contains the mesh is required. PyACP supports reading
 the mesh from \*.cdb and \*.dat files with :meth:`.ACPWorkflow.from_cdb_or_dat_file`. PyACP will read the mesh including - if they exist - coordinate systems, element sets,

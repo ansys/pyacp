@@ -30,7 +30,7 @@ This example demonstrates how to use the ACP, MAPDL, and DPF servers to optimize
 angles in a composite lay-up. The optimization aims to minimize the maximum inverse
 reserve factor (IRF) of the composite structure under two load cases.
 
-The example uses :py:func:`scipy.optimize.minimize` to perform the optimization. While the 
+The example uses :py:func:`scipy.optimize.minimize` to perform the optimization. While the
 procedure itself is not the focus of this example and could be improved,
 it demonstrates the process of optimizing a composite lay-up with PyACP.
 """
@@ -338,7 +338,7 @@ optimization_function([0, 45, 90, 135, 180, 225])
 # does not require the gradient of the objective function. It is suitable for finding
 # a local minimum of the objective function.
 #
-# To have the Nelder-Mead method cover a reasonable part of the parameter space, 
+# To have the Nelder-Mead method cover a reasonable part of the parameter space,
 # define an initial simplex (matrix of shape (n+1, n), where n is the number of parameters).
 #
 # The initial simplex is chosen with random ply angles between 0 and 90 degrees. To make

@@ -28,7 +28,7 @@ Advanced rules example
 
 This example shows the usage of advanced rules including the geometrical,
 cut-off, and variable offset rules. It also demonstrates how rules can be templated
-and reused with different parameters. For more basic rules, see 
+and reused with different parameters. For more basic rules, see
 :ref:`sphx_glr_examples_gallery_examples_003_basic_rules.py`.
 
 This example only shows the PyACP part of the setup. For a complete composite analysis,
@@ -261,7 +261,7 @@ offsets_column = lookup_table.create_column(
 )
 
 # %%
-# Create the edge set from the "All_Elements" element set. Since you 
+# Create the edge set from the "All_Elements" element set. Since you
 # assigned 30° to the limit angle, only one edge at x=0 will be selected.
 edge_set = model.create_edge_set(
     name="edge_set",

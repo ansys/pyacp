@@ -26,8 +26,8 @@
 Basic PyACP workflow
 ====================
 
-This example shows how to define a composite lay-up with PyACP, solve the resulting model with PyMAPDL, and run
-a failure analysis with PyDPF Composites.
+This example shows how to define a composite lay-up with PyACP, solve the resulting model with PyMAPDL, and
+run a failure analysis with PyDPF Composites.
 """
 
 # %%
@@ -35,11 +35,11 @@ a failure analysis with PyDPF Composites.
 # -----------------------------------
 #
 # In a basic PyACP workflow, you begin with an MAPDL \*.dat file containing the mesh, material data, and
-# boundary conditions. For more information on creating input files, see the :ref:`input_file_for_pyacp` section.
-# Then, you import the \*.dat file to PyACP to define the composite lay-up, and export the resulting model from
-# PyACP to PyMAPDL. Once the results are available, the .rst file is loaded in PyDPF Composites for analysis.
-# The additional input files (material.xml and ACPCompositeDefinitions.h5) can also be stored
-# with PyACP and passed to PyDPF Composites.
+# boundary conditions. For more information on creating input files, see the :ref:`input_file_for_pyacp`
+# section. Then, you import the \*.dat file to PyACP to define the composite lay-up, and export the
+# resulting model from PyACP to PyMAPDL. Once the results are available, the .rst file is loaded in
+# PyDPF Composites for analysis. The additional input files (material.xml and ACPCompositeDefinitions.h5)
+# can also be stored with PyACP and passed to PyDPF Composites.
 
 # %%
 # Import modules
@@ -230,7 +230,7 @@ mapdl.download(rstfile_name, str(workflow.working_directory.path))
 # Postprocessing with PyDPF Composites
 # -----------------------------------
 #
-# To postprocess the results, you must configure the imports, connect to the 
+# To postprocess the results, you must configure the imports, connect to the
 # PyDPF Composites server and load its plugin.
 
 from ansys.dpf.composites.composite_model import CompositeModel

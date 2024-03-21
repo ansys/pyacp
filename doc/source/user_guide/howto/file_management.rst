@@ -162,7 +162,7 @@ instance:
 .. _local_vs_remote:
 
 Local versus remote ACP instance
-''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''
 
 In the preceding examples, ACP ran on a remote server. However,
 you can also launch ACP as a process on your local machine. For information on launching
