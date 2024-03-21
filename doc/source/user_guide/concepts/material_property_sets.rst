@@ -94,7 +94,7 @@ The following rules apply when changing the ply type of a material:
 
     >>> import ansys.acp.core as pyacp
     >>> acp = pyacp.launch_acp()
-    >>> path = acp.upload_file("../tests/data/minimal_complete_model.acph5")
+    >>> path = acp.upload_file("../tests/data/minimal_complete_model_no_matml_link.acph5")
     >>> model = acp.import_model(path=path)
 
 Consider the following example:
