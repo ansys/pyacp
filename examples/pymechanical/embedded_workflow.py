@@ -92,7 +92,7 @@ import clr
 clr.AddReference(os.path.join(script_dir, "acp_future", "bin", "x64", "Debug", "ACPFuture.dll"))
 import ACPFuture
 
-# Export the hdf5 file from Mechanical
+# Export the HDF5 file from Mechanical
 mesh_path = os.path.join(script_dir, "output", "mesh.h5")
 unit = Ansys.Mechanical.DataModel.Enums.WBUnitSystemType.ConsistentMKS
 geometry_type = ACPFuture.Shims.GeometryType.Sheet
