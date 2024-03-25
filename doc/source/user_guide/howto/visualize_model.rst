@@ -4,7 +4,7 @@ Visualize model
 .. jinja:: conditional_skip
 
     {% if not skip_gallery %}
-    This guide uses an example model of a race car's front wing.
+    This guide uses a model of a race car's front wing.
 
     .. pyvista-plot::
         :nofigs:
