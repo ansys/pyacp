@@ -88,7 +88,7 @@ workdir = pathlib.Path(tmpdir.name)
 # %%
 # Prepare the ACP model
 # ---------------------
-# This example uses the ``optimization_model.dat`` file which contains a simple ACP model
+# This example uses the ``optimization_model.dat`` file, which contains a simple ACP model
 # of a rounded square tube.
 #
 # The ``prepare_acp_model`` function imports the ``optimization_model.dat`` file into a new
