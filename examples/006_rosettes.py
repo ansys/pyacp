@@ -99,7 +99,7 @@ ud_material = model.create_material(
 fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.1)
 
 # %%
-# Create a parallel rosette where the first direction is rotated by 45° around the y axis.
+# Create a parallel rosette where the first direction is rotated by 45 degrees around the y axis.
 parallel_rosette_45_deg = model.create_rosette(
     name="ParallelRosette",
     rosette_type=RosetteType.PARALLEL,
@@ -129,7 +129,7 @@ plotter.show()
 
 # %%
 # Create a ply that uses the reference directions defined by the rosette.
-# The ply angle is set to 20°, which means the fiber direction is rotated by 20°
+# The ply angle is set to 20 degrees, which means that the fiber direction is rotated by 20 degrees
 # from the reference direction.
 modeling_group = model.create_modeling_group(name="modeling_group")
 modeling_ply = modeling_group.create_modeling_ply(
@@ -231,8 +231,8 @@ plotter.show()
 # of the point on the edge that is closest to the element centroid.
 
 # %%
-# Create the edge set from the "All_Elements" element set. Since you assigned
-# 120° to the limit angle, all the edges are selected.
+# Create the edge set from the "All_Elements" element set. Because you assigned
+# 120 degrees to the limit angle, all the edges are selected.
 edge_set = model.create_edge_set(
     name="edge_set",
     edge_set_type=EdgeSetType.BY_REFERENCE,

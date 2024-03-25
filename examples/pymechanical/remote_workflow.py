@@ -75,7 +75,7 @@ ACPFuture.Shims.ImportPlies(Model, filename)
 
 result = mechanical.run_python_script(import_plies_str)
 
-# Set bc and solve
+# Set boundary condition and solve
 result = mechanical.run_python_script_from_file("set_bc.py", enable_logging=True)
 result = mechanical.run_python_script("Model.Analyses[0].Solution.Solve(True)")
 

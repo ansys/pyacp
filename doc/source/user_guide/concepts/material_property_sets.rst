@@ -12,9 +12,9 @@ Constant versus variable property sets
 
 Material property sets can either be constant or variable. Constant property
 sets are defined by a single value per property. Variable property
-sets depend on field variables such as temperature, fiber volume content, etc.
+sets depend on field variables such as temperature and fiber volume content.
 
-Currently, only the constant property sets can be modified with PyACP. Variable
+Currently, you can only modify the constant property sets with PyACP. Variable
 property sets can be inspected, but not modified.
 
 
@@ -40,7 +40,7 @@ but orthotropic stress and strain limits.
 
     While a material is unstored (see :ref:`stored_vs_unstored`), the property set does not
     automatically change from orthotropic to isotropic or vice versa. When storing the
-    material, then the backend will ensure that its definition is consistent.
+    material, the backend ensures that its definition is consistent.
 
 Available attributes
 ''''''''''''''''''''
@@ -71,7 +71,7 @@ For engineering constants, however, the orthotropic and isotropic definitions
 are interlinked. Therefore, when you change the ply type of a material, the
 engineering constants are automatically converted.
 To avoid accidental use of incorrect engineering constants, PyACP enforces 
-conversion and assignment rules, as described below.
+conversion and assignment rules, as described later on this page.
 
 Conversion rules
 ^^^^^^^^^^^^^^^^

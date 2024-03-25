@@ -25,7 +25,7 @@
 
 Direction definition example
 ============================
-This example shows how you can define directions from lookup tables. They can be either
+This example shows how to define directions from lookup tables. They can be either
 reference directions for oriented selection sets or draping angles for modeling plies.
 The example only shows the PyACP part of the setup. For a complete composite analysis,
 see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
@@ -130,7 +130,7 @@ plotter.show()
 lookup_table = model.create_lookup_table_3d()
 
 # %%
-# Create a grid of points on the plate wherein the lookup table values are stored.
+# Create a grid of points on the plate where the lookup table values are stored.
 plate_side_length = 0.01
 num_points = 10
 x_coordinates = np.linspace(0, plate_side_length, num_points)

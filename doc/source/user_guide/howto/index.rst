@@ -1,7 +1,7 @@
 How-to guides
 -------------
 
-These short guides illustrate one particular aspect of using PyACP.
+These short guides explain one particular aspect of using PyACP.
 
 .. toctree::
     :maxdepth: 2

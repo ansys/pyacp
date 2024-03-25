@@ -2,12 +2,12 @@ Manage input and output files
 -------------------------------
 
 When defining your workflow using PyACP and other tools, you may need control
-over where the input and output files are stored. This guide shows you two
+over where the input and output files are stored. This guide shows two
 ways to manage them.
 
 In the following examples, the ACP instance is launched on a remote server. The
 differences between local and remote ACP instances, in terms of file management,
-are explained afterwards in the :ref:`local_vs_remote` section.
+are explained afterwards in :ref:`local_vs_remote`.
 
 .. doctest::
     :hide:
@@ -42,9 +42,9 @@ Loading input files
 ~~~~~~~~~~~~~~~~~~~
 
 To get started with loading input files, you must define a workflow using either an
-FE model (``.cdb`` or ``.dat``) file or an ACP model (``.acph5``) file.
+FE model (CDB or DAT) file or an ACP model (ACPH5) file.
 
-In the following example, assume you have a directory ``DATA_DIRECTORY`` containing a ``input_file.cdb`` file.
+The following example assumes that you have a directory, ``DATA_DIRECTORY``, that contains an ``input_file.cdb`` file.
 
 .. doctest::
 
@@ -76,7 +76,7 @@ Getting output files
 ~~~~~~~~~~~~~~~~~~~~
 
 Use the workflow's ``get_local_*`` methods to create and download
-output files. For example, to get the ``.acph5`` file of the model, use the
+output files. For example, to get the ACPH5 file of the model, use the
 :meth:`.get_local_acph5_file` method:
 
 .. doctest::
@@ -112,12 +112,12 @@ Manual file management
 ''''''''''''''''''''''
 
 To get more control over where files are stored, you can manually upload and
-download them to the server, and specify their names.
+download them to the server and specify their names.
 
 Loading input files
 ~~~~~~~~~~~~~~~~~~~
 
-You can manually load the file ``input_file.cdb`` to the ACP instance by
+You can manually load the ``input_file.cdb`` file to the ACP instance by
 using the :meth:`.upload_file` method:
 
 .. doctest::
@@ -127,7 +127,7 @@ using the :meth:`.upload_file` method:
     PurePosixPath('input_file.cdb')
 
 This method returns the path of the uploaded file on the server. You can
-use the path to create a new model:
+use the path to create a model:
 
 .. doctest::
 
@@ -142,7 +142,7 @@ use the path to create a new model:
 Getting output files
 ~~~~~~~~~~~~~~~~~~~~
 
-To get the ``.acph5`` file, it needs to be stored on the server. You can
+To get the ACPH5 file, it must be stored on the server. You can
 manually do that using the model's :meth:`.save` method:
 
 .. doctest::
@@ -166,7 +166,7 @@ Local versus remote ACP instance
 
 In the preceding examples, ACP ran on a remote server. However,
 you can also launch ACP as a process on your local machine. For information on launching
-ACP locally, see the :ref:`launch_configuration` guide.
+ACP locally, see :ref:`launch_configuration`.
 
 When the ACP instance is local, you can use the same code described previously. However,
 the effects are slightly different:

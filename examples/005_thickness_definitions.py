@@ -109,7 +109,7 @@ thickness_virtual_geometry = model.create_virtual_geometry(
 )
 
 # %%
-# Set the thickness type to FROM_GEOMETRY and define the virtual geometry.
+# Set the thickness type to ``FROM_GEOMETRY`` and define the virtual geometry.
 modeling_ply.thickness_type = ThicknessType.FROM_GEOMETRY
 modeling_ply.thickness_geometry = thickness_virtual_geometry
 
@@ -131,7 +131,7 @@ plotter.show()
 
 # %%
 # Create the data for the lookup table.
-# Make a 20x20 grid of points on which a thickness function is defined. In this example,
+# Make a 20x20 grid of points to define a thickness function on. In this example,
 # the mesh of the lookup table is finer than the finite element mesh, and the thickness
 # is interpolated onto the finite element mesh.
 # Note that the plate lies in the xz plane and the thickness is defined in the y direction.
@@ -160,7 +160,7 @@ points = np.stack(
 )
 
 # %%
-#  Now you have a list of point coordinates:
+# Now you have a list of point coordinates:
 print(points)
 
 # %%
@@ -174,7 +174,7 @@ lookup_table.columns["Location"].data = points
 thickness_column = lookup_table.create_column(data=thickness, dimension_type=DimensionType.LENGTH)
 
 # %%
-# Set the thickness type to FROM_TABLE and assign the thickness column.
+# Set the thickness type to ``FROM_TABLE`` and assign the thickness column.
 modeling_ply.thickness_type = ThicknessType.FROM_TABLE
 modeling_ply.thickness_field = thickness_column
 

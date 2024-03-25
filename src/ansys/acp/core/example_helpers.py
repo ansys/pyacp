@@ -120,7 +120,7 @@ def _run_analysis(workflow: "ACPWorkflow") -> None:
     """Run the model with mapdl and do a post-processing analysis.
 
     Uses a max strain criteria, which means strain limits have to be defined.
-    This function can be called in the end of examples to verify the prepared model
+    This function can be called at the end of examples to verify the prepared model
     actually solves and can be postprocessed.
     """
     from ansys.mapdl.core import launch_mapdl

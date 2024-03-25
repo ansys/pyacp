@@ -37,8 +37,8 @@ it demonstrates the process of optimizing a composite lay-up with PyACP.
 
 # %%
 # Import modules and setup
-# -----------------
-# To follow this example, you need to:
+# ------------------------
+# For this example, you must perform these steps:
 #
 # - Import the required libraries.
 # - Launch the ACP, MAPDL, and DPF servers.
@@ -88,7 +88,7 @@ workdir = pathlib.Path(tmpdir.name)
 # %%
 # Prepare the ACP model
 # ---------------------
-# This example uses the ``optimization_model.dat`` file which contains a simple ACP model
+# This example uses the ``optimization_model.dat`` file, which contains a simple ACP model
 # of a rounded square tube.
 #
 # The ``prepare_acp_model`` function imports the ``optimization_model.dat`` file into a new
@@ -103,7 +103,7 @@ input_file = pyacp.example_helpers.get_example_file(
 
 
 def prepare_acp_model(*, acp, workdir, input_file):
-    # Import the input file ``*.dat`` into a new ACP model
+    # Import the DAT input file into a new ACP model
     acp_workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
         acp=acp,
         cdb_or_dat_file_path=input_file,
@@ -209,13 +209,13 @@ update_ply_angles(acp_workflow=acp_workflow, parameters=[0, 45, 90, 135, 180, 22
 
 
 # %%
-# The ``solve_cdb`` function solves the .cdb file with MAPDL and returns the path to the .rst file.
+# The ``solve_cdb()`` function solves the CDB file with MAPDL and returns the path to the RST file.
 
 
 def solve_cdb(*, mapdl, cdb_file, workdir):
     mapdl.clear()
     mapdl.input(cdb_file)
-    # Solve the model. Note that the model contains two time step.
+    # Solve the model. Note that the model contains two timesteps.
     mapdl.allsel()
     mapdl.slashsolu()
     mapdl.time(1.0)
@@ -223,7 +223,7 @@ def solve_cdb(*, mapdl, cdb_file, workdir):
     mapdl.time(2.0)
     mapdl.solve()
 
-    # Download the .rst file for further postprocessing
+    # Download the RST file for further postprocessing
     rstfile_name = f"{mapdl.jobname}.rst"
     rst_file_local_path = workdir / rstfile_name
     mapdl.download(rstfile_name, str(workdir))
@@ -237,7 +237,7 @@ rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file, workdir=workdir)
 # The ``get_max_irf`` function uses PyDPF Composites to calculate the maximum
 # inverse reserve factor (IRF) for a given:
 #
-# - .rst file
+# - RST file
 # - composite definitions file
 # - materials file
 #
@@ -295,7 +295,7 @@ get_max_irf(
 # -----------------------
 # For the optimization, you must define a single function that takes the ply angles
 # as its input and returns the maximum IRF.
-# The ``get_max_irf_for_parameters`` function combines the previously defined functions
+# The ``get_max_irf_for_parameters()`` function combines the previously defined functions
 # to perform all the necessary steps for a given set of ply angles.
 
 
@@ -318,7 +318,7 @@ def get_max_irf_for_parameters(
 
 # %%
 # To inject the ``acp_workflow``, ``mapdl``, ``dpf_server``, and ``workdir`` arguments into the
-# ``get_max_irf_for_parameters`` function, you can use the ``functools.partial`` function.
+# ``get_max_irf_for_parameters()`` function, you can use the ``functools.partial()`` function.
 
 results: list[float] = []
 optimization_function = partial(
@@ -334,7 +334,7 @@ optimization_function([0, 45, 90, 135, 180, 225])
 
 # %%
 # For the optimization, you can use the Nelder-Mead method available in
-# the ``scipy.optimize.minimize`` function. This is a downhill simplex algorithm that
+# the ``scipy.optimize.minimize()`` function. This is a downhill simplex algorithm that
 # does not require the gradient of the objective function. It is suitable for finding
 # a local minimum of the objective function.
 #

@@ -221,7 +221,7 @@ mapdl.set("last")
 mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
 # %%
-# Download the .rst file for composite specific postprocessing.
+# Download the RST file for composite-specific postprocessing.
 rstfile_name = f"{mapdl.jobname}.rst"
 rst_file_local_path = workflow.working_directory.path / rstfile_name
 mapdl.download(rstfile_name, str(workflow.working_directory.path))
@@ -231,7 +231,7 @@ mapdl.download(rstfile_name, str(workflow.working_directory.path))
 # -----------------------------------
 #
 # To postprocess the results, you must configure the imports, connect to the
-# PyDPF Composites server and load its plugin.
+# PyDPF Composites server, and load its plugin.
 
 from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput

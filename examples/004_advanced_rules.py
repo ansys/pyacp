@@ -26,7 +26,7 @@
 Advanced rules example
 ======================
 
-This example shows the usage of advanced rules including the geometrical,
+This example shows how to use advanced rules, including the geometrical,
 cut-off, and variable offset rules. It also demonstrates how rules can be templated
 and reused with different parameters. For more basic rules, see
 :ref:`sphx_glr_examples_gallery_examples_003_basic_rules.py`.
@@ -94,7 +94,7 @@ print(workflow.working_directory.path)
 print(model.unit_system)
 
 # %%
-# Add more layers to the modeling ply so it easier to see the effects of the selection rules.
+# Add more layers to the modeling ply so that it is easier to see the effects of the selection rules.
 # Plot the thickness of all the plies without any rules.
 
 modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
@@ -110,8 +110,8 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 
 # %%
 # Rules can be parametrized. This is useful when a rule is used multiple times but with different
-# parameters. :class:`.LinkedSelectionRule` shows what parameters are available for each rule.
-# In this example, the extent of the parallel rule is modified.
+# parameters.  The :class:`.LinkedSelectionRule` class shows what parameters are available for each rule.
+# This code modifies the extent of the parallel rule.
 
 # %%
 # Create a parallel rule.
@@ -261,8 +261,8 @@ offsets_column = lookup_table.create_column(
 )
 
 # %%
-# Create the edge set from the "All_Elements" element set. Since you
-# assigned 30° to the limit angle, only one edge at x=0 will be selected.
+# Create the edge set from the "All_Elements" element set. Because you
+# assigned 30 degrees to the limit angle, only one edge at x=0 is selected.
 edge_set = model.create_edge_set(
     name="edge_set",
     edge_set_type=EdgeSetType.BY_REFERENCE,
@@ -290,11 +290,11 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # --------------------------------
 
 # %%
-# Creating a boolean selection rule and assigning it to a ply has the same
+# Creating a Boolean selection rule and assigning it to a ply has the same
 # effect as linking the individual rules directly to the ply. Boolean rules are still useful
 # because they can help organize rules and make more complex ones.
 #
-# Create a cylindrical selection rule which will be combined with the parallel rule.
+# Create a cylindrical selection rule to combine with the parallel rule.
 cylindrical_rule_boolean = model.create_cylindrical_selection_rule(
     name="cylindrical_rule",
     origin=(0.005, 0, 0.005),
@@ -327,7 +327,7 @@ assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
 
 # %%
-# Modify the operation type of the boolean selection rule so that the two rules are added.
+# Modify the operation type of the Boolean selection rule so that the two rules are added.
 linked_parallel_rule_boolean.operation_type = BooleanOperationType.INTERSECT
 linked_cylindrical_rule_boolean.operation_type = BooleanOperationType.ADD
 

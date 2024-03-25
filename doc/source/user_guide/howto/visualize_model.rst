@@ -4,7 +4,7 @@ Visualize model
 .. jinja:: conditional_skip
 
     {% if not skip_gallery %}
-    This guide uses an example model of a race car's front wing.
+    This guide uses a model of a race car's front wing.
 
     .. pyvista-plot::
         :nofigs:
@@ -31,10 +31,10 @@ Visualize model
 
         >>> model.update()
 
-    Showing the mesh
-    ~~~~~~~~~~~~~~~~
+    Show the mesh
+    ~~~~~~~~~~~~~
 
-    Access the mesh data using the :attr:`.Model.mesh` attribute. This attribute is an instance of the :class:`.MeshData` class, and can be converted to a PyVista mesh using the :meth:`.MeshData.to_pyvista` method.
+    Access the mesh data using the :attr:`.Model.mesh` attribute. This attribute, an instance of the :class:`.MeshData` class, can be converted to a PyVista mesh using the :meth:`.MeshData.to_pyvista` method.
 
     .. pyvista-plot::
         :context:
@@ -47,7 +47,7 @@ Visualize model
     Showing the directions
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    Show the directions (such as normals, fiber directions, orientations, etc.) of the model by using the :func:`.get_directions_plotter` helper function. This function takes the model, the components to visualize, and some optional parameters.
+    Show the directions (such as normals, fiber directions, and orientations) of the model by using the :func:`.get_directions_plotter` helper function. This function takes the model, the components to visualize, and some optional parameters.
 
     The following example shows the orientation and fiber direction of a modeling ply.
 
@@ -77,9 +77,9 @@ Visualize model
     Scalar data
     '''''''''''
 
-    You can convert Scalar data to a PyVista mesh using the :meth:`get_pyvista_mesh <.ScalarData.get_pyvista_mesh>` method. This method requires the base model mesh.
+    You can convert scalar data to a PyVista mesh using the :meth:`get_pyvista_mesh <.ScalarData.get_pyvista_mesh>` method. This method requires the base model mesh.
 
-    For example, you may plot the total thickness of the model using the following code:
+    For example, you can plot the total thickness of the model using this code:
 
 
     .. pyvista-plot::

@@ -29,13 +29,13 @@ Class 40 example
 This example shows how to define a composite lay-up with PyACP, solve the resulting
 model with PyMAPDL, and run a failure analysis with PyDPF Composites.
 
-Begin with an MAPDL .cdb file that contains the mesh, material data, and
+Begin with an MAPDL CDB file that contains the mesh, material data, and
 boundary conditions. Import the file to PyACP to define the lay-up, and then export the
-resulting model to PyMAPDL. Once the results are available, the .rst file is loaded in
-PyDPF Composites for postprocessing. The additional input files (material.xml
-and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDPF Composites.
+resulting model to PyMAPDL. Once the results are available, the RST file is loaded in
+PyDPF Composites for postprocessing. The additional input files (``material.xml``
+and ``ACPCompositeDefinitions.h5``) can also be stored with PyACP and passed to PyDPF Composites.
 
-The MAPDL and DPF services are run in docker containers that share a volume (working
+The MAPDL and DPF services are run in Docker containers that share a volume (working
 directory).
 """
 
@@ -64,7 +64,7 @@ acp = pyacp.launch_acp()
 
 # %%
 #
-# Load mesh and materials from .cdb file
+# Load mesh and materials from CDB file
 # -------------------------------------
 
 # %%
@@ -83,7 +83,7 @@ print(local_file_path)
 cdb_file_path = acp.upload_file(local_path=local_file_path)
 
 # %%
-# Load the .cdb file into PyACP and set the unit system.
+# Load the CDB file into PyACP and set the unit system.
 model = acp.import_model(
     path=cdb_file_path, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
 )
@@ -147,7 +147,7 @@ ros_keeltower = model.create_rosette(
 # Oriented Selection Sets
 # '''''''''''''''''''''''
 #
-# Note that the element sets are imported from the initial mesh (.cbd file).
+# Note that the element sets are imported from the initial mesh (CBD file).
 
 oss_deck = model.create_oriented_selection_set(
     name="oss_deck",
@@ -297,7 +297,7 @@ model.update()
 model.save(ACPH5_FILE, save_cache=True)
 
 # %%
-# Save the model as a .cdb file for solving with PyMAPDL.
+# Save the model as a CDB file for solving with PyMAPDL.
 model.export_analysis_model(CDB_FILENAME_OUT)
 # Export the shell lay-up and material file for PyDPF Composites.
 model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
@@ -327,7 +327,7 @@ from ansys.mapdl.core import launch_mapdl
 mapdl = launch_mapdl()
 mapdl.clear()
 # %%
-# Load the .cdb file into PyMAPDL.
+# Load the CDB file into PyMAPDL.
 mapdl.input(str(cdb_file_local_path))
 
 # %%
@@ -342,17 +342,17 @@ mapdl.post1()
 mapdl.set("last")
 mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
-# Download the .rst file for further postprocessing.
+# Download the RST file for further postprocessing.
 rstfile_name = f"{mapdl.jobname}.rst"
 rst_file_local_path = pathlib.Path(tmp_dir.name) / rstfile_name
 mapdl.download(rstfile_name, tmp_dir.name)
 
 # %%
-# Post-Processing with PyDPF composites
-# -----------------------------------
+# Postprocessing with PyDPF composites
+# ------------------------------------
 #
 # To postprocess the results, you must configure the imports, connect to the
-# PyDPF Composites server and load its plugin.
+# PyDPF Composites server, and load its plugin.
 
 from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput
