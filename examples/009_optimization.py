@@ -103,7 +103,7 @@ input_file = pyacp.example_helpers.get_example_file(
 
 
 def prepare_acp_model(*, acp, workdir, input_file):
-    # Import the input file ``*.dat`` into a new ACP model
+    # Import the DAT input file into a new ACP model
     acp_workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
         acp=acp,
         cdb_or_dat_file_path=input_file,
