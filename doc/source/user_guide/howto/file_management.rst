@@ -44,7 +44,7 @@ Loading input files
 To get started with loading input files, you must define a workflow using either an
 FE model (``.cdb`` or ``.dat``) file or an ACP model (``.acph5``) file.
 
-In the following example, assume you have a directory ``DATA_DIRECTORY`` containing a ``input_file.cdb`` file.
+The following example assumes that you have a directory, ``DATA_DIRECTORY``, that contains an ``input_file.cdb`` file.
 
 .. doctest::
 
