@@ -130,7 +130,7 @@ plotter.show()
 lookup_table = model.create_lookup_table_3d()
 
 # %%
-# Create a grid of points on the plate wherein the lookup table values are stored.
+# Create a grid of points on the plate where the lookup table values are stored.
 plate_side_length = 0.01
 num_points = 10
 x_coordinates = np.linspace(0, plate_side_length, num_points)
