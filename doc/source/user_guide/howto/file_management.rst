@@ -127,7 +127,7 @@ using the :meth:`.upload_file` method:
     PurePosixPath('input_file.cdb')
 
 This method returns the path of the uploaded file on the server. You can
-use the path to create a new model:
+use the path to create a model:
 
 .. doctest::
 
