@@ -47,8 +47,12 @@ pyvista = ">=0.42.0"
 # Dependencies for the examples. Update also the 'dev' group when
 # these are updated.
 ansys-mapdl-core = { version = ">=0.62.1,<1", optional = true }
-ansys-dpf-composites = { version = ">=0.3,<1", optional = true }
-ansys-dpf-core = { version = ">=0.7,<1", optional = true }
+
+# We need to use the development version because the dev version
+# of the dpf server is only compatible with the dev version of py dpf core.
+ansys-dpf-composites = {git = "https://github.com/ansys/pydpf-composites.git", optional = true}
+# Revert to published version of dpf composites at release
+# ansys-dpf-composites = { version = ">=0.3,<1", optional = true }
 ansys-mechanical-core = { version = ">=0.10.0", optional = true, python = "<3.12" }
 matplotlib = { version = "^3.8.3", optional = true }
 scipy = { version = "^1.12.0", optional = true }
@@ -79,8 +83,11 @@ pyvista = { version = ">=0.42.0", extras = ["jupyter", "trame"] }
 # included in the 'examples' extra. This is done s.t. the install
 # flag '--with=dev,test' will install all dependencies.
 ansys-mapdl-core = ">=0.62.1,<1"
-ansys-dpf-composites = { version = ">=0.3,<1" }
-ansys-dpf-core = ">=0.7,<1"
+# We need to use the development version because the dev version
+# of the dpf server is only compatible with the dev version of py dpf core.
+ansys-dpf-composites = {git = "https://github.com/ansys/pydpf-composites.git"}
+# Revert to published version of dpf composites at release
+# ansys-dpf-composites = { version = ">=0.3,<1", optional = true }
 ansys-mechanical-core = { version = ">=0.10.0", python = "<3.12" }
 matplotlib = "^3.8.3"
 scipy = "^1.12.0"
@@ -101,7 +108,6 @@ docker = "^7.0"
 # end user.
 examples = [
     "ansys-mapdl-core",
-    "ansys-dpf-core",
     "ansys-dpf-composites",
     "ansys-mechanical-core",
     "matplotlib",
