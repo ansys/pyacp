@@ -342,7 +342,7 @@ mapdl.post1()
 mapdl.set("last")
 mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
-# Download the .rst file for further postprocessing.
+# Download the RST file for further postprocessing.
 rstfile_name = f"{mapdl.jobname}.rst"
 rst_file_local_path = pathlib.Path(tmp_dir.name) / rstfile_name
 mapdl.download(rstfile_name, tmp_dir.name)
