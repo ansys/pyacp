@@ -31,8 +31,8 @@ Visualize model
 
         >>> model.update()
 
-    Showing the mesh
-    ~~~~~~~~~~~~~~~~
+    Show the mesh
+    ~~~~~~~~~~~~~
 
     Access the mesh data using the :attr:`.Model.mesh` attribute. This attribute is an instance of the :class:`.MeshData` class, and can be converted to a PyVista mesh using the :meth:`.MeshData.to_pyvista` method.
 
