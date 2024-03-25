@@ -14,7 +14,7 @@ Material property sets can either be constant or variable. Constant property
 sets are defined by a single value per property. Variable property
 sets depend on field variables such as temperature and fiber volume content.
 
-Currently, only the constant property sets can be modified with PyACP. Variable
+Currently, you can only modify the constant property sets with PyACP. Variable
 property sets can be inspected, but not modified.
 
 
