@@ -57,5 +57,5 @@ Notes on material handling
 
 Materials present in the input file (\*.cdb or \*.dat) are read into PyACP. The following rules apply:
 
-* If the material has defined a UVID, then the material is imported as locked. This means the material cannot be edited in PyACP. If the input file was created with Ansys Mechanical (see the section :ref:`input_file_from_mechanical`), this is always the case. In Mechanical APDL, you can define a UVID with the ``MP,UVID`` or ``MPDATAT,UNBL,16,UVID`` command.
+* If the material has defined a UVID, then the material is imported as locked. This means the material cannot be edited in PyACP. If the input file was created with Ansys Mechanical (see :ref:`input_file_from_mechanical`), this is always the case. In Mechanical APDL, you can define a UVID with the ``MP,UVID`` or ``MPDATAT,UNBL,16,UVID`` command.
 * If the material has no UVID, then the material is copied on import. Only the copied material appears in PyACP. The original material is not changed and appears unmodified in the output file.
