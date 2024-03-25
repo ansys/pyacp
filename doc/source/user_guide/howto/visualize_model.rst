@@ -34,7 +34,7 @@ Visualize model
     Show the mesh
     ~~~~~~~~~~~~~
 
-    Access the mesh data using the :attr:`.Model.mesh` attribute. This attribute is an instance of the :class:`.MeshData` class, and can be converted to a PyVista mesh using the :meth:`.MeshData.to_pyvista` method.
+    Access the mesh data using the :attr:`.Model.mesh` attribute. This attribute, an instance of the :class:`.MeshData` class, can be converted to a PyVista mesh using the :meth:`.MeshData.to_pyvista` method.
 
     .. pyvista-plot::
         :context:
