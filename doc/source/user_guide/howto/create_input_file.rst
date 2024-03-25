@@ -28,8 +28,8 @@ One way to create an input file for PyACP is to create a static structural setup
 * Save the input file in \*.dat format to the desired location.
 
 
-The created input file can be read with :meth:`.ACPWorkflow.from_cdb_or_dat_file`. See
-:ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` for a complete example.
+The created input file can be read with the :meth:`.ACPWorkflow.from_cdb_or_dat_file` method.
+For a complete example, see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
 
 .. note::
 
