@@ -31,7 +31,7 @@ angles in a composite lay-up. The optimization aims to minimize the maximum inve
 reserve factor (IRF) of the composite structure under two load cases.
 
 The example uses the :py:func:`scipy.optimize.minimize` function to perform the optimization.
-While the procedure itself is not the focus of this example and could be improved,e
+While the procedure itself is not the focus of this example and could be improved,
 it demonstrates the process of optimizing a composite lay-up with PyACP.
 """
 
