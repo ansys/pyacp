@@ -231,7 +231,7 @@ mapdl.download(rstfile_name, str(workflow.working_directory.path))
 # -----------------------------------
 #
 # To postprocess the results, you must configure the imports, connect to the
-# PyDPF Composites server and load its plugin.
+# PyDPF Composites server, and load its plugin.
 
 from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput
