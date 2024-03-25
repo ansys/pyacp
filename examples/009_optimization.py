@@ -241,7 +241,7 @@ rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file, workdir=workdir)
 # - composite definitions file
 # - materials file
 #
-# It only considers the maximum stress failure criterion.
+# This function only considers the maximum stress failure criterion.
 
 max_stress_criterion = pydpf_composites.failure_criteria.MaxStressCriterion()
 combined_failure_criterion = pydpf_composites.failure_criteria.CombinedFailureCriterion(
