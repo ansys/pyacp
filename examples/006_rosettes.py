@@ -231,8 +231,8 @@ plotter.show()
 # of the point on the edge that is closest to the element centroid.
 
 # %%
-# Create the edge set from the "All_Elements" element set. Since you assigned
-# 120° to the limit angle, all the edges are selected.
+# Create the edge set from the "All_Elements" element set. Because you assigned
+# 120 degrees to the limit angle, all the edges are selected.
 edge_set = model.create_edge_set(
     name="edge_set",
     edge_set_type=EdgeSetType.BY_REFERENCE,
