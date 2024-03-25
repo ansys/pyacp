@@ -234,7 +234,7 @@ def clear_models_before_run(acp_instance):
 @pytest.fixture
 def load_model_from_tempfile(model_data_dir, acp_instance):
     @contextmanager
-    def inner(relative_file_path="minimal_complete_model.acph5", format="acp:h5"):
+    def inner(relative_file_path="minimal_complete_model_no_matml_link.acph5", format="acp:h5"):
         with tempfile.TemporaryDirectory() as tmp_dir:
             source_path = model_data_dir / relative_file_path
 
