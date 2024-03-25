@@ -147,7 +147,7 @@ ros_keeltower = model.create_rosette(
 # Oriented Selection Sets
 # '''''''''''''''''''''''
 #
-# Note that the element sets are imported from the initial mesh (.cbd file).
+# Note that the element sets are imported from the initial mesh (CBD file).
 
 oss_deck = model.create_oriented_selection_set(
     name="oss_deck",
