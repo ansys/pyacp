@@ -26,7 +26,7 @@
 Advanced rules example
 ======================
 
-This example shows the usage of advanced rules including the geometrical,
+This example shows how to use advanced rules, including the geometrical,
 cut-off, and variable offset rules. It also demonstrates how rules can be templated
 and reused with different parameters. For more basic rules, see
 :ref:`sphx_glr_examples_gallery_examples_003_basic_rules.py`.
