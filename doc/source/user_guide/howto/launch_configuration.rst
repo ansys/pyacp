@@ -1,7 +1,7 @@
 .. _launch_configuration:
 
 Change ACP startup
----------------------------
+------------------
 
 By default, the :func:`.launch_acp` function will start ACP from the unified installer, using the latest available version.
 
@@ -33,11 +33,11 @@ As indicated in the preceding output, three methods are available for starting A
 - ``docker_compose``: Start ACP using Docker Compose.
 - ``connect``: Connect to an already running ACP server.
 
-You may configure any of the three methods with ``ansys-launcher``. For example, to use the
-``direct`` method, run ``ansys-launcher configure ACP direct``.
-The tool will prompt you for the required information, providing the default value
-in square brackets. You can accept the default value (press the Enter key) or input a 
-new value (type the new value and press the Enter key).
+You may configure any of the three methods with the ``ansys-launcher`` tool. For example, to use the
+``direct`` method, run the following command: ``ansys-launcher configure ACP direct``.
+The tool prompts you for the required information, providing the default value
+in square brackets. You can accept the default value by pressing the **Enter** key or input a 
+new value by typing it and then pressing the **Enter** key.
 
 .. code-block:: bash
 
@@ -66,8 +66,8 @@ Choose the launch mode at runtime
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To switch between the launch modes, you can specify the ``launch_mode`` argument
-when calling :func:`.launch_acp`. Note that the selected launch mode must already
-be configured with ``ansys-launcher``.
+when calling the :func:`.launch_acp` function. Note that the selected launch mode must already
+be configured with the ``ansys-launcher`` tool.
 
 .. testcode::
 

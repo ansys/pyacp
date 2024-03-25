@@ -65,7 +65,7 @@ the :meth:`.ACPWorkflow.from_cdb_or_dat_file` method:
     ... )
 
 That uploads the file to the ACP instance and creates a new model from it. You
-can access the newly created model using ``workflow.model``:
+can access the newly created model using the ``workflow.model`` command:
 
 .. doctest::
 
@@ -174,17 +174,17 @@ the effects are slightly different:
 When using a workflow
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-- The input file is still copied to the ``local_working_directory``, but then it is loaded
+- The input file is still copied to the ``local_working_directory`` argument, but then it is loaded
   directly into the ACP instance. There is no separate upload step.
-- The output files are stored in the ``local_working_directory`` by default.
+- The output files are stored in the ``local_working_directory`` argument by default.
 
 
 When using manual upload and download
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - The :meth:`.upload_file` method has no effect and simply returns the input file path.
-- The :meth:`.download_file` method copies the file to the specified ``local_path`` if the
-  ``local_path`` and ``remote_filename`` are not the same.
+- The :meth:`.download_file` method copies the file to the specified ``local_path`` argument if
+  the ``local_path`` and ``remote_filename`` arguments are not the same.
 
 .. hint::
 

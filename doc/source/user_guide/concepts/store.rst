@@ -110,4 +110,4 @@ Performance considerations
 
 When building ACP models, performance can vary depending on whether the objects are stored or unstored. In general, it is best to first build an unstored object and then store its finished form. Otherwise, each change to the object is sent to the server, which can slow down the performance depending on the network connection.
 
-This does not mean that you necessarily need to use the ``store`` method. It is just as efficient to use the ``create_*`` methods and simply pass all the defining properties at once.
+This does not mean that you necessarily need to use the ``store()`` method. It is just as efficient to use the ``create_*()`` methods and simply pass all the defining properties at once.

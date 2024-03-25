@@ -3,8 +3,8 @@ Material property sets
 
 Material property sets define certain aspects of the properties
 of a material.
-The attributes described in the following subsections explain how
-you may use material property sets within PyACP.
+The attributes described in the following subsections show how
+you can use material property sets in PyACP.
 
 
 Constant versus variable property sets
@@ -137,10 +137,8 @@ Assignment rules
 Similar rules apply when assigning engineering constants to a material:
 
 - Isotropic engineering constants can be assigned to both isotropic and orthotropic materials.
-- Orthotropic engineering constants can be assigned:
-
-  - to orthotropic materials.
-  - to isotropic materials, if their values are consistent with an isotropic material.
+- Orthotropic engineering constants can be assigned to isotropic materials, if their values are consistent with them,
+  and orthotropic materials.
 
 Continuing from the preceding example, you can assign either orthotropic or isotropic engineering constants to the orthotropic material:
 

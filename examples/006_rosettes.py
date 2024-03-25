@@ -227,7 +227,7 @@ plotter.show()
 # on the edge that is closest to the rosette's origin. This determines the reference directions
 # along the edge set.
 # You can reverse the reference directions by inverting ``dir1``.
-# An element within an oriented selection set (OSS) gets its reference directions from the direction
+# An element within an OSS gets its reference directions from the direction
 # of the point on the edge that is closest to the element centroid.
 
 # %%

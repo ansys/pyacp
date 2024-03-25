@@ -30,8 +30,8 @@ This example demonstrates how to use the ACP, MAPDL, and DPF servers to optimize
 angles in a composite lay-up. The optimization aims to minimize the maximum inverse
 reserve factor (IRF) of the composite structure under two load cases.
 
-The example uses :py:func:`scipy.optimize.minimize` to perform the optimization. While the
-procedure itself is not the focus of this example and could be improved,
+The example uses the :py:func:`scipy.optimize.minimize` function to perform the optimization.
+While the procedure itself is not the focus of this example and could be improved,e
 it demonstrates the process of optimizing a composite lay-up with PyACP.
 """
 
@@ -191,7 +191,7 @@ pyacp.get_directions_plotter(
 # To optimize the ply angles, you must define functions to update, solve, and postprocess
 # the ACP model for a given set of ply angles.
 #
-# The ``update_ply_angles`` changes the ply angles in the model to the given values and
+# The ``update_ply_angles()`` function changes the ply angles in the model to the given values and
 # updates the model.
 
 
@@ -234,14 +234,11 @@ cdb_file = acp_workflow.get_local_cdb_file()
 rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file, workdir=workdir)
 
 # %%
-# The ``get_max_irf`` function uses PyDPF Composites to calculate the maximum
-# inverse reserve factor (IRF) for a given:
+# The ``get_max_irf()`` function uses PyDPF Composites to calculate the maximum
+# inverse reserve factor (IRF) for a given RST, composite definitions,
+# or materials file.
 #
-# - RST file
-# - composite definitions file
-# - materials file
-#
-# It only considers the maximum stress failure criterion.
+# This function only considers the maximum stress failure criterion.
 
 max_stress_criterion = pydpf_composites.failure_criteria.MaxStressCriterion()
 combined_failure_criterion = pydpf_composites.failure_criteria.CombinedFailureCriterion(
