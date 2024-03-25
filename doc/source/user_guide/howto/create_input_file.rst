@@ -39,7 +39,7 @@ For a complete example, see :ref:`sphx_glr_examples_gallery_examples_001_basic_f
 Create an input file with Ansys Mechanical APDL
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can also create an input file for PyACP through the following steps:
+You can also create an input file for PyACP by performing these steps:
 
 * Open Ansys Mechanical APDL
 * Load or create a model with APDL commands
