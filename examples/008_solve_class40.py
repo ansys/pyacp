@@ -297,7 +297,7 @@ model.update()
 model.save(ACPH5_FILE, save_cache=True)
 
 # %%
-# Save the model as a .cdb file for solving with PyMAPDL.
+# Save the model as a CDB file for solving with PyMAPDL.
 model.export_analysis_model(CDB_FILENAME_OUT)
 # Export the shell lay-up and material file for PyDPF Composites.
 model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
