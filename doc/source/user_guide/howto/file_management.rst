@@ -64,8 +64,8 @@ the :meth:`.ACPWorkflow.from_cdb_or_dat_file` method:
     ...     unit_system=pyacp.UnitSystemType.MPA,
     ... )
 
-That uploads the file to the ACP instance and creates a new model from it. You
-can access the newly created model using ``workflow.model``:
+That uploads the file to the ACP instance and creates a model from it. You
+can access the newly created model using the ``workflow.model`` command:
 
 .. doctest::
 
