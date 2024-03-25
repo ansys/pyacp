@@ -56,7 +56,7 @@ globals().update(global_variables(app))
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Import the geometry
-# An agdb (Design modeler) file is used because it enables specifying named selections
+# An AGDB (Design modeler) file is used because it enables specifying named selections
 # directly in the geometry that can be imported into Mechanical.
 # The agdb geometry file was created by loading a Spaceclaim geometry in DesignModeler (without
 # further modification).
