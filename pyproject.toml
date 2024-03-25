@@ -47,9 +47,6 @@ pyvista = ">=0.42.0"
 # Dependencies for the examples. Update also the 'dev' group when
 # these are updated.
 ansys-mapdl-core = { version = ">=0.62.1,<1", optional = true }
-
-
-
 # We need to use the development version because the dev version
 # of the dpf server is only compatible with the dev version of py dpf core.
 ansys-dpf-composites = {git = "https://github.com/ansys/pydpf-composites.git", optional = true}
