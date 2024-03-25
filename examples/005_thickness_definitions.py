@@ -160,7 +160,7 @@ points = np.stack(
 )
 
 # %%
-#  Now you have a list of point coordinates:
+# Now you have a list of point coordinates:
 print(points)
 
 # %%
