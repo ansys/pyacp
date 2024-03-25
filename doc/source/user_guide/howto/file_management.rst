@@ -2,7 +2,7 @@ Manage input and output files
 -------------------------------
 
 When defining your workflow using PyACP and other tools, you may need control
-over where the input and output files are stored. This guide shows you two
+over where the input and output files are stored. This guide shows two
 ways to manage them.
 
 In the following examples, the ACP instance is launched on a remote server. The
