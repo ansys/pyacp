@@ -35,7 +35,7 @@ resulting model to PyMAPDL. Once the results are available, the RST file is load
 PyDPF Composites for postprocessing. The additional input files (``material.xml``
 and ``ACPCompositeDefinitions.h5``) can also be stored with PyACP and passed to PyDPF Composites.
 
-The MAPDL and DPF services are run in docker containers that share a volume (working
+The MAPDL and DPF services are run in Docker containers that share a volume (working
 directory).
 """
 
