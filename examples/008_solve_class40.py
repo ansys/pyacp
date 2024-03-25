@@ -64,7 +64,7 @@ acp = pyacp.launch_acp()
 
 # %%
 #
-# Load mesh and materials from .cdb file
+# Load mesh and materials from CDB file
 # -------------------------------------
 
 # %%
