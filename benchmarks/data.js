@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711355891080,
+  "lastUpdate": 1711364037607,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13998,6 +13998,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020692845341203887",
             "extra": "mean: 836.4799258624582 usec\nrounds: 1740"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "984d9828878fc11f306f1ca3539cf3ae25e0df04",
+          "message": "Re-add dpf core as direct dependency (#509)\n\n* Re-add dpf core as explicit dependency",
+          "timestamp": "2024-03-25T11:50:40+01:00",
+          "tree_id": "daefec54bdfc2b6b850e56edaf4dffd9410b52b2",
+          "url": "https://github.com/ansys/pyacp/commit/984d9828878fc11f306f1ca3539cf3ae25e0df04"
+        },
+        "date": 1711364009437,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.052363372605397,
+            "unit": "iter/sec",
+            "range": "stddev: 0.006204609842113129",
+            "extra": "mean: 165.2247128000056 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1211.8876753278535,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019872436096448525",
+            "extra": "mean: 825.1589816106256 usec\nrounds: 1577"
           }
         ]
       }
