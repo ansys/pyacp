@@ -71,7 +71,7 @@ For engineering constants, however, the orthotropic and isotropic definitions
 are interlinked. Therefore, when you change the ply type of a material, the
 engineering constants are automatically converted.
 To avoid accidental use of incorrect engineering constants, PyACP enforces 
-conversion and assignment rules, as described below.
+conversion and assignment rules, as described later on this page.
 
 Conversion rules
 ^^^^^^^^^^^^^^^^
