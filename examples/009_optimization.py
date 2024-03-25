@@ -295,7 +295,7 @@ get_max_irf(
 # -----------------------
 # For the optimization, you must define a single function that takes the ply angles
 # as its input and returns the maximum IRF.
-# The ``get_max_irf_for_parameters`` function combines the previously defined functions
+# The ``get_max_irf_for_parameters()`` function combines the previously defined functions
 # to perform all the necessary steps for a given set of ply angles.
 
 
