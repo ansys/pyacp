@@ -33,7 +33,7 @@ from ansys.dpf.composites.server_helpers import connect_to_or_start_server
 
 def postprocess_results(rst_file, matml_file, composite_definitions_path):
     """
-    Basic failure criteria evaluation. Expects that a dpf docker container with the
+    Basic failure criteria evaluation. The evaluation expects that a DPF docker container with the
     composites plugin is running at port 50052.
     """
     dpf_server = connect_to_or_start_server(ip="127.0.0.1", port=50052)
