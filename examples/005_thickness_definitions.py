@@ -131,7 +131,7 @@ plotter.show()
 
 # %%
 # Create the data for the lookup table.
-# Make a 20x20 grid of points on which a thickness function is defined. In this example,
+# Make a 20x20 grid of points to define a thickness function on. In this example,
 # the mesh of the lookup table is finer than the finite element mesh, and the thickness
 # is interpolated onto the finite element mesh.
 # Note that the plate lies in the xz plane and the thickness is defined in the y direction.
