@@ -22,7 +22,7 @@ One way to create an input file for PyACP is to create a static structural setup
 * Add a "Static Structural" system.
 * Create or import a geometry in the geometry cell of the static structural system (A3). Note that PyACP only supports shell geometries.
 * Open the Mechanical Model (A4).
-* Assign a thickness and a material to the geometry (these are later overwritten by PyACP).
+* Assign a thickness and a material to the geometry. (These are later overwritten by PyACP.)
 * Optional: Define the boundary conditions.
 * Select "Static Structural (A5)" in the tree and then click "Environment/Write Input File" in the navigation bar.
 * Save the input file in \*.dat format to the desired location.
