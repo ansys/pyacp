@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711039947340,
+  "lastUpdate": 1711355126193,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13922,6 +13922,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00019848275410895043",
             "extra": "mean: 828.0678226361404 usec\nrounds: 1714"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "65216347+jonathanzopes@users.noreply.github.com",
+            "name": "Jonathan Zopes",
+            "username": "jonathanzopes"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6136b42bdace6d58443051e295ef15ea435e2262",
+          "message": "Minimal fix in rosettes example (#506)",
+          "timestamp": "2024-03-25T09:22:10+01:00",
+          "tree_id": "494d9f299bed0c01f250031728b1f1e1395a4083",
+          "url": "https://github.com/ansys/pyacp/commit/6136b42bdace6d58443051e295ef15ea435e2262"
+        },
+        "date": 1711355101043,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.17482729742946,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004258214562415406",
+            "extra": "mean: 161.94784919997574 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1231.0329388567839,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020267059921144948",
+            "extra": "mean: 812.325948750538 usec\nrounds: 1561"
           }
         ]
       }
