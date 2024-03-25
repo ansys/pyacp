@@ -151,6 +151,7 @@ plotter.show()
 # %%
 # Define directions with a radial rosette
 # ---------------------------------------
+
 # %%
 # Create a radial rosette and plot the resulting reference directions.
 # For a radial rosette, a line is constructed that goes through the origin. Its
@@ -174,6 +175,7 @@ plotter.show()
 # %%
 # Define directions with a cylindrical rosette
 # --------------------------------------------
+
 # %%
 # Create a cylindrical rosette and plot the resulting reference directions.
 # For a cylindrical rosette, the reference directions are tangential to circles around the origin
@@ -195,6 +197,7 @@ plotter.show()
 # %%
 # Define directions with a spherical rosette
 # ------------------------------------------
+
 # %%
 # Create a spherical rosette and plot the resulting reference directions.
 # For a spherical rosette, the reference directions are tangential to a sphere around the origin.
@@ -216,6 +219,7 @@ plotter.show()
 # %%
 # Define directions with an edge wise rosette
 # -------------------------------------------
+
 # %%
 # Create an edge wise rosette and plot the resulting reference directions.
 # The reference direction is given by a projection of ``dir1``
