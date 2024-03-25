@@ -318,7 +318,7 @@ def get_max_irf_for_parameters(
 
 # %%
 # To inject the ``acp_workflow``, ``mapdl``, ``dpf_server``, and ``workdir`` arguments into the
-# ``get_max_irf_for_parameters`` function, you can use the ``functools.partial`` function.
+# ``get_max_irf_for_parameters()`` function, you can use the ``functools.partial()`` function.
 
 results: list[float] = []
 optimization_function = partial(
