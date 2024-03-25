@@ -361,18 +361,18 @@ tests = ["ansys-mapdl-core (==0.65.2)", "pyansys-tools-report (==0.6.0)", "pytes
 
 [[package]]
 name = "ansys-mechanical-core"
-version = "0.10.7"
+version = "0.10.8"
 description = "A python wrapper for Ansys Mechanical"
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "ansys_mechanical_core-0.10.7-py3-none-any.whl", hash = "sha256:4b014cc4e8a5cc6fceb8f8d0ffe0d8974e190ba1c9c172a6fa84a6023d5db8d6"},
-    {file = "ansys_mechanical_core-0.10.7.tar.gz", hash = "sha256:f6f088edecc0c591adce0d8ea27ab05ba25b6961bbd50697a823e7b043c6ff13"},
+    {file = "ansys_mechanical_core-0.10.8-py3-none-any.whl", hash = "sha256:7a906b6b769c6b0a2cd1c2698de4a54cf863c7ec1a82022a0dde213490367c8e"},
+    {file = "ansys_mechanical_core-0.10.8.tar.gz", hash = "sha256:5b416d87cd29215ade054491500f1786401246273b51edff0c068722801233be"},
 ]
 
 [package.dependencies]
 ansys_api_mechanical = "0.1.1"
-ansys-mechanical-env = "0.1.3"
+ansys-mechanical-env = "0.1.4"
 ansys-platform-instancemanagement = ">=1.0.1"
 ansys-pythonnet = ">=3.1.0rc2"
 ansys-tools-path = ">=0.3.1"
@@ -384,18 +384,18 @@ protobuf = ">=3.12.2"
 tqdm = ">=4.45.0"
 
 [package.extras]
-doc = ["Sphinx (==7.2.6)", "ansys-sphinx-theme (==0.13.4)", "grpcio (==1.60.1)", "imageio (==2.34.0)", "imageio-ffmpeg (==0.4.9)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.8.2)", "numpy (==1.26.4)", "numpydoc (==1.6.0)", "pandas (==2.2.0)", "panel (==1.3.8)", "plotly (==5.18.0)", "pypandoc (==1.12)", "pytest-sphinx (==0.6.0)", "pythreejs (==2.4.2)", "pyvista (==0.43.3)", "sphinx-autobuild (==2024.2.4)", "sphinx-autodoc-typehints (==2.0.0)", "sphinx-copybutton (==0.5.2)", "sphinx-gallery (==0.15.0)", "sphinx-notfound-page (==1.0.0)", "sphinx_design (==0.5.0)", "sphinxcontrib-websupport (==1.2.7)", "sphinxemoji (==0.3.1)"]
-tests = ["pytest (==8.0.0)", "pytest-cov (==4.1.0)", "pytest-print (==1.0.0)"]
+doc = ["Sphinx (==7.2.6)", "ansys-sphinx-theme (==0.14.1)", "grpcio (==1.62.1)", "imageio (==2.34.0)", "imageio-ffmpeg (==0.4.9)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.8.3)", "numpy (==1.26.4)", "numpydoc (==1.6.0)", "pandas (==2.2.1)", "panel (==1.3.8)", "plotly (==5.20.0)", "pypandoc (==1.13)", "pytest-sphinx (==0.6.0)", "pythreejs (==2.4.2)", "pyvista (==0.43.4)", "sphinx-autobuild (==2024.2.4)", "sphinx-autodoc-typehints (==2.0.0)", "sphinx-copybutton (==0.5.2)", "sphinx-gallery (==0.15.0)", "sphinx-notfound-page (==1.0.0)", "sphinx_design (==0.5.0)", "sphinxcontrib-websupport (==1.2.7)", "sphinxemoji (==0.3.1)"]
+tests = ["pytest (==8.1.1)", "pytest-cov (==4.1.0)", "pytest-print (==1.0.0)"]
 
 [[package]]
 name = "ansys-mechanical-env"
-version = "0.1.3"
+version = "0.1.4"
 description = "A python wrapper for loading environment variables when using PyMechanical embedded instances in Linux."
 optional = false
 python-versions = ">3.8,<4"
 files = [
-    {file = "ansys-mechanical-env-0.1.3.tar.gz", hash = "sha256:a8579ed3ab2bf1e07bc92d661923737fe8bd8afecce953bf6b62123398c96c77"},
-    {file = "ansys_mechanical_env-0.1.3-py3-none-any.whl", hash = "sha256:e8512ed293ed607890ced5742b87d813cc44e651c09f30cb7b371051e5ec0771"},
+    {file = "ansys-mechanical-env-0.1.4.tar.gz", hash = "sha256:c7c0994b94a41021932d8c860a942596d18d8c1c99a2fda16d835b63dbd64eac"},
+    {file = "ansys_mechanical_env-0.1.4-py3-none-any.whl", hash = "sha256:54c2b78d9d142c08a64f1cd1eda0442ee541a14f50c0a952731a7956ff0223c9"},
 ]
 
 [package.dependencies]
@@ -438,13 +438,13 @@ clr-loader = ">=0.2.6,<0.3.0"
 
 [[package]]
 name = "ansys-sphinx-theme"
-version = "0.14.0"
+version = "0.14.1"
 description = "A theme devised by ANSYS, Inc. for Sphinx documentation."
 optional = false
 python-versions = ">=3.9,<4"
 files = [
-    {file = "ansys_sphinx_theme-0.14.0-py3-none-any.whl", hash = "sha256:3ef0dcb5f6c491c876f1e5f4ed63f7acff7b5763ffc991b7bbf9336b11c3f029"},
-    {file = "ansys_sphinx_theme-0.14.0.tar.gz", hash = "sha256:e576f1a61a660d01e186e8413ebc6bc9c6c132c66e5b626a24a8a0ba9de5e138"},
+    {file = "ansys_sphinx_theme-0.14.1-py3-none-any.whl", hash = "sha256:b8f6bd0a5d2ac13db6e8c45cb1fb8120cbbd843f58606a9b37a15f40ed3352c6"},
+    {file = "ansys_sphinx_theme-0.14.1.tar.gz", hash = "sha256:ac1fdf744591cb2021dd4a088715802ba01a0f810ffa3af081c1dc0800f32e60"},
 ]
 
 [package.dependencies]
@@ -1721,13 +1721,13 @@ pyparsing = {version = ">=2.4.2,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.0.2 || >3.0
 
 [[package]]
 name = "hypothesis"
-version = "6.99.2"
+version = "6.99.13"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "hypothesis-6.99.2-py3-none-any.whl", hash = "sha256:f277f6ccb074f39d51c7f32ba5a0ff640dba9b71ef69ea1e1e09b6f7c25302f5"},
-    {file = "hypothesis-6.99.2.tar.gz", hash = "sha256:24453b1a86151be83d26e81834e29022b3e3f0fc5d71275cc3d096649a13c53c"},
+    {file = "hypothesis-6.99.13-py3-none-any.whl", hash = "sha256:b538df1d22365df84f94c38fb2d9c41a222373594c2a910cc8f4ddc68240a62f"},
+    {file = "hypothesis-6.99.13.tar.gz", hash = "sha256:e425e8a3f1912e44f62ff3e2768dca19c79f46d43ec70fa56e96e2d7194ccd2d"},
 ]
 
 [package.dependencies]
@@ -1736,10 +1736,10 @@ exceptiongroup = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 sortedcontainers = ">=2.1.0,<3.0.0"
 
 [package.extras]
-all = ["backports.zoneinfo (>=0.2.1)", "black (>=19.10b0)", "click (>=7.0)", "crosshair-tool (>=0.0.50)", "django (>=3.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.1)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.17.3)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2024.1)"]
+all = ["backports.zoneinfo (>=0.2.1)", "black (>=19.10b0)", "click (>=7.0)", "crosshair-tool (>=0.0.53)", "django (>=3.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.2)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.17.3)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2024.1)"]
 cli = ["black (>=19.10b0)", "click (>=7.0)", "rich (>=9.0.0)"]
 codemods = ["libcst (>=0.3.16)"]
-crosshair = ["crosshair-tool (>=0.0.50)", "hypothesis-crosshair (>=0.0.1)"]
+crosshair = ["crosshair-tool (>=0.0.53)", "hypothesis-crosshair (>=0.0.2)"]
 dateutil = ["python-dateutil (>=1.4)"]
 django = ["django (>=3.2)"]
 dpcontracts = ["dpcontracts (>=0.4)"]
@@ -3018,13 +3018,13 @@ xxhash = ["xxhash (>=1.4.3)"]
 
 [[package]]
 name = "pre-commit"
-version = "3.6.2"
+version = "3.7.0"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "pre_commit-3.6.2-py2.py3-none-any.whl", hash = "sha256:ba637c2d7a670c10daedc059f5c49b5bd0aadbccfcd7ec15592cf9665117532c"},
-    {file = "pre_commit-3.6.2.tar.gz", hash = "sha256:c3ef34f463045c88658c5b99f38c1e297abdcc0ff13f98d3370055fbbfabc67e"},
+    {file = "pre_commit-3.7.0-py2.py3-none-any.whl", hash = "sha256:5eae9e10c2b5ac51577c3452ec0a490455c45a0533f7960f993a0d01e59decab"},
+    {file = "pre_commit-3.7.0.tar.gz", hash = "sha256:e209d61b8acdcf742404408531f0c37d49d2c734fd7cff2d6076083d191cb060"},
 ]
 
 [package.dependencies]
@@ -3339,13 +3339,13 @@ histogram = ["pygal", "pygaljs"]
 
 [[package]]
 name = "pytest-cases"
-version = "3.8.3"
+version = "3.8.4"
 description = "Separate test code from test cases in pytest."
 optional = false
 python-versions = "*"
 files = [
-    {file = "pytest-cases-3.8.3.tar.gz", hash = "sha256:27d24445b9f66cb56528b05088789db4782a2da41eb4856ef170f73476b6d953"},
-    {file = "pytest_cases-3.8.3-py2.py3-none-any.whl", hash = "sha256:04f728c9b93c2983fe4e0daa262a6f05d17549203e8823a3f3b96f10f38b5bab"},
+    {file = "pytest-cases-3.8.4.tar.gz", hash = "sha256:b4cec335156f44f3bcfa85e79f2b34b5fa52e6332a8542ddf3e84fa13faacd76"},
+    {file = "pytest_cases-3.8.4-py2.py3-none-any.whl", hash = "sha256:d03575a375f953f35ae6840ee35fd1df9f7b6c54194845f81a0fe3d726a395dc"},
 ]
 
 [package.dependencies]
@@ -3398,13 +3398,13 @@ files = [
 
 [[package]]
 name = "pyvista"
-version = "0.43.3"
+version = "0.43.4"
 description = "Easier Pythonic interface to VTK"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pyvista-0.43.3-py3-none-any.whl", hash = "sha256:5eb589bbea294761cd44aed0330481019e8eca2ddb950a1f332a5a132000e93d"},
-    {file = "pyvista-0.43.3.tar.gz", hash = "sha256:e039cdeb0c7cbb42a16fbdfbbede65a7dc656def787e76c79a43eb0badc88c9b"},
+    {file = "pyvista-0.43.4-py3-none-any.whl", hash = "sha256:f1fc56ac9ea1447660dec91e06b37f48736fd6983a2ed9fb2780252724b1caeb"},
+    {file = "pyvista-0.43.4.tar.gz", hash = "sha256:e0b950d8283ba4e1333801d1d5fcdb2fa2f03a64e085b5b04ed8b7dcca6a7ac7"},
 ]
 
 [package.dependencies]
@@ -4403,13 +4403,13 @@ trame-client = "*"
 
 [[package]]
 name = "types-protobuf"
-version = "4.24.0.20240302"
+version = "4.24.0.20240311"
 description = "Typing stubs for protobuf"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "types-protobuf-4.24.0.20240302.tar.gz", hash = "sha256:f22c00cc0cea9722e71e14d389bba429af9e35a74a949719c167203a5abbe2e4"},
-    {file = "types_protobuf-4.24.0.20240302-py3-none-any.whl", hash = "sha256:5c607990f50f14606c2edaf379f8acc7418fef1451b227aa3c6a8a2cbc6ff14a"},
+    {file = "types-protobuf-4.24.0.20240311.tar.gz", hash = "sha256:c80426f9fb9b21aee514691e96ab32a5cd694a82e2ac07964b352c3e7e0182bc"},
+    {file = "types_protobuf-4.24.0.20240311-py3-none-any.whl", hash = "sha256:8e039486df058141cb221ab99f88c5878c08cca4376db1d84f63279860aa09cd"},
 ]
 
 [[package]]
