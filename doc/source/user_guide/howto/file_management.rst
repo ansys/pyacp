@@ -117,7 +117,7 @@ download them to the server and specify their names.
 Loading input files
 ~~~~~~~~~~~~~~~~~~~
 
-You can manually load the file ``input_file.cdb`` to the ACP instance by
+You can manually load the ``input_file.cdb`` file to the ACP instance by
 using the :meth:`.upload_file` method:
 
 .. doctest::
