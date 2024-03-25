@@ -209,7 +209,7 @@ update_ply_angles(acp_workflow=acp_workflow, parameters=[0, 45, 90, 135, 180, 22
 
 
 # %%
-# The ``solve_cdb`` function solves the .cdb file with MAPDL and returns the path to the .rst file.
+# The ``solve_cdb()`` function solves the CDB file with MAPDL and returns the path to the RST file.
 
 
 def solve_cdb(*, mapdl, cdb_file, workdir):
