@@ -83,7 +83,7 @@ print(local_file_path)
 cdb_file_path = acp.upload_file(local_path=local_file_path)
 
 # %%
-# Load the .cdb file into PyACP and set the unit system.
+# Load the CDB file into PyACP and set the unit system.
 model = acp.import_model(
     path=cdb_file_path, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
 )
