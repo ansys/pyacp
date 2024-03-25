@@ -43,7 +43,7 @@ You can also create an input file for PyACP by performing these steps:
 
 * Open Ansys Mechanical APDL
 * Load or create a model with APDL commands
-* Write the \*.cdb file with the ``CDWRITE`` command:
+* Write the CDB file with the ``CDWRITE`` command:
 
     .. code-block:: apdl
 
