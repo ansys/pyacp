@@ -261,8 +261,8 @@ offsets_column = lookup_table.create_column(
 )
 
 # %%
-# Create the edge set from the "All_Elements" element set. Since you
-# assigned 30° to the limit angle, only one edge at x=0 will be selected.
+# Create the edge set from the "All_Elements" element set. Because you
+# assigned 30 degrees to the limit angle, only one edge at x=0 is selected.
 edge_set = model.create_edge_set(
     name="edge_set",
     edge_set_type=EdgeSetType.BY_REFERENCE,
