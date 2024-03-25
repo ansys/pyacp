@@ -112,7 +112,7 @@ Manual file management
 ''''''''''''''''''''''
 
 To get more control over where files are stored, you can manually upload and
-download them to the server, and specify their names.
+download them to the server and specify their names.
 
 Loading input files
 ~~~~~~~~~~~~~~~~~~~
