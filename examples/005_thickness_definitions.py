@@ -109,7 +109,7 @@ thickness_virtual_geometry = model.create_virtual_geometry(
 )
 
 # %%
-# Set the thickness type to FROM_GEOMETRY and define the virtual geometry.
+# Set the thickness type to ``FROM_GEOMETRY`` and define the virtual geometry.
 modeling_ply.thickness_type = ThicknessType.FROM_GEOMETRY
 modeling_ply.thickness_geometry = thickness_virtual_geometry
 
