@@ -29,7 +29,7 @@ Consider the following example. First, launch an ACP instance and import a model
 .. testcode::
     :hide:
 
-    path = acp.upload_file("../tests/data/minimal_complete_model.acph5")
+    path = acp.upload_file("../tests/data/minimal_complete_model_no_matml_link.acph5")
 
 
 .. doctest::
@@ -95,7 +95,7 @@ This can also be used to copy an object between models, even if the models are o
 .. testcode::
     :hide:
 
-    path = acp2.upload_file("../tests/data/minimal_complete_model.acph5")
+    path = acp2.upload_file("../tests/data/minimal_complete_model_no_matml_link.acph5")
 
 .. doctest::
 
