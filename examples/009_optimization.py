@@ -215,7 +215,7 @@ update_ply_angles(acp_workflow=acp_workflow, parameters=[0, 45, 90, 135, 180, 22
 def solve_cdb(*, mapdl, cdb_file, workdir):
     mapdl.clear()
     mapdl.input(cdb_file)
-    # Solve the model. Note that the model contains two time step.
+    # Solve the model. Note that the model contains two timesteps.
     mapdl.allsel()
     mapdl.slashsolu()
     mapdl.time(1.0)
