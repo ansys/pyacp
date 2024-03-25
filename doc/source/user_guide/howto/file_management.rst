@@ -142,7 +142,7 @@ use the path to create a model:
 Getting output files
 ~~~~~~~~~~~~~~~~~~~~
 
-To get the ``.acph5`` file, it needs to be stored on the server. You can
+To get the ACPH5 file, it must be stored on the server. You can
 manually do that using the model's :meth:`.save` method:
 
 .. doctest::
