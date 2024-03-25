@@ -327,7 +327,7 @@ from ansys.mapdl.core import launch_mapdl
 mapdl = launch_mapdl()
 mapdl.clear()
 # %%
-# Load the .cdb file into PyMAPDL.
+# Load the CDB file into PyMAPDL.
 mapdl.input(str(cdb_file_local_path))
 
 # %%
