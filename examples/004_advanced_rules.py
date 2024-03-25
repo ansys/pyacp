@@ -290,7 +290,7 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # --------------------------------
 
 # %%
-# Creating a boolean selection rule and assigning it to a ply has the same
+# Creating a Boolean selection rule and assigning it to a ply has the same
 # effect as linking the individual rules directly to the ply. Boolean rules are still useful
 # because they can help organize rules and make more complex ones.
 #
