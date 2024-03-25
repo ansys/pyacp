@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711355126193,
+  "lastUpdate": 1711355891080,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -13960,6 +13960,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020267059921144948",
             "extra": "mean: 812.325948750538 usec\nrounds: 1561"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6504fa960e55dceb471f7ac0f7a07b66018e2c5a",
+          "message": "Use dev version of py dpf composites (#500)",
+          "timestamp": "2024-03-25T08:34:59Z",
+          "tree_id": "358d0256f009c3f34665a4cc5bb07ea8326129c9",
+          "url": "https://github.com/ansys/pyacp/commit/6504fa960e55dceb471f7ac0f7a07b66018e2c5a"
+        },
+        "date": 1711355864289,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.12148890526058,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00289766081648776",
+            "extra": "mean: 163.3589499999971 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1195.4859514039663,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020692845341203887",
+            "extra": "mean: 836.4799258624582 usec\nrounds: 1740"
           }
         ]
       }
