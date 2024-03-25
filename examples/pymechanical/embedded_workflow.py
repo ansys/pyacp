@@ -35,7 +35,7 @@ from ansys.mechanical.core import App, global_variables
  These are the main steps:
     * Load geometry (with named selections) in PyMechanical
     * Mesh in PyMechanical
-    * Export mesh to hdf5 file
+    * Export mesh to HDF5 file
     * Load mesh in PyACP and build lay-up
     * Export composite definitions and material data from PyACP
     * Import lay-up and material in PyMechanical (imported plies)
