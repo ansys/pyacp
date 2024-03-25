@@ -157,7 +157,7 @@ class ACPWorkflow:
         Format of the file to be loaded. Can be one of ``"acp:h5"``, ``"ansys:h5"``,
         ``"ansys:cdb"``, and ``"ansys:dat"``.
     kwargs :
-        Additional keyword arguments passed to the :meth:`.ACP.import_model` method.
+        Additional keyword arguments to pass to the :meth:`.ACP.import_model()` method.
 
     """
 
