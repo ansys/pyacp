@@ -327,7 +327,7 @@ assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
 
 # %%
-# Modify the operation type of the boolean selection rule so that the two rules are added.
+# Modify the operation type of the Boolean selection rule so that the two rules are added.
 linked_parallel_rule_boolean.operation_type = BooleanOperationType.INTERSECT
 linked_cylindrical_rule_boolean.operation_type = BooleanOperationType.ADD
 
