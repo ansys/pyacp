@@ -223,7 +223,7 @@ def solve_cdb(*, mapdl, cdb_file, workdir):
     mapdl.time(2.0)
     mapdl.solve()
 
-    # Download the .rst file for further postprocessing
+    # Download the RST file for further postprocessing
     rstfile_name = f"{mapdl.jobname}.rst"
     rst_file_local_path = workdir / rstfile_name
     mapdl.download(rstfile_name, str(workdir))
