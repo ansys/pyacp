@@ -33,7 +33,7 @@ Begin with an MAPDL CDB file that contains the mesh, material data, and
 boundary conditions. Import the file to PyACP to define the lay-up, and then export the
 resulting model to PyMAPDL. Once the results are available, the RST file is loaded in
 PyDPF Composites for postprocessing. The additional input files (``material.xml``
-and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDPF Composites.
+and ``ACPCompositeDefinitions.h5``) can also be stored with PyACP and passed to PyDPF Composites.
 
 The MAPDL and DPF services are run in docker containers that share a volume (working
 directory).
