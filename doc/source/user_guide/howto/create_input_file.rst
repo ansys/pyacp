@@ -8,7 +8,7 @@ the mesh from \*.cdb and \*.dat files with :meth:`.ACPWorkflow.from_cdb_or_dat_f
 edge sets and materials from the input file. Once the layup has been created with PyACP, you can export its CDB file with the :meth:`.ACPWorkflow.get_local_cdb_file` method. This file
 contains all the data from the initial input file along with the layup information and
 materials added by PyACP. An attempt is made to preserve the original input file as much as possible.
-This includes the original mesh, materials, and boundary conditions. Therefore, you may directly use the exported \*.cdb file
+This includes the original mesh, materials, and boundary conditions. Therefore, you may directly use the exported CDB file
 for an analysis through PyMAPDL. For more information, see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
 
 .. _input_file_from_mechanical:
