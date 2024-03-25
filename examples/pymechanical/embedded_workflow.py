@@ -85,7 +85,7 @@ Model.Mesh.GenerateMesh()
 # Load ACPFuture Shim
 # Note: In the embedded PyMechanical, the shim has to be loaded with an
 # absolute path. In the remote workflow, it is loaded by adding the containing folder
-# to the path and then just passing the file name. This does not work for the embedded case
+# to the path and then just passing the filename. This does not work for the embedded case
 # (and vice versa).
 import clr
 
