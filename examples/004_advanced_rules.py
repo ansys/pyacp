@@ -110,7 +110,7 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 
 # %%
 # Rules can be parametrized. This is useful when a rule is used multiple times but with different
-# parameters. :class:`.LinkedSelectionRule` shows what parameters are available for each rule.
+# parameters.  The :class:`.LinkedSelectionRule` class shows what parameters are available for each rule.
 # In this example, the extent of the parallel rule is modified.
 
 # %%
