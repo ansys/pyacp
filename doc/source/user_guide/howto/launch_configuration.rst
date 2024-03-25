@@ -66,7 +66,7 @@ Choose the launch mode at runtime
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To switch between the launch modes, you can specify the ``launch_mode`` argument
-when calling :func:`.launch_acp`. Note that the selected launch mode must already
+when calling :func:`.launch_acp` function. Note that the selected launch mode must already
 be configured with ``ansys-launcher``.
 
 .. testcode::
