@@ -121,7 +121,7 @@ material_output_path = str((output_path / MATML_FILE).resolve())
 material_output_path = material_output_path.replace("\\", "\\\\")
 Model.Materials.Import(material_output_path)
 
-# The prefix before the filen ame and :: is necessary, but it looks like the actual value is
+# The prefix before the filename and :: is necessary, but it looks like the actual value is
 # ignored.
 hdf_file = rf"{SETUP_FOLDER_NAME}::{str((output_path / COMPOSITE_DEFINITIONS_H5).resolve())}"
 # backslashes need to be escaped twice because when
