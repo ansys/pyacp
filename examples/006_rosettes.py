@@ -129,7 +129,7 @@ plotter.show()
 
 # %%
 # Create a ply that uses the reference directions defined by the rosette.
-# The ply angle is set to 20°, which means the fiber direction is rotated by 20°
+# The ply angle is set to 20 degrees, which means that the fiber direction is rotated by 20 degrees
 # from the reference direction.
 modeling_group = model.create_modeling_group(name="modeling_group")
 modeling_ply = modeling_group.create_modeling_ply(
