@@ -334,7 +334,7 @@ optimization_function([0, 45, 90, 135, 180, 225])
 
 # %%
 # For the optimization, you can use the Nelder-Mead method available in
-# the ``scipy.optimize.minimize`` function. This is a downhill simplex algorithm that
+# the ``scipy.optimize.minimize()`` function. This is a downhill simplex algorithm that
 # does not require the gradient of the objective function. It is suitable for finding
 # a local minimum of the objective function.
 #
