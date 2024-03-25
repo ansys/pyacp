@@ -174,7 +174,7 @@ lookup_table.columns["Location"].data = points
 thickness_column = lookup_table.create_column(data=thickness, dimension_type=DimensionType.LENGTH)
 
 # %%
-# Set the thickness type to FROM_TABLE and assign the thickness column.
+# Set the thickness type to ``FROM_TABLE`` and assign the thickness column.
 modeling_ply.thickness_type = ThicknessType.FROM_TABLE
 modeling_ply.thickness_field = thickness_column
 
