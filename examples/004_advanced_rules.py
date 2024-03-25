@@ -94,7 +94,7 @@ print(workflow.working_directory.path)
 print(model.unit_system)
 
 # %%
-# Add more layers to the modeling ply so it easier to see the effects of the selection rules.
+# Add more layers to the modeling ply so that it is easier to see the effects of the selection rules.
 # Plot the thickness of all the plies without any rules.
 
 modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
