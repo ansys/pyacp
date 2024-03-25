@@ -40,7 +40,7 @@ but orthotropic stress and strain limits.
 
     While a material is unstored (see :ref:`stored_vs_unstored`), the property set does not
     automatically change from orthotropic to isotropic or vice versa. When storing the
-    material, then the backend will ensure that its definition is consistent.
+    material, the backend ensures that its definition is consistent.
 
 Available attributes
 ''''''''''''''''''''
