@@ -294,7 +294,7 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # effect as linking the individual rules directly to the ply. Boolean rules are still useful
 # because they can help organize rules and make more complex ones.
 #
-# Create a cylindrical selection rule which will be combined with the parallel rule.
+# Create a cylindrical selection rule to combine with the parallel rule.
 cylindrical_rule_boolean = model.create_cylindrical_selection_rule(
     name="cylindrical_rule",
     origin=(0.005, 0, 0.005),
