@@ -33,7 +33,7 @@ For a complete example, see :ref:`sphx_glr_examples_gallery_examples_001_basic_f
 
 .. note::
 
-    The imported model will always contain the dummy material named "1" that was assigned to the geometry.
+    The imported model always contains the dummy material named ``1`` that was assigned to the geometry.
 
 
 Create an input file with Ansys Mechanical APDL
