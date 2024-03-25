@@ -7,7 +7,7 @@ ways to manage them.
 
 In the following examples, the ACP instance is launched on a remote server. The
 differences between local and remote ACP instances, in terms of file management,
-are explained afterwards in the :ref:`local_vs_remote` section.
+are explained afterwards in :ref:`local_vs_remote`.
 
 .. doctest::
     :hide:
