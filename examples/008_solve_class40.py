@@ -348,8 +348,8 @@ rst_file_local_path = pathlib.Path(tmp_dir.name) / rstfile_name
 mapdl.download(rstfile_name, tmp_dir.name)
 
 # %%
-# Post-Processing with PyDPF composites
-# -----------------------------------
+# Postprocessing with PyDPF composites
+# ------------------------------------
 #
 # To postprocess the results, you must configure the imports, connect to the
 # PyDPF Composites server and load its plugin.
