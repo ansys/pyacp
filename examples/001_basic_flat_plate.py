@@ -34,11 +34,11 @@ run a failure analysis with PyDPF Composites.
 # Description
 # -----------------------------------
 #
-# In a basic PyACP workflow, you begin with an MAPDL \*.dat file containing the mesh, material data, and
-# boundary conditions. For more information on creating input files, see the :ref:`input_file_for_pyacp`
-# section. Then, you import the \*.dat file to PyACP to define the composite lay-up, and export the
-# resulting model from PyACP to PyMAPDL. Once the results are available, the .rst file is loaded in
-# PyDPF Composites for analysis. The additional input files (material.xml and ACPCompositeDefinitions.h5)
+# In a basic PyACP workflow, you begin with an MAPDL DAT file containing the mesh, material data, and
+# boundary conditions. For more information on creating input files, see :ref:`input_file_for_pyacp`.
+# Then, you import the DAT file into PyACP to define the composite lay-up. Finally, you export the
+# resulting model from PyACP to PyMAPDL. Once the results are available, the RST file is loaded in
+# PyDPF Composites for analysis. The additional input files (``material.xml`` and ``ACPCompositeDefinitions.h5``)
 # can also be stored with PyACP and passed to PyDPF Composites.
 
 # %%
