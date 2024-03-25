@@ -77,7 +77,7 @@ Visualize model
     Scalar data
     '''''''''''
 
-    You can convert Scalar data to a PyVista mesh using the :meth:`get_pyvista_mesh <.ScalarData.get_pyvista_mesh>` method. This method requires the base model mesh.
+    You can convert scalar data to a PyVista mesh using the :meth:`get_pyvista_mesh <.ScalarData.get_pyvista_mesh>` method. This method requires the base model mesh.
 
     For example, you may plot the total thickness of the model using the following code:
 
