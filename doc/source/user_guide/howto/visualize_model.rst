@@ -47,7 +47,7 @@ Visualize model
     Showing the directions
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    Show the directions (such as normals, fiber directions, orientations, etc.) of the model by using the :func:`.get_directions_plotter` helper function. This function takes the model, the components to visualize, and some optional parameters.
+    Show the directions (such as normals, fiber directions, and orientations) of the model by using the :func:`.get_directions_plotter` helper function. This function takes the model, the components to visualize, and some optional parameters.
 
     The following example shows the orientation and fiber direction of a modeling ply.
 
