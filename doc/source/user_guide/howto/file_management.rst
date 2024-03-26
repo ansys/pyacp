@@ -75,7 +75,7 @@ can access the newly created model using the ``workflow.model`` command:
 Getting output files
 ~~~~~~~~~~~~~~~~~~~~
 
-Use the workflow's ``get_local_*`` methods to create and download
+Use the workflow's ``get_local_*()`` methods to create and download
 output files. For example, to get the ACPH5 file of the model, use the
 :meth:`.get_local_acph5_file` method:
 
