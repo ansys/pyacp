@@ -36,7 +36,7 @@ Using a predefined workflow
 '''''''''''''''''''''''''''
 
 The simplest way to manage files is by using the :class:`.ACPWorkflow` class. This class
-manages the use of predetermined output filenames, which is the most common use case.
+uses predetermined filenames and automatically handles uploading and downloading files.
 
 Loading input files
 ~~~~~~~~~~~~~~~~~~~
