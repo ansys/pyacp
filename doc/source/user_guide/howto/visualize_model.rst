@@ -121,8 +121,6 @@ Visualize model
         ... )
         >>> plotter.show()
 
-    .. note::
-
         The preceding plot may not render correctly as a static scene. For better visualization of the plot, see the interactive scene.
 
     Showing geometries
