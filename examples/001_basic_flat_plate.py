@@ -67,8 +67,8 @@ from ansys.acp.core import (
 
 
 # %%
-# Launch PyACP and load the model
-# -----------------------------------
+# Launch PyACP
+# ------------
 #
 # Get the example file from the server.
 tempdir = tempfile.TemporaryDirectory()
@@ -82,8 +82,8 @@ input_file = example_helpers.get_example_file(
 acp = launch_acp()
 
 # %%
-# Create an ACP workflow instance
-# -----------------------------------
+# Create an ACP workflow instance and load the model
+# --------------------------------------------------
 #
 # Define the input file and instantiate an ``ACPWorkflow`` instance.
 # The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
