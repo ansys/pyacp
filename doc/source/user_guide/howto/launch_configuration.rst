@@ -34,7 +34,12 @@ As indicated in the preceding output, three methods are available for starting A
 - ``connect``: Connect to an already running ACP server.
 
 You may configure any of the three methods with the ``ansys-launcher`` tool. For example, to use the
-``direct`` method, run the following command: ``ansys-launcher configure ACP direct``.
+``direct`` method, run the following command:
+
+.. code-block:: bash
+
+    ansys-launcher configure ACP direct
+
 The tool prompts you for the required information, providing the default value
 in square brackets. You can accept the default value by pressing the **Enter** key or input a 
 new value by typing it and then pressing the **Enter** key.
