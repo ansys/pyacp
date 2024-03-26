@@ -115,9 +115,14 @@ modeling_ply.thickness_geometry = thickness_virtual_geometry
 model.update()
 assert model.elemental_data.thickness is not None
 plotter = pyvista.Plotter()
-plotter.add_mesh(
-    thickness_geometry.visualization_mesh.to_pyvista(), color="white", style="wireframe"
-)
+# Plot the surface of the geometry
+geometry_polydata = thickness_geometry.visualization_mesh.to_pyvista()
+plotter.add_mesh(geometry_polydata, color="grey", opacity=0.05)
+# Plot the edges of the geometry
+edges = geometry_polydata.extract_feature_edges()
+plotter.add_mesh(edges, color="white", line_width=4)
+plotter.add_mesh(edges, color="black", line_width=2)
+# Plot the ply thickness
 plotter.add_mesh(model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh), show_edges=True)
 
 plotter.show()
