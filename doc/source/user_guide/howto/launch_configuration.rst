@@ -68,7 +68,7 @@ The new configuration is used by the :func:`.launch_acp` function. Note that you
 may have to restart your Python session for the changes to take effect.
 
 Choose the launch mode at runtime
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To switch between the launch modes, you can specify the ``launch_mode`` argument
 when calling the :func:`.launch_acp` function. Note that the selected launch mode must already
