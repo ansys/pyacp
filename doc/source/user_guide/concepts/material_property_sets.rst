@@ -4,7 +4,7 @@ Material property sets
 Material property sets define certain aspects of the properties
 of a material.
 The attributes described in the following subsections show how
-you can use material property sets in PyACP.
+you can create and access material property sets in PyACP.
 
 
 Constant versus variable property sets
