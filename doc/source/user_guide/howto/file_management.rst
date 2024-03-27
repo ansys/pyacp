@@ -172,7 +172,7 @@ When the ACP instance is local, you can use the same code described previously. 
 the effects are slightly different:
 
 When using a workflow
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 - The input file is still copied to the ``local_working_directory`` argument, but then it is loaded
   directly into the ACP instance. There is no separate upload step.
