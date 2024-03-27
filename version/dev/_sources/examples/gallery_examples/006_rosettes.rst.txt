@@ -144,7 +144,7 @@ The input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmp9_ajoz5n
+    /tmp/tmpcnn4ad_v
     mks
 
 
@@ -720,7 +720,7 @@ Plot the resulting reference directions.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.195 seconds)
+   **Total running time of the script:** ( 0 minutes  6.602 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_006_rosettes.py:
