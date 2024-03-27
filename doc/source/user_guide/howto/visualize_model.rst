@@ -1,5 +1,5 @@
 Visualize model
----------------------
+---------------
 
 .. jinja:: conditional_skip
 
