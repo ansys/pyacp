@@ -1,5 +1,5 @@
 Visualize model
----------------------
+---------------
 
 .. jinja:: conditional_skip
 
@@ -70,7 +70,7 @@ Visualize model
     The color scheme used in this plot for the various components matches the ACP GUI.
 
     Showing the mesh data
-    ~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Access the mesh data related to a specific ACP object using the ``elemental_data`` and ``nodal_data`` attributes. These attributes represent either scalar or vector data.
 
