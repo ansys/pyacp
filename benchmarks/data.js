@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711364037607,
+  "lastUpdate": 1711533779864,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14036,6 +14036,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00019872436096448525",
             "extra": "mean: 825.1589816106256 usec\nrounds: 1577"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bbbddff2a669af50128b32e37bf13c1c50ae0482",
+          "message": "Improve the geometry plot in thickness definition example (#510)\n\nImprove the plot of the geometry in the thickness definition example.\r\nInstead of showing the wireframe, plot the surface (with low opacity) and\r\nfeature edges.",
+          "timestamp": "2024-03-27T10:59:13+01:00",
+          "tree_id": "9121fd9b562059c40e9b2d487c80ffd6f8bc0b45",
+          "url": "https://github.com/ansys/pyacp/commit/bbbddff2a669af50128b32e37bf13c1c50ae0482"
+        },
+        "date": 1711533749795,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.7891385144190926,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00469897878237362",
+            "extra": "mean: 172.73727299999564 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1297.167800884172,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001788095051574735",
+            "extra": "mean: 770.9102857150652 usec\nrounds: 1309"
           }
         ]
       }
