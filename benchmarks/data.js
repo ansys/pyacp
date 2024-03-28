@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711533779864,
+  "lastUpdate": 1711615717569,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14074,6 +14074,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0001788095051574735",
             "extra": "mean: 770.9102857150652 usec\nrounds: 1309"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6713128e3e9329cc6075f46a88c2298785f32595",
+          "message": "Replace license server adress by dummy address (#511)",
+          "timestamp": "2024-03-28T09:45:15+01:00",
+          "tree_id": "164cd2286a1a829afc8f7c9620a9e8f680abf86d",
+          "url": "https://github.com/ansys/pyacp/commit/6713128e3e9329cc6075f46a88c2298785f32595"
+        },
+        "date": 1711615687959,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.962628990261053,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00371977998993603",
+            "extra": "mean: 167.71125649999874 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1241.0860917504513,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000178354171854634",
+            "extra": "mean: 805.7458758478076 usec\nrounds: 1474"
           }
         ]
       }
