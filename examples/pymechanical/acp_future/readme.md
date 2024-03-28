@@ -18,4 +18,4 @@ To build:
 Notes: 
 * The shim has to be built on Windows and can then be loaded on Windows as well as Linux.
 * It would probably be quite easy to build the shim as a standalone package or a package that
-is part of PyMechanical by getting the dependencies from conan.
+is part of PyMechanical by getting the dependencies from the Conan package manager.

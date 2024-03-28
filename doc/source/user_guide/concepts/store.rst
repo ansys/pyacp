@@ -65,7 +65,7 @@ You can make changes to the unstored material, but they are lost when the Python
 
     >>> material.density.rho = 8000
 
-To store a material in an ACP model, call its :meth:`store <.Material.store>` method. The ``parent`` parameter determines where in the model the material is stored. In this case, the root of the model is the parent.
+To store a material in an ACP model, call its :meth:`store <.Material.store>` method. The ``parent`` parameter determines where in the model the material is stored. In this case, the parent is the model itself.
 
 .. doctest::
 
