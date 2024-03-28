@@ -37,8 +37,8 @@ import ansys.mechanical.core as pymechanical
 
 # The following lines show how to start the PyMechanical container, currently disabled because
 # a local instance is used.
-# Run the Mechanical Docker container: docker run
-# -e ANSYSLMD_LICENSE_FILE=1055@milwinlicense1.win.ansys.com -p
+# Run mechanical docker container: docker run
+# -e ANSYSLMD_LICENSE_FILE=1055@example@example.com -p
 # 50054:10000 ghcr.io/ansys/mechanical:24.1.0
 # mechanical = pymechanical.launch_mechanical(batch=False, port=50054, start_instance=False)
 
