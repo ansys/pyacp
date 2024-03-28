@@ -38,7 +38,8 @@ it demonstrates the process of optimizing a composite lay-up with PyACP.
 # %%
 # Import modules and setup
 # ------------------------
-# To setup the environment for this optimization example, you must perform these steps which are covered in the subsequent example code:
+# To setup the environment for this optimization example, you must perform these steps which are
+# covered in the subsequent example code:
 #
 # - Import the required libraries.
 # - Launch the ACP, MAPDL, and DPF servers.
