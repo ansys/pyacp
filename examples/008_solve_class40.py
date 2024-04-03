@@ -41,7 +41,7 @@ directory).
 
 # %%
 # Import modules and start ACP
-# ------------------------------
+# ----------------------------
 
 # %%
 # Import the standard library and third-party dependencies.
@@ -348,7 +348,7 @@ rst_file_local_path = pathlib.Path(tmp_dir.name) / rstfile_name
 mapdl.download(rstfile_name, tmp_dir.name)
 
 # %%
-# Postprocessing with PyDPF composites
+# Postprocessing with PyDPF Composites
 # ------------------------------------
 #
 # To postprocess the results, you must configure the imports, connect to the

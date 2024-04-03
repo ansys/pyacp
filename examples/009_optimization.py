@@ -187,7 +187,7 @@ pyacp.get_directions_plotter(
 
 # %%
 # Create functions for the optimization
-# -----------------------------------------
+# -------------------------------------
 #
 # To optimize the ply angles, you must define functions to update, solve, and postprocess
 # the ACP model for a given set of ply angles.

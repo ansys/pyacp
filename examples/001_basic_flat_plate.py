@@ -32,7 +32,7 @@ run a failure analysis with PyDPF Composites.
 
 # %%
 # Description
-# -----------------------------------
+# -----------
 #
 # In a basic PyACP workflow, you begin with an MAPDL DAT file containing the mesh, material data, and
 # boundary conditions. For more information on creating input files, see :ref:`input_file_for_pyacp`.
@@ -43,7 +43,7 @@ run a failure analysis with PyDPF Composites.
 
 # %%
 # Import modules
-# -----------------------------------
+# --------------
 #
 # Import the standard library and third-party dependencies.
 import pathlib
@@ -107,7 +107,7 @@ mesh.plot(show_edges=True)
 
 # %%
 # Define the composite lay-up
-# -----------------------------------
+# ---------------------------
 #
 # Create an orthotropic material and fabric including strain limits, which are later
 # used to postprocess the simulation.
@@ -196,7 +196,7 @@ print_model(model)
 
 # %%
 # Solve the model with PyMAPDL
-# --------------------------
+# ----------------------------
 #
 # Launch the PyMAPDL instance.
 from ansys.mapdl.core import launch_mapdl
@@ -228,7 +228,7 @@ mapdl.download(rstfile_name, str(workflow.working_directory.path))
 
 # %%
 # Postprocessing with PyDPF Composites
-# -----------------------------------
+# ------------------------------------
 #
 # To postprocess the results, you must configure the imports, connect to the
 # PyDPF Composites server, and load its plugin.

@@ -38,7 +38,7 @@ see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
 
 # %%
 # Import modules
-# ----------------------------
+# --------------
 #
 # Import the standard library and third-party dependencies.
 import pathlib
@@ -287,7 +287,7 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 
 # %%
 # Create a boolean selection rule
-# --------------------------------
+# -------------------------------
 
 # %%
 # Creating a Boolean selection rule and assigning it to a ply has the same

@@ -32,7 +32,7 @@ see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
 """
 
 # %%# Import modules
-# ----------------------------
+# ------------------
 #
 # Import the standard library and third-party dependencies.
 import pathlib
@@ -160,7 +160,7 @@ core_fabric = model.create_fabric(name="core", material=ud_material, thickness=0
 
 # %%
 # Create the Lay-up
-# ----------------
+# -----------------
 
 # %%
 # Define a rosette and oriented selection set. Plot the orientations.

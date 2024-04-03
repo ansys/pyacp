@@ -33,7 +33,7 @@ see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
 
 # %%
 # Import modules
-# ----------------------------
+# --------------
 #
 # Import the standard library and third-party dependencies.
 import pathlib
@@ -123,7 +123,7 @@ plotter.show()
 
 # %%
 # Define reference direction from lookup table
-# ---------------------------
+# --------------------------------------------
 
 # %%
 # Create a 3D lookup table to store the direction and angle corrections.
@@ -179,7 +179,7 @@ oss.rosette_selection_method = RosetteSelectionMethod.MINIMUM_ANGLE
 
 # %%
 # Define draping angles from lookup table
-# ---------------------
+# ---------------------------------------
 #
 # %%
 # Compute a correction angle to define circular fiber paths.

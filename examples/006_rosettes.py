@@ -33,7 +33,7 @@ see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
 
 # %%
 # Import modules
-# ----------------------------
+# --------------
 #
 # Import the standard library and third-party dependencies.
 import pathlib
