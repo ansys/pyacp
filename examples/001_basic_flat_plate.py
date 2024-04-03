@@ -20,31 +20,37 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-r"""
+"""
 .. _basic_flat_plate:
 
-Basic PyACP workflow
-====================
+Basic PyACP workflow example
+============================
 
-Define a composite lay-up with PyACP, solve the resulting model with PyMAPDL, and run
-a failure analysis with PyDPF-Composites.
-
-The starting point is a MAPDL \*.dat file which contains the mesh, material data and
-the boundary conditions. The :ref:`input_file_for_pyacp`
-section describes how input files can be created.
-The \*.dat file is imported in PyACP to define the lay-up. PyACP exports the resulting model for PyMAPDL.
-Once the results are available, the RST file is loaded in PyDPF composites.
-The additional input files (material.xml and ACPCompositeDefinitions.h5) can also be stored
-with PyACP and passed to PyDPF Composites.
+This example shows how to define a composite lay-up with PyACP, solve the resulting model with PyMAPDL, and
+run a failure analysis with PyDPF Composites.
 """
 
 # %%
-# Import standard library and third-party dependencies.
+# Description
+# -----------
+#
+# In a basic PyACP workflow, you begin with an MAPDL DAT file containing the mesh, material data, and
+# boundary conditions. For more information on creating input files, see :ref:`input_file_for_pyacp`.
+# Then, you import the DAT file into PyACP to define the composite lay-up. Finally, you export the
+# resulting model from PyACP to PyMAPDL. Once the results are available, the RST file is loaded in
+# PyDPF Composites for analysis. The additional input files (``material.xml`` and
+# ``ACPCompositeDefinitions.h5``) can also be stored with PyACP and passed to PyDPF Composites.
+
+# %%
+# Import modules
+# --------------
+#
+# Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
 
 # %%
-# Import PyACP dependencies
+# Import the PyACP dependencies.
 from ansys.acp.core import (
     ACPWorkflow,
     PlyType,
@@ -61,6 +67,9 @@ from ansys.acp.core import (
 
 
 # %%
+# Launch PyACP
+# ------------
+#
 # Get the example file from the server.
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
@@ -73,6 +82,9 @@ input_file = example_helpers.get_example_file(
 acp = launch_acp()
 
 # %%
+# Create an ACP workflow instance and load the model
+# --------------------------------------------------
+#
 # Define the input file and instantiate an ``ACPWorkflow`` instance.
 # The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
 # It automatically creates a model based on the input file.
@@ -94,8 +106,11 @@ mesh.plot(show_edges=True)
 
 
 # %%
+# Define the composite lay-up
+# ---------------------------
+#
 # Create an orthotropic material and fabric including strain limits, which are later
-# used to post-process the simulation.
+# used to postprocess the simulation.
 engineering_constants = (
     material_property_sets.ConstantEngineeringConstants.from_orthotropic_constants(
         E1=5e10, E2=1e10, E3=1e10, nu12=0.28, nu13=0.28, nu23=0.3, G12=5e9, G23=4e9, G31=4e9
@@ -126,7 +141,7 @@ fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.1)
 
 
 # %%
-# Define a rosette and an oriented selection set and plot the orientations.
+# Define a rosette and oriented selection set. Plot the orientation.
 rosette = model.create_rosette(origin=(0.0, 0.0, 0.0), dir1=(1.0, 0.0, 0.0), dir2=(0.0, 0.0, 1.0))
 
 oss = model.create_oriented_selection_set(
@@ -174,16 +189,16 @@ plotter.show()
 
 
 # %%
-# Print the model tree for a quick overview. Note:
-# The model can also be opened in the ACP GUI.
-# See :ref:`view_the_model_in_the_acp_gui`.
+# For a quick overview, print the model tree. Note that
+# the model can also be opened in the ACP GUI. For more
+# information, see :ref:`view_the_model_in_the_acp_gui`.
 print_model(model)
 
 # %%
-# Solve the model with MAPDL
-# --------------------------
+# Solve the model with PyMAPDL
+# ----------------------------
 #
-# Launch the MAPDL instance.
+# Launch the PyMAPDL instance.
 from ansys.mapdl.core import launch_mapdl
 
 mapdl = launch_mapdl()
@@ -194,29 +209,29 @@ mapdl.clear()
 mapdl.input(str(workflow.get_local_cdb_file()))
 
 # %%
-# Solve the model
+# Solve the model.
 mapdl.allsel()
 mapdl.slashsolu()
 mapdl.solve()
 
 # %%
-# Post-processing: show displacements.
+# Show the displacements in postprocessing.
 mapdl.post1()
 mapdl.set("last")
 mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
 # %%
-# Download the rst file for composite specific post-processing.
+# Download the RST file for composite-specific postprocessing.
 rstfile_name = f"{mapdl.jobname}.rst"
 rst_file_local_path = workflow.working_directory.path / rstfile_name
 mapdl.download(rstfile_name, str(workflow.working_directory.path))
 
 # %%
-# Post-Processing with DPF composites
-# -----------------------------------
+# Postprocessing with PyDPF Composites
+# ------------------------------------
 #
-# Setup: configure imports and connect to the pyDPF Composites server
-# and load the dpf composites plugin.
+# To postprocess the results, you must configure the imports, connect to the
+# PyDPF Composites server, and load its plugin.
 
 from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput
@@ -229,7 +244,7 @@ from ansys.dpf.composites.server_helpers import connect_to_or_start_server
 dpf_server = connect_to_or_start_server()
 
 # %%
-# Specify the Combined Failure Criterion.
+# Specify the combined failure criterion.
 max_strain = MaxStrainCriterion()
 
 cfc = CombinedFailureCriterion(
@@ -238,7 +253,7 @@ cfc = CombinedFailureCriterion(
 )
 
 # %%
-# Create the CompositeModel and configure its input.
+# Create the composite model and configure its input.
 composite_model = CompositeModel(
     get_composite_post_processing_files(workflow, rst_file_local_path),
     default_unit_system=get_dpf_unit_system(model.unit_system),
@@ -246,11 +261,11 @@ composite_model = CompositeModel(
 )
 
 # %%
-# Evaluate the failure criteria and plot it.
+# Evaluate and plot the failure criteria.
 output_all_elements = composite_model.evaluate_failure_criteria(cfc)
 irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
 irf_field.plot()
 
 # %%
-# Release composite model to close open streams to result file.
+# Release the composite model to close the open streams to the result file.
 composite_model = None  # type: ignore

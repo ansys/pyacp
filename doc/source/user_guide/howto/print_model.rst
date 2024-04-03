@@ -1,7 +1,7 @@
-Printing the model tree
------------------------
+Print model tree
+----------------
 
-To get an overview of an ACP model, you can print its tree structure. Starting with a :class:`.Model` instance:
+A tree structure gives an overview of an ACP model. To print a model's tree structure, start with a :class:`.Model` instance:
 
 .. testsetup::
 

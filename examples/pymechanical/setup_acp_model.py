@@ -29,7 +29,7 @@ from ansys.acp.core._tree_objects.material.property_sets import ConstantStrainLi
 
 def setup_and_update_acp_model(output_path, mesh_path, is_local=False):
     """
-    Setup basic ACP layup based on mesh in mesh_path and export material and composite
+    Setup basic ACP lay-up based on mesh in mesh_path, and export material and composite
     definition file to output_path.
     is_local specifies if ACP runs locally (True) or in a docker container.
     """
@@ -99,7 +99,7 @@ def setup_and_update_acp_model(output_path, mesh_path, is_local=False):
     # Update and Save the ACP model
     model.update()
 
-    # Todo: Distinction probably not needed
+    # To-do: Distinction probably not needed
     if is_local:
         model.export_shell_composite_definitions(output_path / COMPOSITE_DEFINITIONS_H5)
         model.export_materials(output_path / MATML_FILE)

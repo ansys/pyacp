@@ -26,19 +26,20 @@
 Optimization example
 ====================
 
-This example demonstrates how to use the ACP, MAPDL, and DPF servers to perform an optimization
-of the ply angles in a composite lay-up. The optimization aims to minimize the maximum inverse
+This example demonstrates how to use the ACP, MAPDL, and DPF servers to optimize the ply
+angles in a composite lay-up. The optimization aims to minimize the maximum inverse
 reserve factor (IRF) of the composite structure under two load cases.
 
-The example uses :py:func:`scipy.optimize.minimize` to perform the optimization. While the
-optimization procedure itself is not the focus of this example and could certainly be improved,
+The example uses the :py:func:`scipy.optimize.minimize` function to perform the optimization.
+While the procedure itself is not the focus of this example and could be improved,
 it demonstrates the process of optimizing a composite lay-up with PyACP.
 """
 
 # %%
-# Imports and setup
-# -----------------
-# As preparation for the example, you need to:
+# Import modules and setup
+# ------------------------
+# To setup the environment for this optimization example, you must perform these steps which are
+# covered in the subsequent example code:
 #
 # - Import the required libraries.
 # - Launch the ACP, MAPDL, and DPF servers.
@@ -46,7 +47,7 @@ it demonstrates the process of optimizing a composite lay-up with PyACP.
 
 
 # %%
-# Import standard library and third-party dependencies
+# Import the standard library and third-party dependencies.
 from functools import partial
 import pathlib
 import random
@@ -88,12 +89,12 @@ workdir = pathlib.Path(tmpdir.name)
 # %%
 # Prepare the ACP model
 # ---------------------
-# The example uses the ``optimization_model.dat`` file, which contains a simple ACP model
+# This example uses the ``optimization_model.dat`` file, which contains a simple ACP model
 # of a rounded square tube.
 #
 # The ``prepare_acp_model`` function imports the ``optimization_model.dat`` file into a new
 # ACP model and creates a lay-up with six plies.
-# It returns a :class:`.ACPWorkflow` object, which can be used to access the model and
+# It returns a :class:`.ACPWorkflow` object that can be used to access the model and
 # generate the output files.
 
 input_file = pyacp.example_helpers.get_example_file(
@@ -103,7 +104,7 @@ input_file = pyacp.example_helpers.get_example_file(
 
 
 def prepare_acp_model(*, acp, workdir, input_file):
-    # Import the input file ``*.dat`` into a new ACP model.
+    # Import the DAT input file into a new ACP model
     acp_workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
         acp=acp,
         cdb_or_dat_file_path=input_file,
@@ -185,13 +186,13 @@ pyacp.get_directions_plotter(
 ).show()
 
 # %%
-# Create functions used in the optimization
-# -----------------------------------------
+# Create functions for the optimization
+# -------------------------------------
 #
 # To optimize the ply angles, you must define functions to update, solve, and postprocess
 # the ACP model for a given set of ply angles.
 #
-# The ``update_ply_angles`` changes the ply angles in the model to the given values, and
+# The ``update_ply_angles()`` function changes the ply angles in the model to the given values and
 # updates the model.
 
 
@@ -209,13 +210,13 @@ update_ply_angles(acp_workflow=acp_workflow, parameters=[0, 45, 90, 135, 180, 22
 
 
 # %%
-# The ``solve_cdb`` function solves the CDB file with MAPDL and returns the path to the RST file.
+# The ``solve_cdb()`` function solves the CDB file with MAPDL and returns the path to the RST file.
 
 
 def solve_cdb(*, mapdl, cdb_file, workdir):
     mapdl.clear()
     mapdl.input(cdb_file)
-    # Solve the model. Note that the model contains two time steps.
+    # Solve the model. Note that the model contains two timesteps.
     mapdl.allsel()
     mapdl.slashsolu()
     mapdl.time(1.0)
@@ -223,7 +224,7 @@ def solve_cdb(*, mapdl, cdb_file, workdir):
     mapdl.time(2.0)
     mapdl.solve()
 
-    # Download RST FILE for further postprocessing.
+    # Download the RST file for further postprocessing
     rstfile_name = f"{mapdl.jobname}.rst"
     rst_file_local_path = workdir / rstfile_name
     mapdl.download(rstfile_name, str(workdir))
@@ -234,14 +235,11 @@ cdb_file = acp_workflow.get_local_cdb_file()
 rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file, workdir=workdir)
 
 # %%
-# The ``get_max_irf`` function uses PyDPF Composites to calculate the maximum
-# inverse reserve factor (IRF) for a given
+# The ``get_max_irf()`` function uses PyDPF Composites to calculate the maximum
+# inverse reserve factor (IRF) for a given RST, composite definitions,
+# or materials file.
 #
-# - RST file
-# - composite definitions file
-# - materials file.
-#
-# It considers only the maximum stress failure criterion.
+# This function only considers the maximum stress failure criterion.
 
 max_stress_criterion = pydpf_composites.failure_criteria.MaxStressCriterion()
 combined_failure_criterion = pydpf_composites.failure_criteria.CombinedFailureCriterion(
@@ -257,7 +255,7 @@ def get_max_irf(
     rst_file,
     failure_criterion,
 ):
-    # Create the CompositeModel and configure its input
+    # Create the composite model and configure its input
     composite_model = pydpf_composites.composite_model.CompositeModel(
         composite_files=pyacp.get_composite_post_processing_files(
             acp_workflow=acp_workflow,
@@ -294,8 +292,8 @@ get_max_irf(
 # Optimize the ply angles
 # -----------------------
 # For the optimization, you must define a single function that takes the ply angles
-# as input and returns the maximum IRF.
-# The ``get_max_irf_for_parameters`` function combines the previously defined functions
+# as its input and returns the maximum IRF.
+# The ``get_max_irf_for_parameters()`` function combines the previously defined functions
 # to perform all the necessary steps for a given set of ply angles.
 
 
@@ -317,8 +315,8 @@ def get_max_irf_for_parameters(
 
 
 # %%
-# To inject the ``acp_workflow``, ``mapdl``, ``dpf_server`` and ``workdir`` arguments into the
-# ``get_max_irf_for_parameters`` function, you can use the ``functools.partial`` function.
+# To inject the ``acp_workflow``, ``mapdl``, ``dpf_server``, and ``workdir`` arguments into the
+# ``get_max_irf_for_parameters()`` function, you can use the ``functools.partial()`` function.
 
 results: list[float] = []
 optimization_function = partial(
@@ -333,12 +331,12 @@ optimization_function = partial(
 optimization_function([0, 45, 90, 135, 180, 225])
 
 # %%
-# For the optimization, you can for example use the Nelder-Mead method available in
-# the ``scipy.optimize.minimize`` function. This is a downhill simplex algorithm that
+# For the optimization, you can use the Nelder-Mead method available in
+# the ``scipy.optimize.minimize()`` function. This is a downhill simplex algorithm that
 # does not require the gradient of the objective function. It is suitable for finding
 # a local minimum of the objective function.
 #
-# To have the Nelder-Mead method cover a reasonable part of the parameter space, you can
+# To have the Nelder-Mead method cover a reasonable part of the parameter space,
 # define an initial simplex (matrix of shape (n+1, n), where n is the number of parameters).
 #
 # The initial simplex is chosen with random ply angles between 0 and 90 degrees. To make
@@ -348,7 +346,7 @@ random.seed(42)
 initial_simplex = [[random.uniform(0, 90) for _ in range(6)] for _ in range(7)]
 
 # %%
-# To build the example, the number of function evaluations is limited to 1. In practice, you
+# To build this example, the number of function evaluations is limited to 1. In practice, you
 # should increase or remove this limit.
 maxfev = 1
 res = minimize(
@@ -368,7 +366,7 @@ res = minimize(
 # Results
 # -------
 #
-# Without the ``maxfev`` limit, the optimization would take roughly 30 minutes to complete, and
+# Without the ``maxfev`` limit, the optimization would take roughly 30 minutes to complete and
 # converge to the following result:
 #
 # .. code :: python
@@ -394,7 +392,7 @@ res = minimize(
 #                             9.133e-01,  9.133e-01,  9.134e-01]))
 
 # %%
-# The following code defines the ``results`` list, as it would be obtained from the full optimization.
+# The following code defines the ``results`` list as it would be obtained from the full optimization.
 
 # fmt: off
 results = [

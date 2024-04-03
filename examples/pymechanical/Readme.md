@@ -1,6 +1,6 @@
-Basic example of a full composite workflow with pymechanical (without workbench). Currently not part of the pyacp example suite.
+This is an example of a full composite workflow using PyMechanical (without Workbench). It is currently not part of the PyACP example suite.
 
-Currently works with both the "remote" (remote_workflow.py) and "embedded" (embedded_workflow) pymechanical.
-Start in "embedded_workflow.py" for more documentation.
+The example works with both "remote" (remote_workflow.py) and "embedded" (embedded_workflow) PyMechanical.
+For the example's documentation, see "embedded_workflow.py".
 
-Works on Windows but could not be tested on Linux due to https://github.com/ansys/pymechanical/issues/352
+This example works on Windows and could not be tested on Linux due to https://github.com/ansys/pymechanical/issues/352.
