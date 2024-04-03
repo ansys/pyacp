@@ -208,7 +208,7 @@ valid license server (e.g ``1055@mylicenseserver.com``). Then start the docker c
 
 .. code-block:: bash
 
-    docker-compose -f docker-compose/docker-compose-extras.yaml up -d
+    docker compose -f docker-compose/docker-compose-extras.yaml up -d
 
 Then build the documentation with the `Sphinx`_ commands mentioned above.
 
