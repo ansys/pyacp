@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711615717569,
+  "lastUpdate": 1712175849412,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14112,6 +14112,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000178354171854634",
             "extra": "mean: 805.7458758478076 usec\nrounds: 1474"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ccf83d73a846ba18e1a1e208446edd737c4c6cd9",
+          "message": "Use docker compose by default, fallback to docker-compose (#514)\n\nThe `docker-compose` command is deprecated according to https://docs.docker.com/compose/faq/, \r\nand replaced by using a subcommand `docker compose`.\r\n\r\nThis PR adds `docker compose` as a default in the launching code, and only falls back to `docker-compose`\r\nif calling `docker compose` fails.\r\n\r\nIn the CI code, use `docker compose` consistently.",
+          "timestamp": "2024-04-03T22:20:44+02:00",
+          "tree_id": "f5791c166b2b6ca12b1e935390914b2b352f7bf8",
+          "url": "https://github.com/ansys/pyacp/commit/ccf83d73a846ba18e1a1e208446edd737c4c6cd9"
+        },
+        "date": 1712175820500,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.998392910571748,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0036043942617057802",
+            "extra": "mean: 166.71131999999034 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1177.743413647803,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00021464351527737777",
+            "extra": "mean: 849.081377498617 usec\nrounds: 1751"
           }
         ]
       }
