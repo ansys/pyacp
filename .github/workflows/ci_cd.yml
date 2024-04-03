@@ -334,7 +334,7 @@ jobs:
 
       - name: Launch MAPDL and DPF servers via docker-compose
         run: |
-          docker-compose -f ./docker-compose/docker-compose-extras.yaml up -d
+          docker compose -f ./docker-compose/docker-compose-extras.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
           ANSYS_DPF_ACCEPT_LA: "Y"
@@ -354,7 +354,7 @@ jobs:
 
       - name: Stop and clean up MAPDL and DPF servers
         run: |
-          docker-compose -f ./docker-compose/docker-compose-extras.yaml down -v
+          docker compose -f ./docker-compose/docker-compose-extras.yaml down -v
 
       - name: Upload HTML Documentation
         uses: actions/upload-artifact@v4
@@ -370,9 +370,9 @@ jobs:
           sudo apt install build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks
         if: ${{ matrix.build_type == 'full' }}
 
-      - name: Restart MAPDL and DPF servers via docker-compose
+      - name: Restart MAPDL and DPF servers via docker compose
         run: |
-          docker-compose -f ./docker-compose/docker-compose-extras.yaml up -d
+          docker compose -f ./docker-compose/docker-compose-extras.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
           ANSYS_DPF_ACCEPT_LA: "Y"
