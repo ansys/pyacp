@@ -23,29 +23,30 @@
 Optimization example
 ====================
 
-This example demonstrates how to use the ACP, MAPDL, and DPF servers to perform an optimization
-of the ply angles in a composite lay-up. The optimization aims to minimize the maximum inverse
+This example demonstrates how to use the ACP, MAPDL, and DPF servers to optimize the ply
+angles in a composite lay-up. The optimization aims to minimize the maximum inverse
 reserve factor (IRF) of the composite structure under two load cases.
 
-The example uses :py:func:`scipy.optimize.minimize` to perform the optimization. While the
-optimization procedure itself is not the focus of this example and could certainly be improved,
+The example uses the :py:func:`scipy.optimize.minimize` function to perform the optimization.
+While the procedure itself is not the focus of this example and could be improved,
 it demonstrates the process of optimizing a composite lay-up with PyACP.
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-46
+.. GENERATED FROM PYTHON SOURCE LINES 39-47
 
-Imports and setup
------------------
-As preparation for the example, you need to:
+Import modules and setup
+------------------------
+To setup the environment for this optimization example, you must perform these steps which are
+covered in the subsequent example code:
 
 - Import the required libraries.
 - Launch the ACP, MAPDL, and DPF servers.
 - Create a temporary directory to store the input and output files.
 
-.. GENERATED FROM PYTHON SOURCE LINES 49-50
+.. GENERATED FROM PYTHON SOURCE LINES 50-51
 
-Import standard library and third-party dependencies
+Import the standard library and third-party dependencies.
 
-.. GENERATED FROM PYTHON SOURCE LINES 50-60
+.. GENERATED FROM PYTHON SOURCE LINES 51-61
 
 .. code-block:: default
 
@@ -66,11 +67,11 @@ Import standard library and third-party dependencies
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 61-62
+.. GENERATED FROM PYTHON SOURCE LINES 62-63
 
 Import Ansys libraries
 
-.. GENERATED FROM PYTHON SOURCE LINES 62-68
+.. GENERATED FROM PYTHON SOURCE LINES 63-69
 
 .. code-block:: default
 
@@ -87,11 +88,11 @@ Import Ansys libraries
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 70-71
+.. GENERATED FROM PYTHON SOURCE LINES 71-72
 
 Launch the PyACP server.
 
-.. GENERATED FROM PYTHON SOURCE LINES 71-74
+.. GENERATED FROM PYTHON SOURCE LINES 72-75
 
 .. code-block:: default
 
@@ -105,11 +106,11 @@ Launch the PyACP server.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 75-76
+.. GENERATED FROM PYTHON SOURCE LINES 76-77
 
 Launch the MAPDL server.
 
-.. GENERATED FROM PYTHON SOURCE LINES 76-78
+.. GENERATED FROM PYTHON SOURCE LINES 77-79
 
 .. code-block:: default
 
@@ -122,11 +123,11 @@ Launch the MAPDL server.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 79-80
+.. GENERATED FROM PYTHON SOURCE LINES 80-81
 
 Launch the DPF server.
 
-.. GENERATED FROM PYTHON SOURCE LINES 80-83
+.. GENERATED FROM PYTHON SOURCE LINES 81-84
 
 .. code-block:: default
 
@@ -140,11 +141,11 @@ Launch the DPF server.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 84-85
+.. GENERATED FROM PYTHON SOURCE LINES 85-86
 
 Create a temporary directory to store the input and output files.
 
-.. GENERATED FROM PYTHON SOURCE LINES 85-88
+.. GENERATED FROM PYTHON SOURCE LINES 86-89
 
 .. code-block:: default
 
@@ -158,19 +159,19 @@ Create a temporary directory to store the input and output files.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 89-98
+.. GENERATED FROM PYTHON SOURCE LINES 90-99
 
 Prepare the ACP model
 ---------------------
-The example uses the ``optimization_model.dat`` file, which contains a simple ACP model
+This example uses the ``optimization_model.dat`` file, which contains a simple ACP model
 of a rounded square tube.
 
 The ``prepare_acp_model`` function imports the ``optimization_model.dat`` file into a new
 ACP model and creates a lay-up with six plies.
-It returns a :class:`.ACPWorkflow` object, which can be used to access the model and
+It returns a :class:`.ACPWorkflow` object that can be used to access the model and
 generate the output files.
 
-.. GENERATED FROM PYTHON SOURCE LINES 98-176
+.. GENERATED FROM PYTHON SOURCE LINES 99-177
 
 .. code-block:: default
 
@@ -182,7 +183,7 @@ generate the output files.
 
 
     def prepare_acp_model(*, acp, workdir, input_file):
-        # Import the input file ``*.dat`` into a new ACP model.
+        # Import the DAT input file into a new ACP model
         acp_workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
             acp=acp,
             cdb_or_dat_file_path=input_file,
@@ -259,11 +260,11 @@ generate the output files.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 177-178
+.. GENERATED FROM PYTHON SOURCE LINES 178-179
 
 Create the ACP model and visualize the first ply's fiber direction.
 
-.. GENERATED FROM PYTHON SOURCE LINES 178-187
+.. GENERATED FROM PYTHON SOURCE LINES 179-188
 
 .. code-block:: default
 
@@ -310,18 +311,18 @@ Create the ACP model and visualize the first ply's fiber direction.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 188-196
+.. GENERATED FROM PYTHON SOURCE LINES 189-197
 
-Create functions used in the optimization
------------------------------------------
+Create functions for the optimization
+-------------------------------------
 
 To optimize the ply angles, you must define functions to update, solve, and postprocess
 the ACP model for a given set of ply angles.
 
-The ``update_ply_angles`` changes the ply angles in the model to the given values, and
+The ``update_ply_angles()`` function changes the ply angles in the model to the given values and
 updates the model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 196-211
+.. GENERATED FROM PYTHON SOURCE LINES 197-212
 
 .. code-block:: default
 
@@ -347,11 +348,11 @@ updates the model.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 212-213
+.. GENERATED FROM PYTHON SOURCE LINES 213-214
 
-The ``solve_cdb`` function solves the CDB file with MAPDL and returns the path to the RST file.
+The ``solve_cdb()`` function solves the CDB file with MAPDL and returns the path to the RST file.
 
-.. GENERATED FROM PYTHON SOURCE LINES 213-236
+.. GENERATED FROM PYTHON SOURCE LINES 214-237
 
 .. code-block:: default
 
@@ -360,7 +361,7 @@ The ``solve_cdb`` function solves the CDB file with MAPDL and returns the path t
     def solve_cdb(*, mapdl, cdb_file, workdir):
         mapdl.clear()
         mapdl.input(cdb_file)
-        # Solve the model. Note that the model contains two time steps.
+        # Solve the model. Note that the model contains two timesteps.
         mapdl.allsel()
         mapdl.slashsolu()
         mapdl.time(1.0)
@@ -368,7 +369,7 @@ The ``solve_cdb`` function solves the CDB file with MAPDL and returns the path t
         mapdl.time(2.0)
         mapdl.solve()
 
-        # Download RST FILE for further postprocessing.
+        # Download the RST file for further postprocessing
         rstfile_name = f"{mapdl.jobname}.rst"
         rst_file_local_path = workdir / rstfile_name
         mapdl.download(rstfile_name, str(workdir))
@@ -385,18 +386,15 @@ The ``solve_cdb`` function solves the CDB file with MAPDL and returns the path t
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 237-245
+.. GENERATED FROM PYTHON SOURCE LINES 238-243
 
-The ``get_max_irf`` function uses PyDPF Composites to calculate the maximum
-inverse reserve factor (IRF) for a given
+The ``get_max_irf()`` function uses PyDPF Composites to calculate the maximum
+inverse reserve factor (IRF) for a given RST, composite definitions,
+or materials file.
 
-- RST file
-- composite definitions file
-- materials file.
+This function only considers the maximum stress failure criterion.
 
-It considers only the maximum stress failure criterion.
-
-.. GENERATED FROM PYTHON SOURCE LINES 245-293
+.. GENERATED FROM PYTHON SOURCE LINES 243-291
 
 .. code-block:: default
 
@@ -415,7 +413,7 @@ It considers only the maximum stress failure criterion.
         rst_file,
         failure_criterion,
     ):
-        # Create the CompositeModel and configure its input
+        # Create the composite model and configure its input
         composite_model = pydpf_composites.composite_model.CompositeModel(
             composite_files=pyacp.get_composite_post_processing_files(
                 acp_workflow=acp_workflow,
@@ -461,16 +459,16 @@ It considers only the maximum stress failure criterion.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 294-300
+.. GENERATED FROM PYTHON SOURCE LINES 292-298
 
 Optimize the ply angles
 -----------------------
 For the optimization, you must define a single function that takes the ply angles
-as input and returns the maximum IRF.
-The ``get_max_irf_for_parameters`` function combines the previously defined functions
+as its input and returns the maximum IRF.
+The ``get_max_irf_for_parameters()`` function combines the previously defined functions
 to perform all the necessary steps for a given set of ply angles.
 
-.. GENERATED FROM PYTHON SOURCE LINES 300-319
+.. GENERATED FROM PYTHON SOURCE LINES 298-317
 
 .. code-block:: default
 
@@ -500,12 +498,12 @@ to perform all the necessary steps for a given set of ply angles.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 320-322
+.. GENERATED FROM PYTHON SOURCE LINES 318-320
 
-To inject the ``acp_workflow``, ``mapdl``, ``dpf_server`` and ``workdir`` arguments into the
-``get_max_irf_for_parameters`` function, you can use the ``functools.partial`` function.
+To inject the ``acp_workflow``, ``mapdl``, ``dpf_server``, and ``workdir`` arguments into the
+``get_max_irf_for_parameters()`` function, you can use the ``functools.partial()`` function.
 
-.. GENERATED FROM PYTHON SOURCE LINES 322-335
+.. GENERATED FROM PYTHON SOURCE LINES 320-333
 
 .. code-block:: default
 
@@ -536,20 +534,20 @@ To inject the ``acp_workflow``, ``mapdl``, ``dpf_server`` and ``workdir`` argume
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 336-346
+.. GENERATED FROM PYTHON SOURCE LINES 334-344
 
-For the optimization, you can for example use the Nelder-Mead method available in
-the ``scipy.optimize.minimize`` function. This is a downhill simplex algorithm that
+For the optimization, you can use the Nelder-Mead method available in
+the ``scipy.optimize.minimize()`` function. This is a downhill simplex algorithm that
 does not require the gradient of the objective function. It is suitable for finding
 a local minimum of the objective function.
 
-To have the Nelder-Mead method cover a reasonable part of the parameter space, you can
+To have the Nelder-Mead method cover a reasonable part of the parameter space,
 define an initial simplex (matrix of shape (n+1, n), where n is the number of parameters).
 
 The initial simplex is chosen with random ply angles between 0 and 90 degrees. To make
 the results reproducible, the random seed is fixed.
 
-.. GENERATED FROM PYTHON SOURCE LINES 346-350
+.. GENERATED FROM PYTHON SOURCE LINES 344-348
 
 .. code-block:: default
 
@@ -564,12 +562,12 @@ the results reproducible, the random seed is fixed.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 351-353
+.. GENERATED FROM PYTHON SOURCE LINES 349-351
 
-To build the example, the number of function evaluations is limited to 1. In practice, you
+To build this example, the number of function evaluations is limited to 1. In practice, you
 should increase or remove this limit.
 
-.. GENERATED FROM PYTHON SOURCE LINES 353-367
+.. GENERATED FROM PYTHON SOURCE LINES 351-365
 
 .. code-block:: default
 
@@ -600,12 +598,12 @@ should increase or remove this limit.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 368-395
+.. GENERATED FROM PYTHON SOURCE LINES 366-393
 
 Results
 -------
 
-Without the ``maxfev`` limit, the optimization would take roughly 30 minutes to complete, and
+Without the ``maxfev`` limit, the optimization would take roughly 30 minutes to complete and
 converge to the following result:
 
 .. code :: python
@@ -630,11 +628,11 @@ converge to the following result:
                             -1.303e+01]]), array([ 9.130e-01,  9.130e-01,  9.132e-01,  9.133e-01,
                             9.133e-01,  9.133e-01,  9.134e-01]))
 
-.. GENERATED FROM PYTHON SOURCE LINES 397-398
+.. GENERATED FROM PYTHON SOURCE LINES 395-396
 
-The following code defines the ``results`` list, as it would be obtained from the full optimization.
+The following code defines the ``results`` list as it would be obtained from the full optimization.
 
-.. GENERATED FROM PYTHON SOURCE LINES 398-439
+.. GENERATED FROM PYTHON SOURCE LINES 396-437
 
 .. code-block:: default
 
@@ -686,11 +684,11 @@ The following code defines the ``results`` list, as it would be obtained from th
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 440-441
+.. GENERATED FROM PYTHON SOURCE LINES 438-439
 
 Visualize the evolution of the maximum IRF during the optimization.
 
-.. GENERATED FROM PYTHON SOURCE LINES 441-449
+.. GENERATED FROM PYTHON SOURCE LINES 439-447
 
 .. code-block:: default
 
@@ -714,11 +712,11 @@ Visualize the evolution of the maximum IRF during the optimization.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 450-451
+.. GENERATED FROM PYTHON SOURCE LINES 448-449
 
 Visualize the resulting fiber directions.
 
-.. GENERATED FROM PYTHON SOURCE LINES 451-490
+.. GENERATED FROM PYTHON SOURCE LINES 449-488
 
 .. code-block:: default
 
@@ -776,7 +774,7 @@ Visualize the resulting fiber directions.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  45.007 seconds)
+   **Total running time of the script:** ( 0 minutes  43.531 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_009_optimization.py:

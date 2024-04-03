@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>View the model in the ACP GUI &#8212; PyACP</title>
+    <title>View model in ACP GUI &#8212; PyACP</title>
 
   
   
@@ -64,8 +64,8 @@
     <link rel="icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Printing the model tree" href="print_model.html" />
-    <link rel="prev" title="Visualizing the model" href="visualize_model.html" />
+    <link rel="next" title="Print model tree" href="print_model.html" />
+    <link rel="prev" title="Visualize model" href="visualize_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -446,12 +446,12 @@ document.write(`
   <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">How-to guides</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="create_input_file.html">Input file for PyACP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visualize_model.html">Visualizing the model</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">View the model in the ACP GUI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="print_model.html">Printing the model tree</a></li>
-<li class="toctree-l2"><a class="reference internal" href="file_management.html">Managing input and output files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="launch_configuration.html">Changing how ACP is started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_input_file.html">Create input file for PyACP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualize_model.html">Visualize model</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">View model in ACP GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="print_model.html">Print model tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_management.html">Manage input and output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="launch_configuration.html">Change ACP startup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">Concepts</a></li>
@@ -506,7 +506,7 @@ document.write(`
       <a href="index.html" class="nav-link">How-to guides</a>
     </li>
       
-    <li class="breadcrumb-item active" aria-current="page">View the model in the ACP GUI</li>
+    <li class="breadcrumb-item active" aria-current="page">View model in ACP GUI</li>
     
   </ul>
 </nav>
@@ -524,10 +524,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="view-the-model-in-the-acp-gui">
-<span id="id1"></span><h1>View the model in the ACP GUI<a class="headerlink" href="#view-the-model-in-the-acp-gui" title="Link to this heading">#</a></h1>
-<p>To view the PyACP model in the ACP GUI, save the model to a file with <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.get_local_acph5_file.html#ansys.acp.core.ACPWorkflow.get_local_acph5_file" title="ansys.acp.core.ACPWorkflow.get_local_acph5_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.get_local_acph5_file()</span></code></a> and then open the saved file in ACP (File/Open).
-The ACP GUI supports reloading the model from the model context menu. Right click on the model name in tree and click “Reload Model”.
+  <section id="view-model-in-acp-gui">
+<span id="view-the-model-in-the-acp-gui"></span><h1>View model in ACP GUI<a class="headerlink" href="#view-model-in-acp-gui" title="Link to this heading">#</a></h1>
+<p>To view the PyACP model in the ACP GUI, save the model to a file using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.get_local_acph5_file.html#ansys.acp.core.ACPWorkflow.get_local_acph5_file" title="ansys.acp.core.ACPWorkflow.get_local_acph5_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.get_local_acph5_file()</span></code></a> method and then open the saved file in ACP by selecting <strong>File &gt; Open</strong>.
+In the ACP GUI, reload the model from its context menu by right-clicking the model’s name in the tree and selecting <strong>Reload Model</strong>.
 A common workflow is to save the model to a file at the end of the script and reload it in ACP after each script run.</p>
 </section>
 

@@ -523,16 +523,16 @@ document.write(`
                   
   <section id="material-property-sets">
 <h1>Material property sets<a class="headerlink" href="#material-property-sets" title="Link to this heading">#</a></h1>
-<p>Material property sets are used to define a certain aspect of the properties
+<p>Material property sets define certain aspects of the properties
 of a material.
-The attributes described in the following subsections determine how the
-material property set can be used within PyACP.</p>
+The attributes described in the following subsections show how
+you can create and access material property sets in PyACP.</p>
 <section id="constant-versus-variable-property-sets">
 <h2>Constant versus variable property sets<a class="headerlink" href="#constant-versus-variable-property-sets" title="Link to this heading">#</a></h2>
 <p>Material property sets can either be constant or variable. Constant property
-sets are defined by a single value for each property, while variable property
-sets depend on field variables such as temperature, fiber volume content, etc.</p>
-<p>Currently, only the constant property sets can be modified with PyACP. Variable
+sets are defined by a single value per property. Variable property
+sets depend on field variables such as temperature and fiber volume content.</p>
+<p>Currently, you can only modify the constant property sets with PyACP. Variable
 property sets can be inspected, but not modified.</p>
 </section>
 <section id="isotropic-versus-orthotropic-property-sets">
@@ -554,15 +554,15 @@ but orthotropic stress and strain limits.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>While a material is unstored (see <a class="reference internal" href="store.html#stored-vs-unstored"><span class="std std-ref">Stored versus unstored objects</span></a>), the property set does not
-automatically change from orthotropic to isotropic or vice versa. While storing the
-material, the backend will check that the material definition is consistent.</p>
+automatically change from orthotropic to isotropic or vice versa. When storing the
+material, the backend ensures that its definition is consistent.</p>
 </div>
 <section id="available-attributes">
 <h3>Available attributes<a class="headerlink" href="#available-attributes" title="Link to this heading">#</a></h3>
-<p>The available attributes for a given property set type changes depending on whether
+<p>The available attributes for a given property set type change depending on whether
 the material is isotropic or orthotropic.
 The following table lists the available attributes for the different property sets in
-isotropic and orthotropic materials, respectively.</p>
+isotropic and orthotropic materials.</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Property set</p></th>
@@ -588,17 +588,17 @@ isotropic and orthotropic materials, respectively.</p>
 </section>
 <section id="relation-between-isotropic-and-orthotropic-property-sets">
 <h3>Relation between isotropic and orthotropic property sets<a class="headerlink" href="#relation-between-isotropic-and-orthotropic-property-sets" title="Link to this heading">#</a></h3>
-<p>For the stress and strain limits, the isotropic and orthotropic attributes are
-independently defined. This means that when changing the ply type of a material,
-the stress and strain limits must be redefined.</p>
-<p>For the engineering constants however, the orthotropic and isotropic definitions
-are interlinked. This means that when changing the ply type of a material, the
-engineering constants are converted automatically.
-To avoid accidentally using incorrect engineering constants, PyACP enforces some
-conversion and assignment rules, as described in the following sections.</p>
+<p>For stress and strain limits, the isotropic and orthotropic attributes are
+independently defined. This means that when you change the ply type of a material,
+you must redefine the stress and strain limits.</p>
+<p>For engineering constants, however, the orthotropic and isotropic definitions
+are interlinked. Therefore, when you change the ply type of a material, the
+engineering constants are automatically converted.
+To avoid accidental use of incorrect engineering constants, PyACP enforces
+conversion and assignment rules, as described later on this page.</p>
 <section id="conversion-rules">
 <h4>Conversion rules<a class="headerlink" href="#conversion-rules" title="Link to this heading">#</a></h4>
-<p>When changing the ply type of a material, the following rules apply:</p>
+<p>The following rules apply when changing the ply type of a material:</p>
 <ul>
 <li><p>The ply type can always be changed from an isotropic to an orthotropic type.</p></li>
 <li><p>When changing from an orthotropic to an isotropic type, the engineering constants must
@@ -641,15 +641,11 @@ back to an isotropic ply type is not allowed.</p>
 <h4>Assignment rules<a class="headerlink" href="#assignment-rules" title="Link to this heading">#</a></h4>
 <p>Similar rules apply when assigning engineering constants to a material:</p>
 <ul class="simple">
-<li><p>isotropic engineering constants can be assigned to both isotropic and orthotropic materials.</p></li>
-<li><p>orthotropic engineering constants can be assigned:</p>
-<ul>
-<li><p>to orthotropic materials.</p></li>
-<li><p>to isotropic materials, if their values are consistent with an isotropic material.</p></li>
+<li><p>Isotropic engineering constants can be assigned to both isotropic and orthotropic materials.</p></li>
+<li><p>Orthotropic engineering constants can be assigned to isotropic materials, if their values are consistent with them,
+and orthotropic materials.</p></li>
 </ul>
-</li>
-</ul>
-<p>Continuing from the preceding example, you can assign either an orthotropic or isotropic engineering constants to the orthotropic material:</p>
+<p>Continuing from the preceding example, you can assign either orthotropic or isotropic engineering constants to the orthotropic material:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">material</span><span class="o">.</span><span class="n">ply_type</span>
 <span class="go">&lt;PlyType.WOVEN: &#39;woven&#39;&gt;</span>
 </pre></div>

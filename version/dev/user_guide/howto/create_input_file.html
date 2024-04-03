@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Input file for PyACP &#8212; PyACP</title>
+    <title>Create input file for PyACP &#8212; PyACP</title>
 
   
   
@@ -64,7 +64,7 @@
     <link rel="icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Visualizing the model" href="visualize_model.html" />
+    <link rel="next" title="Visualize model" href="visualize_model.html" />
     <link rel="prev" title="How-to guides" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -446,12 +446,12 @@ document.write(`
   <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">How-to guides</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Input file for PyACP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visualize_model.html">Visualizing the model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="view_model_in_acp_gui.html">View the model in the ACP GUI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="print_model.html">Printing the model tree</a></li>
-<li class="toctree-l2"><a class="reference internal" href="file_management.html">Managing input and output files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="launch_configuration.html">Changing how ACP is started</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Create input file for PyACP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualize_model.html">Visualize model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view_model_in_acp_gui.html">View model in ACP GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="print_model.html">Print model tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_management.html">Manage input and output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="launch_configuration.html">Change ACP startup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">Concepts</a></li>
@@ -506,7 +506,7 @@ document.write(`
       <a href="index.html" class="nav-link">How-to guides</a>
     </li>
       
-    <li class="breadcrumb-item active" aria-current="page">Input file for PyACP</li>
+    <li class="breadcrumb-item active" aria-current="page">Create input file for PyACP</li>
     
   </ul>
 </nav>
@@ -524,42 +524,42 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="input-file-for-pyacp">
-<span id="id1"></span><h1>Input file for PyACP<a class="headerlink" href="#input-file-for-pyacp" title="Link to this heading">#</a></h1>
+  <section id="create-input-file-for-pyacp">
+<span id="input-file-for-pyacp"></span><h1>Create input file for PyACP<a class="headerlink" href="#create-input-file-for-pyacp" title="Link to this heading">#</a></h1>
 <p>To start working with PyACP, an input file that contains the mesh is required. PyACP supports reading
-the mesh from *.cdb and *.dat files with <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file.html#ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file" title="ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.from_cdb_or_dat_file()</span></code></a>. PyACP will read the mesh including - if they exist - coordinate systems, element sets,
-edge sets, and materials from the input file. After the layup has been created with PyACP a *.cdb file can be exported with <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.get_local_cdb_file.html#ansys.acp.core.ACPWorkflow.get_local_cdb_file" title="ansys.acp.core.ACPWorkflow.get_local_cdb_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.get_local_cdb_file()</span></code></a>. This file
-contains all the information contained in the initial input file plus the layup information and
+the mesh from CDB and DAT files with the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file.html#ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file" title="ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.from_cdb_or_dat_file()</span></code></a> method. PyACP reads the mesh, including any coordinate systems, element sets,
+edge sets, and materials from the input file. Once the layup has been created with PyACP, you can export its CDB file with the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.get_local_cdb_file.html#ansys.acp.core.ACPWorkflow.get_local_cdb_file" title="ansys.acp.core.ACPWorkflow.get_local_cdb_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.get_local_cdb_file()</span></code></a> method. This file
+contains all the data from the initial input file along with the layup information and
 materials added by PyACP. An attempt is made to preserve the original input file as much as possible.
-This includes the original mesh, materials and boundary conditions. You can therefore use the exported *.cdb file
-directly for an analysis using PyMAPDL. See
-<a class="reference internal" href="../../examples/gallery_examples/001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow</span></a>.</p>
+This includes the original mesh, materials, and boundary conditions. Therefore, you may directly use the exported CDB file
+for an analysis through PyMAPDL. For more information, see <a class="reference internal" href="../../examples/gallery_examples/001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow example</span></a>.</p>
 <section id="create-an-input-file-with-ansys-mechanical">
 <span id="input-file-from-mechanical"></span><h2>Create an input file with Ansys Mechanical<a class="headerlink" href="#create-an-input-file-with-ansys-mechanical" title="Link to this heading">#</a></h2>
 <p>One way to create an input file for PyACP is to create a static structural setup and export the solver input file. To do this, follow these steps:</p>
 <ul class="simple">
-<li><p>Open Ansys workbench</p></li>
-<li><p>Add a “Static Structural” system</p></li>
-<li><p>Create or import a geometry in the geometry part of the static structural system (A3). Note: PyACP only supports shell geometries</p></li>
-<li><p>Open the Mechanical Model (A4)</p></li>
-<li><p>Assign a thickness and a material to the geometry (this is later overwritten by PyACP)</p></li>
-<li><p>Optional: Define boundary conditions</p></li>
-<li><p>Select “Static Structural (A5)” in the tree and then click “Environment/Write Input File” in the navigation bar.</p></li>
-<li><p>Save the input file in *.dat format in the desired location.</p></li>
+<li><p>Open Ansys Workbench.</p></li>
+<li><p>Add a “Static Structural” system.</p></li>
+<li><p>Create or import a geometry in the geometry cell of the static structural system (A3). Note that PyACP only supports shell geometries.</p></li>
+<li><p>Open the Mechanical Model (A4).</p></li>
+<li><p>Assign a thickness and a material to the geometry. (These are later overwritten by PyACP.)</p></li>
+<li><p>Optional: Define the boundary conditions.</p></li>
+<li><p>Select “Static Structural (A5)” in the tree and then click <strong>Environment/Write Input File</strong> in the navigation bar.</p></li>
+<li><p>Save the input file to a DAT file in the desired location.</p></li>
 </ul>
-<p>The created input file can be read with <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file.html#ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file" title="ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.from_cdb_or_dat_file()</span></code></a>. See
-<a class="reference internal" href="../../examples/gallery_examples/001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow</span></a> for a complete example.</p>
+<p>The created input file can be read with the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file.html#ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file" title="ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.from_cdb_or_dat_file()</span></code></a> method.
+For a complete example, see <a class="reference internal" href="../../examples/gallery_examples/001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow example</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The imported model will always contain the dummy material that was assigned to the geometry with the name “1”.</p>
+<p>The imported model always contains the dummy material named <code class="docutils literal notranslate"><span class="pre">1</span></code> that was assigned to the geometry.</p>
 </div>
 </section>
 <section id="create-an-input-file-with-ansys-mechanical-apdl">
 <h2>Create an input file with Ansys Mechanical APDL<a class="headerlink" href="#create-an-input-file-with-ansys-mechanical-apdl" title="Link to this heading">#</a></h2>
+<p>You can also create an input file for PyACP by performing these steps:</p>
 <ul>
 <li><p>Open Ansys Mechanical APDL</p></li>
 <li><p>Load or create a model with APDL commands</p></li>
-<li><p>Write the *.cdb file with the <code class="docutils literal notranslate"><span class="pre">CDWRITE</span></code> command:</p>
+<li><p>Write the CDB file with the CDWRITE command:</p>
 <blockquote>
 <div><div class="highlight-apdl notranslate"><div class="highlight"><pre><span></span><span class="k">CDWRITE</span><span class="p">,</span><span class="nv">ALL</span><span class="p">,</span><span class="nv">FILE</span><span class="p">,</span><span class="nv">cdbfile</span><span class="p">.</span><span class="nv">cdb</span>
 </pre></div>
@@ -568,14 +568,14 @@ directly for an analysis using PyMAPDL. See
 </li>
 </ul>
 <p>The created input file can be read with <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file.html#ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file" title="ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.from_cdb_or_dat_file()</span></code></a>. See
-<a class="reference internal" href="../../examples/gallery_examples/001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow</span></a> for a complete example.</p>
+<a class="reference internal" href="../../examples/gallery_examples/001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow example</span></a> for a complete example.</p>
 </section>
 <section id="notes-on-material-handling">
 <h2>Notes on material handling<a class="headerlink" href="#notes-on-material-handling" title="Link to this heading">#</a></h2>
 <p>Materials present in the input file (*.cdb or *.dat) are read into PyACP. The following rules apply:</p>
 <ul class="simple">
-<li><p>If the material has defined a UVID, the material is imported as locked. This means the material cannot be edited in PyACP. If the input file was created with Ansys Mechanical (see the section <a class="reference internal" href="#input-file-from-mechanical"><span class="std std-ref">Create an input file with Ansys Mechanical</span></a>), this is always the case. In MAPDL, a UVID can be defined with the <code class="docutils literal notranslate"><span class="pre">MP,UVID</span></code> or <code class="docutils literal notranslate"><span class="pre">MPDATAT,UNBL,16,UVID</span></code> command.</p></li>
-<li><p>If the material has no UVID, the material is copied on import. Only the copied material appears in PyACP. The original material is not changed and appears unmodified in the output file.</p></li>
+<li><p>If the material has defined a UVID, then the material is imported as locked. This means the material cannot be edited in PyACP. If the input file was created with Ansys Mechanical (see <a class="reference internal" href="#input-file-from-mechanical"><span class="std std-ref">Create an input file with Ansys Mechanical</span></a>), this is always the case. In Mechanical APDL, you can define a UVID with the <code class="docutils literal notranslate"><span class="pre">MP,UVID</span></code> or <code class="docutils literal notranslate"><span class="pre">MPDATAT,UNBL,16,UVID</span></code> command.</p></li>
+<li><p>If the material has no UVID, then the material is copied on import. Only the copied material appears in PyACP. The original material is not changed and appears unmodified in the output file.</p></li>
 </ul>
 </section>
 </section>

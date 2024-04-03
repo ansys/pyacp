@@ -26,25 +26,25 @@
 Class 40 example
 ================
 
-Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
-a failure analysis with PyDPF-Composites.
+This example shows how to define a composite lay-up with PyACP, solve the resulting
+model with PyMAPDL, and run a failure analysis with PyDPF Composites.
 
-The starting point is a MAPDL CDB file which contains the mesh, material data and
-the boundary conditions. This model is imported in PyACP to define the lay-up.
-PyACP exports the resulting model for PyMAPDL. Once the results are available,
-the RST file is loaded in PyDPF composites. The additional input files (material.xml
-and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDPF Composites.
+Begin with an MAPDL CDB file that contains the mesh, material data, and
+boundary conditions. Import the file to PyACP to define the lay-up, and then export the
+resulting model to PyMAPDL. Once the results are available, the RST file is loaded in
+PyDPF Composites for postprocessing. The additional input files (``material.xml``
+and ``ACPCompositeDefinitions.h5``) can also be stored with PyACP and passed to PyDPF Composites.
 
-The MAPDL and DPF services are run in docker containers which share a volume (working
+The MAPDL and DPF services are run in Docker containers that share a volume (working
 directory).
 """
 
 # %%
-# Setup: Connect to PyACP Server
-# ------------------------------
+# Import modules and start ACP
+# ----------------------------
 
 # %%
-# Import standard library and third-party dependencies
+# Import the standard library and third-party dependencies.
 import os
 import pathlib
 import tempfile
@@ -52,7 +52,7 @@ import tempfile
 import pyvista
 
 # %%
-# Import Ansys libraries
+# Import the Ansys libraries.
 import ansys.acp.core as pyacp
 
 # sphinx_gallery_thumbnail_number = -1
@@ -83,7 +83,7 @@ print(local_file_path)
 cdb_file_path = acp.upload_file(local_path=local_file_path)
 
 # %%
-# Load CDB file into PyACP and set the unit system
+# Load the CDB file into PyACP and set the unit system.
 model = acp.import_model(
     path=cdb_file_path, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
 )
@@ -91,7 +91,7 @@ model
 
 
 # %%
-# Visualize the loaded mesh
+# Visualize the loaded mesh.
 mesh = model.mesh.to_pyvista()
 mesh.plot()
 
@@ -100,7 +100,7 @@ mesh.plot()
 # Build Composite Lay-up
 # ----------------------
 #
-# Create the model (unit system is MPA)
+# Create the model (MPA unit system).
 
 # %%
 # Materials
@@ -147,7 +147,7 @@ ros_keeltower = model.create_rosette(
 # Oriented Selection Sets
 # '''''''''''''''''''''''
 #
-# Note: the element sets are imported from the initial mesh (CDB)
+# Note that the element sets are imported from the initial mesh (CBD file).
 
 oss_deck = model.create_oriented_selection_set(
     name="oss_deck",
@@ -189,9 +189,9 @@ oss_keeltower = model.create_oriented_selection_set(
 )
 
 # %%
-# Show the orientations on the hull OSS.
+# Show the orientations on the hull oriented selection set (OSS).
 #
-# Note that the Model must be updated before the orientations are available.
+# Note that the model must be updated before the orientations are available.
 
 model.update()
 
@@ -223,7 +223,7 @@ def add_ply(mg, name, ply_material, angle, oss):
 
 
 # %%
-# Define plies for the HULL, DECK and BULKHEAD
+# Define plies for the hull, deck, and bulkhead.
 
 angles = [-90.0, -60.0, -45.0 - 30.0, 0.0, 0.0, 30.0, 45.0, 60.0, 90.0]
 for mg_name in ["hull", "deck", "bulkhead"]:
@@ -236,7 +236,7 @@ for mg_name in ["hull", "deck", "bulkhead"]:
         add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)
 
 # %%
-# Add plies to the keeltower
+# Add plies to the keeltower.
 mg = model.create_modeling_group(name="keeltower")
 oss_list = [model.oriented_selection_sets["oss_keeltower"]]
 for angle in angles:
@@ -248,7 +248,7 @@ for angle in angles:
     add_ply(mg, "eglass_ud_02mm_" + str(angle), eglass_ud_02mm, angle, oss_list)
 
 # %%
-# Inspect the number of modeling groups and plies
+# Inspect the number of modeling groups and plies.
 print(len(model.modeling_groups))
 print(len(model.modeling_groups["hull"].modeling_plies))
 print(len(model.modeling_groups["deck"].modeling_plies))
@@ -257,7 +257,7 @@ print(len(model.modeling_groups["keeltower"].modeling_plies))
 
 
 # %%
-# Show the thickness of one of the plies
+# Show the thickness of one of the plies.
 model.update()
 modeling_ply = model.modeling_groups["deck"].modeling_plies["eglass_ud_02mm_0.5"]
 thickness = modeling_ply.elemental_data.thickness
@@ -265,7 +265,7 @@ assert thickness is not None
 thickness.get_pyvista_mesh(mesh=model.mesh).plot()
 
 # %%
-# Show the ply offsets, scaled by a factor of 200
+# Show the ply offsets that are scaled by a factor of 200.
 plotter = pyvista.Plotter()
 plotter.add_mesh(model.mesh.to_pyvista(), color="white")
 ply_offset = modeling_ply.nodal_data.ply_offset
@@ -276,7 +276,7 @@ plotter.add_mesh(
 plotter.show()
 
 # %%
-# Show the thickness of the entire lay-up
+# Show the thickness of the entire lay-up.
 thickness = model.elemental_data.thickness
 assert thickness is not None
 thickness.get_pyvista_mesh(mesh=model.mesh).plot()
@@ -292,19 +292,19 @@ COMPOSITE_DEFINITIONS_H5 = "ACPCompositeDefinitions.h5"
 MATML_FILE = "materials.xml"
 
 # %%
-# Update and Save the ACP model
+# Update and save the ACP model.
 model.update()
 model.save(ACPH5_FILE, save_cache=True)
 
 # %%
-# Save the model as CDB for solving with PyMAPDL
+# Save the model as a CDB file for solving with PyMAPDL.
 model.export_analysis_model(CDB_FILENAME_OUT)
-# Export the shell lay-up and material file for DPF Composites
+# Export the shell lay-up and material file for PyDPF Composites.
 model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
 model.export_materials(MATML_FILE)
 
 # %%
-# Download files from ACP server to a local directory
+# Download files from the ACP server to a local directory.
 tmp_dir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tmp_dir.name)
 cdb_file_local_path = pathlib.Path(WORKING_DIR) / CDB_FILENAME_OUT
@@ -321,38 +321,38 @@ acp.download_file(
 # ------------------
 
 # %%
-# Import PyMAPDL and connect to its server
+# Import PyMAPDL and connect to its server.
 from ansys.mapdl.core import launch_mapdl
 
 mapdl = launch_mapdl()
 mapdl.clear()
 # %%
-# Load the CDB file into PyMAPDL
+# Load the CDB file into PyMAPDL.
 mapdl.input(str(cdb_file_local_path))
 
 # %%
-# Solve the model
+# Solve the model.
 mapdl.allsel()
 mapdl.slashsolu()
 mapdl.solve()
 
 # %%
-# Post-processing: show displacements
+# Show the displacements in postprocessing.
 mapdl.post1()
 mapdl.set("last")
 mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
-# Download RST FILE for further post-processing
+# Download the RST file for further postprocessing.
 rstfile_name = f"{mapdl.jobname}.rst"
 rst_file_local_path = pathlib.Path(tmp_dir.name) / rstfile_name
 mapdl.download(rstfile_name, tmp_dir.name)
 
 # %%
-# Post-Processing with DPF composites
-# -----------------------------------
+# Postprocessing with PyDPF Composites
+# ------------------------------------
 #
-# Setup: configure imports and connect to the pyDPF Composites server
-# and load the dpf composites plugin
+# To postprocess the results, you must configure the imports, connect to the
+# PyDPF Composites server, and load its plugin.
 
 from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput
@@ -375,7 +375,7 @@ from ansys.dpf.core.unit_system import unit_systems
 dpf_server = connect_to_or_start_server()
 
 # %%
-# Specify the Combined Failure Criterion
+# Specify the combined failure criterion.
 max_strain = MaxStrainCriterion()
 max_stress = MaxStressCriterion()
 core_failure = CoreFailureCriterion()
@@ -386,7 +386,7 @@ cfc = CombinedFailureCriterion(
 )
 
 # %%
-# Create the CompositeModel and configure its input
+# Create the composite model and configure its input.
 composite_model = CompositeModel(
     composite_files=ContinuousFiberCompositesFiles(
         rst=rst_file_local_path,
@@ -400,10 +400,10 @@ composite_model = CompositeModel(
 )
 
 # %%
-# Evaluate the failure criteria
+# Evaluate the failure criteria.
 output_all_elements = composite_model.evaluate_failure_criteria(cfc)
 
 # %%
-# Query and plot the results
+# Query and plot the results.
 irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
 irf_field.plot()

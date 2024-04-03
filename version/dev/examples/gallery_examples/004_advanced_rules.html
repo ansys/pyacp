@@ -444,8 +444,8 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="001_basic_flat_plate.html">Basic PyACP workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="002_sandwich_panel.html">Basic sandwich panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_basic_flat_plate.html">Basic PyACP workflow example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_sandwich_panel.html">Basic sandwich panel example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_basic_rules.html">Basic selection rules example</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Advanced rules example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="005_thickness_definitions.html">Thickness definition example</a></li>
@@ -525,13 +525,15 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="advanced-rules-example">
 <span id="sphx-glr-examples-gallery-examples-004-advanced-rules-py"></span><span id="id1"></span><h1>Advanced rules example<a class="headerlink" href="#advanced-rules-example" title="Link to this heading">#</a></h1>
-<p>This example shows the usage of advanced rules such as geometrical rule,
-cut-off rule and variable offset rule. It also demonstrates how rules can be templated
-and reused with different parameters.
-See the <a class="reference internal" href="003_basic_rules.html#sphx-glr-examples-gallery-examples-003-basic-rules-py"><span class="std std-ref">Basic selection rules example</span></a> for more basic rule examples.
-This example shows just the pyACP part of the setup.  For a complete Composite analysis,
-see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow</span></a> example</p>
-<p>Import standard library and third-party dependencies</p>
+<p>This example shows how to use advanced rules, including the geometrical,
+cut-off, and variable offset rules. It also demonstrates how rules can be templated
+and reused with different parameters. For more basic rules, see
+<a class="reference internal" href="003_basic_rules.html#sphx-glr-examples-gallery-examples-003-basic-rules-py"><span class="std std-ref">Basic selection rules example</span></a>.</p>
+<p>This example only shows the PyACP part of the setup. For a complete composite analysis,
+see <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow example</span></a>.</p>
+<section id="import-modules">
+<h2>Import modules<a class="headerlink" href="#import-modules" title="Link to this heading">#</a></h2>
+<p>Import the standard library and third-party dependencies.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
 
@@ -539,7 +541,7 @@ see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-e
 <span class="kn">import</span> <span class="nn">pyvista</span>
 </pre></div>
 </div>
-<p>Import pyACP dependencies</p>
+<p>Import the PyACP dependencies.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">ACPWorkflow</span><span class="p">,</span>
     <span class="n">BooleanOperationType</span><span class="p">,</span>
@@ -552,6 +554,7 @@ see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-e
 <span class="kn">from</span> <span class="nn">ansys.acp.core.example_helpers</span> <span class="kn">import</span> <span class="n">ExampleKeys</span><span class="p">,</span> <span class="n">get_example_file</span>
 </pre></div>
 </div>
+</section>
 <section id="start-acp-and-load-the-model">
 <h2>Start ACP and load the model<a class="headerlink" href="#start-acp-and-load-the-model" title="Link to this heading">#</a></h2>
 <p>Get the example file from the server.</p>
@@ -565,9 +568,9 @@ see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-e
 </pre></div>
 </div>
 <p>Define the input file and instantiate an <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> instance.
-The <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> class provides convenience methods that simplify the file handling.
+The <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> class provides convenience methods that simplify file handling.
 It automatically creates a model based on the input file.
-The input file contains a flat plate with a single ply.</p>
+This example’s input file contains a flat plate with a single ply.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span> <span class="o">=</span> <span class="n">ACPWorkflow</span><span class="o">.</span><span class="n">from_acph5_file</span><span class="p">(</span>
     <span class="n">acp</span><span class="o">=</span><span class="n">acp</span><span class="p">,</span>
     <span class="n">acph5_file_path</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">,</span>
@@ -579,11 +582,11 @@ The input file contains a flat plate with a single ply.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmp5ojypy28
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmp1_8xfua5
 mks
 </pre></div>
 </div>
-<p>Add more layers to the modeling ply, so it easier to see the effects of the selection rules.
+<p>Add more layers to the modeling ply so that it is easier to see the effects of the selection rules.
 Plot the thickness of all the plies without any rules.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modeling_ply</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;modeling_group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">[</span><span class="s2">&quot;ply&quot;</span><span class="p">]</span>
 <span class="n">modeling_ply</span><span class="o">.</span><span class="n">number_of_layers</span> <span class="o">=</span> <span class="mi">10</span>
@@ -608,9 +611,9 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </section>
 <section id="parametrized-parallel-rule">
 <h2>Parametrized Parallel Rule<a class="headerlink" href="#parametrized-parallel-rule" title="Link to this heading">#</a></h2>
-<p>Rules can be parametrized. This makes sense when a rule is used multiple times with different
-parameters. <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.LinkedSelectionRule.html#ansys.acp.core.LinkedSelectionRule" title="ansys.acp.core.LinkedSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinkedSelectionRule</span></code></a> shows what parameters are available for each rule.
-Here, the extent of the parallel rule is modified.</p>
+<p>Rules can be parametrized. This is useful when a rule is used multiple times but with different
+parameters.  The <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.LinkedSelectionRule.html#ansys.acp.core.LinkedSelectionRule" title="ansys.acp.core.LinkedSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinkedSelectionRule</span></code></a> class shows what parameters are available for each rule.
+This code modifies the extent of the parallel rule.</p>
 <p>Create a parallel rule.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">parallel_rule</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_parallel_selection_rule</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;parallel_rule&quot;</span><span class="p">,</span>
@@ -672,7 +675,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </section>
 <section id="create-a-geometrical-selection-rule">
 <h2>Create a geometrical selection rule<a class="headerlink" href="#create-a-geometrical-selection-rule" title="Link to this heading">#</a></h2>
-<p>Add CAD geometry to the model.</p>
+<p>Add a CAD geometry to the model.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">triangle_path</span></a> <span class="o">=</span> <span class="n">example_helpers</span><span class="o">.</span><span class="n">get_example_file</span><span class="p">(</span>
     <span class="n">example_helpers</span><span class="o">.</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">RULE_GEOMETRY_TRIANGLE</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a>
 <span class="p">)</span>
@@ -697,7 +700,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Assign the geometrical selection rule to the ply and plot the ply extent with
+<p>Assign the geometrical selection rule to the ply. Plot the ply extent with
 the outline of the geometry.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modeling_ply</span><span class="o">.</span><span class="n">selection_rules</span> <span class="o">=</span> <span class="p">[</span><a href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="typing.Protocol" class="sphx-glr-backref-module-typing sphx-glr-backref-type-py-class"><span class="n">LinkedSelectionRule</span></a><span class="p">(</span><span class="n">geometrical_selection_rule</span><span class="p">)]</span>
 <span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
@@ -750,7 +753,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Assign the cutoff selection rule to the ply and plot the ply extent with
+<p>Assign the cutoff selection rule to the ply. Plot the ply extent with
 the outline of the geometry.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modeling_ply</span><span class="o">.</span><span class="n">selection_rules</span> <span class="o">=</span> <span class="p">[</span><a href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="typing.Protocol" class="sphx-glr-backref-module-typing sphx-glr-backref-type-py-class"><span class="n">LinkedSelectionRule</span></a><span class="p">(</span><span class="n">cutoff_selection_rule</span><span class="p">)]</span>
 
@@ -800,8 +803,8 @@ is always created by default.</p>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Create the edge set from the “All_Elements” element set. Because we set
-the limit angle to 30°, only one edge at x=0 will be selected.</p>
+<p>Create the edge set from the “All_Elements” element set. Because you
+assigned 30 degrees to the limit angle, only one edge at x=0 is selected.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">edge_set</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_edge_set</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;edge_set&quot;</span><span class="p">,</span>
     <span class="n">edge_set_type</span><span class="o">=</span><span class="n">EdgeSetType</span><span class="o">.</span><span class="n">BY_REFERENCE</span><span class="p">,</span>
@@ -839,11 +842,11 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="create-a-boolean-selection-rule">
-<h2>Create a boolean selection rule.<a class="headerlink" href="#create-a-boolean-selection-rule" title="Link to this heading">#</a></h2>
-<p>Note: Creating a boolean selection rule and assigning it to a ply has the same
-effect as linking the individual rules to the ply directly. Boolean rules are still useful
-because they help to organize the rules and can be used to create more complex rules.
-Create a cylindrical selection rule which will be combined with the parallel rule.</p>
+<h2>Create a boolean selection rule<a class="headerlink" href="#create-a-boolean-selection-rule" title="Link to this heading">#</a></h2>
+<p>Creating a Boolean selection rule and assigning it to a ply has the same
+effect as linking the individual rules directly to the ply. Boolean rules are still useful
+because they can help organize rules and make more complex ones.</p>
+<p>Create a cylindrical selection rule to combine with the parallel rule.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cylindrical_rule_boolean</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_cylindrical_selection_rule</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cylindrical_rule&quot;</span><span class="p">,</span>
     <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mf">0.005</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">),</span>
@@ -888,7 +891,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_004_advanced_rules_007.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p>Modify the operation type of the boolean selection rule, such that the two rules are added.</p>
+<p>Modify the operation type of the Boolean selection rule so that the two rules are added.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">linked_parallel_rule_boolean</span><span class="o">.</span><span class="n">operation_type</span> <span class="o">=</span> <span class="n">BooleanOperationType</span><span class="o">.</span><span class="n">INTERSECT</span>
 <span class="n">linked_cylindrical_rule_boolean</span><span class="o">.</span><span class="n">operation_type</span> <span class="o">=</span> <span class="n">BooleanOperationType</span><span class="o">.</span><span class="n">ADD</span>
 </pre></div>
@@ -911,7 +914,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_004_advanced_rules_008.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.661 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.963 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-004-advanced-rules-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/0cf196fc9660b7411bd1ddcd17b24015/004_advanced_rules.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">004_advanced_rules.py</span></code></a></p>
@@ -944,12 +947,13 @@ Interactive Scene</label><div class="sd-tab-content docutils">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-modules">Import modules</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-acp-and-load-the-model">Start ACP and load the model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrized-parallel-rule">Parametrized Parallel Rule</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-geometrical-selection-rule">Create a geometrical selection rule</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-cutoff-selection-rule">Create a cutoff selection rule</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-variable-offset-selection-rule">Create a variable offset selection rule</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-boolean-selection-rule">Create a boolean selection rule.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-boolean-selection-rule">Create a boolean selection rule</a></li>
 </ul>
   </nav></div>
 

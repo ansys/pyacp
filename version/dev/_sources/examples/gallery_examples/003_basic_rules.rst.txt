@@ -23,17 +23,20 @@
 Basic selection rules example
 =============================
 
-Shows the basic usage of selection rules. Selection Rules enable you to select elements through
-geometrical operations and thus to shape plies. This example shows just the
-pyACP part of the setup. See the :ref:`sphx_glr_examples_gallery_examples_004_advanced_rules.py`
-for more advanced rule examples. For a complete Composite analysis,
-see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
+This example shows the basic usage of selection rules, which enable you to select elements through
+geometrical operations and thus to shape plies. The example only shows the PyACP part of the setup.
+For more advanced selection rule usage, see
+:ref:`sphx_glr_examples_gallery_examples_004_advanced_rules.py`. For a complete composite
+analysis, see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
 
-.. GENERATED FROM PYTHON SOURCE LINES 38-39
+.. GENERATED FROM PYTHON SOURCE LINES 38-42
 
-Import standard library and third-party dependencies.
+Import modules
+--------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-42
+Import the standard library and third-party dependencies.
+
+.. GENERATED FROM PYTHON SOURCE LINES 42-45
 
 .. code-block:: default
 
@@ -47,11 +50,11 @@ Import standard library and third-party dependencies.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 43-44
+.. GENERATED FROM PYTHON SOURCE LINES 46-47
 
-Import pyACP dependencies.
+Import the PyACP dependencies.
 
-.. GENERATED FROM PYTHON SOURCE LINES 44-49
+.. GENERATED FROM PYTHON SOURCE LINES 47-52
 
 .. code-block:: default
 
@@ -67,16 +70,16 @@ Import pyACP dependencies.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 51-53
+.. GENERATED FROM PYTHON SOURCE LINES 54-56
 
 Start ACP and load the model
 ----------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-57
+.. GENERATED FROM PYTHON SOURCE LINES 59-60
 
 Get the example file from the server.
 
-.. GENERATED FROM PYTHON SOURCE LINES 57-61
+.. GENERATED FROM PYTHON SOURCE LINES 60-64
 
 .. code-block:: default
 
@@ -91,11 +94,11 @@ Get the example file from the server.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 62-63
+.. GENERATED FROM PYTHON SOURCE LINES 65-66
 
 Launch the PyACP server and connect to it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 63-65
+.. GENERATED FROM PYTHON SOURCE LINES 66-68
 
 .. code-block:: default
 
@@ -108,14 +111,14 @@ Launch the PyACP server and connect to it.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 66-70
+.. GENERATED FROM PYTHON SOURCE LINES 69-73
 
 Define the input file and instantiate an ``ACPWorkflow`` instance.
-The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
+The ``ACPWorkflow`` class provides convenience methods that simplify file handling.
 It automatically creates a model based on the input file.
-The input file contains a flat plate with a single ply.
+This example's input file contains a flat plate with a single ply.
 
-.. GENERATED FROM PYTHON SOURCE LINES 70-81
+.. GENERATED FROM PYTHON SOURCE LINES 73-84
 
 .. code-block:: default
 
@@ -138,17 +141,17 @@ The input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmplk8pt__6
+    /tmp/tmp7y8ttq_o
     mks
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 82-83
+.. GENERATED FROM PYTHON SOURCE LINES 85-86
 
 Visualize the loaded mesh.
 
-.. GENERATED FROM PYTHON SOURCE LINES 83-87
+.. GENERATED FROM PYTHON SOURCE LINES 86-90
 
 .. code-block:: default
 
@@ -190,16 +193,16 @@ Visualize the loaded mesh.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 88-90
+.. GENERATED FROM PYTHON SOURCE LINES 91-93
 
 Create a Parallel Rule
 ----------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 92-93
+.. GENERATED FROM PYTHON SOURCE LINES 95-96
 
 Create parallel selection rule and assign it to the existing ply.
 
-.. GENERATED FROM PYTHON SOURCE LINES 93-105
+.. GENERATED FROM PYTHON SOURCE LINES 96-108
 
 .. code-block:: default
 
@@ -222,11 +225,11 @@ Create parallel selection rule and assign it to the existing ply.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 106-107
+.. GENERATED FROM PYTHON SOURCE LINES 109-110
 
 Plot the ply thickness.
 
-.. GENERATED FROM PYTHON SOURCE LINES 107-111
+.. GENERATED FROM PYTHON SOURCE LINES 110-114
 
 .. code-block:: default
 
@@ -268,16 +271,16 @@ Plot the ply thickness.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 112-114
+.. GENERATED FROM PYTHON SOURCE LINES 115-117
 
 Create a Cylindrical Rule
 -------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 116-117
+.. GENERATED FROM PYTHON SOURCE LINES 119-120
 
 Create a cylindrical selection rule and add it to the ply. This will intersect the two rules.
 
-.. GENERATED FROM PYTHON SOURCE LINES 117-126
+.. GENERATED FROM PYTHON SOURCE LINES 120-129
 
 .. code-block:: default
 
@@ -297,11 +300,11 @@ Create a cylindrical selection rule and add it to the ply. This will intersect t
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 127-128
+.. GENERATED FROM PYTHON SOURCE LINES 130-131
 
 Plot the ply thickness.
 
-.. GENERATED FROM PYTHON SOURCE LINES 128-133
+.. GENERATED FROM PYTHON SOURCE LINES 131-136
 
 .. code-block:: default
 
@@ -344,17 +347,17 @@ Plot the ply thickness.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 134-136
+.. GENERATED FROM PYTHON SOURCE LINES 137-139
 
 Create a Spherical Rule
 -----------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 138-140
+.. GENERATED FROM PYTHON SOURCE LINES 141-143
 
-Create a spherical selection rule and assign it to the ply. Now only the spherical rule is
+Create a spherical selection rule and assign it to the ply. Now, only the spherical rule is
 active.
 
-.. GENERATED FROM PYTHON SOURCE LINES 140-148
+.. GENERATED FROM PYTHON SOURCE LINES 143-151
 
 .. code-block:: default
 
@@ -373,11 +376,11 @@ active.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 149-150
+.. GENERATED FROM PYTHON SOURCE LINES 152-153
 
 Plot the ply thickness.
 
-.. GENERATED FROM PYTHON SOURCE LINES 150-154
+.. GENERATED FROM PYTHON SOURCE LINES 153-157
 
 .. code-block:: default
 
@@ -419,17 +422,17 @@ Plot the ply thickness.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 155-157
+.. GENERATED FROM PYTHON SOURCE LINES 158-160
 
 Create a Tube Rule
 ------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 159-161
+.. GENERATED FROM PYTHON SOURCE LINES 162-164
 
-Create a tube selection rule and assign it to the ply. Now only the tube rule is
+Create a tube selection rule and assign it to the ply. Now, only the tube rule is
 active.
 
-.. GENERATED FROM PYTHON SOURCE LINES 161-171
+.. GENERATED FROM PYTHON SOURCE LINES 164-174
 
 .. code-block:: default
 
@@ -450,11 +453,11 @@ active.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 172-173
+.. GENERATED FROM PYTHON SOURCE LINES 175-176
 
 Plot the ply thickness.
 
-.. GENERATED FROM PYTHON SOURCE LINES 173-176
+.. GENERATED FROM PYTHON SOURCE LINES 176-179
 
 .. code-block:: default
 
@@ -498,7 +501,7 @@ Plot the ply thickness.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.248 seconds)
+   **Total running time of the script:** ( 0 minutes  5.284 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_003_basic_rules.py:

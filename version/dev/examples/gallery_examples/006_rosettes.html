@@ -444,8 +444,8 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="001_basic_flat_plate.html">Basic PyACP workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="002_sandwich_panel.html">Basic sandwich panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_basic_flat_plate.html">Basic PyACP workflow example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_sandwich_panel.html">Basic sandwich panel example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_basic_rules.html">Basic selection rules example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="004_advanced_rules.html">Advanced rules example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="005_thickness_definitions.html">Thickness definition example</a></li>
@@ -525,17 +525,19 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="rosette-example">
 <span id="sphx-glr-examples-gallery-examples-006-rosettes-py"></span><span id="id1"></span><h1>Rosette example<a class="headerlink" href="#rosette-example" title="Link to this heading">#</a></h1>
-<p>This example shows how to use rosettes to define the reference directions of a ply.
-This example shows just the PyACP part of the setup.  For a complete composite analysis,
-see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow</span></a> example.</p>
-<p>Import standard library and third-party dependencies.</p>
+<p>This example illustrates how you can use rosettes to define the reference directions of a ply.
+It only shows the PyACP part of the setup. For a complete composite analysis,
+see <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow example</span></a>.</p>
+<section id="import-modules">
+<h2>Import modules<a class="headerlink" href="#import-modules" title="Link to this heading">#</a></h2>
+<p>Import the standard library and third-party dependencies.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
-<p>Import PyACP dependencies</p>
+<p>Import the PyACP dependencies.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">ACPWorkflow</span><span class="p">,</span>
     <span class="n">EdgeSetType</span><span class="p">,</span>
@@ -548,6 +550,7 @@ see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-e
 <span class="kn">from</span> <span class="nn">ansys.acp.core.example_helpers</span> <span class="kn">import</span> <span class="n">ExampleKeys</span><span class="p">,</span> <span class="n">get_example_file</span>
 </pre></div>
 </div>
+</section>
 <section id="start-acp-and-load-the-model">
 <h2>Start ACP and load the model<a class="headerlink" href="#start-acp-and-load-the-model" title="Link to this heading">#</a></h2>
 <p>Get the example file from the server.</p>
@@ -561,9 +564,9 @@ see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-e
 </pre></div>
 </div>
 <p>Define the input file and instantiate an <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> instance.
-The <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> class provides convenience methods that simplify the file handling.
+The <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> class provides convenience methods that simplify file handling.
 It automatically creates a model based on the input file.
-The input file contains a flat plate with a single ply.</p>
+This example’s input file contains a flat plate with a single ply.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span> <span class="o">=</span> <span class="n">ACPWorkflow</span><span class="o">.</span><span class="n">from_cdb_or_dat_file</span><span class="p">(</span>
     <span class="n">acp</span><span class="o">=</span><span class="n">acp</span><span class="p">,</span>
     <span class="n">cdb_or_dat_file_path</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">,</span>
@@ -575,14 +578,14 @@ The input file contains a flat plate with a single ply.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpz30r6g0s
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmp04vhp9vu
 mks
 </pre></div>
 </div>
 </section>
 <section id="define-directions-with-a-parallel-rosette">
 <h2>Define directions with a parallel rosette<a class="headerlink" href="#define-directions-with-a-parallel-rosette" title="Link to this heading">#</a></h2>
-<p>Create a material and a fabric</p>
+<p>Create a material and fabric.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ud_material</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_material</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;UD&quot;</span><span class="p">,</span>
     <span class="n">ply_type</span><span class="o">=</span><span class="n">PlyType</span><span class="o">.</span><span class="n">REGULAR</span><span class="p">,</span>
@@ -601,7 +604,7 @@ mks
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Create an oriented selection set and assign the rosette.</p>
+<p>Create an oriented selection set (OSS) and assign the rosette.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;oss&quot;</span><span class="p">,</span>
     <span class="n">orientation_point</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
@@ -613,7 +616,7 @@ mks
 <span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Plot the orientation and the reference directions of the oriented selection set.</p>
+<p>Plot the orientation and reference directions of the OSS.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="p">[</span><span class="n">oss</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">orientation</span><span class="p">,</span> <span class="n">oss</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">reference_direction</span><span class="p">]</span>
 <span class="p">)</span>
@@ -633,7 +636,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <p>Create a ply that uses the reference directions defined by the rosette.
-The ply angle is set to 20 degrees, which means the fiber direction is rotated by 20 degrees
+The ply angle is set to 20 degrees, which means that the fiber direction is rotated by 20 degrees
 from the reference direction.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modeling_group</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_modeling_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;modeling_group&quot;</span><span class="p">)</span>
 <span class="n">modeling_ply</span> <span class="o">=</span> <span class="n">modeling_group</span><span class="o">.</span><span class="n">create_modeling_ply</span><span class="p">(</span>
@@ -674,8 +677,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <p>Create a radial rosette and plot the resulting reference directions.
 For a radial rosette, a line is constructed that goes through the origin. Its
 direction vector is normal to a plane spanned by <code class="docutils literal notranslate"><span class="pre">dir1</span></code> and <code class="docutils literal notranslate"><span class="pre">dir2</span></code>.
-The reference directions are then parallel to the shortest connection from the line to each point
-for which the reference direction is computed.</p>
+Therefore, the reference directions are parallel to the shortest connection from the line to
+each point for which it is computed.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">radial_rosette</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RadialRosette&quot;</span><span class="p">,</span>
     <span class="n">rosette_type</span><span class="o">=</span><span class="n">RosetteType</span><span class="o">.</span><span class="n">RADIAL</span><span class="p">,</span>
@@ -707,7 +710,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <section id="define-directions-with-a-cylindrical-rosette">
 <h2>Define directions with a cylindrical rosette<a class="headerlink" href="#define-directions-with-a-cylindrical-rosette" title="Link to this heading">#</a></h2>
 <p>Create a cylindrical rosette and plot the resulting reference directions.
-For a cylindrical rosette, the reference directions are tangential to circles around the origin
+For a cylindrical rosette, the reference directions are tangential to the circles around the origin
 that lie in a plane spanned by <code class="docutils literal notranslate"><span class="pre">dir1</span></code> and <code class="docutils literal notranslate"><span class="pre">dir2</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cylindrical_rosette</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;CylindricalRosette&quot;</span><span class="p">,</span>
@@ -741,7 +744,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <h2>Define directions with a spherical rosette<a class="headerlink" href="#define-directions-with-a-spherical-rosette" title="Link to this heading">#</a></h2>
 <p>Create a spherical rosette and plot the resulting reference directions.
 For a spherical rosette, the reference directions are tangential to a sphere around the origin.
-Note that this is the same as the cylindrical rosette for the current example.</p>
+Note that for this example, the reference directions of the spherical rosette are the same as
+those of the cylindrical rosette.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spherical_rosette</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;SphericalRosette&quot;</span><span class="p">,</span>
     <span class="n">rosette_type</span><span class="o">=</span><span class="n">RosetteType</span><span class="o">.</span><span class="n">SPHERICAL</span><span class="p">,</span>
@@ -771,16 +775,17 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="define-directions-with-an-edge-wise-rosette">
-<h2>Define directions with an edge wise rosette<a class="headerlink" href="#define-directions-with-an-edge-wise-rosette" title="Link to this heading">#</a></h2>
-<p>Create an edge wise rosette and plot the resulting reference directions.
-The reference direction is given by a projection of <code class="docutils literal notranslate"><span class="pre">dir1</span></code>
-and the path of the edge set. The <code class="docutils literal notranslate"><span class="pre">dir1</span></code> of the rosette is projected on to the point
-on the edge that is closest to the origin of the rosette. This determines the reference direction
-along the edge set. The reference direction is reversed by inverting <code class="docutils literal notranslate"><span class="pre">dir1</span></code>.
-An element within an oriented selection set gets its reference direction from the direction
+<h2>Define directions with an edge-wise rosette<a class="headerlink" href="#define-directions-with-an-edge-wise-rosette" title="Link to this heading">#</a></h2>
+<p>Create an edge-wise rosette and plot the resulting reference directions.
+The reference directions are given by a projection of <code class="docutils literal notranslate"><span class="pre">dir1</span></code>
+and the path of the edge set. <code class="docutils literal notranslate"><span class="pre">dir1</span></code> of the rosette is projected onto the point
+on the edge that is closest to the rosette’s origin. This determines the reference directions
+along the edge set.
+You can reverse the reference directions by inverting <code class="docutils literal notranslate"><span class="pre">dir1</span></code>.
+An element within an OSS gets its reference directions from the direction
 of the point on the edge that is closest to the element centroid.</p>
-<p>Create the edge set from the “All_Elements” element set. Because we set
-the limit angle to 120°, all the edges are selected.</p>
+<p>Create the edge set from the “All_Elements” element set. Because you assigned
+120 degrees to the limit angle, all the edges are selected.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">edge_set</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_edge_set</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;edge_set&quot;</span><span class="p">,</span>
     <span class="n">edge_set_type</span><span class="o">=</span><span class="n">EdgeSetType</span><span class="o">.</span><span class="n">BY_REFERENCE</span><span class="p">,</span>
@@ -831,9 +836,9 @@ at <code class="docutils literal notranslate"><span class="pre">(0.01,</span> <s
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Assign both rosettes to the oriented selection set and set the rosette selection method to
-<code class="docutils literal notranslate"><span class="pre">RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED</span></code>. This implies that the reference direction
-is weighted by the inverse distance to each rosette. Note that the origin of
+<p>Assign both rosettes to the OSS and set the rosette selection method to
+<code class="docutils literal notranslate"><span class="pre">RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED</span></code>. This implies that the reference directions
+are weighted by the inverse distance to each rosette. Note that the origin of
 the rotated rosette is at <code class="docutils literal notranslate"><span class="pre">(0,0,0)</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oss</span><span class="o">.</span><span class="n">rosettes</span> <span class="o">=</span> <span class="p">[</span><span class="n">parallel_rosette_45_deg</span><span class="p">,</span> <span class="n">parallel_rosette_0_deg</span><span class="p">]</span>
 <span class="n">oss</span><span class="o">.</span><span class="n">rosette_selection_method</span> <span class="o">=</span> <span class="n">RosetteSelectionMethod</span><span class="o">.</span><span class="n">MINIMUM_DISTANCE_SUPERPOSED</span>
@@ -857,7 +862,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_006_rosettes_007.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.418 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.950 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-006-rosettes-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/65a4c79c5eda8396d8ac82411aab0851/006_rosettes.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">006_rosettes.py</span></code></a></p>
@@ -890,12 +895,13 @@ Interactive Scene</label><div class="sd-tab-content docutils">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-modules">Import modules</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-acp-and-load-the-model">Start ACP and load the model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-directions-with-a-parallel-rosette">Define directions with a parallel rosette</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-directions-with-a-radial-rosette">Define directions with a radial rosette</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-directions-with-a-cylindrical-rosette">Define directions with a cylindrical rosette</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-directions-with-a-spherical-rosette">Define directions with a spherical rosette</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-directions-with-an-edge-wise-rosette">Define directions with an edge wise rosette</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-directions-with-an-edge-wise-rosette">Define directions with an edge-wise rosette</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-rosettes">Combine rosettes</a></li>
 </ul>
   </nav></div>

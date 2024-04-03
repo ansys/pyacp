@@ -1,10 +1,10 @@
-Visualizing the model
----------------------
+Visualize model
+---------------
 
 .. jinja:: conditional_skip
 
     {% if not skip_gallery %}
-    For this how-to guide, we will use an example model of a race car front wing.
+    This guide uses a model of a race car's front wing.
 
     .. pyvista-plot::
         :nofigs:
@@ -31,10 +31,10 @@ Visualizing the model
 
         >>> model.update()
 
-    Showing the mesh
-    ~~~~~~~~~~~~~~~~
+    Show the mesh
+    ~~~~~~~~~~~~~
 
-    The mesh data can be accessed using the :attr:`.Model.mesh` attribute. This attribute is an instance of the :class:`.MeshData` class, and can be converted to a PyVista mesh using the :meth:`.MeshData.to_pyvista` method.
+    Access the mesh data using the :attr:`.Model.mesh` attribute. This attribute, an instance of the :class:`.MeshData` class, can be converted to a PyVista mesh using the :meth:`.MeshData.to_pyvista` method.
 
     .. pyvista-plot::
         :context:
@@ -47,7 +47,7 @@ Visualizing the model
     Showing the directions
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    To show the directions (for example normals, fiber directions, orientations, etc.) of the model, we can use the :func:`.get_directions_plotter` helper function. This function takes the model, the components to visualize, and some optional parameters.
+    Show the directions (such as normals, fiber directions, and orientations) of the model by using the :func:`.get_directions_plotter` helper function. This function takes the model, the components to visualize, and some optional parameters.
 
     The following example shows the orientation and fiber direction of a modeling ply.
 
@@ -69,17 +69,17 @@ Visualizing the model
 
     The color scheme used in this plot for the various components matches the ACP GUI.
 
-    Showing mesh data
-    ~~~~~~~~~~~~~~~~~
+    Showing the mesh data
+    ~~~~~~~~~~~~~~~~~~~~~
 
-    In general, the mesh data relating to a specific ACP object can be accessed using the ``elemental_data`` and ``nodal_data`` attributes. These attributes represent either scalar or vector data.
+    Access the mesh data related to a specific ACP object using the ``elemental_data`` and ``nodal_data`` attributes. These attributes represent either scalar or vector data.
 
     Scalar data
     '''''''''''
 
-    Scalar data can be converted to a PyVista mesh using the :meth:`get_pyvista_mesh <.ScalarData.get_pyvista_mesh>` method. The base model mesh needs to be passed to this method.
+    You can convert scalar data to a PyVista mesh using the :meth:`get_pyvista_mesh <.ScalarData.get_pyvista_mesh>` method. This method requires the base model mesh.
 
-    For example, we can plot the total thickness of the model using the following code:
+    For example, you can plot the total thickness of the model using this code:
 
 
     .. pyvista-plot::
@@ -92,11 +92,11 @@ Visualizing the model
     Vector data
     '''''''''''
 
-    Vector data can be visualized using the :func:`.get_directions_plotter` function shown in the preceding section :ref:`directions_plotter`. If you need more fine-grained control over the visualization, you can use the method shown in this section instead.
+    Visualize vector data using the :func:`.get_directions_plotter` function shown in the preceding section :ref:`directions_plotter`. If you need more fine-grained control over the visualization, you can use the method shown in this section instead.
 
-    Vector data can be converted to PyVista glyphs using the :meth:`get_pyvista_glyphs <.VectorData.get_pyvista_glyphs>` method. Again, the base model mesh needs to be passed to this method.
+    Vector data can be converted to PyVista glyphs using the :meth:`get_pyvista_glyphs <.VectorData.get_pyvista_glyphs>` method. This method requires the base model mesh.
 
-    We can also choose a scaling factor to change the size of the vector glyphs, and a culling factor to reduce the number of glyphs plotted.
+    You can also choose a scaling factor to change the size of the vector glyphs and a culling factor to reduce the number of glyphs plotted.
 
 
     .. pyvista-plot::
@@ -107,7 +107,7 @@ Visualizing the model
         >>> ply_offset.get_pyvista_glyphs(mesh=model.mesh, scaling_factor=6., culling_factor=5).plot()
 
 
-    When plotting vector data in this way, the base mesh is not shown. To additionally show the mesh, we can combine the mesh and the glyphs using a PyVista plotter.
+    The base mesh is not shown when plotting vector data using PyVista glyphs. To visualize the mesh, you can combine the mesh and glyphs together using a PyVista plotter.
 
     .. pyvista-plot::
         :context:
@@ -121,16 +121,13 @@ Visualizing the model
         ... )
         >>> plotter.show()
 
-    .. note::
-
-        The preceding plot may not render correctly as a static scene. See the interactive scene instead.
 
     Showing geometries
     ~~~~~~~~~~~~~~~~~~
 
-    CAD Geometries can be visualized using their :attr:`visualization_mesh <.CADGeometry.visualization_mesh>` attribute. This attribute contains a tessellated (triangle) mesh representing the geometry.
+    You can view CAD geometries using their :attr:`visualization_mesh <.CADGeometry.visualization_mesh>` attribute. This attribute contains a tessellated (triangular) mesh that represents the geometry.
 
-    For plotting, the tessellated mesh has a :meth:`.to_pyvista <.TriangleMesh.to_pyvista>` method that returns a PyVista :class:`PolyData <pyvista.PolyData>` object. To see the triangle nature of the mesh, you can plot the mesh with the ``show_edges`` option set to ``True``.
+    For plotting, the tessellated mesh has a :meth:`.to_pyvista <.TriangleMesh.to_pyvista>` method that returns a PyVista :class:`PolyData <pyvista.PolyData>` object. To see its triangular nature, plot the mesh with the ``show_edges`` option set to ``True``.
 
     .. pyvista-plot::
         :context:

@@ -444,8 +444,8 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="001_basic_flat_plate.html">Basic PyACP workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="002_sandwich_panel.html">Basic sandwich panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_basic_flat_plate.html">Basic PyACP workflow example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_sandwich_panel.html">Basic sandwich panel example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_basic_rules.html">Basic selection rules example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="004_advanced_rules.html">Advanced rules example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="005_thickness_definitions.html">Thickness definition example</a></li>
@@ -525,18 +525,18 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="class-40-example">
 <span id="solve-class40-example"></span><span id="sphx-glr-examples-gallery-examples-008-solve-class40-py"></span><h1>Class 40 example<a class="headerlink" href="#class-40-example" title="Link to this heading">#</a></h1>
-<p>Define a Composite Lay-up with PyACP, solve the resulting model with PyMAPDL, and run
-a failure analysis with PyDPF-Composites.</p>
-<p>The starting point is a MAPDL CDB file which contains the mesh, material data and
-the boundary conditions. This model is imported in PyACP to define the lay-up.
-PyACP exports the resulting model for PyMAPDL. Once the results are available,
-the RST file is loaded in PyDPF composites. The additional input files (material.xml
-and ACPCompositeDefinitions.h5) can also be stored with PyACP and passed to PyDPF Composites.</p>
-<p>The MAPDL and DPF services are run in docker containers which share a volume (working
+<p>This example shows how to define a composite lay-up with PyACP, solve the resulting
+model with PyMAPDL, and run a failure analysis with PyDPF Composites.</p>
+<p>Begin with an MAPDL CDB file that contains the mesh, material data, and
+boundary conditions. Import the file to PyACP to define the lay-up, and then export the
+resulting model to PyMAPDL. Once the results are available, the RST file is loaded in
+PyDPF Composites for postprocessing. The additional input files (<code class="docutils literal notranslate"><span class="pre">material.xml</span></code>
+and <code class="docutils literal notranslate"><span class="pre">ACPCompositeDefinitions.h5</span></code>) can also be stored with PyACP and passed to PyDPF Composites.</p>
+<p>The MAPDL and DPF services are run in Docker containers that share a volume (working
 directory).</p>
-<section id="setup-connect-to-pyacp-server">
-<h2>Setup: Connect to PyACP Server<a class="headerlink" href="#setup-connect-to-pyacp-server" title="Link to this heading">#</a></h2>
-<p>Import standard library and third-party dependencies</p>
+<section id="import-modules-and-start-acp">
+<h2>Import modules and start ACP<a class="headerlink" href="#import-modules-and-start-acp" title="Link to this heading">#</a></h2>
+<p>Import the standard library and third-party dependencies.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
@@ -544,7 +544,7 @@ directory).</p>
 <span class="kn">import</span> <span class="nn">pyvista</span>
 </pre></div>
 </div>
-<p>Import Ansys libraries</p>
+<p>Import the Ansys libraries.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
 </pre></div>
 </div>
@@ -573,7 +573,7 @@ directory).</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/runner/work/pyacp/pyacp/examples/data/class40/class40.cdb
 </pre></div>
 </div>
-<p>Load CDB file into PyACP and set the unit system</p>
+<p>Load the CDB file into PyACP and set the unit system.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span>
     <span class="n">path</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePosixPath" title="pathlib.PurePosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_path</span></a><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">,</span> <span class="n">unit_system</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">UnitSystemType</span><span class="o">.</span><span class="n">MPA</span>
 <span class="p">)</span>
@@ -583,7 +583,7 @@ directory).</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Model with name &#39;ACP Lay-up Model&#39;&gt;
 </pre></div>
 </div>
-<p>Visualize the loaded mesh</p>
+<p>Visualize the loaded mesh.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">.</span><span class="n">to_pyvista</span><span class="p">()</span>
 <a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.DataSet.plot.html#pyvista.DataSet.plot" title="pyvista.DataSet.plot" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">mesh</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
@@ -603,7 +603,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </section>
 <section id="build-composite-lay-up">
 <h2>Build Composite Lay-up<a class="headerlink" href="#build-composite-lay-up" title="Link to this heading">#</a></h2>
-<p>Create the model (unit system is MPA)</p>
+<p>Create the model (MPA unit system).</p>
 <section id="materials">
 <h3>Materials<a class="headerlink" href="#materials" title="Link to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat_corecell_81kg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span>
@@ -647,7 +647,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </section>
 <section id="oriented-selection-sets">
 <h3>Oriented Selection Sets<a class="headerlink" href="#oriented-selection-sets" title="Link to this heading">#</a></h3>
-<p>Note: the element sets are imported from the initial mesh (CDB)</p>
+<p>Note that the element sets are imported from the initial mesh (CBD file).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oss_deck</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;oss_deck&quot;</span><span class="p">,</span>
     <span class="n">orientation_point</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.3806</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0016</span><span class="p">,</span> <span class="mf">1.6449</span><span class="p">),</span>
@@ -688,8 +688,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Show the orientations on the hull OSS.</p>
-<p>Note that the Model must be updated before the orientations are available.</p>
+<p>Show the orientations on the hull oriented selection set (OSS).</p>
+<p>Note that the model must be updated before the orientations are available.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
 <a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class"><span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span></a><span class="p">()</span>
@@ -729,7 +729,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <span class="p">)</span>
 </pre></div>
 </div>
-<p>Define plies for the HULL, DECK and BULKHEAD</p>
+<p>Define plies for the hull, deck, and bulkhead.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles</span></a> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">90.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">60.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">45.0</span> <span class="o">-</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">45.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">]</span>
 <span class="k">for</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mg_name</span></a> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;hull&quot;</span><span class="p">,</span> <span class="s2">&quot;deck&quot;</span><span class="p">,</span> <span class="s2">&quot;bulkhead&quot;</span><span class="p">]:</span>
     <span class="n">mg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_modeling_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mg_name</span></a><span class="p">)</span>
@@ -741,7 +741,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
         <span class="n">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="s2">&quot;eglass_ud_02mm_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">),</span> <span class="n">eglass_ud_02mm</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p>Add plies to the keeltower</p>
+<p>Add plies to the keeltower.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_modeling_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;keeltower&quot;</span><span class="p">)</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">oriented_selection_sets</span><span class="p">[</span><span class="s2">&quot;oss_keeltower&quot;</span><span class="p">]]</span>
 <span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles</span></a><span class="p">:</span>
@@ -753,7 +753,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <span class="n">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="s2">&quot;eglass_ud_02mm_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">),</span> <span class="n">eglass_ud_02mm</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p>Inspect the number of modeling groups and plies</p>
+<p>Inspect the number of modeling groups and plies.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;hull&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;deck&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">))</span>
@@ -768,7 +768,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 19
 </pre></div>
 </div>
-<p>Show the thickness of one of the plies</p>
+<p>Show the thickness of one of the plies.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <span class="n">modeling_ply</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;deck&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">[</span><span class="s2">&quot;eglass_ud_02mm_0.5&quot;</span><span class="p">]</span>
 <span class="n">thickness</span> <span class="o">=</span> <span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span>
@@ -788,7 +788,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_008_solve_class40_003.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p>Show the ply offsets, scaled by a factor of 200</p>
+<p>Show the ply offsets that are scaled by a factor of 200.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class"><span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span></a><span class="p">()</span>
 <a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.add_mesh.html#pyvista.Plotter.add_mesh" title="pyvista.Plotter.add_mesh" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span></a><span class="p">(</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
 <span class="n">ply_offset</span> <span class="o">=</span> <span class="n">modeling_ply</span><span class="o">.</span><span class="n">nodal_data</span><span class="o">.</span><span class="n">ply_offset</span>
@@ -811,7 +811,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_008_solve_class40_004.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p>Show the thickness of the entire lay-up</p>
+<p>Show the thickness of the entire lay-up.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">thickness</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span>
 <span class="k">assert</span> <span class="n">thickness</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 <span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">=</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -839,19 +839,19 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">MATML_FILE</span></a> <span class="o">=</span> <span class="s2">&quot;materials.xml&quot;</span>
 </pre></div>
 </div>
-<p>Update and Save the ACP model</p>
+<p>Update and save the ACP model.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ACPH5_FILE</span></a><span class="p">,</span> <span class="n">save_cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Save the model as CDB for solving with PyMAPDL</p>
+<p>Save the model as a CDB file for solving with PyMAPDL.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">export_analysis_model</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME_OUT</span></a><span class="p">)</span>
-<span class="c1"># Export the shell lay-up and material file for DPF Composites</span>
+<span class="c1"># Export the shell lay-up and material file for PyDPF Composites.</span>
 <span class="n">model</span><span class="o">.</span><span class="n">export_shell_composite_definitions</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">COMPOSITE_DEFINITIONS_H5</span></a><span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">export_materials</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">MATML_FILE</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p>Download files from ACP server to a local directory</p>
+<p>Download files from the ACP server to a local directory.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmp_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class"><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span></a><span class="p">()</span>
 <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmp_dir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
 <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">)</span> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CDB_FILENAME_OUT</span></a>
@@ -867,21 +867,21 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </section>
 <section id="solve-with-pymapdl">
 <h2>Solve with PyMAPDL<a class="headerlink" href="#solve-with-pymapdl" title="Link to this heading">#</a></h2>
-<p>Import PyMAPDL and connect to its server</p>
+<p>Import PyMAPDL and connect to its server.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
 
 <span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Load the CDB file into PyMAPDL</p>
+<p>Load the CDB file into PyMAPDL.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  24.2BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     08:50:57  MAR 28, 2024 CP=      1.318\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 24.2BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.385\n\n\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  24.2BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     20:26:11  APR 03, 2024 CP=      1.237\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 24.2BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.316\n\n\n&#39;
 </pre></div>
 </div>
-<p>Solve the model</p>
+<p>Solve the model.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
@@ -889,7 +889,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       1.402   TIME= 08:50:57
+ *** NOTE ***                            CP =       1.332   TIME= 20:26:11
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -914,7 +914,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  24.2BETA ***
  Ansys Mechanical Enterprise
- 00000000  VERSION=LINUX x64     08:50:57  MAR 28, 2024 CP=      1.431
+ 00000000  VERSION=LINUX x64     20:26:11  APR 03, 2024 CP=      1.360
 
 
 
@@ -930,14 +930,14 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       1.433   TIME= 08:50:57
+ *** NOTE ***                            CP =       1.361   TIME= 20:26:11
  Poisson&#39;s ratio PR input has been converted to NU input.
 
- *** NOTE ***                            CP =       1.436   TIME= 08:50:57
+ *** NOTE ***                            CP =       1.365   TIME= 20:26:11
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       1.437   TIME= 08:50:57
+ *** NOTE ***                            CP =       1.365   TIME= 20:26:11
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -955,7 +955,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       1.501   TIME= 08:50:57
+ *** NOTE ***                            CP =       1.430   TIME= 20:26:11
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -1004,10 +1004,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      2.291   0.000577
-        2        88  BEAM188       0.005   0.000053
-        3        22  SHELL181      0.004   0.000187
- Time at end of element matrix formulation CP = 3.81810117.
+        1      3973  SHELL181      2.229   0.000561
+        2        88  BEAM188       0.003   0.000038
+        3        22  SHELL181      0.004   0.000188
+ Time at end of element matrix formulation CP = 3.68459272.
 
  SPARSE MATRIX DIRECT SOLVER.
   Number of equations =       24096,    Maximum wavefront =     66
@@ -1018,9 +1018,9 @@ Interactive Scene</label><div class="sd-tab-content docutils">
   Equation solver memory allocated                     =    66.685 MB
   Equation solver memory required for in-core mode     =    64.079 MB
   Equation solver memory required for out-of-core mode =    29.738 MB
-  Total (solver and non-solver) memory allocated       =   665.732 MB
+  Total (solver and non-solver) memory allocated       =   665.951 MB
 
- *** NOTE ***                            CP =       3.867   TIME= 08:51:00
+ *** NOTE ***                            CP =       3.734   TIME= 20:26:13
  The Sparse Matrix Solver is currently running in the in-core memory
  mode.  This memory mode uses the most amount of memory in order to
  avoid using the hard drive as much as possible, which most often
@@ -1035,14 +1035,14 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      5.086   0.001280
-        2        88  BEAM188       0.009   0.000105
-        3        22  SHELL181      0.007   0.000315
+        1      3973  SHELL181      4.926   0.001240
+        2        88  BEAM188       0.008   0.000088
+        3        22  SHELL181      0.007   0.000306
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      0.056   0.000014
+        1      3973  SHELL181      0.055   0.000014
         2        88  BEAM188       0.001   0.000016
         3        22  SHELL181      0.000   0.000014
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
@@ -1055,12 +1055,12 @@ Interactive Scene</label><div class="sd-tab-content docutils">
        58.125 MB WRITTEN ON RESULTS FILE: file.rst
 </pre></div>
 </div>
-<p>Post-processing: show displacements</p>
+<p>Show the displacements in postprocessing.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span><span class="n">component</span><span class="o">=</span><span class="s2">&quot;NORM&quot;</span><span class="p">)</span>
 
-<span class="c1"># Download RST FILE for further post-processing</span>
+<span class="c1"># Download the RST file for further postprocessing.</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mapdl</span><span class="o">.</span><span class="n">jobname</span><span class="si">}</span><span class="s2">.rst&quot;</span>
 <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_local_path</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmp_dir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a>
 <span class="n">mapdl</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmp_dir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
@@ -1082,10 +1082,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </section>
-<section id="post-processing-with-dpf-composites">
-<h2>Post-Processing with DPF composites<a class="headerlink" href="#post-processing-with-dpf-composites" title="Link to this heading">#</a></h2>
-<p>Setup: configure imports and connect to the pyDPF Composites server
-and load the dpf composites plugin</p>
+<section id="postprocessing-with-pydpf-composites">
+<h2>Postprocessing with PyDPF Composites<a class="headerlink" href="#postprocessing-with-pydpf-composites" title="Link to this heading">#</a></h2>
+<p>To postprocess the results, you must configure the imports, connect to the
+PyDPF Composites server, and load its plugin.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf.composites.composite_model</span> <span class="kn">import</span> <span class="n">CompositeModel</span>
 <span class="kn">from</span> <span class="nn">ansys.dpf.composites.constants</span> <span class="kn">import</span> <span class="n">FailureOutput</span>
 <span class="kn">from</span> <span class="nn">ansys.dpf.composites.data_sources</span> <span class="kn">import</span> <span class="p">(</span>
@@ -1107,7 +1107,7 @@ automatically loads the composites plugin.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpf_server</span> <span class="o">=</span> <span class="n">connect_to_or_start_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Specify the Combined Failure Criterion</p>
+<p>Specify the combined failure criterion.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">max_strain</span> <span class="o">=</span> <span class="n">MaxStrainCriterion</span><span class="p">()</span>
 <span class="n">max_stress</span> <span class="o">=</span> <span class="n">MaxStressCriterion</span><span class="p">()</span>
 <span class="n">core_failure</span> <span class="o">=</span> <span class="n">CoreFailureCriterion</span><span class="p">()</span>
@@ -1118,7 +1118,7 @@ automatically loads the composites plugin.</p>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Create the CompositeModel and configure its input</p>
+<p>Create the composite model and configure its input.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">composite_model</span> <span class="o">=</span> <span class="n">CompositeModel</span><span class="p">(</span>
     <span class="n">composite_files</span><span class="o">=</span><span class="n">ContinuousFiberCompositesFiles</span><span class="p">(</span>
         <span class="n">rst</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_local_path</span></a><span class="p">,</span>
@@ -1132,11 +1132,11 @@ automatically loads the composites plugin.</p>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Evaluate the failure criteria</p>
+<p>Evaluate the failure criteria.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">output_all_elements</span> <span class="o">=</span> <span class="n">composite_model</span><span class="o">.</span><span class="n">evaluate_failure_criteria</span><span class="p">(</span><span class="n">cfc</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Query and plot the results</p>
+<p>Query and plot the results.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">irf_field</span> <span class="o">=</span> <span class="n">output_all_elements</span><span class="o">.</span><span class="n">get_field</span><span class="p">({</span><span class="s2">&quot;failure_label&quot;</span><span class="p">:</span> <span class="n">FailureOutput</span><span class="o">.</span><span class="n">FAILURE_VALUE</span><span class="p">})</span>
 <span class="n">irf_field</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
@@ -1153,7 +1153,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_008_solve_class40_007.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  21.424 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  21.135 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-008-solve-class40-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/267e3f8aadb58a0a1da7f1f28c8f167e/008_solve_class40.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">008_solve_class40.py</span></code></a></p>
@@ -1186,7 +1186,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-connect-to-pyacp-server">Setup: Connect to PyACP Server</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-modules-and-start-acp">Import modules and start ACP</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-mesh-and-materials-from-cdb-file">Load mesh and materials from CDB file</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-composite-lay-up">Build Composite Lay-up</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#materials">Materials</a></li>
@@ -1198,7 +1198,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-out-acp-model">Write out ACP Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-with-pymapdl">Solve with PyMAPDL</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing-with-dpf-composites">Post-Processing with DPF composites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing-with-pydpf-composites">Postprocessing with PyDPF Composites</a></li>
 </ul>
   </nav></div>
 

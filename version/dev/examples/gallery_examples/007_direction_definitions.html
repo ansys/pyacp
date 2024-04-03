@@ -444,8 +444,8 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="001_basic_flat_plate.html">Basic PyACP workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="002_sandwich_panel.html">Basic sandwich panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_basic_flat_plate.html">Basic PyACP workflow example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_sandwich_panel.html">Basic sandwich panel example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="003_basic_rules.html">Basic selection rules example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="004_advanced_rules.html">Advanced rules example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="005_thickness_definitions.html">Thickness definition example</a></li>
@@ -525,18 +525,20 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="direction-definition-example">
 <span id="sphx-glr-examples-gallery-examples-007-direction-definitions-py"></span><span id="id1"></span><h1>Direction definition example<a class="headerlink" href="#direction-definition-example" title="Link to this heading">#</a></h1>
-<p>This example shows how directions can be defined from lookup tables. This can be either
+<p>This example shows how to define directions from lookup tables. They can be either
 reference directions for oriented selection sets or draping angles for modeling plies.
-This example shows just the PyACP part of the setup.  For a complete Composite analysis,
-see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow</span></a> example.</p>
-<p>Import standard library and third-party dependencies.</p>
+The example only shows the PyACP part of the setup. For a complete composite analysis,
+see <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow example</span></a>.</p>
+<section id="import-modules">
+<h2>Import modules<a class="headerlink" href="#import-modules" title="Link to this heading">#</a></h2>
+<p>Import the standard library and third-party dependencies.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
-<p>Import PyACP dependencies.</p>
+<p>Import the PyACP dependencies.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">ACPWorkflow</span><span class="p">,</span>
     <span class="n">DimensionType</span><span class="p">,</span>
@@ -550,6 +552,7 @@ see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-e
 <span class="kn">from</span> <span class="nn">ansys.acp.core.example_helpers</span> <span class="kn">import</span> <span class="n">ExampleKeys</span><span class="p">,</span> <span class="n">get_example_file</span>
 </pre></div>
 </div>
+</section>
 <section id="start-acp-and-load-the-model">
 <h2>Start ACP and load the model<a class="headerlink" href="#start-acp-and-load-the-model" title="Link to this heading">#</a></h2>
 <p>Get the example file from the server.</p>
@@ -563,9 +566,9 @@ see the <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-e
 </pre></div>
 </div>
 <p>Define the input file and instantiate an <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> instance.
-The <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> class provides convenience methods that simplify the file handling.
+The <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> class provides convenience methods that simplify the handling.
 It automatically creates a model based on the input file.
-The input file contains a flat plate with a single ply.</p>
+This example’s input file contains a flat plate with a single ply.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span> <span class="o">=</span> <span class="n">ACPWorkflow</span><span class="o">.</span><span class="n">from_cdb_or_dat_file</span><span class="p">(</span>
     <span class="n">acp</span><span class="o">=</span><span class="n">acp</span><span class="p">,</span>
     <span class="n">cdb_or_dat_file_path</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">,</span>
@@ -577,7 +580,7 @@ The input file contains a flat plate with a single ply.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpusgn7auh
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpplzusfvm
 mks
 </pre></div>
 </div>
@@ -587,7 +590,7 @@ mks
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
 </pre></div>
 </div>
-<p>Create a material and a fabric</p>
+<p>Create a material and fabric.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ud_material</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_material</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;UD&quot;</span><span class="p">,</span>
     <span class="n">ply_type</span><span class="o">=</span><span class="n">PlyType</span><span class="o">.</span><span class="n">REGULAR</span><span class="p">,</span>
@@ -600,7 +603,7 @@ mks
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosette</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Create an oriented selection set and assign the rosette.</p>
+<p>Create an oriented selection set (OSS) and assign the rosette.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;oss&quot;</span><span class="p">,</span>
     <span class="n">orientation_direction</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
@@ -609,7 +612,7 @@ mks
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Plot the orientation and the reference direction of the oriented selection set.
+<p>Plot the orientation and reference direction of the OSS.
 The reference direction is defined by the rosette.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span>
@@ -631,14 +634,13 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </section>
-<section id="define-reference-directions">
-<h2>Define reference directions<a class="headerlink" href="#define-reference-directions" title="Link to this heading">#</a></h2>
-<p>Define the reference directions from a lookup table.</p>
-<p>Create a 3D lookup table to store the directions and angle corrections.</p>
+<section id="define-reference-direction-from-lookup-table">
+<h2>Define reference direction from lookup table<a class="headerlink" href="#define-reference-direction-from-lookup-table" title="Link to this heading">#</a></h2>
+<p>Create a 3D lookup table to store the direction and angle corrections.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lookup_table</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_lookup_table_3d</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Create a grid of points on the plate, where the lookup table values are stored.</p>
+<p>Create a grid of points on the plate where the lookup table values are stored.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plate_side_length</span></a> <span class="o">=</span> <span class="mf">0.01</span>
 <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">num_points</span></a> <span class="o">=</span> <span class="mi">10</span>
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">x_coordinates</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.linspace.html#numpy.linspace" title="numpy.linspace" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">linspace</span></a><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plate_side_length</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">num_points</span></a><span class="p">)</span>
@@ -655,7 +657,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Compute directions tangential to circles around the point (0,0,0).</p>
+<p>Compute the directions tangential to circles around the point (0,0,0).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">normal</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">directions</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.cross.html#numpy.cross" title="numpy.cross" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">cross</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">points</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">normal</span></a><span class="p">)</span>
 </pre></div>
@@ -669,12 +671,12 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Assign the lookup table to the oriented selection set.</p>
+<p>Assign the lookup table to the OSS.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oss</span><span class="o">.</span><span class="n">rosette_selection_method</span> <span class="o">=</span> <span class="n">RosetteSelectionMethod</span><span class="o">.</span><span class="n">DIRECTIONS_FROM_TABULAR_VALUES</span>
 <span class="n">oss</span><span class="o">.</span><span class="n">reference_direction_field</span> <span class="o">=</span> <span class="n">direction_column</span>
 </pre></div>
 </div>
-<p>Plot the orientation and the reference direction of the oriented selection set.</p>
+<p>Plot the orientation and the reference direction of the OSS.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="p">[</span><span class="n">oss</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">orientation</span><span class="p">,</span> <span class="n">oss</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">reference_direction</span><span class="p">]</span>
@@ -694,14 +696,13 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_007_direction_definitions_002.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p>Reset the oss so that it uses again the rosette for the reference directions.</p>
+<p>Reset the OSS so that it may use the rosette again for the reference direction.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oss</span><span class="o">.</span><span class="n">rosette_selection_method</span> <span class="o">=</span> <span class="n">RosetteSelectionMethod</span><span class="o">.</span><span class="n">MINIMUM_ANGLE</span>
 </pre></div>
 </div>
 </section>
-<section id="define-draping-angles">
-<h2>Define draping angles<a class="headerlink" href="#define-draping-angles" title="Link to this heading">#</a></h2>
-<p>Define the draping angles from a lookup table.</p>
+<section id="define-draping-angles-from-lookup-table">
+<h2>Define draping angles from lookup table<a class="headerlink" href="#define-draping-angles-from-lookup-table" title="Link to this heading">#</a></h2>
 <p>%%
 Compute a correction angle to define circular fiber paths.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">correction_angle</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">xx</span></a><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">zz</span></a><span class="o">.</span><span class="n">ravel</span><span class="p">())</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">/</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">pi</span></a>
@@ -735,7 +736,7 @@ Compute a correction angle to define circular fiber paths.</p>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Plot the directions of the modeling ply. First plot the directions without correction angles.</p>
+<p>Plot the directions of the modeling ply. First, plot the directions without correction angles.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
@@ -759,7 +760,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_007_direction_definitions_003.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p>Next plot the draped directions, including the correction angles, from the lookup table.</p>
+<p>Next, plot the draped directions, including the correction angles, from the lookup table.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
     <span class="n">components</span><span class="o">=</span><span class="p">[</span>
@@ -782,7 +783,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_007_direction_definitions_004.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.549 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.021 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-007-direction-definitions-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/16e1479d1b2ff4ffd83fae45ca2bdd75/007_direction_definitions.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">007_direction_definitions.py</span></code></a></p>
@@ -815,10 +816,11 @@ Interactive Scene</label><div class="sd-tab-content docutils">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-modules">Import modules</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-acp-and-load-the-model">Start ACP and load the model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-materials-and-oriented-selection-set">Setup materials and oriented selection set</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-reference-directions">Define reference directions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-draping-angles">Define draping angles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-reference-direction-from-lookup-table">Define reference direction from lookup table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-draping-angles-from-lookup-table">Define draping angles from lookup table</a></li>
 </ul>
   </nav></div>
 

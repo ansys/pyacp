@@ -27,13 +27,16 @@ Thickness definition example
 ============================
 
 This example shows how the thickness of a ply can be defined by a geometry or a lookup table.
-This example shows just the pyACP part of the setup.  For a complete Composite analysis,
-see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
+The example only shows the PyACP part of the setup. For a complete composite analysis,
+see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
 """
 
 
 # %%
-# Import standard library and third-party dependencies.
+# Import modules
+# --------------
+#
+# Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
 
@@ -41,7 +44,7 @@ import numpy as np
 import pyvista
 
 # %%
-# Import pyACP dependencies
+# Import the PyACP dependencies.
 from ansys.acp.core import ACPWorkflow, DimensionType, ThicknessType, example_helpers, launch_acp
 from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
 
@@ -64,9 +67,9 @@ acp = launch_acp()
 
 # %%
 # Define the input file and instantiate an ``ACPWorkflow`` instance.
-# The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
+# The ``ACPWorkflow`` class provides convenience methods that simplify file handling.
 # It automatically creates a model based on the input file.
-# The input file contains a flat plate with a single ply.
+# This example's input file contains a flat plate with a single ply.
 workflow = ACPWorkflow.from_acph5_file(
     acp=acp,
     acph5_file_path=input_file,
@@ -106,12 +109,12 @@ thickness_virtual_geometry = model.create_virtual_geometry(
 )
 
 # %%
-# Set the thickness type to "from geometry" and define the virtual geometry.
+# Set the thickness type to ``FROM_GEOMETRY`` and define the virtual geometry.
 modeling_ply.thickness_type = ThicknessType.FROM_GEOMETRY
 modeling_ply.thickness_geometry = thickness_virtual_geometry
 
 # %%
-# Plot the ply thickness together with the geometry that defines the thickness.
+# Plot the ply thickness together with the geometry defining the thickness.
 model.update()
 assert model.elemental_data.thickness is not None
 plotter = pyvista.Plotter()
@@ -133,10 +136,10 @@ plotter.show()
 
 # %%
 # Create the data for the lookup table.
-# Create a 20x20 grid of points on which a thickness function is defined. In this case
-# the mesh of the lookup table is finer than the Finite Element mesh and the thickness
-# is interpolated onto the Finite Element mesh.
-# Note: the plate lies in the x-z plane and the thickness is defined in the y direction.
+# Make a 20x20 grid of points to define a thickness function on. In this example,
+# the mesh of the lookup table is finer than the finite element mesh, and the thickness
+# is interpolated onto the finite element mesh.
+# Note that the plate lies in the xz plane and the thickness is defined in the y direction.
 plate_side_length = 0.01
 num_points = 3
 x_coordinates = np.linspace(0, plate_side_length, num_points)
@@ -144,13 +147,13 @@ z_coordinates = np.linspace(0, plate_side_length, num_points)
 xx, zz = np.meshgrid(x_coordinates, z_coordinates)
 
 # %%
-# Create a thickness equal to the distance to the center of the plate.
+# Create a thickness that equals the distance to the center of the plate.
 center_x = 0.005
 center_z = 0.005
 thickness = np.sqrt((xx - center_x) ** 2 + (zz - center_z) ** 2).ravel()
 
 # %%
-# Create the point coordinates for the lookup table
+# Create the point coordinates for the lookup table.
 # The y coordinate is always zero.
 points = np.stack(
     [
@@ -162,7 +165,7 @@ points = np.stack(
 )
 
 # %%
-# We have now a list of point coordinates:
+# Now you have a list of point coordinates:
 print(points)
 
 # %%
@@ -176,12 +179,12 @@ lookup_table.columns["Location"].data = points
 thickness_column = lookup_table.create_column(data=thickness, dimension_type=DimensionType.LENGTH)
 
 # %%
-# Set the thickness type to "from table" and assign the thickness column.
+# Set the thickness type to ``FROM_TABLE`` and assign the thickness column.
 modeling_ply.thickness_type = ThicknessType.FROM_TABLE
 modeling_ply.thickness_field = thickness_column
 
 # %%
-# Plot the ply thickness
+# Plot the ply thickness.
 model.update()
 assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)

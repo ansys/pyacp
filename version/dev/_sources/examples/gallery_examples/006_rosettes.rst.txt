@@ -23,15 +23,18 @@
 Rosette example
 ===============
 
-This example shows how to use rosettes to define the reference directions of a ply.
-This example shows just the PyACP part of the setup.  For a complete composite analysis,
-see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example.
+This example illustrates how you can use rosettes to define the reference directions of a ply.
+It only shows the PyACP part of the setup. For a complete composite analysis,
+see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
 
-.. GENERATED FROM PYTHON SOURCE LINES 35-36
+.. GENERATED FROM PYTHON SOURCE LINES 35-39
 
-Import standard library and third-party dependencies.
+Import modules
+--------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 36-41
+Import the standard library and third-party dependencies.
+
+.. GENERATED FROM PYTHON SOURCE LINES 39-44
 
 .. code-block:: default
 
@@ -47,11 +50,11 @@ Import standard library and third-party dependencies.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 42-43
+.. GENERATED FROM PYTHON SOURCE LINES 45-46
 
-Import PyACP dependencies
+Import the PyACP dependencies.
 
-.. GENERATED FROM PYTHON SOURCE LINES 43-55
+.. GENERATED FROM PYTHON SOURCE LINES 46-58
 
 .. code-block:: default
 
@@ -74,16 +77,16 @@ Import PyACP dependencies
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 57-59
+.. GENERATED FROM PYTHON SOURCE LINES 60-62
 
 Start ACP and load the model
 ----------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 61-62
+.. GENERATED FROM PYTHON SOURCE LINES 64-65
 
 Get the example file from the server.
 
-.. GENERATED FROM PYTHON SOURCE LINES 62-66
+.. GENERATED FROM PYTHON SOURCE LINES 65-69
 
 .. code-block:: default
 
@@ -98,11 +101,11 @@ Get the example file from the server.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 67-68
+.. GENERATED FROM PYTHON SOURCE LINES 70-71
 
 Launch the PyACP server and connect to it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 68-70
+.. GENERATED FROM PYTHON SOURCE LINES 71-73
 
 .. code-block:: default
 
@@ -115,14 +118,14 @@ Launch the PyACP server and connect to it.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 71-75
+.. GENERATED FROM PYTHON SOURCE LINES 74-78
 
 Define the input file and instantiate an ``ACPWorkflow`` instance.
-The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
+The ``ACPWorkflow`` class provides convenience methods that simplify file handling.
 It automatically creates a model based on the input file.
-The input file contains a flat plate with a single ply.
+This example's input file contains a flat plate with a single ply.
 
-.. GENERATED FROM PYTHON SOURCE LINES 75-85
+.. GENERATED FROM PYTHON SOURCE LINES 78-88
 
 .. code-block:: default
 
@@ -144,22 +147,22 @@ The input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmpz30r6g0s
+    /tmp/tmp04vhp9vu
     mks
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 86-88
+.. GENERATED FROM PYTHON SOURCE LINES 89-91
 
 Define directions with a parallel rosette
 -----------------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 90-91
+.. GENERATED FROM PYTHON SOURCE LINES 93-94
 
-Create a material and a fabric
+Create a material and fabric.
 
-.. GENERATED FROM PYTHON SOURCE LINES 91-98
+.. GENERATED FROM PYTHON SOURCE LINES 94-101
 
 .. code-block:: default
 
@@ -177,11 +180,11 @@ Create a material and a fabric
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 99-100
+.. GENERATED FROM PYTHON SOURCE LINES 102-103
 
 Create a parallel rosette where the first direction is rotated by 45 degrees around the y axis.
 
-.. GENERATED FROM PYTHON SOURCE LINES 100-108
+.. GENERATED FROM PYTHON SOURCE LINES 103-111
 
 .. code-block:: default
 
@@ -200,11 +203,11 @@ Create a parallel rosette where the first direction is rotated by 45 degrees aro
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 109-110
+.. GENERATED FROM PYTHON SOURCE LINES 112-113
 
-Create an oriented selection set and assign the rosette.
+Create an oriented selection set (OSS) and assign the rosette.
 
-.. GENERATED FROM PYTHON SOURCE LINES 110-120
+.. GENERATED FROM PYTHON SOURCE LINES 113-123
 
 .. code-block:: default
 
@@ -225,11 +228,11 @@ Create an oriented selection set and assign the rosette.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 121-122
+.. GENERATED FROM PYTHON SOURCE LINES 124-125
 
-Plot the orientation and the reference directions of the oriented selection set.
+Plot the orientation and reference directions of the OSS.
 
-.. GENERATED FROM PYTHON SOURCE LINES 122-127
+.. GENERATED FROM PYTHON SOURCE LINES 125-130
 
 .. code-block:: default
 
@@ -272,13 +275,13 @@ Plot the orientation and the reference directions of the oriented selection set.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 128-131
+.. GENERATED FROM PYTHON SOURCE LINES 131-134
 
 Create a ply that uses the reference directions defined by the rosette.
-The ply angle is set to 20 degrees, which means the fiber direction is rotated by 20 degrees
+The ply angle is set to 20 degrees, which means that the fiber direction is rotated by 20 degrees
 from the reference direction.
 
-.. GENERATED FROM PYTHON SOURCE LINES 131-139
+.. GENERATED FROM PYTHON SOURCE LINES 134-142
 
 .. code-block:: default
 
@@ -297,11 +300,11 @@ from the reference direction.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 140-141
+.. GENERATED FROM PYTHON SOURCE LINES 143-144
 
 Plot the reference directions, fiber directions, and transverse directions of the ply.
 
-.. GENERATED FROM PYTHON SOURCE LINES 141-151
+.. GENERATED FROM PYTHON SOURCE LINES 144-154
 
 .. code-block:: default
 
@@ -349,20 +352,18 @@ Plot the reference directions, fiber directions, and transverse directions of th
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 152-154
+.. GENERATED FROM PYTHON SOURCE LINES 155-163
 
 Define directions with a radial rosette
 ---------------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 156-161
-
 Create a radial rosette and plot the resulting reference directions.
 For a radial rosette, a line is constructed that goes through the origin. Its
 direction vector is normal to a plane spanned by ``dir1`` and ``dir2``.
-The reference directions are then parallel to the shortest connection from the line to each point
-for which the reference direction is computed.
+Therefore, the reference directions are parallel to the shortest connection from the line to
+each point for which it is computed.
 
-.. GENERATED FROM PYTHON SOURCE LINES 161-175
+.. GENERATED FROM PYTHON SOURCE LINES 163-177
 
 .. code-block:: default
 
@@ -414,18 +415,16 @@ for which the reference direction is computed.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 176-178
+.. GENERATED FROM PYTHON SOURCE LINES 178-184
 
 Define directions with a cylindrical rosette
 --------------------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 180-183
-
 Create a cylindrical rosette and plot the resulting reference directions.
-For a cylindrical rosette, the reference directions are tangential to circles around the origin
+For a cylindrical rosette, the reference directions are tangential to the circles around the origin
 that lie in a plane spanned by ``dir1`` and ``dir2``.
 
-.. GENERATED FROM PYTHON SOURCE LINES 183-197
+.. GENERATED FROM PYTHON SOURCE LINES 184-198
 
 .. code-block:: default
 
@@ -477,18 +476,17 @@ that lie in a plane spanned by ``dir1`` and ``dir2``.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 198-200
+.. GENERATED FROM PYTHON SOURCE LINES 199-206
 
 Define directions with a spherical rosette
 ------------------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 202-205
-
 Create a spherical rosette and plot the resulting reference directions.
 For a spherical rosette, the reference directions are tangential to a sphere around the origin.
-Note that this is the same as the cylindrical rosette for the current example.
+Note that for this example, the reference directions of the spherical rosette are the same as
+those of the cylindrical rosette.
 
-.. GENERATED FROM PYTHON SOURCE LINES 205-219
+.. GENERATED FROM PYTHON SOURCE LINES 206-220
 
 .. code-block:: default
 
@@ -540,27 +538,26 @@ Note that this is the same as the cylindrical rosette for the current example.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 220-222
+.. GENERATED FROM PYTHON SOURCE LINES 221-232
 
-Define directions with an edge wise rosette
+Define directions with an edge-wise rosette
 -------------------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 224-231
-
-Create an edge wise rosette and plot the resulting reference directions.
-The reference direction is given by a projection of ``dir1``
-and the path of the edge set. The ``dir1`` of the rosette is projected on to the point
-on the edge that is closest to the origin of the rosette. This determines the reference direction
-along the edge set. The reference direction is reversed by inverting ``dir1``.
-An element within an oriented selection set gets its reference direction from the direction
+Create an edge-wise rosette and plot the resulting reference directions.
+The reference directions are given by a projection of ``dir1``
+and the path of the edge set. ``dir1`` of the rosette is projected onto the point
+on the edge that is closest to the rosette's origin. This determines the reference directions
+along the edge set.
+You can reverse the reference directions by inverting ``dir1``.
+An element within an OSS gets its reference directions from the direction
 of the point on the edge that is closest to the element centroid.
 
-.. GENERATED FROM PYTHON SOURCE LINES 233-235
+.. GENERATED FROM PYTHON SOURCE LINES 234-236
 
-Create the edge set from the "All_Elements" element set. Because we set
-the limit angle to 120°, all the edges are selected.
+Create the edge set from the "All_Elements" element set. Because you assigned
+120 degrees to the limit angle, all the edges are selected.
 
-.. GENERATED FROM PYTHON SOURCE LINES 235-259
+.. GENERATED FROM PYTHON SOURCE LINES 236-260
 
 .. code-block:: default
 
@@ -622,17 +619,17 @@ the limit angle to 120°, all the edges are selected.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 260-262
+.. GENERATED FROM PYTHON SOURCE LINES 261-263
 
 Combine rosettes
 ----------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 264-266
+.. GENERATED FROM PYTHON SOURCE LINES 265-267
 
 Create an additional parallel rosette that points along the x direction and has its origin
 at ``(0.01, 0, 0.01)``.
 
-.. GENERATED FROM PYTHON SOURCE LINES 266-274
+.. GENERATED FROM PYTHON SOURCE LINES 267-275
 
 .. code-block:: default
 
@@ -651,14 +648,14 @@ at ``(0.01, 0, 0.01)``.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 275-279
+.. GENERATED FROM PYTHON SOURCE LINES 276-280
 
-Assign both rosettes to the oriented selection set and set the rosette selection method to
-``RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED``. This implies that the reference direction
-is weighted by the inverse distance to each rosette. Note that the origin of
+Assign both rosettes to the OSS and set the rosette selection method to
+``RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED``. This implies that the reference directions
+are weighted by the inverse distance to each rosette. Note that the origin of
 the rotated rosette is at ``(0,0,0)``.
 
-.. GENERATED FROM PYTHON SOURCE LINES 279-282
+.. GENERATED FROM PYTHON SOURCE LINES 280-283
 
 .. code-block:: default
 
@@ -672,11 +669,11 @@ the rotated rosette is at ``(0,0,0)``.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 283-284
+.. GENERATED FROM PYTHON SOURCE LINES 284-285
 
 Plot the resulting reference directions.
 
-.. GENERATED FROM PYTHON SOURCE LINES 284-287
+.. GENERATED FROM PYTHON SOURCE LINES 285-288
 
 .. code-block:: default
 
@@ -720,7 +717,7 @@ Plot the resulting reference directions.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.418 seconds)
+   **Total running time of the script:** ( 0 minutes  5.950 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_006_rosettes.py:

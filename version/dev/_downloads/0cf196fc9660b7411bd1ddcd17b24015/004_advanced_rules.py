@@ -26,17 +26,21 @@
 Advanced rules example
 ======================
 
-This example shows the usage of advanced rules such as geometrical rule,
-cut-off rule and variable offset rule. It also demonstrates how rules can be templated
-and reused with different parameters.
-See the :ref:`sphx_glr_examples_gallery_examples_003_basic_rules.py` for more basic rule examples.
-This example shows just the pyACP part of the setup.  For a complete Composite analysis,
-see the :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` example
+This example shows how to use advanced rules, including the geometrical,
+cut-off, and variable offset rules. It also demonstrates how rules can be templated
+and reused with different parameters. For more basic rules, see
+:ref:`sphx_glr_examples_gallery_examples_003_basic_rules.py`.
+
+This example only shows the PyACP part of the setup. For a complete composite analysis,
+see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
 """
 
 
 # %%
-# Import standard library and third-party dependencies
+# Import modules
+# --------------
+#
+# Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
 
@@ -44,7 +48,7 @@ import numpy as np
 import pyvista
 
 # %%
-# Import pyACP dependencies
+# Import the PyACP dependencies.
 from ansys.acp.core import (
     ACPWorkflow,
     BooleanOperationType,
@@ -75,9 +79,9 @@ acp = launch_acp()
 
 # %%
 # Define the input file and instantiate an ``ACPWorkflow`` instance.
-# The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
+# The ``ACPWorkflow`` class provides convenience methods that simplify file handling.
 # It automatically creates a model based on the input file.
-# The input file contains a flat plate with a single ply.
+# This example's input file contains a flat plate with a single ply.
 
 workflow = ACPWorkflow.from_acph5_file(
     acp=acp,
@@ -90,7 +94,7 @@ print(workflow.working_directory.path)
 print(model.unit_system)
 
 # %%
-# Add more layers to the modeling ply, so it easier to see the effects of the selection rules.
+# Add more layers to the modeling ply so that it is easier to see the effects of the selection rules.
 # Plot the thickness of all the plies without any rules.
 
 modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
@@ -105,9 +109,9 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # --------------------------
 
 # %%
-# Rules can be parametrized. This makes sense when a rule is used multiple times with different
-# parameters. :class:`.LinkedSelectionRule` shows what parameters are available for each rule.
-# Here, the extent of the parallel rule is modified.
+# Rules can be parametrized. This is useful when a rule is used multiple times but with different
+# parameters.  The :class:`.LinkedSelectionRule` class shows what parameters are available for each rule.
+# This code modifies the extent of the parallel rule.
 
 # %%
 # Create a parallel rule.
@@ -150,7 +154,7 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # -----------------------------------
 
 # %%
-# Add CAD geometry to the model.
+# Add a CAD geometry to the model.
 triangle_path = example_helpers.get_example_file(
     example_helpers.ExampleKeys.RULE_GEOMETRY_TRIANGLE, WORKING_DIR
 )
@@ -175,7 +179,7 @@ geometrical_selection_rule = model.create_geometrical_selection_rule(
 )
 
 # %%
-# Assign the geometrical selection rule to the ply and plot the ply extent with
+# Assign the geometrical selection rule to the ply. Plot the ply extent with
 # the outline of the geometry.
 modeling_ply.selection_rules = [LinkedSelectionRule(geometrical_selection_rule)]
 model.update()
@@ -218,7 +222,7 @@ cutoff_selection_rule = model.create_cutoff_selection_rule(
 
 
 # %%
-# Assign the cutoff selection rule to the ply and plot the ply extent with
+# Assign the cutoff selection rule to the ply. Plot the ply extent with
 # the outline of the geometry.
 modeling_ply.selection_rules = [LinkedSelectionRule(cutoff_selection_rule)]
 
@@ -257,8 +261,8 @@ offsets_column = lookup_table.create_column(
 )
 
 # %%
-# Create the edge set from the "All_Elements" element set. Because we set
-# the limit angle to 30°, only one edge at x=0 will be selected.
+# Create the edge set from the "All_Elements" element set. Because you
+# assigned 30 degrees to the limit angle, only one edge at x=0 is selected.
 edge_set = model.create_edge_set(
     name="edge_set",
     edge_set_type=EdgeSetType.BY_REFERENCE,
@@ -282,14 +286,15 @@ assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
 
 # %%
-# Create a boolean selection rule.
-# --------------------------------
+# Create a boolean selection rule
+# -------------------------------
 
 # %%
-# Note: Creating a boolean selection rule and assigning it to a ply has the same
-# effect as linking the individual rules to the ply directly. Boolean rules are still useful
-# because they help to organize the rules and can be used to create more complex rules.
-# Create a cylindrical selection rule which will be combined with the parallel rule.
+# Creating a Boolean selection rule and assigning it to a ply has the same
+# effect as linking the individual rules directly to the ply. Boolean rules are still useful
+# because they can help organize rules and make more complex ones.
+#
+# Create a cylindrical selection rule to combine with the parallel rule.
 cylindrical_rule_boolean = model.create_cylindrical_selection_rule(
     name="cylindrical_rule",
     origin=(0.005, 0, 0.005),
@@ -322,7 +327,7 @@ assert model.elemental_data.thickness is not None
 model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
 
 # %%
-# Modify the operation type of the boolean selection rule, such that the two rules are added.
+# Modify the operation type of the Boolean selection rule so that the two rules are added.
 linked_parallel_rule_boolean.operation_type = BooleanOperationType.INTERSECT
 linked_cylindrical_rule_boolean.operation_type = BooleanOperationType.ADD
 
