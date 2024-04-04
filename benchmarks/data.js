@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1712175849412,
+  "lastUpdate": 1712216859574,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14150,6 +14150,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00021464351527737777",
             "extra": "mean: 849.081377498617 usec\nrounds: 1751"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7f6ff8139ee583f7c3ac3b774688aee0fad32ce3",
+          "message": "Add server availability disclaimer (#515)\n\n* Add server availability disclaimer\r\n* Replace docker-compose with docker compose in README",
+          "timestamp": "2024-04-04T09:44:17+02:00",
+          "tree_id": "0ee887ba9573f989607c2edb80dd9a53c32536a7",
+          "url": "https://github.com/ansys/pyacp/commit/7f6ff8139ee583f7c3ac3b774688aee0fad32ce3"
+        },
+        "date": 1712216830420,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.045415974711264,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003360092006288405",
+            "extra": "mean: 165.4145892000031 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1198.8154695022674,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020429386099115967",
+            "extra": "mean: 834.1567367454702 usec\nrounds: 1641"
           }
         ]
       }
