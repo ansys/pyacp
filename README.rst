@@ -33,10 +33,12 @@ PyACP
 
 A Python client for Ansys Composite PrepPost (ACP).
 
+.. note::
+
+    PyACP requires Ansys 2024 R2 to run. Unless you have advance access to the Ansys 2024 R2 release, you will not be able to use PyACP until the release is publicly available.
+
 Overview
 --------
-
-.. TODO: Add a teaser for what can be done with PyACP.
 
 Installation
 ------------
@@ -206,7 +208,7 @@ valid license server (e.g ``1055@mylicenseserver.com``). Then start the docker c
 
 .. code-block:: bash
 
-    docker-compose -f docker-compose/docker-compose-extras.yaml up -d
+    docker compose -f docker-compose/docker-compose-extras.yaml up -d
 
 Then build the documentation with the `Sphinx`_ commands mentioned above.
 
