@@ -605,7 +605,7 @@ ANSYS_DPF_ACCEPT_LA environment variable to Y
 (see <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/user_guide/getting_started_with_dpf_server.html#dpf-preview-license-agreement">DPF Preview License Agreement</a>
 ). In addition the  ANSYSLMD_LICENSE_FILE environment variable needs be set to a
 valid license server (e.g <code class="docutils literal notranslate"><span class="pre">1055&#64;mylicenseserver.com</span></code>). Then start the docker containers with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose/docker-compose-extras.yaml<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose/docker-compose-extras.yaml<span class="w"> </span>up<span class="w"> </span>-d
 </pre></div>
 </div>
 <p>Then build the documentation with the <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> commands mentioned above.</p>
