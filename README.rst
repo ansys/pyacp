@@ -10,7 +10,7 @@ PyACP
     :target: https://pypi.org/project/ansys-acp-core
     :alt: Python
 
-.. |pypi| image:: https://img.shields.io/pypi/v/pyacp.svg?logo=python&logoColor=white
+.. |pypi| image:: https://img.shields.io/pypi/v/ansys-acp-core.svg?logo=python&logoColor=white
     :target: https://pypi.org/project/ansys-acp-core
     :alt: PyPI
 
