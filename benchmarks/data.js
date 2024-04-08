@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1712558653482,
+  "lastUpdate": 1712560167333,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14226,6 +14226,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00018024703815621462",
             "extra": "mean: 795.0445622872784 usec\nrounds: 1469"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "37798125+RobPasMue@users.noreply.github.com",
+            "name": "Roberto Pastor Muela",
+            "username": "RobPasMue"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "57ed691447479d23bf08b974774c1236755021e4",
+          "message": "cicd: uncomment stages for releasing (#518)",
+          "timestamp": "2024-04-08T07:06:10Z",
+          "tree_id": "8b4cf95cf2eb3193a72a023ab9714d856226bac2",
+          "url": "https://github.com/ansys/pyacp/commit/57ed691447479d23bf08b974774c1236755021e4"
+        },
+        "date": 1712560139107,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.04817135021002,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0035729858011584845",
+            "extra": "mean: 165.3392310000072 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1212.5811542371325,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019141386012596173",
+            "extra": "mean: 824.6870706391004 usec\nrounds: 1628"
           }
         ]
       }
