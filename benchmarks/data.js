@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1712568727949,
+  "lastUpdate": 1712570707964,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14340,6 +14340,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023233991608398067",
             "extra": "mean: 799.3971239170187 usec\nrounds: 1848"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "37798125+RobPasMue@users.noreply.github.com",
+            "name": "Roberto Pastor Muela",
+            "username": "RobPasMue"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a508d4a94a1a4e49a700af3656f42a7100f7c37e",
+          "message": "fix: use PYANSYS_CI_BOT_USERNAME (#523)\n\n* fix: use PYANSYS_CI_BOT_TOKEN\r\n\r\n* Update ci_cd.yml",
+          "timestamp": "2024-04-08T12:02:18+02:00",
+          "tree_id": "940d6427a1df13b1dda61392161e8d26f0987d86",
+          "url": "https://github.com/ansys/pyacp/commit/a508d4a94a1a4e49a700af3656f42a7100f7c37e"
+        },
+        "date": 1712570687978,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.570907931733995,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0036223010624424536",
+            "extra": "mean: 152.18597040000077 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1263.417100036582,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020920820841325248",
+            "extra": "mean: 791.5042466743922 usec\nrounds: 1804"
           }
         ]
       }
