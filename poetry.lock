@@ -212,17 +212,19 @@ protobuf = ">=3.19,<5"
 
 [[package]]
 name = "ansys-dpf-composites"
-version = "0.4.dev0"
+version = "0.4.0"
 description = "Post-processing of composite structures based on Ansys DPF"
 optional = false
 python-versions = ">=3.9,<3.13"
-files = []
-develop = false
+files = [
+    {file = "ansys_dpf_composites-0.4.0-py3-none-any.whl", hash = "sha256:866df1e479999025d3ff39c7d961ed118e0a3a32661807b39d9e869eec06a221"},
+    {file = "ansys_dpf_composites-0.4.0.tar.gz", hash = "sha256:28c40a7172bd0568fc5177d08ad59f83236da680593ec1e85b6d478603dd3912"},
+]
 
 [package.dependencies]
-ansys-dpf-core = {git = "https://github.com/ansys/pydpf-core.git"}
-matplotlib = "^3.5.0"
-numpy = "^1.22"
+ansys-dpf-core = ">=0.8,<1"
+matplotlib = ">=3.5.0,<4.0.0"
+numpy = ">=1.22,<2.0"
 packaging = "*"
 
 [package.extras]
@@ -232,20 +234,18 @@ docs = ["Sphinx (>=5.0.1,<6.0.0)", "ansys-sphinx-theme (>=0,<1)", "fatpack (>=0.
 pre-commit = ["mypy (>=1.2.0,<2.0.0)", "mypy-extensions (>=1.0.0,<2.0.0)", "pre-commit", "pylint (>=2.13,<3.0)"]
 test = ["pytest (>=7.1.2,<8.0.0)", "pytest-cov (>=3.0.0,<4.0.0)", "pytest-rerunfailures (>=11.1.2,<12.0.0)"]
 
-[package.source]
-type = "git"
-url = "https://github.com/ansys/pydpf-composites.git"
-reference = "HEAD"
-resolved_reference = "d74db57a34d4bc50f2094ea83fdd761911c48e3b"
-
 [[package]]
 name = "ansys-dpf-core"
-version = "0.11.1.dev0"
+version = "0.11.0"
 description = "Data Processing Framework - Python Core"
 optional = false
 python-versions = "<4,>=3.9"
-files = []
-develop = false
+files = [
+    {file = "ansys_dpf_core-0.11.0-py3-none-any.whl", hash = "sha256:dbdc7e9693caa462e5949b1c9155cbf30a8aae15e4d07d84f2659dd6f4dfdb3f"},
+    {file = "ansys_dpf_core-0.11.0-py3-none-manylinux1_x86_64.whl", hash = "sha256:c1ad56f3655c474916efdeb900af74c6d28c391fc836b31a3289798963fdf9b0"},
+    {file = "ansys_dpf_core-0.11.0-py3-none-manylinux_2_17_x86_64.whl", hash = "sha256:c7e6531aa4120a9e17e1ea33cc9b66b685b55d02468feb3b0be320fc3f8cb845"},
+    {file = "ansys_dpf_core-0.11.0-py3-none-win_amd64.whl", hash = "sha256:2aea1c6771786edb6a8de7c4de85f7d5c2c63b82adbaa41585c3d05d29f1d0ea"},
+]
 
 [package.dependencies]
 google-api-python-client = "*"
@@ -260,12 +260,6 @@ tqdm = "*"
 
 [package.extras]
 plotting = ["imageio (<2.28.1)", "imageio-ffmpeg", "matplotlib (>=3.2)", "pyvista (>=0.32.0)"]
-
-[package.source]
-type = "git"
-url = "https://github.com/ansys/pydpf-core.git"
-reference = "HEAD"
-resolved_reference = "a9d68bb91fc6b317b42921ce30556c7b37fdf2ce"
 
 [[package]]
 name = "ansys-mapdl-core"
@@ -444,13 +438,13 @@ clr-loader = ">=0.2.6,<0.3.0"
 
 [[package]]
 name = "ansys-sphinx-theme"
-version = "0.15.1"
+version = "0.15.2"
 description = "A theme devised by ANSYS, Inc. for Sphinx documentation."
 optional = false
 python-versions = "<4,>=3.9"
 files = [
-    {file = "ansys_sphinx_theme-0.15.1-py3-none-any.whl", hash = "sha256:5e94ab526f3e8cb3c12494b7eebc6967a7cabfd7b966943dc830be3fd87ddcd8"},
-    {file = "ansys_sphinx_theme-0.15.1.tar.gz", hash = "sha256:005a410e84e26114013abc584d54acf9f6cce8ac8812047110867ab3b387108c"},
+    {file = "ansys_sphinx_theme-0.15.2-py3-none-any.whl", hash = "sha256:302a3b2ecb8e7632f9f52492746adacff85dbf8cd46922510c4ae4c5019f8d79"},
+    {file = "ansys_sphinx_theme-0.15.2.tar.gz", hash = "sha256:09a1ba8385f0981f6952a2c42788563aa9bbb1554289ba1e62e0bc0f44b8d3b5"},
 ]
 
 [package.dependencies]
@@ -4768,4 +4762,4 @@ examples = ["ansys-dpf-composites", "ansys-mapdl-core", "ansys-mechanical-core",
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "8388e2d174d2c06c7378e03f3295ce77dec3f560671c61a2b6c36e961379c0d1"
+content-hash = "aba9a6ef35857ccc60f1956168e5ab4486f1bbcd0a7f12a5d957947a394f3e30"
