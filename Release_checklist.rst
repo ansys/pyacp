@@ -1,1 +1,0 @@
-* Use published version of ansys-dpf-composites in pyproject.toml file
