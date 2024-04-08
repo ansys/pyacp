@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1712560167333,
+  "lastUpdate": 1712566196682,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14264,6 +14264,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00019141386012596173",
             "extra": "mean: 824.6870706391004 usec\nrounds: 1628"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e14b50103d29d98c54ade6fb868a4f2c43dbccd5",
+          "message": "Use released ansys-dpf-core and ansys-dpf-composites (#519)",
+          "timestamp": "2024-04-08T08:46:30Z",
+          "tree_id": "cdf1d313986ae26e7dca63aff601f8575ee1d246",
+          "url": "https://github.com/ansys/pyacp/commit/e14b50103d29d98c54ade6fb868a4f2c43dbccd5"
+        },
+        "date": 1712566168684,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.953806295379672,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005701622212737997",
+            "extra": "mean: 167.95978075001017 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1262.1433343064298,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00017909339829567654",
+            "extra": "mean: 792.3030394559092 usec\nrounds: 1470"
           }
         ]
       }
