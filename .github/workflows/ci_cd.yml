@@ -297,7 +297,7 @@ jobs:
         with:
           registry: ghcr.io
           username: pyansys-ci-bot
-          password: ${{ secrets.PYANSYS_CI_BOT_PACKAGE_TOKEN }}
+          password: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
         if: ${{ matrix.build_type == 'full' }}
 
       - name: Install OS packages
