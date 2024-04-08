@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1712216859574,
+  "lastUpdate": 1712558653482,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14188,6 +14188,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020429386099115967",
             "extra": "mean: 834.1567367454702 usec\nrounds: 1641"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e5d82d6a9753829695dba47910add4f93e2dea85",
+          "message": "Remove testing session section from docs (#517)\n\n* Bump the dependencies group with 12 updates\r\n\r\nBumps the dependencies group with 12 updates:\r\n\r\n| Package | From | To |\r\n| --- | --- | --- |\r\n| [typing-extensions](https://github.com/python/typing_extensions) | `4.10.0` | `4.11.0` |\r\n| [ansys-tools-path](https://github.com/ansys/ansys-tools-path) | `0.4.1` | `0.5.1` |\r\n| [pyvista](https://github.com/pyvista/pyvista) | `0.43.4` | `0.43.5` |\r\n| [ansys-mapdl-core](https://github.com/ansys/pymapdl) | `0.68.0` | `0.68.1` |\r\n| [ansys-mechanical-core](https://github.com/ansys/pymechanical) | `0.10.8` | `0.10.9` |\r\n| [matplotlib](https://github.com/matplotlib/matplotlib) | `3.8.3` | `3.8.4` |\r\n| [scipy](https://github.com/scipy/scipy) | `1.12.0` | `1.13.0` |\r\n| [numpydoc](https://github.com/numpy/numpydoc) | `1.6.0` | `1.7.0` |\r\n| [ansys-sphinx-theme](https://github.com/ansys/ansys-sphinx-theme) | `0.14.1` | `0.15.1` |\r\n| [ipykernel](https://github.com/ipython/ipykernel) | `6.29.3` | `6.29.4` |\r\n| [pytest-cases](https://github.com/smarie/python-pytest-cases) | `3.8.4` | `3.8.5` |\r\n| [hypothesis](https://github.com/HypothesisWorks/hypothesis) | `6.99.13` | `6.100.0` |\r\n\r\n\r\nUpdates `typing-extensions` from 4.10.0 to 4.11.0\r\n- [Release notes](https://github.com/python/typing_extensions/releases)\r\n- [Changelog](https://github.com/python/typing_extensions/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/python/typing_extensions/compare/4.10.0...4.11.0)\r\n\r\nUpdates `ansys-tools-path` from 0.4.1 to 0.5.1\r\n- [Release notes](https://github.com/ansys/ansys-tools-path/releases)\r\n- [Changelog](https://github.com/ansys/ansys-tools-path/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ansys/ansys-tools-path/compare/v0.4.1...v0.5.1)\r\n\r\nUpdates `pyvista` from 0.43.4 to 0.43.5\r\n- [Release notes](https://github.com/pyvista/pyvista/releases)\r\n- [Commits](https://github.com/pyvista/pyvista/compare/v0.43.4...v0.43.5)\r\n\r\nUpdates `ansys-mapdl-core` from 0.68.0 to 0.68.1\r\n- [Release notes](https://github.com/ansys/pymapdl/releases)\r\n- [Commits](https://github.com/ansys/pymapdl/compare/v0.68.0...v0.68.1)\r\n\r\nUpdates `ansys-mechanical-core` from 0.10.8 to 0.10.9\r\n- [Release notes](https://github.com/ansys/pymechanical/releases)\r\n- [Changelog](https://github.com/ansys/pymechanical/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ansys/pymechanical/compare/v0.10.8...v0.10.9)\r\n\r\nUpdates `matplotlib` from 3.8.3 to 3.8.4\r\n- [Release notes](https://github.com/matplotlib/matplotlib/releases)\r\n- [Commits](https://github.com/matplotlib/matplotlib/compare/v3.8.3...v3.8.4)\r\n\r\nUpdates `scipy` from 1.12.0 to 1.13.0\r\n- [Release notes](https://github.com/scipy/scipy/releases)\r\n- [Commits](https://github.com/scipy/scipy/compare/v1.12.0...v1.13.0)\r\n\r\nUpdates `numpydoc` from 1.6.0 to 1.7.0\r\n- [Release notes](https://github.com/numpy/numpydoc/releases)\r\n- [Changelog](https://github.com/numpy/numpydoc/blob/main/RELEASE.rst)\r\n- [Commits](https://github.com/numpy/numpydoc/compare/v1.6.0...v1.7.0)\r\n\r\nUpdates `ansys-sphinx-theme` from 0.14.1 to 0.15.1\r\n- [Release notes](https://github.com/ansys/ansys-sphinx-theme/releases)\r\n- [Commits](https://github.com/ansys/ansys-sphinx-theme/compare/v0.14.1...v0.15.1)\r\n\r\nUpdates `ipykernel` from 6.29.3 to 6.29.4\r\n- [Release notes](https://github.com/ipython/ipykernel/releases)\r\n- [Changelog](https://github.com/ipython/ipykernel/blob/v6.29.4/CHANGELOG.md)\r\n- [Commits](https://github.com/ipython/ipykernel/compare/v6.29.3...v6.29.4)\r\n\r\nUpdates `pytest-cases` from 3.8.4 to 3.8.5\r\n- [Release notes](https://github.com/smarie/python-pytest-cases/releases)\r\n- [Changelog](https://github.com/smarie/python-pytest-cases/blob/main/docs/changelog.md)\r\n- [Commits](https://github.com/smarie/python-pytest-cases/compare/3.8.4...3.8.5)\r\n\r\nUpdates `hypothesis` from 6.99.13 to 6.100.0\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.99.13...hypothesis-python-6.100.0)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: typing-extensions\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-tools-path\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: pyvista\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-mapdl-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-mechanical-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: matplotlib\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: scipy\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: numpydoc\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-sphinx-theme\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: ipykernel\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: pytest-cases\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\n* Remove testing session section from intro\r\n\r\n---------\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-04-08T08:40:48+02:00",
+          "tree_id": "45e8e6a940ce0d92cb50093e91d8b8a1af334b2e",
+          "url": "https://github.com/ansys/pyacp/commit/e5d82d6a9753829695dba47910add4f93e2dea85"
+        },
+        "date": 1712558623241,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 5.906987650958074,
+            "unit": "iter/sec",
+            "range": "stddev: 0.006375163209387956",
+            "extra": "mean: 169.29102599999624 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1257.7911320128792,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018024703815621462",
+            "extra": "mean: 795.0445622872784 usec\nrounds: 1469"
           }
         ]
       }
