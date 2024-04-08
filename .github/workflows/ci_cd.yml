@@ -74,26 +74,25 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           vale-version: "3.1.0"
 
-  # TODO: uncomment once the dependencies are public
-  # build-wheelhouse:
-  #   name: "Build wheelhouse"
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     matrix:
-  #       os: [ubuntu-latest, windows-latest, macos-latest]
-  #       python-version: ['3.9', '3.10', '3.11', '3.12']
-  #       should-release:
-  #         - ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags') }}
-  #       exclude:
-  #         - should-release: false
-  #           os: macos-latest
-  #   steps:
-  #     - name: "Build wheelhouse and perform smoke test"
-  #       uses: ansys/actions/build-wheelhouse@v5
-  #       with:
-  #         library-name: ${{ env.PACKAGE_NAME }}
-  #         operating-system: ${{ matrix.os }}
-  #         python-version: ${{ matrix.python-version }}
+  build-wheelhouse:
+    name: "Build wheelhouse"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.9', '3.10', '3.11', '3.12']
+        should-release:
+          - ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags') }}
+        exclude:
+          - should-release: false
+            os: macos-latest
+    steps:
+      - name: "Build wheelhouse and perform smoke test"
+        uses: ansys/actions/build-wheelhouse@v5
+        with:
+          library-name: ${{ env.PACKAGE_NAME }}
+          operating-system: ${{ matrix.os }}
+          python-version: ${{ matrix.python-version }}
 
   testing:
     name: Testing
@@ -165,15 +164,13 @@ jobs:
           path: htmlcov
           retention-days: 7
 
-      # TODO: Uncomment once publicly released
-      #
-      # - name: "Upload coverage to Codecov"
-      #   uses: codecov/codecov-action@v4
-      #   if: matrix.python-version == env.MAIN_PYTHON_VERSION
-      #   env:
-      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      #   with:
-      #     files: coverage.xml
+      - name: "Upload coverage to Codecov"
+        uses: codecov/codecov-action@v4
+        if: matrix.python-version == env.MAIN_PYTHON_VERSION
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          files: coverage.xml
 
       - name: Benchmarks
         working-directory: tests/benchmarks
@@ -393,9 +390,7 @@ jobs:
   build:
     name: Build library
     runs-on: ubuntu-latest
-    # TODO: add build-wheelhouse once it is uncommented above
-    # needs: [code-style, testing, doc-style, docs, build-wheelhouse, doctest]
-    needs: [code-style, testing, doc-style, docs, doctest]
+    needs: [code-style, testing, doc-style, docs, build-wheelhouse, doctest]
     timeout-minutes: 30
     steps:
       - name: Build library source and wheel artifacts
