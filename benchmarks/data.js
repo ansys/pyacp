@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1712571344581,
+  "lastUpdate": 1712581453285,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14416,6 +14416,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00018022408876668862",
             "extra": "mean: 737.7016746988252 usec\nrounds: 1494"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "37798125+RobPasMue@users.noreply.github.com",
+            "name": "Roberto Pastor Muela",
+            "username": "RobPasMue"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e7cd51e7d0b47639441e19a1df5b4ae8c74cd014",
+          "message": "feat: allow local-product-launcher and filetransfer new versions (#524)\n\n* feat: allow local-product-launcher and filetransfer new versions\r\n\r\n* Update pyproject.toml\r\n\r\n* feat: update lock file\r\n\r\n---------\r\n\r\nCo-authored-by: Dominik Gresch <greschd@users.noreply.github.com>",
+          "timestamp": "2024-04-08T13:01:08Z",
+          "tree_id": "d38693e1541c5d7b2ca98538114a962c1b8af7cb",
+          "url": "https://github.com/ansys/pyacp/commit/e7cd51e7d0b47639441e19a1df5b4ae8c74cd014"
+        },
+        "date": 1712581431627,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.491335554848738,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0042255113524504225",
+            "extra": "mean: 154.05150319999166 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1269.4797493501312,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020481172477914328",
+            "extra": "mean: 787.7242630391839 usec\nrounds: 1783"
           }
         ]
       }
