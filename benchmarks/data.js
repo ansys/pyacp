@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1712570707964,
+  "lastUpdate": 1712571344581,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14378,6 +14378,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020920820841325248",
             "extra": "mean: 791.5042466743922 usec\nrounds: 1804"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "37798125+RobPasMue@users.noreply.github.com",
+            "name": "Roberto Pastor Muela",
+            "username": "RobPasMue"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6542d2227380c9eb6b2dad066c00579ff12ad9c1",
+          "message": "fix: badges (#522)",
+          "timestamp": "2024-04-08T10:12:42Z",
+          "tree_id": "f1b6e90c943794b0613a718d55c0b55950139555",
+          "url": "https://github.com/ansys/pyacp/commit/6542d2227380c9eb6b2dad066c00579ff12ad9c1"
+        },
+        "date": 1712571325115,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.2290385688765095,
+            "unit": "iter/sec",
+            "range": "stddev: 0.006764680354961492",
+            "extra": "mean: 160.5384183999945 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1355.5615153080155,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018022408876668862",
+            "extra": "mean: 737.7016746988252 usec\nrounds: 1494"
           }
         ]
       }
