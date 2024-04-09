@@ -146,7 +146,7 @@ It automatically creates a model based on the input file.
 
  .. code-block:: none
 
-    /tmp/tmp_uhydkx4
+    /tmp/tmprlmt5clg
     mks
 
 
@@ -479,7 +479,7 @@ Update and print the model.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.937 seconds)
+   **Total running time of the script:** ( 0 minutes  5.723 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_002_sandwich_panel.py:
