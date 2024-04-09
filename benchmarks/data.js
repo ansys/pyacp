@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1712581453285,
+  "lastUpdate": 1712656653314,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14454,6 +14454,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020481172477914328",
             "extra": "mean: 787.7242630391839 usec\nrounds: 1783"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1f71c0c052c42e6d171009d7be8dc42a4fbc9e7d",
+          "message": "Update pre-commit and dev dependencies (#525)\n\nExtend the allowable range for `black` to `^24` to allow minor release bumps.\r\n\r\nRun pre-commit autoupdate, and adapt the indirect dependency on black \r\nspecified in the blacken-docs hook.",
+          "timestamp": "2024-04-09T11:54:24+02:00",
+          "tree_id": "6b981d644076ae23f54faa95be21c4460a71d8ab",
+          "url": "https://github.com/ansys/pyacp/commit/1f71c0c052c42e6d171009d7be8dc42a4fbc9e7d"
+        },
+        "date": 1712656631987,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.469615129065881,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0028913032530803367",
+            "extra": "mean: 154.568699999993 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1357.147808914228,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00017681174674944404",
+            "extra": "mean: 736.8394167765997 usec\nrounds: 1526"
           }
         ]
       }
