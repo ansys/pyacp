@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1712656653314,
+  "lastUpdate": 1713347907761,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14492,6 +14492,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00017681174674944404",
             "extra": "mean: 736.8394167765997 usec\nrounds: 1526"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c2bccc660b1231767357dd986e7f850466fce083",
+          "message": "Bump the dependencies group with 4 updates (#526)\n\nBumps the dependencies group with 4 updates: [ansys-dpf-core](https://github.com/ansys/pydpf-core), [black](https://github.com/psf/black), [types-protobuf](https://github.com/python/typeshed) and [sphinx-autodoc-typehints](https://github.com/tox-dev/sphinx-autodoc-typehints).\r\n\r\n\r\nUpdates `ansys-dpf-core` from 0.11.0 to 0.12.0\r\n- [Release notes](https://github.com/ansys/pydpf-core/releases)\r\n- [Commits](https://github.com/ansys/pydpf-core/compare/v0.11.0...v0.12.0)\r\n\r\nUpdates `black` from 24.3.0 to 24.4.0\r\n- [Release notes](https://github.com/psf/black/releases)\r\n- [Changelog](https://github.com/psf/black/blob/main/CHANGES.md)\r\n- [Commits](https://github.com/psf/black/compare/24.3.0...24.4.0)\r\n\r\nUpdates `types-protobuf` from 4.24.0.20240408 to 4.25.0.20240410\r\n- [Commits](https://github.com/python/typeshed/commits)\r\n\r\nUpdates `sphinx-autodoc-typehints` from 2.0.0 to 2.0.1\r\n- [Release notes](https://github.com/tox-dev/sphinx-autodoc-typehints/releases)\r\n- [Changelog](https://github.com/tox-dev/sphinx-autodoc-typehints/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/tox-dev/sphinx-autodoc-typehints/compare/2.0.0...2.0.1)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: ansys-dpf-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: black\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: types-protobuf\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: sphinx-autodoc-typehints\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-04-17T11:55:21+02:00",
+          "tree_id": "c488663def3e79f6e6aae7b7a7319f2145ecfda0",
+          "url": "https://github.com/ansys/pyacp/commit/c2bccc660b1231767357dd986e7f850466fce083"
+        },
+        "date": 1713347885369,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.451465659968339,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00355764746001164",
+            "extra": "mean: 155.00353759999825 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1226.2100764018187,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002143054112994734",
+            "extra": "mean: 815.5209447751336 usec\nrounds: 1847"
           }
         ]
       }
