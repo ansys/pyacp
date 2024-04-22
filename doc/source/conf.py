@@ -140,6 +140,13 @@ nitpick_ignore_regex = [
     ("py:class", r"ansys\.acp.core\..*\.MeshDataT"),
     ("py:class", r"ansys\.acp.core\..*\.ScalarDataT"),
 ]
+
+# The 'sphinx_gallery_conf' configuration value is not picklable, which makes
+# the configuration cache fail.
+# It should be possible to remove this when https://github.com/sphinx-gallery/sphinx-gallery/issues/1286
+# is resolved.
+suppress_warnings = ["config.cache"]
+
 # sphinx_autodoc_typehints configuration
 typehints_defaults = "comma"
 simplify_optional_unions = True
@@ -185,7 +192,7 @@ sphinx_gallery_conf = {
     # Remove the "Download all examples" button from the top level gallery
     "download_all_examples": False,
     # Sort gallery example by filename instead of number of lines (default)
-    "within_subsection_order": FileNameSortKey(),
+    "within_subsection_order": FileNameSortKey,
     # directory where function granular galleries are stored
     "backreferences_dir": None,
     # Modules for which function level galleries are created.  In
