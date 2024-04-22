@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1713347907761,
+  "lastUpdate": 1713797961112,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14530,6 +14530,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002143054112994734",
             "extra": "mean: 815.5209447751336 usec\nrounds: 1847"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "40ebaeeb8750474571fc13483712b2488515b66f",
+          "message": "Bump ansys/actions from 5 to 6 (#530)\n\n* Bump ansys/actions from 5 to 6\r\n\r\nBumps [ansys/actions](https://github.com/ansys/actions) from 5 to 6.\r\n- [Release notes](https://github.com/ansys/actions/releases)\r\n- [Commits](https://github.com/ansys/actions/compare/v5...v6)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: ansys/actions\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-major\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\n* Remove pinned vale version\r\n\r\n---------\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\r\nCo-authored-by: Dominik Gresch <dominik.gresch@ansys.com>",
+          "timestamp": "2024-04-22T16:56:23+02:00",
+          "tree_id": "b29b3d643a93a47fed71a8587b2c0b6886d5f64b",
+          "url": "https://github.com/ansys/pyacp/commit/40ebaeeb8750474571fc13483712b2488515b66f"
+        },
+        "date": 1713797940981,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.458185986590386,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004610289717990175",
+            "extra": "mean: 154.84224240001367 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1311.3179329165655,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000190969290268932",
+            "extra": "mean: 762.5915690604884 usec\nrounds: 1629"
           }
         ]
       }
