@@ -140,6 +140,13 @@ nitpick_ignore_regex = [
     ("py:class", r"ansys\.acp.core\..*\.MeshDataT"),
     ("py:class", r"ansys\.acp.core\..*\.ScalarDataT"),
 ]
+
+# The 'sphinx_gallery_conf' configuration value is not picklable, which makes
+# the configuration cache fail.
+# It should be possible to remove this when https://github.com/sphinx-gallery/sphinx-gallery/issues/1286
+# is resolved.
+suppress_warnings = ["config.cache"]
+
 # sphinx_autodoc_typehints configuration
 typehints_defaults = "comma"
 simplify_optional_unions = True
