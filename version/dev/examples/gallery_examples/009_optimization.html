@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=e5fbc548" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=35e44410" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
@@ -47,7 +47,7 @@
 <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
 
     <script src="../../_static/documentation_options.js?v=e7fb764e"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
@@ -542,7 +542,7 @@ covered in the subsequent example code:</p>
 <li><p>Create a temporary directory to store the input and output files.</p></li>
 </ul>
 <p>Import the standard library and third-party dependencies.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/functools.html#functools.partial" title="functools.partial" class="sphx-glr-backref-module-functools sphx-glr-backref-type-py-function"><span class="n">partial</span></a>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/functools.html#functools.partial" title="functools.partial" class="sphx-glr-backref-module-functools sphx-glr-backref-type-py-function"><span class="n">partial</span></a>
 <span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
@@ -554,26 +554,26 @@ covered in the subsequent example code:</p>
 </pre></div>
 </div>
 <p>Import Ansys libraries</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
 <span class="kn">import</span> <span class="nn">ansys.dpf.composites</span> <span class="k">as</span> <span class="nn">pydpf_composites</span>
 <span class="kn">import</span> <span class="nn">ansys.mapdl.core</span> <span class="k">as</span> <span class="nn">pymapdl</span>
 </pre></div>
 </div>
 <p>Launch the PyACP server.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">acp_instance</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">acp_instance</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
 <span class="n">acp_instance</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Launch the MAPDL server.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">pymapdl</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">()</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">pymapdl</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Launch the DPF server.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpf_server</span> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">server_helpers</span><span class="o">.</span><span class="n">connect_to_or_start_server</span><span class="p">()</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">dpf_server</span> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">server_helpers</span><span class="o">.</span><span class="n">connect_to_or_start_server</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Create a temporary directory to store the input and output files.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmpdir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class"><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span></a><span class="p">()</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmpdir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class"><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span></a><span class="p">()</span>
 <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmpdir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
 </pre></div>
 </div>
@@ -586,7 +586,7 @@ of a rounded square tube.</p>
 ACP model and creates a lay-up with six plies.
 It returns a <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.html#ansys.acp.core.ACPWorkflow" title="ansys.acp.core.ACPWorkflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">ACPWorkflow</span></code></a> object that can be used to access the model and
 generate the output files.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">example_helpers</span><span class="o">.</span><span class="n">get_example_file</span><span class="p">(</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">example_helpers</span><span class="o">.</span><span class="n">get_example_file</span><span class="p">(</span>
     <span class="n">example_key</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">example_helpers</span><span class="o">.</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">OPTIMIZATION_EXAMPLE_DAT</span><span class="p">,</span>
     <span class="n">working_directory</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">,</span>
 <span class="p">)</span>
@@ -664,7 +664,7 @@ generate the output files.</p>
 </pre></div>
 </div>
 <p>Create the ACP model and visualize the first ply’s fiber direction.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">acp_workflow</span> <span class="o">=</span> <span class="n">prepare_acp_model</span><span class="p">(</span><span class="n">acp</span><span class="o">=</span><span class="n">acp_instance</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">acp_workflow</span> <span class="o">=</span> <span class="n">prepare_acp_model</span><span class="p">(</span><span class="n">acp</span><span class="o">=</span><span class="n">acp_instance</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">)</span>
 <span class="n">ply</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">acp_workflow</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;Modeling_Group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">pyacp</span><span class="o">.</span><span class="n">get_directions_plotter</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">acp_workflow</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
@@ -693,7 +693,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 the ACP model for a given set of ply angles.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">update_ply_angles()</span></code> function changes the ply angles in the model to the given values and
 updates the model.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_ply_angles</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">acp_workflow</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_ply_angles</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">acp_workflow</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">acp_workflow</span><span class="o">.</span><span class="n">model</span>
     <span class="n">modeling_plies</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;Modeling_Group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">modeling_plies</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
@@ -707,7 +707,7 @@ updates the model.</p>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">solve_cdb()</span></code> function solves the CDB file with MAPDL and returns the path to the RST file.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_cdb</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">mapdl</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">):</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_cdb</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">mapdl</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">):</span>
     <span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
     <span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file</span></a><span class="p">)</span>
     <span class="c1"># Solve the model. Note that the model contains two timesteps.</span>
@@ -733,7 +733,7 @@ updates the model.</p>
 inverse reserve factor (IRF) for a given RST, composite definitions,
 or materials file.</p>
 <p>This function only considers the maximum stress failure criterion.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">max_stress_criterion</span> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">failure_criteria</span><span class="o">.</span><span class="n">MaxStressCriterion</span><span class="p">()</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">max_stress_criterion</span> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">failure_criteria</span><span class="o">.</span><span class="n">MaxStressCriterion</span><span class="p">()</span>
 <span class="n">combined_failure_criterion</span> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">failure_criteria</span><span class="o">.</span><span class="n">CombinedFailureCriterion</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Combined Failure Criterion&quot;</span><span class="p">,</span>
     <span class="n">failure_criteria</span><span class="o">=</span><span class="p">[</span><span class="n">max_stress_criterion</span><span class="p">],</span>
@@ -790,7 +790,7 @@ or materials file.</p>
 as its input and returns the maximum IRF.
 The <code class="docutils literal notranslate"><span class="pre">get_max_irf_for_parameters()</span></code> function combines the previously defined functions
 to perform all the necessary steps for a given set of ply angles.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_max_irf_for_parameters</span><span class="p">(</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_max_irf_for_parameters</span><span class="p">(</span>
     <span class="n">parameters</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">acp_workflow</span><span class="p">,</span> <span class="n">mapdl</span><span class="p">,</span> <span class="n">dpf_server</span><span class="p">,</span> <span class="n">failure_criterion</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a>
 <span class="p">):</span>
     <span class="n">update_ply_angles</span><span class="p">(</span><span class="n">acp_workflow</span><span class="o">=</span><span class="n">acp_workflow</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
@@ -809,7 +809,7 @@ to perform all the necessary steps for a given set of ply angles.</p>
 </div>
 <p>To inject the <code class="docutils literal notranslate"><span class="pre">acp_workflow</span></code>, <code class="docutils literal notranslate"><span class="pre">mapdl</span></code>, <code class="docutils literal notranslate"><span class="pre">dpf_server</span></code>, and <code class="docutils literal notranslate"><span class="pre">workdir</span></code> arguments into the
 <code class="docutils literal notranslate"><span class="pre">get_max_irf_for_parameters()</span></code> function, you can use the <code class="docutils literal notranslate"><span class="pre">functools.partial()</span></code> function.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 <a href="https://docs.python.org/3/library/functools.html#functools.partial" title="functools.partial" class="sphx-glr-backref-module-functools sphx-glr-backref-type-py-function"><span class="n">optimization_function</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/functools.html#functools.partial" title="functools.partial" class="sphx-glr-backref-module-functools sphx-glr-backref-type-py-function"><span class="n">partial</span></a><span class="p">(</span>
     <span class="n">get_max_irf_for_parameters</span><span class="p">,</span>
     <span class="n">acp_workflow</span><span class="o">=</span><span class="n">acp_workflow</span><span class="p">,</span>
@@ -835,13 +835,13 @@ a local minimum of the objective function.</p>
 define an initial simplex (matrix of shape (n+1, n), where n is the number of parameters).</p>
 <p>The initial simplex is chosen with random ply angles between 0 and 90 degrees. To make
 the results reproducible, the random seed is fixed.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/random.html#random.seed" title="random.seed" class="sphx-glr-backref-module-random sphx-glr-backref-type-py-function"><span class="n">random</span><span class="o">.</span><span class="n">seed</span></a><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/random.html#random.seed" title="random.seed" class="sphx-glr-backref-module-random sphx-glr-backref-type-py-function"><span class="n">random</span><span class="o">.</span><span class="n">seed</span></a><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">initial_simplex</span></a> <span class="o">=</span> <span class="p">[[</span><a href="https://docs.python.org/3/library/random.html#random.uniform" title="random.uniform" class="sphx-glr-backref-module-random sphx-glr-backref-type-py-function"><span class="n">random</span><span class="o">.</span><span class="n">uniform</span></a><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]</span>
 </pre></div>
 </div>
 <p>To build this example, the number of function evaluations is limited to 1. In practice, you
 should increase or remove this limit.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">maxfev</span></a> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">maxfev</span></a> <span class="o">=</span> <span class="mi">1</span>
 <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.OptimizeResult.html#scipy.optimize.OptimizeResult" title="scipy.optimize.OptimizeResult" class="sphx-glr-backref-module-scipy-optimize sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">res</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="scipy.optimize.minimize" class="sphx-glr-backref-module-scipy-optimize sphx-glr-backref-type-py-function"><span class="n">minimize</span></a><span class="p">(</span>
     <a href="https://docs.python.org/3/library/functools.html#functools.partial" title="functools.partial" class="sphx-glr-backref-module-functools sphx-glr-backref-type-py-function"><span class="n">optimization_function</span></a><span class="p">,</span>
     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
@@ -886,7 +886,7 @@ converge to the following result:</p>
 </pre></div>
 </div>
 <p>The following code defines the <code class="docutils literal notranslate"><span class="pre">results</span></code> list as it would be obtained from the full optimization.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># fmt: off</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># fmt: off</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a> <span class="o">=</span> <span class="p">[</span>
     <span class="mf">1.251633536</span><span class="p">,</span> <span class="mf">1.406139904</span><span class="p">,</span> <span class="mf">1.400375936</span><span class="p">,</span> <span class="mf">1.188398336</span><span class="p">,</span> <span class="mf">1.292364032</span><span class="p">,</span> <span class="mf">1.478680192</span><span class="p">,</span>
     <span class="mf">1.328360704</span><span class="p">,</span> <span class="mf">1.403241856</span><span class="p">,</span> <span class="mf">1.294695808</span><span class="p">,</span> <span class="mf">1.499538048</span><span class="p">,</span> <span class="mf">1.33415104</span><span class="p">,</span> <span class="mf">1.34713472</span><span class="p">,</span>
@@ -928,7 +928,7 @@ converge to the following result:</p>
 </pre></div>
 </div>
 <p>Visualize the evolution of the maximum IRF during the optimization.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Function evaluation number&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Maximum IRF&quot;</span><span class="p">)</span>
@@ -936,7 +936,7 @@ converge to the following result:</p>
 </pre></div>
 </div>
 <img src="../../_images/sphx_glr_009_optimization_002.png" srcset="../../_images/sphx_glr_009_optimization_002.png" alt="009 optimization" class = "sphx-glr-single-img"/><p>Visualize the resulting fiber directions.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles_degree</span></a> <span class="o">=</span> <span class="p">[</span><span class="mf">7.826e01</span><span class="p">,</span> <span class="mf">1.777e00</span><span class="p">,</span> <span class="mf">1.042e02</span><span class="p">,</span> <span class="mf">8.848e01</span><span class="p">,</span> <span class="mf">1.083e01</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.288e01</span><span class="p">]</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles_degree</span></a> <span class="o">=</span> <span class="p">[</span><span class="mf">7.826e01</span><span class="p">,</span> <span class="mf">1.777e00</span><span class="p">,</span> <span class="mf">1.042e02</span><span class="p">,</span> <span class="mf">8.848e01</span><span class="p">,</span> <span class="mf">1.083e01</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.288e01</span><span class="p">]</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="mf">0.65</span><span class="p">)</span>
@@ -977,13 +977,13 @@ converge to the following result:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_009_optimization_003.png" srcset="../../_images/sphx_glr_009_optimization_003.png" alt="009 optimization" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  47.462 seconds)</p>
+<img src="../../_images/sphx_glr_009_optimization_003.png" srcset="../../_images/sphx_glr_009_optimization_003.png" alt="009 optimization" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 51.509 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-009-optimization-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/96df81647f82660782f304c6a5b32d89/009_optimization.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">009_optimization.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8d7024d05cde2351b7f71b13506a23d9/009_optimization.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">009_optimization.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/96df81647f82660782f304c6a5b32d89/009_optimization.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">009_optimization.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -1065,7 +1065,7 @@ converge to the following result:</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

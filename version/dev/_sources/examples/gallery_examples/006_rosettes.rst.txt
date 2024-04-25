@@ -36,7 +36,7 @@ Import the standard library and third-party dependencies.
 
 .. GENERATED FROM PYTHON SOURCE LINES 39-44
 
-.. code-block:: default
+.. code-block:: Python
 
     import pathlib
     import tempfile
@@ -56,7 +56,7 @@ Import the PyACP dependencies.
 
 .. GENERATED FROM PYTHON SOURCE LINES 46-58
 
-.. code-block:: default
+.. code-block:: Python
 
     from ansys.acp.core import (
         ACPWorkflow,
@@ -88,7 +88,7 @@ Get the example file from the server.
 
 .. GENERATED FROM PYTHON SOURCE LINES 65-69
 
-.. code-block:: default
+.. code-block:: Python
 
     tempdir = tempfile.TemporaryDirectory()
     WORKING_DIR = pathlib.Path(tempdir.name)
@@ -107,7 +107,7 @@ Launch the PyACP server and connect to it.
 
 .. GENERATED FROM PYTHON SOURCE LINES 71-73
 
-.. code-block:: default
+.. code-block:: Python
 
     acp = launch_acp()
 
@@ -127,7 +127,7 @@ This example's input file contains a flat plate with a single ply.
 
 .. GENERATED FROM PYTHON SOURCE LINES 78-88
 
-.. code-block:: default
+.. code-block:: Python
 
     workflow = ACPWorkflow.from_cdb_or_dat_file(
         acp=acp,
@@ -147,7 +147,7 @@ This example's input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmp4ro5b5o6
+    /tmp/tmp9hyde__0
     mks
 
 
@@ -164,7 +164,7 @@ Create a material and fabric.
 
 .. GENERATED FROM PYTHON SOURCE LINES 94-101
 
-.. code-block:: default
+.. code-block:: Python
 
     ud_material = model.create_material(
         name="UD",
@@ -186,7 +186,7 @@ Create a parallel rosette where the first direction is rotated by 45 degrees aro
 
 .. GENERATED FROM PYTHON SOURCE LINES 103-111
 
-.. code-block:: default
+.. code-block:: Python
 
     parallel_rosette_45_deg = model.create_rosette(
         name="ParallelRosette",
@@ -209,7 +209,7 @@ Create an oriented selection set (OSS) and assign the rosette.
 
 .. GENERATED FROM PYTHON SOURCE LINES 113-123
 
-.. code-block:: default
+.. code-block:: Python
 
     oss = model.create_oriented_selection_set(
         name="oss",
@@ -234,7 +234,7 @@ Plot the orientation and reference directions of the OSS.
 
 .. GENERATED FROM PYTHON SOURCE LINES 125-130
 
-.. code-block:: default
+.. code-block:: Python
 
     plotter = get_directions_plotter(
         model=model, components=[oss.elemental_data.orientation, oss.elemental_data.reference_direction]
@@ -283,7 +283,7 @@ from the reference direction.
 
 .. GENERATED FROM PYTHON SOURCE LINES 134-142
 
-.. code-block:: default
+.. code-block:: Python
 
     modeling_group = model.create_modeling_group(name="modeling_group")
     modeling_ply = modeling_group.create_modeling_ply(
@@ -306,7 +306,7 @@ Plot the reference directions, fiber directions, and transverse directions of th
 
 .. GENERATED FROM PYTHON SOURCE LINES 144-154
 
-.. code-block:: default
+.. code-block:: Python
 
     plotter = get_directions_plotter(
         model=model,
@@ -365,7 +365,7 @@ each point for which it is computed.
 
 .. GENERATED FROM PYTHON SOURCE LINES 163-177
 
-.. code-block:: default
+.. code-block:: Python
 
     radial_rosette = model.create_rosette(
         name="RadialRosette",
@@ -426,7 +426,7 @@ that lie in a plane spanned by ``dir1`` and ``dir2``.
 
 .. GENERATED FROM PYTHON SOURCE LINES 184-198
 
-.. code-block:: default
+.. code-block:: Python
 
     cylindrical_rosette = model.create_rosette(
         name="CylindricalRosette",
@@ -488,7 +488,7 @@ those of the cylindrical rosette.
 
 .. GENERATED FROM PYTHON SOURCE LINES 206-220
 
-.. code-block:: default
+.. code-block:: Python
 
     spherical_rosette = model.create_rosette(
         name="SphericalRosette",
@@ -559,7 +559,7 @@ Create the edge set from the "All_Elements" element set. Because you assigned
 
 .. GENERATED FROM PYTHON SOURCE LINES 236-260
 
-.. code-block:: default
+.. code-block:: Python
 
     edge_set = model.create_edge_set(
         name="edge_set",
@@ -631,7 +631,7 @@ at ``(0.01, 0, 0.01)``.
 
 .. GENERATED FROM PYTHON SOURCE LINES 267-275
 
-.. code-block:: default
+.. code-block:: Python
 
     parallel_rosette_0_deg = model.create_rosette(
         name="ParallelRosette",
@@ -657,7 +657,7 @@ the rotated rosette is at ``(0,0,0)``.
 
 .. GENERATED FROM PYTHON SOURCE LINES 280-283
 
-.. code-block:: default
+.. code-block:: Python
 
     oss.rosettes = [parallel_rosette_45_deg, parallel_rosette_0_deg]
     oss.rosette_selection_method = RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED
@@ -675,7 +675,7 @@ Plot the resulting reference directions.
 
 .. GENERATED FROM PYTHON SOURCE LINES 285-288
 
-.. code-block:: default
+.. code-block:: Python
 
     model.update()
     plotter = get_directions_plotter(model=model, components=[oss.elemental_data.reference_direction])
@@ -717,7 +717,7 @@ Plot the resulting reference directions.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.365 seconds)
+   **Total running time of the script:** (0 minutes 6.331 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_006_rosettes.py:
@@ -726,16 +726,13 @@ Plot the resulting reference directions.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: 006_rosettes.ipynb <006_rosettes.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: 006_rosettes.py <006_rosettes.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: 006_rosettes.ipynb <006_rosettes.ipynb>`
 
 
 .. only:: html

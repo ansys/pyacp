@@ -35,7 +35,7 @@ Import the standard library and third-party dependencies.
 
 .. GENERATED FROM PYTHON SOURCE LINES 38-41
 
-.. code-block:: default
+.. code-block:: Python
 
     import pathlib
     import tempfile
@@ -53,7 +53,7 @@ Import the PyACP dependencies.
 
 .. GENERATED FROM PYTHON SOURCE LINES 43-57
 
-.. code-block:: default
+.. code-block:: Python
 
     from ansys.acp.core import (
         ACPWorkflow,
@@ -87,7 +87,7 @@ Get the example file from the server.
 
 .. GENERATED FROM PYTHON SOURCE LINES 64-68
 
-.. code-block:: default
+.. code-block:: Python
 
     tempdir = tempfile.TemporaryDirectory()
     WORKING_DIR = pathlib.Path(tempdir.name)
@@ -106,7 +106,7 @@ Launch the PyACP server and connect to it.
 
 .. GENERATED FROM PYTHON SOURCE LINES 70-72
 
-.. code-block:: default
+.. code-block:: Python
 
     acp = launch_acp()
 
@@ -125,7 +125,7 @@ It automatically creates a model based on the input file.
 
 .. GENERATED FROM PYTHON SOURCE LINES 76-87
 
-.. code-block:: default
+.. code-block:: Python
 
 
     workflow = ACPWorkflow.from_cdb_or_dat_file(
@@ -146,7 +146,7 @@ It automatically creates a model based on the input file.
 
  .. code-block:: none
 
-    /tmp/tmpwec4cm9y
+    /tmp/tmpz7vqcmjy
     mks
 
 
@@ -158,7 +158,7 @@ Visualize the loaded mesh.
 
 .. GENERATED FROM PYTHON SOURCE LINES 89-92
 
-.. code-block:: default
+.. code-block:: Python
 
     mesh = model.mesh.to_pyvista()
     mesh.plot(show_edges=True)
@@ -208,7 +208,7 @@ Create the UD material and  its corresponding fabric.
 
 .. GENERATED FROM PYTHON SOURCE LINES 98-125
 
-.. code-block:: default
+.. code-block:: Python
 
     engineering_constants_ud = ConstantEngineeringConstants.from_orthotropic_constants(
         E1=5e10, E2=1e10, E3=1e10, nu12=0.28, nu13=0.28, nu23=0.3, G12=5e9, G23=4e9, G31=4e9
@@ -251,7 +251,7 @@ build repeating laminates.
 
 .. GENERATED FROM PYTHON SOURCE LINES 128-148
 
-.. code-block:: default
+.. code-block:: Python
 
 
     biax_carbon_ud = model.create_stackup(
@@ -286,7 +286,7 @@ Create the core material and its corresponding fabric.
 
 .. GENERATED FROM PYTHON SOURCE LINES 150-161
 
-.. code-block:: default
+.. code-block:: Python
 
     engineering_constants_core = ConstantEngineeringConstants.from_isotropic_constants(E=8.5e7, nu=0.3)
 
@@ -317,7 +317,7 @@ Define a rosette and oriented selection set. Plot the orientations.
 
 .. GENERATED FROM PYTHON SOURCE LINES 167-181
 
-.. code-block:: default
+.. code-block:: Python
 
     rosette = model.create_rosette(origin=(0.0, 0.0, 0.0), dir1=(1.0, 0.0, 0.0), dir2=(0.0, 1.0, 0.0))
 
@@ -373,7 +373,7 @@ Create the modeling plies which define the lay-up of the sandwich panel.
 
 .. GENERATED FROM PYTHON SOURCE LINES 183-208
 
-.. code-block:: default
+.. code-block:: Python
 
     modeling_group = model.create_modeling_group(name="modeling_group")
 
@@ -413,7 +413,7 @@ Update and print the model.
 
 .. GENERATED FROM PYTHON SOURCE LINES 210-212
 
-.. code-block:: default
+.. code-block:: Python
 
     model.update()
     print_model(workflow.model)
@@ -479,7 +479,7 @@ Update and print the model.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.756 seconds)
+   **Total running time of the script:** (0 minutes 8.532 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_002_sandwich_panel.py:
@@ -488,16 +488,13 @@ Update and print the model.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: 002_sandwich_panel.ipynb <002_sandwich_panel.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: 002_sandwich_panel.py <002_sandwich_panel.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: 002_sandwich_panel.ipynb <002_sandwich_panel.ipynb>`
 
 
 .. only:: html

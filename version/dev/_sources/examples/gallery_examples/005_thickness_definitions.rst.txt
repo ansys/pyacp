@@ -36,7 +36,7 @@ Import the standard library and third-party dependencies.
 
 .. GENERATED FROM PYTHON SOURCE LINES 40-46
 
-.. code-block:: default
+.. code-block:: Python
 
     import pathlib
     import tempfile
@@ -57,7 +57,7 @@ Import the PyACP dependencies.
 
 .. GENERATED FROM PYTHON SOURCE LINES 48-53
 
-.. code-block:: default
+.. code-block:: Python
 
     from ansys.acp.core import ACPWorkflow, DimensionType, ThicknessType, example_helpers, launch_acp
     from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
@@ -82,7 +82,7 @@ Get the example file from the server.
 
 .. GENERATED FROM PYTHON SOURCE LINES 60-64
 
-.. code-block:: default
+.. code-block:: Python
 
     tempdir = tempfile.TemporaryDirectory()
     WORKING_DIR = pathlib.Path(tempdir.name)
@@ -101,7 +101,7 @@ Launch the PyACP server and connect to it.
 
 .. GENERATED FROM PYTHON SOURCE LINES 66-68
 
-.. code-block:: default
+.. code-block:: Python
 
     acp = launch_acp()
 
@@ -121,7 +121,7 @@ This example's input file contains a flat plate with a single ply.
 
 .. GENERATED FROM PYTHON SOURCE LINES 73-90
 
-.. code-block:: default
+.. code-block:: Python
 
     workflow = ACPWorkflow.from_acph5_file(
         acp=acp,
@@ -175,7 +175,7 @@ This example's input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmp98bglv4u
+    /tmp/tmpej3pnt4e
     mks
 
 
@@ -192,7 +192,7 @@ Add the solid geometry to the model that defines the thickness.
 
 .. GENERATED FROM PYTHON SOURCE LINES 96-105
 
-.. code-block:: default
+.. code-block:: Python
 
     thickness_geometry_file = example_helpers.get_example_file(
         example_helpers.ExampleKeys.THICKNESS_GEOMETRY, WORKING_DIR
@@ -216,7 +216,7 @@ Create a virtual geometry from the CAD geometry.
 
 .. GENERATED FROM PYTHON SOURCE LINES 107-111
 
-.. code-block:: default
+.. code-block:: Python
 
     thickness_virtual_geometry = model.create_virtual_geometry(
         name="thickness_virtual_geometry", cad_components=thickness_geometry.root_shapes.values()
@@ -235,7 +235,7 @@ Set the thickness type to ``FROM_GEOMETRY`` and define the virtual geometry.
 
 .. GENERATED FROM PYTHON SOURCE LINES 113-116
 
-.. code-block:: default
+.. code-block:: Python
 
     modeling_ply.thickness_type = ThicknessType.FROM_GEOMETRY
     modeling_ply.thickness_geometry = thickness_virtual_geometry
@@ -253,7 +253,7 @@ Plot the ply thickness together with the geometry defining the thickness.
 
 .. GENERATED FROM PYTHON SOURCE LINES 118-133
 
-.. code-block:: default
+.. code-block:: Python
 
     model.update()
     assert model.elemental_data.thickness is not None
@@ -319,7 +319,7 @@ Note that the plate lies in the xz plane and the thickness is defined in the y d
 
 .. GENERATED FROM PYTHON SOURCE LINES 143-149
 
-.. code-block:: default
+.. code-block:: Python
 
     plate_side_length = 0.01
     num_points = 3
@@ -340,7 +340,7 @@ Create a thickness that equals the distance to the center of the plate.
 
 .. GENERATED FROM PYTHON SOURCE LINES 151-155
 
-.. code-block:: default
+.. code-block:: Python
 
     center_x = 0.005
     center_z = 0.005
@@ -360,7 +360,7 @@ The y coordinate is always zero.
 
 .. GENERATED FROM PYTHON SOURCE LINES 158-167
 
-.. code-block:: default
+.. code-block:: Python
 
     points = np.stack(
         [
@@ -384,7 +384,7 @@ Now you have a list of point coordinates:
 
 .. GENERATED FROM PYTHON SOURCE LINES 169-171
 
-.. code-block:: default
+.. code-block:: Python
 
     print(points)
 
@@ -415,7 +415,7 @@ And the corresponding thickness values.
 
 .. GENERATED FROM PYTHON SOURCE LINES 173-175
 
-.. code-block:: default
+.. code-block:: Python
 
     print(thickness)
 
@@ -439,7 +439,7 @@ Create the lookup table and add the coordinates and thickness data.
 
 .. GENERATED FROM PYTHON SOURCE LINES 177-181
 
-.. code-block:: default
+.. code-block:: Python
 
     lookup_table = model.create_lookup_table_3d()
     lookup_table.columns["Location"].data = points
@@ -458,7 +458,7 @@ Set the thickness type to ``FROM_TABLE`` and assign the thickness column.
 
 .. GENERATED FROM PYTHON SOURCE LINES 183-186
 
-.. code-block:: default
+.. code-block:: Python
 
     modeling_ply.thickness_type = ThicknessType.FROM_TABLE
     modeling_ply.thickness_field = thickness_column
@@ -476,7 +476,7 @@ Plot the ply thickness.
 
 .. GENERATED FROM PYTHON SOURCE LINES 188-191
 
-.. code-block:: default
+.. code-block:: Python
 
     model.update()
     assert model.elemental_data.thickness is not None
@@ -518,7 +518,7 @@ Plot the ply thickness.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.939 seconds)
+   **Total running time of the script:** (0 minutes 6.010 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_005_thickness_definitions.py:
@@ -527,16 +527,13 @@ Plot the ply thickness.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: 005_thickness_definitions.ipynb <005_thickness_definitions.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: 005_thickness_definitions.py <005_thickness_definitions.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: 005_thickness_definitions.ipynb <005_thickness_definitions.ipynb>`
 
 
 .. only:: html

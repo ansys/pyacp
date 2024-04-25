@@ -36,7 +36,7 @@ Import the standard library and third-party dependencies.
 
 .. GENERATED FROM PYTHON SOURCE LINES 39-44
 
-.. code-block:: default
+.. code-block:: Python
 
     import pathlib
     import tempfile
@@ -56,7 +56,7 @@ Import the PyACP dependencies.
 
 .. GENERATED FROM PYTHON SOURCE LINES 46-58
 
-.. code-block:: default
+.. code-block:: Python
 
     from ansys.acp.core import (
         ACPWorkflow,
@@ -88,7 +88,7 @@ Get the example file from the server.
 
 .. GENERATED FROM PYTHON SOURCE LINES 64-68
 
-.. code-block:: default
+.. code-block:: Python
 
     tempdir = tempfile.TemporaryDirectory()
     WORKING_DIR = pathlib.Path(tempdir.name)
@@ -107,7 +107,7 @@ Launch the PyACP server and connect to it.
 
 .. GENERATED FROM PYTHON SOURCE LINES 70-72
 
-.. code-block:: default
+.. code-block:: Python
 
     acp = launch_acp()
 
@@ -127,7 +127,7 @@ This example's input file contains a flat plate with a single ply.
 
 .. GENERATED FROM PYTHON SOURCE LINES 77-87
 
-.. code-block:: default
+.. code-block:: Python
 
     workflow = ACPWorkflow.from_cdb_or_dat_file(
         acp=acp,
@@ -147,7 +147,7 @@ This example's input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmpnrjc_xxz
+    /tmp/tmpi8xi3c4k
     mks
 
 
@@ -160,7 +160,7 @@ Setup materials and oriented selection set
 
 .. GENERATED FROM PYTHON SOURCE LINES 90-92
 
-.. code-block:: default
+.. code-block:: Python
 
 
     #
@@ -177,7 +177,7 @@ Create a material and fabric.
 
 .. GENERATED FROM PYTHON SOURCE LINES 94-101
 
-.. code-block:: default
+.. code-block:: Python
 
     ud_material = model.create_material(
         name="UD",
@@ -199,7 +199,7 @@ Create a parallel rosette.
 
 .. GENERATED FROM PYTHON SOURCE LINES 103-105
 
-.. code-block:: default
+.. code-block:: Python
 
     rosette = model.create_rosette()
 
@@ -216,7 +216,7 @@ Create an oriented selection set (OSS) and assign the rosette.
 
 .. GENERATED FROM PYTHON SOURCE LINES 107-115
 
-.. code-block:: default
+.. code-block:: Python
 
     oss = model.create_oriented_selection_set(
         name="oss",
@@ -240,7 +240,7 @@ The reference direction is defined by the rosette.
 
 .. GENERATED FROM PYTHON SOURCE LINES 118-124
 
-.. code-block:: default
+.. code-block:: Python
 
     model.update()
     plotter = get_directions_plotter(
@@ -293,7 +293,7 @@ Create a 3D lookup table to store the direction and angle corrections.
 
 .. GENERATED FROM PYTHON SOURCE LINES 130-132
 
-.. code-block:: default
+.. code-block:: Python
 
     lookup_table = model.create_lookup_table_3d()
 
@@ -310,7 +310,7 @@ Create a grid of points on the plate where the lookup table values are stored.
 
 .. GENERATED FROM PYTHON SOURCE LINES 134-149
 
-.. code-block:: default
+.. code-block:: Python
 
     plate_side_length = 0.01
     num_points = 10
@@ -340,7 +340,7 @@ Compute the directions tangential to circles around the point (0,0,0).
 
 .. GENERATED FROM PYTHON SOURCE LINES 151-154
 
-.. code-block:: default
+.. code-block:: Python
 
     normal = np.array([0, 1, 0])
     directions = np.cross(points, normal)
@@ -358,7 +358,7 @@ Create the lookup table and add the direction data.
 
 .. GENERATED FROM PYTHON SOURCE LINES 156-163
 
-.. code-block:: default
+.. code-block:: Python
 
     lookup_table.columns["Location"].data = points
     direction_column = lookup_table.create_column(
@@ -380,7 +380,7 @@ Assign the lookup table to the OSS.
 
 .. GENERATED FROM PYTHON SOURCE LINES 165-168
 
-.. code-block:: default
+.. code-block:: Python
 
     oss.rosette_selection_method = RosetteSelectionMethod.DIRECTIONS_FROM_TABULAR_VALUES
     oss.reference_direction_field = direction_column
@@ -398,7 +398,7 @@ Plot the orientation and the reference direction of the OSS.
 
 .. GENERATED FROM PYTHON SOURCE LINES 170-176
 
-.. code-block:: default
+.. code-block:: Python
 
     model.update()
     plotter = get_directions_plotter(
@@ -446,7 +446,7 @@ Reset the OSS so that it may use the rosette again for the reference direction.
 
 .. GENERATED FROM PYTHON SOURCE LINES 178-180
 
-.. code-block:: default
+.. code-block:: Python
 
     oss.rosette_selection_method = RosetteSelectionMethod.MINIMUM_ANGLE
 
@@ -467,7 +467,7 @@ Compute a correction angle to define circular fiber paths.
 
 .. GENERATED FROM PYTHON SOURCE LINES 186-193
 
-.. code-block:: default
+.. code-block:: Python
 
     correction_angle = np.arctan2(xx.ravel(), zz.ravel()) * 180 / np.pi
     angle_column_1 = lookup_table.create_column(
@@ -489,7 +489,7 @@ Compute the transverse correction angle, assuming a constant shear angle of -30Â
 
 .. GENERATED FROM PYTHON SOURCE LINES 195-203
 
-.. code-block:: default
+.. code-block:: Python
 
     shear_angle = -30
     transverse_correction_angle = correction_angle + shear_angle
@@ -512,7 +512,7 @@ Create a modeling ply with the angle corrections.
 
 .. GENERATED FROM PYTHON SOURCE LINES 205-216
 
-.. code-block:: default
+.. code-block:: Python
 
     modeling_group = model.create_modeling_group(name="modeling_group")
     modeling_ply = modeling_group.create_modeling_ply(
@@ -538,7 +538,7 @@ Plot the directions of the modeling ply. First, plot the directions without corr
 
 .. GENERATED FROM PYTHON SOURCE LINES 218-228
 
-.. code-block:: default
+.. code-block:: Python
 
     model.update()
     plotter = get_directions_plotter(
@@ -590,7 +590,7 @@ Next, plot the draped directions, including the correction angles, from the look
 
 .. GENERATED FROM PYTHON SOURCE LINES 230-238
 
-.. code-block:: default
+.. code-block:: Python
 
     plotter = get_directions_plotter(
         model=model,
@@ -637,7 +637,7 @@ Next, plot the draped directions, including the correction angles, from the look
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.551 seconds)
+   **Total running time of the script:** (0 minutes 5.679 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_007_direction_definitions.py:
@@ -646,16 +646,13 @@ Next, plot the draped directions, including the correction angles, from the look
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: 007_direction_definitions.ipynb <007_direction_definitions.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: 007_direction_definitions.py <007_direction_definitions.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: 007_direction_definitions.ipynb <007_direction_definitions.ipynb>`
 
 
 .. only:: html

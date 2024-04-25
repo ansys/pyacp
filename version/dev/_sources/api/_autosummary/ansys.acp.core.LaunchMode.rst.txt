@@ -14,11 +14,28 @@
       :toctree:
    
       
+      LaunchMode.encode
+      
+      
+      LaunchMode.replace
+      
+      
+      LaunchMode.split
+      
+      
+      LaunchMode.rsplit
+      
+      
+      LaunchMode.join
+      
       
       LaunchMode.capitalize
       
       
       LaunchMode.casefold
+      
+      
+      LaunchMode.title
       
       
       LaunchMode.center
@@ -27,64 +44,16 @@
       LaunchMode.count
       
       
-      LaunchMode.encode
-      
-      
-      LaunchMode.endswith
-      
-      
       LaunchMode.expandtabs
       
       
       LaunchMode.find
       
       
-      LaunchMode.format
-      
-      
-      LaunchMode.format_map
+      LaunchMode.partition
       
       
       LaunchMode.index
-      
-      
-      LaunchMode.isalnum
-      
-      
-      LaunchMode.isalpha
-      
-      
-      LaunchMode.isascii
-      
-      
-      LaunchMode.isdecimal
-      
-      
-      LaunchMode.isdigit
-      
-      
-      LaunchMode.isidentifier
-      
-      
-      LaunchMode.islower
-      
-      
-      LaunchMode.isnumeric
-      
-      
-      LaunchMode.isprintable
-      
-      
-      LaunchMode.isspace
-      
-      
-      LaunchMode.istitle
-      
-      
-      LaunchMode.isupper
-      
-      
-      LaunchMode.join
       
       
       LaunchMode.ljust
@@ -96,21 +65,6 @@
       LaunchMode.lstrip
       
       
-      LaunchMode.maketrans
-      
-      
-      LaunchMode.partition
-      
-      
-      LaunchMode.removeprefix
-      
-      
-      LaunchMode.removesuffix
-      
-      
-      LaunchMode.replace
-      
-      
       LaunchMode.rfind
       
       
@@ -120,22 +74,13 @@
       LaunchMode.rjust
       
       
-      LaunchMode.rpartition
-      
-      
-      LaunchMode.rsplit
-      
-      
       LaunchMode.rstrip
       
       
-      LaunchMode.split
+      LaunchMode.rpartition
       
       
       LaunchMode.splitlines
-      
-      
-      LaunchMode.startswith
       
       
       LaunchMode.strip
@@ -144,16 +89,71 @@
       LaunchMode.swapcase
       
       
-      LaunchMode.title
-      
-      
       LaunchMode.translate
       
       
       LaunchMode.upper
       
       
+      LaunchMode.startswith
+      
+      
+      LaunchMode.endswith
+      
+      
+      LaunchMode.removeprefix
+      
+      
+      LaunchMode.removesuffix
+      
+      
+      LaunchMode.isascii
+      
+      
+      LaunchMode.islower
+      
+      
+      LaunchMode.isupper
+      
+      
+      LaunchMode.istitle
+      
+      
+      LaunchMode.isspace
+      
+      
+      LaunchMode.isdecimal
+      
+      
+      LaunchMode.isdigit
+      
+      
+      LaunchMode.isnumeric
+      
+      
+      LaunchMode.isalpha
+      
+      
+      LaunchMode.isalnum
+      
+      
+      LaunchMode.isidentifier
+      
+      
+      LaunchMode.isprintable
+      
+      
       LaunchMode.zfill
+      
+      
+      LaunchMode.format
+      
+      
+      LaunchMode.format_map
+      
+      
+      LaunchMode.maketrans
+      
       
    
    
