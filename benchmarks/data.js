@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1714027119658,
+  "lastUpdate": 1714370599547,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14606,6 +14606,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002194296605509183",
             "extra": "mean: 791.7381329148128 usec\nrounds: 1753"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b47eb84ccd3b7e666933f9caa444b1d4756c9ebf",
+          "message": "Bump the dependencies group with 7 updates (#532)\n\nBumps the dependencies group with 7 updates:\r\n\r\n| Package | From | To |\r\n| --- | --- | --- |\r\n| [pyvista](https://github.com/pyvista/pyvista) | `0.43.5` | `0.43.6` |\r\n| [ansys-mechanical-core](https://github.com/ansys/pymechanical) | `0.10.9` | `0.10.10` |\r\n| [black](https://github.com/psf/black) | `24.4.0` | `24.4.2` |\r\n| [mypy](https://github.com/python/mypy) | `1.9.0` | `1.10.0` |\r\n| [sphinx-gallery](https://github.com/sphinx-gallery/sphinx-gallery) | `0.15.0` | `0.16.0` |\r\n| [pytest](https://github.com/pytest-dev/pytest) | `8.1.1` | `8.2.0` |\r\n| [hypothesis](https://github.com/HypothesisWorks/hypothesis) | `6.100.1` | `6.100.2` |\r\n\r\n\r\nUpdates `pyvista` from 0.43.5 to 0.43.6\r\n- [Release notes](https://github.com/pyvista/pyvista/releases)\r\n- [Commits](https://github.com/pyvista/pyvista/compare/v0.43.5...v0.43.6)\r\n\r\nUpdates `ansys-mechanical-core` from 0.10.9 to 0.10.10\r\n- [Release notes](https://github.com/ansys/pymechanical/releases)\r\n- [Changelog](https://github.com/ansys/pymechanical/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ansys/pymechanical/compare/v0.10.9...v0.10.10)\r\n\r\nUpdates `black` from 24.4.0 to 24.4.2\r\n- [Release notes](https://github.com/psf/black/releases)\r\n- [Changelog](https://github.com/psf/black/blob/main/CHANGES.md)\r\n- [Commits](https://github.com/psf/black/compare/24.4.0...24.4.2)\r\n\r\nUpdates `mypy` from 1.9.0 to 1.10.0\r\n- [Changelog](https://github.com/python/mypy/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/python/mypy/compare/1.9.0...v1.10.0)\r\n\r\nUpdates `sphinx-gallery` from 0.15.0 to 0.16.0\r\n- [Release notes](https://github.com/sphinx-gallery/sphinx-gallery/releases)\r\n- [Changelog](https://github.com/sphinx-gallery/sphinx-gallery/blob/master/.github_changelog_generator)\r\n- [Commits](https://github.com/sphinx-gallery/sphinx-gallery/compare/v0.15.0...v0.16.0)\r\n\r\nUpdates `pytest` from 8.1.1 to 8.2.0\r\n- [Release notes](https://github.com/pytest-dev/pytest/releases)\r\n- [Changelog](https://github.com/pytest-dev/pytest/blob/main/CHANGELOG.rst)\r\n- [Commits](https://github.com/pytest-dev/pytest/compare/8.1.1...8.2.0)\r\n\r\nUpdates `hypothesis` from 6.100.1 to 6.100.2\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.100.1...hypothesis-python-6.100.2)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: pyvista\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-mechanical-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: black\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: mypy\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: sphinx-gallery\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: pytest\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-04-29T08:00:12+02:00",
+          "tree_id": "c516ba38ab63965c3d64fb61f9b3159755144402",
+          "url": "https://github.com/ansys/pyacp/commit/b47eb84ccd3b7e666933f9caa444b1d4756c9ebf"
+        },
+        "date": 1714370577996,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.470116233464529,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005802204160502707",
+            "extra": "mean: 154.55672879999156 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1403.3120880505476,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00016297202445843614",
+            "extra": "mean: 712.5998617949479 usec\nrounds: 1382"
           }
         ]
       }
