@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1714370599547,
+  "lastUpdate": 1714975335370,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14644,6 +14644,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00016297202445843614",
             "extra": "mean: 712.5998617949479 usec\nrounds: 1382"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "069645ab45fd6bb7bffe89635fe14e094a4c8e46",
+          "message": "Bump the dependencies group with 2 updates (#534)\n\nBumps the dependencies group with 2 updates: [pyvista](https://github.com/pyvista/pyvista) and [hypothesis](https://github.com/HypothesisWorks/hypothesis).\r\n\r\n\r\nUpdates `pyvista` from 0.43.6 to 0.43.7\r\n- [Release notes](https://github.com/pyvista/pyvista/releases)\r\n- [Commits](https://github.com/pyvista/pyvista/compare/v0.43.6...v0.43.7)\r\n\r\nUpdates `hypothesis` from 6.100.2 to 6.100.4\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.100.2...hypothesis-python-6.100.4)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: pyvista\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-05-06T07:59:14+02:00",
+          "tree_id": "b440a6ec9bd4d236ba0653136e5498b74b34cb54",
+          "url": "https://github.com/ansys/pyacp/commit/069645ab45fd6bb7bffe89635fe14e094a4c8e46"
+        },
+        "date": 1714975313912,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.598119419839214,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005723924599627199",
+            "extra": "mean: 151.55833599998232 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1226.4117164291883,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022786374951137852",
+            "extra": "mean: 815.3868612015489 usec\nrounds: 1830"
           }
         ]
       }
