@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1714975335370,
+  "lastUpdate": 1714994440639,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14682,6 +14682,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00022786374951137852",
             "extra": "mean: 815.3868612015489 usec\nrounds: 1830"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7c5ea14ebbf71b08430e4de5312c2f0d4a78fdb6",
+          "message": "Remove workaround for sphinx cache warning (#533)\n\nRemove the suppression of the sphinx 'config.cache' warning, by\r\nusing the string representation of the sphinx-gallery\r\n'FileNameSortKey' instead of directly passing the class.\r\n\r\nSee https://sphinx-gallery.github.io/dev/configuration.html#importing-callables",
+          "timestamp": "2024-05-06T11:17:49Z",
+          "tree_id": "74467cc346ec4076e10c01ce0c5babcdf03cf435",
+          "url": "https://github.com/ansys/pyacp/commit/7c5ea14ebbf71b08430e4de5312c2f0d4a78fdb6"
+        },
+        "date": 1714994420058,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.446764528698434,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0035997846615532427",
+            "extra": "mean: 155.1165697999977 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1355.5131584750952,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018015665467164245",
+            "extra": "mean: 737.7279916079642 usec\nrounds: 1549"
           }
         ]
       }
