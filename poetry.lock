@@ -1724,13 +1724,13 @@ pyparsing = {version = ">=2.4.2,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.0.2 || >3.0
 
 [[package]]
 name = "hypothesis"
-version = "6.100.2"
+version = "6.100.4"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "hypothesis-6.100.2-py3-none-any.whl", hash = "sha256:4ae5918f5a47f979e53fe9e8be4ba6edf17d7a133c13542938d8a6e18f890a2a"},
-    {file = "hypothesis-6.100.2.tar.gz", hash = "sha256:7d68e45d371cee5b9d2236516341aca57fb7f2cfabef6cb9e5b3a7ec62219cf2"},
+    {file = "hypothesis-6.100.4-py3-none-any.whl", hash = "sha256:f1909d4702d21be55720bbbc58e0b42172e14bf712a8ecbab00ad6ae209a5ec9"},
+    {file = "hypothesis-6.100.4.tar.gz", hash = "sha256:f6858353a5fae943cae149cc618b9f2b261143df9d8d792cf1065a1b289bbb24"},
 ]
 
 [package.dependencies]
@@ -3485,13 +3485,13 @@ files = [
 
 [[package]]
 name = "pyvista"
-version = "0.43.6"
+version = "0.43.7"
 description = "Easier Pythonic interface to VTK"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pyvista-0.43.6-py3-none-any.whl", hash = "sha256:3eb7dae84e49ece56d9a009da9c55ce3acb18c4aa34155f0391415c3b7e81d47"},
-    {file = "pyvista-0.43.6.tar.gz", hash = "sha256:e3789d5f5c11f8fef8f440a227c5d3fa56e59d65bd848450cf0c7d613a139600"},
+    {file = "pyvista-0.43.7-py3-none-any.whl", hash = "sha256:c1ddd3f5c86cf747037cd76b3676b1023c0f69c2471385944dfb894c86a9f013"},
+    {file = "pyvista-0.43.7.tar.gz", hash = "sha256:b0ce64b9c34d1bdfc8bdca89d3939c210fa205b8b46bfa08e7bd2b5af11b8ae4"},
 ]
 
 [package.dependencies]
