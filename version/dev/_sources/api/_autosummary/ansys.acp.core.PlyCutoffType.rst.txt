@@ -12,7 +12,11 @@
    .. autosummary::
       :toctree:
    
-      PlyCutoffType.PRODUCTION_PLY_CUTOFF
-      PlyCutoffType.ANALYSIS_PLY_CUTOFF
+      
+        PlyCutoffType.PRODUCTION_PLY_CUTOFF
+      
+      
+        PlyCutoffType.ANALYSIS_PLY_CUTOFF
+      
    
    

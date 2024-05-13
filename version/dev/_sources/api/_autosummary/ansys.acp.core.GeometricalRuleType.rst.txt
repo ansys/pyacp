@@ -12,7 +12,11 @@
    .. autosummary::
       :toctree:
    
-      GeometricalRuleType.GEOMETRY
-      GeometricalRuleType.ELEMENT_SETS
+      
+        GeometricalRuleType.GEOMETRY
+      
+      
+        GeometricalRuleType.ELEMENT_SETS
+      
    
    

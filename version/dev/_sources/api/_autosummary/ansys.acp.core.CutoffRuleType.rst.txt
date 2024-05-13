@@ -12,7 +12,11 @@
    .. autosummary::
       :toctree:
    
-      CutoffRuleType.GEOMETRY
-      CutoffRuleType.TAPER
+      
+        CutoffRuleType.GEOMETRY
+      
+      
+        CutoffRuleType.TAPER
+      
    
    

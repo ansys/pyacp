@@ -12,9 +12,17 @@
    .. autosummary::
       :toctree:
    
-      SensorType.SENSOR_BY_AREA
-      SensorType.SENSOR_BY_MATERIAL
-      SensorType.SENSOR_BY_PLIES
-      SensorType.SENSOR_BY_SOLID_MODEL
+      
+        SensorType.SENSOR_BY_AREA
+      
+      
+        SensorType.SENSOR_BY_MATERIAL
+      
+      
+        SensorType.SENSOR_BY_PLIES
+      
+      
+        SensorType.SENSOR_BY_SOLID_MODEL
+      
    
    

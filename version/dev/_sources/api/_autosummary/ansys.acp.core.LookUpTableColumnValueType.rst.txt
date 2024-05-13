@@ -12,8 +12,14 @@
    .. autosummary::
       :toctree:
    
-      LookUpTableColumnValueType.SCALAR
-      LookUpTableColumnValueType.DIRECTION
-      LookUpTableColumnValueType.LOCATION
+      
+        LookUpTableColumnValueType.SCALAR
+      
+      
+        LookUpTableColumnValueType.DIRECTION
+      
+      
+        LookUpTableColumnValueType.LOCATION
+      
    
    

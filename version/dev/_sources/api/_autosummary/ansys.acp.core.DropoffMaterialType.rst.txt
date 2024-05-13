@@ -12,7 +12,11 @@
    .. autosummary::
       :toctree:
    
-      DropoffMaterialType.GLOBAL
-      DropoffMaterialType.CUSTOM
+      
+        DropoffMaterialType.GLOBAL
+      
+      
+        DropoffMaterialType.CUSTOM
+      
    
    

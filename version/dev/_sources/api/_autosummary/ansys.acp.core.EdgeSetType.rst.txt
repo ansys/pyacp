@@ -12,7 +12,11 @@
    .. autosummary::
       :toctree:
    
-      EdgeSetType.BY_REFERENCE
-      EdgeSetType.BY_NODES
+      
+        EdgeSetType.BY_REFERENCE
+      
+      
+        EdgeSetType.BY_NODES
+      
    
    

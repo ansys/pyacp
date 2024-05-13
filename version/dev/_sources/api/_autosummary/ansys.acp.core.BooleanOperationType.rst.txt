@@ -12,8 +12,14 @@
    .. autosummary::
       :toctree:
    
-      BooleanOperationType.INTERSECT
-      BooleanOperationType.ADD
-      BooleanOperationType.REMOVE
+      
+        BooleanOperationType.INTERSECT
+      
+      
+        BooleanOperationType.ADD
+      
+      
+        BooleanOperationType.REMOVE
+      
    
    

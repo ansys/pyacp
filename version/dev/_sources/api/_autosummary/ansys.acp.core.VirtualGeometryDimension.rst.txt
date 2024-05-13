@@ -12,9 +12,17 @@
    .. autosummary::
       :toctree:
    
-      VirtualGeometryDimension.UNKNOWN
-      VirtualGeometryDimension.LINE
-      VirtualGeometryDimension.SURFACE
-      VirtualGeometryDimension.SOLID
+      
+        VirtualGeometryDimension.UNKNOWN
+      
+      
+        VirtualGeometryDimension.LINE
+      
+      
+        VirtualGeometryDimension.SURFACE
+      
+      
+        VirtualGeometryDimension.SOLID
+      
    
    

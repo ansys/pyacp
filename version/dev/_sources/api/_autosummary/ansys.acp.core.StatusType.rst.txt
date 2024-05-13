@@ -12,8 +12,14 @@
    .. autosummary::
       :toctree:
    
-      StatusType.UNKNOWN
-      StatusType.UPTODATE
-      StatusType.NOTUPTODATE
+      
+        StatusType.UNKNOWN
+      
+      
+        StatusType.UPTODATE
+      
+      
+        StatusType.NOTUPTODATE
+      
    
    

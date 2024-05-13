@@ -12,13 +12,29 @@
    .. autosummary::
       :toctree:
    
-      UnitSystemType.UNDEFINED
-      UnitSystemType.SI
-      UnitSystemType.MKS
-      UnitSystemType.uMKS
-      UnitSystemType.CGS
-      UnitSystemType.MPA
-      UnitSystemType.BFT
-      UnitSystemType.BIN
+      
+        UnitSystemType.UNDEFINED
+      
+      
+        UnitSystemType.SI
+      
+      
+        UnitSystemType.MKS
+      
+      
+        UnitSystemType.uMKS
+      
+      
+        UnitSystemType.CGS
+      
+      
+        UnitSystemType.MPA
+      
+      
+        UnitSystemType.BFT
+      
+      
+        UnitSystemType.BIN
+      
    
    

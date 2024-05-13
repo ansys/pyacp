@@ -12,12 +12,26 @@
    .. autosummary::
       :toctree:
    
-      DimensionType.DIMENSIONLESS
-      DimensionType.LENGTH
-      DimensionType.MASS
-      DimensionType.FORCE
-      DimensionType.TIME
-      DimensionType.TEMPERATURE
-      DimensionType.CURRENCY
+      
+        DimensionType.DIMENSIONLESS
+      
+      
+        DimensionType.LENGTH
+      
+      
+        DimensionType.MASS
+      
+      
+        DimensionType.FORCE
+      
+      
+        DimensionType.TIME
+      
+      
+        DimensionType.TEMPERATURE
+      
+      
+        DimensionType.CURRENCY
+      
    
    

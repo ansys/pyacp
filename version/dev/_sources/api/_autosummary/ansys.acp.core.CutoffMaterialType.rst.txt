@@ -12,8 +12,14 @@
    .. autosummary::
       :toctree:
    
-      CutoffMaterialType.COMPUTED
-      CutoffMaterialType.GLOBAL
-      CutoffMaterialType.CUSTOM
+      
+        CutoffMaterialType.COMPUTED
+      
+      
+        CutoffMaterialType.GLOBAL
+      
+      
+        CutoffMaterialType.CUSTOM
+      
    
    

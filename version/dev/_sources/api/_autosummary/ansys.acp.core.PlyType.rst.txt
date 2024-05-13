@@ -12,13 +12,29 @@
    .. autosummary::
       :toctree:
    
-      PlyType.REGULAR
-      PlyType.WOVEN
-      PlyType.ORTHOTROPIC_HOMOGENEOUS_CORE
-      PlyType.ISOTROPIC_HOMOGENEOUS_CORE
-      PlyType.HONEYCOMB_CORE
-      PlyType.ISOTROPIC
-      PlyType.UNDEFINED
-      PlyType.ADHESIVE
+      
+        PlyType.REGULAR
+      
+      
+        PlyType.WOVEN
+      
+      
+        PlyType.ORTHOTROPIC_HOMOGENEOUS_CORE
+      
+      
+        PlyType.ISOTROPIC_HOMOGENEOUS_CORE
+      
+      
+        PlyType.HONEYCOMB_CORE
+      
+      
+        PlyType.ISOTROPIC
+      
+      
+        PlyType.UNDEFINED
+      
+      
+        PlyType.ADHESIVE
+      
    
    

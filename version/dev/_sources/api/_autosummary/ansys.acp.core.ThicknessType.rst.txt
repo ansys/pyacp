@@ -12,8 +12,14 @@
    .. autosummary::
       :toctree:
    
-      ThicknessType.NOMINAL
-      ThicknessType.FROM_GEOMETRY
-      ThicknessType.FROM_TABLE
+      
+        ThicknessType.NOMINAL
+      
+      
+        ThicknessType.FROM_GEOMETRY
+      
+      
+        ThicknessType.FROM_TABLE
+      
    
    

@@ -12,8 +12,14 @@
    .. autosummary::
       :toctree:
    
-      DrapingType.NO_DRAPING
-      DrapingType.INTERNAL_DRAPING
-      DrapingType.TABULAR_VALUES
+      
+        DrapingType.NO_DRAPING
+      
+      
+        DrapingType.INTERNAL_DRAPING
+      
+      
+        DrapingType.TABULAR_VALUES
+      
    
    

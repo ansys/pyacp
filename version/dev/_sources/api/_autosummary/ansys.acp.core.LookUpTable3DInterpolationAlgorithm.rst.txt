@@ -12,8 +12,14 @@
    .. autosummary::
       :toctree:
    
-      LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR
-      LookUpTable3DInterpolationAlgorithm.NEAREST_NEIGHBOR
-      LookUpTable3DInterpolationAlgorithm.LINEAR_TRIANGULATION
+      
+        LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR
+      
+      
+        LookUpTable3DInterpolationAlgorithm.NEAREST_NEIGHBOR
+      
+      
+        LookUpTable3DInterpolationAlgorithm.LINEAR_TRIANGULATION
+      
    
    

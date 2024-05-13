@@ -12,7 +12,11 @@
    .. autosummary::
       :toctree:
    
-      DrapingMaterialType.WOVEN
-      DrapingMaterialType.UD
+      
+        DrapingMaterialType.WOVEN
+      
+      
+        DrapingMaterialType.UD
+      
    
    

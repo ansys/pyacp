@@ -12,8 +12,14 @@
    .. autosummary::
       :toctree:
    
-      SymmetryType.NO_SYMMETRY
-      SymmetryType.EVEN_SYMMETRY
-      SymmetryType.ODD_SYMMETRY
+      
+        SymmetryType.NO_SYMMETRY
+      
+      
+        SymmetryType.EVEN_SYMMETRY
+      
+      
+        SymmetryType.ODD_SYMMETRY
+      
    
    

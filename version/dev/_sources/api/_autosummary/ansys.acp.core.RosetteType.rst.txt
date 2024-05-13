@@ -12,10 +12,20 @@
    .. autosummary::
       :toctree:
    
-      RosetteType.PARALLEL
-      RosetteType.RADIAL
-      RosetteType.CYLINDRICAL
-      RosetteType.SPHERICAL
-      RosetteType.EDGE_WISE
+      
+        RosetteType.PARALLEL
+      
+      
+        RosetteType.RADIAL
+      
+      
+        RosetteType.CYLINDRICAL
+      
+      
+        RosetteType.SPHERICAL
+      
+      
+        RosetteType.EDGE_WISE
+      
    
    

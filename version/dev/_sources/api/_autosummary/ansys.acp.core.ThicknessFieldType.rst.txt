@@ -12,7 +12,11 @@
    .. autosummary::
       :toctree:
    
-      ThicknessFieldType.ABSOLUTE_VALUES
-      ThicknessFieldType.RELATIVE_SCALING_FACTOR
+      
+        ThicknessFieldType.ABSOLUTE_VALUES
+      
+      
+        ThicknessFieldType.RELATIVE_SCALING_FACTOR
+      
    
    
