@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1714994440639,
+  "lastUpdate": 1715589067893,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14720,6 +14720,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00018015665467164245",
             "extra": "mean: 737.7279916079642 usec\nrounds: 1549"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "jan.vonrickenbach@ansys.com",
+            "name": "janvonrickenbach",
+            "username": "janvonrickenbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5141ff186ed150092e085b0e21eb3c559c402459",
+          "message": "Skip inherited members for enums (#535)\n\n* Skip inherited members for enums",
+          "timestamp": "2024-05-13T10:27:59+02:00",
+          "tree_id": "8a24f00dd2a0be3ff2d7f836d028f2573f47518a",
+          "url": "https://github.com/ansys/pyacp/commit/5141ff186ed150092e085b0e21eb3c559c402459"
+        },
+        "date": 1715589046685,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.445607144312869,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004317923610965458",
+            "extra": "mean: 155.14442280000367 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1281.5589987126825,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020363010659214524",
+            "extra": "mean: 780.2996202316814 usec\nrounds: 1730"
           }
         ]
       }
