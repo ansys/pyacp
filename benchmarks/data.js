@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1715589067893,
+  "lastUpdate": 1717415051277,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14758,6 +14758,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020363010659214524",
             "extra": "mean: 780.2996202316814 usec\nrounds: 1730"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a8b002f5fc03f1d3bdf5e6d917a34a3529b2f84d",
+          "message": "Bump the dependencies group across 1 directory with 13 updates (#539)\n\nBumps the dependencies group with 13 updates in the / directory:\r\n\r\n| Package | From | To |\r\n| --- | --- | --- |\r\n| [typing-extensions](https://github.com/python/typing_extensions) | `4.11.0` | `4.12.1` |\r\n| [ansys-tools-path](https://github.com/ansys/ansys-tools-path) | `0.5.2` | `0.6.0` |\r\n| [pyvista](https://github.com/pyvista/pyvista) | `0.43.7` | `0.43.8` |\r\n| [ansys-dpf-core](https://github.com/ansys/pydpf-core) | `0.12.0` | `0.12.1` |\r\n| [ansys-mechanical-core](https://github.com/ansys/pymechanical) | `0.10.10` | `0.10.11` |\r\n| [matplotlib](https://github.com/matplotlib/matplotlib) | `3.8.4` | `3.9.0` |\r\n| [scipy](https://github.com/scipy/scipy) | `1.13.0` | `1.13.1` |\r\n| [pre-commit](https://github.com/pre-commit/pre-commit) | `3.7.0` | `3.7.1` |\r\n| [ansys-sphinx-theme](https://github.com/ansys/ansys-sphinx-theme) | `0.15.2` | `0.16.5` |\r\n| [sphinx-design](https://github.com/executablebooks/sphinx-design) | `0.5.0` | `0.6.0` |\r\n| [pytest](https://github.com/pytest-dev/pytest) | `8.2.0` | `8.2.1` |\r\n| [hypothesis](https://github.com/HypothesisWorks/hypothesis) | `6.100.4` | `6.103.0` |\r\n| [docker](https://github.com/docker/docker-py) | `7.0.0` | `7.1.0` |\r\n\r\n\r\n\r\nUpdates `typing-extensions` from 4.11.0 to 4.12.1\r\n- [Release notes](https://github.com/python/typing_extensions/releases)\r\n- [Changelog](https://github.com/python/typing_extensions/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/python/typing_extensions/compare/4.11.0...4.12.1)\r\n\r\nUpdates `ansys-tools-path` from 0.5.2 to 0.6.0\r\n- [Release notes](https://github.com/ansys/ansys-tools-path/releases)\r\n- [Changelog](https://github.com/ansys/ansys-tools-path/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ansys/ansys-tools-path/compare/v0.5.2...v0.6.0)\r\n\r\nUpdates `pyvista` from 0.43.7 to 0.43.8\r\n- [Release notes](https://github.com/pyvista/pyvista/releases)\r\n- [Commits](https://github.com/pyvista/pyvista/compare/v0.43.7...v0.43.8)\r\n\r\nUpdates `ansys-dpf-core` from 0.12.0 to 0.12.1\r\n- [Release notes](https://github.com/ansys/pydpf-core/releases)\r\n- [Commits](https://github.com/ansys/pydpf-core/compare/v0.12.0...v0.12.1)\r\n\r\nUpdates `ansys-mechanical-core` from 0.10.10 to 0.10.11\r\n- [Release notes](https://github.com/ansys/pymechanical/releases)\r\n- [Changelog](https://github.com/ansys/pymechanical/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ansys/pymechanical/compare/v0.10.10...v0.10.11)\r\n\r\nUpdates `matplotlib` from 3.8.4 to 3.9.0\r\n- [Release notes](https://github.com/matplotlib/matplotlib/releases)\r\n- [Commits](https://github.com/matplotlib/matplotlib/compare/v3.8.4...v3.9.0)\r\n\r\nUpdates `scipy` from 1.13.0 to 1.13.1\r\n- [Release notes](https://github.com/scipy/scipy/releases)\r\n- [Commits](https://github.com/scipy/scipy/compare/v1.13.0...v1.13.1)\r\n\r\nUpdates `pre-commit` from 3.7.0 to 3.7.1\r\n- [Release notes](https://github.com/pre-commit/pre-commit/releases)\r\n- [Changelog](https://github.com/pre-commit/pre-commit/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/pre-commit/pre-commit/compare/v3.7.0...v3.7.1)\r\n\r\nUpdates `ansys-sphinx-theme` from 0.15.2 to 0.16.5\r\n- [Release notes](https://github.com/ansys/ansys-sphinx-theme/releases)\r\n- [Commits](https://github.com/ansys/ansys-sphinx-theme/compare/v0.15.2...v0.16.5)\r\n\r\nUpdates `sphinx-design` from 0.5.0 to 0.6.0\r\n- [Release notes](https://github.com/executablebooks/sphinx-design/releases)\r\n- [Changelog](https://github.com/executablebooks/sphinx-design/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/executablebooks/sphinx-design/compare/v0.5.0...v0.6.0)\r\n\r\nUpdates `pytest` from 8.2.0 to 8.2.1\r\n- [Release notes](https://github.com/pytest-dev/pytest/releases)\r\n- [Changelog](https://github.com/pytest-dev/pytest/blob/main/CHANGELOG.rst)\r\n- [Commits](https://github.com/pytest-dev/pytest/compare/8.2.0...8.2.1)\r\n\r\nUpdates `hypothesis` from 6.100.4 to 6.103.0\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.100.4...hypothesis-python-6.103.0)\r\n\r\nUpdates `docker` from 7.0.0 to 7.1.0\r\n- [Release notes](https://github.com/docker/docker-py/releases)\r\n- [Commits](https://github.com/docker/docker-py/compare/7.0.0...7.1.0)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: typing-extensions\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-tools-path\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: pyvista\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-dpf-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-mechanical-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: matplotlib\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: scipy\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: pre-commit\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-sphinx-theme\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: sphinx-design\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: pytest\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: docker\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-06-03T13:40:59+02:00",
+          "tree_id": "2e8d50417099bc982958abf2ca6cd22e5a728667",
+          "url": "https://github.com/ansys/pyacp/commit/a8b002f5fc03f1d3bdf5e6d917a34a3529b2f84d"
+        },
+        "date": 1717415029844,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.536386496198913,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0029933329359878498",
+            "extra": "mean: 152.9897291999987 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1318.6382141387462,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019382785302885243",
+            "extra": "mean: 758.3581222489739 usec\nrounds: 1636"
           }
         ]
       }
