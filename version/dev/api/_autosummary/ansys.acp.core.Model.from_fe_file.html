@@ -35,9 +35,10 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=35e44410" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=3ea42de1" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
@@ -53,7 +54,7 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/table.js?v=b64f5182"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/ansys.acp.core.Model.from_fe_file';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
@@ -634,7 +635,7 @@ document.write(`
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>path</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PathLike</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</span>) – File path, on the server.</p></li>
-<li><p><strong>channel</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://grpc.github.io/grpc/python/grpc.html#grpc.Channel" title="(in gRPC Python v1.62.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Channel</span></code></a></span>) – gRPC channel to the server.</p></li>
+<li><p><strong>channel</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://grpc.github.io/grpc/python/grpc.html#grpc.Channel" title="(in gRPC Python v1.64.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Channel</span></code></a></span>) – gRPC channel to the server.</p></li>
 <li><p><strong>format</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.FeFormat.html#ansys.acp.core.FeFormat" title="ansys.acp.core._tree_objects.model.FeFormat"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeFormat</span></code></a></span>) – Format of the FE file. Can be one of <code class="docutils literal notranslate"><span class="pre">&quot;ansys:h5&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ansys:cdb&quot;</span></code>,
 <code class="docutils literal notranslate"><span class="pre">&quot;ansys:dat&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;abaqus:inp&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;nastran:bdf&quot;</span></code>.</p></li>
 <li><p><strong>ignored_entities</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference internal" href="ansys.acp.core.IgnorableEntity.html#ansys.acp.core.IgnorableEntity" title="ansys.acp.core._tree_objects.model.IgnorableEntity"><code class="xref py py-class docutils literal notranslate"><span class="pre">IgnorableEntity</span></code></a>]</span>, default: <code class="docutils literal notranslate"><span class="pre">()</span></code>) – Entities to ignore when loading the FE file. Can be a subset of
@@ -742,7 +743,7 @@ if the unit system is already set in the FE file.</p></li>
   <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
     >Ansys Sphinx Theme</a
   >
-  0.15.2. <br />Last updated on
+  0.16.5. <br />Last updated on
   <span id="date"></span>
 </p>
 <script>
