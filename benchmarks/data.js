@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1717570507874,
+  "lastUpdate": 1717999706790,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14832,6 +14832,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002217735869664541",
             "extra": "mean: 808.9163757830746 usec\nrounds: 1916"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "15fbd57bb086397b809d8de5817268aadecb6f09",
+          "message": "Bump the dependencies group with 7 updates (#541)\n\nBumps the dependencies group with 7 updates:\r\n\r\n| Package | From | To |\r\n| --- | --- | --- |\r\n| [packaging](https://github.com/pypa/packaging) | `24.0` | `24.1` |\r\n| [typing-extensions](https://github.com/python/typing_extensions) | `4.12.1` | `4.12.2` |\r\n| [pyvista](https://github.com/pyvista/pyvista) | `0.43.8` | `0.43.9` |\r\n| [ansys-dpf-core](https://github.com/ansys/pydpf-core) | `0.12.1` | `0.12.2` |\r\n| [sphinx-autodoc-typehints](https://github.com/tox-dev/sphinx-autodoc-typehints) | `2.1.0` | `2.1.1` |\r\n| [pytest](https://github.com/pytest-dev/pytest) | `8.2.1` | `8.2.2` |\r\n| [hypothesis](https://github.com/HypothesisWorks/hypothesis) | `6.103.0` | `6.103.1` |\r\n\r\n\r\nUpdates `packaging` from 24.0 to 24.1\r\n- [Release notes](https://github.com/pypa/packaging/releases)\r\n- [Changelog](https://github.com/pypa/packaging/blob/main/CHANGELOG.rst)\r\n- [Commits](https://github.com/pypa/packaging/compare/24.0...24.1)\r\n\r\nUpdates `typing-extensions` from 4.12.1 to 4.12.2\r\n- [Release notes](https://github.com/python/typing_extensions/releases)\r\n- [Changelog](https://github.com/python/typing_extensions/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/python/typing_extensions/compare/4.12.1...4.12.2)\r\n\r\nUpdates `pyvista` from 0.43.8 to 0.43.9\r\n- [Release notes](https://github.com/pyvista/pyvista/releases)\r\n- [Commits](https://github.com/pyvista/pyvista/compare/v0.43.8...v0.43.9)\r\n\r\nUpdates `ansys-dpf-core` from 0.12.1 to 0.12.2\r\n- [Release notes](https://github.com/ansys/pydpf-core/releases)\r\n- [Commits](https://github.com/ansys/pydpf-core/compare/v0.12.1...v0.12.2)\r\n\r\nUpdates `sphinx-autodoc-typehints` from 2.1.0 to 2.1.1\r\n- [Release notes](https://github.com/tox-dev/sphinx-autodoc-typehints/releases)\r\n- [Changelog](https://github.com/tox-dev/sphinx-autodoc-typehints/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/tox-dev/sphinx-autodoc-typehints/compare/2.1.0...2.1.1)\r\n\r\nUpdates `pytest` from 8.2.1 to 8.2.2\r\n- [Release notes](https://github.com/pytest-dev/pytest/releases)\r\n- [Changelog](https://github.com/pytest-dev/pytest/blob/main/CHANGELOG.rst)\r\n- [Commits](https://github.com/pytest-dev/pytest/compare/8.2.1...8.2.2)\r\n\r\nUpdates `hypothesis` from 6.103.0 to 6.103.1\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.103.0...hypothesis-python-6.103.1)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: packaging\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: typing-extensions\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: pyvista\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-dpf-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: sphinx-autodoc-typehints\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: pytest\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-06-10T08:05:34+02:00",
+          "tree_id": "7fb528302d9d81bba8d7cac3bccdb02c8b742226",
+          "url": "https://github.com/ansys/pyacp/commit/15fbd57bb086397b809d8de5817268aadecb6f09"
+        },
+        "date": 1717999690988,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.438634211774323,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0037280955966475784",
+            "extra": "mean: 155.31244160000597 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1321.659004228315,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019036913204074137",
+            "extra": "mean: 756.6248153273665 usec\nrounds: 1592"
           }
         ]
       }
