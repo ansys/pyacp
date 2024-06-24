@@ -212,27 +212,27 @@ protobuf = ">=3.19,<5"
 
 [[package]]
 name = "ansys-dpf-composites"
-version = "0.4.1"
+version = "0.5.0"
 description = "Post-processing of composite structures based on Ansys DPF"
 optional = false
 python-versions = "<3.13,>=3.9"
 files = [
-    {file = "ansys_dpf_composites-0.4.1-py3-none-any.whl", hash = "sha256:1fe981d95209ccbe88d047596ad04f1e57559bf6da7ea443cd4e8c647c744475"},
-    {file = "ansys_dpf_composites-0.4.1.tar.gz", hash = "sha256:715fa349ffc9405e3e7e39c4b94f3c66d79343ae2baa207b01c00e5c18136092"},
+    {file = "ansys_dpf_composites-0.5.0-py3-none-any.whl", hash = "sha256:8f039cba08150207654a781a148fa1d15c7e04bea5cd663a829d4ff9eeb9a17d"},
+    {file = "ansys_dpf_composites-0.5.0.tar.gz", hash = "sha256:2c33b62f3774f75d44d0090f201c9ab7f2a9aa47e944c26cc324866dae586007"},
 ]
 
 [package.dependencies]
-ansys-dpf-core = ">=0.8,<1"
-matplotlib = ">=3.5.0,<4.0.0"
-numpy = ">=1.22,<2.0"
+ansys-dpf-core = ">=0.8"
+matplotlib = ">=3.5.0"
+numpy = ">=1.22"
 packaging = "*"
 
 [package.extras]
-all = ["Sphinx (>=5.0.1,<6.0.0)", "ansys-sphinx-theme (>=0,<1)", "build (>=0.8.0,<0.9.0)", "fatpack (>=0.5)", "mypy (>=1.2.0,<2.0.0)", "mypy-extensions (>=1.0.0,<2.0.0)", "numpydoc (>=1.5,<2.0)", "pre-commit", "pylint (>=2.13,<3.0)", "pypandoc (>=1.8.1,<2.0.0)", "pytest (>=7.1.2,<8.0.0)", "pytest-cov (>=3.0.0,<4.0.0)", "pytest-rerunfailures (>=11.1.2,<12.0.0)", "pyvista[jupyter,trame] (>=0.40.2,<1)", "scipy (>=1.9.0)", "sphinx-autodoc-typehints (>=1.19,<1.20.2)", "sphinx-copybutton (>=0.4,<0.5)", "sphinx-design (>=0.3.0,<0.4.0)", "sphinx_gallery (>=0.11.0,<0.12.0)", "twine (>=4.0.1,<5.0.0)"]
-build = ["build (>=0.8.0,<0.9.0)", "twine (>=4.0.1,<5.0.0)"]
-docs = ["Sphinx (>=5.0.1,<6.0.0)", "ansys-sphinx-theme (>=0,<1)", "fatpack (>=0.5)", "numpydoc (>=1.5,<2.0)", "pypandoc (>=1.8.1,<2.0.0)", "pyvista[jupyter,trame] (>=0.40.2,<1)", "scipy (>=1.9.0)", "sphinx-autodoc-typehints (>=1.19,<1.20.2)", "sphinx-copybutton (>=0.4,<0.5)", "sphinx-design (>=0.3.0,<0.4.0)", "sphinx_gallery (>=0.11.0,<0.12.0)"]
-pre-commit = ["mypy (>=1.2.0,<2.0.0)", "mypy-extensions (>=1.0.0,<2.0.0)", "pre-commit", "pylint (>=2.13,<3.0)"]
-test = ["pytest (>=7.1.2,<8.0.0)", "pytest-cov (>=3.0.0,<4.0.0)", "pytest-rerunfailures (>=11.1.2,<12.0.0)"]
+all = ["Sphinx (>=5.0.1)", "ansys-sphinx-theme (>=0)", "build (>=0.8.0)", "fatpack (>=0.5)", "mypy (>=1.2.0)", "mypy-extensions (>=1.0.0)", "numpydoc (>=1.5)", "pre-commit", "pylint (>=2.13)", "pypandoc (>=1.8.1)", "pytest (>=7.1.2)", "pytest-cov (>=3.0.0)", "pytest-rerunfailures (>=11.1.2)", "pyvista[jupyter,trame] (>=0.40.2)", "scipy (>=1.9.0)", "sphinx-autodoc-typehints (>=1.19,<1.20.2)", "sphinx-copybutton (>=0.4)", "sphinx-design (>=0.3.0)", "sphinx_gallery (>=0.11.0)", "twine (>=4.0.1)"]
+build = ["build (>=0.8.0)", "twine (>=4.0.1)"]
+docs = ["Sphinx (>=5.0.1)", "ansys-sphinx-theme (>=0)", "fatpack (>=0.5)", "numpydoc (>=1.5)", "pypandoc (>=1.8.1)", "pyvista[jupyter,trame] (>=0.40.2)", "scipy (>=1.9.0)", "sphinx-autodoc-typehints (>=1.19,<1.20.2)", "sphinx-copybutton (>=0.4)", "sphinx-design (>=0.3.0)", "sphinx_gallery (>=0.11.0)"]
+pre-commit = ["mypy (>=1.2.0)", "mypy-extensions (>=1.0.0)", "pre-commit", "pylint (>=2.13)"]
+test = ["pytest (>=7.1.2)", "pytest-cov (>=3.0.0)", "pytest-rerunfailures (>=11.1.2)"]
 
 [[package]]
 name = "ansys-dpf-core"
@@ -263,13 +263,13 @@ plotting = ["imageio (<2.28.1)", "imageio-ffmpeg", "matplotlib (>=3.2)", "pyvist
 
 [[package]]
 name = "ansys-mapdl-core"
-version = "0.68.1"
+version = "0.68.3"
 description = "A Python wrapper for Ansys MAPDL."
 optional = false
 python-versions = "<3.13,>=3.9"
 files = [
-    {file = "ansys_mapdl_core-0.68.1-py3-none-any.whl", hash = "sha256:685e0ea813a53387b0de574caf99607b0d52a2c8154de9e9d3d5101992ab05c9"},
-    {file = "ansys_mapdl_core-0.68.1.tar.gz", hash = "sha256:fad4fde9f743f7d442ad543ae047efed41a149a920dba9734a1274ee0e7765ba"},
+    {file = "ansys_mapdl_core-0.68.3-py3-none-any.whl", hash = "sha256:a9ac24f64e280da984549784cd79c53d412a6ee5b21fdf65db895b9da5c8394f"},
+    {file = "ansys_mapdl_core-0.68.3.tar.gz", hash = "sha256:060b974f2a8be228bc0870d9f1077a96206bb5535de69503b11f7f3aaf217628"},
 ]
 
 [package.dependencies]
@@ -296,9 +296,9 @@ tqdm = ">=4.45.0"
 vtk = ">=9.0.0"
 
 [package.extras]
-doc = ["ansys-dpf-core (==0.10.1)", "ansys-mapdl-reader (==0.53.0)", "ansys-sphinx-theme (==0.14.1)", "grpcio (==1.62.1)", "imageio (==2.34.0)", "imageio-ffmpeg (==0.4.9)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.8.3)", "numpydoc (==1.7.0)", "pandas (==2.2.1)", "plotly (==5.20.0)", "pyiges[full] (==0.3.1)", "pypandoc (==1.13)", "pytest-sphinx (==0.6.0)", "pythreejs (==2.4.2)", "pyvista[trame] (==0.43.4)", "sphinx (==7.2.6)", "sphinx-autobuild (==2024.2.4)", "sphinx-autodoc-typehints (==1.25.2)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.5.0)", "sphinx-gallery (==0.15.0)", "sphinx-notfound-page (==1.0.0)", "sphinx-reredirects (==0.1.3)", "sphinx_design (==0.5.0)", "sphinxcontrib-websupport (==1.2.7)", "sphinxemoji (==0.3.1)", "vtk (==9.3.0)"]
+doc = ["ansys-dpf-core (==0.10.1)", "ansys-mapdl-reader (==0.53.0)", "ansys-sphinx-theme (==0.16.6)", "grpcio (==1.64.1)", "imageio (==2.34.1)", "imageio-ffmpeg (==0.5.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.9.0)", "numpydoc (==1.7.0)", "pandas (==2.2.2)", "plotly (==5.22.0)", "pyiges[full] (==0.3.1)", "pypandoc (==1.13)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "pyvista[trame] (==0.43.9)", "sphinx (==7.3.7)", "sphinx-autobuild (==2024.4.16)", "sphinx-autodoc-typehints (==1.25.2)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.6.0)", "sphinx-gallery (==0.16.0)", "sphinx-notfound-page (==1.0.2)", "sphinx-reredirects (==0.1.3)", "sphinxcontrib-websupport (==1.2.7)", "sphinxemoji (==0.3.1)", "vtk (==9.3.0)"]
 jupyter = ["ipywidgets", "jupyterlab (>=3)", "pyvista[jupyter]"]
-tests = ["ansys-dpf-core (==0.10.1)", "autopep8 (==2.1.0)", "matplotlib (==3.8.3)", "pandas (==2.2.1)", "pyansys-tools-report (==0.7.0)", "pyiges[full] (==0.3.1)", "pytest (==8.1.1)", "pytest-cov (==5.0.0)", "pytest-memprof (<0.3.0)", "pytest-pyvista (==0.1.9)", "pytest-rerunfailures (==14.0)", "pyvista (==0.43.4)", "scipy (==1.12.0)", "vtk (==9.3.0)"]
+tests = ["ansys-dpf-core (==0.10.1)", "autopep8 (==2.3.0)", "matplotlib (==3.9.0)", "pandas (==2.2.2)", "pyansys-tools-report (==0.7.3)", "pyiges[full] (==0.3.1)", "pytest (==8.2.2)", "pytest-cov (==5.0.0)", "pytest-memprof (<0.3.0)", "pytest-pyvista (==0.1.9)", "pytest-rerunfailures (==14.0)", "pyvista (==0.43.10)", "scipy (==1.13.1)", "vtk (==9.3.0)"]
 
 [[package]]
 name = "ansys-mapdl-reader"
@@ -361,13 +361,13 @@ tests = ["ansys-mapdl-core (==0.68.1)", "numpy (==1.26.4)", "pyansys-tools-repor
 
 [[package]]
 name = "ansys-mechanical-core"
-version = "0.10.11"
+version = "0.11.1"
 description = "A python wrapper for Ansys Mechanical"
 optional = false
 python-versions = "<4.0,>=3.9"
 files = [
-    {file = "ansys_mechanical_core-0.10.11-py3-none-any.whl", hash = "sha256:2d6a033e2737ba249cb214d052044b822acb199e04fba6d6f7efbbec0cd95cd3"},
-    {file = "ansys_mechanical_core-0.10.11.tar.gz", hash = "sha256:f46349b5937d87d9e1b27450cdbce1aaae6c404d542fef71d974ee9c93b81b43"},
+    {file = "ansys_mechanical_core-0.11.1-py3-none-any.whl", hash = "sha256:218cf49b8f6f8f79ff9bce41104f7b023acb27bff98c7931b234f4bf71a7e9e7"},
+    {file = "ansys_mechanical_core-0.11.1.tar.gz", hash = "sha256:40d9f2280e2d2c64e1a0a44850329ad5336001dc370888b82191f5490e2fd324"},
 ]
 
 [package.dependencies]
@@ -384,8 +384,8 @@ protobuf = ">=3.12.2,<6"
 tqdm = ">=4.45.0"
 
 [package.extras]
-doc = ["ansys-sphinx-theme (==0.16.0)", "grpcio (==1.64.0)", "imageio (==2.34.1)", "imageio-ffmpeg (==0.4.9)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.9.0)", "numpy (==1.26.4)", "numpydoc (==1.7.0)", "pandas (==2.2.2)", "panel (==1.4.2)", "plotly (==5.22.0)", "pypandoc (==1.13)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "pyvista (==0.43.8)", "sphinx (==7.3.7)", "sphinx-autobuild (==2024.4.16)", "sphinx-autodoc-typehints (==2.1.0)", "sphinx-copybutton (==0.5.2)", "sphinx-gallery (==0.16.0)", "sphinx-notfound-page (==1.0.0)", "sphinx_design (==0.5.0)", "sphinxcontrib-websupport (==1.2.7)", "sphinxemoji (==0.3.1)"]
-tests = ["pytest (==8.2.1)", "pytest-cov (==5.0.0)", "pytest-print (==1.0.0)"]
+doc = ["ansys-sphinx-theme[autoapi] (==0.16.5)", "grpcio (==1.64.1)", "imageio (==2.34.1)", "imageio-ffmpeg (==0.5.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.9.0)", "numpy (==1.26.4)", "numpydoc (==1.7.0)", "pandas (==2.2.2)", "panel (==1.4.4)", "plotly (==5.22.0)", "pypandoc (==1.13)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "pyvista (==0.43.9)", "sphinx (==7.3.7)", "sphinx-autobuild (==2024.4.16)", "sphinx-autodoc-typehints (==2.1.1)", "sphinx-copybutton (==0.5.2)", "sphinx-gallery (==0.16.0)", "sphinx-notfound-page (==1.0.2)", "sphinx_design (==0.6.0)", "sphinxcontrib-websupport (==1.2.7)", "sphinxemoji (==0.3.1)"]
+tests = ["pytest (==8.2.2)", "pytest-cov (==5.0.0)", "pytest-print (==1.0.0)"]
 viz = ["pyvista (>=0.39.1)", "usd-core (==24.3)"]
 
 [[package]]
@@ -439,13 +439,13 @@ clr-loader = ">=0.2.6,<0.3.0"
 
 [[package]]
 name = "ansys-sphinx-theme"
-version = "0.16.5"
+version = "0.16.6"
 description = "A theme devised by ANSYS, Inc. for Sphinx documentation."
 optional = false
 python-versions = "<4,>=3.9"
 files = [
-    {file = "ansys_sphinx_theme-0.16.5-py3-none-any.whl", hash = "sha256:3546b1a9fde6aebbe5d1a762470248d1e3a24d70c26c6eb334d6a9f1b986e5c9"},
-    {file = "ansys_sphinx_theme-0.16.5.tar.gz", hash = "sha256:21e23524e92be937b8e6b2efc1eaa6b1afa3d500d48d4260ef4596337fdc7732"},
+    {file = "ansys_sphinx_theme-0.16.6-py3-none-any.whl", hash = "sha256:9f19caeb4bbe3b6426f8d49d5c6fc2a85bbf2b5a6529229c3845df6d7b272bc0"},
+    {file = "ansys_sphinx_theme-0.16.6.tar.gz", hash = "sha256:c045cfb4f0baf2e5feb7688247ea37ad0286a7494ef1f751bfce753cae8c558c"},
 ]
 
 [package.dependencies]
@@ -1725,13 +1725,13 @@ pyparsing = {version = ">=2.4.2,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.0.2 || >3.0
 
 [[package]]
 name = "hypothesis"
-version = "6.103.1"
+version = "6.103.2"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "hypothesis-6.103.1-py3-none-any.whl", hash = "sha256:d3c959fab6233e78867499e2117ae9db8dc40eeed936d71a2cfc7b6094972e74"},
-    {file = "hypothesis-6.103.1.tar.gz", hash = "sha256:d299d5c21d6408eab3be670c94c974f3acf0b511c61fe81804b09091e393ee1f"},
+    {file = "hypothesis-6.103.2-py3-none-any.whl", hash = "sha256:629b7cdeca8c225933739f99879caba21949000d2c919c8b4585e01048b3bc73"},
+    {file = "hypothesis-6.103.2.tar.gz", hash = "sha256:83504e31e90a0d7d6e8eb93e51525dc1a48d79c932a50ad6035e29f8295328cd"},
 ]
 
 [package.dependencies]
@@ -3490,13 +3490,13 @@ files = [
 
 [[package]]
 name = "pyvista"
-version = "0.43.9"
+version = "0.43.10"
 description = "Easier Pythonic interface to VTK"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pyvista-0.43.9-py3-none-any.whl", hash = "sha256:f9f23baa74a8e2a4181c260e4c742ede00c73a7cc46e5275152f82a736f12c95"},
-    {file = "pyvista-0.43.9.tar.gz", hash = "sha256:87d55ffe0efa6a8b15ca55f9f07f49a81980522c4a3ada29ca5caa2ab31179b7"},
+    {file = "pyvista-0.43.10-py3-none-any.whl", hash = "sha256:8eca6d039a2b1ae779189aa4109db5228ef3b3f65d873e95cbbecf161d83ae9b"},
+    {file = "pyvista-0.43.10.tar.gz", hash = "sha256:925b3539d4c53727ae3cd8f31544fb8811f73a99040f75a36211ed5f26d20e8c"},
 ]
 
 [package.dependencies]
@@ -3504,7 +3504,7 @@ ipywidgets = {version = "*", optional = true, markers = "extra == \"jupyter\""}
 jupyter-server-proxy = {version = "*", optional = true, markers = "extra == \"jupyter\""}
 matplotlib = ">=3.0.1"
 nest-asyncio = {version = "*", optional = true, markers = "extra == \"jupyter\""}
-numpy = ">=1.21.0,<2.0.0"
+numpy = ">=1.21.0"
 pillow = "*"
 pooch = "*"
 scooby = ">=0.5.1"
@@ -4097,13 +4097,13 @@ test = ["cython (>=3.0)", "defusedxml (>=0.7.1)", "pytest (>=6.0)", "setuptools 
 
 [[package]]
 name = "sphinx-autodoc-typehints"
-version = "2.1.1"
+version = "2.2.2"
 description = "Type hints (PEP 484) support for the Sphinx autodoc extension"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "sphinx_autodoc_typehints-2.1.1-py3-none-any.whl", hash = "sha256:22427d74786274add2b6d4afccb8b3c8c1843f48a704550f15a35fd948f8a4de"},
-    {file = "sphinx_autodoc_typehints-2.1.1.tar.gz", hash = "sha256:0072b65f5ab2818c229d6d6c2cc993770af55d36bb7bfb16001e2fce4d14880c"},
+    {file = "sphinx_autodoc_typehints-2.2.2-py3-none-any.whl", hash = "sha256:b98337a8530c95b73ba0c65465847a8ab0a13403bdc81294d5ef396bbd1f783e"},
+    {file = "sphinx_autodoc_typehints-2.2.2.tar.gz", hash = "sha256:128e600eeef63b722f3d8dac6403594592c8cade3ba66fd11dcb997465ee259d"},
 ]
 
 [package.dependencies]
