@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1717999706790,
+  "lastUpdate": 1719817569013,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14870,6 +14870,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00019036913204074137",
             "extra": "mean: 756.6248153273665 usec\nrounds: 1592"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ad8fb069c5bb6268024b8caf43ec45242d539452",
+          "message": "Bump the dependencies group across 1 directory with 9 updates (#544)\n\nBumps the dependencies group with 9 updates in the / directory:\r\n\r\n| Package | From | To |\r\n| --- | --- | --- |\r\n| [pyvista](https://github.com/pyvista/pyvista) | `0.43.9` | `0.43.10` |\r\n| [ansys-mapdl-core](https://github.com/ansys/pymapdl) | `0.68.1` | `0.68.3` |\r\n| [ansys-dpf-composites](https://github.com/ansys/pydpf-composites) | `0.4.1` | `0.5.0` |\r\n| [ansys-mechanical-core](https://github.com/ansys/pymechanical) | `0.10.11` | `0.11.1` |\r\n| [mypy](https://github.com/python/mypy) | `1.10.0` | `1.10.1` |\r\n| [types-protobuf](https://github.com/python/typeshed) | `5.26.0.20240422` | `5.27.0.20240626` |\r\n| [sphinx-autodoc-typehints](https://github.com/tox-dev/sphinx-autodoc-typehints) | `2.1.1` | `2.2.2` |\r\n| [ansys-sphinx-theme](https://github.com/ansys/ansys-sphinx-theme) | `0.16.5` | `0.16.6` |\r\n| [hypothesis](https://github.com/HypothesisWorks/hypothesis) | `6.103.1` | `6.104.2` |\r\n\r\n\r\n\r\nUpdates `pyvista` from 0.43.9 to 0.43.10\r\n- [Release notes](https://github.com/pyvista/pyvista/releases)\r\n- [Commits](https://github.com/pyvista/pyvista/compare/v0.43.9...v0.43.10)\r\n\r\nUpdates `ansys-mapdl-core` from 0.68.1 to 0.68.3\r\n- [Release notes](https://github.com/ansys/pymapdl/releases)\r\n- [Changelog](https://github.com/ansys/pymapdl/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ansys/pymapdl/compare/v0.68.1...v0.68.3)\r\n\r\nUpdates `ansys-dpf-composites` from 0.4.1 to 0.5.0\r\n- [Release notes](https://github.com/ansys/pydpf-composites/releases)\r\n- [Changelog](https://github.com/ansys/pydpf-composites/blob/main/release_checklist.rst)\r\n- [Commits](https://github.com/ansys/pydpf-composites/compare/v0.4.1...v0.5.0)\r\n\r\nUpdates `ansys-mechanical-core` from 0.10.11 to 0.11.1\r\n- [Release notes](https://github.com/ansys/pymechanical/releases)\r\n- [Changelog](https://github.com/ansys/pymechanical/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ansys/pymechanical/compare/v0.10.11...v0.11.1)\r\n\r\nUpdates `mypy` from 1.10.0 to 1.10.1\r\n- [Changelog](https://github.com/python/mypy/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/python/mypy/compare/v1.10.0...v1.10.1)\r\n\r\nUpdates `types-protobuf` from 5.26.0.20240422 to 5.27.0.20240626\r\n- [Commits](https://github.com/python/typeshed/commits)\r\n\r\nUpdates `sphinx-autodoc-typehints` from 2.1.1 to 2.2.2\r\n- [Release notes](https://github.com/tox-dev/sphinx-autodoc-typehints/releases)\r\n- [Changelog](https://github.com/tox-dev/sphinx-autodoc-typehints/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/tox-dev/sphinx-autodoc-typehints/compare/2.1.1...2.2.2)\r\n\r\nUpdates `ansys-sphinx-theme` from 0.16.5 to 0.16.6\r\n- [Release notes](https://github.com/ansys/ansys-sphinx-theme/releases)\r\n- [Commits](https://github.com/ansys/ansys-sphinx-theme/compare/v0.16.5...v0.16.6)\r\n\r\nUpdates `hypothesis` from 6.103.1 to 6.104.2\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.103.1...hypothesis-python-6.104.2)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: pyvista\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-mapdl-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-dpf-composites\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-mechanical-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: mypy\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: types-protobuf\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: sphinx-autodoc-typehints\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-sphinx-theme\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-07-01T07:03:18Z",
+          "tree_id": "7f6bde639da83b13fc6de2da77043c5f22852810",
+          "url": "https://github.com/ansys/pyacp/commit/ad8fb069c5bb6268024b8caf43ec45242d539452"
+        },
+        "date": 1719817553362,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.598592038950313,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005167200210255873",
+            "extra": "mean: 151.54748075001123 msec\nrounds: 4"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1270.4743865729963,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002085083807907693",
+            "extra": "mean: 787.1075643621755 usec\nrounds: 1779"
           }
         ]
       }
