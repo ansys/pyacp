@@ -212,27 +212,27 @@ protobuf = ">=3.19,<5"
 
 [[package]]
 name = "ansys-dpf-composites"
-version = "0.4.1"
+version = "0.5.0"
 description = "Post-processing of composite structures based on Ansys DPF"
 optional = false
 python-versions = "<3.13,>=3.9"
 files = [
-    {file = "ansys_dpf_composites-0.4.1-py3-none-any.whl", hash = "sha256:1fe981d95209ccbe88d047596ad04f1e57559bf6da7ea443cd4e8c647c744475"},
-    {file = "ansys_dpf_composites-0.4.1.tar.gz", hash = "sha256:715fa349ffc9405e3e7e39c4b94f3c66d79343ae2baa207b01c00e5c18136092"},
+    {file = "ansys_dpf_composites-0.5.0-py3-none-any.whl", hash = "sha256:8f039cba08150207654a781a148fa1d15c7e04bea5cd663a829d4ff9eeb9a17d"},
+    {file = "ansys_dpf_composites-0.5.0.tar.gz", hash = "sha256:2c33b62f3774f75d44d0090f201c9ab7f2a9aa47e944c26cc324866dae586007"},
 ]
 
 [package.dependencies]
-ansys-dpf-core = ">=0.8,<1"
-matplotlib = ">=3.5.0,<4.0.0"
-numpy = ">=1.22,<2.0"
+ansys-dpf-core = ">=0.8"
+matplotlib = ">=3.5.0"
+numpy = ">=1.22"
 packaging = "*"
 
 [package.extras]
-all = ["Sphinx (>=5.0.1,<6.0.0)", "ansys-sphinx-theme (>=0,<1)", "build (>=0.8.0,<0.9.0)", "fatpack (>=0.5)", "mypy (>=1.2.0,<2.0.0)", "mypy-extensions (>=1.0.0,<2.0.0)", "numpydoc (>=1.5,<2.0)", "pre-commit", "pylint (>=2.13,<3.0)", "pypandoc (>=1.8.1,<2.0.0)", "pytest (>=7.1.2,<8.0.0)", "pytest-cov (>=3.0.0,<4.0.0)", "pytest-rerunfailures (>=11.1.2,<12.0.0)", "pyvista[jupyter,trame] (>=0.40.2,<1)", "scipy (>=1.9.0)", "sphinx-autodoc-typehints (>=1.19,<1.20.2)", "sphinx-copybutton (>=0.4,<0.5)", "sphinx-design (>=0.3.0,<0.4.0)", "sphinx_gallery (>=0.11.0,<0.12.0)", "twine (>=4.0.1,<5.0.0)"]
-build = ["build (>=0.8.0,<0.9.0)", "twine (>=4.0.1,<5.0.0)"]
-docs = ["Sphinx (>=5.0.1,<6.0.0)", "ansys-sphinx-theme (>=0,<1)", "fatpack (>=0.5)", "numpydoc (>=1.5,<2.0)", "pypandoc (>=1.8.1,<2.0.0)", "pyvista[jupyter,trame] (>=0.40.2,<1)", "scipy (>=1.9.0)", "sphinx-autodoc-typehints (>=1.19,<1.20.2)", "sphinx-copybutton (>=0.4,<0.5)", "sphinx-design (>=0.3.0,<0.4.0)", "sphinx_gallery (>=0.11.0,<0.12.0)"]
-pre-commit = ["mypy (>=1.2.0,<2.0.0)", "mypy-extensions (>=1.0.0,<2.0.0)", "pre-commit", "pylint (>=2.13,<3.0)"]
-test = ["pytest (>=7.1.2,<8.0.0)", "pytest-cov (>=3.0.0,<4.0.0)", "pytest-rerunfailures (>=11.1.2,<12.0.0)"]
+all = ["Sphinx (>=5.0.1)", "ansys-sphinx-theme (>=0)", "build (>=0.8.0)", "fatpack (>=0.5)", "mypy (>=1.2.0)", "mypy-extensions (>=1.0.0)", "numpydoc (>=1.5)", "pre-commit", "pylint (>=2.13)", "pypandoc (>=1.8.1)", "pytest (>=7.1.2)", "pytest-cov (>=3.0.0)", "pytest-rerunfailures (>=11.1.2)", "pyvista[jupyter,trame] (>=0.40.2)", "scipy (>=1.9.0)", "sphinx-autodoc-typehints (>=1.19,<1.20.2)", "sphinx-copybutton (>=0.4)", "sphinx-design (>=0.3.0)", "sphinx_gallery (>=0.11.0)", "twine (>=4.0.1)"]
+build = ["build (>=0.8.0)", "twine (>=4.0.1)"]
+docs = ["Sphinx (>=5.0.1)", "ansys-sphinx-theme (>=0)", "fatpack (>=0.5)", "numpydoc (>=1.5)", "pypandoc (>=1.8.1)", "pyvista[jupyter,trame] (>=0.40.2)", "scipy (>=1.9.0)", "sphinx-autodoc-typehints (>=1.19,<1.20.2)", "sphinx-copybutton (>=0.4)", "sphinx-design (>=0.3.0)", "sphinx_gallery (>=0.11.0)"]
+pre-commit = ["mypy (>=1.2.0)", "mypy-extensions (>=1.0.0)", "pre-commit", "pylint (>=2.13)"]
+test = ["pytest (>=7.1.2)", "pytest-cov (>=3.0.0)", "pytest-rerunfailures (>=11.1.2)"]
 
 [[package]]
 name = "ansys-dpf-core"
@@ -263,13 +263,13 @@ plotting = ["imageio (<2.28.1)", "imageio-ffmpeg", "matplotlib (>=3.2)", "pyvist
 
 [[package]]
 name = "ansys-mapdl-core"
-version = "0.68.1"
+version = "0.68.3"
 description = "A Python wrapper for Ansys MAPDL."
 optional = false
 python-versions = "<3.13,>=3.9"
 files = [
-    {file = "ansys_mapdl_core-0.68.1-py3-none-any.whl", hash = "sha256:685e0ea813a53387b0de574caf99607b0d52a2c8154de9e9d3d5101992ab05c9"},
-    {file = "ansys_mapdl_core-0.68.1.tar.gz", hash = "sha256:fad4fde9f743f7d442ad543ae047efed41a149a920dba9734a1274ee0e7765ba"},
+    {file = "ansys_mapdl_core-0.68.3-py3-none-any.whl", hash = "sha256:a9ac24f64e280da984549784cd79c53d412a6ee5b21fdf65db895b9da5c8394f"},
+    {file = "ansys_mapdl_core-0.68.3.tar.gz", hash = "sha256:060b974f2a8be228bc0870d9f1077a96206bb5535de69503b11f7f3aaf217628"},
 ]
 
 [package.dependencies]
@@ -296,9 +296,9 @@ tqdm = ">=4.45.0"
 vtk = ">=9.0.0"
 
 [package.extras]
-doc = ["ansys-dpf-core (==0.10.1)", "ansys-mapdl-reader (==0.53.0)", "ansys-sphinx-theme (==0.14.1)", "grpcio (==1.62.1)", "imageio (==2.34.0)", "imageio-ffmpeg (==0.4.9)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.8.3)", "numpydoc (==1.7.0)", "pandas (==2.2.1)", "plotly (==5.20.0)", "pyiges[full] (==0.3.1)", "pypandoc (==1.13)", "pytest-sphinx (==0.6.0)", "pythreejs (==2.4.2)", "pyvista[trame] (==0.43.4)", "sphinx (==7.2.6)", "sphinx-autobuild (==2024.2.4)", "sphinx-autodoc-typehints (==1.25.2)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.5.0)", "sphinx-gallery (==0.15.0)", "sphinx-notfound-page (==1.0.0)", "sphinx-reredirects (==0.1.3)", "sphinx_design (==0.5.0)", "sphinxcontrib-websupport (==1.2.7)", "sphinxemoji (==0.3.1)", "vtk (==9.3.0)"]
+doc = ["ansys-dpf-core (==0.10.1)", "ansys-mapdl-reader (==0.53.0)", "ansys-sphinx-theme (==0.16.6)", "grpcio (==1.64.1)", "imageio (==2.34.1)", "imageio-ffmpeg (==0.5.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.9.0)", "numpydoc (==1.7.0)", "pandas (==2.2.2)", "plotly (==5.22.0)", "pyiges[full] (==0.3.1)", "pypandoc (==1.13)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "pyvista[trame] (==0.43.9)", "sphinx (==7.3.7)", "sphinx-autobuild (==2024.4.16)", "sphinx-autodoc-typehints (==1.25.2)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.6.0)", "sphinx-gallery (==0.16.0)", "sphinx-notfound-page (==1.0.2)", "sphinx-reredirects (==0.1.3)", "sphinxcontrib-websupport (==1.2.7)", "sphinxemoji (==0.3.1)", "vtk (==9.3.0)"]
 jupyter = ["ipywidgets", "jupyterlab (>=3)", "pyvista[jupyter]"]
-tests = ["ansys-dpf-core (==0.10.1)", "autopep8 (==2.1.0)", "matplotlib (==3.8.3)", "pandas (==2.2.1)", "pyansys-tools-report (==0.7.0)", "pyiges[full] (==0.3.1)", "pytest (==8.1.1)", "pytest-cov (==5.0.0)", "pytest-memprof (<0.3.0)", "pytest-pyvista (==0.1.9)", "pytest-rerunfailures (==14.0)", "pyvista (==0.43.4)", "scipy (==1.12.0)", "vtk (==9.3.0)"]
+tests = ["ansys-dpf-core (==0.10.1)", "autopep8 (==2.3.0)", "matplotlib (==3.9.0)", "pandas (==2.2.2)", "pyansys-tools-report (==0.7.3)", "pyiges[full] (==0.3.1)", "pytest (==8.2.2)", "pytest-cov (==5.0.0)", "pytest-memprof (<0.3.0)", "pytest-pyvista (==0.1.9)", "pytest-rerunfailures (==14.0)", "pyvista (==0.43.10)", "scipy (==1.13.1)", "vtk (==9.3.0)"]
 
 [[package]]
 name = "ansys-mapdl-reader"
@@ -361,13 +361,13 @@ tests = ["ansys-mapdl-core (==0.68.1)", "numpy (==1.26.4)", "pyansys-tools-repor
 
 [[package]]
 name = "ansys-mechanical-core"
-version = "0.10.11"
+version = "0.11.1"
 description = "A python wrapper for Ansys Mechanical"
 optional = false
 python-versions = "<4.0,>=3.9"
 files = [
-    {file = "ansys_mechanical_core-0.10.11-py3-none-any.whl", hash = "sha256:2d6a033e2737ba249cb214d052044b822acb199e04fba6d6f7efbbec0cd95cd3"},
-    {file = "ansys_mechanical_core-0.10.11.tar.gz", hash = "sha256:f46349b5937d87d9e1b27450cdbce1aaae6c404d542fef71d974ee9c93b81b43"},
+    {file = "ansys_mechanical_core-0.11.1-py3-none-any.whl", hash = "sha256:218cf49b8f6f8f79ff9bce41104f7b023acb27bff98c7931b234f4bf71a7e9e7"},
+    {file = "ansys_mechanical_core-0.11.1.tar.gz", hash = "sha256:40d9f2280e2d2c64e1a0a44850329ad5336001dc370888b82191f5490e2fd324"},
 ]
 
 [package.dependencies]
@@ -384,8 +384,8 @@ protobuf = ">=3.12.2,<6"
 tqdm = ">=4.45.0"
 
 [package.extras]
-doc = ["ansys-sphinx-theme (==0.16.0)", "grpcio (==1.64.0)", "imageio (==2.34.1)", "imageio-ffmpeg (==0.4.9)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.9.0)", "numpy (==1.26.4)", "numpydoc (==1.7.0)", "pandas (==2.2.2)", "panel (==1.4.2)", "plotly (==5.22.0)", "pypandoc (==1.13)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "pyvista (==0.43.8)", "sphinx (==7.3.7)", "sphinx-autobuild (==2024.4.16)", "sphinx-autodoc-typehints (==2.1.0)", "sphinx-copybutton (==0.5.2)", "sphinx-gallery (==0.16.0)", "sphinx-notfound-page (==1.0.0)", "sphinx_design (==0.5.0)", "sphinxcontrib-websupport (==1.2.7)", "sphinxemoji (==0.3.1)"]
-tests = ["pytest (==8.2.1)", "pytest-cov (==5.0.0)", "pytest-print (==1.0.0)"]
+doc = ["ansys-sphinx-theme[autoapi] (==0.16.5)", "grpcio (==1.64.1)", "imageio (==2.34.1)", "imageio-ffmpeg (==0.5.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.9.0)", "numpy (==1.26.4)", "numpydoc (==1.7.0)", "pandas (==2.2.2)", "panel (==1.4.4)", "plotly (==5.22.0)", "pypandoc (==1.13)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "pyvista (==0.43.9)", "sphinx (==7.3.7)", "sphinx-autobuild (==2024.4.16)", "sphinx-autodoc-typehints (==2.1.1)", "sphinx-copybutton (==0.5.2)", "sphinx-gallery (==0.16.0)", "sphinx-notfound-page (==1.0.2)", "sphinx_design (==0.6.0)", "sphinxcontrib-websupport (==1.2.7)", "sphinxemoji (==0.3.1)"]
+tests = ["pytest (==8.2.2)", "pytest-cov (==5.0.0)", "pytest-print (==1.0.0)"]
 viz = ["pyvista (>=0.39.1)", "usd-core (==24.3)"]
 
 [[package]]
@@ -439,13 +439,13 @@ clr-loader = ">=0.2.6,<0.3.0"
 
 [[package]]
 name = "ansys-sphinx-theme"
-version = "0.16.5"
+version = "0.16.6"
 description = "A theme devised by ANSYS, Inc. for Sphinx documentation."
 optional = false
 python-versions = "<4,>=3.9"
 files = [
-    {file = "ansys_sphinx_theme-0.16.5-py3-none-any.whl", hash = "sha256:3546b1a9fde6aebbe5d1a762470248d1e3a24d70c26c6eb334d6a9f1b986e5c9"},
-    {file = "ansys_sphinx_theme-0.16.5.tar.gz", hash = "sha256:21e23524e92be937b8e6b2efc1eaa6b1afa3d500d48d4260ef4596337fdc7732"},
+    {file = "ansys_sphinx_theme-0.16.6-py3-none-any.whl", hash = "sha256:9f19caeb4bbe3b6426f8d49d5c6fc2a85bbf2b5a6529229c3845df6d7b272bc0"},
+    {file = "ansys_sphinx_theme-0.16.6.tar.gz", hash = "sha256:c045cfb4f0baf2e5feb7688247ea37ad0286a7494ef1f751bfce753cae8c558c"},
 ]
 
 [package.dependencies]
@@ -1725,13 +1725,13 @@ pyparsing = {version = ">=2.4.2,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.0.2 || >3.0
 
 [[package]]
 name = "hypothesis"
-version = "6.103.1"
+version = "6.104.2"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "hypothesis-6.103.1-py3-none-any.whl", hash = "sha256:d3c959fab6233e78867499e2117ae9db8dc40eeed936d71a2cfc7b6094972e74"},
-    {file = "hypothesis-6.103.1.tar.gz", hash = "sha256:d299d5c21d6408eab3be670c94c974f3acf0b511c61fe81804b09091e393ee1f"},
+    {file = "hypothesis-6.104.2-py3-none-any.whl", hash = "sha256:8b52b7e2462e552c75b819495d5cb6251a2b840accc79cf2ce52588004c915d9"},
+    {file = "hypothesis-6.104.2.tar.gz", hash = "sha256:6f2a1489bc8fe1c87ffd202707319b66ec46b2bc11faf6e0161e957b8b9b1eab"},
 ]
 
 [package.dependencies]
@@ -1740,10 +1740,10 @@ exceptiongroup = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 sortedcontainers = ">=2.1.0,<3.0.0"
 
 [package.extras]
-all = ["backports.zoneinfo (>=0.2.1)", "black (>=19.10b0)", "click (>=7.0)", "crosshair-tool (>=0.0.54)", "django (>=3.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.4)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.17.3)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2024.1)"]
+all = ["backports.zoneinfo (>=0.2.1)", "black (>=19.10b0)", "click (>=7.0)", "crosshair-tool (>=0.0.55)", "django (>=3.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.4)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.17.3)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2024.1)"]
 cli = ["black (>=19.10b0)", "click (>=7.0)", "rich (>=9.0.0)"]
 codemods = ["libcst (>=0.3.16)"]
-crosshair = ["crosshair-tool (>=0.0.54)", "hypothesis-crosshair (>=0.0.4)"]
+crosshair = ["crosshair-tool (>=0.0.55)", "hypothesis-crosshair (>=0.0.4)"]
 dateutil = ["python-dateutil (>=1.4)"]
 django = ["django (>=3.2)"]
 dpcontracts = ["dpcontracts (>=0.4)"]
@@ -2653,38 +2653,38 @@ files = [
 
 [[package]]
 name = "mypy"
-version = "1.10.0"
+version = "1.10.1"
 description = "Optional static typing for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "mypy-1.10.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:da1cbf08fb3b851ab3b9523a884c232774008267b1f83371ace57f412fe308c2"},
-    {file = "mypy-1.10.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:12b6bfc1b1a66095ab413160a6e520e1dc076a28f3e22f7fb25ba3b000b4ef99"},
-    {file = "mypy-1.10.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9e36fb078cce9904c7989b9693e41cb9711e0600139ce3970c6ef814b6ebc2b2"},
-    {file = "mypy-1.10.0-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:2b0695d605ddcd3eb2f736cd8b4e388288c21e7de85001e9f85df9187f2b50f9"},
-    {file = "mypy-1.10.0-cp310-cp310-win_amd64.whl", hash = "sha256:cd777b780312ddb135bceb9bc8722a73ec95e042f911cc279e2ec3c667076051"},
-    {file = "mypy-1.10.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:3be66771aa5c97602f382230165b856c231d1277c511c9a8dd058be4784472e1"},
-    {file = "mypy-1.10.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:8b2cbaca148d0754a54d44121b5825ae71868c7592a53b7292eeb0f3fdae95ee"},
-    {file = "mypy-1.10.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:1ec404a7cbe9fc0e92cb0e67f55ce0c025014e26d33e54d9e506a0f2d07fe5de"},
-    {file = "mypy-1.10.0-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:e22e1527dc3d4aa94311d246b59e47f6455b8729f4968765ac1eacf9a4760bc7"},
-    {file = "mypy-1.10.0-cp311-cp311-win_amd64.whl", hash = "sha256:a87dbfa85971e8d59c9cc1fcf534efe664d8949e4c0b6b44e8ca548e746a8d53"},
-    {file = "mypy-1.10.0-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:a781f6ad4bab20eef8b65174a57e5203f4be627b46291f4589879bf4e257b97b"},
-    {file = "mypy-1.10.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:b808e12113505b97d9023b0b5e0c0705a90571c6feefc6f215c1df9381256e30"},
-    {file = "mypy-1.10.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8f55583b12156c399dce2df7d16f8a5095291354f1e839c252ec6c0611e86e2e"},
-    {file = "mypy-1.10.0-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:4cf18f9d0efa1b16478c4c129eabec36148032575391095f73cae2e722fcf9d5"},
-    {file = "mypy-1.10.0-cp312-cp312-win_amd64.whl", hash = "sha256:bc6ac273b23c6b82da3bb25f4136c4fd42665f17f2cd850771cb600bdd2ebeda"},
-    {file = "mypy-1.10.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:9fd50226364cd2737351c79807775136b0abe084433b55b2e29181a4c3c878c0"},
-    {file = "mypy-1.10.0-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:f90cff89eea89273727d8783fef5d4a934be2fdca11b47def50cf5d311aff727"},
-    {file = "mypy-1.10.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:fcfc70599efde5c67862a07a1aaf50e55bce629ace26bb19dc17cece5dd31ca4"},
-    {file = "mypy-1.10.0-cp38-cp38-musllinux_1_1_x86_64.whl", hash = "sha256:075cbf81f3e134eadaf247de187bd604748171d6b79736fa9b6c9685b4083061"},
-    {file = "mypy-1.10.0-cp38-cp38-win_amd64.whl", hash = "sha256:3f298531bca95ff615b6e9f2fc0333aae27fa48052903a0ac90215021cdcfa4f"},
-    {file = "mypy-1.10.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:fa7ef5244615a2523b56c034becde4e9e3f9b034854c93639adb667ec9ec2976"},
-    {file = "mypy-1.10.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:3236a4c8f535a0631f85f5fcdffba71c7feeef76a6002fcba7c1a8e57c8be1ec"},
-    {file = "mypy-1.10.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4a2b5cdbb5dd35aa08ea9114436e0d79aceb2f38e32c21684dcf8e24e1e92821"},
-    {file = "mypy-1.10.0-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:92f93b21c0fe73dc00abf91022234c79d793318b8a96faac147cd579c1671746"},
-    {file = "mypy-1.10.0-cp39-cp39-win_amd64.whl", hash = "sha256:28d0e038361b45f099cc086d9dd99c15ff14d0188f44ac883010e172ce86c38a"},
-    {file = "mypy-1.10.0-py3-none-any.whl", hash = "sha256:f8c083976eb530019175aabadb60921e73b4f45736760826aa1689dda8208aee"},
-    {file = "mypy-1.10.0.tar.gz", hash = "sha256:3d087fcbec056c4ee34974da493a826ce316947485cef3901f511848e687c131"},
+    {file = "mypy-1.10.1-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:e36f229acfe250dc660790840916eb49726c928e8ce10fbdf90715090fe4ae02"},
+    {file = "mypy-1.10.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:51a46974340baaa4145363b9e051812a2446cf583dfaeba124af966fa44593f7"},
+    {file = "mypy-1.10.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:901c89c2d67bba57aaaca91ccdb659aa3a312de67f23b9dfb059727cce2e2e0a"},
+    {file = "mypy-1.10.1-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:0cd62192a4a32b77ceb31272d9e74d23cd88c8060c34d1d3622db3267679a5d9"},
+    {file = "mypy-1.10.1-cp310-cp310-win_amd64.whl", hash = "sha256:a2cbc68cb9e943ac0814c13e2452d2046c2f2b23ff0278e26599224cf164e78d"},
+    {file = "mypy-1.10.1-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:bd6f629b67bb43dc0d9211ee98b96d8dabc97b1ad38b9b25f5e4c4d7569a0c6a"},
+    {file = "mypy-1.10.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:a1bbb3a6f5ff319d2b9d40b4080d46cd639abe3516d5a62c070cf0114a457d84"},
+    {file = "mypy-1.10.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b8edd4e9bbbc9d7b79502eb9592cab808585516ae1bcc1446eb9122656c6066f"},
+    {file = "mypy-1.10.1-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:6166a88b15f1759f94a46fa474c7b1b05d134b1b61fca627dd7335454cc9aa6b"},
+    {file = "mypy-1.10.1-cp311-cp311-win_amd64.whl", hash = "sha256:5bb9cd11c01c8606a9d0b83ffa91d0b236a0e91bc4126d9ba9ce62906ada868e"},
+    {file = "mypy-1.10.1-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:d8681909f7b44d0b7b86e653ca152d6dff0eb5eb41694e163c6092124f8246d7"},
+    {file = "mypy-1.10.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:378c03f53f10bbdd55ca94e46ec3ba255279706a6aacaecac52ad248f98205d3"},
+    {file = "mypy-1.10.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:6bacf8f3a3d7d849f40ca6caea5c055122efe70e81480c8328ad29c55c69e93e"},
+    {file = "mypy-1.10.1-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:701b5f71413f1e9855566a34d6e9d12624e9e0a8818a5704d74d6b0402e66c04"},
+    {file = "mypy-1.10.1-cp312-cp312-win_amd64.whl", hash = "sha256:3c4c2992f6ea46ff7fce0072642cfb62af7a2484efe69017ed8b095f7b39ef31"},
+    {file = "mypy-1.10.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:604282c886497645ffb87b8f35a57ec773a4a2721161e709a4422c1636ddde5c"},
+    {file = "mypy-1.10.1-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:37fd87cab83f09842653f08de066ee68f1182b9b5282e4634cdb4b407266bade"},
+    {file = "mypy-1.10.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8addf6313777dbb92e9564c5d32ec122bf2c6c39d683ea64de6a1fd98b90fe37"},
+    {file = "mypy-1.10.1-cp38-cp38-musllinux_1_1_x86_64.whl", hash = "sha256:5cc3ca0a244eb9a5249c7c583ad9a7e881aa5d7b73c35652296ddcdb33b2b9c7"},
+    {file = "mypy-1.10.1-cp38-cp38-win_amd64.whl", hash = "sha256:1b3a2ffce52cc4dbaeee4df762f20a2905aa171ef157b82192f2e2f368eec05d"},
+    {file = "mypy-1.10.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:fe85ed6836165d52ae8b88f99527d3d1b2362e0cb90b005409b8bed90e9059b3"},
+    {file = "mypy-1.10.1-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:c2ae450d60d7d020d67ab440c6e3fae375809988119817214440033f26ddf7bf"},
+    {file = "mypy-1.10.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:6be84c06e6abd72f960ba9a71561c14137a583093ffcf9bbfaf5e613d63fa531"},
+    {file = "mypy-1.10.1-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:2189ff1e39db399f08205e22a797383613ce1cb0cb3b13d8bcf0170e45b96cc3"},
+    {file = "mypy-1.10.1-cp39-cp39-win_amd64.whl", hash = "sha256:97a131ee36ac37ce9581f4220311247ab6cba896b4395b9c87af0675a13a755f"},
+    {file = "mypy-1.10.1-py3-none-any.whl", hash = "sha256:71d8ac0b906354ebda8ef1673e5fde785936ac1f29ff6987c7483cfbd5a4235a"},
+    {file = "mypy-1.10.1.tar.gz", hash = "sha256:1f8f492d7db9e3593ef42d4f115f04e556130f2819ad33ab84551403e97dd4c0"},
 ]
 
 [package.dependencies]
@@ -3490,13 +3490,13 @@ files = [
 
 [[package]]
 name = "pyvista"
-version = "0.43.9"
+version = "0.43.10"
 description = "Easier Pythonic interface to VTK"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pyvista-0.43.9-py3-none-any.whl", hash = "sha256:f9f23baa74a8e2a4181c260e4c742ede00c73a7cc46e5275152f82a736f12c95"},
-    {file = "pyvista-0.43.9.tar.gz", hash = "sha256:87d55ffe0efa6a8b15ca55f9f07f49a81980522c4a3ada29ca5caa2ab31179b7"},
+    {file = "pyvista-0.43.10-py3-none-any.whl", hash = "sha256:8eca6d039a2b1ae779189aa4109db5228ef3b3f65d873e95cbbecf161d83ae9b"},
+    {file = "pyvista-0.43.10.tar.gz", hash = "sha256:925b3539d4c53727ae3cd8f31544fb8811f73a99040f75a36211ed5f26d20e8c"},
 ]
 
 [package.dependencies]
@@ -3504,7 +3504,7 @@ ipywidgets = {version = "*", optional = true, markers = "extra == \"jupyter\""}
 jupyter-server-proxy = {version = "*", optional = true, markers = "extra == \"jupyter\""}
 matplotlib = ">=3.0.1"
 nest-asyncio = {version = "*", optional = true, markers = "extra == \"jupyter\""}
-numpy = ">=1.21.0,<2.0.0"
+numpy = ">=1.21.0"
 pillow = "*"
 pooch = "*"
 scooby = ">=0.5.1"
@@ -4097,13 +4097,13 @@ test = ["cython (>=3.0)", "defusedxml (>=0.7.1)", "pytest (>=6.0)", "setuptools 
 
 [[package]]
 name = "sphinx-autodoc-typehints"
-version = "2.1.1"
+version = "2.2.2"
 description = "Type hints (PEP 484) support for the Sphinx autodoc extension"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "sphinx_autodoc_typehints-2.1.1-py3-none-any.whl", hash = "sha256:22427d74786274add2b6d4afccb8b3c8c1843f48a704550f15a35fd948f8a4de"},
-    {file = "sphinx_autodoc_typehints-2.1.1.tar.gz", hash = "sha256:0072b65f5ab2818c229d6d6c2cc993770af55d36bb7bfb16001e2fce4d14880c"},
+    {file = "sphinx_autodoc_typehints-2.2.2-py3-none-any.whl", hash = "sha256:b98337a8530c95b73ba0c65465847a8ab0a13403bdc81294d5ef396bbd1f783e"},
+    {file = "sphinx_autodoc_typehints-2.2.2.tar.gz", hash = "sha256:128e600eeef63b722f3d8dac6403594592c8cade3ba66fd11dcb997465ee259d"},
 ]
 
 [package.dependencies]
@@ -4499,13 +4499,13 @@ trame-client = "*"
 
 [[package]]
 name = "types-protobuf"
-version = "5.26.0.20240422"
+version = "5.27.0.20240626"
 description = "Typing stubs for protobuf"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "types-protobuf-5.26.0.20240422.tar.gz", hash = "sha256:e6074178109f97efe9f0b20a035ba61d7c3b03e867eb47d254d2b2ab6a805e36"},
-    {file = "types_protobuf-5.26.0.20240422-py3-none-any.whl", hash = "sha256:e4dc2554d342501d5aebc3c71203868b51118340e105fc190e3a64ca1be43831"},
+    {file = "types-protobuf-5.27.0.20240626.tar.gz", hash = "sha256:683ba14043bade6785e3f937a7498f243b37881a91ac8d81b9202ecf8b191e9c"},
+    {file = "types_protobuf-5.27.0.20240626-py3-none-any.whl", hash = "sha256:688e8f7e8d9295db26bc560df01fb731b27a25b77cbe4c1ce945647f7024f5c1"},
 ]
 
 [[package]]
