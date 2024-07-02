@@ -27,7 +27,6 @@ import dataclasses
 import typing
 from typing import Any, cast
 
-from grpc import Channel
 import numpy as np
 import numpy.typing as npt
 from pyvista.core.pointset import UnstructuredGrid
@@ -87,7 +86,7 @@ from ._mesh_data import (
     elemental_data_property,
     nodal_data_property,
 )
-from .base import TreeObject
+from .base import ServerWrapper, TreeObject, supported_since
 from .boolean_selection_rule import BooleanSelectionRule
 from .cad_geometry import CADGeometry
 from .cutoff_selection_rule import CutoffSelectionRule
@@ -268,29 +267,29 @@ class Model(TreeObject):
     )
 
     @classmethod
-    def from_file(cls, *, path: _PATH, channel: Channel) -> Model:
+    def _from_file(cls, *, path: _PATH, server_wrapper: ServerWrapper) -> Model:
         """Instantiate a Model from an ACPH5 file.
 
         Parameters
         ----------
         path:
             File path, on the server.
-        channel:
-            gRPC channel to the server.
+        server_wrapper:
+            Representation of the ACP instance.
         """
         # Send absolute paths to the server, since its CWD may not match
         # the Python CWD.
         request = model_pb2.LoadFromFileRequest(path=path_to_str_checked(path))
         with wrap_grpc_errors():
-            reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFile(request)
-        return cls._from_object_info(object_info=reply, channel=channel)
+            reply = model_pb2_grpc.ObjectServiceStub(server_wrapper.channel).LoadFromFile(request)
+        return cls._from_object_info(object_info=reply, server_wrapper=server_wrapper)
 
     @classmethod
-    def from_fe_file(
+    def _from_fe_file(
         cls,
         *,
         path: _PATH,
-        channel: Channel,
+        server_wrapper: ServerWrapper,
         format: FeFormat,  # type: ignore
         ignored_entities: Iterable[IgnorableEntity] = (),  # type: ignore
         convert_section_data: bool = False,
@@ -302,8 +301,8 @@ class Model(TreeObject):
         ----------
         path:
             File path, on the server.
-        channel:
-            gRPC channel to the server.
+        server_wrapper:
+            Representation of the ACP instance.
         format:
             Format of the FE file. Can be one of ``"ansys:h5"``, ``"ansys:cdb"``,
             ``"ansys:dat"``, ``"abaqus:inp"``, or ``"nastran:bdf"``.
@@ -330,8 +329,8 @@ class Model(TreeObject):
             unit_system=cast(Any, unit_system_type_to_pb(unit_system)),
         )
         with wrap_grpc_errors():
-            reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFEFile(request)
-        return cls._from_object_info(object_info=reply, channel=channel)
+            reply = model_pb2_grpc.ObjectServiceStub(server_wrapper.channel).LoadFromFEFile(request)
+        return cls._from_object_info(object_info=reply, server_wrapper=server_wrapper)
 
     def update(self, *, relations_only: bool = False) -> None:
         """Update the model.
@@ -425,7 +424,7 @@ class Model(TreeObject):
                 )
             )
 
-    # @supported_since("25.1")
+    @supported_since("25.1")
     def export_modeling_ply_geometries(
         self,
         path: _PATH,

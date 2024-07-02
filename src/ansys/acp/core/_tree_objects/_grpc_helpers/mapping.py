@@ -33,7 +33,7 @@ from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 from ..._utils.property_protocols import ReadOnlyProperty
 from ..._utils.resource_paths import join as _rp_join
 from .._object_cache import ObjectCacheMixin, constructor_with_cache
-from ..base import CreatableTreeObject, TreeObject, TreeObjectBase
+from ..base import CreatableTreeObject, ServerWrapper, TreeObject, TreeObjectBase
 from ..enums import StatusType
 from .exceptions import wrap_grpc_errors
 from .property_helper import _exposed_grpc_property, _wrap_doc
@@ -60,13 +60,13 @@ class Mapping(ObjectCacheMixin, Generic[ValueT]):
     def _initialize_with_cache(
         cls,
         *,
-        channel: Channel,
+        server_wrapper: ServerWrapper,
         collection_path: CollectionPath,
         stub: ReadableResourceStub,
         object_constructor: Callable[[ObjectInfo, Channel | None], ValueT],
     ) -> Self:
         return cls(
-            _channel=channel,
+            _server_wrapper=server_wrapper,
             _collection_path=collection_path,
             _stub=stub,
             _object_constructor=object_constructor,
@@ -75,7 +75,7 @@ class Mapping(ObjectCacheMixin, Generic[ValueT]):
     def __init__(
         self,
         *,
-        _channel: Channel,
+        _server_wrapper: ServerWrapper,
         _collection_path: CollectionPath,
         _stub: ReadableResourceStub,
         _object_constructor: Callable[[ObjectInfo, Channel | None], ValueT],
@@ -83,7 +83,7 @@ class Mapping(ObjectCacheMixin, Generic[ValueT]):
         self._collection_path = _collection_path
         self._stub = _stub
 
-        self._channel = _channel
+        self._server_wrapper = _server_wrapper
         self._object_constructor = _object_constructor
 
     @staticmethod
@@ -97,7 +97,7 @@ class Mapping(ObjectCacheMixin, Generic[ValueT]):
 
     def __getitem__(self, key: str) -> ValueT:
         obj_info = self._get_objectinfo_by_id(key)
-        return self._object_constructor(obj_info, self._channel)
+        return self._object_constructor(obj_info, self._server_wrapper)
 
     def _get_objectinfo_list(self) -> list[ObjectInfo]:
         with wrap_grpc_errors():
@@ -124,7 +124,7 @@ class Mapping(ObjectCacheMixin, Generic[ValueT]):
     def values(self) -> Iterator[ValueT]:
         """Return an iterator over the values of the mapping."""
         return (
-            self._object_constructor(obj_info, self._channel)
+            self._object_constructor(obj_info, self._server_wrapper)
             for obj_info in self._get_objectinfo_list()
         )
 
@@ -133,7 +133,7 @@ class Mapping(ObjectCacheMixin, Generic[ValueT]):
         return (
             (
                 obj_info.info.id,
-                self._object_constructor(obj_info, self._channel),
+                self._object_constructor(obj_info, self._server_wrapper),
             )
             for obj_info in self._get_objectinfo_list()
         )
@@ -179,13 +179,13 @@ class MutableMapping(Mapping[CreatableValueT]):
     def _initialize_with_cache(
         cls,
         *,
-        channel: Channel,
+        server_wrapper: ServerWrapper,
         collection_path: CollectionPath,
         stub: EditableAndReadableResourceStub,  # type: ignore # violates Liskov substitution
         object_constructor: Callable[[ObjectInfo, Channel | None], CreatableValueT],
     ) -> Self:
         return cls(
-            _channel=channel,
+            _server_wrapper=server_wrapper,
             _collection_path=collection_path,
             _stub=stub,
             _object_constructor=object_constructor,
@@ -194,14 +194,14 @@ class MutableMapping(Mapping[CreatableValueT]):
     def __init__(
         self,
         *,
-        _channel: Channel,
+        _server_wrapper: ServerWrapper,
         _collection_path: CollectionPath,
         _stub: EditableAndReadableResourceStub,
-        _object_constructor: Callable[[ObjectInfo, Channel | None], CreatableValueT],
+        _object_constructor: Callable[[ObjectInfo, ServerWrapper | None], CreatableValueT],
     ) -> None:
         self._collection_path = _collection_path
         self._stub: EditableAndReadableResourceStub = _stub
-        self._channel = _channel
+        self._server_wrapper = _server_wrapper
         self._object_constructor = _object_constructor
 
     def __delitem__(self, key: str) -> None:
@@ -234,7 +234,7 @@ class MutableMapping(Mapping[CreatableValueT]):
         return self._pop_from_info(obj_info)
 
     def _pop_from_info(self, object_info: ObjectInfo) -> CreatableValueT:
-        obj = self._object_constructor(object_info, self._channel)
+        obj = self._object_constructor(object_info, self._server_wrapper)
         new_obj = obj.clone()
         obj.delete()
         return new_obj
@@ -257,12 +257,12 @@ def get_read_only_collection_property(
                 f"The object {self.name} must be up-to-date to access {object_class.__name__}."
             )
         return Mapping._initialize_with_cache(
-            channel=self._channel,
+            server_wrapper=self._server_wrapper,
             collection_path=CollectionPath(
                 value=_rp_join(self._resource_path.value, object_class._COLLECTION_LABEL)
             ),
             object_constructor=object_class._from_object_info,
-            stub=stub_class(channel=self._channel),
+            stub=stub_class(channel=self._server_wrapper.channel),
         )
 
     return _wrap_doc(_exposed_grpc_property(collection_property), doc=doc)
@@ -303,12 +303,12 @@ def define_mutable_mapping(
 
     def collection_property(self: ParentT) -> MutableMapping[CreatableValueT]:
         return MutableMapping._initialize_with_cache(
-            channel=self._channel,
+            server_wrapper=self._server_wrapper,
             collection_path=CollectionPath(
                 value=_rp_join(self._resource_path.value, object_class._COLLECTION_LABEL)
             ),
             object_constructor=object_class._from_object_info,
-            stub=stub_class(channel=self._channel),
+            stub=stub_class(channel=self._server_wrapper.channel),
         )
 
     return _wrap_doc(_exposed_grpc_property(collection_property), doc=doc)

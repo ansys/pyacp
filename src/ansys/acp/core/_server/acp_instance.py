@@ -35,6 +35,7 @@ from ansys.tools.filetransfer import Client as FileTransferClient
 
 from .._tree_objects import Model
 from .._tree_objects._grpc_helpers.exceptions import wrap_grpc_errors
+from .._tree_objects.base import ServerWrapper
 from .._typing_helper import PATH as _PATH
 from .common import ServerProtocol
 
@@ -158,15 +159,18 @@ class ACP(Generic[ServerT]):
         :
             The loaded ``Model`` instance.
         """
+        server_wrapper = ServerWrapper.from_acp_instance(self)
         if format == "acp:h5":
             if kwargs:
                 raise ValueError(
                     f"Parameters '{kwargs.keys()}' cannot be passed when "
                     f"loading a model with format '{format}'."
                 )
-            model = Model.from_file(path=path, channel=self._channel)
+            model = Model._from_file(path=path, server_wrapper=server_wrapper)
         else:
-            model = Model.from_fe_file(path=path, channel=self._channel, format=format, **kwargs)
+            model = Model._from_fe_file(
+                path=path, server_wrapper=server_wrapper, format=format, **kwargs
+            )
         if name is not None:
             model.name = name
         return model
