@@ -24,6 +24,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 import dataclasses
+import typing
 from typing import Any, cast
 
 from grpc import Channel
@@ -49,8 +50,10 @@ from ansys.api.acp.v0 import (
     model_pb2,
     model_pb2_grpc,
     modeling_group_pb2_grpc,
+    modeling_ply_pb2_grpc,
     oriented_selection_set_pb2_grpc,
     parallel_selection_rule_pb2_grpc,
+    ply_geometry_export_pb2,
     rosette_pb2_grpc,
     sensor_pb2_grpc,
     spherical_selection_rule_pb2_grpc,
@@ -91,7 +94,17 @@ from .cutoff_selection_rule import CutoffSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
 from .element_set import ElementSet
-from .enums import UnitSystemType, unit_system_type_from_pb, unit_system_type_to_pb
+from .enums import (
+    ArrowType,
+    OffsetType,
+    PlyGeometryExportFormat,
+    UnitSystemType,
+    arrow_type_to_pb,
+    offset_type_to_pb,
+    ply_geometry_export_format_to_pb,
+    unit_system_type_from_pb,
+    unit_system_type_to_pb,
+)
 from .fabric import Fabric
 from .geometrical_selection_rule import GeometricalSelectionRule
 from .lookup_table_1d import LookUpTable1D
@@ -409,6 +422,75 @@ class Model(TreeObject):
                     collection_path=collection_path,
                     path=path_to_str_checked(path),
                     format=material_pb2.SaveToFileRequest.ANSYS_XML,
+                )
+            )
+
+    # @supported_since("25.1")
+    def export_modeling_ply_geometries(
+        self,
+        path: _PATH,
+        *,
+        format: PlyGeometryExportFormat = PlyGeometryExportFormat.STEP,
+        offset_type: OffsetType = OffsetType.MIDDLE_OFFSET,
+        include_surface: bool = True,
+        include_boundary: bool = True,
+        include_first_material_direction: bool = True,
+        include_second_material_direction: bool = True,
+        arrow_length: float = 1.0,
+        arrow_type: ArrowType = ArrowType.NO_ARROW,
+    ) -> None:
+        """
+        Write ply geometries to a STEP, IGES, or STL file.
+
+        Parameters
+        ----------
+        path :
+            File path to save the geometries to.
+        format :
+            Format of the created file. Can be one of ``"STEP"``, ``"IGES"``,
+            or ``"STL"``.
+        offset_type :
+            Determines how the ply offset is calculated. Can be one of
+            ``"NO_OFFSET"``, ``"BOTTOM_OFFSET"``, ``"MIDDLE_OFFSET"``, or
+            ``"TOP_OFFSET"``.
+        include_surface :
+            Whether to include the ply surface in the exported geometry.
+        include_boundary :
+            Whether to include the ply boundary in the exported geometry.
+        include_first_material_direction :
+            Whether to include the first material direction in the exported geometry.
+        include_second_material_direction :
+            Whether to include the second material direction in the exported geometry.
+        arrow_length :
+            Size of the arrow used to represent the material directions.
+        arrow_type :
+            Type of the arrow used to represent the material directions. Can be
+            one of ``"NO_ARROW"``, ``"HALF_ARROW"``, or ``"STANDARD_ARROW"``.
+        """
+        all_modeling_plies = [
+            ply
+            for modeling_group in self.modeling_groups.values()
+            for ply in modeling_group.modeling_plies.values()
+        ]
+        mp_resource_paths = [ply._resource_path for ply in all_modeling_plies]
+
+        modeling_ply_stub = modeling_ply_pb2_grpc.ObjectServiceStub(self._channel)
+
+        with wrap_grpc_errors():
+            modeling_ply_stub.ExportGeometries(
+                ply_geometry_export_pb2.ExportGeometriesRequest(
+                    path=path_to_str_checked(path),
+                    plies=mp_resource_paths,
+                    options=ply_geometry_export_pb2.ExportOptions(
+                        format=typing.cast(typing.Any, ply_geometry_export_format_to_pb(format)),
+                        offset_type=typing.cast(typing.Any, offset_type_to_pb(offset_type)),
+                        include_surface=include_surface,
+                        include_boundary=include_boundary,
+                        include_first_material_direction=include_first_material_direction,
+                        include_second_material_direction=include_second_material_direction,
+                        arrow_length=arrow_length,
+                        arrow_type=typing.cast(typing.Any, arrow_type_to_pb(arrow_type)),
+                    ),
                 )
             )
 
