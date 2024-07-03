@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1719947476276,
+  "lastUpdate": 1719980985975,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14944,6 +14944,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00021432944804757425",
             "extra": "mean: 722.7965685848161 usec\nrounds: 1859"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "93ce405cb4819a9ef1542db8d7b52ab9dd62bf3b",
+          "message": "CI: Fix custom API branch install (#546)\n\nFix installing a custom API branch in the CI pipeline:\r\n- build the API repository in a separate step, using Python3.10, since\r\n  newer Python versions are not supported by the necessary `protobuf` version\r\n- install the API package without dependencies, to avoid accidentally installing\r\n  a transitive dependency which is incompatible with some other dependency\r\n\r\nOther changes:\r\n- Simplify the pipeline logic by using `env` to process the `workflow_dispatch` inputs.\r\n  This also allows setting a default value in the CI `.yml`, for example for a feature branch.\r\n- Update the poetry lockfile. This is done to update transitive dependencies, as dependabot\r\n  only manages direct ones.",
+          "timestamp": "2024-07-03T06:26:44+02:00",
+          "tree_id": "dcbf240decf5a110fe3c4528e6d38f41884c79aa",
+          "url": "https://github.com/ansys/pyacp/commit/93ce405cb4819a9ef1542db8d7b52ab9dd62bf3b"
+        },
+        "date": 1719980967701,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.629497680772692,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003917032624577211",
+            "extra": "mean: 150.84099100000685 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1299.2345471082347,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020098894170571054",
+            "extra": "mean: 769.683966783169 usec\nrounds: 1716"
           }
         ]
       }
