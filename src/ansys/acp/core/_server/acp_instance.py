@@ -168,7 +168,7 @@ class ACP(Generic[ServerT]):
                 )
             model = Model._from_file(path=path, server_wrapper=server_wrapper)
         else:
-            model = Model._from_fe_file(
+            model = Model.from_fe_file(
                 path=path, server_wrapper=server_wrapper, format=format, **kwargs
             )
         if name is not None:

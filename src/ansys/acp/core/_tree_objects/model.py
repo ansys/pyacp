@@ -285,7 +285,7 @@ class Model(TreeObject):
         return cls._from_object_info(object_info=reply, server_wrapper=server_wrapper)
 
     @classmethod
-    def _from_fe_file(
+    def from_fe_file(
         cls,
         *,
         path: _PATH,
