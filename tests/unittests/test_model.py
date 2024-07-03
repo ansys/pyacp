@@ -256,20 +256,14 @@ def test_modeling_ply_export(acp_instance, minimal_complete_model):
     Test that the 'export_modeling_ply_geometries' method produces a file.
     The contents of the file are not checked.
     """
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        output_path = pathlib.Path(tmp_dir) / "modeling_ply_export.step"
-        minimal_complete_model.export_modeling_ply_geometries(output_path)
-        assert output_path.exists()
-
     out_filename = "modeling_ply_export.step"
 
     with tempfile.TemporaryDirectory() as tmp_dir:
+        local_file_path = pathlib.Path(tmp_dir) / out_filename
         if acp_instance.is_remote:
-            out_file_path = out_filename
-            local_file_path = pathlib.Path(tmp_dir, out_filename)
+            out_file_path = pathlib.Path(out_filename)
         else:
-            out_file_path = pathlib.Path(tmp_dir) / out_filename
-            local_file_path = out_file_path
+            out_file_path = local_file_path
         minimal_complete_model.export_modeling_ply_geometries(out_file_path)
         acp_instance.download_file(out_file_path, local_file_path)
         assert local_file_path.exists()
