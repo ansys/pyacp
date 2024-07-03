@@ -111,7 +111,7 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
 
         self._set_resourcepath_list = set_resourcepath_list
         self._object_constructor: Callable[[ResourcePath], ValueT] = (
-            lambda resource_path: _object_constructor(resource_path, _parent_object._channel)
+            lambda resource_path: _object_constructor(resource_path, _parent_object._server_wrapper)
         )
 
     def __len__(self) -> int:

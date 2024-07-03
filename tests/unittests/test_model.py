@@ -88,7 +88,7 @@ def test_unittest(acp_instance, model_data_dir):
         else:
             with tempfile.TemporaryDirectory() as local_working_dir:
                 save_path = pathlib.Path(local_working_dir) / "test_model_serialization.acph5"
-                acp_instance.save(save_path, save_cache=True)
+                model.save(save_path, save_cache=True)
                 acp_instance.clear()
                 model = acp_instance.import_model(path=save_path)
 
@@ -263,15 +263,13 @@ def test_modeling_ply_export(acp_instance, minimal_complete_model):
 
     out_filename = "modeling_ply_export.step"
 
-    if acp_instance.is_remote:
-        out_file_path = out_filename
-        minimal_complete_model.export_modeling_ply_geometries(out_file_path)
-        with tempfile.TemporaryDirectory() as tmp_dir:
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        if acp_instance.is_remote:
+            out_file_path = out_filename
             local_file_path = pathlib.Path(tmp_dir, out_filename)
-            acp_instance.download_file(out_file_path, local_file_path)
-            assert local_file_path.exists()
-    else:
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            local_file_path = pathlib.Path(tmp_dir) / out_filename
-            minimal_complete_model.export_modeling_ply_geometries(local_file_path)
-            assert local_file_path.exists()
+        else:
+            out_file_path = pathlib.Path(tmp_dir) / out_filename
+            local_file_path = out_file_path
+        minimal_complete_model.export_modeling_ply_geometries(out_file_path)
+        acp_instance.download_file(out_file_path, local_file_path)
+        assert local_file_path.exists()
