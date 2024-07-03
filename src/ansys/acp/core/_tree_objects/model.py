@@ -435,7 +435,7 @@ class Model(TreeObject):
         include_boundary: bool = True,
         include_first_material_direction: bool = True,
         include_second_material_direction: bool = True,
-        arrow_length: float = 1.0,
+        arrow_length: float | None = None,
         arrow_type: ArrowType = ArrowType.NO_ARROW,
     ) -> None:
         """
@@ -461,7 +461,8 @@ class Model(TreeObject):
         include_second_material_direction :
             Whether to include the second material direction in the exported geometry.
         arrow_length :
-            Size of the arrow used to represent the material directions.
+            Size of the arrow used to represent the material directions. By default, the
+            square root of the average element area is used.
         arrow_type :
             Type of the arrow used to represent the material directions. Can be
             one of ``"NO_ARROW"``, ``"HALF_ARROW"``, or ``"STANDARD_ARROW"``.
@@ -474,6 +475,9 @@ class Model(TreeObject):
         mp_resource_paths = [ply._resource_path for ply in all_modeling_plies]
 
         modeling_ply_stub = modeling_ply_pb2_grpc.ObjectServiceStub(self._channel)
+
+        if arrow_length is None:
+            arrow_length = np.sqrt(self.average_element_size)
 
         with wrap_grpc_errors():
             modeling_ply_stub.ExportGeometries(

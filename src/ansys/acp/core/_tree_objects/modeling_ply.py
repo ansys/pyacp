@@ -185,7 +185,7 @@ class TaperEdge(GenericEdgePropertyType):
         apply_changes: Callable[[], None],
     ) -> Self:
         edge_set = EdgeSet._from_resource_path(
-            resource_path=message.edge_set, channel=parent_object._channel
+            resource_path=message.edge_set, server_wrapper=parent_object._server_wrapper
         )
 
         new_obj = cls(
