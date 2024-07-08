@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1719980985975,
+  "lastUpdate": 1720420165835,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -14982,6 +14982,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020098894170571054",
             "extra": "mean: 769.683966783169 usec\nrounds: 1716"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "45a364d22ca048cfa91f7b21e04afef311aad8aa",
+          "message": "Bump the dependencies group with 5 updates (#547)\n\nBumps the dependencies group with 5 updates:\r\n\r\n| Package | From | To |\r\n| --- | --- | --- |\r\n| [ansys-api-acp](https://github.com/ansys/ansys-api-acp) | `0.1.0.dev8` | `0.1.0.dev9` |\r\n| [pyvista](https://github.com/pyvista/pyvista) | `0.43.10` | `0.44.0` |\r\n| [matplotlib](https://github.com/matplotlib/matplotlib) | `3.9.0` | `3.9.1` |\r\n| [ipykernel](https://github.com/ipython/ipykernel) | `6.29.4` | `6.29.5` |\r\n| [hypothesis](https://github.com/HypothesisWorks/hypothesis) | `6.104.2` | `6.105.1` |\r\n\r\n\r\nUpdates `ansys-api-acp` from 0.1.0.dev8 to 0.1.0.dev9\r\n- [Release notes](https://github.com/ansys/ansys-api-acp/releases)\r\n- [Commits](https://github.com/ansys/ansys-api-acp/compare/v0.1.0.dev8...v0.1.0.dev9)\r\n\r\nUpdates `pyvista` from 0.43.10 to 0.44.0\r\n- [Release notes](https://github.com/pyvista/pyvista/releases)\r\n- [Commits](https://github.com/pyvista/pyvista/compare/v0.43.10...v0.44.0)\r\n\r\nUpdates `matplotlib` from 3.9.0 to 3.9.1\r\n- [Release notes](https://github.com/matplotlib/matplotlib/releases)\r\n- [Commits](https://github.com/matplotlib/matplotlib/compare/v3.9.0...v3.9.1)\r\n\r\nUpdates `ipykernel` from 6.29.4 to 6.29.5\r\n- [Release notes](https://github.com/ipython/ipykernel/releases)\r\n- [Changelog](https://github.com/ipython/ipykernel/blob/v6.29.5/CHANGELOG.md)\r\n- [Commits](https://github.com/ipython/ipykernel/compare/v6.29.4...v6.29.5)\r\n\r\nUpdates `hypothesis` from 6.104.2 to 6.105.1\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.104.2...hypothesis-python-6.105.1)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: ansys-api-acp\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: pyvista\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: matplotlib\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ipykernel\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-07-08T08:26:39+02:00",
+          "tree_id": "7a009d2d947002b8b657a9f1990931cb75353101",
+          "url": "https://github.com/ansys/pyacp/commit/45a364d22ca048cfa91f7b21e04afef311aad8aa"
+        },
+        "date": 1720420148297,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 7.00591244223932,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004604863671571229",
+            "extra": "mean: 142.73658259999138 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1255.732334948518,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022906550067716835",
+            "extra": "mean: 796.3480529797758 usec\nrounds: 2114"
           }
         ]
       }
