@@ -497,6 +497,38 @@ class Model(TreeObject):
                 )
             )
 
+    @supported_since("25.1")
+    def replace_mesh(
+        self,
+        *,
+        path: _PATH,
+        format: FeFormat,  # type: ignore
+        unit_system: UnitSystemType = UnitSystemType.UNDEFINED,
+    ) -> None:
+        """
+        Replace the mesh of the model.
+
+        Parameters
+        ----------
+        path :
+            File path to the new mesh.
+        format :
+            Format of the mesh file.
+        unit_system :
+            Unit system of the mesh file. If the unit system is different from the
+            current model unit system and not ``UNDEFINED``, the mesh will be scaled
+            to match the model unit system.
+        """
+        with wrap_grpc_errors():
+            self._get_stub().ReplaceMesh(
+                model_pb2.ReplaceMeshRequest(
+                    resource_path=self._resource_path,
+                    path=path_to_str_checked(path),
+                    format=cast(Any, fe_format_to_pb(format)),
+                    unit_system=cast(Any, unit_system_type_to_pb(unit_system)),
+                )
+            )
+
     create_material = define_create_method(
         Material, func_name="create_material", parent_class_name="Model", module_name=__module__
     )
