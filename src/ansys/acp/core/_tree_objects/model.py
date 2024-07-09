@@ -506,7 +506,7 @@ class Model(TreeObject):
         unit_system: UnitSystemType = UnitSystemType.UNDEFINED,
     ) -> None:
         """
-        Replace the mesh of the model.
+        Replace or reload the mesh of the model.
 
         Parameters
         ----------
