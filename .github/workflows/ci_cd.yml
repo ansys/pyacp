@@ -22,7 +22,7 @@ env:
   MAIN_PYTHON_VERSION: "3.12"
   PACKAGE_NAME: "ansys-acp-core"
   DOCUMENTATION_CNAME: "acp.docs.pyansys.com"
-  API_BRANCH: ${{ github.event.inputs.api_branch || '' }}
+  API_BRANCH: ${{ github.event.inputs.api_branch || 'feat/adaptive_mesh_workflow' }}
   DOCKER_IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
 
 concurrency:
