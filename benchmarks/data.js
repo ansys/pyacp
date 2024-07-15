@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1720420165835,
+  "lastUpdate": 1721022090471,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15020,6 +15020,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00022906550067716835",
             "extra": "mean: 796.3480529797758 usec\nrounds: 2114"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d893c29615d9607564fe254322faa01896087aea",
+          "message": "Bump hypothesis from 6.105.1 to 6.108.1 in the dependencies group (#549)\n\nBumps the dependencies group with 1 update: [hypothesis](https://github.com/HypothesisWorks/hypothesis).\r\n\r\n\r\nUpdates `hypothesis` from 6.105.1 to 6.108.1\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.105.1...hypothesis-python-6.108.1)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-07-15T07:38:15+02:00",
+          "tree_id": "3316a45f6a2d8e6618fc777cf31bf83ac92da13d",
+          "url": "https://github.com/ansys/pyacp/commit/d893c29615d9607564fe254322faa01896087aea"
+        },
+        "date": 1721022072619,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.713782262907848,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0031603216392314323",
+            "extra": "mean: 148.9473385999986 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1238.1900240077578,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002206119918917137",
+            "extra": "mean: 807.6304772374217 usec\nrounds: 1911"
           }
         ]
       }
