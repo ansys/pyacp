@@ -31,7 +31,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -572,13 +572,13 @@ This example’s input file contains a flat plate with a single ply.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpwous05ch
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmp5blpgc2s
 mks
 </pre></div>
 </div>
 <p>Visualize the loaded mesh.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">.</span><span class="n">to_pyvista</span><span class="p">()</span>
-<a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.DataSet.plot.html#pyvista.DataSet.plot" title="pyvista.DataSet.plot" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">mesh</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">.</span><span class="n">to_pyvista</span><span class="p">()</span>
+<a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.DataSet.plot.html#pyvista.DataSet.plot" title="pyvista.DataSet.plot" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">mesh</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -612,7 +612,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <p>Plot the ply thickness.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <span class="k">assert</span> <span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">=</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">=</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -644,7 +644,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <p>Plot the ply thickness.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <span class="k">assert</span> <span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">=</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">=</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -676,7 +676,7 @@ active.</p>
 <p>Plot the ply thickness.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <span class="k">assert</span> <span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">=</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">=</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -710,7 +710,7 @@ active.</p>
 <p>Plot the ply thickness.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <span class="k">assert</span> <span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">=</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">=</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -725,13 +725,16 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_003_basic_rules_005.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.737 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 4.338 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-003-basic-rules-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/4ea472f7fe63318c00f2de26e153cb65/003_basic_rules.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">003_basic_rules.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8b78a3bbb5edbac255687a3019ed537e/003_basic_rules.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">003_basic_rules.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/e01788e110deb2f4869a49bfb7cf57ee/003_basic_rules.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">003_basic_rules.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -814,7 +817,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
     <br/>
   </p>
 </div>

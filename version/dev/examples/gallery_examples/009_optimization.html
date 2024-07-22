@@ -31,7 +31,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -570,7 +570,7 @@ covered in the subsequent example code:</p>
 </pre></div>
 </div>
 <p>Launch the DPF server.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">dpf_server</span> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">server_helpers</span><span class="o">.</span><span class="n">connect_to_or_start_server</span><span class="p">()</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.server_types.html#ansys.dpf.core.server_types.GrpcServer" title="ansys.dpf.core.server_types.GrpcServer" class="sphx-glr-backref-module-ansys-dpf-core-server_types sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dpf_server</span></a> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">server_helpers</span><span class="o">.</span><span class="n">connect_to_or_start_server</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Create a temporary directory to store the input and output files.</p>
@@ -744,7 +744,7 @@ or materials file.</p>
 <span class="k">def</span> <span class="nf">get_max_irf</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">acp_workflow</span><span class="p">,</span>
-    <span class="n">dpf_server</span><span class="p">,</span>
+    <a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.server_types.html#ansys.dpf.core.server_types.GrpcServer" title="ansys.dpf.core.server_types.GrpcServer" class="sphx-glr-backref-module-ansys-dpf-core-server_types sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dpf_server</span></a><span class="p">,</span>
     <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a><span class="p">,</span>
     <span class="n">failure_criterion</span><span class="p">,</span>
 <span class="p">):</span>
@@ -754,7 +754,7 @@ or materials file.</p>
             <span class="n">acp_workflow</span><span class="o">=</span><span class="n">acp_workflow</span><span class="p">,</span>
             <span class="n">local_rst_file_path</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a><span class="p">,</span>
         <span class="p">),</span>
-        <span class="n">server</span><span class="o">=</span><span class="n">dpf_server</span><span class="p">,</span>
+        <span class="n">server</span><span class="o">=</span><a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.server_types.html#ansys.dpf.core.server_types.GrpcServer" title="ansys.dpf.core.server_types.GrpcServer" class="sphx-glr-backref-module-ansys-dpf-core-server_types sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dpf_server</span></a><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_max_irf_for_time</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
@@ -775,7 +775,7 @@ or materials file.</p>
 
 <span class="n">get_max_irf</span><span class="p">(</span>
     <span class="n">acp_workflow</span><span class="o">=</span><span class="n">acp_workflow</span><span class="p">,</span>
-    <span class="n">dpf_server</span><span class="o">=</span><span class="n">dpf_server</span><span class="p">,</span>
+    <a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.server_types.html#ansys.dpf.core.server_types.GrpcServer" title="ansys.dpf.core.server_types.GrpcServer" class="sphx-glr-backref-module-ansys-dpf-core-server_types sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dpf_server</span></a><span class="o">=</span><a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.server_types.html#ansys.dpf.core.server_types.GrpcServer" title="ansys.dpf.core.server_types.GrpcServer" class="sphx-glr-backref-module-ansys-dpf-core-server_types sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dpf_server</span></a><span class="p">,</span>
     <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a><span class="p">,</span>
     <span class="n">failure_criterion</span><span class="o">=</span><span class="n">combined_failure_criterion</span><span class="p">,</span>
 <span class="p">)</span>
@@ -792,14 +792,14 @@ as its input and returns the maximum IRF.
 The <code class="docutils literal notranslate"><span class="pre">get_max_irf_for_parameters()</span></code> function combines the previously defined functions
 to perform all the necessary steps for a given set of ply angles.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_max_irf_for_parameters</span><span class="p">(</span>
-    <span class="n">parameters</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">acp_workflow</span><span class="p">,</span> <span class="n">mapdl</span><span class="p">,</span> <span class="n">dpf_server</span><span class="p">,</span> <span class="n">failure_criterion</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a>
+    <span class="n">parameters</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">acp_workflow</span><span class="p">,</span> <span class="n">mapdl</span><span class="p">,</span> <a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.server_types.html#ansys.dpf.core.server_types.GrpcServer" title="ansys.dpf.core.server_types.GrpcServer" class="sphx-glr-backref-module-ansys-dpf-core-server_types sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dpf_server</span></a><span class="p">,</span> <span class="n">failure_criterion</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a>
 <span class="p">):</span>
     <span class="n">update_ply_angles</span><span class="p">(</span><span class="n">acp_workflow</span><span class="o">=</span><span class="n">acp_workflow</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
     <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file</span></a> <span class="o">=</span> <span class="n">acp_workflow</span><span class="o">.</span><span class="n">get_local_cdb_file</span><span class="p">()</span>
     <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a> <span class="o">=</span> <span class="n">solve_cdb</span><span class="p">(</span><span class="n">mapdl</span><span class="o">=</span><span class="n">mapdl</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">)</span>
     <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.OptimizeResult.html#scipy.optimize.OptimizeResult" title="scipy.optimize.OptimizeResult" class="sphx-glr-backref-module-scipy-optimize sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">res</span></a> <span class="o">=</span> <span class="n">get_max_irf</span><span class="p">(</span>
         <span class="n">acp_workflow</span><span class="o">=</span><span class="n">acp_workflow</span><span class="p">,</span>
-        <span class="n">dpf_server</span><span class="o">=</span><span class="n">dpf_server</span><span class="p">,</span>
+        <a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.server_types.html#ansys.dpf.core.server_types.GrpcServer" title="ansys.dpf.core.server_types.GrpcServer" class="sphx-glr-backref-module-ansys-dpf-core-server_types sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dpf_server</span></a><span class="o">=</span><a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.server_types.html#ansys.dpf.core.server_types.GrpcServer" title="ansys.dpf.core.server_types.GrpcServer" class="sphx-glr-backref-module-ansys-dpf-core-server_types sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dpf_server</span></a><span class="p">,</span>
         <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a><span class="p">,</span>
         <span class="n">failure_criterion</span><span class="o">=</span><span class="n">failure_criterion</span><span class="p">,</span>
     <span class="p">)</span>
@@ -815,7 +815,7 @@ to perform all the necessary steps for a given set of ply angles.</p>
     <span class="n">get_max_irf_for_parameters</span><span class="p">,</span>
     <span class="n">acp_workflow</span><span class="o">=</span><span class="n">acp_workflow</span><span class="p">,</span>
     <span class="n">mapdl</span><span class="o">=</span><span class="n">mapdl</span><span class="p">,</span>
-    <span class="n">dpf_server</span><span class="o">=</span><span class="n">dpf_server</span><span class="p">,</span>
+    <a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.server_types.html#ansys.dpf.core.server_types.GrpcServer" title="ansys.dpf.core.server_types.GrpcServer" class="sphx-glr-backref-module-ansys-dpf-core-server_types sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dpf_server</span></a><span class="o">=</span><a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.server_types.html#ansys.dpf.core.server_types.GrpcServer" title="ansys.dpf.core.server_types.GrpcServer" class="sphx-glr-backref-module-ansys-dpf-core-server_types sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dpf_server</span></a><span class="p">,</span>
     <span class="n">failure_criterion</span><span class="o">=</span><span class="n">combined_failure_criterion</span><span class="p">,</span>
     <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">,</span>
     <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="p">,</span>
@@ -978,13 +978,16 @@ converge to the following result:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_009_optimization_003.png" srcset="../../_images/sphx_glr_009_optimization_003.png" alt="009 optimization" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 51.297 seconds)</p>
+<img src="../../_images/sphx_glr_009_optimization_003.png" srcset="../../_images/sphx_glr_009_optimization_003.png" alt="009 optimization" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 41.595 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-009-optimization-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8d7024d05cde2351b7f71b13506a23d9/009_optimization.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">009_optimization.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/96df81647f82660782f304c6a5b32d89/009_optimization.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">009_optimization.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/96eb8435184f959f2cae97fec8b3e5a6/009_optimization.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">009_optimization.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -1066,7 +1069,7 @@ converge to the following result:</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
     <br/>
   </p>
 </div>

@@ -31,7 +31,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -582,7 +582,7 @@ This example’s input file contains a flat plate with a single ply.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpbf9aes0e
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmp2k00kvj6
 mks
 </pre></div>
 </div>
@@ -617,10 +617,10 @@ mks
 <p>Plot the orientation and reference direction of the OSS.
 The reference direction is defined by the rosette.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span>
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="p">[</span><span class="n">oss</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">orientation</span><span class="p">,</span> <span class="n">oss</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">reference_direction</span><span class="p">]</span>
 <span class="p">)</span>
-<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -680,10 +680,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 <p>Plot the orientation and the reference direction of the OSS.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span>
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="p">[</span><span class="n">oss</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">orientation</span><span class="p">,</span> <span class="n">oss</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">reference_direction</span><span class="p">]</span>
 <span class="p">)</span>
-<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -740,14 +740,14 @@ Compute a correction angle to define circular fiber paths.</p>
 </div>
 <p>Plot the directions of the modeling ply. First, plot the directions without correction angles.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span>
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
     <span class="n">components</span><span class="o">=</span><span class="p">[</span>
         <span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">fiber_direction</span><span class="p">,</span>
         <span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">transverse_direction</span><span class="p">,</span>
     <span class="p">],</span>
 <span class="p">)</span>
-<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -763,14 +763,14 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <p>Next, plot the draped directions, including the correction angles, from the lookup table.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <span class="n">get_directions_plotter</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
     <span class="n">components</span><span class="o">=</span><span class="p">[</span>
         <span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">draped_fiber_direction</span><span class="p">,</span>
         <span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">draped_transverse_direction</span><span class="p">,</span>
     <span class="p">],</span>
 <span class="p">)</span>
-<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -785,13 +785,16 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_007_direction_definitions_004.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.416 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 4.292 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-007-direction-definitions-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/99a8d9930dfea4614bfb3bab541944c7/007_direction_definitions.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">007_direction_definitions.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/16e1479d1b2ff4ffd83fae45ca2bdd75/007_direction_definitions.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">007_direction_definitions.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/04ed0d64f9ce5c38d4780cd5bfc3bfee/007_direction_definitions.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">007_direction_definitions.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -873,7 +876,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
     <br/>
   </p>
 </div>
