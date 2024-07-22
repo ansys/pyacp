@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1721022090471,
+  "lastUpdate": 1721631604411,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15058,6 +15058,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002206119918917137",
             "extra": "mean: 807.6304772374217 usec\nrounds: 1911"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "dominik.gresch@ansys.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "distinct": true,
+          "id": "dba9c86956eb5763117fac7dec38ea51c0b578a1",
+          "message": "Remove now-redundant type cast",
+          "timestamp": "2024-07-22T08:57:15+02:00",
+          "tree_id": "3fb6d938b66a5669310cafeb444b459f7731b6d6",
+          "url": "https://github.com/ansys/pyacp/commit/dba9c86956eb5763117fac7dec38ea51c0b578a1"
+        },
+        "date": 1721631585991,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 6.356905009183006,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005543953668913171",
+            "extra": "mean: 157.30925639999782 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1284.0377045492414,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019792499954224139",
+            "extra": "mean: 778.7933301779856 usec\nrounds: 1690"
           }
         ]
       }
