@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1721631604411,
+  "lastUpdate": 1722233624494,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15096,6 +15096,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00019792499954224139",
             "extra": "mean: 778.7933301779856 usec\nrounds: 1690"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2800e91dbfe767623483b9322b260b665c12f72f",
+          "message": "Bump the dependencies group with 4 updates (#551)\n\nBumps the dependencies group with 4 updates: [grpcio-health-checking](https://grpc.io), [pre-commit](https://github.com/pre-commit/pre-commit), [pytest](https://github.com/pytest-dev/pytest) and [hypothesis](https://github.com/HypothesisWorks/hypothesis).\r\n\r\n\r\nUpdates `grpcio-health-checking` from 1.48.2 to 1.62.2\r\n\r\nUpdates `pre-commit` from 3.7.1 to 3.8.0\r\n- [Release notes](https://github.com/pre-commit/pre-commit/releases)\r\n- [Changelog](https://github.com/pre-commit/pre-commit/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/pre-commit/pre-commit/compare/v3.7.1...v3.8.0)\r\n\r\nUpdates `pytest` from 8.3.1 to 8.3.2\r\n- [Release notes](https://github.com/pytest-dev/pytest/releases)\r\n- [Changelog](https://github.com/pytest-dev/pytest/blob/main/CHANGELOG.rst)\r\n- [Commits](https://github.com/pytest-dev/pytest/compare/8.3.1...8.3.2)\r\n\r\nUpdates `hypothesis` from 6.108.2 to 6.108.5\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.108.2...hypothesis-python-6.108.5)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: grpcio-health-checking\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: pre-commit\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: pytest\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-07-29T08:11:02+02:00",
+          "tree_id": "1e0f79ff0b2ca03a0cef3460a544a0b8efd5b660",
+          "url": "https://github.com/ansys/pyacp/commit/2800e91dbfe767623483b9322b260b665c12f72f"
+        },
+        "date": 1722233608150,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 8.78482072057511,
+            "unit": "iter/sec",
+            "range": "stddev: 0.015450118458565608",
+            "extra": "mean: 113.8327157500072 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1338.625038871985,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022254373961537064",
+            "extra": "mean: 747.0351823410288 usec\nrounds: 1914"
           }
         ]
       }
