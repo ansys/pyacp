@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1722233624494,
+  "lastUpdate": 1722839107213,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15134,6 +15134,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00022254373961537064",
             "extra": "mean: 747.0351823410288 usec\nrounds: 1914"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2d5db9d654aa2945f79615857005e95a43104179",
+          "message": "Bump the dependencies group with 5 updates (#553)\n\nBumps the dependencies group with 5 updates:\r\n\r\n| Package | From | To |\r\n| --- | --- | --- |\r\n| [ansys-dpf-core](https://github.com/ansys/pydpf-core) | `0.12.2` | `0.13.0` |\r\n| [black](https://github.com/psf/black) | `24.4.2` | `24.8.0` |\r\n| [mypy](https://github.com/python/mypy) | `1.11.0` | `1.11.1` |\r\n| [sphinx-design](https://github.com/executablebooks/sphinx-design) | `0.6.0` | `0.6.1` |\r\n| [hypothesis](https://github.com/HypothesisWorks/hypothesis) | `6.108.5` | `6.108.8` |\r\n\r\n\r\nUpdates `ansys-dpf-core` from 0.12.2 to 0.13.0\r\n- [Release notes](https://github.com/ansys/pydpf-core/releases)\r\n- [Commits](https://github.com/ansys/pydpf-core/compare/v0.12.2...v0.13.0)\r\n\r\nUpdates `black` from 24.4.2 to 24.8.0\r\n- [Release notes](https://github.com/psf/black/releases)\r\n- [Changelog](https://github.com/psf/black/blob/main/CHANGES.md)\r\n- [Commits](https://github.com/psf/black/compare/24.4.2...24.8.0)\r\n\r\nUpdates `mypy` from 1.11.0 to 1.11.1\r\n- [Changelog](https://github.com/python/mypy/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/python/mypy/compare/v1.11...v1.11.1)\r\n\r\nUpdates `sphinx-design` from 0.6.0 to 0.6.1\r\n- [Release notes](https://github.com/executablebooks/sphinx-design/releases)\r\n- [Changelog](https://github.com/executablebooks/sphinx-design/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/executablebooks/sphinx-design/compare/v0.6.0...v0.6.1)\r\n\r\nUpdates `hypothesis` from 6.108.5 to 6.108.8\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.108.5...hypothesis-python-6.108.8)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: ansys-dpf-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: black\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: mypy\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: sphinx-design\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-08-05T08:22:05+02:00",
+          "tree_id": "90e3835bf1c1ed97a7f6b50424e8c382f9fb1f42",
+          "url": "https://github.com/ansys/pyacp/commit/2d5db9d654aa2945f79615857005e95a43104179"
+        },
+        "date": 1722839090894,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 8.511456149205078,
+            "unit": "iter/sec",
+            "range": "stddev: 0.016708233710771063",
+            "extra": "mean: 117.48870962501456 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1364.9571088767257,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00021717270723922225",
+            "extra": "mean: 732.6237531543665 usec\nrounds: 1823"
           }
         ]
       }
