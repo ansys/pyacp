@@ -33,10 +33,6 @@ PyACP
 
 A Python client for Ansys Composite PrepPost (ACP).
 
-.. note::
-
-    PyACP requires Ansys 2024 R2 to run. Unless you have advance access to the Ansys 2024 R2 release, you will not be able to use PyACP until the release is publicly available.
-
 Overview
 --------
 
