@@ -361,13 +361,13 @@ tests = ["ansys-mapdl-core (==0.68.1)", "numpy (==1.26.4)", "pyansys-tools-repor
 
 [[package]]
 name = "ansys-mechanical-core"
-version = "0.11.3"
+version = "0.11.4"
 description = "A python wrapper for Ansys Mechanical"
 optional = false
 python-versions = "<4.0,>=3.9"
 files = [
-    {file = "ansys_mechanical_core-0.11.3-py3-none-any.whl", hash = "sha256:04edf8e578261b813ed0463d0db17e20f745eaff4fec2362f244bbf381f43a42"},
-    {file = "ansys_mechanical_core-0.11.3.tar.gz", hash = "sha256:a627b3981bd5efe2fe0813702f3592426f9e09ccef610735d3730cdc4de2e4d7"},
+    {file = "ansys_mechanical_core-0.11.4-py3-none-any.whl", hash = "sha256:1f6249886c4944cd4d8eef38ab52eb400fcfdbc0b4ffa601d40aec1bf0e5fcd2"},
+    {file = "ansys_mechanical_core-0.11.4.tar.gz", hash = "sha256:c0fe520d82a7ec29555109d7a4a3549d80999cd3ab4cf8edf01ea93fae6de926"},
 ]
 
 [package.dependencies]
@@ -384,9 +384,9 @@ protobuf = ">=3.12.2,<6"
 tqdm = ">=4.45.0"
 
 [package.extras]
-doc = ["ansys-sphinx-theme[autoapi] (==0.16.6)", "grpcio (==1.64.1)", "imageio (==2.34.2)", "imageio-ffmpeg (==0.5.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.9.1)", "numpy (==2.0.0)", "numpydoc (==1.7.0)", "pandas (==2.2.2)", "panel (==1.4.4)", "plotly (==5.22.0)", "pypandoc (==1.13)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "pyvista (>=0.39.1)", "sphinx (==7.4.4)", "sphinx-autobuild (==2024.4.16)", "sphinx-autodoc-typehints (==2.2.2)", "sphinx-copybutton (==0.5.2)", "sphinx-gallery (==0.16.0)", "sphinx-notfound-page (==1.0.2)", "sphinx_design (==0.6.0)", "sphinxcontrib-websupport (==1.2.7)", "sphinxemoji (==0.3.1)"]
-tests = ["pytest (==8.2.2)", "pytest-cov (==5.0.0)", "pytest-print (==1.0.0)"]
-viz = ["pyvista (>=0.39.1)", "usd-core (==24.3)"]
+doc = ["ansys-sphinx-theme[autoapi] (==0.16.6)", "grpcio (==1.65.4)", "imageio (==2.34.2)", "imageio-ffmpeg (==0.5.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.9.1)", "numpy (==2.0.1)", "numpydoc (==1.7.0)", "pandas (==2.2.2)", "panel (==1.4.4)", "plotly (==5.23.0)", "pypandoc (==1.13)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "pyvista (>=0.39.1)", "sphinx (==7.4.7)", "sphinx-autobuild (==2024.4.16)", "sphinx-autodoc-typehints (==2.2.3)", "sphinx-copybutton (==0.5.2)", "sphinx-gallery (==0.17.0)", "sphinx-notfound-page (==1.0.2)", "sphinx_design (==0.6.0)", "sphinxcontrib-websupport (==2.0.0)", "sphinxemoji (==0.3.1)"]
+tests = ["pytest (==8.3.2)", "pytest-cov (==5.0.0)", "pytest-print (==1.0.0)"]
+viz = ["ansys-tools-visualization-interface (>=0.2.6)", "usd-core (==24.8)"]
 
 [[package]]
 name = "ansys-mechanical-env"
@@ -439,24 +439,25 @@ clr-loader = ">=0.2.6,<0.3.0"
 
 [[package]]
 name = "ansys-sphinx-theme"
-version = "0.16.6"
+version = "1.0.3"
 description = "A theme devised by ANSYS, Inc. for Sphinx documentation."
 optional = false
 python-versions = "<4,>=3.9"
 files = [
-    {file = "ansys_sphinx_theme-0.16.6-py3-none-any.whl", hash = "sha256:9f19caeb4bbe3b6426f8d49d5c6fc2a85bbf2b5a6529229c3845df6d7b272bc0"},
-    {file = "ansys_sphinx_theme-0.16.6.tar.gz", hash = "sha256:c045cfb4f0baf2e5feb7688247ea37ad0286a7494ef1f751bfce753cae8c558c"},
+    {file = "ansys_sphinx_theme-1.0.3-py3-none-any.whl", hash = "sha256:6055a1175170698d6592f78fe79b8cc913973dd57183cad272ae9889704c7a9e"},
+    {file = "ansys_sphinx_theme-1.0.3.tar.gz", hash = "sha256:3c34b310e8ef7081ee8c650d2fd4d1a64dfbd133adcfced3d5b92237bbefc210"},
 ]
 
 [package.dependencies]
 importlib-metadata = ">=4.0"
 Jinja2 = ">=3.1.2"
-pydata-sphinx-theme = ">=0.14,<0.15"
+pdf2image = ">=1.17.0"
+pydata-sphinx-theme = ">=0.15.4,<0.16"
 Sphinx = ">=4.2.0"
 
 [package.extras]
-autoapi = ["sphinx-autoapi (==3.1.1)", "sphinx-design (==0.6.0)", "sphinx-jinja (==2.0.2)"]
-doc = ["PyGitHub (==2.3.0)", "Sphinx (==7.3.7)", "numpydoc (==1.7.0)", "requests (==2.32.2)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.6.0)", "sphinx-jinja (==2.0.2)", "sphinx-notfound-page (==1.0.2)"]
+autoapi = ["sphinx-autoapi (==3.1.1)", "sphinx-design (==0.6.1)", "sphinx-jinja (==2.0.2)"]
+doc = ["Pillow (>=9.0)", "PyGitHub (==2.3.0)", "Sphinx (==8.0.2)", "jupytext (==1.16.4)", "nbsphinx (==0.9.4)", "notebook (==7.2.1)", "numpydoc (==1.7.0)", "pandas (==2.2.2)", "pyvista[jupyter] (==0.44.1)", "requests (==2.32.3)", "sphinx-autoapi (==3.2.1)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.6.1)", "sphinx-gallery (==0.17.1)", "sphinx-jinja (==2.0.2)", "sphinx-notfound-page (==1.0.4)"]
 
 [[package]]
 name = "ansys-tools-filetransfer"
@@ -1688,17 +1689,17 @@ protobuf = ["grpcio-tools (>=1.65.4)"]
 
 [[package]]
 name = "grpcio-health-checking"
-version = "1.62.2"
+version = "1.62.3"
 description = "Standard Health Checking Service for gRPC"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "grpcio-health-checking-1.62.2.tar.gz", hash = "sha256:a44d1ea1e1510b5c62265dada04d86621bb1491d75de987713c9c0ea005c10a8"},
-    {file = "grpcio_health_checking-1.62.2-py3-none-any.whl", hash = "sha256:f0d77e02457aa00e98ce12c741dca6df7e34dbcc3859681c4a473dc589288e56"},
+    {file = "grpcio-health-checking-1.62.3.tar.gz", hash = "sha256:5074ba0ce8f0dcfe328408ec5c7551b2a835720ffd9b69dade7fa3e0dc1c7a93"},
+    {file = "grpcio_health_checking-1.62.3-py3-none-any.whl", hash = "sha256:f29da7dd144d73b4465fe48f011a91453e9ff6c8af0d449254cf80021cab3e0d"},
 ]
 
 [package.dependencies]
-grpcio = ">=1.62.2"
+grpcio = ">=1.62.3"
 protobuf = ">=4.21.6"
 
 [[package]]
@@ -1717,13 +1718,13 @@ pyparsing = {version = ">=2.4.2,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.0.2 || >3.0
 
 [[package]]
 name = "hypothesis"
-version = "6.108.8"
+version = "6.111.0"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "hypothesis-6.108.8-py3-none-any.whl", hash = "sha256:33e8bbc25c2f40d931327b210e9de5639eb954743c97984bcc19bdc7ef21a625"},
-    {file = "hypothesis-6.108.8.tar.gz", hash = "sha256:310eb6ce1ae7cbb34195ec76b054572c182d008564a42069883920f4ab3c80ac"},
+    {file = "hypothesis-6.111.0-py3-none-any.whl", hash = "sha256:7a51f678da3719a04a3ef61cd241384dd93b49f35d7cce22833745c66ac1d507"},
+    {file = "hypothesis-6.111.0.tar.gz", hash = "sha256:04d0703621d9fdd61c079a4dda07babbe7ebf6d34eee6ad9484a2af0ee721801"},
 ]
 
 [package.dependencies]
@@ -1732,10 +1733,10 @@ exceptiongroup = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 sortedcontainers = ">=2.1.0,<3.0.0"
 
 [package.extras]
-all = ["backports.zoneinfo (>=0.2.1)", "black (>=19.10b0)", "click (>=7.0)", "crosshair-tool (>=0.0.65)", "django (>=3.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.11)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.17.3)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2024.1)"]
+all = ["backports.zoneinfo (>=0.2.1)", "black (>=19.10b0)", "click (>=7.0)", "crosshair-tool (>=0.0.66)", "django (>=3.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.12)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.17.3)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2024.1)"]
 cli = ["black (>=19.10b0)", "click (>=7.0)", "rich (>=9.0.0)"]
 codemods = ["libcst (>=0.3.16)"]
-crosshair = ["crosshair-tool (>=0.0.65)", "hypothesis-crosshair (>=0.0.11)"]
+crosshair = ["crosshair-tool (>=0.0.66)", "hypothesis-crosshair (>=0.0.12)"]
 dateutil = ["python-dateutil (>=1.4)"]
 django = ["django (>=3.2)"]
 dpcontracts = ["dpcontracts (>=0.4)"]
@@ -2392,35 +2393,40 @@ files = [
 
 [[package]]
 name = "matplotlib"
-version = "3.9.1"
+version = "3.9.1.post1"
 description = "Python plotting package"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "matplotlib-3.9.1-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:7ccd6270066feb9a9d8e0705aa027f1ff39f354c72a87efe8fa07632f30fc6bb"},
-    {file = "matplotlib-3.9.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:591d3a88903a30a6d23b040c1e44d1afdd0d778758d07110eb7596f811f31842"},
-    {file = "matplotlib-3.9.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:dd2a59ff4b83d33bca3b5ec58203cc65985367812cb8c257f3e101632be86d92"},
-    {file = "matplotlib-3.9.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0fc001516ffcf1a221beb51198b194d9230199d6842c540108e4ce109ac05cc0"},
-    {file = "matplotlib-3.9.1-cp310-cp310-musllinux_1_2_x86_64.whl", hash = "sha256:83c6a792f1465d174c86d06f3ae85a8fe36e6f5964633ae8106312ec0921fdf5"},
-    {file = "matplotlib-3.9.1-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:b3fce58971b465e01b5c538f9d44915640c20ec5ff31346e963c9e1cd66fa812"},
-    {file = "matplotlib-3.9.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:a973c53ad0668c53e0ed76b27d2eeeae8799836fd0d0caaa4ecc66bf4e6676c0"},
-    {file = "matplotlib-3.9.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:82cd5acf8f3ef43f7532c2f230249720f5dc5dd40ecafaf1c60ac8200d46d7eb"},
-    {file = "matplotlib-3.9.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ab38a4f3772523179b2f772103d8030215b318fef6360cb40558f585bf3d017f"},
-    {file = "matplotlib-3.9.1-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:2315837485ca6188a4b632c5199900e28d33b481eb083663f6a44cfc8987ded3"},
-    {file = "matplotlib-3.9.1-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:565d572efea2b94f264dd86ef27919515aa6d629252a169b42ce5f570db7f37b"},
-    {file = "matplotlib-3.9.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:6d397fd8ccc64af2ec0af1f0efc3bacd745ebfb9d507f3f552e8adb689ed730a"},
-    {file = "matplotlib-3.9.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:26040c8f5121cd1ad712abffcd4b5222a8aec3a0fe40bc8542c94331deb8780d"},
-    {file = "matplotlib-3.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d12cb1837cffaac087ad6b44399d5e22b78c729de3cdae4629e252067b705e2b"},
-    {file = "matplotlib-3.9.1-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:0e835c6988edc3d2d08794f73c323cc62483e13df0194719ecb0723b564e0b5c"},
-    {file = "matplotlib-3.9.1-cp39-cp39-macosx_10_12_x86_64.whl", hash = "sha256:0c584210c755ae921283d21d01f03a49ef46d1afa184134dd0f95b0202ee6f03"},
-    {file = "matplotlib-3.9.1-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:11fed08f34fa682c2b792942f8902e7aefeed400da71f9e5816bea40a7ce28fe"},
-    {file = "matplotlib-3.9.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:0000354e32efcfd86bda75729716b92f5c2edd5b947200be9881f0a671565c33"},
-    {file = "matplotlib-3.9.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4db17fea0ae3aceb8e9ac69c7e3051bae0b3d083bfec932240f9bf5d0197a049"},
-    {file = "matplotlib-3.9.1-cp39-cp39-musllinux_1_2_x86_64.whl", hash = "sha256:208cbce658b72bf6a8e675058fbbf59f67814057ae78165d8a2f87c45b48d0ff"},
-    {file = "matplotlib-3.9.1-pp39-pypy39_pp73-macosx_10_15_x86_64.whl", hash = "sha256:3fda72d4d472e2ccd1be0e9ccb6bf0d2eaf635e7f8f51d737ed7e465ac020cb3"},
-    {file = "matplotlib-3.9.1-pp39-pypy39_pp73-macosx_11_0_arm64.whl", hash = "sha256:84b3ba8429935a444f1fdc80ed930babbe06725bcf09fbeb5c8757a2cd74af04"},
-    {file = "matplotlib-3.9.1-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b918770bf3e07845408716e5bbda17eadfc3fcbd9307dc67f37d6cf834bb3d98"},
-    {file = "matplotlib-3.9.1.tar.gz", hash = "sha256:de06b19b8db95dd33d0dc17c926c7c9ebed9f572074b6fac4f65068a6814d010"},
+    {file = "matplotlib-3.9.1.post1-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:3779ad3e8b72df22b8a622c5796bbcfabfa0069b835412e3c1dec8ee3de92d0c"},
+    {file = "matplotlib-3.9.1.post1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:ec400340f8628e8e2260d679078d4e9b478699f386e5cc8094e80a1cb0039c7c"},
+    {file = "matplotlib-3.9.1.post1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:82c18791b8862ea095081f745b81f896b011c5a5091678fb33204fef641476af"},
+    {file = "matplotlib-3.9.1.post1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:621a628389c09a6b9f609a238af8e66acecece1cfa12febc5fe4195114ba7446"},
+    {file = "matplotlib-3.9.1.post1-cp310-cp310-musllinux_1_2_x86_64.whl", hash = "sha256:9a54734ca761ebb27cd4f0b6c2ede696ab6861052d7d7e7b8f7a6782665115f5"},
+    {file = "matplotlib-3.9.1.post1-cp310-cp310-win_amd64.whl", hash = "sha256:0721f93db92311bb514e446842e2b21c004541dcca0281afa495053e017c5458"},
+    {file = "matplotlib-3.9.1.post1-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:b08b46058fe2a31ecb81ef6aa3611f41d871f6a8280e9057cb4016cb3d8e894a"},
+    {file = "matplotlib-3.9.1.post1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:22b344e84fcc574f561b5731f89a7625db8ef80cdbb0026a8ea855a33e3429d1"},
+    {file = "matplotlib-3.9.1.post1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:4b49fee26d64aefa9f061b575f0f7b5fc4663e51f87375c7239efa3d30d908fa"},
+    {file = "matplotlib-3.9.1.post1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:89eb7e89e2b57856533c5c98f018aa3254fa3789fcd86d5f80077b9034a54c9a"},
+    {file = "matplotlib-3.9.1.post1-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:c06e742bade41fda6176d4c9c78c9ea016e176cd338e62a1686384cb1eb8de41"},
+    {file = "matplotlib-3.9.1.post1-cp311-cp311-win_amd64.whl", hash = "sha256:c44edab5b849e0fc1f1c9d6e13eaa35ef65925f7be45be891d9784709ad95561"},
+    {file = "matplotlib-3.9.1.post1-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:bf28b09986aee06393e808e661c3466be9c21eff443c9bc881bce04bfbb0c500"},
+    {file = "matplotlib-3.9.1.post1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:92aeb8c439d4831510d8b9d5e39f31c16c7f37873879767c26b147cef61e54cd"},
+    {file = "matplotlib-3.9.1.post1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:f15798b0691b45c80d3320358a88ce5a9d6f518b28575b3ea3ed31b4bd95d009"},
+    {file = "matplotlib-3.9.1.post1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d59fc6096da7b9c1df275f9afc3fef5cbf634c21df9e5f844cba3dd8deb1847d"},
+    {file = "matplotlib-3.9.1.post1-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:ab986817a32a70ce22302438691e7df4c6ee4a844d47289db9d583d873491e0b"},
+    {file = "matplotlib-3.9.1.post1-cp312-cp312-win_amd64.whl", hash = "sha256:0d78e7d2d86c4472da105d39aba9b754ed3dfeaeaa4ac7206b82706e0a5362fa"},
+    {file = "matplotlib-3.9.1.post1-cp39-cp39-macosx_10_12_x86_64.whl", hash = "sha256:bd07eba6431b4dc9253cce6374a28c415e1d3a7dc9f8aba028ea7592f06fe172"},
+    {file = "matplotlib-3.9.1.post1-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:ca230cc4482010d646827bd2c6d140c98c361e769ae7d954ebf6fff2a226f5b1"},
+    {file = "matplotlib-3.9.1.post1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ace27c0fdeded399cbc43f22ffa76e0f0752358f5b33106ec7197534df08725a"},
+    {file = "matplotlib-3.9.1.post1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9a4f3aeb7ba14c497dc6f021a076c48c2e5fbdf3da1e7264a5d649683e284a2f"},
+    {file = "matplotlib-3.9.1.post1-cp39-cp39-musllinux_1_2_x86_64.whl", hash = "sha256:23f96fbd4ff4cfa9b8a6b685a65e7eb3c2ced724a8d965995ec5c9c2b1f7daf5"},
+    {file = "matplotlib-3.9.1.post1-cp39-cp39-win_amd64.whl", hash = "sha256:2808b95452b4ffa14bfb7c7edffc5350743c31bda495f0d63d10fdd9bc69e895"},
+    {file = "matplotlib-3.9.1.post1-pp39-pypy39_pp73-macosx_10_15_x86_64.whl", hash = "sha256:ffc91239f73b4179dec256b01299d46d0ffa9d27d98494bc1476a651b7821cbe"},
+    {file = "matplotlib-3.9.1.post1-pp39-pypy39_pp73-macosx_11_0_arm64.whl", hash = "sha256:f965ebca9fd4feaaca45937c4849d92b70653057497181100fcd1e18161e5f29"},
+    {file = "matplotlib-3.9.1.post1-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:801ee9323fd7b2da0d405aebbf98d1da77ea430bbbbbec6834c0b3af15e5db44"},
+    {file = "matplotlib-3.9.1.post1-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:50113e9b43ceb285739f35d43db36aa752fb8154325b35d134ff6e177452f9ec"},
+    {file = "matplotlib-3.9.1.post1.tar.gz", hash = "sha256:c91e585c65092c975a44dc9d4239ba8c594ba3c193d7c478b6d178c4ef61f406"},
 ]
 
 [package.dependencies]
@@ -2849,13 +2855,13 @@ files = [
 
 [[package]]
 name = "numpydoc"
-version = "1.7.0"
+version = "1.8.0"
 description = "Sphinx extension to support docstrings in Numpy format"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "numpydoc-1.7.0-py3-none-any.whl", hash = "sha256:5a56419d931310d79a06cfc2a126d1558700feeb9b4f3d8dcae1a8134be829c9"},
-    {file = "numpydoc-1.7.0.tar.gz", hash = "sha256:866e5ae5b6509dcf873fc6381120f5c31acf13b135636c1a81d68c166a95f921"},
+    {file = "numpydoc-1.8.0-py3-none-any.whl", hash = "sha256:72024c7fd5e17375dec3608a27c03303e8ad00c81292667955c6fea7a3ccf541"},
+    {file = "numpydoc-1.8.0.tar.gz", hash = "sha256:022390ab7464a44f8737f79f8b31ce1d3cfa4b4af79ccaa1aac5e8368db587fb"},
 ]
 
 [package.dependencies]
@@ -2865,7 +2871,7 @@ tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
 
 [package.extras]
 developer = ["pre-commit (>=3.3)", "tomli"]
-doc = ["matplotlib (>=3.5)", "numpy (>=1.22)", "pydata-sphinx-theme (>=0.13.3)", "sphinx (>=7)"]
+doc = ["intersphinx-registry", "matplotlib (>=3.5)", "numpy (>=1.22)", "pydata-sphinx-theme (>=0.13.3)", "sphinx (>=7)"]
 test = ["matplotlib", "pytest", "pytest-cov"]
 
 [[package]]
@@ -2926,6 +2932,20 @@ files = [
     {file = "pathspec-0.12.1-py3-none-any.whl", hash = "sha256:a0d503e138a4c123b27490a4f7beda6a01c6f288df0e4a8b79c7eb0dc7b4cc08"},
     {file = "pathspec-0.12.1.tar.gz", hash = "sha256:a482d51503a1ab33b1c67a6c3813a26953dbdc71c31dacaef9a838c4e29f5712"},
 ]
+
+[[package]]
+name = "pdf2image"
+version = "1.17.0"
+description = "A wrapper around the pdftoppm and pdftocairo command line tools to convert PDF to a PIL Image list."
+optional = false
+python-versions = "*"
+files = [
+    {file = "pdf2image-1.17.0-py3-none-any.whl", hash = "sha256:ecdd58d7afb810dffe21ef2b1bbc057ef434dabbac6c33778a38a3f7744a27e2"},
+    {file = "pdf2image-1.17.0.tar.gz", hash = "sha256:eaa959bc116b420dd7ec415fcae49b98100dda3dd18cd2fdfa86d09f112f6d57"},
+]
+
+[package.dependencies]
+pillow = "*"
 
 [[package]]
 name = "pexpect"
@@ -3278,13 +3298,13 @@ files = [
 
 [[package]]
 name = "pydata-sphinx-theme"
-version = "0.14.4"
+version = "0.15.4"
 description = "Bootstrap-based Sphinx theme from the PyData community"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "pydata_sphinx_theme-0.14.4-py3-none-any.whl", hash = "sha256:ac15201f4c2e2e7042b0cad8b30251433c1f92be762ddcefdb4ae68811d918d9"},
-    {file = "pydata_sphinx_theme-0.14.4.tar.gz", hash = "sha256:f5d7a2cb7a98e35b9b49d3b02cec373ad28958c2ed5c9b1ffe6aff6c56e9de5b"},
+    {file = "pydata_sphinx_theme-0.15.4-py3-none-any.whl", hash = "sha256:2136ad0e9500d0949f96167e63f3e298620040aea8f9c74621959eda5d4cf8e6"},
+    {file = "pydata_sphinx_theme-0.15.4.tar.gz", hash = "sha256:7762ec0ac59df3acecf49fd2f889e1b4565dbce8b88b2e29ee06fdd90645a06d"},
 ]
 
 [package.dependencies]
@@ -3294,14 +3314,15 @@ beautifulsoup4 = "*"
 docutils = "!=0.17.0"
 packaging = "*"
 pygments = ">=2.7"
-sphinx = ">=5.0"
+sphinx = ">=5"
 typing-extensions = "*"
 
 [package.extras]
 a11y = ["pytest-playwright"]
-dev = ["nox", "pre-commit", "pydata-sphinx-theme[doc,test]", "pyyaml"]
-doc = ["ablog (>=0.11.0rc2)", "colorama", "ipykernel", "ipyleaflet", "jupyter_sphinx", "jupyterlite-sphinx", "linkify-it-py", "matplotlib", "myst-parser", "nbsphinx", "numpy", "numpydoc", "pandas", "plotly", "rich", "sphinx-autoapi (>=3.0.0)", "sphinx-copybutton", "sphinx-design", "sphinx-favicon (>=1.0.1)", "sphinx-sitemap", "sphinx-togglebutton", "sphinxcontrib-youtube (<1.4)", "sphinxext-rediraffe", "xarray"]
-test = ["pytest", "pytest-cov", "pytest-regressions"]
+dev = ["pandoc", "pre-commit", "pydata-sphinx-theme[doc,test]", "pyyaml", "sphinx-theme-builder[cli]", "tox"]
+doc = ["ablog (>=0.11.8)", "colorama", "graphviz", "ipykernel", "ipyleaflet", "ipywidgets", "jupyter_sphinx", "jupyterlite-sphinx", "linkify-it-py", "matplotlib", "myst-parser", "nbsphinx", "numpy", "numpydoc", "pandas", "plotly", "rich", "sphinx-autoapi (>=3.0.0)", "sphinx-copybutton", "sphinx-design", "sphinx-favicon (>=1.0.1)", "sphinx-sitemap", "sphinx-togglebutton", "sphinxcontrib-youtube (>=1.4.1)", "sphinxext-rediraffe", "xarray"]
+i18n = ["Babel", "jinja2"]
+test = ["pytest", "pytest-cov", "pytest-regressions", "sphinx[test]"]
 
 [[package]]
 name = "pygments"
@@ -4136,13 +4157,13 @@ theme-sbt = ["sphinx-book-theme (>=1.1,<2.0)"]
 
 [[package]]
 name = "sphinx-gallery"
-version = "0.17.0"
+version = "0.17.1"
 description = "A Sphinx extension that builds an HTML gallery of examples from any set of Python scripts."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "sphinx_gallery-0.17.0-py3-none-any.whl", hash = "sha256:245c02d5cd156d568e978a562091c871255affe41f1a52e9b9eb5023f891cdb9"},
-    {file = "sphinx_gallery-0.17.0.tar.gz", hash = "sha256:cae4eb8317c7a316813e3ffdc13f92bcb932a54c360c07a94b60fced74a9fd3f"},
+    {file = "sphinx_gallery-0.17.1-py3-none-any.whl", hash = "sha256:0a1142a15a9d63169fe7b12167dc028891fb8db31bfc6d7de03ba0d68d591830"},
+    {file = "sphinx_gallery-0.17.1.tar.gz", hash = "sha256:c9969abcc5ca8c24496014da8260833b8c3ccdb32c17716b5ba66f2e0a3cc183"},
 ]
 
 [package.dependencies]
