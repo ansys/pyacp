@@ -20,7 +20,6 @@ include = ["src/**/docker-compose.yaml"]
 # Less than critical but helpful
 classifiers = [
     "Development Status :: 4 - Beta",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -33,7 +32,7 @@ Issues = "https://github.com/ansys/pyacp/issues"
 Releases = "https://github.com/ansys/pyacp/releases"
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.13"
+python = ">=3.10,<3.13"
 numpy = ">=1.22"
 grpcio-health-checking = ">=1.43"
 packaging = ">=15.0"
@@ -139,7 +138,7 @@ ignore-words-list = 'ans,uptodate,notuptodate,eyt'
 quiet-level = 3
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.10"
 mypy_path = "$MYPY_CONFIG_FILE_DIR/src:$MYPY_CONFIG_FILE_DIR/tests"
 disable_error_code = "type-abstract"
 show_error_context = true
