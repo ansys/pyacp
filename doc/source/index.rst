@@ -18,10 +18,6 @@ PyACP
 
 .. note::
 
-    PyACP requires Ansys 2024 R2 to run. Unless you have advance access to the Ansys 2024 R2 release, you will not be able to use PyACP until the release is publicly available.
-
-.. note::
-
     PyACP is currently released as a beta version. This means that the API may
     change in future releases. We encourage you to try PyACP and provide us with
     feedback.
