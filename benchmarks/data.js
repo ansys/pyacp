@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1723627759556,
+  "lastUpdate": 1724009781125,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15210,6 +15210,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023900283227426777",
             "extra": "mean: 771.0228431007665 usec\nrounds: 2116"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bb2d70e217a20b03e0f63455143b0169fde8953e",
+          "message": "Remove note about 2024R2 server not being released (#552)",
+          "timestamp": "2024-08-18T21:33:30+02:00",
+          "tree_id": "e3ab7a862aa1df80e0388167aa7268b0adee2991",
+          "url": "https://github.com/ansys/pyacp/commit/bb2d70e217a20b03e0f63455143b0169fde8953e"
+        },
+        "date": 1724009762096,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 8.900762010924558,
+            "unit": "iter/sec",
+            "range": "stddev: 0.014848842681326411",
+            "extra": "mean: 112.34993125000159 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1282.467038713375,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002460003108671497",
+            "extra": "mean: 779.7471356482131 usec\nrounds: 2160"
           }
         ]
       }
