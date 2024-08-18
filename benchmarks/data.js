@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1724009781125,
+  "lastUpdate": 1724018738675,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15248,6 +15248,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002460003108671497",
             "extra": "mean: 779.7471356482131 usec\nrounds: 2160"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "eb5056ca886e76366197d491047c1da64ee7a03c",
+          "message": "Update to ansys-sphinx-theme 1.x (#558)\n\nCo-authored-by: René Roos <105842014+roosre@users.noreply.github.com>",
+          "timestamp": "2024-08-19T00:02:54+02:00",
+          "tree_id": "87ee84e046afa8baaed6d0faad0e895e04fbd017",
+          "url": "https://github.com/ansys/pyacp/commit/eb5056ca886e76366197d491047c1da64ee7a03c"
+        },
+        "date": 1724018719494,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 8.87401875482209,
+            "unit": "iter/sec",
+            "range": "stddev: 0.013606663966749453",
+            "extra": "mean: 112.68851549999326 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1268.0382028271993,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002472626335859284",
+            "extra": "mean: 788.6197732611012 usec\nrounds: 2214"
           }
         ]
       }
