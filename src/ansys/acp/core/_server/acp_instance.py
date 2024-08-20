@@ -150,9 +150,20 @@ class ACP(Generic[ServerT]):
             Format of the file to be loaded. Can be one of ``"acp:h5"``,
             ``"ansys:h5"``, ``"ansys:cdb"``, ``"ansys:dat"``, ``"abaqus:inp"``,
             or ``"nastran:bdf"``.
-        kwargs :
-            Additional parameters to be passed to :meth:`Model._from_fe_file`.
-            Not available when ``format`` is "acp:h5".
+        ignored_entities:
+            Entities to ignore when loading the FE file. Can be a subset of
+            the following values:
+            ``"coordinate_systems"``, ``"element_sets"``, ``"materials"``,
+            ``"mesh"``, or ``"shell_sections"``.
+            Available only when the format is not ``"acp:h5"``.
+        convert_section_data:
+            Whether to import the section data of a shell model and convert it
+            into ACP composite definitions.
+            Available only when the format is not ``"acp:h5"``.
+        unit_system:
+            Set the unit system of the model to the given value. Ignored
+            if the unit system is already set in the FE file.
+            Available only when the format is not ``"acp:h5"``.
 
         Returns
         -------
