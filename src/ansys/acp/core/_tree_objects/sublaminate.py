@@ -36,6 +36,7 @@ from ._grpc_helpers.edge_property_list import (
 )
 from ._grpc_helpers.polymorphic_from_pb import tree_object_from_resource_path
 from ._grpc_helpers.property_helper import (
+    _exposed_grpc_property,
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
@@ -51,6 +52,7 @@ __all__ = ["SubLaminate", "Lamina"]
 _LINKABLE_MATERIAL_TYPES = Union[Fabric, Stackup]
 
 
+@mark_grpc_properties
 class Lamina(GenericEdgePropertyType):
     """
     Class to link a material with a sub-laminate.
@@ -69,7 +71,7 @@ class Lamina(GenericEdgePropertyType):
         self.material = material
         self.angle = angle
 
-    @property
+    @_exposed_grpc_property
     def material(self) -> _LINKABLE_MATERIAL_TYPES:
         """Link to an existing fabric or stackup."""
         return self._material
@@ -85,7 +87,7 @@ class Lamina(GenericEdgePropertyType):
         if self._callback_apply_changes:
             self._callback_apply_changes()
 
-    @property
+    @_exposed_grpc_property
     def angle(self) -> float:
         """Orientation angle in degree of the material with respect to the reference direction."""
         return self._angle
@@ -143,6 +145,9 @@ class Lamina(GenericEdgePropertyType):
     def __repr__(self) -> str:
         return f"Lamina(material={self.material.__repr__()}, angle={self.angle})"
 
+    def clone(self) -> Lamina:
+        """Create a clone of the current Lamina object."""
+        return Lamina(material=self.material, angle=self.angle)
 
 @mark_grpc_properties
 @register

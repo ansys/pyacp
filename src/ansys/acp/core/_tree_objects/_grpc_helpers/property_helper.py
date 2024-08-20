@@ -90,10 +90,8 @@ def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
     """Create a getter method which obtains the linked server object."""
 
     def inner(self: Readable) -> CreatableFromResourcePath | None:
-        #  Import here to avoid circular references. Cannot use the registry before
-        #  all the object have been imported.
         if not self._is_stored:
-            raise Exception("Cannot get linked object from unstored object")
+            raise RuntimeError(f"Cannot get linked object '{name}' from unstored object")
         self._get()
         object_resource_path = _get_data_attribute(self._pb_object, name)
 

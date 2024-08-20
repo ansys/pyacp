@@ -42,6 +42,7 @@ ansys-tools-path = ">=0"
 ansys-tools-local-product-launcher = ">=0.1"
 ansys-tools-filetransfer = ">=0.1"
 pyvista = ">=0.42.0"
+networkx = ">=3.0.0"
 
 # Dependencies for the examples. Update also the 'dev' group when
 # these are updated.
@@ -147,8 +148,9 @@ pretty = true
 [[tool.mypy.overrides]]
 module = [
     "docker.*",
-    "grpc.*",
     "grpc_health.*",
+    "grpc.*",
+    "networkx",
     "scipy.optimize",
     "ansys.mapdl",
     "ansys.mapdl.core",
