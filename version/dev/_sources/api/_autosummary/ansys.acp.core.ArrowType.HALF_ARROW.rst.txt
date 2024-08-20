@@ -1,0 +1,6 @@
+HALF\_ARROW
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ArrowType.HALF_ARROW

@@ -1,0 +1,25 @@
+﻿ArrowType
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ArrowType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        ArrowType.NO_ARROW
+      
+      
+        ArrowType.HALF_ARROW
+      
+      
+        ArrowType.STANDARD_ARROW
+      
+   
+   

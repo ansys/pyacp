@@ -1,0 +1,6 @@
+TOP\_OFFSET
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: OffsetType.TOP_OFFSET

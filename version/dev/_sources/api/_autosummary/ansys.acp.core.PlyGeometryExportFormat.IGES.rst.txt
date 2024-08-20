@@ -1,0 +1,6 @@
+IGES
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyGeometryExportFormat.IGES

@@ -561,8 +561,17 @@ document.write(`
 <li><p><strong>format</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">'acp:h5'</span></code>) – Format of the file to be loaded. Can be one of <code class="docutils literal notranslate"><span class="pre">&quot;acp:h5&quot;</span></code>,
 <code class="docutils literal notranslate"><span class="pre">&quot;ansys:h5&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ansys:cdb&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ansys:dat&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;abaqus:inp&quot;</span></code>,
 or <code class="docutils literal notranslate"><span class="pre">&quot;nastran:bdf&quot;</span></code>.</p></li>
-<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional parameters to be passed to <a class="reference internal" href="ansys.acp.core.Model.from_fe_file.html#ansys.acp.core.Model.from_fe_file" title="ansys.acp.core.Model.from_fe_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Model.from_fe_file()</span></code></a>.
-Not available when <code class="docutils literal notranslate"><span class="pre">format</span></code> is “acp:h5”.</p></li>
+<li><p><strong>ignored_entities</strong> – Entities to ignore when loading the FE file. Can be a subset of
+the following values:
+<code class="docutils literal notranslate"><span class="pre">&quot;coordinate_systems&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;element_sets&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;materials&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;mesh&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;shell_sections&quot;</span></code>.
+Available only when the format is not <code class="docutils literal notranslate"><span class="pre">&quot;acp:h5&quot;</span></code>.</p></li>
+<li><p><strong>convert_section_data</strong> – Whether to import the section data of a shell model and convert it
+into ACP composite definitions.
+Available only when the format is not <code class="docutils literal notranslate"><span class="pre">&quot;acp:h5&quot;</span></code>.</p></li>
+<li><p><strong>unit_system</strong> – Set the unit system of the model to the given value. Ignored
+if the unit system is already set in the FE file.
+Available only when the format is not <code class="docutils literal notranslate"><span class="pre">&quot;acp:h5&quot;</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>

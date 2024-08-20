@@ -1,0 +1,6 @@
+STANDARD\_ARROW
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ArrowType.STANDARD_ARROW

@@ -1,0 +1,6 @@
+NO\_ARROW
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ArrowType.NO_ARROW

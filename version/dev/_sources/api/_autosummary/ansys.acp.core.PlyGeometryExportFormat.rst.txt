@@ -1,0 +1,25 @@
+﻿PlyGeometryExportFormat
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: PlyGeometryExportFormat
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        PlyGeometryExportFormat.STEP
+      
+      
+        PlyGeometryExportFormat.IGES
+      
+      
+        PlyGeometryExportFormat.STL
+      
+   
+   
