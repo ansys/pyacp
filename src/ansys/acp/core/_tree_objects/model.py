@@ -110,6 +110,7 @@ from .lookup_table_1d import LookUpTable1D
 from .lookup_table_3d import LookUpTable3D
 from .material import Material
 from .modeling_group import ModelingGroup
+from .modeling_ply import ModelingPly
 from .oriented_selection_set import OrientedSelectionSet
 from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
@@ -285,7 +286,7 @@ class Model(TreeObject):
         return cls._from_object_info(object_info=reply, server_wrapper=server_wrapper)
 
     @classmethod
-    def from_fe_file(
+    def _from_fe_file(
         cls,
         *,
         path: _PATH,
@@ -429,6 +430,7 @@ class Model(TreeObject):
         self,
         path: _PATH,
         *,
+        modeling_plies: Iterable[ModelingPly] | None = None,
         format: PlyGeometryExportFormat = PlyGeometryExportFormat.STEP,
         offset_type: OffsetType = OffsetType.MIDDLE_OFFSET,
         include_surface: bool = True,
@@ -445,6 +447,9 @@ class Model(TreeObject):
         ----------
         path :
             File path to save the geometries to.
+        modeling_plies :
+            List of modeling plies whose geometries should be exported. If not
+            provided, the geometries of all modeling plies in the model are exported.
         format :
             Format of the created file. Can be one of ``"STEP"``, ``"IGES"``,
             or ``"STL"``.
@@ -467,12 +472,13 @@ class Model(TreeObject):
             Type of the arrow used to represent the material directions. Can be
             one of ``"NO_ARROW"``, ``"HALF_ARROW"``, or ``"STANDARD_ARROW"``.
         """
-        all_modeling_plies = [
-            ply
-            for modeling_group in self.modeling_groups.values()
-            for ply in modeling_group.modeling_plies.values()
-        ]
-        mp_resource_paths = [ply._resource_path for ply in all_modeling_plies]
+        if modeling_plies is None:
+            modeling_plies = [
+                ply
+                for modeling_group in self.modeling_groups.values()
+                for ply in modeling_group.modeling_plies.values()
+            ]
+        mp_resource_paths = [ply._resource_path for ply in modeling_plies]
 
         modeling_ply_stub = modeling_ply_pb2_grpc.ObjectServiceStub(self._channel)
 

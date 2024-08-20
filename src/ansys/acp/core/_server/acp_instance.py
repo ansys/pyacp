@@ -151,7 +151,7 @@ class ACP(Generic[ServerT]):
             ``"ansys:h5"``, ``"ansys:cdb"``, ``"ansys:dat"``, ``"abaqus:inp"``,
             or ``"nastran:bdf"``.
         kwargs :
-            Additional parameters to be passed to :meth:`Model.from_fe_file`.
+            Additional parameters to be passed to :meth:`Model._from_fe_file`.
             Not available when ``format`` is "acp:h5".
 
         Returns
@@ -168,7 +168,7 @@ class ACP(Generic[ServerT]):
                 )
             model = Model._from_file(path=path, server_wrapper=server_wrapper)
         else:
-            model = Model.from_fe_file(
+            model = Model._from_fe_file(
                 path=path, server_wrapper=server_wrapper, format=format, **kwargs
             )
         if name is not None:
