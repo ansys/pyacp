@@ -4939,4 +4939,4 @@ examples = ["ansys-dpf-composites", "ansys-mapdl-core", "ansys-mechanical-core",
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "fcb8512081f19b8f731dd14d146c9e7810694055b2f089ac18c708e774a95828"
+content-hash = "8528b628233a1c28d985edc6e5e09888e8ae62c32bdf7941bbf60b8f73d684a2"

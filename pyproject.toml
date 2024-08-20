@@ -38,7 +38,7 @@ numpy = ">=1.22"
 grpcio-health-checking = ">=1.43"
 packaging = ">=15.0"
 typing-extensions = ">=4.5.0"
-ansys-api-acp = "^0.1.dev7"
+ansys-api-acp = "^0.1.dev9"
 ansys-tools-path = ">=0"
 ansys-tools-local-product-launcher = ">=0.1"
 ansys-tools-filetransfer = ">=0.1"
@@ -46,7 +46,7 @@ pyvista = ">=0.42.0"
 
 # Dependencies for the examples. Update also the 'dev' group when
 # these are updated.
-ansys-mapdl-core = { version = ">=0.62.1", optional = true }
+ansys-mapdl-core = { version = ">=0.68.3", optional = true }
 ansys-dpf-composites = { version = ">=0.3", optional = true }
 ansys-dpf-core = { version = ">=0.8", optional = true}
 ansys-mechanical-core = { version = ">=0.10.0", optional = true, python = "<3.12" }
@@ -78,7 +78,7 @@ pyvista = { version = ">=0.42.0", extras = ["jupyter", "trame"] }
 # Repeat optional dependencies from the main group which are
 # included in the 'examples' extra. This is done s.t. the install
 # flag '--with=dev,test' will install all dependencies.
-ansys-mapdl-core = ">=0.62.1"
+ansys-mapdl-core = ">=0.68.3"
 ansys-dpf-composites = { version = ">=0.3"}
 ansys-dpf-core = { version = ">=0.8"}
 ansys-mechanical-core = { version = ">=0.10.0", python = "<3.12" }

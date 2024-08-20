@@ -42,6 +42,7 @@ from .cylindrical_selection_rule import (
 from .edge_set import EdgeSet
 from .element_set import ElementSet, ElementSetElementalData, ElementSetNodalData
 from .enums import (
+    ArrowType,
     BooleanOperationType,
     CutoffMaterialType,
     CutoffRuleType,
@@ -55,7 +56,9 @@ from .enums import (
     LookUpTable3DInterpolationAlgorithm,
     LookUpTableColumnValueType,
     NodalDataType,
+    OffsetType,
     PlyCutoffType,
+    PlyGeometryExportFormat,
     PlyType,
     RosetteSelectionMethod,
     RosetteType,
@@ -118,6 +121,7 @@ __all__ = [
     "AnalysisPly",
     "AnalysisPlyElementalData",
     "AnalysisPlyNodalData",
+    "ArrowType",
     "BooleanOperationType",
     "BooleanSelectionRule",
     "BooleanSelectionRuleElementalData",
@@ -170,6 +174,7 @@ __all__ = [
     "ModelingPlyNodalData",
     "ModelNodalData",
     "NodalDataType",
+    "OffsetType",
     "OrientedSelectionSet",
     "OrientedSelectionSetElementalData",
     "OrientedSelectionSetNodalData",
@@ -177,6 +182,7 @@ __all__ = [
     "ParallelSelectionRuleElementalData",
     "ParallelSelectionRuleNodalData",
     "PlyCutoffType",
+    "PlyGeometryExportFormat",
     "PlyType",
     "ProductionPly",
     "ProductionPlyElementalData",

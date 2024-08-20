@@ -24,9 +24,9 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 import dataclasses
+import typing
 from typing import Any, cast
 
-from grpc import Channel
 import numpy as np
 import numpy.typing as npt
 from pyvista.core.pointset import UnstructuredGrid
@@ -49,8 +49,10 @@ from ansys.api.acp.v0 import (
     model_pb2,
     model_pb2_grpc,
     modeling_group_pb2_grpc,
+    modeling_ply_pb2_grpc,
     oriented_selection_set_pb2_grpc,
     parallel_selection_rule_pb2_grpc,
+    ply_geometry_export_pb2,
     rosette_pb2_grpc,
     sensor_pb2_grpc,
     spherical_selection_rule_pb2_grpc,
@@ -84,20 +86,31 @@ from ._mesh_data import (
     elemental_data_property,
     nodal_data_property,
 )
-from .base import TreeObject
+from .base import ServerWrapper, TreeObject, supported_since
 from .boolean_selection_rule import BooleanSelectionRule
 from .cad_geometry import CADGeometry
 from .cutoff_selection_rule import CutoffSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
 from .element_set import ElementSet
-from .enums import UnitSystemType, unit_system_type_from_pb, unit_system_type_to_pb
+from .enums import (
+    ArrowType,
+    OffsetType,
+    PlyGeometryExportFormat,
+    UnitSystemType,
+    arrow_type_to_pb,
+    offset_type_to_pb,
+    ply_geometry_export_format_to_pb,
+    unit_system_type_from_pb,
+    unit_system_type_to_pb,
+)
 from .fabric import Fabric
 from .geometrical_selection_rule import GeometricalSelectionRule
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_3d import LookUpTable3D
 from .material import Material
 from .modeling_group import ModelingGroup
+from .modeling_ply import ModelingPly
 from .oriented_selection_set import OrientedSelectionSet
 from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
@@ -255,29 +268,29 @@ class Model(TreeObject):
     )
 
     @classmethod
-    def from_file(cls, *, path: _PATH, channel: Channel) -> Model:
+    def _from_file(cls, *, path: _PATH, server_wrapper: ServerWrapper) -> Model:
         """Instantiate a Model from an ACPH5 file.
 
         Parameters
         ----------
         path:
             File path, on the server.
-        channel:
-            gRPC channel to the server.
+        server_wrapper:
+            Representation of the ACP instance.
         """
         # Send absolute paths to the server, since its CWD may not match
         # the Python CWD.
         request = model_pb2.LoadFromFileRequest(path=path_to_str_checked(path))
         with wrap_grpc_errors():
-            reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFile(request)
-        return cls._from_object_info(object_info=reply, channel=channel)
+            reply = model_pb2_grpc.ObjectServiceStub(server_wrapper.channel).LoadFromFile(request)
+        return cls._from_object_info(object_info=reply, server_wrapper=server_wrapper)
 
     @classmethod
-    def from_fe_file(
+    def _from_fe_file(
         cls,
         *,
         path: _PATH,
-        channel: Channel,
+        server_wrapper: ServerWrapper,
         format: FeFormat,  # type: ignore
         ignored_entities: Iterable[IgnorableEntity] = (),  # type: ignore
         convert_section_data: bool = False,
@@ -289,8 +302,8 @@ class Model(TreeObject):
         ----------
         path:
             File path, on the server.
-        channel:
-            gRPC channel to the server.
+        server_wrapper:
+            Representation of the ACP instance.
         format:
             Format of the FE file. Can be one of ``"ansys:h5"``, ``"ansys:cdb"``,
             ``"ansys:dat"``, ``"abaqus:inp"``, or ``"nastran:bdf"``.
@@ -317,8 +330,8 @@ class Model(TreeObject):
             unit_system=cast(Any, unit_system_type_to_pb(unit_system)),
         )
         with wrap_grpc_errors():
-            reply = model_pb2_grpc.ObjectServiceStub(channel).LoadFromFEFile(request)
-        return cls._from_object_info(object_info=reply, channel=channel)
+            reply = model_pb2_grpc.ObjectServiceStub(server_wrapper.channel).LoadFromFEFile(request)
+        return cls._from_object_info(object_info=reply, server_wrapper=server_wrapper)
 
     def update(self, *, relations_only: bool = False) -> None:
         """Update the model.
@@ -409,6 +422,84 @@ class Model(TreeObject):
                     collection_path=collection_path,
                     path=path_to_str_checked(path),
                     format=material_pb2.SaveToFileRequest.ANSYS_XML,
+                )
+            )
+
+    @supported_since("25.1")
+    def export_modeling_ply_geometries(
+        self,
+        path: _PATH,
+        *,
+        modeling_plies: Iterable[ModelingPly] | None = None,
+        format: PlyGeometryExportFormat = PlyGeometryExportFormat.STEP,
+        offset_type: OffsetType = OffsetType.MIDDLE_OFFSET,
+        include_surface: bool = True,
+        include_boundary: bool = True,
+        include_first_material_direction: bool = True,
+        include_second_material_direction: bool = True,
+        arrow_length: float | None = None,
+        arrow_type: ArrowType = ArrowType.NO_ARROW,
+    ) -> None:
+        """
+        Write ply geometries to a STEP, IGES, or STL file.
+
+        Parameters
+        ----------
+        path :
+            File path to save the geometries to.
+        modeling_plies :
+            List of modeling plies whose geometries should be exported. If not
+            provided, the geometries of all modeling plies in the model are exported.
+        format :
+            Format of the created file. Can be one of ``"STEP"``, ``"IGES"``,
+            or ``"STL"``.
+        offset_type :
+            Determines how the ply offset is calculated. Can be one of
+            ``"NO_OFFSET"``, ``"BOTTOM_OFFSET"``, ``"MIDDLE_OFFSET"``, or
+            ``"TOP_OFFSET"``.
+        include_surface :
+            Whether to include the ply surface in the exported geometry.
+        include_boundary :
+            Whether to include the ply boundary in the exported geometry.
+        include_first_material_direction :
+            Whether to include the first material direction in the exported geometry.
+        include_second_material_direction :
+            Whether to include the second material direction in the exported geometry.
+        arrow_length :
+            Size of the arrow used to represent the material directions. By default, the
+            square root of the average element area is used.
+        arrow_type :
+            Type of the arrow used to represent the material directions. Can be
+            one of ``"NO_ARROW"``, ``"HALF_ARROW"``, or ``"STANDARD_ARROW"``.
+        """
+        if modeling_plies is None:
+            modeling_plies = [
+                ply
+                for modeling_group in self.modeling_groups.values()
+                for ply in modeling_group.modeling_plies.values()
+            ]
+        mp_resource_paths = [ply._resource_path for ply in modeling_plies]
+
+        modeling_ply_stub = modeling_ply_pb2_grpc.ObjectServiceStub(self._channel)
+
+        if arrow_length is None:
+            arrow_length = np.sqrt(self.average_element_size)
+
+        with wrap_grpc_errors():
+            modeling_ply_stub.ExportGeometries(
+                ply_geometry_export_pb2.ExportGeometriesRequest(
+                    path=path_to_str_checked(path),
+                    plies=mp_resource_paths,
+                    options=ply_geometry_export_pb2.ExportOptions(
+                        format=typing.cast(typing.Any, ply_geometry_export_format_to_pb(format)),
+                        offset_type=typing.cast(typing.Any, offset_type_to_pb(offset_type)),
+                        include_surface=include_surface,
+                        include_boundary=include_boundary,
+                        include_first_material_direction=include_first_material_direction,
+                        include_second_material_direction=include_second_material_direction,
+                        arrow_length=arrow_length,
+                        arrow_type=typing.cast(typing.Any, arrow_type_to_pb(arrow_type)),
+                    ),
                 )
             )
 
