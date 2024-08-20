@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1724018738675,
+  "lastUpdate": 1724167084724,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15286,6 +15286,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002472626335859284",
             "extra": "mean: 788.6197732611012 usec\nrounds: 2214"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a2feb2ce1ab8e60cf2267c0bda60c713f9807bd6",
+          "message": "Implement ply geometry export for modeling plies (#557)\n\nMerging the changes from #545 onto `main`.\r\n\r\nAdd an `export_modeling_ply_geometries` method to the `Model`, which the geometry of all modeling plies\r\n\r\nOther changes:\r\n- Add a helper function for managing the version of the server which supports a particular feature.\r\n- Since that required knowing the server version at the `TreeObject` level, convert the `channel` member into a `ServerWrapper` which contains both the channel and version.\r\n- Force newer version of `ansys-mapdl-core`, to avoid poetry resolving numpy to version 2.0 and downgrading `ansys-mapdl-core`, since older versions do not declare their incompatibility with numpy 2.0.",
+          "timestamp": "2024-08-20T17:15:17+02:00",
+          "tree_id": "fdb0ff54f661ad8fe3ae4fbc190b5e47659ace96",
+          "url": "https://github.com/ansys/pyacp/commit/a2feb2ce1ab8e60cf2267c0bda60c713f9807bd6"
+        },
+        "date": 1724167065524,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 8.851324996606074,
+            "unit": "iter/sec",
+            "range": "stddev: 0.014189443479757131",
+            "extra": "mean: 112.97743562499818 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1269.0681546116514,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00024611884216132736",
+            "extra": "mean: 787.9797443235119 usec\nrounds: 2202"
           }
         ]
       }
