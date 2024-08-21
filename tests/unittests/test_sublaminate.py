@@ -20,9 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import pathlib
+import tempfile
+
 import pytest
 
-from ansys.acp.core import FabricWithAngle, Lamina, SymmetryType
+from ansys.acp.core import Fabric, FabricWithAngle, Lamina, Stackup, SymmetryType
+from ansys.acp.core._typing_helper import PATH
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
@@ -104,3 +108,42 @@ def test_add_lamina(parent_object):
     assert sublaminate.materials[1].angle == 0.0
     assert sublaminate.materials[2].material == fabric1
     assert sublaminate.materials[2].angle == -45.0
+
+
+def test_load_with_existing_sublamina(acp_instance, parent_object):
+    """Regression test for bug #561.
+
+    Checks that sublaminates are correctly loaded from a saved model.
+    """
+    model = parent_object
+    # GIVEN: a model with a sublaminate which has three materials
+    fabric1 = model.create_fabric()
+    fabric1.material = model.create_material()
+    stackup = model.create_stackup()
+    stackup.add_fabric(fabric1, angle=30.0)
+    stackup.add_fabric(fabric1, angle=-30.0)
+
+    sublaminate = model.create_sublaminate(name="test_sublaminate")
+    sublaminate.add_material(fabric1, angle=45.0)
+    sublaminate.add_material(stackup, angle=0.0)
+    sublaminate.add_material(fabric1, angle=-45.0)
+
+    # WHEN: the model is saved and loaded
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        if acp_instance.is_remote:
+            file_path: PATH = pathlib.Path(tmp_dir) / "model.acph5"
+        else:
+            file_path = "model.acph5"
+        model.save(file_path)
+        acp_instance.clear()
+        model = acp_instance.import_model(path=file_path)
+
+    # THEN: the sublaminate is still present and has the same materials
+    sublaminate = model.sublaminates["test_sublaminate"]
+    assert len(sublaminate.materials) == 3
+    assert sublaminate.materials[0].angle == 45.0
+    assert sublaminate.materials[1].angle == 0.0
+    assert sublaminate.materials[2].angle == 45.0
+    assert isinstance(sublaminate.materials[0].material, Fabric)
+    assert isinstance(sublaminate.materials[1].material, Stackup)
+    assert isinstance(sublaminate.materials[2].material, Fabric)
