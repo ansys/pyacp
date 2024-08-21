@@ -28,7 +28,6 @@ automatically synchronized with the backend via gRPC.
 from __future__ import annotations
 
 from functools import reduce
-import typing
 from typing import Any, Callable, TypeVar
 
 from google.protobuf.message import Message
@@ -36,7 +35,6 @@ from google.protobuf.message import Message
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
 from ..._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
-from ..base import TreeObjectBase
 from .polymorphic_from_pb import CreatableFromResourcePath, tree_object_from_resource_path
 from .protocols import Editable, GrpcObjectBase, ObjectInfo, Readable
 
@@ -132,12 +130,12 @@ def grpc_data_getter(
 
 
 def grpc_linked_object_setter(
-    name: str, to_protobuf: _TO_PROTOBUF_T[TreeObjectBase | None]
-) -> Callable[[Editable, TreeObjectBase | None], None]:
+    name: str, to_protobuf: _TO_PROTOBUF_T[Readable | None]
+) -> Callable[[Editable, Readable | None], None]:
     """Create a setter method which updates the linked object via the gRPC Put endpoint."""
     func = grpc_data_setter(name, to_protobuf)
 
-    def inner(self: Editable, value: TreeObjectBase | None) -> None:
+    def inner(self: Editable, value: Readable | None) -> None:
         if value is not None and not value._is_stored:
             raise Exception("Cannot link to an unstored object.")
         func(self, value)
@@ -301,10 +299,8 @@ def grpc_link_property(
         Types which are allowed to be set on the property. An
         error will be raised if an object of a different type is set.
     """
-    if typing.TYPE_CHECKING:
-        from ..base import TreeObjectBase
 
-    def to_protobuf(obj: TreeObjectBase | None) -> ResourcePath:
+    def to_protobuf(obj: Readable | None) -> ResourcePath:
         if obj is None:
             return ResourcePath(value="")
         if not isinstance(obj, allowed_types):

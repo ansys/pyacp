@@ -37,6 +37,7 @@ from ansys.api.acp.v0.base_pb2 import (
     Empty,
     GetRequest,
     ListRequest,
+    ResourcePath,
 )
 
 if typing.TYPE_CHECKING:
@@ -181,6 +182,9 @@ class Readable(Protocol):
 
     @property
     def _server_wrapper(self) -> ServerWrapper: ...
+
+    @property
+    def _resource_path(self) -> ResourcePath: ...
 
     _pb_object: Any
 

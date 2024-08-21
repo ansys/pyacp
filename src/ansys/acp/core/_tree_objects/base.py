@@ -479,5 +479,6 @@ def supported_since(version: str) -> Callable[[_WRAPPED_T[T, P, R]], _WRAPPED_T[
 if typing.TYPE_CHECKING:
     # Ensure that the ReadOnlyTreeObject satisfies the Gettable interface
     _x: Readable = typing.cast(ReadOnlyTreeObject, None)
-    # Ensure that the TreeObject satisfies the Editable interface
+    # Ensure that the TreeObject satisfies the Editable and Readable interfaces
     _y: Editable = typing.cast(TreeObject, None)
+    _z: Readable = typing.cast(TreeObject, None)
