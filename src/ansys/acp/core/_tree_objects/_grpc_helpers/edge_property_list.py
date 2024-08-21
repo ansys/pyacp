@@ -153,13 +153,12 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
         self._attribute_name = _attribute_name
         self._name = _attribute_name.split(".")[-1]
 
-        self._object_list_store = self._get_object_list_from_parent()
-
         self._object_constructor: Callable[[Message], ValueT] = (
             lambda pb_object: _from_pb_constructor(
                 self._parent_object, pb_object, self._apply_changes
             )
         )
+        self._object_list_store = self._get_object_list_from_parent()
 
     @property
     def _object_list(self) -> list[ValueT]:
