@@ -137,7 +137,7 @@ def test_load_with_existing_sublaminate(acp_instance, parent_object):
 
     # WHEN: the model is saved and loaded
     with tempfile.TemporaryDirectory() as tmp_dir:
-        if acp_instance.is_remote:
+        if not acp_instance.is_remote:
             file_path: PATH = pathlib.Path(tmp_dir) / "model.acph5"
         else:
             file_path = "model.acph5"
