@@ -85,6 +85,16 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
     For instance, element sets of an oriented element set.
     """
 
+    __slots__ = (
+        "_object_list_store",
+        "_parent_object",
+        "_parent_was_stored",
+        "_object_type",
+        "_attribute_name",
+        "_name",
+        "_object_constructor",
+    )
+
     @classmethod
     @constructor_with_cache(
         # NOTE greschd Feb'23:
@@ -137,12 +147,13 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
         _attribute_name: str,
         _from_pb_constructor: Callable[[CreatableTreeObject, Message, Callable[[], None]], ValueT],
     ) -> None:
-        getter = grpc_data_getter(_attribute_name, from_protobuf=list)
-        setter = grpc_data_setter(_attribute_name, to_protobuf=lambda x: x)
-
         self._parent_object = _parent_object
+        self._parent_was_stored = self._parent_object._is_stored
         self._object_type = _object_type
+        self._attribute_name = _attribute_name
         self._name = _attribute_name.split(".")[-1]
+
+        self._object_list_store = self._get_object_list_from_parent()
 
         self._object_constructor: Callable[[Message], ValueT] = (
             lambda pb_object: _from_pb_constructor(
@@ -150,36 +161,59 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
             )
         )
 
-        # get initial object list
-        def get_object_list_from_parent_object() -> list[ValueT]:
-            obj_list = []
-            for item in getter(_parent_object):
-                obj_list.append(self._object_constructor(item))
-            return obj_list
+    @property
+    def _object_list(self) -> list[ValueT]:
+        if self._parent_object._is_stored and not self._parent_was_stored:
+            # There are two scenarios when the parent object becomes
+            # stored:
+            # - The _object_list already contained some values. In this case, we
+            #   simply keep it, and make a (inexaustive) check that the size
+            #   matches.
+            # - The parent object was default-constructed and then its _pb_object
+            #   was then replaced (e.g. by a call to _from_object_info). In this
+            #   case, the empty '_object_list' is no longer reflecting the actual
+            #   state, and needs to be replaced.
+            #   In general, we don't replace the _object_list to ensure any references
+            #   to its elements are correctly updated (and retain the ability to
+            #   update the object itself), but here it's not a concern since this
+            #   only happens within the constructor.
+            if self._object_list_store:
+                assert len(self._object_list_store) == len(self._get_object_list_from_parent())
+            else:
+                self._object_list_store = self._get_object_list_from_parent()
+            self._parent_was_stored = True
+        return self._object_list_store
 
-        self._object_list = get_object_list_from_parent_object()
+    def _get_object_list_from_parent(self) -> list[ValueT]:
+        obj_list = []
+        for item in grpc_data_getter(self._attribute_name, from_protobuf=list)(self._parent_object):
+            obj_list.append(self._object_constructor(item))
+        return obj_list
 
-        def set_object_list(items: list[ValueT]) -> None:
-            """Set the object list on the parent AND updates the internal object list."""
-            pb_obj_list = []
-
-            for item in items:
-                if not isinstance(item, _object_type):
-                    raise TypeError(
-                        f"Expected items of type {_object_type}, got type {type(item)} instead. "
-                        f"Item: {item}."
-                    )
-                if not item._check():
-                    raise RuntimeError("Cannot initialize incomplete object.")
-                pb_obj_list.append(item._to_pb_object())
-                # update callback in case item was copied from another tree object
-                # or if it is a new object
-                item._set_callback_apply_changes(self._apply_changes)
-            setter(_parent_object, pb_obj_list)
-            # keep object list in sync with the backend. This is needed for the in-place editing
-            self._object_list = items
-
-        self._set_object_list = set_object_list
+    def _set_object_list(self, items: list[ValueT]) -> None:
+        """Set the object list on the parent AND updates the internal object list."""
+        # if not self._parent_object._is_stored:
+        #     if items: # accept empty list to allow for default construction
+        #         raise RuntimeError("Cannot set object list before the parent object is stored.")
+        # else:
+        pb_obj_list = []
+        for item in items:
+            if not isinstance(item, self._object_type):
+                raise TypeError(
+                    f"Expected items of type {self._object_type}, got type {type(item)} instead. "
+                    f"Item: {item}."
+                )
+            if not item._check():
+                raise RuntimeError("Cannot initialize incomplete object.")
+            pb_obj_list.append(item._to_pb_object())
+            # update callback in case item was copied from another tree object
+            # or if it is a new object
+            item._set_callback_apply_changes(self._apply_changes)
+        grpc_data_setter(self._attribute_name, to_protobuf=lambda x: x)(
+            self._parent_object, pb_obj_list
+        )
+        # keep object list in sync with the backend. This is needed for the in-place editing
+        self._object_list_store = items
 
     def __len__(self) -> int:
         return len(self._object_list)

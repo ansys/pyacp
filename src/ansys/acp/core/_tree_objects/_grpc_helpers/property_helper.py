@@ -36,6 +36,7 @@ from google.protobuf.message import Message
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
 from ..._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
+from ..base import TreeObjectBase
 from .polymorphic_from_pb import CreatableFromResourcePath, tree_object_from_resource_path
 from .protocols import Editable, GrpcObjectBase, ObjectInfo, Readable
 
@@ -97,7 +98,9 @@ def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
         self._get()
         object_resource_path = _get_data_attribute(self._pb_object, name)
 
-        return tree_object_from_resource_path(object_resource_path, self._channel)
+        return tree_object_from_resource_path(
+            object_resource_path, server_wrapper=self._server_wrapper
+        )
 
     return inner
 
@@ -124,6 +127,20 @@ def grpc_data_getter(
         if check_optional and pb_attribute is None:
             return None
         return from_protobuf(pb_attribute)
+
+    return inner
+
+
+def grpc_linked_object_setter(
+    name: str, to_protobuf: _TO_PROTOBUF_T[TreeObjectBase | None]
+) -> Callable[[Editable, TreeObjectBase | None], None]:
+    """Create a setter method which updates the linked object via the gRPC Put endpoint."""
+    func = grpc_data_setter(name, to_protobuf)
+
+    def inner(self: Editable, value: TreeObjectBase | None) -> None:
+        if value is not None and not value._is_stored:
+            raise Exception("Cannot link to an unstored object.")
+        func(self, value)
 
     return inner
 
@@ -301,7 +318,7 @@ def grpc_link_property(
     return _wrap_doc(
         _exposed_grpc_property(grpc_linked_object_getter(name)).setter(
             # Resource path represents an object that is not set as an empty string
-            grpc_data_setter(name=name, to_protobuf=to_protobuf)
+            grpc_linked_object_setter(name=name, to_protobuf=to_protobuf)
         ),
         doc=doc,
     )

@@ -22,12 +22,15 @@
 
 from __future__ import annotations
 
+import typing
 from typing import Protocol
 
-import grpc
 from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
+
+if typing.TYPE_CHECKING:
+    from ..base import ServerWrapper
 
 __all__ = ["CreatableFromResourcePath", "tree_object_from_resource_path"]
 
@@ -36,12 +39,14 @@ class CreatableFromResourcePath(Protocol):
     """Interface for objects that can be created from a resource path."""
 
     @classmethod
-    def _from_resource_path(cls, resource_path: ResourcePath, channel: grpc.Channel) -> Self: ...
+    def _from_resource_path(
+        cls, resource_path: ResourcePath, server_wrapper: ServerWrapper
+    ) -> Self: ...
 
 
 def tree_object_from_resource_path(
     resource_path: ResourcePath,
-    channel: grpc.Channel,
+    server_wrapper: ServerWrapper,
     allowed_types: tuple[type[CreatableFromResourcePath], ...] | None = None,
 ) -> CreatableFromResourcePath | None:
     """Instantiate a tree object from its resource path.
@@ -50,8 +55,8 @@ def tree_object_from_resource_path(
     ----------
     resource_path :
         Resource path of the object.
-    channel :
-        gRPC channel to the server.
+    server_wrapper :
+        Representation of the ACP server.
     allowed_types :
         Allowed types of the object. If None, all registered types are allowed.
     """
@@ -72,4 +77,4 @@ def tree_object_from_resource_path(
                 f"Resource path {resource_path.value} does not point to a valid "
                 f"object type. Allowed types: {allowed_types}"
             )
-    return resource_class._from_resource_path(resource_path, channel)
+    return resource_class._from_resource_path(resource_path, server_wrapper=server_wrapper)

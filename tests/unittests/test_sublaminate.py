@@ -110,7 +110,7 @@ def test_add_lamina(parent_object):
     assert sublaminate.materials[2].angle == -45.0
 
 
-def test_load_with_existing_sublamina(acp_instance, parent_object):
+def test_load_with_existing_sublaminate(acp_instance, parent_object):
     """Regression test for bug #561.
 
     Checks that sublaminates are correctly loaded from a saved model.
@@ -127,6 +127,13 @@ def test_load_with_existing_sublamina(acp_instance, parent_object):
     sublaminate.add_material(fabric1, angle=45.0)
     sublaminate.add_material(stackup, angle=0.0)
     sublaminate.add_material(fabric1, angle=-45.0)
+    assert len(sublaminate.materials) == 3
+    assert sublaminate.materials[0].angle == 45.0
+    assert sublaminate.materials[1].angle == 0.0
+    assert sublaminate.materials[2].angle == -45.0
+    assert isinstance(sublaminate.materials[0].material, Fabric)
+    assert isinstance(sublaminate.materials[1].material, Stackup)
+    assert isinstance(sublaminate.materials[2].material, Fabric)
 
     # WHEN: the model is saved and loaded
     with tempfile.TemporaryDirectory() as tmp_dir:
@@ -143,7 +150,7 @@ def test_load_with_existing_sublamina(acp_instance, parent_object):
     assert len(sublaminate.materials) == 3
     assert sublaminate.materials[0].angle == 45.0
     assert sublaminate.materials[1].angle == 0.0
-    assert sublaminate.materials[2].angle == 45.0
+    assert sublaminate.materials[2].angle == -45.0
     assert isinstance(sublaminate.materials[0].material, Fabric)
     assert isinstance(sublaminate.materials[1].material, Stackup)
     assert isinstance(sublaminate.materials[2].material, Fabric)

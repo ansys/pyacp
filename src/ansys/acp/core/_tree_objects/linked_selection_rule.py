@@ -212,7 +212,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         allowed_types = tuple(allowed_types_list)
 
         selection_rule = tree_object_from_resource_path(
-            resource_path=message.resource_path, channel=parent_object._channel
+            resource_path=message.resource_path, server_wrapper=parent_object._server_wrapper
         )
         if not isinstance(selection_rule, allowed_types):
             raise TypeError(

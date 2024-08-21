@@ -24,6 +24,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 import textwrap
+import typing
 from typing import Any, Protocol
 
 from google.protobuf.message import Message
@@ -37,6 +38,9 @@ from ansys.api.acp.v0.base_pb2 import (
     GetRequest,
     ListRequest,
 )
+
+if typing.TYPE_CHECKING:
+    from ..base import ServerWrapper
 
 
 class CreateRequest(Protocol):
@@ -176,7 +180,7 @@ class Readable(Protocol):
     def _is_stored(self) -> bool: ...
 
     @property
-    def _channel(self) -> grpc.Channel: ...
+    def _server_wrapper(self) -> ServerWrapper: ...
 
     _pb_object: Any
 
