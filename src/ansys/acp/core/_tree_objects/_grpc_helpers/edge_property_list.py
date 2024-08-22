@@ -191,10 +191,6 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
 
     def _set_object_list(self, items: list[ValueT]) -> None:
         """Set the object list on the parent AND updates the internal object list."""
-        # if not self._parent_object._is_stored:
-        #     if items: # accept empty list to allow for default construction
-        #         raise RuntimeError("Cannot set object list before the parent object is stored.")
-        # else:
         pb_obj_list = []
         for item in items:
             if not isinstance(item, self._object_type):
