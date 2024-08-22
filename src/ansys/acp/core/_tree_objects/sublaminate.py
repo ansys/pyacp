@@ -26,6 +26,8 @@ from collections.abc import Callable, Iterable, Sequence
 import typing
 from typing import Any, Union, get_args
 
+from typing_extensions import Self
+
 from ansys.api.acp.v0 import sublaminate_pb2, sublaminate_pb2_grpc
 
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
@@ -145,9 +147,10 @@ class Lamina(GenericEdgePropertyType):
     def __repr__(self) -> str:
         return f"Lamina(material={self.material.__repr__()}, angle={self.angle})"
 
-    def clone(self) -> Lamina:
-        """Create a clone of the current Lamina object."""
-        return Lamina(material=self.material, angle=self.angle)
+    def clone(self) -> Self:
+        """Create a new unstored Lamina with the same properties."""
+        return type(self)(material=self.material, angle=self.angle)
+
 
 @mark_grpc_properties
 @register

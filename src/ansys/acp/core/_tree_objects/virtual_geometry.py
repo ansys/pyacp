@@ -26,6 +26,8 @@ from collections.abc import Callable, Iterable
 import typing
 from typing import Any
 
+from typing_extensions import Self
+
 from ansys.api.acp.v0 import base_pb2, virtual_geometry_pb2, virtual_geometry_pb2_grpc
 
 from ._grpc_helpers.edge_property_list import (
@@ -120,9 +122,10 @@ class SubShape(GenericEdgePropertyType):
     def __repr__(self) -> str:
         return f"SubShape(cad_geometry={self._cad_geometry.__repr__()}, path={self._path})"
 
-    def clone(self) -> SubShape:
-        """Create a clone of the SubShape."""
-        return SubShape(cad_geometry=self.cad_geometry, path=self.path)
+    def clone(self) -> Self:
+        """Create a new unstored SubShape with the same properties."""
+        return type(self)(cad_geometry=self.cad_geometry, path=self.path)
+
 
 @mark_grpc_properties
 @register

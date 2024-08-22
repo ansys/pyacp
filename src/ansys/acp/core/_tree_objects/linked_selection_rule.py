@@ -270,7 +270,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         )
 
     def clone(self) -> LinkedSelectionRule:
-        """Create a clone of the current LinkedSelectionRule object."""
+        """Create a new unstored LinkedSelectionRule with the same properties."""
         return LinkedSelectionRule(
             selection_rule=self.selection_rule,
             operation_type=self.operation_type,

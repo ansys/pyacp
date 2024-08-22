@@ -25,6 +25,8 @@ from __future__ import annotations
 from collections.abc import Callable, Iterable, Sequence
 from typing import Any
 
+from typing_extensions import Self
+
 from ansys.api.acp.v0 import stackup_pb2, stackup_pb2_grpc
 
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
@@ -141,10 +143,10 @@ class FabricWithAngle(GenericEdgePropertyType):
     def __repr__(self) -> str:
         return f"FabricWithAngle(fabric={self.fabric.__repr__()}, angle={self.angle})"
 
+    def clone(self) -> Self:
+        """Create a new unstored FabricWithAngle with the same properties."""
+        return type(self)(fabric=self.fabric, angle=self.angle)
 
-    def clone(self) -> FabricWithAngle:
-        """Create a copy of the object."""
-        return FabricWithAngle(fabric=self.fabric, angle=self.angle)
 
 @mark_grpc_properties
 @register

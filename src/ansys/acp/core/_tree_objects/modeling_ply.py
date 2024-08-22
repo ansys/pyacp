@@ -223,12 +223,14 @@ class TaperEdge(GenericEdgePropertyType):
             f"angle={self.angle!r}, offset={self.offset!r})"
         )
 
-    def clone(self):
-        return TaperEdge(
+    def clone(self) -> Self:
+        """Create a new unstored TaperEdge with the same properties."""
+        return type(self)(
             edge_set=self.edge_set,
             angle=self.angle,
             offset=self.offset,
         )
+
 
 @mark_grpc_properties
 @register
