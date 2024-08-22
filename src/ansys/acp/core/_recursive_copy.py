@@ -35,6 +35,8 @@ from ._tree_objects._traversal import (
 )
 from ._tree_objects.base import CreatableTreeObject, TreeObject
 
+__all__ = ["recursive_copy"]
+
 
 @dataclass
 class _WalkTreeOptions:
@@ -70,7 +72,6 @@ def _build_dependency_graph_impl(
     if options.include_children:
         for child_object in child_objects(tree_object):
             if not isinstance(child_object, CreatableTreeObject):
-                print(f"Skipping {child_object} as it is not a CreatableTreeObject.")
                 continue
             graph.add_edge(child_object._resource_path.value, key)
             _build_dependency_graph_impl(
@@ -95,9 +96,67 @@ def recursive_copy(
     *,
     source_objects: Iterable[CreatableTreeObject],
     parent_mapping: Iterable[tuple[TreeObject, TreeObject]],
+    include_children: bool = True,
+    include_linked_objects: bool = True,
 ) -> list[CreatableTreeObject]:
-    """TODO: document this function."""
-    options = _WalkTreeOptions(include_children=True, include_linked_objects=True)
+    """Recursively copy a tree of ACP objects.
+
+    This function copies a tree of ACP objects, starting from the given source objects.
+    You can specify whether to include children (for example the Modeling Plies in a
+    Modeling Group) and linked objects (for example the Rosettes linked to an Oriented
+    Selection Set) in the copy.
+
+    To specify where the new objects should be stored, you must provide a list of tuples
+    in the ``parent_mapping`` argument. Each tuple contains the original parent object
+    as the first element and the new parent object as the second element.
+    Note that this mapping may need to contain parent objects that are not direct parents
+    of the source objects, if another branch of the tree is included via linked objects.
+
+    The function returns a list of newly created objects.
+
+    .. note::
+
+        Only attributes supported by PyACP are copied to the new objects.
+
+    Parameters
+    ----------
+    source_objects :
+        The starting point of the tree to copy.
+    parent_mapping :
+        A list of tuples defining where the new objects are stored. Each tuple contains
+        the original parent object as the first element and the new parent object as the
+        second element.
+    include_children :
+        Whether to include child objects when creating the tree to copy.
+    include_linked_objects :
+        Whether to include linked objects when creating the tree to copy.
+
+    Returns
+    -------
+    :
+        A list of newly created objects.
+
+    Examples
+    --------
+    To copy all Modeling Groups and associated definitions from one model to another,
+    you can use the following code:
+
+    .. code-block:: python
+
+        import ansys.acp.core as pyacp
+
+        model1 = ...  # loaded in some way
+        model2 = ...  # loaded in some way
+
+        pyacp.recursive_copy(
+            source_objects=model1.modeling_groups.values(),
+            parent_mapping=[(model1, model2)],
+        )
+
+    """
+    options = _WalkTreeOptions(
+        include_children=include_children, include_linked_objects=include_linked_objects
+    )
     graph, visited_objects = _build_dependency_graph(source_objects=source_objects, options=options)
 
     replacement_mapping = {
@@ -106,13 +165,10 @@ def recursive_copy(
     new_objects: list[CreatableTreeObject] = []
 
     for node in reversed(list(nx.topological_sort(graph))):
-        print(node)
         if node in replacement_mapping:
             # Skip nodes which are already copied (e.g. coming from the parent_mapping)
             continue
         tree_object = visited_objects[node]
-        if hasattr(tree_object, "id"):
-            print(tree_object.id)
 
         new_tree_object = tree_object.clone()
         for attr_name, linked_object in directly_linked_objects(tree_object):
@@ -135,28 +191,10 @@ def recursive_copy(
 
         for attr_name, edge_property_list in edge_property_lists(tree_object):
             new_edge_property_list = [edge.clone() for edge in edge_property_list]
-            # for edge in edge_property_list:
-            #     new_edge = edge.clone()
-            #     for edge_attr_name in edge._GRPC_PROPERTIES:
-            #         print(edge_attr_name)
-            #         edge_prop = getattr(new_edge, edge_attr_name)
-            #         if isinstance(edge_prop, TreeObject):
-            #             new_edge_prop = replacement_mapping[edge_prop._resource_path.value]
-            #             setattr(new_edge, edge_attr_name, new_edge_prop)
-
-            #     # new_edge.store(parent=new_tree_object)
-            #     new_edge_property_list.append(new_edge)
             for edge, edge_prop_name, edge_target in edge_property_targets(new_edge_property_list):
                 new_edge_target = replacement_mapping[edge_target._resource_path.value]
                 setattr(edge, edge_prop_name, new_edge_target)
             setattr(new_tree_object, attr_name, new_edge_property_list)
-
-            # # now replace the edge property list in one go
-            # setattr(new_tree_object, attr_name, new_edge_property_list)
-
-
-
-        print(new_tree_object._pb_object)
 
         replacement_mapping[node] = new_tree_object
         new_objects.append(new_tree_object)

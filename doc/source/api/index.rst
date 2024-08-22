@@ -16,6 +16,7 @@ and attributes.
     material_property_sets
     enum_types
     plot_utils
+    other_utils
     workflow
     example_helpers
     internal

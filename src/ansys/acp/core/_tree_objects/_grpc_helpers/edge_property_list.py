@@ -62,6 +62,10 @@ class GenericEdgePropertyType(GrpcObjectBase, Protocol):
 
     def _set_callback_apply_changes(self, callback_apply_changes: Callable[[], None]) -> None: ...
 
+    def clone(self) -> Self:
+        """Create a new unstored object with the same properties."""
+        raise NotImplementedError
+
 
 ValueT = TypeVar("ValueT", bound=GenericEdgePropertyType)
 

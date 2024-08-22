@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from collections.abc import Iterator
+from collections.abc import Iterable, Iterator
 from typing import TypeVar
 
 from ._grpc_helpers.edge_property_list import EdgePropertyList, GenericEdgePropertyType
@@ -75,7 +75,7 @@ def edge_property_lists(
 
 
 def edge_property_targets(
-    edge_property_list: EdgePropertyList[GenericEdgePropertyType],
+    edge_property_list: Iterable[GenericEdgePropertyType],
 ) -> Iterator[tuple[GenericEdgePropertyType, str, TreeObjectBase]]:
     """Yield the edge property, edge property name, and linked object for all edge properties."""
     for edge in edge_property_list:
