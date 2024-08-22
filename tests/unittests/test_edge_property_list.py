@@ -27,7 +27,7 @@ import tempfile
 
 import pytest
 
-from ansys.acp.core import Lamina, SubLaminate
+from ansys.acp.core import Fabric, Lamina, SubLaminate
 from ansys.acp.core._typing_helper import PATH
 
 
@@ -153,3 +153,13 @@ def test_wrong_type_raises(simple_model):
     sublaminate = simple_model.create_sublaminate(name="simple_sublaminate")
     with pytest.raises(TypeError):
         sublaminate.materials = [1]
+
+
+def test_incomplete_object_check(simple_model):
+    """Check that unstored objects cannot be added to the edge property list."""
+    sublaminate = simple_model.create_sublaminate(name="simple_sublaminate")
+    with pytest.raises(RuntimeError) as e:
+        sublaminate.materials.append(
+            Lamina(material=Fabric(material=simple_model.create_material()), angle=0.0)
+        )
+    assert "incomplete object" in str(e.value)
