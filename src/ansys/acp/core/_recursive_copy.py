@@ -112,6 +112,10 @@ def recursive_copy(
     Note that this mapping may need to contain parent objects that are not direct parents
     of the source objects, if another branch of the tree is included via linked objects.
 
+    The ``parent_mapping`` argument can also include objects which are part of the
+    ``source_objects`` list. In this case, the function will not create a new object for
+    the parent, but will use the existing object instead.
+
     The function returns a list of newly created objects.
 
     .. note::
@@ -153,6 +157,19 @@ def recursive_copy(
             parent_mapping=[(model1, model2)],
         )
 
+    To copy all definitions from one model to another, you can use the following code:
+
+    .. code-block:: python
+
+        import ansys.acp.core as pyacp
+
+        model1 = ...  # loaded in some way
+        model2 = ...  # loaded in some way
+
+        pyacp.recursive_copy(
+            source_objects=[model1],
+            parent_mapping=[(model1, model2)],
+        )
     """
     options = _WalkTreeOptions(
         include_children=include_children, include_linked_objects=include_linked_objects
@@ -171,30 +188,42 @@ def recursive_copy(
         tree_object = visited_objects[node]
 
         new_tree_object = tree_object.clone()
-        for attr_name, linked_object in directly_linked_objects(tree_object):
-            new_linked_object = replacement_mapping[linked_object._resource_path.value]
-            setattr(new_tree_object, attr_name, new_linked_object)
-        for attr_name, linked_object_list in linked_object_lists(tree_object):
-            new_linked_objects = [
-                replacement_mapping[linked_object._resource_path.value]
-                for linked_object in linked_object_list
-            ]
-            setattr(new_tree_object, attr_name, new_linked_objects)
 
-        # clear edge property lists, then re-create them once the new object is stored
-        for attr_name, _ in edge_property_lists(tree_object):
-            setattr(new_tree_object, attr_name, [])
+        # If the linked objects are also copied, replace them with the new objects.
+        # Otherwise, we can directly store the new object.
+        if include_linked_objects:
+            for attr_name, linked_object in directly_linked_objects(tree_object):
+                new_linked_object = replacement_mapping[linked_object._resource_path.value]
+                setattr(new_tree_object, attr_name, new_linked_object)
+            for attr_name, linked_object_list in linked_object_lists(tree_object):
+                new_linked_objects = [
+                    replacement_mapping[linked_object._resource_path.value]
+                    for linked_object in linked_object_list
+                ]
+                setattr(new_tree_object, attr_name, new_linked_objects)
+
+            # clear edge property lists, then re-create them once the new object is stored
+            for attr_name, _ in edge_property_lists(tree_object):
+                setattr(new_tree_object, attr_name, [])
 
         parent_rp = tree_object._resource_path.value.rsplit("/", 2)[0]
-        new_parent = replacement_mapping[parent_rp]
+        try:
+            new_parent = replacement_mapping[parent_rp]
+        except KeyError as exc:
+            raise KeyError(
+                f"Parent object not found in 'parent_mapping' for object '{tree_object!r}'."
+            ) from exc
         new_tree_object.store(parent=new_parent)
 
-        for attr_name, edge_property_list in edge_property_lists(tree_object):
-            new_edge_property_list = [edge.clone() for edge in edge_property_list]
-            for edge, edge_prop_name, edge_target in edge_property_targets(new_edge_property_list):
-                new_edge_target = replacement_mapping[edge_target._resource_path.value]
-                setattr(edge, edge_prop_name, new_edge_target)
-            setattr(new_tree_object, attr_name, new_edge_property_list)
+        if include_linked_objects:
+            for attr_name, edge_property_list in edge_property_lists(tree_object):
+                new_edge_property_list = [edge.clone() for edge in edge_property_list]
+                for edge, edge_prop_name, edge_target in edge_property_targets(
+                    new_edge_property_list
+                ):
+                    new_edge_target = replacement_mapping[edge_target._resource_path.value]
+                    setattr(edge, edge_prop_name, new_edge_target)
+                setattr(new_tree_object, attr_name, new_edge_property_list)
 
         replacement_mapping[node] = new_tree_object
         new_objects.append(new_tree_object)
