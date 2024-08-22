@@ -62,7 +62,7 @@ from ._grpc_helpers.protocols import (
 )
 from ._object_cache import ObjectCacheMixin, constructor_with_cache
 
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     from .._server import ACP
 
 
@@ -477,7 +477,7 @@ def supported_since(version: str) -> Callable[[_WRAPPED_T[T, P, R]], _WRAPPED_T[
     return decorator
 
 
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     # Ensure that the ReadOnlyTreeObject satisfies the Gettable interface
     _x: Readable = typing.cast(ReadOnlyTreeObject, None)
     # Ensure that the TreeObject satisfies the Editable and Readable interfaces

@@ -40,7 +40,7 @@ from ansys.api.acp.v0.base_pb2 import (
     ResourcePath,
 )
 
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     from ..base import ServerWrapper
 
 

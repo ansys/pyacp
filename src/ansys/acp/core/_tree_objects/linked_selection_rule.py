@@ -45,7 +45,7 @@ from .spherical_selection_rule import SphericalSelectionRule
 from .tube_selection_rule import TubeSelectionRule
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
 
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     # Since the 'LinkedSelectionRule' class is used by the boolean selection rule,
     # this would cause a circular import at run-time.
     from .boolean_selection_rule import BooleanSelectionRule
