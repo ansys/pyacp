@@ -393,7 +393,13 @@ def define_edge_property_list(
 ) -> Any:
     """Define a list of linked tree objects with link properties."""
 
-    def getter(self: CreatableTreeObject) -> EdgePropertyList[GenericEdgePropertyType]:
+    def getter(
+        self: CreatableTreeObject, *, check_stored: bool = True
+    ) -> EdgePropertyList[GenericEdgePropertyType]:
+        if check_stored and not self._is_stored:
+            raise RuntimeError(
+                f"Cannot access property {attribute_name.split('.')[-1]} on an object that is not stored."
+            )
         return EdgePropertyList._initialize_with_cache(
             parent_object=self,
             object_type=value_type,
@@ -402,7 +408,8 @@ def define_edge_property_list(
         )
 
     def setter(self: CreatableTreeObject, value: list[GenericEdgePropertyType]) -> None:
-        getter(self)[:] = value
+        # allow wholesale replacement on unstored objects
+        getter(self, check_stored=False)[:] = value
 
     return _wrap_doc(_exposed_grpc_property(getter).setter(setter), doc=doc)
 

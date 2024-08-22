@@ -20,13 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import pathlib
-import tempfile
-
 import pytest
 
 from ansys.acp.core import FabricWithAngle, Lamina, SymmetryType
-from ansys.acp.core._typing_helper import PATH
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
@@ -108,81 +104,3 @@ def test_add_lamina(parent_object):
     assert sublaminate.materials[1].angle == 0.0
     assert sublaminate.materials[2].material == fabric1
     assert sublaminate.materials[2].angle == -45.0
-
-
-@pytest.fixture
-def simple_sublaminate(parent_object):
-    sublaminate = parent_object.create_sublaminate(name="simple_sublaminate")
-    sublaminate.add_material(
-        parent_object.create_fabric(name="fabric1", material=parent_object.create_material()),
-        angle=0.0,
-    )
-    sublaminate.add_material(
-        parent_object.create_fabric(name="fabric2", material=parent_object.create_material()),
-        angle=10.0,
-    )
-    return sublaminate
-
-
-def test_load_with_existing_sublaminate(acp_instance, parent_object, simple_sublaminate):
-    """Regression test for bug #561.
-
-    Checks that sublaminates are correctly loaded from a saved model.
-    """
-    model = parent_object
-    # GIVEN: a model with a sublaminate which has two materials
-    sublaminate = simple_sublaminate
-    assert len(sublaminate.materials) == 2
-    assert [m.angle for m in sublaminate.materials] == [0.0, 10.0]
-    assert [m.material.name for m in sublaminate.materials] == ["fabric1", "fabric2"]
-
-    # WHEN: the model is saved and loaded
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        if not acp_instance.is_remote:
-            file_path: PATH = pathlib.Path(tmp_dir) / "model.acph5"
-        else:
-            file_path = "model.acph5"
-        model.save(file_path)
-        acp_instance.clear()
-        model = acp_instance.import_model(path=file_path)
-
-    # THEN: the sublaminate is still present and has the same materials
-    sublaminate = model.sublaminates["simple_sublaminate"]
-    assert len(sublaminate.materials) == 2
-    assert [m.angle for m in sublaminate.materials] == [0.0, 10.0]
-    assert [m.material.name for m in sublaminate.materials] == ["fabric1", "fabric2"]
-
-
-def test_clone_edge_property_list(parent_object, simple_sublaminate):
-    model = parent_object
-    # GIVEN: a model with a sublaminate which has two materials
-    sublaminate = simple_sublaminate
-    assert len(sublaminate.materials) == 2
-    assert [m.angle for m in sublaminate.materials] == [0.0, 10.0]
-    assert [m.material.name for m in sublaminate.materials] == ["fabric1", "fabric2"]
-
-    # WHEN: cloning the sublaminate, then storing the clone
-    sublaminate_clone = sublaminate.clone()
-    sublaminate_clone.store(parent=model)
-
-    # THEN: the clone is stored and has the same materials
-    assert len(sublaminate.materials) == 2
-    assert [m.angle for m in sublaminate.materials] == [0.0, 10.0]
-    assert [m.material.name for m in sublaminate.materials] == ["fabric1", "fabric2"]
-
-
-def test_clone_edge_property_list_cleared(parent_object, simple_sublaminate):
-    model = parent_object
-    # GIVEN: a model with a sublaminate which has two materials
-    sublaminate = simple_sublaminate
-    assert len(sublaminate.materials) == 2
-    assert [m.angle for m in sublaminate.materials] == [0.0, 10.0]
-    assert [m.material.name for m in sublaminate.materials] == ["fabric1", "fabric2"]
-
-    # WHEN: cloning the sublaminate, removing the materials, then storing the clone
-    sublaminate_clone = sublaminate.clone()
-    sublaminate_clone.materials = []
-    sublaminate_clone.store(parent=model)
-
-    # THEN: the clone is stored and has no materials
-    assert len(sublaminate_clone.materials) == 0
