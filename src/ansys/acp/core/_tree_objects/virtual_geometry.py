@@ -39,7 +39,7 @@ from .cad_geometry import CADGeometry
 from .enums import status_type_from_pb, virtual_geometry_dimension_from_pb
 from .object_registry import register
 
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     from .cad_component import CADComponent
 
 

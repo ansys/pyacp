@@ -33,7 +33,7 @@ from ._tree_objects import Model
 from ._typing_helper import PATH
 
 # Avoid dependencies on pydpf-composites and dpf-core if it is not used
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles
     from ansys.dpf.core import UnitSystem
 

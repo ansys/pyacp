@@ -43,6 +43,7 @@ from .._utils.resource_paths import join as _rp_join
 from .._utils.resource_paths import to_parts
 from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.linked_object_helpers import linked_path_fields, unlink_objects
+from ._grpc_helpers.polymorphic_from_pb import CreatableFromResourcePath
 from ._grpc_helpers.property_helper import (
     _get_data_attribute,
     grpc_data_property,
@@ -61,7 +62,7 @@ from ._grpc_helpers.protocols import (
 )
 from ._object_cache import ObjectCacheMixin, constructor_with_cache
 
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     from .._server import ACP
 
 
@@ -476,8 +477,12 @@ def supported_since(version: str) -> Callable[[_WRAPPED_T[T, P, R]], _WRAPPED_T[
     return decorator
 
 
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     # Ensure that the ReadOnlyTreeObject satisfies the Gettable interface
     _x: Readable = typing.cast(ReadOnlyTreeObject, None)
-    # Ensure that the TreeObject satisfies the Editable interface
+    # Ensure that the TreeObject satisfies the Editable and Readable interfaces
     _y: Editable = typing.cast(TreeObject, None)
+    _z: Readable = typing.cast(TreeObject, None)
+
+    # Ensure the TreeObjectBase satisfies the CreatableFromResourcePath interface
+    _a: CreatableFromResourcePath = typing.cast(TreeObjectBase, None)
