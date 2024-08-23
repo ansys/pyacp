@@ -147,7 +147,7 @@ This example's input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmp0b6rnyes
+    /tmp/tmp90g_x4q3
     mks
 
 
@@ -637,7 +637,7 @@ Next, plot the draped directions, including the correction angles, from the look
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 3.847 seconds)
+   **Total running time of the script:** (0 minutes 5.320 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_007_direction_definitions.py:
