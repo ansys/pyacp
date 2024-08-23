@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1724167084724,
+  "lastUpdate": 1724452539509,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15324,6 +15324,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00024611884216132736",
             "extra": "mean: 787.9797443235119 usec\nrounds: 2202"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "31a3798febb2c1750afa4f4d19ba57e214f23814",
+          "message": "Fix EdgePropertyList construction via _from_object_info (#562)\n\nFixes #561\r\n\r\nThe `EdgePropertyList` retains the _same_ list instance during its lifetime \r\nfor containing the edge property wrappers. This is done so that references\r\nuser code might hold to its items to correctly update its contents.\r\n\r\nIn contrast to other types, it means that the state is not re-fetched from\r\nthe `_pb_object` if it were to change outside of the `EdgePropertyList`'s\r\ncontrol.\r\nThis led to a bug when constructing objects via `_from_object_info`, which\r\nfirst default-constructs the object (in the process creating the `EdgePropertyList`)\r\nand then modifies the `_pb_object`.\r\n\r\nTo fix this, the `EdgePropertyList` now stores whether its parent object was\r\nstored when this list was last accessed. If it changes from unstored to stored,\r\nthe following logic is applied:\r\n- If the current list is already populated (the \"regular\" case), only a sanity check\r\n  for matching length is performed\r\n- If the current list is empty, it is re-fetched from the parent object. This is the\r\n  case which occurs during construction with `_from_object_info`\r\n\r\nSince the edge property list can be in an inconsistent state (empty when it shouldn't \r\nbe) while the parent is unstored, we disallow accessing it in this state. It is still\r\nallowed however to fully replace the contents.\r\n\r\nThis PR also fixes a bug in `tree_object_from_resource_path`, where the `channel`\r\nargument was still used instead of `server_wrapper`.",
+          "timestamp": "2024-08-24T00:32:39+02:00",
+          "tree_id": "71c249cfd3828936fe32d7c0076334b211adfa73",
+          "url": "https://github.com/ansys/pyacp/commit/31a3798febb2c1750afa4f4d19ba57e214f23814"
+        },
+        "date": 1724452517836,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 9.404657617185421,
+            "unit": "iter/sec",
+            "range": "stddev: 0.002932324596295923",
+            "extra": "mean: 106.33029299999919 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1261.995932342557,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002526745779919674",
+            "extra": "mean: 792.3955809776409 usec\nrounds: 2229"
           }
         ]
       }
