@@ -25,6 +25,7 @@ from dataclasses import dataclass
 
 import networkx as nx
 
+from ._tree_objects import LookUpTable1D, LookUpTable1DColumn, LookUpTable3D, LookUpTable3DColumn
 from ._tree_objects._traversal import (
     all_linked_objects,
     child_objects,
@@ -187,6 +188,11 @@ def recursive_copy(
             continue
         tree_object = visited_objects[node]
 
+        if isinstance(tree_object, (LookUpTable1DColumn, LookUpTable3DColumn)):
+            # handled explicitly while copying the LookUpTable object
+            if tree_object.name == "Location":
+                continue
+
         new_tree_object = tree_object.clone()
 
         # If the linked objects are also copied, replace them with the new objects.
@@ -213,7 +219,16 @@ def recursive_copy(
             raise KeyError(
                 f"Parent object not found in 'parent_mapping' for object '{tree_object!r}'."
             ) from exc
+
         new_tree_object.store(parent=new_parent)
+
+        # NOTE: if there are more type-specific fixes needed, we may want
+        # to implement a more generic way to handle these.
+        # Explicit fix for LookUpTable, since the Location column needs to
+        # be set correctly s.t. other columns may be stored.
+        if isinstance(new_tree_object, (LookUpTable1D, LookUpTable3D)):
+            assert isinstance(tree_object, (LookUpTable1D, LookUpTable3D))
+            new_tree_object.columns["Location"].data = tree_object.columns["Location"].data
 
         if include_linked_objects:
             for attr_name, edge_property_list in edge_property_lists(tree_object):

@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import numpy as np
 import pytest
 
 from ansys.acp.core import FabricWithAngle, recursive_copy
@@ -197,3 +198,32 @@ def test_missing_parent_object_raises(minimal_complete_model):
     msg = str(exc_info.value)
     assert "Parent object" in msg
     assert "parent_mapping" in msg
+
+
+def test_copy_lookup_table_with_columns(minimal_complete_model):
+    """Test copying lookup tables with columns and their data.
+
+    This case is special because LUT implement a check for the shape
+    of the data in their columns, which is determined by the "Location"
+    column.
+    """
+    # GIVEN: a model which has objects with sub-attributes
+    # (here: a lookup table with columns)
+    model = minimal_complete_model
+    lut = model.create_lookup_table_1d()
+    lut.columns["Location"].data = [1.0, 2.0, 3.0]
+    lut.create_column(name="column1", data=[4.0, 5.0, 6.0])
+
+    # WHEN: recursively copying the lookup table
+    new_objects = recursive_copy(source_objects=[lut], parent_mapping=[(model, model)])
+
+    # THEN: the expected new objects are created, but the sub-attributes are
+    # not explicitly copied
+    assert len(new_objects) == 2
+    assert {obj.id for obj in new_objects} == {  # type: ignore
+        "LookUpTable1D.2",
+        "column1",
+    }
+    new_lut = model.lookup_tables_1d["LookUpTable1D.2"]
+    assert np.allclose(new_lut.columns["Location"].data, [1.0, 2.0, 3.0])
+    assert np.allclose(new_lut.columns["column1"].data, [4.0, 5.0, 6.0])
