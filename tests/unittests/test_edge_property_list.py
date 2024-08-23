@@ -135,6 +135,28 @@ def test_clone_clear_store(simple_model, simple_sublaminate):
     assert len(sublaminate_clone.materials) == 0
 
 
+def test_clone_assign_store(simple_model, simple_sublaminate):
+    """Check that the edge property list can be changed on a cloned object."""
+    model = simple_model
+    # GIVEN: a model with a sublaminate which has two materials
+    sublaminate = simple_sublaminate
+
+    # WHEN: cloning the sublaminate, setting new materials, then storing the clone
+    sublaminate_clone = sublaminate.clone()
+    import gc
+
+    gc.collect()
+    fabric = simple_model.create_fabric(name="new_fabric", material=simple_model.create_material())
+    new_materials = [Lamina(material=fabric, angle=3.0)]
+    sublaminate_clone.materials = new_materials
+    sublaminate_clone.store(parent=model)
+
+    # THEN: the clone is stored and has no materials
+    assert len(sublaminate_clone.materials) == 1
+    assert sublaminate_clone.materials[0].material.name == "new_fabric"
+    assert sublaminate_clone.materials[0].angle == 3.0
+
+
 def test_store_with_entries(simple_model, check_simple_sublaminate):
     """Check that a sublaminate can be created with materials, and then stored."""
     fabric1 = simple_model.create_fabric(name="fabric1", material=simple_model.create_material())

@@ -158,7 +158,11 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
                 self._parent_object, pb_object, self._apply_changes
             )
         )
-        self._object_list_store = self._get_object_list_from_parent()
+        if self._parent_object._is_stored:
+            self._object_list_store = self._get_object_list_from_parent()
+        else:
+            # Cannot instantiate the objects if the server is not available
+            self._object_list_store = []
 
     @property
     def _object_list(self) -> list[ValueT]:
