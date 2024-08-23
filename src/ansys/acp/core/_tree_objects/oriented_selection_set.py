@@ -60,6 +60,7 @@ from .enums import (
     rosette_selection_method_to_pb,
     status_type_from_pb,
 )
+from .lookup_table_1d_column import LookUpTable1DColumn
 from .lookup_table_3d_column import LookUpTable3DColumn
 from .object_registry import register
 from .parallel_selection_rule import ParallelSelectionRule
@@ -179,7 +180,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         draping_material_model: DrapingMaterialType = DrapingMaterialType.WOVEN,
         draping_ud_coefficient: float = 0.0,
         rotation_angle: float = 0.0,
-        reference_direction_field: LookUpTable3DColumn | None = None,
+        reference_direction_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
     ):
         super().__init__(name=name)
         self.element_sets = element_sets
@@ -270,7 +271,8 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
     )
 
     reference_direction_field = grpc_link_property(
-        "properties.reference_direction_field", allowed_types=LookUpTable3DColumn
+        "properties.reference_direction_field",
+        allowed_types=(LookUpTable3DColumn, LookUpTable1DColumn),
     )
 
     elemental_data = elemental_data_property(OrientedSelectionSetElementalData)
