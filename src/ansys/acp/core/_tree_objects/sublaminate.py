@@ -107,7 +107,7 @@ class Lamina(GenericEdgePropertyType):
         apply_changes: Callable[[], None],
     ) -> Lamina:
         material = tree_object_from_resource_path(
-            resource_path=message.material, channel=parent_object._channel
+            resource_path=message.material, server_wrapper=parent_object._server_wrapper
         )
 
         if not isinstance(material, get_args(_LINKABLE_MATERIAL_TYPES)):

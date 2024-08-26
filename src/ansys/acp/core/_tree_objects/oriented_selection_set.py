@@ -79,7 +79,7 @@ __all__ = [
     "OrientedSelectionSetNodalData",
 ]
 
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     # Since the 'LinkedSelectionRule' class is used by the boolean selection rule,
     # this would cause a circular import at run-time.
     from .. import BooleanSelectionRule, GeometricalSelectionRule

@@ -28,7 +28,6 @@ automatically synchronized with the backend via gRPC.
 from __future__ import annotations
 
 from functools import reduce
-import typing
 from typing import Any, Callable, TypeVar
 
 from google.protobuf.message import Message
@@ -97,7 +96,9 @@ def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
         self._get()
         object_resource_path = _get_data_attribute(self._pb_object, name)
 
-        return tree_object_from_resource_path(object_resource_path, self._channel)
+        return tree_object_from_resource_path(
+            object_resource_path, server_wrapper=self._server_wrapper
+        )
 
     return inner
 
@@ -124,6 +125,20 @@ def grpc_data_getter(
         if check_optional and pb_attribute is None:
             return None
         return from_protobuf(pb_attribute)
+
+    return inner
+
+
+def grpc_linked_object_setter(
+    name: str, to_protobuf: _TO_PROTOBUF_T[Readable | None]
+) -> Callable[[Editable, Readable | None], None]:
+    """Create a setter method which updates the linked object via the gRPC Put endpoint."""
+    func = grpc_data_setter(name, to_protobuf)
+
+    def inner(self: Editable, value: Readable | None) -> None:
+        if value is not None and not value._is_stored:
+            raise Exception("Cannot link to an unstored object.")
+        func(self, value)
 
     return inner
 
@@ -284,10 +299,8 @@ def grpc_link_property(
         Types which are allowed to be set on the property. An
         error will be raised if an object of a different type is set.
     """
-    if typing.TYPE_CHECKING:
-        from ..base import TreeObjectBase
 
-    def to_protobuf(obj: TreeObjectBase | None) -> ResourcePath:
+    def to_protobuf(obj: Readable | None) -> ResourcePath:
         if obj is None:
             return ResourcePath(value="")
         if not isinstance(obj, allowed_types):
@@ -301,7 +314,7 @@ def grpc_link_property(
     return _wrap_doc(
         _exposed_grpc_property(grpc_linked_object_getter(name)).setter(
             # Resource path represents an object that is not set as an empty string
-            grpc_data_setter(name=name, to_protobuf=to_protobuf)
+            grpc_linked_object_setter(name=name, to_protobuf=to_protobuf)
         ),
         doc=doc,
     )

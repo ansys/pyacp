@@ -45,7 +45,7 @@ from .spherical_selection_rule import SphericalSelectionRule
 from .tube_selection_rule import TubeSelectionRule
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
 
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     # Since the 'LinkedSelectionRule' class is used by the boolean selection rule,
     # this would cause a circular import at run-time.
     from .boolean_selection_rule import BooleanSelectionRule
@@ -212,7 +212,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         allowed_types = tuple(allowed_types_list)
 
         selection_rule = tree_object_from_resource_path(
-            resource_path=message.resource_path, channel=parent_object._channel
+            resource_path=message.resource_path, server_wrapper=parent_object._server_wrapper
         )
         if not isinstance(selection_rule, allowed_types):
             raise TypeError(

@@ -44,7 +44,7 @@ from .enums import (
     nodal_data_type_to_pb,
 )
 
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     from .model import MeshData  # avoid circular import
 
 __all__ = [

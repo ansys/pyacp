@@ -15,13 +15,15 @@ on:
         description: "Branch of the 'ansys-api-acp' repository used during the build."
         required: false
       docker_image_suffix:
-        description: "Suffix of the 'pyacp' docker image used for testing. For example, ':latest', or '@sha256:<hash>' (without quotes)."
+        description: "Suffix of the 'acp' docker image used for testing. For example, ':latest', or '@sha256:<hash>' (without quotes)."
         required: false
 
 env:
   MAIN_PYTHON_VERSION: "3.12"
   PACKAGE_NAME: "ansys-acp-core"
   DOCUMENTATION_CNAME: "acp.docs.pyansys.com"
+  API_BRANCH: ${{ github.event.inputs.api_branch || '' }}
+  DOCKER_IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -56,10 +58,22 @@ jobs:
           pip install 'poetry!=1.7.0'
           poetry install --with dev,test
 
-      - name: Install custom API branch if needed
-        if: "${{ github.event.inputs.api_branch != '' }}"
+      - name: Build API package from custom branch
+        if: "${{ env.API_BRANCH != '' }}"
         run: |
-          poetry run pip install --force-reinstall git+https://github.com/ansys/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
+          python3.10 -m venv .api_builder_venv
+          . .api_builder_venv/bin/activate
+          python -m pip install --upgrade pip wheel
+          mkdir .api_package
+          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ env.API_BRANCH }}
+
+      - name: Install custom API branch package
+        if: "${{ env.API_BRANCH != '' }}"
+        # The --no-deps flag is added since this may cause dependency conflicts with
+        # other transitive dependencies. For example, when a newer version of protobuf
+        # is installed.
+        run: |
+          poetry run pip install --no-deps --force-reinstall .api_package/*.whl
 
       - name: Run pre-commit
         run: |
@@ -69,10 +83,9 @@ jobs:
     name: "Documentation style"
     runs-on: ubuntu-latest
     steps:
-      - uses: ansys/actions/doc-style@v5
+      - uses: ansys/actions/doc-style@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          vale-version: "3.1.0"
 
   build-wheelhouse:
     name: "Build wheelhouse"
@@ -88,7 +101,7 @@ jobs:
             os: macos-latest
     steps:
       - name: "Build wheelhouse and perform smoke test"
-        uses: ansys/actions/build-wheelhouse@v5
+        uses: ansys/actions/build-wheelhouse@v7
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           operating-system: ${{ matrix.os }}
@@ -127,18 +140,21 @@ jobs:
           poetry install --with test
 
       - name: Build API package from custom branch
-        if: "${{ github.event.inputs.api_branch != '' }}"
+        if: "${{ env.API_BRANCH != '' }}"
         run: |
           python3.10 -m venv .api_builder_venv
           . .api_builder_venv/bin/activate
           python -m pip install --upgrade pip wheel
           mkdir .api_package
-          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
+          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ env.API_BRANCH }}
 
       - name: Install custom API branch package
-        if: "${{ github.event.inputs.api_branch != '' }}"
+        if: "${{ env.API_BRANCH != '' }}"
+        # The --no-deps flag is added since this may cause dependency conflicts with
+        # other transitive dependencies. For example, when a newer version of protobuf
+        # is installed.
         run: |
-          poetry run pip install --force-reinstall .api_package/*.whl
+          poetry run pip install --no-deps --force-reinstall .api_package/*.whl
 
       - name: Login in Github Container registry
         uses: docker/login-action@v3
@@ -178,7 +194,7 @@ jobs:
           poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == '3.9' && github.ref == 'refs/heads/main') && ' ' || '--validate-benchmarks-only' }}
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+          IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
 
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
@@ -219,18 +235,21 @@ jobs:
           poetry install --with test,dev
 
       - name: Build API package from custom branch
-        if: "${{ github.event.inputs.api_branch != '' }}"
+        if: "${{ env.API_BRANCH != '' }}"
         run: |
           python3.10 -m venv .api_builder_venv
           . .api_builder_venv/bin/activate
           python -m pip install --upgrade pip wheel
           mkdir .api_package
-          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
+          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ env.API_BRANCH }}
 
       - name: Install custom API branch package
-        if: "${{ github.event.inputs.api_branch != '' }}"
+        if: "${{ env.API_BRANCH != '' }}"
+        # The --no-deps flag is added since this may cause dependency conflicts with
+        # other transitive dependencies. For example, when a newer version of protobuf
+        # is installed.
         run: |
-          poetry run pip install --force-reinstall .api_package/*.whl
+          poetry run pip install --no-deps --force-reinstall .api_package/*.whl
 
       - name: Login in Github Container registry
         uses: docker/login-action@v3
@@ -264,7 +283,7 @@ jobs:
           xvfb-run poetry run make -C doc doctest
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+          IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
           PYACP_DOC_SKIP_GALLERY: "true"
           PYACP_DOC_SKIP_API: "true"
 
@@ -296,7 +315,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: pyansys-ci-bot
+          username: ${{ secrets.PYANSYS_CI_BOT_USERNAME }}
           password: ${{ secrets.PYANSYS_CI_BOT_PACKAGE_TOKEN }}
         if: ${{ matrix.build_type == 'full' }}
 
@@ -311,16 +330,28 @@ jobs:
           pip install 'poetry!=1.7.0'
           poetry install --with dev
 
-      - name: Install custom API branch if needed
-        if: "${{ github.event.inputs.api_branch != '' }}"
+      - name: Build API package from custom branch
+        if: "${{ env.API_BRANCH != '' }}"
         run: |
-          poetry run pip install --force-reinstall git+https://github.com/ansys/ansys-api-acp.git@${{ github.event.inputs.api_branch }}
+          python3.10 -m venv .api_builder_venv
+          . .api_builder_venv/bin/activate
+          python -m pip install --upgrade pip wheel
+          mkdir .api_package
+          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ env.API_BRANCH }}
+
+      - name: Install custom API branch package
+        if: "${{ env.API_BRANCH != '' }}"
+        # The --no-deps flag is added since this may cause dependency conflicts with
+        # other transitive dependencies. For example, when a newer version of protobuf
+        # is installed.
+        run: |
+          poetry run pip install --no-deps --force-reinstall .api_package/*.whl
 
       - name: Configure Local Product Launcher for ACP
         run: >
           poetry run
           ansys-launcher configure ACP docker_compose
-          --image_name_pyacp=ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}
+          --image_name_pyacp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False
@@ -394,7 +425,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Build library source and wheel artifacts
-        uses: ansys/actions/build-library@v5
+        uses: ansys/actions/build-library@v7
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
@@ -406,14 +437,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Release to the public PyPI repository
-        uses: ansys/actions/release-pypi-public@v5
+        uses: ansys/actions/release-pypi-public@v7
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           twine-username: "__token__"
           twine-token: ${{ secrets.PYPI_TOKEN }}
 
       - name: Release to GitHub
-        uses: ansys/actions/release-github@v5
+        uses: ansys/actions/release-github@v7
         with:
           library-name: ${{ env.PACKAGE_NAME }}
 
@@ -424,7 +455,7 @@ jobs:
     needs: [build]
     steps:
       - name: Deploy the latest documentation
-        uses: ansys/actions/doc-deploy-dev@v5
+        uses: ansys/actions/doc-deploy-dev@v7
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -437,7 +468,7 @@ jobs:
     needs: [release]
     steps:
       - name: Deploy the stable documentation
-        uses: ansys/actions/doc-deploy-stable@v5
+        uses: ansys/actions/doc-deploy-stable@v7
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.GITHUB_TOKEN }}

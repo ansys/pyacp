@@ -39,7 +39,7 @@ from .cad_geometry import CADGeometry
 from .enums import status_type_from_pb, virtual_geometry_dimension_from_pb
 from .object_registry import register
 
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     from .cad_component import CADComponent
 
 
@@ -87,7 +87,7 @@ class SubShape(GenericEdgePropertyType):
     ) -> SubShape:
         new_obj = cls(
             cad_geometry=CADGeometry._from_resource_path(
-                message.cad_geometry, channel=parent_object._channel
+                message.cad_geometry, server_wrapper=parent_object._server_wrapper
             ),
             path=message.path,
         )
@@ -196,7 +196,7 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
         def _get_parent(cad_component: CADComponent) -> CADGeometry:
             rp = "/".join(cad_component._resource_path.value.split("/")[:-2])
             return CADGeometry._from_resource_path(
-                base_pb2.ResourcePath(value=rp), channel=cad_component._channel
+                base_pb2.ResourcePath(value=rp), server_wrapper=cad_component._server_wrapper
             )
 
         sub_shapes = [

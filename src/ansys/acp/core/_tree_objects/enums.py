@@ -31,6 +31,7 @@ from ansys.api.acp.v0 import (
     lookup_table_column_type_pb2,
     mesh_query_pb2,
     modeling_ply_pb2,
+    ply_geometry_export_pb2,
     ply_material_pb2,
     rosette_pb2,
     sensor_pb2,
@@ -41,30 +42,33 @@ from ansys.api.acp.v0 import (
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
 
 __all__ = [
-    "StatusType",
-    "RosetteSelectionMethod",
-    "CutoffMaterialType",
-    "DropoffMaterialType",
-    "DrapingType",
-    "DrapingMaterialType",
-    "SymmetryType",
-    "EdgeSetType",
-    "PlyType",
+    "ArrowType",
     "BooleanOperationType",
-    "UnitSystemType",
+    "CutoffMaterialType",
+    "CutoffRuleType",
     "DimensionType",
+    "DrapingMaterialType",
+    "DrapingType",
+    "DropoffMaterialType",
+    "EdgeSetType",
     "ElementalDataType",
-    "NodalDataType",
-    "LookUpTableColumnValueType",
+    "GeometricalRuleType",
     "LookUpTable3DInterpolationAlgorithm",
+    "LookUpTableColumnValueType",
+    "NodalDataType",
+    "OffsetType",
+    "PlyCutoffType",
+    "PlyGeometryExportFormat",
+    "PlyType",
+    "RosetteSelectionMethod",
     "RosetteType",
     "SensorType",
-    "VirtualGeometryDimension",
-    "CutoffRuleType",
-    "PlyCutoffType",
-    "GeometricalRuleType",
-    "ThicknessType",
+    "StatusType",
+    "SymmetryType",
     "ThicknessFieldType",
+    "ThicknessType",
+    "UnitSystemType",
+    "VirtualGeometryDimension",
 ]
 
 (StatusType, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(
@@ -182,6 +186,20 @@ __all__ = [
     enum_types_pb2.BooleanOperationType,
     module=__name__,
     doc="Options for combining selection rules.",
+)
+
+(OffsetType, offset_type_to_pb, _) = wrap_to_string_enum(
+    "OffsetType",
+    enum_types_pb2.OffsetType,
+    module=__name__,
+    doc="Options for the ply offset type.",
+)
+
+(ArrowType, arrow_type_to_pb, _) = wrap_to_string_enum(
+    "ArrowType",
+    enum_types_pb2.ArrowType,
+    module=__name__,
+    doc="Options for the type of arrow to be created for directions in the ply geometry export.",
 )
 
 (
@@ -335,4 +353,11 @@ __all__ = [
     modeling_ply_pb2.ThicknessFieldType,
     module=__name__,
     doc="Options for how thickness from a table is defined.",
+)
+
+(PlyGeometryExportFormat, ply_geometry_export_format_to_pb, _) = wrap_to_string_enum(
+    "PlyGeometryExportFormat",
+    ply_geometry_export_pb2.ExportFormat,
+    module=__name__,
+    doc="Options for the file format of the ply geometry export.",
 )
