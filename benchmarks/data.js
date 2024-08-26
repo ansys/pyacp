@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1724452539509,
+  "lastUpdate": 1724652731827,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15362,6 +15362,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002526745779919674",
             "extra": "mean: 792.3955809776409 usec\nrounds: 2229"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "acee20f5614ddd233096561f29515695d766d47b",
+          "message": "Bump the dependencies group across 1 directory with 3 updates (#568)\n\nBumps the dependencies group with 3 updates in the / directory: [mypy](https://github.com/python/mypy), [ansys-sphinx-theme](https://github.com/ansys/ansys-sphinx-theme) and [hypothesis](https://github.com/HypothesisWorks/hypothesis).\r\n\r\n\r\nUpdates `mypy` from 1.11.1 to 1.11.2\r\n- [Changelog](https://github.com/python/mypy/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/python/mypy/compare/v1.11.1...v1.11.2)\r\n\r\nUpdates `ansys-sphinx-theme` from 1.0.4 to 1.0.7\r\n- [Release notes](https://github.com/ansys/ansys-sphinx-theme/releases)\r\n- [Commits](https://github.com/ansys/ansys-sphinx-theme/compare/v1.0.4...v1.0.7)\r\n\r\nUpdates `hypothesis` from 6.111.1 to 6.111.2\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.111.1...hypothesis-python-6.111.2)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: mypy\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-sphinx-theme\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-08-26T08:09:28+02:00",
+          "tree_id": "24d81d122c157e00d7b6e10e083926ce00cbb6f1",
+          "url": "https://github.com/ansys/pyacp/commit/acee20f5614ddd233096561f29515695d766d47b"
+        },
+        "date": 1724652710729,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 9.47594711283057,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0022929029948249476",
+            "extra": "mean: 105.53034837499098 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1225.7058633068418,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002617695032811329",
+            "extra": "mean: 815.856421949465 usec\nrounds: 2287"
           }
         ]
       }
