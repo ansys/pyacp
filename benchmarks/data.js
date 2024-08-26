@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1724652731827,
+  "lastUpdate": 1724653840676,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15400,6 +15400,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002617695032811329",
             "extra": "mean: 815.856421949465 usec\nrounds: 2287"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b4bba3041c2dba45bc8bb75a5098105bb889b7b3",
+          "message": "Accept empty resource paths in linked objects when storing (#569)\n\nThe `.store()` method contains a check that all linked objects are\r\nwithin the same model. However, this check falsely raised when\r\ngiven an empty resource path. This is now fixed by filtering out\r\nthe empty resource paths in the check.",
+          "timestamp": "2024-08-26T06:27:57Z",
+          "tree_id": "64bd3c961433db2bf5ca7943b57a6dd8387b3bb3",
+          "url": "https://github.com/ansys/pyacp/commit/b4bba3041c2dba45bc8bb75a5098105bb889b7b3"
+        },
+        "date": 1724653820964,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 9.383849090656735,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003408567928273312",
+            "extra": "mean: 106.56607862499357 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1250.7764546441347,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00025756993824539145",
+            "extra": "mean: 799.5033775116237 usec\nrounds: 2090"
           }
         ]
       }
