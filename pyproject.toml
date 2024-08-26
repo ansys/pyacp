@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "ansys-acp-core"
-version = "0.1.dev0"
+version = "0.1b2"
 
 description = "Python library for ACP - Ansys Composite PrepPost"
 readme = "README.rst"
