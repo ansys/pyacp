@@ -306,6 +306,9 @@ class CreatableTreeObject(TreeObject):
         path_values = [collection_path.value] + [
             path.value for _, _, path in linked_path_fields(self._pb_object.properties)
         ]
+        # filter out empty paths
+        path_values = [path for path in path_values if path]
+
         # Since the path starts with 'model/<model_uuid>', the objects belong to
         # the same model iff they share at least the first two parts.
         if len(to_parts(common_path(*path_values))) < 2:
