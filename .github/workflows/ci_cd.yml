@@ -172,6 +172,16 @@ jobs:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
 
+      - name: "Unit testing (2024R2 server)"
+        if: matrix.python-version == ${{ env.MAIN_PYTHON_VERSION }}
+        working-directory: tests/unittests
+        run: |
+          docker pull $IMAGE_NAME
+          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html
+        env:
+          LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
+          IMAGE_NAME: "ghcr.io/ansys/acp:2024r2"
+
       - name: "Upload coverage report (HTML)"
         uses: actions/upload-artifact@v4
         if: matrix.python-version == env.MAIN_PYTHON_VERSION
