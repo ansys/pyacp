@@ -264,8 +264,8 @@ def load_cad_geometry(model_data_dir, acp_instance):
 
 
 @pytest.fixture
-def xfail_until(acp_instance):
-    """Mark a test as expected to fail until a certain server version."""
+def xfail_before(acp_instance):
+    """Mark a test as expected to fail before a certain server version."""
 
     def inner(version: str):
         if parse_version(acp_instance.server_version) < parse_version(version):
