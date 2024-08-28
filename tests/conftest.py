@@ -31,6 +31,7 @@ import tempfile
 
 import docker
 from hypothesis import settings
+from packaging.version import parse as parse_version
 import pytest
 
 from ansys.acp.core import (
@@ -258,5 +259,16 @@ def load_cad_geometry(model_data_dir, acp_instance):
         yield model.create_cad_geometry(
             external_path=cad_file_path,
         )
+
+    return inner
+
+
+@pytest.fixture
+def xfail_until(acp_instance):
+    """Mark a test as expected to fail until a certain server version."""
+
+    def inner(version: str):
+        if parse_version(acp_instance.server_version) < parse_version(version):
+            pytest.xfail(f"Expected to fail until server version {version!r}")
 
     return inner

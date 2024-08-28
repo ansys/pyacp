@@ -173,7 +173,7 @@ jobs:
           IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
 
       - name: "Unit testing (2024R2 server)"
-        if: matrix.python-version == ${{ env.MAIN_PYTHON_VERSION }}
+        if: matrix.python-version == env.MAIN_PYTHON_VERSION
         working-directory: tests/unittests
         run: |
           docker pull $IMAGE_NAME
