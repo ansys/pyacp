@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1724653840676,
+  "lastUpdate": 1725355924688,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15438,6 +15438,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00025756993824539145",
             "extra": "mean: 799.5033775116237 usec\nrounds: 2090"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9a8bb9bea4240de6ef7ccaabceaa7192fe3ac7e5",
+          "message": "Add step for testing on the released server (#573)\n\nAdd a step to the tests on Python 3.12 for testing with the 2024R2 server version.\r\n\r\nExpected test failures (new features) are marked with the new `xfail_before` fixture. The\r\nonly current expected failure is the modeling ply geometry export test (added in 25.1).\r\n\r\nAlso fixes an issue with the `clone` method when `unlink=True` is specified: Any \r\nfields unknown to the current client were retained. This caused an error on storing,\r\nsince those may be unknown linked objects. In the current case, the newly added \r\nlinks to the `Fabric` caused this.\r\nCalling `DiscardUnknownFields()` on the protobuf message fixes this.",
+          "timestamp": "2024-09-03T11:27:27+02:00",
+          "tree_id": "664dc57cadada66e226ab65a7ba5e869c512d11d",
+          "url": "https://github.com/ansys/pyacp/commit/9a8bb9bea4240de6ef7ccaabceaa7192fe3ac7e5"
+        },
+        "date": 1725355903103,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 9.355968024061362,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0028730502128676886",
+            "extra": "mean: 106.88364874999934 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1294.3554120502777,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022950214368226704",
+            "extra": "mean: 772.585327561605 usec\nrounds: 2079"
           }
         ]
       }
