@@ -251,11 +251,12 @@ def test_regression_454(minimal_complete_model):
     assert not hasattr(minimal_complete_model, "store")
 
 
-def test_modeling_ply_export(acp_instance, minimal_complete_model):
+def test_modeling_ply_export(acp_instance, minimal_complete_model, xfail_before):
     """
     Test that the 'export_modeling_ply_geometries' method produces a file.
     The contents of the file are not checked.
     """
+    xfail_before("25.1")
     out_filename = "modeling_ply_export.step"
 
     with tempfile.TemporaryDirectory() as tmp_dir:
