@@ -43,6 +43,7 @@ ansys-tools-path = ">=0"
 ansys-tools-local-product-launcher = ">=0.1"
 ansys-tools-filetransfer = ">=0.1"
 pyvista = ">=0.42.0"
+ansys-tools-visualization-interface = "^0.4.3"
 
 # Dependencies for the examples. Update also the 'dev' group when
 # these are updated.

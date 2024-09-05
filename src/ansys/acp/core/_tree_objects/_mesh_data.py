@@ -88,7 +88,10 @@ def _expand_array(
     target_array = np.ones(target_shape, dtype=np.float64) * np.nan
     for idx, (label, value) in enumerate(zip(labels.data_labels, array)):
         if idx % culling_factor == 0:
-            target_array[labels.mesh_label_to_index_map[label]] = value
+            try:
+                target_array[labels.mesh_label_to_index_map[label]] = value
+            except KeyError:
+                pass  # TODO: improve
     return target_array
 
 
