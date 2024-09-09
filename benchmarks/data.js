@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1725355924688,
+  "lastUpdate": 1725866563251,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15476,6 +15476,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00022950214368226704",
             "extra": "mean: 772.585327561605 usec\nrounds: 2079"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b9c40d3d2cbd21a367dae139a8705035ca1808eb",
+          "message": "Merge pull request #576 from ansys/dependabot/pip/dependencies-d2235673a0\n\nBump the dependencies group across 1 directory with 5 updates",
+          "timestamp": "2024-09-09T09:18:18+02:00",
+          "tree_id": "00d30409bd6023dde07ee692a5df0f067dee3c4f",
+          "url": "https://github.com/ansys/pyacp/commit/b9c40d3d2cbd21a367dae139a8705035ca1808eb"
+        },
+        "date": 1725866542038,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 8.844504238109343,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0035821919131723903",
+            "extra": "mean: 113.0645622499884 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1463.5036673117063,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018823525653927805",
+            "extra": "mean: 683.2917623205476 usec\nrounds: 1603"
           }
         ]
       }
