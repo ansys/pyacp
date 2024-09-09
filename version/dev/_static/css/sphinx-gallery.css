@@ -51,12 +51,16 @@ div.sphx-glr-download a {
   color: var(--ast-sphinx-gallery-download-text);
 }
 
-.docutils.container {
+div.sphx-glr-footer {
+  text-align: center;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: flex-start;
   gap: 10px;
-  margin: initial;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+div.sphx-glr-download {
+  margin: 0px;
 }
