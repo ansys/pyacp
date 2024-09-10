@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1725866563251,
+  "lastUpdate": 1725982541471,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15514,6 +15514,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00018823525653927805",
             "extra": "mean: 683.2917623205476 usec\nrounds: 1603"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "84872299+PipKat@users.noreply.github.com",
+            "name": "Kathy Pippert",
+            "username": "PipKat"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "90189482a8ad4cfc74057282bc84fb769716a4e6",
+          "message": "Doc/minor edits (#577)\n\n* Standardize \"Contribute\" heading and make minor edits for overall doc consistency\r\n* minor edits",
+          "timestamp": "2024-09-10T17:30:34+02:00",
+          "tree_id": "1f162d3ab922314460bb295d1cd1bcc35a3c593f",
+          "url": "https://github.com/ansys/pyacp/commit/90189482a8ad4cfc74057282bc84fb769716a4e6"
+        },
+        "date": 1725982517071,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 9.251637270053454,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0028911971588184344",
+            "extra": "mean: 108.08897612500346 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1327.54565401453,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022980264588350256",
+            "extra": "mean: 753.2697628710364 usec\nrounds: 2020"
           }
         ]
       }
