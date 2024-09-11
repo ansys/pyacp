@@ -21,21 +21,23 @@
 # SOFTWARE.
 
 # type: ignore
+
 from constants import COMPOSITE_DEFINITIONS_H5, MATML_FILE
 
 import ansys.acp.core as pyacp
 from ansys.acp.core._tree_objects.material.property_sets import ConstantStrainLimits
 
 
-def setup_and_update_acp_model(output_path, mesh_path, is_local=False):
+def setup_and_update_acp_model(output_path, mesh_path):
     """
     Setup basic ACP lay-up based on mesh in mesh_path, and export material and composite
     definition file to output_path.
     is_local specifies if ACP runs locally (True) or in a docker container.
     """
+
     acp = pyacp.launch_acp()
 
-    if not is_local:
+    if acp.is_remote:
         mesh_path = acp.upload_file(mesh_path)
 
     model = acp.import_model(path=mesh_path, format="ansys:h5")
@@ -53,7 +55,7 @@ def setup_and_update_acp_model(output_path, mesh_path, is_local=False):
     mat.engineering_constants.nu13 = 0.3
     mat.engineering_constants.nu23 = 0.3
 
-    mat.strain_limits = ConstantStrainLimits(
+    mat.strain_limits = ConstantStrainLimits.from_orthotropic_constants(
         eXc=-0.01,
         eYc=-0.01,
         eZc=-0.01,
@@ -100,13 +102,13 @@ def setup_and_update_acp_model(output_path, mesh_path, is_local=False):
     model.update()
 
     # To-do: Distinction probably not needed
-    if is_local:
-        model.export_shell_composite_definitions(output_path / COMPOSITE_DEFINITIONS_H5)
-        model.export_materials(output_path / MATML_FILE)
-    else:
+    if acp.is_remote:
         model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
         model.export_materials(MATML_FILE)
         acp.download_file(COMPOSITE_DEFINITIONS_H5, output_path / COMPOSITE_DEFINITIONS_H5)
         acp.download_file(MATML_FILE, output_path / MATML_FILE)
+    else:
+        model.export_shell_composite_definitions(output_path / COMPOSITE_DEFINITIONS_H5)
+        model.export_materials(output_path / MATML_FILE)
 
     return model
