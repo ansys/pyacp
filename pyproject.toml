@@ -38,7 +38,7 @@ numpy = ">=1.22"
 grpcio-health-checking = ">=1.43"
 packaging = ">=15.0"
 typing-extensions = ">=4.5.0"
-ansys-api-acp = { version = ">=0.2.0.dev0,<0.3.0", allow-prereleases = true }
+ansys-api-acp = "^0.2.dev0"
 ansys-tools-path = ">=0"
 ansys-tools-local-product-launcher = ">=0.1"
 ansys-tools-filetransfer = ">=0.1"
