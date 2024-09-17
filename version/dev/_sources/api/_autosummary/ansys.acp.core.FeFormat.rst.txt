@@ -21,11 +21,5 @@
       
         FeFormat.ANSYS_DAT
       
-      
-        FeFormat.ABAQUS_INP
-      
-      
-        FeFormat.NASTRAN_BDF
-      
    
    
