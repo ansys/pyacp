@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 from dataclasses import dataclass
-from typing import Any, Optional
+from typing import Any
 
 import pytest
 
@@ -47,7 +47,7 @@ class ObjectPropertiesToTest:
     # If create_args exists the create method will use the create_args dictionaries
     # to create the object. The object
     # will be created for each dictionary in the list.
-    create_args: Optional[list[dict[str, Any]]] = None
+    create_args: list[dict[str, Any]] | None = None
 
 
 class TreeObjectTesterReadOnly:

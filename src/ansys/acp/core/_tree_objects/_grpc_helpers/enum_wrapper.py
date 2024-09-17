@@ -20,7 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from typing import Any, Callable, Optional
+from collections.abc import Callable
+from typing import Any
 
 __all__ = ["wrap_to_string_enum"]
 
@@ -37,7 +38,7 @@ def wrap_to_string_enum(
     key_converter: Callable[[str], str] = lambda val: val,
     value_converter: Callable[[str], str] = lambda val: val.lower(),
     doc: str,
-    explicit_value_list: Optional[tuple[int, ...]] = None,
+    explicit_value_list: tuple[int, ...] | None = None,
 ) -> tuple[StrEnum, Callable[[StrEnum], int], Callable[[int], StrEnum]]:
     """Create a string Enum with the same keys as the given protobuf Enum.
 

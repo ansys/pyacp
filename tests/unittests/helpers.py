@@ -20,14 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from typing import Any, Optional, TypeVar
+from typing import Any, TypeVar
 
 __all__ = ["check_property"]
 
 T = TypeVar("T")
 
 
-def check_property(obj: Any, *, name: str, value: T, set_value: Optional[T] = None):
+def check_property(obj: Any, *, name: str, value: T, set_value: T | None = None):
     assert hasattr(obj, name), f"Object '{obj}' has no property named '{name}'"
     assert (
         getattr(obj, name) == value

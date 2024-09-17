@@ -22,9 +22,9 @@
 
 from __future__ import annotations
 
-from collections.abc import Container, Iterable
+from collections.abc import Callable, Container, Iterable
 import dataclasses
-from typing import Any, Callable
+from typing import Any
 
 import numpy as np
 from typing_extensions import Self

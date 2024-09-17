@@ -30,7 +30,6 @@ import math
 import os
 import pathlib
 import subprocess
-from typing import Optional
 import uuid
 
 import grpc
@@ -85,7 +84,7 @@ class DockerComposeLaunchConfig:
         default=False,
         metadata={METADATA_KEY_DOC: "If true, keep the volume after docker compose is stopped."},
     )
-    compose_file: Optional[str] = dataclasses.field(
+    compose_file: str | None = dataclasses.field(
         default=None,
         metadata={
             METADATA_KEY_DOC: (
@@ -134,7 +133,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
         self._keep_volume = config.keep_volume
 
         if config.compose_file is not None:
-            self._compose_file: Optional[pathlib.Path] = pathlib.Path(config.compose_file)
+            self._compose_file: pathlib.Path | None = pathlib.Path(config.compose_file)
         else:
             self._compose_file = None
 
@@ -193,7 +192,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
             )
 
-    def stop(self, *, timeout: Optional[float] = None) -> None:
+    def stop(self, *, timeout: float | None = None) -> None:
         # The compose file needs to be passed for all commands with docker-compose 1.X.
         # With docker-compose 2.X, this no longer seems to be necessary.
         with self._get_compose_file() as compose_file:
@@ -211,7 +210,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 cmd.append("--volumes")
             subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    def check(self, timeout: Optional[float] = None) -> bool:
+    def check(self, timeout: float | None = None) -> bool:
         for url in self.urls.values():
             channel = grpc.insecure_channel(url)
             if not check_grpc_health(channel=channel, timeout=timeout):

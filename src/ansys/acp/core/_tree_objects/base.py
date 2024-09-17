@@ -24,16 +24,16 @@
 from __future__ import annotations
 
 from abc import abstractmethod
-from collections.abc import Iterable
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from functools import wraps
 import typing
-from typing import Any, Callable, Generic, TypeVar, cast
+from typing import Any, Concatenate, Generic, TypeAlias, TypeVar, cast
 
 from grpc import Channel
 from packaging.version import Version
 from packaging.version import parse as parse_version
-from typing_extensions import Concatenate, ParamSpec, Self, TypeAlias
+from typing_extensions import ParamSpec, Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, GetRequest, ResourcePath
 
