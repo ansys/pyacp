@@ -31,7 +31,6 @@ from ansys.api.acp.v0 import (
     lookup_table_column_type_pb2,
     mesh_query_pb2,
     modeling_ply_pb2,
-    ply_geometry_export_pb2,
     ply_material_pb2,
     rosette_pb2,
     sensor_pb2,
@@ -357,7 +356,12 @@ __all__ = [
 
 (PlyGeometryExportFormat, ply_geometry_export_format_to_pb, _) = wrap_to_string_enum(
     "PlyGeometryExportFormat",
-    ply_geometry_export_pb2.ExportFormat,
+    enum_types_pb2.FileFormat,
     module=__name__,
     doc="Options for the file format of the ply geometry export.",
+    explicit_value_list=(
+        enum_types_pb2.FileFormat.STEP,
+        enum_types_pb2.FileFormat.IGES,
+        enum_types_pb2.FileFormat.STL,
+    ),
 )

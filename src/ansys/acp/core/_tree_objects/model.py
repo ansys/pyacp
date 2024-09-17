@@ -39,6 +39,7 @@ from ansys.api.acp.v0 import (
     cylindrical_selection_rule_pb2_grpc,
     edge_set_pb2_grpc,
     element_set_pb2_grpc,
+    enum_types_pb2,
     fabric_pb2_grpc,
     geometrical_selection_rule_pb2_grpc,
     lookup_table_1d_pb2_grpc,
@@ -133,10 +134,15 @@ __all__ = [
 
 FeFormat, fe_format_to_pb, _ = wrap_to_string_enum(
     "FeFormat",
-    model_pb2.Format,
+    enum_types_pb2.FileFormat,
     module=__name__,
     value_converter=lambda val: val.lower().replace("_", ":"),
     doc="Options for the format of the FE file.",
+    explicit_value_list=(
+        enum_types_pb2.FileFormat.ANSYS_H5,
+        enum_types_pb2.FileFormat.ANSYS_CDB,
+        enum_types_pb2.FileFormat.ANSYS_DAT,
+    ),
 )
 IgnorableEntity, ignorable_entity_to_pb, _ = wrap_to_string_enum(
     "IgnorableEntity",
