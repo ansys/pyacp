@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1725982541471,
+  "lastUpdate": 1726565555176,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15552,6 +15552,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00022980264588350256",
             "extra": "mean: 753.2697628710364 usec\nrounds: 2020"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7edaf34e49bd1535c235c94954b57c6094d17365",
+          "message": "Adapt to changes in the API library (#580)\n\nAdapt to the change moving the file format definition to `enum_types.proto`:\r\n\r\nAdds an optional argument `explicit_value_list` to the enum wrapper, which\r\nspecifies which of the wrapped values are exposed.\r\n\r\nThis is used to wrap the `enum_types_pb2.FileFormat` in different ways, exposing\r\nonly the file formats acceptable for a given use.",
+          "timestamp": "2024-09-17T11:28:24+02:00",
+          "tree_id": "2f86bf8a1f8f250290916a00f376660afe205130",
+          "url": "https://github.com/ansys/pyacp/commit/7edaf34e49bd1535c235c94954b57c6094d17365"
+        },
+        "date": 1726565533592,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 9.089835312796003,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003927873194958503",
+            "extra": "mean: 110.01299424999189 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1360.567334130007,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022019567382461878",
+            "extra": "mean: 734.9875121317931 usec\nrounds: 1937"
           }
         ]
       }
