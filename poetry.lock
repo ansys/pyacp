@@ -4631,18 +4631,18 @@ test = ["Pillow", "pixelmatch", "pytest", "pytest-xprocess", "seleniumbase"]
 
 [[package]]
 name = "trame-server"
-version = "3.1.2"
+version = "3.2.0"
 description = "Internal server side implementation of trame"
 optional = false
 python-versions = "*"
 files = [
-    {file = "trame-server-3.1.2.tar.gz", hash = "sha256:03bdd81e0132fb55de7b493c7ebdc4c21f6b0003960bceb3adca258fc432211f"},
-    {file = "trame_server-3.1.2-py3-none-any.whl", hash = "sha256:b43d11edfbca012ac34a724dc751b6ecfaecd7d636eaea4ab0650d2adc9e3771"},
+    {file = "trame-server-3.2.0.tar.gz", hash = "sha256:85969d603ae084cc47678972948b1a6e255e8581ea4c7cb99c6b414425ac952f"},
+    {file = "trame_server-3.2.0-py3-none-any.whl", hash = "sha256:7cf747a7e3399c3de630311675ef432403775e9ac49c11de2fd9a9a5f92702d7"},
 ]
 
 [package.dependencies]
 more-itertools = "*"
-wslink = ">=2,<3"
+wslink = ">=2.2.1,<3"
 
 [[package]]
 name = "trame-vtk"
@@ -4874,13 +4874,13 @@ files = [
 
 [[package]]
 name = "wslink"
-version = "2.1.3"
+version = "2.2.1"
 description = "Python/JavaScript library for communicating over WebSocket"
 optional = false
 python-versions = "*"
 files = [
-    {file = "wslink-2.1.3-py3-none-any.whl", hash = "sha256:a4a3689a30dd108255560e2f56903003355f4e0f3f6e5f12033a6de108bba18a"},
-    {file = "wslink-2.1.3.tar.gz", hash = "sha256:528d008f1a6110bc8141c32588e43b16ff438cedb80c5bb85e9ef92ae753c98e"},
+    {file = "wslink-2.2.1-py3-none-any.whl", hash = "sha256:bfa1ce14b576f4a4ac4478e74c92a1445000f4fbf33923c98ffd1dc922c993e2"},
+    {file = "wslink-2.2.1.tar.gz", hash = "sha256:cf79c7e3abe47f19af641c81f051ef97a2a2cbb96359cf243517afde16764b82"},
 ]
 
 [package.dependencies]
@@ -5020,4 +5020,4 @@ examples = ["ansys-dpf-composites", "ansys-mapdl-core", "ansys-mechanical-core",
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "892a9719ccc50bf7114dd7143bf0e6d421972a62f9ba405ea62ff497fcd588b9"
+content-hash = "682464c279f3ebe445182e7e3f80f0f17f464c5f816abbcd9bef6b3e6aa9edd5"
