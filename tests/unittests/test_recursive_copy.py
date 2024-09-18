@@ -41,12 +41,12 @@ def test_basic_recursive_copy(minimal_complete_model):
     # WHEN: Recursively copying the Modeling Ply onto the same Modeling Group
     new_objects = recursive_copy(
         source_objects=[mp],
-        parent_mapping=[(mg, mg), (minimal_complete_model, minimal_complete_model)],
+        parent_mapping={mg: mg, minimal_complete_model: minimal_complete_model},
     )
 
     # THEN: The expected new objects are created
     assert len(new_objects) == 6
-    assert {obj.id for obj in new_objects} == {  # type: ignore
+    assert {obj.id for obj in new_objects.values()} == {  # type: ignore
         "Global Coordinate System.2",
         "All_Elements.2",
         "Structural Steel.2",
@@ -64,15 +64,15 @@ def test_basic_recursive_copy_keep_links(minimal_complete_model):
 
     # WHEN: Recursively copying the Modeling Ply onto the same Modeling Group, without linked objects
     new_objects = recursive_copy(
-        source_objects=[mp], parent_mapping=[(mg, mg)], linked_object_handling="keep"
+        source_objects=[mp], parent_mapping={mg: mg}, linked_object_handling="keep"
     )
 
     # THEN: The expected new objects are created, with the links kept
     assert len(new_objects) == 1
-    assert {obj.id for obj in new_objects} == {  # type: ignore
+    assert {obj.id for obj in new_objects.values()} == {  # type: ignore
         "ModelingPly.2",
     }
-    assert new_objects[0].ply_material.id == "Fabric.1"  # type: ignore
+    assert list(new_objects.values())[0].ply_material.id == "Fabric.1"  # type: ignore
 
 
 def test_basic_recursive_copy_no_links(minimal_complete_model):
@@ -83,15 +83,15 @@ def test_basic_recursive_copy_no_links(minimal_complete_model):
 
     # WHEN: Recursively copying the Modeling Ply onto the same Modeling Group, without linked objects
     new_objects = recursive_copy(
-        source_objects=[mp], parent_mapping=[(mg, mg)], linked_object_handling="discard"
+        source_objects=[mp], parent_mapping={mg: mg}, linked_object_handling="discard"
     )
 
     # THEN: The expected new objects are created, without links
     assert len(new_objects) == 1
-    assert {obj.id for obj in new_objects} == {  # type: ignore
+    assert {obj.id for obj in new_objects.values()} == {  # type: ignore
         "ModelingPly.2",
     }
-    assert new_objects[0].ply_material is None  # type: ignore
+    assert list(new_objects.values())[0].ply_material is None  # type: ignore
 
 
 def test_copy_all_objects(minimal_complete_model):
@@ -100,13 +100,13 @@ def test_copy_all_objects(minimal_complete_model):
     model = minimal_complete_model
 
     # WHEN: Recursively copying, starting from the root of the model
-    new_objects = recursive_copy(source_objects=[model], parent_mapping=[(model, model)])
+    new_objects = recursive_copy(source_objects=[model], parent_mapping={model: model})
 
     # THEN: The expected new objects are created
     # NOTE: This list may need to be updated when the model reference file
     # is changed.
     assert len(new_objects) == 8
-    assert {obj.id for obj in new_objects} == {  # type: ignore
+    assert {obj.id for obj in new_objects.values()} == {  # type: ignore
         "Global Coordinate System.2",
         "All_Elements.2",
         "ns_edge.2",
@@ -125,13 +125,13 @@ def test_copy_to_different_model(minimal_complete_model, load_model_from_tempfil
     with load_model_from_tempfile() as model2:
 
         # WHEN: Recursively copying all objects from model1 to model2
-        new_objects = recursive_copy(source_objects=[model1], parent_mapping=[(model1, model2)])
+        new_objects = recursive_copy(source_objects=[model1], parent_mapping={model1: model2})
 
         # THEN: The expected new objects are created
         # NOTE: This list may need to be updated when the model reference file
         # is changed.
         assert len(new_objects) == 8
-        assert {obj.id for obj in new_objects} == {  # type: ignore
+        assert {obj.id for obj in new_objects.values()} == {  # type: ignore
             "Global Coordinate System.2",
             "All_Elements.2",
             "ns_edge.2",
@@ -158,13 +158,13 @@ def test_copy_edge_property_list(minimal_complete_model):
     )
 
     # WHEN: Recursively copying the Stackup
-    new_objects = recursive_copy(source_objects=[stackup], parent_mapping=[(model, model)])
+    new_objects = recursive_copy(source_objects=[stackup], parent_mapping={model: model})
 
     # THEN:
     # - The stackup, fabrics, and materials are copied
     # - The copied stackup links the new fabrics with the correct order and angles
     assert len(new_objects) == 4
-    assert {obj.id for obj in new_objects} == {  # type: ignore
+    assert {obj.id for obj in new_objects.values()} == {  # type: ignore
         "Stackup.2",
         "Fabric.2",
         "other_fabric.2",
@@ -192,7 +192,7 @@ def test_missing_parent_object_raises(minimal_complete_model):
     with pytest.raises(KeyError) as exc_info:
         recursive_copy(
             source_objects=[mp],
-            parent_mapping=[(mg, mg)],
+            parent_mapping={mg: mg},
         )
 
     msg = str(exc_info.value)
@@ -215,12 +215,12 @@ def test_copy_lookup_table_with_columns(minimal_complete_model):
     lut.create_column(name="column1", data=[4.0, 5.0, 6.0])
 
     # WHEN: recursively copying the lookup table
-    new_objects = recursive_copy(source_objects=[lut], parent_mapping=[(model, model)])
+    new_objects = recursive_copy(source_objects=[lut], parent_mapping={model: model})
 
     # THEN: the expected new objects are created, but the sub-attributes are
     # not explicitly copied
     assert len(new_objects) == 2
-    assert {obj.id for obj in new_objects} == {  # type: ignore
+    assert {obj.id for obj in new_objects.values()} == {  # type: ignore
         "LookUpTable1D.2",
         "column1",
     }

@@ -20,9 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import collections
 from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import cast
 
 import networkx as nx
 
@@ -113,9 +113,9 @@ def recursive_copy(
     The copied tree includes all child objects. Linked objects can optionally be included,
     controlled by the ``linked_object_handling`` argument.
 
-    To specify where the new objects should be stored, you must provide a list of tuples
-    in the ``parent_mapping`` argument. Each tuple contains the original parent object
-    as the first element and the new parent object as the second element.
+    To specify where the new objects should be stored, you must provide a dictionary
+    in the ``parent_mapping`` argument. The keys of the dictionary are the original
+    parent objects, and the values are the new parent objects.
     Note that this mapping may need to contain parent objects that are not direct parents
     of the source objects, if another branch of the tree is included via linked objects.
 
@@ -170,7 +170,7 @@ def recursive_copy(
 
         pyacp.recursive_copy(
             source_objects=model1.modeling_groups.values(),
-            parent_mapping=[(model1, model2)],
+            parent_mapping={model1: model2},
         )
 
     To copy all definitions from one model to another, you can use the following code:
@@ -184,7 +184,7 @@ def recursive_copy(
 
         pyacp.recursive_copy(
             source_objects=[model1],
-            parent_mapping=[(model1, model2)],
+            parent_mapping={model1: model2},
         )
     """
     linked_object_handling = LinkedObjectHandling(linked_object_handling)
@@ -198,7 +198,11 @@ def recursive_copy(
     # - from source to target of a link
     graph = _build_dependency_graph(source_objects=source_objects, options=options)
 
-    replacement_mapping = dict(parent_mapping)
+    new_object_mapping: dict[CreatableTreeObject, CreatableTreeObject] = {}
+    replacement_mapping = collections.ChainMap[TreeObject, TreeObject](
+        new_object_mapping, parent_mapping  # type: ignore
+    )
+
     # keep track of the new resource paths for easy replacement of linked objects
     resource_path_replacement_mapping = {
         obj._resource_path.value: new_obj._resource_path.value
@@ -248,18 +252,9 @@ def recursive_copy(
             assert isinstance(tree_object, (LookUpTable1D, LookUpTable3D))
             new_tree_object.columns["Location"].data = tree_object.columns["Location"].data
 
-        replacement_mapping[tree_object] = new_tree_object
+        new_object_mapping[tree_object] = new_tree_object
         resource_path_replacement_mapping[tree_object._resource_path.value] = (
             new_tree_object._resource_path.value
         )
 
-    # Return a mapping of only the newly created objects
-    # (key: old object, value: new object).
-    # The type cast is necessary because the 'parent_mapping' could also
-    # include non-creatable objects, but the filter ensures that only
-    # creatable objects are returned.
-    return {
-        cast(CreatableTreeObject, old_obj): cast(CreatableTreeObject, new_obj)
-        for old_obj, new_obj in replacement_mapping.items()
-        if old_obj is not new_obj
-    }
+    return new_object_mapping
