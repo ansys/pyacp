@@ -26,14 +26,8 @@ from dataclasses import dataclass
 import networkx as nx
 
 from ._tree_objects import LookUpTable1D, LookUpTable1DColumn, LookUpTable3D, LookUpTable3DColumn
-from ._tree_objects._traversal import (
-    all_linked_objects,
-    child_objects,
-    directly_linked_objects,
-    edge_property_lists,
-    edge_property_targets,
-    linked_object_lists,
-)
+from ._tree_objects._grpc_helpers.linked_object_helpers import get_linked_paths
+from ._tree_objects._traversal import all_linked_objects, child_objects
 from ._tree_objects.base import CreatableTreeObject, TreeObject
 
 __all__ = ["recursive_copy"]
@@ -175,6 +169,9 @@ def recursive_copy(
     options = _WalkTreeOptions(
         include_children=include_children, include_linked_objects=include_linked_objects
     )
+    # Build up a graph of the objects to clone. Graph edges represent a dependency:
+    # - from child to parent node
+    # - from source to target of a link
     graph, visited_objects = _build_dependency_graph(source_objects=source_objects, options=options)
 
     replacement_mapping = {
@@ -182,6 +179,8 @@ def recursive_copy(
     }
     new_objects: list[CreatableTreeObject] = []
 
+    # The 'topological_sort' of the graph ensures that each node is only handled
+    # once its parent and linked objects are stored.
     for node in reversed(list(nx.topological_sort(graph))):
         if node in replacement_mapping:
             # Skip nodes which are already copied (e.g. coming from the parent_mapping)
@@ -198,19 +197,12 @@ def recursive_copy(
         # If the linked objects are also copied, replace them with the new objects.
         # Otherwise, we can directly store the new object.
         if include_linked_objects:
-            for attr_name, linked_object in directly_linked_objects(tree_object):
-                new_linked_object = replacement_mapping[linked_object._resource_path.value]
-                setattr(new_tree_object, attr_name, new_linked_object)
-            for attr_name, linked_object_list in linked_object_lists(tree_object):
-                new_linked_objects = [
-                    replacement_mapping[linked_object._resource_path.value]
-                    for linked_object in linked_object_list
-                ]
-                setattr(new_tree_object, attr_name, new_linked_objects)
-
-            # clear edge property lists, then re-create them once the new object is stored
-            for attr_name, _ in edge_property_lists(tree_object):
-                setattr(new_tree_object, attr_name, [])
+            for linked_resource_path in get_linked_paths(new_tree_object._pb_object.properties):
+                # TODO: handle case when linked objects are not (yet) supported by PyACP or
+                # the server, but are included in the API.
+                linked_resource_path.value = replacement_mapping[
+                    linked_resource_path.value
+                ]._resource_path.value
 
         parent_rp = tree_object._resource_path.value.rsplit("/", 2)[0]
         try:
@@ -229,16 +221,6 @@ def recursive_copy(
         if isinstance(new_tree_object, (LookUpTable1D, LookUpTable3D)):
             assert isinstance(tree_object, (LookUpTable1D, LookUpTable3D))
             new_tree_object.columns["Location"].data = tree_object.columns["Location"].data
-
-        if include_linked_objects:
-            for attr_name, edge_property_list in edge_property_lists(tree_object):
-                new_edge_property_list = [edge.clone() for edge in edge_property_list]
-                for edge, edge_prop_name, edge_target in edge_property_targets(
-                    new_edge_property_list
-                ):
-                    new_edge_target = replacement_mapping[edge_target._resource_path.value]
-                    setattr(edge, edge_prop_name, new_edge_target)
-                setattr(new_tree_object, attr_name, new_edge_property_list)
 
         replacement_mapping[node] = new_tree_object
         new_objects.append(new_tree_object)

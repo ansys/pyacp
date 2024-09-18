@@ -25,28 +25,41 @@ from collections.abc import Iterable
 from google.protobuf.descriptor import FieldDescriptor
 from google.protobuf.message import Message
 
-from ansys.api.acp.v0.base_pb2 import CollectionPath, ResourcePath
+from ansys.api.acp.v0.base_pb2 import ResourcePath
 
-__all__ = ("unlink_objects", "linked_path_fields")
+__all__ = ("unlink_objects", "get_linked_paths")
 
 
 def unlink_objects(pb_object: Message) -> None:
     """Remove all ResourcePaths and CollectionPaths from a protobuf object."""
-    for parent_message, field_descriptor, _ in linked_path_fields(pb_object):
+    for parent_message, field_descriptor, _ in _linked_path_fields(pb_object):
         parent_message.ClearField(field_descriptor.name)
 
 
-def linked_path_fields(
-    pb_object: Message,
-) -> Iterable[tuple[Message, FieldDescriptor, ResourcePath | CollectionPath]]:
-    """Get all linked paths from a protobuf object.
+def get_linked_paths(pb_object: Message) -> Iterable[ResourcePath]:
+    """Get all resource paths present in a protobuf object."""
+    for _, field_descriptor, field_value in _linked_path_fields(pb_object):
+        if field_descriptor.label == field_descriptor.LABEL_REPEATED:
+            yield from field_value  # type: ignore
+        else:
+            yield field_value  # type: ignore
 
-    Get tuples (parent_message, field_descriptor, {resource_path or collection_path})
-    describing all resource or collection paths present in the protobuf
-    object.
+
+def _linked_path_fields(
+    pb_object: Message,
+) -> Iterable[tuple[Message, FieldDescriptor, Message]]:
+    """Get the field field information for resource paths in the message.
+
+    Get tuples (parent_message, field_descriptor, field_value) describing
+    all resource paths present in the protobuf object. Note that the fields
+    can also be repeated (containing multiple resource paths).
     """
     for field_descriptor, field_value in pb_object.ListFields():
-        if isinstance(field_value, (ResourcePath, CollectionPath)):
+        if getattr(field_descriptor.message_type, "name", None) == "ResourcePath":
             yield (pb_object, field_descriptor, field_value)
-        elif isinstance(field_value, Message):
-            yield from linked_path_fields(field_value)
+        elif field_descriptor.type == field_descriptor.TYPE_MESSAGE:
+            if field_descriptor.label == field_descriptor.LABEL_REPEATED:
+                for sub_obj in field_value:
+                    yield from _linked_path_fields(sub_obj)
+            else:
+                yield from _linked_path_fields(field_value)

@@ -42,7 +42,7 @@ from .._utils.resource_paths import common_path
 from .._utils.resource_paths import join as _rp_join
 from .._utils.resource_paths import to_parts
 from ._grpc_helpers.exceptions import wrap_grpc_errors
-from ._grpc_helpers.linked_object_helpers import linked_path_fields, unlink_objects
+from ._grpc_helpers.linked_object_helpers import get_linked_paths, unlink_objects
 from ._grpc_helpers.polymorphic_from_pb import CreatableFromResourcePath
 from ._grpc_helpers.property_helper import (
     _get_data_attribute,
@@ -307,7 +307,7 @@ class CreatableTreeObject(TreeObject):
 
         # check that all linked objects are located in the same model
         path_values = [collection_path.value] + [
-            path.value for _, _, path in linked_path_fields(self._pb_object.properties)
+            path.value for path in get_linked_paths(self._pb_object.properties)
         ]
         # filter out empty paths
         path_values = [path for path in path_values if path]
