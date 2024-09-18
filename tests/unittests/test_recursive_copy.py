@@ -233,3 +233,76 @@ def test_copy_lookup_table_with_columns(minimal_complete_model):
     new_lut = model.lookup_tables_1d["LookUpTable1D.2"]
     assert np.allclose(new_lut.columns["Location"].data, [1.0, 2.0, 3.0])
     assert np.allclose(new_lut.columns["column1"].data, [4.0, 5.0, 6.0])
+
+
+def test_inconsistent_source_model(minimal_complete_model, load_model_from_tempfile):
+    """Test that an exception is raised if the source objects are not all from the same model."""
+    # GIVEN: Two models
+    model1 = minimal_complete_model
+    with load_model_from_tempfile() as model2:
+        # WHEN: Copying objects from different models
+        # THEN: An exception is raised
+        with pytest.raises(ValueError) as exc:
+            recursive_copy(
+                source_objects=[model1, model2],
+                parent_mapping={model1: model2},
+                linked_object_handling="copy",
+            )
+        assert "source_objects" in str(exc.value)
+        assert "'parent_mapping' keys" in str(exc.value)
+        assert "same model" in str(exc.value)
+
+
+def test_inconsistent_source_model_2(minimal_complete_model, load_model_from_tempfile):
+    """Test that an exception is raised if the source objects are not all from the same model."""
+    # GIVEN: Two models
+    model1 = minimal_complete_model
+    with load_model_from_tempfile() as model2:
+        # WHEN: Copying objects from different models
+        # THEN: An exception is raised
+        with pytest.raises(ValueError) as exc:
+            recursive_copy(
+                source_objects=[model1],
+                parent_mapping={model2: model2},  # parent_mapping keys are from the wrong model
+                linked_object_handling="copy",
+            )
+        assert "source_objects" in str(exc.value)
+        assert "'parent_mapping' keys" in str(exc.value)
+        assert "same model" in str(exc.value)
+
+
+def test_inconsistent_target_model(minimal_complete_model, load_model_from_tempfile):
+    """Test that an exception is raised if the target parents are not all from the same model."""
+    # GIVEN: Two models
+    model1 = minimal_complete_model
+    mat = model1.materials["Structural Steel"]
+    with load_model_from_tempfile() as model2:
+        # WHEN: Copying objects from different models
+        # THEN: An exception is raised
+        with pytest.raises(ValueError) as exc:
+            recursive_copy(
+                source_objects=[model1],
+                parent_mapping={model1: model2, mat: mat},
+                linked_object_handling="copy",
+            )
+        assert "parent_mapping" in str(exc.value)
+        assert "'parent_mapping' values" in str(exc.value)
+        assert "same model" in str(exc.value)
+
+
+def test_keep_links_across_models_raises(minimal_complete_model, load_model_from_tempfile):
+    """Test that an exception is raised when trying to keep links across models."""
+    # GIVEN: Two models
+    model1 = minimal_complete_model
+    with load_model_from_tempfile() as model2:
+        # WHEN: Copying objects across models, with linked_object_handling="keep"
+        # THEN: An exception is raised
+        with pytest.raises(ValueError) as exc:
+            recursive_copy(
+                source_objects=[model1],
+                parent_mapping={model1: model2},
+                linked_object_handling="keep",
+            )
+        assert "linked_object_handling" in str(exc.value)
+        assert "keep" in str(exc.value)
+        assert "copy objects between models" in str(exc.value)

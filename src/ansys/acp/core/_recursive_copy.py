@@ -151,10 +151,10 @@ def recursive_copy(
     if linked_object_handling == LinkedObjectHandling.KEEP:
         if len(to_parts(common_path(common_source_path, common_target_path))) < 2:
             raise ValueError(
-                "When using 'linked_object_handling=\"keep\"', all provided objects in 'source_objects' "
-                "and 'parent_mapping' (keys and values) must belong to the same model. Use "
-                "'linked_object_handling=\"copy\"' or 'linked_object_handling=\"discard\"' to copy "
-                "objects between models."
+                "When using 'linked_object_handling=\"keep\"', objects cannot be copied from one model "
+                "to another. The objects in 'source_objects' and 'parent_mapping' must all belong to the "
+                'same model. Use \'linked_object_handling="copy"\' or linked_object_handling="discard"\' '
+                "to copy objects between models."
             )
 
     linked_object_handling = LinkedObjectHandling(linked_object_handling)
