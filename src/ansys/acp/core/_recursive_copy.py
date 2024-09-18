@@ -22,6 +22,7 @@
 
 from collections.abc import Iterable
 from dataclasses import dataclass
+from typing import cast
 
 import networkx as nx
 
@@ -105,7 +106,7 @@ def recursive_copy(
     source_objects: Iterable[CreatableTreeObject],
     parent_mapping: dict[TreeObject, TreeObject],
     linked_object_handling: LinkedObjectHandling | str = "copy",
-) -> list[CreatableTreeObject]:
+) -> dict[CreatableTreeObject, CreatableTreeObject]:
     """Recursively copy a tree of ACP objects.
 
     This function copies a tree of ACP objects, starting from the given source objects.
@@ -152,7 +153,8 @@ def recursive_copy(
     Returns
     -------
     :
-        A list of newly created objects.
+        A mapping of the newly created objects. The keys are the original objects,
+        and the values are the new objects.
 
     Examples
     --------
@@ -202,7 +204,6 @@ def recursive_copy(
         obj._resource_path.value: new_obj._resource_path.value
         for obj, new_obj in parent_mapping.items()
     }
-    new_objects: list[CreatableTreeObject] = []
 
     # The 'topological_sort' of the graph ensures that each node is only handled
     # once its parent and linked objects are stored.
@@ -210,7 +211,6 @@ def recursive_copy(
         if tree_object in replacement_mapping:
             # Skip nodes which are already copied (e.g. coming from the parent_mapping)
             continue
-        # tree_object = visited_objects[node]
 
         if isinstance(tree_object, (LookUpTable1DColumn, LookUpTable3DColumn)):
             # handled explicitly while copying the LookUpTable object
@@ -252,6 +252,14 @@ def recursive_copy(
         resource_path_replacement_mapping[tree_object._resource_path.value] = (
             new_tree_object._resource_path.value
         )
-        new_objects.append(new_tree_object)
 
-    return new_objects
+    # Return a mapping of only the newly created objects
+    # (key: old object, value: new object).
+    # The type cast is necessary because the 'parent_mapping' could also
+    # include non-creatable objects, but the filter ensures that only
+    # creatable objects are returned.
+    return {
+        cast(CreatableTreeObject, old_obj): cast(CreatableTreeObject, new_obj)
+        for old_obj, new_obj in replacement_mapping.items()
+        if old_obj is not new_obj
+    }
