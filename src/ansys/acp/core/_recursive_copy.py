@@ -22,75 +22,16 @@
 
 import collections
 from collections.abc import Iterable
-from dataclasses import dataclass
 
 import networkx as nx
 
+from ._dependency_graph import _build_dependency_graph, _WalkTreeOptions
 from ._tree_objects import LookUpTable1D, LookUpTable1DColumn, LookUpTable3D, LookUpTable3DColumn
 from ._tree_objects._grpc_helpers.linked_object_helpers import get_linked_paths
-from ._tree_objects._traversal import all_linked_objects, child_objects
 from ._tree_objects.base import CreatableTreeObject, TreeObject
 from ._typing_helper import StrEnum
 
 __all__ = ["recursive_copy", "LinkedObjectHandling"]
-
-
-@dataclass
-class _WalkTreeOptions:
-    include_children: bool
-    include_linked_objects: bool
-
-
-def _build_dependency_graph(
-    *, source_objects: Iterable[CreatableTreeObject], options: _WalkTreeOptions
-) -> nx.DiGraph:
-    graph = nx.DiGraph()
-
-    # We need to manually keep track of which objects have been visited,
-    # since the node may also be created when being linked to.
-    visited_objects: set[CreatableTreeObject] = set()
-    for tree_object in source_objects:
-        _build_dependency_graph_impl(
-            tree_object=tree_object, graph=graph, visited_objects=visited_objects, options=options
-        )
-    return graph
-
-
-def _build_dependency_graph_impl(
-    *,
-    tree_object: CreatableTreeObject,
-    graph: nx.DiGraph,
-    visited_objects: set[CreatableTreeObject],
-    options: _WalkTreeOptions,
-) -> None:
-
-    if tree_object in visited_objects:
-        return
-
-    visited_objects.add(tree_object)
-    graph.add_node(tree_object)
-
-    if options.include_children:
-        for child_object in child_objects(tree_object):
-            if not isinstance(child_object, CreatableTreeObject):
-                continue
-            graph.add_edge(child_object, tree_object)
-            _build_dependency_graph_impl(
-                tree_object=child_object,
-                graph=graph,
-                visited_objects=visited_objects,
-                options=options,
-            )
-    if options.include_linked_objects:
-        for linked_object in all_linked_objects(tree_object):
-            assert isinstance(linked_object, CreatableTreeObject)
-            graph.add_edge(tree_object, linked_object)
-            _build_dependency_graph_impl(
-                tree_object=linked_object,
-                graph=graph,
-                visited_objects=visited_objects,
-                options=options,
-            )
 
 
 class LinkedObjectHandling(StrEnum):
@@ -229,8 +170,6 @@ def recursive_copy(
         # Otherwise, we can directly store the new object.
         if linked_object_handling == LinkedObjectHandling.COPY:
             for linked_resource_path in get_linked_paths(new_tree_object._pb_object.properties):
-                # TODO: handle case when linked objects are not (yet) supported by PyACP or
-                # the server, but are included in the API.
                 linked_resource_path.value = resource_path_replacement_mapping[
                     linked_resource_path.value
                 ]
