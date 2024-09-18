@@ -29,8 +29,9 @@ from ._tree_objects import LookUpTable1D, LookUpTable1DColumn, LookUpTable3D, Lo
 from ._tree_objects._grpc_helpers.linked_object_helpers import get_linked_paths
 from ._tree_objects._traversal import all_linked_objects, child_objects
 from ._tree_objects.base import CreatableTreeObject, TreeObject
+from ._typing_helper import StrEnum
 
-__all__ = ["recursive_copy"]
+__all__ = ["recursive_copy", "LinkedObjectHandling"]
 
 
 @dataclass
@@ -87,19 +88,25 @@ def _build_dependency_graph_impl(
             )
 
 
+class LinkedObjectHandling(StrEnum):
+    """Defines options for handling linked objects when copying a tree of ACP objects."""
+
+    COPY = "copy"
+    KEEP = "keep"
+    DISCARD = "discard"
+
+
 def recursive_copy(
     *,
     source_objects: Iterable[CreatableTreeObject],
     parent_mapping: Iterable[tuple[TreeObject, TreeObject]],
-    include_children: bool = True,
-    include_linked_objects: bool = True,
+    linked_object_handling: LinkedObjectHandling | str = "copy",
 ) -> list[CreatableTreeObject]:
     """Recursively copy a tree of ACP objects.
 
     This function copies a tree of ACP objects, starting from the given source objects.
-    You can specify whether to include children (for example the Modeling Plies in a
-    Modeling Group) and linked objects (for example the Rosettes linked to an Oriented
-    Selection Set) in the copy.
+    The copied tree includes all child objects. Linked objects can optionally be included,
+    controlled by the ``linked_object_handling`` argument.
 
     To specify where the new objects should be stored, you must provide a list of tuples
     in the ``parent_mapping`` argument. Each tuple contains the original parent object
@@ -125,10 +132,18 @@ def recursive_copy(
         A list of tuples defining where the new objects are stored. Each tuple contains
         the original parent object as the first element and the new parent object as the
         second element.
-    include_children :
-        Whether to include child objects when creating the tree to copy.
-    include_linked_objects :
-        Whether to include linked objects when creating the tree to copy.
+    linked_object_handling :
+        Defines how linked objects are handled. The following options are available:
+
+        - ``"copy"``: Copy the linked objects, and replace the links.
+        - ``"keep"``: Keep linking to the original objects, and do not
+          copy them (unless they are otherwise included in the tree).
+        - ``"discard"``: Discard object links.
+
+        Note that when copying objects between two models, only the ``"copy"`` and
+        ``"discard"`` options are valid. If you wish to use links to existing objects,
+        the ``"copy"`` option can be used, specifying how links should be replaced in
+        the ``parent_mapping`` argument.
 
     Returns
     -------
@@ -166,8 +181,11 @@ def recursive_copy(
             parent_mapping=[(model1, model2)],
         )
     """
+    linked_object_handling = LinkedObjectHandling(linked_object_handling)
+
     options = _WalkTreeOptions(
-        include_children=include_children, include_linked_objects=include_linked_objects
+        include_children=True,
+        include_linked_objects=linked_object_handling == LinkedObjectHandling.COPY,
     )
     # Build up a graph of the objects to clone. Graph edges represent a dependency:
     # - from child to parent node
@@ -192,11 +210,13 @@ def recursive_copy(
             if tree_object.name == "Location":
                 continue
 
-        new_tree_object = tree_object.clone()
+        new_tree_object = tree_object.clone(
+            unlink=linked_object_handling == LinkedObjectHandling.DISCARD
+        )
 
         # If the linked objects are also copied, replace them with the new objects.
         # Otherwise, we can directly store the new object.
-        if include_linked_objects:
+        if linked_object_handling == LinkedObjectHandling.COPY:
             for linked_resource_path in get_linked_paths(new_tree_object._pb_object.properties):
                 # TODO: handle case when linked objects are not (yet) supported by PyACP or
                 # the server, but are included in the API.

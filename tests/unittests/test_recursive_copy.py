@@ -56,6 +56,25 @@ def test_basic_recursive_copy(minimal_complete_model):
     }
 
 
+def test_basic_recursive_copy_keep_links(minimal_complete_model):
+    """Test copying a Modeling Ply without linked objects."""
+    # GIVEN: A Modeling Ply with linked objects
+    mg = minimal_complete_model.modeling_groups["ModelingGroup.1"]
+    mp = mg.modeling_plies["ModelingPly.1"]
+
+    # WHEN: Recursively copying the Modeling Ply onto the same Modeling Group, without linked objects
+    new_objects = recursive_copy(
+        source_objects=[mp], parent_mapping=[(mg, mg)], linked_object_handling="keep"
+    )
+
+    # THEN: The expected new objects are created, with the links kept
+    assert len(new_objects) == 1
+    assert {obj.id for obj in new_objects} == {  # type: ignore
+        "ModelingPly.2",
+    }
+    assert new_objects[0].ply_material.id == "Fabric.1"  # type: ignore
+
+
 def test_basic_recursive_copy_no_links(minimal_complete_model):
     """Test copying a Modeling Ply without linked objects."""
     # GIVEN: A Modeling Ply with linked objects
@@ -64,14 +83,15 @@ def test_basic_recursive_copy_no_links(minimal_complete_model):
 
     # WHEN: Recursively copying the Modeling Ply onto the same Modeling Group, without linked objects
     new_objects = recursive_copy(
-        source_objects=[mp], parent_mapping=[(mg, mg)], include_linked_objects=False
+        source_objects=[mp], parent_mapping=[(mg, mg)], linked_object_handling="discard"
     )
 
-    # THEN: The expected new objects are created
+    # THEN: The expected new objects are created, without links
     assert len(new_objects) == 1
     assert {obj.id for obj in new_objects} == {  # type: ignore
         "ModelingPly.2",
     }
+    assert new_objects[0].ply_material is None  # type: ignore
 
 
 def test_copy_all_objects(minimal_complete_model):
@@ -121,26 +141,6 @@ def test_copy_to_different_model(minimal_complete_model, load_model_from_tempfil
             "ModelingGroup.2",
             "ModelingPly.2",
         }
-
-
-def test_children_not_included(minimal_complete_model):
-    """Test copying without including the child objects."""
-    # GIVEN: A simple model
-    model = minimal_complete_model
-
-    # WHEN: Recursively copying, starting from the a Modeling Group, but without including its
-    # children
-    new_objects = recursive_copy(
-        source_objects=[model.modeling_groups["ModelingGroup.1"]],
-        parent_mapping=[(model, model)],
-        include_children=False,
-    )
-
-    # THEN: Only the Modeling Group is copied
-    assert len(new_objects) == 1
-    assert {obj.id for obj in new_objects} == {  # type: ignore
-        "ModelingGroup.2",
-    }
 
 
 def test_copy_edge_property_list(minimal_complete_model):
