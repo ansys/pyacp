@@ -30,6 +30,7 @@ from ._tree_objects import LookUpTable1D, LookUpTable1DColumn, LookUpTable3D, Lo
 from ._tree_objects._grpc_helpers.linked_object_helpers import get_linked_paths
 from ._tree_objects.base import CreatableTreeObject, TreeObject
 from ._typing_helper import StrEnum
+from ._utils.resource_paths import common_path, to_parts
 
 __all__ = ["recursive_copy", "LinkedObjectHandling"]
 
@@ -37,8 +38,8 @@ __all__ = ["recursive_copy", "LinkedObjectHandling"]
 class LinkedObjectHandling(StrEnum):
     """Defines options for handling linked objects when copying a tree of ACP objects."""
 
-    COPY = "copy"
     KEEP = "keep"
+    COPY = "copy"
     DISCARD = "discard"
 
 
@@ -46,13 +47,14 @@ def recursive_copy(
     *,
     source_objects: Iterable[CreatableTreeObject],
     parent_mapping: dict[TreeObject, TreeObject],
-    linked_object_handling: LinkedObjectHandling | str = "copy",
+    linked_object_handling: LinkedObjectHandling | str = "keep",
 ) -> dict[CreatableTreeObject, CreatableTreeObject]:
     """Recursively copy a tree of ACP objects.
 
     This function copies a tree of ACP objects, starting from the given source objects.
-    The copied tree includes all child objects. Linked objects can optionally be included,
-    controlled by the ``linked_object_handling`` argument.
+    The copied tree includes all child objects. Linked objects (such as a Fabric linked to
+    by a Modeling Ply) can optionally be included, controlled by the
+    ``linked_object_handling`` argument.
 
     To specify where the new objects should be stored, you must provide a dictionary
     in the ``parent_mapping`` argument. The keys of the dictionary are the original
@@ -64,7 +66,8 @@ def recursive_copy(
     ``source_objects`` list. In this case, the function will not create a new object for
     the parent, but will use the existing object instead.
 
-    The function returns a list of newly created objects.
+    The function returns a ``dict`` mapping the original objects to the newly created
+    objects.
 
     .. note::
 
@@ -79,11 +82,14 @@ def recursive_copy(
         the original parent object as the first element and the new parent object as the
         second element.
     linked_object_handling :
-        Defines how linked objects are handled. The following options are available:
+        Defines how linked objects are handled. An example of a linked object is a Fabric
+        linked to by a Modeling Ply.
 
-        - ``"copy"``: Copy the linked objects, and replace the links.
+        The following options are available:
+
         - ``"keep"``: Keep linking to the original objects, and do not
           copy them (unless they are otherwise included in the tree).
+        - ``"copy"``: Copy the linked objects, and replace the links.
         - ``"discard"``: Discard object links.
 
         Note that when copying objects between two models, only the ``"copy"`` and
@@ -128,6 +134,27 @@ def recursive_copy(
             parent_mapping={model1: model2},
         )
     """
+    # Check that the given source objects and parent mapping keys belong to the same
+    # model.
+    common_source_path = common_path(
+        *[obj._resource_path.value for obj in list(source_objects) + list(parent_mapping.keys())]
+    )
+    if len(to_parts(common_source_path)) < 2:
+        raise ValueError(
+            "The 'source_objects' and 'parent_mapping' keys must all belong to the same model."
+        )
+    common_target_path = common_path(*[obj._resource_path.value for obj in parent_mapping.values()])
+    if len(to_parts(common_target_path)) < 2:
+        raise ValueError("The 'parent_mapping' values must all belong to the same model.")
+    if linked_object_handling == LinkedObjectHandling.KEEP:
+        if len(to_parts(common_path(common_source_path, common_target_path))) < 2:
+            raise ValueError(
+                "When using 'linked_object_handling=\"keep\"', all provided objects in 'source_objects' "
+                "and 'parent_mapping' (keys and values) must belong to the same model. Use "
+                "'linked_object_handling=\"copy\"' or 'linked_object_handling=\"discard\"' to copy "
+                "objects between models."
+            )
+
     linked_object_handling = LinkedObjectHandling(linked_object_handling)
 
     options = _WalkTreeOptions(
