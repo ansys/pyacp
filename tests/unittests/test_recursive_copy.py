@@ -42,6 +42,7 @@ def test_basic_recursive_copy(minimal_complete_model):
     new_objects = recursive_copy(
         source_objects=[mp],
         parent_mapping={mg: mg, minimal_complete_model: minimal_complete_model},
+        linked_object_handling="copy",
     )
 
     # THEN: The expected new objects are created
@@ -125,7 +126,9 @@ def test_copy_to_different_model(minimal_complete_model, load_model_from_tempfil
     with load_model_from_tempfile() as model2:
 
         # WHEN: Recursively copying all objects from model1 to model2
-        new_objects = recursive_copy(source_objects=[model1], parent_mapping={model1: model2})
+        new_objects = recursive_copy(
+            source_objects=[model1], parent_mapping={model1: model2}, linked_object_handling="copy"
+        )
 
         # THEN: The expected new objects are created
         # NOTE: This list may need to be updated when the model reference file
@@ -158,7 +161,9 @@ def test_copy_edge_property_list(minimal_complete_model):
     )
 
     # WHEN: Recursively copying the Stackup
-    new_objects = recursive_copy(source_objects=[stackup], parent_mapping={model: model})
+    new_objects = recursive_copy(
+        source_objects=[stackup], parent_mapping={model: model}, linked_object_handling="copy"
+    )
 
     # THEN:
     # - The stackup, fabrics, and materials are copied
@@ -193,6 +198,7 @@ def test_missing_parent_object_raises(minimal_complete_model):
         recursive_copy(
             source_objects=[mp],
             parent_mapping={mg: mg},
+            linked_object_handling="copy",
         )
 
     msg = str(exc_info.value)

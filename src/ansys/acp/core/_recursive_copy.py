@@ -118,6 +118,7 @@ def recursive_copy(
         pyacp.recursive_copy(
             source_objects=model1.modeling_groups.values(),
             parent_mapping={model1: model2},
+            linked_object_handling="copy",
         )
 
     To copy all definitions from one model to another, you can use the following code:
@@ -132,6 +133,7 @@ def recursive_copy(
         pyacp.recursive_copy(
             source_objects=[model1],
             parent_mapping={model1: model2},
+            linked_object_handling="copy",
         )
     """
     # Check that the given source objects and parent mapping keys belong to the same
