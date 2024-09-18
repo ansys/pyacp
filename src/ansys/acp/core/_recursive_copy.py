@@ -78,7 +78,7 @@ def _build_dependency_graph_impl(
     if options.include_linked_objects:
         for linked_object in all_linked_objects(tree_object):
             assert isinstance(linked_object, CreatableTreeObject)
-            graph.add_edge(tree_object._resource_path.value, linked_object._resource_path.value)
+            graph.add_edge(key, linked_object._resource_path.value)
             _build_dependency_graph_impl(
                 tree_object=linked_object,
                 graph=graph,
