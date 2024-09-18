@@ -112,6 +112,7 @@ from .lookup_table_3d import LookUpTable3D
 from .material import Material
 from .modeling_group import ModelingGroup
 from .modeling_ply import ModelingPly
+from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
 from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
@@ -197,6 +198,7 @@ class ModelNodalData(NodalData):
 
 
 @mark_grpc_properties
+@register
 class Model(TreeObject):
     """Defines an ACP Model.
 

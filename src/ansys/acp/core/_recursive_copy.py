@@ -42,34 +42,38 @@ class _WalkTreeOptions:
 
 def _build_dependency_graph(
     *, source_objects: Iterable[CreatableTreeObject], options: _WalkTreeOptions
-) -> tuple[nx.DiGraph, dict[str, CreatableTreeObject]]:
+) -> nx.DiGraph:
     graph = nx.DiGraph()
-    visited_objects: dict[str, CreatableTreeObject] = dict()
+
+    # We need to manually keep track of which objects have been visited,
+    # since the node may also be created when being linked to.
+    visited_objects: set[CreatableTreeObject] = set()
     for tree_object in source_objects:
         _build_dependency_graph_impl(
             tree_object=tree_object, graph=graph, visited_objects=visited_objects, options=options
         )
-    return graph, visited_objects
+    return graph
 
 
 def _build_dependency_graph_impl(
     *,
     tree_object: CreatableTreeObject,
     graph: nx.DiGraph,
-    visited_objects: dict[str, CreatableTreeObject],
+    visited_objects: set[CreatableTreeObject],
     options: _WalkTreeOptions,
 ) -> None:
-    key = tree_object._resource_path.value
-    if key in visited_objects:
+
+    if tree_object in visited_objects:
         return
-    visited_objects[key] = tree_object
-    graph.add_node(key)
+
+    visited_objects.add(tree_object)
+    graph.add_node(tree_object)
 
     if options.include_children:
         for child_object in child_objects(tree_object):
             if not isinstance(child_object, CreatableTreeObject):
                 continue
-            graph.add_edge(child_object._resource_path.value, key)
+            graph.add_edge(child_object, tree_object)
             _build_dependency_graph_impl(
                 tree_object=child_object,
                 graph=graph,
@@ -79,7 +83,7 @@ def _build_dependency_graph_impl(
     if options.include_linked_objects:
         for linked_object in all_linked_objects(tree_object):
             assert isinstance(linked_object, CreatableTreeObject)
-            graph.add_edge(key, linked_object._resource_path.value)
+            graph.add_edge(tree_object, linked_object)
             _build_dependency_graph_impl(
                 tree_object=linked_object,
                 graph=graph,
@@ -99,7 +103,7 @@ class LinkedObjectHandling(StrEnum):
 def recursive_copy(
     *,
     source_objects: Iterable[CreatableTreeObject],
-    parent_mapping: Iterable[tuple[TreeObject, TreeObject]],
+    parent_mapping: dict[TreeObject, TreeObject],
     linked_object_handling: LinkedObjectHandling | str = "copy",
 ) -> list[CreatableTreeObject]:
     """Recursively copy a tree of ACP objects.
@@ -190,20 +194,23 @@ def recursive_copy(
     # Build up a graph of the objects to clone. Graph edges represent a dependency:
     # - from child to parent node
     # - from source to target of a link
-    graph, visited_objects = _build_dependency_graph(source_objects=source_objects, options=options)
+    graph = _build_dependency_graph(source_objects=source_objects, options=options)
 
-    replacement_mapping = {
-        parent._resource_path.value: new_parent for parent, new_parent in parent_mapping
+    replacement_mapping = dict(parent_mapping)
+    # keep track of the new resource paths for easy replacement of linked objects
+    resource_path_replacement_mapping = {
+        obj._resource_path.value: new_obj._resource_path.value
+        for obj, new_obj in parent_mapping.items()
     }
     new_objects: list[CreatableTreeObject] = []
 
     # The 'topological_sort' of the graph ensures that each node is only handled
     # once its parent and linked objects are stored.
-    for node in reversed(list(nx.topological_sort(graph))):
-        if node in replacement_mapping:
+    for tree_object in reversed(list(nx.topological_sort(graph))):
+        if tree_object in replacement_mapping:
             # Skip nodes which are already copied (e.g. coming from the parent_mapping)
             continue
-        tree_object = visited_objects[node]
+        # tree_object = visited_objects[node]
 
         if isinstance(tree_object, (LookUpTable1DColumn, LookUpTable3DColumn)):
             # handled explicitly while copying the LookUpTable object
@@ -220,13 +227,12 @@ def recursive_copy(
             for linked_resource_path in get_linked_paths(new_tree_object._pb_object.properties):
                 # TODO: handle case when linked objects are not (yet) supported by PyACP or
                 # the server, but are included in the API.
-                linked_resource_path.value = replacement_mapping[
+                linked_resource_path.value = resource_path_replacement_mapping[
                     linked_resource_path.value
-                ]._resource_path.value
+                ]
 
-        parent_rp = tree_object._resource_path.value.rsplit("/", 2)[0]
         try:
-            new_parent = replacement_mapping[parent_rp]
+            new_parent = replacement_mapping[tree_object.parent]
         except KeyError as exc:
             raise KeyError(
                 f"Parent object not found in 'parent_mapping' for object '{tree_object!r}'."
@@ -242,7 +248,10 @@ def recursive_copy(
             assert isinstance(tree_object, (LookUpTable1D, LookUpTable3D))
             new_tree_object.columns["Location"].data = tree_object.columns["Location"].data
 
-        replacement_mapping[node] = new_tree_object
+        replacement_mapping[tree_object] = new_tree_object
+        resource_path_replacement_mapping[tree_object._resource_path.value] = (
+            new_tree_object._resource_path.value
+        )
         new_objects.append(new_tree_object)
 
     return new_objects
