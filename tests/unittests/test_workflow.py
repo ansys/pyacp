@@ -24,6 +24,7 @@ import pathlib
 import shutil
 import tempfile
 
+from packaging.version import parse as parse_version
 import pytest
 
 from ansys.acp.core import ACPWorkflow, UnitSystemType
@@ -102,10 +103,16 @@ def test_workflow_unit_system_dat(acp_instance, model_data_dir, unit_system):
 
     input_file_path = model_data_dir / "flat_plate_input.dat"
 
-    if unit_system != UnitSystemType.UNDEFINED:
+    # Initializing a workflow with a defined unit system is not allowed if the
+    # input file does contain the unit system.
+    # Since 25.1, we also allow it if the unit systems match.
+    if parse_version(acp_instance.server_version) < parse_version("25.1"):
+        allowed_unit_system_values = [UnitSystemType.UNDEFINED]
+    else:
+        allowed_unit_system_values = [UnitSystemType.UNDEFINED, UnitSystemType.MKS]
+
+    if unit_system not in allowed_unit_system_values:
         with pytest.raises(ValueError) as ex:
-            # Initializing a workflow with a defined unit system is not allowed
-            # if the input file does contain the unit system.
             ACPWorkflow.from_cdb_or_dat_file(
                 acp=acp_instance,
                 cdb_or_dat_file_path=input_file_path,
