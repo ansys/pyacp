@@ -29,7 +29,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from functools import reduce
-from typing import Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from google.protobuf.message import Message
 
@@ -51,14 +51,21 @@ _TO_PROTOBUF_T = Callable[[_SET_T], _PROTOBUF_T]
 _FROM_PROTOBUF_T = Callable[[_PROTOBUF_T], _GET_T]
 
 
-class _exposed_grpc_property(property):
-    """Mark a property as exposed via gRPC.
+if TYPE_CHECKING:  # pragma: no cover
+    # This is needed because mypy does not understand custom property
+    # subclasses.
+    # See https://github.com/python/mypy/issues/6158
+    _exposed_grpc_property = property
+else:
 
-    Wrapper around 'property', used to signal that the object should
-    be collected into the '_GRPC_PROPERTIES' class attribute.
-    """
+    class _exposed_grpc_property(property):
+        """Mark a property as exposed via gRPC.
 
-    pass
+        Wrapper around 'property', used to signal that the object should
+        be collected into the '_GRPC_PROPERTIES' class attribute.
+        """
+
+        pass
 
 
 T = TypeVar("T", bound=type[GrpcObjectBase])
@@ -90,10 +97,8 @@ def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
     """Create a getter method which obtains the linked server object."""
 
     def inner(self: Readable) -> CreatableFromResourcePath | None:
-        #  Import here to avoid circular references. Cannot use the registry before
-        #  all the object have been imported.
         if not self._is_stored:
-            raise Exception("Cannot get linked object from unstored object")
+            raise RuntimeError(f"Cannot get linked object '{name}' from unstored object")
         self._get()
         object_resource_path = _get_data_attribute(self._pb_object, name)
 

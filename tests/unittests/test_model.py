@@ -268,3 +268,9 @@ def test_modeling_ply_export(acp_instance, minimal_complete_model, xfail_before)
         minimal_complete_model.export_modeling_ply_geometries(out_file_path)
         acp_instance.download_file(out_file_path, local_file_path)
         assert local_file_path.exists()
+
+
+def test_parent_access_raises(minimal_complete_model):
+    with pytest.raises(RuntimeError) as exc:
+        minimal_complete_model.parent
+    assert "parent" in str(exc.value)

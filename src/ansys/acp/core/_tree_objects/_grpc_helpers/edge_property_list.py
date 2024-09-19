@@ -33,6 +33,7 @@ from typing_extensions import ParamSpec, Self
 from .._object_cache import ObjectCacheMixin, constructor_with_cache
 from ..base import CreatableTreeObject
 from .property_helper import _exposed_grpc_property, _wrap_doc, grpc_data_getter, grpc_data_setter
+from .protocols import GrpcObjectBase
 
 __all__ = [
     "EdgePropertyList",
@@ -42,7 +43,7 @@ __all__ = [
 ]
 
 
-class GenericEdgePropertyType(Protocol):
+class GenericEdgePropertyType(GrpcObjectBase, Protocol):
     """Protocol for the definition of ACP edge properties such as FabricWithAngle."""
 
     def __init__(self, *kwargs: Any) -> None: ...
@@ -60,6 +61,10 @@ class GenericEdgePropertyType(Protocol):
     def _check(self) -> bool: ...
 
     def _set_callback_apply_changes(self, callback_apply_changes: Callable[[], None]) -> None: ...
+
+    def clone(self) -> Self:
+        """Create a new unstored object with the same properties."""
+        raise NotImplementedError
 
 
 ValueT = TypeVar("ValueT", bound=GenericEdgePropertyType)
@@ -170,7 +175,7 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
             # There are two scenarios when the parent object becomes
             # stored:
             # - The _object_list already contained some values. In this case, we
-            #   simply keep it, and make a (inexaustive) check that the size
+            #   simply keep it, and make a (inexhaustive) check that the size
             #   matches.
             # - The parent object was default-constructed and then its _pb_object
             #   was then replaced (e.g. by a call to _from_object_info). In this

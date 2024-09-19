@@ -42,8 +42,11 @@ from .._utils.resource_paths import common_path
 from .._utils.resource_paths import join as _rp_join
 from .._utils.resource_paths import to_parts
 from ._grpc_helpers.exceptions import wrap_grpc_errors
-from ._grpc_helpers.linked_object_helpers import linked_path_fields, unlink_objects
-from ._grpc_helpers.polymorphic_from_pb import CreatableFromResourcePath
+from ._grpc_helpers.linked_object_helpers import get_linked_paths, unlink_objects
+from ._grpc_helpers.polymorphic_from_pb import (
+    CreatableFromResourcePath,
+    tree_object_from_resource_path,
+)
 from ._grpc_helpers.property_helper import (
     _get_data_attribute,
     grpc_data_property,
@@ -100,6 +103,9 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
             return self is other
         return self._resource_path.value == other._resource_path.value
 
+    def __hash__(self) -> int:
+        return id(self)
+
     @classmethod
     @constructor_with_cache(
         key_getter=lambda object_info, *args, **kwargs: object_info.info.resource_path.value,
@@ -144,6 +150,23 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
     @property
     def _is_stored(self) -> bool:
         return self._server_wrapper_store is not None
+
+    @property
+    def parent(self) -> CreatableFromResourcePath:
+        """The parent of the object."""
+        if not self._is_stored:
+            raise RuntimeError("Cannot get the parent of an unstored object.")
+        rp_parts = to_parts(self._resource_path.value)
+        if len(rp_parts) < 3:
+            raise RuntimeError("The object does not have a parent.")
+
+        parent_path = _rp_join(*rp_parts[:-2])
+        parent = tree_object_from_resource_path(
+            ResourcePath(value=parent_path), server_wrapper=self._server_wrapper
+        )
+        if parent is None:
+            raise RuntimeError("The parent object could not be found.")
+        return parent
 
     def __repr__(self) -> str:
         return f"<{type(self).__name__} with name '{self.name}'>"
@@ -307,7 +330,7 @@ class CreatableTreeObject(TreeObject):
 
         # check that all linked objects are located in the same model
         path_values = [collection_path.value] + [
-            path.value for _, _, path in linked_path_fields(self._pb_object.properties)
+            path.value for path in get_linked_paths(self._pb_object.properties)
         ]
         # filter out empty paths
         path_values = [path for path in path_values if path]
