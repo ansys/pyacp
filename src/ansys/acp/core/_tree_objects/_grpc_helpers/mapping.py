@@ -22,11 +22,11 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterator
-from typing import Any, Callable, Generic, TypeVar
+from collections.abc import Callable, Iterator
+from typing import Any, Concatenate, Generic, TypeVar
 
 from grpc import Channel
-from typing_extensions import Concatenate, ParamSpec, Self
+from typing_extensions import ParamSpec, Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 

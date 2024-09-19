@@ -22,8 +22,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 import typing
-from typing import Callable, Union
+from typing import Union
 
 from typing_extensions import Self
 

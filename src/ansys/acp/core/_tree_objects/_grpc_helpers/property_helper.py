@@ -27,8 +27,9 @@ automatically synchronized with the backend via gRPC.
 """
 from __future__ import annotations
 
+from collections.abc import Callable
 from functools import reduce
-from typing import Any, Callable, TypeVar
+from typing import Any, TypeVar
 
 from google.protobuf.message import Message
 

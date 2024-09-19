@@ -23,7 +23,7 @@
 import dataclasses
 import os
 import subprocess
-from typing import Optional, TextIO, Union
+from typing import TextIO
 
 import grpc
 
@@ -48,7 +48,7 @@ def _get_latest_ansys_installation() -> str:
     if not installations:
         raise ValueError("No Ansys installation found.")
 
-    def sort_key(version_nr: int) -> Union[int, float]:
+    def sort_key(version_nr: int) -> int | float:
         # prefer regular over student installs
         if version_nr < 0:
             return abs(version_nr) - 0.5
@@ -117,7 +117,7 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
             text=True,
         )
 
-    def stop(self, *, timeout: Optional[float] = None) -> None:
+    def stop(self, *, timeout: float | None = None) -> None:
         self._process.terminate()
         try:
             self._process.wait(timeout=timeout)
@@ -127,7 +127,7 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         self._stdout.close()
         self._stderr.close()
 
-    def check(self, timeout: Optional[float] = None) -> bool:
+    def check(self, timeout: float | None = None) -> bool:
         channel = grpc.insecure_channel(self.urls[ServerKey.MAIN])
         return check_grpc_health(channel=channel, timeout=timeout)
 
