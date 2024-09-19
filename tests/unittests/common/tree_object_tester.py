@@ -183,10 +183,11 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
             with pytest.raises(AttributeError):
                 setattr(tree_object, prop, value)
 
+        string_representation = str(tree_object)
         for prop, _ in object_properties.read_only + object_properties.read_write:
-            assert f"{prop}=" in str(
-                tree_object
-            ), f"{prop} not found in object string: {str(tree_object)}"
+            assert (
+                f"{prop}=" in string_representation
+            ), f"{prop} not found in object string: {string_representation}"
 
     @staticmethod
     def test_collection_delitem(collection_test_data):
