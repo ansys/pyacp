@@ -44,6 +44,7 @@
       TubeSelectionRule.name
       TubeSelectionRule.nodal_data
       TubeSelectionRule.outer_radius
+      TubeSelectionRule.parent
       TubeSelectionRule.status
       TubeSelectionRule.symmetrical_extension
       TubeSelectionRule.tail_extension

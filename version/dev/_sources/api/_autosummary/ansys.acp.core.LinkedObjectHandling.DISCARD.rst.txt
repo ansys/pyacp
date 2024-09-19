@@ -1,0 +1,6 @@
+DISCARD
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LinkedObjectHandling.DISCARD

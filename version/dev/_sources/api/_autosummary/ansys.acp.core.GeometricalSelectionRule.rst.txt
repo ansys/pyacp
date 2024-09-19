@@ -43,6 +43,7 @@
       GeometricalSelectionRule.name
       GeometricalSelectionRule.negative_capture_tolerance
       GeometricalSelectionRule.nodal_data
+      GeometricalSelectionRule.parent
       GeometricalSelectionRule.positive_capture_tolerance
       GeometricalSelectionRule.status
       GeometricalSelectionRule.use_default_tolerances

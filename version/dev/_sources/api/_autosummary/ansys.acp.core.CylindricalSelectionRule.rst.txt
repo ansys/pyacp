@@ -40,6 +40,7 @@
       CylindricalSelectionRule.name
       CylindricalSelectionRule.nodal_data
       CylindricalSelectionRule.origin
+      CylindricalSelectionRule.parent
       CylindricalSelectionRule.radius
       CylindricalSelectionRule.relative_rule_type
       CylindricalSelectionRule.rosette

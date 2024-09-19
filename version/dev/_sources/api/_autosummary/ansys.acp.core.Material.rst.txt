@@ -41,6 +41,7 @@
       Material.larc_constants
       Material.locked
       Material.name
+      Material.parent
       Material.ply_type
       Material.puck_constants
       Material.status

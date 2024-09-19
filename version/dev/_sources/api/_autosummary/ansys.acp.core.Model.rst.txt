@@ -133,6 +133,7 @@
       Model.nodal_data
       Model.oriented_selection_sets
       Model.parallel_selection_rules
+      Model.parent
       Model.relative_thickness_tolerance
       Model.rosettes
       Model.sensors

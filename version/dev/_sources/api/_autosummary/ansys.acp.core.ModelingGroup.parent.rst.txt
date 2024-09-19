@@ -1,0 +1,6 @@
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingGroup.parent

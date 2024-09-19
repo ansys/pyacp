@@ -37,6 +37,7 @@
       LookUpTable3DColumn.dimension_type
       LookUpTable3DColumn.id
       LookUpTable3DColumn.name
+      LookUpTable3DColumn.parent
       LookUpTable3DColumn.value_type
    
    

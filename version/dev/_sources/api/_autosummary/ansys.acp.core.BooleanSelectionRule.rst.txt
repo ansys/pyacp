@@ -41,6 +41,7 @@
       BooleanSelectionRule.include_rule_type
       BooleanSelectionRule.name
       BooleanSelectionRule.nodal_data
+      BooleanSelectionRule.parent
       BooleanSelectionRule.selection_rules
       BooleanSelectionRule.status
    

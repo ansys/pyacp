@@ -478,6 +478,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.nodal_data.html">nodal_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.orientation_direction.html">orientation_direction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.orientation_point.html">orientation_point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.parent.html">parent</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.reference_direction_field.html">reference_direction_field</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rosette_selection_method.html">rosette_selection_method</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rosettes.html">rosettes</a></li>
@@ -504,6 +505,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="../material_property_sets.html">Material property sets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../enum_types.html">Enumeration data types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plot_utils.html">Plot utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other_utils.html">Other utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflow.html">Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../example_helpers.html">Example helpers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internal.html">Internal objects</a></li>
@@ -604,7 +606,7 @@ mesh size is automatically determined based on the average element size.</p></li
 <li><p><strong>draping_ud_coefficient</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Value between <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code> which determines the amount of deformation
 in the transverse direction if the draping material model is set to
 <a class="reference internal" href="ansys.acp.core.DrapingMaterialType.UD.html#ansys.acp.core.DrapingMaterialType.UD" title="ansys.acp.core.DrapingMaterialType.UD"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DrapingMaterialType.UD</span></code></a>.</p></li>
-<li><p><strong>reference_direction_field</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html#ansys.acp.core.LookUpTable3DColumn" title="ansys.acp.core._tree_objects.lookup_table_3d_column.LookUpTable3DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable3DColumn</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – A 3D lookup table column that defines the reference directions.</p></li>
+<li><p><strong>reference_direction_field</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html#ansys.acp.core.LookUpTable1DColumn" title="ansys.acp.core._tree_objects.lookup_table_1d_column.LookUpTable1DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable1DColumn</span></code></a> | <a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html#ansys.acp.core.LookUpTable3DColumn" title="ansys.acp.core._tree_objects.lookup_table_3d_column.LookUpTable3DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable3DColumn</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – A 3D lookup table column that defines the reference directions.</p></li>
 </ul>
 </dd>
 </dl>
@@ -668,25 +670,28 @@ in the transverse direction if the draping material model is set to
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.orientation_point.html#ansys.acp.core.OrientedSelectionSet.orientation_point" title="ansys.acp.core.OrientedSelectionSet.orientation_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.orientation_point</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.reference_direction_field.html#ansys.acp.core.OrientedSelectionSet.reference_direction_field" title="ansys.acp.core.OrientedSelectionSet.reference_direction_field"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.reference_direction_field</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.parent.html#ansys.acp.core.OrientedSelectionSet.parent" title="ansys.acp.core.OrientedSelectionSet.parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.parent</span></code></a></p></td>
+<td><p>The parent of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.reference_direction_field.html#ansys.acp.core.OrientedSelectionSet.reference_direction_field" title="ansys.acp.core.OrientedSelectionSet.reference_direction_field"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.reference_direction_field</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rosette_selection_method.html#ansys.acp.core.OrientedSelectionSet.rosette_selection_method" title="ansys.acp.core.OrientedSelectionSet.rosette_selection_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.rosette_selection_method</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rosette_selection_method.html#ansys.acp.core.OrientedSelectionSet.rosette_selection_method" title="ansys.acp.core.OrientedSelectionSet.rosette_selection_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.rosette_selection_method</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rosettes.html#ansys.acp.core.OrientedSelectionSet.rosettes" title="ansys.acp.core.OrientedSelectionSet.rosettes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.rosettes</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rosettes.html#ansys.acp.core.OrientedSelectionSet.rosettes" title="ansys.acp.core.OrientedSelectionSet.rosettes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.rosettes</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rotation_angle.html#ansys.acp.core.OrientedSelectionSet.rotation_angle" title="ansys.acp.core.OrientedSelectionSet.rotation_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.rotation_angle</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rotation_angle.html#ansys.acp.core.OrientedSelectionSet.rotation_angle" title="ansys.acp.core.OrientedSelectionSet.rotation_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.rotation_angle</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.selection_rules.html#ansys.acp.core.OrientedSelectionSet.selection_rules" title="ansys.acp.core.OrientedSelectionSet.selection_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.selection_rules</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.selection_rules.html#ansys.acp.core.OrientedSelectionSet.selection_rules" title="ansys.acp.core.OrientedSelectionSet.selection_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.selection_rules</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.status.html#ansys.acp.core.OrientedSelectionSet.status" title="ansys.acp.core.OrientedSelectionSet.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.status</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.status.html#ansys.acp.core.OrientedSelectionSet.status" title="ansys.acp.core.OrientedSelectionSet.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.status</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.use_default_draping_mesh_size.html#ansys.acp.core.OrientedSelectionSet.use_default_draping_mesh_size" title="ansys.acp.core.OrientedSelectionSet.use_default_draping_mesh_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.use_default_draping_mesh_size</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.use_default_draping_mesh_size.html#ansys.acp.core.OrientedSelectionSet.use_default_draping_mesh_size" title="ansys.acp.core.OrientedSelectionSet.use_default_draping_mesh_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientedSelectionSet.use_default_draping_mesh_size</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -769,7 +774,7 @@ in the transverse direction if the draping material model is set to
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
     <br/>
   </p>
 </div>

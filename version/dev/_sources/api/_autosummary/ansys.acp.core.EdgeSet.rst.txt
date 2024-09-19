@@ -41,6 +41,7 @@
       EdgeSet.locked
       EdgeSet.name
       EdgeSet.origin
+      EdgeSet.parent
       EdgeSet.status
    
    

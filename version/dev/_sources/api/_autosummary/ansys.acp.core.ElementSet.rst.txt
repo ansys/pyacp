@@ -40,6 +40,7 @@
       ElementSet.middle_offset
       ElementSet.name
       ElementSet.nodal_data
+      ElementSet.parent
       ElementSet.status
    
    

@@ -55,6 +55,7 @@
       ModelingPly.nodal_data
       ModelingPly.number_of_layers
       ModelingPly.oriented_selection_sets
+      ModelingPly.parent
       ModelingPly.ply_angle
       ModelingPly.ply_material
       ModelingPly.production_plies

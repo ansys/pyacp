@@ -1,0 +1,6 @@
+KEEP
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LinkedObjectHandling.KEEP

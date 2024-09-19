@@ -1,0 +1,25 @@
+﻿LinkedObjectHandling
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: LinkedObjectHandling
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        LinkedObjectHandling.KEEP
+      
+      
+        LinkedObjectHandling.COPY
+      
+      
+        LinkedObjectHandling.DISCARD
+      
+   
+   

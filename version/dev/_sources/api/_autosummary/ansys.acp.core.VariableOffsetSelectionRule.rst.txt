@@ -44,6 +44,7 @@
       VariableOffsetSelectionRule.name
       VariableOffsetSelectionRule.nodal_data
       VariableOffsetSelectionRule.offsets
+      VariableOffsetSelectionRule.parent
       VariableOffsetSelectionRule.radius_direction
       VariableOffsetSelectionRule.radius_origin
       VariableOffsetSelectionRule.status

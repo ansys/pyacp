@@ -1,0 +1,6 @@
+﻿recursive\_copy
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autofunction:: recursive_copy

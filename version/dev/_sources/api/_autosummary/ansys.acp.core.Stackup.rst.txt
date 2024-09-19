@@ -49,6 +49,7 @@
       Stackup.ignore_for_postprocessing
       Stackup.locked
       Stackup.name
+      Stackup.parent
       Stackup.status
       Stackup.symmetry
       Stackup.thickness

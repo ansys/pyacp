@@ -41,6 +41,7 @@
       LookUpTable3D.interpolation_algorithm
       LookUpTable3D.name
       LookUpTable3D.num_min_neighbors
+      LookUpTable3D.parent
       LookUpTable3D.search_radius
       LookUpTable3D.status
       LookUpTable3D.use_default_search_radius

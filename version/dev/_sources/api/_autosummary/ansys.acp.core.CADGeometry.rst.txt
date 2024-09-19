@@ -41,6 +41,7 @@
       CADGeometry.locked
       CADGeometry.name
       CADGeometry.offset
+      CADGeometry.parent
       CADGeometry.precision
       CADGeometry.root_shapes
       CADGeometry.scale_factor

@@ -26,6 +26,7 @@
    
       CADComponent.id
       CADComponent.name
+      CADComponent.parent
       CADComponent.path
       CADComponent.status
    

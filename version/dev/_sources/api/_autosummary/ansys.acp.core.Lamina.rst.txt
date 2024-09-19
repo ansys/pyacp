@@ -14,6 +14,9 @@
       :toctree:
    
       
+      
+      Lamina.clone
+      
    
    
 

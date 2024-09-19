@@ -40,6 +40,7 @@
       Rosette.locked
       Rosette.name
       Rosette.origin
+      Rosette.parent
       Rosette.rosette_type
       Rosette.status
    

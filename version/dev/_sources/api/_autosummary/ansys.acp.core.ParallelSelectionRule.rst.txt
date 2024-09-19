@@ -41,6 +41,7 @@
       ParallelSelectionRule.name
       ParallelSelectionRule.nodal_data
       ParallelSelectionRule.origin
+      ParallelSelectionRule.parent
       ParallelSelectionRule.relative_rule_type
       ParallelSelectionRule.rosette
       ParallelSelectionRule.status

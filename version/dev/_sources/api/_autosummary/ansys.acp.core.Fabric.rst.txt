@@ -43,6 +43,7 @@
       Fabric.ignore_for_postprocessing
       Fabric.material
       Fabric.name
+      Fabric.parent
       Fabric.status
       Fabric.thickness
    

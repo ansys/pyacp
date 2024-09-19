@@ -40,6 +40,7 @@
       SphericalSelectionRule.name
       SphericalSelectionRule.nodal_data
       SphericalSelectionRule.origin
+      SphericalSelectionRule.parent
       SphericalSelectionRule.radius
       SphericalSelectionRule.relative_rule_type
       SphericalSelectionRule.rosette

@@ -1,0 +1,6 @@
+COPY
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LinkedObjectHandling.COPY

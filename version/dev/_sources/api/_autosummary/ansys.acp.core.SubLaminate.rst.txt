@@ -42,6 +42,7 @@
       SubLaminate.locked
       SubLaminate.materials
       SubLaminate.name
+      SubLaminate.parent
       SubLaminate.status
       SubLaminate.symmetry
       SubLaminate.thickness

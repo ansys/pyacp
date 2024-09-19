@@ -42,6 +42,7 @@
       VirtualGeometry.dimension
       VirtualGeometry.id
       VirtualGeometry.name
+      VirtualGeometry.parent
       VirtualGeometry.status
       VirtualGeometry.sub_shapes
    

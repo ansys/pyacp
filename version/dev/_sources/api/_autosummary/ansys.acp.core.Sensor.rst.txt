@@ -41,6 +41,7 @@
       Sensor.locked
       Sensor.modeling_ply_area
       Sensor.name
+      Sensor.parent
       Sensor.price
       Sensor.production_ply_area
       Sensor.sensor_type

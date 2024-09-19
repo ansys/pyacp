@@ -41,5 +41,6 @@
       ModelingGroup.modeling_plies
       ModelingGroup.name
       ModelingGroup.nodal_data
+      ModelingGroup.parent
    
    
