@@ -180,14 +180,6 @@ jobs:
           files: coverage.xml
           flags: 'server-latest,python-${{ matrix.python-version }}'
 
-      - name: "Upload coverage report (HTML)"
-        uses: actions/upload-artifact@v4
-        if: matrix.python-version == env.MAIN_PYTHON_VERSION
-        with:
-          name: coverage-report-html
-          path: htmlcov
-          retention-days: 7
-
       - name: "Unit testing (2024R2 server)"
         if: matrix.python-version == env.MAIN_PYTHON_VERSION
         working-directory: tests/unittests
