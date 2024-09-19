@@ -65,19 +65,19 @@ class TestAnalysisPly(TreeObjectTesterReadOnly):
                 "status": "UPTODATE",
                 "material": first_material,
                 "angle": 0.0,
-                "thickness": 0.1,
+                "thickness": 0.0001,
             },
             "P1L2__ModelingPly.1": {
                 "status": "UPTODATE",
                 "material": first_material,
                 "angle": 10.0,
-                "thickness": 0.1,
+                "thickness": 0.0001,
             },
             "P1L3__ModelingPly.1": {
                 "status": "UPTODATE",
                 "material": first_material,
                 "angle": 20.0,
-                "thickness": 0.1,
+                "thickness": 0.0001,
             },
         }
 
