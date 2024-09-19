@@ -111,6 +111,14 @@ class TreeObjectTesterReadOnly:
             object_collection[INEXISTENT_ID]
         assert object_collection.get(INEXISTENT_ID) is None
 
+    @staticmethod
+    def test_parent_access(collection_test_data, parent_object):
+        """Test the parent access of the objects in the collection."""
+        object_collection, _, object_ids = collection_test_data
+        ref_id = object_ids[0]
+
+        assert object_collection[ref_id].parent is parent_object
+
 
 class TreeObjectTester(TreeObjectTesterReadOnly):
     COLLECTION_NAME: str
@@ -199,6 +207,17 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
         del object_collection[ref_id]
         with pytest.raises(KeyError):
             object_collection[ref_id]
+
+    @staticmethod
+    def test_unstored_parent_access_raises(collection_test_data):
+        """Test that unstored objects raise an error when accessing the parent."""
+        object_collection, _, object_ids = collection_test_data
+        ref_id = object_ids[0]
+        object = object_collection[ref_id].clone()
+        with pytest.raises(RuntimeError) as exc:
+            object.parent
+        assert "unstored" in str(exc.value)
+        assert "parent" in str(exc.value)
 
 
 class NoLockedMixin(TreeObjectTester):
