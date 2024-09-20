@@ -56,24 +56,29 @@ from ._mesh_data import (
 )
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import (
-    DrapingType,
     ThicknessFieldType,
-    ThicknessType,
-    OffsetType,
-    offset_type_to_pb,
-    offset_type_from_pb,
-    mesh_import_type_to_pb,
-    mesh_import_type_from_pb,
-    draping_type_from_pb,
-    draping_type_to_pb,
     thickness_field_type_from_pb,
     thickness_field_type_to_pb,
+    ImportedPlyThicknessType,
+    imported_ply_thickness_type_from_pb,
+    imported_ply_thickness_type_to_pb,
+    ImportedPlyOffsetType,
+    imported_ply_offset_type_to_pb,
+    imported_ply_offset_type_from_pb,
+    mesh_import_type_to_pb,
+    mesh_import_type_from_pb,
     thickness_type_from_pb,
     thickness_type_to_pb,
     RosetteSelectionMethod,
     rosette_selection_method_from_pb,
     rosette_selection_method_to_pb,
     status_type_from_pb,
+    MeshImportType,
+    mesh_import_type_from_pb,
+    mesh_import_type_to_pb,
+    imported_ply_draping_type_from_pb,
+    imported_ply_draping_type_to_pb,
+    ImportedPlyDrapingType,
 )
 from .fabric import Fabric
 from .lookup_table_1d_column import LookUpTable1DColumn
@@ -171,16 +176,16 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
 
     __slots__: Iterable[str] = tuple()
 
-    _COLLECTION_LABEL = "modeling_plies"
-    _OBJECT_INFO_TYPE = modeling_ply_pb2.ObjectInfo
-    _CREATE_REQUEST_TYPE = modeling_ply_pb2.CreateRequest
+    _COLLECTION_LABEL = "imported_modeling_plies"
+    _OBJECT_INFO_TYPE = imported_modeling_ply_pb2.ObjectInfo
+    _CREATE_REQUEST_TYPE = imported_modeling_ply_pb2.CreateRequest
 
     def __init__(
         self,
         *,
         name: str = "ModelingPly",
         active: bool = True,
-        offset_type: OffsetType = OffsetType.MIDDLE_OFFSET,
+        offset_type: ImportedPlyOffsetType = ImportedPlyOffsetType.MIDDLE_OFFSET,
         mesh_import_type: MeshImportType = MeshImportType.FROM_GEOMETRY,
         mesh_geometry: VirtualGeometry | None = None,
         rosette_selection_method: RosetteSelectionMethod = "minimum_angle",
@@ -189,17 +194,17 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
         rotation_angle: float = 0.0,
         ply_material: Fabric | None = None,
         ply_angle: float = 0.0,
-        draping: DrapingType = DrapingType.NO_DRAPING,
+        draping: ImportedPlyDrapingType = ImportedPlyDrapingType.NO_DRAPING,
         draping_angle_1_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
         draping_angle_2_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
-        thickness_type: ThicknessType = ThicknessType.NOMINAL,
+        thickness_type: ImportedPlyThicknessType = ImportedPlyThicknessType.NOMINAL,
         thickness_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
         thickness_field_type: ThicknessFieldType = ThicknessFieldType.ABSOLUTE_VALUES,
     ):
         super().__init__(name=name)
 
         self.active = active
-        self.offset_type = OffsetType(offset_type)
+        self.offset_type = ImportedPlyOffsetType(offset_type)
         self.mesh_import_type = mesh_import_type
         self.mesh_geometry = mesh_geometry
         self.rosette_selection_method = rosette_selection_method
@@ -210,11 +215,11 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
         self.ply_material = ply_material
         self.ply_angle = ply_angle
 
-        self.draping = draping
+        self.draping = ImportedPlyDrapingType(draping)
         self.draping_angle_1_field = draping_angle_1_field
         self.draping_angle_2_field = draping_angle_2_field
 
-        self.thickness_type = thickness_type
+        self.thickness_type = ImportedPlyThicknessType(thickness_type)
         self.thickness_field = thickness_field
         self.thickness_field_type = thickness_field_type
 
@@ -225,7 +230,7 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     active: ReadWriteProperty[bool, bool] = grpc_data_property("properties.active")
     offset_type = grpc_data_property(
-        "properties.offset_type", from_protobuf=offset_type_from_pb, to_protobuf=offset_type_to_pb
+        "properties.offset_type", from_protobuf=imported_ply_offset_type_from_pb, to_protobuf=imported_ply_offset_type_to_pb
     )
     mesh_import_type = grpc_data_property(
         "properties.mesh_import_type ", from_protobuf=mesh_import_type_from_pb, to_protobuf=mesh_import_type_to_pb
@@ -250,11 +255,10 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
         "properties.ply_material", allowed_types=(Fabric,)
     )
     ply_angle: ReadWriteProperty[float, float] = grpc_data_property("properties.ply_angle")
+
     draping = grpc_data_property(
-        "properties.draping", from_protobuf=draping_type_from_pb, to_protobuf=draping_type_to_pb
+        "properties.draping", from_protobuf=imported_ply_draping_type_from_pb, to_protobuf=imported_ply_draping_type_to_pb
     )
-
-
     draping_angle_1_field = grpc_link_property(
         "properties.draping_angle_1_field", allowed_types=(LookUpTable1DColumn, LookUpTable3DColumn)
     )
@@ -262,14 +266,10 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
         "properties.draping_angle_2_field", allowed_types=(LookUpTable1DColumn, LookUpTable3DColumn)
     )
 
-    imported_production_plies = get_read_only_collection_property(
-        ImortedProductionPly, imported_production_ply_pb2_grpc.ObjectServiceStub
-    )
-
     thickness_type = grpc_data_property(
         "properties.thickness_type",
-        from_protobuf=thickness_type_from_pb,
-        to_protobuf=thickness_type_to_pb,
+        from_protobuf=imported_ply_thickness_type_from_pb,
+        to_protobuf=imported_ply_thickness_type_to_pb,
     )
     thickness_field = grpc_link_property(
         "properties.thickness_field", allowed_types=(LookUpTable1DColumn, LookUpTable3DColumn)
@@ -278,6 +278,10 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
         "properties.thickness_field_type",
         from_protobuf=thickness_field_type_from_pb,
         to_protobuf=thickness_field_type_to_pb,
+    )
+
+    imported_production_plies = get_read_only_collection_property(
+        ImportedProductionPly, imported_production_ply_pb2_grpc.ObjectServiceStub
     )
 
     elemental_data = elemental_data_property(ImportedModelingPlyElementalData)
