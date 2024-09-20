@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1726745863274,
+  "lastUpdate": 1726833869436,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15628,6 +15628,42 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00022620641507418074",
             "extra": "mean: 756.0424157250001 usec\nrounds: 1946"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Dominik Gresch",
+            "username": "greschd",
+            "email": "greschd@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "7e20b60f8a581ae3fcbf673dcd7d9fee2ed6ab81",
+          "message": "Implement recursive copying helper (#563)\n\nImplement a `recursive_copy` helper function, which:\r\n- takes a list of source objects\r\n- walks its children and (optionally) linked objects\r\n- copies the sub-tree to a new location, specified by\r\n  a dict mapping old parent to new parent [1]\r\n\r\nAdds a dependency on `networkx`, for computing the\r\norder in which objects should be stored s.t. all their \r\ndependencies (parent, linked objects) are already stored.\r\nWe may reuse the dependency graph produced for this\r\ntask in other contexts.\r\n\r\nNote that the copy operation may fail if a linked object is present\r\nin the API layer, but not supported by PyACP yet. In this case,\r\nthe linked object is still detected (since this is done by iterating through\r\nthe protobuf object), but the object cannot be instantiated.\r\nI think this is acceptable, as it's a temporary problem and may be more\r\ndesirable than silently losing the link.\r\n\r\nOther changes: \r\n- added a `.clone()` method to the edge property lists. This was\r\n  used in the initial implementation of this features. Since it's \r\n  consistent with the API of other objects, the method is kept.\r\n  Each edge property list type separately implements `.clone()`. [2]\r\n- add a `.parent` property to tree objects, which instantiates / gets\r\n  the parent via its resource path\r\n- make tree objects hashable\r\n- upload the XML coverage report separately for all unittest runs,\r\n  and distinguish them (by Python version and server version) using\r\n  flags.\r\n\r\n[1] more than one new parent may be needed, for example\r\nwhen copying a Modeling Ply (parent: Modeling Group) which\r\nlinks to a Fabric (parent: Model).\r\n[2] in general, the `GenericEdgePropertyType` classes have a\r\nlot of code duplication; this can be dealt with in a later PR (not \r\nurgent).",
+          "timestamp": "2024-09-19T11:32:54Z",
+          "url": "https://github.com/ansys/pyacp/commit/7e20b60f8a581ae3fcbf673dcd7d9fee2ed6ab81"
+        },
+        "date": 1726833848326,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 8.767420813099912,
+            "unit": "iter/sec",
+            "range": "stddev: 0.015386839653579766",
+            "extra": "mean: 114.058629249989 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1378.6547455633156,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002086315512205109",
+            "extra": "mean: 725.3447632325104 usec\nrounds: 1757"
           }
         ]
       }
