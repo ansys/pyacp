@@ -49,16 +49,19 @@ class TestProductionPly(TreeObjectTesterReadOnly):
                 "status": "UPTODATE",
                 "material": first_fabric,
                 "angle": 0.0,
+                "thickness": 0.0001,
             },
             "ProductionPly.2": {
                 "status": "UPTODATE",
                 "material": first_fabric,
                 "angle": 0.0,
+                "thickness": 0.0001,
             },
             "ProductionPly.3": {
                 "status": "UPTODATE",
                 "material": first_fabric,
                 "angle": 0.0,
+                "thickness": 0.0001,
             },
         }
 

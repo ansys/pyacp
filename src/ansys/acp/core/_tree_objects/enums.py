@@ -36,6 +36,7 @@ from ansys.api.acp.v0 import (
     sensor_pb2,
     unit_system_pb2,
     virtual_geometry_pb2,
+    imported_modeling_ply_pb2,
 )
 
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
@@ -65,6 +66,7 @@ __all__ = [
     "GeometricalRuleType",
     "ThicknessType",
     "ThicknessFieldType",
+    "OffsetType",
 ]
 
 (StatusType, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(
@@ -335,4 +337,26 @@ __all__ = [
     modeling_ply_pb2.ThicknessFieldType,
     module=__name__,
     doc="Options for how thickness from a table is defined.",
+)
+
+(
+    OffsetType,
+    offset_type_to_pb,
+    offset_type_from_pb,
+) = wrap_to_string_enum(
+    "OffsetType",
+    enum_types_pb2.OffsetType,
+    module=__name__,
+    doc="Options for the definition of the offset.",
+)
+
+(
+    MeshImportType,
+    mesh_import_type_to_pb,
+    mesh_import_type_from_pb,
+) = wrap_to_string_enum(
+    "MeshImportType",
+    imported_modeling_ply_pb2.MeshImportType,
+    module=__name__,
+    doc="Options for the definition of the source of the imported mesh.",
 )
