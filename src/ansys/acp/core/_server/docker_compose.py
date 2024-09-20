@@ -30,7 +30,6 @@ import math
 import os
 import pathlib
 import subprocess
-from typing import Optional
 import uuid
 
 import grpc
@@ -62,7 +61,7 @@ _COMPOSE_FILE_DEFAULT_KEY = "default"
 
 @dataclasses.dataclass
 class DockerComposeLaunchConfig:
-    """Configuration options for launching ACP through docker-compose."""
+    """Configuration options for launching ACP through docker compose."""
 
     image_name_pyacp: str = dataclasses.field(
         default="ghcr.io/ansys/acp:latest",
@@ -83,9 +82,9 @@ class DockerComposeLaunchConfig:
     )
     keep_volume: bool = dataclasses.field(
         default=False,
-        metadata={METADATA_KEY_DOC: "If true, keep the volume after docker-compose is stopped."},
+        metadata={METADATA_KEY_DOC: "If true, keep the volume after docker compose is stopped."},
     )
-    compose_file: Optional[str] = dataclasses.field(
+    compose_file: str | None = dataclasses.field(
         default=None,
         metadata={
             METADATA_KEY_DOC: (
@@ -99,7 +98,7 @@ class DockerComposeLaunchConfig:
         default_factory=dict,
         metadata={
             METADATA_KEY_DOC: (
-                "Additional environment variables passed to docker-compose. These take "
+                "Additional environment variables passed to docker compose. These take "
                 "precedence over environment variables defined through another configuration "
                 "option (for example 'license_server' which defines 'ANSYSLMD_LICENSE_FILE') "
                 "or the pre-existing environment variables."
@@ -134,15 +133,25 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
         self._keep_volume = config.keep_volume
 
         if config.compose_file is not None:
-            self._compose_file: Optional[pathlib.Path] = pathlib.Path(config.compose_file)
+            self._compose_file: pathlib.Path | None = pathlib.Path(config.compose_file)
         else:
             self._compose_file = None
 
-        self._compose_version = parse_version(
-            subprocess.check_output(["docker-compose", "version", "--short"], text=True).replace(
-                "-", "+"
+        try:
+            self._compose_version = parse_version(
+                subprocess.check_output(
+                    ["docker", "compose", "version", "--short"], text=True
+                ).replace("-", "+")
             )
-        )
+            self._compose_cmds = ["docker", "compose"]
+        except subprocess.CalledProcessError:
+            # If 'docker compose does not work, try 'docker-compose' instead.
+            self._compose_version = parse_version(
+                subprocess.check_output(
+                    ["docker-compose", "version", "--short"], text=True
+                ).replace("-", "+")
+            )
+            self._compose_cmds = ["docker-compose"]
 
     @contextlib.contextmanager
     def _get_compose_file(self) -> Iterator[pathlib.Path]:
@@ -165,10 +174,9 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
             )
 
             # The compose_file may be temporary, in particular if the package is a zipfile.
-            # To avoid it being deleted before docker-compose has read it, we use the '--wait'
-            # flag for 'docker-compose'.
-            cmd = [
-                "docker-compose",
+            # To avoid it being deleted before docker compose has read it, we use the '--wait'
+            # flag for 'docker compose'.
+            cmd = self._compose_cmds + [
                 "-f",
                 str(compose_file.resolve()),
                 "--project-name",
@@ -177,19 +185,18 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 "--detach",
             ]
             if self._compose_version >= parse_version("2.1.1"):
-                # The '--wait' flag is only available from version >= 2.1.1 of docker-compose:
+                # The '--wait' flag is only available from version >= 2.1.1 of docker compose:
                 # https://github.com/docker/compose/commit/72e4519cbfb6cdfc600e6ebfa377ce4b8e162c78
                 cmd.append("--wait")
             subprocess.check_call(
                 cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
             )
 
-    def stop(self, *, timeout: Optional[float] = None) -> None:
+    def stop(self, *, timeout: float | None = None) -> None:
         # The compose file needs to be passed for all commands with docker-compose 1.X.
         # With docker-compose 2.X, this no longer seems to be necessary.
         with self._get_compose_file() as compose_file:
-            cmd = [
-                "docker-compose",
+            cmd = self._compose_cmds + [
                 "-f",
                 str(compose_file),
                 "--project-name",
@@ -203,7 +210,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 cmd.append("--volumes")
             subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    def check(self, timeout: Optional[float] = None) -> bool:
+    def check(self, timeout: float | None = None) -> bool:
         for url in self.urls.values():
             channel = grpc.insecure_channel(url)
             if not check_grpc_health(channel=channel, timeout=timeout):

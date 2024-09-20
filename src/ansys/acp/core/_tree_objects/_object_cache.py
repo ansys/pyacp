@@ -20,11 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from collections.abc import Iterable
-from typing import Any, Callable, TypeVar, cast
+from collections.abc import Callable, Iterable
+from typing import Any, Concatenate, TypeAlias, TypeVar
 from weakref import WeakValueDictionary
 
-from typing_extensions import Concatenate, ParamSpec, Self, TypeAlias
+from typing_extensions import ParamSpec, Self
 
 __all__ = ["ObjectCacheMixin", "constructor_with_cache"]
 
@@ -80,7 +80,7 @@ def constructor_with_cache(
             key = key_getter(*args, **kwargs)
             if cls._cache_key_valid(key):
                 try:
-                    return cast(T, cls._OBJECT_CACHE[key])
+                    return cls._OBJECT_CACHE[key]
                 except KeyError:
                     pass
             else:

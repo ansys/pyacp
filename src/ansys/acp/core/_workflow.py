@@ -20,11 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from collections.abc import Callable
 import pathlib
 import shutil
 import tempfile
 import typing
-from typing import Any, Callable, Optional, Protocol
+from typing import Any, Protocol
 
 from . import CADGeometry, UnitSystemType
 from ._server.acp_instance import ACP
@@ -33,7 +34,7 @@ from ._tree_objects import Model
 from ._typing_helper import PATH
 
 # Avoid dependencies on pydpf-composites and dpf-core if it is not used
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles
     from ansys.dpf.core import UnitSystem
 
@@ -41,13 +42,13 @@ __all__ = ["ACPWorkflow", "get_composite_post_processing_files", "get_dpf_unit_s
 
 
 class _LocalWorkingDir:
-    def __init__(self, path: Optional[pathlib.Path] = None):
+    def __init__(self, path: PATH | None = None):
         self._user_defined_working_dir = None
         self._temp_working_dir = None
         if path is None:
             self._temp_working_dir = tempfile.TemporaryDirectory()
         else:
-            self._user_defined_working_dir = path
+            self._user_defined_working_dir = pathlib.Path(path)
 
     @property
     def path(self) -> pathlib.Path:
@@ -152,12 +153,12 @@ class ACPWorkflow:
     acp
         The ACP Client.
     local_file_path :
-        Path of the file to be loaded.
+        Path of the file to load.
     file_format :
-        Format of the file to be loaded. Can be one of ``"acp:h5"``, ``"ansys:h5"``,
-        ``"ansys:cdb"`` or ``"ansys:dat"``.
+        Format of the file to load. Options are ``"acp:h5"``, ``"ansys:cdb"``,
+        ``"ansys:dat"``, and ``"ansys:h5"``.
     kwargs :
-        Additional keyword arguments passed to the :meth:`.ACP.import_model` method.
+        Additional keyword arguments to pass to the :meth:`.ACP.import_model` method.
 
     """
 
@@ -165,7 +166,7 @@ class ACPWorkflow:
         self,
         *,
         acp: ACP[ServerProtocol],
-        local_working_directory: Optional[pathlib.Path] = None,
+        local_working_directory: PATH | None = None,
         local_file_path: PATH,
         file_format: str,
         **kwargs: Any,
@@ -187,7 +188,7 @@ class ACPWorkflow:
         cls,
         acp: ACP[ServerProtocol],
         acph5_file_path: PATH,
-        local_working_directory: Optional[pathlib.Path] = None,
+        local_working_directory: PATH | None = None,
     ) -> "ACPWorkflow":
         """Instantiate an ACP Workflow from an acph5 file.
 
@@ -215,7 +216,7 @@ class ACPWorkflow:
         acp: ACP[ServerProtocol],
         cdb_or_dat_file_path: PATH,
         unit_system: UnitSystemType = UnitSystemType.UNDEFINED,
-        local_working_directory: Optional[pathlib.Path] = None,
+        local_working_directory: PATH | None = None,
     ) -> "ACPWorkflow":
         """Instantiate an ACP Workflow from a cdb file.
 

@@ -35,6 +35,7 @@ from ansys.tools.filetransfer import Client as FileTransferClient
 
 from .._tree_objects import Model
 from .._tree_objects._grpc_helpers.exceptions import wrap_grpc_errors
+from .._tree_objects.base import ServerWrapper
 from .._typing_helper import PATH as _PATH
 from .common import ServerProtocol
 
@@ -149,24 +150,38 @@ class ACP(Generic[ServerT]):
             Format of the file to be loaded. Can be one of ``"acp:h5"``,
             ``"ansys:h5"``, ``"ansys:cdb"``, ``"ansys:dat"``, ``"abaqus:inp"``,
             or ``"nastran:bdf"``.
-        kwargs :
-            Additional parameters to be passed to :meth:`Model.from_fe_file`.
-            Not available when ``format`` is "acp:h5".
+        ignored_entities:
+            Entities to ignore when loading the FE file. Can be a subset of
+            the following values:
+            ``"coordinate_systems"``, ``"element_sets"``, ``"materials"``,
+            ``"mesh"``, or ``"shell_sections"``.
+            Available only when the format is not ``"acp:h5"``.
+        convert_section_data:
+            Whether to import the section data of a shell model and convert it
+            into ACP composite definitions.
+            Available only when the format is not ``"acp:h5"``.
+        unit_system:
+            Set the unit system of the model to the given value. Ignored
+            if the unit system is already set in the FE file.
+            Available only when the format is not ``"acp:h5"``.
 
         Returns
         -------
         :
             The loaded ``Model`` instance.
         """
+        server_wrapper = ServerWrapper.from_acp_instance(self)
         if format == "acp:h5":
             if kwargs:
                 raise ValueError(
                     f"Parameters '{kwargs.keys()}' cannot be passed when "
                     f"loading a model with format '{format}'."
                 )
-            model = Model.from_file(path=path, channel=self._channel)
+            model = Model._from_file(path=path, server_wrapper=server_wrapper)
         else:
-            model = Model.from_fe_file(path=path, channel=self._channel, format=format, **kwargs)
+            model = Model._from_fe_file(
+                path=path, server_wrapper=server_wrapper, format=format, **kwargs
+            )
         if name is not None:
             model.name = name
         return model

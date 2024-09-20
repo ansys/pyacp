@@ -22,8 +22,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 import typing
-from typing import Callable, Union
+from typing import Union
 
 from typing_extensions import Self
 
@@ -31,6 +32,7 @@ from ansys.api.acp.v0 import linked_selection_rule_pb2
 
 from ._grpc_helpers.edge_property_list import GenericEdgePropertyType
 from ._grpc_helpers.polymorphic_from_pb import tree_object_from_resource_path
+from ._grpc_helpers.property_helper import _exposed_grpc_property, mark_grpc_properties
 from .base import CreatableTreeObject
 from .cutoff_selection_rule import CutoffSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
@@ -45,7 +47,7 @@ from .spherical_selection_rule import SphericalSelectionRule
 from .tube_selection_rule import TubeSelectionRule
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
 
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     # Since the 'LinkedSelectionRule' class is used by the boolean selection rule,
     # this would cause a circular import at run-time.
     from .boolean_selection_rule import BooleanSelectionRule
@@ -62,6 +64,7 @@ if typing.TYPE_CHECKING:
     ]
 
 
+@mark_grpc_properties
 class LinkedSelectionRule(GenericEdgePropertyType):
     r"""Defines selection rules linked to a Boolean Selection Rule or Modeling Ply.
 
@@ -122,7 +125,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         self.parameter_1 = parameter_1
         self.parameter_2 = parameter_2
 
-    @property
+    @_exposed_grpc_property
     def selection_rule(self) -> _LINKABLE_SELECTION_RULE_TYPES:
         """Link to an existing selection rule."""
         return self._selection_rule
@@ -133,7 +136,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         if self._callback_apply_changes is not None:
             self._callback_apply_changes()
 
-    @property
+    @_exposed_grpc_property
     def operation_type(self) -> BooleanOperationType:
         """Operation to combine the selection rule with other selection rules."""
         return self._operation_type
@@ -153,7 +156,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         if self._callback_apply_changes is not None:
             self._callback_apply_changes()
 
-    @property
+    @_exposed_grpc_property
     def template_rule(self) -> bool:
         """Whether the selection rule is a template rule."""
         return self._template_rule
@@ -164,7 +167,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         if self._callback_apply_changes is not None:
             self._callback_apply_changes()
 
-    @property
+    @_exposed_grpc_property
     def parameter_1(self) -> float:
         """First template parameter of the selection rule."""
         return self._parameter_1
@@ -175,7 +178,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         if self._callback_apply_changes is not None:
             self._callback_apply_changes()
 
-    @property
+    @_exposed_grpc_property
     def parameter_2(self) -> float:
         """Second template parameter of the selection rule."""
         return self._parameter_2
@@ -212,7 +215,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
         allowed_types = tuple(allowed_types_list)
 
         selection_rule = tree_object_from_resource_path(
-            resource_path=message.resource_path, channel=parent_object._channel
+            resource_path=message.resource_path, server_wrapper=parent_object._server_wrapper
         )
         if not isinstance(selection_rule, allowed_types):
             raise TypeError(
@@ -264,4 +267,14 @@ class LinkedSelectionRule(GenericEdgePropertyType):
             f"template_rule={self.template_rule}, "
             f"parameter_1={self.parameter_1}, "
             f"parameter_2={self.parameter_2})"
+        )
+
+    def clone(self) -> LinkedSelectionRule:
+        """Create a new unstored LinkedSelectionRule with the same properties."""
+        return LinkedSelectionRule(
+            selection_rule=self.selection_rule,
+            operation_type=self.operation_type,
+            template_rule=self.template_rule,
+            parameter_1=self.parameter_1,
+            parameter_2=self.parameter_2,
         )

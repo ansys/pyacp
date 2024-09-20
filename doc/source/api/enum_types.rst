@@ -7,6 +7,7 @@ Enumeration data types
     :toctree: _autosummary
     :template: autosummary/no_methods_doc/class.rst.jinja2
 
+    ArrowType
     BooleanOperationType
     CutoffMaterialType
     CutoffRuleType
@@ -20,10 +21,13 @@ Enumeration data types
     FeFormat
     GeometricalRuleType
     IgnorableEntity
+    LinkedObjectHandling
     LookUpTable3DInterpolationAlgorithm
     LookUpTableColumnValueType
     NodalDataType
+    OffsetType
     PlyCutoffType
+    PlyGeometryExportFormat
     PlyType
     RosetteSelectionMethod
     RosetteType

@@ -22,9 +22,9 @@
 
 from __future__ import annotations
 
-from collections.abc import Container, Iterable
+from collections.abc import Callable, Container, Iterable
 import dataclasses
-from typing import Any, Callable
+from typing import Any
 
 import numpy as np
 from typing_extensions import Self
@@ -41,6 +41,7 @@ from ._grpc_helpers.edge_property_list import (
 from ._grpc_helpers.linked_object_list import define_linked_object_list
 from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
+    _exposed_grpc_property,
     grpc_data_property,
     grpc_data_property_read_only,
     grpc_link_property,
@@ -114,6 +115,7 @@ class ModelingPlyNodalData(NodalData):
     ply_offset: VectorData | None = None
 
 
+@mark_grpc_properties
 class TaperEdge(GenericEdgePropertyType):
     """Defines a taper edge.
 
@@ -135,7 +137,7 @@ class TaperEdge(GenericEdgePropertyType):
         self.angle = angle
         self.offset = offset
 
-    @property
+    @_exposed_grpc_property
     def edge_set(self) -> EdgeSet:
         """Edge along which the ply tapering is applied."""
         return self._edge_set
@@ -148,7 +150,7 @@ class TaperEdge(GenericEdgePropertyType):
         if self._callback_apply_changes is not None:
             self._callback_apply_changes()
 
-    @property
+    @_exposed_grpc_property
     def angle(self) -> float:
         """Angle between the cutting plane and  the reference surface."""
         return self._angle
@@ -159,7 +161,7 @@ class TaperEdge(GenericEdgePropertyType):
         if self._callback_apply_changes is not None:
             self._callback_apply_changes()
 
-    @property
+    @_exposed_grpc_property
     def offset(self) -> float:
         """Move the cutting plane along the out-of-plane direction.
 
@@ -185,7 +187,7 @@ class TaperEdge(GenericEdgePropertyType):
         apply_changes: Callable[[], None],
     ) -> Self:
         edge_set = EdgeSet._from_resource_path(
-            resource_path=message.edge_set, channel=parent_object._channel
+            resource_path=message.edge_set, server_wrapper=parent_object._server_wrapper
         )
 
         new_obj = cls(
@@ -219,6 +221,14 @@ class TaperEdge(GenericEdgePropertyType):
         return (
             f"{self.__class__.__name__}(edge_set={self.edge_set!r}, "
             f"angle={self.angle!r}, offset={self.offset!r})"
+        )
+
+    def clone(self) -> Self:
+        """Create a new unstored TaperEdge with the same properties."""
+        return type(self)(
+            edge_set=self.edge_set,
+            angle=self.angle,
+            offset=self.offset,
         )
 
 

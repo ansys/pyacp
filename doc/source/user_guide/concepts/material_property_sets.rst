@@ -1,20 +1,20 @@
 Material property sets
 ----------------------
 
-Material property sets are used to define a certain aspect of the properties
+Material property sets define certain aspects of the properties
 of a material.
-The attributes described in the following subsections determine how the
-material property set can be used within PyACP.
+The attributes described in the following subsections show how
+you can create and access material property sets in PyACP.
 
 
 Constant versus variable property sets
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Material property sets can either be constant or variable. Constant property
-sets are defined by a single value for each property, while variable property
-sets depend on field variables such as temperature, fiber volume content, etc.
+sets are defined by a single value per property. Variable property
+sets depend on field variables such as temperature and fiber volume content.
 
-Currently, only the constant property sets can be modified with PyACP. Variable
+Currently, you can only modify the constant property sets with PyACP. Variable
 property sets can be inspected, but not modified.
 
 
@@ -39,16 +39,16 @@ but orthotropic stress and strain limits.
 .. note::
 
     While a material is unstored (see :ref:`stored_vs_unstored`), the property set does not
-    automatically change from orthotropic to isotropic or vice versa. While storing the
-    material, the backend will check that the material definition is consistent.
+    automatically change from orthotropic to isotropic or vice versa. When storing the
+    material, the backend ensures that its definition is consistent.
 
 Available attributes
 ''''''''''''''''''''
 
-The available attributes for a given property set type changes depending on whether
+The available attributes for a given property set type change depending on whether
 the material is isotropic or orthotropic.
 The following table lists the available attributes for the different property sets in
-isotropic and orthotropic materials, respectively.
+isotropic and orthotropic materials.
 
 +-----------------------------+-----------------------+------------------------------------------------------------------------------------+
 | Property set                | Isotropic attributes  | Orthotropic attributes                                                             |
@@ -63,20 +63,20 @@ isotropic and orthotropic materials, respectively.
 Relation between isotropic and orthotropic property sets
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-For the stress and strain limits, the isotropic and orthotropic attributes are
-independently defined. This means that when changing the ply type of a material,
-the stress and strain limits must be redefined.
+For stress and strain limits, the isotropic and orthotropic attributes are
+independently defined. This means that when you change the ply type of a material,
+you must redefine the stress and strain limits.
 
-For the engineering constants however, the orthotropic and isotropic definitions
-are interlinked. This means that when changing the ply type of a material, the
-engineering constants are converted automatically.
-To avoid accidentally using incorrect engineering constants, PyACP enforces some
-conversion and assignment rules, as described in the following sections.
+For engineering constants, however, the orthotropic and isotropic definitions
+are interlinked. Therefore, when you change the ply type of a material, the
+engineering constants are automatically converted.
+To avoid accidental use of incorrect engineering constants, PyACP enforces 
+conversion and assignment rules, as described later on this page.
 
 Conversion rules
 ^^^^^^^^^^^^^^^^
 
-When changing the ply type of a material, the following rules apply:
+The following rules apply when changing the ply type of a material:
 
 - The ply type can always be changed from an isotropic to an orthotropic type.
 - When changing from an orthotropic to an isotropic type, the engineering constants must
@@ -94,7 +94,7 @@ When changing the ply type of a material, the following rules apply:
 
     >>> import ansys.acp.core as pyacp
     >>> acp = pyacp.launch_acp()
-    >>> path = acp.upload_file("../tests/data/minimal_complete_model.acph5")
+    >>> path = acp.upload_file("../tests/data/minimal_complete_model_no_matml_link.acph5")
     >>> model = acp.import_model(path=path)
 
 Consider the following example:
@@ -136,13 +136,11 @@ Assignment rules
 
 Similar rules apply when assigning engineering constants to a material:
 
-- isotropic engineering constants can be assigned to both isotropic and orthotropic materials.
-- orthotropic engineering constants can be assigned:
+- Isotropic engineering constants can be assigned to both isotropic and orthotropic materials.
+- Orthotropic engineering constants can be assigned to isotropic materials, if their values are consistent with them,
+  and orthotropic materials.
 
-  - to orthotropic materials.
-  - to isotropic materials, if their values are consistent with an isotropic material.
-
-Continuing from the preceding example, you can assign either an orthotropic or isotropic engineering constants to the orthotropic material:
+Continuing from the preceding example, you can assign either orthotropic or isotropic engineering constants to the orthotropic material:
 
 .. doctest::
 

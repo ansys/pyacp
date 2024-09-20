@@ -88,7 +88,7 @@ def test_unittest(acp_instance, model_data_dir):
         else:
             with tempfile.TemporaryDirectory() as local_working_dir:
                 save_path = pathlib.Path(local_working_dir) / "test_model_serialization.acph5"
-                acp_instance.save(save_path, save_cache=True)
+                model.save(save_path, save_cache=True)
                 acp_instance.clear()
                 model = acp_instance.import_model(path=save_path)
 
@@ -249,3 +249,28 @@ def test_regression_454(minimal_complete_model):
     """
     assert not hasattr(minimal_complete_model, "clone")
     assert not hasattr(minimal_complete_model, "store")
+
+
+def test_modeling_ply_export(acp_instance, minimal_complete_model, xfail_before):
+    """
+    Test that the 'export_modeling_ply_geometries' method produces a file.
+    The contents of the file are not checked.
+    """
+    xfail_before("25.1")
+    out_filename = "modeling_ply_export.step"
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        local_file_path = pathlib.Path(tmp_dir) / out_filename
+        if acp_instance.is_remote:
+            out_file_path = pathlib.Path(out_filename)
+        else:
+            out_file_path = local_file_path
+        minimal_complete_model.export_modeling_ply_geometries(out_file_path)
+        acp_instance.download_file(out_file_path, local_file_path)
+        assert local_file_path.exists()
+
+
+def test_parent_access_raises(minimal_complete_model):
+    with pytest.raises(RuntimeError) as exc:
+        minimal_complete_model.parent
+    assert "parent" in str(exc.value)

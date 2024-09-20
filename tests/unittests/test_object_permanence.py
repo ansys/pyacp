@@ -145,6 +145,9 @@ def test_edge_property_list_parent_deleted(model):
 
 def test_edge_property_list_parent_store(model):
     """Check that the edge property list identity is unique even after its parent is stored."""
+    pytest.xfail(
+        "We no longer allow accessing the edge property list while the parent is unstored."
+    )
     stackup = pyacp.Stackup()
     fabrics = stackup.fabrics
     stackup.store(parent=model)

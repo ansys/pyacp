@@ -31,6 +31,7 @@ import tempfile
 
 import docker
 from hypothesis import settings
+from packaging.version import parse as parse_version
 import pytest
 
 from ansys.acp.core import (
@@ -174,7 +175,7 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
         )
 
     else:
-        # If no binary is provided, use docker-compose for running
+        # If no binary is provided, use docker compose for running
         # the ACP server.
         image_name = request.config.getoption(DOCKER_IMAGENAME_OPTION_KEY)
         image_name_filetransfer = "ghcr.io/ansys/tools-filetransfer:latest"
@@ -234,7 +235,7 @@ def clear_models_before_run(acp_instance):
 @pytest.fixture
 def load_model_from_tempfile(model_data_dir, acp_instance):
     @contextmanager
-    def inner(relative_file_path="minimal_complete_model.acph5", format="acp:h5"):
+    def inner(relative_file_path="minimal_complete_model_no_matml_link.acph5", format="acp:h5"):
         with tempfile.TemporaryDirectory() as tmp_dir:
             source_path = model_data_dir / relative_file_path
 
@@ -258,5 +259,16 @@ def load_cad_geometry(model_data_dir, acp_instance):
         yield model.create_cad_geometry(
             external_path=cad_file_path,
         )
+
+    return inner
+
+
+@pytest.fixture
+def xfail_before(acp_instance):
+    """Mark a test as expected to fail before a certain server version."""
+
+    def inner(version: str):
+        if parse_version(acp_instance.server_version) < parse_version(version):
+            pytest.xfail(f"Expected to fail until server version {version!r}")
 
     return inner

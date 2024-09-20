@@ -22,10 +22,10 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable, Iterator, MutableSequence
+from collections.abc import Callable, Iterable, Iterator, MutableSequence
 from functools import partial
 import sys
-from typing import Any, Callable, TypeVar, cast, overload
+from typing import Any, TypeVar, cast, overload
 
 from grpc import Channel
 import numpy as np
@@ -111,7 +111,7 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
 
         self._set_resourcepath_list = set_resourcepath_list
         self._object_constructor: Callable[[ResourcePath], ValueT] = (
-            lambda resource_path: _object_constructor(resource_path, _parent_object._channel)
+            lambda resource_path: _object_constructor(resource_path, _parent_object._server_wrapper)
         )
 
     def __len__(self) -> int:

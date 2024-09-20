@@ -22,9 +22,11 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Callable, Iterable
 import typing
-from typing import Any, Callable
+from typing import Any
+
+from typing_extensions import Self
 
 from ansys.api.acp.v0 import base_pb2, virtual_geometry_pb2, virtual_geometry_pb2_grpc
 
@@ -33,16 +35,21 @@ from ._grpc_helpers.edge_property_list import (
     define_add_method,
     define_edge_property_list,
 )
-from ._grpc_helpers.property_helper import grpc_data_property_read_only, mark_grpc_properties
+from ._grpc_helpers.property_helper import (
+    _exposed_grpc_property,
+    grpc_data_property_read_only,
+    mark_grpc_properties,
+)
 from .base import CreatableTreeObject, IdTreeObject
 from .cad_geometry import CADGeometry
 from .enums import status_type_from_pb, virtual_geometry_dimension_from_pb
 from .object_registry import register
 
-if typing.TYPE_CHECKING:
+if typing.TYPE_CHECKING:  # pragma: no cover
     from .cad_component import CADComponent
 
 
+@mark_grpc_properties
 class SubShape(GenericEdgePropertyType):
     """Represents a sub-shape of a virtual geometry."""
 
@@ -51,7 +58,7 @@ class SubShape(GenericEdgePropertyType):
         self.cad_geometry = cad_geometry
         self.path = path
 
-    @property
+    @_exposed_grpc_property
     def cad_geometry(self) -> CADGeometry:
         """Linked CAD geometry."""
         return self._cad_geometry
@@ -64,7 +71,7 @@ class SubShape(GenericEdgePropertyType):
         if self._callback_apply_changes:
             self._callback_apply_changes()
 
-    @property
+    @_exposed_grpc_property
     def path(self) -> str:
         """Topological path of the sub-shape within the CAD geometry."""
         return self._path
@@ -87,7 +94,7 @@ class SubShape(GenericEdgePropertyType):
     ) -> SubShape:
         new_obj = cls(
             cad_geometry=CADGeometry._from_resource_path(
-                message.cad_geometry, channel=parent_object._channel
+                message.cad_geometry, server_wrapper=parent_object._server_wrapper
             ),
             path=message.path,
         )
@@ -114,6 +121,10 @@ class SubShape(GenericEdgePropertyType):
 
     def __repr__(self) -> str:
         return f"SubShape(cad_geometry={self._cad_geometry.__repr__()}, path={self._path})"
+
+    def clone(self) -> Self:
+        """Create a new unstored SubShape with the same properties."""
+        return type(self)(cad_geometry=self.cad_geometry, path=self.path)
 
 
 @mark_grpc_properties
@@ -196,7 +207,7 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
         def _get_parent(cad_component: CADComponent) -> CADGeometry:
             rp = "/".join(cad_component._resource_path.value.split("/")[:-2])
             return CADGeometry._from_resource_path(
-                base_pb2.ResourcePath(value=rp), channel=cad_component._channel
+                base_pb2.ResourcePath(value=rp), server_wrapper=cad_component._server_wrapper
             )
 
         sub_shapes = [

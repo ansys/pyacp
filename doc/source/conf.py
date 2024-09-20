@@ -15,10 +15,8 @@ from ansys_sphinx_theme import (
     ansys_logo_white_cropped,
     get_version_match,
     latex,
-    pyansys_logo_black,
     watermark,
 )
-from sphinx_gallery.sorting import FileNameSortKey
 
 from ansys.acp.core import __version__
 
@@ -62,7 +60,6 @@ author = "Ansys Inc."
 release = version = __version__
 
 # use the default pyansys logo
-html_logo = pyansys_logo_black
 html_theme = "ansys_sphinx_theme"
 
 
@@ -71,6 +68,7 @@ cname = os.getenv("DOCUMENTATION_CNAME", "acp.docs.pyansys.com")
 
 # specify the location of your github repo
 html_theme_options = {
+    "logo": "pyansys",
     "github_url": "https://github.com/ansys/pyacp",
     "show_prev_next": False,
     "show_breadcrumbs": True,
@@ -107,7 +105,7 @@ extensions += [
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     # kept here as an example
-    "scipy": ("https://docs.scipy.org/doc/scipy/reference", None),
+    "scipy": ("https://docs.scipy.org/doc/scipy/", None),
     "numpy": ("https://numpy.org/doc/stable", None),
     # "matplotlib": ("https://matplotlib.org/stable", None),
     # "pandas": ("https://pandas.pydata.org/pandas-docs/stable", None),
@@ -140,9 +138,10 @@ nitpick_ignore_regex = [
     ("py:class", r"ansys\.acp.core\..*\.MeshDataT"),
     ("py:class", r"ansys\.acp.core\..*\.ScalarDataT"),
 ]
+
 # sphinx_autodoc_typehints configuration
 typehints_defaults = "comma"
-simplify_optional_unions = False
+simplify_optional_unions = True
 
 # numpydoc configuration
 numpydoc_show_class_members = False
@@ -185,7 +184,7 @@ sphinx_gallery_conf = {
     # Remove the "Download all examples" button from the top level gallery
     "download_all_examples": False,
     # Sort gallery example by filename instead of number of lines (default)
-    "within_subsection_order": FileNameSortKey,
+    "within_subsection_order": "FileNameSortKey",
     # directory where function granular galleries are stored
     "backreferences_dir": None,
     # Modules for which function level galleries are created.  In

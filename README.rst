@@ -10,7 +10,7 @@ PyACP
     :target: https://pypi.org/project/ansys-acp-core
     :alt: Python
 
-.. |pypi| image:: https://img.shields.io/pypi/v/pyacp.svg?logo=python&logoColor=white
+.. |pypi| image:: https://img.shields.io/pypi/v/ansys-acp-core.svg?logo=python&logoColor=white
     :target: https://pypi.org/project/ansys-acp-core
     :alt: PyPI
 
@@ -35,8 +35,6 @@ A Python client for Ansys Composite PrepPost (ACP).
 
 Overview
 --------
-
-.. TODO: Add a teaser for what can be done with PyACP.
 
 Installation
 ------------
@@ -206,7 +204,7 @@ valid license server (e.g ``1055@mylicenseserver.com``). Then start the docker c
 
 .. code-block:: bash
 
-    docker-compose -f docker-compose/docker-compose-extras.yaml up -d
+    docker compose -f docker-compose/docker-compose-extras.yaml up -d
 
 Then build the documentation with the `Sphinx`_ commands mentioned above.
 

@@ -20,7 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 import uuid
 
 from hypothesis import HealthCheck, given, settings
@@ -48,7 +49,8 @@ from ansys.acp.core.material_property_sets import (
     VariableStressLimits,
 )
 
-from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
+from .common.compare import assert_allclose
+from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester
 
 
 @pytest.fixture
@@ -83,7 +85,7 @@ def object_properties():
     )
 
 
-class TestMaterial(WithLockedMixin, TreeObjectTester):
+class TestMaterial(TreeObjectTester):
     COLLECTION_NAME = "materials"
 
     @staticmethod
@@ -214,6 +216,37 @@ class TestMaterial(WithLockedMixin, TreeObjectTester):
         ("larc_constants", "thin_ply_thickness_limit"),
         ("fabric_fiber_angle", "fabric_fiber_angle"),
     ]
+
+    # CHANGES NEEDED BECAUSE MATERIALS DEDUPLICATE THEIR NAME ON CREATION
+
+    @pytest.fixture
+    def collection_test_data(self, parent_object):
+        object_collection = getattr(parent_object, self.COLLECTION_NAME)
+        new_object_names = ["ObjectName.1", "ObjectName.2", "üñıçよð€"]
+        object_ids = list(object_collection)
+        for ref_name in new_object_names:
+            new_object = getattr(parent_object, self.CREATE_METHOD_NAME)(name=ref_name)
+            assert new_object.id not in object_ids  # check uniqueness
+            object_ids.append(new_object.id)
+        object_names = list(self.INITIAL_OBJECT_NAMES) + new_object_names
+        return object_collection, object_names, object_ids
+
+    def test_create_with_default_arguments(self, parent_object, default_properties):
+        """Test the creation of objects with default arguments."""
+        create_method = getattr(parent_object, self.CREATE_METHOD_NAME)
+        names = ["ObjectName.1", "ObjectName.1", "üñıçよð€"]
+        names_deduplicated = ["ObjectName.1", "ObjectName.2", "üñıçよð€"]
+        for create_name, ref_name in zip(names, names_deduplicated):
+            new_object = create_method(name=create_name)
+            assert new_object.name == ref_name
+            for key, val in default_properties.items():
+                assert_allclose(
+                    actual=getattr(new_object, key),
+                    desired=val,
+                    msg=f"Attribute {key} not set correctly. Expected {val}, got {getattr(new_object, key)}",
+                ),
+
+    # END CHANGES NEEDED BECAUSE MATERIALS DEDUPLICATE THEIR NAME ON CREATION
 
     def test_property_sets_default(self, tree_object):
         for propset_name in ["density", "engineering_constants"]:

@@ -1,14 +1,14 @@
-Printing the model tree
------------------------
+Print model tree
+----------------
 
-To get an overview of an ACP model, you can print its tree structure. Starting with a :class:`.Model` instance:
+A tree structure gives an overview of an ACP model. To print a model's tree structure, start with a :class:`.Model` instance:
 
 .. testsetup::
 
     import ansys.acp.core as pyacp
 
     acp = pyacp.launch_acp()
-    path = acp.upload_file("../tests/data/minimal_complete_model.acph5")
+    path = acp.upload_file("../tests/data/minimal_complete_model_no_matml_link.acph5")
     model = acp.import_model(path=path)
 
 

@@ -24,12 +24,16 @@
 from __future__ import annotations
 
 from abc import abstractmethod
-from collections.abc import Iterable
+from collections.abc import Callable, Iterable
+from dataclasses import dataclass
+from functools import wraps
 import typing
-from typing import Any, Callable, Generic, TypeVar, cast
+from typing import Any, Concatenate, Generic, TypeAlias, TypeVar, cast
 
 from grpc import Channel
-from typing_extensions import Self
+from packaging.version import Version
+from packaging.version import parse as parse_version
+from typing_extensions import ParamSpec, Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, GetRequest, ResourcePath
 
@@ -38,7 +42,11 @@ from .._utils.resource_paths import common_path
 from .._utils.resource_paths import join as _rp_join
 from .._utils.resource_paths import to_parts
 from ._grpc_helpers.exceptions import wrap_grpc_errors
-from ._grpc_helpers.linked_object_helpers import linked_path_fields, unlink_objects
+from ._grpc_helpers.linked_object_helpers import get_linked_paths, unlink_objects
+from ._grpc_helpers.polymorphic_from_pb import (
+    CreatableFromResourcePath,
+    tree_object_from_resource_path,
+)
 from ._grpc_helpers.property_helper import (
     _get_data_attribute,
     grpc_data_property,
@@ -57,12 +65,15 @@ from ._grpc_helpers.protocols import (
 )
 from ._object_cache import ObjectCacheMixin, constructor_with_cache
 
+if typing.TYPE_CHECKING:  # pragma: no cover
+    from .._server import ACP
+
 
 @mark_grpc_properties
 class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
     """Base class for ACP tree objects."""
 
-    __slots__: Iterable[str] = ("_channel_store", "_pb_object")
+    __slots__: Iterable[str] = ("_server_wrapper_store", "_pb_object")
 
     _COLLECTION_LABEL: str
     _OBJECT_INFO_TYPE: type[ObjectInfo]
@@ -71,7 +82,7 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
     name: ReadOnlyProperty[str]
 
     def __init__(self: TreeObjectBase, name: str = "") -> None:
-        self._channel_store: Channel | None = None
+        self._server_wrapper_store: ServerWrapper | None = None
         self._pb_object: ObjectInfo = self._OBJECT_INFO_TYPE()
         # We don't want to invoke gRPC requests for setting the name
         # during object construction, so we set the name directly on
@@ -92,17 +103,20 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
             return self is other
         return self._resource_path.value == other._resource_path.value
 
+    def __hash__(self) -> int:
+        return id(self)
+
     @classmethod
     @constructor_with_cache(
         key_getter=lambda object_info, *args, **kwargs: object_info.info.resource_path.value,
         raise_on_invalid_key=False,
     )
     def _from_object_info(
-        cls: type[Self], /, object_info: ObjectInfo, channel: Channel | None = None
+        cls: type[Self], /, object_info: ObjectInfo, server_wrapper: ServerWrapper | None = None
     ) -> Self:
         instance = cls()
         instance._pb_object = object_info
-        instance._channel_store = channel
+        instance._server_wrapper_store = server_wrapper
         return instance
 
     @classmethod
@@ -110,10 +124,12 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
         key_getter=lambda resource_path, *args, **kwargs: resource_path.value,
         raise_on_invalid_key=True,
     )
-    def _from_resource_path(cls, /, resource_path: ResourcePath, channel: Channel) -> Self:
+    def _from_resource_path(
+        cls, /, resource_path: ResourcePath, server_wrapper: ServerWrapper
+    ) -> Self:
         instance = cls()
         instance._pb_object.info.resource_path.CopyFrom(resource_path)
-        instance._channel_store = channel
+        instance._server_wrapper_store = server_wrapper
         return instance
 
     @property
@@ -122,13 +138,35 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
 
     @property
     def _channel(self) -> Channel:
+        return self._server_wrapper.channel
+
+    @property
+    def _server_wrapper(self) -> ServerWrapper:
         if not self._is_stored:
             raise RuntimeError("The server connection is uninitialized.")
-        return self._channel_store
+        assert self._server_wrapper_store is not None
+        return self._server_wrapper_store
 
     @property
     def _is_stored(self) -> bool:
-        return self._channel_store is not None
+        return self._server_wrapper_store is not None
+
+    @property
+    def parent(self) -> CreatableFromResourcePath:
+        """The parent of the object."""
+        if not self._is_stored:
+            raise RuntimeError("Cannot get the parent of an unstored object.")
+        rp_parts = to_parts(self._resource_path.value)
+        if len(rp_parts) < 3:
+            raise RuntimeError("The object does not have a parent.")
+
+        parent_path = _rp_join(*rp_parts[:-2])
+        parent = tree_object_from_resource_path(
+            ResourcePath(value=parent_path), server_wrapper=self._server_wrapper
+        )
+        if parent is None:
+            raise RuntimeError("The parent object could not be found.")
+        return parent
 
     def __repr__(self) -> str:
         return f"<{type(self).__name__} with name '{self.name}'>"
@@ -137,6 +175,25 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
 
 
 StubT = TypeVar("StubT")
+
+
+@dataclass(frozen=True)
+class ServerWrapper:
+    """Wrapper for the connection to an ACP instance.
+
+    This class contains the representation of the ACP instance needed by tree objects.
+    Its purpose is to minimize the dependency of tree objects on the ACP class.
+    """
+
+    channel: Channel
+    version: Version
+
+    @classmethod
+    def from_acp_instance(cls, acp_instance: ACP[Any]) -> ServerWrapper:
+        """Convert an ACP instance into the wrapper needed by tree objects."""
+        return cls(
+            channel=acp_instance._channel, version=parse_version(acp_instance.server_version)
+        )
 
 
 class StubStore(Generic[StubT]):
@@ -251,6 +308,9 @@ class CreatableTreeObject(TreeObject):
         new_object_info.properties.CopyFrom(self._pb_object.properties)
         if unlink:
             unlink_objects(new_object_info.properties)
+            # Since there may be links in the unknown fields, we need to
+            # discard them to avoid errors when storing the object.
+            new_object_info.properties.DiscardUnknownFields()  # type: ignore
         new_object_info.info.name = self._pb_object.info.name
         return type(self)._from_object_info(object_info=new_object_info)
 
@@ -262,7 +322,7 @@ class CreatableTreeObject(TreeObject):
         parent :
             Parent object to store the object under.
         """
-        self._channel_store = parent._channel
+        self._server_wrapper_store = parent._server_wrapper
 
         collection_path = CollectionPath(
             value=_rp_join(parent._resource_path.value, self._COLLECTION_LABEL)
@@ -270,8 +330,11 @@ class CreatableTreeObject(TreeObject):
 
         # check that all linked objects are located in the same model
         path_values = [collection_path.value] + [
-            path.value for _, _, path in linked_path_fields(self._pb_object.properties)
+            path.value for path in get_linked_paths(self._pb_object.properties)
         ]
+        # filter out empty paths
+        path_values = [path for path in path_values if path]
+
         # Since the path starts with 'model/<model_uuid>', the objects belong to
         # the same model iff they share at least the first two parts.
         if len(to_parts(common_path(*path_values))) < 2:
@@ -415,8 +478,40 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly):
             self._put()
 
 
-if typing.TYPE_CHECKING:
+T = TypeVar("T", bound=TreeObjectBase)
+P = ParamSpec("P")
+R = TypeVar("R")
+_WRAPPED_T: TypeAlias = Callable[Concatenate[T, P], R]
+
+
+def supported_since(version: str) -> Callable[[_WRAPPED_T[T, P, R]], _WRAPPED_T[T, P, R]]:
+    """Mark a TreeObjectBase method as supported since a specific server version.
+
+    Raises an exception if the current server version does not match the required version.
+    """
+    required_version = parse_version(version)
+
+    def decorator(func: _WRAPPED_T[T, P, R]) -> _WRAPPED_T[T, P, R]:
+        @wraps(func)
+        def inner(self: T, /, *args: P.args, **kwargs: P.kwargs) -> R:
+            if self._server_wrapper.version < required_version:
+                raise RuntimeError(
+                    f"The method '{func.__name__}' is only supported since version {version} of the ACP "
+                    f"gRPC server. The current server version is {self._server_wrapper.version}."
+                )
+            return func(self, *args, **kwargs)
+
+        return inner
+
+    return decorator
+
+
+if typing.TYPE_CHECKING:  # pragma: no cover
     # Ensure that the ReadOnlyTreeObject satisfies the Gettable interface
     _x: Readable = typing.cast(ReadOnlyTreeObject, None)
-    # Ensure that the TreeObject satisfies the Editable interface
+    # Ensure that the TreeObject satisfies the Editable and Readable interfaces
     _y: Editable = typing.cast(TreeObject, None)
+    _z: Readable = typing.cast(TreeObject, None)
+
+    # Ensure the TreeObjectBase satisfies the CreatableFromResourcePath interface
+    _a: CreatableFromResourcePath = typing.cast(TreeObjectBase, None)

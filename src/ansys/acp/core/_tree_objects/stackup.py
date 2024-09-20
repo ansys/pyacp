@@ -22,8 +22,10 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable, Sequence
-from typing import Any, Callable
+from collections.abc import Callable, Iterable, Sequence
+from typing import Any
+
+from typing_extensions import Self
 
 from ansys.api.acp.v0 import stackup_pb2, stackup_pb2_grpc
 
@@ -34,6 +36,7 @@ from ._grpc_helpers.edge_property_list import (
     define_edge_property_list,
 )
 from ._grpc_helpers.property_helper import (
+    _exposed_grpc_property,
     grpc_data_property,
     grpc_data_property_read_only,
     grpc_link_property,
@@ -62,6 +65,7 @@ from .object_registry import register
 __all__ = ["Stackup", "FabricWithAngle"]
 
 
+@mark_grpc_properties
 class FabricWithAngle(GenericEdgePropertyType):
     """Defines a fabric of a stackup.
 
@@ -79,7 +83,7 @@ class FabricWithAngle(GenericEdgePropertyType):
         self.fabric = fabric
         self.angle = angle
 
-    @property
+    @_exposed_grpc_property
     def fabric(self) -> Fabric:
         """Linked fabric."""
         return self._fabric
@@ -92,7 +96,7 @@ class FabricWithAngle(GenericEdgePropertyType):
         if self._callback_apply_changes:
             self._callback_apply_changes()
 
-    @property
+    @_exposed_grpc_property
     def angle(self) -> float:
         """Orientation angle in degree of the fabric with respect to the reference direction."""
         return self._angle
@@ -138,6 +142,10 @@ class FabricWithAngle(GenericEdgePropertyType):
 
     def __repr__(self) -> str:
         return f"FabricWithAngle(fabric={self.fabric.__repr__()}, angle={self.angle})"
+
+    def clone(self) -> Self:
+        """Create a new unstored FabricWithAngle with the same properties."""
+        return type(self)(fabric=self.fabric, angle=self.angle)
 
 
 @mark_grpc_properties

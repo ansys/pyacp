@@ -1,7 +1,7 @@
 .. _launch_configuration:
 
-Changing how ACP is started
----------------------------
+Change ACP startup
+------------------
 
 By default, the :func:`.launch_acp` function will start ACP from the unified installer, using the latest available version.
 
@@ -27,17 +27,22 @@ To change this behavior, you can use the ``ansys-launcher`` command line tool to
     docker_compose
     connect
 
-In the preceding output, the three available methods for starting ACP are listed:
+As indicated in the preceding output, three methods are available for starting ACP:
 
-- ``direct``: start ACP directly by providing the path to the ``acp_grpcserver`` executable.
-- ``docker_compose``: start ACP using Docker Compose.
-- ``connect``: connect to an already running ACP server.
+- ``direct``: Start ACP directly by providing the path to the ``acp_grpcserver`` executable.
+- ``docker_compose``: Start ACP using Docker Compose.
+- ``connect``: Connect to an already running ACP server.
 
-Either method can be configured with ``ansys-launcher``. For example, to use the
-``direct`` method, you can run ``ansys-launcher configure ACP direct``.
-The tool will prompt you for the required information, providing a default value
-in square brackets. You can press Enter to accept the default value, or type a
-new value and press Enter.
+You may configure any of the three methods with the ``ansys-launcher`` tool. For example, to use the
+``direct`` method, run the following command:
+
+.. code-block:: bash
+
+    ansys-launcher configure ACP direct
+
+The tool prompts you for the required information, providing the default value
+in square brackets. You can accept the default value by pressing the **Enter** key or input a 
+new value by typing it and then pressing the **Enter** key.
 
 .. code-block:: bash
 
@@ -62,12 +67,12 @@ new value and press Enter.
 The new configuration is used by the :func:`.launch_acp` function. Note that you
 may have to restart your Python session for the changes to take effect.
 
-Choosing the launch mode at runtime
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Choose the launch mode at runtime
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To switch between the launch modes, you can specify the ``launch_mode`` argument
-when calling :func:`.launch_acp`. Note that the selected launch mode must be
-already configured with ``ansys-launcher``.
+when calling the :func:`.launch_acp` function. Note that the selected launch mode must already
+be configured with the ``ansys-launcher`` tool.
 
 .. testcode::
 
@@ -75,7 +80,7 @@ already configured with ``ansys-launcher``.
 
     acp = pyacp.launch_acp(launch_mode="docker_compose")
 
-The ``config`` parameter can be used to fully customize the launch of ACP at runtime.
+You may use the ``config`` parameter to fully customize the launch of ACP at runtime.
 This parameter expects a configuration object matching the selected ``launch_mode``:
 
 - :class:`.DirectLaunchConfig` for the ``direct`` launch mode.
