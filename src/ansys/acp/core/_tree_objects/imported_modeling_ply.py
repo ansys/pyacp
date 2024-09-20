@@ -22,22 +22,14 @@
 
 from __future__ import annotations
 
-from collections.abc import Container, Iterable
+from collections.abc import Iterable
 import dataclasses
-from typing import Any, Callable
 
 import numpy as np
-from typing_extensions import Self
 
 from ansys.api.acp.v0 import imported_modeling_ply_pb2, imported_modeling_ply_pb2_grpc, imported_production_ply_pb2_grpc
 
-from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadWriteProperty
-from ._grpc_helpers.edge_property_list import (
-    GenericEdgePropertyType,
-    define_add_method,
-    define_edge_property_list,
-)
 from ._grpc_helpers.linked_object_list import define_linked_object_list
 from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
@@ -65,10 +57,6 @@ from .enums import (
     ImportedPlyOffsetType,
     imported_ply_offset_type_to_pb,
     imported_ply_offset_type_from_pb,
-    mesh_import_type_to_pb,
-    mesh_import_type_from_pb,
-    thickness_type_from_pb,
-    thickness_type_to_pb,
     RosetteSelectionMethod,
     rosette_selection_method_from_pb,
     rosette_selection_method_to_pb,
