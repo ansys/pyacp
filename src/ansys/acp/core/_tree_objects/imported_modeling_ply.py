@@ -205,7 +205,7 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
 
         self.active = active
         self.offset_type = ImportedPlyOffsetType(offset_type)
-        self.mesh_import_type = mesh_import_type
+        self.mesh_import_type = MeshImportType(mesh_import_type)
         self.mesh_geometry = mesh_geometry
         self.rosette_selection_method = rosette_selection_method
         self.rosettes = rosettes
@@ -233,7 +233,7 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
         "properties.offset_type", from_protobuf=imported_ply_offset_type_from_pb, to_protobuf=imported_ply_offset_type_to_pb
     )
     mesh_import_type = grpc_data_property(
-        "properties.mesh_import_type ", from_protobuf=mesh_import_type_from_pb, to_protobuf=mesh_import_type_to_pb
+        "properties.mesh_import_type", from_protobuf=mesh_import_type_from_pb, to_protobuf=mesh_import_type_to_pb
     )
     mesh_geometry = grpc_link_property(
         "properties.mesh_geometry", allowed_types=VirtualGeometry

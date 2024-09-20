@@ -69,12 +69,21 @@ from .enums import (
     ThicknessType,
     UnitSystemType,
     VirtualGeometryDimension,
+    MeshImportType,
+    ImportedPlyDrapingType,
+    ImportedPlyThicknessType,
+    ImportedPlyOffsetType,
 )
 from .fabric import Fabric
 from .geometrical_selection_rule import (
     GeometricalSelectionRule,
     GeometricalSelectionRuleElementalData,
     GeometricalSelectionRuleNodalData,
+)
+from .imported_analysis_ply import (
+    ImportedAnalysisPly,
+    ImportedAnalysisPlyElementalData,
+    ImportedAnalysisPlyNodalData,
 )
 from .linked_selection_rule import LinkedSelectionRule
 from .lookup_table_1d import LookUpTable1D
@@ -155,6 +164,11 @@ __all__ = [
     "GeometricalSelectionRuleElementalData",
     "GeometricalSelectionRuleNodalData",
     "IgnorableEntity",
+    "ImportedAnalysisPly",
+    "ImportedAnalysisPlyElementalData",
+    "ImportedAnalysisPlyNodalData",
+    "ImportedPlyDrapingType",
+    "ImportedPlyOffsetType",
     "InterpolationOptions",
     "Lamina",
     "LinkedSelectionRule",
@@ -166,6 +180,7 @@ __all__ = [
     "LookUpTableColumnValueType",
     "Material",
     "MeshData",
+    "MeshImportType",
     "Model",
     "ModelElementalData",
     "ModelingGroup",
