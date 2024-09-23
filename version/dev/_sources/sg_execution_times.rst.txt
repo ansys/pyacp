@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**01:44.506** total execution time for 9 files **from all galleries**:
+**01:38.393** total execution time for 9 files **from all galleries**:
 
 .. container::
 
@@ -33,29 +33,29 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_examples_gallery_examples_009_optimization.py` (``../../examples/009_optimization.py``)
-     - 00:42.149
+     - 00:39.188
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_008_solve_class40.py` (``../../examples/008_solve_class40.py``)
-     - 00:18.184
+     - 00:17.155
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` (``../../examples/001_basic_flat_plate.py``)
-     - 00:15.365
+     - 00:14.996
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_002_sandwich_panel.py` (``../../examples/002_sandwich_panel.py``)
-     - 00:05.774
+     - 00:05.410
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_004_advanced_rules.py` (``../../examples/004_advanced_rules.py``)
-     - 00:05.687
+     - 00:05.314
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_006_rosettes.py` (``../../examples/006_rosettes.py``)
-     - 00:04.674
+     - 00:04.495
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_003_basic_rules.py` (``../../examples/003_basic_rules.py``)
-     - 00:04.351
+     - 00:04.097
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_005_thickness_definitions.py` (``../../examples/005_thickness_definitions.py``)
-     - 00:04.288
+     - 00:03.970
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_007_direction_definitions.py` (``../../examples/007_direction_definitions.py``)
-     - 00:04.034
+     - 00:03.768
      - 0.0
