@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1726833869436,
+  "lastUpdate": 1727072458621,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15664,6 +15664,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002086315512205109",
             "extra": "mean: 725.3447632325104 usec\nrounds: 1757"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "57ec18ef491dc03897c318c208647e80d5ce4622",
+          "message": "Bump the dependencies group with 3 updates (#601)\n\nBumps the dependencies group with 3 updates: [types-protobuf](https://github.com/python/typeshed), [sphinx-autodoc-typehints](https://github.com/tox-dev/sphinx-autodoc-typehints) and [ansys-sphinx-theme](https://github.com/ansys/ansys-sphinx-theme).\r\n\r\n\r\nUpdates `types-protobuf` from 5.27.0.20240907 to 5.27.0.20240920\r\n- [Commits](https://github.com/python/typeshed/commits)\r\n\r\nUpdates `sphinx-autodoc-typehints` from 2.4.1 to 2.4.4\r\n- [Release notes](https://github.com/tox-dev/sphinx-autodoc-typehints/releases)\r\n- [Changelog](https://github.com/tox-dev/sphinx-autodoc-typehints/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/tox-dev/sphinx-autodoc-typehints/compare/2.4.1...2.4.4)\r\n\r\nUpdates `ansys-sphinx-theme` from 1.0.9 to 1.0.11\r\n- [Release notes](https://github.com/ansys/ansys-sphinx-theme/releases)\r\n- [Commits](https://github.com/ansys/ansys-sphinx-theme/compare/v1.0.9...v1.0.11)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: types-protobuf\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: sphinx-autodoc-typehints\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-sphinx-theme\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-09-23T08:16:19+02:00",
+          "tree_id": "94cfd98b4eaceb119d96b1b8ca417ea43ba23ae6",
+          "url": "https://github.com/ansys/pyacp/commit/57ec18ef491dc03897c318c208647e80d5ce4622"
+        },
+        "date": 1727072436665,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 8.55355082539593,
+            "unit": "iter/sec",
+            "range": "stddev: 0.018912755132365355",
+            "extra": "mean: 116.91051125001195 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1275.3651552716658,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002374619403291762",
+            "extra": "mean: 784.0891652610579 usec\nrounds: 2015"
           }
         ]
       }
