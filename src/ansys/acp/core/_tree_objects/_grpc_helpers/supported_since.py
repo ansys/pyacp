@@ -45,10 +45,10 @@ def supported_since(
 
     Parameters
     ----------
-    version : Optional[str]
+    version :
         The server version since which the method is supported. If ``None``, the
         decorator does nothing.
-    err_msg_tpl : Optional[str]
+    err_msg_tpl :
         A custom error message template. If ``None``, a default error message is used.
     """
     if version is None:
@@ -69,7 +69,7 @@ def supported_since(
                 if server_version < required_version:
                     if err_msg_tpl is None:
                         err_msg = (
-                            f"The method '{func.__name__}' is only supported since version {version} "
+                            f"The '{func.__name__}' method is only supported since version {version} "
                             f"of the ACP gRPC server. The current server version is {server_version}."
                         )
                     else:
