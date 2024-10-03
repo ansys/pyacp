@@ -25,7 +25,12 @@ from __future__ import annotations
 from collections.abc import Iterable
 import dataclasses
 
-from ansys.api.acp.v0 import modeling_group_pb2, modeling_group_pb2_grpc, modeling_ply_pb2_grpc
+from ansys.api.acp.v0 import (
+    interface_layer_pb2_grpc,
+    modeling_group_pb2,
+    modeling_group_pb2_grpc,
+    modeling_ply_pb2_grpc,
+)
 
 from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
 from ._grpc_helpers.property_helper import mark_grpc_properties
@@ -37,6 +42,7 @@ from ._mesh_data import (
     nodal_data_property,
 )
 from .base import CreatableTreeObject, IdTreeObject
+from .interface_layer import InterfaceLayer
 from .modeling_ply import ModelingPly
 from .object_registry import register
 
@@ -86,6 +92,9 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
         module_name=__module__,
     )
     modeling_plies = define_mutable_mapping(ModelingPly, modeling_ply_pb2_grpc.ObjectServiceStub)
+    interface_layers = define_mutable_mapping(
+        InterfaceLayer, interface_layer_pb2_grpc.ObjectServiceStub
+    )
 
     elemental_data = elemental_data_property(ModelingGroupElementalData)
     nodal_data = nodal_data_property(ModelingGroupNodalData)
