@@ -93,7 +93,9 @@ def mark_grpc_properties(cls: T) -> T:
     cls._GRPC_PROPERTIES = tuple(props_unique)
     if cls._SUPPORTED_SINCE is not None:
         if isinstance(cls.__doc__, str):
-            cls.__doc__ += f"\n\nSupported since ACP gRPC server version {cls._SUPPORTED_SINCE}."
+            cls.__doc__ += (
+                f"\n\nSupported since ACP gRPC server version {cls._SUPPORTED_SINCE}.\n\n"
+            )
     return cls
 
 
