@@ -70,7 +70,7 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
 
     Parameters
     ----------
-    name
+    name :
         Name of the modeling group.
     """
 
