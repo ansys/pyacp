@@ -38,7 +38,7 @@ from ansys.api.acp.v0.base_pb2 import ResourcePath
 
 from ..._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .polymorphic_from_pb import CreatableFromResourcePath, tree_object_from_resource_path
-from .protocols import Editable, GrpcObjectBase, ObjectInfo, Readable
+from .protocols import Editable, GrpcObjectBase, Readable
 from .supported_since import supported_since as supported_since_decorator
 
 # Note: The typing of the protobuf objects is fairly loose, maybe it could
@@ -188,7 +188,7 @@ def _get_data_attribute(pb_obj: Message, name: str, check_optional: bool = False
     return reduce(getattr, name_parts, pb_obj)
 
 
-def _set_data_attribute(pb_obj: ObjectInfo, name: str, value: _PROTOBUF_T) -> None:
+def _set_data_attribute(pb_obj: Message, name: str, value: _PROTOBUF_T) -> None:
     name_parts = name.split(".")
 
     try:
@@ -210,7 +210,7 @@ def _set_data_attribute(pb_obj: ObjectInfo, name: str, value: _PROTOBUF_T) -> No
 def grpc_data_setter(
     name: str,
     to_protobuf: _TO_PROTOBUF_T[_SET_T],
-    setter_func: Callable[[ObjectInfo, str, _PROTOBUF_T], None] = _set_data_attribute,
+    setter_func: Callable[[Message, str, _PROTOBUF_T], None] = _set_data_attribute,
     supported_since: str | None = None,
 ) -> Callable[[Editable, _SET_T], None]:
     """Create a setter method which updates the server object via the gRPC Put endpoint."""
@@ -253,7 +253,7 @@ def grpc_data_property(
     from_protobuf: _FROM_PROTOBUF_T[_GET_T] = lambda x: x,
     check_optional: bool = False,
     doc: str | None = None,
-    setter_func: Callable[[ObjectInfo, str, _PROTOBUF_T], None] = _set_data_attribute,
+    setter_func: Callable[[Message, str, _PROTOBUF_T], None] = _set_data_attribute,
     readable_since: str | None = None,
     writable_since: str | None = None,
 ) -> ReadWriteProperty[_GET_T, _SET_T]:
