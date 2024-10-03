@@ -20,12 +20,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from packaging.version import parse as parse_version
 import pytest
 
-from ansys.acp.core import PrimaryPly
+from ansys.acp.core import ButtJointSequence, PrimaryPly
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 from .common.utils import AnyThing
+
+
+@pytest.fixture(autouse=True)
+def skip_if_unsupported_version(acp_instance):
+    if parse_version(acp_instance.server_version) < parse_version(
+        ButtJointSequence._SUPPORTED_SINCE
+    ):
+        pytest.skip("ButtJointSequence is not supported on this version of the server.")
 
 
 @pytest.fixture
