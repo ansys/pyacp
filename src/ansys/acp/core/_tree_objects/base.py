@@ -328,6 +328,14 @@ class CreatableTreeObject(TreeObject):
             Parent object to store the object under.
         """
         self._server_wrapper_store = parent._server_wrapper
+        if self._SUPPORTED_SINCE is not None:
+            assert self._server_version is not None
+            if self._server_version < parse_version(self._SUPPORTED_SINCE):
+                raise RuntimeError(
+                    f"The '{type(self).__name__}' object is only supported since version "
+                    f"{self._SUPPORTED_SINCE} of the ACP gRPC server. The current server version is "
+                    f"{self._server_version}."
+                )
 
         collection_path = CollectionPath(
             value=_rp_join(parent._resource_path.value, self._COLLECTION_LABEL)
