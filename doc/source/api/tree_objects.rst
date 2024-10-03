@@ -16,6 +16,7 @@ ACP objects
     ElementSet
     Fabric
     GeometricalSelectionRule
+    InterfaceLayer
     LookUpTable1D
     LookUpTable1DColumn
     LookUpTable3D
