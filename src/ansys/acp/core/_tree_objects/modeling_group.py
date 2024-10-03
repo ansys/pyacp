@@ -27,6 +27,7 @@ import dataclasses
 
 from ansys.api.acp.v0 import (
     interface_layer_pb2_grpc,
+    butt_joint_sequence_pb2_grpc,
     modeling_group_pb2,
     modeling_group_pb2_grpc,
     modeling_ply_pb2_grpc,
@@ -43,6 +44,7 @@ from ._mesh_data import (
 )
 from .base import CreatableTreeObject, IdTreeObject
 from .interface_layer import InterfaceLayer
+from .butt_joint_sequence import ButtJointSequence
 from .modeling_ply import ModelingPly
 from .object_registry import register
 
@@ -92,14 +94,24 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
         module_name=__module__,
     )
     modeling_plies = define_mutable_mapping(ModelingPly, modeling_ply_pb2_grpc.ObjectServiceStub)
-    interface_layers = define_mutable_mapping(
-        InterfaceLayer, interface_layer_pb2_grpc.ObjectServiceStub
-    )
     create_interface_layer = define_create_method(
         InterfaceLayer,
         func_name="create_interface_layer",
         parent_class_name="ModelingGroup",
         module_name=__module__,
+    )
+    interface_layers = define_mutable_mapping(
+        InterfaceLayer, interface_layer_pb2_grpc.ObjectServiceStub
+    )
+
+    create_butt_joint_sequence = define_create_method(
+        ButtJointSequence,
+        func_name="create_butt_joint_sequence",
+        parent_class_name="ModelingGroup",
+        module_name=__module__,
+    )
+    butt_joint_sequences = define_mutable_mapping(
+        ButtJointSequence, butt_joint_sequence_pb2_grpc.ObjectServiceStub
     )
 
     elemental_data = elemental_data_property(ModelingGroupElementalData)
