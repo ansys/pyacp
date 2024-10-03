@@ -48,7 +48,7 @@ from .enums import status_type_from_pb
 from .modeling_ply import ModelingPly
 from .object_registry import register
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     # Creates a circular import if imported at the top-level, since the ButtJointSequence
     # is a direct child of the ModelingGroup.
     from .modeling_group import ModelingGroup
