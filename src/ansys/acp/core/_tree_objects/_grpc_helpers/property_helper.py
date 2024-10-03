@@ -29,6 +29,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from functools import reduce
+import sys
 from typing import TYPE_CHECKING, Any, TypeVar
 
 from google.protobuf.message import Message
@@ -93,8 +94,20 @@ def mark_grpc_properties(cls: T) -> T:
     cls._GRPC_PROPERTIES = tuple(props_unique)
     if cls._SUPPORTED_SINCE is not None:
         if isinstance(cls.__doc__, str):
+            # When adding to the docstring, we need to match the existing
+            # indentation of the docstring (except the first line).
+            # See PEP 257 'Handling Docstring Indentation'.
+            # Alternatively, we could strip the common indentation from the
+            # docstring.
+            indent = sys.maxsize
+            for line in cls.__doc__.splitlines()[1:]:
+                stripped = line.lstrip()
+                if stripped:  # ignore empty lines
+                    indent = min(indent, len(line) - len(stripped))
+            if indent == sys.maxsize:
+                indent = 0
             cls.__doc__ += (
-                f"\n\nSupported since ACP gRPC server version {cls._SUPPORTED_SINCE}.\n\n"
+                f"\n\n{indent * ' '}*Added in ACP server version {cls._SUPPORTED_SINCE}.*\n"
             )
     return cls
 
