@@ -250,6 +250,23 @@ def load_model_from_tempfile(model_data_dir, acp_instance):
 
     return inner
 
+@pytest.fixture
+def load_model_imported_plies_from_tempfile(model_data_dir, acp_instance):
+    @contextmanager
+    def inner(relative_file_path="minimal_model_imported_plies.acph5", format="acp:h5"):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            source_path = model_data_dir / relative_file_path
+
+            if acp_instance.is_remote:
+                file_path = acp_instance.upload_file(source_path)
+            else:
+                # Copy the file to a temporary directory, so the original file is never
+                # modified. This can happen for example when a geometry reload happens.
+                file_path = shutil.copy(source_path, tmp_dir)
+
+            yield acp_instance.import_model(path=file_path, format=format)
+
+    return inner
 
 @pytest.fixture
 def load_cad_geometry(model_data_dir, acp_instance):

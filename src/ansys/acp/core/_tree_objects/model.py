@@ -51,6 +51,7 @@ from ansys.api.acp.v0 import (
     model_pb2_grpc,
     modeling_group_pb2_grpc,
     modeling_ply_pb2_grpc,
+    imported_modeling_group_pb2_grpc,
     oriented_selection_set_pb2_grpc,
     parallel_selection_rule_pb2_grpc,
     ply_geometry_export_pb2,
@@ -111,6 +112,7 @@ from .lookup_table_1d import LookUpTable1D
 from .lookup_table_3d import LookUpTable3D
 from .material import Material
 from .modeling_group import ModelingGroup
+from .imported_modeling_group import ImportedModelingGroup
 from .modeling_ply import ModelingPly
 from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
@@ -687,6 +689,16 @@ class Model(TreeObject):
     )
     modeling_groups = define_mutable_mapping(
         ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
+    )
+
+    create_imported_modeling_group = define_create_method(
+        ImportedModelingGroup,
+        func_name="create_imported_modeling_group",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    imported_modeling_groups = define_mutable_mapping(
+        ImportedModelingGroup, imported_modeling_group_pb2_grpc.ObjectServiceStub
     )
 
     create_sensor = define_create_method(

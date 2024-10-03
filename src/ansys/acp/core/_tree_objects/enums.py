@@ -36,6 +36,7 @@ from ansys.api.acp.v0 import (
     sensor_pb2,
     unit_system_pb2,
     virtual_geometry_pb2,
+    imported_modeling_ply_pb2,
 )
 
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
@@ -68,6 +69,7 @@ __all__ = [
     "ThicknessType",
     "UnitSystemType",
     "VirtualGeometryDimension",
+    "ImportedPlyOffsetType",
 ]
 
 (StatusType, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(
@@ -119,6 +121,21 @@ __all__ = [
     ply_material_pb2.DrapingType,
     module=__name__,
     doc="Options for the draping algorithm used.",
+)
+
+(
+    ImportedPlyDrapingType,
+    imported_ply_draping_type_to_pb,
+    imported_ply_draping_type_from_pb,
+) = wrap_to_string_enum(
+    "ImportedPlyDrapingType",
+    ply_material_pb2.DrapingType,
+    module=__name__,
+    doc="Options for the draping algorithm used.",
+    explicit_value_list=(
+        ply_material_pb2.DrapingType.NO_DRAPING,
+        ply_material_pb2.DrapingType.TABULAR_VALUES,
+    ),
 )
 
 (
@@ -344,6 +361,21 @@ __all__ = [
 )
 
 (
+    ImportedPlyThicknessType,
+    imported_ply_thickness_type_to_pb,
+    imported_ply_thickness_type_from_pb,
+) = wrap_to_string_enum(
+    "ImportedPlyThicknessType",
+    modeling_ply_pb2.ThicknessType,
+    module=__name__,
+    doc="Options for how ply thickness is defined.",
+    explicit_value_list=(
+        modeling_ply_pb2.ThicknessType.NOMINAL,
+        modeling_ply_pb2.ThicknessType.FROM_TABLE,
+    ),
+)
+
+(
     ThicknessFieldType,
     thickness_field_type_to_pb,
     thickness_field_type_from_pb,
@@ -364,4 +396,31 @@ __all__ = [
         enum_types_pb2.FileFormat.IGES,
         enum_types_pb2.FileFormat.STL,
     ),
+)
+
+(
+    ImportedPlyOffsetType,
+    imported_ply_offset_type_to_pb,
+    imported_ply_offset_type_from_pb,
+) = wrap_to_string_enum(
+    "OffsetType",
+    enum_types_pb2.OffsetType,
+    module=__name__,
+    doc="Options for the definition of the offset.",
+    explicit_value_list=(
+        enum_types_pb2.OffsetType.MIDDLE_OFFSET,
+        enum_types_pb2.OffsetType.BOTTOM_OFFSET,
+        enum_types_pb2.OffsetType.TOP_OFFSET,
+    ),
+)
+
+(
+    MeshImportType,
+    mesh_import_type_to_pb,
+    mesh_import_type_from_pb,
+) = wrap_to_string_enum(
+    "MeshImportType",
+    imported_modeling_ply_pb2.MeshImportType,
+    module=__name__,
+    doc="Options for the definition of the source of the imported mesh.",
 )

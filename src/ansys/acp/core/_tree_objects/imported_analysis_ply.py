@@ -27,7 +27,7 @@ import dataclasses
 
 import numpy as np
 
-from ansys.api.acp.v0 import analysis_ply_pb2, analysis_ply_pb2_grpc
+from ansys.api.acp.v0 import imported_analysis_ply_pb2, imported_analysis_ply_pb2_grpc
 
 from .._utils.property_protocols import ReadOnlyProperty
 from ._grpc_helpers.property_helper import (
@@ -47,12 +47,12 @@ from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
 
-__all__ = ["AnalysisPly", "AnalysisPlyElementalData", "AnalysisPlyNodalData"]
+__all__ = ["ImportedAnalysisPly", "ImportedAnalysisPlyElementalData", "ImportedAnalysisPlyNodalData"]
 
 
 @dataclasses.dataclass
-class AnalysisPlyElementalData(ElementalData):
-    """Represents elemental data for a Analysis Ply."""
+class ImportedAnalysisPlyElementalData(ElementalData):
+    """Represents elemental data for an Imported Analysis Ply."""
 
     normal: VectorData | None = None
     orientation: VectorData | None = None
@@ -67,49 +67,48 @@ class AnalysisPlyElementalData(ElementalData):
     shear_angle: ScalarData[np.float64] | None = None
     draped_fiber_angle: ScalarData[np.float64] | None = None
     draped_transverse_angle: ScalarData[np.float64] | None = None
-    area: ScalarData[np.float64] | None = None
-    price: ScalarData[np.float64] | None = None
-    volume: ScalarData[np.float64] | None = None
-    mass: ScalarData[np.float64] | None = None
-    offset: ScalarData[np.float64] | None = None
-    material_1_direction: VectorData | None = None
-    cog: VectorData | None = None
+    # area: ScalarData[np.float64] | None = None
+    # price: ScalarData[np.float64] | None = None
+    # volume: ScalarData[np.float64] | None = None
+    # mass: ScalarData[np.float64] | None = None
+    # offset: ScalarData[np.float64] | None = None
+    # material_1_direction: VectorData | None = None
+    # cog: VectorData | None = None
 
 
 @dataclasses.dataclass
-class AnalysisPlyNodalData(NodalData):
+class ImportedAnalysisPlyNodalData(NodalData):
     """Represents nodal data for an Analysis Ply."""
 
-    ply_offset: VectorData | None = None
+    # ply_offset: VectorData | None = None
 
 
 @mark_grpc_properties
 @register
-class AnalysisPly(ReadOnlyTreeObject, IdTreeObject):
-    """Instantiate an Analysis Ply.
+class ImportedAnalysisPly(ReadOnlyTreeObject, IdTreeObject):
+    """Instantiate an Imported Analysis Ply.
 
     Parameters
     ----------
     name: str
-        The name of the Analysis Ply.
+        The name of the Imported Analysis Ply.
     material: Material
-        Material of the Analysis ply.
+        Material of the Imported Analysis ply.
     angle: float
         Angle of the Analysis ply in degrees.
-    thickness: float
-        Thickness of the Analysis ply
+    angle: thickness
+        Thickness of the Analysis ply in degrees.
     active_in_post_mode: bool
         If False, deactivates the failure analysis for this ply during post-processing.
-
     """
 
     __slots__: Iterable[str] = tuple()
 
-    _COLLECTION_LABEL = "analysis_plies"
-    _OBJECT_INFO_TYPE = analysis_ply_pb2.ObjectInfo
+    _COLLECTION_LABEL = "imported_analysis_plies"
+    _OBJECT_INFO_TYPE = imported_analysis_ply_pb2.ObjectInfo
 
-    def _create_stub(self) -> analysis_ply_pb2_grpc.ObjectServiceStub:
-        return analysis_ply_pb2_grpc.ObjectServiceStub(self._channel)
+    def _create_stub(self) -> imported_analysis_ply_pb2_grpc.ObjectServiceStub:
+        return imported_analysis_ply_pb2_grpc.ObjectServiceStub(self._channel)
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     material = grpc_link_property_read_only("properties.material")
@@ -118,5 +117,5 @@ class AnalysisPly(ReadOnlyTreeObject, IdTreeObject):
     active_in_post_mode: ReadOnlyProperty[bool] = grpc_data_property_read_only(
         "properties.active_in_post_mode"
     )
-    elemental_data = elemental_data_property(AnalysisPlyElementalData)
-    nodal_data = nodal_data_property(AnalysisPlyNodalData)
+    elemental_data = elemental_data_property(ImportedAnalysisPlyElementalData)
+    nodal_data = nodal_data_property(ImportedAnalysisPlyNodalData)
