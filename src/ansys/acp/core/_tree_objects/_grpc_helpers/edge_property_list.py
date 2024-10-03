@@ -23,6 +23,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Iterator, MutableSequence
+import functools
 import sys
 import textwrap
 from typing import Any, Concatenate, Protocol, TypeVar, cast, overload
@@ -30,9 +31,20 @@ from typing import Any, Concatenate, Protocol, TypeVar, cast, overload
 from google.protobuf.message import Message
 from typing_extensions import ParamSpec, Self
 
+from ansys.api.acp.v0 import base_pb2
+
+from ..._utils.property_protocols import ReadWriteProperty
 from .._object_cache import ObjectCacheMixin, constructor_with_cache
-from ..base import CreatableTreeObject
-from .property_helper import _exposed_grpc_property, _wrap_doc, grpc_data_getter, grpc_data_setter
+from ..base import CreatableTreeObject, ServerWrapper
+from .polymorphic_from_pb import tree_object_from_resource_path
+from .property_helper import (
+    _exposed_grpc_property,
+    _get_data_attribute,
+    _set_data_attribute,
+    _wrap_doc,
+    grpc_data_getter,
+    grpc_data_setter,
+)
 from .protocols import GrpcObjectBase
 
 __all__ = [
@@ -65,6 +77,125 @@ class GenericEdgePropertyType(GrpcObjectBase, Protocol):
     def clone(self) -> Self:
         """Create a new unstored object with the same properties."""
         raise NotImplementedError
+
+
+class EdgePropertyTypeBase(GenericEdgePropertyType):
+    """Common implementation of the GenericEdgePropertyType protocol."""
+
+    __slots__ = ("_pb_object", "_callback_apply_changes", "_server_wrapper")
+    _PB_OBJECT_TYPE: type[Message]
+
+    def __init__(self) -> None:
+        self._pb_object = self._PB_OBJECT_TYPE()
+        self._callback_apply_changes: Callable[[], None] | None = None
+        self._server_wrapper: ServerWrapper | None = None
+
+    def _set_callback_apply_changes(self, callback_apply_changes: Callable[[], None]) -> None:
+        self._callback_apply_changes = callback_apply_changes
+
+    @classmethod
+    def _from_pb_object(
+        cls,
+        parent_object: CreatableTreeObject,
+        message: Message,
+        callback_apply_changes: Callable[[], None],
+    ) -> Self:
+        new_obj = cls()
+        new_obj._pb_object = message
+        new_obj._set_callback_apply_changes(callback_apply_changes)
+        new_obj._server_wrapper = parent_object._server_wrapper
+        return new_obj
+
+    def _to_pb_object(self) -> Message:
+        return self._pb_object
+
+    def _check(self) -> bool:
+        return self._server_wrapper is not None
+
+    def __eq__(self, other: Any) -> bool:
+        if isinstance(other, self.__class__):
+            return cast(bool, self._pb_object == other._pb_object)
+        return False
+
+    def clone(self) -> Self:
+        """Create a new unstored object with the same properties."""
+        obj = self.__class__()
+        obj._pb_object.CopyFrom(self._pb_object)
+        obj._server_wrapper = self._server_wrapper
+        # do not copy the callback, as the new object's parent is not yet defined
+        return obj
+
+    def __repr__(self) -> str:
+        args = ", ".join(f"{k}={getattr(self, k)!r}" for k in self._GRPC_PROPERTIES)
+        return f"{self.__class__.__name__}({args})"
+
+
+def edge_property_type_linked_object(
+    name_in_pb: str,
+    allowed_types: type[CreatableTreeObject] | tuple[type[CreatableTreeObject], ...] | None = None,
+    allowed_types_getter: (
+        Callable[[], type[CreatableTreeObject] | tuple[type[CreatableTreeObject], ...]] | None
+    ) = None,
+) -> Any:
+    """Define the linked object property for the edge property type."""
+    if allowed_types is None == allowed_types_getter is None:
+        raise ValueError("Exactly one of 'allowed_types' and 'allowed_types_getter' must be given.")
+
+    @functools.cache
+    def _allowed_types() -> tuple[type[CreatableTreeObject], ...]:
+        if allowed_types_getter is not None:
+            allowed_types = allowed_types_getter()
+        if not isinstance(allowed_types, tuple):
+            allowed_types = (allowed_types,)
+        return allowed_types
+
+    def getter(self: EdgePropertyTypeBase) -> Any:
+        resource_path = _get_data_attribute(self._pb_object, name_in_pb)
+        if self._server_wrapper is None:
+            return None
+        return tree_object_from_resource_path(
+            resource_path=resource_path,
+            server_wrapper=self._server_wrapper,
+            allowed_types=_allowed_types(),
+        )
+
+    def setter(self: EdgePropertyTypeBase, value: Any) -> None:
+        if value is None:
+            server_wrapper = None
+            resource_path = base_pb2.ResourcePath(value="")
+        else:
+            if not isinstance(value, _allowed_types()):
+                raise TypeError(
+                    f"Expected object of type {allowed_types}, got type {type(value)} instead."
+                )
+            server_wrapper = value._server_wrapper
+            resource_path = value._resource_path
+
+        self._server_wrapper = server_wrapper
+        _set_data_attribute(self._pb_object, name_in_pb, resource_path)
+        if self._callback_apply_changes:
+            self._callback_apply_changes()
+
+    return _exposed_grpc_property(getter, setter)
+
+
+T = TypeVar("T")
+
+
+def edge_property_type_attribute(
+    name_in_pb: str,
+    from_protobuf: Callable[[Any], T] = lambda x: x,
+    to_protobuf: Callable[[T], Any] = lambda x: x,
+) -> ReadWriteProperty[T, T]:
+    def getter(self: EdgePropertyTypeBase) -> Any:
+        return from_protobuf(_get_data_attribute(self._pb_object, name_in_pb))
+
+    def setter(self: EdgePropertyTypeBase, value: Any) -> None:
+        _set_data_attribute(self._pb_object, name_in_pb, to_protobuf(value))
+        if self._callback_apply_changes:
+            self._callback_apply_changes()
+
+    return _exposed_grpc_property(getter, setter)
 
 
 ValueT = TypeVar("ValueT", bound=GenericEdgePropertyType)
@@ -364,7 +495,7 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
     def _apply_changes(self) -> None:
         """Apply changes to the list.
 
-        Use to support in-place modification.
+        Used to support in-place modification.
         This function applies the changes if someone edits one entry of the list.
         """
         self._set_object_list(self._object_list)
