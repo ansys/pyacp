@@ -22,6 +22,7 @@
 
 import dataclasses
 import os
+import pathlib
 import subprocess
 from typing import TextIO
 
@@ -102,6 +103,10 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         # TODO: implement patterns
         stdout_file = self._config.stdout_file
         stderr_file = self._config.stderr_file
+
+        binary = pathlib.Path(self._config.binary_path)
+        if not binary.exists():
+            raise FileNotFoundError(f"Binary not found: '{binary}'")
 
         port = find_free_ports()[0]
         self._url = f"localhost:{port}"
