@@ -180,7 +180,6 @@ class ButtJointSequence(CreatableTreeObject, IdTreeObject):
     secondary_plies :
         Secondary plies are butt-joined to adjacent primary plies and they inherit
         the thickness.
-
     """
 
     __slots__: Iterable[str] = tuple()
