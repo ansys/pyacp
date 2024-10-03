@@ -170,7 +170,7 @@ jobs:
           poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+          IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
 
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v4
@@ -279,7 +279,7 @@ jobs:
         run: >
           poetry run
           ansys-launcher configure ACP docker_compose
-          --image_name_pyacp=ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}
+          --image_name_pyacp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False

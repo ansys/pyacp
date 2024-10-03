@@ -26,14 +26,13 @@ from __future__ import annotations
 from abc import abstractmethod
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
-from functools import wraps
 import typing
-from typing import Any, Concatenate, Generic, TypeAlias, TypeVar, cast
+from typing import Any, Generic, TypeVar, cast
 
 from grpc import Channel
 from packaging.version import Version
 from packaging.version import parse as parse_version
-from typing_extensions import ParamSpec, Self
+from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, GetRequest, ResourcePath
 
@@ -146,6 +145,12 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
             raise RuntimeError("The server connection is uninitialized.")
         assert self._server_wrapper_store is not None
         return self._server_wrapper_store
+
+    @property
+    def _server_version(self) -> Version | None:
+        if not self._is_stored:
+            return None
+        return self._server_wrapper.version
 
     @property
     def _is_stored(self) -> bool:
@@ -476,34 +481,6 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly):
     def _put_if_stored(self) -> None:
         if self._is_stored:
             self._put()
-
-
-T = TypeVar("T", bound=TreeObjectBase)
-P = ParamSpec("P")
-R = TypeVar("R")
-_WRAPPED_T: TypeAlias = Callable[Concatenate[T, P], R]
-
-
-def supported_since(version: str) -> Callable[[_WRAPPED_T[T, P, R]], _WRAPPED_T[T, P, R]]:
-    """Mark a TreeObjectBase method as supported since a specific server version.
-
-    Raises an exception if the current server version does not match the required version.
-    """
-    required_version = parse_version(version)
-
-    def decorator(func: _WRAPPED_T[T, P, R]) -> _WRAPPED_T[T, P, R]:
-        @wraps(func)
-        def inner(self: T, /, *args: P.args, **kwargs: P.kwargs) -> R:
-            if self._server_wrapper.version < required_version:
-                raise RuntimeError(
-                    f"The method '{func.__name__}' is only supported since version {version} of the ACP "
-                    f"gRPC server. The current server version is {self._server_wrapper.version}."
-                )
-            return func(self, *args, **kwargs)
-
-        return inner
-
-    return decorator
 
 
 if typing.TYPE_CHECKING:  # pragma: no cover
