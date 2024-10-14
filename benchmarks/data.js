@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1727072458621,
+  "lastUpdate": 1728932280126,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15702,6 +15702,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002374619403291762",
             "extra": "mean: 784.0891652610579 usec\nrounds: 2015"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "76c6de81302f6f5ad0738ed1839aa618404b3650",
+          "message": "Bump ansys/actions from 7 to 8 (#613)\n\nBumps [ansys/actions](https://github.com/ansys/actions) from 7 to 8.\r\n- [Release notes](https://github.com/ansys/actions/releases)\r\n- [Commits](https://github.com/ansys/actions/compare/v7...v8)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: ansys/actions\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-major\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-10-14T20:53:48+02:00",
+          "tree_id": "1e076f9f1a413a0b5182e5fe0ae70805cc3f469b",
+          "url": "https://github.com/ansys/pyacp/commit/76c6de81302f6f5ad0738ed1839aa618404b3650"
+        },
+        "date": 1728932256647,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 8.966608070223614,
+            "unit": "iter/sec",
+            "range": "stddev: 0.015016808135011042",
+            "extra": "mean: 111.52489237494478 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1322.6679295734514,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002289695117875137",
+            "extra": "mean: 756.0476652083725 usec\nrounds: 2058"
           }
         ]
       }
