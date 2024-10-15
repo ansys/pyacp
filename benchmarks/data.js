@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1728932280126,
+  "lastUpdate": 1728998880202,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15740,6 +15740,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002289695117875137",
             "extra": "mean: 756.0476652083725 usec\nrounds: 2058"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8fcae810a66eb21a2f9b1cef740f38dd3d39f5ee",
+          "message": "Bump the dependencies group across 1 directory with 13 updates (#616)\n\nBumps the dependencies group with 13 updates in the / directory:\r\n\r\n| Package | From | To |\r\n| --- | --- | --- |\r\n| [networkx](https://github.com/networkx/networkx) | `3.3` | `3.4.1` |\r\n| [ansys-mapdl-core](https://github.com/ansys/pymapdl) | `0.68.4` | `0.68.6` |\r\n| [pre-commit](https://github.com/pre-commit/pre-commit) | `3.8.0` | `4.0.1` |\r\n| [black](https://github.com/psf/black) | `24.8.0` | `24.10.0` |\r\n| [mypy](https://github.com/python/mypy) | `1.11.2` | `1.12.0` |\r\n| [types-protobuf](https://github.com/python/typeshed) | `5.27.0.20240920` | `5.28.0.20240924` |\r\n| [sphinx](https://github.com/sphinx-doc/sphinx) | `8.0.2` | `8.1.3` |\r\n| [sphinx-autodoc-typehints](https://github.com/tox-dev/sphinx-autodoc-typehints) | `2.4.4` | `2.5.0` |\r\n| [ansys-sphinx-theme](https://github.com/ansys/ansys-sphinx-theme) | `1.0.11` | `1.1.5` |\r\n| [pypandoc](https://github.com/JessicaTegner/pypandoc) | `1.13` | `1.14` |\r\n| [sphinx-gallery](https://github.com/sphinx-gallery/sphinx-gallery) | `0.17.1` | `0.18.0` |\r\n| [pytest-cases](https://github.com/smarie/python-pytest-cases) | `3.8.5` | `3.8.6` |\r\n| [hypothesis](https://github.com/HypothesisWorks/hypothesis) | `6.112.1` | `6.115.2` |\r\n\r\n\r\n\r\nUpdates `networkx` from 3.3 to 3.4.1\r\n- [Release notes](https://github.com/networkx/networkx/releases)\r\n- [Commits](https://github.com/networkx/networkx/compare/networkx-3.3...networkx-3.4.1)\r\n\r\nUpdates `ansys-mapdl-core` from 0.68.4 to 0.68.6\r\n- [Release notes](https://github.com/ansys/pymapdl/releases)\r\n- [Changelog](https://github.com/ansys/pymapdl/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ansys/pymapdl/compare/v0.68.4...v0.68.6)\r\n\r\nUpdates `pre-commit` from 3.8.0 to 4.0.1\r\n- [Release notes](https://github.com/pre-commit/pre-commit/releases)\r\n- [Changelog](https://github.com/pre-commit/pre-commit/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/pre-commit/pre-commit/compare/v3.8.0...v4.0.1)\r\n\r\nUpdates `black` from 24.8.0 to 24.10.0\r\n- [Release notes](https://github.com/psf/black/releases)\r\n- [Changelog](https://github.com/psf/black/blob/main/CHANGES.md)\r\n- [Commits](https://github.com/psf/black/compare/24.8.0...24.10.0)\r\n\r\nUpdates `mypy` from 1.11.2 to 1.12.0\r\n- [Changelog](https://github.com/python/mypy/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/python/mypy/compare/v1.11.2...v1.12.0)\r\n\r\nUpdates `types-protobuf` from 5.27.0.20240920 to 5.28.0.20240924\r\n- [Commits](https://github.com/python/typeshed/commits)\r\n\r\nUpdates `sphinx` from 8.0.2 to 8.1.3\r\n- [Release notes](https://github.com/sphinx-doc/sphinx/releases)\r\n- [Changelog](https://github.com/sphinx-doc/sphinx/blob/master/CHANGES.rst)\r\n- [Commits](https://github.com/sphinx-doc/sphinx/compare/v8.0.2...v8.1.3)\r\n\r\nUpdates `sphinx-autodoc-typehints` from 2.4.4 to 2.5.0\r\n- [Release notes](https://github.com/tox-dev/sphinx-autodoc-typehints/releases)\r\n- [Changelog](https://github.com/tox-dev/sphinx-autodoc-typehints/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/tox-dev/sphinx-autodoc-typehints/compare/2.4.4...2.5.0)\r\n\r\nUpdates `ansys-sphinx-theme` from 1.0.11 to 1.1.5\r\n- [Release notes](https://github.com/ansys/ansys-sphinx-theme/releases)\r\n- [Commits](https://github.com/ansys/ansys-sphinx-theme/compare/v1.0.11...v1.1.5)\r\n\r\nUpdates `pypandoc` from 1.13 to 1.14\r\n- [Release notes](https://github.com/JessicaTegner/pypandoc/releases)\r\n- [Changelog](https://github.com/JessicaTegner/pypandoc/blob/master/release.md)\r\n- [Commits](https://github.com/JessicaTegner/pypandoc/compare/v1.13...v1.14)\r\n\r\nUpdates `sphinx-gallery` from 0.17.1 to 0.18.0\r\n- [Release notes](https://github.com/sphinx-gallery/sphinx-gallery/releases)\r\n- [Changelog](https://github.com/sphinx-gallery/sphinx-gallery/blob/master/.github_changelog_generator)\r\n- [Commits](https://github.com/sphinx-gallery/sphinx-gallery/compare/v0.17.1...v0.18.0)\r\n\r\nUpdates `pytest-cases` from 3.8.5 to 3.8.6\r\n- [Release notes](https://github.com/smarie/python-pytest-cases/releases)\r\n- [Changelog](https://github.com/smarie/python-pytest-cases/blob/main/docs/changelog.md)\r\n- [Commits](https://github.com/smarie/python-pytest-cases/compare/3.8.5...3.8.6)\r\n\r\nUpdates `hypothesis` from 6.112.1 to 6.115.2\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.112.1...hypothesis-python-6.115.2)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: networkx\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-mapdl-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: pre-commit\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-major\r\n  dependency-group: dependencies\r\n- dependency-name: black\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: mypy\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: types-protobuf\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: sphinx\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: sphinx-autodoc-typehints\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-sphinx-theme\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: pypandoc\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: sphinx-gallery\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n- dependency-name: pytest-cases\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-minor\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-10-15T15:23:37+02:00",
+          "tree_id": "53f0e8fa450fc9fa1fce84ca8a7a9a62862cb1d8",
+          "url": "https://github.com/ansys/pyacp/commit/8fcae810a66eb21a2f9b1cef740f38dd3d39f5ee"
+        },
+        "date": 1728998856771,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 8.190860339681448,
+            "unit": "iter/sec",
+            "range": "stddev: 0.021703051723252344",
+            "extra": "mean: 122.08729712499178 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1474.1803283504296,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001855797409407793",
+            "extra": "mean: 678.3430634425673 usec\nrounds: 1592"
           }
         ]
       }
