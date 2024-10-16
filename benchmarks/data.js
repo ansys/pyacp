@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729081352359,
+  "lastUpdate": 1729082049618,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15854,6 +15854,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002327145784898238",
             "extra": "mean: 757.7360768470459 usec\nrounds: 2043"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f8b93d76770b87318232d8d699a4642ddf06457f",
+          "message": "Add required inputs for doc deploy (#617)\n\nAdd the newly-required inputs for the v8 version of the doc deploy\r\naction.\r\nSee https://actions.docs.ansys.com/version/dev/migrations/index.html#migration-guide\r\n\r\nReplace GITHUB_TOKEN with PYANSYS_CI_BOT_TOKEN where applicable, so that the\r\ncommiter's credentials match the used email / username.",
+          "timestamp": "2024-10-16T12:29:34Z",
+          "tree_id": "062746c44cb64e7f0aad6654c764850a239e2b82",
+          "url": "https://github.com/ansys/pyacp/commit/f8b93d76770b87318232d8d699a4642ddf06457f"
+        },
+        "date": 1729082024955,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 8.576499564629955,
+            "unit": "iter/sec",
+            "range": "stddev: 0.01575623014912824",
+            "extra": "mean: 116.59768562503814 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1433.5072441690002,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00023136108206606867",
+            "extra": "mean: 697.589777845662 usec\nrounds: 1670"
           }
         ]
       }
