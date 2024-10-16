@@ -8,6 +8,7 @@ ACP objects
 
     AnalysisPly
     BooleanSelectionRule
+    ButtJointSequence
     CADComponent
     CADGeometry
     CutoffSelectionRule
