@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>CutoffSelectionRule &#8212; PyACP</title>
-
+  
   
   
   
@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=d2ac875c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=47841aec" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -44,11 +44,12 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
- 
-<link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
 
+  
+    <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
     <script src="../../_static/documentation_options.js?v=e7fb764e"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
@@ -79,6 +80,7 @@
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
+  
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
@@ -97,9 +99,7 @@
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
-    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
-
-  <!-- If there is no MeiliSearch enabled, use the PyData search -->
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -122,7 +122,8 @@
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
-   
+  
+  
     <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
   <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
@@ -207,16 +208,18 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<div class="search-bar" id="search-bar">
+    <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+             aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+             autocapitalize="off" spellcheck="false"/>
+      <span class="search-button__kbd-shortcut">
+        <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+      </span>
+    </form>
+    <div id="search-results" class="search-results" style="display: none;" tabindex="0"></div>
+</div>
         </div>
       
       
@@ -278,16 +281,18 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<div class="search-bar" id="search-bar">
+    <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+             aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+             autocapitalize="off" spellcheck="false"/>
+      <span class="search-button__kbd-shortcut">
+        <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+      </span>
+    </form>
+    <div id="search-results" class="search-results" style="display: none;" tabindex="0"></div>
+</div>
     </div>
   
 
@@ -299,6 +304,8 @@ document.write(`
 </div>
 
     </header>
+  
+  
     <div id="announcement_msg"></div>
 <script>
   fetch("announcement.html")
@@ -312,7 +319,9 @@ document.write(`
       (text) => (document.getElementById("announcement_msg").innerHTML = text),
     )
     .catch((error) => console.error(`Fetch problem: ${error.message}`));
-</script>  
+</script>
+  
+
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
@@ -578,19 +587,19 @@ document.write(`
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">'CutoffSelectionrule'</span></code>) – Name of the Cutoff Selection Rule.</p></li>
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">'CutoffSelectionrule'</span></code>) – Name of the Cutoff Selection Rule.</p></li>
 <li><p><strong>cutoff_rule_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.CutoffRuleType.html#ansys.acp.core.CutoffRuleType" title="ansys.acp.core._tree_objects.enums.CutoffRuleType"><code class="xref py py-class docutils literal notranslate"><span class="pre">CutoffRuleType</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">&lt;CutoffRuleType.GEOMETRY:</span> <span class="pre">'geometry'&gt;</span></code>) – Determines if the cut-off is defined by a geometry or by a tapering edge.</p></li>
-<li><p><strong>cutoff_geometry</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.VirtualGeometry.html#ansys.acp.core.VirtualGeometry" title="ansys.acp.core._tree_objects.virtual_geometry.VirtualGeometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">VirtualGeometry</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Geometry used to define the cut-off. Only applies if
+<li><p><strong>cutoff_geometry</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.VirtualGeometry.html#ansys.acp.core.VirtualGeometry" title="ansys.acp.core._tree_objects.virtual_geometry.VirtualGeometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">VirtualGeometry</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Geometry used to define the cut-off. Only applies if
 <code class="docutils literal notranslate"><span class="pre">cutoff_rule_type</span></code> is GEOMETRY.</p></li>
-<li><p><strong>taper_edge_set</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.EdgeSet.html#ansys.acp.core.EdgeSet" title="ansys.acp.core._tree_objects.edge_set.EdgeSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">EdgeSet</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Edge used to define the cut-off. Only applies if
+<li><p><strong>taper_edge_set</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.EdgeSet.html#ansys.acp.core.EdgeSet" title="ansys.acp.core._tree_objects.edge_set.EdgeSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">EdgeSet</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Edge used to define the cut-off. Only applies if
 <code class="docutils literal notranslate"><span class="pre">cutoff_rule_type</span></code> is <a class="reference internal" href="ansys.acp.core.CutoffRuleType.TAPER.html#ansys.acp.core.CutoffRuleType.TAPER" title="ansys.acp.core.CutoffRuleType.TAPER"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CutoffRuleType.TAPER</span></code></a>.</p></li>
-<li><p><strong>offset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Moves the cutting plane along the out-of-plane direction. Always measured
+<li><p><strong>offset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Moves the cutting plane along the out-of-plane direction. Always measured
 from the reference surface.</p></li>
-<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Defines the angle between the cutting plane and the reference surface.</p></li>
+<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Defines the angle between the cutting plane and the reference surface.</p></li>
 <li><p><strong>ply_cutoff_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.PlyCutoffType.html#ansys.acp.core.PlyCutoffType" title="ansys.acp.core._tree_objects.enums.PlyCutoffType"><code class="xref py py-class docutils literal notranslate"><span class="pre">PlyCutoffType</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">&lt;PlyCutoffType.PRODUCTION_PLY_CUTOFF:</span> <span class="pre">'production_ply_cutoff'&gt;</span></code>) – Either the complete production ply is cut-off
 (<a class="reference internal" href="ansys.acp.core.PlyCutoffType.PRODUCTION_PLY_CUTOFF.html#ansys.acp.core.PlyCutoffType.PRODUCTION_PLY_CUTOFF" title="ansys.acp.core.PlyCutoffType.PRODUCTION_PLY_CUTOFF"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PlyCutoffType.PRODUCTION_PLY_CUTOFF</span></code></a>) or individual analysis plies
 (<a class="reference internal" href="ansys.acp.core.PlyCutoffType.ANALYSIS_PLY_CUTOFF.html#ansys.acp.core.PlyCutoffType.ANALYSIS_PLY_CUTOFF" title="ansys.acp.core.PlyCutoffType.ANALYSIS_PLY_CUTOFF"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PlyCutoffType.ANALYSIS_PLY_CUTOFF</span></code></a>).</p></li>
-<li><p><strong>ply_tapering</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">False</span></code>) – Whether the tapering of analysis plies is enabled.</p></li>
+<li><p><strong>ply_tapering</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">False</span></code>) – Whether the tapering of analysis plies is enabled.</p></li>
 </ul>
 </dd>
 </dl>
@@ -713,6 +722,19 @@ from the reference surface.</p></li>
   <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
 <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
+<link rel="stylesheet" href="../../_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('""');
+const SEARCH_FILE = "../../_static/search.json";
+</script>
+
+
+<script src="../../_static/js/search.js"></script>
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
   
@@ -731,7 +753,7 @@ from the reference surface.</p></li>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     <br/>
   </p>
 </div>
@@ -747,7 +769,7 @@ from the reference surface.</p></li>
   <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
     >Ansys Sphinx Theme</a
   >
-  1.0.11. <br />Last updated on
+  1.1.5. <br />Last updated on
   <span id="date"></span>
 </p>
 <script>

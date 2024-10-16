@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ModelingPly &#8212; PyACP</title>
-
+  
   
   
   
@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=d2ac875c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=47841aec" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -44,11 +44,12 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
- 
-<link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
 
+  
+    <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
     <script src="../../_static/documentation_options.js?v=e7fb764e"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
@@ -79,6 +80,7 @@
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
+  
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
@@ -97,9 +99,7 @@
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
-    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
-
-  <!-- If there is no MeiliSearch enabled, use the PyData search -->
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -122,7 +122,8 @@
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
-   
+  
+  
     <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
   <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
@@ -207,16 +208,18 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<div class="search-bar" id="search-bar">
+    <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+             aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+             autocapitalize="off" spellcheck="false"/>
+      <span class="search-button__kbd-shortcut">
+        <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+      </span>
+    </form>
+    <div id="search-results" class="search-results" style="display: none;" tabindex="0"></div>
+</div>
         </div>
       
       
@@ -278,16 +281,18 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<div class="search-bar" id="search-bar">
+    <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+             aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+             autocapitalize="off" spellcheck="false"/>
+      <span class="search-button__kbd-shortcut">
+        <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+      </span>
+    </form>
+    <div id="search-results" class="search-results" style="display: none;" tabindex="0"></div>
+</div>
     </div>
   
 
@@ -299,6 +304,8 @@ document.write(`
 </div>
 
     </header>
+  
+  
     <div id="announcement_msg"></div>
 <script>
   fetch("announcement.html")
@@ -312,7 +319,9 @@ document.write(`
       (text) => (document.getElementById("announcement_msg").innerHTML = text),
     )
     .catch((error) => console.error(`Fetch problem: ${error.message}`));
-</script>  
+</script>
+  
+
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
@@ -595,44 +604,44 @@ document.write(`
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">'ModelingPly'</span></code>) – The name of the Modeling Ply</p></li>
-<li><p><strong>ply_material</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.Fabric.html#ansys.acp.core.Fabric" title="ansys.acp.core._tree_objects.fabric.Fabric"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fabric</span></code></a> | <a class="reference internal" href="ansys.acp.core.Stackup.html#ansys.acp.core.Stackup" title="ansys.acp.core._tree_objects.stackup.Stackup"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stackup</span></code></a> | <a class="reference internal" href="ansys.acp.core.SubLaminate.html#ansys.acp.core.SubLaminate" title="ansys.acp.core._tree_objects.sublaminate.SubLaminate"><code class="xref py py-class docutils literal notranslate"><span class="pre">SubLaminate</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – The material (fabric, stackup or sub-laminate) of the ply.</p></li>
-<li><p><strong>ply_angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Design angle between the reference direction and the ply fiber direction.</p></li>
-<li><p><strong>number_of_layers</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">1</span></code>) – Number of times the plies are generated.</p></li>
-<li><p><strong>active</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>) – Inactive plies are ignored in ACP and the downstream analysis.</p></li>
-<li><p><strong>global_ply_nr</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0</span></code>) – Defines the global ply order.</p></li>
-<li><p><strong>selection_rules</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference internal" href="ansys.acp.core.LinkedSelectionRule.html#ansys.acp.core.LinkedSelectionRule" title="ansys.acp.core._tree_objects.linked_selection_rule.LinkedSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinkedSelectionRule</span></code></a>]</span>, default: <code class="docutils literal notranslate"><span class="pre">()</span></code>) – Selection Rules which may limit the extent of the ply.</p></li>
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">'ModelingPly'</span></code>) – The name of the Modeling Ply</p></li>
+<li><p><strong>ply_material</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.Fabric.html#ansys.acp.core.Fabric" title="ansys.acp.core._tree_objects.fabric.Fabric"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fabric</span></code></a> | <a class="reference internal" href="ansys.acp.core.Stackup.html#ansys.acp.core.Stackup" title="ansys.acp.core._tree_objects.stackup.Stackup"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stackup</span></code></a> | <a class="reference internal" href="ansys.acp.core.SubLaminate.html#ansys.acp.core.SubLaminate" title="ansys.acp.core._tree_objects.sublaminate.SubLaminate"><code class="xref py py-class docutils literal notranslate"><span class="pre">SubLaminate</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – The material (fabric, stackup or sub-laminate) of the ply.</p></li>
+<li><p><strong>ply_angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Design angle between the reference direction and the ply fiber direction.</p></li>
+<li><p><strong>number_of_layers</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">1</span></code>) – Number of times the plies are generated.</p></li>
+<li><p><strong>active</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>) – Inactive plies are ignored in ACP and the downstream analysis.</p></li>
+<li><p><strong>global_ply_nr</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0</span></code>) – Defines the global ply order.</p></li>
+<li><p><strong>selection_rules</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference internal" href="ansys.acp.core.LinkedSelectionRule.html#ansys.acp.core.LinkedSelectionRule" title="ansys.acp.core._tree_objects.linked_selection_rule.LinkedSelectionRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinkedSelectionRule</span></code></a>]</span>, default: <code class="docutils literal notranslate"><span class="pre">()</span></code>) – Selection Rules which may limit the extent of the ply.</p></li>
 <li><p><strong>draping</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.DrapingType.html#ansys.acp.core.DrapingType" title="ansys.acp.core._tree_objects.enums.DrapingType"><code class="xref py py-class docutils literal notranslate"><span class="pre">DrapingType</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">&lt;DrapingType.NO_DRAPING:</span> <span class="pre">'no_draping'&gt;</span></code>) – Chooses between different draping formulations.</p></li>
-<li><p><strong>draping_seed_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>, default: <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></code>) – Starting point of the draping algorithm.</p></li>
-<li><p><strong>auto_draping_direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>) – <dl class="simple">
+<li><p><strong>draping_seed_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>, default: <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></code>) – Starting point of the draping algorithm.</p></li>
+<li><p><strong>auto_draping_direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>) – <dl class="simple">
 <dt>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the fiber direction of the production ply at the draping</dt><dd><p>seed point is used as draping direction.</p>
 </dd>
 </dl>
 </p></li>
-<li><p><strong>draping_direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>, default: <code class="docutils literal notranslate"><span class="pre">(1.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></code>) – Set the primary draping direction for the draping algorithm. Only used if
+<li><p><strong>draping_direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>, default: <code class="docutils literal notranslate"><span class="pre">(1.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></code>) – Set the primary draping direction for the draping algorithm. Only used if
 <code class="docutils literal notranslate"><span class="pre">auto_draping_direction</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
-<li><p><strong>use_default_draping_mesh_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>) – Whether to use the average element size of the shell mesh for the draping.</p></li>
-<li><p><strong>draping_mesh_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Defines the mesh size for the draping algorithm.  If set to <code class="docutils literal notranslate"><span class="pre">-1.</span></code>, the
+<li><p><strong>use_default_draping_mesh_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>) – Whether to use the average element size of the shell mesh for the draping.</p></li>
+<li><p><strong>draping_mesh_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Defines the mesh size for the draping algorithm.  If set to <code class="docutils literal notranslate"><span class="pre">-1.</span></code>, the
 mesh size is automatically determined based on the average element size.</p></li>
-<li><p><strong>draping_thickness_correction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>) – Enables the thickness correction of draped plies based on the draping
+<li><p><strong>draping_thickness_correction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>) – Enables the thickness correction of draped plies based on the draping
 shear angle.</p></li>
-<li><p><strong>draping_angle_1_field</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html#ansys.acp.core.LookUpTable1DColumn" title="ansys.acp.core._tree_objects.lookup_table_1d_column.LookUpTable1DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable1DColumn</span></code></a> | <a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html#ansys.acp.core.LookUpTable3DColumn" title="ansys.acp.core._tree_objects.lookup_table_3d_column.LookUpTable3DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable3DColumn</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Correction angle between the fiber and draped fiber directions, in degree.</p></li>
-<li><p><strong>draping_angle_2_field</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html#ansys.acp.core.LookUpTable1DColumn" title="ansys.acp.core._tree_objects.lookup_table_1d_column.LookUpTable1DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable1DColumn</span></code></a> | <a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html#ansys.acp.core.LookUpTable3DColumn" title="ansys.acp.core._tree_objects.lookup_table_3d_column.LookUpTable3DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable3DColumn</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Correction angle between the transverse and draped transverse directions,
+<li><p><strong>draping_angle_1_field</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html#ansys.acp.core.LookUpTable1DColumn" title="ansys.acp.core._tree_objects.lookup_table_1d_column.LookUpTable1DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable1DColumn</span></code></a> | <a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html#ansys.acp.core.LookUpTable3DColumn" title="ansys.acp.core._tree_objects.lookup_table_3d_column.LookUpTable3DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable3DColumn</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Correction angle between the fiber and draped fiber directions, in degree.</p></li>
+<li><p><strong>draping_angle_2_field</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html#ansys.acp.core.LookUpTable1DColumn" title="ansys.acp.core._tree_objects.lookup_table_1d_column.LookUpTable1DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable1DColumn</span></code></a> | <a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html#ansys.acp.core.LookUpTable3DColumn" title="ansys.acp.core._tree_objects.lookup_table_3d_column.LookUpTable3DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable3DColumn</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Correction angle between the transverse and draped transverse directions,
 in degree. Optional, uses the same values as <code class="docutils literal notranslate"><span class="pre">draping_angle_1_field</span></code>
 (no shear) by default.</p></li>
 <li><p><strong>thickness_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.ThicknessType.html#ansys.acp.core.ThicknessType" title="ansys.acp.core._tree_objects.enums.ThicknessType"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThicknessType</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">&lt;ThicknessType.NOMINAL:</span> <span class="pre">'nominal'&gt;</span></code>) – Choose between <a class="reference internal" href="ansys.acp.core.ThicknessType.FROM_GEOMETRY.html#ansys.acp.core.ThicknessType.FROM_GEOMETRY" title="ansys.acp.core.ThicknessType.FROM_GEOMETRY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_GEOMETRY</span></code></a> or
 <a class="reference internal" href="ansys.acp.core.ThicknessType.FROM_TABLE.html#ansys.acp.core.ThicknessType.FROM_TABLE" title="ansys.acp.core.ThicknessType.FROM_TABLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_TABLE</span></code></a> to define a ply with variable thickness.
 The default value is <a class="reference internal" href="ansys.acp.core.ThicknessType.NOMINAL.html#ansys.acp.core.ThicknessType.NOMINAL" title="ansys.acp.core.ThicknessType.NOMINAL"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.NOMINAL</span></code></a>, which means the ply
 thickness is constant and determined by the thickness of the ply material.</p></li>
-<li><p><strong>thickness_geometry</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.VirtualGeometry.html#ansys.acp.core.VirtualGeometry" title="ansys.acp.core._tree_objects.virtual_geometry.VirtualGeometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">VirtualGeometry</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Defines the geometry used to determine the ply thickness. Only applies if
+<li><p><strong>thickness_geometry</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.VirtualGeometry.html#ansys.acp.core.VirtualGeometry" title="ansys.acp.core._tree_objects.virtual_geometry.VirtualGeometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">VirtualGeometry</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Defines the geometry used to determine the ply thickness. Only applies if
 <code class="docutils literal notranslate"><span class="pre">thickness_type</span></code> is <a class="reference internal" href="ansys.acp.core.ThicknessType.FROM_GEOMETRY.html#ansys.acp.core.ThicknessType.FROM_GEOMETRY" title="ansys.acp.core.ThicknessType.FROM_GEOMETRY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_GEOMETRY</span></code></a>.</p></li>
-<li><p><strong>thickness_field</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html#ansys.acp.core.LookUpTable1DColumn" title="ansys.acp.core._tree_objects.lookup_table_1d_column.LookUpTable1DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable1DColumn</span></code></a> | <a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html#ansys.acp.core.LookUpTable3DColumn" title="ansys.acp.core._tree_objects.lookup_table_3d_column.LookUpTable3DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable3DColumn</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Defines the look-up table column used to determine the ply thickness.
+<li><p><strong>thickness_field</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html#ansys.acp.core.LookUpTable1DColumn" title="ansys.acp.core._tree_objects.lookup_table_1d_column.LookUpTable1DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable1DColumn</span></code></a> | <a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html#ansys.acp.core.LookUpTable3DColumn" title="ansys.acp.core._tree_objects.lookup_table_3d_column.LookUpTable3DColumn"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable3DColumn</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Defines the look-up table column used to determine the ply thickness.
 Only applies if <code class="docutils literal notranslate"><span class="pre">thickness_type</span></code> is <a class="reference internal" href="ansys.acp.core.ThicknessType.FROM_TABLE.html#ansys.acp.core.ThicknessType.FROM_TABLE" title="ansys.acp.core.ThicknessType.FROM_TABLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_TABLE</span></code></a>.</p></li>
 <li><p><strong>thickness_field_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.ThicknessFieldType.html#ansys.acp.core.ThicknessFieldType" title="ansys.acp.core._tree_objects.enums.ThicknessFieldType"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThicknessFieldType</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">&lt;ThicknessFieldType.ABSOLUTE_VALUES:</span> <span class="pre">'absolute_values'&gt;</span></code>) – If <code class="docutils literal notranslate"><span class="pre">thickness_type</span></code> is <a class="reference internal" href="ansys.acp.core.ThicknessType.FROM_TABLE.html#ansys.acp.core.ThicknessType.FROM_TABLE" title="ansys.acp.core.ThicknessType.FROM_TABLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_TABLE</span></code></a>, this parameter
 determines how the thickness values are interpreted. They can be either
 absolute values (<a class="reference internal" href="ansys.acp.core.ThicknessFieldType.ABSOLUTE_VALUES.html#ansys.acp.core.ThicknessFieldType.ABSOLUTE_VALUES" title="ansys.acp.core.ThicknessFieldType.ABSOLUTE_VALUES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessFieldType.ABSOLUTE_VALUES</span></code></a>) or relative
 values (<a class="reference internal" href="ansys.acp.core.ThicknessFieldType.RELATIVE_SCALING_FACTOR.html#ansys.acp.core.ThicknessFieldType.RELATIVE_SCALING_FACTOR" title="ansys.acp.core.ThicknessFieldType.RELATIVE_SCALING_FACTOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessFieldType.RELATIVE_SCALING_FACTOR</span></code></a>).</p></li>
-<li><p><strong>taper_edges</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference internal" href="ansys.acp.core.TaperEdge.html#ansys.acp.core.TaperEdge" title="ansys.acp.core._tree_objects.modeling_ply.TaperEdge"><code class="xref py py-class docutils literal notranslate"><span class="pre">TaperEdge</span></code></a>]</span>, default: <code class="docutils literal notranslate"><span class="pre">()</span></code>) – Defines the taper edges of the ply.</p></li>
+<li><p><strong>taper_edges</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference internal" href="ansys.acp.core.TaperEdge.html#ansys.acp.core.TaperEdge" title="ansys.acp.core._tree_objects.modeling_ply.TaperEdge"><code class="xref py py-class docutils literal notranslate"><span class="pre">TaperEdge</span></code></a>]</span>, default: <code class="docutils literal notranslate"><span class="pre">()</span></code>) – Defines the taper edges of the ply.</p></li>
 </ul>
 </dd>
 </dl>
@@ -806,6 +815,19 @@ values (<a class="reference internal" href="ansys.acp.core.ThicknessFieldType.RE
   <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
 <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
+<link rel="stylesheet" href="../../_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('""');
+const SEARCH_FILE = "../../_static/search.json";
+</script>
+
+
+<script src="../../_static/js/search.js"></script>
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
   
@@ -824,7 +846,7 @@ values (<a class="reference internal" href="ansys.acp.core.ThicknessFieldType.RE
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     <br/>
   </p>
 </div>
@@ -840,7 +862,7 @@ values (<a class="reference internal" href="ansys.acp.core.ThicknessFieldType.RE
   <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
     >Ansys Sphinx Theme</a
   >
-  1.0.11. <br />Last updated on
+  1.1.5. <br />Last updated on
   <span id="date"></span>
 </p>
 <script>
