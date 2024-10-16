@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729083610228,
+  "lastUpdate": 1729084787396,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15930,6 +15930,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00021509540475944978",
             "extra": "mean: 725.0878509050683 usec\nrounds: 1878"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0a03f698809ac688811dc5d84b72826cfeaae179",
+          "message": "Allow marking 'supported_since' on class level (#604)\n\nAdd a `_SUPPORTED_SINCE` class attribute to the `GrpcObjectBase` class, which has two effects:\r\n- upon storing an object, check the server version and raise an appropriate exception if the server version is too low\r\n- in the `mark_grpc_properties` class decorator, add a line at the end of the class docstring indicating the server version at which the class was introduced\r\n\r\nOn all existing classes, the `_SUPPORTED_SINCE` attribute is set to `\"24.2\"`.",
+          "timestamp": "2024-10-16T13:15:33Z",
+          "tree_id": "7f46594a20998919c4832b8574b47eeb40e90623",
+          "url": "https://github.com/ansys/pyacp/commit/0a03f698809ac688811dc5d84b72826cfeaae179"
+        },
+        "date": 1729084765074,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 7.770196719517427,
+            "unit": "iter/sec",
+            "range": "stddev: 0.016845649673142653",
+            "extra": "mean: 128.696870375002 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1293.602661024053,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022084107755589914",
+            "extra": "mean: 773.034897136321 usec\nrounds: 1886"
           }
         ]
       }
