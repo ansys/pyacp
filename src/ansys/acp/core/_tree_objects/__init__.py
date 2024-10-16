@@ -76,6 +76,7 @@ from .geometrical_selection_rule import (
     GeometricalSelectionRuleElementalData,
     GeometricalSelectionRuleNodalData,
 )
+from .interface_layer import InterfaceLayer
 from .linked_selection_rule import LinkedSelectionRule
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_1d_column import LookUpTable1DColumn
@@ -155,6 +156,7 @@ __all__ = [
     "GeometricalSelectionRuleElementalData",
     "GeometricalSelectionRuleNodalData",
     "IgnorableEntity",
+    "InterfaceLayer",
     "InterpolationOptions",
     "Lamina",
     "LinkedSelectionRule",
