@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729006848160,
+  "lastUpdate": 1729081352359,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15816,6 +15816,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00021385245839375752",
             "extra": "mean: 728.1456370494583 usec\nrounds: 1857"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "29f3e8838e5783317aa4e0b592e4d51bf0363812",
+          "message": "Adapt tests to stricter units handling (#619)",
+          "timestamp": "2024-10-16T14:18:11+02:00",
+          "tree_id": "db1793c01dd8e7e0f93e4c84b39c379250f9c874",
+          "url": "https://github.com/ansys/pyacp/commit/29f3e8838e5783317aa4e0b592e4d51bf0363812"
+        },
+        "date": 1729081329566,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 8.565885516547006,
+            "unit": "iter/sec",
+            "range": "stddev: 0.017197809532830996",
+            "extra": "mean: 116.74216262501602 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1319.720718803596,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002327145784898238",
+            "extra": "mean: 757.7360768470459 usec\nrounds: 2043"
           }
         ]
       }
