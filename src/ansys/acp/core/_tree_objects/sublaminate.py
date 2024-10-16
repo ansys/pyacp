@@ -68,6 +68,8 @@ class Lamina(GenericEdgePropertyType):
 
     """
 
+    _SUPPORTED_SINCE = "24.2"
+
     def __init__(self, material: _LINKABLE_MATERIAL_TYPES, angle: float = 0.0):
         self._callback_apply_changes: Callable[[], None] | None = None
         self.material = material
@@ -174,6 +176,7 @@ class SubLaminate(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "sublaminates"
     _OBJECT_INFO_TYPE = sublaminate_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = sublaminate_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,

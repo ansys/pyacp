@@ -109,6 +109,7 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "tube_selection_rules"
     _OBJECT_INFO_TYPE = tube_selection_rule_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = tube_selection_rule_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,

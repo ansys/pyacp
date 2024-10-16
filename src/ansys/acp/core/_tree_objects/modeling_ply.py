@@ -131,6 +131,8 @@ class TaperEdge(GenericEdgePropertyType):
         offset is ``-offset/tan(angle)``.
     """
 
+    _SUPPORTED_SINCE = "24.2"
+
     def __init__(self, edge_set: EdgeSet, *, angle: float, offset: float):
         self._callback_apply_changes: Callable[[], None] | None = None
         self.edge_set = edge_set
@@ -302,6 +304,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "modeling_plies"
     _OBJECT_INFO_TYPE = modeling_ply_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = modeling_ply_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,

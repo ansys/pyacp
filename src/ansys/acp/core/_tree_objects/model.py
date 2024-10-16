@@ -226,6 +226,7 @@ class Model(TreeObject):
 
     _COLLECTION_LABEL = "models"
     _OBJECT_INFO_TYPE = model_pb2.ObjectInfo
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
