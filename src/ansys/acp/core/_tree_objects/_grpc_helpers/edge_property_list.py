@@ -23,6 +23,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Iterator, MutableSequence
+import inspect
 import sys
 import textwrap
 from typing import Any, Concatenate, Protocol, TypeVar, cast, overload
@@ -446,9 +447,21 @@ def define_add_method(
         f"""\
         Add a {value_type.__name__} to the {parent_class_name}.
 
-        See :class:`.{value_type.__name__}` for the available parameters.
         """
     )
+    found_parameters = False
+    if value_type.__doc__ is not None:
+        doc_lines = textwrap.dedent(value_type.__doc__).splitlines()
+        if "Parameters" in doc_lines:
+            doc_lines = doc_lines[doc_lines.index("Parameters") :]
+            inner.__doc__ += "\n".join(doc_lines)
+            found_parameters = True
+    if not found_parameters:
+        inner.__doc__ += "See :class:`" + value_type.__name__ + "` for the available parameters.\n"
+
+    parameters = [inspect.signature(inner).parameters["self"]]
+    parameters.extend(inspect.signature(value_type).parameters.values())
+    inner.__signature__ = inspect.Signature(parameters, return_annotation=value_type)  # type: ignore
 
     inner.__name__ = func_name
     inner.__qualname__ = f"{parent_class_name}.{func_name}"

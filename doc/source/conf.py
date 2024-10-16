@@ -88,7 +88,6 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
-    "sphinx_autodoc_typehints",
     "numpydoc",
     "sphinx_copybutton",
 ]
@@ -140,8 +139,8 @@ nitpick_ignore_regex = [
 ]
 
 # sphinx_autodoc_typehints configuration
-typehints_defaults = "comma"
-simplify_optional_unions = True
+autodoc_typehints = "description"
+autodoc_typehints_description_target = "documented"
 
 # numpydoc configuration
 numpydoc_show_class_members = False

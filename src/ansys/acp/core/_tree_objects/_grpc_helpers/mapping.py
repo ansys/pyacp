@@ -23,6 +23,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable, Iterator
+import inspect
 from typing import Any, Concatenate, Generic, TypeVar
 
 from grpc import Channel
@@ -288,6 +289,10 @@ def define_create_method(
     # NOTE: This relies on our convention to document the tree object classes
     # on the class itself, instead of the __init__ method.
     inner.__doc__ = object_class.__doc__
+
+    parameters = [inspect.signature(inner).parameters["self"]]
+    parameters.extend(inspect.signature(object_class).parameters.values())
+    inner.__signature__ = inspect.Signature(parameters, return_annotation=object_class)  # type: ignore
 
     inner.__name__ = func_name
     inner.__qualname__ = f"{parent_class_name}.{func_name}"
