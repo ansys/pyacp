@@ -31,7 +31,7 @@ import numpy.testing
 import pytest
 import pyvista
 
-from ansys.acp.core import ElementalDataType, VectorData
+from ansys.acp.core import ElementalDataType, UnitSystemType, VectorData
 
 from .helpers import check_property
 
@@ -152,7 +152,10 @@ def test_string_representation(acp_instance, model_data_dir):
     input_file_path = model_data_dir / "ACP-Pre.h5"
     remote_file_path = acp_instance.upload_file(input_file_path)
     model = acp_instance.import_model(
-        name="minimal_model", path=remote_file_path, format="ansys:cdb"
+        name="minimal_model",
+        path=remote_file_path,
+        format="ansys:cdb",
+        unit_system=UnitSystemType.MKS,
     )
 
     assert repr(model) == "<Model with name 'minimal_model'>"
