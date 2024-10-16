@@ -68,6 +68,8 @@ class Lamina(GenericEdgePropertyType):
 
     """
 
+    _SUPPORTED_SINCE = "24.2"
+
     def __init__(self, material: _LINKABLE_MATERIAL_TYPES, angle: float = 0.0):
         self._callback_apply_changes: Callable[[], None] | None = None
         self.material = material
