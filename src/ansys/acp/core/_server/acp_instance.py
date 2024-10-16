@@ -161,8 +161,10 @@ class ACP(Generic[ServerT]):
             into ACP composite definitions.
             Available only when the format is not ``"acp:h5"``.
         unit_system:
-            Set the unit system of the model to the given value. Ignored
-            if the unit system is already set in the FE file.
+            Defines the unit system of the imported file. Must be set if the
+            input file does not have units. If the input file does have units,
+            ``unit_system`` must be either ``"from_file"``, or match the input
+            unit system.
             Available only when the format is not ``"acp:h5"``.
 
         Returns
@@ -180,7 +182,10 @@ class ACP(Generic[ServerT]):
             model = Model._from_file(path=path, server_wrapper=server_wrapper)
         else:
             model = Model._from_fe_file(
-                path=path, server_wrapper=server_wrapper, format=format, **kwargs
+                path=path,
+                server_wrapper=server_wrapper,
+                format=format,
+                **kwargs,
             )
         if name is not None:
             model.name = name

@@ -107,9 +107,13 @@ def test_workflow_unit_system_dat(acp_instance, model_data_dir, unit_system):
     # input file does contain the unit system.
     # Since 25.1, we also allow it if the unit systems match.
     if parse_version(acp_instance.server_version) < parse_version("25.1"):
-        allowed_unit_system_values = [UnitSystemType.UNDEFINED]
+        allowed_unit_system_values = [UnitSystemType.UNDEFINED, UnitSystemType.FROM_FILE]
     else:
-        allowed_unit_system_values = [UnitSystemType.UNDEFINED, UnitSystemType.MKS]
+        allowed_unit_system_values = [
+            UnitSystemType.UNDEFINED,
+            UnitSystemType.FROM_FILE,
+            UnitSystemType.MKS,
+        ]
 
     if unit_system not in allowed_unit_system_values:
         with pytest.raises(ValueError) as ex:
@@ -134,7 +138,7 @@ def test_workflow_unit_system_cdb(acp_instance, model_data_dir, unit_system):
 
     input_file_path = model_data_dir / "minimal_model_2.cdb"
 
-    if unit_system == UnitSystemType.UNDEFINED:
+    if unit_system in (UnitSystemType.UNDEFINED, UnitSystemType.FROM_FILE):
         with pytest.raises(ValueError) as ex:
             # Initializing a workflow with an undefined unit system is not allowed
             # if the input file does not contain the unit system.

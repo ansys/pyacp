@@ -75,10 +75,13 @@ from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
 from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
 from ._grpc_helpers.property_helper import (
+    _PROTOBUF_T,
+    _set_data_attribute,
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
+from ._grpc_helpers.protocols import ObjectInfo
 from ._grpc_helpers.supported_since import supported_since
 from ._mesh_data import (
     ElementalData,
@@ -269,8 +272,20 @@ class Model(TreeObject):
     minimum_analysis_ply_thickness: ReadWriteProperty[float, float] = grpc_data_property(
         "properties.minimum_analysis_ply_thickness"
     )
-    unit_system = grpc_data_property_read_only(
-        "properties.unit_system", from_protobuf=unit_system_type_from_pb
+
+    @staticmethod
+    def _set_unit_system_data_attribute(pb_obj: ObjectInfo, name: str, value: _PROTOBUF_T) -> None:
+        # remove the 'minimum_analysis_ply_thickness' property from the pb object, to
+        # allow the backend to convert it to the new unit system.
+        pb_obj.properties.ClearField("minimum_analysis_ply_thickness")
+        _set_data_attribute(pb_obj, name, value)
+
+    unit_system = grpc_data_property(
+        "properties.unit_system",
+        from_protobuf=unit_system_type_from_pb,
+        to_protobuf=unit_system_type_to_pb,
+        setter_func=_set_unit_system_data_attribute,
+        writable_since="25.1",
     )
 
     average_element_size: ReadOnlyProperty[float] = grpc_data_property_read_only(
@@ -304,7 +319,7 @@ class Model(TreeObject):
         format: FeFormat,  # type: ignore
         ignored_entities: Iterable[IgnorableEntity] = (),  # type: ignore
         convert_section_data: bool = False,
-        unit_system: UnitSystemType = UnitSystemType.UNDEFINED,
+        unit_system: UnitSystemType = UnitSystemType.FROM_FILE,
     ) -> Model:
         """Load the model from an FE file.
 
@@ -326,8 +341,10 @@ class Model(TreeObject):
             Whether to import the section data of a shell model and convert it
             into ACP composite definitions.
         unit_system:
-            Set the unit system of the model to the given value. Ignored
-            if the unit system is already set in the FE file.
+            Defines the unit system of the imported file. Must be set if the
+            input file does not have units. If the input file does have units,
+            ``unit_system`` must be either ``"from_file"``, or match the input
+            unit system.
         """
         format_pb = fe_format_to_pb(format)
         ignored_entities_pb = [ignorable_entity_to_pb(val) for val in ignored_entities]
