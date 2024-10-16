@@ -92,7 +92,11 @@ def mark_grpc_properties(cls: T) -> T:
         if name not in props_unique:
             props_unique.append(name)
     cls._GRPC_PROPERTIES = tuple(props_unique)
-    if cls._SUPPORTED_SINCE is not None:
+
+    # The 'mark_grpc_properties' decorator is also used on intermediate base
+    # classes which do not have the '_SUPPORTED_SINCE' attribute. We only want
+    # to add the version information to the final class.
+    if hasattr(cls, "_SUPPORTED_SINCE"):
         if isinstance(cls.__doc__, str):
             # When adding to the docstring, we need to match the existing
             # indentation of the docstring (except the first line).

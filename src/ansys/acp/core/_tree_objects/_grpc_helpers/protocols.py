@@ -151,7 +151,7 @@ class GrpcObjectBase(Protocol):
 
     __slots__: Iterable[str] = tuple()
     _GRPC_PROPERTIES: tuple[str, ...] = tuple()
-    _SUPPORTED_SINCE: str | None = None
+    _SUPPORTED_SINCE: str
 
     def __str__(self) -> str:
         string_items = []

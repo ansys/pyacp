@@ -303,7 +303,7 @@ def define_mutable_mapping(
     """Define a mutable mapping of child tree objects."""
 
     def collection_property(self: ParentT) -> MutableMapping[CreatableValueT]:
-        if object_class._SUPPORTED_SINCE is not None and self._server_version is not None:
+        if self._server_version is not None:
             if self._server_version < parse_version(object_class._SUPPORTED_SINCE):
                 raise RuntimeError(
                     f"The '{object_class.__name__}' object is only supported since version "

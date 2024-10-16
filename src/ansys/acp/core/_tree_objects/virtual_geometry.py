@@ -53,6 +53,8 @@ if typing.TYPE_CHECKING:  # pragma: no cover
 class SubShape(GenericEdgePropertyType):
     """Represents a sub-shape of a virtual geometry."""
 
+    _SUPPORTED_SINCE = "24.2"
+
     def __init__(self, cad_geometry: CADGeometry, path: str):
         self._callback_apply_changes: Callable[[], None] | None = None
         self.cad_geometry = cad_geometry
@@ -150,6 +152,7 @@ class VirtualGeometry(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "virtual_geometries"
     _OBJECT_INFO_TYPE = virtual_geometry_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = virtual_geometry_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,

@@ -60,6 +60,7 @@ class ConstantPuckConstants(_PuckConstantsMixin, _ConstantPropertySet):
     """Constant Puck constants material property set."""
 
     _GRPC_PROPERTIES = tuple()
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
@@ -125,6 +126,7 @@ class VariablePuckConstants(_PuckConstantsMixin, _VariablePropertySet):
     """Variable Puck constants material property set."""
 
     _GRPC_PROPERTIES = tuple()
+    _SUPPORTED_SINCE = "24.2"
 
     p_21_pos = variable_material_grpc_data_property("p_21_pos")
     p_21_neg = variable_material_grpc_data_property("p_21_neg")

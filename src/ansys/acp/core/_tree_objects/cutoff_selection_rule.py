@@ -115,6 +115,7 @@ class CutoffSelectionRule(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "cutoff_selection_rules"
     _OBJECT_INFO_TYPE = cutoff_selection_rule_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = cutoff_selection_rule_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,

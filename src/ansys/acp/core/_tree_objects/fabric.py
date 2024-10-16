@@ -86,6 +86,7 @@ class Fabric(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "fabrics"
     _OBJECT_INFO_TYPE = fabric_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = fabric_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
