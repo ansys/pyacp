@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729082049618,
+  "lastUpdate": 1729083610228,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15892,6 +15892,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023136108206606867",
             "extra": "mean: 697.589777845662 usec\nrounds: 1670"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bc6aa18a9bed264d07584618ccfaf189ef93c3fb",
+          "message": "Add 'supported_since' keywords to the gRPC property helpers (#603)\n\nAllow marking gRPC properties as supported since a specific\r\nserver version. The `grpc_data_property_read_only` is given\r\na `supported_since` keyword, and `grpc_data_property` is given\r\ntwo separate keywords `readable_since` and `writable_since`.\r\n\r\nOther changes:\r\n- Change the `xfail_before` test fixture to `raises_before_version`,\r\n  which explicitly checks that a `RuntimeError` is raised when run\r\n  on an older server version.\r\n- Move the `supported_since` implementation to a separate file.\r\n- In the CI definition, reuse the `DOCKER_IMAGE_NAME` variable\r\n  in more places.",
+          "timestamp": "2024-10-16T14:55:57+02:00",
+          "tree_id": "81ce39fd1e8e3930f8511578f7c9853c1cef44da",
+          "url": "https://github.com/ansys/pyacp/commit/bc6aa18a9bed264d07584618ccfaf189ef93c3fb"
+        },
+        "date": 1729083587304,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 7.968123680576951,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0171474202942279",
+            "extra": "mean: 125.50006000002156 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1379.1432289918816,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00021509540475944978",
+            "extra": "mean: 725.0878509050683 usec\nrounds: 1878"
           }
         ]
       }
