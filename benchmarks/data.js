@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729252811921,
+  "lastUpdate": 1729274526885,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -16004,6 +16004,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023167900431007133",
             "extra": "mean: 780.7200238340274 usec\nrounds: 2056"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0bc1c835592dcfdf14c868749ef1c52437b2e186",
+          "message": "Bump the dependencies group with 3 updates (#621)\n\nBumps the dependencies group with 3 updates: [ansys-mechanical-core](https://github.com/ansys/pymechanical), [ansys-sphinx-theme](https://github.com/ansys/ansys-sphinx-theme) and [hypothesis](https://github.com/HypothesisWorks/hypothesis).\r\n\r\n\r\nUpdates `ansys-mechanical-core` from 0.11.7 to 0.11.8\r\n- [Release notes](https://github.com/ansys/pymechanical/releases)\r\n- [Changelog](https://github.com/ansys/pymechanical/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ansys/pymechanical/compare/v0.11.7...v0.11.8)\r\n\r\nUpdates `ansys-sphinx-theme` from 1.1.5 to 1.1.6\r\n- [Release notes](https://github.com/ansys/ansys-sphinx-theme/releases)\r\n- [Commits](https://github.com/ansys/ansys-sphinx-theme/compare/v1.1.5...v1.1.6)\r\n\r\nUpdates `hypothesis` from 6.115.2 to 6.115.3\r\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\r\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.115.2...hypothesis-python-6.115.3)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: ansys-mechanical-core\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: ansys-sphinx-theme\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n- dependency-name: hypothesis\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-10-18T17:57:39Z",
+          "tree_id": "1e831df52b77945f017c294be766744939d27d29",
+          "url": "https://github.com/ansys/pyacp/commit/0bc1c835592dcfdf14c868749ef1c52437b2e186"
+        },
+        "date": 1729274501935,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 7.920984049354093,
+            "unit": "iter/sec",
+            "range": "stddev: 0.017028784842410577",
+            "extra": "mean: 126.24694024999883 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1268.7573723686228,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00023494286555206343",
+            "extra": "mean: 788.17276003931 usec\nrounds: 2092"
           }
         ]
       }
