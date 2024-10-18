@@ -392,18 +392,18 @@ tests = ["ansys-mapdl-core (==0.68.1)", "numpy (==1.26.4)", "pyansys-tools-repor
 
 [[package]]
 name = "ansys-mechanical-core"
-version = "0.11.7"
+version = "0.11.8"
 description = "A python wrapper for Ansys Mechanical"
 optional = false
-python-versions = "<4.0,>=3.9"
+python-versions = "<4.0,>=3.10"
 files = [
-    {file = "ansys_mechanical_core-0.11.7-py3-none-any.whl", hash = "sha256:e13a98a87648ea80ad3c9d3901504d05c3500b359b0f88dfb06bc066e97783f1"},
-    {file = "ansys_mechanical_core-0.11.7.tar.gz", hash = "sha256:6c54a5b4504ff3ffa3823e1c8e53c91b6d2f182c6fe4f6fd553f68a3e882f940"},
+    {file = "ansys_mechanical_core-0.11.8-py3-none-any.whl", hash = "sha256:fc9cbce588f6ff9d8c877f4c83d59b90cbf36df75d8c994320bffd2d335a3cff"},
+    {file = "ansys_mechanical_core-0.11.8.tar.gz", hash = "sha256:607f3d3fb89c13594d81be6692196727f723005aff112f51c4b26a233d3a8277"},
 ]
 
 [package.dependencies]
 ansys-api-mechanical = "0.1.2"
-ansys-mechanical-env = "0.1.7"
+ansys-mechanical-env = "0.1.8"
 ansys-platform-instancemanagement = ">=1.0.1"
 ansys-pythonnet = ">=3.1.0rc2"
 ansys-tools-path = ">=0.3.1"
@@ -412,22 +412,23 @@ click = ">=8.1.3"
 clr-loader = "0.2.6"
 grpcio = ">=1.30.0"
 protobuf = ">=3.12.2,<6"
+psutil = "6.0.0"
 tqdm = ">=4.45.0"
 
 [package.extras]
-doc = ["ansys-sphinx-theme[autoapi] (==1.0.7)", "grpcio (==1.66.0)", "imageio (==2.35.1)", "imageio-ffmpeg (==0.5.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.9.2)", "numpy (==2.1.0)", "numpydoc (==1.8.0)", "pandas (==2.2.2)", "panel (==1.4.5)", "plotly (==5.23.0)", "pypandoc (==1.13)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "pyvista (>=0.39.1)", "sphinx (==8.0.2)", "sphinx-autobuild (==2024.4.16)", "sphinx-autodoc-typehints (==2.2.3)", "sphinx-copybutton (==0.5.2)", "sphinx-gallery (==0.17.1)", "sphinx-notfound-page (==1.0.4)", "sphinx_design (==0.6.1)", "sphinxcontrib-websupport (==2.0.0)", "sphinxemoji (==0.3.1)"]
-tests = ["pytest (==8.3.2)", "pytest-cov (==5.0.0)", "pytest-print (==1.0.0)"]
+doc = ["ansys-sphinx-theme[autoapi] (==1.1.4)", "grpcio (==1.66.2)", "imageio (==2.36.0)", "imageio-ffmpeg (==0.5.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.9.2)", "numpy (==2.1.2)", "numpydoc (==1.8.0)", "pandas (==2.2.3)", "panel (==1.5.2)", "plotly (==5.24.1)", "pypandoc (==1.14)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "pyvista (>=0.39.1)", "sphinx (==8.1.3)", "sphinx-autobuild (==2024.10.3)", "sphinx-autodoc-typehints (==2.5.0)", "sphinx-copybutton (==0.5.2)", "sphinx-gallery (==0.18.0)", "sphinx-notfound-page (==1.0.4)", "sphinx_design (==0.6.1)", "sphinxcontrib-websupport (==2.0.0)", "sphinxemoji (==0.3.1)"]
+tests = ["psutil (==6.0.0)", "pytest (==8.3.3)", "pytest-cov (==5.0.0)", "pytest-print (==1.0.2)"]
 viz = ["ansys-tools-visualization-interface (>=0.2.6)", "usd-core (==24.8)"]
 
 [[package]]
 name = "ansys-mechanical-env"
-version = "0.1.7"
+version = "0.1.8"
 description = "A python wrapper for loading environment variables when using PyMechanical embedded instances in Linux."
 optional = false
-python-versions = "<4,>=3.9"
+python-versions = "<4,>=3.10"
 files = [
-    {file = "ansys_mechanical_env-0.1.7-py3-none-any.whl", hash = "sha256:03004cc200a9c8e43fdc04b8879436f8089d4391daf98d7fac429bc997b62d6d"},
-    {file = "ansys_mechanical_env-0.1.7.tar.gz", hash = "sha256:29a4ce796cf3719828f6af4fa7d1097333cb12d1b10b6ab199efe0f7ec8fc346"},
+    {file = "ansys_mechanical_env-0.1.8-py3-none-any.whl", hash = "sha256:4746c83924cba91137ffd367712a033abf2a8ccc66e7e02b76c1a3a6a80b4bf9"},
+    {file = "ansys_mechanical_env-0.1.8.tar.gz", hash = "sha256:5286202292f6aeb3bf2278003059dbcd64774db2decb16a8cf68d15affef51d6"},
 ]
 
 [package.dependencies]
@@ -470,13 +471,13 @@ clr-loader = ">=0.2.6,<0.3.0"
 
 [[package]]
 name = "ansys-sphinx-theme"
-version = "1.1.5"
+version = "1.1.6"
 description = "A theme devised by ANSYS, Inc. for Sphinx documentation."
 optional = false
 python-versions = "<4,>=3.10"
 files = [
-    {file = "ansys_sphinx_theme-1.1.5-py3-none-any.whl", hash = "sha256:43e24af005b9ff84f83279839f24fe61faa5fe3d882b01134366043e7ad08315"},
-    {file = "ansys_sphinx_theme-1.1.5.tar.gz", hash = "sha256:c1e36732f424597945ae45583c92fe69dcca0ecb67300e5dc95a48c63052baa4"},
+    {file = "ansys_sphinx_theme-1.1.6-py3-none-any.whl", hash = "sha256:356593038adc5f407ba9ed862eda41babc99fe88063c6a990e3b4cc32b9e7a06"},
+    {file = "ansys_sphinx_theme-1.1.6.tar.gz", hash = "sha256:a1c7afcfab172d7cd3b59b84d6c4ae6d703920ae5f682542193dd95e6fa3d81c"},
 ]
 
 [package.dependencies]
@@ -1846,13 +1847,13 @@ pyparsing = {version = ">=2.4.2,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.0.2 || >3.0
 
 [[package]]
 name = "hypothesis"
-version = "6.115.2"
+version = "6.115.3"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "hypothesis-6.115.2-py3-none-any.whl", hash = "sha256:d0ccbd67f588a6abcdc17a4f06fea3b2bc0a166ecd89126fb90985036c1940fe"},
-    {file = "hypothesis-6.115.2.tar.gz", hash = "sha256:6df95ea6cccf950f80e142f43a684d1462e26c5e28ba29ab4eceb8399e207e0b"},
+    {file = "hypothesis-6.115.3-py3-none-any.whl", hash = "sha256:d2770b0db08ad666fe6ff36027910039ab681084d13bcf9c057449c2e27099c4"},
+    {file = "hypothesis-6.115.3.tar.gz", hash = "sha256:d4efc8c7371bd4ec906d2777f1f18fee5539e47b3d7c7cdc93d1026ad35d9b33"},
 ]
 
 [package.dependencies]
