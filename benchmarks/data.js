@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729084787396,
+  "lastUpdate": 1729252811921,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -15968,6 +15968,42 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00022084107755589914",
             "extra": "mean: 773.034897136321 usec\nrounds: 1886"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Dominik Gresch",
+            "username": "greschd",
+            "email": "greschd@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "0a03f698809ac688811dc5d84b72826cfeaae179",
+          "message": "Allow marking 'supported_since' on class level (#604)\n\nAdd a `_SUPPORTED_SINCE` class attribute to the `GrpcObjectBase` class, which has two effects:\r\n- upon storing an object, check the server version and raise an appropriate exception if the server version is too low\r\n- in the `mark_grpc_properties` class decorator, add a line at the end of the class docstring indicating the server version at which the class was introduced\r\n\r\nOn all existing classes, the `_SUPPORTED_SINCE` attribute is set to `\"24.2\"`.",
+          "timestamp": "2024-10-16T13:15:33Z",
+          "url": "https://github.com/ansys/pyacp/commit/0a03f698809ac688811dc5d84b72826cfeaae179"
+        },
+        "date": 1729252786729,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 7.645364691022506,
+            "unit": "iter/sec",
+            "range": "stddev: 0.015577841744519611",
+            "extra": "mean: 130.79820785713991 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1280.8689023872007,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00023167900431007133",
+            "extra": "mean: 780.7200238340274 usec\nrounds: 2056"
           }
         ]
       }
