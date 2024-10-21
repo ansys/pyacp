@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729274526885,
+  "lastUpdate": 1729492584037,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -16042,6 +16042,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023494286555206343",
             "extra": "mean: 788.17276003931 usec\nrounds: 2092"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "86f5d32bc519f11b0a5bd6a422a1a6429a0fc7ea",
+          "message": "Bump mypy from 1.12.0 to 1.12.1 in the dependencies group (#622)\n\nBumps the dependencies group with 1 update: [mypy](https://github.com/python/mypy).\r\n\r\n\r\nUpdates `mypy` from 1.12.0 to 1.12.1\r\n- [Changelog](https://github.com/python/mypy/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/python/mypy/compare/v1.12.0...v1.12.1)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: mypy\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n  dependency-group: dependencies\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-10-21T08:32:13+02:00",
+          "tree_id": "c8cd5cd4ecfaeaa37a3e28664bb8de20cfe44be8",
+          "url": "https://github.com/ansys/pyacp/commit/86f5d32bc519f11b0a5bd6a422a1a6429a0fc7ea"
+        },
+        "date": 1729492562396,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 7.850247270033566,
+            "unit": "iter/sec",
+            "range": "stddev: 0.016136830690483214",
+            "extra": "mean: 127.38452249998033 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1349.4977302136842,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020777383532761236",
+            "extra": "mean: 741.0164371611477 usec\nrounds: 1846"
           }
         ]
       }
