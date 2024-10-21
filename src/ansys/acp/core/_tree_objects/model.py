@@ -144,6 +144,8 @@ FeFormat, fe_format_to_pb, _ = wrap_to_string_enum(
         enum_types_pb2.FileFormat.ANSYS_H5,
         enum_types_pb2.FileFormat.ANSYS_CDB,
         enum_types_pb2.FileFormat.ANSYS_DAT,
+        enum_types_pb2.FileFormat.STEP,
+        enum_types_pb2.FileFormat.IGES,
     ),
 )
 IgnorableEntity, ignorable_entity_to_pb, _ = wrap_to_string_enum(
