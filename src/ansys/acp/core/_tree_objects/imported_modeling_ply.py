@@ -178,7 +178,7 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
         mesh_geometry: VirtualGeometry | None = None,
         rosette_selection_method: RosetteSelectionMethod = "minimum_angle",
         rosettes: Sequence[Rosette] = tuple(),
-        reference_direction_field: LookUpTable3DColumn | None = None,
+        reference_direction_field: LookUpTable3DColumn | LookUpTable1DColumn | None = None,
         rotation_angle: float = 0.0,
         ply_material: Fabric | None = None,
         ply_angle: float = 0.0,
