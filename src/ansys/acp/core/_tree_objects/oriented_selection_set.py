@@ -162,6 +162,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "oriented_selection_sets"
     _OBJECT_INFO_TYPE = oriented_selection_set_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = oriented_selection_set_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,

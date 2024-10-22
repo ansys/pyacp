@@ -26,6 +26,7 @@ from collections.abc import Callable, Iterator
 from typing import Any, Concatenate, Generic, TypeVar
 
 from grpc import Channel
+from packaging.version import parse as parse_version
 from typing_extensions import ParamSpec, Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
@@ -302,6 +303,14 @@ def define_mutable_mapping(
     """Define a mutable mapping of child tree objects."""
 
     def collection_property(self: ParentT) -> MutableMapping[CreatableValueT]:
+        if self._server_version is not None:
+            if self._server_version < parse_version(object_class._SUPPORTED_SINCE):
+                raise RuntimeError(
+                    f"The '{object_class.__name__}' object is only supported since version "
+                    f"{object_class._SUPPORTED_SINCE} of the ACP gRPC server. The current server version is "
+                    f"{self._server_version}."
+                )
+
         return MutableMapping._initialize_with_cache(
             server_wrapper=self._server_wrapper,
             collection_path=CollectionPath(

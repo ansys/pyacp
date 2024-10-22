@@ -105,6 +105,8 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     a Boolean Selection Rule, only to a Modeling Ply.
     """
 
+    _SUPPORTED_SINCE = "24.2"
+
     def __init__(
         self,
         selection_rule: _LINKABLE_SELECTION_RULE_TYPES,

@@ -62,6 +62,7 @@ class LookUpTable1DColumn(LookUpTableColumnBase):
     _COLLECTION_LABEL = "lookup_table_1d_columns"
     _OBJECT_INFO_TYPE = lookup_table_1d_column_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = lookup_table_1d_column_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,

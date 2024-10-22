@@ -31,7 +31,7 @@ import numpy.testing
 import pytest
 import pyvista
 
-from ansys.acp.core import ElementalDataType, VectorData
+from ansys.acp.core import ElementalDataType, UnitSystemType, VectorData
 
 from .helpers import check_property
 
@@ -152,7 +152,10 @@ def test_string_representation(acp_instance, model_data_dir):
     input_file_path = model_data_dir / "ACP-Pre.h5"
     remote_file_path = acp_instance.upload_file(input_file_path)
     model = acp_instance.import_model(
-        name="minimal_model", path=remote_file_path, format="ansys:cdb"
+        name="minimal_model",
+        path=remote_file_path,
+        format="ansys:cdb",
+        unit_system=UnitSystemType.MKS,
     )
 
     assert repr(model) == "<Model with name 'minimal_model'>"
@@ -251,12 +254,11 @@ def test_regression_454(minimal_complete_model):
     assert not hasattr(minimal_complete_model, "store")
 
 
-def test_modeling_ply_export(acp_instance, minimal_complete_model, xfail_before):
+def test_modeling_ply_export(acp_instance, minimal_complete_model, raises_before_version):
     """
     Test that the 'export_modeling_ply_geometries' method produces a file.
     The contents of the file are not checked.
     """
-    xfail_before("25.1")
     out_filename = "modeling_ply_export.step"
 
     with tempfile.TemporaryDirectory() as tmp_dir:
@@ -265,9 +267,11 @@ def test_modeling_ply_export(acp_instance, minimal_complete_model, xfail_before)
             out_file_path = pathlib.Path(out_filename)
         else:
             out_file_path = local_file_path
-        minimal_complete_model.export_modeling_ply_geometries(out_file_path)
-        acp_instance.download_file(out_file_path, local_file_path)
-        assert local_file_path.exists()
+
+        with raises_before_version("25.1"):
+            minimal_complete_model.export_modeling_ply_geometries(out_file_path)
+            acp_instance.download_file(out_file_path, local_file_path)
+            assert local_file_path.exists()
 
 
 def test_parent_access_raises(minimal_complete_model):

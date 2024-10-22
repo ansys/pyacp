@@ -80,6 +80,7 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
+from ._grpc_helpers.supported_since import supported_since
 from ._mesh_data import (
     ElementalData,
     NodalData,
@@ -88,7 +89,7 @@ from ._mesh_data import (
     elemental_data_property,
     nodal_data_property,
 )
-from .base import ServerWrapper, TreeObject, supported_since
+from .base import ServerWrapper, TreeObject
 from .boolean_selection_rule import BooleanSelectionRule
 from .cad_geometry import CADGeometry
 from .cutoff_selection_rule import CutoffSelectionRule
@@ -227,6 +228,7 @@ class Model(TreeObject):
 
     _COLLECTION_LABEL = "models"
     _OBJECT_INFO_TYPE = model_pb2.ObjectInfo
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,

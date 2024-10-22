@@ -78,6 +78,8 @@ class FabricWithAngle(GenericEdgePropertyType):
 
     """
 
+    _SUPPORTED_SINCE = "24.2"
+
     def __init__(self, fabric: Fabric, angle: float = 0.0):
         self._callback_apply_changes: Callable[[], None] | None = None
         self.fabric = fabric
@@ -185,6 +187,7 @@ class Stackup(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "stackups"
     _OBJECT_INFO_TYPE = stackup_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = stackup_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,

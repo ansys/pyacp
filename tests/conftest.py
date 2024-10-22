@@ -281,11 +281,15 @@ def load_cad_geometry(model_data_dir, acp_instance):
 
 
 @pytest.fixture
-def xfail_before(acp_instance):
+def raises_before_version(acp_instance):
     """Mark a test as expected to fail before a certain server version."""
 
+    @contextmanager
     def inner(version: str):
         if parse_version(acp_instance.server_version) < parse_version(version):
-            pytest.xfail(f"Expected to fail until server version {version!r}")
+            with pytest.raises(RuntimeError):
+                yield
+        else:
+            yield
 
     return inner
