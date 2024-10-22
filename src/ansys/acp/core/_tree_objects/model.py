@@ -39,6 +39,7 @@ from ansys.api.acp.v0 import (
     cylindrical_selection_rule_pb2_grpc,
     edge_set_pb2_grpc,
     element_set_pb2_grpc,
+    enum_types_pb2,
     fabric_pb2_grpc,
     geometrical_selection_rule_pb2_grpc,
     lookup_table_1d_pb2_grpc,
@@ -79,6 +80,7 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
+from ._grpc_helpers.supported_since import supported_since
 from ._mesh_data import (
     ElementalData,
     NodalData,
@@ -87,7 +89,7 @@ from ._mesh_data import (
     elemental_data_property,
     nodal_data_property,
 )
-from .base import ServerWrapper, TreeObject, supported_since
+from .base import ServerWrapper, TreeObject
 from .boolean_selection_rule import BooleanSelectionRule
 from .cad_geometry import CADGeometry
 from .cutoff_selection_rule import CutoffSelectionRule
@@ -112,6 +114,7 @@ from .lookup_table_3d import LookUpTable3D
 from .material import Material
 from .modeling_group import ModelingGroup
 from .modeling_ply import ModelingPly
+from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
 from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
@@ -135,10 +138,15 @@ __all__ = [
 
 FeFormat, fe_format_to_pb, _ = wrap_to_string_enum(
     "FeFormat",
-    model_pb2.Format,
+    enum_types_pb2.FileFormat,
     module=__name__,
     value_converter=lambda val: val.lower().replace("_", ":"),
     doc="Options for the format of the FE file.",
+    explicit_value_list=(
+        enum_types_pb2.FileFormat.ANSYS_H5,
+        enum_types_pb2.FileFormat.ANSYS_CDB,
+        enum_types_pb2.FileFormat.ANSYS_DAT,
+    ),
 )
 IgnorableEntity, ignorable_entity_to_pb, _ = wrap_to_string_enum(
     "IgnorableEntity",
@@ -193,6 +201,7 @@ class ModelNodalData(NodalData):
 
 
 @mark_grpc_properties
+@register
 class Model(TreeObject):
     """Defines an ACP Model.
 
@@ -219,6 +228,7 @@ class Model(TreeObject):
 
     _COLLECTION_LABEL = "models"
     _OBJECT_INFO_TYPE = model_pb2.ObjectInfo
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,

@@ -1,4 +1,4 @@
-from typing import Callable
+from collections.abc import Callable
 
 from mypy_extensions import DefaultNamedArg
 from typing_extensions import assert_type

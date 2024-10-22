@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 from collections.abc import Collection
-from typing import Any, Union, overload
+from typing import Any, overload
 
 import numpy as np
 import numpy.typing as npt
@@ -40,7 +40,7 @@ def to_1D_int_array(data: Collection[int]) -> IntArray:
     return IntArray(shape=[len(data)], data=tuple(data))
 
 
-def to_tuple_from_1D_array(array: Union[IntArray, DoubleArray]) -> tuple[Any, ...]:
+def to_tuple_from_1D_array(array: IntArray | DoubleArray) -> tuple[Any, ...]:
     """Convert a 1D IntArray or DoubleArray protobuf message to a tuple."""
     if not len(array.shape) == 1:
         raise RuntimeError(f"Cannot convert {len(array.shape)}-dimensional array to tuple!")
@@ -66,8 +66,8 @@ def to_numpy(array_pb: DoubleArray) -> npt.NDArray[np.float64]: ...
 
 
 def to_numpy(
-    array_pb: Union[IntArray, Int32Array, DoubleArray]
-) -> Union[npt.NDArray[np.int64], npt.NDArray[np.int32], npt.NDArray[np.float64]]:
+    array_pb: IntArray | Int32Array | DoubleArray,
+) -> npt.NDArray[np.int64] | npt.NDArray[np.int32] | npt.NDArray[np.float64]:
     """Convert a protubuf array message to a numpy array."""
     dtype = {
         IntArray: np.int64,
@@ -79,8 +79,8 @@ def to_numpy(
 
 def dataarray_to_numpy(
     array_pb: DataArray,
-    dtype: Union[type[np.int32], type[np.int64], type[np.float64]],
-) -> Union[npt.NDArray[np.int64], npt.NDArray[np.int32], npt.NDArray[np.float64]]:
+    dtype: type[np.int32] | type[np.int64] | type[np.float64],
+) -> npt.NDArray[np.int64] | npt.NDArray[np.int32] | npt.NDArray[np.float64]:
     """Convert a DataArray protobuf message to a numpy array."""
     data_array_attribute = array_pb.WhichOneof("data")
     if data_array_attribute is None:

@@ -75,6 +75,7 @@ class EdgeSet(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "edge_sets"
     _OBJECT_INFO_TYPE = edge_set_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = edge_set_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,

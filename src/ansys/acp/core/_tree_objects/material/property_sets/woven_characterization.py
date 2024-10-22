@@ -44,6 +44,7 @@ class ConstantWovenCharacterization(_WovenCharacterizationMixin, _ConstantProper
     """Constant woven characterization material property set."""
 
     _GRPC_PROPERTIES = tuple()
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
@@ -98,6 +99,7 @@ class VariableWovenCharacterization(_WovenCharacterizationMixin, _VariableProper
     """Variable woven characterization material property set."""
 
     _GRPC_PROPERTIES = tuple()
+    _SUPPORTED_SINCE = "24.2"
 
     E1_1 = variable_material_grpc_data_property("E1_1")
     E2_1 = variable_material_grpc_data_property("E2_1")

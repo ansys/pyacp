@@ -48,6 +48,7 @@ class ConstantFabricFiberAngle(_FabricFiberAngleMixin, _ConstantPropertySet):
     """
 
     _GRPC_PROPERTIES = tuple()
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
@@ -73,5 +74,6 @@ class VariableFabricFiberAngle(_FabricFiberAngleMixin, _VariablePropertySet):
     """
 
     _GRPC_PROPERTIES = tuple()
+    _SUPPORTED_SINCE = "24.2"
 
     fabric_fiber_angle = variable_material_grpc_data_property("fabric_fiber_angle")

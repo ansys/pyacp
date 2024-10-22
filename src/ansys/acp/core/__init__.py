@@ -30,6 +30,7 @@ import importlib.metadata
 from . import example_helpers, material_property_sets
 from ._model_printer import get_model_tree, print_model
 from ._plotter import get_directions_plotter
+from ._recursive_copy import LinkedObjectHandling, recursive_copy
 from ._server import (
     ACP,
     ConnectLaunchConfig,
@@ -191,6 +192,7 @@ __all__ = [
     "Lamina",
     "launch_acp",
     "LaunchMode",
+    "LinkedObjectHandling",
     "LinkedSelectionRule",
     "LookUpTable1D",
     "LookUpTable1DColumn",
@@ -223,6 +225,7 @@ __all__ = [
     "ProductionPly",
     "ProductionPlyElementalData",
     "ProductionPlyNodalData",
+    "recursive_copy",
     "Rosette",
     "RosetteSelectionMethod",
     "RosetteType",

@@ -21,6 +21,7 @@ Enumeration data types
     FeFormat
     GeometricalRuleType
     IgnorableEntity
+    LinkedObjectHandling
     LookUpTable3DInterpolationAlgorithm
     LookUpTableColumnValueType
     NodalDataType

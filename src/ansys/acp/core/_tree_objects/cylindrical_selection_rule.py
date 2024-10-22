@@ -103,6 +103,7 @@ class CylindricalSelectionRule(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "cylindrical_selection_rules"
     _OBJECT_INFO_TYPE = cylindrical_selection_rule_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = cylindrical_selection_rule_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,

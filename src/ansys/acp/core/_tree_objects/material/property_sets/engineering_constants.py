@@ -70,6 +70,7 @@ class ConstantEngineeringConstants(_EngineeringConstantsMixin, _ConstantProperty
     """Constant engineering constants material property set."""
 
     _GRPC_PROPERTIES = tuple()
+    _SUPPORTED_SINCE = "24.2"
 
     @classmethod
     def from_isotropic_constants(
@@ -173,6 +174,7 @@ class VariableEngineeringConstants(_EngineeringConstantsMixin, _VariableProperty
     """Variable engineering constants material property set."""
 
     _GRPC_PROPERTIES = tuple()
+    _SUPPORTED_SINCE = "24.2"
 
     E = variable_material_grpc_data_property("E", **_ISOTROPIC_KWARGS)
     nu = variable_material_grpc_data_property("nu", **_ISOTROPIC_KWARGS)

@@ -20,11 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from collections.abc import Callable
 import pathlib
 import shutil
 import tempfile
 import typing
-from typing import Any, Callable, Optional, Protocol
+from typing import Any, Protocol
 
 from . import CADGeometry, UnitSystemType
 from ._server.acp_instance import ACP
@@ -41,7 +42,7 @@ __all__ = ["ACPWorkflow", "get_composite_post_processing_files", "get_dpf_unit_s
 
 
 class _LocalWorkingDir:
-    def __init__(self, path: Optional[PATH] = None):
+    def __init__(self, path: PATH | None = None):
         self._user_defined_working_dir = None
         self._temp_working_dir = None
         if path is None:
@@ -165,7 +166,7 @@ class ACPWorkflow:
         self,
         *,
         acp: ACP[ServerProtocol],
-        local_working_directory: Optional[PATH] = None,
+        local_working_directory: PATH | None = None,
         local_file_path: PATH,
         file_format: str,
         **kwargs: Any,
@@ -187,7 +188,7 @@ class ACPWorkflow:
         cls,
         acp: ACP[ServerProtocol],
         acph5_file_path: PATH,
-        local_working_directory: Optional[PATH] = None,
+        local_working_directory: PATH | None = None,
     ) -> "ACPWorkflow":
         """Instantiate an ACP Workflow from an acph5 file.
 
@@ -215,7 +216,7 @@ class ACPWorkflow:
         acp: ACP[ServerProtocol],
         cdb_or_dat_file_path: PATH,
         unit_system: UnitSystemType = UnitSystemType.UNDEFINED,
-        local_working_directory: Optional[PATH] = None,
+        local_working_directory: PATH | None = None,
     ) -> "ACPWorkflow":
         """Instantiate an ACP Workflow from a cdb file.
 

@@ -70,6 +70,7 @@ class ConstantStressLimits(_StressLimitsMixin, _ConstantPropertySet):
     """Constant stress limits material property set."""
 
     _GRPC_PROPERTIES = tuple()
+    _SUPPORTED_SINCE = "24.2"
 
     @classmethod
     def from_isotropic_constants(
@@ -172,6 +173,7 @@ class VariableStressLimits(_StressLimitsMixin, _VariablePropertySet):
     """Variable stress limits material property set."""
 
     _GRPC_PROPERTIES = tuple()
+    _SUPPORTED_SINCE = "24.2"
 
     effective_stress = variable_material_grpc_data_property("effective_stress", **_ISOTROPIC_KWARGS)
     Xc = variable_material_grpc_data_property("Xc", **_ORTHOTROPIC_KWARGS)

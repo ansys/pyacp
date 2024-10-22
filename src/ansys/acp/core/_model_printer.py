@@ -21,7 +21,6 @@
 # SOFTWARE.
 
 import os
-from typing import Optional
 
 from ._tree_objects.model import Model
 from ._utils.visualization import _replace_underscores_and_capitalize
@@ -40,11 +39,11 @@ class Node:
         Children of the node.
     """
 
-    def __init__(self, label: str, children: Optional[list["Node"]] = None):
+    def __init__(self, label: str, children: list["Node"] | None = None):
         self.label = label
         self.children: list["Node"] = children if children else []
 
-    def __str__(self, level: Optional[int] = 0) -> str:
+    def __str__(self, level: int | None = 0) -> str:
         assert level is not None
         four_spaces = "    "
         ret = four_spaces * level + self.label + os.linesep

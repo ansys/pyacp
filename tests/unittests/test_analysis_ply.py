@@ -78,11 +78,17 @@ class TestAnalysisPly(TreeObjectTesterReadOnly):
             },
         }
 
+    @staticmethod
     @pytest.fixture
-    def collection_test_data(self, model: Model):
+    def parent_object(model: Model):
         add_stackup_with_3_layers_to_modeling_ply(model)
 
         production_ply = get_first_modeling_ply(model).production_plies["ProductionPly"]
+        return production_ply
+
+    @pytest.fixture
+    def collection_test_data(self, parent_object):
+        production_ply = parent_object
         object_collection = getattr(production_ply, self.COLLECTION_NAME)
         object_collection.values()
         object_names = ["P1L1__ModelingPly.1", "P1L2__ModelingPly.1", "P1L3__ModelingPly.1"]

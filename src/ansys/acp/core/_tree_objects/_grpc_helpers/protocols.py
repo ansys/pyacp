@@ -29,6 +29,7 @@ from typing import Any, Protocol
 
 from google.protobuf.message import Message
 import grpc
+from packaging.version import Version
 
 from ansys.api.acp.v0.base_pb2 import (
     BasicInfo,
@@ -150,6 +151,7 @@ class GrpcObjectBase(Protocol):
 
     __slots__: Iterable[str] = tuple()
     _GRPC_PROPERTIES: tuple[str, ...] = tuple()
+    _SUPPORTED_SINCE: str
 
     def __str__(self) -> str:
         string_items = []
@@ -187,6 +189,9 @@ class Readable(Protocol):
     def _resource_path(self) -> ResourcePath: ...
 
     _pb_object: Any
+
+    @property
+    def _server_version(self) -> Version | None: ...
 
 
 class Editable(Readable, Protocol):
