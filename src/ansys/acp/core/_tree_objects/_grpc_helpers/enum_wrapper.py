@@ -20,7 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
+import types
 from typing import Any
 
 __all__ = ["wrap_to_string_enum"]
@@ -41,10 +42,28 @@ def wrap_to_string_enum(
     value_converter: Callable[[str], str] = lambda val: val.lower(),
     doc: str,
     explicit_value_list: tuple[int, ...] | None = None,
+    extra_aliases: Mapping[str, tuple[str, str]] = types.MappingProxyType({}),
 ) -> tuple[_StrEnumT, Callable[[_StrEnumT], int], Callable[[int], _StrEnumT]]:
     """Create a string Enum with the same keys as the given protobuf Enum.
 
     Values of the enum are the keys, converted to lowercase.
+
+    Parameters
+    ----------
+    key_converter :
+        A callable which converts the protobuf field names to the string enum field names.
+    value_converter :
+        A callable which converts the protobuf field names to the string enum values.
+    doc :
+        The docstring of the enum.
+    explicit_value_list :
+        A list of values that should be included in the enum. If None, all values are included.
+    extra_aliases :
+        Allows defining additional fields in the enum which correspond to the same protobuf value.
+        The keys are the primary enum field values, and the values are tuples of the alias field name
+        and the alias field value.
+        Note that the alias will not be used when converting from the protobuf value to the string
+        enum: the primary field name will be used instead.
 
     Returns
     -------
@@ -66,6 +85,9 @@ def wrap_to_string_enum(
         fields.append((enum_key, enum_value))
         to_pb_conversion_dict[enum_value] = pb_value
         from_pb_conversion_dict[pb_value] = enum_value
+    for primary_enum_value, (alias_enum_key, alias_enum_value) in extra_aliases.items():
+        fields.append((alias_enum_key, alias_enum_value))
+        to_pb_conversion_dict[alias_enum_value] = to_pb_conversion_dict[primary_enum_value]
 
     res_enum: _StrEnumT = StrEnum(class_name, fields, module=module)  # type: ignore
     res_enum.__doc__ = doc

@@ -7,7 +7,8 @@ Linked object definitions
     :toctree: _autosummary
 
     FabricWithAngle
-    LinkedSelectionRule
-    TaperEdge
-    SubShape
     Lamina
+    LinkedSelectionRule
+    PrimaryPly
+    SubShape
+    TaperEdge

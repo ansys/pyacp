@@ -41,7 +41,7 @@ from .property_helper import _exposed_grpc_property, _wrap_doc, grpc_data_getter
 ValueT = TypeVar("ValueT", bound=CreatableTreeObject)
 
 
-__all__ = ["LinkedObjectList", "define_linked_object_list"]
+__all__ = ["LinkedObjectList", "define_linked_object_list", "define_polymorphic_linked_object_list"]
 
 
 class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
@@ -302,11 +302,19 @@ def define_linked_object_list(
 
 
 def define_polymorphic_linked_object_list(
-    attribute_name: str, allowed_types: tuple[Any, ...]
+    attribute_name: str,
+    allowed_types: tuple[Any, ...] | None = None,
+    allowed_types_getter: Callable[[], tuple[Any, ...]] | None = None,
 ) -> Any:
     """Define a list of linked tree objects with polymorphic types."""
+    if allowed_types is None != allowed_types_getter is None:
+        raise ValueError("Exactly one of allowed_types and allowed_types_getter must be provided.")
 
     def getter(self: ValueT) -> LinkedObjectList[Any]:
+        nonlocal allowed_types
+        if allowed_types_getter is not None:
+            allowed_types = allowed_types_getter()
+
         return LinkedObjectList(
             _parent_object=self,
             _attribute_name=attribute_name,

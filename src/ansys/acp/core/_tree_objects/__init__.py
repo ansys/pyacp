@@ -27,6 +27,7 @@ from .boolean_selection_rule import (
     BooleanSelectionRuleElementalData,
     BooleanSelectionRuleNodalData,
 )
+from .butt_joint_sequence import ButtJointSequence, PrimaryPly
 from .cad_component import CADComponent
 from .cad_geometry import CADGeometry, TriangleMesh
 from .cutoff_selection_rule import (
@@ -127,6 +128,7 @@ __all__ = [
     "BooleanSelectionRule",
     "BooleanSelectionRuleElementalData",
     "BooleanSelectionRuleNodalData",
+    "ButtJointSequence",
     "CADComponent",
     "CADGeometry",
     "CutoffMaterialType",
@@ -186,6 +188,7 @@ __all__ = [
     "PlyCutoffType",
     "PlyGeometryExportFormat",
     "PlyType",
+    "PrimaryPly",
     "ProductionPly",
     "ProductionPlyElementalData",
     "ProductionPlyNodalData",
