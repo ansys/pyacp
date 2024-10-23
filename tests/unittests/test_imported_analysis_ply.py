@@ -22,9 +22,19 @@
 
 import pytest
 
+from packaging.version import parse as parse_version
 from ansys.acp.core import Model
 
 from .common.tree_object_tester import TreeObjectTesterReadOnly
+
+from ansys.acp.core import ImportedAnalysisPly
+
+@pytest.fixture(autouse=True)
+def skip_if_unsupported_version(acp_instance):
+    if parse_version(acp_instance.server_version) < parse_version(
+        ImportedAnalysisPly._SUPPORTED_SINCE
+    ):
+        pytest.skip("ImportedAnalysisPly is not supported on this version of the server.")
 
 
 @pytest.fixture

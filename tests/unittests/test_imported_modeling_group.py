@@ -22,7 +22,17 @@
 
 import pytest
 
+from packaging.version import parse as parse_version
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
+
+from ansys.acp.core import ImportedModelingGroup
+
+@pytest.fixture(autouse=True)
+def skip_if_unsupported_version(acp_instance):
+    if parse_version(acp_instance.server_version) < parse_version(
+        ImportedModelingGroup._SUPPORTED_SINCE
+    ):
+        pytest.skip("ImportedModelingGroup is not supported on this version of the server.")
 
 
 @pytest.fixture

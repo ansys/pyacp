@@ -21,11 +21,14 @@
 # SOFTWARE.
 
 import pytest
+from packaging.version import parse as parse_version
+
 
 from ansys.acp.core import (
     ImportedPlyDrapingType,
     ImportedPlyOffsetType,
     ImportedPlyThicknessType,
+    ImportedModelingPly,
     MeshImportType,
     RosetteSelectionMethod,
     ThicknessFieldType,
@@ -33,6 +36,14 @@ from ansys.acp.core import (
 
 from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
+
+
+@pytest.fixture(autouse=True)
+def skip_if_unsupported_version(acp_instance):
+    if parse_version(acp_instance.server_version) < parse_version(
+        ImportedModelingPly._SUPPORTED_SINCE
+    ):
+        pytest.skip("ImportedModelingPly is not supported on this version of the server.")
 
 
 @pytest.fixture
