@@ -80,3 +80,4 @@ Limitations
 * FieldDefinitions for variable material properties are not supported
 * Butt joint sequences and interface layers are not supported
 * Section cuts are not supported
+* Visualization and mesh data of imported plies are not supported yet
