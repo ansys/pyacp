@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729679058356,
+  "lastUpdate": 1729682581539,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -16156,6 +16156,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00022970321655080994",
             "extra": "mean: 773.386243203379 usec\nrounds: 2023"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6c097828de081b1fe5a9e75f409d8dd5c895c828",
+          "message": "Add testing for 2025R1 server (#626)\n\nAdd testing for the 2025R1 server, using a test matrix.\r\n\r\nSince the `env.DOCKER_IMAGE_NAME` cannot be directly used in the matrix,\r\nthe `docker_image_suffix` variable now only affects the doc + other jobs. \r\n\r\nCloses #625.",
+          "timestamp": "2024-10-23T11:20:09Z",
+          "tree_id": "47df025b406a2eb4ded87c3fcc7197ec50a5c1c5",
+          "url": "https://github.com/ansys/pyacp/commit/6c097828de081b1fe5a9e75f409d8dd5c895c828"
+        },
+        "date": 1729682556614,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 7.950537859451332,
+            "unit": "iter/sec",
+            "range": "stddev: 0.016256367931415446",
+            "extra": "mean: 125.77765400000374 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1242.6926632832358,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00025183199488191946",
+            "extra": "mean: 804.7041956117824 usec\nrounds: 2142"
           }
         ]
       }
