@@ -23,6 +23,9 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
+import dataclasses
+
+import numpy as np
 
 from ansys.api.acp.v0 import interface_layer_pb2, interface_layer_pb2_grpc
 
@@ -36,11 +39,34 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
+from ._mesh_data import (
+    ElementalData,
+    NodalData,
+    ScalarData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from .base import CreatableTreeObject, IdTreeObject
 from .element_set import ElementSet
 from .enums import status_type_from_pb
 from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
+
+
+@dataclasses.dataclass
+class InterfaceLayerElementalData(ElementalData):
+    """Represents elemental data for a Modeling Ply."""
+
+    normal: VectorData | None = None
+    design_angle: ScalarData[np.float64] | None = None
+
+
+@dataclasses.dataclass
+class InterfaceLayerNodalData(NodalData):
+    """Represents nodal data for a Modeling Ply."""
+
+    ply_offset: VectorData | None = None
 
 
 @mark_grpc_properties
@@ -102,3 +128,6 @@ class InterfaceLayer(CreatableTreeObject, IdTreeObject):
     open_area_sets = define_polymorphic_linked_object_list(
         "properties.open_area_sets", allowed_types=(ElementSet, OrientedSelectionSet)
     )
+
+    elemental_data = elemental_data_property(InterfaceLayerElementalData)
+    nodal_data = nodal_data_property(InterfaceLayerNodalData)
