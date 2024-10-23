@@ -25,8 +25,6 @@ from __future__ import annotations
 from collections.abc import Iterable
 import dataclasses
 
-import numpy as np
-
 from ansys.api.acp.v0 import interface_layer_pb2, interface_layer_pb2_grpc
 
 from .._utils.property_protocols import ReadWriteProperty
@@ -42,7 +40,6 @@ from ._grpc_helpers.property_helper import (
 from ._mesh_data import (
     ElementalData,
     NodalData,
-    ScalarData,
     VectorData,
     elemental_data_property,
     nodal_data_property,
@@ -59,7 +56,6 @@ class InterfaceLayerElementalData(ElementalData):
     """Represents elemental data for a Modeling Ply."""
 
     normal: VectorData | None = None
-    design_angle: ScalarData[np.float64] | None = None
 
 
 @dataclasses.dataclass
