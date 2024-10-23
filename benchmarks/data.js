@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729492584037,
+  "lastUpdate": 1729677910647,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -16080,6 +16080,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020777383532761236",
             "extra": "mean: 741.0164371611477 usec\nrounds: 1846"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fbbd5ff104524f9ee4f349209f03fc8473946d96",
+          "message": "Add regression test for cloning / storing locked element sets (#624)\n\nAdd a regression test to check that #565 is fixed in the backend.\r\n\r\nCloses #565.",
+          "timestamp": "2024-10-23T12:00:39+02:00",
+          "tree_id": "6ea03942d20253677ec883422ab0afa918ec35f0",
+          "url": "https://github.com/ansys/pyacp/commit/fbbd5ff104524f9ee4f349209f03fc8473946d96"
+        },
+        "date": 1729677889027,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 7.466454603427857,
+            "unit": "iter/sec",
+            "range": "stddev: 0.02229865234521639",
+            "extra": "mean: 133.93237528570776 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1357.1464159432776,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020457135451122324",
+            "extra": "mean: 736.8401730663344 usec\nrounds: 1797"
           }
         ]
       }
