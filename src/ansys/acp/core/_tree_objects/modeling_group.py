@@ -95,6 +95,12 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
     interface_layers = define_mutable_mapping(
         InterfaceLayer, interface_layer_pb2_grpc.ObjectServiceStub
     )
+    create_interface_layer = define_create_method(
+        InterfaceLayer,
+        func_name="create_interface_layer",
+        parent_class_name="ModelingGroup",
+        module_name=__module__,
+    )
 
     elemental_data = elemental_data_property(ModelingGroupElementalData)
     nodal_data = nodal_data_property(ModelingGroupNodalData)
