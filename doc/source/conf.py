@@ -1,12 +1,37 @@
 """Sphinx documentation configuration file."""
 
 from datetime import datetime
+import inspect
 import os
 import warnings
 
 import pyvista
 from pyvista.plotting.utilities.sphinx_gallery import DynamicScraper
 from sphinx.builders.latex import LaTeXBuilder
+import sphinx.util.inspect
+
+# PATCH
+# This patch is necessary to avoid sphinx.ext.autodoc to use the class _attribute_
+# type hints where the class _parameter_ type hints should be used.
+# See https://github.com/sphinx-doc/sphinx/issues/11207
+
+
+def _signature(
+    subject,
+    bound_method: bool = False,
+    type_aliases=None,
+):
+    signature = inspect.signature(subject)
+    if signature.parameters and list(signature.parameters.values())[0].name == "self":
+        signature = signature.replace(parameters=list(signature.parameters.values())[1:])
+    return signature
+
+
+sphinx.util.inspect.signature = _signature
+
+napoleon_attr_annotations = False
+
+# END OF PATCH
 
 LaTeXBuilder.supported_image_types = ["image/png", "image/pdf", "image/svg+xml"]
 from ansys_sphinx_theme import (
@@ -88,7 +113,6 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
-    "sphinx_autodoc_typehints",
     "numpydoc",
     "sphinx_copybutton",
 ]
@@ -140,8 +164,8 @@ nitpick_ignore_regex = [
 ]
 
 # sphinx_autodoc_typehints configuration
-typehints_defaults = "comma"
-simplify_optional_unions = True
+autodoc_typehints = "description"
+autodoc_typehints_description_target = "documented"
 
 # numpydoc configuration
 numpydoc_show_class_members = False
