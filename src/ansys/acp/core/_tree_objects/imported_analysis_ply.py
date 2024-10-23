@@ -23,6 +23,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
+
 from ansys.api.acp.v0 import imported_analysis_ply_pb2, imported_analysis_ply_pb2_grpc
 
 from .._utils.property_protocols import ReadOnlyProperty
