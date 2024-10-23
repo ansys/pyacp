@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729677910647,
+  "lastUpdate": 1729679058356,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -16118,6 +16118,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00020457135451122324",
             "extra": "mean: 736.8401730663344 usec\nrounds: 1797"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1f82dada9c735f4736577575d3ac9c17c56b1b29",
+          "message": "Add interface layer exposure (#609)\n\nAdd exposure for the `InterfaceLayer` object type.",
+          "timestamp": "2024-10-23T10:20:09Z",
+          "tree_id": "40c5b6a1c251cc290812821b7741f678b7b07f69",
+          "url": "https://github.com/ansys/pyacp/commit/1f82dada9c735f4736577575d3ac9c17c56b1b29"
+        },
+        "date": 1729679035019,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 7.932466698853252,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0166513604593824",
+            "extra": "mean: 126.06419137499358 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1293.0149828602885,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022970321655080994",
+            "extra": "mean: 773.386243203379 usec\nrounds: 2023"
           }
         ]
       }
