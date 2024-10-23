@@ -36,5 +36,8 @@
       
         UnitSystemType.BIN
       
+      
+        UnitSystemType.FROM_FILE
+      
    
    

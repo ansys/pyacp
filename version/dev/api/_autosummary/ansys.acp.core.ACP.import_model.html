@@ -577,8 +577,10 @@ Available only when the format is not <code class="docutils literal notranslate"
 <li><p><strong>convert_section_data</strong> – Whether to import the section data of a shell model and convert it
 into ACP composite definitions.
 Available only when the format is not <code class="docutils literal notranslate"><span class="pre">&quot;acp:h5&quot;</span></code>.</p></li>
-<li><p><strong>unit_system</strong> – Set the unit system of the model to the given value. Ignored
-if the unit system is already set in the FE file.
+<li><p><strong>unit_system</strong> – Defines the unit system of the imported file. Must be set if the
+input file does not have units. If the input file does have units,
+<code class="docutils literal notranslate"><span class="pre">unit_system</span></code> must be either <code class="docutils literal notranslate"><span class="pre">&quot;from_file&quot;</span></code>, or match the input
+unit system.
 Available only when the format is not <code class="docutils literal notranslate"><span class="pre">&quot;acp:h5&quot;</span></code>.</p></li>
 </ul>
 </dd>

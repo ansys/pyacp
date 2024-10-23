@@ -1,0 +1,6 @@
+FROM\_FILE
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.FROM_FILE
