@@ -84,6 +84,7 @@ from .imported_analysis_ply import ImportedAnalysisPly
 from .imported_modeling_group import ImportedModelingGroup
 from .imported_modeling_ply import ImportedModelingPly
 from .imported_production_ply import ImportedProductionPly
+from .interface_layer import InterfaceLayer
 from .linked_selection_rule import LinkedSelectionRule
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_1d_column import LookUpTable1DColumn
@@ -170,6 +171,7 @@ __all__ = [
     "ImportedPlyDrapingType",
     "ImportedPlyOffsetType",
     "ImportedPlyThicknessType",
+    "InterfaceLayer",
     "InterpolationOptions",
     "Lamina",
     "LinkedSelectionRule",

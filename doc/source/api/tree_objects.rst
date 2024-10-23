@@ -20,6 +20,7 @@ ACP objects
     ImportedModelingPly
     ImportedProductionPly
     ImportedAnalysisPly
+    InterfaceLayer
     LookUpTable1D
     LookUpTable1DColumn
     LookUpTable3D

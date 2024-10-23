@@ -1,4 +1,3 @@
-# check spelling, codestyle
 name: GitHub CI
 
 # run only on main branch.  This avoids duplicated actions on PRs
@@ -114,6 +113,12 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.10", "3.11", "3.12"]
+        server-version: ["latest"]
+        include:
+          - python-version: "3.12"
+            server-version: "2024R2"
+          - python-version: "3.12"
+            server-version: "2025R1"
 
     steps:
       - uses: actions/checkout@v4
@@ -170,7 +175,7 @@ jobs:
           poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
+          IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
 
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v4
@@ -178,34 +183,15 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
           files: coverage.xml
-          flags: 'server-latest,python-${{ matrix.python-version }}'
-
-      - name: "Unit testing (2024R2 server)"
-        if: matrix.python-version == env.MAIN_PYTHON_VERSION
-        working-directory: tests/unittests
-        run: |
-          docker pull $IMAGE_NAME
-          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html
-        env:
-          LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys/acp:2024r2"
-
-      - name: "Upload coverage to Codecov (2024R2 server)"
-        if: matrix.python-version == env.MAIN_PYTHON_VERSION
-        uses: codecov/codecov-action@v4
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        with:
-          files: coverage.xml
-          flags: 'server-242,python-${{ matrix.python-version }}'
+          flags: 'server-${{ matrix.server-version }},python-${{ matrix.python-version }}'
 
       - name: Benchmarks
         working-directory: tests/benchmarks
         run: |
-          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == '3.10' && github.ref == 'refs/heads/main') && ' ' || '--validate-benchmarks-only' }}
+          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == env.MAIN_PYTHON_VERSION && matrix.server-version == 'latest' && github.ref == 'refs/heads/main') && ' ' || '--validate-benchmarks-only' }}
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
+          IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
 
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
@@ -216,7 +202,7 @@ jobs:
           benchmark-data-dir-path: benchmarks
           auto-push: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-        if: matrix.python-version == env.MAIN_PYTHON_VERSION && github.ref == 'refs/heads/main'
+        if: matrix.python-version == env.MAIN_PYTHON_VERSION && matrix.server-version == 'latest' && github.ref == 'refs/heads/main'
 
   doctest:
     name: Test documentation snippets
