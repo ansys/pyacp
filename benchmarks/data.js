@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729682581539,
+  "lastUpdate": 1729686603839,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -16194,6 +16194,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00025183199488191946",
             "extra": "mean: 804.7041956117824 usec\nrounds: 2142"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d3986e6d68c9c2e303231d097a758c8000883454",
+          "message": "Enable changing the unit system (#567)\n\nAllow setting the `unit_system` attribute on the model.\r\n\r\nThe `UnitSystemType` enum is extended by a value `FROM_FILE = \"from_file\"`,\r\nwhich is an alias to `UNDEFINED`. This allows for using the more descriptive\r\n`\"from_file\"` when loading an FE model.\r\nWhen getting the `unit_system` attribute from the model, the `FROM_FILE`\r\nis never returned; the \"primary\" value `UNDEFINED` is used instead, as before.",
+          "timestamp": "2024-10-23T14:27:03+02:00",
+          "tree_id": "66ba85957784582c75e4fd99e4eb39ec58332cc4",
+          "url": "https://github.com/ansys/pyacp/commit/d3986e6d68c9c2e303231d097a758c8000883454"
+        },
+        "date": 1729686578582,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 7.907147380426411,
+            "unit": "iter/sec",
+            "range": "stddev: 0.016604101200974875",
+            "extra": "mean: 126.46785900000168 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1282.819307481502,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00023296212419819063",
+            "extra": "mean: 779.533013081361 usec\nrounds: 2064"
           }
         ]
       }
