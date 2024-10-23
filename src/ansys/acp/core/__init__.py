@@ -198,7 +198,6 @@ __all__ = [
     "get_dpf_unit_system",
     "get_model_tree",
     "IgnorableEntity",
-<<<<<<< HEAD
     "ImportedAnalysisPly",
     "ImportedProductionPly",
     "ImportedModelingPly",
@@ -206,9 +205,7 @@ __all__ = [
     "ImportedPlyDrapingType",
     "ImportedPlyOffsetType",
     "ImportedPlyThicknessType",
-=======
     "InterfaceLayer",
->>>>>>> remotes/origin/main
     "Lamina",
     "launch_acp",
     "LaunchMode",
