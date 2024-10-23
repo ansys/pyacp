@@ -66,3 +66,21 @@ class TestElementSet(WithLockedMixin, TreeObjectTester):
 
     CREATE_METHOD_NAME = "create_element_set"
     INITIAL_OBJECT_NAMES = ("All_Elements",)
+
+
+def test_clone_locked(parent_object, skip_before_version):
+    """Test that a locked element set can be correctly cloned.
+
+    Regression test for #565: cloning and storing a locked element
+    set produces an empty element set.
+    The root cause for this issue was that the locked element set
+    did not expose their 'element_labels' in the API.ga
+    """
+    skip_before_version("25.1")
+
+    element_set = parent_object.element_sets["All_Elements"]
+    assert len(element_set.element_labels) > 0
+    cloned_element_set = element_set.clone()
+    cloned_element_set.store(parent=parent_object)
+    assert not cloned_element_set.locked
+    assert len(cloned_element_set.element_labels) > 0
