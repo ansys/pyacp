@@ -18,9 +18,11 @@ Enumeration data types
     EdgeSetType
     EdgeSetType
     ElementalDataType
+    ExtrusionType
     FeFormat
     GeometricalRuleType
     IgnorableEntity
+    IntersectionType
     LinkedObjectHandling
     LookUpTable3DInterpolationAlgorithm
     LookUpTableColumnValueType
@@ -31,6 +33,7 @@ Enumeration data types
     PlyType
     RosetteSelectionMethod
     RosetteType
+    SectionCutType
     SensorType
     StatusType
     SymmetryType
