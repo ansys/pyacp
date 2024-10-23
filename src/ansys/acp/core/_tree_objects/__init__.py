@@ -102,6 +102,7 @@ from .parallel_selection_rule import (
 )
 from .production_ply import ProductionPly, ProductionPlyElementalData, ProductionPlyNodalData
 from .rosette import Rosette
+from .sampling_point import SamplingPoint
 from .section_cut import SectionCut
 from .sensor import Sensor
 from .spherical_selection_rule import (
@@ -202,6 +203,7 @@ __all__ = [
     "Rosette",
     "RosetteSelectionMethod",
     "RosetteType",
+    "SamplingPoint",
     "ScalarData",
     "SectionCut",
     "SectionCutType",

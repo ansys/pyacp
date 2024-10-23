@@ -55,6 +55,7 @@ from ansys.api.acp.v0 import (
     parallel_selection_rule_pb2_grpc,
     ply_geometry_export_pb2,
     rosette_pb2_grpc,
+    sampling_point_pb2_grpc,
     section_cut_pb2_grpc,
     sensor_pb2_grpc,
     spherical_selection_rule_pb2_grpc,
@@ -121,6 +122,7 @@ from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
 from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
+from .sampling_point import SamplingPoint
 from .section_cut import SectionCut
 from .sensor import Sensor
 from .spherical_selection_rule import SphericalSelectionRule
@@ -708,6 +710,16 @@ class Model(TreeObject):
     )
     modeling_groups = define_mutable_mapping(
         ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
+    )
+
+    create_sampling_point = define_create_method(
+        SamplingPoint,
+        func_name="create_sampling_point",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    sampling_points = define_mutable_mapping(
+        SamplingPoint, sampling_point_pb2_grpc.ObjectServiceStub
     )
 
     create_section_cut = define_create_method(
