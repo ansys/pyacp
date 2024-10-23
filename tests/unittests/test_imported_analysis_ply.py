@@ -22,7 +22,7 @@
 
 import pytest
 
-from ansys.acp.core import ImportedAnalysisPlyElementalData, ImportedAnalysisPlyNodalData, Model
+from ansys.acp.core import Model
 
 from .common.tree_object_tester import TreeObjectTesterReadOnly
 

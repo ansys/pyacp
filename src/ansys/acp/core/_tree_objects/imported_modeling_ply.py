@@ -22,7 +22,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 
 from ansys.api.acp.v0 import (
     imported_modeling_ply_pb2,

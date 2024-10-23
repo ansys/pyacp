@@ -23,7 +23,6 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
-import dataclasses
 
 from ansys.api.acp.v0 import (
     imported_modeling_group_pb2,
