@@ -278,3 +278,39 @@ def test_parent_access_raises(minimal_complete_model):
     with pytest.raises(RuntimeError) as exc:
         minimal_complete_model.parent
     assert "parent" in str(exc.value)
+
+
+@pytest.mark.parametrize("unit_system", UnitSystemType)
+def test_change_unit_system(minimal_complete_model, unit_system, raises_before_version):
+    assert minimal_complete_model.unit_system == UnitSystemType.MPA
+
+    initial_node_coords = minimal_complete_model.mesh.node_coordinates
+    initial_minimum_analysis_ply_thickness = minimal_complete_model.minimum_analysis_ply_thickness
+
+    conversion_factor_by_us = {
+        "mpa": 1.0,
+        "mks": 1e-3,
+        "cgs": 0.1,
+        "si": 1e-3,
+        "bin": 0.03937008,
+        "bft": 0.00328084,
+        "umks": 1e3,
+    }
+
+    with raises_before_version("25.1"):
+        if unit_system in (UnitSystemType.UNDEFINED, UnitSystemType.FROM_FILE):
+            with pytest.raises(ValueError):
+                minimal_complete_model.unit_system = unit_system
+        else:
+            minimal_complete_model.unit_system = unit_system
+            assert minimal_complete_model.unit_system == unit_system
+            minimal_complete_model.update()
+
+            np.testing.assert_allclose(
+                minimal_complete_model.mesh.node_coordinates,
+                initial_node_coords * conversion_factor_by_us[unit_system.value],
+            )
+            np.testing.assert_allclose(
+                minimal_complete_model.minimum_analysis_ply_thickness,
+                initial_minimum_analysis_ply_thickness * conversion_factor_by_us[unit_system.value],
+            )
