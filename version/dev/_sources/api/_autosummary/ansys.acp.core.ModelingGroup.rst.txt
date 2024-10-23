@@ -18,6 +18,9 @@
       ModelingGroup.clone
       
       
+      ModelingGroup.create_interface_layer
+      
+      
       ModelingGroup.create_modeling_ply
       
       
@@ -38,6 +41,7 @@
    
       ModelingGroup.elemental_data
       ModelingGroup.id
+      ModelingGroup.interface_layers
       ModelingGroup.modeling_plies
       ModelingGroup.name
       ModelingGroup.nodal_data

@@ -1,0 +1,6 @@
+interface\_layers
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingGroup.interface_layers

@@ -1,0 +1,6 @@
+open\_area\_sets
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: InterfaceLayer.open_area_sets

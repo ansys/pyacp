@@ -1,0 +1,6 @@
+global\_ply\_nr
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: InterfaceLayer.global_ply_nr

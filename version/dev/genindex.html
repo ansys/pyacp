@@ -547,9 +547,11 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ACPWorkflow.html#ansys.acp.core.ACPWorkflow">ACPWorkflow (class in ansys.acp.core)</a>
 </li>
-      <li><a href="api/_autosummary/ansys.acp.core.ModelingPly.active.html#ansys.acp.core.ModelingPly.active">active (ansys.acp.core.ModelingPly property)</a>
+      <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.active.html#ansys.acp.core.InterfaceLayer.active">active (ansys.acp.core.InterfaceLayer property)</a>
 
       <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.ModelingPly.active.html#ansys.acp.core.ModelingPly.active">(ansys.acp.core.ModelingPly property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.Sensor.active.html#ansys.acp.core.Sensor.active">(ansys.acp.core.Sensor property)</a>
 </li>
       </ul></li>
@@ -752,6 +754,8 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.clone.html#ansys.acp.core.GeometricalSelectionRule.clone">(ansys.acp.core.GeometricalSelectionRule method)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.clone.html#ansys.acp.core.InterfaceLayer.clone">(ansys.acp.core.InterfaceLayer method)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.Lamina.clone.html#ansys.acp.core.Lamina.clone">(ansys.acp.core.Lamina method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.LinkedSelectionRule.clone.html#ansys.acp.core.LinkedSelectionRule.clone">(ansys.acp.core.LinkedSelectionRule method)</a>
@@ -893,6 +897,8 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.create_geometrical_selection_rule.html#ansys.acp.core.Model.create_geometrical_selection_rule">create_geometrical_selection_rule() (ansys.acp.core.Model method)</a>
 </li>
+      <li><a href="api/_autosummary/ansys.acp.core.ModelingGroup.create_interface_layer.html#ansys.acp.core.ModelingGroup.create_interface_layer">create_interface_layer() (ansys.acp.core.ModelingGroup method)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.create_lookup_table_1d.html#ansys.acp.core.Model.create_lookup_table_1d">create_lookup_table_1d() (ansys.acp.core.Model method)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.create_lookup_table_3d.html#ansys.acp.core.Model.create_lookup_table_3d">create_lookup_table_3d() (ansys.acp.core.Model method)</a>
@@ -1001,6 +1007,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.Fabric.delete.html#ansys.acp.core.Fabric.delete">(ansys.acp.core.Fabric method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.delete.html#ansys.acp.core.GeometricalSelectionRule.delete">(ansys.acp.core.GeometricalSelectionRule method)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.delete.html#ansys.acp.core.InterfaceLayer.delete">(ansys.acp.core.InterfaceLayer method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1D.delete.html#ansys.acp.core.LookUpTable1D.delete">(ansys.acp.core.LookUpTable1D method)</a>
 </li>
@@ -1366,6 +1374,8 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.elemental_data.html#ansys.acp.core.GeometricalSelectionRule.elemental_data">(ansys.acp.core.GeometricalSelectionRule property)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.elemental_data.html#ansys.acp.core.InterfaceLayer.elemental_data">(ansys.acp.core.InterfaceLayer property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.Model.elemental_data.html#ansys.acp.core.Model.elemental_data">(ansys.acp.core.Model property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.ModelingGroup.elemental_data.html#ansys.acp.core.ModelingGroup.elemental_data">(ansys.acp.core.ModelingGroup property)</a>
@@ -1709,10 +1719,10 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.get_model_tree.html#ansys.acp.core.get_model_tree">get_model_tree() (in module ansys.acp.core)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.VectorData.get_pyvista_glyphs.html#ansys.acp.core.VectorData.get_pyvista_glyphs">get_pyvista_glyphs() (ansys.acp.core.VectorData method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.AnalysisPlyElementalData.get_pyvista_mesh.html#ansys.acp.core.AnalysisPlyElementalData.get_pyvista_mesh">get_pyvista_mesh() (ansys.acp.core.AnalysisPlyElementalData method)</a>
 
       <ul>
@@ -1781,8 +1791,12 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.DropoffMaterialType.GLOBAL.html#ansys.acp.core.DropoffMaterialType.GLOBAL">(ansys.acp.core.DropoffMaterialType attribute)</a>
 </li>
       </ul></li>
-      <li><a href="api/_autosummary/ansys.acp.core.ModelingPly.global_ply_nr.html#ansys.acp.core.ModelingPly.global_ply_nr">global_ply_nr (ansys.acp.core.ModelingPly property)</a>
+      <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.global_ply_nr.html#ansys.acp.core.InterfaceLayer.global_ply_nr">global_ply_nr (ansys.acp.core.InterfaceLayer property)</a>
+
+      <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.ModelingPly.global_ply_nr.html#ansys.acp.core.ModelingPly.global_ply_nr">(ansys.acp.core.ModelingPly property)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -1825,6 +1839,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.Fabric.id.html#ansys.acp.core.Fabric.id">(ansys.acp.core.Fabric property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.id.html#ansys.acp.core.GeometricalSelectionRule.id">(ansys.acp.core.GeometricalSelectionRule property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.id.html#ansys.acp.core.InterfaceLayer.id">(ansys.acp.core.InterfaceLayer property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1D.id.html#ansys.acp.core.LookUpTable1D.id">(ansys.acp.core.LookUpTable1D property)</a>
 </li>
@@ -1911,12 +1927,16 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.TubeSelectionRule.inner_radius.html#ansys.acp.core.TubeSelectionRule.inner_radius">inner_radius (ansys.acp.core.TubeSelectionRule property)</a>
 </li>
+      <li><a href="api/_autosummary/ansys.acp.core.ModelingGroup.interface_layers.html#ansys.acp.core.ModelingGroup.interface_layers">interface_layers (ansys.acp.core.ModelingGroup property)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.material_property_sets.ConstantPuckConstants.interface_weakening_factor.html#ansys.acp.core.material_property_sets.ConstantPuckConstants.interface_weakening_factor">interface_weakening_factor (ansys.acp.core.material_property_sets.ConstantPuckConstants property)</a>
 
       <ul>
         <li><a href="api/_autosummary/ansys.acp.core.material_property_sets.VariablePuckConstants.interface_weakening_factor.html#ansys.acp.core.material_property_sets.VariablePuckConstants.interface_weakening_factor">(ansys.acp.core.material_property_sets.VariablePuckConstants property)</a>
 </li>
       </ul></li>
+      <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.html#ansys.acp.core.InterfaceLayer">InterfaceLayer (class in ansys.acp.core)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.DrapingType.INTERNAL_DRAPING.html#ansys.acp.core.DrapingType.INTERNAL_DRAPING">INTERNAL_DRAPING (ansys.acp.core.DrapingType attribute)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.LookUpTable3D.interpolation_algorithm.html#ansys.acp.core.LookUpTable3D.interpolation_algorithm">interpolation_algorithm (ansys.acp.core.LookUpTable3D property)</a>
@@ -2296,6 +2316,8 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.name.html#ansys.acp.core.GeometricalSelectionRule.name">(ansys.acp.core.GeometricalSelectionRule property)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.name.html#ansys.acp.core.InterfaceLayer.name">(ansys.acp.core.InterfaceLayer property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1D.name.html#ansys.acp.core.LookUpTable1D.name">(ansys.acp.core.LookUpTable1D property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1DColumn.name.html#ansys.acp.core.LookUpTable1DColumn.name">(ansys.acp.core.LookUpTable1DColumn property)</a>
@@ -2361,6 +2383,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.ElementSet.nodal_data.html#ansys.acp.core.ElementSet.nodal_data">(ansys.acp.core.ElementSet property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.nodal_data.html#ansys.acp.core.GeometricalSelectionRule.nodal_data">(ansys.acp.core.GeometricalSelectionRule property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.nodal_data.html#ansys.acp.core.InterfaceLayer.nodal_data">(ansys.acp.core.InterfaceLayer property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.Model.nodal_data.html#ansys.acp.core.Model.nodal_data">(ansys.acp.core.Model property)</a>
 </li>
@@ -2539,6 +2563,8 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.OffsetType.html#ansys.acp.core.OffsetType">OffsetType (class in ansys.acp.core)</a>
 </li>
+      <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.open_area_sets.html#ansys.acp.core.InterfaceLayer.open_area_sets">open_area_sets (ansys.acp.core.InterfaceLayer property)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.LinkedSelectionRule.operation_type.html#ansys.acp.core.LinkedSelectionRule.operation_type">operation_type (ansys.acp.core.LinkedSelectionRule property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.example_helpers.ExampleKeys.OPTIMIZATION_EXAMPLE_DAT.html#ansys.acp.core.example_helpers.ExampleKeys.OPTIMIZATION_EXAMPLE_DAT">OPTIMIZATION_EXAMPLE_DAT (ansys.acp.core.example_helpers.ExampleKeys attribute)</a>
@@ -2569,9 +2595,11 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.OrientedSelectionSet.orientation_point.html#ansys.acp.core.OrientedSelectionSet.orientation_point">orientation_point (ansys.acp.core.OrientedSelectionSet property)</a>
 </li>
-      <li><a href="api/_autosummary/ansys.acp.core.Model.oriented_selection_sets.html#ansys.acp.core.Model.oriented_selection_sets">oriented_selection_sets (ansys.acp.core.Model property)</a>
+      <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.oriented_selection_sets.html#ansys.acp.core.InterfaceLayer.oriented_selection_sets">oriented_selection_sets (ansys.acp.core.InterfaceLayer property)</a>
 
       <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.Model.oriented_selection_sets.html#ansys.acp.core.Model.oriented_selection_sets">(ansys.acp.core.Model property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.ModelingPly.oriented_selection_sets.html#ansys.acp.core.ModelingPly.oriented_selection_sets">(ansys.acp.core.ModelingPly property)</a>
 </li>
       </ul></li>
@@ -2663,6 +2691,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.Fabric.parent.html#ansys.acp.core.Fabric.parent">(ansys.acp.core.Fabric property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.parent.html#ansys.acp.core.GeometricalSelectionRule.parent">(ansys.acp.core.GeometricalSelectionRule property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.parent.html#ansys.acp.core.InterfaceLayer.parent">(ansys.acp.core.InterfaceLayer property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1D.parent.html#ansys.acp.core.LookUpTable1D.parent">(ansys.acp.core.LookUpTable1D property)</a>
 </li>
@@ -3074,6 +3104,8 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.status.html#ansys.acp.core.GeometricalSelectionRule.status">(ansys.acp.core.GeometricalSelectionRule property)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.status.html#ansys.acp.core.InterfaceLayer.status">(ansys.acp.core.InterfaceLayer property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1D.status.html#ansys.acp.core.LookUpTable1D.status">(ansys.acp.core.LookUpTable1D property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable3D.status.html#ansys.acp.core.LookUpTable3D.status">(ansys.acp.core.LookUpTable3D property)</a>
@@ -3135,6 +3167,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.Fabric.store.html#ansys.acp.core.Fabric.store">(ansys.acp.core.Fabric method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.GeometricalSelectionRule.store.html#ansys.acp.core.GeometricalSelectionRule.store">(ansys.acp.core.GeometricalSelectionRule method)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.store.html#ansys.acp.core.InterfaceLayer.store">(ansys.acp.core.InterfaceLayer method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable1D.store.html#ansys.acp.core.LookUpTable1D.store">(ansys.acp.core.LookUpTable1D method)</a>
 </li>
