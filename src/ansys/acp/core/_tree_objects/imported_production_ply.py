@@ -23,9 +23,6 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
-import dataclasses
-
-import numpy as np
 
 from ansys.api.acp.v0 import (
     imported_analysis_ply_pb2_grpc,
@@ -40,14 +37,6 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property_read_only,
     mark_grpc_properties,
 )
-from ._mesh_data import (
-    ElementalData,
-    NodalData,
-    ScalarData,
-    VectorData,
-    elemental_data_property,
-    nodal_data_property,
-)
 from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
 from .imported_analysis_ply import ImportedAnalysisPly
@@ -56,6 +45,7 @@ from .object_registry import register
 __all__ = [
     "ImportedProductionPly",
 ]
+
 
 @mark_grpc_properties
 @register

@@ -82,13 +82,15 @@ from .geometrical_selection_rule import (
 )
 from .imported_analysis_ply import (
     ImportedAnalysisPly,
-    ImportedAnalysisPlyElementalData,
-    ImportedAnalysisPlyNodalData,
 )
 from .imported_production_ply import (
     ImportedProductionPly,
-    ImportedProductionPlyElementalData,
-    ImportedProductionPlyNodalData,
+)
+from .imported_modeling_ply import (
+    ImportedModelingPly,
+)
+from .imported_modeling_group import (
+    ImportedModelingGroup,
 )
 from .linked_selection_rule import LinkedSelectionRule
 from .lookup_table_1d import LookUpTable1D
@@ -170,8 +172,9 @@ __all__ = [
     "GeometricalSelectionRuleNodalData",
     "IgnorableEntity",
     "ImportedAnalysisPly",
-    "ImportedAnalysisPlyElementalData",
-    "ImportedAnalysisPlyNodalData",
+    "ImportedProductionPly",
+    "ImportedModelingPly",
+    "ImportedModelingGroup",
     "ImportedPlyDrapingType",
     "ImportedPlyOffsetType",
     "InterpolationOptions",

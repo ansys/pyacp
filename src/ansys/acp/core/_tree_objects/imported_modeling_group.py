@@ -33,7 +33,6 @@ from ansys.api.acp.v0 import (
 
 from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
 from ._grpc_helpers.property_helper import mark_grpc_properties
-from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import CreatableTreeObject, IdTreeObject
 from .imported_modeling_ply import ImportedModelingPly
 from .object_registry import register
