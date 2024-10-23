@@ -20,12 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from packaging.version import parse as parse_version
 import pytest
 
-from packaging.version import parse as parse_version
+from ansys.acp.core import ImportedModelingGroup
+
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
-from ansys.acp.core import ImportedModelingGroup
 
 @pytest.fixture(autouse=True)
 def skip_if_unsupported_version(acp_instance):

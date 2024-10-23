@@ -20,15 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import pytest
 from packaging.version import parse as parse_version
-
+import pytest
 
 from ansys.acp.core import (
+    ImportedModelingPly,
     ImportedPlyDrapingType,
     ImportedPlyOffsetType,
     ImportedPlyThicknessType,
-    ImportedModelingPly,
     MeshImportType,
     RosetteSelectionMethod,
     ThicknessFieldType,

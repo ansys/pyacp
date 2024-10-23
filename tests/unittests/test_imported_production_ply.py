@@ -20,10 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from packaging.version import parse as parse_version
 import pytest
 
-from packaging.version import parse as parse_version
-from ansys.acp.core import Model, ImportedProductionPly
+from ansys.acp.core import ImportedProductionPly, Model
 
 from .common.tree_object_tester import TreeObjectTesterReadOnly
 
@@ -34,6 +34,7 @@ def skip_if_unsupported_version(acp_instance):
         ImportedProductionPly._SUPPORTED_SINCE
     ):
         pytest.skip("ImportedProductionPly is not supported on this version of the server.")
+
 
 @pytest.fixture
 def model(load_model_imported_plies_from_tempfile):
