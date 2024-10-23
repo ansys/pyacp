@@ -21,9 +21,9 @@ Enumeration data types
     FeFormat
     GeometricalRuleType
     IgnorableEntity
-    ImportedPlyDrapingType,
-    ImportedPlyOffsetType,
-    ImportedPlyThicknessType,
+    ImportedPlyDrapingType
+    ImportedPlyOffsetType
+    ImportedPlyThicknessType
     LinkedObjectHandling
     LookUpTable3DInterpolationAlgorithm
     LookUpTableColumnValueType
