@@ -22,11 +22,18 @@
 
 import math
 
+from packaging.version import parse as parse_version
 import pytest
 
-from ansys.acp.core import ExtrusionType, IntersectionType, SectionCutType
+from ansys.acp.core import ExtrusionType, IntersectionType, SectionCut, SectionCutType
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
+
+
+@pytest.fixture(autouse=True)
+def skip_if_unsupported_version(acp_instance):
+    if parse_version(acp_instance.server_version) < parse_version(SectionCut._SUPPORTED_SINCE):
+        pytest.skip("InterfaceLayer is not supported on this version of the server.")
 
 
 @pytest.fixture
