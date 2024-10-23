@@ -276,3 +276,14 @@ def raises_before_version(acp_instance):
             yield
 
     return inner
+
+
+@pytest.fixture
+def skip_before_version(acp_instance):
+    """Skip a test before a certain server version."""
+
+    def inner(version: str):
+        if parse_version(acp_instance.server_version) < parse_version(version):
+            pytest.skip(f"Test is not supported before version {version}")
+
+    return inner
