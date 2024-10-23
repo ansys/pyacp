@@ -69,7 +69,9 @@ __all__ = [
     "ThicknessType",
     "UnitSystemType",
     "VirtualGeometryDimension",
+    "ImportedPlyDrapingType",
     "ImportedPlyOffsetType",
+    "ImportedPlyThicknessType",
 ]
 
 (StatusType, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(
