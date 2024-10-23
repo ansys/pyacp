@@ -1,0 +1,6 @@
+secondary\_plies
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ButtJointSequence.secondary_plies

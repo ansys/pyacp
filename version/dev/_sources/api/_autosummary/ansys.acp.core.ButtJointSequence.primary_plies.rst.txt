@@ -1,0 +1,6 @@
+primary\_plies
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ButtJointSequence.primary_plies

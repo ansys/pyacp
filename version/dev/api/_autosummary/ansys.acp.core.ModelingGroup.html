@@ -453,6 +453,7 @@ document.write(`
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../tree_objects.html">ACP objects</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.AnalysisPly.html">AnalysisPly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.html">BooleanSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ButtJointSequence.html">ButtJointSequence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADComponent.html">CADComponent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADGeometry.html">CADGeometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutoffSelectionRule.html">CutoffSelectionRule</a></li>
@@ -470,10 +471,12 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Model.html">Model</a></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">ModelingGroup</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.clone.html">clone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_butt_joint_sequence.html">create_butt_joint_sequence</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_interface_layer.html">create_interface_layer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_modeling_ply.html">create_modeling_ply</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.delete.html">delete</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.store.html">store</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.butt_joint_sequences.html">butt_joint_sequences</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.elemental_data.html">elemental_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.id.html">id</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingGroup.interface_layers.html">interface_layers</a></li>
@@ -593,16 +596,19 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.clone.html#ansys.acp.core.ModelingGroup.clone" title="ansys.acp.core.ModelingGroup.clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.clone</span></code></a>(*[, unlink])</p></td>
 <td><p>Create a new unstored object with the same properties.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_interface_layer.html#ansys.acp.core.ModelingGroup.create_interface_layer" title="ansys.acp.core.ModelingGroup.create_interface_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.create_interface_layer</span></code></a>(*args, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_butt_joint_sequence.html#ansys.acp.core.ModelingGroup.create_butt_joint_sequence" title="ansys.acp.core.ModelingGroup.create_butt_joint_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.create_butt_joint_sequence</span></code></a>(...)</p></td>
+<td><p>Instantiate a ButtJointSequence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_interface_layer.html#ansys.acp.core.ModelingGroup.create_interface_layer" title="ansys.acp.core.ModelingGroup.create_interface_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.create_interface_layer</span></code></a>(*args, ...)</p></td>
 <td><p>Instantiate an interface layer.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_modeling_ply.html#ansys.acp.core.ModelingGroup.create_modeling_ply" title="ansys.acp.core.ModelingGroup.create_modeling_ply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.create_modeling_ply</span></code></a>(*args, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_modeling_ply.html#ansys.acp.core.ModelingGroup.create_modeling_ply" title="ansys.acp.core.ModelingGroup.create_modeling_ply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.create_modeling_ply</span></code></a>(*args, ...)</p></td>
 <td><p>Instantiate a Modeling Ply.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.delete.html#ansys.acp.core.ModelingGroup.delete" title="ansys.acp.core.ModelingGroup.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.delete</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.delete.html#ansys.acp.core.ModelingGroup.delete" title="ansys.acp.core.ModelingGroup.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.delete</span></code></a>()</p></td>
 <td><p>Delete the object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.store.html#ansys.acp.core.ModelingGroup.store" title="ansys.acp.core.ModelingGroup.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.store</span></code></a>(parent)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.store.html#ansys.acp.core.ModelingGroup.store" title="ansys.acp.core.ModelingGroup.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.store</span></code></a>(parent)</p></td>
 <td><p>Store the object on the server.</p></td>
 </tr>
 </tbody>
@@ -611,25 +617,28 @@ document.write(`
 <p class="rubric">Attributes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.elemental_data.html#ansys.acp.core.ModelingGroup.elemental_data" title="ansys.acp.core.ModelingGroup.elemental_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.elemental_data</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.butt_joint_sequences.html#ansys.acp.core.ModelingGroup.butt_joint_sequences" title="ansys.acp.core.ModelingGroup.butt_joint_sequences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.butt_joint_sequences</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.id.html#ansys.acp.core.ModelingGroup.id" title="ansys.acp.core.ModelingGroup.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.id</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.elemental_data.html#ansys.acp.core.ModelingGroup.elemental_data" title="ansys.acp.core.ModelingGroup.elemental_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.elemental_data</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.id.html#ansys.acp.core.ModelingGroup.id" title="ansys.acp.core.ModelingGroup.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.id</span></code></a></p></td>
 <td><p>Identifier of the object, used for example as key in maps.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.interface_layers.html#ansys.acp.core.ModelingGroup.interface_layers" title="ansys.acp.core.ModelingGroup.interface_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.interface_layers</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.interface_layers.html#ansys.acp.core.ModelingGroup.interface_layers" title="ansys.acp.core.ModelingGroup.interface_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.interface_layers</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.modeling_plies.html#ansys.acp.core.ModelingGroup.modeling_plies" title="ansys.acp.core.ModelingGroup.modeling_plies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.modeling_plies</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.modeling_plies.html#ansys.acp.core.ModelingGroup.modeling_plies" title="ansys.acp.core.ModelingGroup.modeling_plies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.modeling_plies</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.name.html#ansys.acp.core.ModelingGroup.name" title="ansys.acp.core.ModelingGroup.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.name</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.name.html#ansys.acp.core.ModelingGroup.name" title="ansys.acp.core.ModelingGroup.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.name</span></code></a></p></td>
 <td><p>The name of the object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.nodal_data.html#ansys.acp.core.ModelingGroup.nodal_data" title="ansys.acp.core.ModelingGroup.nodal_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.nodal_data</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.nodal_data.html#ansys.acp.core.ModelingGroup.nodal_data" title="ansys.acp.core.ModelingGroup.nodal_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.nodal_data</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.parent.html#ansys.acp.core.ModelingGroup.parent" title="ansys.acp.core.ModelingGroup.parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.parent</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.parent.html#ansys.acp.core.ModelingGroup.parent" title="ansys.acp.core.ModelingGroup.parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.parent</span></code></a></p></td>
 <td><p>The parent of the object.</p></td>
 </tr>
 </tbody>

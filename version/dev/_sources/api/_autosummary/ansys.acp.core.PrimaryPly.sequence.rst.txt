@@ -1,0 +1,6 @@
+sequence
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: PrimaryPly.sequence

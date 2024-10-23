@@ -1,0 +1,6 @@
+level
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: PrimaryPly.level

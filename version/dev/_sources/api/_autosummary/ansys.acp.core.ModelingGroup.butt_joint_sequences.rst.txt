@@ -1,0 +1,6 @@
+butt\_joint\_sequences
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingGroup.butt_joint_sequences

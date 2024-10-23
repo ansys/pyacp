@@ -1,0 +1,33 @@
+﻿PrimaryPly
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: PrimaryPly
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      PrimaryPly.clone
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      PrimaryPly.level
+      PrimaryPly.sequence
+   
+   

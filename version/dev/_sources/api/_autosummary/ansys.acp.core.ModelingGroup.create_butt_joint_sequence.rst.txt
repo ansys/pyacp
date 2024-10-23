@@ -1,0 +1,6 @@
+create\_butt\_joint\_sequence
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ModelingGroup.create_butt_joint_sequence

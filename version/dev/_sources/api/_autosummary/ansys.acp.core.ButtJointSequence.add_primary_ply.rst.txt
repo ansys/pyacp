@@ -1,0 +1,6 @@
+add\_primary\_ply
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ButtJointSequence.add_primary_ply

@@ -18,6 +18,9 @@
       ModelingGroup.clone
       
       
+      ModelingGroup.create_butt_joint_sequence
+      
+      
       ModelingGroup.create_interface_layer
       
       
@@ -39,6 +42,7 @@
    .. autosummary::
       :toctree:
    
+      ModelingGroup.butt_joint_sequences
       ModelingGroup.elemental_data
       ModelingGroup.id
       ModelingGroup.interface_layers
