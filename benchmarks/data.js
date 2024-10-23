@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729686603839,
+  "lastUpdate": 1729687447597,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -16232,6 +16232,44 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00023296212419819063",
             "extra": "mean: 779.533013081361 usec\nrounds: 2064"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0dcd83498d21b634d3a4add1c3b8a25f62a3701d",
+          "message": "Add ButtJointSequence exposure (#606)\n\nAdd the `ButtJointSequence` class, and a `PrimaryPly` class for the edge properties\r\nof the `primary_plies` attribute.\r\n\r\nOther changes:\r\n- Add an `allowed_types_getter` parameter to `define_polymorphic_linked_object_list`\r\n  with the same purpose as the existing `allowed_types`, except the types are evaluated\r\n  only inside the getter. \r\n  This was needed to avoid a circular import with the `ModelingGroup`, since \r\n  `define_polymorphic_linked_object_list` is called at the module top-level.",
+          "timestamp": "2024-10-23T12:41:27Z",
+          "tree_id": "9ebaa01273f326bf6173bfbebcd27cde5d0986f0",
+          "url": "https://github.com/ansys/pyacp/commit/0dcd83498d21b634d3a4add1c3b8a25f62a3701d"
+        },
+        "date": 1729687423785,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40",
+            "value": 8.062708050496816,
+            "unit": "iter/sec",
+            "range": "stddev: 0.016638919738989615",
+            "extra": "mean: 124.02780724999474 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group",
+            "value": 1217.9538983807188,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002583322330623338",
+            "extra": "mean: 821.0491393225223 usec\nrounds: 2304"
           }
         ]
       }
