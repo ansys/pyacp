@@ -71,6 +71,7 @@ class ImportedModelingGroup(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "imported_modeling_groups"
     _OBJECT_INFO_TYPE = imported_modeling_group_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = imported_modeling_group_pb2.CreateRequest
+    _SUPPORTED_SINCE = "25.1"
 
     def __init__(self, *, name: str = "ImportedModelingGroup"):
         super().__init__(name=name)

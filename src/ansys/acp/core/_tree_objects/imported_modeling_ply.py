@@ -167,6 +167,7 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "imported_modeling_plies"
     _OBJECT_INFO_TYPE = imported_modeling_ply_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = imported_modeling_ply_pb2.CreateRequest
+    _SUPPORTED_SINCE = "25.1"
 
     def __init__(
         self,

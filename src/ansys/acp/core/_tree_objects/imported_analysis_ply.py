@@ -106,6 +106,7 @@ class ImportedAnalysisPly(ReadOnlyTreeObject, IdTreeObject):
 
     _COLLECTION_LABEL = "imported_analysis_plies"
     _OBJECT_INFO_TYPE = imported_analysis_ply_pb2.ObjectInfo
+    _SUPPORTED_SINCE = "25.1"
 
     def _create_stub(self) -> imported_analysis_ply_pb2_grpc.ObjectServiceStub:
         return imported_analysis_ply_pb2_grpc.ObjectServiceStub(self._channel)

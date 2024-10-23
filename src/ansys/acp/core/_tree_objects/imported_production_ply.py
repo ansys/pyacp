@@ -106,6 +106,7 @@ class ImportedProductionPly(ReadOnlyTreeObject, IdTreeObject):
 
     _COLLECTION_LABEL = "imported_production_plies"
     _OBJECT_INFO_TYPE = imported_production_ply_pb2.ObjectInfo
+    _SUPPORTED_SINCE = "25.1"
 
     def _create_stub(self) -> imported_production_ply_pb2_grpc.ObjectServiceStub:
         return imported_production_ply_pb2_grpc.ObjectServiceStub(self._channel)
