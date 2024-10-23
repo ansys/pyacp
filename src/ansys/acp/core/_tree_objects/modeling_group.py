@@ -26,8 +26,8 @@ from collections.abc import Iterable
 import dataclasses
 
 from ansys.api.acp.v0 import (
-    interface_layer_pb2_grpc,
     butt_joint_sequence_pb2_grpc,
+    interface_layer_pb2_grpc,
     modeling_group_pb2,
     modeling_group_pb2_grpc,
     modeling_ply_pb2_grpc,
@@ -43,8 +43,8 @@ from ._mesh_data import (
     nodal_data_property,
 )
 from .base import CreatableTreeObject, IdTreeObject
-from .interface_layer import InterfaceLayer
 from .butt_joint_sequence import ButtJointSequence
+from .interface_layer import InterfaceLayer
 from .modeling_ply import ModelingPly
 from .object_registry import register
 
