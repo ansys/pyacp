@@ -53,8 +53,12 @@ from .enums import (
     EdgeSetType,
     ElementalDataType,
     GeometricalRuleType,
+    ImportedPlyDrapingType,
+    ImportedPlyOffsetType,
+    ImportedPlyThicknessType,
     LookUpTable3DInterpolationAlgorithm,
     LookUpTableColumnValueType,
+    MeshImportType,
     NodalDataType,
     OffsetType,
     PlyCutoffType,
@@ -69,10 +73,6 @@ from .enums import (
     ThicknessType,
     UnitSystemType,
     VirtualGeometryDimension,
-    MeshImportType,
-    ImportedPlyDrapingType,
-    ImportedPlyThicknessType,
-    ImportedPlyOffsetType,
 )
 from .fabric import Fabric
 from .geometrical_selection_rule import (

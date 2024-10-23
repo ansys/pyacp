@@ -27,7 +27,11 @@ import dataclasses
 
 import numpy as np
 
-from ansys.api.acp.v0 import imported_analysis_ply_pb2_grpc, imported_production_ply_pb2, imported_production_ply_pb2_grpc
+from ansys.api.acp.v0 import (
+    imported_analysis_ply_pb2_grpc,
+    imported_production_ply_pb2,
+    imported_production_ply_pb2_grpc,
+)
 
 from .._utils.property_protocols import ReadOnlyProperty
 from ._grpc_helpers.mapping import get_read_only_collection_property
@@ -44,45 +48,14 @@ from ._mesh_data import (
     elemental_data_property,
     nodal_data_property,
 )
-from .imported_analysis_ply import ImportedAnalysisPly
 from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
+from .imported_analysis_ply import ImportedAnalysisPly
 from .object_registry import register
 
-__all__ = ["ImportedProductionPly", "ImportedProductionPlyElementalData", "ImportedProductionPlyNodalData"]
-
-
-@dataclasses.dataclass
-class ImportedProductionPlyElementalData(ElementalData):
-    """Represents elemental data for an Imported Production Ply."""
-
-    normal: VectorData | None = None
-    orientation: VectorData | None = None
-    reference_direction: VectorData | None = None
-    fiber_direction: VectorData | None = None
-    draped_fiber_direction: VectorData | None = None
-    transverse_direction: VectorData | None = None
-    draped_transverse_direction: VectorData | None = None
-    thickness: ScalarData[np.float64] | None = None
-    relative_thickness_correction: ScalarData[np.float64] | None = None
-    design_angle: ScalarData[np.float64] | None = None
-    shear_angle: ScalarData[np.float64] | None = None
-    draped_fiber_angle: ScalarData[np.float64] | None = None
-    draped_transverse_angle: ScalarData[np.float64] | None = None
-    # area: ScalarData[np.float64] | None = None
-    # price: ScalarData[np.float64] | None = None
-    # volume: ScalarData[np.float64] | None = None
-    # mass: ScalarData[np.float64] | None = None
-    # offset: ScalarData[np.float64] | None = None
-    # cog: VectorData | None = None
-
-
-@dataclasses.dataclass
-class ImportedProductionPlyNodalData(NodalData):
-    """Represents nodal data for an Imported Production Ply."""
-
-    # ply_offset: VectorData
-
+__all__ = [
+    "ImportedProductionPly",
+]
 
 @mark_grpc_properties
 @register
@@ -115,8 +88,6 @@ class ImportedProductionPly(ReadOnlyTreeObject, IdTreeObject):
     material = grpc_link_property_read_only("properties.material")
     angle: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.angle")
     thickness: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.thickness")
-    elemental_data = elemental_data_property(ImportedProductionPlyElementalData)
-    nodal_data = nodal_data_property(ImportedProductionPlyNodalData)
 
     imported_analysis_plies = get_read_only_collection_property(
         ImportedAnalysisPly, imported_analysis_ply_pb2_grpc.ObjectServiceStub

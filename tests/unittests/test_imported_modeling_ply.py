@@ -26,8 +26,8 @@ from ansys.acp.core import (
     ImportedPlyDrapingType,
     ImportedPlyOffsetType,
     ImportedPlyThicknessType,
-    RosetteSelectionMethod,
     MeshImportType,
+    RosetteSelectionMethod,
     ThicknessFieldType,
 )
 
@@ -49,6 +49,7 @@ def parent_object(minimal_complete_model):
 @pytest.fixture
 def existing_imported_modeling_ply(minimal_complete_model):
     return minimal_complete_model.imported_modeling_groups["by hdf5"].imported_modeling_plies["ud"]
+
 
 @pytest.fixture
 def tree_object(parent_object):

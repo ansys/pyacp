@@ -30,6 +30,7 @@ def parent_object(load_model_imported_plies_from_tempfile):
     with load_model_imported_plies_from_tempfile() as model:
         yield model
 
+
 @pytest.fixture
 def tree_object(parent_object):
     return parent_object.create_imported_modeling_group()

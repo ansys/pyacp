@@ -42,6 +42,7 @@ from ansys.api.acp.v0 import (
     enum_types_pb2,
     fabric_pb2_grpc,
     geometrical_selection_rule_pb2_grpc,
+    imported_modeling_group_pb2_grpc,
     lookup_table_1d_pb2_grpc,
     lookup_table_3d_pb2_grpc,
     material_pb2,
@@ -51,7 +52,6 @@ from ansys.api.acp.v0 import (
     model_pb2_grpc,
     modeling_group_pb2_grpc,
     modeling_ply_pb2_grpc,
-    imported_modeling_group_pb2_grpc,
     oriented_selection_set_pb2_grpc,
     parallel_selection_rule_pb2_grpc,
     ply_geometry_export_pb2,
@@ -109,11 +109,11 @@ from .enums import (
 )
 from .fabric import Fabric
 from .geometrical_selection_rule import GeometricalSelectionRule
+from .imported_modeling_group import ImportedModelingGroup
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_3d import LookUpTable3D
 from .material import Material
 from .modeling_group import ModelingGroup
-from .imported_modeling_group import ImportedModelingGroup
 from .modeling_ply import ModelingPly
 from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet

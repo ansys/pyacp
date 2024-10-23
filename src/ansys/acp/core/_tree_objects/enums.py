@@ -27,6 +27,7 @@ from ansys.api.acp.v0 import (
     edge_set_pb2,
     enum_types_pb2,
     geometrical_selection_rule_pb2,
+    imported_modeling_ply_pb2,
     lookup_table_3d_pb2,
     lookup_table_column_type_pb2,
     mesh_query_pb2,
@@ -36,7 +37,6 @@ from ansys.api.acp.v0 import (
     sensor_pb2,
     unit_system_pb2,
     virtual_geometry_pb2,
-    imported_modeling_ply_pb2,
 )
 
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum

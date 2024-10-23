@@ -33,26 +33,12 @@ from ansys.api.acp.v0 import (
 
 from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
 from ._grpc_helpers.property_helper import mark_grpc_properties
-from ._mesh_data import (
-    ElementalData,
-    NodalData,
-    elemental_data_property,
-    nodal_data_property,
-)
+from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from .base import CreatableTreeObject, IdTreeObject
 from .imported_modeling_ply import ImportedModelingPly
 from .object_registry import register
 
 __all__ = ["ImportedModelingGroup"]
-
-
-@dataclasses.dataclass
-class ImportedModelingGroupElementalData(ElementalData):
-    """Represents elemental data for an Imported Modeling Group."""
-
-@dataclasses.dataclass
-class ImportedModelingGroupNodalData(NodalData):
-    """Represents nodal data for an Imported Modeling Group."""
 
 
 @mark_grpc_properties
@@ -85,7 +71,6 @@ class ImportedModelingGroup(CreatableTreeObject, IdTreeObject):
         parent_class_name="ImportedModelingGroup",
         module_name=__module__,
     )
-    imported_modeling_plies = define_mutable_mapping(ImportedModelingPly, imported_modeling_ply_pb2_grpc.ObjectServiceStub)
-
-    elemental_data = elemental_data_property(ImportedModelingGroupElementalData)
-    nodal_data = nodal_data_property(ImportedModelingGroupNodalData)
+    imported_modeling_plies = define_mutable_mapping(
+        ImportedModelingPly, imported_modeling_ply_pb2_grpc.ObjectServiceStub
+    )

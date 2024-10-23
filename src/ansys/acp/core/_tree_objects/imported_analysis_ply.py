@@ -47,40 +47,9 @@ from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
 
-__all__ = ["ImportedAnalysisPly", "ImportedAnalysisPlyElementalData", "ImportedAnalysisPlyNodalData"]
-
-
-@dataclasses.dataclass
-class ImportedAnalysisPlyElementalData(ElementalData):
-    """Represents elemental data for an Imported Analysis Ply."""
-
-    normal: VectorData | None = None
-    orientation: VectorData | None = None
-    reference_direction: VectorData | None = None
-    fiber_direction: VectorData | None = None
-    draped_fiber_direction: VectorData | None = None
-    transverse_direction: VectorData | None = None
-    draped_transverse_direction: VectorData | None = None
-    thickness: ScalarData[np.float64] | None = None
-    relative_thickness_correction: ScalarData[np.float64] | None = None
-    design_angle: ScalarData[np.float64] | None = None
-    shear_angle: ScalarData[np.float64] | None = None
-    draped_fiber_angle: ScalarData[np.float64] | None = None
-    draped_transverse_angle: ScalarData[np.float64] | None = None
-    # area: ScalarData[np.float64] | None = None
-    # price: ScalarData[np.float64] | None = None
-    # volume: ScalarData[np.float64] | None = None
-    # mass: ScalarData[np.float64] | None = None
-    # offset: ScalarData[np.float64] | None = None
-    # material_1_direction: VectorData | None = None
-    # cog: VectorData | None = None
-
-
-@dataclasses.dataclass
-class ImportedAnalysisPlyNodalData(NodalData):
-    """Represents nodal data for an Analysis Ply."""
-
-    # ply_offset: VectorData | None = None
+__all__ = [
+    "ImportedAnalysisPly",
+]
 
 
 @mark_grpc_properties
@@ -118,5 +87,3 @@ class ImportedAnalysisPly(ReadOnlyTreeObject, IdTreeObject):
     active_in_post_mode: ReadOnlyProperty[bool] = grpc_data_property_read_only(
         "properties.active_in_post_mode"
     )
-    elemental_data = elemental_data_property(ImportedAnalysisPlyElementalData)
-    nodal_data = nodal_data_property(ImportedAnalysisPlyNodalData)

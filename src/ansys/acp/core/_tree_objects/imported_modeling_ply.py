@@ -27,7 +27,11 @@ import dataclasses
 
 import numpy as np
 
-from ansys.api.acp.v0 import imported_modeling_ply_pb2, imported_modeling_ply_pb2_grpc, imported_production_ply_pb2_grpc
+from ansys.api.acp.v0 import (
+    imported_modeling_ply_pb2,
+    imported_modeling_ply_pb2_grpc,
+    imported_production_ply_pb2_grpc,
+)
 
 from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.linked_object_list import define_linked_object_list
@@ -48,67 +52,37 @@ from ._mesh_data import (
 )
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import (
-    ThicknessFieldType,
-    thickness_field_type_from_pb,
-    thickness_field_type_to_pb,
+    ImportedPlyDrapingType,
+    ImportedPlyOffsetType,
     ImportedPlyThicknessType,
+    MeshImportType,
+    RosetteSelectionMethod,
+    ThicknessFieldType,
+    imported_ply_draping_type_from_pb,
+    imported_ply_draping_type_to_pb,
+    imported_ply_offset_type_from_pb,
+    imported_ply_offset_type_to_pb,
     imported_ply_thickness_type_from_pb,
     imported_ply_thickness_type_to_pb,
-    ImportedPlyOffsetType,
-    imported_ply_offset_type_to_pb,
-    imported_ply_offset_type_from_pb,
-    RosetteSelectionMethod,
+    mesh_import_type_from_pb,
+    mesh_import_type_to_pb,
     rosette_selection_method_from_pb,
     rosette_selection_method_to_pb,
     status_type_from_pb,
-    MeshImportType,
-    mesh_import_type_from_pb,
-    mesh_import_type_to_pb,
-    imported_ply_draping_type_from_pb,
-    imported_ply_draping_type_to_pb,
-    ImportedPlyDrapingType,
+    thickness_field_type_from_pb,
+    thickness_field_type_to_pb,
 )
 from .fabric import Fabric
+from .imported_production_ply import ImportedProductionPly
 from .lookup_table_1d_column import LookUpTable1DColumn
 from .lookup_table_3d_column import LookUpTable3DColumn
 from .object_registry import register
-from .imported_production_ply import ImportedProductionPly
-from .virtual_geometry import VirtualGeometry
 from .rosette import Rosette
+from .virtual_geometry import VirtualGeometry
 
-__all__ = ["ImportedModelingPly", "ImportedModelingPlyElementalData", "ImportedModelingPlyNodalData"]
-
-
-@dataclasses.dataclass
-class ImportedModelingPlyElementalData(ElementalData):
-    """Represents elemental data for an Imported Modeling Ply."""
-
-    normal: VectorData | None = None
-    orientation: VectorData | None = None
-    reference_direction: VectorData | None = None
-    fiber_direction: VectorData | None = None
-    draped_fiber_direction: VectorData | None = None
-    transverse_direction: VectorData | None = None
-    draped_transverse_direction: VectorData | None = None
-    thickness: ScalarData[np.float64] | None = None
-    relative_thickness_correction: ScalarData[np.float64] | None = None
-    design_angle: ScalarData[np.float64] | None = None
-    shear_angle: ScalarData[np.float64] | None = None
-    draped_fiber_angle: ScalarData[np.float64] | None = None
-    draped_transverse_angle: ScalarData[np.float64] | None = None
-    # area: ScalarData[np.float64] | None = None
-    # price: ScalarData[np.float64] | None = None
-    # volume: ScalarData[np.float64] | None = None
-    # mass: ScalarData[np.float64] | None = None
-    # offset: ScalarData[np.float64] | None = None
-    # cog: VectorData | None = None
-
-
-@dataclasses.dataclass
-class ImportedModelingPlyNodalData(NodalData):
-    """Represents nodal data for a Modeling Ply."""
-
-    # ply_offset: VectorData | None = None
+__all__ = [
+    "ImportedModelingPly",
+]
 
 
 @mark_grpc_properties
@@ -123,11 +97,13 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
     active :
         Inactive plies are ignored in ACP and the downstream analysis.
     offset_type :
-        Defines the location of the mesh (plane) with respect to the laminate. One of ``BOTTOM_OFFSET``, ``MIDDLE_OFFSET``, and ``TOP_OFFSET``.
+        Defines the location of the mesh (plane) with respect to the laminate.
+        One of ``BOTTOM_OFFSET``, ``MIDDLE_OFFSET``, and ``TOP_OFFSET``.
     mesh_import_type :
         Source of the imported mesh. Either from geometry or from hdf5.
     mesh_geometry:
-        Link to the geometry with represents the ply surface. Only used if ``mesh_import_type`` is ``FROM_GEOMETRY``.
+        Link to the geometry with represents the ply surface. Only used if ``mesh_import_type``
+        is ``FROM_GEOMETRY``.
     rosette_selection_method :
         Selection Method for Rosettes of the Oriented Selection Set.
     rosettes :
@@ -212,21 +188,22 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
         self.thickness_field = thickness_field
         self.thickness_field_type = thickness_field_type
 
-
     def _create_stub(self) -> imported_modeling_ply_pb2_grpc.ObjectServiceStub:
         return imported_modeling_ply_pb2_grpc.ObjectServiceStub(self._channel)
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     active: ReadWriteProperty[bool, bool] = grpc_data_property("properties.active")
     offset_type = grpc_data_property(
-        "properties.offset_type", from_protobuf=imported_ply_offset_type_from_pb, to_protobuf=imported_ply_offset_type_to_pb
+        "properties.offset_type",
+        from_protobuf=imported_ply_offset_type_from_pb,
+        to_protobuf=imported_ply_offset_type_to_pb,
     )
     mesh_import_type = grpc_data_property(
-        "properties.mesh_import_type", from_protobuf=mesh_import_type_from_pb, to_protobuf=mesh_import_type_to_pb
+        "properties.mesh_import_type",
+        from_protobuf=mesh_import_type_from_pb,
+        to_protobuf=mesh_import_type_to_pb,
     )
-    mesh_geometry = grpc_link_property(
-        "properties.mesh_geometry", allowed_types=VirtualGeometry
-    )
+    mesh_geometry = grpc_link_property("properties.mesh_geometry", allowed_types=VirtualGeometry)
     rosette_selection_method = grpc_data_property(
         "properties.rosette_selection_method",
         from_protobuf=rosette_selection_method_from_pb,
@@ -234,19 +211,20 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
     )
     rosettes = define_linked_object_list("properties.rosettes", Rosette)
     reference_direction_field = grpc_link_property(
-        "properties.reference_direction_field", allowed_types=(LookUpTable1DColumn, LookUpTable3DColumn)
+        "properties.reference_direction_field",
+        allowed_types=(LookUpTable1DColumn, LookUpTable3DColumn),
     )
     rotation_angle: ReadWriteProperty[float, float] = grpc_data_property(
         "properties.rotation_angle"
     )
 
-    ply_material = grpc_link_property(
-        "properties.ply_material", allowed_types=(Fabric,)
-    )
+    ply_material = grpc_link_property("properties.ply_material", allowed_types=(Fabric,))
     ply_angle: ReadWriteProperty[float, float] = grpc_data_property("properties.ply_angle")
 
     draping = grpc_data_property(
-        "properties.draping", from_protobuf=imported_ply_draping_type_from_pb, to_protobuf=imported_ply_draping_type_to_pb
+        "properties.draping",
+        from_protobuf=imported_ply_draping_type_from_pb,
+        to_protobuf=imported_ply_draping_type_to_pb,
     )
     draping_angle_1_field = grpc_link_property(
         "properties.draping_angle_1_field", allowed_types=(LookUpTable1DColumn, LookUpTable3DColumn)
@@ -272,6 +250,3 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
     imported_production_plies = get_read_only_collection_property(
         ImportedProductionPly, imported_production_ply_pb2_grpc.ObjectServiceStub
     )
-
-    elemental_data = elemental_data_property(ImportedModelingPlyElementalData)
-    nodal_data = nodal_data_property(ImportedModelingPlyNodalData)

@@ -250,6 +250,7 @@ def load_model_from_tempfile(model_data_dir, acp_instance):
 
     return inner
 
+
 @pytest.fixture
 def load_model_imported_plies_from_tempfile(model_data_dir, acp_instance):
     @contextmanager
@@ -267,6 +268,7 @@ def load_model_imported_plies_from_tempfile(model_data_dir, acp_instance):
             yield acp_instance.import_model(path=file_path, format=format)
 
     return inner
+
 
 @pytest.fixture
 def load_cad_geometry(model_data_dir, acp_instance):

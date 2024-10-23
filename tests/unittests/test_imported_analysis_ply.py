@@ -47,6 +47,7 @@ def all_imported_analysis_plies(model: Model):
 
     return imported_analysis_plies
 
+
 class TestImportedAnalysisPly(TreeObjectTesterReadOnly):
     COLLECTION_NAME = "imported_analysis_plies"
 

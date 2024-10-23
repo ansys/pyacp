@@ -32,6 +32,7 @@ def model(load_model_imported_plies_from_tempfile):
     with load_model_imported_plies_from_tempfile() as model:
         yield model
 
+
 def get_hdf5_imported_modeling_group(parent_model: Model):
     return parent_model.imported_modeling_groups["by hdf5"]
 
@@ -44,6 +45,7 @@ def all_imported_production_plies(model: Model):
             imported_production_plies.append(ipp)
 
     return imported_production_plies
+
 
 class TestImportedProductionPly(TreeObjectTesterReadOnly):
     COLLECTION_NAME = "imported_production_plies"
