@@ -56,44 +56,63 @@ __all__ = ["SectionCut"]
 @mark_grpc_properties
 @register
 class SectionCut(CreatableTreeObject, IdTreeObject):
-    """Instantiate a Section Cut.
+    r"""Instantiate a Section Cut.
 
     Parameters
     ----------
     name :
         Name of the section cut.
     active :
-        TODO
+        Inactive section cuts are not evaluated.
     origin :
-        TODO
+        Defines the origin of the section cut plane.
     normal :
-        TODO
+        Defines the normal vector of the section cut plane.
     in_plane_reference_direction1 :
-        TODO
+        Defines the in-plane transverse direction of the beam. Used for the surface
+        section cut and section cut measures.
     scope_entire_model :
-        TODO
+        If True, the section cut is applied to the entire model. Otherwise, the
+        section cut is applied only to the element sets specified in
+        ``scope_element_sets``.
     scope_element_sets :
-        TODO
+        The element sets to which the section cut is applied. Used only if
+        ``scope_entire_model`` is False.
     extrusion_type :
-        TODO
+        Determines the extrusion method used to create the section cut.
     scale_factor :
-        TODO
+        Scale factor applied to the ply thicknesses.
     core_scale_factor :
-        TODO
+        Scale factor applied to the core thicknesses.
     section_cut_type :
-        TODO
+        Determines whether the section cut is extruded by modeling ply, production
+        ply, or analysis ply.
     intersection_type :
-        TODO
+        Determines the method used to compute a wire frame section cut. Used only
+        if ``extrusion_type`` is ``ExtrusionType.WIRE_FRAME``.
     use_default_tolerance :
-        TODO
+        If True, the segment tolerance is computed as 0.1\% of the averaged element size.
+        Otherwise, the ``tolerance`` value is used.
+        Used only if ``extrusion_type`` is ``ExtrusionType.SURFACE_NORMAL`` or
+        ``ExtrusionType.SURFACE_SWEEP_BASED``.
     tolerance :
-        TODO
+        Defines the minimum length of the segments. Segments shorter than this value
+        are merged.
+        Used only if ``extrusion_type`` is ``ExtrusionType.SURFACE_NORMAL`` or
+        ``ExtrusionType.SURFACE_SWEEP_BASED``, and ``use_default_tolerance`` is
+        False.
     use_default_interpolation_settings :
-        TODO
+        If True, default interpolation settings are used by the sweep-based extrusion.
+        Used only if ``extrusion_type`` is ``ExtrusionType.SURFACE_SWEEP_BASED``.
     search_radius :
-        TODO
+        Search radius of the interpolation algorithm used in the sweep-based extrusion.
+        Used only if ``extrusion_type`` is ``ExtrusionType.SURFACE_SWEEP_BASED`` and
+        ``use_default_interpolation_settings`` is False.
     number_of_interpolation_points :
-        TODO
+        Number of interpolation points of the interpolation algorithm used in the
+        sweep-based extrusion.
+        Used only if ``extrusion_type`` is ``ExtrusionType.SURFACE_SWEEP_BASED`` and
+        ``use_default_interpolation_settings`` is False.
 
     """
 
