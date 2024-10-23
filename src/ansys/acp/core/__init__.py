@@ -216,6 +216,7 @@ __all__ = [
     "material_property_sets",
     "Material",
     "MeshData",
+    "MeshImportType",
     "Model",
     "ModelElementalData",
     "ModelingGroup",

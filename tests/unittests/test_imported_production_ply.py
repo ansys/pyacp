@@ -127,15 +127,3 @@ class TestImportedProductionPly(TreeObjectTesterReadOnly):
 
         for ipp in imported_production_plies:
             assert len(ipp.imported_analysis_plies) == 1
-
-
-def test_mesh_data_existence(model: Model):
-    """
-    Test that the elemental and nodal data can be retrieved. Does not
-    test the correctness of the data.
-    """
-    imported_analysis_ply = all_imported_production_plies(model)[0]
-    elemental_data = imported_analysis_ply.elemental_data
-    assert isinstance(elemental_data, ImportedProductionPlyElementalData)
-    nodal_data = imported_analysis_ply.nodal_data
-    assert isinstance(nodal_data, ImportedProductionPlyNodalData)

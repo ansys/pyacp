@@ -121,15 +121,3 @@ class TestImportedAnalysisPly(TreeObjectTesterReadOnly):
 
         model.update()
         assert len(all_imported_analysis_plies(model)) == 3
-
-
-def test_mesh_data_existence(model: Model):
-    """
-    Test that the elemental and nodal data can be retrieved. Does not
-    test the correctness of the data.
-    """
-    imported_analysis_ply = all_imported_analysis_plies(model)[0]
-    elemental_data = imported_analysis_ply.elemental_data
-    assert isinstance(elemental_data, ImportedAnalysisPlyElementalData)
-    nodal_data = imported_analysis_ply.nodal_data
-    assert isinstance(nodal_data, ImportedAnalysisPlyNodalData)

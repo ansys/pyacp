@@ -16,6 +16,10 @@ ACP objects
     ElementSet
     Fabric
     GeometricalSelectionRule
+    ImportedModelingGroup
+    ImportedModelingPly
+    ImportedProductionPly
+    ImportedAnalysisPly
     LookUpTable1D
     LookUpTable1DColumn
     LookUpTable3D
