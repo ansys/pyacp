@@ -169,6 +169,7 @@ __all__ = [
     "ImportedModelingGroup",
     "ImportedPlyDrapingType",
     "ImportedPlyOffsetType",
+    "ImportedPlyThicknessType",
     "InterpolationOptions",
     "Lamina",
     "LinkedSelectionRule",

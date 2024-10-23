@@ -25,6 +25,7 @@ Enumeration data types
     LinkedObjectHandling
     LookUpTable3DInterpolationAlgorithm
     LookUpTableColumnValueType
+    MeshImportType
     NodalDataType
     OffsetType
     PlyCutoffType
