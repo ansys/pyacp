@@ -45,7 +45,7 @@ from ..conftest import (
 BENCHMARK_IMAGE_NAME = "pyacp-benchmark-runner"
 
 
-def pytest_ignore_collect(collection_path, path, config):
+def pytest_ignore_collect(collection_path, config):
     # The benchmarks can only be run on Linux, since the 'tc-netem' tool
     # used for manipulating network speeds is not available on Docker for
     # Windows / Mac.
@@ -159,5 +159,5 @@ def network_options(request):
 
 
 @pytest.fixture
-def grpc_server(_benchmark_servers, network_options):
+def acp_instance(_benchmark_servers, network_options):
     return _benchmark_servers[network_options]
