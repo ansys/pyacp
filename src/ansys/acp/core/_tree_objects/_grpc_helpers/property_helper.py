@@ -116,16 +116,17 @@ def mark_grpc_properties(cls: T) -> T:
     return cls
 
 
-def grpc_linked_object_getter(name: str,
-                              readable_since: str | None = None) -> Callable[[Readable], Any]:
+def grpc_linked_object_getter(
+    name: str, readable_since: str | None = None
+) -> Callable[[Readable], Any]:
     """Create a getter method which obtains the linked server object."""
 
     @supported_since_decorator(
         readable_since,
         # The default error message uses 'inner' as the method name, which is confusing
         err_msg_tpl=(
-                f"The property '{name.split('.')[-1]}' is only readable since version {{required_version}} "
-                f"of the ACP gRPC server. The current server version is {{server_version}}."
+            f"The property '{name.split('.')[-1]}' is only readable since version {{required_version}} "
+            f"of the ACP gRPC server. The current server version is {{server_version}}."
         ),
     )
     def inner(self: Readable) -> CreatableFromResourcePath | None:
@@ -179,8 +180,7 @@ def grpc_data_getter(
 
 
 def grpc_linked_object_setter(
-    name: str, to_protobuf: _TO_PROTOBUF_T[Readable | None],
-    writable_since: str | None = None
+    name: str, to_protobuf: _TO_PROTOBUF_T[Readable | None], writable_since: str | None = None
 ) -> Callable[[Editable, Readable | None], None]:
     """Create a setter method which updates the linked object via the gRPC Put endpoint."""
     func = grpc_data_setter(name=name, to_protobuf=to_protobuf, supported_since=writable_since)
@@ -406,9 +406,13 @@ def grpc_link_property(
         return obj._resource_path
 
     return _wrap_doc(
-        _exposed_grpc_property(grpc_linked_object_getter(name=name, readable_since=readable_since)).setter(
+        _exposed_grpc_property(
+            grpc_linked_object_getter(name=name, readable_since=readable_since)
+        ).setter(
             # Resource path represents an object that is not set as an empty string
-            grpc_linked_object_setter(name=name, to_protobuf=to_protobuf, writable_since=writable_since)
+            grpc_linked_object_setter(
+                name=name, to_protobuf=to_protobuf, writable_since=writable_since
+            )
         ),
         doc=doc,
     )
