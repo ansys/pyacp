@@ -229,6 +229,9 @@ __all__ = [
     unit_system_pb2.UnitSystemType,
     module=__name__,
     doc="Available choices for the unit system.",
+    # When loading from a file, the value 'from_file' is more descriptive than 'undefined',
+    # so we add an alias for it.
+    extra_aliases={"undefined": ("FROM_FILE", "from_file")},
 )
 
 (
