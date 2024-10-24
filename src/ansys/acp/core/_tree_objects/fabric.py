@@ -138,13 +138,13 @@ class Fabric(CreatableTreeObject, IdTreeObject):
         from_protobuf=drop_off_material_type_from_pb,
         to_protobuf=drop_off_material_type_to_pb,
     )
-    drop_off_material = grpc_link_property("properties.drop_off_material", allowed_types=Material)
+    drop_off_material = grpc_link_property("properties.drop_off_material", allowed_types=Material, readable_since="25.1", writable_since="25.1")
     cut_off_material_handling = grpc_data_property(
         "properties.cut_off_material_handling",
         from_protobuf=cut_off_material_type_from_pb,
         to_protobuf=cut_off_material_type_to_pb,
     )
-    cut_off_material = grpc_link_property("properties.cut_off_material", allowed_types=Material)
+    cut_off_material = grpc_link_property("properties.cut_off_material", allowed_types=Material, readable_since="25.1", writable_since="25.1")
 
     draping_material_model = grpc_data_property(
         "properties.draping_material_model",

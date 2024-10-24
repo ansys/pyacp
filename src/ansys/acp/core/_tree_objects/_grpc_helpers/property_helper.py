@@ -116,9 +116,18 @@ def mark_grpc_properties(cls: T) -> T:
     return cls
 
 
-def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
+def grpc_linked_object_getter(name: str,
+                              readable_since: str | None = None) -> Callable[[Readable], Any]:
     """Create a getter method which obtains the linked server object."""
 
+    @supported_since_decorator(
+        readable_since,
+        # The default error message uses 'inner' as the method name, which is confusing
+        err_msg_tpl=(
+                f"The property '{name.split('.')[-1]}' is only readable since version {{required_version}} "
+                f"of the ACP gRPC server. The current server version is {{server_version}}."
+        ),
+    )
     def inner(self: Readable) -> CreatableFromResourcePath | None:
         if not self._is_stored:
             raise RuntimeError(f"Cannot get linked object '{name}' from unstored object")
@@ -170,10 +179,11 @@ def grpc_data_getter(
 
 
 def grpc_linked_object_setter(
-    name: str, to_protobuf: _TO_PROTOBUF_T[Readable | None]
+    name: str, to_protobuf: _TO_PROTOBUF_T[Readable | None],
+    writable_since: str | None = None
 ) -> Callable[[Editable, Readable | None], None]:
     """Create a setter method which updates the linked object via the gRPC Put endpoint."""
-    func = grpc_data_setter(name, to_protobuf)
+    func = grpc_data_setter(name=name, to_protobuf=to_protobuf, supported_since=writable_since)
 
     def inner(self: Editable, value: Readable | None) -> None:
         if value is not None and not value._is_stored:
@@ -361,6 +371,8 @@ def grpc_link_property(
     *,
     doc: str | None = None,
     allowed_types: type[GrpcObjectBase] | tuple[type[GrpcObjectBase], ...],
+    readable_since: str | None = None,
+    writable_since: str | None = None,
 ) -> Any:
     """Define a gRPC-backed property linking to another object.
 
@@ -376,6 +388,10 @@ def grpc_link_property(
     allowed_types :
         Types which are allowed to be set on the property. An
         error will be raised if an object of a different type is set.
+    readable_since :
+        Version since which the property is supported for reading.
+    writable_since :
+        Version since which the property is supported for setting.
     """
 
     def to_protobuf(obj: Readable | None) -> ResourcePath:
@@ -390,9 +406,9 @@ def grpc_link_property(
         return obj._resource_path
 
     return _wrap_doc(
-        _exposed_grpc_property(grpc_linked_object_getter(name)).setter(
+        _exposed_grpc_property(grpc_linked_object_getter(name=name, readable_since=readable_since)).setter(
             # Resource path represents an object that is not set as an empty string
-            grpc_linked_object_setter(name=name, to_protobuf=to_protobuf)
+            grpc_linked_object_setter(name=name, to_protobuf=to_protobuf, writable_since=writable_since)
         ),
         doc=doc,
     )

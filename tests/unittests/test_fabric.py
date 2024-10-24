@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 import pytest
+from packaging.version import parse as parse_version
 
 from ansys.acp.core import CutoffMaterialType, DrapingMaterialType, DropoffMaterialType
 
@@ -43,49 +44,100 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
 
     @staticmethod
     @pytest.fixture
-    def default_properties():
-        return {
-            "status": "NOTUPTODATE",
-            "thickness": 0.0,
-            "area_price": 0.0,
-            "ignore_for_postprocessing": False,
-            "drop_off_material_handling": DropoffMaterialType.GLOBAL,
-            "drop_off_material": None,
-            "cut_off_material_handling": CutoffMaterialType.COMPUTED,
-            "cut_off_material": None,
-            "draping_material_model": DrapingMaterialType.WOVEN,
-            "draping_ud_coefficient": 0.0,
-            "material": None,
-        }
+    def default_properties(acp_instance):
+        if parse_version(acp_instance.server_version) < parse_version("25.1"):
+            return {
+                "status": "NOTUPTODATE",
+                "thickness": 0.0,
+                "area_price": 0.0,
+                "ignore_for_postprocessing": False,
+                "drop_off_material_handling": DropoffMaterialType.GLOBAL,
+                "cut_off_material_handling": CutoffMaterialType.COMPUTED,
+                "draping_material_model": DrapingMaterialType.WOVEN,
+                "draping_ud_coefficient": 0.0,
+                "material": None,
+            }
+        else:
+            return {
+                "status": "NOTUPTODATE",
+                "thickness": 0.0,
+                "area_price": 0.0,
+                "ignore_for_postprocessing": False,
+                "drop_off_material_handling": DropoffMaterialType.GLOBAL,
+                "drop_off_material": None,
+                "cut_off_material_handling": CutoffMaterialType.COMPUTED,
+                "cut_off_material": None,
+                "draping_material_model": DrapingMaterialType.WOVEN,
+                "draping_ud_coefficient": 0.0,
+                "material": None,
+            }
 
     CREATE_METHOD_NAME = "create_fabric"
 
     @staticmethod
     @pytest.fixture
-    def object_properties(parent_object):
+    def object_properties(parent_object, acp_instance):
         model = parent_object
         material = model.create_material(name="Material")
         cut_off_material = model.create_material(name="Cut-off Material")
         drop_off_material = model.create_material(name="Drop-off Material")
-        return ObjectPropertiesToTest(
-            read_write=[
-                ("name", "Fabric name"),
-                ("thickness", 1e-6),
-                ("area_price", 5.98),
-                ("ignore_for_postprocessing", True),
-                ("drop_off_material_handling", DropoffMaterialType.CUSTOM),
-                ("drop_off_material", drop_off_material),
-                ("cut_off_material_handling", CutoffMaterialType.CUSTOM),
-                ("cut_off_material", cut_off_material),
-                ("draping_material_model", DrapingMaterialType.UD),
-                ("draping_ud_coefficient", 0.55),
-                ("material", material),
-                ("material", None),
-                ("material", material),
-            ],
-            read_only=[
-                ("id", "some_id"),
-                ("status", "UPTODATE"),
-                ("area_weight", 0.0),
-            ],
-        )
+        if parse_version(acp_instance.server_version) < parse_version("25.1"):
+            return ObjectPropertiesToTest(
+                read_write=[
+                    ("name", "Fabric name"),
+                    ("thickness", 1e-6),
+                    ("area_price", 5.98),
+                    ("ignore_for_postprocessing", True),
+                    ("drop_off_material_handling", DropoffMaterialType.GLOBAL),
+                    ("cut_off_material_handling", CutoffMaterialType.COMPUTED),
+                    ("draping_material_model", DrapingMaterialType.UD),
+                    ("draping_ud_coefficient", 0.55),
+                    ("material", material),
+                    ("material", None),
+                    ("material", material),
+                ],
+                read_only=[
+                    ("id", "some_id"),
+                    ("status", "UPTODATE"),
+                    ("area_weight", 0.0),
+                ],
+            )
+        else:
+            return ObjectPropertiesToTest(
+                read_write=[
+                    ("name", "Fabric name"),
+                    ("thickness", 1e-6),
+                    ("area_price", 5.98),
+                    ("ignore_for_postprocessing", True),
+                    ("drop_off_material_handling", DropoffMaterialType.CUSTOM),
+                    ("drop_off_material", drop_off_material),
+                    ("cut_off_material_handling", CutoffMaterialType.CUSTOM),
+                    ("cut_off_material", cut_off_material),
+                    ("draping_material_model", DrapingMaterialType.UD),
+                    ("draping_ud_coefficient", 0.55),
+                    ("material", material),
+                    ("material", None),
+                    ("material", material),
+                ],
+                read_only=[
+                    ("id", "some_id"),
+                    ("status", "UPTODATE"),
+                    ("area_weight", 0.0),
+                ],
+            )
+
+
+@pytest.mark.parametrize("material_type", ["cut_off_material", "drop_off_material"])
+def test_solid_model_materials(parent_object, tree_object, acp_instance, material_type):
+    """Check that solid model materials are supported since 25.1."""
+    tree_object.cut_off_material_handling = CutoffMaterialType.CUSTOM
+    tree_object.drop_off_material_handling = DropoffMaterialType.CUSTOM
+    if parse_version(acp_instance.server_version) < parse_version("25.1"):
+        with pytest.raises(RuntimeError) as exc:
+            setattr(tree_object, material_type, parent_object.create_material(name="Material"))
+        assert f"The property '{material_type}' is only editable since version" in str(exc.value)
+    else:
+        material = parent_object.create_material(name="new material")
+        setattr(tree_object, material_type, material)
+        sm_material = getattr(tree_object, material_type)
+        assert sm_material.id == material.id
