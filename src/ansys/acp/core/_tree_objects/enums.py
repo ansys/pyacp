@@ -408,7 +408,7 @@ __all__ = [
     imported_ply_offset_type_to_pb,
     imported_ply_offset_type_from_pb,
 ) = wrap_to_string_enum(
-    "OffsetType",
+    "ImportedPlyOffsetType",
     enum_types_pb2.OffsetType,
     module=__name__,
     doc="Options for the definition of the offset.",
