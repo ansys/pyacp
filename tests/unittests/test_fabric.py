@@ -50,7 +50,9 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
             "area_price": 0.0,
             "ignore_for_postprocessing": False,
             "drop_off_material_handling": DropoffMaterialType.GLOBAL,
+            "drop_off_material": None,
             "cut_off_material_handling": CutoffMaterialType.COMPUTED,
+            "cut_off_material": None,
             "draping_material_model": DrapingMaterialType.WOVEN,
             "draping_ud_coefficient": 0.0,
             "material": None,
@@ -62,7 +64,9 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
     @pytest.fixture
     def object_properties(parent_object):
         model = parent_object
-        material = model.create_material()
+        material = model.create_material(name="Material")
+        cut_off_material = model.create_material(name="Cut-off Material")
+        drop_off_material = model.create_material(name="Drop-off Material")
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Fabric name"),
@@ -70,7 +74,9 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
                 ("area_price", 5.98),
                 ("ignore_for_postprocessing", True),
                 ("drop_off_material_handling", DropoffMaterialType.CUSTOM),
-                ("cut_off_material_handling", CutoffMaterialType.GLOBAL),
+                ("drop_off_material", drop_off_material),
+                ("cut_off_material_handling", CutoffMaterialType.CUSTOM),
+                ("cut_off_material", cut_off_material),
                 ("draping_material_model", DrapingMaterialType.UD),
                 ("draping_ud_coefficient", 0.55),
                 ("material", material),
@@ -81,6 +87,5 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
                 ("id", "some_id"),
                 ("status", "UPTODATE"),
                 ("area_weight", 0.0),
-                # ("draping_ud_coefficient", 4.32), # TODO: enable this check, see backend issue #778698
             ],
         )
