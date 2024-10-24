@@ -419,10 +419,6 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         module_name=__module__,
     )
 
-    production_plies = get_read_only_collection_property(
-        ProductionPly, production_ply_pb2_grpc.ObjectServiceStub
-    )
-
     thickness_type = grpc_data_property(
         "properties.thickness_type",
         from_protobuf=thickness_type_from_pb,
@@ -447,6 +443,10 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         func_name="add_taper_edge",
         parent_class_name="ModelingPly",
         module_name=__module__,
+    )
+
+    production_plies = get_read_only_collection_property(
+        ProductionPly, production_ply_pb2_grpc.ObjectServiceStub
     )
 
     elemental_data = elemental_data_property(ModelingPlyElementalData)

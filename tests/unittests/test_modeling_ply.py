@@ -64,6 +64,7 @@ def tree_object(parent_object):
 
 class TestModelingPly(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "modeling_plies"
+    CREATE_METHOD_NAME = "create_modeling_ply"
 
     @staticmethod
     @pytest.fixture
@@ -90,8 +91,6 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
             "thickness_field_type": ThicknessFieldType.ABSOLUTE_VALUES,
             "taper_edges": [],
         }
-
-    CREATE_METHOD_NAME = "create_modeling_ply"
 
     @staticmethod
     @pytest.fixture(params=["create_fabric", "create_stackup", "create_sublaminate"])
