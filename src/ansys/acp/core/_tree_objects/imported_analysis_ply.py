@@ -54,8 +54,8 @@ class ImportedAnalysisPly(ReadOnlyTreeObject, IdTreeObject):
         Material of the Imported Analysis ply.
     angle: float
         Angle of the Analysis ply in degrees.
-    angle: thickness
-        Thickness of the Analysis ply in degrees.
+    thickness: float
+        Thickness of the ply.
     active_in_post_mode: bool
         If False, deactivates the failure analysis for this ply during post-processing.
     """

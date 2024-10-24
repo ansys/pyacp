@@ -46,8 +46,8 @@ class ImportedModelingGroup(CreatableTreeObject, IdTreeObject):
 
     Parameters
     ----------
-    name : str, optional
-        Name of the modeling group.
+    name : str
+        Name of the imported modeling group.
     """
 
     __slots__: Iterable[str] = tuple()
