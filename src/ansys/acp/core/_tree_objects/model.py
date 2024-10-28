@@ -59,6 +59,7 @@ from ansys.api.acp.v0 import (
     sampling_point_pb2_grpc,
     section_cut_pb2_grpc,
     sensor_pb2_grpc,
+    solid_model_pb2_grpc,
     spherical_selection_rule_pb2_grpc,
     stackup_pb2_grpc,
     sublaminate_pb2_grpc,
@@ -127,6 +128,7 @@ from .rosette import Rosette
 from .sampling_point import SamplingPoint
 from .section_cut import SectionCut
 from .sensor import Sensor
+from .solid_model import SolidModel
 from .spherical_selection_rule import SphericalSelectionRule
 from .stackup import Stackup
 from .sublaminate import SubLaminate
@@ -742,6 +744,14 @@ class Model(TreeObject):
         module_name=__module__,
     )
     section_cuts = define_mutable_mapping(SectionCut, section_cut_pb2_grpc.ObjectServiceStub)
+
+    create_solid_model = define_create_method(
+        SolidModel,
+        func_name="create_solid_model",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    solid_models = define_mutable_mapping(SolidModel, solid_model_pb2_grpc.ObjectServiceStub)
 
     create_sensor = define_create_method(
         Sensor, func_name="create_sensor", parent_class_name="Model", module_name=__module__

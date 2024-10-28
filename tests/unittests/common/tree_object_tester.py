@@ -37,6 +37,14 @@ class PropertyWithConversion:
 
 
 @dataclass
+class PropertyWithCustomComparison:
+    """A class to store a property which is compared using a custom function."""
+
+    initial_value: Any
+    comparison_function: Any
+
+
+@dataclass
 class ObjectPropertiesToTest:
     read_write: list[tuple[str, Any]]
     read_only: list[tuple[str, Any]]
@@ -151,6 +159,9 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
 
             new_object = create_method(**init_args_final)
             for key, val in init_args.items():
+                if isinstance(val, PropertyWithCustomComparison):
+                    assert val.comparison_function(getattr(new_object, key), val.initial_value)
+                    continue
                 if isinstance(val, PropertyWithConversion):
                     val = val.converted_value
                 assert_allclose(
@@ -176,13 +187,18 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
             if isinstance(value, PropertyWithConversion):
                 initial_value = value.initial_value
                 converted_value = value.converted_value
+            elif isinstance(value, PropertyWithCustomComparison):
+                initial_value = converted_value = value.initial_value
             else:
                 initial_value = converted_value = value
             setattr(tree_object, prop, initial_value)
-            assert_allclose(
-                actual=getattr(tree_object, prop),
-                desired=converted_value,
-            )
+            if isinstance(value, PropertyWithCustomComparison):
+                assert value.comparison_function(getattr(tree_object, prop), converted_value)
+            else:
+                assert_allclose(
+                    actual=getattr(tree_object, prop),
+                    desired=converted_value,
+                )
 
         for prop, value in object_properties.read_only:
             getattr(
