@@ -1,0 +1,22 @@
+﻿IntersectionType
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: IntersectionType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        IntersectionType.NORMAL_TO_SURFACE
+      
+      
+        IntersectionType.IN_PLANE
+      
+   
+   

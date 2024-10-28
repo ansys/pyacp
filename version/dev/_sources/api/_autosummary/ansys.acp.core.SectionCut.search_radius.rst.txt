@@ -1,0 +1,6 @@
+search\_radius
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.search_radius

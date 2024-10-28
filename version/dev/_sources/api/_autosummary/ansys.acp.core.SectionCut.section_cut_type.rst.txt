@@ -1,0 +1,6 @@
+section\_cut\_type
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.section_cut_type

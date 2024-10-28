@@ -461,6 +461,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.AnalysisPly.nodal_data.html">nodal_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.AnalysisPly.parent.html">parent</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.AnalysisPly.status.html">status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.AnalysisPly.thickness.html">thickness</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.html">BooleanSelectionRule</a></li>
@@ -473,6 +474,10 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ElementSet.html">ElementSet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Fabric.html">Fabric</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.GeometricalSelectionRule.html">GeometricalSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedModelingGroup.html">ImportedModelingGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedModelingPly.html">ImportedModelingPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedProductionPly.html">ImportedProductionPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedAnalysisPly.html">ImportedAnalysisPly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.InterfaceLayer.html">InterfaceLayer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable1D.html">LookUpTable1D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html">LookUpTable1DColumn</a></li>
@@ -486,6 +491,8 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ParallelSelectionRule.html">ParallelSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ProductionPly.html">ProductionPly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Rosette.html">Rosette</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SamplingPoint.html">SamplingPoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
@@ -585,6 +592,7 @@ document.write(`
 <li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the Analysis Ply.</p></li>
 <li><p><strong>material</strong> (<a class="reference internal" href="ansys.acp.core.Material.html#ansys.acp.core.Material" title="ansys.acp.core.Material"><em>Material</em></a>) – Material of the Analysis ply.</p></li>
 <li><p><strong>angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Angle of the Analysis ply in degrees.</p></li>
+<li><p><strong>thickness</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Thickness of the Analysis ply</p></li>
 <li><p><strong>active_in_post_mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If False, deactivates the failure analysis for this ply during post-processing.</p></li>
 </ul>
 </dd>
@@ -624,6 +632,9 @@ document.write(`
 <td><p>The parent of the object.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.AnalysisPly.status.html#ansys.acp.core.AnalysisPly.status" title="ansys.acp.core.AnalysisPly.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnalysisPly.status</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.AnalysisPly.thickness.html#ansys.acp.core.AnalysisPly.thickness" title="ansys.acp.core.AnalysisPly.thickness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnalysisPly.thickness</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -735,7 +746,7 @@ const SEARCH_FILE = "../../_static/search.json";
   <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
     >Ansys Sphinx Theme</a
   >
-  1.1.6. <br />Last updated on
+  1.1.7. <br />Last updated on
   <span id="date"></span>
 </p>
 <script>

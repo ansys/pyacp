@@ -1,0 +1,6 @@
+TOP\_OFFSET
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ImportedPlyOffsetType.TOP_OFFSET

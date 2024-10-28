@@ -1,0 +1,36 @@
+﻿ImportedAnalysisPly
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ImportedAnalysisPly
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ImportedAnalysisPly.active_in_post_mode
+      ImportedAnalysisPly.angle
+      ImportedAnalysisPly.id
+      ImportedAnalysisPly.material
+      ImportedAnalysisPly.name
+      ImportedAnalysisPly.parent
+      ImportedAnalysisPly.status
+      ImportedAnalysisPly.thickness
+   
+   

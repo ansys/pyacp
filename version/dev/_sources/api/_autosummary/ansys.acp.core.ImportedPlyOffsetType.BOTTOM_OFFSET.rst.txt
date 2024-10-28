@@ -1,0 +1,6 @@
+BOTTOM\_OFFSET
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ImportedPlyOffsetType.BOTTOM_OFFSET

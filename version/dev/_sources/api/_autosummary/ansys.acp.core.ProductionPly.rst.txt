@@ -33,5 +33,6 @@
       ProductionPly.nodal_data
       ProductionPly.parent
       ProductionPly.status
+      ProductionPly.thickness
    
    

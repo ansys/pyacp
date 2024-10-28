@@ -1,0 +1,6 @@
+use\_default\_reference\_direction
+==================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SamplingPoint.use_default_reference_direction

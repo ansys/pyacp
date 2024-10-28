@@ -33,5 +33,6 @@
       AnalysisPly.nodal_data
       AnalysisPly.parent
       AnalysisPly.status
+      AnalysisPly.thickness
    
    

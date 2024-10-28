@@ -1,0 +1,6 @@
+ANALYSIS\_PLY\_WISE
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SectionCutType.ANALYSIS_PLY_WISE

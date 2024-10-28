@@ -1,0 +1,6 @@
+FROM\_H5\_COMPOSITE\_CAE
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: MeshImportType.FROM_H5_COMPOSITE_CAE

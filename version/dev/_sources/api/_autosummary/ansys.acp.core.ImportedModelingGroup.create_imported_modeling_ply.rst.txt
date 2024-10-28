@@ -1,0 +1,6 @@
+create\_imported\_modeling\_ply
+===============================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedModelingGroup.create_imported_modeling_ply

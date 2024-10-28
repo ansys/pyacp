@@ -1,0 +1,25 @@
+﻿ExtrusionType
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ExtrusionType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        ExtrusionType.WIRE_FRAME
+      
+      
+        ExtrusionType.SURFACE_NORMAL
+      
+      
+        ExtrusionType.SURFACE_SWEEP_BASED
+      
+   
+   

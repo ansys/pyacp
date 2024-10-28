@@ -35,9 +35,11 @@
    
       Fabric.area_price
       Fabric.area_weight
+      Fabric.cut_off_material
       Fabric.cut_off_material_handling
       Fabric.draping_material_model
       Fabric.draping_ud_coefficient
+      Fabric.drop_off_material
       Fabric.drop_off_material_handling
       Fabric.id
       Fabric.ignore_for_postprocessing

@@ -1,0 +1,6 @@
+thickness
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedAnalysisPly.thickness

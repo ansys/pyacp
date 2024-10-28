@@ -1,0 +1,6 @@
+MODELING\_PLY\_WISE
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SectionCutType.MODELING_PLY_WISE

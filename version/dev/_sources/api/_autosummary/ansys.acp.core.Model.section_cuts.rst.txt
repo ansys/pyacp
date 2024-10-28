@@ -1,0 +1,6 @@
+section\_cuts
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.section_cuts

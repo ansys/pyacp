@@ -1,0 +1,6 @@
+rosettes
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.rosettes

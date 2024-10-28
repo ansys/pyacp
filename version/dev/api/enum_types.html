@@ -466,12 +466,18 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.EdgeSetType.html">EdgeSetType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.EdgeSetType.html">EdgeSetType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ElementalDataType.html">ElementalDataType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ExtrusionType.html">ExtrusionType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.FeFormat.html">FeFormat</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.GeometricalRuleType.html">GeometricalRuleType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.IgnorableEntity.html">IgnorableEntity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedPlyDrapingType.html">ImportedPlyDrapingType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedPlyOffsetType.html">ImportedPlyOffsetType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedPlyThicknessType.html">ImportedPlyThicknessType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.IntersectionType.html">IntersectionType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.LinkedObjectHandling.html">LinkedObjectHandling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.LookUpTable3DInterpolationAlgorithm.html">LookUpTable3DInterpolationAlgorithm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.LookUpTableColumnValueType.html">LookUpTableColumnValueType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.MeshImportType.html">MeshImportType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.NodalDataType.html">NodalDataType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.OffsetType.html">OffsetType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.PlyCutoffType.html">PlyCutoffType</a></li>
@@ -479,6 +485,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.PlyType.html">PlyType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.RosetteSelectionMethod.html">RosetteSelectionMethod</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.RosetteType.html">RosetteType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SectionCutType.html">SectionCutType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SensorType.html">SensorType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.StatusType.html">StatusType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SymmetryType.html">SymmetryType</a></li>
@@ -595,23 +602,41 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ElementalDataType.html#ansys.acp.core.ElementalDataType" title="ansys.acp.core.ElementalDataType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementalDataType</span></code></a>(value[, names, module, ...])</p></td>
 <td><p>Options for the type of per-element data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.FeFormat.html#ansys.acp.core.FeFormat" title="ansys.acp.core.FeFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FeFormat</span></code></a>(value[, names, module, qualname, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ExtrusionType.html#ansys.acp.core.ExtrusionType" title="ansys.acp.core.ExtrusionType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExtrusionType</span></code></a>(value[, names, module, ...])</p></td>
+<td><p>Extrusion method used in a section cut.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.FeFormat.html#ansys.acp.core.FeFormat" title="ansys.acp.core.FeFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FeFormat</span></code></a>(value[, names, module, qualname, ...])</p></td>
 <td><p>Options for the format of the FE file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.GeometricalRuleType.html#ansys.acp.core.GeometricalRuleType" title="ansys.acp.core.GeometricalRuleType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeometricalRuleType</span></code></a>(value[, names, module, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.GeometricalRuleType.html#ansys.acp.core.GeometricalRuleType" title="ansys.acp.core.GeometricalRuleType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeometricalRuleType</span></code></a>(value[, names, module, ...])</p></td>
 <td><p>Options for how a geometrical selection rule is defined.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.IgnorableEntity.html#ansys.acp.core.IgnorableEntity" title="ansys.acp.core.IgnorableEntity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IgnorableEntity</span></code></a>(value[, names, module, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.IgnorableEntity.html#ansys.acp.core.IgnorableEntity" title="ansys.acp.core.IgnorableEntity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IgnorableEntity</span></code></a>(value[, names, module, ...])</p></td>
 <td><p>Options for the entities to ignore when loading an FE file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.LinkedObjectHandling.html#ansys.acp.core.LinkedObjectHandling" title="ansys.acp.core.LinkedObjectHandling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinkedObjectHandling</span></code></a>(value[, names, module, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedPlyDrapingType.html#ansys.acp.core.ImportedPlyDrapingType" title="ansys.acp.core.ImportedPlyDrapingType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedPlyDrapingType</span></code></a>(value[, names, ...])</p></td>
+<td><p>Options for the draping algorithm used.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedPlyOffsetType.html#ansys.acp.core.ImportedPlyOffsetType" title="ansys.acp.core.ImportedPlyOffsetType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedPlyOffsetType</span></code></a>(value[, names, ...])</p></td>
+<td><p>Options for the definition of the offset.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedPlyThicknessType.html#ansys.acp.core.ImportedPlyThicknessType" title="ansys.acp.core.ImportedPlyThicknessType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedPlyThicknessType</span></code></a>(value[, names, ...])</p></td>
+<td><p>Options for how ply thickness is defined.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.IntersectionType.html#ansys.acp.core.IntersectionType" title="ansys.acp.core.IntersectionType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntersectionType</span></code></a>(value[, names, module, ...])</p></td>
+<td><p>Determines how the intersection is computed for wireframe section cuts.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.LinkedObjectHandling.html#ansys.acp.core.LinkedObjectHandling" title="ansys.acp.core.LinkedObjectHandling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinkedObjectHandling</span></code></a>(value[, names, module, ...])</p></td>
 <td><p>Defines options for handling linked objects when copying a tree of ACP objects.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.LookUpTable3DInterpolationAlgorithm.html#ansys.acp.core.LookUpTable3DInterpolationAlgorithm" title="ansys.acp.core.LookUpTable3DInterpolationAlgorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3DInterpolationAlgorithm</span></code></a>(value[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.LookUpTable3DInterpolationAlgorithm.html#ansys.acp.core.LookUpTable3DInterpolationAlgorithm" title="ansys.acp.core.LookUpTable3DInterpolationAlgorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3DInterpolationAlgorithm</span></code></a>(value[, ...])</p></td>
 <td><p>Options for the interpolation algorithm used for 3D look-up tables.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.LookUpTableColumnValueType.html#ansys.acp.core.LookUpTableColumnValueType" title="ansys.acp.core.LookUpTableColumnValueType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTableColumnValueType</span></code></a>(value[, names, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.LookUpTableColumnValueType.html#ansys.acp.core.LookUpTableColumnValueType" title="ansys.acp.core.LookUpTableColumnValueType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTableColumnValueType</span></code></a>(value[, names, ...])</p></td>
 <td><p>Options for the column type (data location, scalar data, directional data) of look-up table columns.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.MeshImportType.html#ansys.acp.core.MeshImportType" title="ansys.acp.core.MeshImportType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshImportType</span></code></a>(value[, names, module, ...])</p></td>
+<td><p>Options for the definition of the source of the imported mesh.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.NodalDataType.html#ansys.acp.core.NodalDataType" title="ansys.acp.core.NodalDataType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodalDataType</span></code></a>(value[, names, module, ...])</p></td>
 <td><p>Options for the type of per-node data.</p></td>
@@ -634,25 +659,28 @@ document.write(`
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.RosetteType.html#ansys.acp.core.RosetteType" title="ansys.acp.core.RosetteType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RosetteType</span></code></a>(value[, names, module, ...])</p></td>
 <td><p>Options for the type of a rosette.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SensorType.html#ansys.acp.core.SensorType" title="ansys.acp.core.SensorType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorType</span></code></a>(value[, names, module, qualname, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SectionCutType.html#ansys.acp.core.SectionCutType" title="ansys.acp.core.SectionCutType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SectionCutType</span></code></a>(value[, names, module, ...])</p></td>
+<td><p>Determines whether the section cut is extruded by modeling ply, production ply, or analysis ply.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SensorType.html#ansys.acp.core.SensorType" title="ansys.acp.core.SensorType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorType</span></code></a>(value[, names, module, qualname, ...])</p></td>
 <td><p>Options for the type of sensor.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.StatusType.html#ansys.acp.core.StatusType" title="ansys.acp.core.StatusType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StatusType</span></code></a>(value[, names, module, qualname, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.StatusType.html#ansys.acp.core.StatusType" title="ansys.acp.core.StatusType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StatusType</span></code></a>(value[, names, module, qualname, ...])</p></td>
 <td><p>Options for the update status of an object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SymmetryType.html#ansys.acp.core.SymmetryType" title="ansys.acp.core.SymmetryType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SymmetryType</span></code></a>(value[, names, module, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SymmetryType.html#ansys.acp.core.SymmetryType" title="ansys.acp.core.SymmetryType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SymmetryType</span></code></a>(value[, names, module, ...])</p></td>
 <td><p>Options for the symmetry of stackups or sublaminates.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ThicknessFieldType.html#ansys.acp.core.ThicknessFieldType" title="ansys.acp.core.ThicknessFieldType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType</span></code></a>(value[, names, module, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ThicknessFieldType.html#ansys.acp.core.ThicknessFieldType" title="ansys.acp.core.ThicknessFieldType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessFieldType</span></code></a>(value[, names, module, ...])</p></td>
 <td><p>Options for how thickness from a table is defined.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ThicknessType.html#ansys.acp.core.ThicknessType" title="ansys.acp.core.ThicknessType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessType</span></code></a>(value[, names, module, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ThicknessType.html#ansys.acp.core.ThicknessType" title="ansys.acp.core.ThicknessType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThicknessType</span></code></a>(value[, names, module, ...])</p></td>
 <td><p>Options for how ply thickness is defined.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.UnitSystemType.html#ansys.acp.core.UnitSystemType" title="ansys.acp.core.UnitSystemType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnitSystemType</span></code></a>(value[, names, module, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.UnitSystemType.html#ansys.acp.core.UnitSystemType" title="ansys.acp.core.UnitSystemType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnitSystemType</span></code></a>(value[, names, module, ...])</p></td>
 <td><p>Available choices for the unit system.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.VirtualGeometryDimension.html#ansys.acp.core.VirtualGeometryDimension" title="ansys.acp.core.VirtualGeometryDimension"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VirtualGeometryDimension</span></code></a>(value[, names, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.VirtualGeometryDimension.html#ansys.acp.core.VirtualGeometryDimension" title="ansys.acp.core.VirtualGeometryDimension"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VirtualGeometryDimension</span></code></a>(value[, names, ...])</p></td>
 <td><p>Options for the dimension of a virtual geometry.</p></td>
 </tr>
 </tbody>
@@ -750,7 +778,7 @@ const SEARCH_FILE = "../_static/search.json";
   <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
     >Ansys Sphinx Theme</a
   >
-  1.1.6. <br />Last updated on
+  1.1.7. <br />Last updated on
   <span id="date"></span>
 </p>
 <script>

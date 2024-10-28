@@ -1,0 +1,6 @@
+tolerance
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.tolerance

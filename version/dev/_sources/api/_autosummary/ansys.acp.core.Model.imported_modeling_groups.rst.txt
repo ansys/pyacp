@@ -1,0 +1,6 @@
+imported\_modeling\_groups
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.imported_modeling_groups

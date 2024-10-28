@@ -1,0 +1,6 @@
+create\_imported\_modeling\_group
+=================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_imported_modeling_group

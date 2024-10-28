@@ -1,0 +1,6 @@
+scope\_element\_sets
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.scope_element_sets

@@ -1,0 +1,6 @@
+sampling\_points
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.sampling_points

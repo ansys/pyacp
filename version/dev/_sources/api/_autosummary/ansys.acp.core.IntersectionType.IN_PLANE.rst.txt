@@ -1,0 +1,6 @@
+IN\_PLANE
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: IntersectionType.IN_PLANE

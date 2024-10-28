@@ -1,0 +1,6 @@
+draping\_angle\_1\_field
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.draping_angle_1_field

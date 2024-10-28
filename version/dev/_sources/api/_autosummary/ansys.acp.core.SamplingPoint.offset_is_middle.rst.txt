@@ -1,0 +1,6 @@
+offset\_is\_middle
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SamplingPoint.offset_is_middle

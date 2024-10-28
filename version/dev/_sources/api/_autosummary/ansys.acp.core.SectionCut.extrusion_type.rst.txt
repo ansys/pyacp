@@ -1,0 +1,6 @@
+extrusion\_type
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.extrusion_type

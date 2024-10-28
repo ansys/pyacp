@@ -1,0 +1,6 @@
+scope\_entire\_model
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.scope_entire_model

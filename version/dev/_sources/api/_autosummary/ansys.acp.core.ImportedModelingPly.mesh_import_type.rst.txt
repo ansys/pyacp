@@ -1,0 +1,6 @@
+mesh\_import\_type
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.mesh_import_type

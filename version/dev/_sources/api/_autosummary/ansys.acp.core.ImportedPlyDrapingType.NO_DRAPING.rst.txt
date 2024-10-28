@@ -1,0 +1,6 @@
+NO\_DRAPING
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ImportedPlyDrapingType.NO_DRAPING

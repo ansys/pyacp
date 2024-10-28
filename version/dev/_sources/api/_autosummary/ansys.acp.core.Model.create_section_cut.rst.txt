@@ -1,0 +1,6 @@
+create\_section\_cut
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_section_cut

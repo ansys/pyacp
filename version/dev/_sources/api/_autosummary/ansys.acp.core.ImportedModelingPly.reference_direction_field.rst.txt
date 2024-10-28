@@ -1,0 +1,6 @@
+reference\_direction\_field
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.reference_direction_field

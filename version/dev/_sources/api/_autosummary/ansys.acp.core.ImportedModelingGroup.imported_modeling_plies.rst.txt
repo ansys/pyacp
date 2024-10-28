@@ -1,0 +1,6 @@
+imported\_modeling\_plies
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingGroup.imported_modeling_plies

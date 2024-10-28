@@ -462,6 +462,10 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ElementSet.html">ElementSet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.Fabric.html">Fabric</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.GeometricalSelectionRule.html">GeometricalSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedModelingGroup.html">ImportedModelingGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedModelingPly.html">ImportedModelingPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedProductionPly.html">ImportedProductionPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedAnalysisPly.html">ImportedAnalysisPly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.InterfaceLayer.html">InterfaceLayer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.LookUpTable1D.html">LookUpTable1D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.LookUpTable1DColumn.html">LookUpTable1DColumn</a></li>
@@ -475,6 +479,8 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ParallelSelectionRule.html">ParallelSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ProductionPly.html">ProductionPly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.html">Rosette</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SamplingPoint.html">SamplingPoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.Stackup.html">Stackup</a></li>
@@ -595,6 +601,18 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.GeometricalSelectionRule.html#ansys.acp.core.GeometricalSelectionRule" title="ansys.acp.core.GeometricalSelectionRule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeometricalSelectionRule</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate a Geometrical Selection Rule.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedModelingGroup.html#ansys.acp.core.ImportedModelingGroup" title="ansys.acp.core.ImportedModelingGroup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedModelingGroup</span></code></a>(*[, name])</p></td>
+<td><p>Instantiate an imported modeling group.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedModelingPly.html#ansys.acp.core.ImportedModelingPly" title="ansys.acp.core.ImportedModelingPly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedModelingPly</span></code></a>(*[, name, active, ...])</p></td>
+<td><p>Instantiate an Imported Modeling Ply.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedProductionPly.html#ansys.acp.core.ImportedProductionPly" title="ansys.acp.core.ImportedProductionPly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedProductionPly</span></code></a>()</p></td>
+<td><p>Instantiate an Imported Production Ply.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedAnalysisPly.html#ansys.acp.core.ImportedAnalysisPly" title="ansys.acp.core.ImportedAnalysisPly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedAnalysisPly</span></code></a>()</p></td>
+<td><p>Instantiate an Imported Analysis Ply.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.InterfaceLayer.html#ansys.acp.core.InterfaceLayer" title="ansys.acp.core.InterfaceLayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InterfaceLayer</span></code></a>(*[, name, global_ply_nr, ...])</p></td>
 <td><p>Instantiate an interface layer.</p></td>
 </tr>
@@ -633,6 +651,12 @@ document.write(`
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.Rosette.html#ansys.acp.core.Rosette" title="ansys.acp.core.Rosette"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rosette</span></code></a>(*[, name, rosette_type, origin, ...])</p></td>
 <td><p>Instantiate a Rosette.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SamplingPoint.html#ansys.acp.core.SamplingPoint" title="ansys.acp.core.SamplingPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SamplingPoint</span></code></a>(*[, name, point, direction, ...])</p></td>
+<td><p>Instantiate a Sampling Point.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SectionCut.html#ansys.acp.core.SectionCut" title="ansys.acp.core.SectionCut"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SectionCut</span></code></a>(*[, name, active, origin, ...])</p></td>
+<td><p>Instantiate a Section Cut.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.Sensor.html#ansys.acp.core.Sensor" title="ansys.acp.core.Sensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sensor</span></code></a>(*[, name, sensor_type, active, entities])</p></td>
 <td><p>Instantiate a Sensor.</p></td>
@@ -750,7 +774,7 @@ const SEARCH_FILE = "../_static/search.json";
   <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
     >Ansys Sphinx Theme</a
   >
-  1.1.6. <br />Last updated on
+  1.1.7. <br />Last updated on
   <span id="date"></span>
 </p>
 <script>

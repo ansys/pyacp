@@ -1,0 +1,6 @@
+NOMINAL
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ImportedPlyThicknessType.NOMINAL

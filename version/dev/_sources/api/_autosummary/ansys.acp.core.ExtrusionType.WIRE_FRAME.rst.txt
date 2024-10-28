@@ -1,0 +1,6 @@
+WIRE\_FRAME
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionType.WIRE_FRAME

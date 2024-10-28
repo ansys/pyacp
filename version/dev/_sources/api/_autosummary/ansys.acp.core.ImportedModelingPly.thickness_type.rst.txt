@@ -1,0 +1,6 @@
+thickness\_type
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.thickness_type

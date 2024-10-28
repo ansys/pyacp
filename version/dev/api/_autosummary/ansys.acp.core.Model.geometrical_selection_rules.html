@@ -66,7 +66,7 @@
     <link rel="icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="lookup_tables_1d" href="ansys.acp.core.Model.lookup_tables_1d.html" />
+    <link rel="next" title="imported_modeling_groups" href="ansys.acp.core.Model.imported_modeling_groups.html" />
     <link rel="prev" title="fabrics" href="ansys.acp.core.Model.fabrics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -462,6 +462,10 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ElementSet.html">ElementSet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Fabric.html">Fabric</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.GeometricalSelectionRule.html">GeometricalSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedModelingGroup.html">ImportedModelingGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedModelingPly.html">ImportedModelingPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedProductionPly.html">ImportedProductionPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedAnalysisPly.html">ImportedAnalysisPly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.InterfaceLayer.html">InterfaceLayer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable1D.html">LookUpTable1D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html">LookUpTable1DColumn</a></li>
@@ -477,6 +481,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_element_set.html">create_element_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_fabric.html">create_fabric</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_geometrical_selection_rule.html">create_geometrical_selection_rule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_imported_modeling_group.html">create_imported_modeling_group</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_lookup_table_1d.html">create_lookup_table_1d</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_lookup_table_3d.html">create_lookup_table_3d</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_material.html">create_material</a></li>
@@ -484,6 +489,8 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_oriented_selection_set.html">create_oriented_selection_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_parallel_selection_rule.html">create_parallel_selection_rule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_rosette.html">create_rosette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_sampling_point.html">create_sampling_point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_section_cut.html">create_section_cut</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_sensor.html">create_sensor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_spherical_selection_rule.html">create_spherical_selection_rule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.create_stackup.html">create_stackup</a></li>
@@ -510,6 +517,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.elemental_data.html">elemental_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.fabrics.html">fabrics</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">geometrical_selection_rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.imported_modeling_groups.html">imported_modeling_groups</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.lookup_tables_1d.html">lookup_tables_1d</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.lookup_tables_3d.html">lookup_tables_3d</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.materials.html">materials</a></li>
@@ -523,6 +531,8 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.parent.html">parent</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.relative_thickness_tolerance.html">relative_thickness_tolerance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.rosettes.html">rosettes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.sampling_points.html">sampling_points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.section_cuts.html">section_cuts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.sensors.html">sensors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.spherical_selection_rules.html">spherical_selection_rules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.Model.stackups.html">stackups</a></li>
@@ -540,6 +550,8 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ParallelSelectionRule.html">ParallelSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ProductionPly.html">ProductionPly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Rosette.html">Rosette</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SamplingPoint.html">SamplingPoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
@@ -742,7 +754,7 @@ const SEARCH_FILE = "../../_static/search.json";
   <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
     >Ansys Sphinx Theme</a
   >
-  1.1.6. <br />Last updated on
+  1.1.7. <br />Last updated on
   <span id="date"></span>
 </p>
 <script>

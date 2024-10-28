@@ -1,0 +1,6 @@
+in\_plane\_reference\_direction1
+================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.in_plane_reference_direction1

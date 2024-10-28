@@ -1,0 +1,6 @@
+consider\_coupling\_effect
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SamplingPoint.consider_coupling_effect

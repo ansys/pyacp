@@ -1,0 +1,6 @@
+imported\_production\_plies
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.imported_production_plies

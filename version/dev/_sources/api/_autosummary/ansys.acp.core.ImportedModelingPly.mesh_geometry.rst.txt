@@ -1,0 +1,6 @@
+mesh\_geometry
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.mesh_geometry

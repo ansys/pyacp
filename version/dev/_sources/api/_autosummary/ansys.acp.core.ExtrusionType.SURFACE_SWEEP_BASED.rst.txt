@@ -1,0 +1,6 @@
+SURFACE\_SWEEP\_BASED
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionType.SURFACE_SWEEP_BASED

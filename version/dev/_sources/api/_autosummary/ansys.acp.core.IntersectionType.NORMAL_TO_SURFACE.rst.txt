@@ -1,0 +1,6 @@
+NORMAL\_TO\_SURFACE
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: IntersectionType.NORMAL_TO_SURFACE

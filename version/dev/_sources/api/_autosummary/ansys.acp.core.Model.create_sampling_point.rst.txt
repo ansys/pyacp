@@ -1,0 +1,6 @@
+create\_sampling\_point
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_sampling_point

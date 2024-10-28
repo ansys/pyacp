@@ -1,0 +1,6 @@
+FROM\_GEOMETRY
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: MeshImportType.FROM_GEOMETRY

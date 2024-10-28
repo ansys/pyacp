@@ -1,0 +1,6 @@
+core\_scale\_factor
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.core_scale_factor
