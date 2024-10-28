@@ -34,6 +34,7 @@ from ansys.api.acp.v0 import (
     modeling_ply_pb2,
     ply_material_pb2,
     rosette_pb2,
+    section_cut_pb2,
     sensor_pb2,
     unit_system_pb2,
     virtual_geometry_pb2,
@@ -52,7 +53,9 @@ __all__ = [
     "DropoffMaterialType",
     "EdgeSetType",
     "ElementalDataType",
+    "ExtrusionType",
     "GeometricalRuleType",
+    "IntersectionType",
     "LookUpTable3DInterpolationAlgorithm",
     "LookUpTableColumnValueType",
     "NodalDataType",
@@ -62,6 +65,7 @@ __all__ = [
     "PlyType",
     "RosetteSelectionMethod",
     "RosetteType",
+    "SectionCutType",
     "SensorType",
     "StatusType",
     "SymmetryType",
@@ -428,4 +432,25 @@ __all__ = [
     imported_modeling_ply_pb2.MeshImportType,
     module=__name__,
     doc="Options for the definition of the source of the imported mesh.",
+)
+
+(ExtrusionType, extrusion_type_to_pb, extrusion_type_from_pb) = wrap_to_string_enum(
+    "ExtrusionType",
+    section_cut_pb2.ExtrusionType,
+    module=__name__,
+    doc="Extrusion method used in a section cut.",
+)
+
+(SectionCutType, section_cut_type_to_pb, section_cut_type_from_pb) = wrap_to_string_enum(
+    "SectionCutType",
+    section_cut_pb2.SectionCutType,
+    module=__name__,
+    doc="Determines whether the section cut is extruded by modeling ply, production ply, or analysis ply.",
+)
+
+(IntersectionType, intersection_type_to_pb, intersection_type_from_pb) = wrap_to_string_enum(
+    "IntersectionType",
+    section_cut_pb2.IntersectionType,
+    module=__name__,
+    doc="Determines how the intersection is computed for wireframe section cuts.",
 )

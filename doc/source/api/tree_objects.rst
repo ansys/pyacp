@@ -34,6 +34,8 @@ ACP objects
     ParallelSelectionRule
     ProductionPly
     Rosette
+    SamplingPoint
+    SectionCut
     Sensor
     SphericalSelectionRule
     Stackup

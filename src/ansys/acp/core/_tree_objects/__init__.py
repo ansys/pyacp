@@ -53,10 +53,12 @@ from .enums import (
     DropoffMaterialType,
     EdgeSetType,
     ElementalDataType,
+    ExtrusionType,
     GeometricalRuleType,
     ImportedPlyDrapingType,
     ImportedPlyOffsetType,
     ImportedPlyThicknessType,
+    IntersectionType,
     LookUpTable3DInterpolationAlgorithm,
     LookUpTableColumnValueType,
     MeshImportType,
@@ -67,6 +69,7 @@ from .enums import (
     PlyType,
     RosetteSelectionMethod,
     RosetteType,
+    SectionCutType,
     SensorType,
     StatusType,
     SymmetryType,
@@ -107,6 +110,8 @@ from .parallel_selection_rule import (
 )
 from .production_ply import ProductionPly, ProductionPlyElementalData, ProductionPlyNodalData
 from .rosette import Rosette
+from .sampling_point import SamplingPoint
+from .section_cut import SectionCut
 from .sensor import Sensor
 from .spherical_selection_rule import (
     SphericalSelectionRule,
@@ -157,6 +162,7 @@ __all__ = [
     "ElementSet",
     "ElementSetElementalData",
     "ElementSetNodalData",
+    "ExtrusionType",
     "Fabric",
     "FabricWithAngle",
     "FeFormat",
@@ -175,6 +181,7 @@ __all__ = [
     "ImportedPlyThicknessType",
     "InterfaceLayer",
     "InterpolationOptions",
+    "IntersectionType",
     "Lamina",
     "LinkedSelectionRule",
     "LookUpTable1D",
@@ -212,7 +219,10 @@ __all__ = [
     "Rosette",
     "RosetteSelectionMethod",
     "RosetteType",
+    "SamplingPoint",
     "ScalarData",
+    "SectionCut",
+    "SectionCutType",
     "Sensor",
     "SensorType",
     "SphericalSelectionRule",
