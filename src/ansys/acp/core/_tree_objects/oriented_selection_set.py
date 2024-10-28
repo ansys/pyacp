@@ -150,6 +150,8 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         Value between ``0`` and ``1`` which determines the amount of deformation
         in the transverse direction if the draping material model is set to
         :attr:`DrapingMaterialType.UD`.
+    rotation_angle :
+        Angle in degrees by which the initial reference directions are rotated around the orientations.
     reference_direction_field :
         A 3D lookup table column that defines the reference directions.
 

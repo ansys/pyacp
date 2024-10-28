@@ -17,6 +17,10 @@ ACP objects
     ElementSet
     Fabric
     GeometricalSelectionRule
+    ImportedModelingGroup
+    ImportedModelingPly
+    ImportedProductionPly
+    ImportedAnalysisPly
     InterfaceLayer
     LookUpTable1D
     LookUpTable1DColumn
@@ -30,6 +34,8 @@ ACP objects
     ParallelSelectionRule
     ProductionPly
     Rosette
+    SamplingPoint
+    SectionCut
     Sensor
     SphericalSelectionRule
     Stackup

@@ -42,6 +42,7 @@ from ansys.api.acp.v0 import (
     enum_types_pb2,
     fabric_pb2_grpc,
     geometrical_selection_rule_pb2_grpc,
+    imported_modeling_group_pb2_grpc,
     lookup_table_1d_pb2_grpc,
     lookup_table_3d_pb2_grpc,
     material_pb2,
@@ -55,6 +56,8 @@ from ansys.api.acp.v0 import (
     parallel_selection_rule_pb2_grpc,
     ply_geometry_export_pb2,
     rosette_pb2_grpc,
+    sampling_point_pb2_grpc,
+    section_cut_pb2_grpc,
     sensor_pb2_grpc,
     spherical_selection_rule_pb2_grpc,
     stackup_pb2_grpc,
@@ -111,6 +114,7 @@ from .enums import (
 )
 from .fabric import Fabric
 from .geometrical_selection_rule import GeometricalSelectionRule
+from .imported_modeling_group import ImportedModelingGroup
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_3d import LookUpTable3D
 from .material import Material
@@ -120,6 +124,8 @@ from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
 from .parallel_selection_rule import ParallelSelectionRule
 from .rosette import Rosette
+from .sampling_point import SamplingPoint
+from .section_cut import SectionCut
 from .sensor import Sensor
 from .spherical_selection_rule import SphericalSelectionRule
 from .stackup import Stackup
@@ -698,6 +704,7 @@ class Model(TreeObject):
     oriented_selection_sets = define_mutable_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub
     )
+
     create_modeling_group = define_create_method(
         ModelingGroup,
         func_name="create_modeling_group",
@@ -707,6 +714,34 @@ class Model(TreeObject):
     modeling_groups = define_mutable_mapping(
         ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
     )
+
+    create_imported_modeling_group = define_create_method(
+        ImportedModelingGroup,
+        func_name="create_imported_modeling_group",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    imported_modeling_groups = define_mutable_mapping(
+        ImportedModelingGroup, imported_modeling_group_pb2_grpc.ObjectServiceStub
+    )
+
+    create_sampling_point = define_create_method(
+        SamplingPoint,
+        func_name="create_sampling_point",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    sampling_points = define_mutable_mapping(
+        SamplingPoint, sampling_point_pb2_grpc.ObjectServiceStub
+    )
+
+    create_section_cut = define_create_method(
+        SectionCut,
+        func_name="create_section_cut",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    section_cuts = define_mutable_mapping(SectionCut, section_cut_pb2_grpc.ObjectServiceStub)
 
     create_sensor = define_create_method(
         Sensor, func_name="create_sensor", parent_class_name="Model", module_name=__module__

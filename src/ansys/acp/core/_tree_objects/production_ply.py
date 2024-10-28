@@ -92,11 +92,13 @@ class ProductionPly(ReadOnlyTreeObject, IdTreeObject):
     Parameters
     ----------
     name: str
-        The name of the ProductionPly.
+        The name of the production ply.
     material: Material
         Material of the production ply.
     angle: float
         Angle of the production ply in degrees.
+    thickness: float
+        Thickness of the production ply.
 
     """
 
@@ -112,6 +114,7 @@ class ProductionPly(ReadOnlyTreeObject, IdTreeObject):
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     material = grpc_link_property_read_only("properties.material")
     angle: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.angle")
+    thickness: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.thickness")
     elemental_data = elemental_data_property(ProductionPlyElementalData)
     nodal_data = nodal_data_property(ProductionPlyNodalData)
 

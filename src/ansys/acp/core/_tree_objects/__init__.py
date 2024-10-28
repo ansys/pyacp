@@ -53,9 +53,15 @@ from .enums import (
     DropoffMaterialType,
     EdgeSetType,
     ElementalDataType,
+    ExtrusionType,
     GeometricalRuleType,
+    ImportedPlyDrapingType,
+    ImportedPlyOffsetType,
+    ImportedPlyThicknessType,
+    IntersectionType,
     LookUpTable3DInterpolationAlgorithm,
     LookUpTableColumnValueType,
+    MeshImportType,
     NodalDataType,
     OffsetType,
     PlyCutoffType,
@@ -63,6 +69,7 @@ from .enums import (
     PlyType,
     RosetteSelectionMethod,
     RosetteType,
+    SectionCutType,
     SensorType,
     StatusType,
     SymmetryType,
@@ -77,6 +84,10 @@ from .geometrical_selection_rule import (
     GeometricalSelectionRuleElementalData,
     GeometricalSelectionRuleNodalData,
 )
+from .imported_analysis_ply import ImportedAnalysisPly
+from .imported_modeling_group import ImportedModelingGroup
+from .imported_modeling_ply import ImportedModelingPly
+from .imported_production_ply import ImportedProductionPly
 from .interface_layer import InterfaceLayer
 from .linked_selection_rule import LinkedSelectionRule
 from .lookup_table_1d import LookUpTable1D
@@ -99,6 +110,8 @@ from .parallel_selection_rule import (
 )
 from .production_ply import ProductionPly, ProductionPlyElementalData, ProductionPlyNodalData
 from .rosette import Rosette
+from .sampling_point import SamplingPoint
+from .section_cut import SectionCut
 from .sensor import Sensor
 from .spherical_selection_rule import (
     SphericalSelectionRule,
@@ -149,6 +162,7 @@ __all__ = [
     "ElementSet",
     "ElementSetElementalData",
     "ElementSetNodalData",
+    "ExtrusionType",
     "Fabric",
     "FabricWithAngle",
     "FeFormat",
@@ -158,8 +172,16 @@ __all__ = [
     "GeometricalSelectionRuleElementalData",
     "GeometricalSelectionRuleNodalData",
     "IgnorableEntity",
+    "ImportedAnalysisPly",
+    "ImportedProductionPly",
+    "ImportedModelingPly",
+    "ImportedModelingGroup",
+    "ImportedPlyDrapingType",
+    "ImportedPlyOffsetType",
+    "ImportedPlyThicknessType",
     "InterfaceLayer",
     "InterpolationOptions",
+    "IntersectionType",
     "Lamina",
     "LinkedSelectionRule",
     "LookUpTable1D",
@@ -170,6 +192,7 @@ __all__ = [
     "LookUpTableColumnValueType",
     "Material",
     "MeshData",
+    "MeshImportType",
     "Model",
     "ModelElementalData",
     "ModelingGroup",
@@ -196,7 +219,10 @@ __all__ = [
     "Rosette",
     "RosetteSelectionMethod",
     "RosetteType",
+    "SamplingPoint",
     "ScalarData",
+    "SectionCut",
+    "SectionCutType",
     "Sensor",
     "SensorType",
     "SphericalSelectionRule",
