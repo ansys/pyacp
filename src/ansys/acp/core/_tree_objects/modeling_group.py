@@ -53,14 +53,14 @@ __all__ = ["ModelingGroup"]
 
 @dataclasses.dataclass
 class ModelingGroupElementalData(ElementalData):
-    """Represents elemental data for an Modeling Group."""
+    """Represents elemental data for a Modeling Group."""
 
     normal: VectorData | None = None
 
 
 @dataclasses.dataclass
 class ModelingGroupNodalData(NodalData):
-    """Represents nodal data for an Modeling Group."""
+    """Represents nodal data for a Modeling Group."""
 
 
 @mark_grpc_properties

@@ -55,9 +55,13 @@ from .enums import (
     ElementalDataType,
     ExtrusionType,
     GeometricalRuleType,
+    ImportedPlyDrapingType,
+    ImportedPlyOffsetType,
+    ImportedPlyThicknessType,
     IntersectionType,
     LookUpTable3DInterpolationAlgorithm,
     LookUpTableColumnValueType,
+    MeshImportType,
     NodalDataType,
     OffsetType,
     PlyCutoffType,
@@ -80,6 +84,10 @@ from .geometrical_selection_rule import (
     GeometricalSelectionRuleElementalData,
     GeometricalSelectionRuleNodalData,
 )
+from .imported_analysis_ply import ImportedAnalysisPly
+from .imported_modeling_group import ImportedModelingGroup
+from .imported_modeling_ply import ImportedModelingPly
+from .imported_production_ply import ImportedProductionPly
 from .interface_layer import InterfaceLayer
 from .linked_selection_rule import LinkedSelectionRule
 from .lookup_table_1d import LookUpTable1D
@@ -164,6 +172,13 @@ __all__ = [
     "GeometricalSelectionRuleElementalData",
     "GeometricalSelectionRuleNodalData",
     "IgnorableEntity",
+    "ImportedAnalysisPly",
+    "ImportedProductionPly",
+    "ImportedModelingPly",
+    "ImportedModelingGroup",
+    "ImportedPlyDrapingType",
+    "ImportedPlyOffsetType",
+    "ImportedPlyThicknessType",
     "InterfaceLayer",
     "InterpolationOptions",
     "IntersectionType",
@@ -177,6 +192,7 @@ __all__ = [
     "LookUpTableColumnValueType",
     "Material",
     "MeshData",
+    "MeshImportType",
     "Model",
     "ModelElementalData",
     "ModelingGroup",

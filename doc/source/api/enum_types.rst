@@ -22,10 +22,14 @@ Enumeration data types
     FeFormat
     GeometricalRuleType
     IgnorableEntity
+    ImportedPlyDrapingType
+    ImportedPlyOffsetType
+    ImportedPlyThicknessType
     IntersectionType
     LinkedObjectHandling
     LookUpTable3DInterpolationAlgorithm
     LookUpTableColumnValueType
+    MeshImportType
     NodalDataType
     OffsetType
     PlyCutoffType

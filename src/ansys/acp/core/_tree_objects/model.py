@@ -42,6 +42,7 @@ from ansys.api.acp.v0 import (
     enum_types_pb2,
     fabric_pb2_grpc,
     geometrical_selection_rule_pb2_grpc,
+    imported_modeling_group_pb2_grpc,
     lookup_table_1d_pb2_grpc,
     lookup_table_3d_pb2_grpc,
     material_pb2,
@@ -113,6 +114,7 @@ from .enums import (
 )
 from .fabric import Fabric
 from .geometrical_selection_rule import GeometricalSelectionRule
+from .imported_modeling_group import ImportedModelingGroup
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_3d import LookUpTable3D
 from .material import Material
@@ -702,6 +704,7 @@ class Model(TreeObject):
     oriented_selection_sets = define_mutable_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub
     )
+
     create_modeling_group = define_create_method(
         ModelingGroup,
         func_name="create_modeling_group",
@@ -710,6 +713,16 @@ class Model(TreeObject):
     )
     modeling_groups = define_mutable_mapping(
         ModelingGroup, modeling_group_pb2_grpc.ObjectServiceStub
+    )
+
+    create_imported_modeling_group = define_create_method(
+        ImportedModelingGroup,
+        func_name="create_imported_modeling_group",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    imported_modeling_groups = define_mutable_mapping(
+        ImportedModelingGroup, imported_modeling_group_pb2_grpc.ObjectServiceStub
     )
 
     create_sampling_point = define_create_method(
