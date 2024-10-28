@@ -704,7 +704,7 @@ class Model(TreeObject):
     oriented_selection_sets = define_mutable_mapping(
         OrientedSelectionSet, oriented_selection_set_pb2_grpc.ObjectServiceStub
     )
-    
+
     create_modeling_group = define_create_method(
         ModelingGroup,
         func_name="create_modeling_group",
