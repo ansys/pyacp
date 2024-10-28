@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1729687447597,
+  "lastUpdate": 1730122429321,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -16270,6 +16270,114 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002583322330623338",
             "extra": "mean: 821.0491393225223 usec\nrounds: 2304"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9a3bcd19064ed9d19d9ba5c7fd597463e17c5a49",
+          "message": "Disable failing benchmark run (#633)\n\nDisable benchmarks with `100ms` delay, since it fails.\r\n\r\nTo avoid breaking the benchmarks in the future, the `latest` server on Python 3.12 now runs the full benchmark suite even before merging to `main`.\r\n\r\nFollow-up issue to investigate and fix this benchmark: #634",
+          "timestamp": "2024-10-28T13:28:10Z",
+          "tree_id": "7b277d1f331da65bb85c82bb3b04f19d694521cf",
+          "url": "https://github.com/ansys/pyacp/commit/9a3bcd19064ed9d19d9ba5c7fd597463e17c5a49"
+        },
+        "date": 1730122403879,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 7.308264534766655,
+            "unit": "iter/sec",
+            "range": "stddev: 0.02060560356477788",
+            "extra": "mean: 136.83139071428383 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.6530335737436554,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005176535833140494",
+            "extra": "mean: 376.9270053333382 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.38197830512350617,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.617949728000042 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.1475536601697636,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005398986108413953",
+            "extra": "mean: 465.64610633335707 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.283223556822068,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.5307797529999903 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.02964570830409397,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 33.73169531799999 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1376.5247954087647,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001926896564156709",
+            "extra": "mean: 726.4671172908628 usec\nrounds: 1654"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 401.3801479408514,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00007146149112868824",
+            "extra": "mean: 2.491403735660995 msec\nrounds: 401"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 48.446604465630315,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00011032677552844566",
+            "extra": "mean: 20.64128148979841 msec\nrounds: 49"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 1026.652228408389,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001208069361754042",
+            "extra": "mean: 974.0396721782724 usec\nrounds: 1028"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 233.94862346844522,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006033324284900352",
+            "extra": "mean: 4.2744427608691575 msec\nrounds: 230"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 26.081831882774978,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013760004304532526",
+            "extra": "mean: 38.34086518517981 msec\nrounds: 27"
           }
         ]
       }
