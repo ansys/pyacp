@@ -163,7 +163,7 @@ class DropOffSettings(TreeObjectAttributeWithCache):
         "disable_dropoffs_on_top"
     )
     dropoff_disabled_on_top_sets = define_polymorphic_linked_object_list(
-        "dropoff_disabled_on_bottom_sets", allowed_types=(ElementSet, OrientedSelectionSet)
+        "dropoff_disabled_on_top_sets", allowed_types=(ElementSet, OrientedSelectionSet)
     )
 
     connect_butt_joined_plies: ReadWriteProperty[bool, bool] = grpc_data_property(

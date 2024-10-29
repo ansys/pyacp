@@ -185,8 +185,13 @@ def test_drop_off_settings_on_init(
     assert solid_model.drop_off_settings.disable_dropoffs_on_bottom == disable_dropoffs_on_bottom
     assert solid_model.drop_off_settings.disable_dropoffs_on_top == disable_dropoffs_on_top
     assert solid_model.drop_off_settings.connect_butt_joined_plies == connect_butt_joined_plies
-    assert solid_model.drop_off_settings.disable_dropoffs_on_bottom == disable_dropoffs_on_bottom
-    assert solid_model.drop_off_settings.disable_dropoffs_on_top == disable_dropoffs_on_top
+    assert (
+        solid_model.drop_off_settings.dropoff_disabled_on_bottom_sets
+        == dropoff_disabled_on_bottom_sets
+    )
+    assert (
+        solid_model.drop_off_settings.dropoff_disabled_on_top_sets == dropoff_disabled_on_top_sets
+    )
 
 
 @given(
@@ -221,11 +226,54 @@ def test_drop_off_settings_assign(
     assert solid_model.drop_off_settings.disable_dropoffs_on_bottom == disable_dropoffs_on_bottom
     assert solid_model.drop_off_settings.disable_dropoffs_on_top == disable_dropoffs_on_top
     assert solid_model.drop_off_settings.connect_butt_joined_plies == connect_butt_joined_plies
-    assert solid_model.drop_off_settings.disable_dropoffs_on_bottom == disable_dropoffs_on_bottom
-    assert solid_model.drop_off_settings.disable_dropoffs_on_top == disable_dropoffs_on_top
-    assert solid_model.drop_off_settings.connect_butt_joined_plies == connect_butt_joined_plies
-    assert solid_model.drop_off_settings.disable_dropoffs_on_bottom == disable_dropoffs_on_bottom
-    assert solid_model.drop_off_settings.disable_dropoffs_on_top == disable_dropoffs_on_top
+    assert (
+        solid_model.drop_off_settings.dropoff_disabled_on_bottom_sets
+        == dropoff_disabled_on_bottom_sets
+    )
+    assert (
+        solid_model.drop_off_settings.dropoff_disabled_on_top_sets == dropoff_disabled_on_top_sets
+    )
+
+
+def test_drop_off_settings_assign_wrong_type(parent_object):
+    """Check that assigning the wrong type to the drop-off settings raises an exception."""
+
+    solid_model = parent_object.create_solid_model()
+    with pytest.raises(TypeError):
+        solid_model.drop_off_settings = "wrong_type"
+
+
+def test_drop_off_settings_string_representation(parent_object):
+    """Check that the string representation of the drop-off settings is correct."""
+    solid_model = parent_object.create_solid_model()
+    dropoff_disabled_on_bottom_sets = [
+        parent_object.create_element_set(),
+        parent_object.create_oriented_selection_set(),
+    ]
+    dropoff_disabled_on_top_sets = [
+        parent_object.create_oriented_selection_set(),
+        parent_object.create_element_set(),
+    ]
+
+    drop_off_settings = pyacp.DropOffSettings(
+        drop_off_type=pyacp.DropOffType.OUTSIDE_PLY,
+        disable_dropoffs_on_bottom=True,
+        dropoff_disabled_on_bottom_sets=dropoff_disabled_on_bottom_sets,
+        disable_dropoffs_on_top=True,
+        dropoff_disabled_on_top_sets=dropoff_disabled_on_top_sets,
+        connect_butt_joined_plies=False,
+    )
+    # When the drop-off settings are not yet linked to the server, the linked
+    # object lists cannot instantiate the objects. Therefore, the string representation
+    # will contain '<unavailable>' for the linked objects.
+    assert "<unavailable>" in str(drop_off_settings)
+    # Assign the drop-off settings to the solid model, to establish the
+    # link to the server
+    solid_model.drop_off_settings = drop_off_settings
+    str_repr = str(solid_model.drop_off_settings)
+    assert "DropOffSettings" in str_repr
+    for val in dropoff_disabled_on_bottom_sets + dropoff_disabled_on_top_sets:
+        assert repr(val) in str_repr
 
 
 @pytest.mark.parametrize(
