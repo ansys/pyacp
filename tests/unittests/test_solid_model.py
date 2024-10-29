@@ -20,8 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from hypothesis import HealthCheck, given, settings
+import pathlib
+import tempfile
+
+from hypothesis import HealthCheck, assume, given, settings
 import hypothesis.strategies as st
+from packaging.version import parse as parse_version
 import pytest
 
 import ansys.acp.core as pyacp
@@ -32,6 +36,14 @@ from .common.tree_object_tester import (
     TreeObjectTester,
     WithLockedMixin,
 )
+
+
+@pytest.fixture(autouse=True)
+def skip_if_unsupported_version(acp_instance):
+    if parse_version(acp_instance.server_version) < parse_version(
+        pyacp.SolidModel._SUPPORTED_SINCE
+    ):
+        pytest.skip("SolidModel is not supported on this version of the server.")
 
 
 def compare_pb_object(given, expected):
@@ -214,3 +226,101 @@ def test_drop_off_settings_assign(
     assert solid_model.drop_off_settings.connect_butt_joined_plies == connect_butt_joined_plies
     assert solid_model.drop_off_settings.disable_dropoffs_on_bottom == disable_dropoffs_on_bottom
     assert solid_model.drop_off_settings.disable_dropoffs_on_top == disable_dropoffs_on_top
+
+
+@pytest.mark.parametrize(
+    "format",
+    [
+        "ansys:h5",
+        "ansys:cdb",
+        pyacp.SolidModelExportFormat.ANSYS_H5,
+        pyacp.SolidModelExportFormat.ANSYS_CDB,
+    ],
+)
+def test_solid_model_export(acp_instance, parent_object, format):
+    """Check that the export to a file works."""
+    model = parent_object
+    solid_model = model.create_solid_model()
+    solid_model.element_sets = [model.element_sets["All_Elements"]]
+    model.update()
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        if format == "ansys:h5":
+            ext = ".h5"
+        else:
+            ext = ".cdb"
+
+        out_file_name = f"out_file{ext}"
+        out_path = pathlib.Path(tmp_dir) / out_file_name
+
+        if not acp_instance.is_remote:
+            # save directly to the local file, to avoid a copy in the working directory
+            out_file_name = out_path  # type: ignore
+
+        solid_model.export(path=out_file_name, format=format)
+        acp_instance.download_file(out_file_name, out_path)
+
+        assert out_path.exists()
+        assert out_path.stat().st_size > 0
+
+
+@given(invalid_format=st.text())
+@settings(suppress_health_check=[HealthCheck.function_scoped_fixture], deadline=None)
+def test_export_with_invalid_format_raises(parent_object, invalid_format):
+    """Check that the export to a file with an invalid format raises an exception."""
+    assume(invalid_format not in ["ansys:h5", "ansys:cdb"])
+
+    model = parent_object
+    solid_model = model.create_solid_model()
+    solid_model.element_sets = [model.element_sets["All_Elements"]]
+    model.update()
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        out_file_name = f"out_file.h5"
+        out_path = pathlib.Path(tmp_dir) / out_file_name
+
+        with pytest.raises(ValueError):
+            solid_model.export(path=out_path, format=invalid_format)
+
+
+@pytest.mark.parametrize("format", ["ansys:cdb", "step", "iges", "stl"])
+def test_solid_model_skin_export(acp_instance, parent_object, format):
+    """Check that the skin export to a file works."""
+    model = parent_object
+    solid_model = model.create_solid_model()
+    solid_model.element_sets = [model.element_sets["All_Elements"]]
+    model.update()
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        ext = {"ansys:cdb": ".cdb", "step": ".stp", "iges": ".igs", "stl": ".stl"}[format]
+        out_file_name = f"out_file{ext}"
+        out_path = pathlib.Path(tmp_dir) / out_file_name
+
+        if not acp_instance.is_remote:
+            # save directly to the local file, to avoid a copy in the working directory
+            out_file_name = out_path  # type: ignore
+
+        solid_model.export_skin(path=out_file_name, format=format)
+        acp_instance.download_file(out_file_name, out_path)
+
+        assert out_path.exists()
+        assert out_path.stat().st_size > 0
+
+
+@given(invalid_format=st.text())
+@settings(suppress_health_check=[HealthCheck.function_scoped_fixture], deadline=None)
+def test_skin_export_with_invalid_format_raises(parent_object, invalid_format):
+    """Check that the export to a file with an invalid format raises an exception."""
+    assume(invalid_format not in ["ansys:cdb", "step", "iges", "stl"])
+
+    model = parent_object
+    solid_model = model.create_solid_model()
+    solid_model.element_sets = [model.element_sets["All_Elements"]]
+    model.update()
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        out_file_name = f"out_file.stp"
+        out_path = pathlib.Path(tmp_dir) / out_file_name
+
+        with pytest.raises(ValueError):
+            solid_model.export_skin(path=out_path, format=invalid_format)

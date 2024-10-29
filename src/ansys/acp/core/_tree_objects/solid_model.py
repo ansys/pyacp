@@ -23,11 +23,15 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
+import typing
 from typing import Any
 
-from ansys.api.acp.v0 import solid_model_pb2, solid_model_pb2_grpc
+from ansys.api.acp.v0 import solid_model_export_pb2, solid_model_pb2, solid_model_pb2_grpc
 
+from .._typing_helper import PATH as _PATH
+from .._utils.path_to_str import path_to_str_checked
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
+from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.linked_object_list import (
     define_linked_object_list,
     define_polymorphic_linked_object_list,
@@ -50,12 +54,16 @@ from .enums import (
     DropOffType,
     ExtrusionMethodType,
     OffsetDirectionType,
+    SolidModelExportFormat,
+    SolidModelSkinExportFormat,
     drop_off_type_from_pb,
     drop_off_type_to_pb,
     extrusion_method_type_from_pb,
     extrusion_method_type_to_pb,
     offset_direction_type_from_pb,
     offset_direction_type_to_pb,
+    solid_model_export_format_to_pb,
+    solid_model_skin_export_format_to_pb,
     status_type_from_pb,
 )
 from .material import Material
@@ -446,4 +454,44 @@ class SolidModel(CreatableTreeObject, IdTreeObject):
     drop_off_settings = nested_grpc_object_property("properties.drop_off_settings", DropOffSettings)
     export_settings = nested_grpc_object_property("properties.export_settings", ExportSettings)
 
-    # TODO: file and skin export
+    def export(self, *, path: _PATH, format: SolidModelExportFormat) -> None:
+        """Export the solid model to a file.
+
+        Parameters
+        ----------
+        path :
+            Path to the file where the solid model is saved.
+        format :
+            Format of the exported file. Available formats are ``"ansys:h5"``
+            and ``"ansys:cdb"``.
+
+        """
+        with wrap_grpc_errors():
+            self._get_stub().ExportToFile(  # type: ignore
+                solid_model_export_pb2.ExportToFileRequest(
+                    resource_path=self._resource_path,
+                    path=path_to_str_checked(path),
+                    format=typing.cast(typing.Any, solid_model_export_format_to_pb(format)),
+                )
+            )
+
+    def export_skin(self, *, path: _PATH, format: SolidModelSkinExportFormat) -> None:
+        """Export the skin of the solid model to a file.
+
+        Parameters
+        ----------
+        path :
+            Path to the file where the solid model skin is saved.
+        format :
+            Format of the exported file. Available formats are ``"ansys:cdb"``,
+            ``"step"``, ``"iges"``, and ``"stl"``.
+
+        """
+        with wrap_grpc_errors():
+            self._get_stub().ExportSkin(  # type: ignore
+                solid_model_export_pb2.ExportSkinRequest(
+                    resource_path=self._resource_path,
+                    path=path_to_str_checked(path),
+                    format=typing.cast(typing.Any, solid_model_skin_export_format_to_pb(format)),
+                )
+            )

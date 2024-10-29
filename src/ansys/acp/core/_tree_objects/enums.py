@@ -73,6 +73,8 @@ __all__ = [
     "SensorType",
     "StatusType",
     "SymmetryType",
+    "SolidModelExportFormat",
+    "SolidModelSkinExportFormat",
     "ThicknessFieldType",
     "ThicknessType",
     "UnitSystemType",
@@ -486,4 +488,30 @@ __all__ = [
     solid_model_pb2.DropOffType,
     module=__name__,
     doc="Determines whether the drop off in solid models is inside or outside the ply boundary.",
+)
+
+SolidModelExportFormat, solid_model_export_format_to_pb, _ = wrap_to_string_enum(
+    "SolidModelExportFormat",
+    enum_types_pb2.FileFormat,
+    module=__name__,
+    value_converter=lambda val: val.lower().replace("_", ":"),
+    doc="Options for the export format of solid models.",
+    explicit_value_list=(
+        enum_types_pb2.FileFormat.ANSYS_H5,
+        enum_types_pb2.FileFormat.ANSYS_CDB,
+    ),
+)
+
+SolidModelSkinExportFormat, solid_model_skin_export_format_to_pb, _ = wrap_to_string_enum(
+    "SolidModelSkinExportFormat",
+    enum_types_pb2.FileFormat,
+    module=__name__,
+    value_converter=lambda val: val.lower().replace("_", ":"),
+    doc="Options for the export format of solid model skins.",
+    explicit_value_list=(
+        enum_types_pb2.FileFormat.ANSYS_CDB,
+        enum_types_pb2.FileFormat.STEP,
+        enum_types_pb2.FileFormat.IGES,
+        enum_types_pb2.FileFormat.STL,
+    ),
 )

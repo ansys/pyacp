@@ -499,6 +499,7 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly):
 
 
 class TreeObjectAttributeWithCache(ObjectCacheMixin, TreeObjectAttribute):
+    """Tree object attribute with instance caching."""
 
     @classmethod
     @constructor_with_cache(
@@ -524,6 +525,13 @@ def nested_grpc_object_property(
     pb_path: str,
     object_type: type[AttribT],
 ) -> ReadWriteProperty[AttribT, AttribT]:
+    """Create a property for a nested object attribute.
+
+    Creates a property for a nested object which is backed by the parent
+    object's protobuf object. The property is read-write, and instances
+    are cached.
+    """
+
     def _getter(self: TreeObject) -> AttribT:
         return object_type._from_parent(parent_object=self, attribute_path=pb_path)
 
