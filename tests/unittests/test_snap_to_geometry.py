@@ -20,11 +20,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from packaging.version import parse as parse_version
 import pytest
 
-from ansys.acp.core import OrientationType
+from ansys.acp.core import OrientationType, SnapToGeometry
 
 from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
+
+
+@pytest.fixture(autouse=True)
+def skip_if_unsupported_version(acp_instance):
+    if parse_version(acp_instance.server_version) < parse_version(SnapToGeometry._SUPPORTED_SINCE):
+        pytest.skip("SnapToGeometry is not supported on this version of the server.")
 
 
 @pytest.fixture
