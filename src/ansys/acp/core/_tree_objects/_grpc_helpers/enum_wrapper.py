@@ -93,6 +93,7 @@ def wrap_to_string_enum(
     res_enum.__doc__ = doc
 
     def to_pb_conversion_func(val: _StrEnumT) -> int:
+        val = res_enum(val)  # generates a nicer error if 'val' is not a valid enum value
         return to_pb_conversion_dict[val]
 
     def from_pb_conversion_func(val: int) -> _StrEnumT:

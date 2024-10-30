@@ -36,6 +36,7 @@ from ansys.api.acp.v0 import (
     rosette_pb2,
     section_cut_pb2,
     sensor_pb2,
+    solid_model_pb2,
     unit_system_pb2,
     virtual_geometry_pb2,
 )
@@ -51,15 +52,18 @@ __all__ = [
     "DrapingMaterialType",
     "DrapingType",
     "DropoffMaterialType",
+    "DropOffType",
     "EdgeSetType",
     "ElementalDataType",
     "ExtrusionType",
+    "ExtrusionMethodType",
     "GeometricalRuleType",
     "IntersectionType",
     "LookUpTable3DInterpolationAlgorithm",
     "LookUpTableColumnValueType",
     "NodalDataType",
     "OffsetType",
+    "OffsetDirectionType",
     "PlyCutoffType",
     "PlyGeometryExportFormat",
     "PlyType",
@@ -69,6 +73,8 @@ __all__ = [
     "SensorType",
     "StatusType",
     "SymmetryType",
+    "SolidModelExportFormat",
+    "SolidModelSkinExportFormat",
     "ThicknessFieldType",
     "ThicknessType",
     "UnitSystemType",
@@ -453,4 +459,59 @@ __all__ = [
     section_cut_pb2.IntersectionType,
     module=__name__,
     doc="Determines how the intersection is computed for wireframe section cuts.",
+)
+
+(ExtrusionMethodType, extrusion_method_type_to_pb, extrusion_method_type_from_pb) = (
+    wrap_to_string_enum(
+        "ExtrusionMethodType",
+        solid_model_pb2.ExtrusionMethodType,
+        module=__name__,
+        doc="Extrusion method used in a solid model.",
+    )
+)
+
+(OffsetDirectionType, offset_direction_type_to_pb, offset_direction_type_from_pb) = (
+    wrap_to_string_enum(
+        "OffsetDirectionType",
+        solid_model_pb2.OffsetDirectionType,
+        module=__name__,
+        doc=(
+            "Determines how the offset direction is evaluated in a solid model. With "
+            "``SURFACE_NORMAL``, the offset direction is re-evaluated based on the "
+            "surface of the solid. With ``SHELL_NORMAL``, the direction is based on the "
+            "shell surface."
+        ),
+    )
+)
+(DropOffType, drop_off_type_to_pb, drop_off_type_from_pb) = wrap_to_string_enum(
+    "DropOffType",
+    solid_model_pb2.DropOffType,
+    module=__name__,
+    doc="Determines whether the drop off in solid models is inside or outside the ply boundary.",
+)
+
+SolidModelExportFormat, solid_model_export_format_to_pb, _ = wrap_to_string_enum(
+    "SolidModelExportFormat",
+    enum_types_pb2.FileFormat,
+    module=__name__,
+    value_converter=lambda val: val.lower().replace("_", ":"),
+    doc="Options for the export format of solid models.",
+    explicit_value_list=(
+        enum_types_pb2.FileFormat.ANSYS_H5,
+        enum_types_pb2.FileFormat.ANSYS_CDB,
+    ),
+)
+
+SolidModelSkinExportFormat, solid_model_skin_export_format_to_pb, _ = wrap_to_string_enum(
+    "SolidModelSkinExportFormat",
+    enum_types_pb2.FileFormat,
+    module=__name__,
+    value_converter=lambda val: val.lower().replace("_", ":"),
+    doc="Options for the export format of solid model skins.",
+    explicit_value_list=(
+        enum_types_pb2.FileFormat.ANSYS_CDB,
+        enum_types_pb2.FileFormat.STEP,
+        enum_types_pb2.FileFormat.IGES,
+        enum_types_pb2.FileFormat.STL,
+    ),
 )

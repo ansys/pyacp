@@ -47,6 +47,7 @@ from ._grpc_helpers.polymorphic_from_pb import (
     tree_object_from_resource_path,
 )
 from ._grpc_helpers.property_helper import (
+    _exposed_grpc_property,
     _get_data_attribute,
     grpc_data_property,
     grpc_data_property_read_only,
@@ -433,6 +434,12 @@ class TreeObjectAttributeReadOnly(GrpcObjectBase):
             return False
         return self._parent_object._is_stored
 
+    @property
+    def _server_wrapper(self) -> ServerWrapper:
+        if self._parent_object is None:
+            raise RuntimeError("The parent object is not set.")
+        return self._parent_object._server_wrapper
+
 
 class PolymorphicMixin(TreeObjectAttributeReadOnly):
     """Mixin class for attributes which can have multiple types, through a 'oneof' definition."""
@@ -489,6 +496,54 @@ class TreeObjectAttribute(TreeObjectAttributeReadOnly):
     def _put_if_stored(self) -> None:
         if self._is_stored:
             self._put()
+
+
+class TreeObjectAttributeWithCache(ObjectCacheMixin, TreeObjectAttribute):
+    """Tree object attribute with instance caching."""
+
+    @classmethod
+    @constructor_with_cache(
+        key_getter=lambda parent_object, attribute_path: (
+            parent_object,
+            attribute_path,
+        ),
+        raise_on_invalid_key=True,
+    )
+    def _from_parent(cls: type[Self], /, parent_object: TreeObject, attribute_path: str) -> Self:
+        return cls(_parent_object=parent_object, _attribute_path=attribute_path)
+
+    @staticmethod
+    def _cache_key_valid(key: tuple[Editable, str]) -> bool:
+        parent_object, attribute_path = key
+        return parent_object is not None and bool(attribute_path)
+
+
+AttribT = TypeVar("AttribT", bound=TreeObjectAttributeWithCache)
+
+
+def nested_grpc_object_property(
+    pb_path: str,
+    object_type: type[AttribT],
+) -> ReadWriteProperty[AttribT, AttribT]:
+    """Create a property for a nested object attribute.
+
+    Creates a property for a nested object which is backed by the parent
+    object's protobuf object. The property is read-write, and instances
+    are cached.
+    """
+
+    def _getter(self: TreeObject) -> AttribT:
+        return object_type._from_parent(parent_object=self, attribute_path=pb_path)
+
+    def _setter(self: TreeObject, value: AttribT) -> None:
+        if not isinstance(value, object_type):
+            raise TypeError(
+                f"Expected an object of type '{object_type.__name__}', got '{type(value).__name__}'."
+            )
+        _getter(self)._pb_object.CopyFrom(value._pb_object)
+        self._put_if_stored()
+
+    return _exposed_grpc_property(_getter).setter(_setter)
 
 
 if typing.TYPE_CHECKING:  # pragma: no cover

@@ -15,10 +15,12 @@ Enumeration data types
     DrapingMaterialType
     DrapingType
     DropoffMaterialType
+    DropOffType
     EdgeSetType
     EdgeSetType
     ElementalDataType
     ExtrusionType
+    ExtrusionMethodType
     FeFormat
     GeometricalRuleType
     IgnorableEntity

@@ -13,8 +13,10 @@ ACP objects
     CADGeometry
     CutoffSelectionRule
     CylindricalSelectionRule
+    DropOffSettings
     EdgeSet
     ElementSet
+    ExportSettings
     Fabric
     GeometricalSelectionRule
     ImportedModelingGroup
