@@ -26,7 +26,12 @@ from collections.abc import Iterable
 import typing
 from typing import Any
 
-from ansys.api.acp.v0 import solid_model_export_pb2, solid_model_pb2, solid_model_pb2_grpc
+from ansys.api.acp.v0 import (
+    snap_to_geometry_pb2_grpc,
+    solid_model_export_pb2,
+    solid_model_pb2,
+    solid_model_pb2_grpc,
+)
 
 from .._typing_helper import PATH as _PATH
 from .._utils.path_to_str import path_to_str_checked
@@ -36,6 +41,7 @@ from ._grpc_helpers.linked_object_list import (
     define_linked_object_list,
     define_polymorphic_linked_object_list,
 )
+from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -70,6 +76,7 @@ from .material import Material
 from .modeling_ply import ModelingPly
 from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
+from .snap_to_geometry import SnapToGeometry
 
 __all__ = ["SolidModel", "DropOffSettings", "ExportSettings"]
 
@@ -453,6 +460,16 @@ class SolidModel(CreatableTreeObject, IdTreeObject):
 
     drop_off_settings = nested_grpc_object_property("properties.drop_off_settings", DropOffSettings)
     export_settings = nested_grpc_object_property("properties.export_settings", ExportSettings)
+
+    create_snap_to_geometry = define_create_method(
+        SnapToGeometry,
+        func_name="create_snap_to_geometry",
+        parent_class_name="SolidModel",
+        module_name=__module__,
+    )
+    snap_to_geometries = define_mutable_mapping(
+        SnapToGeometry, snap_to_geometry_pb2_grpc.ObjectServiceStub
+    )
 
     def export(self, *, path: _PATH, format: SolidModelExportFormat) -> None:
         """Export the solid model to a file.
