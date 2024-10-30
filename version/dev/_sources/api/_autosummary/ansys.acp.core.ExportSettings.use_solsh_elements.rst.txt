@@ -1,0 +1,6 @@
+use\_solsh\_elements
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExportSettings.use_solsh_elements

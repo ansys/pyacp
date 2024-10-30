@@ -1,0 +1,6 @@
+OUTSIDE\_PLY
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DropOffType.OUTSIDE_PLY

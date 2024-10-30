@@ -1,0 +1,6 @@
+drop\_off\_type
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: DropOffSettings.drop_off_type

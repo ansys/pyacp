@@ -72,6 +72,9 @@
       Model.create_sensor
       
       
+      Model.create_solid_model
+      
+      
       Model.create_spherical_selection_rule
       
       
@@ -149,6 +152,7 @@
       Model.sampling_points
       Model.section_cuts
       Model.sensors
+      Model.solid_models
       Model.spherical_selection_rules
       Model.stackups
       Model.sublaminates

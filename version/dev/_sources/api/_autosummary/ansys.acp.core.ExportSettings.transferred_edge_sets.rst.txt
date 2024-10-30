@@ -1,0 +1,6 @@
+transferred\_edge\_sets
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExportSettings.transferred_edge_sets

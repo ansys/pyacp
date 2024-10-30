@@ -1,0 +1,34 @@
+﻿DropOffSettings
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: DropOffSettings
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      DropOffSettings.connect_butt_joined_plies
+      DropOffSettings.disable_dropoffs_on_bottom
+      DropOffSettings.disable_dropoffs_on_top
+      DropOffSettings.drop_off_type
+      DropOffSettings.dropoff_disabled_on_bottom_sets
+      DropOffSettings.dropoff_disabled_on_top_sets
+   
+   

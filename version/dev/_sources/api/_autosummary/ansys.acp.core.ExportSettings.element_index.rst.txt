@@ -1,0 +1,6 @@
+element\_index
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExportSettings.element_index

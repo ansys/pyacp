@@ -1,0 +1,6 @@
+USER\_DEFINED
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethodType.USER_DEFINED

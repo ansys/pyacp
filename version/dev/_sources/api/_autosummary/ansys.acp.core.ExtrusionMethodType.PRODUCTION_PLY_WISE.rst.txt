@@ -1,0 +1,6 @@
+PRODUCTION\_PLY\_WISE
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethodType.PRODUCTION_PLY_WISE

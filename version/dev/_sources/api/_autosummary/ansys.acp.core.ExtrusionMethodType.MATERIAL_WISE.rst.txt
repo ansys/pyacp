@@ -1,0 +1,6 @@
+MATERIAL\_WISE
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethodType.MATERIAL_WISE

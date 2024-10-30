@@ -1,0 +1,6 @@
+use\_default\_material\_index
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExportSettings.use_default_material_index

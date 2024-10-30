@@ -1,0 +1,6 @@
+write\_degenerated\_elements
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExportSettings.write_degenerated_elements

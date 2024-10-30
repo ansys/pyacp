@@ -1,0 +1,6 @@
+dropoff\_disabled\_on\_top\_sets
+================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: DropOffSettings.dropoff_disabled_on_top_sets

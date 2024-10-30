@@ -1,0 +1,6 @@
+connect\_butt\_joined\_plies
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: DropOffSettings.connect_butt_joined_plies

@@ -1,0 +1,6 @@
+transferred\_element\_sets
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExportSettings.transferred_element_sets

@@ -1,0 +1,6 @@
+disable\_dropoffs\_on\_top
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: DropOffSettings.disable_dropoffs_on_top
