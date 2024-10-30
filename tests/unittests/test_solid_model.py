@@ -123,7 +123,7 @@ class TestSolidModel(WithLockedMixin, TreeObjectTester):
                 (
                     "export_settings",
                     PropertyWithCustomComparison(
-                        initial_value=pyacp.ExportSettings(
+                        initial_value=pyacp.SolidModelExportSettings(
                             use_default_section_index=False,
                             section_index=2,
                             use_default_coordinate_system_index=False,

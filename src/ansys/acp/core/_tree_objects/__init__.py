@@ -96,6 +96,7 @@ from .imported_analysis_ply import ImportedAnalysisPly
 from .imported_modeling_group import ImportedModelingGroup
 from .imported_modeling_ply import ImportedModelingPly
 from .imported_production_ply import ImportedProductionPly
+from .imported_solid_model import ImportedSolidModel, ImportedSolidModelExportSettings
 from .interface_layer import InterfaceLayer
 from .linked_selection_rule import LinkedSelectionRule
 from .lookup_table_1d import LookUpTable1D
@@ -122,7 +123,7 @@ from .sampling_point import SamplingPoint
 from .section_cut import SectionCut
 from .sensor import Sensor
 from .snap_to_geometry import SnapToGeometry
-from .solid_model import DropOffSettings, ExportSettings, SolidModel
+from .solid_model import DropOffSettings, SolidModel, SolidModelExportSettings
 from .spherical_selection_rule import (
     SphericalSelectionRule,
     SphericalSelectionRuleElementalData,
@@ -174,7 +175,6 @@ __all__ = [
     "ElementSet",
     "ElementSetElementalData",
     "ElementSetNodalData",
-    "ExportSettings",
     "ExtrusionGuide",
     "ExtrusionGuideType",
     "ExtrusionMethodType",
@@ -195,6 +195,8 @@ __all__ = [
     "ImportedPlyOffsetType",
     "ImportedPlyThicknessType",
     "ImportedProductionPly",
+    "ImportedSolidModel",
+    "ImportedSolidModelExportSettings",
     "InterfaceLayer",
     "InterpolationOptions",
     "IntersectionType",
@@ -246,6 +248,7 @@ __all__ = [
     "SnapToGeometry",
     "SolidModel",
     "SolidModelExportFormat",
+    "SolidModelExportSettings",
     "SolidModelSkinExportFormat",
     "SphericalSelectionRule",
     "SphericalSelectionRuleElementalData",

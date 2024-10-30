@@ -43,6 +43,7 @@ from ansys.api.acp.v0 import (
     fabric_pb2_grpc,
     geometrical_selection_rule_pb2_grpc,
     imported_modeling_group_pb2_grpc,
+    imported_solid_model_pb2_grpc,
     lookup_table_1d_pb2_grpc,
     lookup_table_3d_pb2_grpc,
     material_pb2,
@@ -116,6 +117,7 @@ from .enums import (
 from .fabric import Fabric
 from .geometrical_selection_rule import GeometricalSelectionRule
 from .imported_modeling_group import ImportedModelingGroup
+from .imported_solid_model import ImportedSolidModel
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_3d import LookUpTable3D
 from .material import Material
@@ -752,6 +754,16 @@ class Model(TreeObject):
         module_name=__module__,
     )
     solid_models = define_mutable_mapping(SolidModel, solid_model_pb2_grpc.ObjectServiceStub)
+
+    create_imported_solid_model = define_create_method(
+        ImportedSolidModel,
+        func_name="create_imported_solid_model",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    imported_solid_models = define_mutable_mapping(
+        ImportedSolidModel, imported_solid_model_pb2_grpc.ObjectServiceStub
+    )
 
     create_sensor = define_create_method(
         Sensor, func_name="create_sensor", parent_class_name="Model", module_name=__module__
