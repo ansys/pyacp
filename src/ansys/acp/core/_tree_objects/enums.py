@@ -36,6 +36,7 @@ from ansys.api.acp.v0 import (
     rosette_pb2,
     section_cut_pb2,
     sensor_pb2,
+    snap_to_geometry_pb2,
     solid_model_pb2,
     unit_system_pb2,
     virtual_geometry_pb2,
@@ -62,8 +63,9 @@ __all__ = [
     "LookUpTable3DInterpolationAlgorithm",
     "LookUpTableColumnValueType",
     "NodalDataType",
-    "OffsetType",
     "OffsetDirectionType",
+    "OffsetType",
+    "OrientationType",
     "PlyCutoffType",
     "PlyGeometryExportFormat",
     "PlyType",
@@ -513,5 +515,25 @@ SolidModelSkinExportFormat, solid_model_skin_export_format_to_pb, _ = wrap_to_st
         enum_types_pb2.FileFormat.STEP,
         enum_types_pb2.FileFormat.IGES,
         enum_types_pb2.FileFormat.STL,
+    ),
+)
+
+
+def _prefix_undefined(value: str) -> str:
+    if value == "UNDEFINED":
+        return "_UNDEFINED"
+    return value
+
+
+OrientationType, orientation_type_to_pb, orientation_type_from_pb = wrap_to_string_enum(
+    "OrientationType",
+    snap_to_geometry_pb2.OrientationType,
+    module=__name__,
+    key_converter=_prefix_undefined,
+    value_converter=lambda val: _prefix_undefined(val).lower(),
+    doc=(
+        "Determines which layup face a snap-to geometry is applies to. Note that the "
+        "``_UNDEFINED`` option should not be used. It is equivalent to using "
+        "``BOTTOM``, and included only for compatibility with existing models."
     ),
 )
