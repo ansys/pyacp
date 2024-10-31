@@ -198,6 +198,7 @@ nitpick_ignore_regex = [
     ("py:class", r"ansys\.acp.core\..*\.ChildT"),
     ("py:class", r"ansys\.acp.core\..*\.CreatableValueT"),
     ("py:class", r"ansys\.acp.core\..*\.ScalarDataT"),
+    ("py:class", r"ansys\.acp.core\..*\.MeshDataT "),
 ]
 
 # sphinx.ext.autodoc configuration
