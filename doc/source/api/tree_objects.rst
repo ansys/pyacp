@@ -23,6 +23,7 @@ ACP objects
     ImportedModelingGroup
     ImportedModelingPly
     ImportedProductionPly
+    ImportedSolidModel
     ImportedSolidModelExportSettings
     InterfaceLayer
     LookUpTable1D
