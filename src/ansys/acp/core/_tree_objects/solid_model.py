@@ -471,7 +471,8 @@ class SolidModel(CreatableTreeObject, IdTreeObject):
     )
     extrusion_guides = define_mutable_mapping(
         ExtrusionGuide, extrusion_guide_pb2_grpc.ObjectServiceStub
-    
+    )
+
     create_snap_to_geometry = define_create_method(
         SnapToGeometry,
         func_name="create_snap_to_geometry",
