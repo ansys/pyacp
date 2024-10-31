@@ -65,6 +65,7 @@ class TestExtrusionGuide(WithLockedMixin, TreeObjectTester):
             "radius": 0.0,
             "depth": 0.0,
             "use_curvature_correction": False,
+            "extrusion_guide_type": 'by_direction',
         }
 
     CREATE_METHOD_NAME = "create_extrusion_guide"
@@ -106,26 +107,43 @@ def test_handling_of_extrusion_guide_type(model, parent_object, skip_before_vers
 
     virtual_cad = model.create_virtual_geometry(name="dummy")
 
-    # Verify that the extrusion guide type is BY_DIRECTION if
-    # the direction is not (0., 0., 0.) and that cad_geometry is None.
+    """ Case extrusion guide type = BY_DIRECTION """
     ex_by_direction = parent_object.create_extrusion_guide(
         name="ExtrusionGuide",
         direction=(0.0, 1.0, 1.0),
-        cad_geometry=virtual_cad,
         extrusion_guide_type=ExtrusionGuideType.BY_DIRECTION,
     )
     assert ex_by_direction.extrusion_guide_type == ExtrusionGuideType.BY_DIRECTION
     assert ex_by_direction.cad_geometry is None
     numpy.testing.assert_allclose(ex_by_direction.direction, (0.0, 1.0, 1.0))
+    # check that the user can modify the direction as long as the extrusion guide type is BY_DIRECTION
+    ex_by_direction.direction = (2.3, 2.0, 1.0)
+    # check that the user can change the extrusion guide type to BY_GEOMETRY
+    ex_by_direction.extrusion_guide_type = ExtrusionGuideType.BY_GEOMETRY
+    ex_by_direction.cad_geometry = virtual_cad
 
-    # Verify that the extrusion guide type is BY_GEOMETRY if
-    # specified by the user and that the direction is ignored in that case
+    """ Case extrusion guide type = BY_GEOMETRY """
     ex_by_geometry = parent_object.create_extrusion_guide(
         name="ExtrusionGuide",
-        direction=(0.0, 2.0, 1.0),
+        direction=(0.0, 0.0, 0.0),
         extrusion_guide_type=ExtrusionGuideType.BY_GEOMETRY,
         cad_geometry=virtual_cad,
     )
     assert ex_by_geometry.extrusion_guide_type == ExtrusionGuideType.BY_GEOMETRY
     assert ex_by_geometry.cad_geometry is not None and ex_by_geometry.cad_geometry.name == "dummy"
-    assert ex_by_geometry.direction == (0.0, 0.0, 0.0)
+    with pytest.raises(RuntimeError) as exc:
+        direction = ex_by_geometry.direction
+    assert "Cannot access direction if the extrusion guide type is not 'by_direction'!" in str(exc.value)
+
+    with pytest.raises(RuntimeError) as exc:
+        ex_by_geometry.direction = (0.0, 1.0, 1.0)
+    assert "Cannot set direction if extrusion guide type is not 'by_direction'!" in str(exc.value)
+    """ Case invalid initialization """
+    with pytest.raises(RuntimeError) as exc:
+        ex_by_geometry = parent_object.create_extrusion_guide(
+            name="ExtrusionGuide",
+            direction=(0.0, 2.0, 1.0),
+            extrusion_guide_type=ExtrusionGuideType.BY_GEOMETRY,
+            cad_geometry=virtual_cad,
+        )
+    assert "Cannot set direction if extrusion guide type is not 'by_direction'!" in str(exc.value)

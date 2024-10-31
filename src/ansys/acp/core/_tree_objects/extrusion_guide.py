@@ -26,10 +26,15 @@ from collections.abc import Iterable
 
 from ansys.api.acp.v0 import extrusion_guide_pb2, extrusion_guide_pb2_grpc
 from ansys.api.acp.v0.array_types_pb2 import DoubleArray
+from google.protobuf.message import Message
 
-from .._utils.array_conversions import to_1D_double_array
+from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadWriteProperty
+from ._grpc_helpers.protocols import ObjectInfo
 from ._grpc_helpers.property_helper import (
+    _PROTOBUF_T,
+    _get_data_attribute,
+    _set_data_attribute,
     grpc_data_property,
     grpc_data_property_read_only,
     grpc_link_property,
@@ -53,20 +58,6 @@ import numpy as np  # noqa: F401 isort:skip
 __all__ = [
     "ExtrusionGuide",
 ]
-
-
-def to_direction_tuple_from_1D_array_or_none(array: DoubleArray) -> tuple[float, ...]:
-    """Convert a 1D DoubleArray or None protobuf message to a tuple with length 3."""
-    # This is needed because the extrusion direction is None if the extrusion guide type
-    # is not `by_direction`. See Feature 1122546 in ADO.
-    if len(array.data) == 0:
-        return 0.0, 0.0, 0.0
-    if not len(array.shape) == 1:
-        raise RuntimeError(f"Cannot convert {len(array.shape)}-dimensional array to tuple!")
-    value = tuple(array.data)
-    if len(value) == 3:
-        return value
-    raise RuntimeError(f"Cannot convert {value} to a direction of length 3!")
 
 
 @mark_grpc_properties
@@ -116,7 +107,7 @@ class ExtrusionGuide(CreatableTreeObject, IdTreeObject):
         edge_set: EdgeSet | None = None,
         extrusion_guide_type: ExtrusionGuideType = "by_direction",
         cad_geometry: VirtualGeometry | None = None,
-        direction: tuple[float, float, float] = (0.0, 0.0, 0.0),
+        direction: tuple[float, float, float] = (0.0, 0.0, 1.0),
         radius: float = 0.0,
         depth: float = 0.0,
         use_curvature_correction: bool = False,
@@ -148,16 +139,35 @@ class ExtrusionGuide(CreatableTreeObject, IdTreeObject):
 
     cad_geometry = grpc_link_property("properties.cad_geometry", allowed_types=(VirtualGeometry,))
 
-    direction = grpc_data_property(
-        "properties.direction",
-        from_protobuf=to_direction_tuple_from_1D_array_or_none,
-        to_protobuf=to_1D_double_array,
-    )
-
     radius: ReadWriteProperty[float, float] = grpc_data_property("properties.radius")
 
     depth: ReadWriteProperty[float, float] = grpc_data_property("properties.depth")
 
     use_curvature_correction: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.use_curvature_correction"
+    )
+
+    # The extrusion guide type is not stored by the backend directly. Instead
+    # it is derived from the property direction. Therefore, setting and getting
+    # the direction is blocked if the extrusion guide type is not `by_direction`.
+    # See Feature 1122546 in ADO. This can be removed once the backend is updated.
+    @staticmethod
+    def _set_direction_attribute(pb_obj: ObjectInfo, name: str, value: _PROTOBUF_T) -> None:
+        if pb_obj.properties.extrusion_guide_type != extrusion_guide_pb2.BY_DIRECTION:
+            array = to_tuple_from_1D_array(value)
+            if array and sum(array) != 0:
+                raise RuntimeError("Cannot set direction if extrusion guide type is not 'by_direction'!")
+        _set_data_attribute(pb_obj, name, value)
+
+    def _get_direction_attribute(pb_obj: Message, name: str, check_optional: bool) -> None:
+        if pb_obj.properties.extrusion_guide_type != extrusion_guide_pb2.BY_DIRECTION:
+            raise RuntimeError("Cannot access direction if the extrusion guide type is not 'by_direction'!")
+        return _get_data_attribute(pb_obj, name, check_optional)
+
+    direction = grpc_data_property(
+        "properties.direction",
+        from_protobuf=to_tuple_from_1D_array,
+        to_protobuf=to_1D_double_array,
+        setter_func=_set_direction_attribute,
+        getter_func=_get_direction_attribute
     )
