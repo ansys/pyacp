@@ -1,0 +1,22 @@
+﻿OrientationType
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: OrientationType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        OrientationType.BOTTOM
+      
+      
+        OrientationType.TOP
+      
+   
+   

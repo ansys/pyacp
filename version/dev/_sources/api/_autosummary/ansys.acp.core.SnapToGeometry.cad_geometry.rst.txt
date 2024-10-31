@@ -1,0 +1,6 @@
+cad\_geometry
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SnapToGeometry.cad_geometry

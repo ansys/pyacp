@@ -1,0 +1,6 @@
+orientation\_type
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SnapToGeometry.orientation_type

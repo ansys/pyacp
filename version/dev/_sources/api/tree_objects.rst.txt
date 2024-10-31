@@ -39,6 +39,7 @@ ACP objects
     SamplingPoint
     SectionCut
     Sensor
+    SnapToGeometry
     SphericalSelectionRule
     Stackup
     SubLaminate
