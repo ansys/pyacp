@@ -23,6 +23,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
+import dataclasses
 from typing import Any
 
 from ansys.api.acp.v0 import (
@@ -43,6 +44,13 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     grpc_link_property,
     mark_grpc_properties,
+)
+from ._mesh_data import (
+    ElementalData,
+    NodalData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
 )
 from ._solid_model_export import SolidModelExportMixin
 from .base import (
@@ -72,7 +80,25 @@ from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
 from .snap_to_geometry import SnapToGeometry
 
-__all__ = ["SolidModel", "DropOffSettings", "SolidModelExportSettings"]
+__all__ = [
+    "SolidModel",
+    "DropOffSettings",
+    "SolidModelExportSettings",
+    "SolidModelElementalData",
+    "SolidModelNodalData",
+]
+
+
+@dataclasses.dataclass
+class SolidModelElementalData(ElementalData):
+    """Represents elemental data for a Solid Model."""
+
+    normal: VectorData | None = None
+
+
+@dataclasses.dataclass
+class SolidModelNodalData(NodalData):
+    """Represents nodal data for a Solid Model."""
 
 
 @mark_grpc_properties
@@ -476,3 +502,6 @@ class SolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObject):
     snap_to_geometries = define_mutable_mapping(
         SnapToGeometry, snap_to_geometry_pb2_grpc.ObjectServiceStub
     )
+
+    elemental_data = elemental_data_property(SolidModelElementalData)
+    nodal_data = nodal_data_property(SolidModelNodalData)

@@ -88,12 +88,6 @@ class ModelingPlyElementalData(ElementalData):
     """Represents elemental data for a Modeling Ply."""
 
     normal: VectorData | None = None
-    orientation: VectorData | None = None
-    reference_direction: VectorData | None = None
-    fiber_direction: VectorData | None = None
-    draped_fiber_direction: VectorData | None = None
-    transverse_direction: VectorData | None = None
-    draped_transverse_direction: VectorData | None = None
     thickness: ScalarData[np.float64] | None = None
     relative_thickness_correction: ScalarData[np.float64] | None = None
     design_angle: ScalarData[np.float64] | None = None

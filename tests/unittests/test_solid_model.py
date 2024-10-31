@@ -372,3 +372,31 @@ def test_skin_export_with_invalid_format_raises(parent_object, invalid_format):
 
         with pytest.raises(ValueError):
             solid_model.export_skin(path=out_path, format=invalid_format)
+
+
+def test_elemental_data(parent_object):
+    """Check that the elemental data can be accessed."""
+    model = parent_object
+    model.fabrics["Fabric.1"].thickness = 0.1
+
+    solid_model = model.create_solid_model()
+    solid_model.element_sets = [model.element_sets["All_Elements"]]
+    model.update()
+
+    elemental_data = solid_model.elemental_data
+    empty_keys = [key for key, value in vars(elemental_data).items() if value is None]
+    assert not empty_keys, f"Keys with None values: {empty_keys}"
+
+
+def test_nodal_data(parent_object):
+    """Check that the nodal data can be accessed."""
+    model = parent_object
+    model.fabrics["Fabric.1"].thickness = 0.1
+
+    solid_model = model.create_solid_model()
+    solid_model.element_sets = [model.element_sets["All_Elements"]]
+    model.update()
+
+    nodal_data = solid_model.nodal_data
+    empty_keys = [key for key, value in vars(nodal_data).items() if value is None]
+    assert not empty_keys, f"Keys with None values: {empty_keys}"

@@ -23,6 +23,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
+import dataclasses
 from typing import Any
 
 from ansys.api.acp.v0 import (
@@ -41,6 +42,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
+from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from ._solid_model_export import SolidModelExportMixin
 from .base import (
     CreatableTreeObject,
@@ -57,7 +59,13 @@ from .enums import (
 from .material import Material
 from .object_registry import register
 
-__all__ = ["ImportedSolidModel", "SolidModelImportFormat", "ImportedSolidModelExportSettings"]
+__all__ = [
+    "ImportedSolidModel",
+    "SolidModelImportFormat",
+    "ImportedSolidModelExportSettings",
+    "ImportedSolidModelElementalData",
+    "ImportedSolidModelNodalData",
+]
 
 
 SolidModelImportFormat, solid_model_import_format_to_pb, solid_model_import_format_from_pb = (
@@ -74,6 +82,16 @@ SolidModelImportFormat, solid_model_import_format_to_pb, solid_model_import_form
         ),
     )
 )
+
+
+@dataclasses.dataclass
+class ImportedSolidModelElementalData(ElementalData):
+    """Represents elemental data for an imported solid model."""
+
+
+@dataclasses.dataclass
+class ImportedSolidModelNodalData(NodalData):
+    """Represents nodal data for an imported solid model."""
 
 
 @mark_grpc_properties
@@ -290,3 +308,6 @@ class ImportedSolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObjec
     export_settings = nested_grpc_object_property(
         "properties.export_settings", ImportedSolidModelExportSettings
     )
+
+    elemental_data = elemental_data_property(ImportedSolidModelElementalData)
+    nodal_data = nodal_data_property(ImportedSolidModelNodalData)
