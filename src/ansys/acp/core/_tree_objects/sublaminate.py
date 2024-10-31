@@ -24,7 +24,7 @@ from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Sequence
 import typing
-from typing import Any, Union, get_args
+from typing import Any, TypeAlias, Union, get_args
 
 from typing_extensions import Self
 
@@ -51,7 +51,7 @@ from .stackup import Stackup
 
 __all__ = ["SubLaminate", "Lamina"]
 
-_LINKABLE_MATERIAL_TYPES = Union[Fabric, Stackup]
+_LINKABLE_MATERIAL_TYPES: TypeAlias = Union[Fabric, Stackup]
 
 
 @mark_grpc_properties

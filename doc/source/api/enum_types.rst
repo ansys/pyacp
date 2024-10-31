@@ -32,6 +32,7 @@ Enumeration data types
     LookUpTableColumnValueType
     MeshImportType
     NodalDataType
+    OffsetDirectionType
     OffsetType
     OrientationType
     PlyCutoffType

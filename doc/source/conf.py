@@ -3,7 +3,6 @@
 from datetime import datetime
 import inspect
 import os
-import typing
 import warnings
 
 import pyvista
@@ -26,7 +25,9 @@ def _signature(
     """
 
     # Import classes which were guarded with a 'typing.TYPE_CHECKING' explicitly here, otherwise
-    # the 'typing.get_type_hints' function will fail when encountering them.
+    # the 'eval' in 'inspect.signature' will fail.
+    from collections.abc import Sequence  # noqa: F401
+
     from ansys.acp.core import (  # noqa: F401
         BooleanSelectionRule,
         CADComponent,
@@ -37,30 +38,40 @@ def _signature(
         ScalarData,
         VectorData,
     )
+
+    # Import type aliases so that they can be resolved correctly.
+    from ansys.acp.core._tree_objects.linked_selection_rule import (  # noqa: F401
+        _LINKABLE_SELECTION_RULE_TYPES,
+    )
+    from ansys.acp.core._tree_objects.oriented_selection_set import (  # noqa: F401
+        _SELECTION_RULES_LINKABLE_TO_OSS,
+    )
+    from ansys.acp.core._tree_objects.sensor import _LINKABLE_ENTITY_TYPES  # noqa: F401
+    from ansys.acp.core._tree_objects.sublaminate import _LINKABLE_MATERIAL_TYPES  # noqa: F401
     from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles  # noqa: F401
     from ansys.dpf.core import UnitSystem  # noqa: F401
 
-    signature = inspect.signature(subject)
+    signature = inspect.signature(subject, locals=locals(), eval_str=True)
 
     if signature.parameters:
         parameters = list(signature.parameters.values())
         if parameters[0].name == "self":
-            parameters = parameters[1:]
-        # The 'typing.get_type_hints' function is needed to resolve aliases like
-        # '_LINKABLE_MATERIAL_TYPES', which would otherwise be displayed as an explicit string.
-        if inspect.isclass(subject):
-            type_hints = typing.get_type_hints(subject.__init__, localns=locals())
-        else:
-            type_hints = typing.get_type_hints(subject, localns=locals())
-        parameters = [
-            param.replace(annotation=type_hints.get(param.name, param.annotation))
-            for param in parameters
-        ]
+            parameters.pop(0)
+        # dgresch Oct'24:
+        # Hack to fix the remaining issues with the signature. This is simpler than
+        # trying to get 'inspect.signature' to fully work, which would need to be done
+        # inside the 'define_create_method' function.
+        # I believe (speculation) the reason for this is that the 'create_' and 'add_'
+        # methods have an explicit __signature__ attribute, which stops the
+        # 'inspect.signature' from performing the 'eval'.
+        for i, param in enumerate(parameters):
+            if param.annotation in [
+                "Sequence[_SELECTION_RULES_LINKABLE_TO_OSS]",
+                "Sequence[_LINKABLE_ENTITY_TYPES]",
+                "_LINKABLE_MATERIAL_TYPES",
+            ]:
+                parameters[i] = param.replace(annotation=eval(param.annotation))
         signature = signature.replace(parameters=parameters)
-        if inspect.isfunction(subject):
-            signature = signature.replace(
-                return_annotation=type_hints.get("return", signature.return_annotation)
-            )
     return signature
 
 
@@ -176,15 +187,15 @@ intersphinx_mapping = {
 }
 
 nitpick_ignore = [
-    ("py:class", "typing.Self"),
     # Ignore TypeVar / TypeAlias defined within PyACP: they are either not recognized correctly,
     # or misidentified as a class.
     ("py:class", "_PATH"),
-    ("py:class", "MeshDataT"),
     ("py:class", "ChildT"),
     ("py:class", "CreatableValueT"),
 ]
 nitpick_ignore_regex = [
+    ("py:class", r"(typing\.|typing_extensions\.)?Self"),
+    ("py:class", r"(numpy\.typing|npt)\.NDArray"),
     ("py:class", r"(numpy|np)\.float64"),
     ("py:class", r"(numpy|np)\.int32"),
     ("py:class", r"(numpy|np)\.int64"),
@@ -198,7 +209,7 @@ nitpick_ignore_regex = [
     ("py:class", r"ansys\.acp.core\..*\.ChildT"),
     ("py:class", r"ansys\.acp.core\..*\.CreatableValueT"),
     ("py:class", r"ansys\.acp.core\..*\.ScalarDataT"),
-    ("py:class", r"ansys\.acp.core\..*\.MeshDataT "),
+    ("py:class", r"ansys\.acp.core\..*\.MeshDataT"),
 ]
 
 # sphinx.ext.autodoc configuration

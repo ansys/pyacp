@@ -24,7 +24,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 import typing
-from typing import Union
+from typing import TypeAlias, Union
 
 from typing_extensions import Self
 
@@ -52,7 +52,7 @@ if typing.TYPE_CHECKING:  # pragma: no cover
     # this would cause a circular import at run-time.
     from .boolean_selection_rule import BooleanSelectionRule
 
-_LINKABLE_SELECTION_RULE_TYPES = Union[
+_LINKABLE_SELECTION_RULE_TYPES: TypeAlias = Union[
     "BooleanSelectionRule",
     CutoffSelectionRule,
     CylindricalSelectionRule,
@@ -102,7 +102,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     ====================================== ================================== ===================
 
     Note that :class:`.CutoffSelectionRule` and :class:`.BooleanSelectionRule` objects cannot be linked to
-    a Boolean Selection Rule, only to a Modeling Ply.
+    a Boolean Selection Rule, only to a Modeling Ply..
     """
 
     _SUPPORTED_SINCE = "24.2"
