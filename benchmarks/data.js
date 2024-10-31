@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1730361833546,
+  "lastUpdate": 1730414216697,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -16594,6 +16594,114 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00010210170104780588",
             "extra": "mean: 38.28327262962401 msec\nrounds: 27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f98ec6bf7d85bd6fe93d0e2dff8a9da18bcafc2e",
+          "message": "Add type information to create_ and add_ method documentation (#620)\n\nProvide type information for the parameters of the ``create_*`` and ``add_*`` methods in the documentation.\r\n\r\nThe ``__signature__`` of the methods is constructed from from the wrapped class's signature, only adding a 'self' parameter.\r\n\r\nFor the ``add_*`` methods, the `Parameters` block (and everything below it) is now also obtained from the class if present.\r\n\r\nThe 'sphinx-autodoc-typehints' extension previously used does not support showing this dynamically created signature, so it was replaced by using the built-in type hint support of 'sphinx.ext.autodoc'. The only drawback is that defaults are now shown only in the signature, and no longer in the description.\r\n\r\nSince 'sphinx.ext.autodoc' however overwrites the class _parameter_ type hints with the class _attribute_ type hints, the helper function used to generate the signature is monkeypatched.\r\n\r\nCloses #612",
+          "timestamp": "2024-10-31T22:31:29Z",
+          "tree_id": "822dc172960f26e6cadd6a7d8f5a1f7853d276df",
+          "url": "https://github.com/ansys/pyacp/commit/f98ec6bf7d85bd6fe93d0e2dff8a9da18bcafc2e"
+        },
+        "date": 1730414191348,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 7.480082911461671,
+            "unit": "iter/sec",
+            "range": "stddev: 0.018602746744246633",
+            "extra": "mean: 133.68835771428525 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.6997504501870493,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0041756789215682336",
+            "extra": "mean: 370.4046053333248 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.38624574558567165,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.589025281000005 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.1651045931392363,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0024312013408646356",
+            "extra": "mean: 461.8714510000075 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.28635414749311033,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.492179207999982 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.029633615427293498,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 33.745460537999975 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1349.884852746533,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00020207782307635758",
+            "extra": "mean: 740.8039270648586 usec\nrounds: 1755"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 403.3505605646113,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006724163260435548",
+            "extra": "mean: 2.4792329496212844 msec\nrounds: 397"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 48.54352648268063,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00008871257748911768",
+            "extra": "mean: 20.60006910204145 msec\nrounds: 49"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 1030.4507342846096,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001204910322612945",
+            "extra": "mean: 970.4491119551194 usec\nrounds: 1054"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 233.6569191362339,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000649781054357338",
+            "extra": "mean: 4.279779103896122 msec\nrounds: 231"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 26.04121157338893,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013591841418777998",
+            "extra": "mean: 38.40067107407103 msec\nrounds: 27"
           }
         ]
       }
