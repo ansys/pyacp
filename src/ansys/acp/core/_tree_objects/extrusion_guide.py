@@ -24,8 +24,8 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 
-from ansys.api.acp.v0.array_types_pb2 import DoubleArray
 from ansys.api.acp.v0 import extrusion_guide_pb2, extrusion_guide_pb2_grpc
+from ansys.api.acp.v0.array_types_pb2 import DoubleArray
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadWriteProperty
@@ -37,7 +37,6 @@ from ._grpc_helpers.property_helper import (
 )
 from .base import CreatableTreeObject, IdTreeObject
 from .edge_set import EdgeSet
-from .virtual_geometry import VirtualGeometry
 from .enums import (
     ExtrusionGuideType,
     extrusion_guide_type_from_pb,
@@ -45,6 +44,7 @@ from .enums import (
     status_type_from_pb,
 )
 from .object_registry import register
+from .virtual_geometry import VirtualGeometry
 
 # Workaround: these imports are needed to make sphinx_autodoc_typehints understand
 # the inherited members of the Elemental- and NodalData classes.
@@ -154,13 +154,9 @@ class ExtrusionGuide(CreatableTreeObject, IdTreeObject):
         to_protobuf=to_1D_double_array,
     )
 
-    radius: ReadWriteProperty[float, float] = grpc_data_property(
-        "properties.radius"
-    )
+    radius: ReadWriteProperty[float, float] = grpc_data_property("properties.radius")
 
-    depth: ReadWriteProperty[float, float] = grpc_data_property(
-        "properties.depth"
-    )
+    depth: ReadWriteProperty[float, float] = grpc_data_property("properties.depth")
 
     use_curvature_correction: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.use_curvature_correction"

@@ -23,7 +23,7 @@ import numpy.testing
 from packaging.version import parse as parse_version
 import pytest
 
-from ansys.acp.core import ExtrusionGuideType, ExtrusionGuide
+from ansys.acp.core import ExtrusionGuide, ExtrusionGuideType
 
 from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
 
@@ -93,7 +93,7 @@ class TestExtrusionGuide(WithLockedMixin, TreeObjectTester):
 
 
 def test_handling_of_extrusion_guide_type(model, parent_object, skip_before_version):
-    """ Verify the handling of extrusion_guide_type.
+    """Verify the handling of extrusion_guide_type.
 
     The backend determines the extrusion guide type based on the direction.
     extrusion_guide_type = BY_DIRECTION if direction != 0., else

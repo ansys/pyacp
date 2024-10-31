@@ -56,8 +56,7 @@ __all__ = [
     "DropOffType",
     "EdgeSetType",
     "ElementalDataType",
-    "ExtrusionGuideType"
-    "ExtrusionType",
+    "ExtrusionGuideType" "ExtrusionType",
     "ExtrusionMethodType",
     "GeometricalRuleType",
     "IntersectionType",

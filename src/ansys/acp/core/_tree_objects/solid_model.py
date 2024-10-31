@@ -30,7 +30,7 @@ from ansys.api.acp.v0 import (
     extrusion_guide_pb2_grpc,
     solid_model_export_pb2,
     solid_model_pb2,
-    solid_model_pb2_grpc
+    solid_model_pb2_grpc,
 )
 
 from .._typing_helper import PATH as _PATH
