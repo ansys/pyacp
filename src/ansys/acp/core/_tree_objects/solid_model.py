@@ -453,7 +453,9 @@ class SolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObject):
     )
 
     drop_off_settings = nested_grpc_object_property("properties.drop_off_settings", DropOffSettings)
-    export_settings = nested_grpc_object_property("properties.export_settings", SolidModelExportSettings)
+    export_settings = nested_grpc_object_property(
+        "properties.export_settings", SolidModelExportSettings
+    )
 
     create_extrusion_guide = define_create_method(
         ExtrusionGuide,
