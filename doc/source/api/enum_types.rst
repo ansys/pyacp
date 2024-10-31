@@ -17,7 +17,6 @@ Enumeration data types
     DropoffMaterialType
     DropOffType
     EdgeSetType
-    EdgeSetType
     ElementalDataType
     ExtrusionType
     ExtrusionMethodType

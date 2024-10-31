@@ -3,6 +3,7 @@
 from datetime import datetime
 import inspect
 import os
+import typing
 import warnings
 
 import pyvista
@@ -10,28 +11,62 @@ from pyvista.plotting.utilities.sphinx_gallery import DynamicScraper
 from sphinx.builders.latex import LaTeXBuilder
 import sphinx.util.inspect
 
-# PATCH
-# This patch is necessary to avoid sphinx.ext.autodoc to use the class _attribute_
-# type hints where the class _parameter_ type hints should be used.
-# See https://github.com/sphinx-doc/sphinx/issues/11207
-
 
 def _signature(
     subject,
     bound_method: bool = False,
     type_aliases=None,
 ):
+    """Monkeypatch for 'sphinx.util.inspect.signature'.
+
+    This function defines a custom signature function which is used by the 'sphinx.ext.autodoc'.
+    The main purpose is to force / fix using the class parameter type hints instead of the class
+    attribute type hints.
+    See https://github.com/sphinx-doc/sphinx/issues/11207 for context.
+    """
+
+    # Import classes which were guarded with a 'typing.TYPE_CHECKING' explicitly here, otherwise
+    # the 'typing.get_type_hints' function will fail when encountering them.
+    from ansys.acp.core import (  # noqa: F401
+        BooleanSelectionRule,
+        CADComponent,
+        GeometricalSelectionRule,
+        MeshData,
+        Model,
+        ModelingGroup,
+        ScalarData,
+        VectorData,
+    )
+    from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles  # noqa: F401
+    from ansys.dpf.core import UnitSystem  # noqa: F401
+
     signature = inspect.signature(subject)
-    if signature.parameters and list(signature.parameters.values())[0].name == "self":
-        signature = signature.replace(parameters=list(signature.parameters.values())[1:])
+
+    if signature.parameters:
+        parameters = list(signature.parameters.values())
+        if parameters[0].name == "self":
+            parameters = parameters[1:]
+        # The 'typing.get_type_hints' function is needed to resolve aliases like
+        # '_LINKABLE_MATERIAL_TYPES', which would otherwise be displayed as an explicit string.
+        if inspect.isclass(subject):
+            type_hints = typing.get_type_hints(subject.__init__, localns=locals())
+        else:
+            type_hints = typing.get_type_hints(subject, localns=locals())
+        parameters = [
+            param.replace(annotation=type_hints.get(param.name, param.annotation))
+            for param in parameters
+        ]
+        signature = signature.replace(parameters=parameters)
+        if inspect.isfunction(subject):
+            signature = signature.replace(
+                return_annotation=type_hints.get("return", signature.return_annotation)
+            )
     return signature
 
 
 sphinx.util.inspect.signature = _signature
-
 napoleon_attr_annotations = False
 
-# END OF PATCH
 
 LaTeXBuilder.supported_image_types = ["image/png", "image/pdf", "image/svg+xml"]
 from ansys_sphinx_theme import (
@@ -142,14 +177,17 @@ intersphinx_mapping = {
 
 nitpick_ignore = [
     ("py:class", "typing.Self"),
-    ("py:class", "numpy.float64"),
-    ("py:class", "numpy.int32"),
-    ("py:class", "numpy.int64"),
     # Ignore TypeVar / TypeAlias defined within PyACP: they are either not recognized correctly,
     # or misidentified as a class.
     ("py:class", "_PATH"),
+    ("py:class", "MeshDataT"),
+    ("py:class", "ChildT"),
+    ("py:class", "CreatableValueT"),
 ]
 nitpick_ignore_regex = [
+    ("py:class", r"(numpy|np)\.float64"),
+    ("py:class", r"(numpy|np)\.int32"),
+    ("py:class", r"(numpy|np)\.int64"),
     ("py:class", r"ansys\.api\.acp\..*"),
     ("py:class", "None -- .*"),  # from collections.abc
     # Ignore TypeVars defined within PyACP: they are either not recognized correctly,
@@ -159,11 +197,10 @@ nitpick_ignore_regex = [
     ("py:class", r"^(.*\.)?TV$"),
     ("py:class", r"ansys\.acp.core\..*\.ChildT"),
     ("py:class", r"ansys\.acp.core\..*\.CreatableValueT"),
-    ("py:class", r"ansys\.acp.core\..*\.MeshDataT"),
     ("py:class", r"ansys\.acp.core\..*\.ScalarDataT"),
 ]
 
-# sphinx_autodoc_typehints configuration
+# sphinx.ext.autodoc configuration
 autodoc_typehints = "description"
 autodoc_typehints_description_target = "documented"
 

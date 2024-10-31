@@ -52,16 +52,16 @@ if typing.TYPE_CHECKING:  # pragma: no cover
     # this would cause a circular import at run-time.
     from .boolean_selection_rule import BooleanSelectionRule
 
-    _LINKABLE_SELECTION_RULE_TYPES = Union[
-        BooleanSelectionRule,
-        CutoffSelectionRule,
-        CylindricalSelectionRule,
-        GeometricalSelectionRule,
-        ParallelSelectionRule,
-        SphericalSelectionRule,
-        TubeSelectionRule,
-        VariableOffsetSelectionRule,
-    ]
+_LINKABLE_SELECTION_RULE_TYPES = Union[
+    "BooleanSelectionRule",
+    CutoffSelectionRule,
+    CylindricalSelectionRule,
+    GeometricalSelectionRule,
+    ParallelSelectionRule,
+    SphericalSelectionRule,
+    TubeSelectionRule,
+    VariableOffsetSelectionRule,
+]
 
 
 @mark_grpc_properties

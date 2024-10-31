@@ -85,15 +85,15 @@ if typing.TYPE_CHECKING:  # pragma: no cover
     # this would cause a circular import at run-time.
     from .. import BooleanSelectionRule, GeometricalSelectionRule
 
-    _SELECTION_RULES_LINKABLE_TO_OSS = typing.Union[
-        ParallelSelectionRule,
-        CylindricalSelectionRule,
-        SphericalSelectionRule,
-        TubeSelectionRule,
-        GeometricalSelectionRule,
-        VariableOffsetSelectionRule,
-        BooleanSelectionRule,
-    ]
+_SELECTION_RULES_LINKABLE_TO_OSS = typing.Union[
+    ParallelSelectionRule,
+    CylindricalSelectionRule,
+    SphericalSelectionRule,
+    TubeSelectionRule,
+    "GeometricalSelectionRule",
+    VariableOffsetSelectionRule,
+    "BooleanSelectionRule",
+]
 
 
 @dataclasses.dataclass
