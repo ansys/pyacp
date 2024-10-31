@@ -34,6 +34,7 @@ Enumeration data types
     MeshImportType
     NodalDataType
     OffsetType
+    OrientationType
     PlyCutoffType
     PlyGeometryExportFormat
     PlyType
