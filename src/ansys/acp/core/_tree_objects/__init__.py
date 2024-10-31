@@ -67,6 +67,7 @@ from .enums import (
     NodalDataType,
     OffsetDirectionType,
     OffsetType,
+    OrientationType,
     PlyCutoffType,
     PlyGeometryExportFormat,
     PlyType,
@@ -118,6 +119,7 @@ from .rosette import Rosette
 from .sampling_point import SamplingPoint
 from .section_cut import SectionCut
 from .sensor import Sensor
+from .snap_to_geometry import SnapToGeometry
 from .solid_model import DropOffSettings, ExportSettings, SolidModel
 from .spherical_selection_rule import (
     SphericalSelectionRule,
@@ -213,6 +215,7 @@ __all__ = [
     "NodalDataType",
     "OffsetDirectionType",
     "OffsetType",
+    "OrientationType",
     "OrientedSelectionSet",
     "OrientedSelectionSetElementalData",
     "OrientedSelectionSetNodalData",
@@ -236,6 +239,7 @@ __all__ = [
     "SectionCutType",
     "Sensor",
     "SensorType",
+    "SnapToGeometry",
     "SolidModel",
     "SolidModelExportFormat",
     "SolidModelSkinExportFormat",
