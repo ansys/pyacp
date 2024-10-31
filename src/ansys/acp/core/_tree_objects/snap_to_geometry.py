@@ -59,7 +59,7 @@ class SnapToGeometry(CreatableTreeObject, IdTreeObject):
     active :
         Inactive snap-to geometries are not used in the solid model extrusion.
     orientation_type :
-        Determines whether the snap-to geometry is applies to the top or bottom
+        Determines whether the snap-to geometry is applied to the top or bottom
         surface of the layup.
     cad_geometry :
         The geometry to snap to.
