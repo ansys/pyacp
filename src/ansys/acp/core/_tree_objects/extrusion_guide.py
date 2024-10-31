@@ -27,7 +27,7 @@ from collections.abc import Iterable
 from ansys.api.acp.v0 import extrusion_guide_pb2, extrusion_guide_pb2_grpc
 from ansys.api.acp.v0.array_types_pb2 import DoubleArray
 
-from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
+from .._utils.array_conversions import to_1D_double_array
 from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
