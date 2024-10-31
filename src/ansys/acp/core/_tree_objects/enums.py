@@ -26,6 +26,7 @@ from ansys.api.acp.v0 import (
     drop_off_material_pb2,
     edge_set_pb2,
     enum_types_pb2,
+    extrusion_guide_pb2,
     geometrical_selection_rule_pb2,
     imported_modeling_ply_pb2,
     lookup_table_3d_pb2,
@@ -55,6 +56,7 @@ __all__ = [
     "DropOffType",
     "EdgeSetType",
     "ElementalDataType",
+    "ExtrusionGuideType"
     "ExtrusionType",
     "ExtrusionMethodType",
     "GeometricalRuleType",
@@ -467,6 +469,15 @@ __all__ = [
         solid_model_pb2.ExtrusionMethodType,
         module=__name__,
         doc="Extrusion method used in a solid model.",
+    )
+)
+
+(ExtrusionGuideType, extrusion_guide_type_to_pb, extrusion_guide_type_from_pb) = (
+    wrap_to_string_enum(
+        "ExtrusionGuideType",
+        extrusion_guide_pb2.ExtrusionGuideType,
+        module=__name__,
+        doc="Extrusion guide type used in an extrusion guide (solid model).",
     )
 )
 
