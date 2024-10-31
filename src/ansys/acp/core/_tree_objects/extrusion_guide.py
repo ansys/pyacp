@@ -24,13 +24,12 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 
-from ansys.api.acp.v0 import extrusion_guide_pb2, extrusion_guide_pb2_grpc
-from ansys.api.acp.v0.array_types_pb2 import DoubleArray
 from google.protobuf.message import Message
+
+from ansys.api.acp.v0 import extrusion_guide_pb2, extrusion_guide_pb2_grpc
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadWriteProperty
-from ._grpc_helpers.protocols import ObjectInfo
 from ._grpc_helpers.property_helper import (
     _PROTOBUF_T,
     _get_data_attribute,
@@ -40,6 +39,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
+from ._grpc_helpers.protocols import ObjectInfo
 from .base import CreatableTreeObject, IdTreeObject
 from .edge_set import EdgeSet
 from .enums import (
@@ -156,12 +156,16 @@ class ExtrusionGuide(CreatableTreeObject, IdTreeObject):
         if pb_obj.properties.extrusion_guide_type != extrusion_guide_pb2.BY_DIRECTION:
             array = to_tuple_from_1D_array(value)
             if array and sum(array) != 0:
-                raise RuntimeError("Cannot set direction if extrusion guide type is not 'by_direction'!")
+                raise RuntimeError(
+                    "Cannot set direction if extrusion guide type is not 'by_direction'!"
+                )
         _set_data_attribute(pb_obj, name, value)
 
     def _get_direction_attribute(pb_obj: Message, name: str, check_optional: bool) -> None:
         if pb_obj.properties.extrusion_guide_type != extrusion_guide_pb2.BY_DIRECTION:
-            raise RuntimeError("Cannot access direction if the extrusion guide type is not 'by_direction'!")
+            raise RuntimeError(
+                "Cannot access direction if the extrusion guide type is not 'by_direction'!"
+            )
         return _get_data_attribute(pb_obj, name, check_optional)
 
     direction = grpc_data_property(
@@ -169,5 +173,5 @@ class ExtrusionGuide(CreatableTreeObject, IdTreeObject):
         from_protobuf=to_tuple_from_1D_array,
         to_protobuf=to_1D_double_array,
         setter_func=_set_direction_attribute,
-        getter_func=_get_direction_attribute
+        getter_func=_get_direction_attribute,
     )

@@ -65,7 +65,7 @@ class TestExtrusionGuide(WithLockedMixin, TreeObjectTester):
             "radius": 0.0,
             "depth": 0.0,
             "use_curvature_correction": False,
-            "extrusion_guide_type": 'by_direction',
+            "extrusion_guide_type": "by_direction",
         }
 
     CREATE_METHOD_NAME = "create_extrusion_guide"
@@ -133,7 +133,9 @@ def test_handling_of_extrusion_guide_type(model, parent_object, skip_before_vers
     assert ex_by_geometry.cad_geometry is not None and ex_by_geometry.cad_geometry.name == "dummy"
     with pytest.raises(RuntimeError) as exc:
         direction = ex_by_geometry.direction
-    assert "Cannot access direction if the extrusion guide type is not 'by_direction'!" in str(exc.value)
+    assert "Cannot access direction if the extrusion guide type is not 'by_direction'!" in str(
+        exc.value
+    )
 
     with pytest.raises(RuntimeError) as exc:
         ex_by_geometry.direction = (0.0, 1.0, 1.0)
