@@ -564,9 +564,9 @@ document.write(`
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Name of the newly loaded model.</p></li>
-<li><p><strong>path</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PathLike</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</span>) – Path of the file to be loaded.</p></li>
-<li><p><strong>format</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">'acp:h5'</span></code>) – Format of the file to be loaded. Can be one of <code class="docutils literal notranslate"><span class="pre">&quot;acp:h5&quot;</span></code>,
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><em>None</em>) – Name of the newly loaded model.</p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.13)"><em>PathLike</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – Path of the file to be loaded.</p></li>
+<li><p><strong>format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Format of the file to be loaded. Can be one of <code class="docutils literal notranslate"><span class="pre">&quot;acp:h5&quot;</span></code>,
 <code class="docutils literal notranslate"><span class="pre">&quot;ansys:h5&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ansys:cdb&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ansys:dat&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;abaqus:inp&quot;</span></code>,
 or <code class="docutils literal notranslate"><span class="pre">&quot;nastran:bdf&quot;</span></code>.</p></li>
 <li><p><strong>ignored_entities</strong> – Entities to ignore when loading the FE file. Can be a subset of
@@ -584,11 +584,11 @@ unit system.
 Available only when the format is not <code class="docutils literal notranslate"><span class="pre">&quot;acp:h5&quot;</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.Model.html#ansys.acp.core.Model" title="ansys.acp.core._tree_objects.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></span></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The loaded <code class="docutils literal notranslate"><span class="pre">Model</span></code> instance.</p>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The loaded <code class="docutils literal notranslate"><span class="pre">Model</span></code> instance.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="ansys.acp.core.Model.html#ansys.acp.core.Model" title="ansys.acp.core._tree_objects.model.Model"><em>Model</em></a></p>
 </dd>
 </dl>
 </dd></dl>

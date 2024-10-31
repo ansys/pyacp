@@ -1,0 +1,6 @@
+snap\_to\_geometries
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.snap_to_geometries

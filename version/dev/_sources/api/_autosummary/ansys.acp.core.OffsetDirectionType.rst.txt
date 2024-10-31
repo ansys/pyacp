@@ -1,0 +1,22 @@
+﻿OffsetDirectionType
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: OffsetDirectionType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        OffsetDirectionType.SHELL_NORMAL
+      
+      
+        OffsetDirectionType.SURFACE_NORMAL
+      
+   
+   

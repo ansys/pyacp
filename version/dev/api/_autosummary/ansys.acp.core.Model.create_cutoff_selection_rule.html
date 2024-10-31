@@ -558,6 +558,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
@@ -652,28 +653,28 @@ document.write(`
 <h1>create_cutoff_selection_rule<a class="headerlink" href="#create-cutoff-selection-rule" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_cutoff_selection_rule">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_cutoff_selection_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_cutoff_selection_rule" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_cutoff_selection_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CutoffSelectionrule'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff_rule_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">CutoffRuleType.GEOMETRY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff_geometry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taper_edge_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ply_cutoff_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PlyCutoffType.PRODUCTION_PLY_CUTOFF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ply_tapering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_cutoff_selection_rule" title="Link to this definition">#</a></dt>
 <dd><p>Instantiate a Cutoff Selection Rule.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Name of the Cutoff Selection Rule.</p></li>
-<li><p><strong>cutoff_rule_type</strong> – Determines if the cut-off is defined by a geometry or by a tapering edge.</p></li>
-<li><p><strong>cutoff_geometry</strong> – Geometry used to define the cut-off. Only applies if
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of the Cutoff Selection Rule.</p></li>
+<li><p><strong>cutoff_rule_type</strong> (<a class="reference internal" href="ansys.acp.core.CutoffRuleType.html#ansys.acp.core.CutoffRuleType" title="ansys.acp.core.CutoffRuleType"><em>CutoffRuleType</em></a>) – Determines if the cut-off is defined by a geometry or by a tapering edge.</p></li>
+<li><p><strong>cutoff_geometry</strong> (<a class="reference internal" href="ansys.acp.core.VirtualGeometry.html#ansys.acp.core.VirtualGeometry" title="ansys.acp.core.VirtualGeometry"><em>VirtualGeometry</em></a><em> | </em><em>None</em>) – Geometry used to define the cut-off. Only applies if
 <code class="docutils literal notranslate"><span class="pre">cutoff_rule_type</span></code> is GEOMETRY.</p></li>
-<li><p><strong>taper_edge_set</strong> – Edge used to define the cut-off. Only applies if
+<li><p><strong>taper_edge_set</strong> (<a class="reference internal" href="ansys.acp.core.EdgeSet.html#ansys.acp.core.EdgeSet" title="ansys.acp.core.EdgeSet"><em>EdgeSet</em></a><em> | </em><em>None</em>) – Edge used to define the cut-off. Only applies if
 <code class="docutils literal notranslate"><span class="pre">cutoff_rule_type</span></code> is <a class="reference internal" href="ansys.acp.core.CutoffRuleType.TAPER.html#ansys.acp.core.CutoffRuleType.TAPER" title="ansys.acp.core.CutoffRuleType.TAPER"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CutoffRuleType.TAPER</span></code></a>.</p></li>
-<li><p><strong>offset</strong> – Moves the cutting plane along the out-of-plane direction. Always measured
+<li><p><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Moves the cutting plane along the out-of-plane direction. Always measured
 from the reference surface.</p></li>
-<li><p><strong>angle</strong> – Defines the angle between the cutting plane and the reference surface.</p></li>
-<li><p><strong>ply_cutoff_type</strong> – Either the complete production ply is cut-off
+<li><p><strong>angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Defines the angle between the cutting plane and the reference surface.</p></li>
+<li><p><strong>ply_cutoff_type</strong> (<a class="reference internal" href="ansys.acp.core.PlyCutoffType.html#ansys.acp.core.PlyCutoffType" title="ansys.acp.core.PlyCutoffType"><em>PlyCutoffType</em></a>) – Either the complete production ply is cut-off
 (<a class="reference internal" href="ansys.acp.core.PlyCutoffType.PRODUCTION_PLY_CUTOFF.html#ansys.acp.core.PlyCutoffType.PRODUCTION_PLY_CUTOFF" title="ansys.acp.core.PlyCutoffType.PRODUCTION_PLY_CUTOFF"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PlyCutoffType.PRODUCTION_PLY_CUTOFF</span></code></a>) or individual analysis plies
 (<a class="reference internal" href="ansys.acp.core.PlyCutoffType.ANALYSIS_PLY_CUTOFF.html#ansys.acp.core.PlyCutoffType.ANALYSIS_PLY_CUTOFF" title="ansys.acp.core.PlyCutoffType.ANALYSIS_PLY_CUTOFF"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PlyCutoffType.ANALYSIS_PLY_CUTOFF</span></code></a>).</p></li>
-<li><p><strong>ply_tapering</strong> – Whether the tapering of analysis plies is enabled.</p></li>
+<li><p><strong>ply_tapering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Whether the tapering of analysis plies is enabled.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">CreatableValueT</span></code>, bound= <a class="reference internal" href="ansys.acp.core._tree_objects.base.CreatableTreeObject.html#ansys.acp.core._tree_objects.base.CreatableTreeObject" title="ansys.acp.core._tree_objects.base.CreatableTreeObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">CreatableTreeObject</span></code></a>)</span></p>
+<dd class="field-even"><p><a class="reference internal" href="ansys.acp.core.CutoffSelectionRule.html#ansys.acp.core.CutoffSelectionRule" title="ansys.acp.core._tree_objects.cutoff_selection_rule.CutoffSelectionRule"><em>CutoffSelectionRule</em></a></p>
 </dd>
 </dl>
 <p><em>Added in ACP server version 24.2.</em></p>

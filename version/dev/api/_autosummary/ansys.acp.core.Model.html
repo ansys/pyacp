@@ -558,6 +558,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
@@ -654,12 +655,12 @@ document.write(`
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">'ACP</span> <span class="pre">Model'</span></code>) – The name of the model.</p></li>
-<li><p><strong>use_nodal_thicknesses</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">False</span></code>) – Defines whether to use nodal thicknesses or element thicknesses.</p></li>
-<li><p><strong>draping_offset_correction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">False</span></code>) – Defines whether to consider lay-up thickness in draping analysis.</p></li>
-<li><p><strong>angle_tolerance</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">1.0</span></code>) – Section computation angle tolerance (in degree).</p></li>
-<li><p><strong>relative_thickness_tolerance</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0.01</span></code>) – Section computation relative thickness tolerance.</p></li>
-<li><p><strong>minimum_analysis_ply_thickness</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">1e-06</span></code>) – Section computation minimum analysis ply thickness (in length
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the model.</p></li>
+<li><p><strong>use_nodal_thicknesses</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Defines whether to use nodal thicknesses or element thicknesses.</p></li>
+<li><p><strong>draping_offset_correction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Defines whether to consider lay-up thickness in draping analysis.</p></li>
+<li><p><strong>angle_tolerance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Section computation angle tolerance (in degree).</p></li>
+<li><p><strong>relative_thickness_tolerance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Section computation relative thickness tolerance.</p></li>
+<li><p><strong>minimum_analysis_ply_thickness</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Section computation minimum analysis ply thickness (in length
 unit of model).</p></li>
 </ul>
 </dd>
@@ -668,82 +669,82 @@ unit of model).</p></li>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_boolean_selection_rule.html#ansys.acp.core.Model.create_boolean_selection_rule" title="ansys.acp.core.Model.create_boolean_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_boolean_selection_rule</span></code></a>(*args, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_boolean_selection_rule.html#ansys.acp.core.Model.create_boolean_selection_rule" title="ansys.acp.core.Model.create_boolean_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_boolean_selection_rule</span></code></a>(*[, ...])</p></td>
 <td><p>Instantiate a Boolean Selection Rule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_cad_geometry.html#ansys.acp.core.Model.create_cad_geometry" title="ansys.acp.core.Model.create_cad_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_cad_geometry</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_cad_geometry.html#ansys.acp.core.Model.create_cad_geometry" title="ansys.acp.core.Model.create_cad_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_cad_geometry</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate a CAD Geometry.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_cutoff_selection_rule.html#ansys.acp.core.Model.create_cutoff_selection_rule" title="ansys.acp.core.Model.create_cutoff_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_cutoff_selection_rule</span></code></a>(*args, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_cutoff_selection_rule.html#ansys.acp.core.Model.create_cutoff_selection_rule" title="ansys.acp.core.Model.create_cutoff_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_cutoff_selection_rule</span></code></a>(*[, ...])</p></td>
 <td><p>Instantiate a Cutoff Selection Rule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_cylindrical_selection_rule.html#ansys.acp.core.Model.create_cylindrical_selection_rule" title="ansys.acp.core.Model.create_cylindrical_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_cylindrical_selection_rule</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_cylindrical_selection_rule.html#ansys.acp.core.Model.create_cylindrical_selection_rule" title="ansys.acp.core.Model.create_cylindrical_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_cylindrical_selection_rule</span></code></a>(*[, ...])</p></td>
 <td><p>Instantiate a Cylindrical Selection Rule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_edge_set.html#ansys.acp.core.Model.create_edge_set" title="ansys.acp.core.Model.create_edge_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_edge_set</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_edge_set.html#ansys.acp.core.Model.create_edge_set" title="ansys.acp.core.Model.create_edge_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_edge_set</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate an edge set.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_element_set.html#ansys.acp.core.Model.create_element_set" title="ansys.acp.core.Model.create_element_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_element_set</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_element_set.html#ansys.acp.core.Model.create_element_set" title="ansys.acp.core.Model.create_element_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_element_set</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate an Element Set.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_fabric.html#ansys.acp.core.Model.create_fabric" title="ansys.acp.core.Model.create_fabric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_fabric</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_fabric.html#ansys.acp.core.Model.create_fabric" title="ansys.acp.core.Model.create_fabric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_fabric</span></code></a>(*[, name, material, ...])</p></td>
 <td><p>Instantiate a Fabric.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_geometrical_selection_rule.html#ansys.acp.core.Model.create_geometrical_selection_rule" title="ansys.acp.core.Model.create_geometrical_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_geometrical_selection_rule</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_geometrical_selection_rule.html#ansys.acp.core.Model.create_geometrical_selection_rule" title="ansys.acp.core.Model.create_geometrical_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_geometrical_selection_rule</span></code></a>(*[, ...])</p></td>
 <td><p>Instantiate a Geometrical Selection Rule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_imported_modeling_group.html#ansys.acp.core.Model.create_imported_modeling_group" title="ansys.acp.core.Model.create_imported_modeling_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_imported_modeling_group</span></code></a>(*args, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_imported_modeling_group.html#ansys.acp.core.Model.create_imported_modeling_group" title="ansys.acp.core.Model.create_imported_modeling_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_imported_modeling_group</span></code></a>(*[, name])</p></td>
 <td><p>Instantiate an imported modeling group.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_lookup_table_1d.html#ansys.acp.core.Model.create_lookup_table_1d" title="ansys.acp.core.Model.create_lookup_table_1d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_lookup_table_1d</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_lookup_table_1d.html#ansys.acp.core.Model.create_lookup_table_1d" title="ansys.acp.core.Model.create_lookup_table_1d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_lookup_table_1d</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate a 1D Look-Up Table.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_lookup_table_3d.html#ansys.acp.core.Model.create_lookup_table_3d" title="ansys.acp.core.Model.create_lookup_table_3d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_lookup_table_3d</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_lookup_table_3d.html#ansys.acp.core.Model.create_lookup_table_3d" title="ansys.acp.core.Model.create_lookup_table_3d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_lookup_table_3d</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate a 3D Look-Up Table.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_material.html#ansys.acp.core.Model.create_material" title="ansys.acp.core.Model.create_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_material</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_material.html#ansys.acp.core.Model.create_material" title="ansys.acp.core.Model.create_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_material</span></code></a>(*[, name, ply_type, ...])</p></td>
 <td><p>Instantiate a Material.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_modeling_group.html#ansys.acp.core.Model.create_modeling_group" title="ansys.acp.core.Model.create_modeling_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_modeling_group</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_modeling_group.html#ansys.acp.core.Model.create_modeling_group" title="ansys.acp.core.Model.create_modeling_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_modeling_group</span></code></a>(*[, name])</p></td>
 <td><p>Instantiate a modeling group.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_oriented_selection_set.html#ansys.acp.core.Model.create_oriented_selection_set" title="ansys.acp.core.Model.create_oriented_selection_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_oriented_selection_set</span></code></a>(*args, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_oriented_selection_set.html#ansys.acp.core.Model.create_oriented_selection_set" title="ansys.acp.core.Model.create_oriented_selection_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_oriented_selection_set</span></code></a>(*[, ...])</p></td>
 <td><p>Instantiate an Oriented Selection Set.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_parallel_selection_rule.html#ansys.acp.core.Model.create_parallel_selection_rule" title="ansys.acp.core.Model.create_parallel_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_parallel_selection_rule</span></code></a>(*args, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_parallel_selection_rule.html#ansys.acp.core.Model.create_parallel_selection_rule" title="ansys.acp.core.Model.create_parallel_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_parallel_selection_rule</span></code></a>(*[, ...])</p></td>
 <td><p>Instantiate a Parallel Selection Rule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_rosette.html#ansys.acp.core.Model.create_rosette" title="ansys.acp.core.Model.create_rosette"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_rosette</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_rosette.html#ansys.acp.core.Model.create_rosette" title="ansys.acp.core.Model.create_rosette"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_rosette</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate a Rosette.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_sampling_point.html#ansys.acp.core.Model.create_sampling_point" title="ansys.acp.core.Model.create_sampling_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_sampling_point</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_sampling_point.html#ansys.acp.core.Model.create_sampling_point" title="ansys.acp.core.Model.create_sampling_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_sampling_point</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate a Sampling Point.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_section_cut.html#ansys.acp.core.Model.create_section_cut" title="ansys.acp.core.Model.create_section_cut"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_section_cut</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_section_cut.html#ansys.acp.core.Model.create_section_cut" title="ansys.acp.core.Model.create_section_cut"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_section_cut</span></code></a>(*[, name, active, ...])</p></td>
 <td><p>Instantiate a Section Cut.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_sensor.html#ansys.acp.core.Model.create_sensor" title="ansys.acp.core.Model.create_sensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_sensor</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_sensor.html#ansys.acp.core.Model.create_sensor" title="ansys.acp.core.Model.create_sensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_sensor</span></code></a>(*[, name, sensor_type, ...])</p></td>
 <td><p>Instantiate a Sensor.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_solid_model.html#ansys.acp.core.Model.create_solid_model" title="ansys.acp.core.Model.create_solid_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_solid_model</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_solid_model.html#ansys.acp.core.Model.create_solid_model" title="ansys.acp.core.Model.create_solid_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_solid_model</span></code></a>(*[, name, active, ...])</p></td>
 <td><p>Instantiate a solid model.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_spherical_selection_rule.html#ansys.acp.core.Model.create_spherical_selection_rule" title="ansys.acp.core.Model.create_spherical_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_spherical_selection_rule</span></code></a>(*args, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_spherical_selection_rule.html#ansys.acp.core.Model.create_spherical_selection_rule" title="ansys.acp.core.Model.create_spherical_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_spherical_selection_rule</span></code></a>(*[, ...])</p></td>
 <td><p>Instantiate a Spherical Selection Rule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_stackup.html#ansys.acp.core.Model.create_stackup" title="ansys.acp.core.Model.create_stackup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_stackup</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_stackup.html#ansys.acp.core.Model.create_stackup" title="ansys.acp.core.Model.create_stackup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_stackup</span></code></a>(*[, name, symmetry, ...])</p></td>
 <td><p>Instantiate a Stackup.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_sublaminate.html#ansys.acp.core.Model.create_sublaminate" title="ansys.acp.core.Model.create_sublaminate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_sublaminate</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_sublaminate.html#ansys.acp.core.Model.create_sublaminate" title="ansys.acp.core.Model.create_sublaminate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_sublaminate</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate a SubLaminate.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_tube_selection_rule.html#ansys.acp.core.Model.create_tube_selection_rule" title="ansys.acp.core.Model.create_tube_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_tube_selection_rule</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_tube_selection_rule.html#ansys.acp.core.Model.create_tube_selection_rule" title="ansys.acp.core.Model.create_tube_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_tube_selection_rule</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate a Tube Selection Rule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_variable_offset_selection_rule.html#ansys.acp.core.Model.create_variable_offset_selection_rule" title="ansys.acp.core.Model.create_variable_offset_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_variable_offset_selection_rule</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_variable_offset_selection_rule.html#ansys.acp.core.Model.create_variable_offset_selection_rule" title="ansys.acp.core.Model.create_variable_offset_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_variable_offset_selection_rule</span></code></a>(*)</p></td>
 <td><p>Instantiate a Variable Offset Selection Rule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_virtual_geometry.html#ansys.acp.core.Model.create_virtual_geometry" title="ansys.acp.core.Model.create_virtual_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_virtual_geometry</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.Model.create_virtual_geometry.html#ansys.acp.core.Model.create_virtual_geometry" title="ansys.acp.core.Model.create_virtual_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.create_virtual_geometry</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate a Virtual Geometry.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.Model.delete.html#ansys.acp.core.Model.delete" title="ansys.acp.core.Model.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model.delete</span></code></a>()</p></td>

@@ -558,6 +558,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
@@ -652,20 +653,20 @@ document.write(`
 <h1>create_virtual_geometry<a class="headerlink" href="#create-virtual-geometry" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_virtual_geometry">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_virtual_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_virtual_geometry" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_virtual_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'VirtualGeometry'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cad_components</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_shapes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_virtual_geometry" title="Link to this definition">#</a></dt>
 <dd><p>Instantiate a Virtual Geometry.</p>
 <p>The virtual geometry can be created from a set of CAD components or from a set of SubShapes.
 Combining CAD Components and SubShapes is not allowed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Name of the Virtual Geometry.</p></li>
-<li><p><strong>cad_components</strong> – CAD Components that make up the virtual geometry.</p></li>
-<li><p><strong>sub_shapes</strong> – SubShapes that make up the virtual geometry.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of the Virtual Geometry.</p></li>
+<li><p><strong>cad_components</strong> (<em>Iterable</em><em>[</em><a class="reference internal" href="ansys.acp.core.CADComponent.html#ansys.acp.core.CADComponent" title="ansys.acp.core.CADComponent"><em>CADComponent</em></a><em>] </em><em>| </em><em>None</em>) – CAD Components that make up the virtual geometry.</p></li>
+<li><p><strong>sub_shapes</strong> (<em>Iterable</em><em>[</em><a class="reference internal" href="ansys.acp.core.SubShape.html#ansys.acp.core.SubShape" title="ansys.acp.core.SubShape"><em>SubShape</em></a><em>] </em><em>| </em><em>None</em>) – SubShapes that make up the virtual geometry.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">CreatableValueT</span></code>, bound= <a class="reference internal" href="ansys.acp.core._tree_objects.base.CreatableTreeObject.html#ansys.acp.core._tree_objects.base.CreatableTreeObject" title="ansys.acp.core._tree_objects.base.CreatableTreeObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">CreatableTreeObject</span></code></a>)</span></p>
+<dd class="field-even"><p><a class="reference internal" href="ansys.acp.core.VirtualGeometry.html#ansys.acp.core.VirtualGeometry" title="ansys.acp.core._tree_objects.virtual_geometry.VirtualGeometry"><em>VirtualGeometry</em></a></p>
 </dd>
 </dl>
 <p><em>Added in ACP server version 24.2.</em></p>

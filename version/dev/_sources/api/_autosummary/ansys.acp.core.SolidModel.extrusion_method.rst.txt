@@ -1,0 +1,6 @@
+extrusion\_method
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.extrusion_method

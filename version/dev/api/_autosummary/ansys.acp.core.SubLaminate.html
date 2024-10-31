@@ -485,6 +485,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">SubLaminate</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -597,10 +598,10 @@ document.write(`
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">'SubLaminate'</span></code>) – Name of the sub-laminate.</p></li>
-<li><p><strong>symmetry</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.SymmetryType.html#ansys.acp.core.SymmetryType" title="ansys.acp.core._tree_objects.enums.SymmetryType"><code class="xref py py-class docutils literal notranslate"><span class="pre">SymmetryType</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">'no_symmetry'</span></code>) – Whether the sub-laminate is odd or even symmetrical, or none.</p></li>
-<li><p><strong>topdown</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>) – The first material in the list is placed first in the mold if topdown is true.</p></li>
-<li><p><strong>materials</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference internal" href="ansys.acp.core.Lamina.html#ansys.acp.core.Lamina" title="ansys.acp.core._tree_objects.sublaminate.Lamina"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lamina</span></code></a>]</span>, default: <code class="docutils literal notranslate"><span class="pre">()</span></code>) – List of materials (fabrics and stackups) with angles which build the sub-laminate.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of the sub-laminate.</p></li>
+<li><p><strong>symmetry</strong> (<a class="reference internal" href="ansys.acp.core.SymmetryType.html#ansys.acp.core.SymmetryType" title="ansys.acp.core._tree_objects.enums.SymmetryType"><em>SymmetryType</em></a>) – Whether the sub-laminate is odd or even symmetrical, or none.</p></li>
+<li><p><strong>topdown</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – The first material in the list is placed first in the mold if topdown is true.</p></li>
+<li><p><strong>materials</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.13)"><em>Sequence</em></a><em>[</em><a class="reference internal" href="ansys.acp.core.Lamina.html#ansys.acp.core.Lamina" title="ansys.acp.core._tree_objects.sublaminate.Lamina"><em>Lamina</em></a><em>]</em>) – List of materials (fabrics and stackups) with angles which build the sub-laminate.</p></li>
 </ul>
 </dd>
 </dl>
@@ -608,7 +609,7 @@ document.write(`
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SubLaminate.add_material.html#ansys.acp.core.SubLaminate.add_material" title="ansys.acp.core.SubLaminate.add_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubLaminate.add_material</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SubLaminate.add_material.html#ansys.acp.core.SubLaminate.add_material" title="ansys.acp.core.SubLaminate.add_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubLaminate.add_material</span></code></a>(material[, angle])</p></td>
 <td><p>Add a Lamina to the SubLaminate.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SubLaminate.clone.html#ansys.acp.core.SubLaminate.clone" title="ansys.acp.core.SubLaminate.clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubLaminate.clone</span></code></a>(*[, unlink])</p></td>

@@ -1,0 +1,28 @@
+﻿SolidModelSkinExportFormat
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SolidModelSkinExportFormat
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        SolidModelSkinExportFormat.ANSYS_CDB
+      
+      
+        SolidModelSkinExportFormat.STEP
+      
+      
+        SolidModelSkinExportFormat.IGES
+      
+      
+        SolidModelSkinExportFormat.STL
+      
+   
+   

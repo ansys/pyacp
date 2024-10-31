@@ -498,6 +498,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
@@ -592,23 +593,23 @@ document.write(`
 <h1>create_column<a class="headerlink" href="#create-column" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.LookUpTable1D.create_column">
-<span class="sig-prename descclassname"><span class="pre">LookUpTable1D.</span></span><span class="sig-name descname"><span class="pre">create_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.LookUpTable1D.create_column" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">LookUpTable1D.</span></span><span class="sig-name descname"><span class="pre">create_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LookUpTable1DColumn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">LookUpTableColumnValueType.SCALAR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimension_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DimensionType.DIMENSIONLESS</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.LookUpTable1D.create_column" title="Link to this definition">#</a></dt>
 <dd><p>Instantiate a Column of a 1D Look-Up Table.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>value_type</strong> – Determines whether the column data is scalar (one entry per row) or
+<li><p><strong>value_type</strong> (<a class="reference internal" href="ansys.acp.core.LookUpTableColumnValueType.html#ansys.acp.core.LookUpTableColumnValueType" title="ansys.acp.core.LookUpTableColumnValueType"><em>LookUpTableColumnValueType</em></a>) – Determines whether the column data is scalar (one entry per row) or
 directional (three entries per row).
 Note that the <code class="docutils literal notranslate"><span class="pre">value_type</span></code> can only be set when constructing the
 column, and is read-only afterwards.</p></li>
-<li><p><strong>dimension_type</strong> – Dimensionality (such as time, length, force, …) of the column data.</p></li>
-<li><p><strong>data</strong> – The column data. The shape of the data must match the <code class="docutils literal notranslate"><span class="pre">value_type</span></code>
+<li><p><strong>dimension_type</strong> (<a class="reference internal" href="ansys.acp.core.DimensionType.html#ansys.acp.core.DimensionType" title="ansys.acp.core.DimensionType"><em>DimensionType</em></a>) – Dimensionality (such as time, length, force, …) of the column data.</p></li>
+<li><p><strong>data</strong> (<em>npt.NDArray</em><em>[</em><em>np.float64</em><em>] </em><em>| </em><em>None</em>) – The column data. The shape of the data must match the <code class="docutils literal notranslate"><span class="pre">value_type</span></code>
 and the length of the <code class="docutils literal notranslate"><span class="pre">Location</span></code> column of the parent look-up
 table.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">CreatableValueT</span></code>, bound= <a class="reference internal" href="ansys.acp.core._tree_objects.base.CreatableTreeObject.html#ansys.acp.core._tree_objects.base.CreatableTreeObject" title="ansys.acp.core._tree_objects.base.CreatableTreeObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">CreatableTreeObject</span></code></a>)</span></p>
+<dd class="field-even"><p><a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html#ansys.acp.core.LookUpTable1DColumn" title="ansys.acp.core._tree_objects.lookup_table_1d_column.LookUpTable1DColumn"><em>LookUpTable1DColumn</em></a></p>
 </dd>
 </dl>
 <p><em>Added in ACP server version 24.2.</em></p>

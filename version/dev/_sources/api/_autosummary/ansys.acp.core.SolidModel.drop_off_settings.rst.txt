@@ -1,0 +1,6 @@
+drop\_off\_settings
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.drop_off_settings

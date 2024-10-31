@@ -1,0 +1,6 @@
+SHELL\_NORMAL
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: OffsetDirectionType.SHELL_NORMAL

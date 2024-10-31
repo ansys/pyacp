@@ -1,0 +1,6 @@
+STEP
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelSkinExportFormat.STEP

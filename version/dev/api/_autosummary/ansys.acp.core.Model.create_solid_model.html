@@ -558,6 +558,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
@@ -652,49 +653,49 @@ document.write(`
 <h1>create_solid_model<a class="headerlink" href="#create-solid-model" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_solid_model">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_solid_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_solid_model" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_solid_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name='SolidModel'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_sets=()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrusion_method=ExtrusionMethodType.ANALYSIS_PLY_WISE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_element_thickness=1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ply_group_pointers=()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_direction=OffsetDirectionType.SHELL_NORMAL</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_elements_without_plies=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_off_material=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut_off_material=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_bad_elements=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warping_limit=0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_volume=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_off_settings=&lt;ansys.acp.core._tree_objects.solid_model.DropOffSettings</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_settings=&lt;ansys.acp.core._tree_objects.solid_model.ExportSettings</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_solid_model" title="Link to this definition">#</a></dt>
 <dd><p>Instantiate a solid model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Name of the solid model.</p></li>
-<li><p><strong>active</strong> – Inactive solid models are not computed, and ignored in the analysis.</p></li>
-<li><p><strong>element_sets</strong> – Element sets or oriented selection sets determining the extent of
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of the solid model.</p></li>
+<li><p><strong>active</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Inactive solid models are not computed, and ignored in the analysis.</p></li>
+<li><p><strong>element_sets</strong> (<em>Iterable</em><em>[</em><a class="reference internal" href="ansys.acp.core.ElementSet.html#ansys.acp.core.ElementSet" title="ansys.acp.core.ElementSet"><em>ElementSet</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.html#ansys.acp.core.OrientedSelectionSet" title="ansys.acp.core.OrientedSelectionSet"><em>OrientedSelectionSet</em></a><em>]</em>) – Element sets or oriented selection sets determining the extent of
 the solid model.</p></li>
-<li><p><strong>extrusion_method</strong> – Determines how plies are bundled in the layered solid elements.</p></li>
-<li><p><strong>max_element_thickness</strong> – Maximum thickness of the layered solid elements. A new element is
+<li><p><strong>extrusion_method</strong> (<a class="reference internal" href="ansys.acp.core.ExtrusionMethodType.html#ansys.acp.core.ExtrusionMethodType" title="ansys.acp.core.ExtrusionMethodType"><em>ExtrusionMethodType</em></a>) – Determines how plies are bundled in the layered solid elements.</p></li>
+<li><p><strong>max_element_thickness</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Maximum thickness of the layered solid elements. A new element is
 introduced if the thickness exceeds this value.
 Only used if the <code class="docutils literal notranslate"><span class="pre">extrusion_method</span></code> is one of <code class="docutils literal notranslate"><span class="pre">SPECIFY_THICKNESS</span></code>,
 <code class="docutils literal notranslate"><span class="pre">MATERIAL_WISE</span></code>, or <code class="docutils literal notranslate"><span class="pre">SANDWICH_WISE</span></code>.</p></li>
-<li><p><strong>ply_group_pointers</strong> – Explicitly defines modeling plies where a new element is introduced.
+<li><p><strong>ply_group_pointers</strong> (<em>Iterable</em><em>[</em><a class="reference internal" href="ansys.acp.core.ModelingPly.html#ansys.acp.core.ModelingPly" title="ansys.acp.core.ModelingPly"><em>ModelingPly</em></a><em>]</em>) – Explicitly defines modeling plies where a new element is introduced.
 Only used if the <code class="docutils literal notranslate"><span class="pre">extrusion_method</span></code> is <code class="docutils literal notranslate"><span class="pre">USER_DEFINED</span></code>.</p></li>
-<li><p><strong>offset_direction</strong> – Determines how the extrusion direction is defined. With <code class="docutils literal notranslate"><span class="pre">SHELL_NORMAL</span></code>,
+<li><p><strong>offset_direction</strong> (<a class="reference internal" href="ansys.acp.core.OffsetDirectionType.html#ansys.acp.core.OffsetDirectionType" title="ansys.acp.core.OffsetDirectionType"><em>OffsetDirectionType</em></a>) – Determines how the extrusion direction is defined. With <code class="docutils literal notranslate"><span class="pre">SHELL_NORMAL</span></code>,
 the normal direction of the shell is used during the entire extrusion.
 With <code class="docutils literal notranslate"><span class="pre">SURFACE_NORMAL</span></code>, the offset direction is re-evaluated based
 on the surface of the solid model during the extrusion.</p></li>
-<li><p><strong>skip_elements_without_plies</strong> – If True, elements without plies are automatically removed from the
+<li><p><strong>skip_elements_without_plies</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, elements without plies are automatically removed from the
 region of extrusion. This means that no drop-off elements are created
 for these elements.</p></li>
-<li><p><strong>drop_off_material</strong> – This material is assigned to the layered solid drop-off elements if
+<li><p><strong>drop_off_material</strong> (<a class="reference internal" href="ansys.acp.core.Material.html#ansys.acp.core.Material" title="ansys.acp.core.Material"><em>Material</em></a><em> | </em><em>None</em>) – This material is assigned to the layered solid drop-off elements if
 <code class="docutils literal notranslate"><span class="pre">drop_off_material_handling</span></code> is set to <code class="docutils literal notranslate"><span class="pre">GLOBAL</span></code> in the fabric
 definition.</p></li>
-<li><p><strong>cut_off_material</strong> – This material is assigned to the degenerated solid cut-off elements if
+<li><p><strong>cut_off_material</strong> (<a class="reference internal" href="ansys.acp.core.Material.html#ansys.acp.core.Material" title="ansys.acp.core.Material"><em>Material</em></a><em> | </em><em>None</em>) – This material is assigned to the degenerated solid cut-off elements if
 <code class="docutils literal notranslate"><span class="pre">cut_off_material_handling</span></code> is set to <code class="docutils literal notranslate"><span class="pre">GLOBAL</span></code> in the fabric
 definition.</p></li>
-<li><p><strong>delete_bad_elements</strong> – If True, a final element check is performed to remove erroneous elements.</p></li>
-<li><p><strong>warping_limit</strong> – Maximum allowable warping limit used in the element shape check. Elements
+<li><p><strong>delete_bad_elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, a final element check is performed to remove erroneous elements.</p></li>
+<li><p><strong>warping_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Maximum allowable warping limit used in the element shape check. Elements
 with a warping limit exceeding this value are removed.
 Only used if <code class="docutils literal notranslate"><span class="pre">delete_bad_elements</span></code> is True.</p></li>
-<li><p><strong>minimum_volume</strong> – Solid elements with a volume smaller or equal to this value are removed.
+<li><p><strong>minimum_volume</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Solid elements with a volume smaller or equal to this value are removed.
 With the default value of <code class="docutils literal notranslate"><span class="pre">0</span></code>, only inverted or zero-volume elements
 are removed.
 Only used if <code class="docutils literal notranslate"><span class="pre">delete_bad_elements</span></code> is True.</p></li>
-<li><p><strong>drop_off_settings</strong> – Determines how drop-off elements are handled in the solid model extrusion.</p></li>
-<li><p><strong>export_settings</strong> – Defines the settings for exporting the solid model.</p></li>
+<li><p><strong>drop_off_settings</strong> (<a class="reference internal" href="ansys.acp.core.DropOffSettings.html#ansys.acp.core.DropOffSettings" title="ansys.acp.core.DropOffSettings"><em>DropOffSettings</em></a>) – Determines how drop-off elements are handled in the solid model extrusion.</p></li>
+<li><p><strong>export_settings</strong> (<a class="reference internal" href="ansys.acp.core.ExportSettings.html#ansys.acp.core.ExportSettings" title="ansys.acp.core.ExportSettings"><em>ExportSettings</em></a>) – Defines the settings for exporting the solid model.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">CreatableValueT</span></code>, bound= <a class="reference internal" href="ansys.acp.core._tree_objects.base.CreatableTreeObject.html#ansys.acp.core._tree_objects.base.CreatableTreeObject" title="ansys.acp.core._tree_objects.base.CreatableTreeObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">CreatableTreeObject</span></code></a>)</span></p>
+<dd class="field-even"><p><a class="reference internal" href="ansys.acp.core.SolidModel.html#ansys.acp.core.SolidModel" title="ansys.acp.core._tree_objects.solid_model.SolidModel"><em>SolidModel</em></a></p>
 </dd>
 </dl>
 <p><em>Added in ACP server version 25.1.</em></p>

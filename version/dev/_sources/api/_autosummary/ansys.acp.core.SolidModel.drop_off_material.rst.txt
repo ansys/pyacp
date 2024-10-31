@@ -1,0 +1,6 @@
+drop\_off\_material
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.drop_off_material

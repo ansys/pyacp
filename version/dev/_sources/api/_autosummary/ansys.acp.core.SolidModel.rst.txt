@@ -1,0 +1,66 @@
+﻿SolidModel
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SolidModel
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SolidModel.clone
+      
+      
+      SolidModel.create_snap_to_geometry
+      
+      
+      SolidModel.delete
+      
+      
+      SolidModel.export
+      
+      
+      SolidModel.export_skin
+      
+      
+      SolidModel.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SolidModel.active
+      SolidModel.cut_off_material
+      SolidModel.delete_bad_elements
+      SolidModel.drop_off_material
+      SolidModel.drop_off_settings
+      SolidModel.element_sets
+      SolidModel.export_settings
+      SolidModel.extrusion_method
+      SolidModel.id
+      SolidModel.locked
+      SolidModel.max_element_thickness
+      SolidModel.minimum_volume
+      SolidModel.name
+      SolidModel.offset_direction
+      SolidModel.parent
+      SolidModel.ply_group_pointers
+      SolidModel.skip_elements_without_plies
+      SolidModel.snap_to_geometries
+      SolidModel.status
+      SolidModel.warping_limit
+   
+   

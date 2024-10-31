@@ -1,0 +1,6 @@
+ANSYS\_CDB
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelSkinExportFormat.ANSYS_CDB

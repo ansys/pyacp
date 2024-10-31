@@ -17,7 +17,6 @@ Enumeration data types
     DropoffMaterialType
     DropOffType
     EdgeSetType
-    EdgeSetType
     ElementalDataType
     ExtrusionType
     ExtrusionMethodType
@@ -33,6 +32,7 @@ Enumeration data types
     LookUpTableColumnValueType
     MeshImportType
     NodalDataType
+    OffsetDirectionType
     OffsetType
     OrientationType
     PlyCutoffType
@@ -42,6 +42,8 @@ Enumeration data types
     RosetteType
     SectionCutType
     SensorType
+    SolidModelExportFormat
+    SolidModelSkinExportFormat
     StatusType
     SymmetryType
     ThicknessFieldType

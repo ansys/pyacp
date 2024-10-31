@@ -1,0 +1,6 @@
+create\_snap\_to\_geometry
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SolidModel.create_snap_to_geometry

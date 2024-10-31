@@ -500,6 +500,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
@@ -606,12 +607,12 @@ values to fit.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>interpolation_algorithm</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ansys.acp.core.LookUpTable3DInterpolationAlgorithm.html#ansys.acp.core.LookUpTable3DInterpolationAlgorithm" title="ansys.acp.core._tree_objects.enums.LookUpTable3DInterpolationAlgorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">LookUpTable3DInterpolationAlgorithm</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">&lt;LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR:</span> <span class="pre">'weighted_nearest_neighbor'&gt;</span></code>) – Algorithm used to interpolate the values of the look-up table.</p></li>
-<li><p><strong>use_default_search_radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, estimate the search radius used in the weightest nearest
+<li><p><strong>interpolation_algorithm</strong> (<a class="reference internal" href="ansys.acp.core.LookUpTable3DInterpolationAlgorithm.html#ansys.acp.core.LookUpTable3DInterpolationAlgorithm" title="ansys.acp.core._tree_objects.enums.LookUpTable3DInterpolationAlgorithm"><em>LookUpTable3DInterpolationAlgorithm</em></a>) – Algorithm used to interpolate the values of the look-up table.</p></li>
+<li><p><strong>use_default_search_radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, estimate the search radius used in the weightest nearest
 neighbor algorithm automatically.</p></li>
-<li><p><strong>search_radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>) – Search radius used for the interpolation with the weighted nearest
+<li><p><strong>search_radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Search radius used for the interpolation with the weighted nearest
 neighbor algorithm.</p></li>
-<li><p><strong>num_min_neighbors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">1</span></code>) – Minimum number of neighbors used for the interpolation when using the
+<li><p><strong>num_min_neighbors</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Minimum number of neighbors used for the interpolation when using the
 weighted nearest neighbor algorithm.</p></li>
 </ul>
 </dd>
@@ -623,7 +624,7 @@ weighted nearest neighbor algorithm.</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3D.clone.html#ansys.acp.core.LookUpTable3D.clone" title="ansys.acp.core.LookUpTable3D.clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3D.clone</span></code></a>(*[, unlink])</p></td>
 <td><p>Create a new unstored object with the same properties.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3D.create_column.html#ansys.acp.core.LookUpTable3D.create_column" title="ansys.acp.core.LookUpTable3D.create_column"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3D.create_column</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3D.create_column.html#ansys.acp.core.LookUpTable3D.create_column" title="ansys.acp.core.LookUpTable3D.create_column"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3D.create_column</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate a Column of a 3D Look-Up Table.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3D.delete.html#ansys.acp.core.LookUpTable3D.delete" title="ansys.acp.core.LookUpTable3D.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3D.delete</span></code></a>()</p></td>

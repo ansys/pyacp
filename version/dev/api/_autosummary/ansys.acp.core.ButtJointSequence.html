@@ -499,6 +499,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
@@ -594,11 +595,11 @@ document.write(`
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">'ButtJointSequence'</span></code>) – Name of the butt joint sequence.</p></li>
-<li><p><strong>primary_plies</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference internal" href="ansys.acp.core.PrimaryPly.html#ansys.acp.core.PrimaryPly" title="ansys.acp.core._tree_objects.butt_joint_sequence.PrimaryPly"><code class="xref py py-class docutils literal notranslate"><span class="pre">PrimaryPly</span></code></a>]</span>, default: <code class="docutils literal notranslate"><span class="pre">()</span></code>) – Primary plies are the source of a butt joint and they pass the thickness to
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of the butt joint sequence.</p></li>
+<li><p><strong>primary_plies</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.13)"><em>Sequence</em></a><em>[</em><a class="reference internal" href="ansys.acp.core.PrimaryPly.html#ansys.acp.core.PrimaryPly" title="ansys.acp.core._tree_objects.butt_joint_sequence.PrimaryPly"><em>PrimaryPly</em></a><em>]</em>) – Primary plies are the source of a butt joint and they pass the thickness to
 adjacent plies. Plies with a higher level inherit the thickness from those
 with a lower level.</p></li>
-<li><p><strong>secondary_plies</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference internal" href="ansys.acp.core.ModelingGroup.html#ansys.acp.core.ModelingGroup" title="ansys.acp.core._tree_objects.modeling_group.ModelingGroup"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelingGroup</span></code></a> | <a class="reference internal" href="ansys.acp.core.ModelingPly.html#ansys.acp.core.ModelingPly" title="ansys.acp.core._tree_objects.modeling_ply.ModelingPly"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelingPly</span></code></a>]</span>, default: <code class="docutils literal notranslate"><span class="pre">()</span></code>) – Secondary plies are butt-joined to adjacent primary plies and they inherit
+<li><p><strong>secondary_plies</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.13)"><em>Sequence</em></a><em>[</em><a class="reference internal" href="ansys.acp.core.ModelingGroup.html#ansys.acp.core.ModelingGroup" title="ansys.acp.core._tree_objects.modeling_group.ModelingGroup"><em>ModelingGroup</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.ModelingPly.html#ansys.acp.core.ModelingPly" title="ansys.acp.core._tree_objects.modeling_ply.ModelingPly"><em>ModelingPly</em></a><em>]</em>) – Secondary plies are butt-joined to adjacent primary plies and they inherit
 the thickness.</p></li>
 </ul>
 </dd>
@@ -607,7 +608,7 @@ the thickness.</p></li>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ButtJointSequence.add_primary_ply.html#ansys.acp.core.ButtJointSequence.add_primary_ply" title="ansys.acp.core.ButtJointSequence.add_primary_ply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ButtJointSequence.add_primary_ply</span></code></a>(*args, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ButtJointSequence.add_primary_ply.html#ansys.acp.core.ButtJointSequence.add_primary_ply" title="ansys.acp.core.ButtJointSequence.add_primary_ply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ButtJointSequence.add_primary_ply</span></code></a>(sequence)</p></td>
 <td><p>Add a PrimaryPly to the ButtJointSequence.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ButtJointSequence.clone.html#ansys.acp.core.ButtJointSequence.clone" title="ansys.acp.core.ButtJointSequence.clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ButtJointSequence.clone</span></code></a>(*[, unlink])</p></td>

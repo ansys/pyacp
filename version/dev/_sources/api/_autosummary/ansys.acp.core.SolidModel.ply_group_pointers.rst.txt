@@ -1,0 +1,6 @@
+ply\_group\_pointers
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.ply_group_pointers

@@ -1,0 +1,6 @@
+STL
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelSkinExportFormat.STL

@@ -485,6 +485,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -596,14 +597,20 @@ document.write(`
 <h1>add_material<a class="headerlink" href="#add-material" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.SubLaminate.add_material">
-<span class="sig-prename descclassname"><span class="pre">SubLaminate.</span></span><span class="sig-name descname"><span class="pre">add_material</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.SubLaminate.add_material" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">SubLaminate.</span></span><span class="sig-name descname"><span class="pre">add_material</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">material</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.SubLaminate.add_material" title="Link to this definition">#</a></dt>
 <dd><p>Add a Lamina to the SubLaminate.</p>
-<p>See <a class="reference internal" href="ansys.acp.core.Lamina.html#ansys.acp.core.Lamina" title="ansys.acp.core.Lamina"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lamina</span></code></a> for the available parameters.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">ValueT</span></code>, bound= <a class="reference internal" href="ansys.acp.core._tree_objects._grpc_helpers.edge_property_list.GenericEdgePropertyType.html#ansys.acp.core._tree_objects._grpc_helpers.edge_property_list.GenericEdgePropertyType" title="ansys.acp.core._tree_objects._grpc_helpers.edge_property_list.GenericEdgePropertyType"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenericEdgePropertyType</span></code></a>)</span></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>material</strong> (<a class="reference internal" href="ansys.acp.core.Fabric.html#ansys.acp.core.Fabric" title="ansys.acp.core._tree_objects.fabric.Fabric"><em>Fabric</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.Stackup.html#ansys.acp.core.Stackup" title="ansys.acp.core._tree_objects.stackup.Stackup"><em>Stackup</em></a>) – Link to an existing fabric or stackup.</p></li>
+<li><p><strong>angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Orientation angle in degree of the material with respect to the reference direction.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="ansys.acp.core.Lamina.html#ansys.acp.core.Lamina" title="ansys.acp.core._tree_objects.sublaminate.Lamina"><em>Lamina</em></a></p>
 </dd>
 </dl>
+<p><em>Added in ACP server version 24.2.</em></p>
 </dd></dl>
 
 </section>

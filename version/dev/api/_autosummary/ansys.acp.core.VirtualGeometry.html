@@ -485,6 +485,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
@@ -595,9 +596,9 @@ Combining CAD Components and SubShapes is not allowed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">'VirtualGeometry'</span></code>) – Name of the Virtual Geometry.</p></li>
-<li><p><strong>cad_components</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference internal" href="ansys.acp.core.CADComponent.html#ansys.acp.core.CADComponent" title="ansys.acp.core._tree_objects.cad_component.CADComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">CADComponent</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – CAD Components that make up the virtual geometry.</p></li>
-<li><p><strong>sub_shapes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference internal" href="ansys.acp.core.SubShape.html#ansys.acp.core.SubShape" title="ansys.acp.core._tree_objects.virtual_geometry.SubShape"><code class="xref py py-class docutils literal notranslate"><span class="pre">SubShape</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>) – SubShapes that make up the virtual geometry.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of the Virtual Geometry.</p></li>
+<li><p><strong>cad_components</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.13)"><em>Iterable</em></a><em>[</em><a class="reference internal" href="ansys.acp.core.CADComponent.html#ansys.acp.core.CADComponent" title="ansys.acp.core._tree_objects.cad_component.CADComponent"><em>CADComponent</em></a><em>] </em><em>| </em><em>None</em>) – CAD Components that make up the virtual geometry.</p></li>
+<li><p><strong>sub_shapes</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.13)"><em>Iterable</em></a><em>[</em><a class="reference internal" href="ansys.acp.core.SubShape.html#ansys.acp.core.SubShape" title="ansys.acp.core._tree_objects.virtual_geometry.SubShape"><em>SubShape</em></a><em>] </em><em>| </em><em>None</em>) – SubShapes that make up the virtual geometry.</p></li>
 </ul>
 </dd>
 </dl>
@@ -605,7 +606,7 @@ Combining CAD Components and SubShapes is not allowed.</p>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.VirtualGeometry.add_sub_shape.html#ansys.acp.core.VirtualGeometry.add_sub_shape" title="ansys.acp.core.VirtualGeometry.add_sub_shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VirtualGeometry.add_sub_shape</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.VirtualGeometry.add_sub_shape.html#ansys.acp.core.VirtualGeometry.add_sub_shape" title="ansys.acp.core.VirtualGeometry.add_sub_shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VirtualGeometry.add_sub_shape</span></code></a>(cad_geometry, path)</p></td>
 <td><p>Add a SubShape to the VirtualGeometry.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.VirtualGeometry.clone.html#ansys.acp.core.VirtualGeometry.clone" title="ansys.acp.core.VirtualGeometry.clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VirtualGeometry.clone</span></code></a>(*[, unlink])</p></td>

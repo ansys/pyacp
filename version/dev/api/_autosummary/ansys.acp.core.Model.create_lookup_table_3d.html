@@ -558,6 +558,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
@@ -652,7 +653,7 @@ document.write(`
 <h1>create_lookup_table_3d<a class="headerlink" href="#create-lookup-table-3d" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_lookup_table_3d">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_lookup_table_3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_lookup_table_3d" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_lookup_table_3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LookUpTable3D'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_default_search_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_min_neighbors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_lookup_table_3d" title="Link to this definition">#</a></dt>
 <dd><p>Instantiate a 3D Look-Up Table.</p>
 <p>The three-dimensional look-up table is defined by 3D data points. The
 locations of these data points are defined by the <code class="docutils literal notranslate"><span class="pre">Location</span></code> column,
@@ -668,17 +669,17 @@ values to fit.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>interpolation_algorithm</strong> – Algorithm used to interpolate the values of the look-up table.</p></li>
-<li><p><strong>use_default_search_radius</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, estimate the search radius used in the weightest nearest
+<li><p><strong>interpolation_algorithm</strong> (<a class="reference internal" href="ansys.acp.core.LookUpTable3DInterpolationAlgorithm.html#ansys.acp.core.LookUpTable3DInterpolationAlgorithm" title="ansys.acp.core.LookUpTable3DInterpolationAlgorithm"><em>LookUpTable3DInterpolationAlgorithm</em></a>) – Algorithm used to interpolate the values of the look-up table.</p></li>
+<li><p><strong>use_default_search_radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, estimate the search radius used in the weightest nearest
 neighbor algorithm automatically.</p></li>
-<li><p><strong>search_radius</strong> – Search radius used for the interpolation with the weighted nearest
+<li><p><strong>search_radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Search radius used for the interpolation with the weighted nearest
 neighbor algorithm.</p></li>
-<li><p><strong>num_min_neighbors</strong> – Minimum number of neighbors used for the interpolation when using the
+<li><p><strong>num_min_neighbors</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Minimum number of neighbors used for the interpolation when using the
 weighted nearest neighbor algorithm.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">CreatableValueT</span></code>, bound= <a class="reference internal" href="ansys.acp.core._tree_objects.base.CreatableTreeObject.html#ansys.acp.core._tree_objects.base.CreatableTreeObject" title="ansys.acp.core._tree_objects.base.CreatableTreeObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">CreatableTreeObject</span></code></a>)</span></p>
+<dd class="field-even"><p><a class="reference internal" href="ansys.acp.core.LookUpTable3D.html#ansys.acp.core.LookUpTable3D" title="ansys.acp.core._tree_objects.lookup_table_3d.LookUpTable3D"><em>LookUpTable3D</em></a></p>
 </dd>
 </dl>
 <p><em>Added in ACP server version 24.2.</em></p>

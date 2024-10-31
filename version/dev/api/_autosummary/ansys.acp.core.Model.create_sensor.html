@@ -558,6 +558,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
@@ -652,20 +653,20 @@ document.write(`
 <h1>create_sensor<a class="headerlink" href="#create-sensor" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.Model.create_sensor">
-<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_sensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_sensor" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Model.</span></span><span class="sig-name descname"><span class="pre">create_sensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Sensor'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensor_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SensorType.SENSOR_BY_AREA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.Model.create_sensor" title="Link to this definition">#</a></dt>
 <dd><p>Instantiate a Sensor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Name of the sensor.</p></li>
-<li><p><strong>sensor_type</strong> – Type of sensor: The sensor can be scoped by area, material, plies,
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of the sensor.</p></li>
+<li><p><strong>sensor_type</strong> (<a class="reference internal" href="ansys.acp.core.SensorType.html#ansys.acp.core.SensorType" title="ansys.acp.core.SensorType"><em>SensorType</em></a>) – Type of sensor: The sensor can be scoped by area, material, plies,
 or solid model.</p></li>
-<li><p><strong>active</strong> – Inactive sensors are not evaluated.</p></li>
-<li><p><strong>entities</strong> – List of entities which define the sensor’s scope.</p></li>
+<li><p><strong>active</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Inactive sensors are not evaluated.</p></li>
+<li><p><strong>entities</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.13)"><em>Sequence</em></a><em>[</em><a class="reference internal" href="ansys.acp.core.Fabric.html#ansys.acp.core.Fabric" title="ansys.acp.core._tree_objects.fabric.Fabric"><em>Fabric</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.Stackup.html#ansys.acp.core.Stackup" title="ansys.acp.core._tree_objects.stackup.Stackup"><em>Stackup</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.SubLaminate.html#ansys.acp.core.SubLaminate" title="ansys.acp.core._tree_objects.sublaminate.SubLaminate"><em>SubLaminate</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.ElementSet.html#ansys.acp.core.ElementSet" title="ansys.acp.core._tree_objects.element_set.ElementSet"><em>ElementSet</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.html#ansys.acp.core.OrientedSelectionSet" title="ansys.acp.core._tree_objects.oriented_selection_set.OrientedSelectionSet"><em>OrientedSelectionSet</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.ModelingPly.html#ansys.acp.core.ModelingPly" title="ansys.acp.core._tree_objects.modeling_ply.ModelingPly"><em>ModelingPly</em></a><em>]</em>) – List of entities which define the sensor’s scope.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">CreatableValueT</span></code>, bound= <a class="reference internal" href="ansys.acp.core._tree_objects.base.CreatableTreeObject.html#ansys.acp.core._tree_objects.base.CreatableTreeObject" title="ansys.acp.core._tree_objects.base.CreatableTreeObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">CreatableTreeObject</span></code></a>)</span></p>
+<dd class="field-even"><p><a class="reference internal" href="ansys.acp.core.Sensor.html#ansys.acp.core.Sensor" title="ansys.acp.core._tree_objects.sensor.Sensor"><em>Sensor</em></a></p>
 </dd>
 </dl>
 <p><em>Added in ACP server version 24.2.</em></p>

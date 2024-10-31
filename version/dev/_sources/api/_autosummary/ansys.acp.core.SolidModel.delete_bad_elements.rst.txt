@@ -1,0 +1,6 @@
+delete\_bad\_elements
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.delete_bad_elements

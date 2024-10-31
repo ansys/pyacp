@@ -501,6 +501,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
@@ -595,7 +596,7 @@ document.write(`
 <dd><p>Instantiate a modeling group.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>, default: <code class="docutils literal notranslate"><span class="pre">'ModelingGroup'</span></code>) – Name of the modeling group.</p>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of the modeling group.</p>
 </dd>
 </dl>
 <p><em>Added in ACP server version 24.2.</em></p>
@@ -605,13 +606,13 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.clone.html#ansys.acp.core.ModelingGroup.clone" title="ansys.acp.core.ModelingGroup.clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.clone</span></code></a>(*[, unlink])</p></td>
 <td><p>Create a new unstored object with the same properties.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_butt_joint_sequence.html#ansys.acp.core.ModelingGroup.create_butt_joint_sequence" title="ansys.acp.core.ModelingGroup.create_butt_joint_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.create_butt_joint_sequence</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_butt_joint_sequence.html#ansys.acp.core.ModelingGroup.create_butt_joint_sequence" title="ansys.acp.core.ModelingGroup.create_butt_joint_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.create_butt_joint_sequence</span></code></a>(*)</p></td>
 <td><p>Instantiate a ButtJointSequence.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_interface_layer.html#ansys.acp.core.ModelingGroup.create_interface_layer" title="ansys.acp.core.ModelingGroup.create_interface_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.create_interface_layer</span></code></a>(*args, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_interface_layer.html#ansys.acp.core.ModelingGroup.create_interface_layer" title="ansys.acp.core.ModelingGroup.create_interface_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.create_interface_layer</span></code></a>(*[, ...])</p></td>
 <td><p>Instantiate an interface layer.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_modeling_ply.html#ansys.acp.core.ModelingGroup.create_modeling_ply" title="ansys.acp.core.ModelingGroup.create_modeling_ply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.create_modeling_ply</span></code></a>(*args, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.create_modeling_ply.html#ansys.acp.core.ModelingGroup.create_modeling_ply" title="ansys.acp.core.ModelingGroup.create_modeling_ply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.create_modeling_ply</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate a Modeling Ply.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingGroup.delete.html#ansys.acp.core.ModelingGroup.delete" title="ansys.acp.core.ModelingGroup.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingGroup.delete</span></code></a>()</p></td>
