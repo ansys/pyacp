@@ -18,6 +18,8 @@ Mesh data objects
     ElementSetNodalData
     GeometricalSelectionRuleElementalData
     GeometricalSelectionRuleNodalData
+    ImportedSolidModelElementalData
+    ImportedSolidModelNodalData
     MeshData
     ModelElementalData
     ModelingPlyElementalData
