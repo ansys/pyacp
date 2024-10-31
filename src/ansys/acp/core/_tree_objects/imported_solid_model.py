@@ -36,6 +36,7 @@ from ansys.api.acp.v0 import (
 from .._typing_helper import PATH as _PATH
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
+from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -311,3 +312,17 @@ class ImportedSolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObjec
 
     elemental_data = elemental_data_property(ImportedSolidModelElementalData)
     nodal_data = nodal_data_property(ImportedSolidModelNodalData)
+
+    def refresh(self) -> None:
+        """Re-import the solid model from the external file."""
+        with wrap_grpc_errors():
+            self._get_stub().Refresh(  # type: ignore
+                imported_solid_model_pb2.RefreshRequest(resource_path=self._resource_path)
+            )
+
+    def import_initial_mesh(self) -> None:
+        """Import the solid mesh and its element sets."""
+        with wrap_grpc_errors():
+            self._get_stub().ImportInitialMesh(  # type: ignore
+                imported_solid_model_pb2.ImportInitialMeshRequest(resource_path=self._resource_path)
+            )

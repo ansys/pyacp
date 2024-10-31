@@ -220,3 +220,53 @@ def test_skin_export_with_invalid_format_raises(parent_object, invalid_format):
 
         with pytest.raises(ValueError):
             solid_model.export_skin(path=out_path, format=invalid_format)
+
+
+def test_refresh(tempdir_if_local_acp, parent_object):
+    """Check that refreshing works. Does not check the result of the refresh."""
+    model = parent_object
+    solid_model = model.create_solid_model()
+    solid_model.element_sets = [model.element_sets["All_Elements"]]
+    model.update()
+
+    with tempdir_if_local_acp() as tmp_dir:
+        out_file_name = f"out_file.h5"
+        out_path = pathlib.Path(tmp_dir) / out_file_name
+        solid_model.export(path=out_path, format=pyacp.SolidModelExportFormat.ANSYS_H5)
+
+        imported_solid_model = model.create_imported_solid_model(
+            external_path=out_path,
+            format=pyacp.SolidModelImportFormat.ANSYS_H5,
+        )
+        imported_solid_model.refresh()
+
+
+@given(external_path=st.text())
+@settings(suppress_health_check=[HealthCheck.function_scoped_fixture], deadline=None)
+def test_refresh_inexistent_path(parent_object, external_path):
+    """Check that refreshing with an inexistent path raises an exception."""
+    assume(not pathlib.Path(external_path).exists())
+    model = parent_object
+    imported_solid_model = model.create_imported_solid_model()
+    imported_solid_model.external_path = external_path
+    with pytest.raises(RuntimeError):
+        imported_solid_model.refresh()
+
+
+def test_import_initial_mesh(tempdir_if_local_acp, parent_object):
+    """Check that the 'import_initial_mesh' method works. Does not check the result."""
+    model = parent_object
+    solid_model = model.create_solid_model()
+    solid_model.element_sets = [model.element_sets["All_Elements"]]
+    model.update()
+
+    with tempdir_if_local_acp() as tmp_dir:
+        out_file_name = f"out_file.h5"
+        out_path = pathlib.Path(tmp_dir) / out_file_name
+        solid_model.export(path=out_path, format=pyacp.SolidModelExportFormat.ANSYS_H5)
+
+        imported_solid_model = model.create_imported_solid_model(
+            external_path=out_path,
+            format=pyacp.SolidModelImportFormat.ANSYS_H5,
+        )
+        imported_solid_model.import_initial_mesh()

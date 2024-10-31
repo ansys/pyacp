@@ -306,3 +306,21 @@ def skip_before_version(acp_instance):
             pytest.skip(f"Test is not supported before version {version}")
 
     return inner
+
+
+@pytest.fixture
+def tempdir_if_local_acp(acp_instance):
+    """
+    Context manager which provides a temporary directory if the ACP server is local.
+    Otherwise, an empty path is provided.
+    """
+
+    @contextmanager
+    def inner():
+        if acp_instance.is_remote:
+            yield pathlib.PurePosixPath(".")
+        else:
+            with tempfile.TemporaryDirectory() as tmp_dir:
+                yield pathlib.Path(tmp_dir)
+
+    return inner
