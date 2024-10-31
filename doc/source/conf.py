@@ -26,7 +26,11 @@ def _signature(
 
     # Import classes which were guarded with a 'typing.TYPE_CHECKING' explicitly here, otherwise
     # the 'eval' in 'inspect.signature' will fail.
+    # Some imports are needed because these types occur in a dataclass base class, which is
+    # not in the same module as the documented class.
     from collections.abc import Sequence  # noqa: F401
+
+    import numpy as np  # noqa: F401
 
     from ansys.acp.core import (  # noqa: F401
         BooleanSelectionRule,
