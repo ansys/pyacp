@@ -19,6 +19,7 @@ Enumeration data types
     EdgeSetType
     EdgeSetType
     ElementalDataType
+    ExtrusionGuideType
     ExtrusionType
     ExtrusionMethodType
     FeFormat
