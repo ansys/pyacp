@@ -23,6 +23,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
+from functools import reduce
 
 from google.protobuf.message import Message
 
@@ -147,13 +148,18 @@ class ExtrusionGuide(CreatableTreeObject, IdTreeObject):
         "properties.use_curvature_correction"
     )
 
-    # The extrusion guide type is not stored by the backend directly. Instead
+    # The extrusion guide type is not stored by the backend directly. Instead,
     # it is derived from the property direction. Therefore, setting and getting
     # the direction is blocked if the extrusion guide type is not `by_direction`.
     # See Feature 1122546 in ADO. This can be removed once the backend is updated.
     @staticmethod
     def _set_direction_attribute(pb_obj: ObjectInfo, name: str, value: _PROTOBUF_T) -> None:
-        if pb_obj.properties.extrusion_guide_type != extrusion_guide_pb2.BY_DIRECTION:
+        # name is "properties.direction"
+        if (
+            hasattr(pb_obj.properties, "extrusion_guide_type")
+            and getattr(pb_obj.properties, "extrusion_guide_type")
+            != extrusion_guide_pb2.BY_DIRECTION
+        ):
             array = to_tuple_from_1D_array(value)
             if array and sum(array) != 0:
                 raise RuntimeError(
@@ -161,8 +167,15 @@ class ExtrusionGuide(CreatableTreeObject, IdTreeObject):
                 )
         _set_data_attribute(pb_obj, name, value)
 
-    def _get_direction_attribute(pb_obj: Message, name: str, check_optional: bool) -> None:
-        if pb_obj.properties.extrusion_guide_type != extrusion_guide_pb2.BY_DIRECTION:
+    @staticmethod
+    def _get_direction_attribute(pb_obj: Message, name: str, check_optional: bool) -> _PROTOBUF_T:
+        # name is "properties.direction"
+        name_parts = name.split(".")
+        parent_obj = reduce(getattr, name_parts[:-1], pb_obj)
+        if (
+            hasattr(parent_obj, "extrusion_guide_type")
+            and getattr(parent_obj, "extrusion_guide_type") != extrusion_guide_pb2.BY_DIRECTION
+        ):
             raise RuntimeError(
                 "Cannot access direction if the extrusion guide type is not 'by_direction'!"
             )

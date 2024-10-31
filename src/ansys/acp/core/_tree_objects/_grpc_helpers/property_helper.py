@@ -181,7 +181,7 @@ def grpc_data_getter(
     )
     def inner(self: Readable) -> Any:
         self._get_if_stored()
-        pb_attribute = getter_func(self._pb_object, name, check_optional=check_optional)
+        pb_attribute = getter_func(self._pb_object, name, check_optional)
         if check_optional and pb_attribute is None:
             return None
         return from_protobuf(pb_attribute)
