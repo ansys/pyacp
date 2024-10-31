@@ -1,12 +1,83 @@
 """Sphinx documentation configuration file."""
 
 from datetime import datetime
+import inspect
 import os
 import warnings
 
 import pyvista
 from pyvista.plotting.utilities.sphinx_gallery import DynamicScraper
 from sphinx.builders.latex import LaTeXBuilder
+import sphinx.util.inspect
+
+
+def _signature(
+    subject,
+    bound_method: bool = False,
+    type_aliases=None,
+):
+    """Monkeypatch for 'sphinx.util.inspect.signature'.
+
+    This function defines a custom signature function which is used by the 'sphinx.ext.autodoc'.
+    The main purpose is to force / fix using the class parameter type hints instead of the class
+    attribute type hints.
+    See https://github.com/sphinx-doc/sphinx/issues/11207 for context.
+    """
+
+    # Import classes which were guarded with a 'typing.TYPE_CHECKING' explicitly here, otherwise
+    # the 'eval' in 'inspect.signature' will fail.
+    from collections.abc import Sequence  # noqa: F401
+
+    from ansys.acp.core import (  # noqa: F401
+        BooleanSelectionRule,
+        CADComponent,
+        GeometricalSelectionRule,
+        MeshData,
+        Model,
+        ModelingGroup,
+        ScalarData,
+        VectorData,
+    )
+
+    # Import type aliases so that they can be resolved correctly.
+    from ansys.acp.core._tree_objects.linked_selection_rule import (  # noqa: F401
+        _LINKABLE_SELECTION_RULE_TYPES,
+    )
+    from ansys.acp.core._tree_objects.oriented_selection_set import (  # noqa: F401
+        _SELECTION_RULES_LINKABLE_TO_OSS,
+    )
+    from ansys.acp.core._tree_objects.sensor import _LINKABLE_ENTITY_TYPES  # noqa: F401
+    from ansys.acp.core._tree_objects.sublaminate import _LINKABLE_MATERIAL_TYPES  # noqa: F401
+    from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles  # noqa: F401
+    from ansys.dpf.core import UnitSystem  # noqa: F401
+
+    signature = inspect.signature(subject, locals=locals(), eval_str=True)
+
+    if signature.parameters:
+        parameters = list(signature.parameters.values())
+        if parameters[0].name == "self":
+            parameters.pop(0)
+        # dgresch Oct'24:
+        # Hack to fix the remaining issues with the signature. This is simpler than
+        # trying to get 'inspect.signature' to fully work, which would need to be done
+        # inside the 'define_create_method' function.
+        # I believe (speculation) the reason for this is that the 'create_' and 'add_'
+        # methods have an explicit __signature__ attribute, which stops the
+        # 'inspect.signature' from performing the 'eval'.
+        for i, param in enumerate(parameters):
+            if param.annotation in [
+                "Sequence[_SELECTION_RULES_LINKABLE_TO_OSS]",
+                "Sequence[_LINKABLE_ENTITY_TYPES]",
+                "_LINKABLE_MATERIAL_TYPES",
+            ]:
+                parameters[i] = param.replace(annotation=eval(param.annotation))
+        signature = signature.replace(parameters=parameters)
+    return signature
+
+
+sphinx.util.inspect.signature = _signature
+napoleon_attr_annotations = False
+
 
 LaTeXBuilder.supported_image_types = ["image/png", "image/pdf", "image/svg+xml"]
 from ansys_sphinx_theme import (
@@ -88,7 +159,6 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
-    "sphinx_autodoc_typehints",
     "numpydoc",
     "sphinx_copybutton",
 ]
@@ -117,15 +187,18 @@ intersphinx_mapping = {
 }
 
 nitpick_ignore = [
-    ("py:class", "typing.Self"),
-    ("py:class", "numpy.float64"),
-    ("py:class", "numpy.int32"),
-    ("py:class", "numpy.int64"),
     # Ignore TypeVar / TypeAlias defined within PyACP: they are either not recognized correctly,
     # or misidentified as a class.
     ("py:class", "_PATH"),
+    ("py:class", "ChildT"),
+    ("py:class", "CreatableValueT"),
 ]
 nitpick_ignore_regex = [
+    ("py:class", r"(typing\.|typing_extensions\.)?Self"),
+    ("py:class", r"(numpy\.typing|npt)\.NDArray"),
+    ("py:class", r"(numpy|np)\.float64"),
+    ("py:class", r"(numpy|np)\.int32"),
+    ("py:class", r"(numpy|np)\.int64"),
     ("py:class", r"ansys\.api\.acp\..*"),
     ("py:class", "None -- .*"),  # from collections.abc
     # Ignore TypeVars defined within PyACP: they are either not recognized correctly,
@@ -133,15 +206,16 @@ nitpick_ignore_regex = [
     ("py:class", r"^(.*\.)?ValueT$"),
     ("py:class", r"^(.*\.)?TC$"),
     ("py:class", r"^(.*\.)?TV$"),
+    ("py:class", r"ansys\.acp.core\..*\.AttribT"),
     ("py:class", r"ansys\.acp.core\..*\.ChildT"),
     ("py:class", r"ansys\.acp.core\..*\.CreatableValueT"),
-    ("py:class", r"ansys\.acp.core\..*\.MeshDataT"),
     ("py:class", r"ansys\.acp.core\..*\.ScalarDataT"),
+    ("py:class", r"ansys\.acp.core\..*\.MeshDataT"),
 ]
 
-# sphinx_autodoc_typehints configuration
-typehints_defaults = "comma"
-simplify_optional_unions = True
+# sphinx.ext.autodoc configuration
+autodoc_typehints = "description"
+autodoc_typehints_description_target = "documented_params"
 
 # numpydoc configuration
 numpydoc_show_class_members = False

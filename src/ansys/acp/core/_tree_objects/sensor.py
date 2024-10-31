@@ -22,7 +22,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 from typing import Union, get_args
 
 from ansys.api.acp.v0 import sensor_pb2, sensor_pb2_grpc
@@ -84,7 +84,7 @@ class Sensor(CreatableTreeObject, IdTreeObject):
         name: str = "Sensor",
         sensor_type: SensorType = SensorType.SENSOR_BY_AREA,
         active: bool = True,
-        entities: Iterable[_LINKABLE_ENTITY_TYPES] = (),
+        entities: Sequence[_LINKABLE_ENTITY_TYPES] = (),
     ):
         super().__init__(name=name)
         self.active = active
