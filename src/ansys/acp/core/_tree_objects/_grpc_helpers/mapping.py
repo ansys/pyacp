@@ -293,9 +293,6 @@ def define_create_method(
     parameters = [inspect.signature(inner).parameters["self"]]
     parameters.extend(inspect.signature(object_class).parameters.values())
     inner.__signature__ = inspect.Signature(parameters, return_annotation=object_class)  # type: ignore
-    # annotations = {"self": parent_class_name, "return": object_class}
-    # annotations.update(object_class.__init__.__annotations__) # type: ignore
-    # inner.__annotations__ = annotations
 
     inner.__name__ = func_name
     inner.__qualname__ = f"{parent_class_name}.{func_name}"

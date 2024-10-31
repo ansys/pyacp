@@ -206,6 +206,7 @@ nitpick_ignore_regex = [
     ("py:class", r"^(.*\.)?ValueT$"),
     ("py:class", r"^(.*\.)?TC$"),
     ("py:class", r"^(.*\.)?TV$"),
+    ("py:class", r"ansys\.acp.core\..*\.AttribT"),
     ("py:class", r"ansys\.acp.core\..*\.ChildT"),
     ("py:class", r"ansys\.acp.core\..*\.CreatableValueT"),
     ("py:class", r"ansys\.acp.core\..*\.ScalarDataT"),
@@ -214,7 +215,7 @@ nitpick_ignore_regex = [
 
 # sphinx.ext.autodoc configuration
 autodoc_typehints = "description"
-autodoc_typehints_description_target = "documented"
+autodoc_typehints_description_target = "documented_params"
 
 # numpydoc configuration
 numpydoc_show_class_members = False

@@ -42,6 +42,8 @@ Enumeration data types
     RosetteType
     SectionCutType
     SensorType
+    SolidModelExportFormat
+    SolidModelSkinExportFormat
     StatusType
     SymmetryType
     ThicknessFieldType
