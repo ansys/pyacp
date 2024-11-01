@@ -27,6 +27,7 @@ import typing
 from typing import Any
 
 from ansys.api.acp.v0 import (
+    extrusion_guide_pb2_grpc,
     snap_to_geometry_pb2_grpc,
     solid_model_export_pb2,
     solid_model_pb2,
@@ -72,6 +73,7 @@ from .enums import (
     solid_model_skin_export_format_to_pb,
     status_type_from_pb,
 )
+from .extrusion_guide import ExtrusionGuide
 from .material import Material
 from .modeling_ply import ModelingPly
 from .object_registry import register
@@ -460,6 +462,16 @@ class SolidModel(CreatableTreeObject, IdTreeObject):
 
     drop_off_settings = nested_grpc_object_property("properties.drop_off_settings", DropOffSettings)
     export_settings = nested_grpc_object_property("properties.export_settings", ExportSettings)
+
+    create_extrusion_guide = define_create_method(
+        ExtrusionGuide,
+        func_name="create_extrusion_guide",
+        parent_class_name="SolidModel",
+        module_name=__module__,
+    )
+    extrusion_guides = define_mutable_mapping(
+        ExtrusionGuide, extrusion_guide_pb2_grpc.ObjectServiceStub
+    )
 
     create_snap_to_geometry = define_create_method(
         SnapToGeometry,

@@ -54,6 +54,7 @@ from .enums import (
     DropOffType,
     EdgeSetType,
     ElementalDataType,
+    ExtrusionGuideType,
     ExtrusionMethodType,
     ExtrusionType,
     GeometricalRuleType,
@@ -84,6 +85,7 @@ from .enums import (
     UnitSystemType,
     VirtualGeometryDimension,
 )
+from .extrusion_guide import ExtrusionGuide
 from .fabric import Fabric
 from .geometrical_selection_rule import (
     GeometricalSelectionRule,
@@ -173,6 +175,8 @@ __all__ = [
     "ElementSetElementalData",
     "ElementSetNodalData",
     "ExportSettings",
+    "ExtrusionGuide",
+    "ExtrusionGuideType",
     "ExtrusionMethodType",
     "ExtrusionType",
     "Fabric",

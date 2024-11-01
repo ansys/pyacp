@@ -18,6 +18,7 @@ Enumeration data types
     DropOffType
     EdgeSetType
     ElementalDataType
+    ExtrusionGuideType
     ExtrusionType
     ExtrusionMethodType
     FeFormat

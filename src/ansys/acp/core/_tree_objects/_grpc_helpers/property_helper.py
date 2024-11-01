@@ -142,10 +142,20 @@ def grpc_linked_object_getter(
     return inner
 
 
+def _get_data_attribute(pb_obj: Message, name: str, check_optional: bool = False) -> _PROTOBUF_T:
+    name_parts = name.split(".")
+    if check_optional:
+        parent_obj = reduce(getattr, name_parts[:-1], pb_obj)
+        if hasattr(parent_obj, "HasField") and not parent_obj.HasField(name_parts[-1]):
+            return None
+    return reduce(getattr, name_parts, pb_obj)
+
+
 def grpc_data_getter(
     name: str,
     from_protobuf: _FROM_PROTOBUF_T[_GET_T],
     check_optional: bool = False,
+    getter_func: Callable[[Message, str, bool], _PROTOBUF_T] = _get_data_attribute,
     supported_since: str | None = None,
 ) -> Callable[[Readable], _GET_T]:
     """Create a getter method which obtains the server object via the gRPC Get endpoint.
@@ -171,7 +181,7 @@ def grpc_data_getter(
     )
     def inner(self: Readable) -> Any:
         self._get_if_stored()
-        pb_attribute = _get_data_attribute(self._pb_object, name, check_optional=check_optional)
+        pb_attribute = getter_func(self._pb_object, name, check_optional)
         if check_optional and pb_attribute is None:
             return None
         return from_protobuf(pb_attribute)
@@ -191,15 +201,6 @@ def grpc_linked_object_setter(
         func(self, value)
 
     return inner
-
-
-def _get_data_attribute(pb_obj: Message, name: str, check_optional: bool = False) -> _PROTOBUF_T:
-    name_parts = name.split(".")
-    if check_optional:
-        parent_obj = reduce(getattr, name_parts[:-1], pb_obj)
-        if hasattr(parent_obj, "HasField") and not parent_obj.HasField(name_parts[-1]):
-            return None
-    return reduce(getattr, name_parts, pb_obj)
 
 
 def _set_data_attribute(pb_obj: ObjectInfo, name: str, value: _PROTOBUF_T) -> None:
@@ -268,6 +269,7 @@ def grpc_data_property(
     check_optional: bool = False,
     doc: str | None = None,
     setter_func: Callable[[ObjectInfo, str, _PROTOBUF_T], None] = _set_data_attribute,
+    getter_func: Callable[[Message, str, bool], _PROTOBUF_T] = _get_data_attribute,
     readable_since: str | None = None,
     writable_since: str | None = None,
 ) -> ReadWriteProperty[_GET_T, _SET_T]:
@@ -292,6 +294,14 @@ def grpc_data_property(
         will be used.
     doc :
         Docstring for the property.
+    setter_func :
+        Function to set the property value. Can be customized to
+        implement additional checks or in case properties depend
+        on each other.
+    getter_func :
+        Function to get the property value. Can be customized to
+        implement additional checks or in case properties depend
+        on each other
     readable_since :
         Version since which the property is supported for reading.
     writable_since :
@@ -310,6 +320,7 @@ def grpc_data_property(
                 name,
                 from_protobuf=from_protobuf,
                 check_optional=check_optional,
+                getter_func=getter_func,
                 supported_since=readable_since,
             )
         ).setter(
