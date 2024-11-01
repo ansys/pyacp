@@ -151,7 +151,8 @@ class ExtrusionGuide(CreatableTreeObject, IdTreeObject):
     # The extrusion guide type is not stored by the backend directly. Instead,
     # it is derived from the property direction. Therefore, setting and getting
     # the direction is blocked if the extrusion guide type is not `by_direction`.
-    # See Feature 1122546 in ADO. This can be removed once the backend is updated.
+    # See Feature 1122546 in ADO. Once resolved, this check becomes obsolete
+    # but ensure backward compatibility.
     @staticmethod
     def _set_direction_attribute(pb_obj: ObjectInfo, name: str, value: _PROTOBUF_T) -> None:
         # name is "properties.direction"
