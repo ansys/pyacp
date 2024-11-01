@@ -41,6 +41,7 @@ ACP objects
     SectionCut
     Sensor
     SnapToGeometry
+    SolidModel
     SphericalSelectionRule
     Stackup
     SubLaminate
