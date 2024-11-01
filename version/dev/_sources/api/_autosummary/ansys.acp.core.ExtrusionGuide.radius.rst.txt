@@ -1,0 +1,6 @@
+radius
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExtrusionGuide.radius

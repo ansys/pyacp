@@ -18,6 +18,9 @@
       SolidModel.clone
       
       
+      SolidModel.create_extrusion_guide
+      
+      
       SolidModel.create_snap_to_geometry
       
       
@@ -49,6 +52,7 @@
       SolidModel.drop_off_settings
       SolidModel.element_sets
       SolidModel.export_settings
+      SolidModel.extrusion_guides
       SolidModel.extrusion_method
       SolidModel.id
       SolidModel.locked

@@ -1,0 +1,6 @@
+depth
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExtrusionGuide.depth

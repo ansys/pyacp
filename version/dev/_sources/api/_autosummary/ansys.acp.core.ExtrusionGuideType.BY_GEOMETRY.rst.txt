@@ -1,0 +1,6 @@
+BY\_GEOMETRY
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionGuideType.BY_GEOMETRY

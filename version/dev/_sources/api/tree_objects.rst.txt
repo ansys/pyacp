@@ -16,6 +16,7 @@ ACP objects
     DropOffSettings
     EdgeSet
     ElementSet
+    ExtrusionGuide
     ExportSettings
     Fabric
     GeometricalSelectionRule

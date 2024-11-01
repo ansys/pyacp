@@ -1,0 +1,6 @@
+create\_extrusion\_guide
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SolidModel.create_extrusion_guide

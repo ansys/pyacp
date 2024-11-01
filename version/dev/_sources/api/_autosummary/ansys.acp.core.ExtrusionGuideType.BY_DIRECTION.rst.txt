@@ -1,0 +1,6 @@
+BY\_DIRECTION
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionGuideType.BY_DIRECTION

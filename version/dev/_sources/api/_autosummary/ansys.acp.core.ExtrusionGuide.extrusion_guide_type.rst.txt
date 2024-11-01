@@ -1,0 +1,6 @@
+extrusion\_guide\_type
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExtrusionGuide.extrusion_guide_type
