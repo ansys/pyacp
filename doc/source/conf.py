@@ -40,6 +40,9 @@ def _signature(
     )
 
     # Import type aliases so that they can be resolved correctly.
+    from ansys.acp.core._tree_objects.field_definition import (  # noqa: F401
+        _SCOPE_ENTITIES_LINKABLE_TO_FIELD_DEFINITION,
+    )
     from ansys.acp.core._tree_objects.linked_selection_rule import (  # noqa: F401
         _LINKABLE_SELECTION_RULE_TYPES,
     )
