@@ -330,7 +330,7 @@ def test_material_export(acp_instance, minimal_complete_model, tempdir_if_local_
             assert os.stat(local_file_path).st_size > 0
 
 
-def test_material_import(acp_instance, minimal_complete_model, tempdir_if_local_acp):
+def test_material_import(minimal_complete_model, tempdir_if_local_acp, raises_before_version):
     # GIVEN: a model, and a material XML file containing a material which is
     # not present in the model
 
@@ -344,8 +344,9 @@ def test_material_import(acp_instance, minimal_complete_model, tempdir_if_local_
         del minimal_complete_model.materials[new_mat_id]
         assert new_mat_id not in minimal_complete_model.materials
 
-        # WHEN: the materials are imported
-        minimal_complete_model.import_materials(export_file_path)
+        with raises_before_version("25.1"):
+            # WHEN: the materials are imported
+            minimal_complete_model.import_materials(export_file_path)
 
-        # THEN: the new material should be present in the model
-        assert new_mat_id in minimal_complete_model.materials
+            # THEN: the new material should be present in the model
+            assert new_mat_id in minimal_complete_model.materials
