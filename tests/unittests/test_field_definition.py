@@ -23,17 +23,15 @@ from packaging.version import parse as parse_version
 import pytest
 
 from ansys.acp.core import FieldDefinition
+
 from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 
 @pytest.fixture(autouse=True)
 def skip_if_unsupported_version(acp_instance):
-    if parse_version(acp_instance.server_version) < parse_version(
-        FieldDefinition._SUPPORTED_SINCE
-    ):
+    if parse_version(acp_instance.server_version) < parse_version(FieldDefinition._SUPPORTED_SINCE):
         pytest.skip("FieldDefinition is not supported on this version of the server.")
-
 
 
 @pytest.fixture
