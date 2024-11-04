@@ -36,6 +36,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property_read_only,
     mark_grpc_properties,
 )
+from ._mesh import mesh_property, shell_mesh_property
 from ._mesh_data import (
     ElementalData,
     NodalData,
@@ -115,6 +116,10 @@ class ProductionPly(ReadOnlyTreeObject, IdTreeObject):
     material = grpc_link_property_read_only("properties.material")
     angle: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.angle")
     thickness: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.thickness")
+
+    mesh = mesh_property
+    shell_mesh = shell_mesh_property
+
     elemental_data = elemental_data_property(ProductionPlyElementalData)
     nodal_data = nodal_data_property(ProductionPlyNodalData)
 

@@ -47,6 +47,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
+from ._mesh import mesh_property, shell_mesh_property
 from ._mesh_data import (
     ElementalData,
     NodalData,
@@ -448,6 +449,9 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     production_plies = get_read_only_collection_property(
         ProductionPly, production_ply_pb2_grpc.ObjectServiceStub
     )
+
+    mesh = mesh_property
+    shell_mesh = shell_mesh_property
 
     elemental_data = elemental_data_property(ModelingPlyElementalData)
     nodal_data = nodal_data_property(ModelingPlyNodalData)

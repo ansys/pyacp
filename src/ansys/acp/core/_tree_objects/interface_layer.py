@@ -37,6 +37,7 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
+from ._mesh import mesh_property, shell_mesh_property
 from ._mesh_data import (
     ElementalData,
     NodalData,
@@ -124,6 +125,9 @@ class InterfaceLayer(CreatableTreeObject, IdTreeObject):
     open_area_sets = define_polymorphic_linked_object_list(
         "properties.open_area_sets", allowed_types=(ElementSet, OrientedSelectionSet)
     )
+
+    mesh = mesh_property
+    shell_mesh = shell_mesh_property
 
     elemental_data = elemental_data_property(InterfaceLayerElementalData)
     nodal_data = nodal_data_property(InterfaceLayerNodalData)

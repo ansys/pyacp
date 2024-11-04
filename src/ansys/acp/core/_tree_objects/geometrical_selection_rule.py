@@ -35,6 +35,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
+from ._mesh import mesh_property, shell_mesh_property
 from ._mesh_data import (
     ElementalData,
     NodalData,
@@ -162,5 +163,8 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
         "properties.positive_capture_tolerance"
     )
 
+    mesh = mesh_property
+    shell_mesh = shell_mesh_property
+    # selection rules don't have solid mesh data
     elemental_data = elemental_data_property(GeometricalSelectionRuleElementalData)
     nodal_data = nodal_data_property(GeometricalSelectionRuleNodalData)

@@ -36,6 +36,7 @@ from ansys.api.acp.v0 import mesh_query_pb2, mesh_query_pb2_grpc
 
 from .._typing_helper import StrEnum
 from .._utils.property_protocols import ReadOnlyProperty
+from ._mesh import MeshData
 from .base import TreeObject
 from .enums import (
     elemental_data_type_from_pb,
@@ -43,9 +44,6 @@ from .enums import (
     nodal_data_type_from_pb,
     nodal_data_type_to_pb,
 )
-
-if typing.TYPE_CHECKING:  # pragma: no cover
-    from .model import MeshData  # avoid circular import
 
 __all__ = [
     "ElementalData",
@@ -88,7 +86,10 @@ def _expand_array(
     target_array = np.ones(target_shape, dtype=np.float64) * np.nan
     for idx, (label, value) in enumerate(zip(labels.data_labels, array)):
         if idx % culling_factor == 0:
-            target_array[labels.mesh_label_to_index_map[label]] = value
+            try:
+                target_array[labels.mesh_label_to_index_map[label]] = value
+            except KeyError:
+                pass
     return target_array
 
 

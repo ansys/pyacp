@@ -34,6 +34,7 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
+from ._mesh import mesh_property, shell_mesh_property
 from ._mesh_data import (
     ElementalData,
     NodalData,
@@ -113,5 +114,7 @@ class ElementSet(CreatableTreeObject, IdTreeObject):
         to_protobuf=to_1D_int_array,
     )
 
+    mesh = mesh_property
+    shell_mesh = shell_mesh_property
     elemental_data = elemental_data_property(ElementSetElementalData)
     nodal_data = nodal_data_property(ElementSetNodalData)

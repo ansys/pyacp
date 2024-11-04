@@ -35,6 +35,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property_read_only,
     mark_grpc_properties,
 )
+from ._mesh import mesh_property, shell_mesh_property, solid_mesh_property
 from ._mesh_data import (
     ElementalData,
     NodalData,
@@ -119,5 +120,9 @@ class AnalysisPly(ReadOnlyTreeObject, IdTreeObject):
     active_in_post_mode: ReadOnlyProperty[bool] = grpc_data_property_read_only(
         "properties.active_in_post_mode"
     )
+
+    mesh = mesh_property
+    shell_mesh = shell_mesh_property
+    solid_mesh = solid_mesh_property
     elemental_data = elemental_data_property(AnalysisPlyElementalData)
     nodal_data = nodal_data_property(AnalysisPlyNodalData)

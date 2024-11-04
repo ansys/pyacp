@@ -35,6 +35,7 @@ from ansys.api.acp.v0 import (
 
 from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
 from ._grpc_helpers.property_helper import mark_grpc_properties
+from ._mesh import mesh_property, shell_mesh_property
 from ._mesh_data import (
     ElementalData,
     NodalData,
@@ -113,6 +114,9 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
     butt_joint_sequences = define_mutable_mapping(
         ButtJointSequence, butt_joint_sequence_pb2_grpc.ObjectServiceStub
     )
+
+    mesh = mesh_property
+    shell_mesh = shell_mesh_property
 
     elemental_data = elemental_data_property(ModelingGroupElementalData)
     nodal_data = nodal_data_property(ModelingGroupNodalData)

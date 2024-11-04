@@ -35,6 +35,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
+from ._mesh import mesh_property, shell_mesh_property
 from ._mesh_data import (
     ElementalData,
     NodalData,
@@ -143,5 +144,8 @@ class SphericalSelectionRule(CreatableTreeObject, IdTreeObject):
     )
     include_rule: ReadWriteProperty[bool, bool] = grpc_data_property("properties.include_rule_type")
 
+    mesh = mesh_property
+    shell_mesh = shell_mesh_property
+    # selection rules don't have solid mesh data
     elemental_data = elemental_data_property(SphericalSelectionRuleElementalData)
     nodal_data = nodal_data_property(SphericalSelectionRuleNodalData)

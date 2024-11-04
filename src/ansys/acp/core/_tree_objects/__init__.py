@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from ._mesh import MeshData
 from ._mesh_data import ScalarData, VectorData
 from .analysis_ply import AnalysisPly, AnalysisPlyElementalData, AnalysisPlyNodalData
 from .boolean_selection_rule import (
@@ -123,7 +124,6 @@ from .model import (
     HDF5CompositeCAEImportMode,
     HDF5CompositeCAEProjectionMode,
     IgnorableEntity,
-    MeshData,
     Model,
     ModelElementalData,
     ModelNodalData,

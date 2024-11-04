@@ -40,6 +40,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
+from ._mesh import mesh_property, shell_mesh_property
 from ._mesh_data import (
     ElementalData,
     NodalData,
@@ -68,11 +69,6 @@ from .rosette import Rosette
 from .spherical_selection_rule import SphericalSelectionRule
 from .tube_selection_rule import TubeSelectionRule
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
-
-# Workaround: these imports are needed to make sphinx_autodoc_typehints understand
-# the inherited members of the Elemental- and NodalData classes.
-import numpy as np  # noqa: F401 isort:skip
-from ._mesh_data import ScalarData  # noqa: F401 isort:skip
 
 __all__ = [
     "OrientedSelectionSet",
@@ -277,6 +273,9 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         "properties.reference_direction_field",
         allowed_types=(LookUpTable3DColumn, LookUpTable1DColumn),
     )
+
+    mesh = mesh_property
+    shell_mesh = shell_mesh_property
 
     elemental_data = elemental_data_property(OrientedSelectionSetElementalData)
     nodal_data = nodal_data_property(OrientedSelectionSetNodalData)
