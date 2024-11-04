@@ -26,9 +26,10 @@ import dataclasses
 
 import numpy as np
 import numpy.typing as npt
+from packaging.version import parse as parse_version
 from pyvista.core.pointset import UnstructuredGrid
 
-from ansys.api.acp.v0 import mesh_query_pb2, mesh_query_pb2_grpc
+from ansys.api.acp.v0 import base_pb2, mesh_query_pb2, mesh_query_pb2_grpc
 
 from .._utils.array_conversions import to_numpy
 from .._utils.property_protocols import ReadOnlyProperty
@@ -72,11 +73,27 @@ def _mesh_property_impl(
 ) -> ReadOnlyProperty[MeshData]:
     def getter(self: TreeObject) -> MeshData:
         mesh_query_stub = mesh_query_pb2_grpc.MeshQueryServiceStub(self._channel)
-        reply = mesh_query_stub.GetMeshData(
-            mesh_query_pb2.GetMeshDataRequest(
+        assert self._server_version is not None
+        if self._server_version < parse_version("25.1"):
+            from .model import Model
+
+            if not isinstance(self, Model):
+                raise RuntimeError(
+                    "Mesh attributes for object types other than 'Model' are only supported "
+                    "for server versions 25.1 and later."
+                )
+            if element_scoping != mesh_query_pb2.ElementScopingType.ALL:
+                raise RuntimeError(
+                    "Element scoping is only supported for server versions 25.1 and later."
+                )
+            request: base_pb2.GetRequest | mesh_query_pb2.GetMeshDataRequest = base_pb2.GetRequest(
+                resource_path=self._resource_path
+            )
+        else:
+            request = mesh_query_pb2.GetMeshDataRequest(
                 resource_path=self._resource_path, element_scoping=element_scoping
             )
-        )
+        reply = mesh_query_stub.GetMeshData(request)
         return MeshData(
             node_labels=to_numpy(reply.node_labels),
             node_coordinates=to_numpy(reply.node_coordinates),

@@ -152,18 +152,25 @@ def test_mesh_data_existence(model: Model):
     assert isinstance(nodal_data, AnalysisPlyNodalData)
 
 
-def test_meshes(model: Model):
+def test_meshes(model: Model, raises_before_version):
     """
     Test that the mesh properties can be retrieved.
     """
     analysis_ply = list(get_first_production_ply(model).analysis_plies.values())[0]
-    assert_equal(analysis_ply.mesh.element_labels, [1])
-    assert_equal(analysis_ply.shell_mesh.element_labels, [1])
-    assert_equal(analysis_ply.solid_mesh.element_labels, [])
-    model.create_solid_model(
-        element_sets=[model.element_sets["All_Elements"]],
-    )
+    with raises_before_version("25.1"):
+        assert_equal(analysis_ply.mesh.element_labels, [1])
+    with raises_before_version("25.1"):
+        assert_equal(analysis_ply.shell_mesh.element_labels, [1])
+    with raises_before_version("25.1"):
+        assert_equal(analysis_ply.solid_mesh.element_labels, [])
+    with raises_before_version("25.1"):
+        model.create_solid_model(
+            element_sets=[model.element_sets["All_Elements"]],
+        )
     model.update()
-    assert_equal(analysis_ply.mesh.element_labels, [1, 2])
-    assert_equal(analysis_ply.shell_mesh.element_labels, [1])
-    assert_equal(analysis_ply.solid_mesh.element_labels, [2])
+    with raises_before_version("25.1"):
+        assert_equal(analysis_ply.mesh.element_labels, [1, 2])
+    with raises_before_version("25.1"):
+        assert_equal(analysis_ply.shell_mesh.element_labels, [1])
+    with raises_before_version("25.1"):
+        assert_equal(analysis_ply.solid_mesh.element_labels, [2])
