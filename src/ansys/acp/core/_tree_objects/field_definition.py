@@ -89,7 +89,8 @@ class FieldDefinition(CreatableTreeObject, IdTreeObject):
         Note that the field definition is only applied to the Analysis Plies attached to
         the Modeling Plies. A combination of elemental and ply-wise definition is not supported.
     scalar_field :
-        Select the scalar Look-Up Table column from which the state of the field variable is interpolated from.
+        Select the scalar Look-Up Table column from which the state of the field
+        variable is interpolated from.
     full_mapping :
         Specify to include the shell offset of each analysis ply for the interpolation process.
         The default is to interpolate the state of the field variables at the shell element centroid.
@@ -133,7 +134,11 @@ class FieldDefinition(CreatableTreeObject, IdTreeObject):
 
     scope_entities = define_polymorphic_linked_object_list(
         "properties.scope_entities",
-        allowed_types=_SCOPE_ENTITIES_LINKABLE_TO_FIELD_DEFINITION,
+        allowed_types=(
+            ElementSet,
+            OrientedSelectionSet,
+            ModelingPly,
+        ),
     )
 
     scalar_field = grpc_link_property(
