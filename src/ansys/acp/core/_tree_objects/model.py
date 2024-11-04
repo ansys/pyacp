@@ -41,6 +41,7 @@ from ansys.api.acp.v0 import (
     element_set_pb2_grpc,
     enum_types_pb2,
     fabric_pb2_grpc,
+    field_definition_pb2_grpc,
     geometrical_selection_rule_pb2_grpc,
     imported_modeling_group_pb2_grpc,
     lookup_table_1d_pb2_grpc,
@@ -114,6 +115,7 @@ from .enums import (
     unit_system_type_to_pb,
 )
 from .fabric import Fabric
+from .field_definition import FieldDefinition
 from .geometrical_selection_rule import GeometricalSelectionRule
 from .imported_modeling_group import ImportedModelingGroup
 from .lookup_table_1d import LookUpTable1D
@@ -757,6 +759,11 @@ class Model(TreeObject):
         Sensor, func_name="create_sensor", parent_class_name="Model", module_name=__module__
     )
     sensors = define_mutable_mapping(Sensor, sensor_pb2_grpc.ObjectServiceStub)
+
+    create_field_definition = define_create_method(
+        Fabric, func_name="create_field_definition", parent_class_name="Model", module_name=__module__
+    )
+    field_definitions = define_mutable_mapping(FieldDefinition, field_definition_pb2_grpc.ObjectServiceStub)
 
     @property
     def mesh(self) -> MeshData:
