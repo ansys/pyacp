@@ -20,13 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from packaging.version import parse as parse_version
 import pytest
 
-from ansys.acp.core import CutoffMaterialType, DrapingMaterialType, DropoffMaterialType
-
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
-
+from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
 
 @pytest.fixture
 def parent_object(load_model_from_tempfile):
@@ -50,7 +47,7 @@ class TestFieldDefinition(NoLockedMixin, TreeObjectTester):
             "active": True,
             "scalar_field": None,
             "scope_entities": tuple(),
-            "include_shell_offset": False,
+            "full_mapping": False,
         }
     CREATE_METHOD_NAME = "create_field_definition"
 
@@ -61,7 +58,7 @@ class TestFieldDefinition(NoLockedMixin, TreeObjectTester):
         lut_3D = model.create_lookup_table_3d(name="LUT 3D")
         lut_col = lut_3D.create_column(name="Column 1")
         el_set = model.create_element_set(name="my element set")
-        mg = model.create_modeling_groups(name="my modeling group")
+        mg = model.create_modeling_group(name="my modeling group")
         modeling_ply = mg.create_modeling_ply(name="my Modeling Ply")
         oss = model.create_oriented_selection_set(name="my OSS")
 
@@ -70,11 +67,39 @@ class TestFieldDefinition(NoLockedMixin, TreeObjectTester):
                 ("name", "FD name"),
                 ("active", False),
                 ("scalar_field", lut_col),
-                ("scope_entities", (el_set, modeling_ply, oss)),
-                ("include_shell_offset", True),
+                ("scope_entities", [el_set, modeling_ply, oss]),
+                ("full_mapping", True),
             ],
             read_only=[
                 ("id", "some_id"),
                 ("status", "UPTODATE"),
             ],
         )
+
+
+@pytest.fixture
+def linked_object_case(tree_object, parent_object):
+    return LinkedObjectListTestCase(
+        parent_object=tree_object,
+        linked_attribute_name="scope_entities",
+        existing_linked_object_names=(),
+        linked_object_constructor=parent_object.create_element_set,
+    )
+
+
+linked_object_case_empty = linked_object_case
+
+
+@pytest.fixture
+def linked_object_case_nonempty(tree_object, parent_object):
+    tree_object.scope_entities = [parent_object.create_oriented_selection_set(name="OSS.1")]
+    return LinkedObjectListTestCase(
+        parent_object=tree_object,
+        linked_attribute_name="scope_entities",
+        existing_linked_object_names=("OSS.1",),
+        linked_object_constructor=parent_object.create_oriented_selection_set,
+    )
+
+
+class TestLinkedObjectLists(LinkedObjectListTester):
+    pass

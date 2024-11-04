@@ -31,13 +31,12 @@ from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
-    grpc_link_property,
     mark_grpc_properties,
+    grpc_link_property,
 )
 from ._grpc_helpers.linked_object_list import define_polymorphic_linked_object_list
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
-from .material import Material
 from .element_set import ElementSet
 from .oriented_selection_set import OrientedSelectionSet
 from .lookup_table_1d_column import LookUpTable1DColumn
@@ -74,7 +73,7 @@ class FieldDefinition(CreatableTreeObject, IdTreeObject):
     Parameters
     ----------
     name :
-        Name of the fabric.
+        Name of the field definition.
     active :
         Inactive field definitions are ignored.
     field_variable_name :
@@ -91,7 +90,7 @@ class FieldDefinition(CreatableTreeObject, IdTreeObject):
         the Modeling Plies. A combination of elemental and ply-wise definition is not supported.
     scalar_field :
         Select the scalar Look-Up Table column from which the state of the field variable is interpolated from.
-    include_shell_offset :
+    full_mapping :
         Specify to include the shell offset of each analysis ply for the interpolation process.
         The default is to interpolate the state of the field variables at the shell element centroid.
         For solid elements, the position of each analysis ply is automatically considered.
@@ -108,12 +107,12 @@ class FieldDefinition(CreatableTreeObject, IdTreeObject):
     def __init__(
         self,
         *,
-        name: str = "Fabric",
+        name: str = "FieldDefinition",
         active: bool = True,
         field_variable_name: str = "",
         scope_entities: Sequence[_SCOPE_ENTITIES_LINKABLE_TO_FIELD_DEFINITION] = tuple(),
         scalar_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
-        include_shell_offset: bool = False,
+        full_mapping: bool = False,
     ):
         super().__init__(name=name)
 
@@ -121,7 +120,7 @@ class FieldDefinition(CreatableTreeObject, IdTreeObject):
         self.field_variable_name = field_variable_name
         self.scope_entities = scope_entities
         self.scalar_field = scalar_field
-        self.include_shell_offset = include_shell_offset
+        self.full_mapping = full_mapping
 
     def _create_stub(self) -> field_definition_pb2_grpc.ObjectServiceStub:
         return field_definition_pb2_grpc.ObjectServiceStub(self._channel)
@@ -139,14 +138,10 @@ class FieldDefinition(CreatableTreeObject, IdTreeObject):
         allowed_types=_SCOPE_ENTITIES_LINKABLE_TO_FIELD_DEFINITION,
     )
 
-    scalar_field = define_polymorphic_linked_object_list(
-        "properties.scalar_field",
-        allowed_types=(
-            LookUpTable1DColumn,
-            LookUpTable3DColumn,
-        ),
+    scalar_field = grpc_link_property(
+        "properties.scalar_field", allowed_types=(LookUpTable1DColumn, LookUpTable3DColumn)
     )
 
-    include_shell_offset: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.include_shell_offset"
+    full_mapping: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.full_mapping"
     )
