@@ -95,7 +95,7 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
     def __init__(self, *, config: DirectLaunchConfig):
         self._config = config
         self._url: str
-        self._process: subprocess.Popen[str]
+        self._process: subprocess.Popen[str] | None = None
         self._stdout: TextIO
         self._stderr: TextIO
 
@@ -123,6 +123,9 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         )
 
     def stop(self, *, timeout: float | None = None) -> None:
+        if self._process is None:
+            # The process has not been started, and therefore doesn't need to be stopped
+            return
         self._process.terminate()
         try:
             self._process.wait(timeout=timeout)
