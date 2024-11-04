@@ -761,9 +761,14 @@ class Model(TreeObject):
     sensors = define_mutable_mapping(Sensor, sensor_pb2_grpc.ObjectServiceStub)
 
     create_field_definition = define_create_method(
-        FieldDefinition, func_name="create_field_definition", parent_class_name="Model", module_name=__module__
+        FieldDefinition,
+        func_name="create_field_definition",
+        parent_class_name="Model",
+        module_name=__module__,
     )
-    field_definitions = define_mutable_mapping(FieldDefinition, field_definition_pb2_grpc.ObjectServiceStub)
+    field_definitions = define_mutable_mapping(
+        FieldDefinition, field_definition_pb2_grpc.ObjectServiceStub
+    )
 
     @property
     def mesh(self) -> MeshData:

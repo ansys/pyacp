@@ -21,28 +21,28 @@
 # SOFTWARE.
 
 from __future__ import annotations
-import typing
 
 from collections.abc import Iterable, Sequence
+import typing
 
 from ansys.api.acp.v0 import field_definition_pb2, field_definition_pb2_grpc
 
 from .._utils.property_protocols import ReadWriteProperty
+from ._grpc_helpers.linked_object_list import define_polymorphic_linked_object_list
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
-    mark_grpc_properties,
     grpc_link_property,
+    mark_grpc_properties,
 )
-from ._grpc_helpers.linked_object_list import define_polymorphic_linked_object_list
 from .base import CreatableTreeObject, IdTreeObject
-from .enums import status_type_from_pb
 from .element_set import ElementSet
-from .oriented_selection_set import OrientedSelectionSet
+from .enums import status_type_from_pb
 from .lookup_table_1d_column import LookUpTable1DColumn
 from .lookup_table_3d_column import LookUpTable3DColumn
 from .modeling_ply import ModelingPly
 from .object_registry import register
+from .oriented_selection_set import OrientedSelectionSet
 
 __all__ = ["FieldDefinition"]
 
@@ -126,9 +126,7 @@ class FieldDefinition(CreatableTreeObject, IdTreeObject):
         return field_definition_pb2_grpc.ObjectServiceStub(self._channel)
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
-    active: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.active"
-    )
+    active: ReadWriteProperty[bool, bool] = grpc_data_property("properties.active")
     field_variable_name: ReadWriteProperty[str, str] = grpc_data_property(
         "properties.field_variable_name"
     )
@@ -142,6 +140,4 @@ class FieldDefinition(CreatableTreeObject, IdTreeObject):
         "properties.scalar_field", allowed_types=(LookUpTable1DColumn, LookUpTable3DColumn)
     )
 
-    full_mapping: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.full_mapping"
-    )
+    full_mapping: ReadWriteProperty[bool, bool] = grpc_data_property("properties.full_mapping")

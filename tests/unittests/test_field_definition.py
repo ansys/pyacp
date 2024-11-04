@@ -22,8 +22,9 @@
 
 import pytest
 
-from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
+from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
+
 
 @pytest.fixture
 def parent_object(load_model_from_tempfile):
@@ -49,6 +50,7 @@ class TestFieldDefinition(NoLockedMixin, TreeObjectTester):
             "scope_entities": tuple(),
             "full_mapping": False,
         }
+
     CREATE_METHOD_NAME = "create_field_definition"
 
     @staticmethod
