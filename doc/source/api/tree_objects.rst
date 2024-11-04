@@ -14,7 +14,6 @@ ACP objects
     CutOffGeometry
     CutoffSelectionRule
     CylindricalSelectionRule
-    DropOffSettings
     EdgeSet
     ElementSet
     ExtrusionGuide
@@ -26,7 +25,6 @@ ACP objects
     ImportedModelingPly
     ImportedProductionPly
     ImportedSolidModel
-    ImportedSolidModelExportSettings
     InterfaceLayer
     LayupMappingObject
     LookUpTable1D
@@ -47,7 +45,6 @@ ACP objects
     SnapToGeometry
     SolidElementSet
     SolidModel
-    SolidModelExportSettings
     SphericalSelectionRule
     Stackup
     SubLaminate
