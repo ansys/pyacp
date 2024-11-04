@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1730702413598,
+  "lastUpdate": 1730722810525,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -16918,6 +16918,114 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0001779956224927927",
             "extra": "mean: 38.3975415185247 msec\nrounds: 27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ff53ac77433df3385dbab27b01a378d6687452e6",
+          "message": "Fix teardown of direct launcher when start fails (#641)\n\nThe direct launcher '.stop()' errored when '.start()' had failed,\r\nsince the '_process' attribute was not yet defined.\r\nThis caused the error message to be misleading, as it was pointing\r\nto the error in '.stop()' first, instead of the actual error in\r\n'.start()'.\r\n\r\nThis is fixed by explicitly setting '_process' to None in the\r\nconstructor of the DirectLauncher class, and checking if it is\r\nnot None before trying to stop it.",
+          "timestamp": "2024-11-04T13:14:33+01:00",
+          "tree_id": "f704bb46d9314df3cfcc4ff6214a78cf15489010",
+          "url": "https://github.com/ansys/pyacp/commit/ff53ac77433df3385dbab27b01a378d6687452e6"
+        },
+        "date": 1730722784309,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 7.20373208234875,
+            "unit": "iter/sec",
+            "range": "stddev: 0.02352868510160434",
+            "extra": "mean: 138.81693385714502 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.6622315120219047,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004732755989699383",
+            "extra": "mean: 375.6247326666653 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.38619524236186165,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.58936385100003 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.1478664768322937,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0030621509741317666",
+            "extra": "mean: 465.57828933333667 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.2861706603813168,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.494418326000016 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.029648119110308152,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 33.72895245999996 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1239.8579773403167,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002346206813264225",
+            "extra": "mean: 806.5439899375828 usec\nrounds: 2087"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 401.097520444314,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006186812544828517",
+            "extra": "mean: 2.493159266834296 msec\nrounds: 401"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 48.561073020295545,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00010267041382030715",
+            "extra": "mean: 20.592625693877512 msec\nrounds: 49"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 1011.7066602909265,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001327821673374879",
+            "extra": "mean: 988.4287998187538 usec\nrounds: 1109"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 232.6921549149083,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006771686331027628",
+            "extra": "mean: 4.297523482756364 msec\nrounds: 232"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 26.091029217962816,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00011129318215619825",
+            "extra": "mean: 38.3273496666637 msec\nrounds: 27"
           }
         ]
       }
