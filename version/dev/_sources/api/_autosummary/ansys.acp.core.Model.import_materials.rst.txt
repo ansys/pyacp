@@ -1,0 +1,6 @@
+import\_materials
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.import_materials

@@ -114,6 +114,9 @@
       Model.export_shell_composite_definitions
       
       
+      Model.import_materials
+      
+      
       Model.save
       
       
