@@ -449,8 +449,11 @@ class Model(TreeObject):
         """
         Import materials from a MatML file.
 
-        Import materials from a ``MatML.xml`` file, and optionally from an associated
-        material APDL file.
+        Import materials from a ``MatML.xml`` (Engineering Data) file.
+        
+        Optionally, a material APDL file can be defined. This is a pre-generated
+        solver snippet, needed in case of variable materials or non-standard
+        material models.
 
         Parameters
         ----------
