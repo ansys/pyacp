@@ -68,7 +68,7 @@ class FieldDefinition(CreatableTreeObject, IdTreeObject):
     ----
 
     Field definitions are currently only supported through (Py)Mechanical.
-    The direction interface of PyACP to (Py)MADL ignored field definitions.
+    The direct interface of PyACP to (Py)MADL ignores field definitions.
 
     Parameters
     ----------
