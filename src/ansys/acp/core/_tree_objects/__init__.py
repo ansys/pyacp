@@ -87,6 +87,7 @@ from .enums import (
 )
 from .extrusion_guide import ExtrusionGuide
 from .fabric import Fabric
+from .field_definition import FieldDefinition
 from .geometrical_selection_rule import (
     GeometricalSelectionRule,
     GeometricalSelectionRuleElementalData,
@@ -193,6 +194,7 @@ __all__ = [
     "ExtrusionType",
     "Fabric",
     "FabricWithAngle",
+    "FieldDefinition",
     "FeFormat",
     "FieldVariable",
     "GeometricalRuleType",

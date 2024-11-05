@@ -18,6 +18,7 @@ ACP objects
     ElementSet
     ExtrusionGuide
     Fabric
+    FieldDefinition
     GeometricalSelectionRule
     ImportedAnalysisPly
     ImportedModelingGroup
