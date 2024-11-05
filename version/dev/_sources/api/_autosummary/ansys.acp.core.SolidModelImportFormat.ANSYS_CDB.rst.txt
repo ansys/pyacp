@@ -1,0 +1,6 @@
+ANSYS\_CDB
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelImportFormat.ANSYS_CDB

@@ -476,10 +476,11 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects._grpc_helpers.protocols.ObjectInfo.html">ObjectInfo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects._mesh_data.MeshDataT.html">MeshDataT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects._mesh_data.ScalarDataT.html">ScalarDataT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects._solid_model_export.SolidModelExportMixin.html">SolidModelExportMixin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.base.CreatableTreeObject.html">CreatableTreeObject</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.base.ServerWrapper.html">ServerWrapper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.base.TreeObject.html">TreeObject</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.base.TreeObjectBase.html">TreeObjectBase</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.base.ServerWrapper.html">ServerWrapper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.material.property_sets.wrapper.TC.html">TC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.material.property_sets.wrapper.TV.html">TV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core._workflow._LocalWorkingDir.html">_LocalWorkingDir</a></li>
@@ -607,8 +608,14 @@ are subject to change without notice.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects._mesh_data.ScalarDataT.html#ansys.acp.core._tree_objects._mesh_data.ScalarDataT" title="ansys.acp.core._tree_objects._mesh_data.ScalarDataT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tree_objects._mesh_data.ScalarDataT</span></code></a></p></td>
 <td><p>Type variable.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.base.CreatableTreeObject.html#ansys.acp.core._tree_objects.base.CreatableTreeObject" title="ansys.acp.core._tree_objects.base.CreatableTreeObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tree_objects.base.CreatableTreeObject</span></code></a>([name])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects._solid_model_export.SolidModelExportMixin.html#ansys.acp.core._tree_objects._solid_model_export.SolidModelExportMixin" title="ansys.acp.core._tree_objects._solid_model_export.SolidModelExportMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tree_objects._solid_model_export.SolidModelExportMixin</span></code></a>([name])</p></td>
+<td><p>Mixin class for adding export functionality to the solid model and imported solid model classes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.base.CreatableTreeObject.html#ansys.acp.core._tree_objects.base.CreatableTreeObject" title="ansys.acp.core._tree_objects.base.CreatableTreeObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tree_objects.base.CreatableTreeObject</span></code></a>([name])</p></td>
 <td><p>Base class for ACP objects which can be created.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.base.ServerWrapper.html#ansys.acp.core._tree_objects.base.ServerWrapper" title="ansys.acp.core._tree_objects.base.ServerWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tree_objects.base.ServerWrapper</span></code></a>(channel, ...)</p></td>
+<td><p>Wrapper for the connection to an ACP instance.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.base.TreeObject.html#ansys.acp.core._tree_objects.base.TreeObject" title="ansys.acp.core._tree_objects.base.TreeObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tree_objects.base.TreeObject</span></code></a>([name])</p></td>
 <td><p>Base class for ACP objects which can be modified or deleted.</p></td>
@@ -616,16 +623,13 @@ are subject to change without notice.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.base.TreeObjectBase.html#ansys.acp.core._tree_objects.base.TreeObjectBase" title="ansys.acp.core._tree_objects.base.TreeObjectBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tree_objects.base.TreeObjectBase</span></code></a>([name])</p></td>
 <td><p>Base class for ACP tree objects.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.base.ServerWrapper.html#ansys.acp.core._tree_objects.base.ServerWrapper" title="ansys.acp.core._tree_objects.base.ServerWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tree_objects.base.ServerWrapper</span></code></a>(channel, ...)</p></td>
-<td><p>Wrapper for the connection to an ACP instance.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.material.property_sets.wrapper.TC.html#ansys.acp.core._tree_objects.material.property_sets.wrapper.TC" title="ansys.acp.core._tree_objects.material.property_sets.wrapper.TC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tree_objects.material.property_sets.wrapper.TC</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.material.property_sets.wrapper.TC.html#ansys.acp.core._tree_objects.material.property_sets.wrapper.TC" title="ansys.acp.core._tree_objects.material.property_sets.wrapper.TC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tree_objects.material.property_sets.wrapper.TC</span></code></a></p></td>
 <td><p>Type variable.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.material.property_sets.wrapper.TV.html#ansys.acp.core._tree_objects.material.property_sets.wrapper.TV" title="ansys.acp.core._tree_objects.material.property_sets.wrapper.TV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tree_objects.material.property_sets.wrapper.TV</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._tree_objects.material.property_sets.wrapper.TV.html#ansys.acp.core._tree_objects.material.property_sets.wrapper.TV" title="ansys.acp.core._tree_objects.material.property_sets.wrapper.TV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tree_objects.material.property_sets.wrapper.TV</span></code></a></p></td>
 <td><p>Type variable.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._workflow._LocalWorkingDir.html#ansys.acp.core._workflow._LocalWorkingDir" title="ansys.acp.core._workflow._LocalWorkingDir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_workflow._LocalWorkingDir</span></code></a>([path])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core._workflow._LocalWorkingDir.html#ansys.acp.core._workflow._LocalWorkingDir" title="ansys.acp.core._workflow._LocalWorkingDir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_workflow._LocalWorkingDir</span></code></a>([path])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>

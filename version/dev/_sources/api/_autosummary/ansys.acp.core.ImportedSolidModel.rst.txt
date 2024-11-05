@@ -1,0 +1,65 @@
+﻿ImportedSolidModel
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ImportedSolidModel
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ImportedSolidModel.clone
+      
+      
+      ImportedSolidModel.delete
+      
+      
+      ImportedSolidModel.export
+      
+      
+      ImportedSolidModel.export_skin
+      
+      
+      ImportedSolidModel.import_initial_mesh
+      
+      
+      ImportedSolidModel.refresh
+      
+      
+      ImportedSolidModel.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ImportedSolidModel.active
+      ImportedSolidModel.cut_off_material
+      ImportedSolidModel.delete_bad_elements
+      ImportedSolidModel.elemental_data
+      ImportedSolidModel.export_settings
+      ImportedSolidModel.external_path
+      ImportedSolidModel.format
+      ImportedSolidModel.id
+      ImportedSolidModel.locked
+      ImportedSolidModel.minimum_volume
+      ImportedSolidModel.name
+      ImportedSolidModel.nodal_data
+      ImportedSolidModel.parent
+      ImportedSolidModel.status
+      ImportedSolidModel.unit_system
+      ImportedSolidModel.warping_limit
+   
+   

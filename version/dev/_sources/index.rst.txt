@@ -76,8 +76,8 @@ optimization of composite structures.
 Limitations
 ^^^^^^^^^^^
 
-* Only shell workflows are supported, solid models can not yet be defined using PyACP
 * FieldDefinitions for variable material properties are not supported
 * Visualization and mesh data of imported plies are not supported yet
 * Section cuts cannot be visualized
 * Sampling point analysis data is not available
+* Imported solid model mapping statistics are not available

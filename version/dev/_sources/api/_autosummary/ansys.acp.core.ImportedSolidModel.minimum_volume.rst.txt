@@ -1,0 +1,6 @@
+minimum\_volume
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.minimum_volume

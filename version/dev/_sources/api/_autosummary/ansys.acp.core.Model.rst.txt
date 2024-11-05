@@ -45,6 +45,9 @@
       Model.create_imported_modeling_group
       
       
+      Model.create_imported_solid_model
+      
+      
       Model.create_lookup_table_1d
       
       
@@ -140,6 +143,7 @@
       Model.field_definitions
       Model.geometrical_selection_rules
       Model.imported_modeling_groups
+      Model.imported_solid_models
       Model.lookup_tables_1d
       Model.lookup_tables_3d
       Model.materials

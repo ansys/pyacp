@@ -1,0 +1,6 @@
+material\_index
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModelExportSettings.material_index

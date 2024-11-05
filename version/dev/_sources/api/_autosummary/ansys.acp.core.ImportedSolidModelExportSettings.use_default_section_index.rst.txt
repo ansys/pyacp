@@ -1,0 +1,6 @@
+use\_default\_section\_index
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModelExportSettings.use_default_section_index

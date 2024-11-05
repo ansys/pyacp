@@ -1,0 +1,6 @@
+export\_settings
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.export_settings

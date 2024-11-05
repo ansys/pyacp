@@ -1,0 +1,6 @@
+create\_imported\_solid\_model
+==============================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_imported_solid_model

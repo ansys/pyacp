@@ -1,0 +1,6 @@
+coordinate\_system\_index
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModelExportSettings.coordinate_system_index

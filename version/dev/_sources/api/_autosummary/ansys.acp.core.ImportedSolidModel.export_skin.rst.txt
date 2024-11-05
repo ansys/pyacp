@@ -1,0 +1,6 @@
+export\_skin
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedSolidModel.export_skin

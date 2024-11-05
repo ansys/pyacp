@@ -28,10 +28,11 @@ Internal objects
     _tree_objects._grpc_helpers.protocols.ObjectInfo
     _tree_objects._mesh_data.MeshDataT
     _tree_objects._mesh_data.ScalarDataT
+    _tree_objects._solid_model_export.SolidModelExportMixin
     _tree_objects.base.CreatableTreeObject
+    _tree_objects.base.ServerWrapper
     _tree_objects.base.TreeObject
     _tree_objects.base.TreeObjectBase
-    _tree_objects.base.ServerWrapper
     _tree_objects.material.property_sets.wrapper.TC
     _tree_objects.material.property_sets.wrapper.TV
     _workflow._LocalWorkingDir

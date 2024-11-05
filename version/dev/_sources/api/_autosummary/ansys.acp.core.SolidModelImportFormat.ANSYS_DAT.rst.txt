@@ -1,0 +1,6 @@
+ANSYS\_DAT
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelImportFormat.ANSYS_DAT

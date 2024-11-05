@@ -1,0 +1,6 @@
+drop\_hanging\_nodes
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModelExportSettings.drop_hanging_nodes

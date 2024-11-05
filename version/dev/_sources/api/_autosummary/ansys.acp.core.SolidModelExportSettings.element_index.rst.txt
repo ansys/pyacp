@@ -1,0 +1,6 @@
+element\_index
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModelExportSettings.element_index

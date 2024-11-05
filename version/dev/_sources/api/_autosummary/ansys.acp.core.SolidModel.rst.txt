@@ -51,6 +51,7 @@
       SolidModel.drop_off_material
       SolidModel.drop_off_settings
       SolidModel.element_sets
+      SolidModel.elemental_data
       SolidModel.export_settings
       SolidModel.extrusion_guides
       SolidModel.extrusion_method
@@ -59,6 +60,7 @@
       SolidModel.max_element_thickness
       SolidModel.minimum_volume
       SolidModel.name
+      SolidModel.nodal_data
       SolidModel.offset_direction
       SolidModel.parent
       SolidModel.ply_group_pointers

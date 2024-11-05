@@ -464,6 +464,8 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ElementSetNodalData.html">ElementSetNodalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.GeometricalSelectionRuleElementalData.html">GeometricalSelectionRuleElementalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.GeometricalSelectionRuleNodalData.html">GeometricalSelectionRuleNodalData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedSolidModelElementalData.html">ImportedSolidModelElementalData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedSolidModelNodalData.html">ImportedSolidModelNodalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.MeshData.html">MeshData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ModelElementalData.html">ModelElementalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ModelingPlyElementalData.html">ModelingPlyElementalData</a></li>
@@ -476,6 +478,8 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ProductionPlyElementalData.html">ProductionPlyElementalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ProductionPlyNodalData.html">ProductionPlyNodalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ScalarData.html">ScalarData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SolidModelElementalData.html">SolidModelElementalData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SolidModelNodalData.html">SolidModelNodalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SphericalSelectionRuleElementalData.html">SphericalSelectionRuleElementalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SphericalSelectionRuleNodalData.html">SphericalSelectionRuleNodalData</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.TriangleMesh.html">TriangleMesh</a></li>
@@ -599,6 +603,12 @@ document.write(`
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.GeometricalSelectionRuleNodalData.html#ansys.acp.core.GeometricalSelectionRuleNodalData" title="ansys.acp.core.GeometricalSelectionRuleNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeometricalSelectionRuleNodalData</span></code></a>(node_labels)</p></td>
 <td><p>Represents nodal data for a Geometrical Selection Rule.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedSolidModelElementalData.html#ansys.acp.core.ImportedSolidModelElementalData" title="ansys.acp.core.ImportedSolidModelElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModelElementalData</span></code></a>(element_labels)</p></td>
+<td><p>Represents elemental data for an imported solid model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedSolidModelNodalData.html#ansys.acp.core.ImportedSolidModelNodalData" title="ansys.acp.core.ImportedSolidModelNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModelNodalData</span></code></a>(node_labels)</p></td>
+<td><p>Represents nodal data for an imported solid model.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.MeshData.html#ansys.acp.core.MeshData" title="ansys.acp.core.MeshData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeshData</span></code></a>(node_labels, node_coordinates, ...)</p></td>
 <td><p>Container for the mesh data of an ACP Model.</p></td>
 </tr>
@@ -634,6 +644,12 @@ document.write(`
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.ScalarData.html#ansys.acp.core.ScalarData" title="ansys.acp.core.ScalarData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScalarData</span></code></a>(field_names, labels, values, ...)</p></td>
 <td><p>Class that encapsulates scalar data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SolidModelElementalData.html#ansys.acp.core.SolidModelElementalData" title="ansys.acp.core.SolidModelElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModelElementalData</span></code></a>(element_labels[, normal])</p></td>
+<td><p>Represents elemental data for a Solid Model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SolidModelNodalData.html#ansys.acp.core.SolidModelNodalData" title="ansys.acp.core.SolidModelNodalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModelNodalData</span></code></a>(node_labels)</p></td>
+<td><p>Represents nodal data for a Solid Model.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.acp.core.SphericalSelectionRuleElementalData.html#ansys.acp.core.SphericalSelectionRuleElementalData" title="ansys.acp.core.SphericalSelectionRuleElementalData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SphericalSelectionRuleElementalData</span></code></a>(...[, ...])</p></td>
 <td><p>Represents elemental data for a Spherical Selection Rule.</p></td>

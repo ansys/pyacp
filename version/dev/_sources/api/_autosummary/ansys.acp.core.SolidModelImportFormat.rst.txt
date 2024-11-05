@@ -1,0 +1,25 @@
+﻿SolidModelImportFormat
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SolidModelImportFormat
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        SolidModelImportFormat.ANSYS_H5
+      
+      
+        SolidModelImportFormat.ANSYS_CDB
+      
+      
+        SolidModelImportFormat.ANSYS_DAT
+      
+   
+   

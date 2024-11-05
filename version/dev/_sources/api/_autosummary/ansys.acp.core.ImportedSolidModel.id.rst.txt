@@ -1,0 +1,6 @@
+id
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.id

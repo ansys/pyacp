@@ -1,0 +1,6 @@
+nodal\_data
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.nodal_data

@@ -1,0 +1,6 @@
+use\_solid\_model\_prefix
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModelExportSettings.use_solid_model_prefix

@@ -1,0 +1,6 @@
+import\_initial\_mesh
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedSolidModel.import_initial_mesh

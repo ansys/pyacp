@@ -17,14 +17,15 @@ ACP objects
     EdgeSet
     ElementSet
     ExtrusionGuide
-    ExportSettings
     Fabric
     FieldDefinition
     GeometricalSelectionRule
+    ImportedAnalysisPly
     ImportedModelingGroup
     ImportedModelingPly
     ImportedProductionPly
-    ImportedAnalysisPly
+    ImportedSolidModel
+    ImportedSolidModelExportSettings
     InterfaceLayer
     LookUpTable1D
     LookUpTable1DColumn
@@ -43,6 +44,7 @@ ACP objects
     Sensor
     SnapToGeometry
     SolidModel
+    SolidModelExportSettings
     SphericalSelectionRule
     Stackup
     SubLaminate

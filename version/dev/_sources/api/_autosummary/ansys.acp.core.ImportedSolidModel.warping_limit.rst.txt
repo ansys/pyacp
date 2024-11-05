@@ -1,0 +1,6 @@
+warping\_limit
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.warping_limit

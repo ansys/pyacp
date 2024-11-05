@@ -1,0 +1,6 @@
+node\_index
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModelExportSettings.node_index

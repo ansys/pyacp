@@ -1,0 +1,6 @@
+ANSYS\_H5
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelImportFormat.ANSYS_H5

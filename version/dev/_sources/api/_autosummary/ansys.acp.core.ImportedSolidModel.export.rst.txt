@@ -1,0 +1,6 @@
+export
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedSolidModel.export
