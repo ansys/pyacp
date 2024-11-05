@@ -87,6 +87,7 @@ from .enums import (
 )
 from .extrusion_guide import ExtrusionGuide
 from .fabric import Fabric
+from .field_definition import FieldDefinition
 from .geometrical_selection_rule import (
     GeometricalSelectionRule,
     GeometricalSelectionRuleElementalData,
@@ -96,6 +97,13 @@ from .imported_analysis_ply import ImportedAnalysisPly
 from .imported_modeling_group import ImportedModelingGroup
 from .imported_modeling_ply import ImportedModelingPly
 from .imported_production_ply import ImportedProductionPly
+from .imported_solid_model import (
+    ImportedSolidModel,
+    ImportedSolidModelElementalData,
+    ImportedSolidModelExportSettings,
+    ImportedSolidModelNodalData,
+    SolidModelImportFormat,
+)
 from .interface_layer import InterfaceLayer
 from .linked_selection_rule import LinkedSelectionRule
 from .lookup_table_1d import LookUpTable1D
@@ -123,7 +131,13 @@ from .section_cut import SectionCut
 from .sensor import Sensor
 from .snap_to_geometry import SnapToGeometry
 from .solid_element_set import SolidElementSet, SolidElementSetElementalData, SolidElementSetNodalData
-from .solid_model import DropOffSettings, ExportSettings, SolidModel
+from .solid_model import (
+    DropOffSettings,
+    SolidModel,
+    SolidModelElementalData,
+    SolidModelExportSettings,
+    SolidModelNodalData,
+)
 from .spherical_selection_rule import (
     SphericalSelectionRule,
     SphericalSelectionRuleElementalData,
@@ -175,13 +189,13 @@ __all__ = [
     "ElementSet",
     "ElementSetElementalData",
     "ElementSetNodalData",
-    "ExportSettings",
     "ExtrusionGuide",
     "ExtrusionGuideType",
     "ExtrusionMethodType",
     "ExtrusionType",
     "Fabric",
     "FabricWithAngle",
+    "FieldDefinition",
     "FeFormat",
     "FieldVariable",
     "GeometricalRuleType",
@@ -196,6 +210,10 @@ __all__ = [
     "ImportedPlyOffsetType",
     "ImportedPlyThicknessType",
     "ImportedProductionPly",
+    "ImportedSolidModel",
+    "ImportedSolidModelElementalData",
+    "ImportedSolidModelExportSettings",
+    "ImportedSolidModelNodalData",
     "InterfaceLayer",
     "InterpolationOptions",
     "IntersectionType",
@@ -249,7 +267,11 @@ __all__ = [
     "SolidElementSetElementalData",
     "SolidElementSetNodalData",
     "SolidModel",
+    "SolidModelElementalData",
     "SolidModelExportFormat",
+    "SolidModelExportSettings",
+    "SolidModelImportFormat",
+    "SolidModelNodalData",
     "SolidModelSkinExportFormat",
     "SphericalSelectionRule",
     "SphericalSelectionRuleElementalData",

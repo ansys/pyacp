@@ -314,3 +314,39 @@ def test_change_unit_system(minimal_complete_model, unit_system, raises_before_v
                 minimal_complete_model.minimum_analysis_ply_thickness,
                 initial_minimum_analysis_ply_thickness * conversion_factor_by_us[unit_system.value],
             )
+
+
+def test_material_export(acp_instance, minimal_complete_model, tempdir_if_local_acp):
+    """Check that the 'export_materials' method produces a file."""
+    with tempdir_if_local_acp() as export_dir:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            export_file_path = pathlib.Path(export_dir) / "material_exported.xml"
+            local_file_path = pathlib.Path(tmp_dir) / "material_exported.xml"
+
+            minimal_complete_model.export_materials(export_file_path)
+            acp_instance.download_file(export_file_path, local_file_path)
+
+            assert local_file_path.exists()
+            assert os.stat(local_file_path).st_size > 0
+
+
+def test_material_import(minimal_complete_model, tempdir_if_local_acp, raises_before_version):
+    # GIVEN: a model, and a material XML file containing a material which is
+    # not present in the model
+
+    with tempdir_if_local_acp() as export_dir:
+        new_mat_id = "New Material"
+        export_file_path = pathlib.Path(export_dir) / "material_exported.xml"
+        mat = minimal_complete_model.materials["Structural Steel"].clone()
+        mat.name = new_mat_id
+        mat.store(parent=minimal_complete_model)
+        minimal_complete_model.export_materials(export_file_path)
+        del minimal_complete_model.materials[new_mat_id]
+        assert new_mat_id not in minimal_complete_model.materials
+
+        with raises_before_version("25.1"):
+            # WHEN: the materials are imported
+            minimal_complete_model.import_materials(export_file_path)
+
+            # THEN: the new material should be present in the model
+            assert new_mat_id in minimal_complete_model.materials

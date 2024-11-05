@@ -41,8 +41,10 @@ from ansys.api.acp.v0 import (
     element_set_pb2_grpc,
     enum_types_pb2,
     fabric_pb2_grpc,
+    field_definition_pb2_grpc,
     geometrical_selection_rule_pb2_grpc,
     imported_modeling_group_pb2_grpc,
+    imported_solid_model_pb2_grpc,
     lookup_table_1d_pb2_grpc,
     lookup_table_3d_pb2_grpc,
     material_pb2,
@@ -114,8 +116,10 @@ from .enums import (
     unit_system_type_to_pb,
 )
 from .fabric import Fabric
+from .field_definition import FieldDefinition
 from .geometrical_selection_rule import GeometricalSelectionRule
 from .imported_modeling_group import ImportedModelingGroup
+from .imported_solid_model import ImportedSolidModel
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_3d import LookUpTable3D
 from .material import Material
@@ -432,6 +436,47 @@ class Model(TreeObject):
             self._get_stub().SaveShellCompositeDefinitions(
                 model_pb2.SaveShellCompositeDefinitionsRequest(
                     resource_path=self._resource_path, path=path_to_str_checked(path)
+                )
+            )
+
+    @supported_since("25.1")
+    def import_materials(
+        self,
+        matml_path: _PATH,
+        *,
+        material_apdl_path: _PATH | None = None,
+    ) -> None:
+        """
+        Import materials from a MatML file.
+
+        Import materials from a ``MatML.xml`` (Engineering Data) file.
+
+        Optionally, a material APDL file can be defined. This is a pre-generated
+        solver snippet, needed in case of variable materials or non-standard
+        material models. The snippet is used when exporting solid models or
+        surface section cuts in the CDB format.
+
+        Parameters
+        ----------
+        matml_path:
+            File path to the MatML file.
+        material_apdl_path:
+            File path to the material APDL file.
+        """
+        material_stub = material_pb2_grpc.ObjectServiceStub(self._channel)
+        collection_path = CollectionPath(
+            value=rp_join(self._resource_path.value, Material._COLLECTION_LABEL)
+        )
+        with wrap_grpc_errors():
+            material_stub.ImportMaterialFiles(
+                material_pb2.ImportMaterialFilesRequest(
+                    collection_path=collection_path,
+                    matml_path=path_to_str_checked(matml_path),
+                    material_apdl_path=(
+                        path_to_str_checked(material_apdl_path)
+                        if material_apdl_path is not None
+                        else ""
+                    ),
                 )
             )
 
@@ -753,10 +798,30 @@ class Model(TreeObject):
     )
     solid_models = define_mutable_mapping(SolidModel, solid_model_pb2_grpc.ObjectServiceStub)
 
+    create_imported_solid_model = define_create_method(
+        ImportedSolidModel,
+        func_name="create_imported_solid_model",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    imported_solid_models = define_mutable_mapping(
+        ImportedSolidModel, imported_solid_model_pb2_grpc.ObjectServiceStub
+    )
+
     create_sensor = define_create_method(
         Sensor, func_name="create_sensor", parent_class_name="Model", module_name=__module__
     )
     sensors = define_mutable_mapping(Sensor, sensor_pb2_grpc.ObjectServiceStub)
+
+    create_field_definition = define_create_method(
+        FieldDefinition,
+        func_name="create_field_definition",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    field_definitions = define_mutable_mapping(
+        FieldDefinition, field_definition_pb2_grpc.ObjectServiceStub
+    )
 
     @property
     def mesh(self) -> MeshData:

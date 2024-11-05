@@ -18,6 +18,8 @@ Mesh data objects
     ElementSetNodalData
     GeometricalSelectionRuleElementalData
     GeometricalSelectionRuleNodalData
+    ImportedSolidModelElementalData
+    ImportedSolidModelNodalData
     MeshData
     ModelElementalData
     ModelingPlyElementalData
@@ -32,6 +34,8 @@ Mesh data objects
     ScalarData
     SolidElementSetElementalData
     SolidElementSetNodalData
+    SolidModelElementalData
+    SolidModelNodalData
     SphericalSelectionRuleElementalData
     SphericalSelectionRuleNodalData
     TriangleMesh

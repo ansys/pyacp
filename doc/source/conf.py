@@ -26,7 +26,11 @@ def _signature(
 
     # Import classes which were guarded with a 'typing.TYPE_CHECKING' explicitly here, otherwise
     # the 'eval' in 'inspect.signature' will fail.
+    # Some imports are needed because these types occur in a dataclass base class, which is
+    # not in the same module as the documented class.
     from collections.abc import Sequence  # noqa: F401
+
+    import numpy as np  # noqa: F401
 
     from ansys.acp.core import (  # noqa: F401
         BooleanSelectionRule,
@@ -40,6 +44,9 @@ def _signature(
     )
 
     # Import type aliases so that they can be resolved correctly.
+    from ansys.acp.core._tree_objects.field_definition import (  # noqa: F401
+        _SCOPE_ENTITIES_LINKABLE_TO_FIELD_DEFINITION,
+    )
     from ansys.acp.core._tree_objects.linked_selection_rule import (  # noqa: F401
         _LINKABLE_SELECTION_RULE_TYPES,
     )
@@ -66,6 +73,7 @@ def _signature(
         # 'inspect.signature' from performing the 'eval'.
         for i, param in enumerate(parameters):
             if param.annotation in [
+                "Sequence[_SCOPE_ENTITIES_LINKABLE_TO_FIELD_DEFINITION]",
                 "Sequence[_SELECTION_RULES_LINKABLE_TO_OSS]",
                 "Sequence[_LINKABLE_ENTITY_TYPES]",
                 "_LINKABLE_MATERIAL_TYPES",
