@@ -20,8 +20,8 @@ Enumeration data types
     EdgeSetType
     ElementalDataType
     ExtrusionGuideType
-    ExtrusionType
     ExtrusionMethodType
+    ExtrusionType
     FeFormat
     GeometricalRuleType
     IgnorableEntity
@@ -29,6 +29,7 @@ Enumeration data types
     ImportedPlyOffsetType
     ImportedPlyThicknessType
     IntersectionType
+    LayupMappingRosetteSelectionMethod
     LinkedObjectHandling
     LookUpTable3DInterpolationAlgorithm
     LookUpTableColumnValueType

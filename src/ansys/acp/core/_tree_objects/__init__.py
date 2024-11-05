@@ -107,6 +107,7 @@ from .imported_solid_model import (
     SolidModelImportFormat,
 )
 from .interface_layer import InterfaceLayer
+from .layup_mapping_object import LayupMappingObject, LayupMappingRosetteSelectionMethod
 from .linked_selection_rule import LinkedSelectionRule
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_1d_column import LookUpTable1DColumn
@@ -226,6 +227,8 @@ __all__ = [
     "InterpolationOptions",
     "IntersectionType",
     "Lamina",
+    "LayupMappingObject",
+    "LayupMappingRosetteSelectionMethod",
     "LinkedSelectionRule",
     "LookUpTable1D",
     "LookUpTable1DColumn",
