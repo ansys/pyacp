@@ -30,6 +30,8 @@ Mesh data objects
     ProductionPlyElementalData
     ProductionPlyNodalData
     ScalarData
+    SolidElementSetElementalData
+    SolidElementSetNodalData
     SphericalSelectionRuleElementalData
     SphericalSelectionRuleNodalData
     TriangleMesh

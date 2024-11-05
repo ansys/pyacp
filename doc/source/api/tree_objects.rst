@@ -41,6 +41,7 @@ ACP objects
     SectionCut
     Sensor
     SnapToGeometry
+    SolidElementSet
     SolidModel
     SphericalSelectionRule
     Stackup

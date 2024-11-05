@@ -122,6 +122,7 @@ from .sampling_point import SamplingPoint
 from .section_cut import SectionCut
 from .sensor import Sensor
 from .snap_to_geometry import SnapToGeometry
+from .solid_element_set import SolidElementSet, SolidElementSetElementalData, SolidElementSetNodalData
 from .solid_model import DropOffSettings, ExportSettings, SolidModel
 from .spherical_selection_rule import (
     SphericalSelectionRule,
@@ -244,6 +245,9 @@ __all__ = [
     "Sensor",
     "SensorType",
     "SnapToGeometry",
+    "SolidElementSet",
+    "SolidElementSetElementalData",
+    "SolidElementSetNodalData",
     "SolidModel",
     "SolidModelExportFormat",
     "SolidModelSkinExportFormat",
