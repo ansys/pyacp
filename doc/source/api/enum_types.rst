@@ -44,6 +44,7 @@ Enumeration data types
     SectionCutType
     SensorType
     SolidModelExportFormat
+    SolidModelImportFormat
     SolidModelSkinExportFormat
     StatusType
     SymmetryType
