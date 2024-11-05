@@ -23,15 +23,15 @@
 from packaging.version import parse as parse_version
 import pytest
 
-from ansys.acp.core import SnapToGeometry, SnapToGeometryOrientationType
+from ansys.acp.core import CutOffGeometry, CutOffGeometryOrientationType
 
 from .common.tree_object_tester import ObjectPropertiesToTest, TreeObjectTester, WithLockedMixin
 
 
 @pytest.fixture(autouse=True)
 def skip_if_unsupported_version(acp_instance):
-    if parse_version(acp_instance.server_version) < parse_version(SnapToGeometry._SUPPORTED_SINCE):
-        pytest.skip("SnapToGeometry is not supported on this version of the server.")
+    if parse_version(acp_instance.server_version) < parse_version(CutOffGeometry._SUPPORTED_SINCE):
+        pytest.skip("CutOffGeometry is not supported on this version of the server.")
 
 
 @pytest.fixture
@@ -40,18 +40,18 @@ def model(load_model_from_tempfile):
         yield model
 
 
-@pytest.fixture
-def parent_object(model):
-    return model.create_solid_model()
+@pytest.fixture(params=["create_solid_model", "create_imported_solid_model"])
+def parent_object(model, request):
+    return getattr(model, request.param)()
 
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_snap_to_geometry()
+    return parent_object.create_cut_off_geometry()
 
 
-class TestSnapToGeometry(WithLockedMixin, TreeObjectTester):
-    COLLECTION_NAME = "snap_to_geometries"
+class TestCutOffGeometry(WithLockedMixin, TreeObjectTester):
+    COLLECTION_NAME = "cut_off_geometries"
 
     @staticmethod
     @pytest.fixture
@@ -59,12 +59,12 @@ class TestSnapToGeometry(WithLockedMixin, TreeObjectTester):
         return {
             "status": "NOTUPTODATE",
             "active": True,
-            "orientation_type": SnapToGeometryOrientationType.TOP,
             "cad_geometry": None,
-            "oriented_selection_set": None,
+            "orientation": CutOffGeometryOrientationType.UP,
+            "relative_merge_tolerance": 0.1,
         }
 
-    CREATE_METHOD_NAME = "create_snap_to_geometry"
+    CREATE_METHOD_NAME = "create_cut_off_geometry"
     INITIAL_OBJECT_NAMES = tuple()
 
     @staticmethod
@@ -72,11 +72,11 @@ class TestSnapToGeometry(WithLockedMixin, TreeObjectTester):
     def object_properties(model):
         return ObjectPropertiesToTest(
             read_write=[
-                ("name", "new_snap_to_geometry"),
+                ("name", "new_cut_off_geometry"),
                 ("active", False),
-                ("orientation_type", SnapToGeometryOrientationType.BOTTOM),
                 ("cad_geometry", model.create_virtual_geometry()),
-                ("oriented_selection_set", model.create_oriented_selection_set()),
+                ("orientation", CutOffGeometryOrientationType.DOWN),
+                ("relative_merge_tolerance", 0.1257),
             ],
             read_only=[
                 ("id", "some_id"),
