@@ -215,8 +215,9 @@ class ACPWorkflow:
         *,
         acp: ACP[ServerProtocol],
         cdb_or_dat_file_path: PATH,
-        unit_system: UnitSystemType = UnitSystemType.UNDEFINED,
+        unit_system: UnitSystemType = UnitSystemType.FROM_FILE,
         local_working_directory: PATH | None = None,
+        **kwargs: Any,
     ) -> "ACPWorkflow":
         """Instantiate an ACP Workflow from a cdb file.
 
@@ -227,11 +228,22 @@ class ACPWorkflow:
         cdb_or_dat_file_path:
             The path to the cdb or dat file.
         unit_system:
-            Has to be ``UnitSystemType.UNDEFINED`` if the unit system
-            is specified in the cdb or dat file. Needs to be set to a defined unit system
-            if the unit system is not set in the cdb or dat file.
+            Defines the unit system of the imported file. Must be set if the
+            input file does not have units. If the input file does have units,
+            ``unit_system`` must be either ``"from_file"``, or match the input
+            unit system.
         local_working_directory:
             The local working directory. If None, a temporary directory will be created.
+        ignored_entities:
+            Entities to ignore when loading the FE file. Can be a subset of
+            the following values:
+            ``"coordinate_systems"``, ``"element_sets"``, ``"materials"``,
+            ``"mesh"``, or ``"shell_sections"``.
+            Available only when the format is not ``"acp:h5"``.
+        convert_section_data:
+            Whether to import the section data of a shell model and convert it
+            into ACP composite definitions.
+            Available only when the format is not ``"acp:h5"``.
         """
 
         instance = cls(
@@ -240,6 +252,7 @@ class ACPWorkflow:
             local_working_directory=local_working_directory,
             file_format="ansys:cdb",
             unit_system=unit_system,
+            **kwargs,
         )
 
         if instance.model.unit_system == UnitSystemType.UNDEFINED:
