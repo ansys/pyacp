@@ -40,6 +40,9 @@ def _signature(
     )
 
     # Import type aliases so that they can be resolved correctly.
+    from ansys.acp.core._tree_objects.field_definition import (  # noqa: F401
+        _SCOPE_ENTITIES_LINKABLE_TO_FIELD_DEFINITION,
+    )
     from ansys.acp.core._tree_objects.linked_selection_rule import (  # noqa: F401
         _LINKABLE_SELECTION_RULE_TYPES,
     )
@@ -66,6 +69,7 @@ def _signature(
         # 'inspect.signature' from performing the 'eval'.
         for i, param in enumerate(parameters):
             if param.annotation in [
+                "Sequence[_SCOPE_ENTITIES_LINKABLE_TO_FIELD_DEFINITION]",
                 "Sequence[_SELECTION_RULES_LINKABLE_TO_OSS]",
                 "Sequence[_LINKABLE_ENTITY_TYPES]",
                 "_LINKABLE_MATERIAL_TYPES",
