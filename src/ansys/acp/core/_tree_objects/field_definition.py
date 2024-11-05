@@ -79,7 +79,7 @@ class FieldDefinition(CreatableTreeObject, IdTreeObject):
     field_variable_name :
         Links the material field to a field variable name.
         The field variable name must be defined in the material properties.
-        Note that the `Temperature` and `Shear Angle` field variables are not available
+        Note that the ``Temperature`` and ``Shear Angle`` field variables are not available
         for Field Definitions. Temperature is defined through the solution and `Shear Angle`
         is defined via draping calculations.
     scope_entities :
