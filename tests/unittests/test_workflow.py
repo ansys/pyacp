@@ -154,3 +154,20 @@ def test_workflow_unit_system_cdb(acp_instance, model_data_dir, unit_system):
             unit_system=unit_system,
         )
         assert workflow.model.unit_system == unit_system
+
+
+def test_workflow_ignored_entities(acp_instance, model_data_dir):
+    """Test that workflow the keyword argument for ignored entities."""
+    input_file_path = model_data_dir / "minimal_model_2.cdb"
+
+    kwargs = {
+        "acp": acp_instance,
+        "cdb_or_dat_file_path": input_file_path,
+        "unit_system": UnitSystemType.MPA,
+    }
+
+    workflow_without_ignored_entities = ACPWorkflow.from_cdb_or_dat_file(**kwargs)
+    assert len(workflow_without_ignored_entities.model.rosettes) > 0
+
+    workflow = ACPWorkflow.from_cdb_or_dat_file(ignored_entities=["coordinate_systems"], **kwargs)
+    assert len(workflow.model.rosettes) == 0
