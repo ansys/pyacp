@@ -69,6 +69,7 @@ def _signature(
         # 'inspect.signature' from performing the 'eval'.
         for i, param in enumerate(parameters):
             if param.annotation in [
+                "Sequence[_SCOPE_ENTITIES_LINKABLE_TO_FIELD_DEFINITION]",
                 "Sequence[_SELECTION_RULES_LINKABLE_TO_OSS]",
                 "Sequence[_LINKABLE_ENTITY_TYPES]",
                 "_LINKABLE_MATERIAL_TYPES",
