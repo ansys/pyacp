@@ -1,0 +1,6 @@
+scope\_entities
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: FieldDefinition.scope_entities

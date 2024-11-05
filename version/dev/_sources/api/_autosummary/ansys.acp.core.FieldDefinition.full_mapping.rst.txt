@@ -1,0 +1,6 @@
+full\_mapping
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: FieldDefinition.full_mapping

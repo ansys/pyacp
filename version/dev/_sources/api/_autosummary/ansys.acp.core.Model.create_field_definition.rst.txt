@@ -1,0 +1,6 @@
+create\_field\_definition
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_field_definition

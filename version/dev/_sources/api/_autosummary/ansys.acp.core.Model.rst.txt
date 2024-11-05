@@ -36,6 +36,9 @@
       Model.create_fabric
       
       
+      Model.create_field_definition
+      
+      
       Model.create_geometrical_selection_rule
       
       
@@ -134,6 +137,7 @@
       Model.element_sets
       Model.elemental_data
       Model.fabrics
+      Model.field_definitions
       Model.geometrical_selection_rules
       Model.imported_modeling_groups
       Model.lookup_tables_1d

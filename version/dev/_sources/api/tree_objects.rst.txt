@@ -19,6 +19,7 @@ ACP objects
     ExtrusionGuide
     ExportSettings
     Fabric
+    FieldDefinition
     GeometricalSelectionRule
     ImportedModelingGroup
     ImportedModelingPly

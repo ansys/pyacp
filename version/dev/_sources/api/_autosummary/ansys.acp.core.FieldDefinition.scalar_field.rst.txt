@@ -1,0 +1,6 @@
+scalar\_field
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: FieldDefinition.scalar_field

@@ -1,0 +1,6 @@
+field\_definitions
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.field_definitions
