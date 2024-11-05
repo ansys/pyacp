@@ -439,6 +439,47 @@ class Model(TreeObject):
                 )
             )
 
+    @supported_since("25.1")
+    def import_materials(
+        self,
+        matml_path: _PATH,
+        *,
+        material_apdl_path: _PATH | None = None,
+    ) -> None:
+        """
+        Import materials from a MatML file.
+
+        Import materials from a ``MatML.xml`` (Engineering Data) file.
+
+        Optionally, a material APDL file can be defined. This is a pre-generated
+        solver snippet, needed in case of variable materials or non-standard
+        material models. The snippet is used when exporting solid models or
+        surface section cuts in the CDB format.
+
+        Parameters
+        ----------
+        matml_path:
+            File path to the MatML file.
+        material_apdl_path:
+            File path to the material APDL file.
+        """
+        material_stub = material_pb2_grpc.ObjectServiceStub(self._channel)
+        collection_path = CollectionPath(
+            value=rp_join(self._resource_path.value, Material._COLLECTION_LABEL)
+        )
+        with wrap_grpc_errors():
+            material_stub.ImportMaterialFiles(
+                material_pb2.ImportMaterialFilesRequest(
+                    collection_path=collection_path,
+                    matml_path=path_to_str_checked(matml_path),
+                    material_apdl_path=(
+                        path_to_str_checked(material_apdl_path)
+                        if material_apdl_path is not None
+                        else ""
+                    ),
+                )
+            )
+
     def export_materials(self, path: _PATH) -> None:
         """
         Write materials to a XML (MatML) file.
