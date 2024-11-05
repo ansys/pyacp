@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1730794402924,
+  "lastUpdate": 1730804115409,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -17242,6 +17242,114 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00011610445296715947",
             "extra": "mean: 38.366109296311556 msec\nrounds: 27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e341b87cf25901fdaf6cdbe420cae2472f1fcfaa",
+          "message": "Implement ImportedSolidModel object (#638)\n\nAdd exposure for the `ImportedSolidModel` object.\r\n\r\nMove the solid model export methods `export` and `export_skin` to a mixin class and re-use them here.\r\n\r\nAdd elemental and nodal data attributes on both the regular and imported solid model.\r\n\r\nRename `ExportSettings` to `SolidModelExportSettings`, and add a separate `ImportedSolidModelExportSettings`, since not all options are supported for imported solid models.\r\n\r\nCloses #591",
+          "timestamp": "2024-11-05T10:49:54Z",
+          "tree_id": "09b0827e5577816ff2c1cb0ebaacbe64860246f9",
+          "url": "https://github.com/ansys/pyacp/commit/e341b87cf25901fdaf6cdbe420cae2472f1fcfaa"
+        },
+        "date": 1730804090509,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 7.577103298824805,
+            "unit": "iter/sec",
+            "range": "stddev: 0.017689402185822625",
+            "extra": "mean: 131.9765562857112 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.6968401778968314,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004235109649779708",
+            "extra": "mean: 370.8043243333255 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.38740230689589433,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.581295935000014 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.1732799260899065,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003398635270003512",
+            "extra": "mean: 460.1340066666732 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.2863157042854178,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.492648098000018 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.02967084493174478,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 33.703118407999966 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1247.6793345807184,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00023413597515276323",
+            "extra": "mean: 801.487988366858 usec\nrounds: 2063"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 403.57574031881245,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006166358894380495",
+            "extra": "mean: 2.477849632909131 msec\nrounds: 395"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 48.64363845585361,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00005741272718363345",
+            "extra": "mean: 20.557672734689593 msec\nrounds: 49"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 1000.1921002294747,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001336553725813064",
+            "extra": "mean: 999.8079366659359 usec\nrounds: 1200"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 234.14701579928845,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00007869138750450267",
+            "extra": "mean: 4.27082103347071 msec\nrounds: 239"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 26.104310516040094,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00010770510051849176",
+            "extra": "mean: 38.30784955555667 msec\nrounds: 27"
           }
         ]
       }
