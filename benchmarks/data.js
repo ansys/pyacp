@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1730898270995,
+  "lastUpdate": 1730900422412,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -17782,6 +17782,114 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00009473714914260205",
             "extra": "mean: 38.541748555551884 msec\nrounds: 27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3da9f6ca1718f3096811aab740b1761855d7b58c",
+          "message": "Convert path to positional argument (#654)\n\nConvert the `path` from a keword-only argument to a positional\r\nargument in the import and export methods.\r\n\r\nThis is motivated mostly by the `import_model` method, where\r\nthe path is the only required argument. As such, it's intuitive\r\nto call the function with the path as positional argument.\r\n\r\nThe other export methods (solid model export and solid model\r\nskin export) are adapted for consistency.\r\nFor the model export methods, the `path` was already a positional\r\nargument, so no changes were needed.\r\n\r\nCo-authored-by: René Roos <105842014+roosre@users.noreply.github.com>",
+          "timestamp": "2024-11-06T13:34:52Z",
+          "tree_id": "0f9bb2f7eb5e82636e275b967dc58c1a3d50e3fa",
+          "url": "https://github.com/ansys/pyacp/commit/3da9f6ca1718f3096811aab740b1761855d7b58c"
+        },
+        "date": 1730900396418,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 7.666105012768333,
+            "unit": "iter/sec",
+            "range": "stddev: 0.01772076160303763",
+            "extra": "mean: 130.44433885714366 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.7068285751847703,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004059477069098911",
+            "extra": "mean: 369.4360290000039 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.3885085065773165,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.573946215000035 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.1749583962539627,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0022830369951136378",
+            "extra": "mean: 459.7789096666626 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.2865135746800962,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.4902360250000015 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.029644017061261834,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 33.73361977000002 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1330.2855539033037,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002098666049878836",
+            "extra": "mean: 751.7183036873663 usec\nrounds: 1844"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 405.59290500104936,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00005635128804302551",
+            "extra": "mean: 2.465526363182839 msec\nrounds: 402"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 48.67405922450274,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00007476331920837584",
+            "extra": "mean: 20.544824408164327 msec\nrounds: 49"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 1038.6959098878044,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00011852567568715543",
+            "extra": "mean: 962.7456799247584 usec\nrounds: 1056"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 235.05192467118755,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000612554223643583",
+            "extra": "mean: 4.254379118141206 msec\nrounds: 237"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 26.135313669943304,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00007762973256039327",
+            "extra": "mean: 38.262406666656595 msec\nrounds: 27"
           }
         ]
       }
