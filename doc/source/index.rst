@@ -78,7 +78,7 @@ Limitations
 
 * Field definitions are currently only supported through (Py)Mechanical.
   The workflow from PyACP to (Py)MADL ignores field definitions.
-* The PyACP to PyMADL does not fully support variable materials
+* The PyACP to PyMADL workflow does not fully support variable materials
 * Visualization and mesh data of imported plies are not supported yet
 * Section cuts cannot be visualized
 * Sampling point analysis data is not available
