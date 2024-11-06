@@ -1,0 +1,32 @@
+﻿SolidElementSetElementalData
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SolidElementSetElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SolidElementSetElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SolidElementSetElementalData.element_labels
+   
+   

@@ -32,6 +32,8 @@ Mesh data objects
     ProductionPlyElementalData
     ProductionPlyNodalData
     ScalarData
+    SolidElementSetElementalData
+    SolidElementSetNodalData
     SolidModelElementalData
     SolidModelNodalData
     SphericalSelectionRuleElementalData

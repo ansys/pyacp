@@ -66,6 +66,7 @@
       SolidModel.ply_group_pointers
       SolidModel.skip_elements_without_plies
       SolidModel.snap_to_geometries
+      SolidModel.solid_element_sets
       SolidModel.status
       SolidModel.warping_limit
    

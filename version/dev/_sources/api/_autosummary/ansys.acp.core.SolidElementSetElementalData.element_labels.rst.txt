@@ -1,0 +1,6 @@
+element\_labels
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidElementSetElementalData.element_labels

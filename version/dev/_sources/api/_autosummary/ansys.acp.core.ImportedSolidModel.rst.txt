@@ -58,6 +58,7 @@
       ImportedSolidModel.name
       ImportedSolidModel.nodal_data
       ImportedSolidModel.parent
+      ImportedSolidModel.solid_element_sets
       ImportedSolidModel.status
       ImportedSolidModel.unit_system
       ImportedSolidModel.warping_limit
