@@ -60,6 +60,10 @@ __all__ = [
     "DropOffType",
     "EdgeSetType",
     "ElementalDataType",
+    "ElementTechnology",
+    "ReinforcingBehavior",
+    "BaseElementMaterialHandlingType",
+    "StressStateType",
     "ExtrusionGuideType",
     "ExtrusionMethodType",
     "ExtrusionType",
@@ -599,5 +603,5 @@ StressStateType, stress_state_type_to_pb, stress_state_type_from_pb = wrap_to_st
     layup_mapping_object_pb2.StressStateType,
     module=__name__,
     doc="Specifies if the reinforcing elements should behave like a link, membrane, or shell "
-    "element (with or without bending)",
+    "element (with or without bending).",
 )

@@ -34,6 +34,7 @@ from ._grpc_helpers.linked_object_list import (
 )
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
+    grpc_data_property_read_only,
     grpc_link_property,
     mark_grpc_properties,
 )
@@ -50,6 +51,7 @@ from .enums import (
     element_technology_to_pb,
     reinforcing_behavior_from_pb,
     reinforcing_behavior_to_pb,
+    status_type_from_pb,
     stress_state_type_from_pb,
     stress_state_type_to_pb,
 )
@@ -67,8 +69,8 @@ __all__ = ["LayupMappingObject", "LayupMappingRosetteSelectionMethod"]
 
 (
     LayupMappingRosetteSelectionMethod,
-    layup_mapping_rosette_selection_method_from_pb,
     layup_mapping_rosette_selection_method_to_pb,
+    layup_mapping_rosette_selection_method_from_pb,
 ) = wrap_to_string_enum(
     "LayupMappingRosetteSelectionMethod",
     enum_types_pb2.RosetteSelectionMethod,
@@ -107,17 +109,21 @@ class LayupMappingObject(CreatableTreeObject, IdTreeObject):
     select_all_plies :
         Determines whether all plies are selected for mapping, or only
         the ones specified in the ``sequences`` parameter.
+
         * If ``use_imported_plies`` is False and ``select_all_plies`` is True,
           all plies in the selected shell area are selected.
         * If ``use_imported_plies`` is True and ``select_all_plies`` is True,
           all imported modeling plies are selected.
+
     sequences :
         Determines which plies are considered for mapping. The intersection
         of shell elements and plies are then mapped onto the solid mesh.
+
         * If ``use_imported_plies`` is False, modeling groups and modeling
           plies are allowed
         * If ``use_imported_plies`` is True, imported modeling groups and
           imported modeling plies are allowed
+
     entire_solid_mesh :
         If True, the selected layup is mapped onto the entire solid mesh.
         Otherwise, the ``solid_element_sets`` parameter is used to refine
@@ -173,6 +179,7 @@ class LayupMappingObject(CreatableTreeObject, IdTreeObject):
     base_element_rosette_selection_method :
         Defines how the coordinate systems are applied for the base elements.
         Used only if ``element_technology`` is ``"reinforcing"``.
+
     """
 
     __slots__: Iterable[str] = tuple()
@@ -235,6 +242,8 @@ class LayupMappingObject(CreatableTreeObject, IdTreeObject):
 
     def _create_stub(self) -> layup_mapping_object_pb2_grpc.ObjectServiceStub:
         return layup_mapping_object_pb2_grpc.ObjectServiceStub(self._channel)
+
+    status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
 
     active: ReadWriteProperty[bool, bool] = grpc_data_property("properties.active")
     element_technology = grpc_data_property(
