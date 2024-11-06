@@ -23,7 +23,7 @@
 import dataclasses
 import os
 import pathlib
-import subprocess
+import subprocess  # nosec B404
 from typing import TextIO
 
 import grpc
@@ -112,7 +112,7 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         self._url = f"localhost:{port}"
         self._stdout = open(stdout_file, mode="w", encoding="utf-8")
         self._stderr = open(stderr_file, mode="w", encoding="utf-8")
-        self._process = subprocess.Popen(
+        self._process = subprocess.Popen(  # nosec B603: documented in 'security_considerations.rst'
             [
                 self._config.binary_path,
                 f"--server-address=0.0.0.0:{port}",

@@ -429,7 +429,7 @@ jobs:
   build:
     name: Build library
     runs-on: ubuntu-latest
-    needs: [code-style, testing, doc-style, docs, build-wheelhouse, doctest, check-vulnerabilities]
+    needs: [code-style, testing, doc-style, docs, build-wheelhouse, doctest] # TODO: add check-vulnerabilities once we know it works on main
     timeout-minutes: 30
     steps:
       - name: Build library source and wheel artifacts
