@@ -43,6 +43,7 @@ ACP objects
     SectionCut
     Sensor
     SnapToGeometry
+    SolidElementSet
     SolidModel
     SolidModelExportSettings
     SphericalSelectionRule

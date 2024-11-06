@@ -11,3 +11,4 @@ section provides in-depth explanations.
 
     howto/index
     concepts/index
+    security_considerations

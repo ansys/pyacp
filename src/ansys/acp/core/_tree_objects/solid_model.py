@@ -29,6 +29,7 @@ from typing import Any
 from ansys.api.acp.v0 import (
     extrusion_guide_pb2_grpc,
     snap_to_geometry_pb2_grpc,
+    solid_element_set_pb2_grpc,
     solid_model_pb2,
     solid_model_pb2_grpc,
 )
@@ -38,7 +39,11 @@ from ._grpc_helpers.linked_object_list import (
     define_linked_object_list,
     define_polymorphic_linked_object_list,
 )
-from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
+from ._grpc_helpers.mapping import (
+    define_create_method,
+    define_mutable_mapping,
+    get_read_only_collection_property,
+)
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -79,6 +84,7 @@ from .modeling_ply import ModelingPly
 from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
 from .snap_to_geometry import SnapToGeometry
+from .solid_element_set import SolidElementSet
 
 __all__ = [
     "SolidModel",
@@ -501,6 +507,10 @@ class SolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObject):
     )
     snap_to_geometries = define_mutable_mapping(
         SnapToGeometry, snap_to_geometry_pb2_grpc.ObjectServiceStub
+    )
+
+    solid_element_sets = get_read_only_collection_property(
+        SolidElementSet, solid_element_set_pb2_grpc.ObjectServiceStub
     )
 
     elemental_data = elemental_data_property(SolidModelElementalData)
