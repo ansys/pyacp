@@ -8,6 +8,7 @@ Enumeration data types
     :template: autosummary/no_methods_doc/class.rst.jinja2
 
     ArrowType
+    BaseElementMaterialHandling
     BooleanOperationType
     CutOffGeometryOrientationType
     CutoffMaterialType
@@ -19,9 +20,10 @@ Enumeration data types
     DropOffType
     EdgeSetType
     ElementalDataType
+    ElementTechnology
     ExtrusionGuideType
-    ExtrusionType
     ExtrusionMethodType
+    ExtrusionType
     FeFormat
     GeometricalRuleType
     IgnorableEntity
@@ -29,6 +31,7 @@ Enumeration data types
     ImportedPlyOffsetType
     ImportedPlyThicknessType
     IntersectionType
+    LayupMappingRosetteSelectionMethod
     LinkedObjectHandling
     LookUpTable3DInterpolationAlgorithm
     LookUpTableColumnValueType
@@ -40,6 +43,7 @@ Enumeration data types
     PlyCutoffType
     PlyGeometryExportFormat
     PlyType
+    ReinforcingBehavior
     RosetteSelectionMethod
     RosetteType
     SectionCutType
@@ -48,6 +52,7 @@ Enumeration data types
     SolidModelImportFormat
     SolidModelSkinExportFormat
     StatusType
+    StressStateType
     SymmetryType
     ThicknessFieldType
     ThicknessType

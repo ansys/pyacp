@@ -31,6 +31,7 @@ from ansys.api.acp.v0 import (
     enum_types_pb2,
     imported_solid_model_pb2,
     imported_solid_model_pb2_grpc,
+    layup_mapping_object_pb2_grpc,
     solid_element_set_pb2_grpc,
     solid_model_pb2,
 )
@@ -65,6 +66,7 @@ from .enums import (
     unit_system_type_from_pb,
     unit_system_type_to_pb,
 )
+from .layup_mapping_object import LayupMappingObject
 from .material import Material
 from .object_registry import register
 from .solid_element_set import SolidElementSet
@@ -334,6 +336,17 @@ class ImportedSolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObjec
     )
     cut_off_geometries = define_mutable_mapping(
         CutOffGeometry, cut_off_geometry_pb2_grpc.ObjectServiceStub
+    )
+
+    create_layup_mapping_object = define_create_method(
+        LayupMappingObject,
+        func_name="create_layup_mapping_object",
+        parent_class_name="ImportedSolidModel",
+        module_name=__name__,
+    )
+    layup_mapping_objects = define_mutable_mapping(
+        LayupMappingObject,
+        layup_mapping_object_pb2_grpc.ObjectServiceStub,
     )
 
     def refresh(self) -> None:

@@ -30,6 +30,7 @@ from ansys.api.acp.v0 import (
     extrusion_guide_pb2,
     geometrical_selection_rule_pb2,
     imported_modeling_ply_pb2,
+    layup_mapping_object_pb2,
     lookup_table_3d_pb2,
     lookup_table_column_type_pb2,
     mesh_query_pb2,
@@ -59,6 +60,10 @@ __all__ = [
     "DropOffType",
     "EdgeSetType",
     "ElementalDataType",
+    "ElementTechnology",
+    "ReinforcingBehavior",
+    "BaseElementMaterialHandling",
+    "StressStateType",
     "ExtrusionGuideType",
     "ExtrusionMethodType",
     "ExtrusionType",
@@ -563,4 +568,40 @@ def _prefix_undefined(value: str) -> str:
     cut_off_geometry_pb2.OrientationType,
     module=__name__,
     doc="Determines the orientation of a cut-off geometry.",
+)
+
+ElementTechnology, element_technology_to_pb, element_technology_from_pb = wrap_to_string_enum(
+    "ElementTechnology",
+    layup_mapping_object_pb2.ElementTechnology,
+    module=__name__,
+    doc=("Options for the element technology used in a layup mapping object."),
+)
+
+ReinforcingBehavior, reinforcing_behavior_to_pb, reinforcing_behavior_from_pb = wrap_to_string_enum(
+    "ReinforcingBehavior",
+    layup_mapping_object_pb2.ReinforcingBehavior,
+    module=__name__,
+    doc=(
+        "Specifies whether the reinforcing elements carry tension and compression load, or only one of them."
+    ),
+)
+
+(
+    BaseElementMaterialHandling,
+    base_element_material_handling_to_pb,
+    base_element_material_handling_from_pb,
+) = wrap_to_string_enum(
+    "BaseElementMaterialHandling",
+    layup_mapping_object_pb2.BaseElementMaterialHandlingType,
+    module=__name__,
+    doc=(
+        "Determines how the base material is handled where it intersects with a reinforcing element."
+    ),
+)
+StressStateType, stress_state_type_to_pb, stress_state_type_from_pb = wrap_to_string_enum(
+    "StressStateType",
+    layup_mapping_object_pb2.StressStateType,
+    module=__name__,
+    doc="Specifies if the reinforcing elements should behave like a link, membrane, or shell "
+    "element (with or without bending).",
 )

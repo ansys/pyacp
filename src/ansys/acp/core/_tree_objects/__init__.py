@@ -45,6 +45,7 @@ from .edge_set import EdgeSet
 from .element_set import ElementSet, ElementSetElementalData, ElementSetNodalData
 from .enums import (
     ArrowType,
+    BaseElementMaterialHandling,
     BooleanOperationType,
     CutOffGeometryOrientationType,
     CutoffMaterialType,
@@ -56,6 +57,7 @@ from .enums import (
     DropOffType,
     EdgeSetType,
     ElementalDataType,
+    ElementTechnology,
     ExtrusionGuideType,
     ExtrusionMethodType,
     ExtrusionType,
@@ -73,6 +75,7 @@ from .enums import (
     PlyCutoffType,
     PlyGeometryExportFormat,
     PlyType,
+    ReinforcingBehavior,
     RosetteSelectionMethod,
     RosetteType,
     SectionCutType,
@@ -81,6 +84,7 @@ from .enums import (
     SolidModelExportFormat,
     SolidModelSkinExportFormat,
     StatusType,
+    StressStateType,
     SymmetryType,
     ThicknessFieldType,
     ThicknessType,
@@ -107,6 +111,7 @@ from .imported_solid_model import (
     SolidModelImportFormat,
 )
 from .interface_layer import InterfaceLayer
+from .layup_mapping_object import LayupMappingObject, LayupMappingRosetteSelectionMethod
 from .linked_selection_rule import LinkedSelectionRule
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_1d_column import LookUpTable1DColumn
@@ -168,6 +173,7 @@ __all__ = [
     "AnalysisPlyElementalData",
     "AnalysisPlyNodalData",
     "ArrowType",
+    "BaseElementMaterialHandling",
     "BooleanOperationType",
     "BooleanSelectionRule",
     "BooleanSelectionRuleElementalData",
@@ -197,14 +203,15 @@ __all__ = [
     "ElementSet",
     "ElementSetElementalData",
     "ElementSetNodalData",
+    "ElementTechnology",
     "ExtrusionGuide",
     "ExtrusionGuideType",
     "ExtrusionMethodType",
     "ExtrusionType",
     "Fabric",
     "FabricWithAngle",
-    "FieldDefinition",
     "FeFormat",
+    "FieldDefinition",
     "FieldVariable",
     "GeometricalRuleType",
     "GeometricalSelectionRule",
@@ -226,6 +233,8 @@ __all__ = [
     "InterpolationOptions",
     "IntersectionType",
     "Lamina",
+    "LayupMappingObject",
+    "LayupMappingRosetteSelectionMethod",
     "LinkedSelectionRule",
     "LookUpTable1D",
     "LookUpTable1DColumn",
@@ -260,6 +269,7 @@ __all__ = [
     "ProductionPlyElementalData",
     "ProductionPlyNodalData",
     "PuckMaterialType",
+    "ReinforcingBehavior",
     "Rosette",
     "RosetteSelectionMethod",
     "RosetteType",
@@ -286,6 +296,7 @@ __all__ = [
     "SphericalSelectionRuleNodalData",
     "Stackup",
     "StatusType",
+    "StressStateType",
     "SubLaminate",
     "SubShape",
     "SymmetryType",
