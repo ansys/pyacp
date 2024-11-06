@@ -44,7 +44,7 @@ from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableReso
 ValueT = TypeVar("ValueT", bound=TreeObjectBase)
 CreatableValueT = TypeVar("CreatableValueT", bound=CreatableTreeObject)
 
-__all__ = ["Mapping", "MutableMapping", "define_mutable_mapping", "define_create_method"]
+__all__ = ["Mapping", "MutableMapping", "define_mutable_mapping", "define_create_method", "get_read_only_collection_property"]
 
 
 class Mapping(ObjectCacheMixin, Generic[ValueT]):

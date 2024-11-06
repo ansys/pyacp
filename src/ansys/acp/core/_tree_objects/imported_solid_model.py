@@ -30,6 +30,7 @@ from ansys.api.acp.v0 import (
     enum_types_pb2,
     imported_solid_model_pb2,
     imported_solid_model_pb2_grpc,
+    solid_element_set_pb2_grpc,
     solid_model_pb2,
 )
 
@@ -42,6 +43,9 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     grpc_link_property,
     mark_grpc_properties,
+)
+from ._grpc_helpers.mapping import (
+    get_read_only_collection_property
 )
 from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from ._solid_model_export import SolidModelExportMixin
@@ -58,6 +62,7 @@ from .enums import (
     unit_system_type_to_pb,
 )
 from .material import Material
+from .solid_element_set import SolidElementSet
 from .object_registry import register
 
 __all__ = [
@@ -308,6 +313,10 @@ class ImportedSolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObjec
     cut_off_material = grpc_link_property("properties.cut_off_material", allowed_types=(Material,))
     export_settings = nested_grpc_object_property(
         "properties.export_settings", ImportedSolidModelExportSettings
+    )
+
+    solid_element_sets = get_read_only_collection_property(
+        SolidElementSet, solid_element_set_pb2_grpc.ObjectServiceStub
     )
 
     elemental_data = elemental_data_property(ImportedSolidModelElementalData)
