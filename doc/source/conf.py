@@ -149,7 +149,7 @@ cname = os.getenv("DOCUMENTATION_CNAME", "acp.docs.pyansys.com")
 html_theme_options = {
     "logo": "pyansys",
     "github_url": "https://github.com/ansys/pyacp",
-    "show_prev_next": False,
+    "show_prev_next": True,
     "show_breadcrumbs": True,
     "additional_breadcrumbs": [("PyAnsys", "https://docs.pyansys.com/")],
     "switcher": {
