@@ -545,6 +545,11 @@ document.write(`
 <dd><p>Launch an ACP instance.</p>
 <p>Launch the ACP gRPC server with the given configuration. If no
 configuration is provided, the configured default is used.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not execute this function with untrusted input parameters.
+See the <a class="reference internal" href="../../user_guide/security_considerations.html#security-launch-acp"><span class="std std-ref">security guide</span></a> for details.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">

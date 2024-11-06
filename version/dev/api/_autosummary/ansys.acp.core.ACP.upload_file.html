@@ -561,6 +561,12 @@ document.write(`
 <dt class="sig sig-object py" id="ansys.acp.core.ACP.upload_file">
 <span class="sig-prename descclassname"><span class="pre">ACP.</span></span><span class="sig-name descname"><span class="pre">upload_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ACP.upload_file" title="Link to this definition">#</a></dt>
 <dd><p>Upload a file to the server.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not execute this function with untrusted input parameters.
+See the <a class="reference internal" href="../../user_guide/security_considerations.html#security-file-upload-download"><span class="std std-ref">security guide</span></a>
+for details.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>local_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.13)"><em>PathLike</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – The path of the file to be uploaded.</p>
