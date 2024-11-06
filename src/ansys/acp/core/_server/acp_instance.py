@@ -227,6 +227,12 @@ class ACP(Generic[ServerT]):
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
         """Upload a file to the server.
 
+        .. warning::
+
+            Do not execute this function with untrusted input parameters.
+            See the :ref:`security guide<security_file_upload_download>`
+            for details.
+
         Parameters
         ----------
         local_path :
@@ -241,6 +247,12 @@ class ACP(Generic[ServerT]):
 
     def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
         """Download a file from the server.
+
+        .. warning::
+
+            Do not execute this function with untrusted input parameters.
+            See the :ref:`security guide<security_file_upload_download>`
+            for details.
 
         Parameters
         ----------
