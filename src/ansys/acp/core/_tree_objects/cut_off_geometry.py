@@ -59,7 +59,7 @@ class CutOffGeometry(CreatableTreeObject, IdTreeObject):
         Inactive cut-off geometries are not used in the solid model extrusion.
     cad_geometry :
         The geometry defining the cut-off.
-    orientation :
+    orientation_type :
         Determines the cutting orientation of a surface/body geometry. Allows to
         switch between include and exclude.
     relative_merge_tolerance :
@@ -79,7 +79,7 @@ class CutOffGeometry(CreatableTreeObject, IdTreeObject):
         name: str = "CutOffGeometry",
         active: bool = True,
         cad_geometry: VirtualGeometry | None = None,
-        orientation: CutOffGeometryOrientationType = CutOffGeometryOrientationType.UP,
+        orientation_type: CutOffGeometryOrientationType = CutOffGeometryOrientationType.UP,
         relative_merge_tolerance: float = 0.1,
     ):
         super().__init__(
@@ -87,7 +87,7 @@ class CutOffGeometry(CreatableTreeObject, IdTreeObject):
         )
         self.active = active
         self.cad_geometry = cad_geometry
-        self.orientation = orientation
+        self.orientation_type = orientation_type
         self.relative_merge_tolerance = relative_merge_tolerance
 
     def _create_stub(self) -> cut_off_geometry_pb2_grpc.ObjectServiceStub:
@@ -96,7 +96,7 @@ class CutOffGeometry(CreatableTreeObject, IdTreeObject):
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     active: ReadWriteProperty[bool, bool] = grpc_data_property("properties.active")
     cad_geometry = grpc_link_property("properties.cad_geometry", allowed_types=(VirtualGeometry,))
-    orientation = grpc_data_property(
+    orientation_type = grpc_data_property(
         "properties.orientation",
         from_protobuf=cut_off_geometry_orientation_type_from_pb,
         to_protobuf=cut_off_geometry_orientation_type_to_pb,

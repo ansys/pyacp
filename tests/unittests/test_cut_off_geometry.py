@@ -60,7 +60,7 @@ class TestCutOffGeometry(WithLockedMixin, TreeObjectTester):
             "status": "NOTUPTODATE",
             "active": True,
             "cad_geometry": None,
-            "orientation": CutOffGeometryOrientationType.UP,
+            "orientation_type": CutOffGeometryOrientationType.UP,
             "relative_merge_tolerance": 0.1,
         }
 
@@ -75,7 +75,7 @@ class TestCutOffGeometry(WithLockedMixin, TreeObjectTester):
                 ("name", "new_cut_off_geometry"),
                 ("active", False),
                 ("cad_geometry", model.create_virtual_geometry()),
-                ("orientation", CutOffGeometryOrientationType.DOWN),
+                ("orientation_type", CutOffGeometryOrientationType.DOWN),
                 ("relative_merge_tolerance", 0.1257),
             ],
             read_only=[
