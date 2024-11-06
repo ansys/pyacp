@@ -113,7 +113,8 @@ def _get_file_url(example_location: _ExampleLocation) -> str:
 
 def _download_file(example_location: _ExampleLocation, local_path: pathlib.Path) -> None:
     file_url = _get_file_url(example_location)
-    urllib.request.urlretrieve(file_url, local_path)
+    # The URL is hard-coded to start with the example repository URL, so it is safe to use
+    urllib.request.urlretrieve(file_url, local_path)  # nosec: B310
 
 
 def _run_analysis(workflow: "ACPWorkflow") -> None:

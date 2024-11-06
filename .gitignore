@@ -83,3 +83,6 @@ examples/pymechanical/output/*
 
 /examples/workbench_project/
 
+# Vulnerability scanning
+info_bandit.json
+info_safety.json
