@@ -6,10 +6,12 @@ of PyACP. It is important to understand the capabilities which PyACP
 provides, especially when using it to build apps or scripts that accept
 untrusted input.
 
+.. _security_launch_acp:
+
 Launching ACP
 -------------
 
-The :py:func:`launch_acp` function has different security implications depending
+The :py:func:`.launch_acp` function has different security implications depending
 on the launch mode used:
 
 Direct launch
@@ -52,6 +54,8 @@ Connect launch
 The ``"connect"`` launch mode connects to an existing ACP server. This mode does
 not pose any particular security risks, besides allowing access to a port on the
 system.
+
+.. _security_file_upload_download:
 
 File up- and downloads
 ----------------------

@@ -51,6 +51,11 @@ def launch_acp(
     Launch the ACP gRPC server with the given configuration. If no
     configuration is provided, the configured default is used.
 
+    .. warning::
+
+        Do not execute this function with untrusted input parameters.
+        See the :ref:`security guide<security_launch_acp>` for details.
+
     Parameters
     ----------
     config :
