@@ -112,3 +112,23 @@ def test_error_on_wrong_insert_polymorphic(model, oriented_selection_set):
     with pytest.raises(TypeError) as excinfo:
         oriented_selection_set.selection_rules.insert(0, model.create_element_set())
     assert "SelectionRule" in str(excinfo.value)
+
+
+def test_error_on_wrong_extend(model, oriented_selection_set):
+    """Test that the correct error is raised when assigning the wrong type.
+
+    This test extends a LinkedObjectList.
+    """
+    with pytest.raises(TypeError) as excinfo:
+        oriented_selection_set.rosettes.extend([model.create_element_set()])
+    assert "Rosette" in str(excinfo.value)
+
+
+def test_error_on_wrong_extend_polymorphic(model, oriented_selection_set):
+    """Test that the correct error is raised when assigning the wrong type.
+
+    This test extends a polymorphic LinkedObjectList.
+    """
+    with pytest.raises(TypeError) as excinfo:
+        oriented_selection_set.selection_rules.extend([model.create_element_set()])
+    assert "SelectionRule" in str(excinfo.value)

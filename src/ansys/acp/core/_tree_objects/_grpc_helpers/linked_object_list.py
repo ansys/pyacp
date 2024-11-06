@@ -216,6 +216,8 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
             Iterable of objects to append.
         """
         resource_path_list = self._get_resourcepath_list()
+        for it in iterable:
+            self._check_type(it)
         resource_path_list.extend([it._resource_path for it in iterable])
         self._set_resourcepath_list(resource_path_list)
 
