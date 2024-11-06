@@ -55,6 +55,7 @@ def _signature(
     )
     from ansys.acp.core._tree_objects.sensor import _LINKABLE_ENTITY_TYPES  # noqa: F401
     from ansys.acp.core._tree_objects.sublaminate import _LINKABLE_MATERIAL_TYPES  # noqa: F401
+    from ansys.acp.core._typing_helper import StrEnum
     from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles  # noqa: F401
     from ansys.dpf.core import UnitSystem  # noqa: F401
 
@@ -78,7 +79,13 @@ def _signature(
                 "Sequence[_LINKABLE_ENTITY_TYPES]",
                 "_LINKABLE_MATERIAL_TYPES",
             ]:
-                parameters[i] = param.replace(annotation=eval(param.annotation))
+                param = param.replace(annotation=eval(param.annotation))
+            # Represent StrEnum defaults as their string value, since this is
+            # easier to understand for library users. The enum type is still
+            # available in the type annotations.
+            if isinstance(param.default, StrEnum):
+                param = param.replace(default=param.default.value)
+            parameters[i] = param
         signature = signature.replace(parameters=parameters)
     return signature
 
