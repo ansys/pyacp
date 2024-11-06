@@ -30,6 +30,7 @@ from .boolean_selection_rule import (
 from .butt_joint_sequence import ButtJointSequence, PrimaryPly
 from .cad_component import CADComponent
 from .cad_geometry import CADGeometry, TriangleMesh
+from .cut_off_geometry import CutOffGeometry
 from .cutoff_selection_rule import (
     CutoffSelectionRule,
     CutoffSelectionRuleElementalData,
@@ -45,6 +46,7 @@ from .element_set import ElementSet, ElementSetElementalData, ElementSetNodalDat
 from .enums import (
     ArrowType,
     BooleanOperationType,
+    CutOffGeometryOrientationType,
     CutoffMaterialType,
     CutoffRuleType,
     DimensionType,
@@ -68,7 +70,6 @@ from .enums import (
     NodalDataType,
     OffsetDirectionType,
     OffsetType,
-    OrientationType,
     PlyCutoffType,
     PlyGeometryExportFormat,
     PlyType,
@@ -76,6 +77,7 @@ from .enums import (
     RosetteType,
     SectionCutType,
     SensorType,
+    SnapToGeometryOrientationType,
     SolidModelExportFormat,
     SolidModelSkinExportFormat,
     StatusType,
@@ -173,6 +175,8 @@ __all__ = [
     "ButtJointSequence",
     "CADComponent",
     "CADGeometry",
+    "CutOffGeometry",
+    "CutOffGeometryOrientationType",
     "CutoffMaterialType",
     "CutoffRuleType",
     "CutoffSelectionRule",
@@ -242,7 +246,6 @@ __all__ = [
     "NodalDataType",
     "OffsetDirectionType",
     "OffsetType",
-    "OrientationType",
     "OrientedSelectionSet",
     "OrientedSelectionSetElementalData",
     "OrientedSelectionSetNodalData",
@@ -267,6 +270,7 @@ __all__ = [
     "Sensor",
     "SensorType",
     "SnapToGeometry",
+    "SnapToGeometryOrientationType",
     "SolidElementSet",
     "SolidElementSetElementalData",
     "SolidElementSetNodalData",

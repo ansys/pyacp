@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 from ansys.api.acp.v0 import (
+    cut_off_geometry_pb2,
     cut_off_material_pb2,
     cutoff_selection_rule_pb2,
     drop_off_material_pb2,
@@ -48,6 +49,7 @@ from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
 __all__ = [
     "ArrowType",
     "BooleanOperationType",
+    "CutOffGeometryOrientationType",
     "CutoffMaterialType",
     "CutoffRuleType",
     "DimensionType",
@@ -58,16 +60,18 @@ __all__ = [
     "EdgeSetType",
     "ElementalDataType",
     "ExtrusionGuideType",
-    "ExtrusionType",
     "ExtrusionMethodType",
+    "ExtrusionType",
     "GeometricalRuleType",
+    "ImportedPlyDrapingType",
+    "ImportedPlyOffsetType",
+    "ImportedPlyThicknessType",
     "IntersectionType",
     "LookUpTable3DInterpolationAlgorithm",
     "LookUpTableColumnValueType",
     "NodalDataType",
     "OffsetDirectionType",
     "OffsetType",
-    "OrientationType",
     "PlyCutoffType",
     "PlyGeometryExportFormat",
     "PlyType",
@@ -75,17 +79,15 @@ __all__ = [
     "RosetteType",
     "SectionCutType",
     "SensorType",
-    "StatusType",
-    "SymmetryType",
+    "SnapToGeometryOrientationType",
     "SolidModelExportFormat",
     "SolidModelSkinExportFormat",
+    "StatusType",
+    "SymmetryType",
     "ThicknessFieldType",
     "ThicknessType",
     "UnitSystemType",
     "VirtualGeometryDimension",
-    "ImportedPlyDrapingType",
-    "ImportedPlyOffsetType",
-    "ImportedPlyThicknessType",
 ]
 
 (StatusType, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(
@@ -536,8 +538,12 @@ def _prefix_undefined(value: str) -> str:
     return value
 
 
-OrientationType, orientation_type_to_pb, orientation_type_from_pb = wrap_to_string_enum(
-    "OrientationType",
+(
+    SnapToGeometryOrientationType,
+    snap_to_geometry_orientation_type_to_pb,
+    snap_to_geometry_orientation_type_from_pb,
+) = wrap_to_string_enum(
+    "SnapToGeometryOrientationType",
     snap_to_geometry_pb2.OrientationType,
     module=__name__,
     key_converter=_prefix_undefined,
@@ -547,4 +553,14 @@ OrientationType, orientation_type_to_pb, orientation_type_from_pb = wrap_to_stri
         "``_UNDEFINED`` option should not be used. It is equivalent to using "
         "``BOTTOM``, and included only for compatibility with existing models."
     ),
+)
+(
+    CutOffGeometryOrientationType,
+    cut_off_geometry_orientation_type_to_pb,
+    cut_off_geometry_orientation_type_from_pb,
+) = wrap_to_string_enum(
+    "CutOffGeometryOrientationType",
+    cut_off_geometry_pb2.OrientationType,
+    module=__name__,
+    doc="Determines the orientation of a cut-off geometry.",
 )

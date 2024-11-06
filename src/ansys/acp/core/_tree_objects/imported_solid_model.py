@@ -27,6 +27,7 @@ import dataclasses
 from typing import Any
 
 from ansys.api.acp.v0 import (
+    cut_off_geometry_pb2_grpc,
     enum_types_pb2,
     imported_solid_model_pb2,
     imported_solid_model_pb2_grpc,
@@ -38,7 +39,11 @@ from .._typing_helper import PATH as _PATH
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
 from ._grpc_helpers.exceptions import wrap_grpc_errors
-from ._grpc_helpers.mapping import get_read_only_collection_property
+from ._grpc_helpers.mapping import (
+    define_create_method,
+    define_mutable_mapping,
+    get_read_only_collection_property,
+)
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -53,6 +58,7 @@ from .base import (
     TreeObjectAttributeWithCache,
     nested_grpc_object_property,
 )
+from .cut_off_geometry import CutOffGeometry
 from .enums import (
     UnitSystemType,
     status_type_from_pb,
@@ -319,6 +325,16 @@ class ImportedSolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObjec
 
     elemental_data = elemental_data_property(ImportedSolidModelElementalData)
     nodal_data = nodal_data_property(ImportedSolidModelNodalData)
+
+    create_cut_off_geometry = define_create_method(
+        CutOffGeometry,
+        func_name="create_cut_off_geometry",
+        parent_class_name="ImportedSolidModel",
+        module_name=__module__,
+    )
+    cut_off_geometries = define_mutable_mapping(
+        CutOffGeometry, cut_off_geometry_pb2_grpc.ObjectServiceStub
+    )
 
     def refresh(self) -> None:
         """Re-import the solid model from the external file."""
