@@ -70,11 +70,13 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
         parent_object: TreeObject,
         attribute_name: str,
         object_constructor: Callable[[ResourcePath, Channel], ValueT],
+        allowed_types: tuple[type[ValueT], ...],
     ) -> Self:
         return cls(
             _parent_object=parent_object,
             _attribute_name=attribute_name,
             _object_constructor=object_constructor,
+            _allowed_types=allowed_types,
         )
 
     @staticmethod
@@ -95,6 +97,7 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
         _parent_object: TreeObject,
         _attribute_name: str,
         _object_constructor: Callable[[ResourcePath, Channel], ValueT],
+        _allowed_types: tuple[Any, ...],
     ) -> None:
         getter = grpc_data_getter(_attribute_name, from_protobuf=list)
         setter = grpc_data_setter(_attribute_name, to_protobuf=lambda x: x)
@@ -113,6 +116,8 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
         self._object_constructor: Callable[[ResourcePath], ValueT] = (
             lambda resource_path: _object_constructor(resource_path, _parent_object._server_wrapper)
         )
+        self._allowed_types = _allowed_types
+        self._allowed_types_str = ", ".join([cls.__name__ for cls in _allowed_types])
 
     def __len__(self) -> int:
         return len(self._get_resourcepath_list())
@@ -139,12 +144,15 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
     def __setitem__(self, key: int | slice, value: ValueT | Iterable[ValueT]) -> None:
         resource_path_list = self._get_resourcepath_list()
         if isinstance(value, TreeObject):
+            self._check_type(value)
             if not isinstance(key, int):
                 raise TypeError("Cannot assign to a slice with a single object.")
             resource_path_list[key] = value._resource_path
         else:
             if not isinstance(key, slice):
                 raise TypeError("Cannot assign to a single index with an iterable.")
+            for item in value:
+                self._check_type(item)
             resource_path_list[key] = [item._resource_path for item in value]
         self._set_resourcepath_list(resource_path_list)
 
@@ -174,6 +182,7 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
         object:
             Object to append.
         """
+        self._check_type(object)
         resource_path_list = self._get_resourcepath_list()
         resource_path_list.append(object._resource_path)
         self._set_resourcepath_list(resource_path_list)
@@ -220,6 +229,7 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
         object:
             Object to insert.
         """
+        self._check_type(object)
         resource_path_list = self._get_resourcepath_list()
         resource_path_list.insert(index, object._resource_path)
         self._set_resourcepath_list(resource_path_list)
@@ -279,6 +289,12 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
     def __repr__(self) -> str:
         return f"<LinkedObjectList([{', '.join(repr(val) for val in self)}])>"
 
+    def _check_type(self, object: Any) -> None:
+        if not isinstance(object, self._allowed_types):
+            raise TypeError(
+                f"List items must be of type {self._allowed_types_str}, not {type(object).__name__}."
+            )
+
 
 ChildT = TypeVar("ChildT", bound=CreatableTreeObject)
 
@@ -293,6 +309,7 @@ def define_linked_object_list(
             parent_object=self,
             attribute_name=attribute_name,
             object_constructor=object_class._from_resource_path,
+            allowed_types=(object_class,),
         )
 
     def setter(self: ValueT, value: list[ChildT]) -> None:
@@ -315,12 +332,14 @@ def define_polymorphic_linked_object_list(
         if allowed_types_getter is not None:
             allowed_types = allowed_types_getter()
 
+        assert allowed_types is not None
         return LinkedObjectList(
             _parent_object=self,
             _attribute_name=attribute_name,
             _object_constructor=partial(
                 tree_object_from_resource_path, allowed_types=allowed_types
             ),
+            _allowed_types=allowed_types,
         )
 
     def setter(self: ValueT, value: list[Any]) -> None:
