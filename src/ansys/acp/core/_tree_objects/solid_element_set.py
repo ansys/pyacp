@@ -22,7 +22,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Collection, Iterable
+from collections.abc import Iterable
 import dataclasses
 
 from ansys.api.acp.v0 import solid_element_set_pb2, solid_element_set_pb2_grpc
@@ -75,8 +75,6 @@ class SolidElementSet(ReadOnlyTreeObject, IdTreeObject):
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     locked: ReadOnlyProperty[bool] = grpc_data_property_read_only("properties.locked")
-    element_labels: ReadOnlyProperty[tuple[int, ...], Collection[int]] = (
-        grpc_data_property_read_only(
-            "properties.element_labels", from_protobuf=to_tuple_from_1D_array
-        )
+    element_labels: ReadOnlyProperty[tuple[int, ...]] = grpc_data_property_read_only(
+        "properties.element_labels", from_protobuf=to_tuple_from_1D_array
     )
