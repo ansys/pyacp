@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1730902411211,
+  "lastUpdate": 1730903559100,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -17998,6 +17998,114 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00012633373610022598",
             "extra": "mean: 38.373816333335995 msec\nrounds: 27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f2ba4dc970dde44bfe321a434361bd0dabb96f1c",
+          "message": "Improve errors on wrong type in LinkedObjectList (#656)\n\nAdd explicit checks for the type of the objects being added to\r\na LinkedObjectList, and raise a TypeError if the type is incorrect.\r\n\r\nPreviously the backend error message was raised as RuntimeError,\r\nwhich is difficult to understand for the user.",
+          "timestamp": "2024-11-06T14:27:11Z",
+          "tree_id": "120809406eb19ce7175c7f8797cc68219d694fd1",
+          "url": "https://github.com/ansys/pyacp/commit/f2ba4dc970dde44bfe321a434361bd0dabb96f1c"
+        },
+        "date": 1730903531269,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 7.411258885719695,
+            "unit": "iter/sec",
+            "range": "stddev: 0.01912942191474127",
+            "extra": "mean: 134.92984328571214 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.6699458847091964,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0046161812959604745",
+            "extra": "mean: 374.53942633332343 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.38416133413951237,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.6030730090000134 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.114429692851533,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0027389273428476053",
+            "extra": "mean: 472.9407666666816 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.28607729065965604,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.495558832000029 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.029644479234395005,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 33.733093844999985 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1220.0975562888316,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00024800660359373494",
+            "extra": "mean: 819.6065919857247 usec\nrounds: 2196"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 400.9193794788622,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00008681426640056379",
+            "extra": "mean: 2.4942670551367634 msec\nrounds: 399"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 48.3147568286277,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00014250493007247209",
+            "extra": "mean: 20.69761012245176 msec\nrounds: 49"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 1022.5430390585478,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013239497176453305",
+            "extra": "mean: 977.9539459979082 usec\nrounds: 1037"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 230.8060518099949,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013374188803879633",
+            "extra": "mean: 4.332642026315774 msec\nrounds: 228"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.961448070767755,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00016468651159590953",
+            "extra": "mean: 38.51865262962688 msec\nrounds: 27"
           }
         ]
       }
