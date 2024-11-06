@@ -1,0 +1,6 @@
+TENSION\_AND\_COMPRESSION
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ReinforcingBehavior.TENSION_AND_COMPRESSION

@@ -1,0 +1,6 @@
+void\_material
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.void_material

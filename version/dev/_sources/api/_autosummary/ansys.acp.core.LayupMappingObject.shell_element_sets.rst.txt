@@ -1,0 +1,6 @@
+shell\_element\_sets
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.shell_element_sets

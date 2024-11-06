@@ -1,0 +1,6 @@
+MINIMUM\_DISTANCE\_SUPERPOSED
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LayupMappingRosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED

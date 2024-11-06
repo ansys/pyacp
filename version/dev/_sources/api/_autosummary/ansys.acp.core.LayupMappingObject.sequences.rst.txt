@@ -1,0 +1,6 @@
+sequences
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.sequences

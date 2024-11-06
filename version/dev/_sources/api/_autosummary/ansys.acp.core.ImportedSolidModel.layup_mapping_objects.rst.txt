@@ -1,0 +1,6 @@
+layup\_mapping\_objects
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.layup_mapping_objects

@@ -1,0 +1,6 @@
+base\_element\_rosette\_selection\_method
+=========================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.base_element_rosette_selection_method

@@ -21,6 +21,9 @@
       ImportedSolidModel.create_cut_off_geometry
       
       
+      ImportedSolidModel.create_layup_mapping_object
+      
+      
       ImportedSolidModel.delete
       
       
@@ -57,6 +60,7 @@
       ImportedSolidModel.external_path
       ImportedSolidModel.format
       ImportedSolidModel.id
+      ImportedSolidModel.layup_mapping_objects
       ImportedSolidModel.locked
       ImportedSolidModel.minimum_volume
       ImportedSolidModel.name

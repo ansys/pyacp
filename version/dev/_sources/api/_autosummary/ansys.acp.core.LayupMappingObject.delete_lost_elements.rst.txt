@@ -1,0 +1,6 @@
+delete\_lost\_elements
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.delete_lost_elements

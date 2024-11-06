@@ -1,0 +1,6 @@
+LAYERED\_ELEMENT
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementTechnology.LAYERED_ELEMENT

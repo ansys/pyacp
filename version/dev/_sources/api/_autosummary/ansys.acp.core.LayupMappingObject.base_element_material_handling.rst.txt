@@ -1,0 +1,6 @@
+base\_element\_material\_handling
+=================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.base_element_material_handling

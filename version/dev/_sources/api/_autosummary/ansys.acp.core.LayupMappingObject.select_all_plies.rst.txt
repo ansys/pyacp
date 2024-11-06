@@ -1,0 +1,6 @@
+select\_all\_plies
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.select_all_plies

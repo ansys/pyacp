@@ -1,0 +1,6 @@
+solid\_element\_sets
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.solid_element_sets

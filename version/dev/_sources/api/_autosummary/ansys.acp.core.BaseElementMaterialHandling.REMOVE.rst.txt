@@ -1,0 +1,6 @@
+REMOVE
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: BaseElementMaterialHandling.REMOVE

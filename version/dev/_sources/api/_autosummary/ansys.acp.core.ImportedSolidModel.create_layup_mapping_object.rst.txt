@@ -1,0 +1,6 @@
+create\_layup\_mapping\_object
+==============================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedSolidModel.create_layup_mapping_object

@@ -1,0 +1,6 @@
+element\_technology
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.element_technology

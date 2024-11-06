@@ -1,0 +1,6 @@
+scale\_ply\_thicknesses
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.scale_ply_thicknesses

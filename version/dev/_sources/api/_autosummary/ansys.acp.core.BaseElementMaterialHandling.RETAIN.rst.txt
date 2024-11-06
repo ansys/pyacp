@@ -1,0 +1,6 @@
+RETAIN
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: BaseElementMaterialHandling.RETAIN

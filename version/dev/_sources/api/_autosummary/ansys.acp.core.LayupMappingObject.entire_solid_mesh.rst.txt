@@ -1,0 +1,6 @@
+entire\_solid\_mesh
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.entire_solid_mesh

@@ -1,0 +1,6 @@
+minimum\_void\_material\_thickness
+==================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.minimum_void_material_thickness

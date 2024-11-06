@@ -1,0 +1,22 @@
+﻿ElementTechnology
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ElementTechnology
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        ElementTechnology.LAYERED_ELEMENT
+      
+      
+        ElementTechnology.REINFORCING
+      
+   
+   

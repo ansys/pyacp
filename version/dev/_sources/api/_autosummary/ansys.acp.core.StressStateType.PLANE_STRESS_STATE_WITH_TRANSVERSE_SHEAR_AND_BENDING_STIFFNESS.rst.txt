@@ -1,0 +1,6 @@
+PLANE\_STRESS\_STATE\_WITH\_TRANSVERSE\_SHEAR\_AND\_BENDING\_STIFFNESS
+======================================================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: StressStateType.PLANE_STRESS_STATE_WITH_TRANSVERSE_SHEAR_AND_BENDING_STIFFNESS

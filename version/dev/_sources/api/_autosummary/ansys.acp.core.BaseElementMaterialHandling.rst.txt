@@ -1,0 +1,22 @@
+﻿BaseElementMaterialHandling
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: BaseElementMaterialHandling
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        BaseElementMaterialHandling.RETAIN
+      
+      
+        BaseElementMaterialHandling.REMOVE
+      
+   
+   

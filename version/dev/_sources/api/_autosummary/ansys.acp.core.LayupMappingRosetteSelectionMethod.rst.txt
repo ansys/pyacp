@@ -1,0 +1,22 @@
+﻿LayupMappingRosetteSelectionMethod
+==================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: LayupMappingRosetteSelectionMethod
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        LayupMappingRosetteSelectionMethod.MINIMUM_DISTANCE
+      
+      
+        LayupMappingRosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED
+      
+   
+   

@@ -1,0 +1,6 @@
+stress\_state
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.stress_state

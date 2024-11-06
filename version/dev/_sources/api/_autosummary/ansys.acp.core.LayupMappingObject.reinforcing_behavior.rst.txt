@@ -1,0 +1,6 @@
+reinforcing\_behavior
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.reinforcing_behavior

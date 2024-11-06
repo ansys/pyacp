@@ -1,0 +1,6 @@
+filler\_material
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.filler_material

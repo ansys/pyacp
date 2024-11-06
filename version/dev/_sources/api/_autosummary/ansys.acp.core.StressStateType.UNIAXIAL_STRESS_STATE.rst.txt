@@ -1,0 +1,6 @@
+UNIAXIAL\_STRESS\_STATE
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: StressStateType.UNIAXIAL_STRESS_STATE

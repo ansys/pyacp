@@ -1,0 +1,6 @@
+TENSION\_ONLY
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ReinforcingBehavior.TENSION_ONLY

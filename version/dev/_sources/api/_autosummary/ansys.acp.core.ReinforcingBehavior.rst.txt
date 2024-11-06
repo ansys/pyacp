@@ -1,0 +1,25 @@
+﻿ReinforcingBehavior
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ReinforcingBehavior
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        ReinforcingBehavior.TENSION_AND_COMPRESSION
+      
+      
+        ReinforcingBehavior.TENSION_ONLY
+      
+      
+        ReinforcingBehavior.COMPRESSION_ONLY
+      
+   
+   

@@ -1,0 +1,6 @@
+base\_material
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.base_material

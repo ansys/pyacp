@@ -1,0 +1,6 @@
+base\_element\_rosettes
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.base_element_rosettes

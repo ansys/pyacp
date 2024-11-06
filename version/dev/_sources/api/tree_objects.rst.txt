@@ -28,6 +28,7 @@ ACP objects
     ImportedSolidModel
     ImportedSolidModelExportSettings
     InterfaceLayer
+    LayupMappingObject
     LookUpTable1D
     LookUpTable1DColumn
     LookUpTable3D

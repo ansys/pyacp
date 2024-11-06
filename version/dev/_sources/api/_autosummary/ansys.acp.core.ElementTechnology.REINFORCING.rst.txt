@@ -1,0 +1,6 @@
+REINFORCING
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementTechnology.REINFORCING

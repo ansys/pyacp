@@ -1,0 +1,6 @@
+use\_imported\_plies
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.use_imported_plies

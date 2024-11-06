@@ -1,0 +1,6 @@
+COMPRESSION\_ONLY
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ReinforcingBehavior.COMPRESSION_ONLY
