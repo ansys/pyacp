@@ -1,0 +1,6 @@
+BOTTOM
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SnapToGeometryOrientationType.BOTTOM

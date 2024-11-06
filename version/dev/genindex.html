@@ -550,6 +550,8 @@ document.write(`
       <li><a href="api/_autosummary/ansys.acp.core.ButtJointSequence.active.html#ansys.acp.core.ButtJointSequence.active">active (ansys.acp.core.ButtJointSequence property)</a>
 
       <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometry.active.html#ansys.acp.core.CutOffGeometry.active">(ansys.acp.core.CutOffGeometry property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.ExtrusionGuide.active.html#ansys.acp.core.ExtrusionGuide.active">(ansys.acp.core.ExtrusionGuide property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.FieldDefinition.active.html#ansys.acp.core.FieldDefinition.active">(ansys.acp.core.FieldDefinition property)</a>
@@ -733,7 +735,7 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.BooleanSelectionRuleNodalData.html#ansys.acp.core.BooleanSelectionRuleNodalData">BooleanSelectionRuleNodalData (class in ansys.acp.core)</a>
 </li>
-      <li><a href="api/_autosummary/ansys.acp.core.OrientationType.BOTTOM.html#ansys.acp.core.OrientationType.BOTTOM">BOTTOM (ansys.acp.core.OrientationType attribute)</a>
+      <li><a href="api/_autosummary/ansys.acp.core.SnapToGeometryOrientationType.BOTTOM.html#ansys.acp.core.SnapToGeometryOrientationType.BOTTOM">BOTTOM (ansys.acp.core.SnapToGeometryOrientationType attribute)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ImportedPlyOffsetType.BOTTOM_OFFSET.html#ansys.acp.core.ImportedPlyOffsetType.BOTTOM_OFFSET">BOTTOM_OFFSET (ansys.acp.core.ImportedPlyOffsetType attribute)</a>
 
@@ -763,9 +765,11 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.cad_geometries.html#ansys.acp.core.Model.cad_geometries">cad_geometries (ansys.acp.core.Model property)</a>
 </li>
-      <li><a href="api/_autosummary/ansys.acp.core.ExtrusionGuide.cad_geometry.html#ansys.acp.core.ExtrusionGuide.cad_geometry">cad_geometry (ansys.acp.core.ExtrusionGuide property)</a>
+      <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometry.cad_geometry.html#ansys.acp.core.CutOffGeometry.cad_geometry">cad_geometry (ansys.acp.core.CutOffGeometry property)</a>
 
       <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.ExtrusionGuide.cad_geometry.html#ansys.acp.core.ExtrusionGuide.cad_geometry">(ansys.acp.core.ExtrusionGuide property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.SnapToGeometry.cad_geometry.html#ansys.acp.core.SnapToGeometry.cad_geometry">(ansys.acp.core.SnapToGeometry property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.SubShape.cad_geometry.html#ansys.acp.core.SubShape.cad_geometry">(ansys.acp.core.SubShape property)</a>
@@ -811,6 +815,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.ButtJointSequence.clone.html#ansys.acp.core.ButtJointSequence.clone">(ansys.acp.core.ButtJointSequence method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.clone.html#ansys.acp.core.CADGeometry.clone">(ansys.acp.core.CADGeometry method)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometry.clone.html#ansys.acp.core.CutOffGeometry.clone">(ansys.acp.core.CutOffGeometry method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.clone.html#ansys.acp.core.CutoffSelectionRule.clone">(ansys.acp.core.CutoffSelectionRule method)</a>
 </li>
@@ -933,12 +939,12 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.material_property_sets.ConstantFabricFiberAngle.html#ansys.acp.core.material_property_sets.ConstantFabricFiberAngle">ConstantFabricFiberAngle (class in ansys.acp.core.material_property_sets)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.material_property_sets.ConstantLaRCConstants.html#ansys.acp.core.material_property_sets.ConstantLaRCConstants">ConstantLaRCConstants (class in ansys.acp.core.material_property_sets)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.material_property_sets.ConstantPuckConstants.html#ansys.acp.core.material_property_sets.ConstantPuckConstants">ConstantPuckConstants (class in ansys.acp.core.material_property_sets)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.material_property_sets.ConstantStrainLimits.html#ansys.acp.core.material_property_sets.ConstantStrainLimits">ConstantStrainLimits (class in ansys.acp.core.material_property_sets)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.material_property_sets.ConstantStressLimits.html#ansys.acp.core.material_property_sets.ConstantStressLimits">ConstantStressLimits (class in ansys.acp.core.material_property_sets)</a>
@@ -989,6 +995,12 @@ document.write(`
 
       <ul>
         <li><a href="api/_autosummary/ansys.acp.core.LookUpTable3D.create_column.html#ansys.acp.core.LookUpTable3D.create_column">(ansys.acp.core.LookUpTable3D method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/_autosummary/ansys.acp.core.ImportedSolidModel.create_cut_off_geometry.html#ansys.acp.core.ImportedSolidModel.create_cut_off_geometry">create_cut_off_geometry() (ansys.acp.core.ImportedSolidModel method)</a>
+
+      <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.SolidModel.create_cut_off_geometry.html#ansys.acp.core.SolidModel.create_cut_off_geometry">(ansys.acp.core.SolidModel method)</a>
 </li>
       </ul></li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.create_cutoff_selection_rule.html#ansys.acp.core.Model.create_cutoff_selection_rule">create_cutoff_selection_rule() (ansys.acp.core.Model method)</a>
@@ -1063,6 +1075,12 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.DropoffMaterialType.CUSTOM.html#ansys.acp.core.DropoffMaterialType.CUSTOM">(ansys.acp.core.DropoffMaterialType attribute)</a>
 </li>
       </ul></li>
+      <li><a href="api/_autosummary/ansys.acp.core.ImportedSolidModel.cut_off_geometries.html#ansys.acp.core.ImportedSolidModel.cut_off_geometries">cut_off_geometries (ansys.acp.core.ImportedSolidModel property)</a>
+
+      <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.SolidModel.cut_off_geometries.html#ansys.acp.core.SolidModel.cut_off_geometries">(ansys.acp.core.SolidModel property)</a>
+</li>
+      </ul></li>
       <li><a href="api/_autosummary/ansys.acp.core.example_helpers.ExampleKeys.CUT_OFF_GEOMETRY.html#ansys.acp.core.example_helpers.ExampleKeys.CUT_OFF_GEOMETRY">CUT_OFF_GEOMETRY (ansys.acp.core.example_helpers.ExampleKeys attribute)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Fabric.cut_off_material.html#ansys.acp.core.Fabric.cut_off_material">cut_off_material (ansys.acp.core.Fabric property)</a>
@@ -1086,6 +1104,10 @@ document.write(`
       <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.cutoff_rule_type.html#ansys.acp.core.CutoffSelectionRule.cutoff_rule_type">cutoff_rule_type (ansys.acp.core.CutoffSelectionRule property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.cutoff_selection_rules.html#ansys.acp.core.Model.cutoff_selection_rules">cutoff_selection_rules (ansys.acp.core.Model property)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometry.html#ansys.acp.core.CutOffGeometry">CutOffGeometry (class in ansys.acp.core)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometryOrientationType.html#ansys.acp.core.CutOffGeometryOrientationType">CutOffGeometryOrientationType (class in ansys.acp.core)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.CutoffMaterialType.html#ansys.acp.core.CutoffMaterialType">CutoffMaterialType (class in ansys.acp.core)</a>
 </li>
@@ -1129,6 +1151,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.ButtJointSequence.delete.html#ansys.acp.core.ButtJointSequence.delete">(ansys.acp.core.ButtJointSequence method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.delete.html#ansys.acp.core.CADGeometry.delete">(ansys.acp.core.CADGeometry method)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometry.delete.html#ansys.acp.core.CutOffGeometry.delete">(ansys.acp.core.CutOffGeometry method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.delete.html#ansys.acp.core.CutoffSelectionRule.delete">(ansys.acp.core.CutoffSelectionRule method)</a>
 </li>
@@ -1272,6 +1296,8 @@ document.write(`
       <li><a href="api/_autosummary/ansys.acp.core.LaunchMode.DOCKER_COMPOSE.html#ansys.acp.core.LaunchMode.DOCKER_COMPOSE">DOCKER_COMPOSE (ansys.acp.core.LaunchMode attribute)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.DockerComposeLaunchConfig.html#ansys.acp.core.DockerComposeLaunchConfig">DockerComposeLaunchConfig (class in ansys.acp.core)</a>
+</li>
+      <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometryOrientationType.DOWN.html#ansys.acp.core.CutOffGeometryOrientationType.DOWN">DOWN (ansys.acp.core.CutOffGeometryOrientationType attribute)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ACP.download_file.html#ansys.acp.core.ACP.download_file">download_file() (ansys.acp.core.ACP method)</a>
 </li>
@@ -2128,6 +2154,8 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.id.html#ansys.acp.core.CADGeometry.id">(ansys.acp.core.CADGeometry property)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometry.id.html#ansys.acp.core.CutOffGeometry.id">(ansys.acp.core.CutOffGeometry property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.id.html#ansys.acp.core.CutoffSelectionRule.id">(ansys.acp.core.CutoffSelectionRule property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.id.html#ansys.acp.core.CylindricalSelectionRule.id">(ansys.acp.core.CylindricalSelectionRule property)</a>
@@ -2730,6 +2758,8 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.name.html#ansys.acp.core.CADGeometry.name">(ansys.acp.core.CADGeometry property)</a>
 </li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometry.name.html#ansys.acp.core.CutOffGeometry.name">(ansys.acp.core.CutOffGeometry property)</a>
+</li>
         <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.name.html#ansys.acp.core.CutoffSelectionRule.name">(ansys.acp.core.CutoffSelectionRule property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.name.html#ansys.acp.core.CylindricalSelectionRule.name">(ansys.acp.core.CylindricalSelectionRule property)</a>
@@ -3085,10 +3115,12 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.OrientedSelectionSet.orientation_point.html#ansys.acp.core.OrientedSelectionSet.orientation_point">orientation_point (ansys.acp.core.OrientedSelectionSet property)</a>
 </li>
-      <li><a href="api/_autosummary/ansys.acp.core.SnapToGeometry.orientation_type.html#ansys.acp.core.SnapToGeometry.orientation_type">orientation_type (ansys.acp.core.SnapToGeometry property)</a>
+      <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometry.orientation_type.html#ansys.acp.core.CutOffGeometry.orientation_type">orientation_type (ansys.acp.core.CutOffGeometry property)</a>
+
+      <ul>
+        <li><a href="api/_autosummary/ansys.acp.core.SnapToGeometry.orientation_type.html#ansys.acp.core.SnapToGeometry.orientation_type">(ansys.acp.core.SnapToGeometry property)</a>
 </li>
-      <li><a href="api/_autosummary/ansys.acp.core.OrientationType.html#ansys.acp.core.OrientationType">OrientationType (class in ansys.acp.core)</a>
-</li>
+      </ul></li>
       <li><a href="api/_autosummary/ansys.acp.core.SnapToGeometry.oriented_selection_set.html#ansys.acp.core.SnapToGeometry.oriented_selection_set">oriented_selection_set (ansys.acp.core.SnapToGeometry property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.InterfaceLayer.oriented_selection_sets.html#ansys.acp.core.InterfaceLayer.oriented_selection_sets">oriented_selection_sets (ansys.acp.core.InterfaceLayer property)</a>
@@ -3181,6 +3213,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.CADComponent.parent.html#ansys.acp.core.CADComponent.parent">(ansys.acp.core.CADComponent property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.parent.html#ansys.acp.core.CADGeometry.parent">(ansys.acp.core.CADGeometry property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometry.parent.html#ansys.acp.core.CutOffGeometry.parent">(ansys.acp.core.CutOffGeometry property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.parent.html#ansys.acp.core.CutoffSelectionRule.parent">(ansys.acp.core.CutoffSelectionRule property)</a>
 </li>
@@ -3413,6 +3447,8 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.PlyType.REGULAR.html#ansys.acp.core.PlyType.REGULAR">REGULAR (ansys.acp.core.PlyType attribute)</a>
 </li>
+      <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometry.relative_merge_tolerance.html#ansys.acp.core.CutOffGeometry.relative_merge_tolerance">relative_merge_tolerance (ansys.acp.core.CutOffGeometry property)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.CylindricalSelectionRule.relative_rule_type.html#ansys.acp.core.CylindricalSelectionRule.relative_rule_type">relative_rule_type (ansys.acp.core.CylindricalSelectionRule property)</a>
 
       <ul>
@@ -3445,14 +3481,14 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.material_property_sets.PuckMaterialType.removeprefix.html#ansys.acp.core.material_property_sets.PuckMaterialType.removeprefix">(ansys.acp.core.material_property_sets.PuckMaterialType method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.LaunchMode.removesuffix.html#ansys.acp.core.LaunchMode.removesuffix">removesuffix() (ansys.acp.core.LaunchMode method)</a>
 
       <ul>
         <li><a href="api/_autosummary/ansys.acp.core.material_property_sets.PuckMaterialType.removesuffix.html#ansys.acp.core.material_property_sets.PuckMaterialType.removesuffix">(ansys.acp.core.material_property_sets.PuckMaterialType method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.LaunchMode.replace.html#ansys.acp.core.LaunchMode.replace">replace() (ansys.acp.core.LaunchMode method)</a>
 
       <ul>
@@ -3665,6 +3701,8 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.SnapToGeometry.html#ansys.acp.core.SnapToGeometry">SnapToGeometry (class in ansys.acp.core)</a>
 </li>
+      <li><a href="api/_autosummary/ansys.acp.core.SnapToGeometryOrientationType.html#ansys.acp.core.SnapToGeometryOrientationType">SnapToGeometryOrientationType (class in ansys.acp.core)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.VirtualGeometryDimension.SOLID.html#ansys.acp.core.VirtualGeometryDimension.SOLID">SOLID (ansys.acp.core.VirtualGeometryDimension attribute)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ImportedSolidModel.solid_element_sets.html#ansys.acp.core.ImportedSolidModel.solid_element_sets">solid_element_sets (ansys.acp.core.ImportedSolidModel property)</a>
@@ -3745,6 +3783,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.CADComponent.status.html#ansys.acp.core.CADComponent.status">(ansys.acp.core.CADComponent property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.status.html#ansys.acp.core.CADGeometry.status">(ansys.acp.core.CADGeometry property)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometry.status.html#ansys.acp.core.CutOffGeometry.status">(ansys.acp.core.CutOffGeometry property)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.status.html#ansys.acp.core.CutoffSelectionRule.status">(ansys.acp.core.CutoffSelectionRule property)</a>
 </li>
@@ -3841,6 +3881,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.ButtJointSequence.store.html#ansys.acp.core.ButtJointSequence.store">(ansys.acp.core.ButtJointSequence method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CADGeometry.store.html#ansys.acp.core.CADGeometry.store">(ansys.acp.core.CADGeometry method)</a>
+</li>
+        <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometry.store.html#ansys.acp.core.CutOffGeometry.store">(ansys.acp.core.CutOffGeometry method)</a>
 </li>
         <li><a href="api/_autosummary/ansys.acp.core.CutoffSelectionRule.store.html#ansys.acp.core.CutoffSelectionRule.store">(ansys.acp.core.CutoffSelectionRule method)</a>
 </li>
@@ -4089,7 +4131,7 @@ document.write(`
       </ul></li>
       <li><a href="api/_autosummary/ansys.acp.core.SectionCut.tolerance.html#ansys.acp.core.SectionCut.tolerance">tolerance (ansys.acp.core.SectionCut property)</a>
 </li>
-      <li><a href="api/_autosummary/ansys.acp.core.OrientationType.TOP.html#ansys.acp.core.OrientationType.TOP">TOP (ansys.acp.core.OrientationType attribute)</a>
+      <li><a href="api/_autosummary/ansys.acp.core.SnapToGeometryOrientationType.TOP.html#ansys.acp.core.SnapToGeometryOrientationType.TOP">TOP (ansys.acp.core.SnapToGeometryOrientationType attribute)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ImportedPlyOffsetType.TOP_OFFSET.html#ansys.acp.core.ImportedPlyOffsetType.TOP_OFFSET">TOP_OFFSET (ansys.acp.core.ImportedPlyOffsetType attribute)</a>
 
@@ -4173,6 +4215,8 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.VirtualGeometryDimension.UNKNOWN.html#ansys.acp.core.VirtualGeometryDimension.UNKNOWN">(ansys.acp.core.VirtualGeometryDimension attribute)</a>
 </li>
       </ul></li>
+      <li><a href="api/_autosummary/ansys.acp.core.CutOffGeometryOrientationType.UP.html#ansys.acp.core.CutOffGeometryOrientationType.UP">UP (ansys.acp.core.CutOffGeometryOrientationType attribute)</a>
+</li>
       <li><a href="api/_autosummary/ansys.acp.core.Model.update.html#ansys.acp.core.Model.update">update() (ansys.acp.core.Model method)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ACP.upload_file.html#ansys.acp.core.ACP.upload_file">upload_file() (ansys.acp.core.ACP method)</a>
@@ -4209,14 +4253,14 @@ document.write(`
         <li><a href="api/_autosummary/ansys.acp.core.OrientedSelectionSet.use_default_draping_mesh_size.html#ansys.acp.core.OrientedSelectionSet.use_default_draping_mesh_size">(ansys.acp.core.OrientedSelectionSet property)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.ImportedSolidModelExportSettings.use_default_element_index.html#ansys.acp.core.ImportedSolidModelExportSettings.use_default_element_index">use_default_element_index (ansys.acp.core.ImportedSolidModelExportSettings property)</a>
 
       <ul>
         <li><a href="api/_autosummary/ansys.acp.core.SolidModelExportSettings.use_default_element_index.html#ansys.acp.core.SolidModelExportSettings.use_default_element_index">(ansys.acp.core.SolidModelExportSettings property)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ansys.acp.core.SectionCut.use_default_interpolation_settings.html#ansys.acp.core.SectionCut.use_default_interpolation_settings">use_default_interpolation_settings (ansys.acp.core.SectionCut property)</a>
 </li>
       <li><a href="api/_autosummary/ansys.acp.core.ImportedSolidModelExportSettings.use_default_material_index.html#ansys.acp.core.ImportedSolidModelExportSettings.use_default_material_index">use_default_material_index (ansys.acp.core.ImportedSolidModelExportSettings property)</a>

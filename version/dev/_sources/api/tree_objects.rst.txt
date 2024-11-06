@@ -11,6 +11,7 @@ ACP objects
     ButtJointSequence
     CADComponent
     CADGeometry
+    CutOffGeometry
     CutoffSelectionRule
     CylindricalSelectionRule
     DropOffSettings

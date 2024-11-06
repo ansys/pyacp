@@ -1,0 +1,6 @@
+DOWN
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CutOffGeometryOrientationType.DOWN

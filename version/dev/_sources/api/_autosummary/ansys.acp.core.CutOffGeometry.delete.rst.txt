@@ -1,0 +1,6 @@
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CutOffGeometry.delete

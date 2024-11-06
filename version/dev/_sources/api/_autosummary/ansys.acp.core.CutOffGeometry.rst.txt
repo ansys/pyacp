@@ -1,0 +1,45 @@
+﻿CutOffGeometry
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: CutOffGeometry
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      CutOffGeometry.clone
+      
+      
+      CutOffGeometry.delete
+      
+      
+      CutOffGeometry.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CutOffGeometry.active
+      CutOffGeometry.cad_geometry
+      CutOffGeometry.id
+      CutOffGeometry.name
+      CutOffGeometry.orientation_type
+      CutOffGeometry.parent
+      CutOffGeometry.relative_merge_tolerance
+      CutOffGeometry.status
+   
+   

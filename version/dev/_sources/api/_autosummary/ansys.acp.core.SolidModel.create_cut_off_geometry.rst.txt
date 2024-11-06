@@ -1,0 +1,6 @@
+create\_cut\_off\_geometry
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SolidModel.create_cut_off_geometry

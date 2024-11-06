@@ -1,0 +1,6 @@
+cut\_off\_geometries
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.cut_off_geometries

@@ -18,6 +18,9 @@
       ImportedSolidModel.clone
       
       
+      ImportedSolidModel.create_cut_off_geometry
+      
+      
       ImportedSolidModel.delete
       
       
@@ -46,6 +49,7 @@
       :toctree:
    
       ImportedSolidModel.active
+      ImportedSolidModel.cut_off_geometries
       ImportedSolidModel.cut_off_material
       ImportedSolidModel.delete_bad_elements
       ImportedSolidModel.elemental_data

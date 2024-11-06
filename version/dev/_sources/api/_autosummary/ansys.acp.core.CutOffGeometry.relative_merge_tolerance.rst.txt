@@ -1,0 +1,6 @@
+relative\_merge\_tolerance
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffGeometry.relative_merge_tolerance

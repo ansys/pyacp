@@ -1,0 +1,22 @@
+﻿CutOffGeometryOrientationType
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: CutOffGeometryOrientationType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        CutOffGeometryOrientationType.UP
+      
+      
+        CutOffGeometryOrientationType.DOWN
+      
+   
+   

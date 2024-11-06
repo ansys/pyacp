@@ -456,6 +456,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ButtJointSequence.html">ButtJointSequence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADComponent.html">CADComponent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADGeometry.html">CADGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutOffGeometry.html">CutOffGeometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutoffSelectionRule.html">CutoffSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CylindricalSelectionRule.html">CylindricalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.DropOffSettings.html">DropOffSettings</a></li>
@@ -491,6 +492,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidElementSet.html">SolidElementSet</a></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">SolidModel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.clone.html">clone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.create_cut_off_geometry.html">create_cut_off_geometry</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.create_extrusion_guide.html">create_extrusion_guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.create_snap_to_geometry.html">create_snap_to_geometry</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.delete.html">delete</a></li>
@@ -498,6 +500,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.export_skin.html">export_skin</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.store.html">store</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.active.html">active</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.cut_off_geometries.html">cut_off_geometries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.cut_off_material.html">cut_off_material</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.delete_bad_elements.html">delete_bad_elements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.drop_off_material.html">drop_off_material</a></li>
@@ -663,22 +666,25 @@ Only used if <code class="docutils literal notranslate"><span class="pre">delete
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.clone.html#ansys.acp.core.SolidModel.clone" title="ansys.acp.core.SolidModel.clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.clone</span></code></a>(*[, unlink])</p></td>
 <td><p>Create a new unstored object with the same properties.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.create_extrusion_guide.html#ansys.acp.core.SolidModel.create_extrusion_guide" title="ansys.acp.core.SolidModel.create_extrusion_guide"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.create_extrusion_guide</span></code></a>(*[, name, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.create_cut_off_geometry.html#ansys.acp.core.SolidModel.create_cut_off_geometry" title="ansys.acp.core.SolidModel.create_cut_off_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.create_cut_off_geometry</span></code></a>(*[, ...])</p></td>
+<td><p>Instantiate a cut-off geometry.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.create_extrusion_guide.html#ansys.acp.core.SolidModel.create_extrusion_guide" title="ansys.acp.core.SolidModel.create_extrusion_guide"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.create_extrusion_guide</span></code></a>(*[, name, ...])</p></td>
 <td><p>Instantiate an Extrusion Guide of a Solid Model.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.create_snap_to_geometry.html#ansys.acp.core.SolidModel.create_snap_to_geometry" title="ansys.acp.core.SolidModel.create_snap_to_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.create_snap_to_geometry</span></code></a>(*[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.create_snap_to_geometry.html#ansys.acp.core.SolidModel.create_snap_to_geometry" title="ansys.acp.core.SolidModel.create_snap_to_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.create_snap_to_geometry</span></code></a>(*[, ...])</p></td>
 <td><p>Instantiate a snap-to geometry.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.delete.html#ansys.acp.core.SolidModel.delete" title="ansys.acp.core.SolidModel.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.delete</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.delete.html#ansys.acp.core.SolidModel.delete" title="ansys.acp.core.SolidModel.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.delete</span></code></a>()</p></td>
 <td><p>Delete the object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.export.html#ansys.acp.core.SolidModel.export" title="ansys.acp.core.SolidModel.export"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.export</span></code></a>(path, *, format)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.export.html#ansys.acp.core.SolidModel.export" title="ansys.acp.core.SolidModel.export"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.export</span></code></a>(path, *, format)</p></td>
 <td><p>Export the solid model to a file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.export_skin.html#ansys.acp.core.SolidModel.export_skin" title="ansys.acp.core.SolidModel.export_skin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.export_skin</span></code></a>(path, *, format)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.export_skin.html#ansys.acp.core.SolidModel.export_skin" title="ansys.acp.core.SolidModel.export_skin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.export_skin</span></code></a>(path, *, format)</p></td>
 <td><p>Export the skin of the solid model to a file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.store.html#ansys.acp.core.SolidModel.store" title="ansys.acp.core.SolidModel.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.store</span></code></a>(parent)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.store.html#ansys.acp.core.SolidModel.store" title="ansys.acp.core.SolidModel.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.store</span></code></a>(parent)</p></td>
 <td><p>Store the object on the server.</p></td>
 </tr>
 </tbody>
@@ -690,73 +696,76 @@ Only used if <code class="docutils literal notranslate"><span class="pre">delete
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.active.html#ansys.acp.core.SolidModel.active" title="ansys.acp.core.SolidModel.active"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.active</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.cut_off_material.html#ansys.acp.core.SolidModel.cut_off_material" title="ansys.acp.core.SolidModel.cut_off_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.cut_off_material</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.cut_off_geometries.html#ansys.acp.core.SolidModel.cut_off_geometries" title="ansys.acp.core.SolidModel.cut_off_geometries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.cut_off_geometries</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.delete_bad_elements.html#ansys.acp.core.SolidModel.delete_bad_elements" title="ansys.acp.core.SolidModel.delete_bad_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.delete_bad_elements</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.cut_off_material.html#ansys.acp.core.SolidModel.cut_off_material" title="ansys.acp.core.SolidModel.cut_off_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.cut_off_material</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.drop_off_material.html#ansys.acp.core.SolidModel.drop_off_material" title="ansys.acp.core.SolidModel.drop_off_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.drop_off_material</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.delete_bad_elements.html#ansys.acp.core.SolidModel.delete_bad_elements" title="ansys.acp.core.SolidModel.delete_bad_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.delete_bad_elements</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.drop_off_settings.html#ansys.acp.core.SolidModel.drop_off_settings" title="ansys.acp.core.SolidModel.drop_off_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.drop_off_settings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.drop_off_material.html#ansys.acp.core.SolidModel.drop_off_material" title="ansys.acp.core.SolidModel.drop_off_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.drop_off_material</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.element_sets.html#ansys.acp.core.SolidModel.element_sets" title="ansys.acp.core.SolidModel.element_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.element_sets</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.drop_off_settings.html#ansys.acp.core.SolidModel.drop_off_settings" title="ansys.acp.core.SolidModel.drop_off_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.drop_off_settings</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.elemental_data.html#ansys.acp.core.SolidModel.elemental_data" title="ansys.acp.core.SolidModel.elemental_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.elemental_data</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.element_sets.html#ansys.acp.core.SolidModel.element_sets" title="ansys.acp.core.SolidModel.element_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.element_sets</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.export_settings.html#ansys.acp.core.SolidModel.export_settings" title="ansys.acp.core.SolidModel.export_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.export_settings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.elemental_data.html#ansys.acp.core.SolidModel.elemental_data" title="ansys.acp.core.SolidModel.elemental_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.elemental_data</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.extrusion_guides.html#ansys.acp.core.SolidModel.extrusion_guides" title="ansys.acp.core.SolidModel.extrusion_guides"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.extrusion_guides</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.export_settings.html#ansys.acp.core.SolidModel.export_settings" title="ansys.acp.core.SolidModel.export_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.export_settings</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.extrusion_method.html#ansys.acp.core.SolidModel.extrusion_method" title="ansys.acp.core.SolidModel.extrusion_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.extrusion_method</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.extrusion_guides.html#ansys.acp.core.SolidModel.extrusion_guides" title="ansys.acp.core.SolidModel.extrusion_guides"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.extrusion_guides</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.id.html#ansys.acp.core.SolidModel.id" title="ansys.acp.core.SolidModel.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.id</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.extrusion_method.html#ansys.acp.core.SolidModel.extrusion_method" title="ansys.acp.core.SolidModel.extrusion_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.extrusion_method</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.id.html#ansys.acp.core.SolidModel.id" title="ansys.acp.core.SolidModel.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.id</span></code></a></p></td>
 <td><p>Identifier of the object, used for example as key in maps.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.locked.html#ansys.acp.core.SolidModel.locked" title="ansys.acp.core.SolidModel.locked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.locked</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.locked.html#ansys.acp.core.SolidModel.locked" title="ansys.acp.core.SolidModel.locked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.locked</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.max_element_thickness.html#ansys.acp.core.SolidModel.max_element_thickness" title="ansys.acp.core.SolidModel.max_element_thickness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.max_element_thickness</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.max_element_thickness.html#ansys.acp.core.SolidModel.max_element_thickness" title="ansys.acp.core.SolidModel.max_element_thickness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.max_element_thickness</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.minimum_volume.html#ansys.acp.core.SolidModel.minimum_volume" title="ansys.acp.core.SolidModel.minimum_volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.minimum_volume</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.minimum_volume.html#ansys.acp.core.SolidModel.minimum_volume" title="ansys.acp.core.SolidModel.minimum_volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.minimum_volume</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.name.html#ansys.acp.core.SolidModel.name" title="ansys.acp.core.SolidModel.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.name</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.name.html#ansys.acp.core.SolidModel.name" title="ansys.acp.core.SolidModel.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.name</span></code></a></p></td>
 <td><p>The name of the object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.nodal_data.html#ansys.acp.core.SolidModel.nodal_data" title="ansys.acp.core.SolidModel.nodal_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.nodal_data</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.nodal_data.html#ansys.acp.core.SolidModel.nodal_data" title="ansys.acp.core.SolidModel.nodal_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.nodal_data</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.offset_direction.html#ansys.acp.core.SolidModel.offset_direction" title="ansys.acp.core.SolidModel.offset_direction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.offset_direction</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.offset_direction.html#ansys.acp.core.SolidModel.offset_direction" title="ansys.acp.core.SolidModel.offset_direction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.offset_direction</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.parent.html#ansys.acp.core.SolidModel.parent" title="ansys.acp.core.SolidModel.parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.parent</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.parent.html#ansys.acp.core.SolidModel.parent" title="ansys.acp.core.SolidModel.parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.parent</span></code></a></p></td>
 <td><p>The parent of the object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.ply_group_pointers.html#ansys.acp.core.SolidModel.ply_group_pointers" title="ansys.acp.core.SolidModel.ply_group_pointers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.ply_group_pointers</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.ply_group_pointers.html#ansys.acp.core.SolidModel.ply_group_pointers" title="ansys.acp.core.SolidModel.ply_group_pointers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.ply_group_pointers</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.skip_elements_without_plies.html#ansys.acp.core.SolidModel.skip_elements_without_plies" title="ansys.acp.core.SolidModel.skip_elements_without_plies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.skip_elements_without_plies</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.skip_elements_without_plies.html#ansys.acp.core.SolidModel.skip_elements_without_plies" title="ansys.acp.core.SolidModel.skip_elements_without_plies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.skip_elements_without_plies</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.snap_to_geometries.html#ansys.acp.core.SolidModel.snap_to_geometries" title="ansys.acp.core.SolidModel.snap_to_geometries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.snap_to_geometries</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.snap_to_geometries.html#ansys.acp.core.SolidModel.snap_to_geometries" title="ansys.acp.core.SolidModel.snap_to_geometries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.snap_to_geometries</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.solid_element_sets.html#ansys.acp.core.SolidModel.solid_element_sets" title="ansys.acp.core.SolidModel.solid_element_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.solid_element_sets</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.solid_element_sets.html#ansys.acp.core.SolidModel.solid_element_sets" title="ansys.acp.core.SolidModel.solid_element_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.solid_element_sets</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.status.html#ansys.acp.core.SolidModel.status" title="ansys.acp.core.SolidModel.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.status</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.status.html#ansys.acp.core.SolidModel.status" title="ansys.acp.core.SolidModel.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.status</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.warping_limit.html#ansys.acp.core.SolidModel.warping_limit" title="ansys.acp.core.SolidModel.warping_limit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.warping_limit</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.SolidModel.warping_limit.html#ansys.acp.core.SolidModel.warping_limit" title="ansys.acp.core.SolidModel.warping_limit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolidModel.warping_limit</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>

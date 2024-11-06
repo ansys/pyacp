@@ -456,6 +456,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ButtJointSequence.html">ButtJointSequence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADComponent.html">CADComponent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADGeometry.html">CADGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutOffGeometry.html">CutOffGeometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutoffSelectionRule.html">CutoffSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CylindricalSelectionRule.html">CylindricalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.DropOffSettings.html">DropOffSettings</a></li>
@@ -491,6 +492,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidElementSet.html">SolidElementSet</a></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.clone.html">clone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.create_cut_off_geometry.html">create_cut_off_geometry</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.create_extrusion_guide.html">create_extrusion_guide</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">create_snap_to_geometry</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.delete.html">delete</a></li>
@@ -498,6 +500,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.export_skin.html">export_skin</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.store.html">store</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.active.html">active</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.cut_off_geometries.html">cut_off_geometries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.cut_off_material.html">cut_off_material</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.delete_bad_elements.html">delete_bad_elements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.SolidModel.drop_off_material.html">drop_off_material</a></li>
@@ -625,7 +628,7 @@ document.write(`
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of the snap-to geometry.</p></li>
 <li><p><strong>active</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Inactive snap-to geometries are not used in the solid model extrusion.</p></li>
-<li><p><strong>orientation_type</strong> (<a class="reference internal" href="ansys.acp.core.OrientationType.html#ansys.acp.core.OrientationType" title="ansys.acp.core.OrientationType"><em>OrientationType</em></a>) – Determines whether the snap-to geometry is applied to the top or bottom
+<li><p><strong>orientation_type</strong> (<a class="reference internal" href="ansys.acp.core.SnapToGeometryOrientationType.html#ansys.acp.core.SnapToGeometryOrientationType" title="ansys.acp.core.SnapToGeometryOrientationType"><em>SnapToGeometryOrientationType</em></a>) – Determines whether the snap-to geometry is applied to the top or bottom
 surface of the layup.</p></li>
 <li><p><strong>cad_geometry</strong> (<a class="reference internal" href="ansys.acp.core.VirtualGeometry.html#ansys.acp.core.VirtualGeometry" title="ansys.acp.core.VirtualGeometry"><em>VirtualGeometry</em></a><em> | </em><em>None</em>) – The geometry to snap to.</p></li>
 <li><p><strong>oriented_selection_set</strong> (<a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.html#ansys.acp.core.OrientedSelectionSet" title="ansys.acp.core.OrientedSelectionSet"><em>OrientedSelectionSet</em></a><em> | </em><em>None</em>) – Defines the extent over which the snap-to geometry is applied. The normal

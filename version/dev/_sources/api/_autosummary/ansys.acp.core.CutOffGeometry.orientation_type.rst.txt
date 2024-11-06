@@ -1,0 +1,6 @@
+orientation\_type
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffGeometry.orientation_type

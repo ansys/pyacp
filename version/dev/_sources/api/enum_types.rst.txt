@@ -9,6 +9,7 @@ Enumeration data types
 
     ArrowType
     BooleanOperationType
+    CutOffGeometryOrientationType
     CutoffMaterialType
     CutoffRuleType
     DimensionType
@@ -35,7 +36,7 @@ Enumeration data types
     NodalDataType
     OffsetDirectionType
     OffsetType
-    OrientationType
+    SnapToGeometryOrientationType
     PlyCutoffType
     PlyGeometryExportFormat
     PlyType

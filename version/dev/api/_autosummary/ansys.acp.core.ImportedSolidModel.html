@@ -456,6 +456,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ButtJointSequence.html">ButtJointSequence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADComponent.html">CADComponent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADGeometry.html">CADGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutOffGeometry.html">CutOffGeometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutoffSelectionRule.html">CutoffSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CylindricalSelectionRule.html">CylindricalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.DropOffSettings.html">DropOffSettings</a></li>
@@ -471,6 +472,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedProductionPly.html">ImportedProductionPly</a></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">ImportedSolidModel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.clone.html">clone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.create_cut_off_geometry.html">create_cut_off_geometry</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.delete.html">delete</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.export.html">export</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.export_skin.html">export_skin</a></li>
@@ -478,6 +480,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.refresh.html">refresh</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.store.html">store</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.active.html">active</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.cut_off_geometries.html">cut_off_geometries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.cut_off_material.html">cut_off_material</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.delete_bad_elements.html">delete_bad_elements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.elemental_data.html">elemental_data</a></li>
@@ -638,22 +641,25 @@ definition.</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.clone.html#ansys.acp.core.ImportedSolidModel.clone" title="ansys.acp.core.ImportedSolidModel.clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.clone</span></code></a>(*[, unlink])</p></td>
 <td><p>Create a new unstored object with the same properties.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.delete.html#ansys.acp.core.ImportedSolidModel.delete" title="ansys.acp.core.ImportedSolidModel.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.delete</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.create_cut_off_geometry.html#ansys.acp.core.ImportedSolidModel.create_cut_off_geometry" title="ansys.acp.core.ImportedSolidModel.create_cut_off_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.create_cut_off_geometry</span></code></a>(*)</p></td>
+<td><p>Instantiate a cut-off geometry.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.delete.html#ansys.acp.core.ImportedSolidModel.delete" title="ansys.acp.core.ImportedSolidModel.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.delete</span></code></a>()</p></td>
 <td><p>Delete the object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.export.html#ansys.acp.core.ImportedSolidModel.export" title="ansys.acp.core.ImportedSolidModel.export"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.export</span></code></a>(path, *, format)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.export.html#ansys.acp.core.ImportedSolidModel.export" title="ansys.acp.core.ImportedSolidModel.export"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.export</span></code></a>(path, *, format)</p></td>
 <td><p>Export the solid model to a file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.export_skin.html#ansys.acp.core.ImportedSolidModel.export_skin" title="ansys.acp.core.ImportedSolidModel.export_skin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.export_skin</span></code></a>(path, *, format)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.export_skin.html#ansys.acp.core.ImportedSolidModel.export_skin" title="ansys.acp.core.ImportedSolidModel.export_skin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.export_skin</span></code></a>(path, *, format)</p></td>
 <td><p>Export the skin of the solid model to a file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.import_initial_mesh.html#ansys.acp.core.ImportedSolidModel.import_initial_mesh" title="ansys.acp.core.ImportedSolidModel.import_initial_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.import_initial_mesh</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.import_initial_mesh.html#ansys.acp.core.ImportedSolidModel.import_initial_mesh" title="ansys.acp.core.ImportedSolidModel.import_initial_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.import_initial_mesh</span></code></a>()</p></td>
 <td><p>Import the solid mesh and its element sets.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.refresh.html#ansys.acp.core.ImportedSolidModel.refresh" title="ansys.acp.core.ImportedSolidModel.refresh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.refresh</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.refresh.html#ansys.acp.core.ImportedSolidModel.refresh" title="ansys.acp.core.ImportedSolidModel.refresh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.refresh</span></code></a>()</p></td>
 <td><p>Re-import the solid model from the external file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.store.html#ansys.acp.core.ImportedSolidModel.store" title="ansys.acp.core.ImportedSolidModel.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.store</span></code></a>(parent)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.store.html#ansys.acp.core.ImportedSolidModel.store" title="ansys.acp.core.ImportedSolidModel.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.store</span></code></a>(parent)</p></td>
 <td><p>Store the object on the server.</p></td>
 </tr>
 </tbody>
@@ -665,52 +671,55 @@ definition.</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.active.html#ansys.acp.core.ImportedSolidModel.active" title="ansys.acp.core.ImportedSolidModel.active"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.active</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.cut_off_material.html#ansys.acp.core.ImportedSolidModel.cut_off_material" title="ansys.acp.core.ImportedSolidModel.cut_off_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.cut_off_material</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.cut_off_geometries.html#ansys.acp.core.ImportedSolidModel.cut_off_geometries" title="ansys.acp.core.ImportedSolidModel.cut_off_geometries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.cut_off_geometries</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.delete_bad_elements.html#ansys.acp.core.ImportedSolidModel.delete_bad_elements" title="ansys.acp.core.ImportedSolidModel.delete_bad_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.delete_bad_elements</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.cut_off_material.html#ansys.acp.core.ImportedSolidModel.cut_off_material" title="ansys.acp.core.ImportedSolidModel.cut_off_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.cut_off_material</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.elemental_data.html#ansys.acp.core.ImportedSolidModel.elemental_data" title="ansys.acp.core.ImportedSolidModel.elemental_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.elemental_data</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.delete_bad_elements.html#ansys.acp.core.ImportedSolidModel.delete_bad_elements" title="ansys.acp.core.ImportedSolidModel.delete_bad_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.delete_bad_elements</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.export_settings.html#ansys.acp.core.ImportedSolidModel.export_settings" title="ansys.acp.core.ImportedSolidModel.export_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.export_settings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.elemental_data.html#ansys.acp.core.ImportedSolidModel.elemental_data" title="ansys.acp.core.ImportedSolidModel.elemental_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.elemental_data</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.external_path.html#ansys.acp.core.ImportedSolidModel.external_path" title="ansys.acp.core.ImportedSolidModel.external_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.external_path</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.export_settings.html#ansys.acp.core.ImportedSolidModel.export_settings" title="ansys.acp.core.ImportedSolidModel.export_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.export_settings</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.format.html#ansys.acp.core.ImportedSolidModel.format" title="ansys.acp.core.ImportedSolidModel.format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.format</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.external_path.html#ansys.acp.core.ImportedSolidModel.external_path" title="ansys.acp.core.ImportedSolidModel.external_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.external_path</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.id.html#ansys.acp.core.ImportedSolidModel.id" title="ansys.acp.core.ImportedSolidModel.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.id</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.format.html#ansys.acp.core.ImportedSolidModel.format" title="ansys.acp.core.ImportedSolidModel.format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.format</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.id.html#ansys.acp.core.ImportedSolidModel.id" title="ansys.acp.core.ImportedSolidModel.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.id</span></code></a></p></td>
 <td><p>Identifier of the object, used for example as key in maps.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.locked.html#ansys.acp.core.ImportedSolidModel.locked" title="ansys.acp.core.ImportedSolidModel.locked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.locked</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.locked.html#ansys.acp.core.ImportedSolidModel.locked" title="ansys.acp.core.ImportedSolidModel.locked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.locked</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.minimum_volume.html#ansys.acp.core.ImportedSolidModel.minimum_volume" title="ansys.acp.core.ImportedSolidModel.minimum_volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.minimum_volume</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.minimum_volume.html#ansys.acp.core.ImportedSolidModel.minimum_volume" title="ansys.acp.core.ImportedSolidModel.minimum_volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.minimum_volume</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.name.html#ansys.acp.core.ImportedSolidModel.name" title="ansys.acp.core.ImportedSolidModel.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.name</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.name.html#ansys.acp.core.ImportedSolidModel.name" title="ansys.acp.core.ImportedSolidModel.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.name</span></code></a></p></td>
 <td><p>The name of the object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.nodal_data.html#ansys.acp.core.ImportedSolidModel.nodal_data" title="ansys.acp.core.ImportedSolidModel.nodal_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.nodal_data</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.nodal_data.html#ansys.acp.core.ImportedSolidModel.nodal_data" title="ansys.acp.core.ImportedSolidModel.nodal_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.nodal_data</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.parent.html#ansys.acp.core.ImportedSolidModel.parent" title="ansys.acp.core.ImportedSolidModel.parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.parent</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.parent.html#ansys.acp.core.ImportedSolidModel.parent" title="ansys.acp.core.ImportedSolidModel.parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.parent</span></code></a></p></td>
 <td><p>The parent of the object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.solid_element_sets.html#ansys.acp.core.ImportedSolidModel.solid_element_sets" title="ansys.acp.core.ImportedSolidModel.solid_element_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.solid_element_sets</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.solid_element_sets.html#ansys.acp.core.ImportedSolidModel.solid_element_sets" title="ansys.acp.core.ImportedSolidModel.solid_element_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.solid_element_sets</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.status.html#ansys.acp.core.ImportedSolidModel.status" title="ansys.acp.core.ImportedSolidModel.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.status</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.status.html#ansys.acp.core.ImportedSolidModel.status" title="ansys.acp.core.ImportedSolidModel.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.status</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.unit_system.html#ansys.acp.core.ImportedSolidModel.unit_system" title="ansys.acp.core.ImportedSolidModel.unit_system"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.unit_system</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.unit_system.html#ansys.acp.core.ImportedSolidModel.unit_system" title="ansys.acp.core.ImportedSolidModel.unit_system"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.unit_system</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.warping_limit.html#ansys.acp.core.ImportedSolidModel.warping_limit" title="ansys.acp.core.ImportedSolidModel.warping_limit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.warping_limit</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.warping_limit.html#ansys.acp.core.ImportedSolidModel.warping_limit" title="ansys.acp.core.ImportedSolidModel.warping_limit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImportedSolidModel.warping_limit</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>

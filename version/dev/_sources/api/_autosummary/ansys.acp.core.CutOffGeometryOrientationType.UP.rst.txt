@@ -1,0 +1,6 @@
+UP
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CutOffGeometryOrientationType.UP

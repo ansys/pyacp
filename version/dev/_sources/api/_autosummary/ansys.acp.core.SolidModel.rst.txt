@@ -18,6 +18,9 @@
       SolidModel.clone
       
       
+      SolidModel.create_cut_off_geometry
+      
+      
       SolidModel.create_extrusion_guide
       
       
@@ -46,6 +49,7 @@
       :toctree:
    
       SolidModel.active
+      SolidModel.cut_off_geometries
       SolidModel.cut_off_material
       SolidModel.delete_bad_elements
       SolidModel.drop_off_material
