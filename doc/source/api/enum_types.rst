@@ -8,7 +8,7 @@ Enumeration data types
     :template: autosummary/no_methods_doc/class.rst.jinja2
 
     ArrowType
-    BaseElementMaterialHandlingType
+    BaseElementMaterialHandling
     BooleanOperationType
     CutOffGeometryOrientationType
     CutoffMaterialType
