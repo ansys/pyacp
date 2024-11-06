@@ -89,15 +89,3 @@ class TestSolidElementSet(TreeObjectTesterReadOnly):
             ref_values = properties[solid_element_set.id]
             for prop, value in ref_values.items():
                 assert getattr(solid_element_set, prop) == value
-
-
-# def test_mesh_data_existence(model: Model):
-#    """
-#    Test that the elemental and nodal data can be retrieved. Does not
-#    test the correctness of the data.
-#    """
-#    analysis_ply = list(get_first_production_ply(model).analysis_plies.values())[0]
-#    elemental_data = analysis_ply.elemental_data
-#    assert isinstance(elemental_data, AnalysisPlyElementalData)
-#    nodal_data = analysis_ply.nodal_data
-#    assert isinstance(nodal_data, AnalysisPlyNodalData)
