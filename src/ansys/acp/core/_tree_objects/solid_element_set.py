@@ -22,22 +22,15 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable, Collection
+from collections.abc import Collection, Iterable
 import dataclasses
 
-from ansys.api.acp.v0 import solid_element_set_pb2_grpc, solid_element_set_pb2
+from ansys.api.acp.v0 import solid_element_set_pb2, solid_element_set_pb2_grpc
 
-from .._utils.property_protocols import ReadOnlyProperty
 from .._utils.array_conversions import to_tuple_from_1D_array
-from ._grpc_helpers.property_helper import (
-    grpc_data_property_read_only,
-    mark_grpc_properties,
-)
-from ._mesh_data import (
-    ElementalData,
-    NodalData,
-    VectorData,
-)
+from .._utils.property_protocols import ReadOnlyProperty
+from ._grpc_helpers.property_helper import grpc_data_property_read_only, mark_grpc_properties
+from ._mesh_data import ElementalData, NodalData, VectorData
 from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
@@ -82,7 +75,8 @@ class SolidElementSet(ReadOnlyTreeObject, IdTreeObject):
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     locked: ReadOnlyProperty[bool] = grpc_data_property_read_only("properties.locked")
-    element_labels: ReadOnlyProperty[tuple[int, ...], Collection[int]] = grpc_data_property_read_only(
-        "properties.element_labels",
-        from_protobuf=to_tuple_from_1D_array
+    element_labels: ReadOnlyProperty[tuple[int, ...], Collection[int]] = (
+        grpc_data_property_read_only(
+            "properties.element_labels", from_protobuf=to_tuple_from_1D_array
+        )
     )

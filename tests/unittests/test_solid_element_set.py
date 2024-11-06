@@ -20,10 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import pytest
 from packaging.version import parse as parse_version
-from ansys.acp.core import Model
-from ansys.acp.core import SolidElementSet
+import pytest
+
+from ansys.acp.core import Model, SolidElementSet
 
 from .common.tree_object_tester import TreeObjectTesterReadOnly
 
@@ -33,9 +33,7 @@ ESET_ALL_ELEMENTS = "All_Elements"
 
 @pytest.fixture(autouse=True)
 def skip_if_unsupported_version(acp_instance):
-    if parse_version(acp_instance.server_version) < parse_version(
-        SolidElementSet._SUPPORTED_SINCE
-    ):
+    if parse_version(acp_instance.server_version) < parse_version(SolidElementSet._SUPPORTED_SINCE):
         pytest.skip("SolidElementSet is not supported on this version of the server.")
 
 
@@ -93,8 +91,7 @@ class TestSolidElementSet(TreeObjectTesterReadOnly):
                 assert getattr(solid_element_set, prop) == value
 
 
-
-#def test_mesh_data_existence(model: Model):
+# def test_mesh_data_existence(model: Model):
 #    """
 #    Test that the elemental and nodal data can be retrieved. Does not
 #    test the correctness of the data.

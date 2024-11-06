@@ -29,9 +29,9 @@ from typing import Any
 from ansys.api.acp.v0 import (
     extrusion_guide_pb2_grpc,
     snap_to_geometry_pb2_grpc,
+    solid_element_set_pb2_grpc,
     solid_model_pb2,
     solid_model_pb2_grpc,
-    solid_element_set_pb2_grpc,
 )
 
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
@@ -40,9 +40,9 @@ from ._grpc_helpers.linked_object_list import (
     define_polymorphic_linked_object_list,
 )
 from ._grpc_helpers.mapping import (
-    get_read_only_collection_property,
     define_create_method,
     define_mutable_mapping,
+    get_read_only_collection_property,
 )
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
@@ -83,8 +83,8 @@ from .material import Material
 from .modeling_ply import ModelingPly
 from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
-from .solid_element_set import SolidElementSet
 from .snap_to_geometry import SnapToGeometry
+from .solid_element_set import SolidElementSet
 
 __all__ = [
     "SolidModel",

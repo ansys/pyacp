@@ -38,14 +38,12 @@ from .._typing_helper import PATH as _PATH
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
 from ._grpc_helpers.exceptions import wrap_grpc_errors
+from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     grpc_link_property,
     mark_grpc_properties,
-)
-from ._grpc_helpers.mapping import (
-    get_read_only_collection_property
 )
 from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from ._solid_model_export import SolidModelExportMixin
@@ -62,8 +60,8 @@ from .enums import (
     unit_system_type_to_pb,
 )
 from .material import Material
-from .solid_element_set import SolidElementSet
 from .object_registry import register
+from .solid_element_set import SolidElementSet
 
 __all__ = [
     "ImportedSolidModel",
