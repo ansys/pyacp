@@ -132,9 +132,9 @@ class ACP(Generic[ServerT]):
 
     def import_model(
         self,
+        path: _PATH,
         *,
         name: str | None = None,
-        path: _PATH,
         format: str = "acp:h5",  # pylint: disable=redefined-builtin
         **kwargs: Any,
     ) -> Model:

@@ -43,7 +43,7 @@ __all__ = ["SolidModelExportMixin"]
 class SolidModelExportMixin(CreatableTreeObject):
     """Mixin class for adding export functionality to the solid model and imported solid model classes."""
 
-    def export(self, *, path: _PATH, format: SolidModelExportFormat) -> None:
+    def export(self, path: _PATH, *, format: SolidModelExportFormat) -> None:
         """Export the solid model to a file.
 
         Parameters
@@ -64,7 +64,7 @@ class SolidModelExportMixin(CreatableTreeObject):
                 )
             )
 
-    def export_skin(self, *, path: _PATH, format: SolidModelSkinExportFormat) -> None:
+    def export_skin(self, path: _PATH, *, format: SolidModelSkinExportFormat) -> None:
         """Export the skin of the solid model to a file.
 
         Parameters
