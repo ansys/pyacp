@@ -35,33 +35,16 @@ from ansys.tools.local_product_launcher.interface import (
     LauncherProtocol,
     ServerType,
 )
-from ansys.tools.path import get_available_ansys_installations
+from ansys.tools.path import get_latest_ansys_installation
 
 from .common import ServerKey
 
 __all__ = ["DirectLaunchConfig"]
 
 
-def _get_latest_ansys_installation() -> str:
-    """Get the latest installed Ansys installation."""
-
-    installations = get_available_ansys_installations()
-    if not installations:
-        raise ValueError("No Ansys installation found.")
-
-    def sort_key(version_nr: int) -> int | float:
-        # prefer regular over student installs
-        if version_nr < 0:
-            return abs(version_nr) - 0.5
-        return version_nr
-
-    latest_key = max(installations, key=sort_key)
-    return installations[latest_key]
-
-
 def _get_default_binary_path() -> str:
     try:
-        ans_root = _get_latest_ansys_installation()
+        _, ans_root = get_latest_ansys_installation()
         binary_path = os.path.join(ans_root, "ACP", "acp_grpcserver")
         if os.name == "nt":
             binary_path += ".exe"
