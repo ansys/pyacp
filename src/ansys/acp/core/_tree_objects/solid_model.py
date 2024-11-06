@@ -27,6 +27,7 @@ import dataclasses
 from typing import Any
 
 from ansys.api.acp.v0 import (
+    cut_off_geometry_pb2_grpc,
     extrusion_guide_pb2_grpc,
     snap_to_geometry_pb2_grpc,
     solid_element_set_pb2_grpc,
@@ -64,6 +65,7 @@ from .base import (
     TreeObjectAttributeWithCache,
     nested_grpc_object_property,
 )
+from .cut_off_geometry import CutOffGeometry
 from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import (
@@ -511,6 +513,16 @@ class SolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObject):
 
     solid_element_sets = get_read_only_collection_property(
         SolidElementSet, solid_element_set_pb2_grpc.ObjectServiceStub
+    )
+
+    create_cut_off_geometry = define_create_method(
+        CutOffGeometry,
+        func_name="create_cut_off_geometry",
+        parent_class_name="SolidModel",
+        module_name=__module__,
+    )
+    cut_off_geometries = define_mutable_mapping(
+        CutOffGeometry, cut_off_geometry_pb2_grpc.ObjectServiceStub
     )
 
     elemental_data = elemental_data_property(SolidModelElementalData)
