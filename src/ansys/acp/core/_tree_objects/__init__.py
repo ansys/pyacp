@@ -45,7 +45,7 @@ from .edge_set import EdgeSet
 from .element_set import ElementSet, ElementSetElementalData, ElementSetNodalData
 from .enums import (
     ArrowType,
-    BaseElementMaterialHandlingType,
+    BaseElementMaterialHandling,
     BooleanOperationType,
     CutOffGeometryOrientationType,
     CutoffMaterialType,
@@ -173,7 +173,7 @@ __all__ = [
     "AnalysisPlyElementalData",
     "AnalysisPlyNodalData",
     "ArrowType",
-    "BaseElementMaterialHandlingType",
+    "BaseElementMaterialHandling",
     "BooleanOperationType",
     "BooleanSelectionRule",
     "BooleanSelectionRuleElementalData",

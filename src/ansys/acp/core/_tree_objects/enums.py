@@ -62,7 +62,7 @@ __all__ = [
     "ElementalDataType",
     "ElementTechnology",
     "ReinforcingBehavior",
-    "BaseElementMaterialHandlingType",
+    "BaseElementMaterialHandling",
     "StressStateType",
     "ExtrusionGuideType",
     "ExtrusionMethodType",
@@ -587,11 +587,11 @@ ReinforcingBehavior, reinforcing_behavior_to_pb, reinforcing_behavior_from_pb = 
 )
 
 (
-    BaseElementMaterialHandlingType,
-    base_element_material_handling_type_to_pb,
-    base_element_material_handling_type_from_pb,
+    BaseElementMaterialHandling,
+    base_element_material_handling_to_pb,
+    base_element_material_handling_from_pb,
 ) = wrap_to_string_enum(
-    "BaseElementMaterialHandlingType",
+    "BaseElementMaterialHandling",
     layup_mapping_object_pb2.BaseElementMaterialHandlingType,
     module=__name__,
     doc=(

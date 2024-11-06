@@ -24,7 +24,7 @@ from packaging.version import parse as parse_version
 import pytest
 
 from ansys.acp.core import (
-    BaseElementMaterialHandlingType,
+    BaseElementMaterialHandling,
     ElementTechnology,
     LayupMappingObject,
     LayupMappingRosetteSelectionMethod,
@@ -83,7 +83,7 @@ class TestLayupMappingObject(WithLockedMixin, TreeObjectTester):
             "rosettes": tuple(),
             "rosette_selection_method": LayupMappingRosetteSelectionMethod.MINIMUM_DISTANCE,
             "reinforcing_behavior": ReinforcingBehavior.TENSION_AND_COMPRESSION,
-            "base_element_material_handling": BaseElementMaterialHandlingType.REMOVE,
+            "base_element_material_handling": BaseElementMaterialHandling.REMOVE,
             "stress_state": StressStateType.PLANE_STRESS_STATE_WITH_TRANSVERSE_SHEAR_AND_BENDING_STIFFNESS,
             "base_material": None,
             "base_element_rosettes": tuple(),
@@ -131,7 +131,7 @@ class TestLayupMappingObject(WithLockedMixin, TreeObjectTester):
                     LayupMappingRosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED,
                 ),
                 ("reinforcing_behavior", ReinforcingBehavior.TENSION_ONLY),
-                ("base_element_material_handling", BaseElementMaterialHandlingType.RETAIN),
+                ("base_element_material_handling", BaseElementMaterialHandling.RETAIN),
                 ("stress_state", StressStateType.PLANE_STRESS_STATE),
                 ("base_material", model.create_material()),
                 ("base_element_rosettes", [model.create_rosette() for _ in range(3)]),

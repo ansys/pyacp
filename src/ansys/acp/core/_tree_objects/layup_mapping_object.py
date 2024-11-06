@@ -41,12 +41,12 @@ from ._grpc_helpers.property_helper import (
 from .base import CreatableTreeObject, IdTreeObject
 from .element_set import ElementSet
 from .enums import (
-    BaseElementMaterialHandlingType,
+    BaseElementMaterialHandling,
     ElementTechnology,
     ReinforcingBehavior,
     StressStateType,
-    base_element_material_handling_type_from_pb,
-    base_element_material_handling_type_to_pb,
+    base_element_material_handling_from_pb,
+    base_element_material_handling_to_pb,
     element_technology_from_pb,
     element_technology_to_pb,
     reinforcing_behavior_from_pb,
@@ -211,7 +211,7 @@ class LayupMappingObject(CreatableTreeObject, IdTreeObject):
         rosettes: Sequence[Rosette] = (),
         rosette_selection_method: LayupMappingRosetteSelectionMethod = LayupMappingRosetteSelectionMethod.MINIMUM_DISTANCE,  # type: ignore # noqa: E501
         reinforcing_behavior: ReinforcingBehavior = ReinforcingBehavior.TENSION_AND_COMPRESSION,
-        base_element_material_handling: BaseElementMaterialHandlingType = BaseElementMaterialHandlingType.REMOVE,  # noqa: E501
+        base_element_material_handling: BaseElementMaterialHandling = BaseElementMaterialHandling.REMOVE,  # noqa: E501
         stress_state: StressStateType = StressStateType.PLANE_STRESS_STATE_WITH_TRANSVERSE_SHEAR_AND_BENDING_STIFFNESS,  # noqa: E501
         base_material: Material | None = None,
         base_element_rosettes: Sequence[Rosette] = (),
@@ -294,8 +294,8 @@ class LayupMappingObject(CreatableTreeObject, IdTreeObject):
     )
     base_element_material_handling = grpc_data_property(
         "properties.base_element_material_handling",
-        from_protobuf=base_element_material_handling_type_from_pb,
-        to_protobuf=base_element_material_handling_type_to_pb,
+        from_protobuf=base_element_material_handling_from_pb,
+        to_protobuf=base_element_material_handling_to_pb,
     )
     stress_state = grpc_data_property(
         "properties.stress_state",
