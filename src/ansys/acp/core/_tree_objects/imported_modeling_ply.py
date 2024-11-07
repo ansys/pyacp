@@ -105,7 +105,7 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
         The material (only fabric is supported) of the ply.
     ply_angle :
         Design angle between the reference direction and the ply fiber direction.
-    draping :
+    draping_type :
         Chooses between different draping formulations. ``NO_DRAPING`` by default.
     draping_angle_1_field :
         Correction angle between the fiber and draped fiber directions, in degree.
@@ -148,7 +148,7 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
         rotation_angle: float = 0.0,
         ply_material: Fabric | None = None,
         ply_angle: float = 0.0,
-        draping: ImportedPlyDrapingType = ImportedPlyDrapingType.NO_DRAPING,
+        draping_type: ImportedPlyDrapingType = ImportedPlyDrapingType.NO_DRAPING,
         draping_angle_1_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
         draping_angle_2_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
         thickness_type: ImportedPlyThicknessType = ImportedPlyThicknessType.NOMINAL,
@@ -169,7 +169,7 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
         self.ply_material = ply_material
         self.ply_angle = ply_angle
 
-        self.draping = ImportedPlyDrapingType(draping)
+        self.draping_type = ImportedPlyDrapingType(draping_type)
         self.draping_angle_1_field = draping_angle_1_field
         self.draping_angle_2_field = draping_angle_2_field
 
@@ -210,7 +210,7 @@ class ImportedModelingPly(CreatableTreeObject, IdTreeObject):
     ply_material = grpc_link_property("properties.ply_material", allowed_types=(Fabric,))
     ply_angle: ReadWriteProperty[float, float] = grpc_data_property("properties.ply_angle")
 
-    draping = grpc_data_property(
+    draping_type = grpc_data_property(
         "properties.draping",
         from_protobuf=imported_ply_draping_type_from_pb,
         to_protobuf=imported_ply_draping_type_to_pb,

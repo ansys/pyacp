@@ -208,7 +208,7 @@ modeling_ply = modeling_group.create_modeling_ply(
     ply_angle=0,
     ply_material=fabric,
     oriented_selection_sets=[oss],
-    draping=DrapingType.TABULAR_VALUES,
+    draping_type=DrapingType.TABULAR_VALUES,
     draping_angle_1_field=angle_column_1,
     draping_angle_2_field=angle_column_2,
 )

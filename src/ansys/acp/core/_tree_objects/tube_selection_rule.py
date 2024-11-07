@@ -86,7 +86,7 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
         Outer radius of the tube.
     inner_radius :
         Inner radius of the tube.
-    include_rule_type :
+    include_rule :
         Include or exclude area in rule. Setting this to ``False``
         inverts the selection.
     extend_endings :
@@ -118,7 +118,7 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
         edge_set: EdgeSet | None = None,
         outer_radius: float = 1.0,
         inner_radius: float = 0.0,
-        include_rule_type: bool = True,
+        include_rule: bool = True,
         extend_endings: bool = False,
         symmetrical_extension: bool = True,
         head: tuple[float, float, float] = (0.0, 0.0, 0.0),
@@ -129,7 +129,7 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
         self.edge_set = edge_set
         self.outer_radius = outer_radius
         self.inner_radius = inner_radius
-        self.include_rule_type = include_rule_type
+        self.include_rule = include_rule
         self.extend_endings = extend_endings
         self.symmetrical_extension = symmetrical_extension
         self.head = head
@@ -144,9 +144,7 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
     edge_set = grpc_link_property("properties.edge_set", allowed_types=EdgeSet)
     outer_radius: ReadWriteProperty[float, float] = grpc_data_property("properties.outer_radius")
     inner_radius: ReadWriteProperty[float, float] = grpc_data_property("properties.inner_radius")
-    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.include_rule_type"
-    )
+    include_rule: ReadWriteProperty[bool, bool] = grpc_data_property("properties.include_rule_type")
     extend_endings: ReadWriteProperty[bool, bool] = grpc_data_property("properties.extend_endings")
     symmetrical_extension: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.symmetrical_extension"

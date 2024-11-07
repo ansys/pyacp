@@ -93,7 +93,7 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
         Virtual geometry to use for the rule.
     element_sets :
         Element sets to use for the rule.
-    include_rule_type :
+    include_rule :
         Include or exclude area in rule. Setting this to ``False``
         inverts the selection.
     use_default_tolerances :
@@ -120,7 +120,7 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
         geometrical_rule_type: GeometricalRuleType = GeometricalRuleType.GEOMETRY,
         geometry: VirtualGeometry | None = None,
         element_sets: Iterable[ElementSet] = (),
-        include_rule_type: bool = True,
+        include_rule: bool = True,
         use_default_tolerances: bool = True,
         in_plane_capture_tolerance: float = 0.0,
         negative_capture_tolerance: float = 0.0,
@@ -130,7 +130,7 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
         self.geometrical_rule_type = geometrical_rule_type
         self.geometry = geometry
         self.element_sets = element_sets
-        self.include_rule_type = include_rule_type
+        self.include_rule = include_rule
         self.use_default_tolerances = use_default_tolerances
         self.in_plane_capture_tolerance = in_plane_capture_tolerance
         self.negative_capture_tolerance = negative_capture_tolerance
@@ -148,9 +148,7 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
     )
     geometry = grpc_link_property("properties.geometry", allowed_types=VirtualGeometry)
     element_sets = define_linked_object_list("properties.element_sets", object_class=ElementSet)
-    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.include_rule_type"
-    )
+    include_rule: ReadWriteProperty[bool, bool] = grpc_data_property("properties.include_rule_type")
     use_default_tolerances: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.use_default_tolerances"
     )

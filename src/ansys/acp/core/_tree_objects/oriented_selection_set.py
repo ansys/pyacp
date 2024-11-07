@@ -52,7 +52,7 @@ from .boolean_selection_rule import BooleanSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .element_set import ElementSet
 from .enums import (
-    DrapingMaterialType,
+    DrapingMaterialModel,
     RosetteSelectionMethod,
     draping_material_type_from_pb,
     draping_material_type_to_pb,
@@ -149,7 +149,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
     draping_ud_coefficient :
         Value between ``0`` and ``1`` which determines the amount of deformation
         in the transverse direction if the draping material model is set to
-        :attr:`DrapingMaterialType.UD`.
+        :attr:`DrapingMaterialModel.UD`.
     rotation_angle :
         Angle in degrees by which the initial reference directions are rotated around the orientations.
     reference_direction_field :
@@ -180,7 +180,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         draping_direction: tuple[float, float, float] = (0.0, 0.0, 1.0),
         use_default_draping_mesh_size: bool = True,
         draping_mesh_size: float = 0.0,
-        draping_material_model: DrapingMaterialType = DrapingMaterialType.WOVEN,
+        draping_material_model: DrapingMaterialModel = DrapingMaterialModel.WOVEN,
         draping_ud_coefficient: float = 0.0,
         rotation_angle: float = 0.0,
         reference_direction_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
@@ -198,7 +198,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         self.draping_direction = draping_direction
         self.use_default_draping_mesh_size = use_default_draping_mesh_size
         self.draping_mesh_size = draping_mesh_size
-        self.draping_material_model = DrapingMaterialType(draping_material_model)
+        self.draping_material_model = DrapingMaterialModel(draping_material_model)
         self.draping_ud_coefficient = draping_ud_coefficient
         self.rotation_angle = rotation_angle
         self.reference_direction_field = reference_direction_field

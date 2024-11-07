@@ -44,9 +44,9 @@ from ._grpc_helpers.property_helper import (
 )
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import (
-    CutoffMaterialType,
-    DrapingMaterialType,
-    DropoffMaterialType,
+    CutoffMaterialHandling,
+    DrapingMaterialModel,
+    DropoffMaterialHandling,
     SymmetryType,
     cut_off_material_type_from_pb,
     cut_off_material_type_to_pb,
@@ -197,11 +197,11 @@ class Stackup(CreatableTreeObject, IdTreeObject):
         topdown: bool = True,
         fabrics: Sequence[FabricWithAngle] = tuple(),
         area_price: float = 0.0,
-        drop_off_material_handling: DropoffMaterialType = "global",
+        drop_off_material_handling: DropoffMaterialHandling = "global",
         drop_off_material: Material | None = None,
         cut_off_material: Material | None = None,
-        cut_off_material_handling: CutoffMaterialType = "computed",
-        draping_material_model: DrapingMaterialType = "woven",
+        cut_off_material_handling: CutoffMaterialHandling = "computed",
+        draping_material_model: DrapingMaterialModel = "woven",
         draping_ud_coefficient: float = 0.0,
     ):
         super().__init__(name=name)
@@ -210,11 +210,11 @@ class Stackup(CreatableTreeObject, IdTreeObject):
         self.topdown = topdown
         self.area_price = area_price
         self.fabrics = fabrics
-        self.drop_off_material_handling = DropoffMaterialType(drop_off_material_handling)
+        self.drop_off_material_handling = DropoffMaterialHandling(drop_off_material_handling)
         self.drop_off_material = drop_off_material
-        self.cut_off_material_handling = CutoffMaterialType(cut_off_material_handling)
+        self.cut_off_material_handling = CutoffMaterialHandling(cut_off_material_handling)
         self.cut_off_material = cut_off_material
-        self.draping_material_model = DrapingMaterialType(draping_material_model)
+        self.draping_material_model = DrapingMaterialModel(draping_material_model)
         self.draping_ud_coefficient = draping_ud_coefficient
 
     def _create_stub(self) -> stackup_pb2_grpc.ObjectServiceStub:

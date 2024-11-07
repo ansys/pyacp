@@ -56,8 +56,8 @@ class TestParallelSelectionRule(NoLockedMixin, TreeObjectTester):
             "direction": (1.0, 0.0, 0.0),
             "lower_limit": 0.0,
             "upper_limit": 0.0,
-            "relative_rule_type": False,
-            "include_rule_type": True,
+            "relative_rule": False,
+            "include_rule": True,
         }
 
     CREATE_METHOD_NAME = "create_parallel_selection_rule"
@@ -76,8 +76,8 @@ class TestParallelSelectionRule(NoLockedMixin, TreeObjectTester):
                 ("direction", (4.0, 5.0, 6.0)),
                 ("lower_limit", 7.0),
                 ("upper_limit", 8.0),
-                ("relative_rule_type", True),
-                ("include_rule_type", False),
+                ("relative_rule", True),
+                ("include_rule", False),
             ],
             read_only=[
                 ("id", "some_id"),

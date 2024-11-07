@@ -51,8 +51,8 @@ class TestCylindricalSelectionRule(NoLockedMixin, TreeObjectTester):
             "origin": (0.0, 0.0, 0.0),
             "direction": (0.0, 0.0, 1.0),
             "radius": 0.0,
-            "relative_rule_type": False,
-            "include_rule_type": True,
+            "relative_rule": False,
+            "include_rule": True,
         }
 
     CREATE_METHOD_NAME = "create_cylindrical_selection_rule"
@@ -70,8 +70,8 @@ class TestCylindricalSelectionRule(NoLockedMixin, TreeObjectTester):
                 ("origin", (1.0, 2.0, 3.0)),
                 ("direction", (4.0, 5.0, 6.0)),
                 ("radius", 7.0),
-                ("relative_rule_type", True),
-                ("include_rule_type", False),
+                ("relative_rule", True),
+                ("include_rule", False),
             ],
             read_only=[
                 ("id", "some_id"),
