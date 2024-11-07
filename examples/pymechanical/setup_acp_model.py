@@ -22,7 +22,15 @@
 
 # type: ignore
 
-from constants import COMPOSITE_DEFINITIONS_H5, MATML_FILE
+import pathlib
+
+from constants import (
+    ACPH5_FILE,
+    COMPOSITE_DEFINITIONS_H5,
+    MATML_FILE,
+    SOLID_MODEL_CDB_FILE,
+    SOLID_MODEL_COMPOSITE_DEFINITIONS_H5,
+)
 
 import ansys.acp.core as pyacp
 from ansys.acp.core._tree_objects.material.property_sets import ConstantStrainLimits
@@ -97,18 +105,34 @@ def setup_and_update_acp_model(output_path, mesh_path):
         global_ply_nr=0,  # add at the end
     )
 
+    solid_model = model.create_solid_model(
+        element_sets=[model.element_sets["All_Elements"]],
+    )
+
     # %%
     # Update and Save the ACP model
     model.update()
 
     # To-do: Distinction probably not needed
     if acp.is_remote:
-        model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
-        model.export_materials(MATML_FILE)
-        acp.download_file(COMPOSITE_DEFINITIONS_H5, output_path / COMPOSITE_DEFINITIONS_H5)
-        acp.download_file(MATML_FILE, output_path / MATML_FILE)
+        export_path = pathlib.PurePosixPath(".")
+
     else:
-        model.export_shell_composite_definitions(output_path / COMPOSITE_DEFINITIONS_H5)
-        model.export_materials(output_path / MATML_FILE)
+        export_path = output_path
+
+    model.save(export_path / ACPH5_FILE)
+    model.export_shell_composite_definitions(export_path / COMPOSITE_DEFINITIONS_H5)
+    model.export_materials(export_path / MATML_FILE)
+    solid_model.export(export_path / SOLID_MODEL_CDB_FILE, format="ansys:cdb")
+    solid_model.export(export_path / SOLID_MODEL_COMPOSITE_DEFINITIONS_H5, format="ansys:h5")
+
+    for filename in [
+        ACPH5_FILE,
+        COMPOSITE_DEFINITIONS_H5,
+        MATML_FILE,
+        SOLID_MODEL_CDB_FILE,
+        SOLID_MODEL_COMPOSITE_DEFINITIONS_H5,
+    ]:
+        acp.download_file(export_path / filename, output_path / filename)
 
     return model

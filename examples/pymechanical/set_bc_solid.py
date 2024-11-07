@@ -20,8 +20,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-COMPOSITE_DEFINITIONS_H5 = "ACPCompositeDefinitions.h5"
-MATML_FILE = "materials.xml"
-SOLID_MODEL_CDB_FILE = "SolidModel.cdb"
-SOLID_MODEL_COMPOSITE_DEFINITIONS_H5 = "SolidModel.h5"
-ACPH5_FILE = "model.acph5"
+# type: ignore
+"""
+Generate a structural analysis and set the boundary conditions. Used in remote_workflow_solid_noshim.py.
+"""
+
+analysis = Model.AddStaticStructuralAnalysis()
+
+ns_by_name = {ns.Name: ns for ns in Model.NamedSelections.Children}
+
+fixed_support = analysis.AddFixedSupport()
+fixed_support.Location = ns_by_name["ACP_SOLIDMODEL_4_WALL"]
+
+force = analysis.AddForce()
+force.DefineBy = LoadDefineBy.Components
+force.XComponent.Output.SetDiscreteValue(0, Quantity(1e5, "N"))
+force.Location = ns_by_name["ACP_SOLIDMODEL_2_WALL"]

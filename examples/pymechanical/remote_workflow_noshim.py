@@ -63,8 +63,6 @@ assert (output_path / MATML_FILE).exists()
 assert (output_path / COMPOSITE_DEFINITIONS_H5).exists()
 
 # Import materials into Mechanical
-# material_output_path = str(().resolve())
-# material_output_path = material_output_path.replace("\\", "\\\\")
 import_material_cmd = f"Model.Materials.Import({str(output_path / MATML_FILE)!r})"
 result = mechanical.run_python_script(import_material_cmd)
 
@@ -81,13 +79,15 @@ composite_definition_paths_coll.Add(filename)
 mapping_paths_coll = Ansys.Common.Interop.AnsCoreObjects.AnsVARIANTColl()
 mapping_paths_coll.Add(None)
 external_model = Model.InternalObject.AddExternalEnhancedModel(
-    Ansys.Common.Interop.DSObjectTypes.DSExternalEnhancedModelType.kEXTERNAL_ENHANCEDMODEL_ASSEMBLEDLAYEREDSECTION
+    Ansys.Common.Interop.DSObjectTypes.DSExternalEnhancedModelType.kEXTERNAL_ENHANCEDMODEL_LAYEREDSECTION
 )
 external_model.Import(composite_definition_paths_coll, mapping_paths_coll)
 external_model.Update()
 """
 
 result = mechanical.run_python_script(import_plies_str)
+
+print(result)
 
 # Set boundary condition and solve
 result = mechanical.run_python_script_from_file("set_bc.py", enable_logging=True)

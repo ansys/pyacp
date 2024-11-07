@@ -31,7 +31,9 @@ from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxS
 from ansys.dpf.composites.server_helpers import connect_to_or_start_server
 
 
-def postprocess_results(rst_file, matml_file, composite_definitions_path):
+def postprocess_results(
+    rst_file, matml_file, composite_definitions_path, solid_composite_definitions_path=None
+):
     """
     Basic failure criteria evaluation. The evaluation expects that a DPF docker container with
     the Composites plugin is running at port 50052.
@@ -45,11 +47,16 @@ def postprocess_results(rst_file, matml_file, composite_definitions_path):
         failure_criteria=[max_strain],
     )
 
+    if solid_composite_definitions_path is not None:
+        solid_kwargs = {
+            "solid": CompositeDefinitionFiles(definition=solid_composite_definitions_path),
+        }
     composite_model = CompositeModel(
         composite_files=ContinuousFiberCompositesFiles(
             rst=rst_file,
             composite={
                 "shell": CompositeDefinitionFiles(definition=composite_definitions_path),
+                **solid_kwargs,
             },
             engineering_data=matml_file,
         ),
@@ -62,5 +69,4 @@ def postprocess_results(rst_file, matml_file, composite_definitions_path):
     # Query and plot the results
     irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
 
-    assert composite_model.get_element_info(1).n_layers == 3
     irf_field.plot()
