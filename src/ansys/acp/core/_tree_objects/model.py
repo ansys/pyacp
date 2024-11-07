@@ -22,7 +22,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 import dataclasses
 import typing
 from typing import Any, cast
@@ -137,16 +137,21 @@ from .spherical_selection_rule import SphericalSelectionRule
 from .stackup import Stackup
 from .sublaminate import SubLaminate
 from .tube_selection_rule import TubeSelectionRule
+from .utils import CoordinateTransformation
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
 from .virtual_geometry import VirtualGeometry
 
 __all__ = [
+    "FeFormat",
+    "HDF5CompositeCAEImportMode",
+    "HDF5CompositeCAEProjectionMode",
+    "IgnorableEntity",
     "MeshData",
     "Model",
     "ModelElementalData",
     "ModelNodalData",
-    "FeFormat",
-    "IgnorableEntity",
+    "ShellMappingProperties",
+    "SolidMappingProperties",
 ]
 
 FeFormat, fe_format_to_pb, _ = wrap_to_string_enum(
@@ -166,6 +171,18 @@ IgnorableEntity, ignorable_entity_to_pb, _ = wrap_to_string_enum(
     model_pb2.LoadFromFEFileRequest.IgnorableEntity,
     module=__name__,
     doc="Options for the entities to ignore when loading an FE file.",
+)
+HDF5CompositeCAEImportMode, hdf5_composite_cae_import_mode_to_pb, _ = wrap_to_string_enum(
+    "HDF5CompositeCAEImportMode",
+    model_pb2.ImportMode,
+    module=__name__,
+    doc="Options for the import mode of the HDF5 Composite CAE file.",
+)
+HDF5CompositeCAEProjectionMode, hdf5_composite_cae_projection_mode_to_pb, _ = wrap_to_string_enum(
+    "HDF5CompositeCAEProjectionMode",
+    model_pb2.ProjectionMode,
+    module=__name__,
+    doc="Options for the projection mode of the HDF5 Composite CAE file.",
 )
 
 
@@ -211,6 +228,25 @@ class ModelElementalData(ElementalData):
 @dataclasses.dataclass
 class ModelNodalData(NodalData):
     """Represents nodal data for a Model."""
+
+
+@dataclasses.dataclass
+class ShellMappingProperties:
+    """Properties for mapping to the shell on importing HDF5 Composite CAE files."""
+
+    all_elements: bool = True
+    element_sets: Sequence[ElementSet] = ()
+    relative_thickness_tolerance: float = 0.5
+    relative_in_plane_tolerance: float = 0.01
+    angle_tolerance: float = 35.0
+    small_hole_threshold: float = 0.0
+
+
+@dataclasses.dataclass
+class SolidMappingProperties:
+    """Properties for importing HDF5 Composite CAE files as imported plies."""
+
+    offset_type: OffsetType = OffsetType.BOTTOM_OFFSET
 
 
 @mark_grpc_properties
@@ -420,6 +456,149 @@ class Model(TreeObject):
                 model_pb2.SaveAnalysisModelRequest(
                     resource_path=self._resource_path,
                     path=path_to_str_checked(path),
+                )
+            )
+
+    @supported_since("25.1")
+    def export_hdf5_composite_cae(
+        self,
+        path: _PATH,
+        *,
+        remove_midside_nodes: bool = True,
+        layup_representation_3d: bool = False,
+        offset_type: OffsetType = OffsetType.BOTTOM_OFFSET,
+        all_elements: bool = True,
+        element_sets: Sequence[ElementSet | OrientedSelectionSet] = (),
+        all_plies: bool = True,
+        plies: Sequence[ModelingGroup | ModelingPly] = (),
+        ascii_encoding: bool = False,
+    ) -> None:
+        """
+        Export the lay-up to the HDF5 Composite CAE format.
+
+        Parameters
+        ----------
+        path :
+            File path.
+        remove_midside_nodes :
+            If True, remove mid-side nodes from the exported mesh. This increases the
+            overall performance.
+        layup_representation_3d :
+            If True, the 3D representation of the lay-up is computed, and the offset ply
+            surfaces are exported.
+        offset_type :
+            Defines if the bottom, mid, or top surface of the plies is exported.
+            Only used if ``layup_representation_3d`` is True.
+        all_elements :
+            Whether to limit the export to some user-defined element sets or not.
+        element_sets :
+            Only plies defined on the selected element sets or oriented selection
+            sets will be exported.
+            Used only if ``all_elements`` is False.
+        all_plies :
+            Whether to export all plies or a user-defined set.
+        plies :
+            User-defined set of Modeling Plies and/or Modeling Groups.
+            Used only if ``all_plies`` is False.
+        ascii_encoding :
+            If True, use ASCII encoding when writing text attributes to the HDF5 CAE
+            file. This may be needed for compatibility with programs that don't fully
+            support unicode when reading the file.
+        """
+        with wrap_grpc_errors():
+            self._get_stub().ExportHDF5CompositeCAE(
+                model_pb2.ExportHDF5CompositeCAERequest(
+                    resource_path=self._resource_path,
+                    path=path_to_str_checked(path),
+                    remove_midside_nodes=remove_midside_nodes,
+                    layup_representation_3d=layup_representation_3d,
+                    offset_type=offset_type_to_pb(offset_type),  # type: ignore
+                    ascii_encoding=ascii_encoding,
+                    all_elements=all_elements,
+                    element_sets=[element_set._resource_path for element_set in element_sets],
+                    all_plies=all_plies,
+                    plies=[ply._resource_path for ply in plies],
+                )
+            )
+
+    @supported_since("25.1")
+    def import_hdf5_composite_cae(
+        self,
+        path: _PATH,
+        import_mode: HDF5CompositeCAEImportMode = HDF5CompositeCAEImportMode.APPEND,  # type: ignore
+        projection_mode: HDF5CompositeCAEProjectionMode = HDF5CompositeCAEProjectionMode.SHELL,  # type: ignore
+        minimum_angle_tolerance: float = 0.001,
+        recompute_reference_directions: bool = False,
+        shell_mapping_properties: ShellMappingProperties = ShellMappingProperties(),
+        solid_mapping_properties: SolidMappingProperties = SolidMappingProperties(),
+        coordinate_transformation: CoordinateTransformation = CoordinateTransformation(),
+    ) -> None:
+        """Import the lay-up from an HDF5 Composite CAE file.
+
+        Parameters
+        ----------
+        path :
+            File path.
+        import_mode :
+            In :py:attr:`.HDF5CompositeCAEImportMode.APPEND` mode, the imported objects are
+            appended to existing layup.
+            In :py:attr:`.HDF5CompositeCAEImportMode.OVERWRITE` mode, existing objects in the model
+            with the same name are replaced if possible (not locked).
+        projection_mode :
+            Determines whether loaded plies are mapped onto the reference surface
+            (:py:attr:`.HDF5CompositeCAEProjectionMode.SHELL` mode) or exposed as
+            3D plies (:py:attr:`.HDF5CompositeCAEProjectionMode.SOLID` mode).
+        minimum_angle_tolerance :
+            Minimum angle tolerance for which tabular correction angles for plies are computed.
+        recompute_reference_directions :
+            Whether reference directions should be recomputed from tabular angle data or not.
+        shell_mapping_properties :
+            Properties for mapping to the shell on importing HDF5 Composite CAE files.
+            Used only if ``projection_mode`` is set to ``"shell"``.
+        solid_mapping_properties :
+            Properties for importing HDF5 Composite CAE files as imported plies.
+            Used only if ``projection_mode`` is set to ``"solid"``.
+        coordinate_transformation :
+            Coordinate transformation applied to the imported lay-up.
+        """
+        if projection_mode == HDF5CompositeCAEProjectionMode.SHELL:
+            mapping_properties_kwargs: (
+                dict[str, model_pb2.ShellMappingProperties]
+                | dict[str, model_pb2.SolidMappingProperties]
+            ) = {
+                "shell_mapping_properties": model_pb2.ShellMappingProperties(
+                    all_elements=shell_mapping_properties.all_elements,
+                    element_sets=[
+                        element_set._resource_path
+                        for element_set in shell_mapping_properties.element_sets
+                    ],
+                    relative_thickness_tolerance=shell_mapping_properties.relative_thickness_tolerance,
+                    relative_in_plane_tolerance=shell_mapping_properties.relative_in_plane_tolerance,
+                    angle_tolerance=shell_mapping_properties.angle_tolerance,
+                    small_hole_threshold=shell_mapping_properties.small_hole_threshold,
+                ),
+            }
+        else:
+            assert projection_mode == HDF5CompositeCAEProjectionMode.SOLID
+            mapping_properties_kwargs = {
+                "solid_mapping_properties": model_pb2.SolidMappingProperties(
+                    offset_type=offset_type_to_pb(solid_mapping_properties.offset_type)  # type: ignore
+                ),
+            }
+
+        with wrap_grpc_errors():
+            self._get_stub().ImportHDF5CompositeCAE(
+                model_pb2.ImportHDF5CompositeCAERequest(
+                    resource_path=self._resource_path,
+                    path=path_to_str_checked(path),
+                    import_mode=hdf5_composite_cae_import_mode_to_pb(import_mode),  # type: ignore
+                    projection_mode=hdf5_composite_cae_projection_mode_to_pb(projection_mode),  # type: ignore
+                    minimum_angle_tolerance=minimum_angle_tolerance,
+                    recompute_reference_directions=recompute_reference_directions,
+                    coordinate_transformation=model_pb2.CoordinateTransformation(
+                        **dataclasses.asdict(coordinate_transformation)
+                    ),
+                    **mapping_properties_kwargs,
                 )
             )
 

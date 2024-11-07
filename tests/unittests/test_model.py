@@ -350,3 +350,84 @@ def test_material_import(minimal_complete_model, tempdir_if_local_acp, raises_be
 
             # THEN: the new material should be present in the model
             assert new_mat_id in minimal_complete_model.materials
+
+
+@pytest.mark.parametrize(
+    "layup_representation_3d",
+    [True, False],
+)
+@pytest.mark.parametrize(
+    "offset_type",
+    ["bottom_offset", "middle_offset", "top_offset"],
+)
+def test_hdf5_composite_cae_export(
+    acp_instance,
+    minimal_complete_model,
+    raises_before_version,
+    tempdir_if_local_acp,
+    layup_representation_3d,
+    offset_type,
+):
+    with raises_before_version("25.1"):
+        with tempdir_if_local_acp() as export_dir:
+            with tempfile.TemporaryDirectory() as tmp_dir:
+                export_file = export_dir / "model_export.h5"
+                local_file = pathlib.Path(tmp_dir) / "model_export.h5"
+                minimal_complete_model.export_hdf5_composite_cae(
+                    export_file,
+                    layup_representation_3d=layup_representation_3d,
+                    offset_type=offset_type,
+                )
+                acp_instance.download_file(export_file, local_file)
+
+                assert local_file.exists()
+                assert os.stat(local_file).st_size > 0
+
+
+def test_hdf5_composite_cae_export_with_scope(
+    acp_instance, minimal_complete_model, raises_before_version, tempdir_if_local_acp
+):
+    with raises_before_version("25.1"):
+        with tempdir_if_local_acp() as export_dir:
+            with tempfile.TemporaryDirectory() as tmp_dir:
+                export_file = export_dir / "model_export.h5"
+                local_file = pathlib.Path(tmp_dir) / "model_export.h5"
+                minimal_complete_model.export_hdf5_composite_cae(
+                    export_file,
+                    all_elements=False,
+                    element_sets=minimal_complete_model.element_sets.values(),
+                    all_plies=False,
+                    plies=minimal_complete_model.modeling_groups[
+                        "ModelingGroup.1"
+                    ].modeling_plies.values(),
+                )
+                acp_instance.download_file(export_file, local_file)
+
+                assert local_file.exists()
+                assert os.stat(local_file).st_size > 0
+
+
+@pytest.mark.parametrize(
+    "import_mode",
+    ["append", "overwrite"],
+)
+@pytest.mark.parametrize(
+    "projection_mode",
+    ["shell", "solid"],
+)
+def test_hdf5_composite_cae_export_import(
+    minimal_complete_model,
+    raises_before_version,
+    tempdir_if_local_acp,
+    import_mode,
+    projection_mode,
+):
+    with raises_before_version("25.1"):
+        with tempdir_if_local_acp() as export_dir:
+            export_file = export_dir / "model_export.h5"
+            minimal_complete_model.export_hdf5_composite_cae(export_file)
+            minimal_complete_model.import_hdf5_composite_cae(
+                export_file,
+                import_mode=import_mode,
+                projection_mode=projection_mode,
+            )

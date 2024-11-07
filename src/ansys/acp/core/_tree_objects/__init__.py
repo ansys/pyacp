@@ -118,7 +118,18 @@ from .lookup_table_1d_column import LookUpTable1DColumn
 from .lookup_table_3d import LookUpTable3D
 from .lookup_table_3d_column import LookUpTable3DColumn
 from .material import Material
-from .model import FeFormat, IgnorableEntity, MeshData, Model, ModelElementalData, ModelNodalData
+from .model import (
+    FeFormat,
+    HDF5CompositeCAEImportMode,
+    HDF5CompositeCAEProjectionMode,
+    IgnorableEntity,
+    MeshData,
+    Model,
+    ModelElementalData,
+    ModelNodalData,
+    ShellMappingProperties,
+    SolidMappingProperties,
+)
 from .modeling_group import ModelingGroup
 from .modeling_ply import ModelingPly, ModelingPlyElementalData, ModelingPlyNodalData, TaperEdge
 from .oriented_selection_set import (
@@ -161,6 +172,7 @@ from .tube_selection_rule import (
     TubeSelectionRuleElementalData,
     TubeSelectionRuleNodalData,
 )
+from .utils import CoordinateTransformation
 from .variable_offset_selection_rule import (
     VariableOffsetSelectionRule,
     VariableOffsetSelectionRuleElementalData,
@@ -181,6 +193,7 @@ __all__ = [
     "ButtJointSequence",
     "CADComponent",
     "CADGeometry",
+    "CoordinateTransformation",
     "CutOffGeometry",
     "CutOffGeometryOrientationType",
     "CutoffMaterialHandling",
@@ -217,6 +230,8 @@ __all__ = [
     "GeometricalSelectionRule",
     "GeometricalSelectionRuleElementalData",
     "GeometricalSelectionRuleNodalData",
+    "HDF5CompositeCAEImportMode",
+    "HDF5CompositeCAEProjectionMode",
     "IgnorableEntity",
     "ImportedAnalysisPly",
     "ImportedModelingGroup",
@@ -279,11 +294,13 @@ __all__ = [
     "SectionCutType",
     "Sensor",
     "SensorType",
+    "ShellMappingProperties",
     "SnapToGeometry",
     "SnapToGeometryOrientationType",
     "SolidElementSet",
     "SolidElementSetElementalData",
     "SolidElementSetNodalData",
+    "SolidMappingProperties",
     "SolidModel",
     "SolidModelElementalData",
     "SolidModelExportFormat",
