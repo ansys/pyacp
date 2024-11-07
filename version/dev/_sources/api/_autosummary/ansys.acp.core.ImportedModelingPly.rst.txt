@@ -34,9 +34,9 @@
       :toctree:
    
       ImportedModelingPly.active
-      ImportedModelingPly.draping
       ImportedModelingPly.draping_angle_1_field
       ImportedModelingPly.draping_angle_2_field
+      ImportedModelingPly.draping_type
       ImportedModelingPly.id
       ImportedModelingPly.imported_production_plies
       ImportedModelingPly.mesh_geometry

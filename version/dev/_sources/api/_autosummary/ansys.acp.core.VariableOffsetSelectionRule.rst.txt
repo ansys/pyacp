@@ -39,7 +39,7 @@
       VariableOffsetSelectionRule.element_set
       VariableOffsetSelectionRule.elemental_data
       VariableOffsetSelectionRule.id
-      VariableOffsetSelectionRule.include_rule_type
+      VariableOffsetSelectionRule.include_rule
       VariableOffsetSelectionRule.inherit_from_lookup_table
       VariableOffsetSelectionRule.name
       VariableOffsetSelectionRule.nodal_data

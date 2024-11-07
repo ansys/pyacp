@@ -39,7 +39,7 @@
       GeometricalSelectionRule.geometry
       GeometricalSelectionRule.id
       GeometricalSelectionRule.in_plane_capture_tolerance
-      GeometricalSelectionRule.include_rule_type
+      GeometricalSelectionRule.include_rule
       GeometricalSelectionRule.name
       GeometricalSelectionRule.negative_capture_tolerance
       GeometricalSelectionRule.nodal_data

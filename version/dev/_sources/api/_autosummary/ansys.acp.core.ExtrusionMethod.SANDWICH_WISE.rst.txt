@@ -1,0 +1,6 @@
+SANDWICH\_WISE
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethod.SANDWICH_WISE

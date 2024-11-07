@@ -1,0 +1,6 @@
+CUSTOM
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DropoffMaterialHandling.CUSTOM

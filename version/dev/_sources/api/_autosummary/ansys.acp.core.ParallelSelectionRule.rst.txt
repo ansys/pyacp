@@ -36,13 +36,13 @@
       ParallelSelectionRule.direction
       ParallelSelectionRule.elemental_data
       ParallelSelectionRule.id
-      ParallelSelectionRule.include_rule_type
+      ParallelSelectionRule.include_rule
       ParallelSelectionRule.lower_limit
       ParallelSelectionRule.name
       ParallelSelectionRule.nodal_data
       ParallelSelectionRule.origin
       ParallelSelectionRule.parent
-      ParallelSelectionRule.relative_rule_type
+      ParallelSelectionRule.relative_rule
       ParallelSelectionRule.rosette
       ParallelSelectionRule.status
       ParallelSelectionRule.upper_limit

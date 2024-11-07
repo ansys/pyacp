@@ -11,18 +11,18 @@ Enumeration data types
     BaseElementMaterialHandling
     BooleanOperationType
     CutOffGeometryOrientationType
-    CutoffMaterialType
+    CutoffMaterialHandling
     CutoffRuleType
     DimensionType
-    DrapingMaterialType
+    DrapingMaterialModel
     DrapingType
-    DropoffMaterialType
+    DropoffMaterialHandling
     DropOffType
     EdgeSetType
     ElementalDataType
     ElementTechnology
     ExtrusionGuideType
-    ExtrusionMethodType
+    ExtrusionMethod
     ExtrusionType
     FeFormat
     GeometricalRuleType
@@ -37,7 +37,7 @@ Enumeration data types
     LookUpTableColumnValueType
     MeshImportType
     NodalDataType
-    OffsetDirectionType
+    SolidModelOffsetDirectionType
     OffsetType
     SnapToGeometryOrientationType
     PlyCutoffType
@@ -51,7 +51,7 @@ Enumeration data types
     SolidModelExportFormat
     SolidModelImportFormat
     SolidModelSkinExportFormat
-    StatusType
+    Status
     StressStateType
     SymmetryType
     ThicknessFieldType

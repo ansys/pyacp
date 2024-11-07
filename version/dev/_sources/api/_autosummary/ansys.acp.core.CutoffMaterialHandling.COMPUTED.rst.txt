@@ -1,0 +1,6 @@
+COMPUTED
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CutoffMaterialHandling.COMPUTED

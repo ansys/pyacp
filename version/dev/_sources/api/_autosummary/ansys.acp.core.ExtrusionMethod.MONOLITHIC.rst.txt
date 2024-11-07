@@ -1,0 +1,6 @@
+MONOLITHIC
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethod.MONOLITHIC

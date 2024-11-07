@@ -1,0 +1,6 @@
+draping\_type
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.draping_type

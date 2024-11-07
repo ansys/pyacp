@@ -1,0 +1,6 @@
+NOTUPTODATE
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: Status.NOTUPTODATE

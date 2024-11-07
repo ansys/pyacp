@@ -1,0 +1,6 @@
+SURFACE\_NORMAL
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelOffsetDirectionType.SURFACE_NORMAL

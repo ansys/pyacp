@@ -65,7 +65,7 @@
       SolidModel.minimum_volume
       SolidModel.name
       SolidModel.nodal_data
-      SolidModel.offset_direction
+      SolidModel.offset_direction_type
       SolidModel.parent
       SolidModel.ply_group_pointers
       SolidModel.skip_elements_without_plies

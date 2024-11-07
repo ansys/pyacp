@@ -459,7 +459,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.store.html">store</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.elemental_data.html">elemental_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.id.html">id</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.include_rule_type.html">include_rule_type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.include_rule.html">include_rule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.name.html">name</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.nodal_data.html">nodal_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.parent.html">parent</a></li>
@@ -597,14 +597,14 @@ document.write(`
 <h1>BooleanSelectionRule<a class="headerlink" href="#booleanselectionrule" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ansys.acp.core.BooleanSelectionRule">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">BooleanSelectionRule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'BooleanSelectionrule'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selection_rules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_rule_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.BooleanSelectionRule" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">BooleanSelectionRule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'BooleanSelectionrule'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selection_rules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_rule</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.BooleanSelectionRule" title="Link to this definition">#</a></dt>
 <dd><p>Instantiate a Boolean Selection Rule.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of the Boolean Selection Rule.</p></li>
 <li><p><strong>selection_rules</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.13)"><em>Iterable</em></a><em>[</em><a class="reference internal" href="ansys.acp.core.LinkedSelectionRule.html#ansys.acp.core.LinkedSelectionRule" title="ansys.acp.core._tree_objects.linked_selection_rule.LinkedSelectionRule"><em>LinkedSelectionRule</em></a><em>]</em>)</p></li>
-<li><p><strong>include_rule_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Include or exclude area in rule. Setting this to <code class="docutils literal notranslate"><span class="pre">False</span></code>
+<li><p><strong>include_rule</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Include or exclude area in rule. Setting this to <code class="docutils literal notranslate"><span class="pre">False</span></code>
 inverts the selection.</p></li>
 </ul>
 </dd>
@@ -637,7 +637,7 @@ inverts the selection.</p></li>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.id.html#ansys.acp.core.BooleanSelectionRule.id" title="ansys.acp.core.BooleanSelectionRule.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BooleanSelectionRule.id</span></code></a></p></td>
 <td><p>Identifier of the object, used for example as key in maps.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.include_rule_type.html#ansys.acp.core.BooleanSelectionRule.include_rule_type" title="ansys.acp.core.BooleanSelectionRule.include_rule_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BooleanSelectionRule.include_rule_type</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.include_rule.html#ansys.acp.core.BooleanSelectionRule.include_rule" title="ansys.acp.core.BooleanSelectionRule.include_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BooleanSelectionRule.include_rule</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.name.html#ansys.acp.core.BooleanSelectionRule.name" title="ansys.acp.core.BooleanSelectionRule.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BooleanSelectionRule.name</span></code></a></p></td>

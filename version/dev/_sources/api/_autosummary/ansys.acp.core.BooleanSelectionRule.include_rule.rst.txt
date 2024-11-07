@@ -1,0 +1,6 @@
+include\_rule
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: BooleanSelectionRule.include_rule

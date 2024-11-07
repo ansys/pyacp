@@ -38,7 +38,7 @@
    
       BooleanSelectionRule.elemental_data
       BooleanSelectionRule.id
-      BooleanSelectionRule.include_rule_type
+      BooleanSelectionRule.include_rule
       BooleanSelectionRule.name
       BooleanSelectionRule.nodal_data
       BooleanSelectionRule.parent

@@ -1,0 +1,6 @@
+ANALYSIS\_PLY\_WISE
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethod.ANALYSIS_PLY_WISE

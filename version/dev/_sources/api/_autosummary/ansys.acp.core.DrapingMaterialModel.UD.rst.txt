@@ -1,0 +1,6 @@
+UD
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DrapingMaterialModel.UD

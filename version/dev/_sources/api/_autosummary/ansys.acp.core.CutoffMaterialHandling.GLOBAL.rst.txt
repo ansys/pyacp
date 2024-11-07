@@ -1,0 +1,6 @@
+GLOBAL
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CutoffMaterialHandling.GLOBAL

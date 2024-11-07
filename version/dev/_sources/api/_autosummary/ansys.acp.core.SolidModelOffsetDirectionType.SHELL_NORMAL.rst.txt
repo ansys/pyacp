@@ -1,0 +1,6 @@
+SHELL\_NORMAL
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelOffsetDirectionType.SHELL_NORMAL

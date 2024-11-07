@@ -36,13 +36,13 @@
       CylindricalSelectionRule.direction
       CylindricalSelectionRule.elemental_data
       CylindricalSelectionRule.id
-      CylindricalSelectionRule.include_rule_type
+      CylindricalSelectionRule.include_rule
       CylindricalSelectionRule.name
       CylindricalSelectionRule.nodal_data
       CylindricalSelectionRule.origin
       CylindricalSelectionRule.parent
       CylindricalSelectionRule.radius
-      CylindricalSelectionRule.relative_rule_type
+      CylindricalSelectionRule.relative_rule
       CylindricalSelectionRule.rosette
       CylindricalSelectionRule.status
       CylindricalSelectionRule.use_global_coordinate_system

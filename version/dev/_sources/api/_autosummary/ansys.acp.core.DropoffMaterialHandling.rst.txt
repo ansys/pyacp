@@ -1,0 +1,22 @@
+﻿DropoffMaterialHandling
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: DropoffMaterialHandling
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        DropoffMaterialHandling.GLOBAL
+      
+      
+        DropoffMaterialHandling.CUSTOM
+      
+   
+   
