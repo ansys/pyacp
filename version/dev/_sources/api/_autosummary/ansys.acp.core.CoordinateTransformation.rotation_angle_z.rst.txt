@@ -1,0 +1,6 @@
+rotation\_angle\_z
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CoordinateTransformation.rotation_angle_z

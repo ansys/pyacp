@@ -1,0 +1,6 @@
+APPEND
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: HDF5CompositeCAEImportMode.APPEND

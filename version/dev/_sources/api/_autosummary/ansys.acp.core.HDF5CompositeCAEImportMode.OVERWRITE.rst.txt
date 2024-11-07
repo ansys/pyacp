@@ -1,0 +1,6 @@
+OVERWRITE
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: HDF5CompositeCAEImportMode.OVERWRITE

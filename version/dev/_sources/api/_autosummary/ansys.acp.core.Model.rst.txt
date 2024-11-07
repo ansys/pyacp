@@ -105,6 +105,9 @@
       Model.export_analysis_model
       
       
+      Model.export_hdf5_composite_cae
+      
+      
       Model.export_materials
       
       
@@ -112,6 +115,9 @@
       
       
       Model.export_shell_composite_definitions
+      
+      
+      Model.import_hdf5_composite_cae
       
       
       Model.import_materials

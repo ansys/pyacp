@@ -1,0 +1,6 @@
+element\_sets
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ShellMappingProperties.element_sets

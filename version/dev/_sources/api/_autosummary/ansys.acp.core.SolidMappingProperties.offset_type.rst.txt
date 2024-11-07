@@ -1,0 +1,6 @@
+offset\_type
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidMappingProperties.offset_type

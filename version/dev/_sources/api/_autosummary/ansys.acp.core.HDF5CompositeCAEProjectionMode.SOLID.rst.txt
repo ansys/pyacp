@@ -1,0 +1,6 @@
+SOLID
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: HDF5CompositeCAEProjectionMode.SOLID

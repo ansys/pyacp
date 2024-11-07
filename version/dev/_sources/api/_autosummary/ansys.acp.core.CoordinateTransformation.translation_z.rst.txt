@@ -1,0 +1,6 @@
+translation\_z
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CoordinateTransformation.translation_z

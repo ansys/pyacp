@@ -1,0 +1,22 @@
+﻿HDF5CompositeCAEImportMode
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: HDF5CompositeCAEImportMode
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        HDF5CompositeCAEImportMode.APPEND
+      
+      
+        HDF5CompositeCAEImportMode.OVERWRITE
+      
+   
+   

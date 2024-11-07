@@ -1,0 +1,6 @@
+translation\_y
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CoordinateTransformation.translation_y

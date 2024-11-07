@@ -1,0 +1,6 @@
+export\_hdf5\_composite\_cae
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.export_hdf5_composite_cae

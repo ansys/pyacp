@@ -1,0 +1,22 @@
+﻿HDF5CompositeCAEProjectionMode
+==============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: HDF5CompositeCAEProjectionMode
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        HDF5CompositeCAEProjectionMode.SHELL
+      
+      
+        HDF5CompositeCAEProjectionMode.SOLID
+      
+   
+   

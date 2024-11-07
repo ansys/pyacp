@@ -67,7 +67,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="coordinate_system_index" href="ansys.acp.core.ImportedSolidModelExportSettings.coordinate_system_index.html" />
-    <link rel="prev" title="warping_limit" href="ansys.acp.core.ImportedSolidModel.warping_limit.html" />
+    <link rel="prev" title="translation_z" href="ansys.acp.core.CoordinateTransformation.translation_z.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <link rel="canonical" href="https://acp.docs.pyansys.com/version/stable/api/_autosummary/ansys.acp.core.ImportedSolidModelExportSettings.html" />
@@ -450,27 +450,13 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../server.html">Server management</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../tree_objects.html">ACP objects</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.AnalysisPly.html">AnalysisPly</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.html">BooleanSelectionRule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ButtJointSequence.html">ButtJointSequence</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADComponent.html">CADComponent</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADGeometry.html">CADGeometry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutOffGeometry.html">CutOffGeometry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutoffSelectionRule.html">CutoffSelectionRule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CylindricalSelectionRule.html">CylindricalSelectionRule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.DropOffSettings.html">DropOffSettings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.EdgeSet.html">EdgeSet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ElementSet.html">ElementSet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ExtrusionGuide.html">ExtrusionGuide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Fabric.html">Fabric</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.FieldDefinition.html">FieldDefinition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.GeometricalSelectionRule.html">GeometricalSelectionRule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedAnalysisPly.html">ImportedAnalysisPly</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedModelingGroup.html">ImportedModelingGroup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedModelingPly.html">ImportedModelingPly</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedProductionPly.html">ImportedProductionPly</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.html">ImportedSolidModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tree_objects.html">ACP objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mesh_data.html">Mesh data objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linked_object_definitions.html">Linked object definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material_property_sets.html">Material property sets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enum_types.html">Enumeration data types</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../other_types.html">Other types</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CoordinateTransformation.html">CoordinateTransformation</a></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">ImportedSolidModelExportSettings</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModelExportSettings.coordinate_system_index.html">coordinate_system_index</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModelExportSettings.drop_hanging_nodes.html">drop_hanging_nodes</a></li>
@@ -487,39 +473,12 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ImportedSolidModelExportSettings.use_solsh_elements.html">use_solsh_elements</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.InterfaceLayer.html">InterfaceLayer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LayupMappingObject.html">LayupMappingObject</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable1D.html">LookUpTable1D</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html">LookUpTable1DColumn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable3D.html">LookUpTable3D</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html">LookUpTable3DColumn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Material.html">Material</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Model.html">Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ModelingGroup.html">ModelingGroup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ModelingPly.html">ModelingPly</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.html">OrientedSelectionSet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ParallelSelectionRule.html">ParallelSelectionRule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ProductionPly.html">ProductionPly</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Rosette.html">Rosette</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SamplingPoint.html">SamplingPoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidElementSet.html">SolidElementSet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ShellMappingProperties.html">ShellMappingProperties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidMappingProperties.html">SolidMappingProperties</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModelExportSettings.html">SolidModelExportSettings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.TubeSelectionRule.html">TubeSelectionRule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.VariableOffsetSelectionRule.html">VariableOffsetSelectionRule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.VirtualGeometry.html">VirtualGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.DropOffSettings.html">DropOffSettings</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../mesh_data.html">Mesh data objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linked_object_definitions.html">Linked object definitions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../material_property_sets.html">Material property sets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../enum_types.html">Enumeration data types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plot_utils.html">Plot utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../other_utils.html">Other utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflow.html">Workflow</a></li>
@@ -573,7 +532,7 @@ document.write(`
     </li>
      
     <li class="breadcrumb-item">
-      <a href="../tree_objects.html" class="nav-link">ACP objects</a>
+      <a href="../other_types.html" class="nav-link">Other types</a>
     </li>
       
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">ImportedSolidModelExportSettings</span></li>
@@ -691,12 +650,12 @@ Only used if <code class="docutils literal notranslate"><span class="pre">use_de
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ansys.acp.core.ImportedSolidModel.warping_limit.html"
+       href="ansys.acp.core.CoordinateTransformation.translation_z.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">warping_limit</p>
+        <p class="prev-next-title">translation_z</p>
       </div>
     </a>
     <a class="right-next"

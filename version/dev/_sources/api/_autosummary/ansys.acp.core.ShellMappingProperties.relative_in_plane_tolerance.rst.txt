@@ -1,0 +1,6 @@
+relative\_in\_plane\_tolerance
+==============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ShellMappingProperties.relative_in_plane_tolerance

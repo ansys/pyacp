@@ -456,6 +456,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="linked_object_definitions.html">Linked object definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="material_property_sets.html">Material property sets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="enum_types.html">Enumeration data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other_types.html">Other types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot_utils.html">Plot utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="other_utils.html">Other utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
@@ -546,7 +547,6 @@ and attributes.</p>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.CutOffGeometry.html">CutOffGeometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.CutoffSelectionRule.html">CutoffSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.CylindricalSelectionRule.html">CylindricalSelectionRule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.DropOffSettings.html">DropOffSettings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.EdgeSet.html">EdgeSet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ElementSet.html">ElementSet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ExtrusionGuide.html">ExtrusionGuide</a></li>
@@ -558,7 +558,6 @@ and attributes.</p>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedModelingPly.html">ImportedModelingPly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedProductionPly.html">ImportedProductionPly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedSolidModel.html">ImportedSolidModel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedSolidModelExportSettings.html">ImportedSolidModelExportSettings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.InterfaceLayer.html">InterfaceLayer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.LayupMappingObject.html">LayupMappingObject</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.LookUpTable1D.html">LookUpTable1D</a></li>
@@ -579,7 +578,6 @@ and attributes.</p>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SolidElementSet.html">SolidElementSet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SolidModel.html">SolidModel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SolidModelExportSettings.html">SolidModelExportSettings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.Stackup.html">Stackup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
@@ -692,6 +690,8 @@ and attributes.</p>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.LayupMappingRosetteSelectionMethod.html">LayupMappingRosetteSelectionMethod</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.LinkedObjectHandling.html">LinkedObjectHandling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.LookUpTable3DInterpolationAlgorithm.html">LookUpTable3DInterpolationAlgorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.HDF5CompositeCAEImportMode.html">HDF5CompositeCAEImportMode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.HDF5CompositeCAEProjectionMode.html">HDF5CompositeCAEProjectionMode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.LookUpTableColumnValueType.html">LookUpTableColumnValueType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.MeshImportType.html">MeshImportType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.NodalDataType.html">NodalDataType</a></li>
@@ -716,6 +716,15 @@ and attributes.</p>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ThicknessType.html">ThicknessType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.UnitSystemType.html">UnitSystemType</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.VirtualGeometryDimension.html">VirtualGeometryDimension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="other_types.html">Other types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.CoordinateTransformation.html">CoordinateTransformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ImportedSolidModelExportSettings.html">ImportedSolidModelExportSettings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.ShellMappingProperties.html">ShellMappingProperties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SolidMappingProperties.html">SolidMappingProperties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.SolidModelExportSettings.html">SolidModelExportSettings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.acp.core.DropOffSettings.html">DropOffSettings</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="plot_utils.html">Plot utilities</a><ul>

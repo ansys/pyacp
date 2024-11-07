@@ -34,6 +34,8 @@ Enumeration data types
     LayupMappingRosetteSelectionMethod
     LinkedObjectHandling
     LookUpTable3DInterpolationAlgorithm
+    HDF5CompositeCAEImportMode
+    HDF5CompositeCAEProjectionMode
     LookUpTableColumnValueType
     MeshImportType
     NodalDataType

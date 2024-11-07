@@ -1,0 +1,6 @@
+all\_elements
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ShellMappingProperties.all_elements

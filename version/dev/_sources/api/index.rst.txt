@@ -15,6 +15,7 @@ and attributes.
     linked_object_definitions
     material_property_sets
     enum_types
+    other_types
     plot_utils
     other_utils
     workflow

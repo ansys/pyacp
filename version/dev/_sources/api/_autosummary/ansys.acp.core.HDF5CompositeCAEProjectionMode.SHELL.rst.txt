@@ -1,0 +1,6 @@
+SHELL
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: HDF5CompositeCAEProjectionMode.SHELL

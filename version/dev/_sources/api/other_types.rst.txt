@@ -1,37 +1,14 @@
-Other data types
-----------------
+Other types
+-----------
 
 .. currentmodule:: ansys.acp.core
 
 .. autosummary::
     :toctree: _autosummary
 
-    BooleanOperationType
-    CutoffMaterialType
-    CutoffRuleType
-    DimensionType
-    DrapingMaterialType
-    DrapingType
-    DropoffMaterialType
-    EdgeSetType
-    EdgeSetType
-    ElementalDataType
-    FeFormat
-    GeometricalRuleType
-    IgnorableEntity
-    LookUpTable3DInterpolationAlgorithm
-    LookUpTableColumnValueType
-    MeshData
-    NodalDataType
-    PlyCutoffType
-    PlyType
-    RosetteSelectionMethod
-    RosetteType
-    SensorType
-    StatusType
-    SymmetryType
-    ThicknessFieldType
-    ThicknessType
-    TriangleMesh
-    UnitSystemType
-    VirtualGeometryDimension
+    CoordinateTransformation
+    ImportedSolidModelExportSettings
+    ShellMappingProperties
+    SolidMappingProperties
+    SolidModelExportSettings
+    DropOffSettings
