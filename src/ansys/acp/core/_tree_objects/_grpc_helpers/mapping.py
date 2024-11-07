@@ -36,7 +36,7 @@ from ..._utils.property_protocols import ReadOnlyProperty
 from ..._utils.resource_paths import join as _rp_join
 from .._object_cache import ObjectCacheMixin, constructor_with_cache
 from ..base import CreatableTreeObject, ServerWrapper, TreeObject, TreeObjectBase
-from ..enums import StatusType
+from ..enums import Status
 from .exceptions import wrap_grpc_errors
 from .property_helper import _exposed_grpc_property, _wrap_doc
 from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableResourceStub
@@ -260,7 +260,7 @@ def get_read_only_collection_property(
     """Define a read-only mapping of child tree objects."""
 
     def collection_property(self: ParentT) -> Mapping[ValueT]:
-        if requires_uptodate and hasattr(self, "status") and not self.status == StatusType.UPTODATE:
+        if requires_uptodate and hasattr(self, "status") and not self.status == Status.UPTODATE:
             raise RuntimeError(
                 f"The object {self.name} must be up-to-date to access {object_class.__name__}."
             )

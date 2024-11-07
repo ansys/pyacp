@@ -52,7 +52,7 @@ class TestBooleanSelectionRule(NoLockedMixin, TreeObjectTester):
         return {
             "status": "NOTUPTODATE",
             "selection_rules": [],
-            "include_rule_type": True,
+            "include_rule": True,
         }
 
     CREATE_METHOD_NAME = "create_boolean_selection_rule"
@@ -112,7 +112,7 @@ class TestBooleanSelectionRule(NoLockedMixin, TreeObjectTester):
                         ),
                     ],
                 ),
-                ("include_rule_type", False),
+                ("include_rule", False),
             ],
             read_only=[
                 ("id", "some_id"),

@@ -91,7 +91,7 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
         Defines the in-plane offset. Cuts elements which are closer to the edge than this value.
     angles :
         Defines the angle between the reference surface and the cutting plane.
-    include_rule_type :
+    include_rule :
         Include or exclude area in rule. Setting this to ``False``
         inverts the selection.
     use_offset_correction :
@@ -125,7 +125,7 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
         edge_set: EdgeSet | None = None,
         offsets: LookUpTable1DColumn | None = None,
         angles: LookUpTable1DColumn | None = None,
-        include_rule_type: bool = True,
+        include_rule: bool = True,
         use_offset_correction: bool = False,
         element_set: ElementSet | None = None,
         inherit_from_lookup_table: bool = True,
@@ -137,7 +137,7 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
         self.edge_set = edge_set
         self.offsets = offsets
         self.angles = angles
-        self.include_rule_type = include_rule_type
+        self.include_rule = include_rule
         self.use_offset_correction = use_offset_correction
         self.element_set = element_set
         self.inherit_from_lookup_table = inherit_from_lookup_table
@@ -153,9 +153,7 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
     edge_set = grpc_link_property("properties.edge_set", allowed_types=EdgeSet)
     offsets = grpc_link_property("properties.offsets", allowed_types=LookUpTable1DColumn)
     angles = grpc_link_property("properties.angles", allowed_types=LookUpTable1DColumn)
-    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.include_rule_type"
-    )
+    include_rule: ReadWriteProperty[bool, bool] = grpc_data_property("properties.include_rule_type")
     use_offset_correction: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.use_offset_correction"
     )

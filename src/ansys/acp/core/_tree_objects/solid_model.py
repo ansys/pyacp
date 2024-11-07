@@ -70,8 +70,8 @@ from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import (
     DropOffType,
-    ExtrusionMethodType,
-    OffsetDirectionType,
+    ExtrusionMethod,
+    SolidModelOffsetDirectionType,
     drop_off_type_from_pb,
     drop_off_type_to_pb,
     extrusion_method_type_from_pb,
@@ -371,7 +371,7 @@ class SolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObject):
     ply_group_pointers :
         Explicitly defines modeling plies where a new element is introduced.
         Only used if the ``extrusion_method`` is ``USER_DEFINED``.
-    offset_direction :
+    offset_direction_type :
         Determines how the extrusion direction is defined. With ``SHELL_NORMAL``,
         the normal direction of the shell is used during the entire extrusion.
         With ``SURFACE_NORMAL``, the offset direction is re-evaluated based
@@ -418,10 +418,10 @@ class SolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObject):
         name: str = "SolidModel",
         active: bool = True,
         element_sets: Iterable[ElementSet | OrientedSelectionSet] = (),
-        extrusion_method: ExtrusionMethodType = ExtrusionMethodType.ANALYSIS_PLY_WISE,
+        extrusion_method: ExtrusionMethod = ExtrusionMethod.ANALYSIS_PLY_WISE,
         max_element_thickness: float = 1.0,
         ply_group_pointers: Iterable[ModelingPly] = (),
-        offset_direction: OffsetDirectionType = OffsetDirectionType.SHELL_NORMAL,
+        offset_direction_type: SolidModelOffsetDirectionType = SolidModelOffsetDirectionType.SHELL_NORMAL,
         skip_elements_without_plies: bool = False,
         drop_off_material: Material | None = None,
         cut_off_material: Material | None = None,
@@ -439,7 +439,7 @@ class SolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObject):
         self.extrusion_method = extrusion_method
         self.max_element_thickness = max_element_thickness
         self.ply_group_pointers = ply_group_pointers
-        self.offset_direction = offset_direction
+        self.offset_direction_type = offset_direction_type
         self.skip_elements_without_plies = skip_elements_without_plies
         self.drop_off_material = drop_off_material
         self.cut_off_material = cut_off_material
@@ -468,7 +468,7 @@ class SolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObject):
         "properties.max_element_thickness"
     )
     ply_group_pointers = define_linked_object_list("properties.ply_group_pointers", ModelingPly)
-    offset_direction = grpc_data_property(
+    offset_direction_type = grpc_data_property(
         "properties.offset_direction",
         from_protobuf=offset_direction_type_from_pb,
         to_protobuf=offset_direction_type_to_pb,

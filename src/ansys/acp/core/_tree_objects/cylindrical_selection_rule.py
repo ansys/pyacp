@@ -91,9 +91,9 @@ class CylindricalSelectionRule(CreatableTreeObject, IdTreeObject):
         Direction of the Cylindrical Selection Rule.
     radius :
         Radius of the cylinder.
-    relative_rule_type :
+    relative_rule :
         If True, parameters are evaluated relative to size of the object.
-    include_rule_type :
+    include_rule :
         Include or exclude area in rule. Setting this to ``False``
         inverts the selection.
     """
@@ -114,8 +114,8 @@ class CylindricalSelectionRule(CreatableTreeObject, IdTreeObject):
         origin: tuple[float, ...] = (0.0, 0.0, 0.0),
         direction: tuple[float, ...] = (0.0, 0.0, 1.0),
         radius: float = 0.0,
-        relative_rule_type: bool = False,
-        include_rule_type: bool = True,
+        relative_rule: bool = False,
+        include_rule: bool = True,
     ):
         super().__init__(name=name)
         self.use_global_coordinate_system = use_global_coordinate_system
@@ -123,8 +123,8 @@ class CylindricalSelectionRule(CreatableTreeObject, IdTreeObject):
         self.origin = origin
         self.direction = direction
         self.radius = radius
-        self.relative_rule_type = relative_rule_type
-        self.include_rule_type = include_rule_type
+        self.relative_rule = relative_rule
+        self.include_rule = include_rule
 
     def _create_stub(self) -> cylindrical_selection_rule_pb2_grpc.ObjectServiceStub:
         return cylindrical_selection_rule_pb2_grpc.ObjectServiceStub(self._channel)
@@ -142,12 +142,10 @@ class CylindricalSelectionRule(CreatableTreeObject, IdTreeObject):
         "properties.direction", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array
     )
     radius: ReadWriteProperty[float, float] = grpc_data_property("properties.radius")
-    relative_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
+    relative_rule: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.relative_rule_type"
     )
-    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.include_rule_type"
-    )
+    include_rule: ReadWriteProperty[bool, bool] = grpc_data_property("properties.include_rule_type")
 
     elemental_data = elemental_data_property(CylindricalSelectionRuleElementalData)
     nodal_data = nodal_data_property(CylindricalSelectionRuleNodalData)

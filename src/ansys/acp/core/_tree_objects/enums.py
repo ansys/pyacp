@@ -51,12 +51,12 @@ __all__ = [
     "ArrowType",
     "BooleanOperationType",
     "CutOffGeometryOrientationType",
-    "CutoffMaterialType",
+    "CutoffMaterialHandling",
     "CutoffRuleType",
     "DimensionType",
-    "DrapingMaterialType",
+    "DrapingMaterialModel",
     "DrapingType",
-    "DropoffMaterialType",
+    "DropoffMaterialHandling",
     "DropOffType",
     "EdgeSetType",
     "ElementalDataType",
@@ -65,7 +65,7 @@ __all__ = [
     "BaseElementMaterialHandling",
     "StressStateType",
     "ExtrusionGuideType",
-    "ExtrusionMethodType",
+    "ExtrusionMethod",
     "ExtrusionType",
     "GeometricalRuleType",
     "ImportedPlyDrapingType",
@@ -75,7 +75,7 @@ __all__ = [
     "LookUpTable3DInterpolationAlgorithm",
     "LookUpTableColumnValueType",
     "NodalDataType",
-    "OffsetDirectionType",
+    "SolidModelOffsetDirectionType",
     "OffsetType",
     "PlyCutoffType",
     "PlyGeometryExportFormat",
@@ -87,7 +87,7 @@ __all__ = [
     "SnapToGeometryOrientationType",
     "SolidModelExportFormat",
     "SolidModelSkinExportFormat",
-    "StatusType",
+    "Status",
     "SymmetryType",
     "ThicknessFieldType",
     "ThicknessType",
@@ -95,8 +95,8 @@ __all__ = [
     "VirtualGeometryDimension",
 ]
 
-(StatusType, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(
-    "StatusType",
+(Status, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(
+    "Status",
     enum_types_pb2.StatusType,
     module=__name__,
     value_converter=lambda val: val,
@@ -114,22 +114,22 @@ __all__ = [
 )
 
 (
-    CutoffMaterialType,
+    CutoffMaterialHandling,
     cut_off_material_type_to_pb,
     cut_off_material_type_from_pb,
 ) = wrap_to_string_enum(
-    "CutoffMaterialType",
+    "CutoffMaterialHandling",
     cut_off_material_pb2.MaterialHandlingType,
     module=__name__,
     doc="Options for how cut-off material is selected.",
 )
 
 (
-    DropoffMaterialType,
+    DropoffMaterialHandling,
     drop_off_material_type_to_pb,
     drop_off_material_type_from_pb,
 ) = wrap_to_string_enum(
-    "DropoffMaterialType",
+    "DropoffMaterialHandling",
     drop_off_material_pb2.MaterialHandlingType,
     module=__name__,
     doc="Options for how drop-off material is selected.",
@@ -162,11 +162,11 @@ __all__ = [
 )
 
 (
-    DrapingMaterialType,
+    DrapingMaterialModel,
     draping_material_type_to_pb,
     draping_material_type_from_pb,
 ) = wrap_to_string_enum(
-    "DrapingMaterialType",
+    "DrapingMaterialModel",
     ply_material_pb2.DrapingMaterialType,
     module=__name__,
     doc="Options for the material type used in the draping algorithm.",
@@ -472,13 +472,11 @@ __all__ = [
     doc="Determines how the intersection is computed for wireframe section cuts.",
 )
 
-(ExtrusionMethodType, extrusion_method_type_to_pb, extrusion_method_type_from_pb) = (
-    wrap_to_string_enum(
-        "ExtrusionMethodType",
-        solid_model_pb2.ExtrusionMethodType,
-        module=__name__,
-        doc="Extrusion method used in a solid model.",
-    )
+(ExtrusionMethod, extrusion_method_type_to_pb, extrusion_method_type_from_pb) = wrap_to_string_enum(
+    "ExtrusionMethod",
+    solid_model_pb2.ExtrusionMethodType,
+    module=__name__,
+    doc="Extrusion method used in a solid model.",
 )
 
 (ExtrusionGuideType, extrusion_guide_type_to_pb, extrusion_guide_type_from_pb) = (
@@ -490,9 +488,9 @@ __all__ = [
     )
 )
 
-(OffsetDirectionType, offset_direction_type_to_pb, offset_direction_type_from_pb) = (
+(SolidModelOffsetDirectionType, offset_direction_type_to_pb, offset_direction_type_from_pb) = (
     wrap_to_string_enum(
-        "OffsetDirectionType",
+        "SolidModelOffsetDirectionType",
         solid_model_pb2.OffsetDirectionType,
         module=__name__,
         doc=(

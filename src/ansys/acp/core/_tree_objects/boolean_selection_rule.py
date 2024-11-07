@@ -81,7 +81,7 @@ class BooleanSelectionRule(CreatableTreeObject, IdTreeObject):
         Name of the Boolean Selection Rule.
     selection_rules :
 
-    include_rule_type :
+    include_rule :
         Include or exclude area in rule. Setting this to ``False``
         inverts the selection.
     """
@@ -98,11 +98,11 @@ class BooleanSelectionRule(CreatableTreeObject, IdTreeObject):
         *,
         name: str = "BooleanSelectionrule",
         selection_rules: Iterable[LinkedSelectionRule] = (),
-        include_rule_type: bool = True,
+        include_rule: bool = True,
     ):
         super().__init__(name=name)
         self.selection_rules = selection_rules
-        self.include_rule_type = include_rule_type
+        self.include_rule = include_rule
 
     def _create_stub(self) -> boolean_selection_rule_pb2_grpc.ObjectServiceStub:
         return boolean_selection_rule_pb2_grpc.ObjectServiceStub(self._channel)
@@ -118,9 +118,7 @@ class BooleanSelectionRule(CreatableTreeObject, IdTreeObject):
         module_name=__module__,
     )
 
-    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.include_rule_type"
-    )
+    include_rule: ReadWriteProperty[bool, bool] = grpc_data_property("properties.include_rule_type")
 
     elemental_data = elemental_data_property(BooleanSelectionRuleElementalData)
     nodal_data = nodal_data_property(BooleanSelectionRuleNodalData)
