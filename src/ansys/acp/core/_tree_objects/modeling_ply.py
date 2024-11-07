@@ -255,7 +255,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         Defines the global ply order.
     selection_rules :
         Selection Rules which may limit the extent of the ply.
-    draping :
+    draping_type :
         Chooses between different draping formulations.
     draping_seed_point :
         Starting point of the draping algorithm.
@@ -319,7 +319,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         # if global_ply_nr == 0
         global_ply_nr: int = 0,
         selection_rules: Iterable[LinkedSelectionRule] = (),
-        draping: DrapingType = DrapingType.NO_DRAPING,
+        draping_type: DrapingType = DrapingType.NO_DRAPING,
         draping_seed_point: tuple[float, float, float] = (0.0, 0.0, 0.0),
         auto_draping_direction: bool = True,
         draping_direction: tuple[float, float, float] = (1.0, 0.0, 0.0),
@@ -343,7 +343,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         self.active = active
         self.global_ply_nr = global_ply_nr
         self.selection_rules = selection_rules
-        self.draping = draping
+        self.draping_type = draping_type
         self.draping_seed_point = draping_seed_point
         self.auto_draping_direction = auto_draping_direction
         self.draping_direction = draping_direction
@@ -378,7 +378,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     active: ReadWriteProperty[bool, bool] = grpc_data_property("properties.active")
     global_ply_nr: ReadWriteProperty[int, int] = grpc_data_property("properties.global_ply_nr")
 
-    draping = grpc_data_property(
+    draping_type = grpc_data_property(
         "properties.draping", from_protobuf=draping_type_from_pb, to_protobuf=draping_type_to_pb
     )
     draping_seed_point = grpc_data_property(

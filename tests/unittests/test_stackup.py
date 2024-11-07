@@ -23,9 +23,9 @@
 import pytest
 
 from ansys.acp.core import (
-    CutoffMaterialType,
-    DrapingMaterialType,
-    DropoffMaterialType,
+    CutoffMaterialHandling,
+    DrapingMaterialModel,
+    DropoffMaterialHandling,
     FabricWithAngle,
     SymmetryType,
 )
@@ -56,11 +56,11 @@ class TestStackup(NoLockedMixin, TreeObjectTester):
             "topdown": True,
             "fabrics": [],
             "symmetry": SymmetryType.NO_SYMMETRY,
-            "drop_off_material_handling": DropoffMaterialType.GLOBAL,
+            "drop_off_material_handling": DropoffMaterialHandling.GLOBAL,
             "drop_off_material": None,
-            "cut_off_material_handling": CutoffMaterialType.COMPUTED,
+            "cut_off_material_handling": CutoffMaterialHandling.COMPUTED,
             "cut_off_material": None,
-            "draping_material_model": DrapingMaterialType.WOVEN,
+            "draping_material_model": DrapingMaterialModel.WOVEN,
             "draping_ud_coefficient": 0.0,
         }
 
@@ -86,11 +86,11 @@ class TestStackup(NoLockedMixin, TreeObjectTester):
                     ],
                 ),
                 ("symmetry", SymmetryType.EVEN_SYMMETRY),
-                ("drop_off_material_handling", DropoffMaterialType.CUSTOM),
+                ("drop_off_material_handling", DropoffMaterialHandling.CUSTOM),
                 ("drop_off_material", material),
-                ("cut_off_material_handling", CutoffMaterialType.CUSTOM),
+                ("cut_off_material_handling", CutoffMaterialHandling.CUSTOM),
                 ("cut_off_material", material),
-                ("draping_material_model", DrapingMaterialType.UD),
+                ("draping_material_model", DrapingMaterialModel.UD),
                 ("draping_ud_coefficient", 0.55),
             ],
             read_only=[

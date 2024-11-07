@@ -76,7 +76,7 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
             "ply_angle": 0.0,
             "active": True,
             "global_ply_nr": AnyThing(),
-            "draping": DrapingType.NO_DRAPING,
+            "draping_type": DrapingType.NO_DRAPING,
             "draping_seed_point": (0.0, 0.0, 0.0),
             "auto_draping_direction": True,
             "draping_direction": (1.0, 0.0, 0.0),

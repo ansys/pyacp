@@ -89,9 +89,9 @@ class SphericalSelectionRule(CreatableTreeObject, IdTreeObject):
         Origin of the sphere.
     radius :
         Radius of the sphere.
-    relative_rule_type :
+    relative_rule :
         If True, parameters are evaluated relative to size of the object.
-    include_rule_type :
+    include_rule :
         Include or exclude area in rule. Setting this to ``False``
         inverts the selection.
     """
@@ -111,16 +111,16 @@ class SphericalSelectionRule(CreatableTreeObject, IdTreeObject):
         rosette: Rosette | None = None,
         origin: tuple[float, ...] = (0.0, 0.0, 0.0),
         radius: float = 0.0,
-        relative_rule_type: bool = False,
-        include_rule_type: bool = True,
+        relative_rule: bool = False,
+        include_rule: bool = True,
     ):
         super().__init__(name=name)
         self.use_global_coordinate_system = use_global_coordinate_system
         self.rosette = rosette
         self.origin = origin
         self.radius = radius
-        self.relative_rule_type = relative_rule_type
-        self.include_rule_type = include_rule_type
+        self.relative_rule = relative_rule
+        self.include_rule = include_rule
 
     def _create_stub(self) -> spherical_selection_rule_pb2_grpc.ObjectServiceStub:
         return spherical_selection_rule_pb2_grpc.ObjectServiceStub(self._channel)
@@ -138,12 +138,10 @@ class SphericalSelectionRule(CreatableTreeObject, IdTreeObject):
         "properties.direction", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array
     )
     radius: ReadWriteProperty[float, float] = grpc_data_property("properties.radius")
-    relative_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
+    relative_rule: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.relative_rule_type"
     )
-    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.include_rule_type"
-    )
+    include_rule: ReadWriteProperty[bool, bool] = grpc_data_property("properties.include_rule_type")
 
     elemental_data = elemental_data_property(SphericalSelectionRuleElementalData)
     nodal_data = nodal_data_property(SphericalSelectionRuleNodalData)
