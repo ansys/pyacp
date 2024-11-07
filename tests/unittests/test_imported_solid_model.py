@@ -124,6 +124,27 @@ class TestImportedSolidModel(WithLockedMixin, TreeObjectTester):
         )
 
 
+@pytest.fixture
+def imported_solid_model_with_elements(parent_object, tempdir_if_local_acp):
+    model = parent_object
+    solid_model = model.create_solid_model()
+    solid_model.element_sets = [model.element_sets["All_Elements"]]
+    model.update()
+    with tempdir_if_local_acp() as export_dir:
+        filename = export_dir / "solid_model.h5"
+        solid_model.export(filename, format=pyacp.SolidModelExportFormat.ANSYS_H5)
+        del model.solid_models[solid_model.id]
+        imported_solid_model = model.create_imported_solid_model(
+            external_path=filename,
+            format=pyacp.SolidModelImportFormat.ANSYS_H5,
+        )
+        imported_solid_model.create_layup_mapping_object(
+            shell_element_sets=[model.element_sets["All_Elements"]]
+        )
+        model.update()
+        yield imported_solid_model
+
+
 @pytest.mark.parametrize(
     "format",
     [
@@ -133,93 +154,76 @@ class TestImportedSolidModel(WithLockedMixin, TreeObjectTester):
         pyacp.SolidModelExportFormat.ANSYS_CDB,
     ],
 )
-def test_export(acp_instance, parent_object, format):
+def test_export(tempdir_if_local_acp, acp_instance, imported_solid_model_with_elements, format):
     """Check that the export to a file works."""
-    model = parent_object
-    solid_model = model.create_solid_model()
-    solid_model.element_sets = [model.element_sets["All_Elements"]]
-    model.update()
+    with tempdir_if_local_acp() as export_dir:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            if format == "ansys:h5":
+                ext = ".h5"
+            else:
+                ext = ".cdb"
 
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        if format == "ansys:h5":
-            ext = ".h5"
-        else:
-            ext = ".cdb"
+            out_file_name = f"out_file{ext}"
+            out_path = export_dir / out_file_name
+            tmp_path = pathlib.Path(tmp_dir) / out_file_name
 
-        out_file_name = f"out_file{ext}"
-        out_path = pathlib.Path(tmp_dir) / out_file_name
+            imported_solid_model_with_elements.export(path=out_file_name, format=format)
+            acp_instance.download_file(out_path, tmp_path)
 
-        if not acp_instance.is_remote:
-            # save directly to the local file, to avoid a copy in the working directory
-            out_file_name = out_path  # type: ignore
-
-        solid_model.export(path=out_file_name, format=format)
-        acp_instance.download_file(out_file_name, out_path)
-
-        assert out_path.exists()
-        assert out_path.stat().st_size > 0
+            assert tmp_path.exists()
+            assert tmp_path.stat().st_size > 0
 
 
 @given(invalid_format=st.text())
 @settings(suppress_health_check=[HealthCheck.function_scoped_fixture], deadline=None)
-def test_export_with_invalid_format_raises(parent_object, invalid_format):
+def test_export_with_invalid_format_raises(
+    imported_solid_model_with_elements, tempdir_if_local_acp, invalid_format
+):
     """Check that the export to a file with an invalid format raises an exception."""
     assume(invalid_format not in ["ansys:h5", "ansys:cdb"])
 
-    model = parent_object
-    solid_model = model.create_solid_model()
-    solid_model.element_sets = [model.element_sets["All_Elements"]]
-    model.update()
-
-    with tempfile.TemporaryDirectory() as tmp_dir:
+    with tempdir_if_local_acp() as export_dir:
         out_file_name = f"out_file.h5"
-        out_path = pathlib.Path(tmp_dir) / out_file_name
+        out_path = export_dir / out_file_name
 
         with pytest.raises(ValueError):
-            solid_model.export(path=out_path, format=invalid_format)
+            imported_solid_model_with_elements.export(path=out_path, format=invalid_format)
 
 
 @pytest.mark.parametrize("format", ["ansys:cdb", "step", "iges", "stl"])
-def test_skin_export(acp_instance, parent_object, format):
+def test_skin_export(
+    tempdir_if_local_acp, acp_instance, imported_solid_model_with_elements, format
+):
     """Check that the skin export to a file works."""
-    model = parent_object
-    solid_model = model.create_solid_model()
-    solid_model.element_sets = [model.element_sets["All_Elements"]]
-    model.update()
+    with tempdir_if_local_acp() as export_dir:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            ext = {"ansys:cdb": ".cdb", "step": ".stp", "iges": ".igs", "stl": ".stl"}[format]
 
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        ext = {"ansys:cdb": ".cdb", "step": ".stp", "iges": ".igs", "stl": ".stl"}[format]
-        out_file_name = f"out_file{ext}"
-        out_path = pathlib.Path(tmp_dir) / out_file_name
+            out_file_name = f"out_file{ext}"
+            out_path = export_dir / out_file_name
+            tmp_path = pathlib.Path(tmp_dir) / out_file_name
 
-        if not acp_instance.is_remote:
-            # save directly to the local file, to avoid a copy in the working directory
-            out_file_name = out_path  # type: ignore
+            imported_solid_model_with_elements.export_skin(path=out_file_name, format=format)
+            acp_instance.download_file(out_path, tmp_path)
 
-        solid_model.export_skin(path=out_file_name, format=format)
-        acp_instance.download_file(out_file_name, out_path)
-
-        assert out_path.exists()
-        assert out_path.stat().st_size > 0
+            assert tmp_path.exists()
+            assert tmp_path.stat().st_size > 0
 
 
 @given(invalid_format=st.text())
 @settings(suppress_health_check=[HealthCheck.function_scoped_fixture], deadline=None)
-def test_skin_export_with_invalid_format_raises(parent_object, invalid_format):
+def test_skin_export_with_invalid_format_raises(
+    imported_solid_model_with_elements, tempdir_if_local_acp, invalid_format
+):
     """Check that the export to a file with an invalid format raises an exception."""
     assume(invalid_format not in ["ansys:cdb", "step", "iges", "stl"])
 
-    model = parent_object
-    solid_model = model.create_solid_model()
-    solid_model.element_sets = [model.element_sets["All_Elements"]]
-    model.update()
-
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        out_file_name = f"out_file.stp"
-        out_path = pathlib.Path(tmp_dir) / out_file_name
+    with tempdir_if_local_acp() as export_dir:
+        out_file_name = f"out_file.h5"
+        out_path = export_dir / out_file_name
 
         with pytest.raises(ValueError):
-            solid_model.export_skin(path=out_path, format=invalid_format)
+            imported_solid_model_with_elements.export_skin(path=out_path, format=invalid_format)
 
 
 def test_refresh(tempdir_if_local_acp, parent_object):
