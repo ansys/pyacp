@@ -33,6 +33,14 @@ from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc, production
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadWriteProperty
+from ._elemental_or_nodal_data import (
+    ElementalData,
+    NodalData,
+    ScalarData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from ._grpc_helpers.edge_property_list import (
     GenericEdgePropertyType,
     define_add_method,
@@ -47,14 +55,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
-from ._mesh_data import (
-    ElementalData,
-    NodalData,
-    ScalarData,
-    VectorData,
-    elemental_data_property,
-    nodal_data_property,
-)
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
 from .edge_set import EdgeSet
 from .enums import (
@@ -448,6 +449,9 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     production_plies = get_read_only_collection_property(
         ProductionPly, production_ply_pb2_grpc.ObjectServiceStub
     )
+
+    mesh = full_mesh_property
+    shell_mesh = shell_mesh_property
 
     elemental_data = elemental_data_property(ModelingPlyElementalData)
     nodal_data = nodal_data_property(ModelingPlyNodalData)

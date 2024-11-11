@@ -28,11 +28,8 @@ import typing
 from typing import Any, cast
 
 import numpy as np
-import numpy.typing as npt
-from pyvista.core.pointset import UnstructuredGrid
 
 from ansys.api.acp.v0 import (
-    base_pb2,
     boolean_selection_rule_pb2_grpc,
     cad_geometry_pb2_grpc,
     cutoff_selection_rule_pb2_grpc,
@@ -49,7 +46,6 @@ from ansys.api.acp.v0 import (
     lookup_table_3d_pb2_grpc,
     material_pb2,
     material_pb2_grpc,
-    mesh_query_pb2_grpc,
     model_pb2,
     model_pb2_grpc,
     modeling_group_pb2_grpc,
@@ -72,11 +68,17 @@ from ansys.api.acp.v0 import (
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
 from .._typing_helper import PATH as _PATH
-from .._utils.array_conversions import to_numpy
 from .._utils.path_to_str import path_to_str_checked
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .._utils.resource_paths import join as rp_join
-from .._utils.visualization import to_pyvista_faces, to_pyvista_types
+from ._elemental_or_nodal_data import (
+    ElementalData,
+    NodalData,
+    ScalarData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
 from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
@@ -89,14 +91,7 @@ from ._grpc_helpers.property_helper import (
 )
 from ._grpc_helpers.protocols import ObjectInfo
 from ._grpc_helpers.supported_since import supported_since
-from ._mesh_data import (
-    ElementalData,
-    NodalData,
-    ScalarData,
-    VectorData,
-    elemental_data_property,
-    nodal_data_property,
-)
+from ._mesh_data import full_mesh_property, shell_mesh_property, solid_mesh_property
 from .base import ServerWrapper, TreeObject
 from .boolean_selection_rule import BooleanSelectionRule
 from .cad_geometry import CADGeometry
@@ -184,30 +179,6 @@ HDF5CompositeCAEProjectionMode, hdf5_composite_cae_projection_mode_to_pb, _ = wr
     module=__name__,
     doc="Options for the projection mode of the HDF5 Composite CAE file.",
 )
-
-
-@dataclasses.dataclass
-class MeshData:
-    """Container for the mesh data of an ACP Model."""
-
-    node_labels: npt.NDArray[np.int32]
-    node_coordinates: npt.NDArray[np.float64]
-    element_labels: npt.NDArray[np.int32]
-    element_types: npt.NDArray[np.int32]
-    element_nodes: npt.NDArray[np.int32]
-    element_nodes_offsets: npt.NDArray[np.int32]
-
-    def to_pyvista(self) -> UnstructuredGrid:
-        """Convert the mesh data to a PyVista mesh."""
-        return UnstructuredGrid(
-            to_pyvista_faces(
-                element_types=self.element_types,
-                element_nodes=self.element_nodes,
-                element_nodes_offsets=self.element_nodes_offsets,
-            ),
-            to_pyvista_types(self.element_types),
-            self.node_coordinates,
-        )
 
 
 @dataclasses.dataclass
@@ -1002,19 +973,8 @@ class Model(TreeObject):
         FieldDefinition, field_definition_pb2_grpc.ObjectServiceStub
     )
 
-    @property
-    def mesh(self) -> MeshData:
-        """Mesh on which the model is defined."""
-        mesh_query_stub = mesh_query_pb2_grpc.MeshQueryServiceStub(self._channel)
-        reply = mesh_query_stub.GetMeshData(base_pb2.GetRequest(resource_path=self._resource_path))
-        return MeshData(
-            node_labels=to_numpy(reply.node_labels),
-            node_coordinates=to_numpy(reply.node_coordinates),
-            element_labels=to_numpy(reply.element_labels),
-            element_types=to_numpy(reply.element_types),
-            element_nodes=to_numpy(reply.element_nodes),
-            element_nodes_offsets=to_numpy(reply.element_nodes_offsets),
-        )
-
+    mesh = full_mesh_property
+    shell_mesh = shell_mesh_property
+    solid_mesh = solid_mesh_property
     elemental_data = elemental_data_property(ModelElementalData)
     nodal_data = nodal_data_property(ModelNodalData)

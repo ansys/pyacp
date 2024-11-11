@@ -38,6 +38,12 @@ from ansys.api.acp.v0 import (
 
 from .._typing_helper import PATH as _PATH
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
+from ._elemental_or_nodal_data import (
+    ElementalData,
+    NodalData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
 from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.mapping import (
@@ -51,7 +57,6 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
-from ._mesh_data import ElementalData, NodalData, elemental_data_property, nodal_data_property
 from ._solid_model_export import SolidModelExportMixin
 from .base import (
     CreatableTreeObject,
