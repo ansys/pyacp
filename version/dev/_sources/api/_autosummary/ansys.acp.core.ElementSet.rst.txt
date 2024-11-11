@@ -37,10 +37,12 @@
       ElementSet.elemental_data
       ElementSet.id
       ElementSet.locked
+      ElementSet.mesh
       ElementSet.middle_offset
       ElementSet.name
       ElementSet.nodal_data
       ElementSet.parent
+      ElementSet.shell_mesh
       ElementSet.status
    
    

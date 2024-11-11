@@ -51,6 +51,7 @@
       ModelingPly.elemental_data
       ModelingPly.global_ply_nr
       ModelingPly.id
+      ModelingPly.mesh
       ModelingPly.name
       ModelingPly.nodal_data
       ModelingPly.number_of_layers
@@ -60,6 +61,7 @@
       ModelingPly.ply_material
       ModelingPly.production_plies
       ModelingPly.selection_rules
+      ModelingPly.shell_mesh
       ModelingPly.status
       ModelingPly.taper_edges
       ModelingPly.thickness_field

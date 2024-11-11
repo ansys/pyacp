@@ -29,9 +29,11 @@
       ProductionPly.elemental_data
       ProductionPly.id
       ProductionPly.material
+      ProductionPly.mesh
       ProductionPly.name
       ProductionPly.nodal_data
       ProductionPly.parent
+      ProductionPly.shell_mesh
       ProductionPly.status
       ProductionPly.thickness
    

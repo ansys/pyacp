@@ -169,6 +169,8 @@
       Model.sampling_points
       Model.section_cuts
       Model.sensors
+      Model.shell_mesh
+      Model.solid_mesh
       Model.solid_models
       Model.spherical_selection_rules
       Model.stackups

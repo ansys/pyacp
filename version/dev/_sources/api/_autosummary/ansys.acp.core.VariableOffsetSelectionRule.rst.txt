@@ -41,12 +41,14 @@
       VariableOffsetSelectionRule.id
       VariableOffsetSelectionRule.include_rule
       VariableOffsetSelectionRule.inherit_from_lookup_table
+      VariableOffsetSelectionRule.mesh
       VariableOffsetSelectionRule.name
       VariableOffsetSelectionRule.nodal_data
       VariableOffsetSelectionRule.offsets
       VariableOffsetSelectionRule.parent
       VariableOffsetSelectionRule.radius_direction
       VariableOffsetSelectionRule.radius_origin
+      VariableOffsetSelectionRule.shell_mesh
       VariableOffsetSelectionRule.status
       VariableOffsetSelectionRule.use_offset_correction
    

@@ -46,9 +46,11 @@
       ModelingGroup.elemental_data
       ModelingGroup.id
       ModelingGroup.interface_layers
+      ModelingGroup.mesh
       ModelingGroup.modeling_plies
       ModelingGroup.name
       ModelingGroup.nodal_data
       ModelingGroup.parent
+      ModelingGroup.shell_mesh
    
    

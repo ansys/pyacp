@@ -39,10 +39,12 @@
       BooleanSelectionRule.elemental_data
       BooleanSelectionRule.id
       BooleanSelectionRule.include_rule
+      BooleanSelectionRule.mesh
       BooleanSelectionRule.name
       BooleanSelectionRule.nodal_data
       BooleanSelectionRule.parent
       BooleanSelectionRule.selection_rules
+      BooleanSelectionRule.shell_mesh
       BooleanSelectionRule.status
    
    

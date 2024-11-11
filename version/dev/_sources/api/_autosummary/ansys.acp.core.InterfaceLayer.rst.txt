@@ -37,11 +37,13 @@
       InterfaceLayer.elemental_data
       InterfaceLayer.global_ply_nr
       InterfaceLayer.id
+      InterfaceLayer.mesh
       InterfaceLayer.name
       InterfaceLayer.nodal_data
       InterfaceLayer.open_area_sets
       InterfaceLayer.oriented_selection_sets
       InterfaceLayer.parent
+      InterfaceLayer.shell_mesh
       InterfaceLayer.status
    
    

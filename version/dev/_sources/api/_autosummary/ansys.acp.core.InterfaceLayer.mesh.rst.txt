@@ -1,0 +1,6 @@
+mesh
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: InterfaceLayer.mesh

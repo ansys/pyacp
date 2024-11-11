@@ -1,0 +1,6 @@
+solid\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.solid_mesh

@@ -40,11 +40,13 @@
       GeometricalSelectionRule.id
       GeometricalSelectionRule.in_plane_capture_tolerance
       GeometricalSelectionRule.include_rule
+      GeometricalSelectionRule.mesh
       GeometricalSelectionRule.name
       GeometricalSelectionRule.negative_capture_tolerance
       GeometricalSelectionRule.nodal_data
       GeometricalSelectionRule.parent
       GeometricalSelectionRule.positive_capture_tolerance
+      GeometricalSelectionRule.shell_mesh
       GeometricalSelectionRule.status
       GeometricalSelectionRule.use_default_tolerances
    

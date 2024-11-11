@@ -43,6 +43,7 @@
       OrientedSelectionSet.element_sets
       OrientedSelectionSet.elemental_data
       OrientedSelectionSet.id
+      OrientedSelectionSet.mesh
       OrientedSelectionSet.name
       OrientedSelectionSet.nodal_data
       OrientedSelectionSet.orientation_direction
@@ -53,6 +54,7 @@
       OrientedSelectionSet.rosettes
       OrientedSelectionSet.rotation_angle
       OrientedSelectionSet.selection_rules
+      OrientedSelectionSet.shell_mesh
       OrientedSelectionSet.status
       OrientedSelectionSet.use_default_draping_mesh_size
    

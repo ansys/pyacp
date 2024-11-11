@@ -38,12 +38,14 @@
       ParallelSelectionRule.id
       ParallelSelectionRule.include_rule
       ParallelSelectionRule.lower_limit
+      ParallelSelectionRule.mesh
       ParallelSelectionRule.name
       ParallelSelectionRule.nodal_data
       ParallelSelectionRule.origin
       ParallelSelectionRule.parent
       ParallelSelectionRule.relative_rule
       ParallelSelectionRule.rosette
+      ParallelSelectionRule.shell_mesh
       ParallelSelectionRule.status
       ParallelSelectionRule.upper_limit
       ParallelSelectionRule.use_global_coordinate_system

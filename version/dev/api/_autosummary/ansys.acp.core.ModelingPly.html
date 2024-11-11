@@ -67,7 +67,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="add_selection_rule" href="ansys.acp.core.ModelingPly.add_selection_rule.html" />
-    <link rel="prev" title="parent" href="ansys.acp.core.ModelingGroup.parent.html" />
+    <link rel="prev" title="shell_mesh" href="ansys.acp.core.ModelingGroup.shell_mesh.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <link rel="canonical" href="https://acp.docs.pyansys.com/version/stable/api/_autosummary/ansys.acp.core.ModelingPly.html" />
@@ -497,6 +497,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.elemental_data.html">elemental_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.global_ply_nr.html">global_ply_nr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.id.html">id</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.mesh.html">mesh</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.name.html">name</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.nodal_data.html">nodal_data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.number_of_layers.html">number_of_layers</a></li>
@@ -506,6 +507,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_material.html">ply_material</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.production_plies.html">production_plies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.selection_rules.html">selection_rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.shell_mesh.html">shell_mesh</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.status.html">status</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.taper_edges.html">taper_edges</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.thickness_field.html">thickness_field</a></li>
@@ -723,32 +725,38 @@ values (<a class="reference internal" href="ansys.acp.core.ThicknessFieldType.RE
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.id.html#ansys.acp.core.ModelingPly.id" title="ansys.acp.core.ModelingPly.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.id</span></code></a></p></td>
 <td><p>Identifier of the object, used for example as key in maps.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.name.html#ansys.acp.core.ModelingPly.name" title="ansys.acp.core.ModelingPly.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.name</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.mesh.html#ansys.acp.core.ModelingPly.mesh" title="ansys.acp.core.ModelingPly.mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.mesh</span></code></a></p></td>
+<td><p>Full mesh associated with the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.name.html#ansys.acp.core.ModelingPly.name" title="ansys.acp.core.ModelingPly.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.name</span></code></a></p></td>
 <td><p>The name of the object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.nodal_data.html#ansys.acp.core.ModelingPly.nodal_data" title="ansys.acp.core.ModelingPly.nodal_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.nodal_data</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.nodal_data.html#ansys.acp.core.ModelingPly.nodal_data" title="ansys.acp.core.ModelingPly.nodal_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.nodal_data</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.number_of_layers.html#ansys.acp.core.ModelingPly.number_of_layers" title="ansys.acp.core.ModelingPly.number_of_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.number_of_layers</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.number_of_layers.html#ansys.acp.core.ModelingPly.number_of_layers" title="ansys.acp.core.ModelingPly.number_of_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.number_of_layers</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.oriented_selection_sets.html#ansys.acp.core.ModelingPly.oriented_selection_sets" title="ansys.acp.core.ModelingPly.oriented_selection_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.oriented_selection_sets</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.oriented_selection_sets.html#ansys.acp.core.ModelingPly.oriented_selection_sets" title="ansys.acp.core.ModelingPly.oriented_selection_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.oriented_selection_sets</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.parent.html#ansys.acp.core.ModelingPly.parent" title="ansys.acp.core.ModelingPly.parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.parent</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.parent.html#ansys.acp.core.ModelingPly.parent" title="ansys.acp.core.ModelingPly.parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.parent</span></code></a></p></td>
 <td><p>The parent of the object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_angle.html#ansys.acp.core.ModelingPly.ply_angle" title="ansys.acp.core.ModelingPly.ply_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.ply_angle</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_angle.html#ansys.acp.core.ModelingPly.ply_angle" title="ansys.acp.core.ModelingPly.ply_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.ply_angle</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_material.html#ansys.acp.core.ModelingPly.ply_material" title="ansys.acp.core.ModelingPly.ply_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.ply_material</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_material.html#ansys.acp.core.ModelingPly.ply_material" title="ansys.acp.core.ModelingPly.ply_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.ply_material</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.production_plies.html#ansys.acp.core.ModelingPly.production_plies" title="ansys.acp.core.ModelingPly.production_plies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.production_plies</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.production_plies.html#ansys.acp.core.ModelingPly.production_plies" title="ansys.acp.core.ModelingPly.production_plies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.production_plies</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.selection_rules.html#ansys.acp.core.ModelingPly.selection_rules" title="ansys.acp.core.ModelingPly.selection_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.selection_rules</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.selection_rules.html#ansys.acp.core.ModelingPly.selection_rules" title="ansys.acp.core.ModelingPly.selection_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.selection_rules</span></code></a></p></td>
 <td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.shell_mesh.html#ansys.acp.core.ModelingPly.shell_mesh" title="ansys.acp.core.ModelingPly.shell_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.shell_mesh</span></code></a></p></td>
+<td><p>Shell mesh associated with the object.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.status.html#ansys.acp.core.ModelingPly.status" title="ansys.acp.core.ModelingPly.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.status</span></code></a></p></td>
 <td><p></p></td>
@@ -789,12 +797,12 @@ values (<a class="reference internal" href="ansys.acp.core.ThicknessFieldType.RE
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ansys.acp.core.ModelingGroup.parent.html"
+       href="ansys.acp.core.ModelingGroup.shell_mesh.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">parent</p>
+        <p class="prev-next-title">shell_mesh</p>
       </div>
     </a>
     <a class="right-next"

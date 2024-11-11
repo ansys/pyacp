@@ -37,6 +37,7 @@
       CylindricalSelectionRule.elemental_data
       CylindricalSelectionRule.id
       CylindricalSelectionRule.include_rule
+      CylindricalSelectionRule.mesh
       CylindricalSelectionRule.name
       CylindricalSelectionRule.nodal_data
       CylindricalSelectionRule.origin
@@ -44,6 +45,7 @@
       CylindricalSelectionRule.radius
       CylindricalSelectionRule.relative_rule
       CylindricalSelectionRule.rosette
+      CylindricalSelectionRule.shell_mesh
       CylindricalSelectionRule.status
       CylindricalSelectionRule.use_global_coordinate_system
    

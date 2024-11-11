@@ -38,12 +38,14 @@
       CutoffSelectionRule.cutoff_rule_type
       CutoffSelectionRule.elemental_data
       CutoffSelectionRule.id
+      CutoffSelectionRule.mesh
       CutoffSelectionRule.name
       CutoffSelectionRule.nodal_data
       CutoffSelectionRule.offset
       CutoffSelectionRule.parent
       CutoffSelectionRule.ply_cutoff_type
       CutoffSelectionRule.ply_tapering
+      CutoffSelectionRule.shell_mesh
       CutoffSelectionRule.status
       CutoffSelectionRule.taper_edge_set
    
