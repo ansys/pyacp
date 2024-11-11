@@ -29,19 +29,19 @@ from ansys.api.acp.v0 import element_set_pb2, element_set_pb2_grpc
 
 from .._utils.array_conversions import to_1D_int_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
-from ._grpc_helpers.property_helper import (
-    grpc_data_property,
-    grpc_data_property_read_only,
-    mark_grpc_properties,
-)
-from ._mesh import mesh_property, shell_mesh_property
-from ._mesh_data import (
+from ._elemental_or_nodal_data import (
     ElementalData,
     NodalData,
     VectorData,
     elemental_data_property,
     nodal_data_property,
 )
+from ._grpc_helpers.property_helper import (
+    grpc_data_property,
+    grpc_data_property_read_only,
+    mark_grpc_properties,
+)
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
@@ -49,7 +49,7 @@ from .object_registry import register
 # Workaround: these imports are needed to make sphinx_autodoc_typehints understand
 # the inherited members of the Elemental- and NodalData classes.
 import numpy as np  # noqa: F401 isort:skip
-from ._mesh_data import ScalarData  # noqa: F401 isort:skip
+from ._elemental_or_nodal_data import ScalarData  # noqa: F401 isort:skip
 
 __all__ = [
     "ElementSet",
@@ -114,7 +114,7 @@ class ElementSet(CreatableTreeObject, IdTreeObject):
         to_protobuf=to_1D_int_array,
     )
 
-    mesh = mesh_property
+    mesh = full_mesh_property
     shell_mesh = shell_mesh_property
     elemental_data = elemental_data_property(ElementSetElementalData)
     nodal_data = nodal_data_property(ElementSetNodalData)

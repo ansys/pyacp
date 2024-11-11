@@ -71,6 +71,14 @@ from .._typing_helper import PATH as _PATH
 from .._utils.path_to_str import path_to_str_checked
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .._utils.resource_paths import join as rp_join
+from ._elemental_or_nodal_data import (
+    ElementalData,
+    NodalData,
+    ScalarData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
 from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
@@ -83,15 +91,7 @@ from ._grpc_helpers.property_helper import (
 )
 from ._grpc_helpers.protocols import ObjectInfo
 from ._grpc_helpers.supported_since import supported_since
-from ._mesh import mesh_property, shell_mesh_property, solid_mesh_property
-from ._mesh_data import (
-    ElementalData,
-    NodalData,
-    ScalarData,
-    VectorData,
-    elemental_data_property,
-    nodal_data_property,
-)
+from ._mesh_data import full_mesh_property, shell_mesh_property, solid_mesh_property
 from .base import ServerWrapper, TreeObject
 from .boolean_selection_rule import BooleanSelectionRule
 from .cad_geometry import CADGeometry
@@ -973,7 +973,7 @@ class Model(TreeObject):
         FieldDefinition, field_definition_pb2_grpc.ObjectServiceStub
     )
 
-    mesh = mesh_property
+    mesh = full_mesh_property
     shell_mesh = shell_mesh_property
     solid_mesh = solid_mesh_property
     elemental_data = elemental_data_property(ModelElementalData)

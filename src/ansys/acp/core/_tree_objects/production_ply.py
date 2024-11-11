@@ -30,14 +30,7 @@ import numpy as np
 from ansys.api.acp.v0 import analysis_ply_pb2_grpc, production_ply_pb2, production_ply_pb2_grpc
 
 from .._utils.property_protocols import ReadOnlyProperty
-from ._grpc_helpers.mapping import get_read_only_collection_property
-from ._grpc_helpers.property_helper import (
-    grpc_data_property_read_only,
-    grpc_link_property_read_only,
-    mark_grpc_properties,
-)
-from ._mesh import mesh_property, shell_mesh_property
-from ._mesh_data import (
+from ._elemental_or_nodal_data import (
     ElementalData,
     NodalData,
     ScalarData,
@@ -45,6 +38,13 @@ from ._mesh_data import (
     elemental_data_property,
     nodal_data_property,
 )
+from ._grpc_helpers.mapping import get_read_only_collection_property
+from ._grpc_helpers.property_helper import (
+    grpc_data_property_read_only,
+    grpc_link_property_read_only,
+    mark_grpc_properties,
+)
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .analysis_ply import AnalysisPly
 from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
@@ -117,7 +117,7 @@ class ProductionPly(ReadOnlyTreeObject, IdTreeObject):
     angle: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.angle")
     thickness: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.thickness")
 
-    mesh = mesh_property
+    mesh = full_mesh_property
     shell_mesh = shell_mesh_property
 
     elemental_data = elemental_data_property(ProductionPlyElementalData)

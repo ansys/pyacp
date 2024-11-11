@@ -29,8 +29,8 @@ from ansys.api.acp.v0 import solid_element_set_pb2, solid_element_set_pb2_grpc
 
 from .._utils.array_conversions import to_tuple_from_1D_array
 from .._utils.property_protocols import ReadOnlyProperty
+from ._elemental_or_nodal_data import ElementalData, NodalData
 from ._grpc_helpers.property_helper import grpc_data_property_read_only, mark_grpc_properties
-from ._mesh_data import ElementalData, NodalData
 from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register

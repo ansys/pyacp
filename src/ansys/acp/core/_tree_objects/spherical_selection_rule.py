@@ -29,20 +29,20 @@ from ansys.api.acp.v0 import spherical_selection_rule_pb2, spherical_selection_r
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadWriteProperty
-from ._grpc_helpers.property_helper import (
-    grpc_data_property,
-    grpc_data_property_read_only,
-    grpc_link_property,
-    mark_grpc_properties,
-)
-from ._mesh import mesh_property, shell_mesh_property
-from ._mesh_data import (
+from ._elemental_or_nodal_data import (
     ElementalData,
     NodalData,
     VectorData,
     elemental_data_property,
     nodal_data_property,
 )
+from ._grpc_helpers.property_helper import (
+    grpc_data_property,
+    grpc_data_property_read_only,
+    grpc_link_property,
+    mark_grpc_properties,
+)
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
@@ -51,7 +51,7 @@ from .rosette import Rosette
 # Workaround: these imports are needed to make sphinx_autodoc_typehints understand
 # the inherited members of the Elemental- and NodalData classes.
 import numpy as np  # noqa: F401 isort:skip
-from ._mesh_data import ScalarData  # noqa: F401 isort:skip
+from ._elemental_or_nodal_data import ScalarData  # noqa: F401 isort:skip
 
 __all__ = [
     "SphericalSelectionRule",
@@ -144,7 +144,7 @@ class SphericalSelectionRule(CreatableTreeObject, IdTreeObject):
     )
     include_rule: ReadWriteProperty[bool, bool] = grpc_data_property("properties.include_rule_type")
 
-    mesh = mesh_property
+    mesh = full_mesh_property
     shell_mesh = shell_mesh_property
     # selection rules don't have solid mesh data
     elemental_data = elemental_data_property(SphericalSelectionRuleElementalData)

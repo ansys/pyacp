@@ -30,6 +30,13 @@ from ansys.api.acp.v0 import oriented_selection_set_pb2, oriented_selection_set_
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadWriteProperty
+from ._elemental_or_nodal_data import (
+    ElementalData,
+    NodalData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from ._grpc_helpers.linked_object_list import (
     define_linked_object_list,
     define_polymorphic_linked_object_list,
@@ -40,14 +47,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
-from ._mesh import mesh_property, shell_mesh_property
-from ._mesh_data import (
-    ElementalData,
-    NodalData,
-    VectorData,
-    elemental_data_property,
-    nodal_data_property,
-)
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
 from .boolean_selection_rule import BooleanSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
@@ -274,7 +274,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         allowed_types=(LookUpTable3DColumn, LookUpTable1DColumn),
     )
 
-    mesh = mesh_property
+    mesh = full_mesh_property
     shell_mesh = shell_mesh_property
 
     elemental_data = elemental_data_property(OrientedSelectionSetElementalData)

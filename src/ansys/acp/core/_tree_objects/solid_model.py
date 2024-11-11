@@ -36,6 +36,13 @@ from ansys.api.acp.v0 import (
 )
 
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
+from ._elemental_or_nodal_data import (
+    ElementalData,
+    NodalData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from ._grpc_helpers.linked_object_list import (
     define_linked_object_list,
     define_polymorphic_linked_object_list,
@@ -50,13 +57,6 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     grpc_link_property,
     mark_grpc_properties,
-)
-from ._mesh_data import (
-    ElementalData,
-    NodalData,
-    VectorData,
-    elemental_data_property,
-    nodal_data_property,
 )
 from ._solid_model_export import SolidModelExportMixin
 from .base import (

@@ -28,6 +28,13 @@ import dataclasses
 from ansys.api.acp.v0 import interface_layer_pb2, interface_layer_pb2_grpc
 
 from .._utils.property_protocols import ReadWriteProperty
+from ._elemental_or_nodal_data import (
+    ElementalData,
+    NodalData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from ._grpc_helpers.linked_object_list import (
     define_linked_object_list,
     define_polymorphic_linked_object_list,
@@ -37,14 +44,7 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
-from ._mesh import mesh_property, shell_mesh_property
-from ._mesh_data import (
-    ElementalData,
-    NodalData,
-    VectorData,
-    elemental_data_property,
-    nodal_data_property,
-)
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
 from .element_set import ElementSet
 from .enums import status_type_from_pb
@@ -126,7 +126,7 @@ class InterfaceLayer(CreatableTreeObject, IdTreeObject):
         "properties.open_area_sets", allowed_types=(ElementSet, OrientedSelectionSet)
     )
 
-    mesh = mesh_property
+    mesh = full_mesh_property
     shell_mesh = shell_mesh_property
 
     elemental_data = elemental_data_property(InterfaceLayerElementalData)
