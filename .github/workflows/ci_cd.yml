@@ -130,6 +130,8 @@ jobs:
             server-version: "2024R2"
           - python-version: "3.12"
             server-version: "2025R1"
+          - python-version: "3.12"
+            server-version: "2025R2"
 
     steps:
       - uses: actions/checkout@v4
