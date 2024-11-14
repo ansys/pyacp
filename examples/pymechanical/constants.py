@@ -22,6 +22,3 @@
 
 COMPOSITE_DEFINITIONS_H5 = "ACPCompositeDefinitions.h5"
 MATML_FILE = "materials.xml"
-SOLID_MODEL_CDB_FILE = "SolidModel.cdb"
-SOLID_MODEL_COMPOSITE_DEFINITIONS_H5 = "SolidModel.h5"
-ACPH5_FILE = "model.acph5"

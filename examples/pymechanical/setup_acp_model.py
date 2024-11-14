@@ -21,31 +21,21 @@
 # SOFTWARE.
 
 # type: ignore
-
-import pathlib
-
-from constants import (
-    ACPH5_FILE,
-    COMPOSITE_DEFINITIONS_H5,
-    MATML_FILE,
-    SOLID_MODEL_CDB_FILE,
-    SOLID_MODEL_COMPOSITE_DEFINITIONS_H5,
-)
+from constants import COMPOSITE_DEFINITIONS_H5, MATML_FILE
 
 import ansys.acp.core as pyacp
 from ansys.acp.core._tree_objects.material.property_sets import ConstantStrainLimits
 
 
-def setup_and_update_acp_model(output_path, mesh_path):
+def setup_and_update_acp_model(output_path, mesh_path, is_local=False):
     """
     Setup basic ACP lay-up based on mesh in mesh_path, and export material and composite
     definition file to output_path.
     is_local specifies if ACP runs locally (True) or in a docker container.
     """
-
     acp = pyacp.launch_acp()
 
-    if acp.is_remote:
+    if not is_local:
         mesh_path = acp.upload_file(mesh_path)
 
     model = acp.import_model(path=mesh_path, format="ansys:h5")
@@ -63,7 +53,7 @@ def setup_and_update_acp_model(output_path, mesh_path):
     mat.engineering_constants.nu13 = 0.3
     mat.engineering_constants.nu23 = 0.3
 
-    mat.strain_limits = ConstantStrainLimits.from_orthotropic_constants(
+    mat.strain_limits = ConstantStrainLimits(
         eXc=-0.01,
         eYc=-0.01,
         eZc=-0.01,
@@ -105,34 +95,18 @@ def setup_and_update_acp_model(output_path, mesh_path):
         global_ply_nr=0,  # add at the end
     )
 
-    solid_model = model.create_solid_model(
-        element_sets=[model.element_sets["All_Elements"]],
-    )
-
     # %%
     # Update and Save the ACP model
     model.update()
 
     # To-do: Distinction probably not needed
-    if acp.is_remote:
-        export_path = pathlib.PurePosixPath(".")
-
+    if is_local:
+        model.export_shell_composite_definitions(output_path / COMPOSITE_DEFINITIONS_H5)
+        model.export_materials(output_path / MATML_FILE)
     else:
-        export_path = output_path
-
-    model.save(export_path / ACPH5_FILE)
-    model.export_shell_composite_definitions(export_path / COMPOSITE_DEFINITIONS_H5)
-    model.export_materials(export_path / MATML_FILE)
-    solid_model.export(export_path / SOLID_MODEL_CDB_FILE, format="ansys:cdb")
-    solid_model.export(export_path / SOLID_MODEL_COMPOSITE_DEFINITIONS_H5, format="ansys:h5")
-
-    for filename in [
-        ACPH5_FILE,
-        COMPOSITE_DEFINITIONS_H5,
-        MATML_FILE,
-        SOLID_MODEL_CDB_FILE,
-        SOLID_MODEL_COMPOSITE_DEFINITIONS_H5,
-    ]:
-        acp.download_file(export_path / filename, output_path / filename)
+        model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
+        model.export_materials(MATML_FILE)
+        acp.download_file(COMPOSITE_DEFINITIONS_H5, output_path / COMPOSITE_DEFINITIONS_H5)
+        acp.download_file(MATML_FILE, output_path / MATML_FILE)
 
     return model

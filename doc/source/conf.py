@@ -3,6 +3,7 @@
 from datetime import datetime
 import inspect
 import os
+import sys
 import warnings
 
 import pyvista
@@ -58,6 +59,7 @@ def _signature(
     from ansys.acp.core._typing_helper import StrEnum
     from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles  # noqa: F401
     from ansys.dpf.core import UnitSystem  # noqa: F401
+    import ansys.mechanical.core as pymechanical  # noqa: F401
 
     signature = inspect.signature(subject, locals=locals(), eval_str=True)
 
@@ -269,7 +271,9 @@ sphinx_gallery_conf = {
     # path where to save gallery generated examples
     "gallery_dirs": ["examples/gallery_examples"],
     # Pattern to search for example files
-    "filename_pattern": r"\.py",
+    "filename_pattern": (
+        r".*\.py" if sys.platform == "win32" else r"^(?!.*pymechanical.*\.py).*\.py"
+    ),  # execute PyMechanical examples only on Windows
     # Remove the "Download all examples" button from the top level gallery
     "download_all_examples": False,
     # Sort gallery example by filename instead of number of lines (default)
