@@ -125,7 +125,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
 
         self._env = copy.deepcopy(os.environ)
         self._env.update(
-            IMAGE_NAME_PYACP=config.image_name_acp,
+            IMAGE_NAME_ACP=config.image_name_acp,
             IMAGE_NAME_FILETRANSFER=config.image_name_filetransfer,
             ANSYSLMD_LICENSE_FILE=config.license_server,
         )

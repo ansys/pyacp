@@ -96,7 +96,7 @@ def launch_acp(
     else:
         raise ValueError("Invalid launch mode for ACP: " + str(launch_mode_evaluated))
 
-    acp = ACP(
+    acp = ACPInstance(
         server=server_instance,
         filetransfer_strategy=filetransfer_strategy,
         channel=server_instance.channels[ServerKey.MAIN],

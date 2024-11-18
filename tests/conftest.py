@@ -190,7 +190,7 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
             product_name="ACP",
             launch_mode=LaunchMode.DOCKER_COMPOSE,
             config=DockerComposeLaunchConfig(
-                image_name_pyacp=image_name,
+                image_name_acp=image_name,
                 image_name_filetransfer=image_name_filetransfer,
                 license_server=license_server,
                 keep_volume=False,
