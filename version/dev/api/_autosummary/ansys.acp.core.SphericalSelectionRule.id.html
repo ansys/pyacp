@@ -209,16 +209,16 @@
         <div class="navbar-item navbar-persistent--container">
           
 <div class="search-bar pst-js-only" id="search-bar">
-    <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
-             aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
-             autocapitalize="off" spellcheck="false"/>
-      <span class="search-button__kbd-shortcut">
-        <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
-      </span>
-    </form>
-    <div id="search-results" class="search-results" style="display: none;" tabindex="0"></div>
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
 </div>
         </div>
       
@@ -282,16 +282,16 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 <div class="search-bar pst-js-only" id="search-bar">
-    <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
-             aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
-             autocapitalize="off" spellcheck="false"/>
-      <span class="search-button__kbd-shortcut">
-        <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
-      </span>
-    </form>
-    <div id="search-results" class="search-results" style="display: none;" tabindex="0"></div>
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
 </div>
     </div>
   
@@ -737,7 +737,7 @@ const SEARCH_FILE = "../../_static/search.json";
   <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
     >Ansys Sphinx Theme</a
   >
-  1.2.0. <br />Last updated on
+  1.2.1. <br />Last updated on
   <span id="date"></span>
 </p>
 <script>
