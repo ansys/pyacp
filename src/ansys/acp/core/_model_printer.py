@@ -54,17 +54,18 @@ class Node:
         return ret
 
 
-
-def print_model(model: Model) -> None:
+def print_model(model: Model, *, hide_empty: bool = True) -> None:
     """Print a tree representation of the model.
 
     Parameters
     ----------
     model:
         pyACP model
+    hide_empty :
+        Whether to hide empty collections.
 
     """
-    return print(get_model_tree(model))
+    return print(get_model_tree(model, hide_empty=hide_empty))
 
 
 def get_model_tree(model: Model, *, hide_empty: bool = True) -> Node:
