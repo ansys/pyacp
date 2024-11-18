@@ -41,11 +41,13 @@ def case_model_mesh_valid(model):
     return model.mesh
 
 
-def case_other_mesh_valid(model):
+def case_other_mesh_valid(model, skip_before_version):
+    skip_before_version("25.1")
     return model.element_sets["All_Elements"].mesh
 
 
-def case_empty_mesh_invalid(model):
+def case_empty_mesh_invalid(model, skip_before_version):
+    skip_before_version("25.1")
     return model.create_element_set().mesh
 
 
