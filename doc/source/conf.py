@@ -201,6 +201,7 @@ intersphinx_mapping = {
     "pyvista": ("https://docs.pyvista.org/version/stable", None),
     "ansys-dpf-core": ("https://dpf.docs.pyansys.com/version/stable/", None),
     "ansys-dpf-composites": ("https://composites.dpf.docs.pyansys.com/version/stable/", None),
+    "ansys-mechanical-core": ("https://mechanical.docs.pyansys.com/version/stable/", None),
 }
 
 nitpick_ignore = [
