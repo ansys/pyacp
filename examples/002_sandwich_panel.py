@@ -49,7 +49,7 @@ from ansys.acp.core import (
     launch_acp,
     print_model,
 )
-from ansys.acp.core.extras.example_helpers import ExampleKeys, get_example_file
+from ansys.acp.core.extras import ExampleKeys, get_example_file
 from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, ConstantStrainLimits
 
 # sphinx_gallery_thumbnail_number = 2

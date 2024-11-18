@@ -61,7 +61,7 @@ from ansys.acp.core import (
     material_property_sets,
     print_model,
 )
-from ansys.acp.core.extras import example_helpers
+from ansys.acp.core.extras import ExampleKeys, get_example_file
 
 # sphinx_gallery_thumbnail_number = 3
 
@@ -73,9 +73,7 @@ from ansys.acp.core.extras import example_helpers
 # Get the example file from the server.
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
-input_file = example_helpers.get_example_file(
-    example_helpers.ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR
-)
+input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
 
 # %%
 # Launch the PyACP server and connect to it.

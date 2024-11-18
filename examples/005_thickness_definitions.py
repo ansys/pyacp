@@ -45,8 +45,8 @@ import pyvista
 
 # %%
 # Import the PyACP dependencies.
-from ansys.acp.core import ACPWorkflow, DimensionType, ThicknessType, example_helpers, launch_acp
-from ansys.acp.core.extras.example_helpers import ExampleKeys, get_example_file
+from ansys.acp.core import ACPWorkflow, DimensionType, ThicknessType, launch_acp
+from ansys.acp.core.extras import ExampleKeys, get_example_file
 
 # sphinx_gallery_thumbnail_number = 2
 
@@ -93,9 +93,7 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 
 # %%
 # Add the solid geometry to the model that defines the thickness.
-thickness_geometry_file = example_helpers.get_example_file(
-    example_helpers.ExampleKeys.THICKNESS_GEOMETRY, WORKING_DIR
-)
+thickness_geometry_file = get_example_file(ExampleKeys.THICKNESS_GEOMETRY, WORKING_DIR)
 thickness_geometry = workflow.add_cad_geometry_from_local_file(thickness_geometry_file)
 
 # Note: It is important to update the model here, because the root_shapes of the
