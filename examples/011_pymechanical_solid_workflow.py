@@ -83,7 +83,7 @@ import ansys.mechanical.core as pymechanical
 with ThreadPoolExecutor() as executor:
     futures = [
         executor.submit(pymechanical.launch_mechanical, batch=True),
-        executor.submit(pymechanical.launch_mechanical, batch=False),
+        executor.submit(pymechanical.launch_mechanical, batch=True),
         executor.submit(pyacp.launch_acp),
         executor.submit(pydpf_composites.server_helpers.connect_to_or_start_server),
     ]
