@@ -29,7 +29,7 @@ from ansys.tools.local_product_launcher.interface import FALLBACK_LAUNCH_MODE_NA
 from ansys.tools.local_product_launcher.launch import launch_product
 
 from .acp_instance import (
-    ACP,
+    ACPInstance,
     FiletransferStrategy,
     LocalFileTransferStrategy,
     RemoteFileTransferStrategy,
@@ -45,7 +45,7 @@ def launch_acp(
     config: DirectLaunchConfig | DockerComposeLaunchConfig | None = None,
     launch_mode: LaunchMode | None = None,
     timeout: float | None = 30.0,
-) -> ACP[ControllableServerProtocol]:
+) -> ACPInstance[ControllableServerProtocol]:
     """Launch an ACP instance.
 
     Launch the ACP gRPC server with the given configuration. If no

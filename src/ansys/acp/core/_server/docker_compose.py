@@ -63,7 +63,7 @@ _COMPOSE_FILE_DEFAULT_KEY = "default"
 class DockerComposeLaunchConfig:
     """Configuration options for launching ACP through docker compose."""
 
-    image_name_pyacp: str = dataclasses.field(
+    image_name_acp: str = dataclasses.field(
         default="ghcr.io/ansys/acp:latest",
         metadata={METADATA_KEY_DOC: "Docker image running the ACP gRPC server."},
     )
@@ -125,7 +125,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
 
         self._env = copy.deepcopy(os.environ)
         self._env.update(
-            IMAGE_NAME_PYACP=config.image_name_pyacp,
+            IMAGE_NAME_PYACP=config.image_name_acp,
             IMAGE_NAME_FILETRANSFER=config.image_name_filetransfer,
             ANSYSLMD_LICENSE_FILE=config.license_server,
         )

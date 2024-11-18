@@ -54,7 +54,6 @@ import tempfile
 from ansys.acp.core import (
     ACPWorkflow,
     PlyType,
-    example_helpers,
     get_composite_post_processing_files,
     get_directions_plotter,
     get_dpf_unit_system,
@@ -62,6 +61,7 @@ from ansys.acp.core import (
     material_property_sets,
     print_model,
 )
+from ansys.acp.core.extras import example_helpers
 
 # sphinx_gallery_thumbnail_number = 3
 

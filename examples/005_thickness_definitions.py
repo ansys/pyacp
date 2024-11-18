@@ -46,7 +46,7 @@ import pyvista
 # %%
 # Import the PyACP dependencies.
 from ansys.acp.core import ACPWorkflow, DimensionType, ThicknessType, example_helpers, launch_acp
-from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
+from ansys.acp.core.extras.example_helpers import ExampleKeys, get_example_file
 
 # sphinx_gallery_thumbnail_number = 2
 

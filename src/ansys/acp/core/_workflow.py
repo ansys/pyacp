@@ -28,7 +28,6 @@ import typing
 from typing import Any, Protocol
 
 from . import CADGeometry, UnitSystemType
-from ._server.acp_instance import ACP
 from ._server.common import ServerProtocol
 from ._tree_objects import Model
 from ._typing_helper import PATH

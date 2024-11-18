@@ -66,7 +66,7 @@ from ._grpc_helpers.protocols import (
 from ._object_cache import ObjectCacheMixin, constructor_with_cache
 
 if typing.TYPE_CHECKING:  # pragma: no cover
-    from .._server import ACP
+    from .._server import ACPInstance
 
 
 @mark_grpc_properties
@@ -196,7 +196,7 @@ class ServerWrapper:
     version: Version
 
     @classmethod
-    def from_acp_instance(cls, acp_instance: ACP[Any]) -> ServerWrapper:
+    def from_acp_instance(cls, acp_instance: ACPInstance[Any]) -> ServerWrapper:
         """Convert an ACP instance into the wrapper needed by tree objects."""
         return cls(
             channel=acp_instance._channel, version=parse_version(acp_instance.server_version)
