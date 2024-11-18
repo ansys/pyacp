@@ -21,49 +21,49 @@
 # SOFTWARE.
 
 import os
+import textwrap
+
+from pytest_cases import parametrize_with_cases
 
 from ansys.acp.core import get_model_tree
 
 
-def test_printed_model(acp_instance, model_data_dir):
-    """
-    Test that model tree looks correct.
-    """
+def case_simple_model(acp_instance, model_data_dir):
+    input_file_path = model_data_dir / "minimal_complete_model_no_matml_link.acph5"
+    model = acp_instance.import_model(name="minimal_complete", path=input_file_path)
+    model.update()
+    return model, textwrap.dedent(
+        """\
+        'minimal_complete'
+            Materials
+                'Structural Steel'
+            Fabrics
+                'Fabric.1'
+            Element Sets
+                'All_Elements'
+            Edge Sets
+                'ns_edge'
+            Rosettes
+                'Global Coordinate System'
+            Oriented Selection Sets
+                'OrientedSelectionSet.1'
+            Modeling Groups
+                'ModelingGroup.1'
+                    Modeling Plies
+                        'ModelingPly.1'
+                            Production Plies
+                                'P1__ModelingPly.1'
+                                    Analysis Plies
+                                        'P1L1__ModelingPly.1'
+        """
+    )
+
+
+def case_more_objects(acp_instance, model_data_dir):
     input_file_path = model_data_dir / "minimal_complete_model_no_matml_link.acph5"
     model = acp_instance.import_model(name="minimal_complete", path=input_file_path)
 
     model.update()
-    tree = get_model_tree(model)
-
-    assert (
-        os.linesep + str(tree)
-        == """
-Model
-    Material Data
-        Materials
-            Structural Steel
-        Fabrics
-            Fabric.1
-    Element Sets
-        All_Elements
-    Edge Sets
-        ns_edge
-    Geometry
-    Rosettes
-        Global Coordinate System
-    Lookup Tables
-    Selection Rules
-    Oriented Selection Sets
-        OrientedSelectionSet.1
-    Modeling Groups
-        ModelingGroup.1
-            ModelingPly.1
-                ProductionPly
-                    P1L1__ModelingPly.1
-""".replace(
-            "\n", os.linesep
-        )
-    )
 
     model.create_edge_set()
     model.create_stackup()
@@ -80,61 +80,70 @@ Model
     model.create_lookup_table_3d()
     model.create_sensor()
 
+    return model, textwrap.dedent(
+        """\
+        'minimal_complete'
+            Materials
+                'Structural Steel'
+            Fabrics
+                'Fabric.1'
+            Stackups
+                'Stackup'
+            Sublaminates
+                'SubLaminate'
+            Element Sets
+                'All_Elements'
+            Edge Sets
+                'ns_edge'
+                'EdgeSet'
+            Cad Geometries
+                'CADGeometry'
+            Virtual Geometries
+                'VirtualGeometry'
+            Rosettes
+                'Global Coordinate System'
+            Lookup Tables 1d
+                'LookUpTable1D'
+                    Columns
+                        'Location'
+            Lookup Tables 3d
+                'LookUpTable3D'
+                    Columns
+                        'Location'
+            Parallel Selection Rules
+                'ParallelSelectionrule'
+            Cylindrical Selection Rules
+                'CylindricalSelectionrule'
+            Tube Selection Rules
+                'TubeSelectionrule'
+            Cutoff Selection Rules
+                'CutoffSelectionrule'
+            Geometrical Selection Rules
+                'GeometricalSelectionrule'
+            Boolean Selection Rules
+                'BooleanSelectionrule'
+            Oriented Selection Sets
+                'OrientedSelectionSet.1'
+            Modeling Groups
+                'ModelingGroup.1'
+                    Modeling Plies
+                        'ModelingPly.1'
+                            Production Plies
+                                'P1__ModelingPly.1'
+                                    Analysis Plies
+                                        'P1L1__ModelingPly.1'
+            Sensors
+                'Sensor'
+        """
+    )
+
+
+@parametrize_with_cases("model,expected", cases=".", glob="*")
+def test_printed_model(model, expected):
+    """
+    Test that model tree looks correct.
+    """
+
     tree = get_model_tree(model)
 
-    assert (
-        os.linesep + str(tree)
-        == """
-Model
-    Material Data
-        Materials
-            Structural Steel
-        Fabrics
-            Fabric.1
-        Stackups
-            Stackup
-        Sublaminates
-            SubLaminate
-    Element Sets
-        All_Elements
-    Edge Sets
-        ns_edge
-        EdgeSet
-    Geometry
-        Cad Geometries
-            CADGeometry
-        Virtual Geometries
-            VirtualGeometry
-    Rosettes
-        Global Coordinate System
-    Lookup Tables
-        Lookup Tables 1d
-            LookUpTable1D
-        Lookup Tables 3d
-            LookUpTable3D
-    Selection Rules
-        Parallel Selection Rules
-            ParallelSelectionrule
-        Cylindrical Selection Rules
-            CylindricalSelectionrule
-        Tube Selection Rules
-            TubeSelectionrule
-        Cutoff Selection Rules
-            CutoffSelectionrule
-        Geometrical Selection Rules
-            GeometricalSelectionrule
-        Boolean Selection Rules
-            BooleanSelectionrule
-    Oriented Selection Sets
-        OrientedSelectionSet.1
-    Modeling Groups
-        ModelingGroup.1
-            ModelingPly.1
-                ProductionPly
-                    P1L1__ModelingPly.1
-    Sensors
-        Sensor
-""".replace(
-            "\n", os.linesep
-        )
-    )
+    assert str(tree) == expected.replace("\n", os.linesep)
