@@ -36,7 +36,7 @@ PATH = Union[str, os.PathLike[str]]
 # the enum member.
 # When type checking, always use the Python 3.10 workaround, otherwise
 # the StrEnum resolves as 'Any'.
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
 
     class StrEnum(str, enum.Enum):
         """String enum."""

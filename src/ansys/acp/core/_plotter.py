@@ -25,7 +25,7 @@ from typing import TYPE_CHECKING, Any, Optional
 
 import pyvista
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from ansys.acp.core import Model
     from ansys.acp.core import MeshData
     from ansys.acp.core import VectorData

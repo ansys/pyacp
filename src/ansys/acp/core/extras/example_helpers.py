@@ -35,7 +35,7 @@ __all__ = ["ExampleKeys", "get_example_file"]
 
 from typing import TYPE_CHECKING
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from ansys.acp.core import ACPWorkflow
 
 _EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/master/pyacp/"
