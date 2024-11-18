@@ -34,207 +34,85 @@ PyMechanical solid workflow
 
     - Only the 'remote' PyMechanical mode on Windows is supported.
     - Only one ACP solid model can be loaded into Mechanical.
+    - The ``ansys.acp.core.mechanical_integration_helpers`` module will be
+      changed or removed in future versions, when the corresponding features
+      are available in PyMechanical directly.
 
+This example demonstrates how to set up a simple solid model with PyACP and
+PyMechanical:
+
+- The geometry is imported into Mechanical and meshed.
+- The mesh is exported to ACP.
+- A simple lay-up and solid model is defined in ACP.
+- The solid model is exported, to a CDB file and a composite definition file.
+- In a separate Mechanical instance, the solid model is imported.
+- Materials and plies are imported.
+- Boundary conditions are set.
+- The model is solved.
+- The results are post-processed in PyDPF Composites.
 
 """
+
+# sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_011_pymechanical_solid_workflow_thumb.png'
+
+# %%
+# Import modules and start the Ansys products
+# -------------------------------------------
+
+
+# %%
+# Import the standard library and third-party dependencies.
 
 from concurrent.futures import ThreadPoolExecutor
-import os
 import pathlib
+import tempfile
 import textwrap
 
+# %%
+# Import PyACP, PyMechanical, and PyDPF Composites.
+
+# isort: off
+
 import ansys.acp.core as pyacp
-from ansys.acp.core.mechanical_integration_helpers import (
-    export_mesh_for_acp,
-    import_acp_composite_definitions,
-    import_acp_solid_model,
-)
-from ansys.dpf.composites.composite_model import CompositeModel
-from ansys.dpf.composites.constants import FailureOutput
-from ansys.dpf.composites.data_sources import (
-    CompositeDefinitionFiles,
-    ContinuousFiberCompositesFiles,
-)
-from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxStrainCriterion
-from ansys.dpf.composites.server_helpers import connect_to_or_start_server
+import ansys.dpf.composites as pydpf_composites
 import ansys.mechanical.core as pymechanical
 
-"""
- Full composites workflow that uses 'remote' PyMechanical.
- See embedded_workflow.py for more comments.
-"""
-BATCH_MECHANICAL = True
-COMPOSITE_DEFINITIONS_H5 = "ACPCompositeDefinitions.h5"
-MATML_FILE = "materials.xml"
-SOLID_MODEL_CDB_FILE = "SolidModel.cdb"
-SOLID_MODEL_COMPOSITE_DEFINITIONS_H5 = "SolidModel.h5"
-ACPH5_FILE = "model.acph5"
-
-
-def setup_and_update_acp_model(acp: pyacp.ACP, output_path, mesh_path):
-    """
-    Setup basic ACP lay-up based on mesh in mesh_path, and export material and composite
-    definition file to output_path.
-    is_local specifies if ACP runs locally (True) or in a docker container.
-    """
-
-    if acp.is_remote:
-        mesh_path = acp.upload_file(mesh_path)
-
-    model = acp.import_model(path=mesh_path, format="ansys:h5")
-
-    mat = model.create_material(name="mat")
-
-    mat.ply_type = "regular"
-    mat.engineering_constants.E1 = 1e12
-    mat.engineering_constants.E2 = 1e11
-    mat.engineering_constants.E3 = 1e11
-    mat.engineering_constants.G12 = 1e10
-    mat.engineering_constants.G23 = 1e10
-    mat.engineering_constants.G31 = 1e10
-    mat.engineering_constants.nu12 = 0.3
-    mat.engineering_constants.nu13 = 0.3
-    mat.engineering_constants.nu23 = 0.3
-
-    mat.strain_limits = (
-        pyacp.material_property_sets.ConstantStrainLimits.from_orthotropic_constants(
-            eXc=-0.01,
-            eYc=-0.01,
-            eZc=-0.01,
-            eXt=0.01,
-            eYt=0.01,
-            eZt=0.01,
-            eSxy=0.01,
-            eSyz=0.01,
-            eSxz=0.01,
-        )
-    )
-
-    corecell_81kg_5mm = model.create_fabric(name="Corecell 81kg", thickness=0.005, material=mat)
-
-    ros = model.create_rosette(name="ros", origin=(0, 0, 0))
-
-    oss = model.create_oriented_selection_set(
-        name="oss",
-        orientation_point=(-0, 0, 0),
-        orientation_direction=(0.0, 1, 0.0),
-        element_sets=[model.element_sets["All_Elements"]],
-        rosettes=[ros],
-    )
-
-    mg = model.create_modeling_group(name="group")
-    mg.create_modeling_ply(
-        name="ply",
-        ply_material=corecell_81kg_5mm,
-        oriented_selection_sets=[oss],
-        ply_angle=45,
-        number_of_layers=1,
-        global_ply_nr=0,  # add at the end
-    )
-    mg.create_modeling_ply(
-        name="ply2",
-        ply_material=corecell_81kg_5mm,
-        oriented_selection_sets=[oss],
-        ply_angle=0,
-        number_of_layers=2,
-        global_ply_nr=0,  # add at the end
-    )
-
-    solid_model = model.create_solid_model(
-        element_sets=[model.element_sets["All_Elements"]],
-    )
-
-    # %%
-    # Update and Save the ACP model
-    model.update()
-
-    # To-do: Distinction probably not needed
-    if acp.is_remote:
-        export_path = pathlib.PurePosixPath(".")
-
-    else:
-        export_path = output_path
-
-    model.save(export_path / ACPH5_FILE)
-    model.export_shell_composite_definitions(export_path / COMPOSITE_DEFINITIONS_H5)
-    model.export_materials(export_path / MATML_FILE)
-    solid_model.export(export_path / SOLID_MODEL_CDB_FILE, format="ansys:cdb")
-    solid_model.export(export_path / SOLID_MODEL_COMPOSITE_DEFINITIONS_H5, format="ansys:h5")
-
-    for filename in [
-        ACPH5_FILE,
-        COMPOSITE_DEFINITIONS_H5,
-        MATML_FILE,
-        SOLID_MODEL_CDB_FILE,
-        SOLID_MODEL_COMPOSITE_DEFINITIONS_H5,
-    ]:
-        acp.download_file(export_path / filename, output_path / filename)
-
-    return model
-
-
-def postprocess_results(
-    rst_file, matml_file, composite_definitions_path, solid_composite_definitions_path=None
-):
-    """
-    Basic failure criteria evaluation. The evaluation expects that a DPF docker container with
-    the Composites plugin is running at port 50052.
-    """
-    # dpf_server = connect_to_or_start_server(ip="127.0.0.1", port=50052)
-    dpf_server = connect_to_or_start_server()
-
-    max_strain = MaxStrainCriterion()
-    cfc = CombinedFailureCriterion(
-        name="Combined Failure Criterion",
-        failure_criteria=[max_strain],
-    )
-
-    if solid_composite_definitions_path is not None:
-        solid_kwargs = {
-            "solid": CompositeDefinitionFiles(definition=solid_composite_definitions_path),
-        }
-    composite_model = CompositeModel(
-        composite_files=ContinuousFiberCompositesFiles(
-            rst=rst_file,
-            composite={
-                "shell": CompositeDefinitionFiles(definition=composite_definitions_path),
-                **solid_kwargs,
-            },
-            engineering_data=matml_file,
-        ),
-        server=dpf_server,
-    )
-
-    # Evaluate the failure criteria
-    output_all_elements = composite_model.evaluate_failure_criteria(cfc)
-
-    # Query and plot the results
-    irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
-
-    irf_field.plot()
-
-
-# The following lines show how to start the PyMechanical container, currently disabled because
-# a local instance is used.
-# Run the Mechanical Docker container: docker run
-# -e ANSYSLMD_LICENSE_FILE=1055@example@example.com -p 50054:10000 ghcr.io/ansys/mechanical:24.1.0
-# mechanical = pymechanical.launch_mechanical(batch=False, port=50054, start_instance=False)
-
+# %%
+# Start the ACP, Mechanical, and DPF servers. We use a ``ThreadPoolExecutor``
+# to start them in parallel.
 with ThreadPoolExecutor() as executor:
     futures = [
+        executor.submit(pymechanical.launch_mechanical, batch=True),
+        executor.submit(pymechanical.launch_mechanical, batch=False),
         executor.submit(pyacp.launch_acp),
-        executor.submit(pymechanical.launch_mechanical, batch=BATCH_MECHANICAL),
-        executor.submit(pymechanical.launch_mechanical, batch=BATCH_MECHANICAL),
+        executor.submit(pydpf_composites.server_helpers.connect_to_or_start_server),
     ]
-    acp, mechanical1, mechanical2 = (fut.result() for fut in futures)
+    mechanical_1, mechanical_2, acp, dpf = (fut.result() for fut in futures)
 
-script_dir = pathlib.Path(__file__).resolve().parent
+# %%
+# Get example input files
+# -----------------------
+#
+# Create a temporary working directory, and download the example input files
+# to this directory.
 
-mesh_path = script_dir / "pymechanical" / "output" / "mesh.h5"
-mesh_path.unlink(missing_ok=True)
+working_dir = tempfile.TemporaryDirectory()
+working_dir_path = pathlib.Path(working_dir.name)
+input_geometry = pyacp.example_helpers.get_example_file(
+    pyacp.example_helpers.ExampleKeys.CLASS40_AGDB, working_dir_path
+)
 
-geometry_file = script_dir / "pymechanical" / "geometry" / "flat_plate.agdb"
-mechanical1.run_python_script(
+
+# %%
+# Generate the mesh in PyMechanical
+# ---------------------------------
+#
+# Load the geometry into Mechanical, generate the mesh, and export it to the
+# appropriate transfer format for ACP.
+
+mesh_path = working_dir_path / "mesh.h5"
+mechanical_1.run_python_script(
+    # This script runs in the Mechanical Python environment, which uses IronPython 2.7.
     textwrap.dedent(
         f"""\
         geometry_import = Model.GeometryImportGroup.AddGeometryImport()
@@ -244,84 +122,269 @@ mechanical1.run_python_script(
         import_preferences.ProcessNamedSelections = True
         import_preferences.ProcessCoordinateSystems = True
 
-        geometry_file = {str(geometry_file)!r}
+        geometry_file = {str(input_geometry)!r}
         geometry_import.Import(
             geometry_file,
             import_format,
             import_preferences
         )
 
-        body = Model.Geometry.GetChildren(
+        for body in Model.Geometry.GetChildren(
             Ansys.Mechanical.DataModel.Enums.DataModelObjectCategory.Body, True
-        )[0]
-        body.Thickness = Quantity(0.001, "m")
+        ):
+            body.Thickness = Quantity(1e-6, "m")
+
+        hull = Model.AddNamedSelection()
+        hull.Name = "hull"
+        hull.ScopingMethod = GeometryDefineByType.Worksheet
+        # Add all faces with Z location < 0.9 m
+        hull.GenerationCriteria.Add(None)
+        hull.GenerationCriteria[0].EntityType = SelectionType.GeoFace
+        hull.GenerationCriteria[0].Operator = SelectionOperatorType.LessThan
+        hull.GenerationCriteria[0].Criterion = SelectionCriterionType.LocationZ
+        hull.GenerationCriteria[0].Value = Quantity('0.9 [m]')
+        # Remove keeltower
+        hull.GenerationCriteria.Add(None)
+        hull.GenerationCriteria[1].Action = SelectionActionType.Remove
+        hull.GenerationCriteria[1].Criterion = SelectionCriterionType.LocationX
+        hull.GenerationCriteria[1].Operator = SelectionOperatorType.RangeInclude
+        hull.GenerationCriteria[1].LowerBound = Quantity('-6.7 [m]')
+        hull.GenerationCriteria[1].UpperBound = Quantity('-5.9 [m]')
+        # Add back keeltower bottom
+        hull.GenerationCriteria.Add(None)
+        hull.GenerationCriteria[2].Criterion = SelectionCriterionType.LocationZ
+        hull.GenerationCriteria[2].Operator = SelectionOperatorType.LessThan
+        hull.GenerationCriteria[2].Value = Quantity('-0.25 [m]')
+        # Remove bulkhead
+        hull.GenerationCriteria.Add(None)
+        hull.GenerationCriteria[3].Action = SelectionActionType.Remove
+        hull.GenerationCriteria[3].Criterion = SelectionCriterionType.LocationX
+        hull.GenerationCriteria[3].Operator = SelectionOperatorType.RangeInclude
+        hull.GenerationCriteria[3].LowerBound = Quantity('-5.7 [m]')
+        hull.GenerationCriteria[3].UpperBound = Quantity('-5.6 [m]')
+        hull.Generate()
 
         Model.Mesh.GenerateMesh()
         """
     )
 )
-export_mesh_for_acp(mechanical=mechanical1, path=mesh_path)
-assert mesh_path.exists()
-mechanical1.exit(force=True)
+pyacp.mechanical_integration_helpers.export_mesh_for_acp(mechanical=mechanical_1, path=mesh_path)
 
 
-SETUP_FOLDER_NAME = "Setup"
-output_path = pathlib.Path(mechanical2.project_directory) / SETUP_FOLDER_NAME
-os.mkdir(output_path)
+# %%
+# Set up the ACP model
+# --------------------
+#
+# Setup basic ACP lay-up based on the mesh in ``mesh_path``, and export the following
+# files to ``output_path``:
+#
+# - Materials XML file
+# - Composite definitions HDF5 file
+# - Solid model composite definitions HDF5 file
+# - Solid model CDB file
 
-acp_model = setup_and_update_acp_model(acp, output_path, mesh_path)
+matml_file = "materials.xml"  # TODO: load an example materials XML file instead of defining the materials in ACP
+composite_definitions_h5 = "ACPCompositeDefinitions.h5"
+solid_model_cdb_file = "SolidModel.cdb"
+solid_model_composite_definitions_h5 = "SolidModel.h5"
 
-assert (output_path / MATML_FILE).exists()
-assert (output_path / COMPOSITE_DEFINITIONS_H5).exists()
-assert (output_path / SOLID_MODEL_COMPOSITE_DEFINITIONS_H5).exists()
 
-cdb_path = output_path / SOLID_MODEL_CDB_FILE
-h5_path = output_path / SOLID_MODEL_COMPOSITE_DEFINITIONS_H5
+mesh_path = acp.upload_file(mesh_path)
 
-with open(cdb_path, "r+", encoding="utf-8") as f:
-    cdb_content = f.read()
-    cdb_content = cdb_content.replace(",_ACP_", ",ACP_")
-    f.seek(0)
-    f.write(cdb_content)
+model = acp.import_model(path=mesh_path, format="ansys:h5")
 
-# Import geometry, mesh, and named selections into Mechanical
-import_acp_solid_model(mechanical=mechanical2, cdb_path=cdb_path)
+mat = model.create_material(name="mat")
 
-# Import materials into Mechanical
-mechanical2.run_python_script(f"Model.Materials.Import({str(output_path / MATML_FILE)!r})")
+mat.ply_type = "regular"
+mat.engineering_constants.E1 = 1e12
+mat.engineering_constants.E2 = 1e11
+mat.engineering_constants.E3 = 1e11
+mat.engineering_constants.G12 = 1e10
+mat.engineering_constants.G23 = 1e10
+mat.engineering_constants.G31 = 1e10
+mat.engineering_constants.nu12 = 0.3
+mat.engineering_constants.nu13 = 0.3
+mat.engineering_constants.nu23 = 0.3
 
-# Import plies into Mechanical
-import_acp_composite_definitions(
-    mechanical=mechanical2, path=output_path / SOLID_MODEL_COMPOSITE_DEFINITIONS_H5
+mat.strain_limits = pyacp.material_property_sets.ConstantStrainLimits.from_orthotropic_constants(
+    eXc=-0.01,
+    eYc=-0.01,
+    eZc=-0.01,
+    eXt=0.01,
+    eYt=0.01,
+    eZt=0.01,
+    eSxy=0.01,
+    eSyz=0.01,
+    eSxz=0.01,
 )
 
+corecell_81kg_5mm = model.create_fabric(name="Corecell 81kg", thickness=0.005, material=mat)
+
+ros = model.create_rosette(name="ros", origin=(0, 0, 0))
+
+oss = model.create_oriented_selection_set(
+    name="oss",
+    orientation_point=(-0, 0, 0),
+    orientation_direction=(0.0, 1, 0.0),
+    element_sets=[model.element_sets["All_Elements"]],
+    rosettes=[ros],
+)
+
+mg = model.create_modeling_group(name="group")
+mg.create_modeling_ply(
+    name="ply",
+    ply_material=corecell_81kg_5mm,
+    oriented_selection_sets=[oss],
+    ply_angle=45,
+    number_of_layers=1,
+    global_ply_nr=0,  # add at the end
+)
+mg.create_modeling_ply(
+    name="ply2",
+    ply_material=corecell_81kg_5mm,
+    oriented_selection_sets=[oss],
+    ply_angle=0,
+    number_of_layers=2,
+    global_ply_nr=0,  # add at the end
+)
+
+solid_model = model.create_solid_model(
+    element_sets=[model.element_sets["hull"]],
+)
+
+# %%
+# Update and Save the ACP model
+# -----------------------------
+
+model.update()
+
+if acp.is_remote:
+    export_path = pathlib.PurePosixPath(".")
+
+else:
+    export_path = working_dir_path  # type: ignore
+
+model.export_shell_composite_definitions(
+    export_path / composite_definitions_h5
+)  # used for post-processing
+model.export_materials(export_path / matml_file)
+solid_model.export(export_path / solid_model_cdb_file, format="ansys:cdb")
+solid_model.export(export_path / solid_model_composite_definitions_h5, format="ansys:h5")
+
+for filename in [
+    composite_definitions_h5,
+    matml_file,
+    solid_model_cdb_file,
+    solid_model_composite_definitions_h5,
+]:
+    acp.download_file(export_path / filename, working_dir_path / filename)
+
+
+# %%
+# Import mesh, materials and plies into Mechanical
+# ------------------------------------------------
+#
+# Import geometry, mesh, and named selections into Mechanical
+
+pyacp.mechanical_integration_helpers.import_acp_solid_model(
+    mechanical=mechanical_2, cdb_path=working_dir_path / solid_model_cdb_file
+)
+
+
+# %%
+# Import materials into Mechanical
+
+mechanical_2.run_python_script(f"Model.Materials.Import({str(working_dir_path / matml_file)!r})")
+
+# %%
+# Import plies into Mechanical
+
+pyacp.mechanical_integration_helpers.import_acp_composite_definitions(
+    mechanical=mechanical_2, path=working_dir_path / solid_model_composite_definitions_h5
+)
+
+
+# %%
 # Set boundary condition and solve
-mechanical2.run_python_script(
+# ---------------------------------
+#
+# Set boundary condition and solve
+
+mechanical_2.run_python_script(
     textwrap.dedent(
         """\
         analysis = Model.AddStaticStructuralAnalysis()
 
-        ns_by_name = {ns.Name: ns for ns in Model.NamedSelections.Children}
+        front_face = Model.AddNamedSelection()
+        front_face.Name = "front_face"
+        front_face.ScopingMethod = GeometryDefineByType.Worksheet
+        front_face.GenerationCriteria.Add(None)
+        front_face.GenerationCriteria[0].EntityType = SelectionType.GeoFace
+        front_face.GenerationCriteria[0].Criterion = SelectionCriterionType.LocationX
+        front_face.GenerationCriteria[0].Operator = SelectionOperatorType.Largest
+        front_face.Generate()
+
+        back_face = Model.AddNamedSelection()
+        back_face.Name = "back_face"
+        back_face.ScopingMethod = GeometryDefineByType.Worksheet
+        back_face.GenerationCriteria.Add(None)
+        back_face.GenerationCriteria[0].EntityType = SelectionType.GeoFace
+        back_face.GenerationCriteria[0].Criterion = SelectionCriterionType.LocationX
+        back_face.GenerationCriteria[0].Operator = SelectionOperatorType.Smallest
+        back_face.Generate()
 
         fixed_support = analysis.AddFixedSupport()
-        fixed_support.Location = ns_by_name["ACP_SOLIDMODEL_4_WALL"]
+        fixed_support.Location = back_face
 
         force = analysis.AddForce()
         force.DefineBy = LoadDefineBy.Components
         force.XComponent.Output.SetDiscreteValue(0, Quantity(1e5, "N"))
-        force.Location = ns_by_name["ACP_SOLIDMODEL_2_WALL"]
+        force.Location = front_face
 
         analysis.Solve(True)
         """
     )
 )
 
-rst_file = [filename for filename in mechanical2.list_files() if filename.endswith(".rst")][0]
-matml_out = [filename for filename in mechanical2.list_files() if filename.endswith("MatML.xml")][0]
+rst_file = [filename for filename in mechanical_2.list_files() if filename.endswith(".rst")][0]
+matml_out = [filename for filename in mechanical_2.list_files() if filename.endswith("MatML.xml")][
+    0
+]
 
-postprocess_results(
-    rst_file=rst_file,
-    matml_file=matml_out,
-    composite_definitions_path=output_path / COMPOSITE_DEFINITIONS_H5,
-    solid_composite_definitions_path=output_path / SOLID_MODEL_COMPOSITE_DEFINITIONS_H5,
+# %%
+# Postprocess results
+# -------------------
+#
+# Evaluate the failure criteria using the PyDPF Composites.
+
+max_strain = pydpf_composites.failure_criteria.MaxStrainCriterion()
+cfc = pydpf_composites.failure_criteria.CombinedFailureCriterion(
+    name="Combined Failure Criterion",
+    failure_criteria=[max_strain],
 )
+
+composite_model = pydpf_composites.composite_model.CompositeModel(
+    composite_files=pydpf_composites.data_sources.ContinuousFiberCompositesFiles(
+        rst=rst_file,
+        composite={
+            "shell": pydpf_composites.data_sources.CompositeDefinitionFiles(
+                definition=working_dir_path / composite_definitions_h5
+            ),
+            "solid": pydpf_composites.data_sources.CompositeDefinitionFiles(
+                definition=working_dir_path / solid_model_composite_definitions_h5
+            ),
+        },
+        engineering_data=working_dir_path / matml_file,
+    ),
+    server=dpf,
+)
+
+# Evaluate the failure criteria
+output_all_elements = composite_model.evaluate_failure_criteria(cfc)
+
+# Query and plot the results
+irf_field = output_all_elements.get_field(
+    {"failure_label": pydpf_composites.constants.FailureOutput.FAILURE_VALUE}
+)
+
+irf_field.plot()

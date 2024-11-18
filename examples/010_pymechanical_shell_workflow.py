@@ -139,9 +139,8 @@ pyacp.mechanical_integration_helpers.export_mesh_for_acp(mechanical=mechanical, 
 # Set up the ACP model
 # --------------------
 #
-# Setup basic ACP lay-up based on mesh in mesh_path, and export material and composite
+# Setup basic ACP lay-up based on the mesh in ``mesh_path``, and export material and composite
 # definition file to output_path.
-# is_local specifies if ACP runs locally (True) or in a docker container.
 
 composite_definitions_h5 = "ACPCompositeDefinitions.h5"
 matml_file = "materials.xml"  # TODO: load an example materials XML file instead of defining the materials in ACP
@@ -233,8 +232,7 @@ for filename in [
 #
 # Import materials into Mechanical
 
-import_material_cmd = f"Model.Materials.Import({str(working_dir_path / matml_file)!r})"
-result = mechanical.run_python_script(import_material_cmd)
+mechanical.run_python_script(f"Model.Materials.Import({str(working_dir_path / matml_file)!r})")
 
 # %%
 # Import plies into Mechanical
