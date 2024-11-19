@@ -38,7 +38,6 @@ Mesh data objects
     SolidModelNodalData
     SphericalSelectionRuleElementalData
     SphericalSelectionRuleNodalData
-    TriangleMesh
     TubeSelectionRuleElementalData
     TubeSelectionRuleNodalData
     VariableOffsetSelectionRuleElementalData
