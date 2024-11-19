@@ -1,3 +1,5 @@
+"""Plot the geometry of a model in ACP."""
+
 import tempfile
 import pathlib
 import ansys.acp.core as pyacp
