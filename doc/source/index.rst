@@ -80,10 +80,12 @@ Limitations
   The workflow from PyACP to (Py)MADL ignores field definitions.
 * The PyACP to PyMADL workflow does not fully support variable materials.
 * The PyACP to PyMechanical workflow is experimental and has the following limitations:
-    * It only works on Windows, with a remote (not embedded) PyMechanical session.
-    * Only one ACP model is supported at a time.
-    * Only one ACP solid model is supported at a time.
-    * Named selections defined in ACP are not transferred to PyMechanical.
+
+  * It only works on Windows, with a remote (not embedded) PyMechanical session.
+  * Only one ACP model is supported at a time.
+  * Only one ACP solid model is supported at a time.
+  * Named selections defined in ACP are not transferred to PyMechanical.
+
 * Visualization and mesh data of imported plies are not supported yet.
 * Section cuts cannot be visualized.
 * Sampling point analysis data is not available.

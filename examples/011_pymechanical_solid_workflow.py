@@ -28,17 +28,7 @@
 PyMechanical solid workflow
 ===========================
 
-.. warning::
-
-    The PyACP / PyMechanical integration is still experimental:
-
-    - Only the 'remote' PyMechanical mode on Windows is supported.
-    - Only one ACP solid model can be loaded into Mechanical.
-    - The ``ansys.acp.core.mechanical_integration_helpers`` module will be
-      changed or removed in future versions, when the corresponding features
-      are available in PyMechanical directly.
-
-This example demonstrates how to set up a simple solid model with PyACP and
+This example shows how to set up a simple solid model with PyACP and
 PyMechanical:
 
 - The geometry is imported into Mechanical and meshed.
@@ -51,9 +41,17 @@ PyMechanical:
 - The model is solved.
 - The results are post-processed in PyDPF Composites.
 
-"""
+.. warning::
 
-# sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_011_pymechanical_solid_workflow_thumb.png'
+    The PyACP / PyMechanical integration is still experimental:
+
+    - Only the 'remote' PyMechanical mode on Windows is supported.
+    - Only one ACP solid model can be loaded into Mechanical.
+    - The ``ansys.acp.core.mechanical_integration_helpers`` module will be
+      changed or removed in future versions, when the corresponding features
+      are available in PyMechanical directly.
+
+"""
 
 # %%
 # Import modules and start the Ansys products
@@ -76,6 +74,8 @@ import textwrap
 import ansys.acp.core as pyacp
 import ansys.dpf.composites as pydpf_composites
 import ansys.mechanical.core as pymechanical
+
+# sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_011_pymechanical_solid_workflow_thumb.png'
 
 # %%
 # Start the ACP, Mechanical, and DPF servers. We use a ``ThreadPoolExecutor``
