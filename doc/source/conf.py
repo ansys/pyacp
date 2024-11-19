@@ -282,6 +282,11 @@ sphinx_gallery_conf = {
     "ignore_pattern": r"__init__\.py",
     "thumbnail_size": (350, 350),
     "remove_config_comments": True,
+    # directory where function/class granular galleries are stored
+    "backreferences_dir": "api/_gallery_backreferences",
+    # Modules for which function/class level galleries are created.
+    "doc_module": ("ansys.acp.core"),
+    "exclude_implicit_doc": {"ansys\\.acp\\.core\\._.*"},  # ignore private submodules
 }
 
 # Favicon
