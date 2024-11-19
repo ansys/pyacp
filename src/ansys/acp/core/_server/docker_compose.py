@@ -174,7 +174,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
             }
 
             env = collections.ChainMap(
-                {"PORT_PYACP": str(port_acp), "PORT_FILETRANSFER": str(port_ft)}, self._env
+                {"PORT_ACP": str(port_acp), "PORT_FILETRANSFER": str(port_ft)}, self._env
             )
 
             # The compose_file may be temporary, in particular if the package is a zipfile.

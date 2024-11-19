@@ -6,7 +6,7 @@ services:
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
     ports:
-      - "${PORT_PYACP:-50555}:50051"
+      - "${PORT_ACP:-50555}:50051"
     working_dir: /home/container/workdir
     volumes:
       - "acp_data:/home/container/workdir/"
