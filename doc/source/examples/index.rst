@@ -1,25 +1,32 @@
 .. _ref_examples:
 
-..
-   Add links to the gallery examples which would otherwise cause a warning due
-   to missing references
+========
+Examples
+========
 
-.. jinja:: conditional_skip
+ACP modeling features
+=====================
 
-   {% if skip_gallery %}
-   .. _sphx_glr_examples_gallery_examples_001_basic_flat_plate.py:
+These examples show how to use PyACP for defining composite layups.
 
-   {% endif %}
+.. include:: modeling_features/index.rst
+   :start-line: 2
 
-   ========
-   Examples
-   ========
 
-   {% if not skip_gallery %}
-   .. include:: gallery_examples/index.rst
-      :start-line: 2
-   {% else %}
-   .. note::
+Workflow examples
+=================
 
-      The gallery examples are not included in this build of the documentation.
-   {% endif %}
+These examples show how to combine PyACP with other tools to create a full
+simulation workflow.
+
+.. include:: workflows/index.rst
+   :start-line: 2
+
+Use case examples
+=================
+
+These examples can serve as an inspiration for how you can tackle your own
+use cases with PyACP.
+
+.. include:: use_cases/index.rst
+   :start-line: 2

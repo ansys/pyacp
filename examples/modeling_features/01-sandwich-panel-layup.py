@@ -21,14 +21,14 @@
 # SOFTWARE.
 
 """
-.. _basic_sandwich_panel:
+.. _sandwich_panel:
 
-Basic sandwich panel example
-============================
+Sandwich panel example
+======================
 
 This example defines a composite lay-up for a sandwich panel using PyACP.
 It only shows the PyACP part of the setup. For a complete composite analysis,
-see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
+see :ref:`pymapdl_workflow_example`.
 """
 
 # %%# Import modules

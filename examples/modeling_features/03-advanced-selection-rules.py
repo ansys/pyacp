@@ -21,18 +21,18 @@
 # SOFTWARE.
 
 """
-.. _advanced_rules_example:
+.. _advanced_selection_rules_example:
 
-Advanced rules example
-======================
+Advanced selection rules example
+================================
 
 This example shows how to use advanced rules, including the geometrical,
 cut-off, and variable offset rules. It also demonstrates how rules can be templated
 and reused with different parameters. For more basic rules, see
-:ref:`sphx_glr_examples_gallery_examples_003_basic_rules.py`.
+:ref:`basic_selection_rules_example`.
 
 This example only shows the PyACP part of the setup. For a complete composite analysis,
-see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
+see :ref:`pymapdl_workflow_example`.
 """
 
 

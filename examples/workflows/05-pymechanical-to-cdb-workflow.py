@@ -61,8 +61,7 @@ import ansys.dpf.composites as pydpf_composites
 import ansys.mapdl.core as pymapdl
 import ansys.mechanical.core as pymechanical
 
-# sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_012_pymechanical_to_cdb_workflow_thumb.png'
-# sphinx_gallery_thumbnail_number = -1
+# sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_05-pymechanical-to-cdb-workflow_thumb.png'
 
 # %%
 # Start the ACP, Mechanical, and DPF servers. We use a ``ThreadPoolExecutor``

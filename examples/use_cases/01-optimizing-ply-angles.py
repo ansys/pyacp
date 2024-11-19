@@ -23,8 +23,8 @@
 """
 .. _optimization_example:
 
-Optimization example
-====================
+Optimizing ply angles
+=====================
 
 This example demonstrates how to use the ACP, MAPDL, and DPF servers to optimize the ply
 angles in a composite lay-up. The optimization aims to minimize the maximum inverse
