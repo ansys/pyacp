@@ -1,3 +1,5 @@
+.. vale off
+
 {{ objname | escape | underline}}
 
 .. currentmodule:: {{ module }}
