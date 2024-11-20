@@ -39,7 +39,7 @@ from .._tree_objects.base import ServerWrapper
 from .._typing_helper import PATH as _PATH
 from .common import ServerProtocol
 
-__all__ = ["ACP"]
+__all__ = ["ACPInstance"]
 
 
 class FiletransferStrategy(Protocol):
@@ -81,7 +81,7 @@ class RemoteFileTransferStrategy(FiletransferStrategy):
 ServerT = TypeVar("ServerT", bound=ServerProtocol, covariant=True)
 
 
-class ACP(Generic[ServerT]):
+class ACPInstance(Generic[ServerT]):
     """Control an ACP instance.
 
     Supports the following operations to control an ACP instance:
@@ -198,10 +198,10 @@ class ACP(Generic[ServerT]):
         saving them to a file.
         """
         model_stub = model_pb2_grpc.ObjectServiceStub(self._channel)
-        for model in model_stub.List(
-            ListRequest(collection_path=CollectionPath(value=Model._COLLECTION_LABEL))
-        ).objects:
-            with wrap_grpc_errors():
+        with wrap_grpc_errors():
+            for model in model_stub.List(
+                ListRequest(collection_path=CollectionPath(value=Model._COLLECTION_LABEL))
+            ).objects:
                 model_stub.Delete(
                     DeleteRequest(
                         resource_path=model.info.resource_path, version=model.info.version

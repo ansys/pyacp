@@ -19,36 +19,11 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+"""Extras of the Ansys Composites PrepPost module."""
 
-"""Helpers for defining type annotations."""
-import enum
-import os
-from typing import TYPE_CHECKING, Union
+from ansys.acp.core.extras.example_helpers import ExampleKeys, get_example_file  # pragma: no cover
 
-__all__ = ["PATH", "StrEnum"]
-
-PATH = Union[str, os.PathLike[str]]
-
-# For Python 3.10 and below, emulate the behavior of StrEnum by
-# inheriting from str and enum.Enum.
-# Note that this does *not* work on Python 3.11+, since the default
-# Enum format method has changed and will not return the value of
-# the enum member.
-# When type checking, always use the Python 3.10 workaround, otherwise
-# the StrEnum resolves as 'Any'.
-if TYPE_CHECKING:  # pragma: no cover
-
-    class StrEnum(str, enum.Enum):
-        """String enum."""
-
-else:
-    try:
-        from enum import StrEnum
-    except ImportError:
-
-        import enum
-
-        class StrEnum(str, enum.Enum):
-            """String enum."""
-
-            pass
+__all__ = [  # pragma: no cover
+    "ExampleKeys",
+    "get_example_file",
+]

@@ -95,7 +95,7 @@ def launcher_configuration(request):
     license_server = request.config.getoption(LICENSE_SERVER_OPTION_KEY)
 
     return pyacp.DockerComposeLaunchConfig(
-        image_name_pyacp=BENCHMARK_IMAGE_NAME,
+        image_name_acp=BENCHMARK_IMAGE_NAME,
         image_name_filetransfer=image_name_filetransfer,
         compose_file=SOURCE_ROOT_DIR / "docker-compose" / "docker-compose-benchmark.yaml",
         license_server=license_server,
@@ -111,10 +111,7 @@ NETWORK_OPTIONS = [
     ServerNetworkOptions(delay_ms=0, rate_kbit=1e6),
     ServerNetworkOptions(delay_ms=1, rate_kbit=1e6),
     ServerNetworkOptions(delay_ms=10, rate_kbit=1e6),
-    # Currently disabled since the server fails to start correctly.
-    # See https://github.com/ansys/pyacp/issues/634
-    #
-    # ServerNetworkOptions(delay_ms=100, rate_kbit=1e6),
+    ServerNetworkOptions(delay_ms=100, rate_kbit=1e6),
     ServerNetworkOptions(delay_ms=0, rate_kbit=1e4),
     ServerNetworkOptions(delay_ms=0, rate_kbit=1e3),
     ServerNetworkOptions(delay_ms=0, rate_kbit=1e2),

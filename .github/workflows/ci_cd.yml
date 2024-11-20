@@ -278,7 +278,7 @@ jobs:
         run: >
           poetry run
           ansys-launcher configure ACP docker_compose
-          --image_name_pyacp=${{ env.DOCKER_IMAGE_NAME }}
+          --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False
@@ -361,7 +361,7 @@ jobs:
         run: >
           poetry run
           ansys-launcher configure ACP docker_compose
-          --image_name_pyacp=${{ env.DOCKER_IMAGE_NAME }}
+          --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False

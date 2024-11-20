@@ -27,12 +27,12 @@ PyACP enables you to design and analyze layered composite structures.
 
 import importlib.metadata
 
-from . import example_helpers, material_property_sets, mechanical_integration_helpers
+from . import material_property_sets, mechanical_integration_helpers
 from ._model_printer import get_model_tree, print_model
 from ._plotter import get_directions_plotter
 from ._recursive_copy import LinkedObjectHandling, recursive_copy
 from ._server import (
-    ACP,
+    ACPInstance,
     ConnectLaunchConfig,
     DirectLaunchConfig,
     DockerComposeLaunchConfig,
@@ -195,7 +195,7 @@ __version__ = importlib.metadata.version(__name__.replace(".", "-"))
 
 __all__ = [
     "__version__",
-    "ACP",
+    "ACPInstance",
     "ACPWorkflow",
     "AnalysisPly",
     "AnalysisPlyElementalData",
@@ -236,7 +236,6 @@ __all__ = [
     "ElementSetElementalData",
     "ElementSetNodalData",
     "ElementTechnology",
-    "example_helpers",
     "ExportSettings",
     "ExtrusionGuide",
     "ExtrusionGuideType",

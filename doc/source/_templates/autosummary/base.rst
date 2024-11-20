@@ -1,10 +1,8 @@
+.. vale off
+
 {{ name | escape | underline}}
 
 .. currentmodule:: {{ module }}
-
-.. warning::
-
-    This is an experimental feature. The API is subject to change without notice.
 
 .. auto{{ objtype }}:: {{ objname }}
 
