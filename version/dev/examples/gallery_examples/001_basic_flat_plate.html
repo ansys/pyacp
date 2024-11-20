@@ -17,17 +17,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -40,10 +42,11 @@
     <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
   
     <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
@@ -58,7 +61,7 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'examples/gallery_examples/001_basic_flat_plate';</script>
     <script>
-        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://acp.docs.pyansys.com/versions.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
@@ -70,6 +73,7 @@
     <link rel="prev" title="Examples" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.dev0" />
   <link rel="canonical" href="https://acp.docs.pyansys.com/version/stable/examples/gallery_examples/001_basic_flat_plate.html" />
   </head>
   
@@ -87,19 +91,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -107,7 +100,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -115,8 +107,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -149,7 +141,7 @@
     
     
     <img src="../../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyACP - Home"/>
-    <script>document.write(`<img src="../../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark" alt="PyACP - Home"/>`);</script>
+    <img src="../../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark pst-js-only" alt="PyACP - Home"/>
   
   
 </a></div>
@@ -224,40 +216,32 @@
       
       
         <div class="navbar-item">
-<script>
-document.write(`
-  <div class="version-switcher__container dropdown">
-    <button id="pst-version-switcher-button-2"
-      type="button"
-      class="version-switcher__button btn btn-sm dropdown-toggle"
-      data-bs-toggle="dropdown"
-      aria-haspopup="listbox"
-      aria-controls="pst-version-switcher-list-2"
-      aria-label="Version switcher list"
-    >
-      Choose version  <!-- this text may get changed later by javascript -->
-      <span class="caret"></span>
-    </button>
-    <div id="pst-version-switcher-list-2"
-      class="version-switcher__menu dropdown-menu list-group-flush py-0"
-      role="listbox" aria-labelledby="pst-version-switcher-button-2">
-      <!-- dropdown will be populated by javascript on page load -->
-    </div>
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
   </div>
-`);
-</script></div>
+</div></div>
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -328,7 +312,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -388,40 +373,32 @@ document.write(`
       <div class="sidebar-header-items__end">
         
           <div class="navbar-item">
-<script>
-document.write(`
-  <div class="version-switcher__container dropdown">
-    <button id="pst-version-switcher-button-3"
-      type="button"
-      class="version-switcher__button btn btn-sm dropdown-toggle"
-      data-bs-toggle="dropdown"
-      aria-haspopup="listbox"
-      aria-controls="pst-version-switcher-list-3"
-      aria-label="Version switcher list"
-    >
-      Choose version  <!-- this text may get changed later by javascript -->
-      <span class="caret"></span>
-    </button>
-    <div id="pst-version-switcher-list-3"
-      class="version-switcher__menu dropdown-menu list-group-flush py-0"
-      role="listbox" aria-labelledby="pst-version-switcher-button-3">
-      <!-- dropdown will be populated by javascript on page load -->
-    </div>
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
   </div>
-`);
-</script></div>
+</div></div>
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -458,6 +435,9 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="007_direction_definitions.html">Direction definition example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="008_solve_class40.html">Class 40 example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="009_optimization.html">Optimization example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_pymechanical_shell_workflow.html">PyMechanical shell workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="011_pymechanical_solid_workflow.html">PyMechanical solid workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="012_pymechanical_to_cdb_workflow.html">PyMechanical to CDB shell workflow</a></li>
 </ul>
 </div>
 </nav></div>
@@ -592,7 +572,7 @@ It automatically creates a model based on the input file.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmp4aivre4b
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmp8pvodq06
 mks
 </pre></div>
 </div>
@@ -612,6 +592,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_001_basic_flat_plate_001.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/runner/.cache/pypoetry/virtualenvs/ansys-acp-core-O77fA6pn-py3.12/lib/python3.12/site-packages/trame_vuetify/widgets/vuetify.py:495: SyntaxWarning: invalid escape sequence &#39;\|&#39;
+  &quot;&quot;&quot;
+</pre></div>
 </div>
 </section>
 <section id="define-the-composite-lay-up">
@@ -783,7 +767,7 @@ information, see <a class="reference internal" href="../../user_guide/howto/view
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">workflow</span><span class="o">.</span><span class="n">get_local_cdb_file</span><span class="p">()))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= ACP Lay-up Model.cdb  LINE=       0\n\n\n\n DO NOT WRITE ELEMENT RESULTS INTO DATABASE\n\n *GET  _WALLSTRT  FROM  ACTI  ITEM=TIME WALL  VALUE=  10.5622222    \n\n TITLE= \n wbnew--Static Structural (A5)                                                 \n\n  ACT Extensions:\n      LSDYNA, 2024.1\n      5f463412-bd3e-484b-87e7-cbc0a665e474, wbex\n /COM,     ANSYSMotion, 2024.2\n      20180725-3f81-49eb-9f31-41364844c769, wbex\n  \n\n SET PARAMETER DIMENSIONS ON  _WB_PROJECTSCRATCH_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_PROJECTSCRATCH_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\dp0\\SYS\\MECH\\\n\n SET PARAMETER DIMENSIONS ON  _WB_SOLVERFILES_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_SOLVERFILES_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\dp0\\SYS\\MECH\\\n\n SET PARAMETER DIMENSIONS ON  _WB_USERFILES_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_USERFILES_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\user_files\\\n --- Data in consistent MKS units. See Solving Units in the help system for more\n\n MKS UNITS SPECIFIED FOR INTERNAL    \n  LENGTH        (l)  = METER (M)\n  MASS          (M)  = KILOGRAM (KG)\n  TIME          (t)  = SECOND (SEC)\n  TEMPERATURE   (T)  = CELSIUS (C)\n  TOFFSET            = 273.0\n  CHARGE        (Q)  = COULOMB\n  FORCE         (f)  = NEWTON (N) (KG-M/SEC2)\n  HEAT               = JOULE (N-M)\n\n  PRESSURE           = PASCAL (NEWTON/M**2)\n  ENERGY        (W)  = JOULE (N-M)\n  POWER         (P)  = WATT (N-M/SEC)\n  CURRENT       (i)  = AMPERE (COULOMBS/SEC)\n  CAPACITANCE   (C)  = FARAD\n  INDUCTANCE    (L)  = HENRY\n  MAGNETIC FLUX      = WEBER\n  RESISTANCE    (R)  = OHM\n  ELECTRIC POTENTIAL = VOLT\n\n INPUT  UNITS ARE ALSO SET TO MKS \n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  25.2BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     10:33:44  NOV 20, 2024 CP=      0.562\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 25.2BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n *********** Nodes for the whole assembly ***********\n *********** Elements for Body 1 &quot;SYS\\Surface&quot; ***********\n *********** Send User Defined Coordinate System(s) ***********\n *********** Set Reference Temperature ***********\n *********** Send Materials ***********\n *********** Send Sheet Properties ***********\n *********** Fixed Supports ***********\n *********** Define Force Using Surface Effect Elements ***********\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.566\n\n\n --- Number of total nodes = 81\n --- Number of contact elements = 8\n --- Number of spring elements = 0\n --- Number of bearing elements = 0\n --- Number of solid elements = 64\n --- Number of condensed parts = 0\n --- Number of total elements = 72\n\n *GET  _WALLBSOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  10.5622222    \n ****************************************************************************\n *************************    SOLUTION       ********************************\n ****************************************************************************\n\n *****  MAPDL SOLUTION ROUTINE  *****\n\n\n PERFORM A STATIC ANALYSIS\n  THIS WILL BE A NEW ANALYSIS\n\n PARAMETER _THICKRATIO =     0.000000000    \n\n USE SPARSE MATRIX DIRECT SOLVER\n\n CONTACT INFORMATION PRINTOUT LEVEL       1\n\n CHECK INITIAL OPEN/CLOSED STATUS OF SELECTED CONTACT ELEMENTS\n      AND LIST DETAILED CONTACT PAIR INFORMATION\n\n SPLIT CONTACT SURFACES AT SOLVE PHASE\n\n    NUMBER OF SPLITTING TBD BY PROGRAM\n\n DO NOT COMBINE ELEMENT MATRIX FILES (.emat) AFTER DISTRIBUTED PARALLEL SOLUTION\n\n DO NOT COMBINE ELEMENT SAVE DATA FILES (.esav) AFTER DISTRIBUTED PARALLEL SOLUTION\n\n NLDIAG: Nonlinear diagnostics CONT option is set to ON. \n         Writing frequency : each ITERATION.\n\n DO NOT SAVE ANY RESTART FILES AT ALL\n ****************************************************\n ******************* SOLVE FOR LS 1 OF 1 ****************\n\n SELECT       FOR ITEM=TYPE COMPONENT=    \n  IN RANGE         2 TO          2 STEP          1\n\n          8  ELEMENTS (OF         72  DEFINED) SELECTED BY  ESEL  COMMAND.\n\n SELECT      ALL NODES HAVING ANY ELEMENT IN ELEMENT SET.\n\n          9 NODES (OF         81  DEFINED) SELECTED FROM\n        8 SELECTED ELEMENTS BY NSLE COMMAND.\n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  1   KVAL = 1\n     VALUES =     0.0000         0.0000         0.0000         0.0000    \n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  2   KVAL = 1\n     VALUES =    -10000.        -10000.        -10000.        -10000.    \n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  3   KVAL = 1\n     VALUES =     0.0000         0.0000         0.0000         0.0000    \n\n ALL SELECT   FOR ITEM=NODE COMPONENT=    \n  IN RANGE         1 TO         81 STEP          1\n\n         81  NODES (OF         81  DEFINED) SELECTED BY NSEL  COMMAND.\n\n ALL SELECT   FOR ITEM=ELEM COMPONENT=    \n  IN RANGE         1 TO         72 STEP          1\n\n         72  ELEMENTS (OF         72  DEFINED) SELECTED BY  ESEL  COMMAND.\n\n PRINTOUT RESUMED BY /GOP\n\n USE       1 SUBSTEPS INITIALLY THIS LOAD STEP FOR ALL  DEGREES OF FREEDOM\n FOR AUTOMATIC TIME STEPPING:\n   USE      1 SUBSTEPS AS A MAXIMUM\n   USE      1 SUBSTEPS AS A MINIMUM\n\n TIME=  1.0000    \n\n ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.\n\n\n WRITE ALL  ITEMS TO THE DATABASE WITH A FREQUENCY OF NONE\n   FOR ALL APPLICABLE ENTITIES\n\n WRITE NSOL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE RSOL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EANG ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE ETMP ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE VENG ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE STRS ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EPEL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EPPL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE CONT ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n *GET  ANSINTER_  FROM  ACTI  ITEM=INT        VALUE=  0.00000000    \n\n *IF  ANSINTER_  ( =   0.00000     )  NE  \n      0  ( =   0.00000     )  THEN    \n\n *ENDIF\n\n *****  MAPDL SOLVE    COMMAND  *****\n\n *** WARNING ***                         CP =       0.569   TIME= 10:33:44\n Element shape checking is currently inactive.  Issue SHPP,ON or         \n SHPP,WARN to reactivate, if desired.                                    \n\n *** NOTE ***                            CP =       0.570   TIME= 10:33:44\n The model data was checked and warning messages were found.             \n  Please review output or errors file ( /file.err ) for these warning    \n messages.                                                               \n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  25.2BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     10:33:44  NOV 20, 2024 CP=      0.570\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 25.2BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n                       S O L U T I O N   O P T I O N S\n\n   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D                  \n   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   ROTX ROTY ROTZ\n   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)\n   OFFSET TEMPERATURE FROM ABSOLUTE ZERO . . . . .  273.15    \n   EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE             \n   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  \n\n *** NOTE ***                            CP =       0.570   TIME= 10:33:44\n Poisson\&#39;s ratio PR input has been converted to NU input.                \n\n                      L O A D   S T E P   O P T I O N S\n\n   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1\n   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000    \n   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1\n   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO\n   COPY INTEGRATION POINT VALUES TO NODE . . . . .   YES\n   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT\n   DATABASE OUTPUT CONTROLS\n      ITEM     FREQUENCY   COMPONENT\n       ALL       NONE               \n      NSOL        ALL               \n      RSOL        ALL               \n      EANG        ALL               \n      ETMP        ALL               \n      VENG        ALL               \n      STRS        ALL               \n      EPEL        ALL               \n      EPPL        ALL               \n      CONT        ALL               \n\n\n SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           \n\n *** NOTE ***                            CP =       0.576   TIME= 10:33:44\n Predictor is ON by default for structural elements with rotational      \n degrees of freedom.  Use the PRED,OFF command to turn the predictor     \n OFF if it adversely affects the convergence.                            \n\n\n Range of element maximum matrix coefficients in global coordinates\n Maximum = 8.014568245E+11 at element 53.                                \n Minimum = 8.014568181E+11 at element 21.                                \n\n   *** ELEMENT MATRIX FORMULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.014   0.000218\n        2         8  SURF156       0.000   0.000031\n Time at end of element matrix formulation CP = 0.592176974.             \n\n SPARSE MATRIX DIRECT SOLVER.\n  Number of equations =         432,    Maximum wavefront =     42\n\n\n  Memory allocated on this process\n  -------------------------------------------------------------------\n  Equation solver memory allocated                     =     0.733 MB\n  Equation solver memory required for in-core mode     =     0.708 MB\n  Equation solver memory required for out-of-core mode =     0.503 MB\n  Total (solver and non-solver) memory allocated       =   538.812 MB\n\n *** NOTE ***                            CP =       0.595   TIME= 10:33:44\n The Sparse Matrix Solver is currently running in the in-core memory     \n mode.  This memory mode uses the most amount of memory in order to      \n avoid using the hard drive as much as possible, which most often        \n results in the fastest solution time.  This mode is recommended if      \n enough physical memory is present to accommodate all of the solver      \n data.                                                                   \n Sparse solver maximum pivot= 3.20582728E+12 at node 57 UX.              \n Sparse solver minimum pivot= 144881.263 at node 68 ROTY.                \n Sparse solver minimum pivot in absolute value= 144881.263 at node 68    \n ROTY.                                                                   \n\n   *** ELEMENT RESULT CALCULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.028   0.000441\n        2         8  SURF156       0.000   0.000018\n\n   *** NODAL LOAD CALCULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.001   0.000016\n        2         8  SURF156       0.000   0.000004\n *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1\n *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX\n\n\n *** MAPDL BINARY FILE STATISTICS\n  BUFFER SIZE USED= 16384\n        0.062 MB WRITTEN ON ELEMENT MATRIX FILE: file.emat\n        0.125 MB WRITTEN ON ASSEMBLED MATRIX FILE: file.full\n        0.562 MB WRITTEN ON RESULTS FILE: file.rst\n *************** Write FE CONNECTORS *********\n\n WRITE OUT CONSTRAINT EQUATIONS TO FILE= file.ce                                                                                                                                                                                                                                                             \n ****************************************************\n *************** FINISHED SOLVE FOR LS 1 *************\n\n *GET  _WALLASOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  10.5622222    \n\n PRINTOUT RESUMED BY /GOP\n\n FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.634\n\n\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  25.2BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     10:33:44  NOV 20, 2024 CP=      0.634\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 25.2BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL RESULTS INTERPRETATION (POST1) *****\n\n *** NOTE ***                            CP =       0.635   TIME= 10:33:44\n Reading results into the database (SET command) will update the current \n displacement and force boundary conditions in the database with the     \n values from the results file for that load set.  Note that any          \n subsequent solutions will use these values unless action is taken to    \n either SAVE the current values or not overwrite them (/EXIT,NOSAVE).    \n\n Set Encoding of XML File to:ISO-8859-1\n\n Set Output of XML File to:\n     PARM,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,\n         ,     ,     ,     ,     ,     ,     ,\n\n DATABASE WRITTEN ON FILE  parm.xml                                                                                                                                                                                                                                                            \n\n EXIT THE MAPDL POST1 DATABASE PROCESSOR\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.635\n\n\n\n PRINTOUT RESUMED BY /GOP\n\n *GET  _WALLDONE  FROM  ACTI  ITEM=TIME WALL  VALUE=  10.5622222    \n\n PARAMETER _PREPTIME =     0.000000000    \n\n PARAMETER _SOLVTIME =     0.000000000    \n\n PARAMETER _POSTTIME =     0.000000000    \n\n PARAMETER _TOTALTIM =     0.000000000    \n\n *GET  _DLBRATIO  FROM  ACTI  ITEM=SOLU DLBR  VALUE=  0.00000000    \n\n *GET  _COMBTIME  FROM  ACTI  ITEM=SOLU COMB  VALUE=  0.00000000    \n\n *GET  _SSMODE   FROM  ACTI  ITEM=SOLU SSMM  VALUE=  2.00000000    \n\n *GET  _NDOFS    FROM  ACTI  ITEM=SOLU NDOF  VALUE=  432.000000    \n\n *GET  _SOL_END_TIME  FROM  ACTI  ITEM=SET  TIME  VALUE=  1.00000000    \n\n *IF  _sol_end_time  ( =   1.00000     )  EQ  \n      1.000000  ( =   1.00000     )  THEN    \n\n /FCLEAN COMMAND REMOVING ALL LOCAL FILES\n\n *ENDIF\n --- Total number of nodes = 81\n --- Total number of elements = 72\n --- Element load balance ratio = 0\n --- Time to combine distributed files = 0\n --- Sparse memory mode = 2\n --- Number of DOF = 432\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= ACP Lay-up Model.cdb  LINE=       0\n\n\n\n DO NOT WRITE ELEMENT RESULTS INTO DATABASE\n\n *GET  _WALLSTRT  FROM  ACTI  ITEM=TIME WALL  VALUE=  14.8052778    \n\n TITLE= \n wbnew--Static Structural (A5)                                                 \n\n  ACT Extensions:\n      LSDYNA, 2024.1\n      5f463412-bd3e-484b-87e7-cbc0a665e474, wbex\n /COM,     ANSYSMotion, 2024.2\n      20180725-3f81-49eb-9f31-41364844c769, wbex\n  \n\n SET PARAMETER DIMENSIONS ON  _WB_PROJECTSCRATCH_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_PROJECTSCRATCH_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\dp0\\SYS\\MECH\\\n\n SET PARAMETER DIMENSIONS ON  _WB_SOLVERFILES_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_SOLVERFILES_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\dp0\\SYS\\MECH\\\n\n SET PARAMETER DIMENSIONS ON  _WB_USERFILES_DIR\n  TYPE=STRI  DIMENSIONS=      248        1        1\n\n PARAMETER _WB_USERFILES_DIR(1) = D:\\ARM_Reports\\ACP_IMP_LAY_SEC_037_01102024082855\\TBSolves\\WB_jvonrick_50936_2\\wbnew_files\\user_files\\\n --- Data in consistent MKS units. See Solving Units in the help system for more\n\n MKS UNITS SPECIFIED FOR INTERNAL    \n  LENGTH        (l)  = METER (M)\n  MASS          (M)  = KILOGRAM (KG)\n  TIME          (t)  = SECOND (SEC)\n  TEMPERATURE   (T)  = CELSIUS (C)\n  TOFFSET            = 273.0\n  CHARGE        (Q)  = COULOMB\n  FORCE         (f)  = NEWTON (N) (KG-M/SEC2)\n  HEAT               = JOULE (N-M)\n\n  PRESSURE           = PASCAL (NEWTON/M**2)\n  ENERGY        (W)  = JOULE (N-M)\n  POWER         (P)  = WATT (N-M/SEC)\n  CURRENT       (i)  = AMPERE (COULOMBS/SEC)\n  CAPACITANCE   (C)  = FARAD\n  INDUCTANCE    (L)  = HENRY\n  MAGNETIC FLUX      = WEBER\n  RESISTANCE    (R)  = OHM\n  ELECTRIC POTENTIAL = VOLT\n\n INPUT  UNITS ARE ALSO SET TO MKS \n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  25.2BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     14:48:19  NOV 20, 2024 CP=      0.578\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 25.2BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n *********** Nodes for the whole assembly ***********\n *********** Elements for Body 1 &quot;SYS\\Surface&quot; ***********\n *********** Send User Defined Coordinate System(s) ***********\n *********** Set Reference Temperature ***********\n *********** Send Materials ***********\n *********** Send Sheet Properties ***********\n *********** Fixed Supports ***********\n *********** Define Force Using Surface Effect Elements ***********\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.581\n\n\n --- Number of total nodes = 81\n --- Number of contact elements = 8\n --- Number of spring elements = 0\n --- Number of bearing elements = 0\n --- Number of solid elements = 64\n --- Number of condensed parts = 0\n --- Number of total elements = 72\n\n *GET  _WALLBSOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  14.8052778    \n ****************************************************************************\n *************************    SOLUTION       ********************************\n ****************************************************************************\n\n *****  MAPDL SOLUTION ROUTINE  *****\n\n\n PERFORM A STATIC ANALYSIS\n  THIS WILL BE A NEW ANALYSIS\n\n PARAMETER _THICKRATIO =     0.000000000    \n\n USE SPARSE MATRIX DIRECT SOLVER\n\n CONTACT INFORMATION PRINTOUT LEVEL       1\n\n CHECK INITIAL OPEN/CLOSED STATUS OF SELECTED CONTACT ELEMENTS\n      AND LIST DETAILED CONTACT PAIR INFORMATION\n\n SPLIT CONTACT SURFACES AT SOLVE PHASE\n\n    NUMBER OF SPLITTING TBD BY PROGRAM\n\n DO NOT COMBINE ELEMENT MATRIX FILES (.emat) AFTER DISTRIBUTED PARALLEL SOLUTION\n\n DO NOT COMBINE ELEMENT SAVE DATA FILES (.esav) AFTER DISTRIBUTED PARALLEL SOLUTION\n\n NLDIAG: Nonlinear diagnostics CONT option is set to ON. \n         Writing frequency : each ITERATION.\n\n DO NOT SAVE ANY RESTART FILES AT ALL\n ****************************************************\n ******************* SOLVE FOR LS 1 OF 1 ****************\n\n SELECT       FOR ITEM=TYPE COMPONENT=    \n  IN RANGE         2 TO          2 STEP          1\n\n          8  ELEMENTS (OF         72  DEFINED) SELECTED BY  ESEL  COMMAND.\n\n SELECT      ALL NODES HAVING ANY ELEMENT IN ELEMENT SET.\n\n          9 NODES (OF         81  DEFINED) SELECTED FROM\n        8 SELECTED ELEMENTS BY NSLE COMMAND.\n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  1   KVAL = 1\n     VALUES =     0.0000         0.0000         0.0000         0.0000    \n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  2   KVAL = 1\n     VALUES =    -10000.        -10000.        -10000.        -10000.    \n\n SPECIFIED SURFACE LOAD PRES FOR ALL SELECTED ELEMENTS  LKEY =  3   KVAL = 1\n     VALUES =     0.0000         0.0000         0.0000         0.0000    \n\n ALL SELECT   FOR ITEM=NODE COMPONENT=    \n  IN RANGE         1 TO         81 STEP          1\n\n         81  NODES (OF         81  DEFINED) SELECTED BY NSEL  COMMAND.\n\n ALL SELECT   FOR ITEM=ELEM COMPONENT=    \n  IN RANGE         1 TO         72 STEP          1\n\n         72  ELEMENTS (OF         72  DEFINED) SELECTED BY  ESEL  COMMAND.\n\n PRINTOUT RESUMED BY /GOP\n\n USE       1 SUBSTEPS INITIALLY THIS LOAD STEP FOR ALL  DEGREES OF FREEDOM\n FOR AUTOMATIC TIME STEPPING:\n   USE      1 SUBSTEPS AS A MAXIMUM\n   USE      1 SUBSTEPS AS A MINIMUM\n\n TIME=  1.0000    \n\n ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.\n\n\n WRITE ALL  ITEMS TO THE DATABASE WITH A FREQUENCY OF NONE\n   FOR ALL APPLICABLE ENTITIES\n\n WRITE NSOL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE RSOL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EANG ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE ETMP ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE VENG ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE STRS ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EPEL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE EPPL ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n WRITE CONT ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n *GET  ANSINTER_  FROM  ACTI  ITEM=INT        VALUE=  0.00000000    \n\n *IF  ANSINTER_  ( =   0.00000     )  NE  \n      0  ( =   0.00000     )  THEN    \n\n *ENDIF\n\n *****  MAPDL SOLVE    COMMAND  *****\n\n *** WARNING ***                         CP =       0.585   TIME= 14:48:19\n Element shape checking is currently inactive.  Issue SHPP,ON or         \n SHPP,WARN to reactivate, if desired.                                    \n\n *** NOTE ***                            CP =       0.585   TIME= 14:48:19\n The model data was checked and warning messages were found.             \n  Please review output or errors file ( /file.err ) for these warning    \n messages.                                                               \n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  25.2BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     14:48:19  NOV 20, 2024 CP=      0.586\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 25.2BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n                       S O L U T I O N   O P T I O N S\n\n   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D                  \n   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   ROTX ROTY ROTZ\n   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)\n   OFFSET TEMPERATURE FROM ABSOLUTE ZERO . . . . .  273.15    \n   EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE             \n   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  \n\n *** NOTE ***                            CP =       0.586   TIME= 14:48:19\n Poisson\&#39;s ratio PR input has been converted to NU input.                \n\n                      L O A D   S T E P   O P T I O N S\n\n   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1\n   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000    \n   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1\n   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO\n   COPY INTEGRATION POINT VALUES TO NODE . . . . .   YES\n   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT\n   DATABASE OUTPUT CONTROLS\n      ITEM     FREQUENCY   COMPONENT\n       ALL       NONE               \n      NSOL        ALL               \n      RSOL        ALL               \n      EANG        ALL               \n      ETMP        ALL               \n      VENG        ALL               \n      STRS        ALL               \n      EPEL        ALL               \n      EPPL        ALL               \n      CONT        ALL               \n\n\n SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           \n\n *** NOTE ***                            CP =       0.591   TIME= 14:48:19\n Predictor is ON by default for structural elements with rotational      \n degrees of freedom.  Use the PRED,OFF command to turn the predictor     \n OFF if it adversely affects the convergence.                            \n\n\n Range of element maximum matrix coefficients in global coordinates\n Maximum = 8.014568245E+11 at element 53.                                \n Minimum = 8.014568181E+11 at element 21.                                \n\n   *** ELEMENT MATRIX FORMULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.014   0.000218\n        2         8  SURF156       0.000   0.000030\n Time at end of element matrix formulation CP = 0.607071996.             \n\n SPARSE MATRIX DIRECT SOLVER.\n  Number of equations =         432,    Maximum wavefront =     42\n\n\n  Memory allocated on this process\n  -------------------------------------------------------------------\n  Equation solver memory allocated                     =     0.733 MB\n  Equation solver memory required for in-core mode     =     0.708 MB\n  Equation solver memory required for out-of-core mode =     0.503 MB\n  Total (solver and non-solver) memory allocated       =   542.503 MB\n\n *** NOTE ***                            CP =       0.610   TIME= 14:48:19\n The Sparse Matrix Solver is currently running in the in-core memory     \n mode.  This memory mode uses the most amount of memory in order to      \n avoid using the hard drive as much as possible, which most often        \n results in the fastest solution time.  This mode is recommended if      \n enough physical memory is present to accommodate all of the solver      \n data.                                                                   \n Sparse solver maximum pivot= 3.20582728E+12 at node 57 UX.              \n Sparse solver minimum pivot= 144881.263 at node 68 ROTY.                \n Sparse solver minimum pivot in absolute value= 144881.263 at node 68    \n ROTY.                                                                   \n\n   *** ELEMENT RESULT CALCULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.028   0.000438\n        2         8  SURF156       0.000   0.000021\n\n   *** NODAL LOAD CALCULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1        64  SHELL181      0.001   0.000016\n        2         8  SURF156       0.000   0.000004\n *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1\n *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX\n\n\n *** MAPDL BINARY FILE STATISTICS\n  BUFFER SIZE USED= 16384\n        0.062 MB WRITTEN ON ELEMENT MATRIX FILE: file.emat\n        0.125 MB WRITTEN ON ASSEMBLED MATRIX FILE: file.full\n        0.562 MB WRITTEN ON RESULTS FILE: file.rst\n *************** Write FE CONNECTORS *********\n\n WRITE OUT CONSTRAINT EQUATIONS TO FILE= file.ce                                                                                                                                                                                                                                                             \n ****************************************************\n *************** FINISHED SOLVE FOR LS 1 *************\n\n *GET  _WALLASOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  14.8052778    \n\n PRINTOUT RESUMED BY /GOP\n\n FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.648\n\n\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  25.2BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     14:48:19  NOV 20, 2024 CP=      0.648\n\n wbnew--Static Structural (A5)                                                 \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 25.2BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL RESULTS INTERPRETATION (POST1) *****\n\n *** NOTE ***                            CP =       0.649   TIME= 14:48:19\n Reading results into the database (SET command) will update the current \n displacement and force boundary conditions in the database with the     \n values from the results file for that load set.  Note that any          \n subsequent solutions will use these values unless action is taken to    \n either SAVE the current values or not overwrite them (/EXIT,NOSAVE).    \n\n Set Encoding of XML File to:ISO-8859-1\n\n Set Output of XML File to:\n     PARM,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,\n         ,     ,     ,     ,     ,     ,     ,\n\n DATABASE WRITTEN ON FILE  parm.xml                                                                                                                                                                                                                                                            \n\n EXIT THE MAPDL POST1 DATABASE PROCESSOR\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.649\n\n\n\n PRINTOUT RESUMED BY /GOP\n\n *GET  _WALLDONE  FROM  ACTI  ITEM=TIME WALL  VALUE=  14.8052778    \n\n PARAMETER _PREPTIME =     0.000000000    \n\n PARAMETER _SOLVTIME =     0.000000000    \n\n PARAMETER _POSTTIME =     0.000000000    \n\n PARAMETER _TOTALTIM =     0.000000000    \n\n *GET  _DLBRATIO  FROM  ACTI  ITEM=SOLU DLBR  VALUE=  0.00000000    \n\n *GET  _COMBTIME  FROM  ACTI  ITEM=SOLU COMB  VALUE=  0.00000000    \n\n *GET  _SSMODE   FROM  ACTI  ITEM=SOLU SSMM  VALUE=  2.00000000    \n\n *GET  _NDOFS    FROM  ACTI  ITEM=SOLU NDOF  VALUE=  432.000000    \n\n *GET  _SOL_END_TIME  FROM  ACTI  ITEM=SET  TIME  VALUE=  1.00000000    \n\n *IF  _sol_end_time  ( =   1.00000     )  EQ  \n      1.000000  ( =   1.00000     )  THEN    \n\n /FCLEAN COMMAND REMOVING ALL LOCAL FILES\n\n *ENDIF\n --- Total number of nodes = 81\n --- Total number of elements = 72\n --- Element load balance ratio = 0\n --- Time to combine distributed files = 0\n --- Sparse memory mode = 2\n --- Number of DOF = 432\n&#39;
 </pre></div>
 </div>
 <p>Solve the model.</p>
@@ -794,18 +778,18 @@ information, see <a class="reference internal" href="../../user_guide/howto/view
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
 
- *** WARNING ***                         CP =       0.642   TIME= 10:33:44
+ *** WARNING ***                         CP =       0.655   TIME= 14:48:19
  Element shape checking is currently inactive.  Issue SHPP,ON or
  SHPP,WARN to reactivate, if desired.
 
- *** NOTE ***                            CP =       0.642   TIME= 10:33:44
+ *** NOTE ***                            CP =       0.656   TIME= 14:48:19
  The model data was checked and warning messages were found.
   Please review output or errors file ( /file.err ) for these warning
  messages.
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  25.2BETA ***
  Ansys Mechanical Enterprise
- 00000000  VERSION=LINUX x64     10:33:44  NOV 20, 2024 CP=      0.642
+ 00000000  VERSION=LINUX x64     14:48:19  NOV 20, 2024 CP=      0.656
 
  wbnew--Static Structural (A5)
 
@@ -847,7 +831,7 @@ information, see <a class="reference internal" href="../../user_guide/howto/view
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       0.645   TIME= 10:33:44
+ *** NOTE ***                            CP =       0.658   TIME= 14:48:19
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -860,9 +844,9 @@ information, see <a class="reference internal" href="../../user_guide/howto/view
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1        64  SHELL181      0.013   0.000206
-        2         8  SURF156       0.000   0.000019
- Time at end of element matrix formulation CP = 0.658953011.
+        1        64  SHELL181      0.013   0.000204
+        2         8  SURF156       0.000   0.000021
+ Time at end of element matrix formulation CP = 0.672326922.
 
  SPARSE MATRIX DIRECT SOLVER.
   Number of equations =         432,    Maximum wavefront =     42
@@ -873,9 +857,9 @@ information, see <a class="reference internal" href="../../user_guide/howto/view
   Equation solver memory allocated                     =     0.733 MB
   Equation solver memory required for in-core mode     =     0.708 MB
   Equation solver memory required for out-of-core mode =     0.503 MB
-  Total (solver and non-solver) memory allocated       =   552.097 MB
+  Total (solver and non-solver) memory allocated       =   557.210 MB
 
- *** NOTE ***                            CP =       0.660   TIME= 10:33:44
+ *** NOTE ***                            CP =       0.674   TIME= 14:48:19
  The Sparse Matrix Solver is currently running in the in-core memory
  mode.  This memory mode uses the most amount of memory in order to
  avoid using the hard drive as much as possible, which most often
@@ -890,14 +874,14 @@ information, see <a class="reference internal" href="../../user_guide/howto/view
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1        64  SHELL181      0.027   0.000426
+        1        64  SHELL181      0.027   0.000428
         2         8  SURF156       0.000   0.000016
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
         1        64  SHELL181      0.001   0.000013
-        2         8  SURF156       0.000   0.000003
+        2         8  SURF156       0.000   0.000004
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
  *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
 
@@ -949,7 +933,7 @@ PyDPF Composites server, and load its plugin.</p>
 </div>
 <p>Connect to the server. The <code class="docutils literal notranslate"><span class="pre">connect_to_or_start_server</span></code> function
 automatically loads the composites plugin.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.server_types.html#ansys.dpf.core.server_types.GrpcServer" title="ansys.dpf.core.server_types.GrpcServer" class="sphx-glr-backref-module-ansys-dpf-core-server_types sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dpf_server</span></a> <span class="o">=</span> <span class="n">connect_to_or_start_server</span><span class="p">()</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">dpf_server</span> <span class="o">=</span> <span class="n">connect_to_or_start_server</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Specify the combined failure criterion.</p>
@@ -965,14 +949,14 @@ automatically loads the composites plugin.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">composite_model</span> <span class="o">=</span> <span class="n">CompositeModel</span><span class="p">(</span>
     <span class="n">get_composite_post_processing_files</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file_local_path</span></a><span class="p">),</span>
     <span class="n">default_unit_system</span><span class="o">=</span><span class="n">get_dpf_unit_system</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">),</span>
-    <span class="n">server</span><span class="o">=</span><a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.server_types.html#ansys.dpf.core.server_types.GrpcServer" title="ansys.dpf.core.server_types.GrpcServer" class="sphx-glr-backref-module-ansys-dpf-core-server_types sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dpf_server</span></a><span class="p">,</span>
+    <span class="n">server</span><span class="o">=</span><span class="n">dpf_server</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <p>Evaluate and plot the failure criteria.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.fields_container.html#ansys.dpf.core.fields_container.FieldsContainer" title="ansys.dpf.core.fields_container.FieldsContainer" class="sphx-glr-backref-module-ansys-dpf-core-fields_container sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">output_all_elements</span></a> <span class="o">=</span> <span class="n">composite_model</span><span class="o">.</span><span class="n">evaluate_failure_criteria</span><span class="p">(</span><span class="n">cfc</span><span class="p">)</span>
-<a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.field.html#ansys.dpf.core.field.Field" title="ansys.dpf.core.field.Field" class="sphx-glr-backref-module-ansys-dpf-core-field sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">irf_field</span></a> <span class="o">=</span> <a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.fields_container.html#ansys.dpf.core.fields_container.FieldsContainer.get_field" title="ansys.dpf.core.fields_container.FieldsContainer.get_field" class="sphx-glr-backref-module-ansys-dpf-core-fields_container sphx-glr-backref-type-py-method"><span class="n">output_all_elements</span><span class="o">.</span><span class="n">get_field</span></a><span class="p">({</span><span class="s2">&quot;failure_label&quot;</span><span class="p">:</span> <span class="n">FailureOutput</span><span class="o">.</span><span class="n">FAILURE_VALUE</span><span class="p">})</span>
-<a href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.field.html#ansys.dpf.core.field.Field.plot" title="ansys.dpf.core.field.Field.plot" class="sphx-glr-backref-module-ansys-dpf-core-field sphx-glr-backref-type-py-method"><span class="n">irf_field</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">output_all_elements</span> <span class="o">=</span> <span class="n">composite_model</span><span class="o">.</span><span class="n">evaluate_failure_criteria</span><span class="p">(</span><span class="n">cfc</span><span class="p">)</span>
+<span class="n">irf_field</span> <span class="o">=</span> <span class="n">output_all_elements</span><span class="o">.</span><span class="n">get_field</span><span class="p">({</span><span class="s2">&quot;failure_label&quot;</span><span class="p">:</span> <span class="n">FailureOutput</span><span class="o">.</span><span class="n">FAILURE_VALUE</span><span class="p">})</span>
+<span class="n">irf_field</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -991,7 +975,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">composite_model</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 12.018 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 16.578 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-001-basic-flat-plate-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/159a80a4f4722b7cef1e55603eddc5fc/001_basic_flat_plate.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">001_basic_flat_plate.ipynb</span></code></a></p>
@@ -1042,7 +1026,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1089,8 +1074,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
 <link rel="stylesheet" href="../../_static/css/fuse-search.css">
 

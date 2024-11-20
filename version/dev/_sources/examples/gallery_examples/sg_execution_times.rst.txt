@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**01:44.263** total execution time for 9 files **from examples/gallery_examples**:
+**01:47.791** total execution time for 12 files **from examples/gallery_examples**:
 
 .. container::
 
@@ -33,29 +33,38 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_examples_gallery_examples_009_optimization.py` (``009_optimization.py``)
-     - 00:38.874
+     - 00:39.090
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_008_solve_class40.py` (``008_solve_class40.py``)
-     - 00:26.434
+     - 00:26.597
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` (``001_basic_flat_plate.py``)
-     - 00:12.018
+     - 00:16.578
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_004_advanced_rules.py` (``004_advanced_rules.py``)
-     - 00:05.347
-     - 0.0
-   * - :ref:`sphx_glr_examples_gallery_examples_002_sandwich_panel.py` (``002_sandwich_panel.py``)
-     - 00:05.068
+     - 00:05.025
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_006_rosettes.py` (``006_rosettes.py``)
-     - 00:04.516
+     - 00:04.500
      - 0.0
-   * - :ref:`sphx_glr_examples_gallery_examples_003_basic_rules.py` (``003_basic_rules.py``)
-     - 00:04.145
+   * - :ref:`sphx_glr_examples_gallery_examples_002_sandwich_panel.py` (``002_sandwich_panel.py``)
+     - 00:04.137
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_005_thickness_definitions.py` (``005_thickness_definitions.py``)
-     - 00:04.027
+     - 00:03.993
+     - 0.0
+   * - :ref:`sphx_glr_examples_gallery_examples_003_basic_rules.py` (``003_basic_rules.py``)
+     - 00:03.981
      - 0.0
    * - :ref:`sphx_glr_examples_gallery_examples_007_direction_definitions.py` (``007_direction_definitions.py``)
-     - 00:03.833
+     - 00:03.891
+     - 0.0
+   * - :ref:`sphx_glr_examples_gallery_examples_010_pymechanical_shell_workflow.py` (``010_pymechanical_shell_workflow.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_examples_gallery_examples_011_pymechanical_solid_workflow.py` (``011_pymechanical_solid_workflow.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_examples_gallery_examples_012_pymechanical_to_cdb_workflow.py` (``012_pymechanical_to_cdb_workflow.py``)
+     - 00:00.000
      - 0.0

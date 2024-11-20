@@ -163,6 +163,57 @@
     </div>
 
 
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to set up a simple shell model with PyACP and PyMechanical:">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/images/thumb/sphx_glr_010_pymechanical_shell_workflow_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_examples_gallery_examples_010_pymechanical_shell_workflow.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">PyMechanical shell workflow</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to set up a simple solid model with PyACP and PyMechanical:">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/images/thumb/sphx_glr_011_pymechanical_solid_workflow_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_examples_gallery_examples_011_pymechanical_solid_workflow.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">PyMechanical solid workflow</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to set up a workflow that uses PyMechanical to mesh the geometry and define the load case, PyACP to define a layup, PyMAPDL to solve the model, and PyDPF Composites to post-process the results.">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/images/thumb/sphx_glr_012_pymechanical_to_cdb_workflow_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_examples_gallery_examples_012_pymechanical_to_cdb_workflow.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">PyMechanical to CDB shell workflow</div>
+    </div>
+
+
 .. thumbnail-parent-div-close
 
 .. raw:: html
@@ -182,6 +233,9 @@
    /examples/gallery_examples/007_direction_definitions
    /examples/gallery_examples/008_solve_class40
    /examples/gallery_examples/009_optimization
+   /examples/gallery_examples/010_pymechanical_shell_workflow
+   /examples/gallery_examples/011_pymechanical_solid_workflow
+   /examples/gallery_examples/012_pymechanical_to_cdb_workflow
 
 
 

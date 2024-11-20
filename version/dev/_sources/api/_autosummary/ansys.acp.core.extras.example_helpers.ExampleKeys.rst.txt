@@ -28,6 +28,7 @@ ExampleKeys
       ExampleKeys.THICKNESS_GEOMETRY
       ExampleKeys.MINIMAL_FLAT_PLATE
       ExampleKeys.OPTIMIZATION_EXAMPLE_DAT
+      ExampleKeys.CLASS40_AGDB
    
    
 
