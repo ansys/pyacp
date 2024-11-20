@@ -21,10 +21,10 @@
 # SOFTWARE.
 
 """
-.. _solve_class40_example:
+.. _advanced_pymapdl_workflow_example:
 
-Class 40 example
-================
+Advanced PyMAPDL workflow
+=========================
 
 This example shows how to define a composite lay-up with PyACP, solve the resulting
 model with PyMAPDL, and run a failure analysis with PyDPF Composites.
