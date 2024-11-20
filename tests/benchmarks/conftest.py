@@ -95,7 +95,7 @@ def launcher_configuration(request):
     license_server = request.config.getoption(LICENSE_SERVER_OPTION_KEY)
 
     return pyacp.DockerComposeLaunchConfig(
-        image_name_pyacp=BENCHMARK_IMAGE_NAME,
+        image_name_acp=BENCHMARK_IMAGE_NAME,
         image_name_filetransfer=image_name_filetransfer,
         compose_file=SOURCE_ROOT_DIR / "docker-compose" / "docker-compose-benchmark.yaml",
         license_server=license_server,

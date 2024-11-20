@@ -28,7 +28,7 @@ import typing
 from typing import Any, Protocol
 
 from . import CADGeometry, UnitSystemType
-from ._server.acp_instance import ACP
+from ._server import ACPInstance
 from ._server.common import ServerProtocol
 from ._tree_objects import Model
 from ._typing_helper import PATH
@@ -108,7 +108,7 @@ class _RemoteFileTransferStrategy:
     input files to the server.
     """
 
-    def __init__(self, local_working_directory: _LocalWorkingDir, acp: ACP[ServerProtocol]):
+    def __init__(self, local_working_directory: _LocalWorkingDir, acp: ACPInstance[ServerProtocol]):
         self._local_working_directory = local_working_directory
         self._acp_instance = acp
 
@@ -128,7 +128,7 @@ class _RemoteFileTransferStrategy:
 
 
 def _get_file_transfer_strategy(
-    acp: ACP[ServerProtocol], local_working_dir: _LocalWorkingDir
+    acp: ACPInstance[ServerProtocol], local_working_dir: _LocalWorkingDir
 ) -> _FileStrategy:
     if acp.is_remote:
         return _RemoteFileTransferStrategy(
@@ -158,14 +158,14 @@ class ACPWorkflow:
         Format of the file to load. Options are ``"acp:h5"``, ``"ansys:cdb"``,
         ``"ansys:dat"``, and ``"ansys:h5"``.
     kwargs :
-        Additional keyword arguments to pass to the :meth:`.ACP.import_model` method.
+        Additional keyword arguments to pass to the :meth:`.ACPInstance.import_model` method.
 
     """
 
     def __init__(
         self,
         *,
-        acp: ACP[ServerProtocol],
+        acp: ACPInstance[ServerProtocol],
         local_working_directory: PATH | None = None,
         local_file_path: PATH,
         file_format: str,
@@ -186,7 +186,7 @@ class ACPWorkflow:
     @classmethod
     def from_acph5_file(
         cls,
-        acp: ACP[ServerProtocol],
+        acp: ACPInstance[ServerProtocol],
         acph5_file_path: PATH,
         local_working_directory: PATH | None = None,
     ) -> "ACPWorkflow":
@@ -213,7 +213,7 @@ class ACPWorkflow:
     def from_cdb_or_dat_file(
         cls,
         *,
-        acp: ACP[ServerProtocol],
+        acp: ACPInstance[ServerProtocol],
         cdb_or_dat_file_path: PATH,
         unit_system: UnitSystemType = UnitSystemType.FROM_FILE,
         local_working_directory: PATH | None = None,

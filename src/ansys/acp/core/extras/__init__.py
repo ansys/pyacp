@@ -19,19 +19,11 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+"""Extras of the Ansys Composites PrepPost module."""
 
-from .acp_instance import ACPInstance
-from .common import LaunchMode
-from .connect import ConnectLaunchConfig
-from .direct import DirectLaunchConfig
-from .docker_compose import DockerComposeLaunchConfig
-from .launch import launch_acp
+from ansys.acp.core.extras.example_helpers import ExampleKeys, get_example_file  # pragma: no cover
 
-__all__ = [
-    "ACPInstance",
-    "ConnectLaunchConfig",
-    "DirectLaunchConfig",
-    "DockerComposeLaunchConfig",
-    "launch_acp",
-    "LaunchMode",
+__all__ = [  # pragma: no cover
+    "ExampleKeys",
+    "get_example_file",
 ]

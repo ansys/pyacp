@@ -39,7 +39,7 @@ from .._tree_objects.base import ServerWrapper
 from .._typing_helper import PATH as _PATH
 from .common import ServerProtocol
 
-__all__ = ["ACP"]
+__all__ = ["ACPInstance"]
 
 
 class FiletransferStrategy(Protocol):
@@ -81,7 +81,7 @@ class RemoteFileTransferStrategy(FiletransferStrategy):
 ServerT = TypeVar("ServerT", bound=ServerProtocol, covariant=True)
 
 
-class ACP(Generic[ServerT]):
+class ACPInstance(Generic[ServerT]):
     """Control an ACP instance.
 
     Supports the following operations to control an ACP instance:

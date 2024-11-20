@@ -61,6 +61,7 @@ from scipy.optimize import minimize
 # %%
 # Import Ansys libraries
 import ansys.acp.core as pyacp
+from ansys.acp.core.extras import ExampleKeys, get_example_file
 import ansys.dpf.composites as pydpf_composites
 import ansys.mapdl.core as pymapdl
 
@@ -97,8 +98,8 @@ workdir = pathlib.Path(tmpdir.name)
 # It returns a :class:`.ACPWorkflow` object that can be used to access the model and
 # generate the output files.
 
-input_file = pyacp.example_helpers.get_example_file(
-    example_key=pyacp.example_helpers.ExampleKeys.OPTIMIZATION_EXAMPLE_DAT,
+input_file = get_example_file(
+    example_key=ExampleKeys.OPTIMIZATION_EXAMPLE_DAT,
     working_directory=workdir,
 )
 

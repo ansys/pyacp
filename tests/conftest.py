@@ -35,7 +35,7 @@ from packaging.version import parse as parse_version
 import pytest
 
 from ansys.acp.core import (
-    ACP,
+    ACPInstance,
     ConnectLaunchConfig,
     DirectLaunchConfig,
     DockerComposeLaunchConfig,
@@ -191,7 +191,7 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
             product_name="ACP",
             launch_mode=LaunchMode.DOCKER_COMPOSE,
             config=DockerComposeLaunchConfig(
-                image_name_pyacp=image_name,
+                image_name_acp=image_name,
                 image_name_filetransfer=image_name_filetransfer,
                 license_server=license_server,
                 keep_volume=False,
@@ -209,14 +209,14 @@ def model_data_dir() -> pathlib.Path:
 
 
 @pytest.fixture(scope="session")
-def acp_instance(_configure_launcher) -> Generator[ACP[ServerProtocol], None, None]:
+def acp_instance(_configure_launcher) -> Generator[ACPInstance[ServerProtocol], None, None]:
     """Provide the currently active gRPC server."""
     yield launch_acp(timeout=SERVER_STARTUP_TIMEOUT)
 
 
 @pytest.fixture(autouse=True)
 def check_grpc_server_before_run(
-    acp_instance: ACP[ServerProtocol],
+    acp_instance: ACPInstance[ServerProtocol],
 ) -> Generator[None, None, None]:
     """Check if the server still responds before running each test, otherwise restart it."""
     try:
