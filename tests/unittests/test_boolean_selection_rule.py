@@ -22,14 +22,12 @@
 
 import pytest
 
-from ansys.acp.core import (
-    BooleanOperationType,
-    LinkedSelectionRule,
-)
+from ansys.acp.core import BooleanOperationType, LinkedSelectionRule
 from ansys.acp.core.mesh_data import (
     BooleanSelectionRuleElementalData,
     BooleanSelectionRuleNodalData,
 )
+
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
 

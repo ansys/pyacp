@@ -27,7 +27,7 @@ import pyvista
 
 if TYPE_CHECKING:
     from ansys.acp.core import Model
-    from ansys.acp.core import VectorData
+    from ansys.acp.core.mesh_data import VectorData
 
 from ansys.acp.core._utils.visualization import _replace_underscores_and_capitalize
 

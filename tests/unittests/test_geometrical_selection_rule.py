@@ -22,10 +22,7 @@
 
 import pytest
 
-from ansys.acp.core import (
-    GeometricalRuleType,
-
-)
+from ansys.acp.core import GeometricalRuleType
 from ansys.acp.core.mesh_data import (
     GeometricalSelectionRuleElementalData,
     GeometricalSelectionRuleNodalData,
