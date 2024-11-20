@@ -23,7 +23,7 @@
 import os
 
 from ._tree_objects.model import Model
-from ._utils.visualization import _replace_underscores_and_capitalize
+from ._utils.string_manipulation import replace_underscores_and_capitalize
 
 __all__ = ["Node", "print_model", "get_model_tree"]
 
@@ -60,7 +60,7 @@ def _add_tree_part(
     items = list(getattr(model, container_name).items())
     if len(items) == 0:
         return
-    container = Node(_replace_underscores_and_capitalize(container_name))
+    container = Node(replace_underscores_and_capitalize(container_name))
     tree.children.append(container)
     for entity_name, entity in items:
         group_node = Node(entity_name)

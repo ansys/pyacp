@@ -23,17 +23,20 @@
 from __future__ import annotations
 
 import dataclasses
+import typing
 
 import numpy as np
 import numpy.typing as npt
 from packaging.version import parse as parse_version
-from pyvista.core.pointset import UnstructuredGrid
+
+if typing.TYPE_CHECKING:  # pragma: no cover
+    from pyvista.core.pointset import UnstructuredGrid
 
 from ansys.api.acp.v0 import base_pb2, mesh_query_pb2, mesh_query_pb2_grpc
 
 from .._utils.array_conversions import to_numpy
 from .._utils.property_protocols import ReadOnlyProperty
-from .._utils.visualization import to_pyvista_faces, to_pyvista_types
+from .._utils.pyvista_import_check import requires_pyvista
 from .base import TreeObject
 
 __all__ = [
@@ -55,8 +58,13 @@ class MeshData:
     element_nodes: npt.NDArray[np.int32]
     element_nodes_offsets: npt.NDArray[np.int32]
 
+    @requires_pyvista
     def to_pyvista(self) -> UnstructuredGrid:
         """Convert the mesh data to a PyVista mesh."""
+        from pyvista.core.pointset import UnstructuredGrid
+
+        from .._utils.visualization import to_pyvista_faces, to_pyvista_types
+
         return UnstructuredGrid(
             to_pyvista_faces(
                 element_types=self.element_types,

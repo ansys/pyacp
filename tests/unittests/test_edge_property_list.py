@@ -28,7 +28,7 @@ import tempfile
 import pytest
 
 from ansys.acp.core import Fabric, Lamina, SubLaminate
-from ansys.acp.core._typing_helper import PATH
+from ansys.acp.core._utils.typing_helper import PATH
 
 
 @pytest.fixture

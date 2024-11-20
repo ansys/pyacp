@@ -56,9 +56,6 @@ def _get_default_license_server() -> str:
         return ""
 
 
-_COMPOSE_FILE_DEFAULT_KEY = "default"
-
-
 @dataclasses.dataclass
 class DockerComposeLaunchConfig:
     """Configuration options for launching ACP through docker compose."""

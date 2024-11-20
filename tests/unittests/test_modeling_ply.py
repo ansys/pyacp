@@ -23,7 +23,6 @@
 import numpy as np
 import numpy.testing
 import pytest
-import pyvista
 
 from ansys.acp.core import (
     BooleanOperationType,
@@ -342,7 +341,10 @@ def test_nodal_data(simple_modeling_ply):
     )
 
 
+@pytest.mark.plotting
 def test_elemental_data_to_pyvista(minimal_complete_model, simple_modeling_ply):
+    import pyvista
+
     elemental_data = simple_modeling_ply.elemental_data
     pv_mesh = elemental_data.get_pyvista_mesh(mesh=minimal_complete_model.mesh)
     assert isinstance(pv_mesh, pyvista.core.pointset.UnstructuredGrid)
@@ -350,10 +352,13 @@ def test_elemental_data_to_pyvista(minimal_complete_model, simple_modeling_ply):
     assert pv_mesh.n_cells == 1
 
 
+@pytest.mark.plotting
 @pytest.mark.parametrize("component", [e.value for e in ElementalDataType])
 def test_elemental_data_to_pyvista_with_component(
     minimal_complete_model, simple_modeling_ply, component
 ):
+    import pyvista
+
     data = simple_modeling_ply.elemental_data
     if not hasattr(data, component):
         pytest.skip(f"Modeling Ply elemental data does not contain component '{component}'")
@@ -384,6 +389,8 @@ def test_elemental_data_to_pyvista_with_component(
 
 
 def test_nodal_data_to_pyvista(minimal_complete_model, simple_modeling_ply):
+    import pyvista
+
     data = simple_modeling_ply.nodal_data
     pv_mesh = data.get_pyvista_mesh(mesh=minimal_complete_model.mesh)
     assert isinstance(pv_mesh, pyvista.core.pointset.UnstructuredGrid)
@@ -391,10 +398,13 @@ def test_nodal_data_to_pyvista(minimal_complete_model, simple_modeling_ply):
     assert pv_mesh.n_cells == 1
 
 
+@pytest.mark.plotting
 @pytest.mark.parametrize("component", [e.value for e in NodalDataType])
 def test_nodal_data_to_pyvista_with_component(
     minimal_complete_model, simple_modeling_ply, component
 ):
+    import pyvista
+
     data = simple_modeling_ply.nodal_data
     if not hasattr(data, component):
         pytest.skip(f"Modeling Ply nodal data does not contain component '{component}'")

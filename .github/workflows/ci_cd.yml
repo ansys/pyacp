@@ -117,6 +117,87 @@ jobs:
           python-package-name: 'ansys-acp-core'
           dev-mode: ${{ github.ref != 'refs/heads/main' }}
 
+  testing-minimum-deps:
+    name: Testing with minimum dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+        server-version: ["latest"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pip cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}-testing-minimum-deps
+          restore-keys: |
+            pip-${{ runner.os }}-${{ matrix.python-version }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: |
+            3.10
+            ${{ matrix.python-version }}
+
+      - name: Install library, with only the 'main' group
+        run: |
+          pip install -U pip
+          pip install 'poetry!=1.7.0'
+          poetry install --only main
+
+      - name: Check that PyACP can be imported
+        run: |
+          poetry run python -c "import ansys.acp.core"
+
+      - name: Install the 'test' group
+        run: |
+          poetry install --with test
+
+      - name: Build API package from custom branch
+        if: "${{ env.API_BRANCH != '' }}"
+        run: |
+          python3.10 -m venv .api_builder_venv
+          . .api_builder_venv/bin/activate
+          python -m pip install --upgrade pip wheel
+          mkdir .api_package
+          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ env.API_BRANCH }}
+
+      - name: Install custom API branch package
+        if: "${{ env.API_BRANCH != '' }}"
+        # The --no-deps flag is added since this may cause dependency conflicts with
+        # other transitive dependencies. For example, when a newer version of protobuf
+        # is installed.
+        run: |
+          poetry run pip install --no-deps --force-reinstall .api_package/*.whl
+
+      - name: Login in Github Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Unit testing
+        working-directory: tests/unittests
+        run: |
+          docker pull $IMAGE_NAME
+          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html -m "not plotting"
+        env:
+          LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
+          IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
+
+      - name: "Upload coverage to Codecov"
+        uses: codecov/codecov-action@v5
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          files: coverage.xml
+          flags: 'server-${{ matrix.server-version }},python-${{ matrix.python-version }},minimum-deps'
+
   testing:
     name: Testing
     runs-on: ubuntu-latest
@@ -431,7 +512,7 @@ jobs:
   build:
     name: Build library
     runs-on: ubuntu-latest
-    needs: [code-style, testing, doc-style, docs, build-wheelhouse, doctest] # TODO: add check-vulnerabilities once we know it works on main
+    needs: [code-style, testing, testing-minimum-deps, doc-style, docs, build-wheelhouse, doctest] # TODO: add check-vulnerabilities once we know it works on main
     timeout-minutes: 30
     steps:
       - name: Build library source and wheel artifacts

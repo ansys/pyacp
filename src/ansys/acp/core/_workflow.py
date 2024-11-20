@@ -31,7 +31,7 @@ from . import CADGeometry, UnitSystemType
 from ._server import ACPInstance
 from ._server.common import ServerProtocol
 from ._tree_objects import Model
-from ._typing_helper import PATH
+from ._utils.typing_helper import PATH
 
 # Avoid dependencies on pydpf-composites and dpf-core if it is not used
 if typing.TYPE_CHECKING:  # pragma: no cover
