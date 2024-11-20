@@ -23,7 +23,8 @@
 from numpy.testing import assert_equal
 import pytest
 
-from ansys.acp.core import AnalysisPlyElementalData, AnalysisPlyNodalData, FabricWithAngle, Model
+from ansys.acp.core.mesh_data import AnalysisPlyElementalData, AnalysisPlyNodalData
+from ansys.acp.core import FabricWithAngle, Model
 
 from .common.tree_object_tester import TreeObjectTesterReadOnly
 

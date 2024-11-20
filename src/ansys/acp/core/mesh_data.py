@@ -19,8 +19,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
-"""Move mesh_data into separate namespace
+"""Move mesh_data into separate namespace.
 
 Remove classes and function which are not used by the public API
 into a separate namespace.
