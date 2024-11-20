@@ -3,6 +3,7 @@
 from datetime import datetime
 import inspect
 import os
+import sys
 import warnings
 
 import pyvista
@@ -56,6 +57,7 @@ def _signature(
     from ansys.acp.core.mesh_data import MeshData, ScalarData, VectorData  # noqa: F401
     from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles  # noqa: F401
     from ansys.dpf.core import UnitSystem  # noqa: F401
+    import ansys.mechanical.core as pymechanical  # noqa: F401
 
     signature = inspect.signature(subject, locals=locals(), eval_str=True)
 
@@ -197,6 +199,7 @@ intersphinx_mapping = {
     "pyvista": ("https://docs.pyvista.org/version/stable", None),
     "ansys-dpf-core": ("https://dpf.docs.pyansys.com/version/stable/", None),
     "ansys-dpf-composites": ("https://composites.dpf.docs.pyansys.com/version/stable/", None),
+    "ansys-mechanical-core": ("https://mechanical.docs.pyansys.com/version/stable/", None),
 }
 
 nitpick_ignore = [
@@ -267,7 +270,9 @@ sphinx_gallery_conf = {
     # path where to save gallery generated examples
     "gallery_dirs": ["examples/gallery_examples"],
     # Pattern to search for example files
-    "filename_pattern": r"\.py",
+    "filename_pattern": (
+        r".*\.py" if sys.platform == "win32" else r"^(?!.*pymechanical.*\.py).*\.py"
+    ),  # execute PyMechanical examples only on Windows
     # Remove the "Download all examples" button from the top level gallery
     "download_all_examples": False,
     # Sort gallery example by filename instead of number of lines (default)
