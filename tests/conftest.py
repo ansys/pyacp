@@ -82,7 +82,8 @@ NO_SERVER_LOGS_OPTION_KEY = "--no-server-log-files"
 BUILD_BENCHMARK_IMAGE_OPTION_KEY = "--build-benchmark-image"
 VALIDATE_BENCHMARKS_ONLY_OPTION_KEY = "--validate-benchmarks-only"
 SERVER_STARTUP_TIMEOUT = 30.0
-SERVER_STOP_TIMEOUT = 1.0
+SERVER_STOP_TIMEOUT = 2.0
+SERVER_CHECK_TIMEOUT = 2.0
 
 pytest.register_assert_rewrite("common")
 
@@ -219,7 +220,7 @@ def check_grpc_server_before_run(
 ) -> Generator[None, None, None]:
     """Check if the server still responds before running each test, otherwise restart it."""
     try:
-        acp_instance.wait(timeout=1.0)
+        acp_instance.wait(timeout=SERVER_CHECK_TIMEOUT)
     except RuntimeError:
         acp_instance.restart(stop_timeout=SERVER_STOP_TIMEOUT)
         acp_instance.wait(timeout=SERVER_STARTUP_TIMEOUT)
