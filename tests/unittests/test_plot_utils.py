@@ -81,6 +81,7 @@ def test_direction_plotter_valid_cases(model, mesh, load_model_from_tempfile):
             )
 
 
+@pytest.mark.plotting
 @parametrize_with_cases("mesh", cases=".", glob="*_invalid")
 def test_direction_plotter_invalid_cases(model, mesh, load_model_from_tempfile):
     with load_model_from_tempfile() as model:
