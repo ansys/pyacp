@@ -515,7 +515,7 @@ edge sets, and materials from the input file. Once the layup has been created wi
 contains all the data from the initial input file along with the layup information and
 materials added by PyACP. An attempt is made to preserve the original input file as much as possible.
 This includes the original mesh, materials, and boundary conditions. Therefore, you may directly use the exported CDB file
-for an analysis through PyMAPDL. For more information, see <a class="reference internal" href="../../examples/gallery_examples/001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow example</span></a>.</p>
+for an analysis through PyMAPDL. For more information, see <a class="reference internal" href="../../examples/workflows/01-pymapdl-workflow.html#pymapdl-workflow-example"><span class="std std-ref">PyMAPDL workflow</span></a>.</p>
 <section id="create-an-input-file-with-ansys-mechanical">
 <span id="input-file-from-mechanical"></span><h2>Create an input file with Ansys Mechanical<a class="headerlink" href="#create-an-input-file-with-ansys-mechanical" title="Link to this heading">#</a></h2>
 <p>One way to create an input file for PyACP is to create a static structural setup and export the solver input file. To do this, follow these steps:</p>
@@ -530,7 +530,7 @@ for an analysis through PyMAPDL. For more information, see <a class="reference i
 <li><p>Save the input file to a DAT file in the desired location.</p></li>
 </ul>
 <p>The created input file can be read with the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file.html#ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file" title="ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.from_cdb_or_dat_file()</span></code></a> method.
-For a complete example, see <a class="reference internal" href="../../examples/gallery_examples/001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow example</span></a>.</p>
+For a complete example, see <a class="reference internal" href="../../examples/workflows/01-pymapdl-workflow.html#pymapdl-workflow-example"><span class="std std-ref">PyMAPDL workflow</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The imported model always contains the dummy material named <code class="docutils literal notranslate"><span class="pre">1</span></code> that was assigned to the geometry.</p>
@@ -551,7 +551,7 @@ For a complete example, see <a class="reference internal" href="../../examples/g
 </li>
 </ul>
 <p>The created input file can be read with <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file.html#ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file" title="ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.from_cdb_or_dat_file()</span></code></a>. See
-<a class="reference internal" href="../../examples/gallery_examples/001_basic_flat_plate.html#sphx-glr-examples-gallery-examples-001-basic-flat-plate-py"><span class="std std-ref">Basic PyACP workflow example</span></a> for a complete example.</p>
+<a class="reference internal" href="../../examples/workflows/01-pymapdl-workflow.html#pymapdl-workflow-example"><span class="std std-ref">PyMAPDL workflow</span></a> for a complete example.</p>
 </section>
 <section id="notes-on-material-handling">
 <h2>Notes on material handling<a class="headerlink" href="#notes-on-material-handling" title="Link to this heading">#</a></h2>

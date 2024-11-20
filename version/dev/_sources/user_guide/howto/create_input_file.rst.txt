@@ -9,7 +9,7 @@ edge sets, and materials from the input file. Once the layup has been created wi
 contains all the data from the initial input file along with the layup information and
 materials added by PyACP. An attempt is made to preserve the original input file as much as possible.
 This includes the original mesh, materials, and boundary conditions. Therefore, you may directly use the exported CDB file
-for an analysis through PyMAPDL. For more information, see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
+for an analysis through PyMAPDL. For more information, see :ref:`pymapdl_workflow_example`.
 
 .. _input_file_from_mechanical:
 
@@ -29,7 +29,7 @@ One way to create an input file for PyACP is to create a static structural setup
 
 
 The created input file can be read with the :meth:`.ACPWorkflow.from_cdb_or_dat_file` method.
-For a complete example, see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
+For a complete example, see :ref:`pymapdl_workflow_example`.
 
 .. note::
 
@@ -50,7 +50,7 @@ You can also create an input file for PyACP by performing these steps:
         CDWRITE,ALL,FILE,cdbfile.cdb
 
 The created input file can be read with :meth:`.ACPWorkflow.from_cdb_or_dat_file`. See
-:ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py` for a complete example.
+:ref:`pymapdl_workflow_example` for a complete example.
 
 Notes on material handling
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
