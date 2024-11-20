@@ -1,15 +1,16 @@
-docker pull ghcr.io/ansys/pydpf-composites:latest
-docker pull ghcr.io/ansys/mapdl:latest
-
 if ($Env:ANSYSLMD_LICENSE_FILE -ne $null)
 {
-    ">> ANSYSLMD_LICENSE_FILE=" + $Env:ANSYSLMD_LICENSE_FILE
+    "ANSYSLMD_LICENSE_FILE=" + $Env:ANSYSLMD_LICENSE_FILE
 }
 else
 {
-    ">> ANSYSLMD_LICENSE_FILE is not set. Use it if the license server is not otherwise defined."
-    "   Example: $Env:ANSYSLMD_LICENSE_FILE='1055@my_license_server'"
+    "Env variable 'ANSYSLMD_LICENSE_FILE' is required for the license checks."
+    "Example: ANSYSLMD_LICENSE_FILE='1055@my_license_server'"
+    exit 1
 }
+
+docker pull ghcr.io/ansys/pydpf-composites:latest
+docker pull ghcr.io/ansys/mapdl:latest
 
 $Env:ANSYS_DPF_ACCEPT_LA="Y"
 $Env:PYMAPDL_PORT=59991
