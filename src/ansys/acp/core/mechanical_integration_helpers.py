@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""TODO."""
+"""Helper functions for exchanging data between PyACP and PyMechanical."""
 
 import pathlib
 import shutil
