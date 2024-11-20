@@ -111,10 +111,7 @@ NETWORK_OPTIONS = [
     ServerNetworkOptions(delay_ms=0, rate_kbit=1e6),
     ServerNetworkOptions(delay_ms=1, rate_kbit=1e6),
     ServerNetworkOptions(delay_ms=10, rate_kbit=1e6),
-    # Currently disabled since the server fails to start correctly.
-    # See https://github.com/ansys/pyacp/issues/634
-    #
-    # ServerNetworkOptions(delay_ms=100, rate_kbit=1e6),
+    ServerNetworkOptions(delay_ms=100, rate_kbit=1e6),
     ServerNetworkOptions(delay_ms=0, rate_kbit=1e4),
     ServerNetworkOptions(delay_ms=0, rate_kbit=1e3),
     ServerNetworkOptions(delay_ms=0, rate_kbit=1e2),
