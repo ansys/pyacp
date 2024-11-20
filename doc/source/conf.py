@@ -33,6 +33,8 @@ def _signature(
     from collections.abc import Sequence  # noqa: F401
 
     import numpy as np  # noqa: F401
+    import pyvista  # noqa: F401
+    from pyvista.core.pointset import PolyData, UnstructuredGrid  # noqa: F401
 
     from ansys.acp.core import (  # noqa: F401
         BooleanSelectionRule,
@@ -316,7 +318,7 @@ html_static_path = ["_static"]
 templates_path = ["_templates"]
 
 # The suffix(es) of source filenames.
-source_suffix = ".rst"
+source_suffix = {".rst": "restructuredtext"}
 
 # The master toctree document.
 master_doc = "index"

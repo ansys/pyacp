@@ -31,7 +31,7 @@ import numpy.typing as npt
 from typing_extensions import Self
 
 if TYPE_CHECKING:  # pragma: no cover
-    import pyvista as pv
+    import pyvista
 
 from ansys.api.acp.v0 import (
     base_pb2,
@@ -77,11 +77,11 @@ class TriangleMesh:
     @requires_pyvista
     def to_pyvista(
         self,
-    ) -> pv.PolyData:
+    ) -> pyvista.PolyData:
         """Convert the mesh data to a PyVista object."""
-        import pyvista as pv
+        import pyvista
 
-        return pv.PolyData.from_regular_faces(
+        return pyvista.PolyData.from_regular_faces(
             points=self.node_coordinates,
             faces=self.element_nodes,
         )
