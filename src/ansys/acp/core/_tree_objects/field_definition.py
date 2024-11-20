@@ -64,10 +64,7 @@ class FieldDefinition(CreatableTreeObject, IdTreeObject):
     state of material field (e.g. degradation). The field definition allows
     to define the material field per element or per ply and element.
 
-    Note
-    ----
-
-    Field definitions are currently only supported through (Py)Mechanical.
+    Note: Field definitions are currently only supported through (Py)Mechanical.
     The direct interface of PyACP to (Py)MADL ignores field definitions.
 
     Parameters

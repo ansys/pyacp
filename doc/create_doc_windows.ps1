@@ -1,7 +1,11 @@
 docker pull ghcr.io/ansys/pydpf-composites:latest
 docker pull ghcr.io/ansys/mapdl:latest
 
-if (-not [Environment]::GetEnvironmentVariable('ANSYSLMD_LICENSE_FILE', 'Machine'))
+if ($Env:ANSYSLMD_LICENSE_FILE -ne $null)
+{
+    ">> ANSYSLMD_LICENSE_FILE=" + $Env:ANSYSLMD_LICENSE_FILE
+}
+else
 {
     ">> ANSYSLMD_LICENSE_FILE is not set. Use it if the license server is not otherwise defined."
     "   Example: $Env:ANSYSLMD_LICENSE_FILE='1055@my_license_server'"
