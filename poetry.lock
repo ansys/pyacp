@@ -5244,4 +5244,4 @@ plotting = ["pyvista"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "be6bb4ef4a7842fa6e11d4783f402090cc16bfd788b6a97daded91d189a39a44"
+content-hash = "549b44884d6ece4316b4e6bf59f1c9387463f2e8601053235e4419818e488986"

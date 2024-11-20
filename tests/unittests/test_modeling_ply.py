@@ -388,6 +388,7 @@ def test_elemental_data_to_pyvista_with_component(
         assert pv_mesh.n_cells == 1
 
 
+@pytest.mark.plotting
 def test_nodal_data_to_pyvista(minimal_complete_model, simple_modeling_ply):
     import pyvista
 
