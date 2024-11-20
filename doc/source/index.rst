@@ -73,6 +73,8 @@ optimization of composite structures.
             Information on how to contribute to PyACP.
 
 
+.. _limitations:
+
 Limitations
 ^^^^^^^^^^^
 
@@ -82,9 +84,11 @@ Limitations
 * The PyACP to PyMechanical workflow is experimental and has the following limitations:
 
   * It only works on Windows, with a remote (not embedded) PyMechanical session.
-  * Only one ACP model is supported at a time.
-  * Only one ACP solid model is supported at a time.
+  * Only one ACP shell or solid model is supported at a time.
   * Named selections defined in ACP are not transferred to PyMechanical.
+  * The ``ansys.acp.core.mechanical_integration_helpers`` module will be
+    changed or removed in future versions, when the corresponding features
+    are available in PyMechanical directly.
 
 * Visualization and mesh data of imported plies are not supported yet.
 * Section cuts cannot be visualized.

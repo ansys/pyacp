@@ -75,6 +75,7 @@ with ThreadPoolExecutor() as executor:
         executor.submit(pydpf_composites.server_helpers.connect_to_or_start_server),
     ]
     mechanical, acp, mapdl, dpf = (fut.result() for fut in futures)
+    mapdl.clear()
 
 # %%
 # Get example input files
@@ -85,8 +86,8 @@ with ThreadPoolExecutor() as executor:
 
 working_dir = tempfile.TemporaryDirectory()
 working_dir_path = pathlib.Path(working_dir.name)
-input_geometry = pyacp.example_helpers.get_example_file(
-    pyacp.example_helpers.ExampleKeys.CLASS40_AGDB, working_dir_path
+input_geometry = pyacp.extras.example_helpers.get_example_file(
+    pyacp.extras.example_helpers.ExampleKeys.CLASS40_AGDB, working_dir_path
 )
 
 # %%

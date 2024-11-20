@@ -41,13 +41,8 @@ PyMechanical:
 
 .. warning::
 
-    The PyACP / PyMechanical integration is still experimental:
-
-    - Only the 'remote' PyMechanical mode on Windows is supported.
-    - Only one ACP model can be loaded into Mechanical.
-    - The ``ansys.acp.core.mechanical_integration_helpers`` module will be
-      changed or removed in future versions, when the corresponding features
-      are available in PyMechanical directly.
+    The PyACP / PyMechanical integration is still experimental. Refer to the
+    :ref:`limitations section <limitations>` for more information.
 
 """
 
@@ -94,8 +89,8 @@ with ThreadPoolExecutor() as executor:
 
 working_dir = tempfile.TemporaryDirectory()
 working_dir_path = pathlib.Path(working_dir.name)
-input_geometry = pyacp.example_helpers.get_example_file(
-    pyacp.example_helpers.ExampleKeys.CLASS40_AGDB, working_dir_path
+input_geometry = pyacp.extras.example_helpers.get_example_file(
+    pyacp.extras.example_helpers.ExampleKeys.CLASS40_AGDB, working_dir_path
 )
 
 # %%
