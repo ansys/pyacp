@@ -153,6 +153,8 @@ module = [
     "scipy.optimize",
     "ansys.mapdl",
     "ansys.mapdl.core",
+    "ansys.mechanical",
+    "ansys.mechanical.*",
     "ansys.dpf.core",
     "ansys.dpf.core.core",
     "ansys.dpf.core.*",

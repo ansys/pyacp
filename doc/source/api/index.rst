@@ -20,4 +20,5 @@ and attributes.
     other_utils
     workflow
     example_helpers
+    mechanical_integration_helpers
     internal
