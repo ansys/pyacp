@@ -72,6 +72,7 @@ import textwrap
 # isort: off
 
 import ansys.acp.core as pyacp
+from ansys.acp.core.extras import example_helpers
 import ansys.dpf.composites as pydpf_composites
 import ansys.mechanical.core as pymechanical
 
@@ -87,7 +88,7 @@ with ThreadPoolExecutor() as executor:
         executor.submit(pyacp.launch_acp),
         executor.submit(pydpf_composites.server_helpers.connect_to_or_start_server),
     ]
-    mechanical_1, mechanical_2, acp, dpf = (fut.result() for fut in futures)
+    mechanical_shell_geometry, mechanical_solid_model, acp, dpf = (fut.result() for fut in futures)
 
 # %%
 # Get example input files
@@ -98,8 +99,8 @@ with ThreadPoolExecutor() as executor:
 
 working_dir = tempfile.TemporaryDirectory()
 working_dir_path = pathlib.Path(working_dir.name)
-input_geometry = pyacp.example_helpers.get_example_file(
-    pyacp.example_helpers.ExampleKeys.CLASS40_AGDB, working_dir_path
+input_geometry = example_helpers.get_example_file(
+    example_helpers.ExampleKeys.CLASS40_AGDB, working_dir_path
 )
 
 
@@ -111,7 +112,7 @@ input_geometry = pyacp.example_helpers.get_example_file(
 # appropriate transfer format for ACP.
 
 mesh_path = working_dir_path / "mesh.h5"
-mechanical_1.run_python_script(
+mechanical_shell_geometry.run_python_script(
     # This script runs in the Mechanical Python environment, which uses IronPython 2.7.
     textwrap.dedent(
         f"""\
@@ -168,7 +169,9 @@ mechanical_1.run_python_script(
         """
     )
 )
-pyacp.mechanical_integration_helpers.export_mesh_for_acp(mechanical=mechanical_1, path=mesh_path)
+pyacp.mechanical_integration_helpers.export_mesh_for_acp(
+    mechanical=mechanical_shell_geometry, path=mesh_path
+)
 
 
 # %%
@@ -184,7 +187,6 @@ pyacp.mechanical_integration_helpers.export_mesh_for_acp(mechanical=mechanical_1
 # - Solid model CDB file
 
 matml_file = "materials.xml"  # TODO: load an example materials XML file instead of defining the materials in ACP
-composite_definitions_h5 = "ACPCompositeDefinitions.h5"
 solid_model_cdb_file = "SolidModel.cdb"
 solid_model_composite_definitions_h5 = "SolidModel.h5"
 
@@ -264,15 +266,11 @@ if acp.is_remote:
 else:
     export_path = working_dir_path  # type: ignore
 
-model.export_shell_composite_definitions(
-    export_path / composite_definitions_h5
-)  # used for post-processing
 model.export_materials(export_path / matml_file)
 solid_model.export(export_path / solid_model_cdb_file, format="ansys:cdb")
 solid_model.export(export_path / solid_model_composite_definitions_h5, format="ansys:h5")
 
 for filename in [
-    composite_definitions_h5,
     matml_file,
     solid_model_cdb_file,
     solid_model_composite_definitions_h5,
@@ -286,21 +284,23 @@ for filename in [
 #
 # Import geometry, mesh, and named selections into Mechanical
 
-pyacp.mechanical_integration_helpers.import_acp_solid_model(
-    mechanical=mechanical_2, cdb_path=working_dir_path / solid_model_cdb_file
+pyacp.mechanical_integration_helpers.import_acp_solid_mesh(
+    mechanical=mechanical_solid_model, cdb_path=working_dir_path / solid_model_cdb_file
 )
 
 
 # %%
 # Import materials into Mechanical
 
-mechanical_2.run_python_script(f"Model.Materials.Import({str(working_dir_path / matml_file)!r})")
+mechanical_solid_model.run_python_script(
+    f"Model.Materials.Import({str(working_dir_path / matml_file)!r})"
+)
 
 # %%
 # Import plies into Mechanical
 
 pyacp.mechanical_integration_helpers.import_acp_composite_definitions(
-    mechanical=mechanical_2, path=working_dir_path / solid_model_composite_definitions_h5
+    mechanical=mechanical_solid_model, path=working_dir_path / solid_model_composite_definitions_h5
 )
 
 
@@ -310,7 +310,7 @@ pyacp.mechanical_integration_helpers.import_acp_composite_definitions(
 #
 # Set boundary condition and solve
 
-mechanical_2.run_python_script(
+mechanical_solid_model.run_python_script(
     textwrap.dedent(
         """\
         analysis = Model.AddStaticStructuralAnalysis()
@@ -346,10 +346,12 @@ mechanical_2.run_python_script(
     )
 )
 
-rst_file = [filename for filename in mechanical_2.list_files() if filename.endswith(".rst")][0]
-matml_out = [filename for filename in mechanical_2.list_files() if filename.endswith("MatML.xml")][
-    0
-]
+rst_file = [
+    filename for filename in mechanical_solid_model.list_files() if filename.endswith(".rst")
+][0]
+matml_out = [
+    filename for filename in mechanical_solid_model.list_files() if filename.endswith("MatML.xml")
+][0]
 
 # %%
 # Postprocess results
@@ -367,9 +369,6 @@ composite_model = pydpf_composites.composite_model.CompositeModel(
     composite_files=pydpf_composites.data_sources.ContinuousFiberCompositesFiles(
         rst=rst_file,
         composite={
-            "shell": pydpf_composites.data_sources.CompositeDefinitionFiles(
-                definition=working_dir_path / composite_definitions_h5
-            ),
             "solid": pydpf_composites.data_sources.CompositeDefinitionFiles(
                 definition=working_dir_path / solid_model_composite_definitions_h5
             ),

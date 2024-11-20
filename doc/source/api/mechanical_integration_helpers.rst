@@ -22,4 +22,4 @@ Mechanical integration helpers
 
     export_mesh_for_acp
     import_acp_composite_definitions
-    import_acp_solid_model
+    import_acp_solid_mesh

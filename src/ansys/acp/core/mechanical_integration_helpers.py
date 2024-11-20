@@ -35,7 +35,7 @@ from ._typing_helper import PATH
 __all__ = [
     "export_mesh_for_acp",
     "import_acp_composite_definitions",
-    "import_acp_solid_model",
+    "import_acp_solid_mesh",
 ]
 
 
@@ -67,10 +67,16 @@ def export_mesh_for_acp(*, mechanical: "pymechanical.Mechanical", path: PATH) ->
     )
 
 
-def import_acp_solid_model(*, mechanical: "pymechanical.Mechanical", cdb_path: PATH) -> None:
+def import_acp_solid_mesh(*, mechanical: "pymechanical.Mechanical", cdb_path: PATH) -> None:
     """Import an ACP solid model into Mechanical.
 
-    Import a solid model in CDB format into Mechanical.
+    Import a solid mesh in CDB format into Mechanical. This function does not
+    import the ACP layup definition, use :func:`import_acp_composite_definitions`
+    for this purpose.
+
+    .. warning::
+
+        The named selections exported from ACP are only partially imported.
 
     Parameters
     ----------
@@ -117,6 +123,11 @@ def import_acp_solid_model(*, mechanical: "pymechanical.Mechanical", cdb_path: P
 
 def import_acp_composite_definitions(*, mechanical: "pymechanical.Mechanical", path: PATH) -> None:
     """Import ACP composite definitions HDF5 into Mechanical.
+
+    Imports the composite layup defined in ACP into Mechanical, as Imported Plies.
+
+    This function does not import the solid mesh, use :func:`import_acp_solid_mesh`
+    for this purpose.
 
     Parameters
     ----------
