@@ -1,7 +1,7 @@
 Mesh data objects
 -----------------
 
-.. currentmodule:: ansys.acp.core
+.. currentmodule:: ansys.acp.core.mesh_data
 
 .. autosummary::
     :toctree: _autosummary
