@@ -4,7 +4,7 @@ docker pull ghcr.io/ansys/mapdl:latest
 if (-not [Environment]::GetEnvironmentVariable('ANSYSLMD_LICENSE_FILE', 'Machine'))
 {
     ">> ANSYSLMD_LICENSE_FILE is not set. Use it if the license server is not otherwise defined."
-    "   Exampel: $Env:ANSYSLMD_LICENSE_FILE='1055@my_license_server'"
+    "   Example: $Env:ANSYSLMD_LICENSE_FILE='1055@my_license_server'"
 }
 
 $Env:ANSYS_DPF_ACCEPT_LA="Y"

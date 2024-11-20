@@ -39,11 +39,6 @@ def _signature(
         Model,
         ModelingGroup,
     )
-    from ansys.acp.core.mesh_data import (  # noqa: F401
-        MeshData,
-        ScalarData,
-        VectorData,
-    )
 
     # Import type aliases so that they can be resolved correctly.
     from ansys.acp.core._tree_objects.field_definition import (  # noqa: F401
@@ -58,6 +53,7 @@ def _signature(
     from ansys.acp.core._tree_objects.sensor import _LINKABLE_ENTITY_TYPES  # noqa: F401
     from ansys.acp.core._tree_objects.sublaminate import _LINKABLE_MATERIAL_TYPES  # noqa: F401
     from ansys.acp.core._typing_helper import StrEnum
+    from ansys.acp.core.mesh_data import MeshData, ScalarData, VectorData  # noqa: F401
     from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles  # noqa: F401
     from ansys.dpf.core import UnitSystem  # noqa: F401
 
