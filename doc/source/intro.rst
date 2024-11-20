@@ -10,7 +10,7 @@ PyACP supports Ansys 2024 R2 and later. To install PyACP, run the following comm
 
 .. code-block:: bash
 
-    pip install ansys-acp-core[examples]
+    pip install ansys-acp-core[all]
 
 You should use a `virtual environment <https://docs.python.org/3/library/venv.html>`_,
 because it keeps Python packages isolated from your system Python.

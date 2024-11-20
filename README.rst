@@ -43,7 +43,7 @@ Install PyACP with:
 
 .. code-block::
 
-    pip install ansys-acp-core
+    pip install ansys-acp-core[all]
 
 
 For installing PyACP in development mode, see the `Development Setup`_ instructions below.
