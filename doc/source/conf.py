@@ -3,6 +3,7 @@
 from datetime import datetime
 import inspect
 import os
+import pathlib
 import sys
 import warnings
 
@@ -176,10 +177,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "numpydoc",
     "sphinx_copybutton",
-]
-if not SKIP_GALLERY:
-    extensions += ["sphinx_gallery.gen_gallery"]
-extensions += [
+    "sphinx_gallery.gen_gallery",
     "sphinx_design",  # needed for pyvista offlineviewer directive
     "sphinx_jinja",
     "pyvista.ext.plot_directive",
@@ -261,18 +259,33 @@ numpydoc_validation_exclude = {
     r".*\.EdgePropertyList\.clear",
 }
 
+if SKIP_GALLERY:
+    # Generate the gallery without executing the code. The gallery will not
+    # contain the output of the code cells.
+    # This is useful for more quickly building the documentation.
+    gallery_filename_pattern = "<MATCH NOTHING>"
+else:
+    if sys.platform == "win32":
+        gallery_filename_pattern = r".*\.py"
+    else:
+        gallery_filename_pattern = (
+            r"^(?!.*pymechanical.*\.py).*\.py"  # skip pymechanical examples on non-Windows
+        )
+
+examples_dirs_base = pathlib.Path("../../examples/")
+gallery_dirs_base = pathlib.Path("examples/")
+example_subdir_names = ["modeling_features", "workflows", "use_cases"]
+
 # sphinx gallery options
 sphinx_gallery_conf = {
     # convert rst to md for ipynb
     "pypandoc": True,
     # path to your examples scripts
-    "examples_dirs": ["../../examples/"],
+    "examples_dirs": [str(examples_dirs_base / subdir) for subdir in example_subdir_names],
     # path where to save gallery generated examples
-    "gallery_dirs": ["examples/gallery_examples"],
+    "gallery_dirs": [str(gallery_dirs_base / subdir) for subdir in example_subdir_names],
     # Pattern to search for example files
-    "filename_pattern": (
-        r".*\.py" if sys.platform == "win32" else r"^(?!.*pymechanical.*\.py).*\.py"
-    ),  # execute PyMechanical examples only on Windows
+    "filename_pattern": gallery_filename_pattern,
     # Remove the "Download all examples" button from the top level gallery
     "download_all_examples": False,
     # Sort gallery example by filename instead of number of lines (default)

@@ -23,19 +23,21 @@
 
 """
 
-.. _pymechanical_shell_example:
+.. _pymechanical_solid_example:
 
-PyMechanical shell workflow
+PyMechanical solid workflow
 ===========================
 
-This example shows how to set up a simple shell model with PyACP and
+This example shows how to set up a simple solid model with PyACP and
 PyMechanical:
 
 - The geometry is imported into Mechanical and meshed.
 - The mesh is exported to ACP.
-- A simple lay-up is defined in ACP.
-- Plies and materials are exported from ACP, and imported into Mechanical.
-- Boundary conditions are set in Mechanical.
+- A simple lay-up and solid model is defined in ACP.
+- The solid model is exported, to a CDB file and a composite definition file.
+- In a separate Mechanical instance, the solid model is imported.
+- Materials and plies are imported.
+- Boundary conditions are set.
 - The model is solved.
 - The results are post-processed in PyDPF Composites.
 
@@ -63,11 +65,12 @@ import textwrap
 # Import PyACP, PyMechanical, and PyDPF Composites.
 
 # isort: off
+
 import ansys.acp.core as pyacp
 import ansys.dpf.composites as pydpf_composites
 import ansys.mechanical.core as pymechanical
 
-# sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_010_pymechanical_shell_workflow_thumb.png'
+# sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_04-pymechanical-solid-workflow_thumb.png'
 
 # %%
 # Start the ACP, Mechanical, and DPF servers. We use a ``ThreadPoolExecutor``
@@ -75,10 +78,11 @@ import ansys.mechanical.core as pymechanical
 with ThreadPoolExecutor() as executor:
     futures = [
         executor.submit(pymechanical.launch_mechanical, batch=True),
+        executor.submit(pymechanical.launch_mechanical, batch=True),
         executor.submit(pyacp.launch_acp),
         executor.submit(pydpf_composites.server_helpers.connect_to_or_start_server),
     ]
-    mechanical, acp, dpf = (fut.result() for fut in futures)
+    mechanical_shell_geometry, mechanical_solid_model, acp, dpf = (fut.result() for fut in futures)
 
 # %%
 # Get example input files
@@ -93,6 +97,7 @@ input_geometry = pyacp.extras.example_helpers.get_example_file(
     pyacp.extras.example_helpers.ExampleKeys.CLASS40_AGDB, working_dir_path
 )
 
+
 # %%
 # Generate the mesh in PyMechanical
 # ---------------------------------
@@ -101,7 +106,7 @@ input_geometry = pyacp.extras.example_helpers.get_example_file(
 # appropriate transfer format for ACP.
 
 mesh_path = working_dir_path / "mesh.h5"
-mechanical.run_python_script(
+mechanical_shell_geometry.run_python_script(
     # This script runs in the Mechanical Python environment, which uses IronPython 2.7.
     textwrap.dedent(
         f"""\
@@ -124,21 +129,60 @@ mechanical.run_python_script(
         ):
             body.Thickness = Quantity(1e-6, "m")
 
+        hull = Model.AddNamedSelection()
+        hull.Name = "hull"
+        hull.ScopingMethod = GeometryDefineByType.Worksheet
+        # Add all faces with Z location < 0.9 m
+        hull.GenerationCriteria.Add(None)
+        hull.GenerationCriteria[0].EntityType = SelectionType.GeoFace
+        hull.GenerationCriteria[0].Operator = SelectionOperatorType.LessThan
+        hull.GenerationCriteria[0].Criterion = SelectionCriterionType.LocationZ
+        hull.GenerationCriteria[0].Value = Quantity('0.9 [m]')
+        # Remove keeltower
+        hull.GenerationCriteria.Add(None)
+        hull.GenerationCriteria[1].Action = SelectionActionType.Remove
+        hull.GenerationCriteria[1].Criterion = SelectionCriterionType.LocationX
+        hull.GenerationCriteria[1].Operator = SelectionOperatorType.RangeInclude
+        hull.GenerationCriteria[1].LowerBound = Quantity('-6.7 [m]')
+        hull.GenerationCriteria[1].UpperBound = Quantity('-5.9 [m]')
+        # Add back keeltower bottom
+        hull.GenerationCriteria.Add(None)
+        hull.GenerationCriteria[2].Criterion = SelectionCriterionType.LocationZ
+        hull.GenerationCriteria[2].Operator = SelectionOperatorType.LessThan
+        hull.GenerationCriteria[2].Value = Quantity('-0.25 [m]')
+        # Remove bulkhead
+        hull.GenerationCriteria.Add(None)
+        hull.GenerationCriteria[3].Action = SelectionActionType.Remove
+        hull.GenerationCriteria[3].Criterion = SelectionCriterionType.LocationX
+        hull.GenerationCriteria[3].Operator = SelectionOperatorType.RangeInclude
+        hull.GenerationCriteria[3].LowerBound = Quantity('-5.7 [m]')
+        hull.GenerationCriteria[3].UpperBound = Quantity('-5.6 [m]')
+        hull.Generate()
+
         Model.Mesh.GenerateMesh()
         """
     )
 )
-pyacp.mechanical_integration_helpers.export_mesh_for_acp(mechanical=mechanical, path=mesh_path)
+pyacp.mechanical_integration_helpers.export_mesh_for_acp(
+    mechanical=mechanical_shell_geometry, path=mesh_path
+)
+
 
 # %%
 # Set up the ACP model
 # --------------------
 #
-# Setup basic ACP lay-up based on the mesh in ``mesh_path``, and export material and composite
-# definition file to output_path.
+# Setup basic ACP lay-up based on the mesh in ``mesh_path``, and export the following
+# files to ``output_path``:
+#
+# - Materials XML file
+# - Composite definitions HDF5 file
+# - Solid model composite definitions HDF5 file
+# - Solid model CDB file
 
-composite_definitions_h5 = "ACPCompositeDefinitions.h5"
 matml_file = "materials.xml"  # TODO: load an example materials XML file instead of defining the materials in ACP
+solid_model_cdb_file = "SolidModel.cdb"
+solid_model_composite_definitions_h5 = "SolidModel.h5"
 
 
 mesh_path = acp.upload_file(mesh_path)
@@ -200,6 +244,10 @@ mg.create_modeling_ply(
     global_ply_nr=0,  # add at the end
 )
 
+solid_model = model.create_solid_model(
+    element_sets=[model.element_sets["hull"]],
+)
+
 # %%
 # Update and Save the ACP model
 # -----------------------------
@@ -212,85 +260,98 @@ if acp.is_remote:
 else:
     export_path = working_dir_path  # type: ignore
 
-model.export_shell_composite_definitions(export_path / composite_definitions_h5)
 model.export_materials(export_path / matml_file)
+solid_model.export(export_path / solid_model_cdb_file, format="ansys:cdb")
+solid_model.export(export_path / solid_model_composite_definitions_h5, format="ansys:h5")
 
 for filename in [
-    composite_definitions_h5,
     matml_file,
+    solid_model_cdb_file,
+    solid_model_composite_definitions_h5,
 ]:
     acp.download_file(export_path / filename, working_dir_path / filename)
 
+
 # %%
-# Import materials and plies into Mechanical
-# ------------------------------------------
+# Import mesh, materials and plies into Mechanical
+# ------------------------------------------------
 #
+# Import geometry, mesh, and named selections into Mechanical
+
+pyacp.mechanical_integration_helpers.import_acp_solid_mesh(
+    mechanical=mechanical_solid_model, cdb_path=working_dir_path / solid_model_cdb_file
+)
+
+
+# %%
 # Import materials into Mechanical
 
-mechanical.run_python_script(f"Model.Materials.Import({str(working_dir_path / matml_file)!r})")
+mechanical_solid_model.run_python_script(
+    f"Model.Materials.Import({str(working_dir_path / matml_file)!r})"
+)
 
 # %%
 # Import plies into Mechanical
 
 pyacp.mechanical_integration_helpers.import_acp_composite_definitions(
-    mechanical=mechanical,
-    path=working_dir_path / composite_definitions_h5,
+    mechanical=mechanical_solid_model, path=working_dir_path / solid_model_composite_definitions_h5
 )
+
 
 # %%
 # Set boundary condition and solve
 # ---------------------------------
 #
+# Set boundary condition and solve
 
-mechanical.run_python_script(
+mechanical_solid_model.run_python_script(
     textwrap.dedent(
         """\
-        front_edge = Model.AddNamedSelection()
-        front_edge.Name = "Front Edge"
-        front_edge.ScopingMethod = GeometryDefineByType.Worksheet
-
-        front_edge.GenerationCriteria.Add(None)
-        front_edge.GenerationCriteria[0].EntityType = SelectionType.GeoEdge
-        front_edge.GenerationCriteria[0].Criterion = SelectionCriterionType.LocationX
-        front_edge.GenerationCriteria[0].Operator = SelectionOperatorType.GreaterThan
-        front_edge.GenerationCriteria[0].Value = Quantity('-4.6 [m]')
-        front_edge.Generate()
-
-        back_edge = Model.AddNamedSelection()
-        back_edge.Name = "Back Edge"
-        back_edge.ScopingMethod = GeometryDefineByType.Worksheet
-
-        back_edge.GenerationCriteria.Add(None)
-        back_edge.GenerationCriteria[0].EntityType = SelectionType.GeoEdge
-        back_edge.GenerationCriteria[0].Criterion = SelectionCriterionType.LocationX
-        back_edge.GenerationCriteria[0].Operator = SelectionOperatorType.LessThan
-        back_edge.GenerationCriteria[0].Value = Quantity('-7.8 [m]')
-        back_edge.Generate()
-
         analysis = Model.AddStaticStructuralAnalysis()
 
+        front_face = Model.AddNamedSelection()
+        front_face.Name = "front_face"
+        front_face.ScopingMethod = GeometryDefineByType.Worksheet
+        front_face.GenerationCriteria.Add(None)
+        front_face.GenerationCriteria[0].EntityType = SelectionType.GeoFace
+        front_face.GenerationCriteria[0].Criterion = SelectionCriterionType.LocationX
+        front_face.GenerationCriteria[0].Operator = SelectionOperatorType.Largest
+        front_face.Generate()
+
+        back_face = Model.AddNamedSelection()
+        back_face.Name = "back_face"
+        back_face.ScopingMethod = GeometryDefineByType.Worksheet
+        back_face.GenerationCriteria.Add(None)
+        back_face.GenerationCriteria[0].EntityType = SelectionType.GeoFace
+        back_face.GenerationCriteria[0].Criterion = SelectionCriterionType.LocationX
+        back_face.GenerationCriteria[0].Operator = SelectionOperatorType.Smallest
+        back_face.Generate()
+
         fixed_support = analysis.AddFixedSupport()
-        fixed_support.Location = back_edge
+        fixed_support.Location = back_face
 
         force = analysis.AddForce()
         force.DefineBy = LoadDefineBy.Components
-        force.XComponent.Output.SetDiscreteValue(0, Quantity(1e6, "N"))
-        force.Location = front_edge
+        force.XComponent.Output.SetDiscreteValue(0, Quantity(1e5, "N"))
+        force.Location = front_face
 
-        analysis.Solution.Solve(True)
+        analysis.Solve(True)
         """
     )
 )
 
-rst_file = [filename for filename in mechanical.list_files() if filename.endswith(".rst")][0]
-matml_out = [filename for filename in mechanical.list_files() if filename.endswith("MatML.xml")][0]
+rst_file = [
+    filename for filename in mechanical_solid_model.list_files() if filename.endswith(".rst")
+][0]
+matml_out = [
+    filename for filename in mechanical_solid_model.list_files() if filename.endswith("MatML.xml")
+][0]
 
 # %%
 # Postprocess results
 # -------------------
 #
 # Evaluate the failure criteria using the PyDPF Composites.
-
 
 max_strain = pydpf_composites.failure_criteria.MaxStrainCriterion()
 cfc = pydpf_composites.failure_criteria.CombinedFailureCriterion(
@@ -302,8 +363,8 @@ composite_model = pydpf_composites.composite_model.CompositeModel(
     composite_files=pydpf_composites.data_sources.ContinuousFiberCompositesFiles(
         rst=rst_file,
         composite={
-            "shell": pydpf_composites.data_sources.CompositeDefinitionFiles(
-                definition=working_dir_path / composite_definitions_h5
+            "solid": pydpf_composites.data_sources.CompositeDefinitionFiles(
+                definition=working_dir_path / solid_model_composite_definitions_h5
             ),
         },
         engineering_data=working_dir_path / matml_file,

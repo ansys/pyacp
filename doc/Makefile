@@ -28,5 +28,9 @@ pdf:
 # customized clean due to examples gallery
 clean:
 	rm -rf $(BUILDDIR)
-	rm -rf $(SOURCEDIR)/examples/gallery_examples
+	rm -rf $(SOURCEDIR)/examples/images
+	rm -rf $(SOURCEDIR)/examples/modeling_features
+	rm -rf $(SOURCEDIR)/examples/use_cases
+	rm -rf $(SOURCEDIR)/examples/workflows
+	rm -rf $(SOURCEDIR)/examples/sg_execution_times.rst
 	find . -type d -name "_autosummary" -exec rm -rf {} +

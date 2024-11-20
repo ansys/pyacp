@@ -28,7 +28,7 @@ Thickness definition example
 
 This example shows how the thickness of a ply can be defined by a geometry or a lookup table.
 The example only shows the PyACP part of the setup. For a complete composite analysis,
-see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
+see :ref:`pymapdl_workflow_example`.
 """
 
 

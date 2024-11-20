@@ -21,10 +21,10 @@
 # SOFTWARE.
 
 """
-.. _basic_flat_plate:
+.. _pymapdl_workflow_example:
 
-Basic PyACP workflow example
-============================
+PyMAPDL workflow
+================
 
 This example shows how to define a composite lay-up with PyACP, solve the resulting model with PyMAPDL, and
 run a failure analysis with PyDPF Composites.

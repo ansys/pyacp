@@ -35,7 +35,11 @@ goto end
 :clean
 rmdir /s /q %BUILDDIR% > /NUL 2>&1
 for /d /r %SOURCEDIR% %%d in (_autosummary,_gallery_backreferences) do @if exist "%%d" rmdir /s /q "%%d"
-rmdir /s /q %SOURCEDIR%\examples\gallery_examples
+rmdir /s /q %SOURCEDIR%\examples\images
+rmdir /s /q %SOURCEDIR%\examples\modeling_features
+rmdir /s /q %SOURCEDIR%\examples\use_cases
+rmdir /s /q %SOURCEDIR%\examples\workflows
+del %SOURCEDIR%\examples\sg_execution_times.rst
 goto end
 
 :pdf

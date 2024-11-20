@@ -1,1 +1,3 @@
-gallery_examples
+*
+!.gitignore
+!./index.rst

@@ -28,7 +28,7 @@ Rosette example
 
 This example illustrates how you can use rosettes to define the reference directions of a ply.
 It only shows the PyACP part of the setup. For a complete composite analysis,
-see :ref:`sphx_glr_examples_gallery_examples_001_basic_flat_plate.py`.
+see :ref:`pymapdl_workflow_example`.
 """
 
 # %%
