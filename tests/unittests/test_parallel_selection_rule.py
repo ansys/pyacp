@@ -22,8 +22,8 @@
 
 import pytest
 
-from ansys.acp.core import (
-    LinkedSelectionRule,
+from ansys.acp.core import LinkedSelectionRule
+from ansys.acp.core.mesh_data import (
     ParallelSelectionRuleElementalData,
     ParallelSelectionRuleNodalData,
 )

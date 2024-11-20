@@ -38,11 +38,8 @@ def _signature(
         BooleanSelectionRule,
         CADComponent,
         GeometricalSelectionRule,
-        MeshData,
         Model,
         ModelingGroup,
-        ScalarData,
-        VectorData,
     )
 
     # Import type aliases so that they can be resolved correctly.
@@ -58,6 +55,7 @@ def _signature(
     from ansys.acp.core._tree_objects.sensor import _LINKABLE_ENTITY_TYPES  # noqa: F401
     from ansys.acp.core._tree_objects.sublaminate import _LINKABLE_MATERIAL_TYPES  # noqa: F401
     from ansys.acp.core._typing_helper import StrEnum
+    from ansys.acp.core.mesh_data import MeshData, ScalarData, VectorData  # noqa: F401
     from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles  # noqa: F401
     from ansys.dpf.core import UnitSystem  # noqa: F401
     import ansys.mechanical.core as pymechanical  # noqa: F401

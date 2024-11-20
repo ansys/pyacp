@@ -22,7 +22,10 @@
 
 import pytest
 
-from ansys.acp.core import CylindricalSelectionRuleElementalData, CylindricalSelectionRuleNodalData
+from ansys.acp.core.mesh_data import (
+    CylindricalSelectionRuleElementalData,
+    CylindricalSelectionRuleNodalData,
+)
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 

@@ -38,8 +38,8 @@ from ansys.acp.core import (
     TaperEdge,
     ThicknessFieldType,
     ThicknessType,
-    VectorData,
 )
+from ansys.acp.core.mesh_data import VectorData
 
 from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester

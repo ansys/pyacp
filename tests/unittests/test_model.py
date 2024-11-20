@@ -31,7 +31,8 @@ import numpy.testing
 import pytest
 import pyvista
 
-from ansys.acp.core import ElementalDataType, UnitSystemType, VectorData
+from ansys.acp.core import ElementalDataType, UnitSystemType
+from ansys.acp.core.mesh_data import VectorData
 
 from .helpers import check_property
 

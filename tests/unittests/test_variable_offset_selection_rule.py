@@ -22,7 +22,7 @@
 
 import pytest
 
-from ansys.acp.core import (
+from ansys.acp.core.mesh_data import (
     VariableOffsetSelectionRuleElementalData,
     VariableOffsetSelectionRuleNodalData,
 )

@@ -22,7 +22,7 @@
 
 import pytest
 
-from ansys.acp.core import TubeSelectionRuleElementalData, TubeSelectionRuleNodalData
+from ansys.acp.core.mesh_data import TubeSelectionRuleElementalData, TubeSelectionRuleNodalData
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 

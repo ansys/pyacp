@@ -22,12 +22,8 @@
 
 import pytest
 
-from ansys.acp.core import (
-    CutoffRuleType,
-    CutoffSelectionRuleElementalData,
-    CutoffSelectionRuleNodalData,
-    PlyCutoffType,
-)
+from ansys.acp.core import CutoffRuleType, PlyCutoffType
+from ansys.acp.core.mesh_data import CutoffSelectionRuleElementalData, CutoffSelectionRuleNodalData
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
