@@ -110,12 +110,13 @@ jobs:
     name: "Check library vulnerabilities"
     runs-on: ubuntu-latest
     steps:
-      - uses: ansys/actions/check-vulnerabilities@v8.1
+      - uses: ansys/actions/check-vulnerabilities@feat/allow-for-extra-targets-in-vulnerabilities-checks
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
           token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
           python-package-name: 'ansys-acp-core'
           dev-mode: ${{ github.ref != 'refs/heads/main' }}
+          extra-targets: "plotting"
 
   testing-minimum-deps:
     name: Testing with minimum dependencies
