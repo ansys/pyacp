@@ -9,7 +9,7 @@ input_file = get_example_file(
     ExampleKeys.RACE_CAR_NOSE_ACPH5, pathlib.Path(tempdir.name)
 )
 path = acp.upload_file(input_file)
-model = acp.import_model(path=path)
+model = acp.import_model(path)
 #
 input_file_geometry = get_example_file(
     ExampleKeys.RACE_CAR_NOSE_STEP, pathlib.Path(tempdir.name)

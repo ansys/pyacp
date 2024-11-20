@@ -1,8 +1,3 @@
-import pyvista
-plotter = pyvista.Plotter()
-_ = plotter.add_mesh(model.mesh.to_pyvista(), color="white", opacity=0.5)
-_ = plotter.add_mesh(
-    ply_offset.get_pyvista_glyphs(mesh=model.mesh, scaling_factor=6., culling_factor=5),
-    color="blue"
-)
-plotter.show()
+thickness_data = model.elemental_data.thickness
+pyvista_mesh = thickness_data.get_pyvista_mesh(mesh=model.mesh)
+pyvista_mesh.plot()

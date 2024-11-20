@@ -21,7 +21,7 @@ Visualize model
         ...     ExampleKeys.RACE_CAR_NOSE_ACPH5, pathlib.Path(tempdir.name)
         ... )
         >>> path = acp.upload_file(input_file)
-        >>> model = acp.import_model(path=path)
+        >>> model = acp.import_model(path)
 
         >>> input_file_geometry = get_example_file(
         ...     ExampleKeys.RACE_CAR_NOSE_STEP, pathlib.Path(tempdir.name)
@@ -41,6 +41,14 @@ Visualize model
 
         >>> model.mesh.to_pyvista().plot()
 
+    You can also access and plot the mesh data for specific tree objects. For example, the following code plots the mesh for a modeling ply.
+
+    .. pyvista-plot::
+        :context:
+
+        >>> modeling_ply = model.modeling_groups['nose'].modeling_plies['mp.nose.4']
+        >>> modeling_ply.mesh.to_pyvista().plot()
+
 
     .. _directions_plotter:
 
@@ -54,7 +62,6 @@ Visualize model
     .. pyvista-plot::
         :context:
 
-        >>> modeling_ply = model.modeling_groups['nose'].modeling_plies['mp.nose.4']
         >>> elemental_data = modeling_ply.elemental_data
         >>> directions_plotter = pyacp.get_directions_plotter(
         ...     model=model,
@@ -68,6 +75,23 @@ Visualize model
         >>> directions_plotter.show()
 
     The color scheme used in this plot for the various components matches the ACP GUI.
+
+    The directions plot can be scoped to a specific region of the model by using the ``mesh`` parameter. For example, the following code only plots the part covered by the modeling ply.
+
+    .. pyvista-plot::
+        :context:
+
+        >>> directions_plotter = pyacp.get_directions_plotter(
+        ...     model=model,
+        ...     mesh=modeling_ply.mesh,
+        ...     components=[
+        ...         elemental_data.orientation,
+        ...         elemental_data.fiber_direction
+        ...     ],
+        ...     length_factor=10.,
+        ...     culling_factor=10,
+        ... )
+        >>> directions_plotter.show()
 
     Showing the mesh data
     ~~~~~~~~~~~~~~~~~~~~~
@@ -87,6 +111,14 @@ Visualize model
 
         >>> thickness_data = model.elemental_data.thickness
         >>> pyvista_mesh = thickness_data.get_pyvista_mesh(mesh=model.mesh)
+        >>> pyvista_mesh.plot()
+
+    Again, the ``mesh`` parameter can be used to limit the scope of the plot.
+
+    .. pyvista-plot::
+        :context:
+
+        >>> pyvista_mesh = thickness_data.get_pyvista_mesh(mesh=model.element_sets["els_wing_assembly"].mesh)
         >>> pyvista_mesh.plot()
 
     Vector data
