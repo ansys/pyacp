@@ -10,7 +10,6 @@ Mechanical integration helpers
 
     - Only remote Mechanical sessions on Windows are supported.
     - Only one ACP shell or solid model can be imported into Mechanical.
-    - Only one ACP solid model can be imported into Mechanical.
 
     PyACP currently provides helper functions for integrating with PyMechanical.
     These functions will be replaced with native PyMechanical functions in the future.
