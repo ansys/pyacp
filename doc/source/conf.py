@@ -275,9 +275,10 @@ sphinx_gallery_conf = {
     # Sort gallery example by filename instead of number of lines (default)
     "within_subsection_order": "FileNameSortKey",
     # directory where function granular galleries are stored
-    "backreferences_dir": None,
-    # Modules for which function level galleries are created.  In
-    "doc_module": "ansys-acp-core",
+    "backreferences_dir": "api/_gallery_backreferences",
+    # Modules for which function level galleries are created.
+    "doc_module": ("ansys.acp.core"),
+    "exclude_implicit_doc": {"ansys\\.acp\\.core\\._.*"},  # ignore private submodules
     "image_scrapers": (DynamicScraper(), "matplotlib"),
     "ignore_pattern": r"__init__\.py",
     "thumbnail_size": (350, 350),
