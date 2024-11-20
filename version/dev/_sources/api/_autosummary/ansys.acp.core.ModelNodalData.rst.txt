@@ -1,4 +1,6 @@
-﻿ModelNodalData
+﻿.. vale off
+
+ModelNodalData
 ==============
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       ModelNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using ModelNodalData
+
+   ansys.acp.core.ModelNodalData

@@ -1,4 +1,6 @@
-﻿VariableOffsetSelectionRuleElementalData
+﻿.. vale off
+
+VariableOffsetSelectionRuleElementalData
 ========================================
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       VariableOffsetSelectionRuleElementalData.element_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRuleElementalData
+
+   ansys.acp.core.VariableOffsetSelectionRuleElementalData

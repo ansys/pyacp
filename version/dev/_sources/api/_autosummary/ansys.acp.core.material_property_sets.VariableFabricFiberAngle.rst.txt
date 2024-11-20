@@ -1,4 +1,6 @@
-﻿VariableFabricFiberAngle
+﻿.. vale off
+
+VariableFabricFiberAngle
 ========================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -29,3 +31,8 @@
       VariableFabricFiberAngle.interpolation_options
    
    
+
+.. minigallery::
+   :add-heading: Examples using VariableFabricFiberAngle
+
+   ansys.acp.core.material_property_sets.VariableFabricFiberAngle

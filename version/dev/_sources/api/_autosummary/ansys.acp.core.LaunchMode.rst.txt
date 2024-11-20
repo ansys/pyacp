@@ -1,4 +1,6 @@
-﻿LaunchMode
+﻿.. vale off
+
+LaunchMode
 ==========
 
 .. currentmodule:: ansys.acp.core
@@ -170,3 +172,8 @@
       LaunchMode.CONNECT
    
    
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode
+
+   ansys.acp.core.LaunchMode

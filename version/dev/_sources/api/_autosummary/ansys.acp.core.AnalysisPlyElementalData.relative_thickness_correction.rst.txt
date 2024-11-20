@@ -1,6 +1,13 @@
+.. vale off
+
 relative\_thickness\_correction
 ===============================
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: AnalysisPlyElementalData.relative_thickness_correction
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPlyElementalData.relative_thickness_correction
+
+   ansys.acp.core.AnalysisPlyElementalData.relative_thickness_correction

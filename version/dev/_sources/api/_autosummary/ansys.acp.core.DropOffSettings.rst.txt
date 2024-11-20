@@ -1,4 +1,6 @@
-﻿DropOffSettings
+﻿.. vale off
+
+DropOffSettings
 ===============
 
 .. currentmodule:: ansys.acp.core
@@ -32,3 +34,8 @@
       DropOffSettings.dropoff_disabled_on_top_sets
    
    
+
+.. minigallery::
+   :add-heading: Examples using DropOffSettings
+
+   ansys.acp.core.DropOffSettings

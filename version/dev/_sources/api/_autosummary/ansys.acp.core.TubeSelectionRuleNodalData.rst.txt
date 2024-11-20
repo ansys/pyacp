@@ -1,4 +1,6 @@
-﻿TubeSelectionRuleNodalData
+﻿.. vale off
+
+TubeSelectionRuleNodalData
 ==========================
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       TubeSelectionRuleNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRuleNodalData
+
+   ansys.acp.core.TubeSelectionRuleNodalData

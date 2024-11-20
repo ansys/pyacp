@@ -1,6 +1,13 @@
+.. vale off
+
 ply\_offset
 ===========
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: AnalysisPlyNodalData.ply_offset
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPlyNodalData.ply_offset
+
+   ansys.acp.core.AnalysisPlyNodalData.ply_offset

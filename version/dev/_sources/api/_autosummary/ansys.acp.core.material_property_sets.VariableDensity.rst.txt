@@ -1,4 +1,6 @@
-﻿VariableDensity
+﻿.. vale off
+
+VariableDensity
 ===============
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -29,3 +31,8 @@
       VariableDensity.rho
    
    
+
+.. minigallery::
+   :add-heading: Examples using VariableDensity
+
+   ansys.acp.core.material_property_sets.VariableDensity

@@ -1,4 +1,6 @@
-﻿Lamina
+﻿.. vale off
+
+Lamina
 ======
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       Lamina.material
    
    
+
+.. minigallery::
+   :add-heading: Examples using Lamina
+
+   ansys.acp.core.Lamina

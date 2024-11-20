@@ -1,4 +1,6 @@
-﻿ElementSetElementalData
+﻿.. vale off
+
+ElementSetElementalData
 =======================
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       ElementSetElementalData.element_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using ElementSetElementalData
+
+   ansys.acp.core.ElementSetElementalData

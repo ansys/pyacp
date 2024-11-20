@@ -1,4 +1,6 @@
-﻿TubeSelectionRuleElementalData
+﻿.. vale off
+
+TubeSelectionRuleElementalData
 ==============================
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       TubeSelectionRuleElementalData.element_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRuleElementalData
+
+   ansys.acp.core.TubeSelectionRuleElementalData

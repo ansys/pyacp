@@ -1,4 +1,6 @@
-﻿ConstantPuckConstants
+﻿.. vale off
+
+ConstantPuckConstants
 =====================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -34,3 +36,8 @@
       ConstantPuckConstants.s
    
    
+
+.. minigallery::
+   :add-heading: Examples using ConstantPuckConstants
+
+   ansys.acp.core.material_property_sets.ConstantPuckConstants

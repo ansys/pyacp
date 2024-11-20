@@ -1,6 +1,13 @@
+.. vale off
+
 add\_cad\_geometry\_from\_local\_file
 =====================================
 
 .. currentmodule:: ansys.acp.core
 
 .. automethod:: ACPWorkflow.add_cad_geometry_from_local_file
+
+.. minigallery::
+   :add-heading: Examples using ACPWorkflow.add_cad_geometry_from_local_file
+
+   ansys.acp.core.ACPWorkflow.add_cad_geometry_from_local_file

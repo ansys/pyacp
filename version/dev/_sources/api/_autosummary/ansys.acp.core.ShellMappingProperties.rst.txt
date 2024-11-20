@@ -1,4 +1,6 @@
-﻿ShellMappingProperties
+﻿.. vale off
+
+ShellMappingProperties
 ======================
 
 .. currentmodule:: ansys.acp.core
@@ -32,3 +34,8 @@
       ShellMappingProperties.small_hole_threshold
    
    
+
+.. minigallery::
+   :add-heading: Examples using ShellMappingProperties
+
+   ansys.acp.core.ShellMappingProperties

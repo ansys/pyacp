@@ -1,4 +1,6 @@
-﻿InterfaceLayer
+﻿.. vale off
+
+InterfaceLayer
 ==============
 
 .. currentmodule:: ansys.acp.core
@@ -47,3 +49,8 @@
       InterfaceLayer.status
    
    
+
+.. minigallery::
+   :add-heading: Examples using InterfaceLayer
+
+   ansys.acp.core.InterfaceLayer

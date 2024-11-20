@@ -1,4 +1,6 @@
-﻿CylindricalSelectionRuleElementalData
+﻿.. vale off
+
+CylindricalSelectionRuleElementalData
 =====================================
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       CylindricalSelectionRuleElementalData.element_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRuleElementalData
+
+   ansys.acp.core.CylindricalSelectionRuleElementalData

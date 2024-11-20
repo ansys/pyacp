@@ -1,4 +1,6 @@
-﻿CutOffGeometry
+﻿.. vale off
+
+CutOffGeometry
 ==============
 
 .. currentmodule:: ansys.acp.core
@@ -43,3 +45,8 @@
       CutOffGeometry.status
    
    
+
+.. minigallery::
+   :add-heading: Examples using CutOffGeometry
+
+   ansys.acp.core.CutOffGeometry

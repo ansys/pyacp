@@ -1,4 +1,6 @@
-﻿ACPWorkflow
+﻿.. vale off
+
+ACPWorkflow
 ===========
 
 .. currentmodule:: ansys.acp.core
@@ -52,3 +54,8 @@
       ACPWorkflow.working_directory
    
    
+
+.. minigallery::
+   :add-heading: Examples using ACPWorkflow
+
+   ansys.acp.core.ACPWorkflow

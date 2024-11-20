@@ -1,4 +1,6 @@
-﻿Fabric
+﻿.. vale off
+
+Fabric
 ======
 
 .. currentmodule:: ansys.acp.core
@@ -50,3 +52,8 @@
       Fabric.thickness
    
    
+
+.. minigallery::
+   :add-heading: Examples using Fabric
+
+   ansys.acp.core.Fabric

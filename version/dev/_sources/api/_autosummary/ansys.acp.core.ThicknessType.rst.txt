@@ -23,3 +23,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using ThicknessType
+
+   ansys.acp.core.ThicknessType

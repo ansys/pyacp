@@ -1,4 +1,6 @@
-﻿ConstantStrainLimits
+﻿.. vale off
+
+ConstantStrainLimits
 ====================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -42,3 +44,8 @@
       ConstantStrainLimits.effective_strain
    
    
+
+.. minigallery::
+   :add-heading: Examples using ConstantStrainLimits
+
+   ansys.acp.core.material_property_sets.ConstantStrainLimits

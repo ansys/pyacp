@@ -1,6 +1,13 @@
+.. vale off
+
 TAPER
 =====
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: CutoffRuleType.TAPER
+
+.. minigallery::
+   :add-heading: Examples using CutoffRuleType.TAPER
+
+   ansys.acp.core.CutoffRuleType.TAPER

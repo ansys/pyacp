@@ -1,6 +1,13 @@
+.. vale off
+
 nodal\_data
 ===========
 
 .. currentmodule:: ansys.acp.core
 
 .. autoproperty:: CutoffSelectionRule.nodal_data
+
+.. minigallery::
+   :add-heading: Examples using CutoffSelectionRule.nodal_data
+
+   ansys.acp.core.CutoffSelectionRule.nodal_data

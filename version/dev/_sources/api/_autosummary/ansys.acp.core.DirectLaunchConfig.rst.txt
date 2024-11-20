@@ -1,4 +1,6 @@
-﻿DirectLaunchConfig
+﻿.. vale off
+
+DirectLaunchConfig
 ==================
 
 .. currentmodule:: ansys.acp.core
@@ -29,3 +31,8 @@
       DirectLaunchConfig.stdout_file
    
    
+
+.. minigallery::
+   :add-heading: Examples using DirectLaunchConfig
+
+   ansys.acp.core.DirectLaunchConfig

@@ -1,4 +1,6 @@
-﻿OrientedSelectionSet
+﻿.. vale off
+
+OrientedSelectionSet
 ====================
 
 .. currentmodule:: ansys.acp.core
@@ -59,3 +61,8 @@
       OrientedSelectionSet.use_default_draping_mesh_size
    
    
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet
+
+   ansys.acp.core.OrientedSelectionSet

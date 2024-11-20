@@ -1,4 +1,6 @@
-﻿ConstantStressLimits
+﻿.. vale off
+
+ConstantStressLimits
 ====================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -42,3 +44,8 @@
       ConstantStressLimits.effective_stress
    
    
+
+.. minigallery::
+   :add-heading: Examples using ConstantStressLimits
+
+   ansys.acp.core.material_property_sets.ConstantStressLimits

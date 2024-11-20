@@ -23,3 +23,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using PlyGeometryExportFormat
+
+   ansys.acp.core.PlyGeometryExportFormat

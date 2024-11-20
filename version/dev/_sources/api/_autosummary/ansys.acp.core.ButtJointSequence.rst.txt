@@ -1,4 +1,6 @@
-﻿ButtJointSequence
+﻿.. vale off
+
+ButtJointSequence
 =================
 
 .. currentmodule:: ansys.acp.core
@@ -46,3 +48,8 @@
       ButtJointSequence.status
    
    
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence
+
+   ansys.acp.core.ButtJointSequence

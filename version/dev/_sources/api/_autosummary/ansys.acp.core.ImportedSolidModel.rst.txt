@@ -1,4 +1,6 @@
-﻿ImportedSolidModel
+﻿.. vale off
+
+ImportedSolidModel
 ==================
 
 .. currentmodule:: ansys.acp.core
@@ -72,3 +74,8 @@
       ImportedSolidModel.warping_limit
    
    
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel
+
+   ansys.acp.core.ImportedSolidModel

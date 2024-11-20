@@ -1,6 +1,13 @@
+.. vale off
+
 get\_pyvista\_mesh
 ==================
 
 .. currentmodule:: ansys.acp.core
 
 .. automethod:: BooleanSelectionRuleNodalData.get_pyvista_mesh
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRuleNodalData.get_pyvista_mesh
+
+   ansys.acp.core.BooleanSelectionRuleNodalData.get_pyvista_mesh

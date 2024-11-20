@@ -1,6 +1,13 @@
+.. vale off
+
 to\_pyvista
 ===========
 
 .. currentmodule:: ansys.acp.core
 
 .. automethod:: TriangleMesh.to_pyvista
+
+.. minigallery::
+   :add-heading: Examples using TriangleMesh.to_pyvista
+
+   ansys.acp.core.TriangleMesh.to_pyvista

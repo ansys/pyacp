@@ -1,4 +1,6 @@
-﻿ParallelSelectionRule
+﻿.. vale off
+
+ParallelSelectionRule
 =====================
 
 .. currentmodule:: ansys.acp.core
@@ -51,3 +53,8 @@
       ParallelSelectionRule.use_global_coordinate_system
    
    
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule
+
+   ansys.acp.core.ParallelSelectionRule

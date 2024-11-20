@@ -23,3 +23,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using SectionCutType
+
+   ansys.acp.core.SectionCutType

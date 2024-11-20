@@ -1,4 +1,6 @@
-﻿SolidModelElementalData
+﻿.. vale off
+
+SolidModelElementalData
 =======================
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       SolidModelElementalData.element_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using SolidModelElementalData
+
+   ansys.acp.core.SolidModelElementalData

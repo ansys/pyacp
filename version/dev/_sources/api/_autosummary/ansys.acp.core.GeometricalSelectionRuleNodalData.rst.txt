@@ -1,4 +1,6 @@
-﻿GeometricalSelectionRuleNodalData
+﻿.. vale off
+
+GeometricalSelectionRuleNodalData
 =================================
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       GeometricalSelectionRuleNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRuleNodalData
+
+   ansys.acp.core.GeometricalSelectionRuleNodalData

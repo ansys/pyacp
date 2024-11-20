@@ -1,4 +1,6 @@
-﻿VectorData
+﻿.. vale off
+
+VectorData
 ==========
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       VectorData.values
    
    
+
+.. minigallery::
+   :add-heading: Examples using VectorData
+
+   ansys.acp.core.VectorData

@@ -1,4 +1,6 @@
-﻿ProductionPlyElementalData
+﻿.. vale off
+
+ProductionPlyElementalData
 ==========================
 
 .. currentmodule:: ansys.acp.core
@@ -49,3 +51,8 @@
       ProductionPlyElementalData.element_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData
+
+   ansys.acp.core.ProductionPlyElementalData

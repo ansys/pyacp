@@ -1,4 +1,6 @@
-﻿SolidModelExportSettings
+﻿.. vale off
+
+SolidModelExportSettings
 ========================
 
 .. currentmodule:: ansys.acp.core
@@ -43,3 +45,8 @@
       SolidModelExportSettings.write_degenerated_elements
    
    
+
+.. minigallery::
+   :add-heading: Examples using SolidModelExportSettings
+
+   ansys.acp.core.SolidModelExportSettings

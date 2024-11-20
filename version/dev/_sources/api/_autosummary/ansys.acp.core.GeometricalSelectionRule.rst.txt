@@ -1,4 +1,6 @@
-﻿GeometricalSelectionRule
+﻿.. vale off
+
+GeometricalSelectionRule
 ========================
 
 .. currentmodule:: ansys.acp.core
@@ -51,3 +53,8 @@
       GeometricalSelectionRule.use_default_tolerances
    
    
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule
+
+   ansys.acp.core.GeometricalSelectionRule

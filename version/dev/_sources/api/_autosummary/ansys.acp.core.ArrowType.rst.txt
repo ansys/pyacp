@@ -23,3 +23,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using ArrowType
+
+   ansys.acp.core.ArrowType

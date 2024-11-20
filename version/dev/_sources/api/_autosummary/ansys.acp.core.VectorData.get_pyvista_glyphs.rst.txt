@@ -1,6 +1,13 @@
+.. vale off
+
 get\_pyvista\_glyphs
 ====================
 
 .. currentmodule:: ansys.acp.core
 
 .. automethod:: VectorData.get_pyvista_glyphs
+
+.. minigallery::
+   :add-heading: Examples using VectorData.get_pyvista_glyphs
+
+   ansys.acp.core.VectorData.get_pyvista_glyphs

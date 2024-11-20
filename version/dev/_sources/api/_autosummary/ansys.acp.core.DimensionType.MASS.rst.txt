@@ -1,6 +1,13 @@
+.. vale off
+
 MASS
 ====
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: DimensionType.MASS
+
+.. minigallery::
+   :add-heading: Examples using DimensionType.MASS
+
+   ansys.acp.core.DimensionType.MASS

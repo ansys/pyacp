@@ -1,4 +1,6 @@
-﻿VariablePuckConstants
+﻿.. vale off
+
+VariablePuckConstants
 =====================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -36,3 +38,8 @@
       VariablePuckConstants.s
    
    
+
+.. minigallery::
+   :add-heading: Examples using VariablePuckConstants
+
+   ansys.acp.core.material_property_sets.VariablePuckConstants

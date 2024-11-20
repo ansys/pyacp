@@ -1,4 +1,6 @@
-﻿CylindricalSelectionRuleNodalData
+﻿.. vale off
+
+CylindricalSelectionRuleNodalData
 =================================
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       CylindricalSelectionRuleNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRuleNodalData
+
+   ansys.acp.core.CylindricalSelectionRuleNodalData

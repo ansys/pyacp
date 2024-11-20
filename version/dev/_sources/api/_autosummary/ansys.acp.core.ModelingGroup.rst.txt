@@ -1,4 +1,6 @@
-﻿ModelingGroup
+﻿.. vale off
+
+ModelingGroup
 =============
 
 .. currentmodule:: ansys.acp.core
@@ -54,3 +56,8 @@
       ModelingGroup.shell_mesh
    
    
+
+.. minigallery::
+   :add-heading: Examples using ModelingGroup
+
+   ansys.acp.core.ModelingGroup

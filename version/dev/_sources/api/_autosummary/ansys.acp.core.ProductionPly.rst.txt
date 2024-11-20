@@ -1,4 +1,6 @@
-﻿ProductionPly
+﻿.. vale off
+
+ProductionPly
 =============
 
 .. currentmodule:: ansys.acp.core
@@ -38,3 +40,8 @@
       ProductionPly.thickness
    
    
+
+.. minigallery::
+   :add-heading: Examples using ProductionPly
+
+   ansys.acp.core.ProductionPly

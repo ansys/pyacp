@@ -1,4 +1,6 @@
-﻿VariableWovenStressLimits
+﻿.. vale off
+
+VariableWovenStressLimits
 =========================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -37,3 +39,8 @@
       VariableWovenStressLimits.interpolation_options
    
    
+
+.. minigallery::
+   :add-heading: Examples using VariableWovenStressLimits
+
+   ansys.acp.core.material_property_sets.VariableWovenStressLimits

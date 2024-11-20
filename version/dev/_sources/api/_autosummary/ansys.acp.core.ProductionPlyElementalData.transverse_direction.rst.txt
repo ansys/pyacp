@@ -1,6 +1,13 @@
+.. vale off
+
 transverse\_direction
 =====================
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: ProductionPlyElementalData.transverse_direction
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.transverse_direction
+
+   ansys.acp.core.ProductionPlyElementalData.transverse_direction

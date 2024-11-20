@@ -1,4 +1,6 @@
-﻿SphericalSelectionRuleElementalData
+﻿.. vale off
+
+SphericalSelectionRuleElementalData
 ===================================
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       SphericalSelectionRuleElementalData.element_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRuleElementalData
+
+   ansys.acp.core.SphericalSelectionRuleElementalData

@@ -1,6 +1,13 @@
+.. vale off
+
 node\_labels
 ============
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: ImportedSolidModelNodalData.node_labels
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModelNodalData.node_labels
+
+   ansys.acp.core.ImportedSolidModelNodalData.node_labels

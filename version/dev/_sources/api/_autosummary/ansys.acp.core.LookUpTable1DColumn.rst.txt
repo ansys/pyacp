@@ -1,4 +1,6 @@
-﻿LookUpTable1DColumn
+﻿.. vale off
+
+LookUpTable1DColumn
 ===================
 
 .. currentmodule:: ansys.acp.core
@@ -41,3 +43,8 @@
       LookUpTable1DColumn.value_type
    
    
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable1DColumn
+
+   ansys.acp.core.LookUpTable1DColumn

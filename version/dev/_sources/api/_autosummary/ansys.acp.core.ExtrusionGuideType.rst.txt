@@ -20,3 +20,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuideType
+
+   ansys.acp.core.ExtrusionGuideType

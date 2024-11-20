@@ -1,4 +1,6 @@
-﻿VariableStrainLimits
+﻿.. vale off
+
+VariableStrainLimits
 ====================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -38,3 +40,8 @@
       VariableStrainLimits.interpolation_options
    
    
+
+.. minigallery::
+   :add-heading: Examples using VariableStrainLimits
+
+   ansys.acp.core.material_property_sets.VariableStrainLimits

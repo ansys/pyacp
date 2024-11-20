@@ -1,4 +1,6 @@
-﻿ImportedModelingPly
+﻿.. vale off
+
+ImportedModelingPly
 ===================
 
 .. currentmodule:: ansys.acp.core
@@ -56,3 +58,8 @@
       ImportedModelingPly.thickness_type
    
    
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly
+
+   ansys.acp.core.ImportedModelingPly

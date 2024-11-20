@@ -1,4 +1,6 @@
-﻿VariableOffsetSelectionRule
+﻿.. vale off
+
+VariableOffsetSelectionRule
 ===========================
 
 .. currentmodule:: ansys.acp.core
@@ -53,3 +55,8 @@
       VariableOffsetSelectionRule.use_offset_correction
    
    
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule
+
+   ansys.acp.core.VariableOffsetSelectionRule

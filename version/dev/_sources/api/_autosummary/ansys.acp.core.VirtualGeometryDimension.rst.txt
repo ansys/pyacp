@@ -26,3 +26,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometryDimension
+
+   ansys.acp.core.VirtualGeometryDimension

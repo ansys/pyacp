@@ -26,3 +26,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using SensorType
+
+   ansys.acp.core.SensorType

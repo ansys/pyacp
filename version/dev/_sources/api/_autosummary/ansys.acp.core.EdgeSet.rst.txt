@@ -1,4 +1,6 @@
-﻿EdgeSet
+﻿.. vale off
+
+EdgeSet
 =======
 
 .. currentmodule:: ansys.acp.core
@@ -45,3 +47,8 @@
       EdgeSet.status
    
    
+
+.. minigallery::
+   :add-heading: Examples using EdgeSet
+
+   ansys.acp.core.EdgeSet

@@ -1,4 +1,6 @@
-﻿Material
+﻿.. vale off
+
+Material
 ========
 
 .. currentmodule:: ansys.acp.core
@@ -55,3 +57,8 @@
       Material.woven_stress_limits_2
    
    
+
+.. minigallery::
+   :add-heading: Examples using Material
+
+   ansys.acp.core.Material

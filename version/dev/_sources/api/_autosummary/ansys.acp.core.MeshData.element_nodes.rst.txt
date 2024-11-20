@@ -1,6 +1,13 @@
+.. vale off
+
 element\_nodes
 ==============
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: MeshData.element_nodes
+
+.. minigallery::
+   :add-heading: Examples using MeshData.element_nodes
+
+   ansys.acp.core.MeshData.element_nodes

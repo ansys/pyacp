@@ -23,3 +23,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using ReinforcingBehavior
+
+   ansys.acp.core.ReinforcingBehavior

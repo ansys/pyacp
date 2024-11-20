@@ -1,4 +1,6 @@
-﻿SphericalSelectionRuleNodalData
+﻿.. vale off
+
+SphericalSelectionRuleNodalData
 ===============================
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       SphericalSelectionRuleNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRuleNodalData
+
+   ansys.acp.core.SphericalSelectionRuleNodalData

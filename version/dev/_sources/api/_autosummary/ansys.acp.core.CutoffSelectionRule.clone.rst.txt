@@ -1,6 +1,13 @@
+.. vale off
+
 clone
 =====
 
 .. currentmodule:: ansys.acp.core
 
 .. automethod:: CutoffSelectionRule.clone
+
+.. minigallery::
+   :add-heading: Examples using CutoffSelectionRule.clone
+
+   ansys.acp.core.CutoffSelectionRule.clone

@@ -1,4 +1,6 @@
-﻿LinkedSelectionRule
+﻿.. vale off
+
+LinkedSelectionRule
 ===================
 
 .. currentmodule:: ansys.acp.core
@@ -34,3 +36,8 @@
       LinkedSelectionRule.template_rule
    
    
+
+.. minigallery::
+   :add-heading: Examples using LinkedSelectionRule
+
+   ansys.acp.core.LinkedSelectionRule

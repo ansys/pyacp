@@ -1,4 +1,6 @@
-﻿TubeSelectionRule
+﻿.. vale off
+
+TubeSelectionRule
 =================
 
 .. currentmodule:: ansys.acp.core
@@ -52,3 +54,8 @@
       TubeSelectionRule.tail_extension
    
    
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule
+
+   ansys.acp.core.TubeSelectionRule

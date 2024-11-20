@@ -1,4 +1,6 @@
-﻿FieldDefinition
+﻿.. vale off
+
+FieldDefinition
 ===============
 
 .. currentmodule:: ansys.acp.core
@@ -44,3 +46,8 @@
       FieldDefinition.status
    
    
+
+.. minigallery::
+   :add-heading: Examples using FieldDefinition
+
+   ansys.acp.core.FieldDefinition

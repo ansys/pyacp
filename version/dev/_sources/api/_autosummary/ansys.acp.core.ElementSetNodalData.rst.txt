@@ -1,4 +1,6 @@
-﻿ElementSetNodalData
+﻿.. vale off
+
+ElementSetNodalData
 ===================
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       ElementSetNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using ElementSetNodalData
+
+   ansys.acp.core.ElementSetNodalData

@@ -77,3 +77,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType
+
+   ansys.acp.core.ElementalDataType

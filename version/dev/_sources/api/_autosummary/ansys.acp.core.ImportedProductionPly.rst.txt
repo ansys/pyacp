@@ -1,4 +1,6 @@
-﻿ImportedProductionPly
+﻿.. vale off
+
+ImportedProductionPly
 =====================
 
 .. currentmodule:: ansys.acp.core
@@ -34,3 +36,8 @@
       ImportedProductionPly.thickness
    
    
+
+.. minigallery::
+   :add-heading: Examples using ImportedProductionPly
+
+   ansys.acp.core.ImportedProductionPly

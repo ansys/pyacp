@@ -1,4 +1,6 @@
-﻿CylindricalSelectionRule
+﻿.. vale off
+
+CylindricalSelectionRule
 ========================
 
 .. currentmodule:: ansys.acp.core
@@ -50,3 +52,8 @@
       CylindricalSelectionRule.use_global_coordinate_system
    
    
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule
+
+   ansys.acp.core.CylindricalSelectionRule

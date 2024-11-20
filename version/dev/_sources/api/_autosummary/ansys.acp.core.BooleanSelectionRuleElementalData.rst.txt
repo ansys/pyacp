@@ -1,4 +1,6 @@
-﻿BooleanSelectionRuleElementalData
+﻿.. vale off
+
+BooleanSelectionRuleElementalData
 =================================
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       BooleanSelectionRuleElementalData.element_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRuleElementalData
+
+   ansys.acp.core.BooleanSelectionRuleElementalData

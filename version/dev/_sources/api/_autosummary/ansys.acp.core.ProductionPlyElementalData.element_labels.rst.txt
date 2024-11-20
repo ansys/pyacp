@@ -1,6 +1,13 @@
+.. vale off
+
 element\_labels
 ===============
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: ProductionPlyElementalData.element_labels
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.element_labels
+
+   ansys.acp.core.ProductionPlyElementalData.element_labels

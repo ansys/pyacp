@@ -1,4 +1,6 @@
-﻿CoordinateTransformation
+﻿.. vale off
+
+CoordinateTransformation
 ========================
 
 .. currentmodule:: ansys.acp.core
@@ -32,3 +34,8 @@
       CoordinateTransformation.translation_z
    
    
+
+.. minigallery::
+   :add-heading: Examples using CoordinateTransformation
+
+   ansys.acp.core.CoordinateTransformation

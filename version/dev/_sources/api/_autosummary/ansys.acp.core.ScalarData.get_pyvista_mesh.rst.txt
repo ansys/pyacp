@@ -1,6 +1,13 @@
+.. vale off
+
 get\_pyvista\_mesh
 ==================
 
 .. currentmodule:: ansys.acp.core
 
 .. automethod:: ScalarData.get_pyvista_mesh
+
+.. minigallery::
+   :add-heading: Examples using ScalarData.get_pyvista_mesh
+
+   ansys.acp.core.ScalarData.get_pyvista_mesh

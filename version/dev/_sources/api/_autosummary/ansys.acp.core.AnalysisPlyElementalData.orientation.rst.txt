@@ -1,6 +1,13 @@
+.. vale off
+
 orientation
 ===========
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: AnalysisPlyElementalData.orientation
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPlyElementalData.orientation
+
+   ansys.acp.core.AnalysisPlyElementalData.orientation

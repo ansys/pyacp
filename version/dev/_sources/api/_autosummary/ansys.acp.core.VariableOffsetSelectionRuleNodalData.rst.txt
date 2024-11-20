@@ -1,4 +1,6 @@
-﻿VariableOffsetSelectionRuleNodalData
+﻿.. vale off
+
+VariableOffsetSelectionRuleNodalData
 ====================================
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       VariableOffsetSelectionRuleNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRuleNodalData
+
+   ansys.acp.core.VariableOffsetSelectionRuleNodalData

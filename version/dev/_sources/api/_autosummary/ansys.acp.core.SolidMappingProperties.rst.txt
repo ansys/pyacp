@@ -1,4 +1,6 @@
-﻿SolidMappingProperties
+﻿.. vale off
+
+SolidMappingProperties
 ======================
 
 .. currentmodule:: ansys.acp.core
@@ -27,3 +29,8 @@
       SolidMappingProperties.offset_type
    
    
+
+.. minigallery::
+   :add-heading: Examples using SolidMappingProperties
+
+   ansys.acp.core.SolidMappingProperties

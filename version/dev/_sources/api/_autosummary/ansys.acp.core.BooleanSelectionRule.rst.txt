@@ -1,4 +1,6 @@
-﻿BooleanSelectionRule
+﻿.. vale off
+
+BooleanSelectionRule
 ====================
 
 .. currentmodule:: ansys.acp.core
@@ -48,3 +50,8 @@
       BooleanSelectionRule.status
    
    
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRule
+
+   ansys.acp.core.BooleanSelectionRule

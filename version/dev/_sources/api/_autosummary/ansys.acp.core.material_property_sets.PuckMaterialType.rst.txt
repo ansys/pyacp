@@ -1,4 +1,6 @@
-﻿PuckMaterialType
+﻿.. vale off
+
+PuckMaterialType
 ================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -171,3 +173,8 @@
       PuckMaterialType.MATERIAL_SPECIFIC
    
    
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType
+
+   ansys.acp.core.material_property_sets.PuckMaterialType

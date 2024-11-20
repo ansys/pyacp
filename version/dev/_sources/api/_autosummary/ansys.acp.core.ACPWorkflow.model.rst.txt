@@ -1,6 +1,13 @@
+.. vale off
+
 model
 =====
 
 .. currentmodule:: ansys.acp.core
 
 .. autoproperty:: ACPWorkflow.model
+
+.. minigallery::
+   :add-heading: Examples using ACPWorkflow.model
+
+   ansys.acp.core.ACPWorkflow.model

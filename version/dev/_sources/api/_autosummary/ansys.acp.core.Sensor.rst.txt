@@ -1,4 +1,6 @@
-﻿Sensor
+﻿.. vale off
+
+Sensor
 ======
 
 .. currentmodule:: ansys.acp.core
@@ -49,3 +51,8 @@
       Sensor.weight
    
    
+
+.. minigallery::
+   :add-heading: Examples using Sensor
+
+   ansys.acp.core.Sensor

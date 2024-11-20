@@ -1,4 +1,6 @@
-﻿ScalarData
+﻿.. vale off
+
+ScalarData
 ==========
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       ScalarData.values
    
    
+
+.. minigallery::
+   :add-heading: Examples using ScalarData
+
+   ansys.acp.core.ScalarData

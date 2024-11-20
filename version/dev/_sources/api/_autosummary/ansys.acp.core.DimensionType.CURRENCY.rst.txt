@@ -1,6 +1,13 @@
+.. vale off
+
 CURRENCY
 ========
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: DimensionType.CURRENCY
+
+.. minigallery::
+   :add-heading: Examples using DimensionType.CURRENCY
+
+   ansys.acp.core.DimensionType.CURRENCY

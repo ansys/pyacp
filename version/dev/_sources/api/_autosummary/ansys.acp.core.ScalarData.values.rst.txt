@@ -1,6 +1,13 @@
+.. vale off
+
 values
 ======
 
 .. currentmodule:: ansys.acp.core
 
 .. autoproperty:: ScalarData.values
+
+.. minigallery::
+   :add-heading: Examples using ScalarData.values
+
+   ansys.acp.core.ScalarData.values

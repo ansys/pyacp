@@ -1,6 +1,13 @@
+.. vale off
+
 CUSTOM
 ======
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: CutoffMaterialHandling.CUSTOM
+
+.. minigallery::
+   :add-heading: Examples using CutoffMaterialHandling.CUSTOM
+
+   ansys.acp.core.CutoffMaterialHandling.CUSTOM

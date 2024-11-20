@@ -1,4 +1,6 @@
-﻿ImportedAnalysisPly
+﻿.. vale off
+
+ImportedAnalysisPly
 ===================
 
 .. currentmodule:: ansys.acp.core
@@ -34,3 +36,8 @@
       ImportedAnalysisPly.thickness
    
    
+
+.. minigallery::
+   :add-heading: Examples using ImportedAnalysisPly
+
+   ansys.acp.core.ImportedAnalysisPly

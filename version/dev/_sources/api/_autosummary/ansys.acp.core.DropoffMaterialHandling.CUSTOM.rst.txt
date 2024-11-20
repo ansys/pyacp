@@ -1,6 +1,13 @@
+.. vale off
+
 CUSTOM
 ======
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: DropoffMaterialHandling.CUSTOM
+
+.. minigallery::
+   :add-heading: Examples using DropoffMaterialHandling.CUSTOM
+
+   ansys.acp.core.DropoffMaterialHandling.CUSTOM

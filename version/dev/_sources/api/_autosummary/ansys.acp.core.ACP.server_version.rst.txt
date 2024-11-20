@@ -1,6 +1,13 @@
+.. vale off
+
 server\_version
 ===============
 
 .. currentmodule:: ansys.acp.core
 
 .. autoproperty:: ACP.server_version
+
+.. minigallery::
+   :add-heading: Examples using ACP.server_version
+
+   ansys.acp.core.ACP.server_version

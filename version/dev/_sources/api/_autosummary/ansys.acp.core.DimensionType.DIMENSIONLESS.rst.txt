@@ -1,6 +1,13 @@
+.. vale off
+
 DIMENSIONLESS
 =============
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: DimensionType.DIMENSIONLESS
+
+.. minigallery::
+   :add-heading: Examples using DimensionType.DIMENSIONLESS
+
+   ansys.acp.core.DimensionType.DIMENSIONLESS

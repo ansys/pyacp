@@ -1,4 +1,6 @@
-﻿DockerComposeLaunchConfig
+﻿.. vale off
+
+DockerComposeLaunchConfig
 =========================
 
 .. currentmodule:: ansys.acp.core
@@ -32,3 +34,8 @@
       DockerComposeLaunchConfig.environment_variables
    
    
+
+.. minigallery::
+   :add-heading: Examples using DockerComposeLaunchConfig
+
+   ansys.acp.core.DockerComposeLaunchConfig

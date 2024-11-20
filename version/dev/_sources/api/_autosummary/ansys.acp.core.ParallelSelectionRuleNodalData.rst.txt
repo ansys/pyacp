@@ -1,4 +1,6 @@
-﻿ParallelSelectionRuleNodalData
+﻿.. vale off
+
+ParallelSelectionRuleNodalData
 ==============================
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       ParallelSelectionRuleNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRuleNodalData
+
+   ansys.acp.core.ParallelSelectionRuleNodalData

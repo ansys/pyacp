@@ -1,4 +1,6 @@
-﻿GeometricalSelectionRuleElementalData
+﻿.. vale off
+
+GeometricalSelectionRuleElementalData
 =====================================
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       GeometricalSelectionRuleElementalData.element_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRuleElementalData
+
+   ansys.acp.core.GeometricalSelectionRuleElementalData

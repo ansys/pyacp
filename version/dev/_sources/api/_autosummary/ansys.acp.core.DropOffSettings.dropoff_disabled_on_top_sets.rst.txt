@@ -1,6 +1,13 @@
+.. vale off
+
 dropoff\_disabled\_on\_top\_sets
 ================================
 
 .. currentmodule:: ansys.acp.core
 
 .. autoproperty:: DropOffSettings.dropoff_disabled_on_top_sets
+
+.. minigallery::
+   :add-heading: Examples using DropOffSettings.dropoff_disabled_on_top_sets
+
+   ansys.acp.core.DropOffSettings.dropoff_disabled_on_top_sets

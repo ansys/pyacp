@@ -1,6 +1,13 @@
+.. vale off
+
 COMPUTED
 ========
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: CutoffMaterialHandling.COMPUTED
+
+.. minigallery::
+   :add-heading: Examples using CutoffMaterialHandling.COMPUTED
+
+   ansys.acp.core.CutoffMaterialHandling.COMPUTED

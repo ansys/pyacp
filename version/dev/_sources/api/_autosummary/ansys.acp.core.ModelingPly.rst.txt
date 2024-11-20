@@ -1,4 +1,6 @@
-﻿ModelingPly
+﻿.. vale off
+
+ModelingPly
 ===========
 
 .. currentmodule:: ansys.acp.core
@@ -71,3 +73,8 @@
       ModelingPly.use_default_draping_mesh_size
    
    
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly
+
+   ansys.acp.core.ModelingPly

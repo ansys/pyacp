@@ -1,6 +1,13 @@
-﻿get\_dpf\_unit\_system
+﻿.. vale off
+
+get\_dpf\_unit\_system
 ======================
 
 .. currentmodule:: ansys.acp.core
 
 .. autofunction:: get_dpf_unit_system
+
+.. minigallery::
+   :add-heading: Examples using get_dpf_unit_system
+
+   ansys.acp.core.get_dpf_unit_system

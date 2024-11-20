@@ -1,4 +1,6 @@
-﻿SectionCut
+﻿.. vale off
+
+SectionCut
 ==========
 
 .. currentmodule:: ansys.acp.core
@@ -56,3 +58,8 @@
       SectionCut.use_default_tolerance
    
    
+
+.. minigallery::
+   :add-heading: Examples using SectionCut
+
+   ansys.acp.core.SectionCut

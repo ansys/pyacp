@@ -1,4 +1,6 @@
-﻿AnalysisPly
+﻿.. vale off
+
+AnalysisPly
 ===========
 
 .. currentmodule:: ansys.acp.core
@@ -39,3 +41,8 @@
       AnalysisPly.thickness
    
    
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPly
+
+   ansys.acp.core.AnalysisPly

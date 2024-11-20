@@ -1,4 +1,6 @@
-﻿SubShape
+﻿.. vale off
+
+SubShape
 ========
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       SubShape.path
    
    
+
+.. minigallery::
+   :add-heading: Examples using SubShape
+
+   ansys.acp.core.SubShape

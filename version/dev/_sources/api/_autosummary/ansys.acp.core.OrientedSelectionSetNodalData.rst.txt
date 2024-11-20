@@ -1,4 +1,6 @@
-﻿OrientedSelectionSetNodalData
+﻿.. vale off
+
+OrientedSelectionSetNodalData
 =============================
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       OrientedSelectionSetNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSetNodalData
+
+   ansys.acp.core.OrientedSelectionSetNodalData

@@ -1,4 +1,6 @@
-﻿ConstantWovenStressLimits
+﻿.. vale off
+
+ConstantWovenStressLimits
 =========================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -35,3 +37,8 @@
       ConstantWovenStressLimits.Zt
    
    
+
+.. minigallery::
+   :add-heading: Examples using ConstantWovenStressLimits
+
+   ansys.acp.core.material_property_sets.ConstantWovenStressLimits

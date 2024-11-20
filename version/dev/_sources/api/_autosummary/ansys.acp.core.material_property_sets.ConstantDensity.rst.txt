@@ -1,4 +1,6 @@
-﻿ConstantDensity
+﻿.. vale off
+
+ConstantDensity
 ===============
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -27,3 +29,8 @@
       ConstantDensity.rho
    
    
+
+.. minigallery::
+   :add-heading: Examples using ConstantDensity
+
+   ansys.acp.core.material_property_sets.ConstantDensity

@@ -1,6 +1,13 @@
+.. vale off
+
 get\_local\_cdb\_file
 =====================
 
 .. currentmodule:: ansys.acp.core
 
 .. automethod:: ACPWorkflow.get_local_cdb_file
+
+.. minigallery::
+   :add-heading: Examples using ACPWorkflow.get_local_cdb_file
+
+   ansys.acp.core.ACPWorkflow.get_local_cdb_file

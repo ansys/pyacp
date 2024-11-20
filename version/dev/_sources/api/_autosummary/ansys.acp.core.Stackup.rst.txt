@@ -1,4 +1,6 @@
-﻿Stackup
+﻿.. vale off
+
+Stackup
 =======
 
 .. currentmodule:: ansys.acp.core
@@ -56,3 +58,8 @@
       Stackup.topdown
    
    
+
+.. minigallery::
+   :add-heading: Examples using Stackup
+
+   ansys.acp.core.Stackup

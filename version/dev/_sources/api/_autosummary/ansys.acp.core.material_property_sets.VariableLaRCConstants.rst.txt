@@ -1,4 +1,6 @@
-﻿VariableLaRCConstants
+﻿.. vale off
+
+VariableLaRCConstants
 =====================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -33,3 +35,8 @@
       VariableLaRCConstants.thin_ply_thickness_limit
    
    
+
+.. minigallery::
+   :add-heading: Examples using VariableLaRCConstants
+
+   ansys.acp.core.material_property_sets.VariableLaRCConstants

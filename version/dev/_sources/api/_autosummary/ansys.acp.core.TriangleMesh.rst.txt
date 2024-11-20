@@ -1,4 +1,6 @@
-﻿TriangleMesh
+﻿.. vale off
+
+TriangleMesh
 ============
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       TriangleMesh.element_nodes
    
    
+
+.. minigallery::
+   :add-heading: Examples using TriangleMesh
+
+   ansys.acp.core.TriangleMesh

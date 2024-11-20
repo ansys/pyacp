@@ -35,3 +35,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using DimensionType
+
+   ansys.acp.core.DimensionType

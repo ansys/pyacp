@@ -1,4 +1,6 @@
-﻿OrientedSelectionSetElementalData
+﻿.. vale off
+
+OrientedSelectionSetElementalData
 =================================
 
 .. currentmodule:: ansys.acp.core
@@ -33,3 +35,8 @@
       OrientedSelectionSetElementalData.element_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSetElementalData
+
+   ansys.acp.core.OrientedSelectionSetElementalData

@@ -1,6 +1,13 @@
-﻿get\_model\_tree
+﻿.. vale off
+
+get\_model\_tree
 ================
 
 .. currentmodule:: ansys.acp.core
 
 .. autofunction:: get_model_tree
+
+.. minigallery::
+   :add-heading: Examples using get_model_tree
+
+   ansys.acp.core.get_model_tree

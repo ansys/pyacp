@@ -1,6 +1,13 @@
+.. vale off
+
 area
 ====
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: ModelingPlyElementalData.area
+
+.. minigallery::
+   :add-heading: Examples using ModelingPlyElementalData.area
+
+   ansys.acp.core.ModelingPlyElementalData.area

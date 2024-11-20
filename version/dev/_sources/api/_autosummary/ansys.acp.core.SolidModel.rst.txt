@@ -1,4 +1,6 @@
-﻿SolidModel
+﻿.. vale off
+
+SolidModel
 ==========
 
 .. currentmodule:: ansys.acp.core
@@ -75,3 +77,8 @@
       SolidModel.warping_limit
    
    
+
+.. minigallery::
+   :add-heading: Examples using SolidModel
+
+   ansys.acp.core.SolidModel

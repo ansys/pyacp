@@ -1,4 +1,6 @@
-﻿Rosette
+﻿.. vale off
+
+Rosette
 =======
 
 .. currentmodule:: ansys.acp.core
@@ -45,3 +47,8 @@
       Rosette.status
    
    
+
+.. minigallery::
+   :add-heading: Examples using Rosette
+
+   ansys.acp.core.Rosette

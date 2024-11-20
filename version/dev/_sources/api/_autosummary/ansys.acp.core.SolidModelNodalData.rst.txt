@@ -1,4 +1,6 @@
-﻿SolidModelNodalData
+﻿.. vale off
+
+SolidModelNodalData
 ===================
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       SolidModelNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using SolidModelNodalData
+
+   ansys.acp.core.SolidModelNodalData

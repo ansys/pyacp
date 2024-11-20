@@ -1,6 +1,13 @@
+.. vale off
+
 offset
 ======
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: ProductionPlyElementalData.offset
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.offset
+
+   ansys.acp.core.ProductionPlyElementalData.offset

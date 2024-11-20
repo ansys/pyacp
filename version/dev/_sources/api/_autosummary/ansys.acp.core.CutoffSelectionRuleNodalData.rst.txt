@@ -1,4 +1,6 @@
-﻿CutoffSelectionRuleNodalData
+﻿.. vale off
+
+CutoffSelectionRuleNodalData
 ============================
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       CutoffSelectionRuleNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using CutoffSelectionRuleNodalData
+
+   ansys.acp.core.CutoffSelectionRuleNodalData

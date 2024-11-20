@@ -38,3 +38,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionMethod
+
+   ansys.acp.core.ExtrusionMethod

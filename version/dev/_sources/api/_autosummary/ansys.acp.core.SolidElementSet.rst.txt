@@ -1,4 +1,6 @@
-﻿SolidElementSet
+﻿.. vale off
+
+SolidElementSet
 ===============
 
 .. currentmodule:: ansys.acp.core
@@ -32,3 +34,8 @@
       SolidElementSet.status
    
    
+
+.. minigallery::
+   :add-heading: Examples using SolidElementSet
+
+   ansys.acp.core.SolidElementSet

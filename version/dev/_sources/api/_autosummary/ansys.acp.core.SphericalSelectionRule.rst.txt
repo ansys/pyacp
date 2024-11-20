@@ -1,4 +1,6 @@
-﻿SphericalSelectionRule
+﻿.. vale off
+
+SphericalSelectionRule
 ======================
 
 .. currentmodule:: ansys.acp.core
@@ -50,3 +52,8 @@
       SphericalSelectionRule.use_global_coordinate_system
    
    
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule
+
+   ansys.acp.core.SphericalSelectionRule

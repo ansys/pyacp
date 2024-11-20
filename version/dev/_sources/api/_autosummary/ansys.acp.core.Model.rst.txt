@@ -1,4 +1,6 @@
-﻿Model
+﻿.. vale off
+
+Model
 =====
 
 .. currentmodule:: ansys.acp.core
@@ -182,3 +184,8 @@
       Model.virtual_geometries
    
    
+
+.. minigallery::
+   :add-heading: Examples using Model
+
+   ansys.acp.core.Model

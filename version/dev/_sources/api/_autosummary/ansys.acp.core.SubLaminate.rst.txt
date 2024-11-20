@@ -1,4 +1,6 @@
-﻿SubLaminate
+﻿.. vale off
+
+SubLaminate
 ===========
 
 .. currentmodule:: ansys.acp.core
@@ -49,3 +51,8 @@
       SubLaminate.topdown
    
    
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate
+
+   ansys.acp.core.SubLaminate

@@ -1,4 +1,6 @@
-﻿FabricWithAngle
+﻿.. vale off
+
+FabricWithAngle
 ===============
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       FabricWithAngle.fabric
    
    
+
+.. minigallery::
+   :add-heading: Examples using FabricWithAngle
+
+   ansys.acp.core.FabricWithAngle

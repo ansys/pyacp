@@ -1,4 +1,6 @@
-﻿AnalysisPlyNodalData
+﻿.. vale off
+
+AnalysisPlyNodalData
 ====================
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       AnalysisPlyNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPlyNodalData
+
+   ansys.acp.core.AnalysisPlyNodalData

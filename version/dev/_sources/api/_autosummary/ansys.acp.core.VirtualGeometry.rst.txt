@@ -1,4 +1,6 @@
-﻿VirtualGeometry
+﻿.. vale off
+
+VirtualGeometry
 ===============
 
 .. currentmodule:: ansys.acp.core
@@ -47,3 +49,8 @@
       VirtualGeometry.sub_shapes
    
    
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometry
+
+   ansys.acp.core.VirtualGeometry

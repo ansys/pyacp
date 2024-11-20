@@ -1,4 +1,6 @@
-﻿ModelingPlyNodalData
+﻿.. vale off
+
+ModelingPlyNodalData
 ====================
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       ModelingPlyNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using ModelingPlyNodalData
+
+   ansys.acp.core.ModelingPlyNodalData

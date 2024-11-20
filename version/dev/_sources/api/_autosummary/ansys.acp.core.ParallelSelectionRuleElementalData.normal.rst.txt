@@ -1,6 +1,13 @@
+.. vale off
+
 normal
 ======
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: ParallelSelectionRuleElementalData.normal
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRuleElementalData.normal
+
+   ansys.acp.core.ParallelSelectionRuleElementalData.normal

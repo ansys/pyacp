@@ -1,4 +1,6 @@
-﻿VariableTsaiWuConstants
+﻿.. vale off
+
+VariableTsaiWuConstants
 =======================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -31,3 +33,8 @@
       VariableTsaiWuConstants.interpolation_options
    
    
+
+.. minigallery::
+   :add-heading: Examples using VariableTsaiWuConstants
+
+   ansys.acp.core.material_property_sets.VariableTsaiWuConstants

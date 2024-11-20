@@ -1,4 +1,6 @@
-﻿VariableEngineeringConstants
+﻿.. vale off
+
+VariableEngineeringConstants
 ============================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -39,3 +41,8 @@
       VariableEngineeringConstants.nu23
    
    
+
+.. minigallery::
+   :add-heading: Examples using VariableEngineeringConstants
+
+   ansys.acp.core.material_property_sets.VariableEngineeringConstants

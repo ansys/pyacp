@@ -1,4 +1,6 @@
-﻿ImportedSolidModelExportSettings
+﻿.. vale off
+
+ImportedSolidModelExportSettings
 ================================
 
 .. currentmodule:: ansys.acp.core
@@ -39,3 +41,8 @@
       ImportedSolidModelExportSettings.use_solsh_elements
    
    
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModelExportSettings
+
+   ansys.acp.core.ImportedSolidModelExportSettings

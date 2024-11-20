@@ -23,3 +23,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using SymmetryType
+
+   ansys.acp.core.SymmetryType

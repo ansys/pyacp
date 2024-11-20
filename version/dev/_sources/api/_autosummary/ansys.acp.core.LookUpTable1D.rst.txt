@@ -1,4 +1,6 @@
-﻿LookUpTable1D
+﻿.. vale off
+
+LookUpTable1D
 =============
 
 .. currentmodule:: ansys.acp.core
@@ -45,3 +47,8 @@
       LookUpTable1D.status
    
    
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable1D
+
+   ansys.acp.core.LookUpTable1D

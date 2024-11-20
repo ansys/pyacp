@@ -1,4 +1,6 @@
-﻿TaperEdge
+﻿.. vale off
+
+TaperEdge
 =========
 
 .. currentmodule:: ansys.acp.core
@@ -32,3 +34,8 @@
       TaperEdge.offset
    
    
+
+.. minigallery::
+   :add-heading: Examples using TaperEdge
+
+   ansys.acp.core.TaperEdge

@@ -1,4 +1,6 @@
-﻿ExtrusionGuide
+﻿.. vale off
+
+ExtrusionGuide
 ==============
 
 .. currentmodule:: ansys.acp.core
@@ -47,3 +49,8 @@
       ExtrusionGuide.use_curvature_correction
    
    
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide
+
+   ansys.acp.core.ExtrusionGuide

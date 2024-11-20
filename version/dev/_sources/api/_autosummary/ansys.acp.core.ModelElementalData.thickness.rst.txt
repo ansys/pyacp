@@ -1,6 +1,13 @@
+.. vale off
+
 thickness
 =========
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: ModelElementalData.thickness
+
+.. minigallery::
+   :add-heading: Examples using ModelElementalData.thickness
+
+   ansys.acp.core.ModelElementalData.thickness

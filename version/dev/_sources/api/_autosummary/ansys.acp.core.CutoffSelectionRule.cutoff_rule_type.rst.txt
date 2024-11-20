@@ -1,6 +1,13 @@
+.. vale off
+
 cutoff\_rule\_type
 ==================
 
 .. currentmodule:: ansys.acp.core
 
 .. autoproperty:: CutoffSelectionRule.cutoff_rule_type
+
+.. minigallery::
+   :add-heading: Examples using CutoffSelectionRule.cutoff_rule_type
+
+   ansys.acp.core.CutoffSelectionRule.cutoff_rule_type

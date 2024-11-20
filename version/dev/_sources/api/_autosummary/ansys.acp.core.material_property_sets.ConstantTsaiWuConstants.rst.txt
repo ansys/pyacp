@@ -1,4 +1,6 @@
-﻿ConstantTsaiWuConstants
+﻿.. vale off
+
+ConstantTsaiWuConstants
 =======================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -29,3 +31,8 @@
       ConstantTsaiWuConstants.YZ
    
    
+
+.. minigallery::
+   :add-heading: Examples using ConstantTsaiWuConstants
+
+   ansys.acp.core.material_property_sets.ConstantTsaiWuConstants

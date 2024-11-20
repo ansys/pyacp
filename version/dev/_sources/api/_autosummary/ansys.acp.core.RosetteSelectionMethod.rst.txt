@@ -38,3 +38,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using RosetteSelectionMethod
+
+   ansys.acp.core.RosetteSelectionMethod

@@ -1,6 +1,13 @@
+.. vale off
+
 from\_cdb\_or\_dat\_file
 ========================
 
 .. currentmodule:: ansys.acp.core
 
 .. automethod:: ACPWorkflow.from_cdb_or_dat_file
+
+.. minigallery::
+   :add-heading: Examples using ACPWorkflow.from_cdb_or_dat_file
+
+   ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file

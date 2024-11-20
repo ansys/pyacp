@@ -17,3 +17,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using NodalDataType
+
+   ansys.acp.core.NodalDataType

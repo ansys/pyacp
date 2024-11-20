@@ -1,4 +1,6 @@
-﻿VariableWovenCharacterization
+﻿.. vale off
+
+VariableWovenCharacterization
 =============================
 
 .. currentmodule:: ansys.acp.core.material_property_sets
@@ -39,3 +41,8 @@
       VariableWovenCharacterization.orientation_2
    
    
+
+.. minigallery::
+   :add-heading: Examples using VariableWovenCharacterization
+
+   ansys.acp.core.material_property_sets.VariableWovenCharacterization

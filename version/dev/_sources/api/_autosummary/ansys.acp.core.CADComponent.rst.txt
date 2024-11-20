@@ -1,4 +1,6 @@
-﻿CADComponent
+﻿.. vale off
+
+CADComponent
 ============
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       CADComponent.status
    
    
+
+.. minigallery::
+   :add-heading: Examples using CADComponent
+
+   ansys.acp.core.CADComponent

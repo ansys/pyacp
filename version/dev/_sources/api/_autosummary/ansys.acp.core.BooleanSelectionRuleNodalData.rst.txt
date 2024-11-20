@@ -1,4 +1,6 @@
-﻿BooleanSelectionRuleNodalData
+﻿.. vale off
+
+BooleanSelectionRuleNodalData
 =============================
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       BooleanSelectionRuleNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRuleNodalData
+
+   ansys.acp.core.BooleanSelectionRuleNodalData

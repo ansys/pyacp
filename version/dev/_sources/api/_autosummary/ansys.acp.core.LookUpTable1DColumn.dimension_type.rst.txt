@@ -1,6 +1,13 @@
+.. vale off
+
 dimension\_type
 ===============
 
 .. currentmodule:: ansys.acp.core
 
 .. autoproperty:: LookUpTable1DColumn.dimension_type
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable1DColumn.dimension_type
+
+   ansys.acp.core.LookUpTable1DColumn.dimension_type

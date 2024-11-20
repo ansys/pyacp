@@ -1,4 +1,6 @@
-﻿ExampleKeys
+﻿.. vale off
+
+ExampleKeys
 ===========
 
 .. currentmodule:: ansys.acp.core.example_helpers
@@ -28,3 +30,8 @@
       ExampleKeys.OPTIMIZATION_EXAMPLE_DAT
    
    
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys
+
+   ansys.acp.core.example_helpers.ExampleKeys

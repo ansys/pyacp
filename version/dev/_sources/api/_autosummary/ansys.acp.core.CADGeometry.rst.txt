@@ -1,4 +1,6 @@
-﻿CADGeometry
+﻿.. vale off
+
+CADGeometry
 ===========
 
 .. currentmodule:: ansys.acp.core
@@ -51,3 +53,8 @@
       CADGeometry.visualization_mesh
    
    
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry
+
+   ansys.acp.core.CADGeometry

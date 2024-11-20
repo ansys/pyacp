@@ -1,4 +1,6 @@
-﻿ParallelSelectionRuleElementalData
+﻿.. vale off
+
+ParallelSelectionRuleElementalData
 ==================================
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       ParallelSelectionRuleElementalData.element_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRuleElementalData
+
+   ansys.acp.core.ParallelSelectionRuleElementalData

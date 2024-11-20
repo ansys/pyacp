@@ -1,4 +1,6 @@
-﻿SolidElementSetNodalData
+﻿.. vale off
+
+SolidElementSetNodalData
 ========================
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       SolidElementSetNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using SolidElementSetNodalData
+
+   ansys.acp.core.SolidElementSetNodalData

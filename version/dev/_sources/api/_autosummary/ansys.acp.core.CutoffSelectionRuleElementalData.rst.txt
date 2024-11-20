@@ -1,4 +1,6 @@
-﻿CutoffSelectionRuleElementalData
+﻿.. vale off
+
+CutoffSelectionRuleElementalData
 ================================
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       CutoffSelectionRuleElementalData.element_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using CutoffSelectionRuleElementalData
+
+   ansys.acp.core.CutoffSelectionRuleElementalData

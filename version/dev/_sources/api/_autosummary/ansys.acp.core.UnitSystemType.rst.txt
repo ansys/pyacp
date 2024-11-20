@@ -41,3 +41,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using UnitSystemType
+
+   ansys.acp.core.UnitSystemType

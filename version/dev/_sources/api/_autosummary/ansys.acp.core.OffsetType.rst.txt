@@ -26,3 +26,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using OffsetType
+
+   ansys.acp.core.OffsetType

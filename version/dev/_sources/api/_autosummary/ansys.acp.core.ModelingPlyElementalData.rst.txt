@@ -1,4 +1,6 @@
-﻿ModelingPlyElementalData
+﻿.. vale off
+
+ModelingPlyElementalData
 ========================
 
 .. currentmodule:: ansys.acp.core
@@ -49,3 +51,8 @@
       ModelingPlyElementalData.element_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using ModelingPlyElementalData
+
+   ansys.acp.core.ModelingPlyElementalData

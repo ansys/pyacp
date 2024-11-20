@@ -20,3 +20,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using CutOffGeometryOrientationType
+
+   ansys.acp.core.CutOffGeometryOrientationType

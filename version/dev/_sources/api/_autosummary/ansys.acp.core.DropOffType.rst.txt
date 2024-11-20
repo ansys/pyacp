@@ -20,3 +20,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using DropOffType
+
+   ansys.acp.core.DropOffType

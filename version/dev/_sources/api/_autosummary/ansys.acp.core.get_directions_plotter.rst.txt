@@ -1,6 +1,13 @@
-﻿get\_directions\_plotter
+﻿.. vale off
+
+get\_directions\_plotter
 ========================
 
 .. currentmodule:: ansys.acp.core
 
 .. autofunction:: get_directions_plotter
+
+.. minigallery::
+   :add-heading: Examples using get_directions_plotter
+
+   ansys.acp.core.get_directions_plotter

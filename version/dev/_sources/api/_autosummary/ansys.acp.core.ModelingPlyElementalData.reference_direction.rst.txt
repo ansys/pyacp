@@ -1,6 +1,13 @@
+.. vale off
+
 reference\_direction
 ====================
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: ModelingPlyElementalData.reference_direction
+
+.. minigallery::
+   :add-heading: Examples using ModelingPlyElementalData.reference_direction
+
+   ansys.acp.core.ModelingPlyElementalData.reference_direction

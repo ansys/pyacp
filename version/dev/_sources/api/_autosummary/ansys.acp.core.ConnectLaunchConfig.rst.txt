@@ -1,4 +1,6 @@
-﻿ConnectLaunchConfig
+﻿.. vale off
+
+ConnectLaunchConfig
 ===================
 
 .. currentmodule:: ansys.acp.core
@@ -28,3 +30,8 @@
       ConnectLaunchConfig.url_filetransfer
    
    
+
+.. minigallery::
+   :add-heading: Examples using ConnectLaunchConfig
+
+   ansys.acp.core.ConnectLaunchConfig

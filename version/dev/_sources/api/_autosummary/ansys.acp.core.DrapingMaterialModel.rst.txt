@@ -20,3 +20,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using DrapingMaterialModel
+
+   ansys.acp.core.DrapingMaterialModel

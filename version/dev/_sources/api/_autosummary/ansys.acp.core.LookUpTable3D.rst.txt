@@ -1,4 +1,6 @@
-﻿LookUpTable3D
+﻿.. vale off
+
+LookUpTable3D
 =============
 
 .. currentmodule:: ansys.acp.core
@@ -47,3 +49,8 @@
       LookUpTable3D.use_default_search_radius
    
    
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3D
+
+   ansys.acp.core.LookUpTable3D

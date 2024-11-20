@@ -1,4 +1,6 @@
-﻿PrimaryPly
+﻿.. vale off
+
+PrimaryPly
 ==========
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       PrimaryPly.sequence
    
    
+
+.. minigallery::
+   :add-heading: Examples using PrimaryPly
+
+   ansys.acp.core.PrimaryPly

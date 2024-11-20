@@ -1,4 +1,6 @@
-﻿ElementSet
+﻿.. vale off
+
+ElementSet
 ==========
 
 .. currentmodule:: ansys.acp.core
@@ -46,3 +48,8 @@
       ElementSet.status
    
    
+
+.. minigallery::
+   :add-heading: Examples using ElementSet
+
+   ansys.acp.core.ElementSet

@@ -1,4 +1,6 @@
-﻿ImportedSolidModelNodalData
+﻿.. vale off
+
+ImportedSolidModelNodalData
 ===========================
 
 .. currentmodule:: ansys.acp.core
@@ -30,3 +32,8 @@
       ImportedSolidModelNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModelNodalData
+
+   ansys.acp.core.ImportedSolidModelNodalData

@@ -1,6 +1,13 @@
+.. vale off
+
 FORCE
 =====
 
 .. currentmodule:: ansys.acp.core
 
 .. autoattribute:: DimensionType.FORCE
+
+.. minigallery::
+   :add-heading: Examples using DimensionType.FORCE
+
+   ansys.acp.core.DimensionType.FORCE

@@ -1,4 +1,6 @@
-﻿SnapToGeometry
+﻿.. vale off
+
+SnapToGeometry
 ==============
 
 .. currentmodule:: ansys.acp.core
@@ -43,3 +45,8 @@
       SnapToGeometry.status
    
    
+
+.. minigallery::
+   :add-heading: Examples using SnapToGeometry
+
+   ansys.acp.core.SnapToGeometry

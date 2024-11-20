@@ -38,3 +38,9 @@
       
    
    
+
+
+.. minigallery::
+   :add-heading: Examples using PlyType
+
+   ansys.acp.core.PlyType

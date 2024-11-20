@@ -1,4 +1,6 @@
-﻿ProductionPlyNodalData
+﻿.. vale off
+
+ProductionPlyNodalData
 ======================
 
 .. currentmodule:: ansys.acp.core
@@ -31,3 +33,8 @@
       ProductionPlyNodalData.node_labels
    
    
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyNodalData
+
+   ansys.acp.core.ProductionPlyNodalData

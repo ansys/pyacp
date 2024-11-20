@@ -1,4 +1,6 @@
-﻿SamplingPoint
+﻿.. vale off
+
+SamplingPoint
 =============
 
 .. currentmodule:: ansys.acp.core
@@ -47,3 +49,8 @@
       SamplingPoint.use_default_reference_direction
    
    
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint
+
+   ansys.acp.core.SamplingPoint
