@@ -6,7 +6,7 @@ Server management
 .. autosummary::
     :toctree: _autosummary
 
-    ACP
+    ACPInstance
     ConnectLaunchConfig
     DirectLaunchConfig
     DockerComposeLaunchConfig

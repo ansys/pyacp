@@ -544,8 +544,8 @@ see <a class="reference internal" href="001_basic_flat_plate.html#sphx-glr-examp
 </pre></div>
 </div>
 <p>Import the PyACP dependencies.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">ACPWorkflow</span><span class="p">,</span> <span class="n">DimensionType</span><span class="p">,</span> <span class="n">ThicknessType</span><span class="p">,</span> <span class="n">example_helpers</span><span class="p">,</span> <span class="n">launch_acp</span>
-<span class="kn">from</span> <span class="nn">ansys.acp.core.example_helpers</span> <span class="kn">import</span> <span class="n">ExampleKeys</span><span class="p">,</span> <span class="n">get_example_file</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="n">ACPWorkflow</span><span class="p">,</span> <span class="n">DimensionType</span><span class="p">,</span> <span class="n">ThicknessType</span><span class="p">,</span> <span class="n">launch_acp</span>
+<span class="kn">from</span> <span class="nn">ansys.acp.core.extras</span> <span class="kn">import</span> <span class="n">ExampleKeys</span><span class="p">,</span> <span class="n">get_example_file</span>
 </pre></div>
 </div>
 </section>
@@ -595,7 +595,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_005_thickness_definitions_001.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmpl94s1ziq
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmp2gtaceh9
 mks
 </pre></div>
 </div>
@@ -603,9 +603,7 @@ mks
 <section id="define-the-thickness-from-a-geometry">
 <h2>Define the thickness from a geometry<a class="headerlink" href="#define-the-thickness-from-a-geometry" title="Link to this heading">#</a></h2>
 <p>Add the solid geometry to the model that defines the thickness.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">thickness_geometry_file</span></a> <span class="o">=</span> <span class="n">example_helpers</span><span class="o">.</span><span class="n">get_example_file</span><span class="p">(</span>
-    <span class="n">example_helpers</span><span class="o">.</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">THICKNESS_GEOMETRY</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a>
-<span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">thickness_geometry_file</span></a> <span class="o">=</span> <span class="n">get_example_file</span><span class="p">(</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">THICKNESS_GEOMETRY</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">)</span>
 <span class="n">thickness_geometry</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">add_cad_geometry_from_local_file</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">thickness_geometry_file</span></a><span class="p">)</span>
 
 <span class="c1"># Note: It is important to update the model here, because the root_shapes of the</span>
@@ -738,7 +736,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_005_thickness_definitions_003.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.734 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 4.042 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-005-thickness-definitions-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/7305a6809a8a854cbe5f3bb6a78ccb2e/005_thickness_definitions.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">005_thickness_definitions.ipynb</span></code></a></p>

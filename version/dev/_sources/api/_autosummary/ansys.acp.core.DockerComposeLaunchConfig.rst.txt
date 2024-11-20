@@ -27,8 +27,8 @@ DockerComposeLaunchConfig
       :toctree:
    
       DockerComposeLaunchConfig.compose_file
+      DockerComposeLaunchConfig.image_name_acp
       DockerComposeLaunchConfig.image_name_filetransfer
-      DockerComposeLaunchConfig.image_name_pyacp
       DockerComposeLaunchConfig.keep_volume
       DockerComposeLaunchConfig.license_server
       DockerComposeLaunchConfig.environment_variables

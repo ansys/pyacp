@@ -59,7 +59,7 @@ Import the standard library and third-party dependencies.
 
 Import the PyACP dependencies.
 
-.. GENERATED FROM PYTHON SOURCE LINES 52-65
+.. GENERATED FROM PYTHON SOURCE LINES 52-64
 
 .. code-block:: Python
 
@@ -69,10 +69,9 @@ Import the PyACP dependencies.
         DimensionType,
         EdgeSetType,
         LinkedSelectionRule,
-        example_helpers,
         launch_acp,
     )
-    from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
+    from ansys.acp.core.extras import ExampleKeys, get_example_file
 
 
 
@@ -83,16 +82,16 @@ Import the PyACP dependencies.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 67-69
+.. GENERATED FROM PYTHON SOURCE LINES 66-68
 
 Start ACP and load the model
 ----------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 71-72
+.. GENERATED FROM PYTHON SOURCE LINES 70-71
 
 Get the example file from the server.
 
-.. GENERATED FROM PYTHON SOURCE LINES 72-76
+.. GENERATED FROM PYTHON SOURCE LINES 71-75
 
 .. code-block:: Python
 
@@ -107,11 +106,11 @@ Get the example file from the server.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 77-78
+.. GENERATED FROM PYTHON SOURCE LINES 76-77
 
 Launch the PyACP server and connect to it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 78-80
+.. GENERATED FROM PYTHON SOURCE LINES 77-79
 
 .. code-block:: Python
 
@@ -124,14 +123,14 @@ Launch the PyACP server and connect to it.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 81-85
+.. GENERATED FROM PYTHON SOURCE LINES 80-84
 
 Define the input file and instantiate an ``ACPWorkflow`` instance.
 The ``ACPWorkflow`` class provides convenience methods that simplify file handling.
 It automatically creates a model based on the input file.
 This example's input file contains a flat plate with a single ply.
 
-.. GENERATED FROM PYTHON SOURCE LINES 85-96
+.. GENERATED FROM PYTHON SOURCE LINES 84-95
 
 .. code-block:: Python
 
@@ -154,18 +153,18 @@ This example's input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmpy56854fi
+    /tmp/tmpcwrwug8e
     mks
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 97-99
+.. GENERATED FROM PYTHON SOURCE LINES 96-98
 
 Add more layers to the modeling ply so that it is easier to see the effects of the selection rules.
 Plot the thickness of all the plies without any rules.
 
-.. GENERATED FROM PYTHON SOURCE LINES 99-107
+.. GENERATED FROM PYTHON SOURCE LINES 98-106
 
 .. code-block:: Python
 
@@ -211,22 +210,22 @@ Plot the thickness of all the plies without any rules.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 108-110
+.. GENERATED FROM PYTHON SOURCE LINES 107-109
 
 Parametrized Parallel Rule
 --------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 112-115
+.. GENERATED FROM PYTHON SOURCE LINES 111-114
 
 Rules can be parametrized. This is useful when a rule is used multiple times but with different
 parameters.  The :class:`.LinkedSelectionRule` class shows what parameters are available for each rule.
 This code modifies the extent of the parallel rule.
 
-.. GENERATED FROM PYTHON SOURCE LINES 117-118
+.. GENERATED FROM PYTHON SOURCE LINES 116-117
 
 Create a parallel rule.
 
-.. GENERATED FROM PYTHON SOURCE LINES 118-126
+.. GENERATED FROM PYTHON SOURCE LINES 117-125
 
 .. code-block:: Python
 
@@ -245,11 +244,11 @@ Create a parallel rule.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 127-128
+.. GENERATED FROM PYTHON SOURCE LINES 126-127
 
 Assign it the modeling ply.
 
-.. GENERATED FROM PYTHON SOURCE LINES 128-132
+.. GENERATED FROM PYTHON SOURCE LINES 127-131
 
 .. code-block:: Python
 
@@ -264,11 +263,11 @@ Assign it the modeling ply.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 133-134
+.. GENERATED FROM PYTHON SOURCE LINES 132-133
 
 Plot the thickness of the ply before the parametrization.
 
-.. GENERATED FROM PYTHON SOURCE LINES 134-138
+.. GENERATED FROM PYTHON SOURCE LINES 133-137
 
 .. code-block:: Python
 
@@ -310,12 +309,12 @@ Plot the thickness of the ply before the parametrization.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 139-141
+.. GENERATED FROM PYTHON SOURCE LINES 138-140
 
 Modify the parallel rule by changing the parameters of the linked rule.
 Parameters defined on the linked rule override the parameters of the original rule.
 
-.. GENERATED FROM PYTHON SOURCE LINES 141-145
+.. GENERATED FROM PYTHON SOURCE LINES 140-144
 
 .. code-block:: Python
 
@@ -330,11 +329,11 @@ Parameters defined on the linked rule override the parameters of the original ru
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 146-147
+.. GENERATED FROM PYTHON SOURCE LINES 145-146
 
 Plot the thickness of the ply with the modified rule.
 
-.. GENERATED FROM PYTHON SOURCE LINES 147-152
+.. GENERATED FROM PYTHON SOURCE LINES 146-151
 
 .. code-block:: Python
 
@@ -377,22 +376,20 @@ Plot the thickness of the ply with the modified rule.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 153-155
+.. GENERATED FROM PYTHON SOURCE LINES 152-154
 
 Create a geometrical selection rule
 -----------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 157-158
+.. GENERATED FROM PYTHON SOURCE LINES 156-157
 
 Add a CAD geometry to the model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 158-168
+.. GENERATED FROM PYTHON SOURCE LINES 157-165
 
 .. code-block:: Python
 
-    triangle_path = example_helpers.get_example_file(
-        example_helpers.ExampleKeys.RULE_GEOMETRY_TRIANGLE, WORKING_DIR
-    )
+    triangle_path = get_example_file(ExampleKeys.RULE_GEOMETRY_TRIANGLE, WORKING_DIR)
     triangle = workflow.add_cad_geometry_from_local_file(triangle_path)
 
 
@@ -407,11 +404,11 @@ Add a CAD geometry to the model.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 169-170
+.. GENERATED FROM PYTHON SOURCE LINES 166-167
 
 Create a virtual geometry from the CAD geometry.
 
-.. GENERATED FROM PYTHON SOURCE LINES 170-174
+.. GENERATED FROM PYTHON SOURCE LINES 167-171
 
 .. code-block:: Python
 
@@ -426,11 +423,11 @@ Create a virtual geometry from the CAD geometry.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 175-176
+.. GENERATED FROM PYTHON SOURCE LINES 172-173
 
 Create the geometrical selection rule.
 
-.. GENERATED FROM PYTHON SOURCE LINES 176-181
+.. GENERATED FROM PYTHON SOURCE LINES 173-178
 
 .. code-block:: Python
 
@@ -446,12 +443,12 @@ Create the geometrical selection rule.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 182-184
+.. GENERATED FROM PYTHON SOURCE LINES 179-181
 
 Assign the geometrical selection rule to the ply. Plot the ply extent with
 the outline of the geometry.
 
-.. GENERATED FROM PYTHON SOURCE LINES 184-195
+.. GENERATED FROM PYTHON SOURCE LINES 181-192
 
 .. code-block:: Python
 
@@ -500,22 +497,20 @@ the outline of the geometry.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 196-198
+.. GENERATED FROM PYTHON SOURCE LINES 193-195
 
 Create a cutoff selection rule
 ------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 200-201
+.. GENERATED FROM PYTHON SOURCE LINES 197-198
 
 Add the cutoff CAD geometry to the model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 201-210
+.. GENERATED FROM PYTHON SOURCE LINES 198-205
 
 .. code-block:: Python
 
-    cutoff_plane_path = example_helpers.get_example_file(
-        example_helpers.ExampleKeys.CUT_OFF_GEOMETRY, WORKING_DIR
-    )
+    cutoff_plane_path = get_example_file(ExampleKeys.CUT_OFF_GEOMETRY, WORKING_DIR)
     cut_off_plane = workflow.add_cad_geometry_from_local_file(cutoff_plane_path)
 
     # Note: It is important to update the model here, because the root_shapes of the
@@ -529,11 +524,11 @@ Add the cutoff CAD geometry to the model.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 211-212
+.. GENERATED FROM PYTHON SOURCE LINES 206-207
 
 Create a virtual geometry from the CAD geometry.
 
-.. GENERATED FROM PYTHON SOURCE LINES 212-216
+.. GENERATED FROM PYTHON SOURCE LINES 207-211
 
 .. code-block:: Python
 
@@ -548,11 +543,11 @@ Create a virtual geometry from the CAD geometry.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 217-218
+.. GENERATED FROM PYTHON SOURCE LINES 212-213
 
 Create the cutoff selection rule.
 
-.. GENERATED FROM PYTHON SOURCE LINES 218-224
+.. GENERATED FROM PYTHON SOURCE LINES 213-219
 
 .. code-block:: Python
 
@@ -569,12 +564,12 @@ Create the cutoff selection rule.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 225-227
+.. GENERATED FROM PYTHON SOURCE LINES 220-222
 
 Assign the cutoff selection rule to the ply. Plot the ply extent with
 the outline of the geometry.
 
-.. GENERATED FROM PYTHON SOURCE LINES 227-238
+.. GENERATED FROM PYTHON SOURCE LINES 222-233
 
 .. code-block:: Python
 
@@ -623,16 +618,16 @@ the outline of the geometry.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 239-241
+.. GENERATED FROM PYTHON SOURCE LINES 234-236
 
 Create a variable offset selection rule
 ---------------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 243-244
+.. GENERATED FROM PYTHON SOURCE LINES 238-239
 
 Create the lookup table.
 
-.. GENERATED FROM PYTHON SOURCE LINES 244-250
+.. GENERATED FROM PYTHON SOURCE LINES 239-245
 
 .. code-block:: Python
 
@@ -649,12 +644,12 @@ Create the lookup table.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 251-253
+.. GENERATED FROM PYTHON SOURCE LINES 246-248
 
 Add the location data. The "Location" column of the lookup table
 is always created by default.
 
-.. GENERATED FROM PYTHON SOURCE LINES 253-255
+.. GENERATED FROM PYTHON SOURCE LINES 248-250
 
 .. code-block:: Python
 
@@ -667,11 +662,11 @@ is always created by default.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 256-257
+.. GENERATED FROM PYTHON SOURCE LINES 251-252
 
 Create the offset column that defines the offsets from the edge.
 
-.. GENERATED FROM PYTHON SOURCE LINES 257-263
+.. GENERATED FROM PYTHON SOURCE LINES 252-258
 
 .. code-block:: Python
 
@@ -688,12 +683,12 @@ Create the offset column that defines the offsets from the edge.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 264-266
+.. GENERATED FROM PYTHON SOURCE LINES 259-261
 
 Create the edge set from the "All_Elements" element set. Because you
 assigned 30 degrees to the limit angle, only one edge at x=0 is selected.
 
-.. GENERATED FROM PYTHON SOURCE LINES 266-274
+.. GENERATED FROM PYTHON SOURCE LINES 261-269
 
 .. code-block:: Python
 
@@ -712,11 +707,11 @@ assigned 30 degrees to the limit angle, only one edge at x=0 is selected.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 275-276
+.. GENERATED FROM PYTHON SOURCE LINES 270-271
 
 Create the variable offset rule and assign it to the ply.
 
-.. GENERATED FROM PYTHON SOURCE LINES 276-282
+.. GENERATED FROM PYTHON SOURCE LINES 271-277
 
 .. code-block:: Python
 
@@ -733,11 +728,11 @@ Create the variable offset rule and assign it to the ply.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 283-284
+.. GENERATED FROM PYTHON SOURCE LINES 278-279
 
 Plot the ply extent.
 
-.. GENERATED FROM PYTHON SOURCE LINES 284-288
+.. GENERATED FROM PYTHON SOURCE LINES 279-283
 
 .. code-block:: Python
 
@@ -779,12 +774,12 @@ Plot the ply extent.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 289-291
+.. GENERATED FROM PYTHON SOURCE LINES 284-286
 
 Create a boolean selection rule
 -------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 293-298
+.. GENERATED FROM PYTHON SOURCE LINES 288-293
 
 Creating a Boolean selection rule and assigning it to a ply has the same
 effect as linking the individual rules directly to the ply. Boolean rules are still useful
@@ -792,7 +787,7 @@ because they can help organize rules and make more complex ones.
 
 Create a cylindrical selection rule to combine with the parallel rule.
 
-.. GENERATED FROM PYTHON SOURCE LINES 298-323
+.. GENERATED FROM PYTHON SOURCE LINES 293-318
 
 .. code-block:: Python
 
@@ -828,11 +823,11 @@ Create a cylindrical selection rule to combine with the parallel rule.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 324-325
+.. GENERATED FROM PYTHON SOURCE LINES 319-320
 
 Plot the ply extent.
 
-.. GENERATED FROM PYTHON SOURCE LINES 325-329
+.. GENERATED FROM PYTHON SOURCE LINES 320-324
 
 .. code-block:: Python
 
@@ -874,11 +869,11 @@ Plot the ply extent.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 330-331
+.. GENERATED FROM PYTHON SOURCE LINES 325-326
 
 Modify the operation type of the Boolean selection rule so that the two rules are added.
 
-.. GENERATED FROM PYTHON SOURCE LINES 331-334
+.. GENERATED FROM PYTHON SOURCE LINES 326-329
 
 .. code-block:: Python
 
@@ -892,11 +887,11 @@ Modify the operation type of the Boolean selection rule so that the two rules ar
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 335-336
+.. GENERATED FROM PYTHON SOURCE LINES 330-331
 
 Plot the ply extent.
 
-.. GENERATED FROM PYTHON SOURCE LINES 336-339
+.. GENERATED FROM PYTHON SOURCE LINES 331-334
 
 .. code-block:: Python
 
@@ -940,7 +935,7 @@ Plot the ply extent.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 7.207 seconds)
+   **Total running time of the script:** (0 minutes 5.398 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_004_advanced_rules.py:

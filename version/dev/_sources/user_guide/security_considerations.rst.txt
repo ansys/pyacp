@@ -60,7 +60,7 @@ system.
 File up- and downloads
 ----------------------
 
-The :py:meth:`.ACP.upload_file` and :py:meth:`.ACP.download_file` methods create files
+The :py:meth:`.ACPInstance.upload_file` and :py:meth:`.ACPInstance.download_file` methods create files
 on the local or remote machine, without any validation of the file content or path.
 
 When exposing these methods to untrusted users, it is important to validate that

@@ -1,7 +1,7 @@
 Example helpers
 ---------------
 
-.. currentmodule:: ansys.acp.core.example_helpers
+.. currentmodule:: ansys.acp.core.extras.example_helpers
 
 .. autosummary::
     :toctree: _autosummary

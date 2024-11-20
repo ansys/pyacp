@@ -610,7 +610,7 @@ download them to the server and specify their names.</p>
 <section id="id1">
 <h3>Loading input files<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>You can manually load the <code class="docutils literal notranslate"><span class="pre">input_file.cdb</span></code> file to the ACP instance by
-using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACP.upload_file.html#ansys.acp.core.ACP.upload_file" title="ansys.acp.core.ACP.upload_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">upload_file()</span></code></a> method:</p>
+using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPInstance.upload_file.html#ansys.acp.core.ACPInstance.upload_file" title="ansys.acp.core.ACPInstance.upload_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">upload_file()</span></code></a> method:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">uploaded_path</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">DATA_DIRECTORY</span> <span class="o">/</span> <span class="s2">&quot;input_file.cdb&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">uploaded_path</span>
 <span class="go">PurePosixPath(&#39;input_file.cdb&#39;)</span>
@@ -635,7 +635,7 @@ manually do that using the model’s <a class="reference internal" href="../../a
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;output_file.acph5&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then, you can download the file using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACP.download_file.html#ansys.acp.core.ACP.download_file" title="ansys.acp.core.ACP.download_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">download_file()</span></code></a> method of the ACP
+<p>Then, you can download the file using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPInstance.download_file.html#ansys.acp.core.ACPInstance.download_file" title="ansys.acp.core.ACPInstance.download_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">download_file()</span></code></a> method of the ACP
 instance:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">acp</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">remote_filename</span><span class="o">=</span><span class="s2">&quot;output_file.acph5&quot;</span><span class="p">,</span> <span class="n">local_path</span><span class="o">=</span><span class="s2">&quot;output_file_downloaded.acph5&quot;</span>
@@ -662,8 +662,8 @@ directly into the ACP instance. There is no separate upload step.</p></li>
 <section id="when-using-manual-upload-and-download">
 <h3>When using manual upload and download<a class="headerlink" href="#when-using-manual-upload-and-download" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>The <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACP.upload_file.html#ansys.acp.core.ACP.upload_file" title="ansys.acp.core.ACP.upload_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">upload_file()</span></code></a> method has no effect and simply returns the input file path.</p></li>
-<li><p>The <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACP.download_file.html#ansys.acp.core.ACP.download_file" title="ansys.acp.core.ACP.download_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">download_file()</span></code></a> method copies the file to the specified <code class="docutils literal notranslate"><span class="pre">local_path</span></code> argument if
+<li><p>The <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPInstance.upload_file.html#ansys.acp.core.ACPInstance.upload_file" title="ansys.acp.core.ACPInstance.upload_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">upload_file()</span></code></a> method has no effect and simply returns the input file path.</p></li>
+<li><p>The <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPInstance.download_file.html#ansys.acp.core.ACPInstance.download_file" title="ansys.acp.core.ACPInstance.download_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">download_file()</span></code></a> method copies the file to the specified <code class="docutils literal notranslate"><span class="pre">local_path</span></code> argument if
 the <code class="docutils literal notranslate"><span class="pre">local_path</span></code> and <code class="docutils literal notranslate"><span class="pre">remote_filename</span></code> arguments are not the same.</p></li>
 </ul>
 <div class="admonition hint">

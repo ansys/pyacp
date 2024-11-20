@@ -49,7 +49,7 @@ from ansys.acp.core import (
     launch_acp,
     print_model,
 )
-from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
+from ansys.acp.core.extras import ExampleKeys, get_example_file
 from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, ConstantStrainLimits
 
 # sphinx_gallery_thumbnail_number = 2
@@ -210,7 +210,7 @@ top_ply = modeling_group.create_modeling_ply(
 model.update()
 print_model(workflow.model)
 # sphinx_gallery_start_ignore
-from ansys.acp.core.example_helpers import _run_analysis
+from ansys.acp.core.extras.example_helpers import _run_analysis
 
 # Run the analysis to ensure that all the material properties have been correctly
 # defined.

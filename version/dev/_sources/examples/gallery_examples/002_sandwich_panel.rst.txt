@@ -64,7 +64,7 @@ Import the PyACP dependencies.
         launch_acp,
         print_model,
     )
-    from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
+    from ansys.acp.core.extras import ExampleKeys, get_example_file
     from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, ConstantStrainLimits
 
 
@@ -146,7 +146,7 @@ It automatically creates a model based on the input file.
 
  .. code-block:: none
 
-    /tmp/tmpydn0_uy0
+    /tmp/tmpthj0uisk
     mks
 
 
@@ -479,7 +479,7 @@ Update and print the model.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 7.862 seconds)
+   **Total running time of the script:** (0 minutes 5.274 seconds)
 
 
 .. _sphx_glr_download_examples_gallery_examples_002_sandwich_panel.py:

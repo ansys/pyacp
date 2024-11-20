@@ -55,10 +55,9 @@ from ansys.acp.core import (
     DimensionType,
     EdgeSetType,
     LinkedSelectionRule,
-    example_helpers,
     launch_acp,
 )
-from ansys.acp.core.example_helpers import ExampleKeys, get_example_file
+from ansys.acp.core.extras import ExampleKeys, get_example_file
 
 # sphinx_gallery_thumbnail_number = 5
 
@@ -155,9 +154,7 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 
 # %%
 # Add a CAD geometry to the model.
-triangle_path = example_helpers.get_example_file(
-    example_helpers.ExampleKeys.RULE_GEOMETRY_TRIANGLE, WORKING_DIR
-)
+triangle_path = get_example_file(ExampleKeys.RULE_GEOMETRY_TRIANGLE, WORKING_DIR)
 triangle = workflow.add_cad_geometry_from_local_file(triangle_path)
 
 
@@ -198,9 +195,7 @@ plotter.show()
 
 # %%
 # Add the cutoff CAD geometry to the model.
-cutoff_plane_path = example_helpers.get_example_file(
-    example_helpers.ExampleKeys.CUT_OFF_GEOMETRY, WORKING_DIR
-)
+cutoff_plane_path = get_example_file(ExampleKeys.CUT_OFF_GEOMETRY, WORKING_DIR)
 cut_off_plane = workflow.add_cad_geometry_from_local_file(cutoff_plane_path)
 
 # Note: It is important to update the model here, because the root_shapes of the

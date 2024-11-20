@@ -559,6 +559,7 @@ covered in the subsequent example code:</p>
 </div>
 <p>Import Ansys libraries</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
+<span class="kn">from</span> <span class="nn">ansys.acp.core.extras</span> <span class="kn">import</span> <span class="n">ExampleKeys</span><span class="p">,</span> <span class="n">get_example_file</span>
 <span class="kn">import</span> <span class="nn">ansys.dpf.composites</span> <span class="k">as</span> <span class="nn">pydpf_composites</span>
 <span class="kn">import</span> <span class="nn">ansys.mapdl.core</span> <span class="k">as</span> <span class="nn">pymapdl</span>
 </pre></div>
@@ -590,8 +591,8 @@ of a rounded square tube.</p>
 ACP model and creates a lay-up with six plies.
 It returns a <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.html#ansys.acp.core.ACPWorkflow" title="ansys.acp.core.ACPWorkflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">ACPWorkflow</span></code></a> object that can be used to access the model and
 generate the output files.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">example_helpers</span><span class="o">.</span><span class="n">get_example_file</span><span class="p">(</span>
-    <span class="n">example_key</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">example_helpers</span><span class="o">.</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">OPTIMIZATION_EXAMPLE_DAT</span><span class="p">,</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a> <span class="o">=</span> <span class="n">get_example_file</span><span class="p">(</span>
+    <span class="n">example_key</span><span class="o">=</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">OPTIMIZATION_EXAMPLE_DAT</span><span class="p">,</span>
     <span class="n">working_directory</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">,</span>
 <span class="p">)</span>
 
@@ -981,7 +982,7 @@ converge to the following result:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_009_optimization_003.png" srcset="../../_images/sphx_glr_009_optimization_003.png" alt="009 optimization" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 48.196 seconds)</p>
+<img src="../../_images/sphx_glr_009_optimization_003.png" srcset="../../_images/sphx_glr_009_optimization_003.png" alt="009 optimization" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 38.577 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-009-optimization-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8d7024d05cde2351b7f71b13506a23d9/009_optimization.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">009_optimization.ipynb</span></code></a></p>
