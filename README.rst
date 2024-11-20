@@ -208,6 +208,11 @@ valid license server (e.g ``1055@mylicenseserver.com``). Then start the docker c
 
 Then build the documentation with the `Sphinx`_ commands mentioned above.
 
+On Windows, you can use the shipped shell script:
+
+.. code-block:: batch
+
+    .\doc\create_doc_windows.ps1
 
 Distribution
 ^^^^^^^^^^^^

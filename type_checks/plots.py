@@ -3,8 +3,8 @@ from typing import Optional
 import numpy as np
 from typing_extensions import assert_type
 
-from ansys.acp.core.mesh_data import ScalarData, VectorData, ModelingPlyElementalData
 from ansys.acp.core import Model
+from ansys.acp.core.mesh_data import ModelingPlyElementalData, ScalarData, VectorData
 
 model = Model()
 

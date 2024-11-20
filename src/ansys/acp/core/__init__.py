@@ -27,9 +27,7 @@ PyACP enables you to design and analyze layered composite structures.
 
 import importlib.metadata
 
-from . import mesh_data
-
-from . import material_property_sets
+from . import material_property_sets, mesh_data
 from ._model_printer import get_model_tree, print_model
 from ._plotter import get_directions_plotter
 from ._recursive_copy import LinkedObjectHandling, recursive_copy

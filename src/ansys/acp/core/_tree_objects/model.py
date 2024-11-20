@@ -141,7 +141,6 @@ __all__ = [
     "HDF5CompositeCAEImportMode",
     "HDF5CompositeCAEProjectionMode",
     "IgnorableEntity",
-    "MeshData",
     "Model",
     "ModelElementalData",
     "ModelNodalData",

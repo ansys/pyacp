@@ -36,9 +36,11 @@ def _signature(
         BooleanSelectionRule,
         CADComponent,
         GeometricalSelectionRule,
-        MeshData,
         Model,
         ModelingGroup,
+    )
+    from ansys.acp.core.mesh_data import (  # noqa: F401
+        MeshData,
         ScalarData,
         VectorData,
     )
