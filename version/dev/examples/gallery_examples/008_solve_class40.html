@@ -883,7 +883,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  25.2BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     07:30:38  NOV 18, 2024 CP=      1.182\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 25.2BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.244\n\n\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  25.2BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     08:26:11  NOV 20, 2024 CP=      1.195\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 25.2BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.257\n\n\n&#39;
 </pre></div>
 </div>
 <p>Solve the model.</p>
@@ -894,7 +894,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       1.255   TIME= 07:30:39
+ *** NOTE ***                            CP =       1.268   TIME= 08:26:11
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -919,7 +919,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  25.2BETA ***
  Ansys Mechanical Enterprise
- 00000000  VERSION=LINUX x64     07:30:39  NOV 18, 2024 CP=      1.292
+ 00000000  VERSION=LINUX x64     08:26:11  NOV 20, 2024 CP=      1.304
 
 
 
@@ -935,14 +935,14 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       1.294   TIME= 07:30:39
+ *** NOTE ***                            CP =       1.306   TIME= 08:26:11
  Poisson&#39;s ratio PR input has been converted to NU input.
 
- *** NOTE ***                            CP =       1.297   TIME= 07:30:39
+ *** NOTE ***                            CP =       1.309   TIME= 08:26:11
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       1.298   TIME= 07:30:39
+ *** NOTE ***                            CP =       1.310   TIME= 08:26:11
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -960,7 +960,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       1.360   TIME= 07:30:39
+ *** NOTE ***                            CP =       1.371   TIME= 08:26:11
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -1009,10 +1009,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      2.316   0.000583
-        2        88  BEAM188       0.003   0.000032
-        3        22  SHELL181      0.004   0.000190
- Time at end of element matrix formulation CP = 3.70140696.
+        1      3973  SHELL181      2.302   0.000579
+        2        88  BEAM188       0.003   0.000031
+        3        22  SHELL181      0.004   0.000176
+ Time at end of element matrix formulation CP = 3.69709492.
 
  SPARSE MATRIX DIRECT SOLVER.
   Number of equations =       24096,    Maximum wavefront =     66
@@ -1023,9 +1023,9 @@ Interactive Scene</label><div class="sd-tab-content docutils">
   Equation solver memory allocated                     =    66.685 MB
   Equation solver memory required for in-core mode     =    64.079 MB
   Equation solver memory required for out-of-core mode =    28.690 MB
-  Total (solver and non-solver) memory allocated       =   682.615 MB
+  Total (solver and non-solver) memory allocated       =   685.396 MB
 
- *** NOTE ***                            CP =       3.751   TIME= 07:30:41
+ *** NOTE ***                            CP =       3.741   TIME= 08:26:13
  The Sparse Matrix Solver is currently running in the in-core memory
  mode.  This memory mode uses the most amount of memory in order to
  avoid using the hard drive as much as possible, which most often
@@ -1040,14 +1040,14 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      5.139   0.001293
-        2        88  BEAM188       0.006   0.000065
-        3        22  SHELL181      0.007   0.000316
+        1      3973  SHELL181      5.059   0.001273
+        2        88  BEAM188       0.006   0.000064
+        3        22  SHELL181      0.007   0.000311
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      0.056   0.000014
+        1      3973  SHELL181      0.055   0.000014
         2        88  BEAM188       0.001   0.000016
         3        22  SHELL181      0.000   0.000014
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
@@ -1158,7 +1158,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/gallery_examples/images/sphx_glr_008_solve_class40_007.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 26.309 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 25.766 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-008-solve-class40-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/c40fce03973804347e3b3455fcf61488/008_solve_class40.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">008_solve_class40.ipynb</span></code></a></p>
