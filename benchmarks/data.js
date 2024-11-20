@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1732091540099,
+  "lastUpdate": 1732092116195,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -19200,6 +19200,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00013811816430854353",
             "extra": "mean: 38.483509666666244 msec\nrounds: 27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "acffc13e073f939011231e5f638f835097a887a1",
+          "message": "Show which examples use an object in the API documentation (#683)\n\nUse the 'minigallery' feature of `sphinx-gallery` to show which examples use a specific feature in its API documentation.\r\n\r\nNote that examples which are not rendered (i.e., the PyMechanical ones) do not show up. Also, uses within a function (defined in the example) do not seem to be captured.\r\n\r\nHowever, where present, I think it's a nice way of linking the API reference to a usage example. When there are no examples, the section is not shown.",
+          "timestamp": "2024-11-20T08:34:52Z",
+          "tree_id": "6e9a1db67fbc8dc63e8619c7b3a17135d6349f42",
+          "url": "https://github.com/ansys/pyacp/commit/acffc13e073f939011231e5f638f835097a887a1"
+        },
+        "date": 1732092091287,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 7.436170435963304,
+            "unit": "iter/sec",
+            "range": "stddev: 0.024685781910233833",
+            "extra": "mean: 134.4778214285855 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.6836017321951724,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005660088949308963",
+            "extra": "mean: 372.63353499999613 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.3876642871482491,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.579551517000027 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04095950688832621,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.41435642099998 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.158423362215005,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0022340687014602914",
+            "extra": "mean: 463.3011380000009 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.2855802711340707,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.5016424490000304 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.029645395254610633,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 33.73205151800005 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1320.9930442840043,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00021200769684618287",
+            "extra": "mean: 757.0062570178128 usec\nrounds: 1817"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 403.89511636123643,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000060943637777656997",
+            "extra": "mean: 2.475890297979286 msec\nrounds: 396"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 48.56556749749341,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00008664644807052636",
+            "extra": "mean: 20.59071995918945 msec\nrounds: 49"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.971955782846481,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00014821804356856446",
+            "extra": "mean: 201.12809599997945 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 1030.9427926938677,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00012063722495994983",
+            "extra": "mean: 969.9859265585301 usec\nrounds: 994"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 233.28806928064472,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00007230103315916436",
+            "extra": "mean: 4.28654582758368 msec\nrounds: 232"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 26.08914049788977,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00011020837505913933",
+            "extra": "mean: 38.33012437036342 msec\nrounds: 27"
           }
         ]
       }
