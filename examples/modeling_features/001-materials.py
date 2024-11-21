@@ -57,6 +57,9 @@ from ansys.acp.core.material_property_sets import (
     ConstantStressLimits,
 )
 
+# sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_001-materials_thumb.png'
+
+
 # %%
 # Start ACP and load the model
 # ----------------------------
