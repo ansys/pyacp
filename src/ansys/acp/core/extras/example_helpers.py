@@ -127,7 +127,9 @@ def _get_file_url(example_location: _ExampleLocation) -> str:  # pragma: no cove
         return _EXAMPLE_REPO + "/".join([example_location.directory, example_location.filename])
 
 
-def _download_file(example_location: _ExampleLocation, local_path: pathlib.Path) -> None:  # pragma: no cover
+def _download_file(
+    example_location: _ExampleLocation, local_path: pathlib.Path
+) -> None:  # pragma: no cover
     file_url = _get_file_url(example_location)
     # The URL is hard-coded to start with the example repository URL, so it is safe to use
     if _is_url(file_url):
