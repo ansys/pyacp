@@ -306,7 +306,7 @@ composite_model = pydpf_composites.composite_model.CompositeModel(
                 definition=working_dir_path / composite_definitions_h5
             ),
         },
-        engineering_data=working_dir_path / matml_file,
+        engineering_data=working_dir_path / matml_out,
     ),
     server=dpf,
 )

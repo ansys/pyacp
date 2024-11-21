@@ -442,7 +442,7 @@ Evaluate the failure criteria using the PyDPF Composites.
                     definition=working_dir_path / solid_model_composite_definitions_h5
                 ),
             },
-            engineering_data=working_dir_path / matml_file,
+            engineering_data=working_dir_path / matml_out,
         ),
         server=dpf,
     )
