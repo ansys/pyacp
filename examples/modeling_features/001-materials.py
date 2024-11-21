@@ -47,16 +47,13 @@ import tempfile
 
 # %%
 # Import the PyACP dependencies.
-from ansys.acp.core import (
-    ACPWorkflow,
-    FabricWithAngle,
-    Lamina,
-    PlyType,
-    SymmetryType,
-    launch_acp,
-)
+from ansys.acp.core import ACPWorkflow, FabricWithAngle, Lamina, PlyType, SymmetryType, launch_acp
 from ansys.acp.core.extras import ExampleKeys, get_example_file
-from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, ConstantStrainLimits, ConstantStressLimits
+from ansys.acp.core.material_property_sets import (
+    ConstantEngineeringConstants,
+    ConstantStrainLimits,
+    ConstantStressLimits,
+)
 
 # sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_001-materials_thumb.png'
 # %%
@@ -134,8 +131,12 @@ ud_material = model.create_material(
 #
 # Create a fabric with a thickness of 0.2 mmm. A material can be used for
 # multiple fabrics.
-ud_fabric_02mm = model.create_fabric(name="E-Glass UD 0.2mm", material=ud_material, thickness=0.0002)
-ud_fabric_03mm = model.create_fabric(name="E-Glass UD 0.3mm", material=ud_material, thickness=0.0003)
+ud_fabric_02mm = model.create_fabric(
+    name="E-Glass UD 0.2mm", material=ud_material, thickness=0.0002
+)
+ud_fabric_03mm = model.create_fabric(
+    name="E-Glass UD 0.3mm", material=ud_material, thickness=0.0003
+)
 
 # %%
 # Create a Stackup
@@ -162,7 +163,7 @@ sublaminate = model.create_sublaminate(
         Lamina(biax_glass_ud, 0),
         Lamina(ud_fabric_02mm, 90),
     ),
-    symmetry=SymmetryType.ODD_SYMMETRY
+    symmetry=SymmetryType.ODD_SYMMETRY,
 )
 
 # %%

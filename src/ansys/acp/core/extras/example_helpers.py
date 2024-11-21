@@ -25,14 +25,13 @@
 These utilities can download the input files used in the PyACP examples.
 """
 
-
 import dataclasses
-import shutil
 from enum import Enum, auto
 import pathlib
-import urllib.request
-import urllib.parse
+import shutil
 import sys
+import urllib.parse
+import urllib.request
 
 __all__ = ["ExampleKeys", "get_example_file"]
 
@@ -42,7 +41,10 @@ if TYPE_CHECKING:  # pragma: no cover
     from ansys.acp.core import ACPWorkflow
 
 _EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/master/pyacp/"
-#_EXAMPLE_REPO = "D:\\ANSYSDev\\pyansys-example-data\\pyacp\\"
+
+
+# _EXAMPLE_REPO = "D:\\ANSYSDev\\pyansys-example-data\\pyacp\\"
+
 
 @dataclasses.dataclass
 class _ExampleLocation:
@@ -114,8 +116,12 @@ def get_example_file(example_key: ExampleKeys, working_directory: pathlib.Path) 
     return working_directory / example_location.filename
 
 
+def _is_url(path_url: str) -> bool:
+    return urllib.parse.urlparse(path_url).scheme in ["http", "https"]
+
+
 def _get_file_url(example_location: _ExampleLocation) -> str:
-    if sys.platform == "win32":
+    if sys.platform == "win32" and not _is_url(_EXAMPLE_REPO):
         return _EXAMPLE_REPO + "\\".join([example_location.directory, example_location.filename])
     else:
         return _EXAMPLE_REPO + "/".join([example_location.directory, example_location.filename])
@@ -124,7 +130,7 @@ def _get_file_url(example_location: _ExampleLocation) -> str:
 def _download_file(example_location: _ExampleLocation, local_path: pathlib.Path) -> None:
     file_url = _get_file_url(example_location)
     # The URL is hard-coded to start with the example repository URL, so it is safe to use
-    if urllib.parse.urlparse(file_url).scheme in ["http", "https"]:
+    if _is_url(file_url):
         urllib.request.urlretrieve(file_url, local_path)  # nosec: B310
     else:
         shutil.copyfile(file_url, local_path)
