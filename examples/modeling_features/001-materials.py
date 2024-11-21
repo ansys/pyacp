@@ -40,11 +40,12 @@ ACP distinguishes between four types of material:
 Fabrics, Stackups and Sublaminates can be used to create plies. It is recommended to look a the
 Ansys help for more information on the different types of materials.
 """
+import os
+
 # %%
 # Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
-import os
 
 # %%
 # Import the PyACP dependencies.
@@ -172,7 +173,7 @@ sublaminate = model.create_sublaminate(
 # Materials can be imported and exported from and to external sources.
 # By default, materials are loaded from the CDB file when the model is loaded.
 # An alternative is to load materials from an Engineering Data
-# file via :meth:`.import_materials`.
+# file via :meth:`.Model.import_materials`.
 engd_file_path = get_example_file(ExampleKeys.MATERIALS_XML, WORKING_DIR)
 remote_engd_file_path = acp.upload_file(engd_file_path)
 model.import_materials(matml_path=remote_engd_file_path)
