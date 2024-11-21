@@ -33,6 +33,7 @@ see :ref:`pymapdl_workflow_example`.
 
 # %%# Import modules
 # ------------------
+#
 # Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
