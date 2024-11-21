@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 """
-.. _materials_examples:
+.. _materials_example:
 
 Materials
 =========
