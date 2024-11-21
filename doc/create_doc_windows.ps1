@@ -24,7 +24,6 @@ $Env:PYACP_DOC_SKIP_API=0
 
 docker-compose -f ./docker-compose/docker-compose-extras.yaml up -d
 
-cd doc
-.\make.bat html
-cd ..
+.\doc\make.bat html
+
 docker-compose -f ./docker-compose/docker-compose-extras.yaml down
