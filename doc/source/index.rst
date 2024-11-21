@@ -1,16 +1,14 @@
-.. jinja:: conditional_skip
 
-    .. toctree::
-        :hidden:
-        :maxdepth: 3
 
-        intro
-        user_guide/index
-        examples/index
-        {% if not skip_api %}
-        api/index
-        {% endif %}
-        contributing
+.. toctree::
+    :hidden:
+    :maxdepth: 3
+
+    intro
+    user_guide/index
+    examples/index
+    api/index
+    contributing
 
 
 PyACP
