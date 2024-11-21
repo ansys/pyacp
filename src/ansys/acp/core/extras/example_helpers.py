@@ -25,10 +25,12 @@
 These utilities can download the input files used in the PyACP examples.
 """
 
-
 import dataclasses
 from enum import Enum, auto
 import pathlib
+import shutil
+import sys
+import urllib.parse
 import urllib.request
 
 __all__ = ["ExampleKeys", "get_example_file"]
@@ -39,6 +41,9 @@ if TYPE_CHECKING:  # pragma: no cover
     from ansys.acp.core import ACPWorkflow
 
 _EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/master/pyacp/"
+
+
+# _EXAMPLE_REPO = "D:\\ANSYSDev\\pyansys-example-data\\pyacp\\"
 
 
 @dataclasses.dataclass
@@ -60,6 +65,7 @@ class ExampleKeys(Enum):
     MINIMAL_FLAT_PLATE = auto()
     OPTIMIZATION_EXAMPLE_DAT = auto()
     CLASS40_AGDB = auto()
+    MATERIALS_XML = auto()
 
 
 EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
@@ -91,6 +97,7 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
         directory="optimization_example", filename="optimization_model.dat"
     ),
     ExampleKeys.CLASS40_AGDB: _ExampleLocation(directory="class40", filename="class40.agdb"),
+    ExampleKeys.MATERIALS_XML: _ExampleLocation(directory="materials", filename="materials.engd"),
 }
 
 
@@ -109,14 +116,26 @@ def get_example_file(example_key: ExampleKeys, working_directory: pathlib.Path) 
     return working_directory / example_location.filename
 
 
-def _get_file_url(example_location: _ExampleLocation) -> str:
-    return _EXAMPLE_REPO + "/".join([example_location.directory, example_location.filename])
+def _is_url(path_url: str) -> bool:  # pragma: no cover
+    return urllib.parse.urlparse(path_url).scheme in ["http", "https"]
 
 
-def _download_file(example_location: _ExampleLocation, local_path: pathlib.Path) -> None:
+def _get_file_url(example_location: _ExampleLocation) -> str:  # pragma: no cover
+    if sys.platform == "win32" and not _is_url(_EXAMPLE_REPO):
+        return _EXAMPLE_REPO + "\\".join([example_location.directory, example_location.filename])
+    else:
+        return _EXAMPLE_REPO + "/".join([example_location.directory, example_location.filename])
+
+
+def _download_file(
+    example_location: _ExampleLocation, local_path: pathlib.Path
+) -> None:  # pragma: no cover
     file_url = _get_file_url(example_location)
     # The URL is hard-coded to start with the example repository URL, so it is safe to use
-    urllib.request.urlretrieve(file_url, local_path)  # nosec: B310
+    if _is_url(file_url):
+        urllib.request.urlretrieve(file_url, local_path)  # nosec: B310
+    else:
+        shutil.copyfile(file_url, local_path)
 
 
 def _run_analysis(workflow: "ACPWorkflow") -> None:
