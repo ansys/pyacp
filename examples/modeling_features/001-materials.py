@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 """
-.. _materials_examples:
+.. _materials_example:
 
 Materials
 =========
@@ -56,6 +56,9 @@ from ansys.acp.core.material_property_sets import (
     ConstantStrainLimits,
     ConstantStressLimits,
 )
+
+# sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_001-materials_thumb.png
+
 
 # %%
 # Start ACP and load the model

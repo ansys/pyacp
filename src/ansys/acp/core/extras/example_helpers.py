@@ -116,18 +116,18 @@ def get_example_file(example_key: ExampleKeys, working_directory: pathlib.Path) 
     return working_directory / example_location.filename
 
 
-def _is_url(path_url: str) -> bool:
+def _is_url(path_url: str) -> bool:  # pragma: no cover
     return urllib.parse.urlparse(path_url).scheme in ["http", "https"]
 
 
-def _get_file_url(example_location: _ExampleLocation) -> str:
+def _get_file_url(example_location: _ExampleLocation) -> str:  # pragma: no cover
     if sys.platform == "win32" and not _is_url(_EXAMPLE_REPO):
         return _EXAMPLE_REPO + "\\".join([example_location.directory, example_location.filename])
     else:
         return _EXAMPLE_REPO + "/".join([example_location.directory, example_location.filename])
 
 
-def _download_file(example_location: _ExampleLocation, local_path: pathlib.Path) -> None:
+def _download_file(example_location: _ExampleLocation, local_path: pathlib.Path) -> None:  # pragma: no cover
     file_url = _get_file_url(example_location)
     # The URL is hard-coded to start with the example repository URL, so it is safe to use
     if _is_url(file_url):
