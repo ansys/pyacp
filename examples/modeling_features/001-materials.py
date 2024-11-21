@@ -44,6 +44,7 @@ Ansys help for more information on the different types of materials.
 # Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
+import os
 
 # %%
 # Import the PyACP dependencies.
@@ -55,7 +56,6 @@ from ansys.acp.core.material_property_sets import (
     ConstantStressLimits,
 )
 
-# sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_001-materials_thumb.png'
 # %%
 # Start ACP and load the model
 # ----------------------------
@@ -173,14 +173,12 @@ sublaminate = model.create_sublaminate(
 # By default, materials are loaded from the CDB file when the model is loaded.
 # An alternative is to load materials from an Engineering Data
 # file via :meth:`.import_materials`.
-xml_file_path = get_example_file(ExampleKeys.MATERIALS_XML, WORKING_DIR)
-model.import_materials(matml_path=xml_file_path)
+engd_file_path = get_example_file(ExampleKeys.MATERIALS_XML, WORKING_DIR)
+remote_engd_file_path = acp.upload_file(engd_file_path)
+model.import_materials(matml_path=remote_engd_file_path)
 
 # %%
 # Some workflows require the materials to be exported to an XML file.
-engd_file_path = WORKING_DIR / "materials_exported.xml"
-model.export_materials(path=engd_file_path)
-
-# %%
-# An alternative for the export is to use the workflow.
-my_local_engd_file = workflow.get_local_materials_file()
+engd_file_name = "materials_exported.xml"
+model.export_materials(path=engd_file_name)
+acp.download_file(engd_file_name, os.path.join(WORKING_DIR, engd_file_name))
