@@ -116,7 +116,9 @@ jobs:
           token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
           python-package-name: 'ansys-acp-core'
           dev-mode: ${{ github.ref != 'refs/heads/main' }}
-          extra-targets: "plotting"
+          # In principle the 'plotting' extra would be sufficient, but poetry
+          # then removes 'setuptools' which is needed by the action.
+          extra-targets: "all"
 
   testing-minimum-deps:
     name: Testing with minimum dependencies
