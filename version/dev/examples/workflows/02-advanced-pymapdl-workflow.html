@@ -157,6 +157,13 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    PyACP home
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../../intro.html">
     Getting started
   </a>
@@ -170,7 +177,7 @@
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../index.html">
     Examples
   </a>
@@ -183,13 +190,21 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../contributing.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
     Contribute
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -329,6 +344,13 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    PyACP home
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../../intro.html">
     Getting started
   </a>
@@ -342,7 +364,7 @@
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../index.html">
     Examples
   </a>
@@ -425,7 +447,25 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/01-sandwich-panel-layup.html">Sandwich panel example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/02-simple-selection-rules.html">Basic selection rules example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/03-advanced-selection-rules.html">Advanced selection rules example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/04-layup-thickness-definitions.html">Thickness definition example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/05-rosettes-ply-directions.html">Rosette example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/06-ply-direction-lookup-table.html">Direction definition example</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-pymapdl-workflow.html">PyMAPDL workflow</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Advanced PyMAPDL workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-pymechanical-shell-workflow.html">PyMechanical shell workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-pymechanical-solid-workflow.html">PyMechanical solid workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-pymechanical-to-cdb-workflow.html">PyMechanical to CDB shell workflow</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../use_cases/01-optimizing-ply-angles.html">Optimizing ply angles</a></li>
+</ul>
+</div>
 </nav></div>
     </div>
   
@@ -849,7 +889,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_local_path</span></a><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  25.2BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     15:25:59  NOV 20, 2024 CP=      1.188\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 25.2BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.251\n\n\n&#39;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE= class40_analysis_model.cdb  LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n\n *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  25.2BETA ***\n Ansys Mechanical Enterprise                       \n 00000000  VERSION=LINUX x64     09:35:39  NOV 21, 2024 CP=      1.192\n\n                                                                               \n\n\n\n ** WARNING: PRE-RELEASE VERSION OF MAPDL 25.2BETA\n  ANSYS,INC TESTING IS NOT COMPLETE - CHECK RESULTS CAREFULLY **\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  CP =         1.253\n\n\n&#39;
 </pre></div>
 </div>
 <p>Solve the model.</p>
@@ -860,7 +900,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
 
- *** NOTE ***                            CP =       1.263   TIME= 15:25:59
+ *** NOTE ***                            CP =       1.265   TIME= 09:35:39
  There is no title defined for this analysis.
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -885,7 +925,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE                  25.2BETA ***
  Ansys Mechanical Enterprise
- 00000000  VERSION=LINUX x64     15:25:59  NOV 20, 2024 CP=      1.305
+ 00000000  VERSION=LINUX x64     09:35:40  NOV 21, 2024 CP=      1.301
 
 
 
@@ -901,14 +941,14 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
 
- *** NOTE ***                            CP =       1.307   TIME= 15:25:59
+ *** NOTE ***                            CP =       1.302   TIME= 09:35:40
  Poisson&#39;s ratio PR input has been converted to NU input.
 
- *** NOTE ***                            CP =       1.311   TIME= 15:25:59
+ *** NOTE ***                            CP =       1.306   TIME= 09:35:40
  Present time 0 is less than or equal to the previous time.  Time will
  default to 1.
 
- *** NOTE ***                            CP =       1.311   TIME= 15:25:59
+ *** NOTE ***                            CP =       1.306   TIME= 09:35:40
  The conditions for direct assembly have been met.  No .emat or .erot
  files will be produced.
 
@@ -926,7 +966,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr
 
- *** NOTE ***                            CP =       1.374   TIME= 15:26:00
+ *** NOTE ***                            CP =       1.369   TIME= 09:35:40
  Predictor is ON by default for structural elements with rotational
  degrees of freedom.  Use the PRED,OFF command to turn the predictor
  OFF if it adversely affects the convergence.
@@ -975,10 +1015,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      2.304   0.000580
-        2        88  BEAM188       0.003   0.000036
-        3        22  SHELL181      0.004   0.000186
- Time at end of element matrix formulation CP = 3.70258999.
+        1      3973  SHELL181      2.363   0.000595
+        2        88  BEAM188       0.004   0.000043
+        3        22  SHELL181      0.004   0.000187
+ Time at end of element matrix formulation CP = 3.76065612.
 
  SPARSE MATRIX DIRECT SOLVER.
   Number of equations =       24096,    Maximum wavefront =     66
@@ -989,9 +1029,9 @@ Interactive Scene</label><div class="sd-tab-content docutils">
   Equation solver memory allocated                     =    66.685 MB
   Equation solver memory required for in-core mode     =    64.079 MB
   Equation solver memory required for out-of-core mode =    28.690 MB
-  Total (solver and non-solver) memory allocated       =   684.306 MB
+  Total (solver and non-solver) memory allocated       =   681.970 MB
 
- *** NOTE ***                            CP =       3.747   TIME= 15:26:02
+ *** NOTE ***                            CP =       3.805   TIME= 09:35:42
  The Sparse Matrix Solver is currently running in the in-core memory
  mode.  This memory mode uses the most amount of memory in order to
  avoid using the hard drive as much as possible, which most often
@@ -1006,9 +1046,9 @@ Interactive Scene</label><div class="sd-tab-content docutils">
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      3973  SHELL181      5.063   0.001274
-        2        88  BEAM188       0.007   0.000076
-        3        22  SHELL181      0.007   0.000313
+        1      3973  SHELL181      5.188   0.001306
+        2        88  BEAM188       0.008   0.000085
+        3        22  SHELL181      0.007   0.000324
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
@@ -1124,7 +1164,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/workflows/images/sphx_glr_02-advanced-pymapdl-workflow_007.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 26.069 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 29.405 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-workflows-02-advanced-pymapdl-workflow-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/1e750f59c648aaccb5335cc11a8f5c98/02-advanced-pymapdl-workflow.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">02-advanced-pymapdl-workflow.ipynb</span></code></a></p>

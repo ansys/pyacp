@@ -1,3 +1,5 @@
+.. _getting_started:
+
 Getting started
 ---------------
 
@@ -153,9 +155,9 @@ Continue exploring
 
 This is just a brief introduction to PyACP. To learn more:
 
-- Check out the `examples <examples/index>`_ to see complete examples of how to use PyACP.
-- The `how-to guides <howto/index>`_ provide instructions on how to perform specific tasks.
-- The `API reference <api/index>`_ provides detailed information on all available classes and methods.
+- Check out the :ref:`examples <ref_examples>` to see complete examples of how to use PyACP.
+- The :ref:`how-to guides <howto>` provide instructions on how to perform specific tasks.
+- The :ref:`API reference <api_reference>` provides detailed information on all available classes and methods.
 
 .. testcode::
     :hide:
