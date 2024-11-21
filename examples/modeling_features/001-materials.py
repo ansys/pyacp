@@ -180,6 +180,6 @@ model.import_materials(matml_path=remote_engd_file_path)
 
 # %%
 # Some workflows require the materials to be exported to an XML file.
-engd_file_name = "materials_exported.xml"
+engd_file_name = "exported_materials.xml"
 model.export_materials(path=engd_file_name)
 acp.download_file(engd_file_name, os.path.join(WORKING_DIR, engd_file_name))
