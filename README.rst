@@ -43,7 +43,7 @@ Install PyACP with:
 
 .. code-block::
 
-    pip install ansys-acp-core
+    pip install ansys-acp-core[all]
 
 
 For installing PyACP in development mode, see the `Development Setup`_ instructions below.
@@ -120,7 +120,7 @@ You will need to follow these steps:
 
     .. code-block:: bash
 
-        poetry install --with dev,test
+        poetry install --with dev,test --all-extras
 
     This step installs PyACP in an editable mode (no build step is needed, no re-install when changing the code).
 

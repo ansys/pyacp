@@ -30,7 +30,7 @@ import typing
 if typing.TYPE_CHECKING:
     import ansys.mechanical.core as pymechanical
 
-from ._typing_helper import PATH
+from ._utils.typing_helper import PATH
 
 __all__ = [
     "export_mesh_for_acp",

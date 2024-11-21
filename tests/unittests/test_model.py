@@ -29,7 +29,6 @@ import tempfile
 import numpy as np
 import numpy.testing
 import pytest
-import pyvista
 
 from ansys.acp.core import ElementalDataType, UnitSystemType
 from ansys.acp.core.mesh_data import VectorData
@@ -212,14 +211,20 @@ def test_nodal_data(minimal_complete_model):
     numpy.testing.assert_allclose(data.node_labels.values, np.array([1, 2, 3, 4]))
 
 
+@pytest.mark.plotting
 def test_mesh_data_to_pyvista(minimal_complete_model):
+    import pyvista
+
     pv_mesh = minimal_complete_model.mesh.to_pyvista()
     assert isinstance(pv_mesh, pyvista.core.pointset.UnstructuredGrid)
     assert pv_mesh.n_points == 4
     assert pv_mesh.n_cells == 1
 
 
+@pytest.mark.plotting
 def test_elemental_data_to_pyvista(minimal_complete_model):
+    import pyvista
+
     data = minimal_complete_model.elemental_data
     pv_mesh = data.get_pyvista_mesh(mesh=minimal_complete_model.mesh)
     assert isinstance(pv_mesh, pyvista.core.pointset.UnstructuredGrid)
@@ -227,8 +232,11 @@ def test_elemental_data_to_pyvista(minimal_complete_model):
     assert pv_mesh.n_cells == 1
 
 
+@pytest.mark.plotting
 @pytest.mark.parametrize("component", [e.value for e in ElementalDataType])
 def test_elemental_data_to_pyvista_with_component(minimal_complete_model, component):
+    import pyvista
+
     data = minimal_complete_model.elemental_data
     if not hasattr(data, component):
         pytest.skip(f"Model elemental data does not contain component '{component}'")

@@ -24,7 +24,7 @@ import pytest
 from pytest_cases import parametrize_with_cases
 
 from ansys.acp.core._plotter import get_directions_plotter
-from ansys.acp.core._utils.visualization import _replace_underscores_and_capitalize
+from ansys.acp.core._utils.string_manipulation import replace_underscores_and_capitalize
 
 
 @pytest.fixture
@@ -51,6 +51,7 @@ def case_empty_mesh_invalid(model, skip_before_version):
     return model.create_element_set().mesh
 
 
+@pytest.mark.plotting
 @parametrize_with_cases("mesh", cases=".", glob="*_valid")
 def test_direction_plotter_valid_cases(model, mesh, load_model_from_tempfile):
     with load_model_from_tempfile() as model:
@@ -75,11 +76,12 @@ def test_direction_plotter_valid_cases(model, mesh, load_model_from_tempfile):
         )
 
         for idx, data in enumerate(components):
-            assert plotter.legend.GetEntryString(idx) == _replace_underscores_and_capitalize(
+            assert plotter.legend.GetEntryString(idx) == replace_underscores_and_capitalize(
                 data.component_name
             )
 
 
+@pytest.mark.plotting
 @parametrize_with_cases("mesh", cases=".", glob="*_invalid")
 def test_direction_plotter_invalid_cases(model, mesh, load_model_from_tempfile):
     with load_model_from_tempfile() as model:

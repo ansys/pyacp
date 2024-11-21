@@ -43,7 +43,7 @@ from ansys.acp.core import (
     launch_acp,
 )
 from ansys.acp.core._server.common import ServerProtocol
-from ansys.acp.core._typing_helper import PATH
+from ansys.acp.core._utils.typing_helper import PATH
 from ansys.tools.local_product_launcher.config import set_config_for
 
 __all__ = [
