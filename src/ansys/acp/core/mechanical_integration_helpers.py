@@ -87,8 +87,8 @@ def import_acp_solid_mesh(*, mechanical: "pymechanical.Mechanical", cdb_path: PA
     """
     cdb_path = pathlib.Path(cdb_path)
 
-    if cdb_path.suffix != ".cdb":
-        raise ValueError(f"The CDB file extension must be '.cdb', not '{cdb_path.suffix}'.")
+    # if cdb_path.suffix != ".cdb":
+    #     raise ValueError(f"The CDB file extension must be '.cdb', not '{cdb_path.suffix}'.")
     cdb_path_str = str(cdb_path)
 
     mechanical.run_python_script(
