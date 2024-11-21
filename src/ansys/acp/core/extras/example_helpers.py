@@ -40,10 +40,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:  # pragma: no cover
     from ansys.acp.core import ACPWorkflow
 
-# _EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/master/pyacp/"
-
-
-_EXAMPLE_REPO = "D:\\ANSYSDev\\pyansys-example-data\\pyacp\\"
+_EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/master/pyacp/"
 
 
 # _EXAMPLE_REPO = "D:\\ANSYSDev\\pyansys-example-data\\pyacp\\"
