@@ -1,16 +1,15 @@
-.. jinja:: conditional_skip
 
-    .. toctree::
-        :hidden:
-        :maxdepth: 3
 
-        intro
-        user_guide/index
-        examples/index
-        {% if not skip_api %}
-        api/index
-        {% endif %}
-        contributing
+.. toctree::
+    :hidden:
+    :maxdepth: 3
+
+    PyACP home<self>
+    intro
+    user_guide/index
+    examples/index
+    api/index
+    contributing
 
 
 PyACP
@@ -35,40 +34,39 @@ optimization of composite structures.
         :gutter: 2
 
         .. grid-item-card:: :octicon:`rocket` Getting started
-            :link: intro
-            :link-type: doc
+            :link: getting_started
+            :link-type: ref
 
             Contains installation instructions and a simple example to get you
             started with PyACP.
 
         .. grid-item-card:: :octicon:`tools` How-to guides
-            :link: user_guide/howto/index
-            :link-type: doc
+            :link: howto
+            :link-type: ref
 
             Guides on how to achieve specific tasks with PyACP.
 
         .. grid-item-card:: :octicon:`light-bulb` Concepts
-            :link: user_guide/concepts/index
-            :link-type: doc
+            :link: concepts
+            :link-type: ref
 
             Explains the concepts and terminology used in PyACP.
 
         .. grid-item-card:: :octicon:`play` Examples
-            :link: examples/index
-            :link-type: doc
+            :link: ref_examples
+            :link-type: ref
 
             A collection of examples demonstrating the capabilities of PyACP.
 
         .. grid-item-card:: :octicon:`file-code` API reference
-            {% if not skip_api %}:link: api/index
-            :link-type: doc
-            {% endif %}
+            :link: api_reference
+            :link-type: ref
 
             Describes the public Python classes, methods, and functions.
 
         .. grid-item-card:: :octicon:`code` Contributing
             :link: contributing
-            :link-type: doc
+            :link-type: ref
 
             Information on how to contribute to PyACP.
 
