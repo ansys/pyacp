@@ -210,6 +210,37 @@ class ACPWorkflow:
         )
 
     @classmethod
+    def from_mechanical_h5_file(
+        cls,
+        acp: ACPInstance[ServerProtocol],
+        h5_file_path: PATH,
+        local_working_directory: PATH | None = None,
+    ) -> "ACPWorkflow":
+        """Instantiate an ACP Workflow from a Mechanical HDF5 file.
+
+        Create an ACP Workflow from the Mechanical to ACP HDF5 transfer
+        file. This file can be created using the :func:`export_mesh_for_acp`
+        function in the :mod:`ansys.acp.core.mechanical_integration_helpers`
+        module.
+
+        Parameters
+        ----------
+        acp
+            The ACP Client.
+        h5_file_path:
+            The path to the HDF5 file.
+        local_working_directory:
+            The local working directory. If None, a temporary directory will be created.
+        """
+
+        return cls(
+            acp=acp,
+            local_file_path=h5_file_path,
+            local_working_directory=local_working_directory,
+            file_format="ansys:h5",
+        )
+
+    @classmethod
     def from_cdb_or_dat_file(
         cls,
         *,
