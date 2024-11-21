@@ -29,12 +29,10 @@ Materials
 This example shows how to create and shape a solid model.
 
 The solid model implements an extrusion algorithm which creates
-a solid model based on the shell mesh and layup definition.
+a solid mesh based on the shell mesh and layup definition.
 This solid model can be further processed by :class:`.ExtrusionGuide`,
 :class:`.SnapToGeometry`, and :class:`.CutOffGeometry`.
 """
-import os
-
 # %%
 # Import the standard library and third-party dependencies.
 import pathlib
@@ -42,8 +40,18 @@ import tempfile
 
 # %%
 # Import the PyACP dependencies.
-from ansys.acp.core import ACPWorkflow, launch_acp, SnapToGeometryOrientationType, Model, VirtualGeometry, CutOffGeometryOrientationType, ExtrusionGuideType, EdgeSetType
+from ansys.acp.core import (
+    ACPWorkflow,
+    CutOffGeometryOrientationType,
+    EdgeSetType,
+    ExtrusionGuideType,
+    SnapToGeometryOrientationType,
+    VirtualGeometry,
+    launch_acp,
+)
 from ansys.acp.core.extras import ExampleKeys, get_example_file
+
+# sphinx_gallery_thumbnail_number = 4
 
 
 # %%
@@ -71,7 +79,8 @@ model = workflow.model
 # Create a simple layup
 # ---------------------
 # %%
-# Add more layers to the modeling ply so that it is easier to see the effects of the selection rules. Plot the thickness of all the plies without any rules.
+# Add more layers to the modeling ply so that it is easier to see the
+# effects of the selection rules.
 modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
 modeling_ply.number_of_layers = 3
 

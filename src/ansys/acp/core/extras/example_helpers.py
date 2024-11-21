@@ -100,8 +100,12 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
     ),
     ExampleKeys.CLASS40_AGDB: _ExampleLocation(directory="class40", filename="class40.agdb"),
     ExampleKeys.MATERIALS_XML: _ExampleLocation(directory="materials", filename="materials.engd"),
-    ExampleKeys.SNAP_TO_GEOMETRY: _ExampleLocation(directory="geometries", filename="snap_to_geometry.stp"),
-    ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL: _ExampleLocation(directory="geometries", filename="cut_off_geometry_solid_model.stp"),
+    ExampleKeys.SNAP_TO_GEOMETRY: _ExampleLocation(
+        directory="geometries", filename="snap_to_geometry.stp"
+    ),
+    ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL: _ExampleLocation(
+        directory="geometries", filename="cut_off_geometry_solid_model.stp"
+    ),
 }
 
 
