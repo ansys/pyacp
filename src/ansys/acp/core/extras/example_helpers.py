@@ -65,6 +65,7 @@ class ExampleKeys(Enum):
     MINIMAL_FLAT_PLATE = auto()
     OPTIMIZATION_EXAMPLE_DAT = auto()
     CLASS40_AGDB = auto()
+    CLASS40_CDB = auto()
     MATERIALS_XML = auto()
 
 
@@ -97,6 +98,7 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
         directory="optimization_example", filename="optimization_model.dat"
     ),
     ExampleKeys.CLASS40_AGDB: _ExampleLocation(directory="class40", filename="class40.agdb"),
+    ExampleKeys.CLASS40_CDB: _ExampleLocation(directory="class40", filename="class40.cdb"),
     ExampleKeys.MATERIALS_XML: _ExampleLocation(directory="materials", filename="materials.engd"),
 }
 
