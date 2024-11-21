@@ -52,7 +52,7 @@ class _ExampleLocation:
     filename: str
 
 
-class ExampleKeys(Enum):
+class ExampleKeys(Enum):  # pragma: no cover
     """Keys for the example files."""
 
     BASIC_FLAT_PLATE_DAT = auto()
@@ -70,7 +70,7 @@ class ExampleKeys(Enum):
     CUT_OFF_GEOMETRY_SOLID_MODEL = auto()
 
 
-EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
+EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {  # pragma: no cover
     ExampleKeys.BASIC_FLAT_PLATE_DAT: _ExampleLocation(
         directory="basic_flat_plate_example", filename="flat_plate_input.dat"
     ),

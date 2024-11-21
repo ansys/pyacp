@@ -23,32 +23,33 @@
 """
 .. _solid_model_example:
 
-Materials
-=========
+Solid Model
+===========
 
 This example shows how to create and shape a solid model.
 
 The solid model implements an extrusion algorithm which creates
-a solid mesh based on the shell mesh and layup definition.
-This solid model can be further processed by :class:`.ExtrusionGuide`,
+a layered solid mesh based on the shell mesh and layup definition.
+This solid mesh can be further processed by :class:`.ExtrusionGuide`,
 :class:`.SnapToGeometry`, and :class:`.CutOffGeometry`.
 """
 # %%
 # Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
+
 import pyvista
 
 # %%
 # Import the PyACP dependencies.
 from ansys.acp.core import (
     ACPWorkflow,
+    CADGeometry,
     CutOffGeometryOrientationType,
     EdgeSetType,
     ExtrusionGuideType,
     SnapToGeometryOrientationType,
     VirtualGeometry,
-    CADGeometry,
     launch_acp,
 )
 from ansys.acp.core.extras import ExampleKeys, get_example_file
@@ -100,7 +101,9 @@ model.update()
 model.solid_mesh.to_pyvista().plot(show_edges=True)
 
 
-def create_virtual_geometry_from_file(example_key: ExampleKeys) -> tuple[CADGeometry, VirtualGeometry]:
+def create_virtual_geometry_from_file(
+    example_key: ExampleKeys,
+) -> tuple[CADGeometry, VirtualGeometry]:
     """Create a CAD geometry and virtual geometry."""
     geometry_file = get_example_file(example_key, WORKING_DIR)
     geometry_obj = workflow.add_cad_geometry_from_local_file(geometry_file)
@@ -121,6 +124,7 @@ def plot_model_with_geometry(cad_geometry: CADGeometry, cad_geom_opacity: float 
     plotter.add_mesh(edges, color="black", line_width=2)
     plotter.add_mesh(workflow.model.solid_mesh.to_pyvista(), show_edges=True)
     plotter.show()
+
 
 # %%
 # Snap the top to a geometry
@@ -168,7 +172,9 @@ model.solid_mesh.to_pyvista().plot(show_edges=True)
 # ---------------
 #
 # The :class:`.CutOffGeometry` is used to crop elements from the solid model.
-cutoff_cad_geom, cutoff_virtual_geom = create_virtual_geometry_from_file(ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL)
+cutoff_cad_geom, cutoff_virtual_geom = create_virtual_geometry_from_file(
+    ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL
+)
 solid_model.create_cut_off_geometry(
     name="Cut-off Geometry",
     cad_geometry=cutoff_virtual_geom,
