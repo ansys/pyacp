@@ -26,7 +26,6 @@ import typing
 
 from ansys.api.acp.v0 import solid_model_export_pb2
 
-from .._utils.path_to_str import path_to_str_checked
 from .._utils.typing_helper import PATH as _PATH
 from ._grpc_helpers.exceptions import wrap_grpc_errors
 from .base import CreatableTreeObject
@@ -55,14 +54,15 @@ class SolidModelExportMixin(CreatableTreeObject):
             and ``"ansys:cdb"``.
 
         """
-        with wrap_grpc_errors():
-            self._get_stub().ExportToFile(  # type: ignore
-                solid_model_export_pb2.ExportToFileRequest(
-                    resource_path=self._resource_path,
-                    path=path_to_str_checked(path),
-                    format=typing.cast(typing.Any, solid_model_export_format_to_pb(format)),
+        with self._server_wrapper.auto_download(path) as export_path:
+            with wrap_grpc_errors():
+                self._get_stub().ExportToFile(  # type: ignore
+                    solid_model_export_pb2.ExportToFileRequest(
+                        resource_path=self._resource_path,
+                        path=export_path,
+                        format=typing.cast(typing.Any, solid_model_export_format_to_pb(format)),
+                    )
                 )
-            )
 
     def export_skin(self, path: _PATH, *, format: SolidModelSkinExportFormat) -> None:
         """Export the skin of the solid model to a file.
@@ -76,11 +76,14 @@ class SolidModelExportMixin(CreatableTreeObject):
             ``"step"``, ``"iges"``, and ``"stl"``.
 
         """
-        with wrap_grpc_errors():
-            self._get_stub().ExportSkin(  # type: ignore
-                solid_model_export_pb2.ExportSkinRequest(
-                    resource_path=self._resource_path,
-                    path=path_to_str_checked(path),
-                    format=typing.cast(typing.Any, solid_model_skin_export_format_to_pb(format)),
+        with self._server_wrapper.auto_download(path) as export_path:
+            with wrap_grpc_errors():
+                self._get_stub().ExportSkin(  # type: ignore
+                    solid_model_export_pb2.ExportSkinRequest(
+                        resource_path=self._resource_path,
+                        path=export_path,
+                        format=typing.cast(
+                            typing.Any, solid_model_skin_export_format_to_pb(format)
+                        ),
+                    )
                 )
-            )

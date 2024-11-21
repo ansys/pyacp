@@ -150,7 +150,7 @@ from ._tree_objects import (
     VirtualGeometry,
     VirtualGeometryDimension,
 )
-from ._workflow import ACPWorkflow, get_composite_post_processing_files, get_dpf_unit_system
+from ._workflow import get_shell_composite_post_processing_files, get_dpf_unit_system
 
 __version__ = importlib.metadata.version(__name__.replace(".", "-"))
 
@@ -158,7 +158,6 @@ __version__ = importlib.metadata.version(__name__.replace(".", "-"))
 __all__ = [
     "__version__",
     "ACPInstance",
-    "ACPWorkflow",
     "AnalysisPly",
     "ArrowType",
     "BaseElementMaterialHandling",
@@ -200,7 +199,7 @@ __all__ = [
     "FieldDefinition",
     "GeometricalRuleType",
     "GeometricalSelectionRule",
-    "get_composite_post_processing_files",
+    "get_shell_composite_post_processing_files",
     "get_directions_plotter",
     "get_dpf_unit_system",
     "get_model_tree",

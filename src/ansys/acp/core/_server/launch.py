@@ -30,9 +30,12 @@ from ansys.tools.local_product_launcher.launch import launch_product
 
 from .acp_instance import (
     ACPInstance,
+    AutoTransferStrategy,
     FiletransferStrategy,
     LocalFileTransferStrategy,
+    NoAutoTransfer,
     RemoteFileTransferStrategy,
+    WithAutoTransfer,
 )
 from .common import ControllableServerProtocol, LaunchMode, ServerKey
 from .direct import DirectLaunchConfig
@@ -45,6 +48,7 @@ def launch_acp(
     config: DirectLaunchConfig | DockerComposeLaunchConfig | None = None,
     launch_mode: LaunchMode | None = None,
     timeout: float | None = 30.0,
+    auto_transfer_files: bool = True,
 ) -> ACPInstance[ControllableServerProtocol]:
     """Launch an ACP instance.
 
@@ -62,12 +66,21 @@ def launch_acp(
         The configuration used for launching ACP. If unspecified, the
         default for the given launch mode is used.
     launch_mode :
-        Specifies which ACP launcher is used. One of ``direct`` or
-        ``docker_compose``. If unspecified, the configured default is
-        used. If no default is configured, ``direct`` is used.
+        Specifies which ACP launcher is used. One of ``direct``,
+        ``docker_compose``, or ``connect``. If unspecified, the
+        configured default is used. If no default is configured,
+        ``direct`` is used.
     timeout :
         Timeout to wait until ACP responds. If ``None`` is specified,
         the check that ACP has started is skipped.
+    auto_transfer_files :
+        Determines whether input and output files are automatically
+        transferred (up- or downloaded) to the server. If ``True``,
+        files are automatically transferred, and all paths in the
+        import or export methods are *local* paths. If ``False``,
+        file transfer needs to be handled manually, and the paths
+        are relative to the server working directory.
+        Only applies if the ``launch_mode`` is not ``"direct"``.
 
     Returns
     -------
@@ -82,16 +95,16 @@ def launch_acp(
     # The fallback launch mode for ACP is the direct launch mode.
     if launch_mode_evaluated in (LaunchMode.DIRECT, FALLBACK_LAUNCH_MODE_NAME):
         filetransfer_strategy: FiletransferStrategy = LocalFileTransferStrategy()
+        autotransfer_strategy: AutoTransferStrategy = NoAutoTransfer()
         is_remote = False
-    elif launch_mode_evaluated == LaunchMode.DOCKER_COMPOSE:
+    elif launch_mode_evaluated in (LaunchMode.DOCKER_COMPOSE, LaunchMode.CONNECT):
         filetransfer_strategy = RemoteFileTransferStrategy(
-            channel=server_instance.channels[ServerKey.FILE_TRANSFER]
+            channel=server_instance.channels[ServerKey.FILE_TRANSFER],
         )
-        is_remote = True
-    elif launch_mode_evaluated == LaunchMode.CONNECT:
-        filetransfer_strategy = RemoteFileTransferStrategy(
-            channel=server_instance.channels[ServerKey.FILE_TRANSFER]
-        )
+        if auto_transfer_files:
+            autotransfer_strategy = WithAutoTransfer(filetransfer_strategy)
+        else:
+            autotransfer_strategy = NoAutoTransfer()
         is_remote = True
     else:
         raise ValueError("Invalid launch mode for ACP: " + str(launch_mode_evaluated))
@@ -99,6 +112,7 @@ def launch_acp(
     acp = ACPInstance(
         server=server_instance,
         filetransfer_strategy=filetransfer_strategy,
+        autotransfer_strategy=autotransfer_strategy,
         channel=server_instance.channels[ServerKey.MAIN],
         is_remote=is_remote,
     )

@@ -1,13 +1,5 @@
 Manage input and output files
------------------------------
-
-When defining your workflow using PyACP and other tools, you may need control
-over where the input and output files are stored. This guide shows two
-ways to manage them.
-
-In the following examples, the ACP instance is launched on a remote server. The
-differences between local and remote ACP instances, in terms of file management,
-are explained afterwards in :ref:`local_vs_remote`.
+=============================
 
 .. doctest::
     :hide:
@@ -25,94 +17,86 @@ are explained afterwards in :ref:`local_vs_remote`.
     >>> doctest_tempdir = tempfile.TemporaryDirectory()
     >>> os.chdir(doctest_tempdir.name)
 
+When defining your workflow using PyACP and other tools, you may need control
+over where the input and output files are stored.
+
+Local ACP instance
+------------------
+
+When running PyACP with a local instance (``"direct"`` launch mode, see
+:ref:`launch_configuration`), file paths are relative to the current working
+directory.
+If you need to keep all files in a specific directory, you can use the
+Python facilities for managing file paths. For example, you can use
+the :class:`tempfile.TemporaryDirectory` class to create a temporary directory,
+and :class:`pathlib.Path` to manage file paths.
+
+The following example:
+- creates a temporary directory
+- copies an input file to it
+- creates an ACP model from the input file
+- saves the model to an output file
+
+Note that the temporary directory and its contents are deleted when the
+Python session ends. You can also specify a custom directory to store the
+files permanently.
 
 .. doctest::
 
+    >>> import pathlib
+    >>> import shutil
+    >>> import tempfile
     >>> import ansys.acp.core as pyacp
+    >>> workdir = tempfile.TemporaryDirectory()
+    >>> workdir_path = pathlib.Path(workdir.name)
+    >>> # DATA_DIRECTORY is a directory containing the input file
+    >>> shutil.copyfile(DATA_DIRECTORY / "input_file.cdb", workdir_path / "input_file.cdb")
     >>> acp = pyacp.launch_acp()
-
-
-Using a predefined workflow
-'''''''''''''''''''''''''''
-
-The simplest way to manage files is by using the :class:`.ACPWorkflow` class. This class
-uses predetermined filenames and automatically handles uploading and downloading files.
-
-Loading input files
-~~~~~~~~~~~~~~~~~~~
-
-To get started with loading input files, you must define a workflow using either an
-FE model (CDB or DAT) file or an ACP model (ACPH5) file.
-
-The following example assumes that you have a directory, ``DATA_DIRECTORY``, that contains an ``input_file.cdb`` file.
-
-.. doctest::
-
-    >>> DATA_DIRECTORY
-    PosixPath('...')
-    >>> list(DATA_DIRECTORY.iterdir())
-    [PosixPath('.../input_file.cdb')]
-
-Create an :class:`.ACPWorkflow` instance that works with this file using 
-the :meth:`.ACPWorkflow.from_cdb_or_dat_file` method:
-
-.. doctest::
-
-    >>> workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
-    ...     acp=acp,
-    ...     cdb_or_dat_file_path=DATA_DIRECTORY / "input_file.cdb",
+    >>> model = acp.import_model(
+    ...     workdir_path / "input_file.cdb",
+    ...     "ansys:cdb",
+    ...     format="ansys:cdb",
     ...     unit_system=pyacp.UnitSystemType.MPA,
     ... )
-
-That uploads the file to the ACP instance and creates a model from it. You
-can access the newly created model using the ``workflow.model`` command:
-
-.. doctest::
-
-    >>> workflow.model
+    >>> model
     <Model with name 'ACP Lay-up Model'>
+    >>> # edit the model
+    >>> model.save(workdir_path / "output_file.acph5")
 
-Getting output files
-~~~~~~~~~~~~~~~~~~~~
 
-Use the workflow's ``get_local_*()`` methods to create and download
-output files. For example, to get the ACPH5 file of the model, use the
-:meth:`.get_local_acph5_file` method:
+Remote ACP instance
+-------------------
 
-.. doctest::
+When running PyACP with a remote instance (``"docker_compose"`` or ``"connect"``
+launch mode), there are two ways to manage files: auto-upload mode and manual
+file management.
 
-    >>> model = workflow.model
-    >>> model.name = "My model"
-    >>> workflow.get_local_acph5_file()
-    PosixPath('/tmp/.../My model.acph5')
+Auto-upload mode
+'''''''''''''''''
 
-Note that the filename is based on the model name.
+When passing the ``auto_upload_files=True`` parameter to :func:`.launch_acp`
+(the default behavior), PyACP automatically uploads files to the ACP instance
+and downloads output files to the local machine.
+Paths passed to the PyACP functions are again relative to the current working
+directory on the local machine.
 
-Using a custom working directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using auto-upload mode, you can use the same code as for local ACP instances,
+with one exception:
 
-By default, the output files are stored in a temporary directory. You can
-specify a custom working directory using the ``local_working_directory`` argument of
-the :class:`.ACPWorkflow` constructor:
-
-.. doctest::
-
-    >>> workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
-    ...     acp=acp,
-    ...     cdb_or_dat_file_path=DATA_DIRECTORY / "input_file.cdb",
-    ...     unit_system=pyacp.UnitSystemType.MPA,
-    ...     local_working_directory=pathlib.Path("."),
-    ... )
-
-Any produced output files are now stored in the custom working directory. Input files
-are also copied to this directory before being uploaded to the ACP instance.
-
+The ``external_path`` attribute of the :class:`.CADGeometry` and
+:class:`.ImportedSolidModel` classes is always relative to the ACP instance's
+working directory.
+When setting the ``external_path`` attribute, you must manually call the :meth:`.upload_file`
+method to upload the file to the ACP instance.
 
 Manual file management
 ''''''''''''''''''''''
 
-To get more control over where files are stored, you can manually upload and
-download them to the server and specify their names.
+When passing ``auto_upload_files=False`` to :func:`.launch_acp`, PyACP does not
+automatically upload or download files.
+
+In this case, you need to manually manage the up- and download of files, as
+described in the following sections.
 
 Loading input files
 ~~~~~~~~~~~~~~~~~~~
@@ -122,6 +106,7 @@ using the :meth:`.upload_file` method:
 
 .. doctest::
 
+    >>> acp = pyacp.launch_acp(auto_upload_files=False)
     >>> uploaded_path = acp.upload_file(DATA_DIRECTORY / "input_file.cdb")
     >>> uploaded_path
     PurePosixPath('input_file.cdb')
@@ -155,42 +140,9 @@ instance:
 .. doctest::
 
     >>> acp.download_file(
-    ...     remote_filename="output_file.acph5", local_path="output_file_downloaded.acph5"
+    ...     remote_filename="output_file.acph5",
+    ...     local_path=workdir_path / "output_file_downloaded.acph5",
     ... )
-
-
-.. _local_vs_remote:
-
-Local versus remote ACP instance
-''''''''''''''''''''''''''''''''
-
-In the preceding examples, ACP ran on a remote server. However,
-you can also launch ACP as a process on your local machine. For information on launching
-ACP locally, see :ref:`launch_configuration`.
-
-When the ACP instance is local, you can use the same code described previously. However,
-the effects are slightly different:
-
-When using a workflow
-~~~~~~~~~~~~~~~~~~~~~
-
-- The input file is still copied to the ``local_working_directory`` argument, but then it is loaded
-  directly into the ACP instance. There is no separate upload step.
-- The output files are stored in the ``local_working_directory`` argument by default.
-
-
-When using manual upload and download
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- The :meth:`.upload_file` method has no effect and simply returns the input file path.
-- The :meth:`.download_file` method copies the file to the specified ``local_path`` argument if
-  the ``local_path`` and ``remote_filename`` arguments are not the same.
-
-.. hint::
-
-    Even when they have no effect, it is good practice to include the upload and download
-    steps in your code. That way, both local and remote ACP instances can use it.
-
 
 .. doctest::
     :hide:

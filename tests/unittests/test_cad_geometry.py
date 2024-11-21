@@ -81,14 +81,17 @@ class TestCADGeometry(NoLockedMixin, TreeObjectTester):
 
         Only tests that the call does not raise an exception.
         """
-        with load_model_from_tempfile() as model, load_cad_geometry(model=model) as cad_geometry:
-            cad_geometry.refresh()
+        with (
+            load_model_from_tempfile() as model,
+            load_cad_geometry(model=model) as (cad_geometry, local_cad_path),
+        ):
+            cad_geometry.refresh(local_cad_path)
 
     @staticmethod
     def test_refresh_inexistent_raises(tree_object):
         """Test refreshing the geometry from an inexistent file."""
-        with pytest.raises(RuntimeError, match="source file `[^`]*` does not exist"):
-            tree_object.refresh()
+        with pytest.raises(FileNotFoundError):
+            tree_object.refresh("inexistent_file")
 
     @staticmethod
     def test_accessing_root_shapes(load_cad_geometry, load_model_from_tempfile):
@@ -96,7 +99,10 @@ class TestCADGeometry(NoLockedMixin, TreeObjectTester):
         Ensure that the property root_shapes can only be accessed if
         the CADGeometry is up-to-date.
         """
-        with load_model_from_tempfile() as model, load_cad_geometry(model=model) as cad_geometry:
+        with (
+            load_model_from_tempfile() as model,
+            load_cad_geometry(model=model) as (cad_geometry, _),
+        ):
             assert cad_geometry.status == "NOTUPTODATE"
             with pytest.raises(
                 RuntimeError,

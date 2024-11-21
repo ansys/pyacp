@@ -44,7 +44,7 @@ import tempfile
 
 # %%
 # Import the PyACP dependencies.
-from ansys.acp.core import ACPWorkflow, LinkedSelectionRule, launch_acp
+from ansys.acp.core import LinkedSelectionRule, launch_acp
 from ansys.acp.core.extras import ExampleKeys, get_example_file
 
 # sphinx_gallery_thumbnail_number = -1
@@ -66,19 +66,8 @@ input_file = get_example_file(ExampleKeys.MINIMAL_FLAT_PLATE, WORKING_DIR)
 acp = launch_acp()
 
 # %%
-# Define the input file and instantiate an ``ACPWorkflow`` instance.
-# The ``ACPWorkflow`` class provides convenience methods that simplify file handling.
-# It automatically creates a model based on the input file.
-# This example's input file contains a flat plate with a single ply.
-
-workflow = ACPWorkflow.from_acph5_file(
-    acp=acp,
-    acph5_file_path=input_file,
-    local_working_directory=WORKING_DIR,
-)
-
-model = workflow.model
-print(workflow.working_directory.path)
+# Load the model from the input file.
+model = acp.import_model(input_file)
 print(model.unit_system)
 
 # %%

@@ -24,7 +24,8 @@
 from __future__ import annotations
 
 from abc import abstractmethod
-from collections.abc import Callable, Iterable
+from collections.abc import Callable, Iterable, Iterator
+import contextlib
 from dataclasses import dataclass
 import typing
 from typing import Any, Generic, TypeVar, cast
@@ -36,10 +37,13 @@ from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, GetRequest, ResourcePath
 
+from .._server.acp_instance import ACPInstance, AutoTransferStrategy
+from .._utils.path_to_str import path_to_str_checked
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .._utils.resource_paths import common_path
 from .._utils.resource_paths import join as _rp_join
 from .._utils.resource_paths import to_parts
+from .._utils.typing_helper import PATH
 from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.linked_object_helpers import get_linked_paths, unlink_objects
 from ._grpc_helpers.polymorphic_from_pb import (
@@ -64,9 +68,6 @@ from ._grpc_helpers.protocols import (
     ReadableResourceStub,
 )
 from ._object_cache import ObjectCacheMixin, constructor_with_cache
-
-if typing.TYPE_CHECKING:  # pragma: no cover
-    from .._server import ACPInstance
 
 
 @mark_grpc_properties
@@ -194,13 +195,31 @@ class ServerWrapper:
 
     channel: Channel
     version: Version
+    autotransfer_strategy: AutoTransferStrategy
 
     @classmethod
     def from_acp_instance(cls, acp_instance: ACPInstance[Any]) -> ServerWrapper:
         """Convert an ACP instance into the wrapper needed by tree objects."""
         return cls(
-            channel=acp_instance._channel, version=parse_version(acp_instance.server_version)
+            channel=acp_instance._channel,
+            version=parse_version(acp_instance.server_version),
+            autotransfer_strategy=acp_instance._autotransfer_strategy,
         )
+
+    def auto_upload(self, local_path: PATH | None, allow_none: bool = False) -> str:
+        """Handle auto-transfer of a file to the server."""
+        if local_path is None:
+            if allow_none:
+                return ""
+            raise TypeError("Expected a Path or str, not 'None'.")
+        return path_to_str_checked(self.autotransfer_strategy.upload_file(local_path))
+
+    @contextlib.contextmanager
+    def auto_download(self, local_path: PATH) -> Iterator[str]:
+        """Handle auto-transfer of a file from the server."""
+        export_path = self.autotransfer_strategy.to_export_path(local_path)
+        yield path_to_str_checked(export_path)
+        self.autotransfer_strategy.download_file(export_path, local_path)
 
 
 class StubStore(Generic[StubT]):

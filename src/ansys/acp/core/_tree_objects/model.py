@@ -67,7 +67,6 @@ from ansys.api.acp.v0 import (
 )
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
-from .._utils.path_to_str import path_to_str_checked
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .._utils.resource_paths import join as rp_join
 from .._utils.typing_helper import PATH as _PATH
@@ -321,9 +320,7 @@ class Model(TreeObject):
         server_wrapper:
             Representation of the ACP instance.
         """
-        # Send absolute paths to the server, since its CWD may not match
-        # the Python CWD.
-        request = model_pb2.LoadFromFileRequest(path=path_to_str_checked(path))
+        request = model_pb2.LoadFromFileRequest(path=server_wrapper.auto_upload(path))
         with wrap_grpc_errors():
             reply = model_pb2_grpc.ObjectServiceStub(server_wrapper.channel).LoadFromFile(request)
         return cls._from_object_info(object_info=reply, server_wrapper=server_wrapper)
@@ -368,7 +365,7 @@ class Model(TreeObject):
         ignored_entities_pb = [ignorable_entity_to_pb(val) for val in ignored_entities]
 
         request = model_pb2.LoadFromFEFileRequest(
-            path=path_to_str_checked(path),
+            path=server_wrapper.auto_upload(path),
             format=cast(Any, format_pb),
             ignored_entities=cast(Any, ignored_entities_pb),
             convert_section_data=convert_section_data,
@@ -404,14 +401,15 @@ class Model(TreeObject):
         save_cache:
             Whether to store the update results such as Analysis Plies and solid models.
         """
-        with wrap_grpc_errors():
-            self._get_stub().SaveToFile(
-                model_pb2.SaveToFileRequest(
-                    resource_path=self._resource_path,
-                    path=path_to_str_checked(path),
-                    save_cache=save_cache,
+        with self._server_wrapper.auto_download(path) as export_path:
+            with wrap_grpc_errors():
+                self._get_stub().SaveToFile(
+                    model_pb2.SaveToFileRequest(
+                        resource_path=self._resource_path,
+                        path=export_path,
+                        save_cache=save_cache,
+                    )
                 )
-            )
 
     def export_analysis_model(self, path: _PATH) -> None:
         """Save the analysis model to a CDB file.
@@ -421,13 +419,14 @@ class Model(TreeObject):
         path:
             Target file path. E.g. /tmp/ACPAnalysisModel.cdb
         """
-        with wrap_grpc_errors():
-            self._get_stub().SaveAnalysisModel(
-                model_pb2.SaveAnalysisModelRequest(
-                    resource_path=self._resource_path,
-                    path=path_to_str_checked(path),
+        with self._server_wrapper.auto_download(path) as export_path:
+            with wrap_grpc_errors():
+                self._get_stub().SaveAnalysisModel(
+                    model_pb2.SaveAnalysisModelRequest(
+                        resource_path=self._resource_path,
+                        path=export_path,
+                    )
                 )
-            )
 
     @supported_since("25.1")
     def export_hdf5_composite_cae(
@@ -475,21 +474,22 @@ class Model(TreeObject):
             file. This may be needed for compatibility with programs that don't fully
             support unicode when reading the file.
         """
-        with wrap_grpc_errors():
-            self._get_stub().ExportHDF5CompositeCAE(
-                model_pb2.ExportHDF5CompositeCAERequest(
-                    resource_path=self._resource_path,
-                    path=path_to_str_checked(path),
-                    remove_midside_nodes=remove_midside_nodes,
-                    layup_representation_3d=layup_representation_3d,
-                    offset_type=offset_type_to_pb(offset_type),  # type: ignore
-                    ascii_encoding=ascii_encoding,
-                    all_elements=all_elements,
-                    element_sets=[element_set._resource_path for element_set in element_sets],
-                    all_plies=all_plies,
-                    plies=[ply._resource_path for ply in plies],
+        with self._server_wrapper.auto_download(path) as export_path:
+            with wrap_grpc_errors():
+                self._get_stub().ExportHDF5CompositeCAE(
+                    model_pb2.ExportHDF5CompositeCAERequest(
+                        resource_path=self._resource_path,
+                        path=export_path,
+                        remove_midside_nodes=remove_midside_nodes,
+                        layup_representation_3d=layup_representation_3d,
+                        offset_type=offset_type_to_pb(offset_type),  # type: ignore
+                        ascii_encoding=ascii_encoding,
+                        all_elements=all_elements,
+                        element_sets=[element_set._resource_path for element_set in element_sets],
+                        all_plies=all_plies,
+                        plies=[ply._resource_path for ply in plies],
+                    )
                 )
-            )
 
     @supported_since("25.1")
     def import_hdf5_composite_cae(
@@ -560,7 +560,7 @@ class Model(TreeObject):
             self._get_stub().ImportHDF5CompositeCAE(
                 model_pb2.ImportHDF5CompositeCAERequest(
                     resource_path=self._resource_path,
-                    path=path_to_str_checked(path),
+                    path=self._server_wrapper.auto_upload(path),
                     import_mode=hdf5_composite_cae_import_mode_to_pb(import_mode),  # type: ignore
                     projection_mode=hdf5_composite_cae_projection_mode_to_pb(projection_mode),  # type: ignore
                     minimum_angle_tolerance=minimum_angle_tolerance,
@@ -581,12 +581,13 @@ class Model(TreeObject):
         path:
             File path. Eg. /tmp/ACPCompositeDefinitions.h5
         """
-        with wrap_grpc_errors():
-            self._get_stub().SaveShellCompositeDefinitions(
-                model_pb2.SaveShellCompositeDefinitionsRequest(
-                    resource_path=self._resource_path, path=path_to_str_checked(path)
+        with self._server_wrapper.auto_download(path) as export_path:
+            with wrap_grpc_errors():
+                self._get_stub().SaveShellCompositeDefinitions(
+                    model_pb2.SaveShellCompositeDefinitionsRequest(
+                        resource_path=self._resource_path, path=export_path
+                    )
                 )
-            )
 
     @supported_since("25.1")
     def import_materials(
@@ -616,15 +617,14 @@ class Model(TreeObject):
         collection_path = CollectionPath(
             value=rp_join(self._resource_path.value, Material._COLLECTION_LABEL)
         )
+
         with wrap_grpc_errors():
             material_stub.ImportMaterialFiles(
                 material_pb2.ImportMaterialFilesRequest(
                     collection_path=collection_path,
-                    matml_path=path_to_str_checked(matml_path),
-                    material_apdl_path=(
-                        path_to_str_checked(material_apdl_path)
-                        if material_apdl_path is not None
-                        else ""
+                    matml_path=self._server_wrapper.auto_upload(matml_path),
+                    material_apdl_path=self._server_wrapper.auto_upload(
+                        material_apdl_path, allow_none=True
                     ),
                 )
             )
@@ -645,14 +645,15 @@ class Model(TreeObject):
         collection_path = CollectionPath(
             value=rp_join(self._resource_path.value, Material._COLLECTION_LABEL)
         )
-        with wrap_grpc_errors():
-            material_stub.SaveToFile(
-                material_pb2.SaveToFileRequest(
-                    collection_path=collection_path,
-                    path=path_to_str_checked(path),
-                    format=material_pb2.SaveToFileRequest.ANSYS_XML,
+        with self._server_wrapper.auto_download(path) as export_path:
+            with wrap_grpc_errors():
+                material_stub.SaveToFile(
+                    material_pb2.SaveToFileRequest(
+                        collection_path=collection_path,
+                        path=export_path,
+                        format=material_pb2.SaveToFileRequest.ANSYS_XML,
+                    )
                 )
-            )
 
     @supported_since("25.1")
     def export_modeling_ply_geometries(
@@ -714,23 +715,26 @@ class Model(TreeObject):
         if arrow_length is None:
             arrow_length = np.sqrt(self.average_element_size)
 
-        with wrap_grpc_errors():
-            modeling_ply_stub.ExportGeometries(
-                ply_geometry_export_pb2.ExportGeometriesRequest(
-                    path=path_to_str_checked(path),
-                    plies=mp_resource_paths,
-                    options=ply_geometry_export_pb2.ExportOptions(
-                        format=typing.cast(typing.Any, ply_geometry_export_format_to_pb(format)),
-                        offset_type=typing.cast(typing.Any, offset_type_to_pb(offset_type)),
-                        include_surface=include_surface,
-                        include_boundary=include_boundary,
-                        include_first_material_direction=include_first_material_direction,
-                        include_second_material_direction=include_second_material_direction,
-                        arrow_length=arrow_length,
-                        arrow_type=typing.cast(typing.Any, arrow_type_to_pb(arrow_type)),
-                    ),
+        with self._server_wrapper.auto_download(path) as export_path:
+            with wrap_grpc_errors():
+                modeling_ply_stub.ExportGeometries(
+                    ply_geometry_export_pb2.ExportGeometriesRequest(
+                        path=export_path,
+                        plies=mp_resource_paths,
+                        options=ply_geometry_export_pb2.ExportOptions(
+                            format=typing.cast(
+                                typing.Any, ply_geometry_export_format_to_pb(format)
+                            ),
+                            offset_type=typing.cast(typing.Any, offset_type_to_pb(offset_type)),
+                            include_surface=include_surface,
+                            include_boundary=include_boundary,
+                            include_first_material_direction=include_first_material_direction,
+                            include_second_material_direction=include_second_material_direction,
+                            arrow_length=arrow_length,
+                            arrow_type=typing.cast(typing.Any, arrow_type_to_pb(arrow_type)),
+                        ),
+                    )
                 )
-            )
 
     create_material = define_create_method(
         Material, func_name="create_material", parent_class_name="Model", module_name=__module__

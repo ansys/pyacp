@@ -33,7 +33,7 @@ def model(load_model_from_tempfile):
 
 @pytest.fixture
 def parent_object(model, load_cad_geometry):
-    with load_cad_geometry(model) as cad_geometry:
+    with load_cad_geometry(model) as (cad_geometry, _):
         yield cad_geometry
 
 

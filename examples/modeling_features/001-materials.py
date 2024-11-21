@@ -49,7 +49,7 @@ import tempfile
 
 # %%
 # Import the PyACP dependencies.
-from ansys.acp.core import ACPWorkflow, FabricWithAngle, Lamina, PlyType, SymmetryType, launch_acp
+from ansys.acp.core import FabricWithAngle, Lamina, PlyType, SymmetryType, launch_acp
 from ansys.acp.core.extras import ExampleKeys, get_example_file
 from ansys.acp.core.material_property_sets import (
     ConstantEngineeringConstants,
@@ -74,14 +74,8 @@ input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
 acp = launch_acp()
 
 # %%
-# Define the input file and instantiate an ``ACPWorkflow`` instance.
-workflow = ACPWorkflow.from_cdb_or_dat_file(
-    acp=acp,
-    cdb_or_dat_file_path=input_file,
-    local_working_directory=WORKING_DIR,
-)
-
-model = workflow.model
+# Import the model from the input file.
+model = acp.import_model(input_file, format="ansys:dat")
 
 # %%
 # Create a Material
@@ -178,11 +172,9 @@ sublaminate = model.create_sublaminate(
 # An alternative is to load materials from an Engineering Data
 # file via :meth:`.Model.import_materials`.
 engd_file_path = get_example_file(ExampleKeys.MATERIALS_XML, WORKING_DIR)
-remote_engd_file_path = acp.upload_file(engd_file_path)
-model.import_materials(matml_path=remote_engd_file_path)
+model.import_materials(matml_path=engd_file_path)
+model.materials
 
 # %%
 # Some workflows require the materials to be exported to an XML file.
-engd_file_name = "exported_materials.xml"
-model.export_materials(path=engd_file_name)
-acp.download_file(engd_file_name, os.path.join(WORKING_DIR, engd_file_name))
+model.export_materials(path=WORKING_DIR / "exported_materials.xml")

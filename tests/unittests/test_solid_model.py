@@ -298,15 +298,8 @@ def test_solid_model_export(acp_instance, parent_object, format):
         else:
             ext = ".cdb"
 
-        out_file_name = f"out_file{ext}"
-        out_path = pathlib.Path(tmp_dir) / out_file_name
-
-        if not acp_instance.is_remote:
-            # save directly to the local file, to avoid a copy in the working directory
-            out_file_name = out_path  # type: ignore
-
-        solid_model.export(path=out_file_name, format=format)
-        acp_instance.download_file(out_file_name, out_path)
+        out_path = pathlib.Path(tmp_dir) / f"out_file{ext}"
+        solid_model.export(path=out_path, format=format)
 
         assert out_path.exists()
         assert out_path.stat().st_size > 0
@@ -341,15 +334,9 @@ def test_solid_model_skin_export(acp_instance, parent_object, format):
 
     with tempfile.TemporaryDirectory() as tmp_dir:
         ext = {"ansys:cdb": ".cdb", "step": ".stp", "iges": ".igs", "stl": ".stl"}[format]
-        out_file_name = f"out_file{ext}"
-        out_path = pathlib.Path(tmp_dir) / out_file_name
+        out_path = pathlib.Path(tmp_dir) / f"out_file{ext}"
 
-        if not acp_instance.is_remote:
-            # save directly to the local file, to avoid a copy in the working directory
-            out_file_name = out_path  # type: ignore
-
-        solid_model.export_skin(path=out_file_name, format=format)
-        acp_instance.download_file(out_file_name, out_path)
+        solid_model.export_skin(path=out_path, format=format)
 
         assert out_path.exists()
         assert out_path.stat().st_size > 0

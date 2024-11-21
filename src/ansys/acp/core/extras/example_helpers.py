@@ -24,12 +24,12 @@
 
 These utilities can download the input files used in the PyACP examples.
 """
-
 import dataclasses
 from enum import Enum, auto
 import pathlib
 import shutil
 import sys
+import tempfile
 import urllib.parse
 import urllib.request
 
@@ -38,7 +38,7 @@ __all__ = ["ExampleKeys", "get_example_file"]
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:  # pragma: no cover
-    from ansys.acp.core import ACPWorkflow
+    from ansys.acp.core import Model
 
 _EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/master/pyacp/"
 
@@ -148,7 +148,7 @@ def _download_file(
         shutil.copyfile(file_url, local_path)
 
 
-def _run_analysis(workflow: "ACPWorkflow") -> None:
+def _run_analysis(model: "Model") -> None:
     """Run the model with mapdl and do a post-processing analysis.
 
     Uses a max strain criteria, which means strain limits have to be defined.
@@ -157,50 +157,56 @@ def _run_analysis(workflow: "ACPWorkflow") -> None:
     """
     from ansys.mapdl.core import launch_mapdl
 
-    model = workflow.model
-    model.update()
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        tmp_dir_path = pathlib.Path(tmp_dir)
+        model.update()
+        cdb_out_path = tmp_dir_path / "model.cdb"
+        model.export_analysis_model(cdb_out_path)
 
-    # Launch the MAPDL instance
-    mapdl = launch_mapdl()
-    mapdl.clear()
+        # Launch the MAPDL instance
+        mapdl = launch_mapdl()
+        mapdl.clear()
 
-    # Load the CDB file into PyMAPDL
-    mapdl.input(str(workflow.get_local_cdb_file()))
+        # Load the CDB file into PyMAPDL
+        mapdl.input(str(cdb_out_path))
 
-    # Solve the model
-    mapdl.allsel()
-    mapdl.slashsolu()
-    mapdl.solve()
+        # Solve the model
+        mapdl.allsel()
+        mapdl.slashsolu()
+        mapdl.solve()
 
-    # Download the rst file for composite specific post-processing
-    rstfile_name = f"{mapdl.jobname}.rst"
-    rst_file_local_path = workflow.working_directory.path / rstfile_name
-    mapdl.download(rstfile_name, str(workflow.working_directory.path))
+        # Download the rst file for composite specific post-processing
+        rstfile_name = f"{mapdl.jobname}.rst"
+        rst_file_local_path = tmp_dir_path / rstfile_name
+        mapdl.download(rstfile_name, str(tmp_dir_path))
 
-    from ansys.acp.core import get_composite_post_processing_files, get_dpf_unit_system
-    from ansys.dpf.composites.composite_model import CompositeModel
-    from ansys.dpf.composites.constants import FailureOutput
-    from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxStrainCriterion
-    from ansys.dpf.composites.server_helpers import connect_to_or_start_server
+        from ansys.acp.core import get_shell_composite_post_processing_files, get_dpf_unit_system
+        from ansys.dpf.composites.composite_model import CompositeModel
+        from ansys.dpf.composites.constants import FailureOutput
+        from ansys.dpf.composites.failure_criteria import (
+            CombinedFailureCriterion,
+            MaxStrainCriterion,
+        )
+        from ansys.dpf.composites.server_helpers import connect_to_or_start_server
 
-    dpf_server = connect_to_or_start_server()
+        dpf_server = connect_to_or_start_server()
 
-    max_strain = MaxStrainCriterion()
+        max_strain = MaxStrainCriterion()
 
-    cfc = CombinedFailureCriterion(
-        name="Combined Failure Criterion",
-        failure_criteria=[max_strain],
-    )
+        cfc = CombinedFailureCriterion(
+            name="Combined Failure Criterion",
+            failure_criteria=[max_strain],
+        )
 
-    composite_model = CompositeModel(
-        get_composite_post_processing_files(workflow, rst_file_local_path),
-        default_unit_system=get_dpf_unit_system(model.unit_system),
-        server=dpf_server,
-    )
+        composite_model = CompositeModel(
+            get_shell_composite_post_processing_files(model, rst_file_local_path, tmp_dir_path),
+            default_unit_system=get_dpf_unit_system(model.unit_system),
+            server=dpf_server,
+        )
 
-    output_all_elements = composite_model.evaluate_failure_criteria(cfc)
-    irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
+        output_all_elements = composite_model.evaluate_failure_criteria(cfc)
+        irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
 
-    # %%
-    # Release composite model to close open streams to result file.
-    composite_model = None  # type: ignore
+        # %%
+        # Release composite model to close open streams to result file.
+        composite_model = None  # type: ignore

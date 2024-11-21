@@ -72,7 +72,7 @@ class TestVirtualGeometry(NoLockedMixin, TreeObjectTester):
 
 def test_virtual_geometry_creation_from_cad_components(parent_object, load_cad_geometry):
     model = parent_object
-    with load_cad_geometry(model) as cad_geometry:
+    with load_cad_geometry(model) as (cad_geometry, _):
         model.update()
         virtual_geometry = model.create_virtual_geometry(
             cad_components=cad_geometry.root_shapes.values()
@@ -87,7 +87,7 @@ def test_virtual_geometry_creation_from_cad_components(parent_object, load_cad_g
 
 def test_virtual_geometry_no_or_invalid_links(parent_object, load_cad_geometry):
     model = parent_object
-    with load_cad_geometry(model) as cad_geometry:
+    with load_cad_geometry(model) as (cad_geometry, _):
         model.update()
 
         # No sub_shapes or cad_components is ok

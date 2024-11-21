@@ -25,6 +25,7 @@ from __future__ import annotations
 import os
 import pathlib
 import shutil
+import typing
 from typing import Any, Generic, Protocol, TypeVar, cast
 
 import grpc
@@ -33,11 +34,13 @@ from ansys.api.acp.v0 import control_pb2_grpc, model_pb2_grpc
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, Empty, ListRequest
 from ansys.tools.filetransfer import Client as FileTransferClient
 
-from .._tree_objects import Model
 from .._tree_objects._grpc_helpers.exceptions import wrap_grpc_errors
-from .._tree_objects.base import ServerWrapper
 from .._utils.typing_helper import PATH as _PATH
 from .common import ServerProtocol
+
+if typing.TYPE_CHECKING:  # pragma: no cover
+    from .._tree_objects import Model
+
 
 __all__ = ["ACPInstance"]
 
@@ -78,6 +81,42 @@ class RemoteFileTransferStrategy(FiletransferStrategy):
         )
 
 
+class AutoTransferStrategy(Protocol):
+    def to_export_path(self, path: _PATH) -> _PATH: ...
+
+    def upload_file(self, local_path: _PATH) -> pathlib.PurePath: ...
+
+    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None: ...
+
+
+class NoAutoTransfer(AutoTransferStrategy):
+    def to_export_path(self, path: _PATH) -> _PATH:
+        return path
+
+    def upload_file(self, local_path: _PATH) -> pathlib.Path:
+        return pathlib.Path(local_path)
+
+    def download_file(self, export_path: _PATH, local_path: _PATH) -> None:
+        # If auto-transfer is disabled, the export path should be the
+        # same as the local path. Otherwise, this is a bug in our code.
+        assert export_path == local_path
+
+
+class WithAutoTransfer(AutoTransferStrategy):
+    def __init__(self, filetransfer_strategy: FiletransferStrategy) -> None:
+        self._filetransfer_strategy = filetransfer_strategy
+
+    def to_export_path(self, path: _PATH) -> _PATH:
+        # Get the filename from the path
+        return pathlib.Path(path).name
+
+    def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
+        return self._filetransfer_strategy.upload_file(local_path)
+
+    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
+        self._filetransfer_strategy.download_file(remote_filename, local_path)
+
+
 ServerT = TypeVar("ServerT", bound=ServerProtocol, covariant=True)
 
 
@@ -99,6 +138,7 @@ class ACPInstance(Generic[ServerT]):
 
     _server: ServerT
     _filetransfer_strategy: FiletransferStrategy
+    _autotransfer_strategy: AutoTransferStrategy
     _channel: grpc.Channel
     _is_remote: bool
 
@@ -108,11 +148,13 @@ class ACPInstance(Generic[ServerT]):
         server: ServerT,
         channel: grpc.Channel,
         filetransfer_strategy: FiletransferStrategy,
+        autotransfer_strategy: AutoTransferStrategy,
         is_remote: bool,
     ) -> None:
         self._server = server
         self._channel = channel
         self._filetransfer_strategy = filetransfer_strategy
+        self._autotransfer_strategy = autotransfer_strategy
         self._is_remote = is_remote
 
     @property
@@ -172,6 +214,9 @@ class ACPInstance(Generic[ServerT]):
         :
             The loaded ``Model`` instance.
         """
+        from .._tree_objects import Model
+        from .._tree_objects.base import ServerWrapper
+
         server_wrapper = ServerWrapper.from_acp_instance(self)
         if format == "acp:h5":
             if kwargs:
@@ -197,6 +242,8 @@ class ACPInstance(Generic[ServerT]):
         Closes the models which are currently open, without first
         saving them to a file.
         """
+        from .._tree_objects import Model
+
         model_stub = model_pb2_grpc.ObjectServiceStub(self._channel)
         with wrap_grpc_errors():
             for model in model_stub.List(
@@ -214,6 +261,8 @@ class ACPInstance(Generic[ServerT]):
 
         Note that the models are listed in arbitrary order.
         """
+        from .._tree_objects import Model
+
         model_stub = model_pb2_grpc.ObjectServiceStub(self._channel)
         return tuple(
             [
