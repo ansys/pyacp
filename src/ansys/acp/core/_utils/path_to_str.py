@@ -22,7 +22,7 @@
 
 from pathlib import PurePath
 
-from .._typing_helper import PATH
+from .typing_helper import PATH
 
 __all__ = ["path_to_str_checked"]
 

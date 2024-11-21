@@ -67,10 +67,10 @@ from ansys.api.acp.v0 import (
 )
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
-from .._typing_helper import PATH as _PATH
 from .._utils.path_to_str import path_to_str_checked
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .._utils.resource_paths import join as rp_join
+from .._utils.typing_helper import PATH as _PATH
 from ._elemental_or_nodal_data import (
     ElementalData,
     NodalData,

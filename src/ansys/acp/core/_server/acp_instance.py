@@ -36,7 +36,7 @@ from ansys.tools.filetransfer import Client as FileTransferClient
 from .._tree_objects import Model
 from .._tree_objects._grpc_helpers.exceptions import wrap_grpc_errors
 from .._tree_objects.base import ServerWrapper
-from .._typing_helper import PATH as _PATH
+from .._utils.typing_helper import PATH as _PATH
 from .common import ServerProtocol
 
 __all__ = ["ACPInstance"]

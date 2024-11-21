@@ -23,14 +23,14 @@
 from collections.abc import Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
-import pyvista
-
 if TYPE_CHECKING:  # pragma: no cover
+    import pyvista
     from ansys.acp.core import Model
     from ansys.acp.core.mesh_data import MeshData
     from ansys.acp.core.mesh_data import VectorData
 
-from ansys.acp.core._utils.visualization import _replace_underscores_and_capitalize
+from ._utils.pyvista_import_check import requires_pyvista
+from ._utils.string_manipulation import replace_underscores_and_capitalize
 
 __all__ = ["get_directions_plotter"]
 
@@ -46,6 +46,7 @@ _acp_direction_colors = {
 }
 
 
+@requires_pyvista
 def get_directions_plotter(
     *,
     model: "Model",
@@ -54,7 +55,7 @@ def get_directions_plotter(
     culling_factor: int = 1,
     length_factor: float = 1.0,
     **kwargs: Any,
-) -> pyvista.Plotter:
+) -> "pyvista.Plotter":
     """Get a pyvista plotter that shows the specified directions on the mesh.
 
     Parameters
@@ -77,6 +78,8 @@ def get_directions_plotter(
     kwargs :
         Keyword arguments passed to the PyVista object constructor.
     """
+    import pyvista
+
     if mesh is None:
         mesh = model.mesh
 
@@ -95,7 +98,7 @@ def get_directions_plotter(
                 **kwargs,
             ),
             color=color,
-            label=_replace_underscores_and_capitalize(vector_data.component_name),
+            label=replace_underscores_and_capitalize(vector_data.component_name),
         )
         plotter.add_legend(face=None, bcolor=[0.2, 0.2, 0.2], size=(0.25, 0.25))
     return plotter

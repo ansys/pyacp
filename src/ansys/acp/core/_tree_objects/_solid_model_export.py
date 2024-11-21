@@ -26,8 +26,8 @@ import typing
 
 from ansys.api.acp.v0 import solid_model_export_pb2
 
-from .._typing_helper import PATH as _PATH
 from .._utils.path_to_str import path_to_str_checked
+from .._utils.typing_helper import PATH as _PATH
 from ._grpc_helpers.exceptions import wrap_grpc_errors
 from .base import CreatableTreeObject
 from .enums import (

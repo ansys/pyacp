@@ -36,8 +36,8 @@ from ansys.api.acp.v0 import (
     solid_model_pb2,
 )
 
-from .._typing_helper import PATH as _PATH
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
+from .._utils.typing_helper import PATH as _PATH
 from ._elemental_or_nodal_data import (
     ElementalData,
     NodalData,
