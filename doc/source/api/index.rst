@@ -5,7 +5,7 @@ API reference
 
 .. jinja:: conditional_skip
 
-    {$ if not skip_api $}
+    {% if not skip_api %}
     This section describes the API of the public PyACP classes, functions,
     and attributes.
 
