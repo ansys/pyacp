@@ -110,10 +110,14 @@ from ansys.acp.core import __version__
 SKIP_GALLERY = os.environ.get("PYACP_DOC_SKIP_GALLERY", "0").lower() in ("1", "true")
 SKIP_API = os.environ.get("PYACP_DOC_SKIP_API", "0").lower() in ("1", "true")
 
-exclude_patterns = []
+# nested example index files are directly included in the parent index file
+exclude_patterns = ["examples/*/index.rst"]
 if SKIP_API:
     # Exclude all API documentation except the index
-    exclude_patterns.append("api/[!index]*.rst")
+    # The 'api/!(index).rst' syntax does not appear to be supported by Sphinx
+    for file_path in pathlib.Path("api").glob("**/*.rst"):
+        if str(file_path) != "api/index.rst":
+            exclude_patterns.append(str(file_path))
 
 
 jinja_contexts = {
