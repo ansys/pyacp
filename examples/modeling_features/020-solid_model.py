@@ -37,6 +37,7 @@ This solid model can be further processed by :class:`.ExtrusionGuide`,
 # Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
+import pyvista
 
 # %%
 # Import the PyACP dependencies.
@@ -47,6 +48,7 @@ from ansys.acp.core import (
     ExtrusionGuideType,
     SnapToGeometryOrientationType,
     VirtualGeometry,
+    CADGeometry,
     launch_acp,
 )
 from ansys.acp.core.extras import ExampleKeys, get_example_file
@@ -98,15 +100,27 @@ model.update()
 model.solid_mesh.to_pyvista().plot(show_edges=True)
 
 
-def create_virtual_geometry_from_file(example_key: ExampleKeys) -> VirtualGeometry:
+def create_virtual_geometry_from_file(example_key: ExampleKeys) -> tuple[CADGeometry, VirtualGeometry]:
+    """Create a CAD geometry and virtual geometry."""
     geometry_file = get_example_file(example_key, WORKING_DIR)
     geometry_obj = workflow.add_cad_geometry_from_local_file(geometry_file)
     workflow.model.update()
     virtual_geometry = model.create_virtual_geometry(
         name="thickness_virtual_geometry", cad_components=geometry_obj.root_shapes.values()
     )
-    return virtual_geometry
+    return geometry_obj, virtual_geometry
 
+
+def plot_model_with_geometry(cad_geometry: CADGeometry, cad_geom_opacity: float = 0.1):
+    """Plot solid model and geometry."""
+    plotter = pyvista.Plotter()
+    geom_mesh = cad_geometry.visualization_mesh.to_pyvista()
+    plotter.add_mesh(geom_mesh, color="green", opacity=cad_geom_opacity)
+    edges = geom_mesh.extract_feature_edges()
+    plotter.add_mesh(edges, color="white", line_width=4)
+    plotter.add_mesh(edges, color="black", line_width=2)
+    plotter.add_mesh(workflow.model.solid_mesh.to_pyvista(), show_edges=True)
+    plotter.show()
 
 # %%
 # Snap the top to a geometry
@@ -114,7 +128,7 @@ def create_virtual_geometry_from_file(example_key: ExampleKeys) -> VirtualGeomet
 #
 # The :class:`.SnapToGeometry` allows to shape the bottom or top of the solid model.
 # First, import the geometry and then add the snap-to feature to the solid model.
-snap_to_virtual_geom = create_virtual_geometry_from_file(ExampleKeys.SNAP_TO_GEOMETRY)
+snap_to_geom, snap_to_virtual_geom = create_virtual_geometry_from_file(ExampleKeys.SNAP_TO_GEOMETRY)
 solid_model.create_snap_to_geometry(
     name="Snap-to Geometry",
     cad_geometry=snap_to_virtual_geom,
@@ -123,7 +137,7 @@ solid_model.create_snap_to_geometry(
 )
 
 model.update()
-model.solid_mesh.to_pyvista().plot(show_edges=True)
+plot_model_with_geometry(snap_to_geom, 0.5)
 
 # %%
 # Shape the walls
@@ -154,7 +168,7 @@ model.solid_mesh.to_pyvista().plot(show_edges=True)
 # ---------------
 #
 # The :class:`.CutOffGeometry` is used to crop elements from the solid model.
-cutoff_virtual_geom = create_virtual_geometry_from_file(ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL)
+cutoff_cad_geom, cutoff_virtual_geom = create_virtual_geometry_from_file(ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL)
 solid_model.create_cut_off_geometry(
     name="Cut-off Geometry",
     cad_geometry=cutoff_virtual_geom,
@@ -162,4 +176,4 @@ solid_model.create_cut_off_geometry(
 )
 
 model.update()
-model.solid_mesh.to_pyvista().plot(show_edges=True)
+plot_model_with_geometry(cutoff_cad_geom)
