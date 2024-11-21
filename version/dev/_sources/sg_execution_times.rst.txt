@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**02:15.843** total execution time for 12 files **from all galleries**:
+**01:47.647** total execution time for 12 files **from all galleries**:
 
 .. container::
 
@@ -33,31 +33,31 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_examples_use_cases_01-optimizing-ply-angles.py` (``../../examples/use_cases/01-optimizing-ply-angles.py``)
-     - 00:48.776
+     - 00:39.269
      - 0.0
    * - :ref:`sphx_glr_examples_workflows_02-advanced-pymapdl-workflow.py` (``../../examples/workflows/02-advanced-pymapdl-workflow.py``)
-     - 00:29.405
+     - 00:25.880
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_01-sandwich-panel-layup.py` (``../../examples/modeling_features/01-sandwich-panel-layup.py``)
-     - 00:17.625
+     - 00:14.540
      - 0.0
    * - :ref:`sphx_glr_examples_workflows_01-pymapdl-workflow.py` (``../../examples/workflows/01-pymapdl-workflow.py``)
-     - 00:09.280
+     - 00:05.751
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_03-advanced-selection-rules.py` (``../../examples/modeling_features/03-advanced-selection-rules.py``)
-     - 00:07.600
+     - 00:05.337
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_05-rosettes-ply-directions.py` (``../../examples/modeling_features/05-rosettes-ply-directions.py``)
-     - 00:06.089
+     - 00:04.548
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_02-simple-selection-rules.py` (``../../examples/modeling_features/02-simple-selection-rules.py``)
-     - 00:05.936
+     - 00:04.333
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_04-layup-thickness-definitions.py` (``../../examples/modeling_features/04-layup-thickness-definitions.py``)
-     - 00:05.809
+     - 00:04.126
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_06-ply-direction-lookup-table.py` (``../../examples/modeling_features/06-ply-direction-lookup-table.py``)
-     - 00:05.324
+     - 00:03.864
      - 0.0
    * - :ref:`sphx_glr_examples_workflows_03-pymechanical-shell-workflow.py` (``../../examples/workflows/03-pymechanical-shell-workflow.py``)
      - 00:00.000
