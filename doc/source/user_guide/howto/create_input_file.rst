@@ -1,7 +1,7 @@
 .. _input_file_for_pyacp:
 
 Create input file for PyACP
----------------------------
+===========================
 
 To start working with PyACP, an input file that contains the mesh is required. PyACP supports reading
 the mesh from:
@@ -21,9 +21,10 @@ can export the model for downstream analysis.
     either to the HDF5 Composite CAE format, or to transfer formats to PyMechanical.
     See the :ref:`workflow examples <workflow_examples>` for more information.
 
+The following sections describe how to create the input file in CDB or Mechanical HDF5 format.
 
-
-In the following sections, we will discuss how to create an input file in CDB format.
+Create a CDB input file
+-----------------------
 
 .. _cdb_file_from_mechanical:
 
@@ -81,3 +82,8 @@ Materials present in the input file (\*.cdb or \*.dat) are read into PyACP. The 
 
 * If the material has defined a UVID, then the material is imported as locked. This means the material cannot be edited in PyACP. If the input file was created with Ansys Mechanical (see :ref:`cdb_file_from_mechanical`), this is always the case. In Mechanical APDL, you can define a UVID with the ``MP,UVID`` or ``MPDATAT,UNBL,16,UVID`` command.
 * If the material has no UVID, then the material is copied on import. Only the copied material appears in PyACP. The original material is not changed and appears unmodified in the output file.
+
+Create a Mechanical HDF5 transfer file (experimental)
+-----------------------------------------------------
+
+The Mechanical to ACP HDF5 transfer file can be created using the :func:`.export_mesh_for_acp` helper function. See :ref:`pymechanical_shell_example` or :ref:`pymechanical_solid_example` for complete examples.
