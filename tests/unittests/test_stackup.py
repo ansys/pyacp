@@ -188,3 +188,11 @@ def test_add_fabric(parent_object):
     stackup.add_fabric(fabric2, angle=45.0)
     assert stackup.fabrics[-1].fabric == fabric2
     assert stackup.fabrics[-1].angle == 45.0
+
+
+def test_fabric_wit_angle(parent_object):
+    fabric1 = parent_object.create_fabric()
+    fabric_with_angle = FabricWithAngle(fabric=fabric1, angle=45.0)
+    assert fabric_with_angle != FabricWithAngle(fabric=parent_object.create_fabric(), angle=45.0)
+    assert fabric_with_angle != FabricWithAngle(fabric=fabric1, angle=55.0)
+    assert fabric_with_angle == FabricWithAngle(fabric=fabric1, angle=45.0)
