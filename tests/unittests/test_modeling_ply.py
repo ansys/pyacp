@@ -464,3 +464,4 @@ def test_taper_edge(parent_model):
     assert taper_edge != TaperEdge(edge_set=edge_1, angle=2, offset=2)
     assert taper_edge != TaperEdge(edge_set=edge_1, angle=1, offset=3)
     assert taper_edge == TaperEdge(edge_set=edge_1, angle=1, offset=2)
+    print(taper_edge)

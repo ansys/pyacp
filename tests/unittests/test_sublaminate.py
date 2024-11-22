@@ -117,3 +117,4 @@ def test_lamina(parent_object):
     assert lamina != Lamina(material=stackup, angle=45.0)
     assert lamina != Lamina(material=fabric1, angle=-45.0)
     assert lamina == Lamina(material=fabric1, angle=45.0)
+    print(lamina)
