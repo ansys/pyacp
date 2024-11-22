@@ -28,7 +28,7 @@ Imported Solid model
 
 This example guides you through the definition of an imported solid model
 which allows to map the layup onto an external solid mesh. In this case,
-the layup is mapped onto a t-joint which consists of different parts such as shell,
+the layup is applied onto a t-joint which consists of different parts such as shell,
 stringer, and bonding skin.
 The example only shows the PyACP part of the setup. For a complete composite analysis,
 see :ref:`pymapdl_workflow_example`.
@@ -43,11 +43,12 @@ In contrast to the :class:`.SolidModel`, the solid mesh of :class:`.ImportedSoli
 is loaded from an external source, such as a CDB file. The integrated mapping feature
 of the :class:`.ImportedSolidModel` allows you to map the layup onto the solid mesh.
 There are different options to control the mapping (e.g. scoping, element technology).
+Advanced features such as :class:`.CutOffGeometry` can be used as well. See
+:ref:`solid_model_example` for more details.
 
 It is recommended to look at the Ansys help for all the details. This example shows the
 basic setup only.
 """
-import os
 
 # %%
 # Import the standard library and third-party dependencies.
@@ -56,7 +57,12 @@ import tempfile
 
 # %%
 # Import the PyACP dependencies.
-from ansys.acp.core import ACPWorkflow, launch_acp, ElementTechnology, LayupMappingRosetteSelectionMethod
+from ansys.acp.core import (
+    ACPWorkflow,
+    ElementTechnology,
+    LayupMappingRosetteSelectionMethod,
+    launch_acp,
+)
 from ansys.acp.core.extras import ExampleKeys, get_example_file
 
 # sphinx_gallery_thumbnail_number = 3
@@ -135,7 +141,9 @@ _ = imported_solid_model.create_layup_mapping_object(
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[model.element_sets["els_sandwich_skin_bottom"]],
     entire_solid_mesh=False,
-    solid_element_sets=[imported_solid_model.solid_element_sets["mapping_target sandwich skin bottom"]],
+    solid_element_sets=[
+        imported_solid_model.solid_element_sets["mapping_target sandwich skin bottom"]
+    ],
 )
 
 _ = imported_solid_model.create_layup_mapping_object(
@@ -143,15 +151,27 @@ _ = imported_solid_model.create_layup_mapping_object(
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[model.element_sets["els_stringer_skin_left"]],
     entire_solid_mesh=False,
-    solid_element_sets=[solid_esets[v] for v in ['mapping_target stringer honeycomb', 'mapping_target stringer skin left', 'mapping_target stringer skin right']],
+    solid_element_sets=[
+        solid_esets[v]
+        for v in [
+            "mapping_target stringer honeycomb",
+            "mapping_target stringer skin left",
+            "mapping_target stringer skin right",
+        ]
+    ],
 )
 
 _ = imported_solid_model.create_layup_mapping_object(
     name="bonding skin",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
-    shell_element_sets=[model.element_sets[v] for v in ['els_bonding_skin_left', 'els_bonding_skin_right']],
+    shell_element_sets=[
+        model.element_sets[v] for v in ["els_bonding_skin_left", "els_bonding_skin_right"]
+    ],
     entire_solid_mesh=False,
-    solid_element_sets=[solid_esets[v] for v in ['mapping_target bonding skin left', 'mapping_target bonding skin right']],
+    solid_element_sets=[
+        solid_esets[v]
+        for v in ["mapping_target bonding skin left", "mapping_target bonding skin right"]
+    ],
 )
 
 # %%
@@ -165,7 +185,9 @@ model.solid_mesh.to_pyvista().plot(show_edges=True)
 _ = imported_solid_model.create_layup_mapping_object(
     name="foam",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
-    shell_element_sets=[model.element_sets[v] for v in ['els_foam_core_left', 'els_foam_core_right']],
+    shell_element_sets=[
+        model.element_sets[v] for v in ["els_foam_core_left", "els_foam_core_right"]
+    ],
     select_all_plies=False,
     sequences=[model.modeling_groups["MG foam_core"]],
     entire_solid_mesh=False,
@@ -179,7 +201,9 @@ _ = imported_solid_model.create_layup_mapping_object(
 _ = imported_solid_model.create_layup_mapping_object(
     name="honeycomb",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
-    shell_element_sets=[model.element_sets[v] for v in ['els_honeycomb_left', 'els_honeycomb_right']],
+    shell_element_sets=[
+        model.element_sets[v] for v in ["els_honeycomb_left", "els_honeycomb_right"]
+    ],
     select_all_plies=False,
     sequences=[model.modeling_groups["MG honeycomb_core"]],
     entire_solid_mesh=False,
@@ -201,7 +225,9 @@ _ = imported_solid_model.create_layup_mapping_object(
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[],
     entire_solid_mesh=False,
-    solid_element_sets=[solid_esets[v] for v in ['mapping_target adhesive', 'mapping_target adhesive stringer root']],
+    solid_element_sets=[
+        solid_esets[v] for v in ["mapping_target adhesive", "mapping_target adhesive stringer root"]
+    ],
     delete_lost_elements=False,
     filler_material=model.materials["Resin Epoxy"],
     rosettes=[model.rosettes["Global Coordinate System"]],
