@@ -21,9 +21,9 @@
 # SOFTWARE.
 """Extras of the Ansys Composites PrepPost module."""
 
-from ansys.acp.core.extras.example_helpers import ExampleKeys, get_example_file  # pragma: no cover
+from ansys.acp.core.extras.example_helpers import ExampleKeys, get_example_file
 
-__all__ = [  # pragma: no cover
+__all__ = [
     "ExampleKeys",
     "get_example_file",
 ]
