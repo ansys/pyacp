@@ -40,10 +40,10 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:  # pragma: no cover
     from ansys.acp.core import ACPWorkflow
 
-_EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/master/pyacp/"
+# _EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/master/pyacp/"
 
 
-# _EXAMPLE_REPO = "D:\\ANSYSDev\\pyansys-example-data\\pyacp\\"
+_EXAMPLE_REPO = "D:\\ANSYSDev\\pyansys-example-data\\pyacp\\"
 
 
 @dataclasses.dataclass
@@ -66,6 +66,8 @@ class ExampleKeys(Enum):
     OPTIMIZATION_EXAMPLE_DAT = auto()
     CLASS40_AGDB = auto()
     MATERIALS_XML = auto()
+    IMPORTED_SOLID_MODEL_ACPH5 = auto()
+    IMPORTED_SOLID_MODEL_SOLID_MESH = auto()
 
 
 EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
@@ -98,6 +100,12 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
     ),
     ExampleKeys.CLASS40_AGDB: _ExampleLocation(directory="class40", filename="class40.agdb"),
     ExampleKeys.MATERIALS_XML: _ExampleLocation(directory="materials", filename="materials.engd"),
+    ExampleKeys.IMPORTED_SOLID_MODEL_ACPH5: _ExampleLocation(
+        directory="imported_solid_model", filename="t-joint-ACP-Pre.acph5"
+    ),
+    ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH: _ExampleLocation(
+        directory="imported_solid_model", filename="t-joint.solid.h5"
+    ),
 }
 
 
