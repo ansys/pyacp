@@ -26,8 +26,11 @@
 Imported Solid model
 ====================
 
-This example guides you through the definition of an imported solid model.
-It only shows the PyACP part of the setup. For a complete composite analysis,
+This example guides you through the definition of an imported solid model
+which allows to map the layup onto an external solid mesh. In this case,
+the layup is mapped onto a t-joint which consists of different parts such as shell,
+stringer, and bonding skin.
+The example only shows the PyACP part of the setup. For a complete composite analysis,
 see :ref:`pymapdl_workflow_example`.
 
 The example starts from an ACP model with layup. It shows how to:
@@ -53,15 +56,10 @@ import tempfile
 
 # %%
 # Import the PyACP dependencies.
-from ansys.acp.core import ACPWorkflow, FabricWithAngle, Lamina, PlyType, SymmetryType, launch_acp, ElementTechnology, LayupMappingRosetteSelectionMethod
+from ansys.acp.core import ACPWorkflow, launch_acp, ElementTechnology, LayupMappingRosetteSelectionMethod
 from ansys.acp.core.extras import ExampleKeys, get_example_file
-from ansys.acp.core.material_property_sets import (
-    ConstantEngineeringConstants,
-    ConstantStrainLimits,
-    ConstantStressLimits,
-)
 
-# sphinx_gallery_thumbnail_number = 2
+# sphinx_gallery_thumbnail_number = 3
 
 
 # %%
@@ -104,8 +102,11 @@ imported_solid_model = model.create_imported_solid_model(
 # Load the initial mesh and show the raw mesh without any mapping.
 imported_solid_model.refresh()
 imported_solid_model.import_initial_mesh()
-print(imported_solid_model.solid_element_sets)
 model.solid_mesh.to_pyvista().plot(show_edges=True)
+
+# %%
+# The solid element sets can be used as target for the mapping.
+print(imported_solid_model.solid_element_sets)
 
 # %%
 # Add mapping objects
@@ -116,7 +117,7 @@ model.solid_mesh.to_pyvista().plot(show_edges=True)
 # and show the updated solid model.
 solid_esets = imported_solid_model.solid_element_sets
 
-imported_solid_model.create_layup_mapping_object(
+_ = imported_solid_model.create_layup_mapping_object(
     name="sandwich skin top",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[model.element_sets["els_sandwich_skin_top"]],
@@ -129,7 +130,7 @@ model.solid_mesh.to_pyvista().plot(show_edges=True)
 
 # %%
 # Add other mapping objects
-imported_solid_model.create_layup_mapping_object(
+_ = imported_solid_model.create_layup_mapping_object(
     name="sandwich skin bottom",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[model.element_sets["els_sandwich_skin_bottom"]],
@@ -137,7 +138,7 @@ imported_solid_model.create_layup_mapping_object(
     solid_element_sets=[imported_solid_model.solid_element_sets["mapping_target sandwich skin bottom"]],
 )
 
-imported_solid_model.create_layup_mapping_object(
+_ = imported_solid_model.create_layup_mapping_object(
     name="stringer",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[model.element_sets["els_stringer_skin_left"]],
@@ -145,7 +146,7 @@ imported_solid_model.create_layup_mapping_object(
     solid_element_sets=[solid_esets[v] for v in ['mapping_target stringer honeycomb', 'mapping_target stringer skin left', 'mapping_target stringer skin right']],
 )
 
-imported_solid_model.create_layup_mapping_object(
+_ = imported_solid_model.create_layup_mapping_object(
     name="bonding skin",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[model.element_sets[v] for v in ['els_bonding_skin_left', 'els_bonding_skin_right']],
@@ -161,7 +162,7 @@ model.solid_mesh.to_pyvista().plot(show_edges=True)
 # %%
 # The mapping can also be done for specific plies
 # as shown for the core materials.
-imported_solid_model.create_layup_mapping_object(
+_ = imported_solid_model.create_layup_mapping_object(
     name="foam",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[model.element_sets[v] for v in ['els_foam_core_left', 'els_foam_core_right']],
@@ -175,7 +176,7 @@ imported_solid_model.create_layup_mapping_object(
     rosette_selection_method=LayupMappingRosetteSelectionMethod.MINIMUM_DISTANCE,
 )
 
-imported_solid_model.create_layup_mapping_object(
+_ = imported_solid_model.create_layup_mapping_object(
     name="honeycomb",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[model.element_sets[v] for v in ['els_honeycomb_left', 'els_honeycomb_right']],
@@ -195,7 +196,7 @@ model.solid_mesh.to_pyvista().plot(show_edges=True)
 # Add filler mapping objects where the solid mesh is "filled"
 # with a single material. No plies from the layup are used here.
 
-imported_solid_model.create_layup_mapping_object(
+_ = imported_solid_model.create_layup_mapping_object(
     name="resin",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[],
