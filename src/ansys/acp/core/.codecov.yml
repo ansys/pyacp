@@ -1,3 +1,0 @@
-ignore:
-  - "extras/example_helpers.py"  # are only used to generate the examples
-  - "extras/__init__.py"
