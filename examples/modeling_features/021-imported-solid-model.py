@@ -242,7 +242,7 @@ model.solid_mesh.to_pyvista().plot(show_edges=True)
 # Show extent and thickness of mapped plies
 # -----------------------------------------
 #
-# Use :meth:`.print_model` to get the list of plies.
+# Use :func:`.print_model` to get the list of plies.
 ap = (
     model.modeling_groups["MG bonding_skin_right"]
     .modeling_plies["ModelingPly.26"]
