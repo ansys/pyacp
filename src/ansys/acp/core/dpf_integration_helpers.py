@@ -24,7 +24,7 @@
 
 import typing
 
-from . import UnitSystemType
+from ._tree_objects.enums import UnitSystemType
 
 # Avoid dependencies on pydpf-composites and dpf-core if it is not used
 if typing.TYPE_CHECKING:  # pragma: no cover
