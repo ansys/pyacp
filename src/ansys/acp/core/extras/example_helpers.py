@@ -65,9 +65,12 @@ class ExampleKeys(Enum):
     MINIMAL_FLAT_PLATE = auto()
     OPTIMIZATION_EXAMPLE_DAT = auto()
     CLASS40_AGDB = auto()
+    CLASS40_CDB = auto()
     MATERIALS_XML = auto()
     IMPORTED_SOLID_MODEL_ACPH5 = auto()
     IMPORTED_SOLID_MODEL_SOLID_MESH = auto()
+    SNAP_TO_GEOMETRY = auto()
+    CUT_OFF_GEOMETRY_SOLID_MODEL = auto()
 
 
 EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
@@ -99,12 +102,18 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
         directory="optimization_example", filename="optimization_model.dat"
     ),
     ExampleKeys.CLASS40_AGDB: _ExampleLocation(directory="class40", filename="class40.agdb"),
+    ExampleKeys.CLASS40_CDB: _ExampleLocation(directory="class40", filename="class40.cdb"),
     ExampleKeys.MATERIALS_XML: _ExampleLocation(directory="materials", filename="materials.engd"),
     ExampleKeys.IMPORTED_SOLID_MODEL_ACPH5: _ExampleLocation(
         directory="imported_solid_model", filename="t-joint-ACP-Pre.acph5"
     ),
     ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH: _ExampleLocation(
         directory="imported_solid_model", filename="t-joint.solid.h5"
+    ExampleKeys.SNAP_TO_GEOMETRY: _ExampleLocation(
+        directory="geometries", filename="snap_to_geometry.stp"
+    ),
+    ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL: _ExampleLocation(
+        directory="geometries", filename="cut_off_geometry_solid_model.stp"
     ),
 }
 
