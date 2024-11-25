@@ -76,15 +76,15 @@ class TestCADGeometry(NoLockedMixin, TreeObjectTester):
         )
 
     @staticmethod
-    def test_refresh(load_cad_geometry, load_model_from_tempfile):
+    def test_refresh(load_model_from_tempfile, model_data_dir):
         """Test refreshing the geometry.
 
         Only tests that the call does not raise an exception.
         """
-        with (
-            load_model_from_tempfile() as model,
-            load_cad_geometry(model=model) as (cad_geometry, local_cad_path),
-        ):
+        with load_model_from_tempfile() as model:
+            cad_geometry = model.create_cad_geometry()
+            local_cad_path = model_data_dir / "square_and_solid.stp"
+            assert local_cad_path.exists()
             cad_geometry.refresh(local_cad_path)
 
     @staticmethod
@@ -99,10 +99,7 @@ class TestCADGeometry(NoLockedMixin, TreeObjectTester):
         Ensure that the property root_shapes can only be accessed if
         the CADGeometry is up-to-date.
         """
-        with (
-            load_model_from_tempfile() as model,
-            load_cad_geometry(model=model) as (cad_geometry, _),
-        ):
+        with load_model_from_tempfile() as model, load_cad_geometry(model=model) as cad_geometry:
             assert cad_geometry.status == "NOTUPTODATE"
             with pytest.raises(
                 RuntimeError,

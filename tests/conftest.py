@@ -272,7 +272,7 @@ def load_cad_geometry(model_data_dir, acp_instance):
         cad_file_path_remote = acp_instance.upload_file(cad_file_path_local)
         yield model.create_cad_geometry(
             external_path=cad_file_path_remote,
-        ), cad_file_path_local
+        )
 
     return inner
 
