@@ -24,24 +24,19 @@ import pytest
 
 import ansys.acp.core as pyacp
 
-from ..conftest import SOURCE_ROOT_DIR
 
-
-@pytest.mark.benchmark(
-    min_rounds=1,
-)
-def test_class40(benchmark, acp_instance):
+@pytest.mark.benchmark(min_rounds=1)
+def test_class40(benchmark, acp_instance, model_data_dir):
     """Benchmark for creating a composite lay-up for the Class40 model."""
-    benchmark(create_class40, acp_instance)
+    class40_file = model_data_dir / "class40.cdb"
+    benchmark(create_class40, acp_instance, class40_file)
 
 
-def create_class40(pyacp_client):
+def create_class40(pyacp_client, cdb_file):
     """
     Create a composite lay-up for the Class40 model.
     """
-    examples_data_dir = SOURCE_ROOT_DIR / "examples" / "data" / "class40"
-
-    cdb_file_path = pyacp_client.upload_file(local_path=str(examples_data_dir / "class40.cdb"))
+    cdb_file_path = pyacp_client.upload_file(local_path=cdb_file)
 
     model = pyacp_client.import_model(
         path=cdb_file_path, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
