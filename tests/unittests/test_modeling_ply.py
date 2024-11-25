@@ -455,3 +455,13 @@ def test_linked_cutoff_selection_rule_operation_type(operation_type):
             operation_type=operation_type,
         )
     assert "INTERSECT" in str(exc.value)
+
+
+def test_taper_edge(parent_model):
+    edge_1 = parent_model.create_edge_set()
+    taper_edge = TaperEdge(edge_set=edge_1, angle=1, offset=2)
+    assert taper_edge != TaperEdge(edge_set=parent_model.create_edge_set(), angle=1, offset=2)
+    assert taper_edge != TaperEdge(edge_set=edge_1, angle=2, offset=2)
+    assert taper_edge != TaperEdge(edge_set=edge_1, angle=1, offset=3)
+    assert taper_edge == TaperEdge(edge_set=edge_1, angle=1, offset=2)
+    print(taper_edge)

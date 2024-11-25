@@ -176,6 +176,12 @@ Visualize model
         >>> acp.stop(timeout=0)
 
 
+    Showing solid model
+    ~~~~~~~~~~~~~~~~~~~
+
+    The visualization of a solid mesh and its elemental data is shown in the example :ref:`solid_model_example`.
+
+
     {% else %}
     .. note::
 
