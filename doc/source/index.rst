@@ -84,7 +84,7 @@ Limitations
   * It only works on Windows, with a remote (not embedded) PyMechanical session.
   * Only one ACP shell or solid model is supported at a time.
   * Named selections defined in ACP are not transferred to PyMechanical.
-  * The ``ansys.acp.core.mechanical_integration_helpers`` module will be
+  * The ``ansys.acp.core.mechanical_integration_helpers`` module may be
     changed or removed in future versions, when the corresponding features
     are available in PyMechanical directly.
 

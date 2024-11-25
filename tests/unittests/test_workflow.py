@@ -65,6 +65,39 @@ def test_workflow(acp_instance, model_data_dir, explict_temp_dir):
     assert composite_definitions.is_file()
 
 
+@pytest.mark.parametrize("explict_temp_dir", [None, tempfile.TemporaryDirectory()])
+def test_workflow_from_mechanical_h5(acp_instance, model_data_dir, explict_temp_dir):
+    """Test that workflow can be initialized from a Mechanical HDF5 transfer file."""
+    input_file_path = model_data_dir / "ACP-Pre.h5"
+
+    if explict_temp_dir is not None:
+        working_dir = pathlib.Path(explict_temp_dir.name)
+    else:
+        working_dir = None
+
+    workflow = ACPWorkflow.from_mechanical_h5_file(
+        acp=acp_instance,
+        h5_file_path=input_file_path,
+        local_working_directory=working_dir,
+    )
+    workflow.model.update()
+
+    with pytest.raises(RuntimeError):
+        workflow.get_local_cdb_file()
+
+    acph5_path = workflow.get_local_acph5_file()
+    assert acph5_path == workflow.working_directory.path / f"{workflow.model.name}.acph5"
+    assert acph5_path.is_file()
+
+    materials_path = workflow.get_local_materials_file()
+    assert materials_path == workflow.working_directory.path / "materials.xml"
+    assert materials_path.is_file()
+
+    composite_definitions = workflow.get_local_composite_definitions_file()
+    assert composite_definitions == workflow.working_directory.path / "ACPCompositeDefinitions.h5"
+    assert composite_definitions.is_file()
+
+
 def test_reload_cad_geometry(acp_instance, model_data_dir, load_cad_geometry):
     input_file_path = model_data_dir / "minimal_model_2.cdb"
 
