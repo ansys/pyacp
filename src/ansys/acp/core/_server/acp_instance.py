@@ -48,7 +48,7 @@ __all__ = ["ACPInstance"]
 class FiletransferStrategy(Protocol):
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath: ...
 
-    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None: ...
+    def download_file(self, remote_path: _PATH, local_path: _PATH) -> None: ...
 
     def to_export_path(self, path: _PATH) -> _PATH: ...
 
@@ -60,13 +60,12 @@ class LocalFileTransferStrategy(FiletransferStrategy):
     def upload_file(self, local_path: _PATH) -> pathlib.Path:
         return self._get_remote_path(local_path)
 
-    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
-        # TODO: improve the distinction between remote filename and remote path
-        remote_filename = self._to_local_path(remote_filename)
+    def download_file(self, remote_path: _PATH, local_path: _PATH) -> None:
+        remote_path_aslocal = self._to_local_path(remote_path)
         local_filename = pathlib.Path(local_path)
-        if local_filename.exists() and local_filename.samefile(remote_filename):
+        if local_filename.exists() and local_filename.samefile(remote_path_aslocal):
             return
-        shutil.copyfile(remote_filename, local_path)
+        shutil.copyfile(remote_path_aslocal, local_path)
 
     def to_export_path(self, path: _PATH) -> _PATH:
         return self._get_remote_path(path)
@@ -101,13 +100,13 @@ class RemoteFileTransferStrategy(FiletransferStrategy):
         self._ft_client = FileTransferClient(channel)
 
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
-        remote_filename = os.path.basename(local_path)
-        self._ft_client.upload_file(local_filename=str(local_path), remote_filename=remote_filename)
-        return pathlib.PurePosixPath(remote_filename)
+        remote_path = os.path.basename(local_path)
+        self._ft_client.upload_file(local_filename=str(local_path), remote_filename=remote_path)
+        return pathlib.PurePosixPath(remote_path)
 
-    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
+    def download_file(self, remote_path: _PATH, local_path: _PATH) -> None:
         self._ft_client.download_file(
-            remote_filename=str(remote_filename), local_filename=str(local_path)
+            remote_filename=str(remote_path), local_filename=str(local_path)
         )
 
     def to_export_path(self, path: _PATH) -> _PATH:
@@ -120,7 +119,7 @@ class AutoTransferStrategy(Protocol):
 
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath: ...
 
-    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None: ...
+    def download_file(self, remote_path: _PATH, local_path: _PATH) -> None: ...
 
 
 class NoAutoTransfer(AutoTransferStrategy):
@@ -146,8 +145,8 @@ class WithAutoTransfer(AutoTransferStrategy):
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
         return self._filetransfer_strategy.upload_file(local_path)
 
-    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
-        self._filetransfer_strategy.download_file(remote_filename, local_path)
+    def download_file(self, remote_path: _PATH, local_path: _PATH) -> None:
+        self._filetransfer_strategy.download_file(remote_path, local_path)
 
 
 ServerT = TypeVar("ServerT", bound=ServerProtocol, covariant=True)
@@ -327,7 +326,7 @@ class ACPInstance(Generic[ServerT]):
         """
         return self._filetransfer_strategy.upload_file(local_path)
 
-    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
+    def download_file(self, remote_path: _PATH, local_path: _PATH) -> None:
         """Download a file from the server.
 
         .. warning::
@@ -338,12 +337,12 @@ class ACPInstance(Generic[ServerT]):
 
         Parameters
         ----------
-        remote_filename :
+        remote_path :
             The path of the file on the server.
         local_path :
             The path of the file to be downloaded to.
         """
-        self._filetransfer_strategy.download_file(remote_filename, local_path)
+        self._filetransfer_strategy.download_file(remote_path, local_path)
 
     def check(self, timeout: float | None = None) -> bool:
         """Check if the ACP instance is running.

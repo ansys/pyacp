@@ -135,7 +135,7 @@ instance:
 .. doctest::
 
     >>> acp.download_file(
-    ...     remote_filename="output_file.acph5",
+    ...     remote_path="output_file.acph5",
     ...     local_path="output_file_downloaded.acph5",
     ... )
     >>> "output_file_downloaded.acph5" in os.listdir()

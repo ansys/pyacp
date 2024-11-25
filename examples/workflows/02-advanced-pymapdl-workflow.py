@@ -315,9 +315,7 @@ for filename in [
     composite_definition_h5_filename,
     matml_filename,
 ]:
-    acp.download_file(
-        remote_filename=export_path / filename, local_path=working_dir_path / filename
-    )
+    acp.download_file(remote_path=export_path / filename, local_path=working_dir_path / filename)
 
 # %%
 # Solve with PyMAPDL
