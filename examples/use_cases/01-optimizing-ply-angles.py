@@ -244,6 +244,8 @@ combined_failure_criterion = pydpf_composites.failure_criteria.CombinedFailureCr
     name="Combined Failure Criterion",
     failure_criteria=[max_stress_criterion],
 )
+materials_file_path = workdir / "materials.xml"
+model.export_materials(materials_file_path)
 
 
 def get_max_irf(
@@ -253,12 +255,18 @@ def get_max_irf(
     rst_file,
     failure_criterion,
 ):
+    composite_definitions_file = workdir / "ACPCompositeDefinitions.h5"
+    model.export_shell_composite_definitions(composite_definitions_file)
     # Create the composite model and configure its input
     composite_model = pydpf_composites.composite_model.CompositeModel(
-        composite_files=pyacp.get_shell_composite_post_processing_files(
-            model=model,
-            local_rst_file_path=rst_file,
-            working_directory=workdir,
+        composite_files=pydpf_composites.data_sources.ContinuousFiberCompositesFiles(
+            rst=rst_file,
+            composite={
+                "shell": pydpf_composites.data_sources.CompositeDefinitionFiles(
+                    composite_definitions_file
+                )
+            },
+            engineering_data=materials_file_path,
         ),
         server=dpf_server,
     )

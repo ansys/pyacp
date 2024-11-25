@@ -53,9 +53,8 @@ import tempfile
 # Import the PyACP dependencies.
 from ansys.acp.core import (
     PlyType,
+    dpf_integration_helpers,
     get_directions_plotter,
-    get_dpf_unit_system,
-    get_shell_composite_post_processing_files,
     launch_acp,
     material_property_sets,
     print_model,
@@ -225,6 +224,10 @@ mapdl.download(rstfile_name, str(WORKING_DIR))
 
 from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput
+from ansys.dpf.composites.data_sources import (
+    CompositeDefinitionFiles,
+    ContinuousFiberCompositesFiles,
+)
 from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxStrainCriterion
 from ansys.dpf.composites.server_helpers import connect_to_or_start_server
 
@@ -244,9 +247,17 @@ cfc = CombinedFailureCriterion(
 
 # %%
 # Create the composite model and configure its input.
+composite_definitions_file = WORKING_DIR / "ACPCompositeDefinitions.h5"
+model.export_shell_composite_definitions(composite_definitions_file)
+materials_file = WORKING_DIR / "materials.xml"
+model.export_materials(materials_file)
 composite_model = CompositeModel(
-    get_shell_composite_post_processing_files(model, rst_file_local_path, WORKING_DIR),
-    default_unit_system=get_dpf_unit_system(model.unit_system),
+    composite_files=ContinuousFiberCompositesFiles(
+        rst=rst_file_local_path,
+        composite={"shell": CompositeDefinitionFiles(composite_definitions_file)},
+        engineering_data=materials_file,
+    ),
+    default_unit_system=dpf_integration_helpers.get_dpf_unit_system(model.unit_system),
     server=dpf_server,
 )
 

@@ -180,9 +180,13 @@ def _run_analysis(model: "Model") -> None:
         rst_file_local_path = tmp_dir_path / rstfile_name
         mapdl.download(rstfile_name, str(tmp_dir_path))
 
-        from ansys.acp.core import get_dpf_unit_system, get_shell_composite_post_processing_files
+        from ansys.acp.core.dpf_integration_helpers import get_dpf_unit_system
         from ansys.dpf.composites.composite_model import CompositeModel
         from ansys.dpf.composites.constants import FailureOutput
+        from ansys.dpf.composites.data_sources import (
+            CompositeDefinitionFiles,
+            ContinuousFiberCompositesFiles,
+        )
         from ansys.dpf.composites.failure_criteria import (
             CombinedFailureCriterion,
             MaxStrainCriterion,
@@ -198,8 +202,16 @@ def _run_analysis(model: "Model") -> None:
             failure_criteria=[max_strain],
         )
 
+        materials_file_path = tmp_dir_path / "materials.xml"
+        model.export_materials(materials_file_path)
+        composite_definitions_file_path = tmp_dir_path / "ACPCompositeDefinitions.h5"
+        model.export_shell_composite_definitions(composite_definitions_file_path)
         composite_model = CompositeModel(
-            get_shell_composite_post_processing_files(model, rst_file_local_path, tmp_dir_path),
+            composite_files=ContinuousFiberCompositesFiles(
+                rst=rst_file_local_path,
+                composite={"shell": CompositeDefinitionFiles(composite_definitions_file_path)},
+                engineering_data=materials_file_path,
+            ),
             default_unit_system=get_dpf_unit_system(model.unit_system),
             server=dpf_server,
         )

@@ -126,6 +126,8 @@ manually do that using the model's :meth:`.save` method:
 .. doctest::
 
     >>> model.save("output_file.acph5")
+    >>> "output_file.acph5" in os.listdir()
+    False
 
 Then, you can download the file using the :meth:`.download_file` method of the ACP
 instance:
@@ -134,8 +136,10 @@ instance:
 
     >>> acp.download_file(
     ...     remote_filename="output_file.acph5",
-    ...     local_path=workdir_path / "output_file_downloaded.acph5",
+    ...     local_path="output_file_downloaded.acph5",
     ... )
+    >>> "output_file_downloaded.acph5" in os.listdir()
+    True
 
 .. doctest::
     :hide:

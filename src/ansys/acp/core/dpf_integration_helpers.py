@@ -20,68 +20,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import pathlib
+"""Helper functions for exchanging data between PyACP and PyDPF or PyDPF Composites."""
+
 import typing
 
 from . import UnitSystemType
-from ._tree_objects import Model
-from ._utils.typing_helper import PATH
 
 # Avoid dependencies on pydpf-composites and dpf-core if it is not used
 if typing.TYPE_CHECKING:  # pragma: no cover
-    from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles
     from ansys.dpf.core import UnitSystem
 
-__all__ = ["get_shell_composite_post_processing_files", "get_dpf_unit_system"]
-
-
-def get_shell_composite_post_processing_files(
-    model: Model, local_rst_file_path: PATH, working_directory: PATH
-) -> "ContinuousFiberCompositesFiles":
-    """Get the files object needed for pydpf-composites from the workflow and the rst path.
-
-    Only supports the shell workflow.
-
-    Parameters
-    ----------
-    model:
-        The ACP model.
-    local_rst_file_path:
-        Local path to the rst file.
-    working_directory:
-        Directory where the composite files will be saved.
-    """
-    working_directory = pathlib.Path(working_directory)
-
-    # Only import here to avoid dependency on ansys.dpf.composites if it is not used
-    try:
-        from ansys.dpf.composites.data_sources import (
-            CompositeDefinitionFiles,
-            ContinuousFiberCompositesFiles,
-        )
-    except ImportError as e:
-        raise ImportError(
-            "The composite post processing files can only be retrieved if the "
-            "ansys-dpf-composites package is installed."
-        ) from e
-
-    composite_definitions_file = working_directory / "ACPCompositeDefinitions.h5"
-    model.export_shell_composite_definitions(composite_definitions_file)
-
-    materials_file = working_directory / "materials.xml"
-    model.export_materials(materials_file)
-
-    composite_files = ContinuousFiberCompositesFiles(
-        rst=local_rst_file_path,
-        composite={
-            "shell": CompositeDefinitionFiles(definition=composite_definitions_file),
-        },
-        engineering_data=materials_file,
-    )
-    return composite_files
-
-
-# TODO: add 'get_solid_composite_post_processing_files' function
+__all__ = ["get_dpf_unit_system"]
 
 
 def get_dpf_unit_system(unit_system: UnitSystemType) -> "UnitSystem":
