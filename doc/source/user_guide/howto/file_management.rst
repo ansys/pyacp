@@ -124,6 +124,12 @@ To get the ACPH5 file, it must be stored on the server. You can
 manually do that using the model's :meth:`.save` method:
 
 .. doctest::
+    :hide:
+
+    >>> # need to delete the file since it was created in the previous example
+    >>> pathlib.Path("output_file.acph5").unlink(missing_ok=True)
+
+.. doctest::
 
     >>> model.save("output_file.acph5")
     >>> "output_file.acph5" in os.listdir()
