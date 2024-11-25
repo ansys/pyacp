@@ -50,6 +50,7 @@ from ansys.acp.core import (
     ExtrusionGuideType,
     SnapToGeometryOrientationType,
     VirtualGeometry,
+    get_directions_plotter,
     launch_acp,
 )
 from ansys.acp.core.extras import ExampleKeys, get_example_file
@@ -183,3 +184,46 @@ solid_model.create_cut_off_geometry(
 
 model.update()
 plot_model_with_geometry(cutoff_cad_geom)
+
+
+# %%
+# Plot results on the solid mesh
+# ------------------------------
+#
+# The plotting capabilities also support the visualization of ply-wise results,
+# such as directions or thicknesses as shown here.
+
+# %%
+# Get the analysis ply of interest
+ap = (
+    model.modeling_groups["modeling_group"]
+    .modeling_plies["ply"]
+    .production_plies["ProductionPly.2"]
+    .analysis_plies["P2L1__ply"]
+)
+
+# %%
+# Plot fiber directions
+# ~~~~~~~~~~~~~~~~~~~~~
+direction_plotter = get_directions_plotter(
+    model=model,
+    mesh=ap.solid_mesh,
+    components=[
+        ap.elemental_data.fiber_direction,
+    ],
+    length_factor=10.0,
+    culling_factor=10,
+)
+direction_plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=True)
+direction_plotter.show()
+
+# %%
+# Plot thicknesses
+# ~~~~~~~~~~~~~~~~
+thickness_data = ap.elemental_data.thickness
+pyvista_mesh = thickness_data.get_pyvista_mesh(mesh=ap.solid_mesh)
+
+plotter = pyvista.Plotter()
+plotter.add_mesh(pyvista_mesh)
+plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=True)
+plotter.show()
