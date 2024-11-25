@@ -18,78 +18,72 @@ Manage input and output files
     >>> os.chdir(doctest_tempdir.name)
 
 When defining your workflow using PyACP and other tools, you may need control
-over where the input and output files are stored.
+over where the input and output files are stored. There are two main ways to
+manage files: auto-transfer mode and manual file management.
 
-Local ACP instance
+.. note::
+
+    When using a local ACP instance (``"direct"`` launch mode), the auto-transfer
+    and manual modes are identical, as long as the current working directory is
+    not changed after launching the ACP instance.
+
+Auto-transfer mode
 ------------------
 
-When running PyACP with a local instance (``"direct"`` launch mode, see
-:ref:`launch_configuration`), file paths are relative to the current working
-directory.
-If you need to keep all files in a specific directory, you can use the
-Python facilities for managing file paths. For example, you can use
-the :class:`tempfile.TemporaryDirectory` class to create a temporary directory,
-and :class:`pathlib.Path` to manage file paths.
+When passing the ``auto_transfer_files=True`` parameter to :func:`.launch_acp`
+(the default behavior), PyACP automatically uploads files to the ACP instance
+and downloads output files to the local machine.
 
-The following example:
-- creates a temporary directory
-- copies an input file to it
-- creates an ACP model from the input file
-- saves the model to an output file
+Paths passed to the PyACP functions are all relative to the current working
+directory of the Python instance, with one exception:
 
-Note that the temporary directory and its contents are deleted when the
-Python session ends. You can also specify a custom directory to store the
-files permanently.
+The ``external_path`` attribute of the :class:`.CADGeometry` and
+:class:`.ImportedSolidModel` classes is always relative to the ACP instance's
+working directory.
+You can use the :meth:`.CADGeometry.refresh` and :meth:`.ImportedSolidModel.refresh`
+methods to define the input file, which also handles the upload automatically.
+
+.. note::
+
+    On local ACP instances, the up- and download methods simply convert the
+    paths to be relative to the ACP instance's working directory.
+
+
+Loading input files
+~~~~~~~~~~~~~~~~~~~
+
+To load an input file, pass the file path on your local machine to the
+:meth:`.import_model` method:
 
 .. doctest::
 
-    >>> import pathlib
-    >>> import shutil
-    >>> import tempfile
     >>> import ansys.acp.core as pyacp
-    >>> workdir = tempfile.TemporaryDirectory()
-    >>> workdir_path = pathlib.Path(workdir.name)
-    >>> # DATA_DIRECTORY is a directory containing the input file
-    >>> _ = shutil.copyfile(DATA_DIRECTORY / "input_file.cdb", workdir_path / "input_file.cdb")
     >>> acp = pyacp.launch_acp()
+    >>> # DATA_DIRECTORY is a directory containing the input file
     >>> model = acp.import_model(
-    ...     workdir_path / "input_file.cdb",
+    ...     DATA_DIRECTORY / "input_file.cdb",
     ...     format="ansys:cdb",
     ...     unit_system=pyacp.UnitSystemType.MPA,
     ... )
     >>> model
     <Model with name 'ACP Lay-up Model'>
-    >>> # edit the model
-    >>> model.save(workdir_path / "output_file.acph5")
 
+Getting output files
+~~~~~~~~~~~~~~~~~~~~
 
-Remote ACP instance
--------------------
+When getting output files, pass the desired path on your local machine to the
+export / save method.
 
-When running PyACP with a remote instance (``"docker_compose"`` or ``"connect"``
-launch mode), there are two ways to manage files: auto-upload mode and manual
-file management.
+.. doctest::
 
-Auto-upload mode
-'''''''''''''''''
+    >>> import os
+    >>> model.save("output_file.acph5")
+    >>> "output_file.acph5" in os.listdir()
+    True
 
-When passing the ``auto_transfer_files=True`` parameter to :func:`.launch_acp`
-(the default behavior), PyACP automatically uploads files to the ACP instance
-and downloads output files to the local machine.
-Paths passed to the PyACP functions are again relative to the current working
-directory on the local machine.
-
-Using auto-upload mode, you can use the same code as for local ACP instances,
-with one exception:
-
-The ``external_path`` attribute of the :class:`.CADGeometry` and
-:class:`.ImportedSolidModel` classes is always relative to the ACP instance's
-working directory.
-When setting the ``external_path`` attribute, you must manually call the :meth:`.upload_file`
-method to upload the file to the ACP instance.
 
 Manual file management
-''''''''''''''''''''''
+----------------------
 
 When passing ``auto_transfer_files=False`` to :func:`.launch_acp`, PyACP does not
 automatically upload or download files.
