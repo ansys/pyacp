@@ -221,9 +221,8 @@ direction_plotter.show()
 # Plot thicknesses
 # ~~~~~~~~~~~~~~~~
 thickness_data = ap.elemental_data.thickness
-pyvista_mesh = thickness_data.get_pyvista_mesh(mesh=ap.solid_mesh)
-
+thickness_pyvista_mesh = thickness_data.get_pyvista_mesh(mesh=ap.solid_mesh)  # type: ignore
 plotter = pyvista.Plotter()
-plotter.add_mesh(pyvista_mesh)
+plotter.add_mesh(thickness_pyvista_mesh)
 plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=True)
 plotter.show()
