@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1732519067326,
+  "lastUpdate": 1732522310145,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -20420,6 +20420,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0001078271228304882",
             "extra": "mean: 38.4965633703713 msec\nrounds: 27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "91b0a48aa4d31b7a4e70853e755998b5783907a6",
+          "message": "CI: use only the plotting extra in the vulnerability check action (#699)\n\nSwitch from the `all` extra to `plotting` in the `check-vulnerabilities` action. We previously used `all` since poetry otherwise removes dependencies needed by the action itself, but this has been resolved in https://github.com/ansys/actions/pull/650",
+          "timestamp": "2024-11-25T08:04:42Z",
+          "tree_id": "51d03afa0a0df9abb0b54abcd0c91dd345c399cf",
+          "url": "https://github.com/ansys/pyacp/commit/91b0a48aa4d31b7a4e70853e755998b5783907a6"
+        },
+        "date": 1732522281068,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 7.67062163114362,
+            "unit": "iter/sec",
+            "range": "stddev: 0.01324609448443821",
+            "extra": "mean: 130.36753057143156 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.667342433723008,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004207937854267736",
+            "extra": "mean: 374.9049943333394 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.3865310028295856,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.5871145979999994 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04098477986260028,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.399301480999952 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.1515224332667513,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003233792493289596",
+            "extra": "mean: 464.78715933333586 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.28569484605743406,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.5002381520000085 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.02962848568740436,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 33.75130307200004 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1249.5114804885188,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022870122165692336",
+            "extra": "mean: 800.3127747245925 usec\nrounds: 2002"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 400.87556487416083,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006422654678496535",
+            "extra": "mean: 2.494539671715613 msec\nrounds: 396"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 48.61293949777729,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00008161723101296569",
+            "extra": "mean: 20.570654857144003 msec\nrounds: 49"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.9775546976693175,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018655619986262568",
+            "extra": "mean: 200.9018605999927 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 985.2805353480777,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001487461112956806",
+            "extra": "mean: 1.0149393640936206 msec\nrounds: 1192"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 232.58971968050727,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006460057743496563",
+            "extra": "mean: 4.299416162389431 msec\nrounds: 234"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 26.11773499809186,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00011910324626626999",
+            "extra": "mean: 38.28815937036881 msec\nrounds: 27"
           }
         ]
       }
