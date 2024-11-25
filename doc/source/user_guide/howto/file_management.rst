@@ -73,7 +73,7 @@ file management.
 Auto-upload mode
 '''''''''''''''''
 
-When passing the ``auto_upload_files=True`` parameter to :func:`.launch_acp`
+When passing the ``auto_transfer_files=True`` parameter to :func:`.launch_acp`
 (the default behavior), PyACP automatically uploads files to the ACP instance
 and downloads output files to the local machine.
 Paths passed to the PyACP functions are again relative to the current working
@@ -91,7 +91,7 @@ method to upload the file to the ACP instance.
 Manual file management
 ''''''''''''''''''''''
 
-When passing ``auto_upload_files=False`` to :func:`.launch_acp`, PyACP does not
+When passing ``auto_transfer_files=False`` to :func:`.launch_acp`, PyACP does not
 automatically upload or download files.
 
 In this case, you need to manually manage the up- and download of files, as
@@ -105,7 +105,7 @@ using the :meth:`.upload_file` method:
 
 .. doctest::
 
-    >>> acp = pyacp.launch_acp(auto_upload_files=False)
+    >>> acp = pyacp.launch_acp(auto_transfer_files=False)
     >>> uploaded_path = acp.upload_file(DATA_DIRECTORY / "input_file.cdb")
     >>> uploaded_path
     PurePosixPath('input_file.cdb')

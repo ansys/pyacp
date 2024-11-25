@@ -92,11 +92,6 @@ You may also use the :meth:`clone <.Material.clone>` method to copy an object be
 
     >>> acp2 = pyacp.launch_acp()
 
-.. testcode::
-    :hide:
-
-    path = acp2.upload_file("../tests/data/minimal_complete_model_no_matml_link.acph5")
-
 .. doctest::
 
     >>> # path = ... # path to another model file
