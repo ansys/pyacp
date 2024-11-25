@@ -180,7 +180,7 @@ def _run_analysis(model: "Model") -> None:
         rst_file_local_path = tmp_dir_path / rstfile_name
         mapdl.download(rstfile_name, str(tmp_dir_path))
 
-        from ansys.acp.core import get_shell_composite_post_processing_files, get_dpf_unit_system
+        from ansys.acp.core import get_dpf_unit_system, get_shell_composite_post_processing_files
         from ansys.dpf.composites.composite_model import CompositeModel
         from ansys.dpf.composites.constants import FailureOutput
         from ansys.dpf.composites.failure_criteria import (

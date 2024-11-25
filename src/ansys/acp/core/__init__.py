@@ -150,7 +150,7 @@ from ._tree_objects import (
     VirtualGeometry,
     VirtualGeometryDimension,
 )
-from ._workflow import get_shell_composite_post_processing_files, get_dpf_unit_system
+from ._workflow import get_dpf_unit_system, get_shell_composite_post_processing_files
 
 __version__ = importlib.metadata.version(__name__.replace(".", "-"))
 

@@ -53,9 +53,9 @@ import tempfile
 # Import the PyACP dependencies.
 from ansys.acp.core import (
     PlyType,
-    get_shell_composite_post_processing_files,
     get_directions_plotter,
     get_dpf_unit_system,
+    get_shell_composite_post_processing_files,
     launch_acp,
     material_property_sets,
     print_model,

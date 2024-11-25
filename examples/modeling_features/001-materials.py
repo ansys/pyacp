@@ -40,7 +40,6 @@ ACP distinguishes between four types of material:
 Fabrics, Stackups and Sublaminates can be used to create plies. It is recommended to look a the
 Ansys help for more information on the different types of materials.
 """
-import os
 
 # %%
 # Import the standard library and third-party dependencies.
