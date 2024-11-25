@@ -50,11 +50,10 @@ files permanently.
     >>> workdir = tempfile.TemporaryDirectory()
     >>> workdir_path = pathlib.Path(workdir.name)
     >>> # DATA_DIRECTORY is a directory containing the input file
-    >>> shutil.copyfile(DATA_DIRECTORY / "input_file.cdb", workdir_path / "input_file.cdb")
+    >>> _ = shutil.copyfile(DATA_DIRECTORY / "input_file.cdb", workdir_path / "input_file.cdb")
     >>> acp = pyacp.launch_acp()
     >>> model = acp.import_model(
     ...     workdir_path / "input_file.cdb",
-    ...     "ansys:cdb",
     ...     format="ansys:cdb",
     ...     unit_system=pyacp.UnitSystemType.MPA,
     ... )
