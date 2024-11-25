@@ -224,7 +224,7 @@ class ACPWorkflow:
 
         Parameters
         ----------
-        acp
+        acp:
             The ACP Client.
         h5_file_path:
             The path to the HDF5 file.
