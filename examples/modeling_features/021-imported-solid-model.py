@@ -26,25 +26,21 @@
 Imported Solid model
 ====================
 
-This example guides you through the definition of an imported solid model
-which allows to map the layup onto an external solid mesh. In this case,
-the layup is applied onto a t-joint which consists of different parts such as shell,
-stringer, and bonding skin.
+This example guides you through the definition of an :class:`.ImportedSolidModel`
+which allows to map the layup onto an external solid mesh.
+In contrast to the :class:`.SolidModel`, the raw solid mesh of
+:class:`.ImportedSolidModel` is loaded from an external source, such as a CDB file.
+In this example, the layup is applied onto a t-joint which consists of different
+parts such as shell, stringer, and bonding skins.
 The example only shows the PyACP part of the setup. For a complete composite analysis,
 see :ref:`pymapdl_workflow_example`.
 
-The example starts from an ACP model with layup. It shows how to:
+This example starts from an ACP model with layup. It shows how to:
 
 - Create an :class:`.ImportedSolidModel` from an external mesh.
-- Map the layup onto different regions of the solid mesh.
-- Configure the mapping options.
-
-In contrast to the :class:`.SolidModel`, the solid mesh of :class:`.ImportedSolidModel`
-is loaded from an external source, such as a CDB file. The integrated mapping feature
-of the :class:`.ImportedSolidModel` allows you to map the layup onto the solid mesh.
-There are different options to control the mapping (e.g. scoping, element technology).
-Advanced features such as :class:`.CutOffGeometry` can be used as well. See
-:ref:`solid_model_example` for more details.
+- Define the :class:`.LayupMappingObject` to apply the layup onto the solid mesh.
+- Scope plies to specific parts of the solid mesh.
+- Visualize the mapped layup.
 
 It is recommended to look at the Ansys help for all the details. This example shows the
 basic setup only.
@@ -54,6 +50,8 @@ basic setup only.
 # Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
+
+import pyvista
 
 # %%
 # Import the PyACP dependencies.
@@ -239,7 +237,34 @@ _ = imported_solid_model.create_layup_mapping_object(
 model.update()
 model.solid_mesh.to_pyvista().plot(show_edges=True)
 
+
 # %%
+# Show extent and thickness of mapped plies
+# -----------------------------------------
+#
+# Use :meth:`.print_model` to get the list of plies.
+ap = (
+    model.modeling_groups["MG bonding_skin_right"]
+    .modeling_plies["ModelingPly.26"]
+    .production_plies["ProductionPly.33"]
+    .analysis_plies["P1L1__ModelingPly.26"]
+)
+thickness_data = ap.elemental_data.thickness
+thickness_pyvista_mesh = thickness_data.get_pyvista_mesh(mesh=ap.solid_mesh)  # type: ignore
+plotter = pyvista.Plotter()
+plotter.add_mesh(thickness_pyvista_mesh)
+plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=True)
+plotter.show()
+
+
+# %%
+# Other features
+# --------------
+#
+# The :class:`.CutOffGeometry` can be used in combination witt the :class:`.ImportedSolidModel`
+# as well. See example :ref:`solid_model_example` for more details.
+# More plotting capabilities are shown in the example :ref:`solid_model_example` as well.
+#
 # The solid mesh can be exported as CDB for MAPDL or to PyMechanical for further analysis.
 # These workflows are shown in :ref:`pymapdl_workflow_example` and
 # :ref:`pymechanical_solid_example`.

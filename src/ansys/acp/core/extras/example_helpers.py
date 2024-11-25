@@ -109,6 +109,7 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
     ),
     ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH: _ExampleLocation(
         directory="imported_solid_model", filename="t-joint.solid.h5"
+    ),
     ExampleKeys.SNAP_TO_GEOMETRY: _ExampleLocation(
         directory="geometries", filename="snap_to_geometry.stp"
     ),
