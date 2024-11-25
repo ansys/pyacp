@@ -50,18 +50,48 @@ class FiletransferStrategy(Protocol):
 
     def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None: ...
 
+    def to_export_path(self, path: _PATH) -> _PATH: ...
+
 
 class LocalFileTransferStrategy(FiletransferStrategy):
+    def __init__(self, working_directory: _PATH) -> None:
+        self._working_directory = pathlib.Path(working_directory)
+
     def upload_file(self, local_path: _PATH) -> pathlib.Path:
-        return pathlib.Path(local_path)
+        return self._get_remote_path(local_path)
 
     def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
         # TODO: improve the distinction between remote filename and remote path
-        remote_filename = pathlib.Path(remote_filename)
+        remote_filename = self._to_local_path(remote_filename)
         local_filename = pathlib.Path(local_path)
         if local_filename.exists() and local_filename.samefile(remote_filename):
             return
         shutil.copyfile(remote_filename, local_path)
+
+    def to_export_path(self, path: _PATH) -> _PATH:
+        return self._get_remote_path(path)
+
+    def _get_remote_path(self, path: _PATH) -> pathlib.Path:
+        """Convert the path to be relative to the instance's working directory."""
+        path = pathlib.Path(path)
+        if path.is_absolute() or pathlib.Path().cwd() == self._working_directory:
+            return path
+        path = path.resolve()
+        try:
+            return path.relative_to(self._working_directory)
+        except ValueError:
+            return path
+
+    def _to_local_path(self, path: _PATH) -> pathlib.Path:
+        """Convert the path to be relative to the current working directory."""
+        path = pathlib.Path(path)
+        if path.is_absolute() or pathlib.Path().cwd() == self._working_directory:
+            return path
+        path = (self._working_directory / path).resolve()
+        try:
+            return path.relative_to(pathlib.Path().cwd())
+        except ValueError:
+            return path
 
 
 class RemoteFileTransferStrategy(FiletransferStrategy):
@@ -79,6 +109,10 @@ class RemoteFileTransferStrategy(FiletransferStrategy):
         self._ft_client.download_file(
             remote_filename=str(remote_filename), local_filename=str(local_path)
         )
+
+    def to_export_path(self, path: _PATH) -> _PATH:
+        # Export to the working directory of the server
+        return pathlib.Path(path).name
 
 
 class AutoTransferStrategy(Protocol):
@@ -107,8 +141,7 @@ class WithAutoTransfer(AutoTransferStrategy):
         self._filetransfer_strategy = filetransfer_strategy
 
     def to_export_path(self, path: _PATH) -> _PATH:
-        # Get the filename from the path
-        return pathlib.Path(path).name
+        return self._filetransfer_strategy.to_export_path(path)
 
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
         return self._filetransfer_strategy.upload_file(local_path)

@@ -22,6 +22,8 @@
 
 from __future__ import annotations
 
+import os
+
 from packaging import version
 
 from ansys.tools.local_product_launcher.config import get_launch_mode_for
@@ -80,7 +82,9 @@ def launch_acp(
         import or export methods are *local* paths. If ``False``,
         file transfer needs to be handled manually, and the paths
         are relative to the server working directory.
-        Only applies if the ``launch_mode`` is not ``"direct"``.
+        If the ``launch_mode`` is ``"direct"``, this only has an
+        effect if the current working directory is changed after
+        launching the server.
 
     Returns
     -------
@@ -94,20 +98,19 @@ def launch_acp(
     )
     # The fallback launch mode for ACP is the direct launch mode.
     if launch_mode_evaluated in (LaunchMode.DIRECT, FALLBACK_LAUNCH_MODE_NAME):
-        filetransfer_strategy: FiletransferStrategy = LocalFileTransferStrategy()
-        autotransfer_strategy: AutoTransferStrategy = NoAutoTransfer()
+        filetransfer_strategy: FiletransferStrategy = LocalFileTransferStrategy(os.getcwd())
         is_remote = False
     elif launch_mode_evaluated in (LaunchMode.DOCKER_COMPOSE, LaunchMode.CONNECT):
         filetransfer_strategy = RemoteFileTransferStrategy(
             channel=server_instance.channels[ServerKey.FILE_TRANSFER],
         )
-        if auto_transfer_files:
-            autotransfer_strategy = WithAutoTransfer(filetransfer_strategy)
-        else:
-            autotransfer_strategy = NoAutoTransfer()
         is_remote = True
     else:
         raise ValueError("Invalid launch mode for ACP: " + str(launch_mode_evaluated))
+    if auto_transfer_files:
+        autotransfer_strategy: AutoTransferStrategy = WithAutoTransfer(filetransfer_strategy)
+    else:
+        autotransfer_strategy = NoAutoTransfer()
 
     acp = ACPInstance(
         server=server_instance,
