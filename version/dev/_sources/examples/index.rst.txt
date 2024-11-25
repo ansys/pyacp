@@ -13,6 +13,8 @@ These examples show how to use PyACP for defining composite layups.
    :start-line: 2
 
 
+.. _workflow_examples:
+
 Workflow examples
 =================
 

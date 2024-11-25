@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:32.949** total execution time for 5 files **from examples/workflows**:
+**00:39.933** total execution time for 5 files **from examples/workflows**:
 
 .. container::
 
@@ -33,10 +33,10 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_examples_workflows_02-advanced-pymapdl-workflow.py` (``02-advanced-pymapdl-workflow.py``)
-     - 00:26.224
+     - 00:30.575
      - 0.0
    * - :ref:`sphx_glr_examples_workflows_01-pymapdl-workflow.py` (``01-pymapdl-workflow.py``)
-     - 00:06.726
+     - 00:09.357
      - 0.0
    * - :ref:`sphx_glr_examples_workflows_03-pymechanical-shell-workflow.py` (``03-pymechanical-shell-workflow.py``)
      - 00:00.000

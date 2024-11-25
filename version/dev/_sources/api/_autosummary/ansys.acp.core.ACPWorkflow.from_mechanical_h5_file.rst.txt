@@ -1,0 +1,13 @@
+.. vale off
+
+from\_mechanical\_h5\_file
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPWorkflow.from_mechanical_h5_file
+
+.. minigallery::
+   :add-heading: Examples using ACPWorkflow.from_mechanical_h5_file
+
+   ansys.acp.core.ACPWorkflow.from_mechanical_h5_file
