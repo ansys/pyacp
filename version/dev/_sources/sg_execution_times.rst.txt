@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**01:48.877** total execution time for 13 files **from all galleries**:
+**02:24.003** total execution time for 13 files **from all galleries**:
 
 .. container::
 
@@ -33,34 +33,34 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_examples_use_cases_01-optimizing-ply-angles.py` (``../../examples/use_cases/01-optimizing-ply-angles.py``)
-     - 00:40.061
+     - 00:49.245
      - 0.0
    * - :ref:`sphx_glr_examples_workflows_02-advanced-pymapdl-workflow.py` (``../../examples/workflows/02-advanced-pymapdl-workflow.py``)
-     - 00:26.545
+     - 00:30.635
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_01-sandwich-panel-layup.py` (``../../examples/modeling_features/01-sandwich-panel-layup.py``)
-     - 00:07.598
+     - 00:12.467
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_001-materials.py` (``../../examples/modeling_features/001-materials.py``)
-     - 00:07.325
+     - 00:10.693
      - 0.0
    * - :ref:`sphx_glr_examples_workflows_01-pymapdl-workflow.py` (``../../examples/workflows/01-pymapdl-workflow.py``)
-     - 00:05.873
+     - 00:09.654
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_03-advanced-selection-rules.py` (``../../examples/modeling_features/03-advanced-selection-rules.py``)
-     - 00:05.353
-     - 0.0
-   * - :ref:`sphx_glr_examples_modeling_features_05-rosettes-ply-directions.py` (``../../examples/modeling_features/05-rosettes-ply-directions.py``)
-     - 00:04.396
+     - 00:07.480
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_02-simple-selection-rules.py` (``../../examples/modeling_features/02-simple-selection-rules.py``)
-     - 00:04.241
+     - 00:06.339
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_04-layup-thickness-definitions.py` (``../../examples/modeling_features/04-layup-thickness-definitions.py``)
-     - 00:03.792
+     - 00:06.070
+     - 0.0
+   * - :ref:`sphx_glr_examples_modeling_features_05-rosettes-ply-directions.py` (``../../examples/modeling_features/05-rosettes-ply-directions.py``)
+     - 00:05.931
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_06-ply-direction-lookup-table.py` (``../../examples/modeling_features/06-ply-direction-lookup-table.py``)
-     - 00:03.692
+     - 00:05.490
      - 0.0
    * - :ref:`sphx_glr_examples_workflows_03-pymechanical-shell-workflow.py` (``../../examples/workflows/03-pymechanical-shell-workflow.py``)
      - 00:00.000

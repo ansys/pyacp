@@ -35,8 +35,6 @@ resulting model to PyMAPDL. Once the results are available, the RST file is load
 PyDPF Composites for postprocessing. The additional input files (``material.xml``
 and ``ACPCompositeDefinitions.h5``) can also be stored with PyACP and passed to PyDPF Composites.
 
-The MAPDL and DPF services are run in Docker containers that share a volume (working
-directory).
 """
 
 # %%
@@ -45,7 +43,6 @@ directory).
 
 # %%
 # Import the standard library and third-party dependencies.
-import os
 import pathlib
 import tempfile
 
@@ -63,24 +60,26 @@ import ansys.acp.core as pyacp
 acp = pyacp.launch_acp()
 
 # %%
+# Get example input files
+# -----------------------
+#
+# Create a temporary working directory, and download the example input files
+# to this directory.
+
+working_dir = tempfile.TemporaryDirectory()
+working_dir_path = pathlib.Path(working_dir.name)
+input_file = pyacp.extras.example_helpers.get_example_file(
+    pyacp.extras.example_helpers.ExampleKeys.CLASS40_CDB, working_dir_path
+)
+
+# %%
 #
 # Load mesh and materials from CDB file
 # -------------------------------------
 
 # %%
-# Define the directory in which the input files are stored.
-try:
-    EXAMPLES_DIR = pathlib.Path(os.environ["REPO_ROOT"]) / "examples"
-except KeyError:
-    EXAMPLES_DIR = pathlib.Path(__file__).parent
-EXAMPLE_DATA_DIR = EXAMPLES_DIR / "data" / "class40"
-
-# %%
-# Send ``class40.cdb`` to the server.
-CDB_FILENAME = "class40.cdb"
-local_file_path = str(EXAMPLE_DATA_DIR / CDB_FILENAME)
-print(local_file_path)
-cdb_file_path = acp.upload_file(local_path=local_file_path)
+# Send the input file to the ACP server.
+cdb_file_path = acp.upload_file(local_path=input_file)
 
 # %%
 # Load the CDB file into PyACP and set the unit system.
@@ -286,35 +285,39 @@ thickness.get_pyvista_mesh(mesh=model.mesh).plot()
 # Write out ACP Model
 # -------------------
 
-ACPH5_FILE = "class40.acph5"
-CDB_FILENAME_OUT = "class40_analysis_model.cdb"
-COMPOSITE_DEFINITIONS_H5 = "ACPCompositeDefinitions.h5"
-MATML_FILE = "materials.xml"
+acph5_filename = "class40.acph5"
+cdb_filename_out = "class40_analysis_model.cdb"
+composite_definition_h5_filename = "ACPCompositeDefinitions.h5"
+matml_filename = "materials.xml"
+
+if acp.is_remote:
+    export_path = pathlib.PurePosixPath(".")
+else:
+    export_path = working_dir_path  # type: ignore
 
 # %%
 # Update and save the ACP model.
 model.update()
-model.save(ACPH5_FILE, save_cache=True)
+model.save(export_path / acph5_filename, save_cache=True)
 
 # %%
 # Save the model as a CDB file for solving with PyMAPDL.
-model.export_analysis_model(CDB_FILENAME_OUT)
+model.export_analysis_model(export_path / cdb_filename_out)
 # Export the shell lay-up and material file for PyDPF Composites.
-model.export_shell_composite_definitions(COMPOSITE_DEFINITIONS_H5)
-model.export_materials(MATML_FILE)
+model.export_shell_composite_definitions(export_path / composite_definition_h5_filename)
+model.export_materials(export_path / matml_filename)
 
 # %%
 # Download files from the ACP server to a local directory.
-tmp_dir = tempfile.TemporaryDirectory()
-WORKING_DIR = pathlib.Path(tmp_dir.name)
-cdb_file_local_path = pathlib.Path(WORKING_DIR) / CDB_FILENAME_OUT
-matml_file_local_path = pathlib.Path(WORKING_DIR) / MATML_FILE
-composite_definitions_local_path = pathlib.Path(WORKING_DIR) / COMPOSITE_DEFINITIONS_H5
-acp.download_file(remote_filename=CDB_FILENAME_OUT, local_path=str(cdb_file_local_path))
-acp.download_file(remote_filename=MATML_FILE, local_path=str(matml_file_local_path))
-acp.download_file(
-    remote_filename=COMPOSITE_DEFINITIONS_H5, local_path=str(composite_definitions_local_path)
-)
+for filename in [
+    acph5_filename,
+    cdb_filename_out,
+    composite_definition_h5_filename,
+    matml_filename,
+]:
+    acp.download_file(
+        remote_filename=export_path / filename, local_path=working_dir_path / filename
+    )
 
 # %%
 # Solve with PyMAPDL
@@ -326,9 +329,10 @@ from ansys.mapdl.core import launch_mapdl
 
 mapdl = launch_mapdl()
 mapdl.clear()
+
 # %%
 # Load the CDB file into PyMAPDL.
-mapdl.input(str(cdb_file_local_path))
+mapdl.input(str(working_dir_path / cdb_filename_out))
 
 # %%
 # Solve the model.
@@ -344,8 +348,7 @@ mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
 # Download the RST file for further postprocessing.
 rstfile_name = f"{mapdl.jobname}.rst"
-rst_file_local_path = pathlib.Path(tmp_dir.name) / rstfile_name
-mapdl.download(rstfile_name, tmp_dir.name)
+mapdl.download(rstfile_name, working_dir_path)
 
 # %%
 # Postprocessing with PyDPF Composites
@@ -389,11 +392,13 @@ cfc = CombinedFailureCriterion(
 # Create the composite model and configure its input.
 composite_model = CompositeModel(
     composite_files=ContinuousFiberCompositesFiles(
-        rst=rst_file_local_path,
+        rst=working_dir_path / rstfile_name,
         composite={
-            "shell": CompositeDefinitionFiles(definition=composite_definitions_local_path),
+            "shell": CompositeDefinitionFiles(
+                definition=working_dir_path / composite_definition_h5_filename
+            ),
         },
-        engineering_data=matml_file_local_path,
+        engineering_data=working_dir_path / matml_filename,
     ),
     default_unit_system=unit_systems.solver_nmm,
     server=dpf_server,
