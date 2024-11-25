@@ -78,14 +78,8 @@ input_file = pyacp.extras.example_helpers.get_example_file(
 # -------------------------------------
 
 # %%
-# Send the input file to the ACP server.
-cdb_file_path = acp.upload_file(local_path=input_file)
-
-# %%
 # Load the CDB file into PyACP and set the unit system.
-model = acp.import_model(
-    path=cdb_file_path, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
-)
+model = acp.import_model(path=input_file, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA)
 model
 
 
@@ -290,32 +284,18 @@ cdb_filename_out = "class40_analysis_model.cdb"
 composite_definition_h5_filename = "ACPCompositeDefinitions.h5"
 matml_filename = "materials.xml"
 
-if acp.is_remote:
-    export_path = pathlib.PurePosixPath(".")
-else:
-    export_path = working_dir_path  # type: ignore
-
 # %%
 # Update and save the ACP model.
 model.update()
-model.save(export_path / acph5_filename, save_cache=True)
+model.save(working_dir_path / acph5_filename, save_cache=True)
 
 # %%
 # Save the model as a CDB file for solving with PyMAPDL.
-model.export_analysis_model(export_path / cdb_filename_out)
+model.export_analysis_model(working_dir_path / cdb_filename_out)
 # Export the shell lay-up and material file for PyDPF Composites.
-model.export_shell_composite_definitions(export_path / composite_definition_h5_filename)
-model.export_materials(export_path / matml_filename)
+model.export_shell_composite_definitions(working_dir_path / composite_definition_h5_filename)
+model.export_materials(working_dir_path / matml_filename)
 
-# %%
-# Download files from the ACP server to a local directory.
-for filename in [
-    acph5_filename,
-    cdb_filename_out,
-    composite_definition_h5_filename,
-    matml_filename,
-]:
-    acp.download_file(remote_path=export_path / filename, local_path=working_dir_path / filename)
 
 # %%
 # Solve with PyMAPDL

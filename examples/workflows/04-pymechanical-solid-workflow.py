@@ -184,9 +184,6 @@ matml_file = "materials.xml"  # TODO: load an example materials XML file instead
 solid_model_cdb_file = "SolidModel.cdb"
 solid_model_composite_definitions_h5 = "SolidModel.h5"
 
-
-mesh_path = acp.upload_file(mesh_path)
-
 model = acp.import_model(path=mesh_path, format="ansys:h5")
 
 mat = model.create_material(name="mat")
@@ -254,22 +251,9 @@ solid_model = model.create_solid_model(
 
 model.update()
 
-if acp.is_remote:
-    export_path = pathlib.PurePosixPath(".")
-
-else:
-    export_path = working_dir_path  # type: ignore
-
-model.export_materials(export_path / matml_file)
-solid_model.export(export_path / solid_model_cdb_file, format="ansys:cdb")
-solid_model.export(export_path / solid_model_composite_definitions_h5, format="ansys:h5")
-
-for filename in [
-    matml_file,
-    solid_model_cdb_file,
-    solid_model_composite_definitions_h5,
-]:
-    acp.download_file(export_path / filename, working_dir_path / filename)
+model.export_materials(working_dir_path / matml_file)
+solid_model.export(working_dir_path / solid_model_cdb_file, format="ansys:cdb")
+solid_model.export(working_dir_path / solid_model_composite_definitions_h5, format="ansys:h5")
 
 
 # %%
