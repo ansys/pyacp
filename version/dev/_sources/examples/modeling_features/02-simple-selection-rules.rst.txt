@@ -489,7 +489,7 @@ Plot the ply thickness.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 4.938 seconds)
+   **Total running time of the script:** (0 minutes 4.679 seconds)
 
 
 .. _sphx_glr_download_examples_modeling_features_02-simple-selection-rules.py:
