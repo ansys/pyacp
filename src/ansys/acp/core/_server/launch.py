@@ -32,12 +32,10 @@ from ansys.tools.local_product_launcher.launch import launch_product
 
 from .acp_instance import (
     ACPInstance,
-    AutoTransferStrategy,
-    FiletransferStrategy,
+    FileTransferHandler,
+    FileTransferStrategy,
     LocalFileTransferStrategy,
-    NoAutoTransfer,
     RemoteFileTransferStrategy,
-    WithAutoTransfer,
 )
 from .common import ControllableServerProtocol, LaunchMode, ServerKey
 from .direct import DirectLaunchConfig
@@ -98,7 +96,7 @@ def launch_acp(
     )
     # The fallback launch mode for ACP is the direct launch mode.
     if launch_mode_evaluated in (LaunchMode.DIRECT, FALLBACK_LAUNCH_MODE_NAME):
-        filetransfer_strategy: FiletransferStrategy = LocalFileTransferStrategy(os.getcwd())
+        filetransfer_strategy: FileTransferStrategy = LocalFileTransferStrategy(os.getcwd())
         is_remote = False
     elif launch_mode_evaluated in (LaunchMode.DOCKER_COMPOSE, LaunchMode.CONNECT):
         filetransfer_strategy = RemoteFileTransferStrategy(
@@ -107,15 +105,12 @@ def launch_acp(
         is_remote = True
     else:
         raise ValueError("Invalid launch mode for ACP: " + str(launch_mode_evaluated))
-    if auto_transfer_files:
-        autotransfer_strategy: AutoTransferStrategy = WithAutoTransfer(filetransfer_strategy)
-    else:
-        autotransfer_strategy = NoAutoTransfer()
 
     acp = ACPInstance(
         server=server_instance,
-        filetransfer_strategy=filetransfer_strategy,
-        autotransfer_strategy=autotransfer_strategy,
+        filetransfer_handler=FileTransferHandler(
+            filetransfer_strategy, auto_transfer_files=auto_transfer_files
+        ),
         channel=server_instance.channels[ServerKey.MAIN],
         is_remote=is_remote,
     )

@@ -37,7 +37,7 @@ from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, GetRequest, ResourcePath
 
-from .._server.acp_instance import ACPInstance, AutoTransferStrategy
+from .._server.acp_instance import ACPInstance, FileTransferHandler
 from .._utils.path_to_str import path_to_str_checked
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .._utils.resource_paths import common_path
@@ -195,7 +195,7 @@ class ServerWrapper:
 
     channel: Channel
     version: Version
-    autotransfer_strategy: AutoTransferStrategy
+    filetransfer_handler: FileTransferHandler
 
     @classmethod
     def from_acp_instance(cls, acp_instance: ACPInstance[Any]) -> ServerWrapper:
@@ -203,7 +203,7 @@ class ServerWrapper:
         return cls(
             channel=acp_instance._channel,
             version=parse_version(acp_instance.server_version),
-            autotransfer_strategy=acp_instance._autotransfer_strategy,
+            filetransfer_handler=acp_instance._filetransfer_handler,
         )
 
     def auto_upload(self, local_path: PATH | None, allow_none: bool = False) -> str:
@@ -212,14 +212,16 @@ class ServerWrapper:
             if allow_none:
                 return ""
             raise TypeError("Expected a Path or str, not 'None'.")
-        return path_to_str_checked(self.autotransfer_strategy.upload_file(local_path))
+        return path_to_str_checked(
+            self.filetransfer_handler.upload_file_if_autotransfer(local_path)
+        )
 
     @contextlib.contextmanager
     def auto_download(self, local_path: PATH) -> Iterator[str]:
         """Handle auto-transfer of a file from the server."""
-        export_path = self.autotransfer_strategy.to_export_path(local_path)
+        export_path = self.filetransfer_handler.to_export_path(local_path)
         yield path_to_str_checked(export_path)
-        self.autotransfer_strategy.download_file(export_path, local_path)
+        self.filetransfer_handler.download_file_if_autotransfer(export_path, local_path)
 
 
 class StubStore(Generic[StubT]):

@@ -45,7 +45,7 @@ if typing.TYPE_CHECKING:  # pragma: no cover
 __all__ = ["ACPInstance"]
 
 
-class FiletransferStrategy(Protocol):
+class FileTransferStrategy(Protocol):
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath: ...
 
     def download_file(self, remote_path: _PATH, local_path: _PATH) -> None: ...
@@ -53,7 +53,7 @@ class FiletransferStrategy(Protocol):
     def to_export_path(self, path: _PATH) -> _PATH: ...
 
 
-class LocalFileTransferStrategy(FiletransferStrategy):
+class LocalFileTransferStrategy(FileTransferStrategy):
     def __init__(self, working_directory: _PATH) -> None:
         self._working_directory = pathlib.Path(working_directory)
 
@@ -93,7 +93,7 @@ class LocalFileTransferStrategy(FiletransferStrategy):
             return path
 
 
-class RemoteFileTransferStrategy(FiletransferStrategy):
+class RemoteFileTransferStrategy(FileTransferStrategy):
     _ft_client: FileTransferClient
 
     def __init__(self, channel: grpc.Channel) -> None:
@@ -114,33 +114,30 @@ class RemoteFileTransferStrategy(FiletransferStrategy):
         return pathlib.Path(path).name
 
 
-class AutoTransferStrategy(Protocol):
-    def to_export_path(self, path: _PATH) -> _PATH: ...
+class FileTransferHandler:
+    def __init__(
+        self, filetransfer_strategy: FileTransferStrategy, auto_transfer_files: bool
+    ) -> None:
+        self._filetransfer_strategy = filetransfer_strategy
+        self._auto_transfer_files = auto_transfer_files
 
-    def upload_file(self, local_path: _PATH) -> pathlib.PurePath: ...
-
-    def download_file(self, remote_path: _PATH, local_path: _PATH) -> None: ...
-
-
-class NoAutoTransfer(AutoTransferStrategy):
-    def to_export_path(self, path: _PATH) -> _PATH:
-        return path
-
-    def upload_file(self, local_path: _PATH) -> pathlib.Path:
+    def upload_file_if_autotransfer(self, local_path: _PATH) -> pathlib.PurePath:
+        if self._auto_transfer_files:
+            return self.upload_file(local_path)
         return pathlib.Path(local_path)
 
-    def download_file(self, export_path: _PATH, local_path: _PATH) -> None:
-        # If auto-transfer is disabled, the export path should be the
-        # same as the local path. Otherwise, this is a bug in our code.
-        assert export_path == local_path
-
-
-class WithAutoTransfer(AutoTransferStrategy):
-    def __init__(self, filetransfer_strategy: FiletransferStrategy) -> None:
-        self._filetransfer_strategy = filetransfer_strategy
+    def download_file_if_autotransfer(self, remote_path: _PATH, local_path: _PATH) -> None:
+        if self._auto_transfer_files:
+            self.download_file(remote_path, local_path)
+        else:
+            # If auto-transfer is disabled, the export path should be the
+            # same as the local path. Otherwise, this is a bug in our code.
+            assert remote_path == local_path
 
     def to_export_path(self, path: _PATH) -> _PATH:
-        return self._filetransfer_strategy.to_export_path(path)
+        if self._auto_transfer_files:
+            return self._filetransfer_strategy.to_export_path(path)
+        return path
 
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
         return self._filetransfer_strategy.upload_file(local_path)
@@ -169,8 +166,7 @@ class ACPInstance(Generic[ServerT]):
     """
 
     _server: ServerT
-    _filetransfer_strategy: FiletransferStrategy
-    _autotransfer_strategy: AutoTransferStrategy
+    _filetransfer_handler: FileTransferHandler
     _channel: grpc.Channel
     _is_remote: bool
 
@@ -179,14 +175,12 @@ class ACPInstance(Generic[ServerT]):
         *,
         server: ServerT,
         channel: grpc.Channel,
-        filetransfer_strategy: FiletransferStrategy,
-        autotransfer_strategy: AutoTransferStrategy,
+        filetransfer_handler: FileTransferHandler,
         is_remote: bool,
     ) -> None:
         self._server = server
         self._channel = channel
-        self._filetransfer_strategy = filetransfer_strategy
-        self._autotransfer_strategy = autotransfer_strategy
+        self._filetransfer_handler = filetransfer_handler
         self._is_remote = is_remote
 
     @property
@@ -324,7 +318,7 @@ class ACPInstance(Generic[ServerT]):
         :
             The path of the uploaded file on the server.
         """
-        return self._filetransfer_strategy.upload_file(local_path)
+        return self._filetransfer_handler.upload_file(local_path)
 
     def download_file(self, remote_path: _PATH, local_path: _PATH) -> None:
         """Download a file from the server.
@@ -342,7 +336,7 @@ class ACPInstance(Generic[ServerT]):
         local_path :
             The path of the file to be downloaded to.
         """
-        self._filetransfer_strategy.download_file(remote_path, local_path)
+        self._filetransfer_handler.download_file(remote_path, local_path)
 
     def check(self, timeout: float | None = None) -> bool:
         """Check if the ACP instance is running.
