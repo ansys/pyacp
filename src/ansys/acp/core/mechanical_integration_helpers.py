@@ -35,7 +35,7 @@ from ._utils.typing_helper import PATH
 __all__ = [
     "export_mesh_for_acp",
     "import_acp_composite_definitions",
-    "import_acp_solid_mesh",
+    "import_acp_mesh_from_cdb",
 ]
 
 
@@ -67,11 +67,11 @@ def export_mesh_for_acp(*, mechanical: "pymechanical.Mechanical", path: PATH) ->
     )
 
 
-def import_acp_solid_mesh(*, mechanical: "pymechanical.Mechanical", cdb_path: PATH) -> None:
-    """Import an ACP solid model into Mechanical.
+def import_acp_mesh_from_cdb(*, mechanical: "pymechanical.Mechanical", cdb_path: PATH) -> None:
+    """Import an ACP CDB mesh into Mechanical.
 
-    Import a solid mesh in CDB format into Mechanical. This function does not
-    import the ACP layup definition, use :func:`import_acp_composite_definitions`
+    Import a mesh exported from ACP in CDB format into Mechanical. This function
+    does not import the ACP layup definition, use :func:`import_acp_composite_definitions`
     for this purpose.
 
     .. warning::
@@ -87,8 +87,8 @@ def import_acp_solid_mesh(*, mechanical: "pymechanical.Mechanical", cdb_path: PA
     """
     cdb_path = pathlib.Path(cdb_path)
 
-    # if cdb_path.suffix != ".cdb":
-    #     raise ValueError(f"The CDB file extension must be '.cdb', not '{cdb_path.suffix}'.")
+    if cdb_path.suffix != ".cdb":
+        raise ValueError(f"The CDB file extension must be '.cdb', not '{cdb_path.suffix}'.")
     cdb_path_str = str(cdb_path)
 
     mechanical.run_python_script(
@@ -126,7 +126,7 @@ def import_acp_composite_definitions(*, mechanical: "pymechanical.Mechanical", p
 
     Imports the composite layup defined in ACP into Mechanical, as Imported Plies.
 
-    This function does not import the solid mesh, use :func:`import_acp_solid_mesh`
+    This function does not import the solid mesh, use :func:`import_acp_mesh_from_cdb`
     for this purpose.
 
     Parameters

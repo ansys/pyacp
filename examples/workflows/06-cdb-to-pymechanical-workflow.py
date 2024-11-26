@@ -191,9 +191,11 @@ pyacp.print_model(model)
 # Save the ACP model
 # ------------------
 
+cdb_filename = "model.cdb"
 composite_definitions_h5_filename = "ACPCompositeDefinitions.h5"
 matml_filename = "materials.xml"
 
+model.export_analysis_model(working_dir_path / cdb_filename)
 model.export_shell_composite_definitions(working_dir_path / composite_definitions_h5_filename)
 model.export_materials(working_dir_path / matml_filename)
 
@@ -205,9 +207,8 @@ model.export_materials(working_dir_path / matml_filename)
 # Import geometry, mesh, and named selections into Mechanical
 
 
-# TODO: rename 'import_acp_solid_mesh'? Here it is used with a shell mesh.
-pyacp.mechanical_integration_helpers.import_acp_solid_mesh(
-    mechanical=mechanical, cdb_path=working_dir_path / input_file
+pyacp.mechanical_integration_helpers.import_acp_mesh_from_cdb(
+    mechanical=mechanical, cdb_path=working_dir_path / cdb_filename
 )
 
 
