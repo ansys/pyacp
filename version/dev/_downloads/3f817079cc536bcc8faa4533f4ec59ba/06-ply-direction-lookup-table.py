@@ -45,7 +45,6 @@ import numpy as np
 # %%
 # Import the PyACP dependencies.
 from ansys.acp.core import (
-    ACPWorkflow,
     DimensionType,
     DrapingType,
     LookUpTableColumnValueType,
@@ -71,18 +70,9 @@ input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
 acp = launch_acp()
 
 # %%
-# Define the input file and instantiate an ``ACPWorkflow`` instance.
-# The ``ACPWorkflow`` class provides convenience methods that simplify the handling.
-# It automatically creates a model based on the input file.
-# This example's input file contains a flat plate with a single ply.
-workflow = ACPWorkflow.from_cdb_or_dat_file(
-    acp=acp,
-    cdb_or_dat_file_path=input_file,
-    local_working_directory=WORKING_DIR,
-)
-
-model = workflow.model
-print(workflow.working_directory.path)
+# Import the model from the input file.
+# This example's input file contains a flat plate.
+model = acp.import_model(input_file, format="ansys:dat")
 print(model.unit_system)
 
 # %%

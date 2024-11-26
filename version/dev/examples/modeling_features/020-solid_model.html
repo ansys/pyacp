@@ -552,7 +552,6 @@ This solid mesh can be further processed by <a class="reference internal" href="
 </div>
 <p>Import the PyACP dependencies.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">ACPWorkflow</span><span class="p">,</span>
     <a href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="typing.Protocol" class="sphx-glr-backref-module-typing sphx-glr-backref-type-py-class"><span class="n">CADGeometry</span></a><span class="p">,</span>
     <span class="n">CutOffGeometryOrientationType</span><span class="p">,</span>
     <span class="n">EdgeSetType</span><span class="p">,</span>
@@ -576,14 +575,8 @@ This solid mesh can be further processed by <a class="reference internal" href="
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">acp</span> <span class="o">=</span> <span class="n">launch_acp</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Define the input file and instantiate an <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> instance.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span> <span class="o">=</span> <span class="n">ACPWorkflow</span><span class="o">.</span><span class="n">from_acph5_file</span><span class="p">(</span>
-    <span class="n">acp</span><span class="o">=</span><span class="n">acp</span><span class="p">,</span>
-    <span class="n">acph5_file_path</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">,</span>
-    <span class="n">local_working_directory</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">model</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">model</span>
+<p>Load the model from the input file.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -614,8 +607,9 @@ effects of the selection rules.</p>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><a href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="typing.Protocol" class="sphx-glr-backref-module-typing sphx-glr-backref-type-py-class"><span class="n">CADGeometry</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="typing.Protocol" class="sphx-glr-backref-module-typing sphx-glr-backref-type-py-class"><span class="n">VirtualGeometry</span></a><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a CAD geometry and virtual geometry.&quot;&quot;&quot;</span>
     <span class="n">geometry_file</span> <span class="o">=</span> <span class="n">get_example_file</span><span class="p">(</span><span class="n">example_key</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">)</span>
-    <span class="n">geometry_obj</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">add_cad_geometry_from_local_file</span><span class="p">(</span><span class="n">geometry_file</span><span class="p">)</span>
-    <span class="n">workflow</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="n">geometry_obj</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_cad_geometry</span><span class="p">()</span>
+    <span class="n">geometry_obj</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">geometry_file</span><span class="p">)</span>  <span class="c1"># upload and load the geometry file</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
     <span class="n">virtual_geometry</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_virtual_geometry</span><span class="p">(</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;thickness_virtual_geometry&quot;</span><span class="p">,</span> <span class="n">cad_components</span><span class="o">=</span><span class="n">geometry_obj</span><span class="o">.</span><span class="n">root_shapes</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
     <span class="p">)</span>
@@ -630,7 +624,7 @@ effects of the selection rules.</p>
     <span class="n">edges</span> <span class="o">=</span> <span class="n">geom_mesh</span><span class="o">.</span><span class="n">extract_feature_edges</span><span class="p">()</span>
     <a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.add_mesh.html#pyvista.Plotter.add_mesh" title="pyvista.Plotter.add_mesh" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span></a><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
     <a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.add_mesh.html#pyvista.Plotter.add_mesh" title="pyvista.Plotter.add_mesh" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span></a><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.add_mesh.html#pyvista.Plotter.add_mesh" title="pyvista.Plotter.add_mesh" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span></a><span class="p">(</span><span class="n">workflow</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">solid_mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(),</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.add_mesh.html#pyvista.Plotter.add_mesh" title="pyvista.Plotter.add_mesh" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span></a><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">solid_mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(),</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
@@ -804,7 +798,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/modeling_features/images/sphx_glr_020-solid_model_006.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 7.422 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.288 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-modeling-features-020-solid-model-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/fee40c689d044c23fee77c0d16856c81/020-solid_model.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">020-solid_model.ipynb</span></code></a></p>

@@ -95,8 +95,7 @@ workdir = pathlib.Path(tmpdir.name)
 #
 # The ``prepare_acp_model`` function imports the ``optimization_model.dat`` file into a new
 # ACP model and creates a lay-up with six plies.
-# It returns a :class:`.ACPWorkflow` object that can be used to access the model and
-# generate the output files.
+# It returns the :class:`.Model` instance.
 
 input_file = get_example_file(
     example_key=ExampleKeys.OPTIMIZATION_EXAMPLE_DAT,
@@ -104,14 +103,12 @@ input_file = get_example_file(
 )
 
 
-def prepare_acp_model(*, acp, workdir, input_file):
+def prepare_acp_model(*, acp, input_file):
     # Import the DAT input file into a new ACP model
-    acp_workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
-        acp=acp,
-        cdb_or_dat_file_path=input_file,
-        local_working_directory=workdir,
+    model = acp.import_model(
+        input_file,
+        format="ansys:dat",
     )
-    model = acp_workflow.model
     model.name = "optimization_example"
 
     element_set = model.element_sets["All_Elements"]
@@ -171,16 +168,16 @@ def prepare_acp_model(*, acp, workdir, input_file):
             oriented_selection_sets=[oss],
             number_of_layers=1,
         )
-    acp_workflow.model.update()
-    return acp_workflow
+    model.update()
+    return model
 
 
 # %%
 # Create the ACP model and visualize the first ply's fiber direction.
-acp_workflow = prepare_acp_model(acp=acp_instance, workdir=workdir, input_file=input_file)
-ply = list(acp_workflow.model.modeling_groups["Modeling_Group"].modeling_plies.values())[0]
+model = prepare_acp_model(acp=acp_instance, input_file=input_file)
+ply = list(model.modeling_groups["Modeling_Group"].modeling_plies.values())[0]
 pyacp.get_directions_plotter(
-    model=acp_workflow.model,
+    model=model,
     components=[ply.elemental_data.fiber_direction],
     length_factor=5.0,
     culling_factor=5,
@@ -197,8 +194,7 @@ pyacp.get_directions_plotter(
 # updates the model.
 
 
-def update_ply_angles(*, acp_workflow, parameters):
-    model = acp_workflow.model
+def update_ply_angles(*, model, parameters):
     modeling_plies = list(model.modeling_groups["Modeling_Group"].modeling_plies.values())
     assert len(modeling_plies) == len(parameters)
     for angle, modeling_ply in zip(parameters, modeling_plies):
@@ -207,7 +203,7 @@ def update_ply_angles(*, acp_workflow, parameters):
     model.update()
 
 
-update_ply_angles(acp_workflow=acp_workflow, parameters=[0, 45, 90, 135, 180, 225])
+update_ply_angles(model=model, parameters=[0, 45, 90, 135, 180, 225])
 
 
 # %%
@@ -216,7 +212,7 @@ update_ply_angles(acp_workflow=acp_workflow, parameters=[0, 45, 90, 135, 180, 22
 
 def solve_cdb(*, mapdl, cdb_file, workdir):
     mapdl.clear()
-    mapdl.input(cdb_file)
+    mapdl.input(str(cdb_file))
     # Solve the model. Note that the model contains two timesteps.
     mapdl.allsel()
     mapdl.slashsolu()
@@ -232,8 +228,9 @@ def solve_cdb(*, mapdl, cdb_file, workdir):
     return rst_file_local_path
 
 
-cdb_file = acp_workflow.get_local_cdb_file()
-rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file, workdir=workdir)
+cdb_file_path = workdir / "optimization_example.cdb"
+model.export_analysis_model(cdb_file_path)
+rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file_path, workdir=workdir)
 
 # %%
 # The ``get_max_irf()`` function uses PyDPF Composites to calculate the maximum
@@ -247,20 +244,29 @@ combined_failure_criterion = pydpf_composites.failure_criteria.CombinedFailureCr
     name="Combined Failure Criterion",
     failure_criteria=[max_stress_criterion],
 )
+materials_file_path = workdir / "materials.xml"
+model.export_materials(materials_file_path)
 
 
 def get_max_irf(
     *,
-    acp_workflow,
+    model,
     dpf_server,
     rst_file,
     failure_criterion,
 ):
+    composite_definitions_file = workdir / "ACPCompositeDefinitions.h5"
+    model.export_shell_composite_definitions(composite_definitions_file)
     # Create the composite model and configure its input
     composite_model = pydpf_composites.composite_model.CompositeModel(
-        composite_files=pyacp.get_composite_post_processing_files(
-            acp_workflow=acp_workflow,
-            local_rst_file_path=rst_file,
+        composite_files=pydpf_composites.data_sources.ContinuousFiberCompositesFiles(
+            rst=rst_file,
+            composite={
+                "shell": pydpf_composites.data_sources.CompositeDefinitionFiles(
+                    composite_definitions_file
+                )
+            },
+            engineering_data=materials_file_path,
         ),
         server=dpf_server,
     )
@@ -282,7 +288,7 @@ def get_max_irf(
 
 
 get_max_irf(
-    acp_workflow=acp_workflow,
+    model=model,
     dpf_server=dpf_server,
     rst_file=rst_file,
     failure_criterion=combined_failure_criterion,
@@ -299,13 +305,14 @@ get_max_irf(
 
 
 def get_max_irf_for_parameters(
-    parameters, *, acp_workflow, mapdl, dpf_server, failure_criterion, workdir, results
+    parameters, *, model, mapdl, dpf_server, failure_criterion, workdir, results
 ):
-    update_ply_angles(acp_workflow=acp_workflow, parameters=parameters)
-    cdb_file = acp_workflow.get_local_cdb_file()
-    rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file, workdir=workdir)
+    update_ply_angles(model=model, parameters=parameters)
+    cdb_file_path = workdir / "optimization_example.cdb"
+    model.export_analysis_model(cdb_file_path)
+    rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file_path, workdir=workdir)
     res = get_max_irf(
-        acp_workflow=acp_workflow,
+        model=model,
         dpf_server=dpf_server,
         rst_file=rst_file,
         failure_criterion=failure_criterion,
@@ -322,7 +329,7 @@ def get_max_irf_for_parameters(
 results: list[float] = []
 optimization_function = partial(
     get_max_irf_for_parameters,
-    acp_workflow=acp_workflow,
+    model=model,
     mapdl=mapdl,
     dpf_server=dpf_server,
     failure_criterion=combined_failure_criterion,

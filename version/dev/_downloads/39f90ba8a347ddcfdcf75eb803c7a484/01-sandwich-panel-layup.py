@@ -41,7 +41,6 @@ import tempfile
 # %%
 # Import the PyACP dependencies.
 from ansys.acp.core import (
-    ACPWorkflow,
     FabricWithAngle,
     Lamina,
     PlyType,
@@ -66,22 +65,16 @@ WORKING_DIR = pathlib.Path(tempdir.name)
 input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
 
 # %%
-# Launch the PyACP server and connect to it.
+# Launch the ACP server and connect to it.
 acp = launch_acp()
 
 # %%
-# Define the input file and instantiate an ``ACPWorkflow`` instance.
-# The ``ACPWorkflow`` class provides convenience methods that simplify file handling.
-# It automatically creates a model based on the input file.
+# Define the input file and import it into ACP.
 
-workflow = ACPWorkflow.from_cdb_or_dat_file(
-    acp=acp,
-    cdb_or_dat_file_path=input_file,
-    local_working_directory=WORKING_DIR,
+model = acp.import_model(
+    input_file,
+    format="ansys:cdb",
 )
-
-model = workflow.model
-print(workflow.working_directory.path)
 print(model.unit_system)
 
 # %%
@@ -208,11 +201,11 @@ top_ply = modeling_group.create_modeling_ply(
 # %%
 # Update and print the model.
 model.update()
-print_model(workflow.model)
+print_model(model)
 # sphinx_gallery_start_ignore
 from ansys.acp.core.extras.example_helpers import _run_analysis
 
 # Run the analysis to ensure that all the material properties have been correctly
 # defined.
-_run_analysis(workflow)
+_run_analysis(model)
 # sphinx_gallery_end_ignore

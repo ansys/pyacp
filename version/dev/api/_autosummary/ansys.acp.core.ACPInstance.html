@@ -479,9 +479,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../other_types.html">Other types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plot_utils.html">Plot utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../other_utils.html">Other utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflow.html">Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../example_helpers.html">Example helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dpf_integration_helpers.html">DPF integration helpers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mechanical_integration_helpers.html">Mechanical integration helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example_helpers.html">Example helpers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internal.html">Internal objects</a></li>
 </ul>
 </div>
@@ -556,7 +556,7 @@
 <h1>ACPInstance<a class="headerlink" href="#acpinstance" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ansys.acp.core.ACPInstance">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">ACPInstance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetransfer_strategy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_remote</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ACPInstance" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">ACPInstance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetransfer_handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_remote</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ACPInstance" title="Link to this definition">#</a></dt>
 <dd><p>Control an ACP instance.</p>
 <p>Supports the following operations to control an ACP instance:</p>
 <ul class="simple">
@@ -577,7 +577,7 @@ The <a class="reference internal" href="ansys.acp.core.launch_acp.html#ansys.acp
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ACPInstance.clear.html#ansys.acp.core.ACPInstance.clear" title="ansys.acp.core.ACPInstance.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ACPInstance.clear</span></code></a>()</p></td>
 <td><p>Close all models.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ACPInstance.download_file.html#ansys.acp.core.ACPInstance.download_file" title="ansys.acp.core.ACPInstance.download_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ACPInstance.download_file</span></code></a>(remote_filename, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ACPInstance.download_file.html#ansys.acp.core.ACPInstance.download_file" title="ansys.acp.core.ACPInstance.download_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ACPInstance.download_file</span></code></a>(remote_path, ...)</p></td>
 <td><p>Download a file from the server.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ACPInstance.import_model.html#ansys.acp.core.ACPInstance.import_model" title="ansys.acp.core.ACPInstance.import_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ACPInstance.import_model</span></code></a>(path, *[, name, format])</p></td>

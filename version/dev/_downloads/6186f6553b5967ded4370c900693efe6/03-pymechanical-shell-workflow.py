@@ -141,9 +141,7 @@ composite_definitions_h5 = "ACPCompositeDefinitions.h5"
 matml_file = "materials.xml"  # TODO: load an example materials XML file instead of defining the materials in ACP
 
 
-mesh_path = acp.upload_file(mesh_path)
-
-model = acp.import_model(path=mesh_path, format="ansys:h5")
+model = acp.import_model(mesh_path, format="ansys:h5")
 
 mat = model.create_material(name="mat")
 
@@ -206,20 +204,8 @@ mg.create_modeling_ply(
 
 model.update()
 
-if acp.is_remote:
-    export_path = pathlib.PurePosixPath(".")
-
-else:
-    export_path = working_dir_path  # type: ignore
-
-model.export_shell_composite_definitions(export_path / composite_definitions_h5)
-model.export_materials(export_path / matml_file)
-
-for filename in [
-    composite_definitions_h5,
-    matml_file,
-]:
-    acp.download_file(export_path / filename, working_dir_path / filename)
+model.export_shell_composite_definitions(working_dir_path / composite_definitions_h5)
+model.export_materials(working_dir_path / matml_file)
 
 # %%
 # Import materials and plies into Mechanical

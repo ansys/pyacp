@@ -479,9 +479,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../other_types.html">Other types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plot_utils.html">Plot utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../other_utils.html">Other utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflow.html">Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../example_helpers.html">Example helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dpf_integration_helpers.html">DPF integration helpers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mechanical_integration_helpers.html">Mechanical integration helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example_helpers.html">Example helpers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internal.html">Internal objects</a></li>
 </ul>
 </div>
@@ -560,7 +560,7 @@
 <h1>download_file<a class="headerlink" href="#download-file" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.ACPInstance.download_file">
-<span class="sig-prename descclassname"><span class="pre">ACPInstance.</span></span><span class="sig-name descname"><span class="pre">download_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">remote_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ACPInstance.download_file" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">ACPInstance.</span></span><span class="sig-name descname"><span class="pre">download_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">remote_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ACPInstance.download_file" title="Link to this definition">#</a></dt>
 <dd><p>Download a file from the server.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -571,22 +571,13 @@ for details.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>remote_filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.13)"><em>PathLike</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – The path of the file on the server.</p></li>
+<li><p><strong>remote_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.13)"><em>PathLike</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – The path of the file on the server.</p></li>
 <li><p><strong>local_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.13)"><em>PathLike</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – The path of the file to be downloaded to.</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<section id="examples-using-acpinstance-download-file">
-<h2>Examples using ACPInstance.download_file<a class="headerlink" href="#examples-using-acpinstance-download-file" title="Link to this heading">#</a></h2>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to create the different type of materials, import, or export them. It only shows the PyACP part of the setup. For a complete composite analysis, see pymapdl_workflow_example."><img alt="" src="../../_images/sphx_glr_001-materials_thumb.png" />
-<p><a class="reference internal" href="../../examples/modeling_features/001-materials.html#sphx-glr-examples-modeling-features-001-materials-py"><span class="std std-ref">Materials</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Materials</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to define a composite lay-up with PyACP, solve the resulting model with PyMAPDL, and run a failure analysis with PyDPF Composites."><img alt="" src="../../_images/sphx_glr_02-advanced-pymapdl-workflow_thumb.png" />
-<p><a class="reference internal" href="../../examples/workflows/02-advanced-pymapdl-workflow.html#sphx-glr-examples-workflows-02-advanced-pymapdl-workflow-py"><span class="std std-ref">Advanced PyMAPDL workflow</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Advanced PyMAPDL workflow</div>
-</div></div></section>
 </section>
 
 
@@ -637,7 +628,6 @@ for details.</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ansys.acp.core.ACPInstance.download_file"><code class="docutils literal notranslate"><span class="pre">ACPInstance.download_file()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-using-acpinstance-download-file">Examples using ACPInstance.download_file</a></li>
 </ul>
   </nav></div>
 

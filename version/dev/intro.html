@@ -535,22 +535,18 @@ because it keeps Python packages isolated from your system Python.</p>
 <h3>Get a model<a class="headerlink" href="#get-a-model" title="Link to this heading">#</a></h3>
 <p>You can resume a model from an existing ACP DB (ACPH5) or built it from
 scratch by importing an FE model (mesh).</p>
-<p>To load an existing model with PyACP, use the <a class="reference internal" href="api/_autosummary/ansys.acp.core.ACPWorkflow.from_acph5_file.html#ansys.acp.core.ACPWorkflow.from_acph5_file" title="ansys.acp.core.ACPWorkflow.from_acph5_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.from_acph5_file()</span></code></a> method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">ACPWorkflow</span><span class="o">.</span><span class="n">from_acph5_file</span><span class="p">(</span>
-    <span class="n">acp</span><span class="o">=</span><span class="n">acp</span><span class="p">,</span>
-    <span class="n">acph5_file_path</span><span class="o">=</span><span class="s2">&quot;model.acph5&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">model</span>
+<p>To load an existing model with PyACP, use the <a class="reference internal" href="api/_autosummary/ansys.acp.core.ACPInstance.import_model.html#ansys.acp.core.ACPInstance.import_model" title="ansys.acp.core.ACPInstance.import_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">import_model()</span></code></a> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="s2">&quot;model.acph5&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>To import an FE model, use the <a class="reference internal" href="api/_autosummary/ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file.html#ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file" title="ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.from_cdb_or_dat_file()</span></code></a> method.
+<p>To import an FE model, use the <code class="docutils literal notranslate"><span class="pre">format=&quot;ansys:cdb&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">format=&quot;ansys:dat&quot;</span></code>
+parameter, respectively.
 The following example imports a CDB file.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">ACPWorkflow</span><span class="o">.</span><span class="n">from_cdb_or_dat_file</span><span class="p">(</span>
-    <span class="n">acp</span><span class="o">=</span><span class="n">acp</span><span class="p">,</span>
-    <span class="n">cdb_or_dat_file_path</span><span class="o">=</span><span class="s2">&quot;model.cdb&quot;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span>
+    <span class="s2">&quot;model.cdb&quot;</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">,</span>
     <span class="n">unit_system</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">UnitSystemType</span><span class="o">.</span><span class="n">MPA</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">model</span>
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="api/_autosummary/ansys.acp.core.FeFormat.html#ansys.acp.core.FeFormat" title="ansys.acp.core.FeFormat"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeFormat</span></code></a> for a list of supported FE formats. Check out the

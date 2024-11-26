@@ -208,7 +208,7 @@ files to ``output_path``:
 - Solid model composite definitions HDF5 file
 - Solid model CDB file
 
-.. GENERATED FROM PYTHON SOURCE LINES 182-251
+.. GENERATED FROM PYTHON SOURCE LINES 182-248
 
 .. code-block:: Python
 
@@ -216,9 +216,6 @@ files to ``output_path``:
     matml_file = "materials.xml"  # TODO: load an example materials XML file instead of defining the materials in ACP
     solid_model_cdb_file = "SolidModel.cdb"
     solid_model_composite_definitions_h5 = "SolidModel.h5"
-
-
-    mesh_path = acp.upload_file(mesh_path)
 
     model = acp.import_model(path=mesh_path, format="ansys:h5")
 
@@ -282,45 +279,32 @@ files to ``output_path``:
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 252-254
+.. GENERATED FROM PYTHON SOURCE LINES 249-251
 
 Update and Save the ACP model
 -----------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 254-275
+.. GENERATED FROM PYTHON SOURCE LINES 251-259
 
 .. code-block:: Python
 
 
     model.update()
 
-    if acp.is_remote:
-        export_path = pathlib.PurePosixPath(".")
-
-    else:
-        export_path = working_dir_path  # type: ignore
-
-    model.export_materials(export_path / matml_file)
-    solid_model.export(export_path / solid_model_cdb_file, format="ansys:cdb")
-    solid_model.export(export_path / solid_model_composite_definitions_h5, format="ansys:h5")
-
-    for filename in [
-        matml_file,
-        solid_model_cdb_file,
-        solid_model_composite_definitions_h5,
-    ]:
-        acp.download_file(export_path / filename, working_dir_path / filename)
+    model.export_materials(working_dir_path / matml_file)
+    solid_model.export(working_dir_path / solid_model_cdb_file, format="ansys:cdb")
+    solid_model.export(working_dir_path / solid_model_composite_definitions_h5, format="ansys:h5")
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 276-280
+.. GENERATED FROM PYTHON SOURCE LINES 260-264
 
 Import mesh, materials and plies into Mechanical
 ------------------------------------------------
 
 Import geometry, mesh, and named selections into Mechanical
 
-.. GENERATED FROM PYTHON SOURCE LINES 280-286
+.. GENERATED FROM PYTHON SOURCE LINES 264-270
 
 .. code-block:: Python
 
@@ -331,11 +315,11 @@ Import geometry, mesh, and named selections into Mechanical
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 287-288
+.. GENERATED FROM PYTHON SOURCE LINES 271-272
 
 Import materials into Mechanical
 
-.. GENERATED FROM PYTHON SOURCE LINES 288-293
+.. GENERATED FROM PYTHON SOURCE LINES 272-277
 
 .. code-block:: Python
 
@@ -345,11 +329,11 @@ Import materials into Mechanical
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 294-295
+.. GENERATED FROM PYTHON SOURCE LINES 278-279
 
 Import plies into Mechanical
 
-.. GENERATED FROM PYTHON SOURCE LINES 295-301
+.. GENERATED FROM PYTHON SOURCE LINES 279-285
 
 .. code-block:: Python
 
@@ -360,14 +344,14 @@ Import plies into Mechanical
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 302-306
+.. GENERATED FROM PYTHON SOURCE LINES 286-290
 
 Set boundary condition and solve
 ---------------------------------
 
 Set boundary condition and solve
 
-.. GENERATED FROM PYTHON SOURCE LINES 306-350
+.. GENERATED FROM PYTHON SOURCE LINES 290-334
 
 .. code-block:: Python
 
@@ -416,14 +400,14 @@ Set boundary condition and solve
     ][0]
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 351-355
+.. GENERATED FROM PYTHON SOURCE LINES 335-339
 
 Postprocess results
 -------------------
 
 Evaluate the failure criteria using the PyDPF Composites.
 
-.. GENERATED FROM PYTHON SOURCE LINES 355-384
+.. GENERATED FROM PYTHON SOURCE LINES 339-368
 
 .. code-block:: Python
 

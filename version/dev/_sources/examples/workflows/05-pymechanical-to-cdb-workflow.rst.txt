@@ -203,7 +203,7 @@ Setup basic ACP lay-up based on the CDB file.
 
 
 
-    model = acp.import_model(path=acp.upload_file(cdb_path_initial), format="ansys:cdb")
+    model = acp.import_model(path=cdb_path_initial, format="ansys:cdb")
 
     mat = model.create_material(name="mat")
 
@@ -266,59 +266,50 @@ Setup basic ACP lay-up based on the CDB file.
 Update and Save the ACP model
 -----------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 234-254
+.. GENERATED FROM PYTHON SOURCE LINES 234-245
 
 .. code-block:: Python
 
 
     model.update()
 
-    if acp.is_remote:
-        export_path = pathlib.PurePosixPath(".")
-
-    else:
-        export_path = working_dir_path  # type: ignore
-
     cdb_filename_out = "model_from_acp.cdb"
     composite_definitions_h5_filename = "ACPCompositeDefinitions.h5"
     matml_filename = "materials.xml"
 
-    model.export_analysis_model(export_path / cdb_filename_out)
-    model.export_shell_composite_definitions(export_path / composite_definitions_h5_filename)
-    model.export_materials(export_path / matml_filename)
-
-    for filename in [cdb_filename_out, composite_definitions_h5_filename, matml_filename]:
-        acp.download_file(export_path / filename, working_dir_path / filename)
+    model.export_analysis_model(working_dir_path / cdb_filename_out)
+    model.export_shell_composite_definitions(working_dir_path / composite_definitions_h5_filename)
+    model.export_materials(working_dir_path / matml_filename)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 255-257
+.. GENERATED FROM PYTHON SOURCE LINES 246-248
 
 Solve with PyMAPDL
 ------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 257-259
+.. GENERATED FROM PYTHON SOURCE LINES 248-250
 
 .. code-block:: Python
 
 
     mapdl.clear()
 
-.. GENERATED FROM PYTHON SOURCE LINES 260-261
+.. GENERATED FROM PYTHON SOURCE LINES 251-252
 
 Load the CDB file into PyMAPDL.
 
-.. GENERATED FROM PYTHON SOURCE LINES 261-263
+.. GENERATED FROM PYTHON SOURCE LINES 252-254
 
 .. code-block:: Python
 
     mapdl.input(str(working_dir_path / cdb_filename_out))
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 264-265
+.. GENERATED FROM PYTHON SOURCE LINES 255-256
 
 Solve the model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 265-269
+.. GENERATED FROM PYTHON SOURCE LINES 256-260
 
 .. code-block:: Python
 
@@ -327,11 +318,11 @@ Solve the model.
     mapdl.solve()
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 270-271
+.. GENERATED FROM PYTHON SOURCE LINES 261-262
 
 Show the displacements in postprocessing.
 
-.. GENERATED FROM PYTHON SOURCE LINES 271-275
+.. GENERATED FROM PYTHON SOURCE LINES 262-266
 
 .. code-block:: Python
 
@@ -340,11 +331,11 @@ Show the displacements in postprocessing.
     mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 276-277
+.. GENERATED FROM PYTHON SOURCE LINES 267-268
 
 Download the RST file for further postprocessing.
 
-.. GENERATED FROM PYTHON SOURCE LINES 277-281
+.. GENERATED FROM PYTHON SOURCE LINES 268-272
 
 .. code-block:: Python
 
@@ -353,14 +344,14 @@ Download the RST file for further postprocessing.
     mapdl.download(rstfile_name, working_dir_path)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 282-286
+.. GENERATED FROM PYTHON SOURCE LINES 273-277
 
 Postprocessing with PyDPF Composites
 ------------------------------------
 
 Specify the combined failure criterion.
 
-.. GENERATED FROM PYTHON SOURCE LINES 286-293
+.. GENERATED FROM PYTHON SOURCE LINES 277-284
 
 .. code-block:: Python
 
@@ -372,11 +363,11 @@ Specify the combined failure criterion.
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 294-295
+.. GENERATED FROM PYTHON SOURCE LINES 285-286
 
 Create the composite model and configure its input.
 
-.. GENERATED FROM PYTHON SOURCE LINES 295-309
+.. GENERATED FROM PYTHON SOURCE LINES 286-300
 
 .. code-block:: Python
 
@@ -395,22 +386,22 @@ Create the composite model and configure its input.
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 310-311
+.. GENERATED FROM PYTHON SOURCE LINES 301-302
 
 Evaluate the failure criteria.
 
-.. GENERATED FROM PYTHON SOURCE LINES 311-313
+.. GENERATED FROM PYTHON SOURCE LINES 302-304
 
 .. code-block:: Python
 
     output_all_elements = composite_model.evaluate_failure_criteria(cfc)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 314-315
+.. GENERATED FROM PYTHON SOURCE LINES 305-306
 
 Query and plot the results.
 
-.. GENERATED FROM PYTHON SOURCE LINES 315-319
+.. GENERATED FROM PYTHON SOURCE LINES 306-310
 
 .. code-block:: Python
 

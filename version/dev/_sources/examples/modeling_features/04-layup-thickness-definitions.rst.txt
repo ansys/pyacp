@@ -59,7 +59,7 @@ Import the PyACP dependencies.
 
 .. code-block:: Python
 
-    from ansys.acp.core import ACPWorkflow, DimensionType, ThicknessType, launch_acp
+    from ansys.acp.core import DimensionType, ThicknessType, launch_acp
     from ansys.acp.core.extras import ExampleKeys, get_example_file
 
 
@@ -112,25 +112,16 @@ Launch the PyACP server and connect to it.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 69-73
+.. GENERATED FROM PYTHON SOURCE LINES 69-71
 
-Define the input file and instantiate an ``ACPWorkflow`` instance.
-The ``ACPWorkflow`` class provides convenience methods that simplify file handling.
-It automatically creates a model based on the input file.
+Load the model from the input file.
 This example's input file contains a flat plate with a single ply.
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-90
+.. GENERATED FROM PYTHON SOURCE LINES 71-81
 
 .. code-block:: Python
 
-    workflow = ACPWorkflow.from_acph5_file(
-        acp=acp,
-        acph5_file_path=input_file,
-        local_working_directory=WORKING_DIR,
-    )
-
-    model = workflow.model
-    print(workflow.working_directory.path)
+    model = acp.import_model(input_file)
     print(model.unit_system)
 
 
@@ -175,27 +166,27 @@ This example's input file contains a flat plate with a single ply.
 
  .. code-block:: none
 
-    /tmp/tmpx8lj398o
     mks
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 91-93
+.. GENERATED FROM PYTHON SOURCE LINES 82-84
 
 Define the thickness from a geometry
 ------------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 95-96
+.. GENERATED FROM PYTHON SOURCE LINES 86-87
 
 Add the solid geometry to the model that defines the thickness.
 
-.. GENERATED FROM PYTHON SOURCE LINES 96-103
+.. GENERATED FROM PYTHON SOURCE LINES 87-95
 
 .. code-block:: Python
 
     thickness_geometry_file = get_example_file(ExampleKeys.THICKNESS_GEOMETRY, WORKING_DIR)
-    thickness_geometry = workflow.add_cad_geometry_from_local_file(thickness_geometry_file)
+    thickness_geometry = model.create_cad_geometry()
+    thickness_geometry.refresh(thickness_geometry_file)
 
     # Note: It is important to update the model here, because the root_shapes of the
     # cad_geometry are not available until the model is updated.
@@ -208,11 +199,11 @@ Add the solid geometry to the model that defines the thickness.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 104-105
+.. GENERATED FROM PYTHON SOURCE LINES 96-97
 
 Create a virtual geometry from the CAD geometry.
 
-.. GENERATED FROM PYTHON SOURCE LINES 105-109
+.. GENERATED FROM PYTHON SOURCE LINES 97-101
 
 .. code-block:: Python
 
@@ -227,11 +218,11 @@ Create a virtual geometry from the CAD geometry.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 110-111
+.. GENERATED FROM PYTHON SOURCE LINES 102-103
 
 Set the thickness type to ``FROM_GEOMETRY`` and define the virtual geometry.
 
-.. GENERATED FROM PYTHON SOURCE LINES 111-114
+.. GENERATED FROM PYTHON SOURCE LINES 103-106
 
 .. code-block:: Python
 
@@ -245,11 +236,11 @@ Set the thickness type to ``FROM_GEOMETRY`` and define the virtual geometry.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 115-116
+.. GENERATED FROM PYTHON SOURCE LINES 107-108
 
 Plot the ply thickness together with the geometry defining the thickness.
 
-.. GENERATED FROM PYTHON SOURCE LINES 116-131
+.. GENERATED FROM PYTHON SOURCE LINES 108-123
 
 .. code-block:: Python
 
@@ -302,12 +293,12 @@ Plot the ply thickness together with the geometry defining the thickness.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 132-134
+.. GENERATED FROM PYTHON SOURCE LINES 124-126
 
 Define the thickness from a lookup table
 ----------------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 136-141
+.. GENERATED FROM PYTHON SOURCE LINES 128-133
 
 Create the data for the lookup table.
 Make a 20x20 grid of points to define a thickness function on. In this example,
@@ -315,7 +306,7 @@ the mesh of the lookup table is finer than the finite element mesh, and the thic
 is interpolated onto the finite element mesh.
 Note that the plate lies in the xz plane and the thickness is defined in the y direction.
 
-.. GENERATED FROM PYTHON SOURCE LINES 141-147
+.. GENERATED FROM PYTHON SOURCE LINES 133-139
 
 .. code-block:: Python
 
@@ -332,11 +323,11 @@ Note that the plate lies in the xz plane and the thickness is defined in the y d
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 148-149
+.. GENERATED FROM PYTHON SOURCE LINES 140-141
 
 Create a thickness that equals the distance to the center of the plate.
 
-.. GENERATED FROM PYTHON SOURCE LINES 149-153
+.. GENERATED FROM PYTHON SOURCE LINES 141-145
 
 .. code-block:: Python
 
@@ -351,12 +342,12 @@ Create a thickness that equals the distance to the center of the plate.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 154-156
+.. GENERATED FROM PYTHON SOURCE LINES 146-148
 
 Create the point coordinates for the lookup table.
 The y coordinate is always zero.
 
-.. GENERATED FROM PYTHON SOURCE LINES 156-165
+.. GENERATED FROM PYTHON SOURCE LINES 148-157
 
 .. code-block:: Python
 
@@ -376,11 +367,11 @@ The y coordinate is always zero.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 166-167
+.. GENERATED FROM PYTHON SOURCE LINES 158-159
 
 Now you have a list of point coordinates:
 
-.. GENERATED FROM PYTHON SOURCE LINES 167-169
+.. GENERATED FROM PYTHON SOURCE LINES 159-161
 
 .. code-block:: Python
 
@@ -407,11 +398,11 @@ Now you have a list of point coordinates:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 170-171
+.. GENERATED FROM PYTHON SOURCE LINES 162-163
 
 And the corresponding thickness values.
 
-.. GENERATED FROM PYTHON SOURCE LINES 171-173
+.. GENERATED FROM PYTHON SOURCE LINES 163-165
 
 .. code-block:: Python
 
@@ -431,11 +422,11 @@ And the corresponding thickness values.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 174-175
+.. GENERATED FROM PYTHON SOURCE LINES 166-167
 
 Create the lookup table and add the coordinates and thickness data.
 
-.. GENERATED FROM PYTHON SOURCE LINES 175-179
+.. GENERATED FROM PYTHON SOURCE LINES 167-171
 
 .. code-block:: Python
 
@@ -450,11 +441,11 @@ Create the lookup table and add the coordinates and thickness data.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 180-181
+.. GENERATED FROM PYTHON SOURCE LINES 172-173
 
 Set the thickness type to ``FROM_TABLE`` and assign the thickness column.
 
-.. GENERATED FROM PYTHON SOURCE LINES 181-184
+.. GENERATED FROM PYTHON SOURCE LINES 173-176
 
 .. code-block:: Python
 
@@ -468,11 +459,11 @@ Set the thickness type to ``FROM_TABLE`` and assign the thickness column.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 185-186
+.. GENERATED FROM PYTHON SOURCE LINES 177-178
 
 Plot the ply thickness.
 
-.. GENERATED FROM PYTHON SOURCE LINES 186-189
+.. GENERATED FROM PYTHON SOURCE LINES 178-181
 
 .. code-block:: Python
 
@@ -516,7 +507,7 @@ Plot the ply thickness.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 5.485 seconds)
+   **Total running time of the script:** (0 minutes 4.167 seconds)
 
 
 .. _sphx_glr_download_examples_modeling_features_04-layup-thickness-definitions.py:

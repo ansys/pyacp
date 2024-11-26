@@ -52,11 +52,9 @@ import tempfile
 # %%
 # Import the PyACP dependencies.
 from ansys.acp.core import (
-    ACPWorkflow,
     PlyType,
-    get_composite_post_processing_files,
+    dpf_integration_helpers,
     get_directions_plotter,
-    get_dpf_unit_system,
     launch_acp,
     material_property_sets,
     print_model,
@@ -70,7 +68,7 @@ from ansys.acp.core.extras import ExampleKeys, get_example_file
 # Launch PyACP
 # ------------
 #
-# Get the example file from the server.
+# Download the example input file.
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
 input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
@@ -83,18 +81,9 @@ acp = launch_acp()
 # Create an ACP workflow instance and load the model
 # --------------------------------------------------
 #
-# Define the input file and instantiate an ``ACPWorkflow`` instance.
-# The ``ACPWorkflow`` class provides convenience methods that simplify the file handling.
-# It automatically creates a model based on the input file.
+# Import the model from the input file.
 
-workflow = ACPWorkflow.from_cdb_or_dat_file(
-    acp=acp,
-    cdb_or_dat_file_path=input_file,
-    local_working_directory=WORKING_DIR,
-)
-
-model = workflow.model
-print(workflow.working_directory.path)
+model = acp.import_model(input_file, format="ansys:dat")
 print(model.unit_system)
 
 # %%
@@ -204,7 +193,9 @@ mapdl.clear()
 
 # %%
 # Load the CDB file into PyMAPDL.
-mapdl.input(str(workflow.get_local_cdb_file()))
+analysis_model_path = WORKING_DIR / "analysis_model.cdb"
+model.export_analysis_model(analysis_model_path)
+mapdl.input(str(analysis_model_path))
 
 # %%
 # Solve the model.
@@ -221,8 +212,8 @@ mapdl.post_processing.plot_nodal_displacement(component="NORM")
 # %%
 # Download the RST file for composite-specific postprocessing.
 rstfile_name = f"{mapdl.jobname}.rst"
-rst_file_local_path = workflow.working_directory.path / rstfile_name
-mapdl.download(rstfile_name, str(workflow.working_directory.path))
+rst_file_local_path = WORKING_DIR / rstfile_name
+mapdl.download(rstfile_name, str(WORKING_DIR))
 
 # %%
 # Postprocessing with PyDPF Composites
@@ -233,6 +224,10 @@ mapdl.download(rstfile_name, str(workflow.working_directory.path))
 
 from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput
+from ansys.dpf.composites.data_sources import (
+    CompositeDefinitionFiles,
+    ContinuousFiberCompositesFiles,
+)
 from ansys.dpf.composites.failure_criteria import CombinedFailureCriterion, MaxStrainCriterion
 from ansys.dpf.composites.server_helpers import connect_to_or_start_server
 
@@ -252,9 +247,17 @@ cfc = CombinedFailureCriterion(
 
 # %%
 # Create the composite model and configure its input.
+composite_definitions_file = WORKING_DIR / "ACPCompositeDefinitions.h5"
+model.export_shell_composite_definitions(composite_definitions_file)
+materials_file = WORKING_DIR / "materials.xml"
+model.export_materials(materials_file)
 composite_model = CompositeModel(
-    get_composite_post_processing_files(workflow, rst_file_local_path),
-    default_unit_system=get_dpf_unit_system(model.unit_system),
+    composite_files=ContinuousFiberCompositesFiles(
+        rst=rst_file_local_path,
+        composite={"shell": CompositeDefinitionFiles(composite_definitions_file)},
+        engineering_data=materials_file,
+    ),
+    default_unit_system=dpf_integration_helpers.get_dpf_unit_system(model.unit_system),
     server=dpf_server,
 )
 

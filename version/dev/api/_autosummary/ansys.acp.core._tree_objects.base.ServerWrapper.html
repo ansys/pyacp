@@ -457,9 +457,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../other_types.html">Other types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plot_utils.html">Plot utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../other_utils.html">Other utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflow.html">Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../example_helpers.html">Example helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dpf_integration_helpers.html">DPF integration helpers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mechanical_integration_helpers.html">Mechanical integration helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example_helpers.html">Example helpers</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../internal.html">Internal objects</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core._model_printer.Node.html">Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core._server.common.ControllableServerProtocol.html">ControllableServerProtocol</a></li>
@@ -484,7 +484,6 @@
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core._tree_objects.base.TreeObjectBase.html">TreeObjectBase</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core._tree_objects.material.property_sets.wrapper.TC.html">TC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core._tree_objects.material.property_sets.wrapper.TV.html">TV</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core._workflow._LocalWorkingDir.html">_LocalWorkingDir</a></li>
 </ul>
 </details></li>
 </ul>
@@ -564,7 +563,7 @@
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="ansys.acp.core._tree_objects.base.ServerWrapper">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core._tree_objects.base.</span></span><span class="sig-name descname"><span class="pre">ServerWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core._tree_objects.base.ServerWrapper" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core._tree_objects.base.</span></span><span class="sig-name descname"><span class="pre">ServerWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetransfer_handler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core._tree_objects.base.ServerWrapper" title="Link to this definition">#</a></dt>
 <dd><p>Wrapper for the connection to an ACP instance.</p>
 <p>This class contains the representation of the ACP instance needed by tree objects.
 Its purpose is to minimize the dependency of tree objects on the ACP class.</p>

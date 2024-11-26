@@ -532,85 +532,75 @@
   <section id="manage-input-and-output-files">
 <h1>Manage input and output files<a class="headerlink" href="#manage-input-and-output-files" title="Link to this heading">#</a></h1>
 <p>When defining your workflow using PyACP and other tools, you may need control
-over where the input and output files are stored. This guide shows two
-ways to manage them.</p>
-<p>In the following examples, the ACP instance is launched on a remote server. The
-differences between local and remote ACP instances, in terms of file management,
-are explained afterwards in <a class="reference internal" href="#local-vs-remote"><span class="std std-ref">Local versus remote ACP instance</span></a>.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">acp</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
-</pre></div>
+over where the input and output files are stored. There are two main ways to
+manage files: auto-transfer mode and manual file management.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using a local ACP instance (<code class="docutils literal notranslate"><span class="pre">&quot;direct&quot;</span></code> launch mode), the auto-transfer
+and manual modes are identical, as long as the current working directory is
+not changed after launching the ACP instance.</p>
 </div>
-<section id="using-a-predefined-workflow">
-<h2>Using a predefined workflow<a class="headerlink" href="#using-a-predefined-workflow" title="Link to this heading">#</a></h2>
-<p>The simplest way to manage files is by using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.html#ansys.acp.core.ACPWorkflow" title="ansys.acp.core.ACPWorkflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">ACPWorkflow</span></code></a> class. This class
-uses predetermined filenames and automatically handles uploading and downloading files.</p>
+<section id="auto-transfer-mode">
+<h2>Auto-transfer mode<a class="headerlink" href="#auto-transfer-mode" title="Link to this heading">#</a></h2>
+<p>When passing the <code class="docutils literal notranslate"><span class="pre">auto_transfer_files=True</span></code> parameter to <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.launch_acp.html#ansys.acp.core.launch_acp" title="ansys.acp.core.launch_acp"><code class="xref py py-func docutils literal notranslate"><span class="pre">launch_acp()</span></code></a>
+(the default behavior), PyACP automatically uploads files to the ACP instance
+and downloads output files to the local machine.</p>
+<p>Paths passed to the PyACP functions are all paths on the local machine. They
+can be either absolute paths, or relative to the current working directory of
+the Python instance.</p>
+<p>The only exception is the <code class="docutils literal notranslate"><span class="pre">external_path</span></code> attribute of the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.CADGeometry.html#ansys.acp.core.CADGeometry" title="ansys.acp.core.CADGeometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">CADGeometry</span></code></a>
+and <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ImportedSolidModel.html#ansys.acp.core.ImportedSolidModel" title="ansys.acp.core.ImportedSolidModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImportedSolidModel</span></code></a> classes. This attribute refers to a path on the
+server side. It can again be an absolute path, or relative to the ACP instance’s
+working directory.
+You can instead use the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.CADGeometry.refresh.html#ansys.acp.core.CADGeometry.refresh" title="ansys.acp.core.CADGeometry.refresh"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CADGeometry.refresh()</span></code></a> and
+<a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ImportedSolidModel.refresh.html#ansys.acp.core.ImportedSolidModel.refresh" title="ansys.acp.core.ImportedSolidModel.refresh"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ImportedSolidModel.refresh()</span></code></a> methods to define the input file, which also
+handles the upload automatically.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On local ACP instances, the up- and download methods simply convert the
+paths to be relative to the ACP instance’s working directory if needed.</p>
+</div>
 <section id="loading-input-files">
 <h3>Loading input files<a class="headerlink" href="#loading-input-files" title="Link to this heading">#</a></h3>
-<p>To get started with loading input files, you must define a workflow using either an
-FE model (CDB or DAT) file or an ACP model (ACPH5) file.</p>
-<p>The following example assumes that you have a directory, <code class="docutils literal notranslate"><span class="pre">DATA_DIRECTORY</span></code>, that contains an <code class="docutils literal notranslate"><span class="pre">input_file.cdb</span></code> file.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">DATA_DIRECTORY</span>
-<span class="go">PosixPath(&#39;...&#39;)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">DATA_DIRECTORY</span><span class="o">.</span><span class="n">iterdir</span><span class="p">())</span>
-<span class="go">[PosixPath(&#39;.../input_file.cdb&#39;)]</span>
-</pre></div>
-</div>
-<p>Create an <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.html#ansys.acp.core.ACPWorkflow" title="ansys.acp.core.ACPWorkflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">ACPWorkflow</span></code></a> instance that works with this file using
-the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file.html#ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file" title="ansys.acp.core.ACPWorkflow.from_cdb_or_dat_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ACPWorkflow.from_cdb_or_dat_file()</span></code></a> method:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">workflow</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">ACPWorkflow</span><span class="o">.</span><span class="n">from_cdb_or_dat_file</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">acp</span><span class="o">=</span><span class="n">acp</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">cdb_or_dat_file_path</span><span class="o">=</span><span class="n">DATA_DIRECTORY</span> <span class="o">/</span> <span class="s2">&quot;input_file.cdb&quot;</span><span class="p">,</span>
+<p>To load an input file, pass the file path on your local machine to the
+<a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPInstance.import_model.html#ansys.acp.core.ACPInstance.import_model" title="ansys.acp.core.ACPInstance.import_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">import_model()</span></code></a> method:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">acp</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># DATA_DIRECTORY is a directory containing the input file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">DATA_DIRECTORY</span> <span class="o">/</span> <span class="s2">&quot;input_file.cdb&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">unit_system</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">UnitSystemType</span><span class="o">.</span><span class="n">MPA</span><span class="p">,</span>
 <span class="gp">... </span><span class="p">)</span>
-</pre></div>
-</div>
-<p>That uploads the file to the ACP instance and creates a model from it. You
-can access the newly created model using the <code class="docutils literal notranslate"><span class="pre">workflow.model</span></code> command:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">workflow</span><span class="o">.</span><span class="n">model</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span>
 <span class="go">&lt;Model with name &#39;ACP Lay-up Model&#39;&gt;</span>
 </pre></div>
 </div>
 </section>
 <section id="getting-output-files">
 <h3>Getting output files<a class="headerlink" href="#getting-output-files" title="Link to this heading">#</a></h3>
-<p>Use the workflow’s <code class="docutils literal notranslate"><span class="pre">get_local_*()</span></code> methods to create and download
-output files. For example, to get the ACPH5 file of the model, use the
-<a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.get_local_acph5_file.html#ansys.acp.core.ACPWorkflow.get_local_acph5_file" title="ansys.acp.core.ACPWorkflow.get_local_acph5_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_local_acph5_file()</span></code></a> method:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">model</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;My model&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">workflow</span><span class="o">.</span><span class="n">get_local_acph5_file</span><span class="p">()</span>
-<span class="go">PosixPath(&#39;/tmp/.../My model.acph5&#39;)</span>
+<p>When getting output files, pass the desired path on your local machine to the
+export / save method.</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;output_file.acph5&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;output_file.acph5&quot;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+<span class="go">True</span>
 </pre></div>
 </div>
-<p>Note that the filename is based on the model name.</p>
-</section>
-<section id="using-a-custom-working-directory">
-<h3>Using a custom working directory<a class="headerlink" href="#using-a-custom-working-directory" title="Link to this heading">#</a></h3>
-<p>By default, the output files are stored in a temporary directory. You can
-specify a custom working directory using the <code class="docutils literal notranslate"><span class="pre">local_working_directory</span></code> argument of
-the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPWorkflow.html#ansys.acp.core.ACPWorkflow" title="ansys.acp.core.ACPWorkflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">ACPWorkflow</span></code></a> constructor:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">workflow</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">ACPWorkflow</span><span class="o">.</span><span class="n">from_cdb_or_dat_file</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">acp</span><span class="o">=</span><span class="n">acp</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">cdb_or_dat_file_path</span><span class="o">=</span><span class="n">DATA_DIRECTORY</span> <span class="o">/</span> <span class="s2">&quot;input_file.cdb&quot;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">unit_system</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">UnitSystemType</span><span class="o">.</span><span class="n">MPA</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">local_working_directory</span><span class="o">=</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">),</span>
-<span class="gp">... </span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Any produced output files are now stored in the custom working directory. Input files
-are also copied to this directory before being uploaded to the ACP instance.</p>
 </section>
 </section>
 <section id="manual-file-management">
 <h2>Manual file management<a class="headerlink" href="#manual-file-management" title="Link to this heading">#</a></h2>
-<p>To get more control over where files are stored, you can manually upload and
-download them to the server and specify their names.</p>
+<p>When passing <code class="docutils literal notranslate"><span class="pre">auto_transfer_files=False</span></code> to <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.launch_acp.html#ansys.acp.core.launch_acp" title="ansys.acp.core.launch_acp"><code class="xref py py-func docutils literal notranslate"><span class="pre">launch_acp()</span></code></a>, PyACP does not
+automatically upload or download files.</p>
+<p>In this case, you need to manually manage the up- and download of files, as
+described in the following sections.</p>
 <section id="id1">
 <h3>Loading input files<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>You can manually load the <code class="docutils literal notranslate"><span class="pre">input_file.cdb</span></code> file to the ACP instance by
 using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPInstance.upload_file.html#ansys.acp.core.ACPInstance.upload_file" title="ansys.acp.core.ACPInstance.upload_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">upload_file()</span></code></a> method:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">uploaded_path</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">DATA_DIRECTORY</span> <span class="o">/</span> <span class="s2">&quot;input_file.cdb&quot;</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">acp</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">(</span><span class="n">auto_transfer_files</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">uploaded_path</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">DATA_DIRECTORY</span> <span class="o">/</span> <span class="s2">&quot;input_file.cdb&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">uploaded_path</span>
 <span class="go">PurePosixPath(&#39;input_file.cdb&#39;)</span>
 </pre></div>
@@ -632,43 +622,19 @@ use the path to create a model:</p>
 <p>To get the ACPH5 file, it must be stored on the server. You can
 manually do that using the model’s <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.Model.save.html#ansys.acp.core.Model.save" title="ansys.acp.core.Model.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">save()</span></code></a> method:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;output_file.acph5&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;output_file.acph5&quot;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+<span class="go">False</span>
 </pre></div>
 </div>
 <p>Then, you can download the file using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPInstance.download_file.html#ansys.acp.core.ACPInstance.download_file" title="ansys.acp.core.ACPInstance.download_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">download_file()</span></code></a> method of the ACP
 instance:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">acp</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">remote_filename</span><span class="o">=</span><span class="s2">&quot;output_file.acph5&quot;</span><span class="p">,</span> <span class="n">local_path</span><span class="o">=</span><span class="s2">&quot;output_file_downloaded.acph5&quot;</span>
+<span class="gp">... </span>    <span class="n">remote_path</span><span class="o">=</span><span class="s2">&quot;output_file.acph5&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">local_path</span><span class="o">=</span><span class="s2">&quot;output_file_downloaded.acph5&quot;</span><span class="p">,</span>
 <span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;output_file_downloaded.acph5&quot;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+<span class="go">True</span>
 </pre></div>
-</div>
-</section>
-</section>
-<section id="local-versus-remote-acp-instance">
-<span id="local-vs-remote"></span><h2>Local versus remote ACP instance<a class="headerlink" href="#local-versus-remote-acp-instance" title="Link to this heading">#</a></h2>
-<p>In the preceding examples, ACP ran on a remote server. However,
-you can also launch ACP as a process on your local machine. For information on launching
-ACP locally, see <a class="reference internal" href="launch_configuration.html#launch-configuration"><span class="std std-ref">Change ACP startup</span></a>.</p>
-<p>When the ACP instance is local, you can use the same code described previously. However,
-the effects are slightly different:</p>
-<section id="when-using-a-workflow">
-<h3>When using a workflow<a class="headerlink" href="#when-using-a-workflow" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>The input file is still copied to the <code class="docutils literal notranslate"><span class="pre">local_working_directory</span></code> argument, but then it is loaded
-directly into the ACP instance. There is no separate upload step.</p></li>
-<li><p>The output files are stored in the <code class="docutils literal notranslate"><span class="pre">local_working_directory</span></code> argument by default.</p></li>
-</ul>
-</section>
-<section id="when-using-manual-upload-and-download">
-<h3>When using manual upload and download<a class="headerlink" href="#when-using-manual-upload-and-download" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>The <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPInstance.upload_file.html#ansys.acp.core.ACPInstance.upload_file" title="ansys.acp.core.ACPInstance.upload_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">upload_file()</span></code></a> method has no effect and simply returns the input file path.</p></li>
-<li><p>The <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ACPInstance.download_file.html#ansys.acp.core.ACPInstance.download_file" title="ansys.acp.core.ACPInstance.download_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">download_file()</span></code></a> method copies the file to the specified <code class="docutils literal notranslate"><span class="pre">local_path</span></code> argument if
-the <code class="docutils literal notranslate"><span class="pre">local_path</span></code> and <code class="docutils literal notranslate"><span class="pre">remote_filename</span></code> arguments are not the same.</p></li>
-</ul>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>Even when they have no effect, it is good practice to include the upload and download
-steps in your code. That way, both local and remote ACP instances can use it.</p>
 </div>
 </section>
 </section>
@@ -721,20 +687,14 @@ steps in your code. That way, both local and remote ACP instances can use it.</p
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-predefined-workflow">Using a predefined workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-transfer-mode">Auto-transfer mode</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-input-files">Loading input files</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-output-files">Getting output files</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-custom-working-directory">Using a custom working directory</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-file-management">Manual file management</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Loading input files</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Getting output files</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-versus-remote-acp-instance">Local versus remote ACP instance</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-using-a-workflow">When using a workflow</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-using-manual-upload-and-download">When using manual upload and download</a></li>
 </ul>
 </li>
 </ul>

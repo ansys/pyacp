@@ -160,7 +160,7 @@ Create a temporary directory to store the input and output files.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 91-100
+.. GENERATED FROM PYTHON SOURCE LINES 91-99
 
 Prepare the ACP model
 ---------------------
@@ -169,10 +169,9 @@ of a rounded square tube.
 
 The ``prepare_acp_model`` function imports the ``optimization_model.dat`` file into a new
 ACP model and creates a lay-up with six plies.
-It returns a :class:`.ACPWorkflow` object that can be used to access the model and
-generate the output files.
+It returns the :class:`.Model` instance.
 
-.. GENERATED FROM PYTHON SOURCE LINES 100-178
+.. GENERATED FROM PYTHON SOURCE LINES 99-175
 
 .. code-block:: Python
 
@@ -183,14 +182,12 @@ generate the output files.
     )
 
 
-    def prepare_acp_model(*, acp, workdir, input_file):
+    def prepare_acp_model(*, acp, input_file):
         # Import the DAT input file into a new ACP model
-        acp_workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
-            acp=acp,
-            cdb_or_dat_file_path=input_file,
-            local_working_directory=workdir,
+        model = acp.import_model(
+            input_file,
+            format="ansys:dat",
         )
-        model = acp_workflow.model
         model.name = "optimization_example"
 
         element_set = model.element_sets["All_Elements"]
@@ -250,8 +247,8 @@ generate the output files.
                 oriented_selection_sets=[oss],
                 number_of_layers=1,
             )
-        acp_workflow.model.update()
-        return acp_workflow
+        model.update()
+        return model
 
 
 
@@ -261,18 +258,18 @@ generate the output files.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 179-180
+.. GENERATED FROM PYTHON SOURCE LINES 176-177
 
 Create the ACP model and visualize the first ply's fiber direction.
 
-.. GENERATED FROM PYTHON SOURCE LINES 180-189
+.. GENERATED FROM PYTHON SOURCE LINES 177-186
 
 .. code-block:: Python
 
-    acp_workflow = prepare_acp_model(acp=acp_instance, workdir=workdir, input_file=input_file)
-    ply = list(acp_workflow.model.modeling_groups["Modeling_Group"].modeling_plies.values())[0]
+    model = prepare_acp_model(acp=acp_instance, input_file=input_file)
+    ply = list(model.modeling_groups["Modeling_Group"].modeling_plies.values())[0]
     pyacp.get_directions_plotter(
-        model=acp_workflow.model,
+        model=model,
         components=[ply.elemental_data.fiber_direction],
         length_factor=5.0,
         culling_factor=5,
@@ -312,7 +309,7 @@ Create the ACP model and visualize the first ply's fiber direction.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 190-198
+.. GENERATED FROM PYTHON SOURCE LINES 187-195
 
 Create functions for the optimization
 -------------------------------------
@@ -323,14 +320,13 @@ the ACP model for a given set of ply angles.
 The ``update_ply_angles()`` function changes the ply angles in the model to the given values and
 updates the model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 198-213
+.. GENERATED FROM PYTHON SOURCE LINES 195-209
 
 .. code-block:: Python
 
 
 
-    def update_ply_angles(*, acp_workflow, parameters):
-        model = acp_workflow.model
+    def update_ply_angles(*, model, parameters):
         modeling_plies = list(model.modeling_groups["Modeling_Group"].modeling_plies.values())
         assert len(modeling_plies) == len(parameters)
         for angle, modeling_ply in zip(parameters, modeling_plies):
@@ -339,7 +335,7 @@ updates the model.
         model.update()
 
 
-    update_ply_angles(acp_workflow=acp_workflow, parameters=[0, 45, 90, 135, 180, 225])
+    update_ply_angles(model=model, parameters=[0, 45, 90, 135, 180, 225])
 
 
 
@@ -349,11 +345,11 @@ updates the model.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 214-215
+.. GENERATED FROM PYTHON SOURCE LINES 210-211
 
 The ``solve_cdb()`` function solves the CDB file with MAPDL and returns the path to the RST file.
 
-.. GENERATED FROM PYTHON SOURCE LINES 215-238
+.. GENERATED FROM PYTHON SOURCE LINES 211-235
 
 .. code-block:: Python
 
@@ -361,7 +357,7 @@ The ``solve_cdb()`` function solves the CDB file with MAPDL and returns the path
 
     def solve_cdb(*, mapdl, cdb_file, workdir):
         mapdl.clear()
-        mapdl.input(cdb_file)
+        mapdl.input(str(cdb_file))
         # Solve the model. Note that the model contains two timesteps.
         mapdl.allsel()
         mapdl.slashsolu()
@@ -377,8 +373,9 @@ The ``solve_cdb()`` function solves the CDB file with MAPDL and returns the path
         return rst_file_local_path
 
 
-    cdb_file = acp_workflow.get_local_cdb_file()
-    rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file, workdir=workdir)
+    cdb_file_path = workdir / "optimization_example.cdb"
+    model.export_analysis_model(cdb_file_path)
+    rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file_path, workdir=workdir)
 
 
 
@@ -387,7 +384,7 @@ The ``solve_cdb()`` function solves the CDB file with MAPDL and returns the path
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 239-244
+.. GENERATED FROM PYTHON SOURCE LINES 236-241
 
 The ``get_max_irf()`` function uses PyDPF Composites to calculate the maximum
 inverse reserve factor (IRF) for a given RST, composite definitions,
@@ -395,7 +392,7 @@ or materials file.
 
 This function only considers the maximum stress failure criterion.
 
-.. GENERATED FROM PYTHON SOURCE LINES 244-292
+.. GENERATED FROM PYTHON SOURCE LINES 241-298
 
 .. code-block:: Python
 
@@ -405,20 +402,29 @@ This function only considers the maximum stress failure criterion.
         name="Combined Failure Criterion",
         failure_criteria=[max_stress_criterion],
     )
+    materials_file_path = workdir / "materials.xml"
+    model.export_materials(materials_file_path)
 
 
     def get_max_irf(
         *,
-        acp_workflow,
+        model,
         dpf_server,
         rst_file,
         failure_criterion,
     ):
+        composite_definitions_file = workdir / "ACPCompositeDefinitions.h5"
+        model.export_shell_composite_definitions(composite_definitions_file)
         # Create the composite model and configure its input
         composite_model = pydpf_composites.composite_model.CompositeModel(
-            composite_files=pyacp.get_composite_post_processing_files(
-                acp_workflow=acp_workflow,
-                local_rst_file_path=rst_file,
+            composite_files=pydpf_composites.data_sources.ContinuousFiberCompositesFiles(
+                rst=rst_file,
+                composite={
+                    "shell": pydpf_composites.data_sources.CompositeDefinitionFiles(
+                        composite_definitions_file
+                    )
+                },
+                engineering_data=materials_file_path,
             ),
             server=dpf_server,
         )
@@ -440,7 +446,7 @@ This function only considers the maximum stress failure criterion.
 
 
     get_max_irf(
-        acp_workflow=acp_workflow,
+        model=model,
         dpf_server=dpf_server,
         rst_file=rst_file,
         failure_criterion=combined_failure_criterion,
@@ -460,7 +466,7 @@ This function only considers the maximum stress failure criterion.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 293-299
+.. GENERATED FROM PYTHON SOURCE LINES 299-305
 
 Optimize the ply angles
 -----------------------
@@ -469,20 +475,21 @@ as its input and returns the maximum IRF.
 The ``get_max_irf_for_parameters()`` function combines the previously defined functions
 to perform all the necessary steps for a given set of ply angles.
 
-.. GENERATED FROM PYTHON SOURCE LINES 299-318
+.. GENERATED FROM PYTHON SOURCE LINES 305-325
 
 .. code-block:: Python
 
 
 
     def get_max_irf_for_parameters(
-        parameters, *, acp_workflow, mapdl, dpf_server, failure_criterion, workdir, results
+        parameters, *, model, mapdl, dpf_server, failure_criterion, workdir, results
     ):
-        update_ply_angles(acp_workflow=acp_workflow, parameters=parameters)
-        cdb_file = acp_workflow.get_local_cdb_file()
-        rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file, workdir=workdir)
+        update_ply_angles(model=model, parameters=parameters)
+        cdb_file_path = workdir / "optimization_example.cdb"
+        model.export_analysis_model(cdb_file_path)
+        rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file_path, workdir=workdir)
         res = get_max_irf(
-            acp_workflow=acp_workflow,
+            model=model,
             dpf_server=dpf_server,
             rst_file=rst_file,
             failure_criterion=failure_criterion,
@@ -499,12 +506,12 @@ to perform all the necessary steps for a given set of ply angles.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 319-321
+.. GENERATED FROM PYTHON SOURCE LINES 326-328
 
 To inject the ``acp_workflow``, ``mapdl``, ``dpf_server``, and ``workdir`` arguments into the
 ``get_max_irf_for_parameters()`` function, you can use the ``functools.partial()`` function.
 
-.. GENERATED FROM PYTHON SOURCE LINES 321-334
+.. GENERATED FROM PYTHON SOURCE LINES 328-341
 
 .. code-block:: Python
 
@@ -512,7 +519,7 @@ To inject the ``acp_workflow``, ``mapdl``, ``dpf_server``, and ``workdir`` argum
     results: list[float] = []
     optimization_function = partial(
         get_max_irf_for_parameters,
-        acp_workflow=acp_workflow,
+        model=model,
         mapdl=mapdl,
         dpf_server=dpf_server,
         failure_criterion=combined_failure_criterion,
@@ -535,7 +542,7 @@ To inject the ``acp_workflow``, ``mapdl``, ``dpf_server``, and ``workdir`` argum
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 335-345
+.. GENERATED FROM PYTHON SOURCE LINES 342-352
 
 For the optimization, you can use the Nelder-Mead method available in
 the ``scipy.optimize.minimize()`` function. This is a downhill simplex algorithm that
@@ -548,7 +555,7 @@ define an initial simplex (matrix of shape (n+1, n), where n is the number of pa
 The initial simplex is chosen with random ply angles between 0 and 90 degrees. To make
 the results reproducible, the random seed is fixed.
 
-.. GENERATED FROM PYTHON SOURCE LINES 345-349
+.. GENERATED FROM PYTHON SOURCE LINES 352-356
 
 .. code-block:: Python
 
@@ -563,12 +570,12 @@ the results reproducible, the random seed is fixed.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 350-352
+.. GENERATED FROM PYTHON SOURCE LINES 357-359
 
 To build this example, the number of function evaluations is limited to 1. In practice, you
 should increase or remove this limit.
 
-.. GENERATED FROM PYTHON SOURCE LINES 352-366
+.. GENERATED FROM PYTHON SOURCE LINES 359-373
 
 .. code-block:: Python
 
@@ -599,7 +606,7 @@ should increase or remove this limit.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 367-394
+.. GENERATED FROM PYTHON SOURCE LINES 374-401
 
 Results
 -------
@@ -629,11 +636,11 @@ converge to the following result:
                             -1.303e+01]]), array([ 9.130e-01,  9.130e-01,  9.132e-01,  9.133e-01,
                             9.133e-01,  9.133e-01,  9.134e-01]))
 
-.. GENERATED FROM PYTHON SOURCE LINES 396-397
+.. GENERATED FROM PYTHON SOURCE LINES 403-404
 
 The following code defines the ``results`` list as it would be obtained from the full optimization.
 
-.. GENERATED FROM PYTHON SOURCE LINES 397-438
+.. GENERATED FROM PYTHON SOURCE LINES 404-445
 
 .. code-block:: Python
 
@@ -685,11 +692,11 @@ The following code defines the ``results`` list as it would be obtained from the
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 439-440
+.. GENERATED FROM PYTHON SOURCE LINES 446-447
 
 Visualize the evolution of the maximum IRF during the optimization.
 
-.. GENERATED FROM PYTHON SOURCE LINES 440-448
+.. GENERATED FROM PYTHON SOURCE LINES 447-455
 
 .. code-block:: Python
 
@@ -713,11 +720,11 @@ Visualize the evolution of the maximum IRF during the optimization.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 449-450
+.. GENERATED FROM PYTHON SOURCE LINES 456-457
 
 Visualize the resulting fiber directions.
 
-.. GENERATED FROM PYTHON SOURCE LINES 450-489
+.. GENERATED FROM PYTHON SOURCE LINES 457-496
 
 .. code-block:: Python
 
@@ -775,7 +782,7 @@ Visualize the resulting fiber directions.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 51.061 seconds)
+   **Total running time of the script:** (0 minutes 41.904 seconds)
 
 
 .. _sphx_glr_download_examples_use_cases_01-optimizing-ply-angles.py:

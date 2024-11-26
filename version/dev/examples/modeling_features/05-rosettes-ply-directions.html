@@ -552,7 +552,6 @@ see <a class="reference internal" href="../workflows/01-pymapdl-workflow.html#py
 </div>
 <p>Import the PyACP dependencies.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">ACPWorkflow</span><span class="p">,</span>
     <span class="n">EdgeSetType</span><span class="p">,</span>
     <span class="n">PlyType</span><span class="p">,</span>
     <span class="n">RosetteSelectionMethod</span><span class="p">,</span>
@@ -576,23 +575,13 @@ see <a class="reference internal" href="../workflows/01-pymapdl-workflow.html#py
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">acp</span> <span class="o">=</span> <span class="n">launch_acp</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Define the input file and instantiate an <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> instance.
-The <code class="docutils literal notranslate"><span class="pre">ACPWorkflow</span></code> class provides convenience methods that simplify file handling.
-It automatically creates a model based on the input file.
-This example’s input file contains a flat plate with a single ply.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span> <span class="o">=</span> <span class="n">ACPWorkflow</span><span class="o">.</span><span class="n">from_cdb_or_dat_file</span><span class="p">(</span>
-    <span class="n">acp</span><span class="o">=</span><span class="n">acp</span><span class="p">,</span>
-    <span class="n">cdb_or_dat_file_path</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">,</span>
-    <span class="n">local_working_directory</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">model</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">model</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">workflow</span><span class="o">.</span><span class="n">working_directory</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+<p>Import the model from the input file.
+This example’s input file contains a flat plate.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:dat&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/tmp0jlirf9y
-mks
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>mks
 </pre></div>
 </div>
 </section>
@@ -875,7 +864,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/modeling_features/images/sphx_glr_05-rosettes-ply-directions_007.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.057 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 4.886 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-modeling-features-05-rosettes-ply-directions-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8a8f30a5fb195d3ea2939f0a092164ab/05-rosettes-ply-directions.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">05-rosettes-ply-directions.ipynb</span></code></a></p>

@@ -70,7 +70,7 @@ you must redefine the stress and strain limits.
 For engineering constants, however, the orthotropic and isotropic definitions
 are interlinked. Therefore, when you change the ply type of a material, the
 engineering constants are automatically converted.
-To avoid accidental use of incorrect engineering constants, PyACP enforces 
+To avoid accidental use of incorrect engineering constants, PyACP enforces
 conversion and assignment rules, as described later on this page.
 
 Conversion rules
@@ -94,8 +94,7 @@ The following rules apply when changing the ply type of a material:
 
     >>> import ansys.acp.core as pyacp
     >>> acp = pyacp.launch_acp()
-    >>> path = acp.upload_file("../tests/data/minimal_complete_model_no_matml_link.acph5")
-    >>> model = acp.import_model(path=path)
+    >>> model = acp.import_model("../tests/data/minimal_complete_model_no_matml_link.acph5")
 
 Consider the following example:
 

@@ -664,7 +664,7 @@ load case.</p>
 <section id="set-up-the-acp-model">
 <h2>Set up the ACP model<a class="headerlink" href="#set-up-the-acp-model" title="Link to this heading">#</a></h2>
 <p>Setup basic ACP lay-up based on the CDB file.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">acp</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">cdb_path_initial</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">cdb_path_initial</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">)</span>
 
 <span class="n">mat</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;mat&quot;</span><span class="p">)</span>
 
@@ -727,22 +727,13 @@ load case.</p>
 <h2>Update and Save the ACP model<a class="headerlink" href="#update-and-save-the-acp-model" title="Link to this heading">#</a></h2>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="n">acp</span><span class="o">.</span><span class="n">is_remote</span><span class="p">:</span>
-    <span class="n">export_path</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePosixPath" title="pathlib.PurePosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pathlib</span><span class="o">.</span><span class="n">PurePosixPath</span></a><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">export_path</span> <span class="o">=</span> <span class="n">working_dir_path</span>  <span class="c1"># type: ignore</span>
-
 <span class="n">cdb_filename_out</span> <span class="o">=</span> <span class="s2">&quot;model_from_acp.cdb&quot;</span>
 <span class="n">composite_definitions_h5_filename</span> <span class="o">=</span> <span class="s2">&quot;ACPCompositeDefinitions.h5&quot;</span>
 <span class="n">matml_filename</span> <span class="o">=</span> <span class="s2">&quot;materials.xml&quot;</span>
 
-<span class="n">model</span><span class="o">.</span><span class="n">export_analysis_model</span><span class="p">(</span><span class="n">export_path</span> <span class="o">/</span> <span class="n">cdb_filename_out</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">export_shell_composite_definitions</span><span class="p">(</span><span class="n">export_path</span> <span class="o">/</span> <span class="n">composite_definitions_h5_filename</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">export_materials</span><span class="p">(</span><span class="n">export_path</span> <span class="o">/</span> <span class="n">matml_filename</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="p">[</span><span class="n">cdb_filename_out</span><span class="p">,</span> <span class="n">composite_definitions_h5_filename</span><span class="p">,</span> <span class="n">matml_filename</span><span class="p">]:</span>
-    <span class="n">acp</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><span class="n">export_path</span> <span class="o">/</span> <span class="n">filename</span><span class="p">,</span> <span class="n">working_dir_path</span> <span class="o">/</span> <span class="n">filename</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">export_analysis_model</span><span class="p">(</span><span class="n">working_dir_path</span> <span class="o">/</span> <span class="n">cdb_filename_out</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">export_shell_composite_definitions</span><span class="p">(</span><span class="n">working_dir_path</span> <span class="o">/</span> <span class="n">composite_definitions_h5_filename</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">export_materials</span><span class="p">(</span><span class="n">working_dir_path</span> <span class="o">/</span> <span class="n">matml_filename</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

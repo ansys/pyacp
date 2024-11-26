@@ -465,9 +465,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../other_types.html">Other types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plot_utils.html">Plot utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../other_utils.html">Other utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflow.html">Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../example_helpers.html">Example helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dpf_integration_helpers.html">DPF integration helpers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mechanical_integration_helpers.html">Mechanical integration helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example_helpers.html">Example helpers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internal.html">Internal objects</a></li>
 </ul>
 </div>
@@ -542,7 +542,7 @@
 <h1>launch_acp<a class="headerlink" href="#launch-acp" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="ansys.acp.core.launch_acp">
-<span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">launch_acp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">launch_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.launch_acp" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">launch_acp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">launch_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_transfer_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.launch_acp" title="Link to this definition">#</a></dt>
 <dd><p>Launch an ACP instance.</p>
 <p>Launch the ACP gRPC server with the given configuration. If no
 configuration is provided, the configured default is used.</p>
@@ -556,11 +556,21 @@ See the <a class="reference internal" href="../../user_guide/security_considerat
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>config</strong> (<a class="reference internal" href="ansys.acp.core.DirectLaunchConfig.html#ansys.acp.core.DirectLaunchConfig" title="ansys.acp.core._server.direct.DirectLaunchConfig"><em>DirectLaunchConfig</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.html#ansys.acp.core.DockerComposeLaunchConfig" title="ansys.acp.core._server.docker_compose.DockerComposeLaunchConfig"><em>DockerComposeLaunchConfig</em></a><em> | </em><em>None</em>) – The configuration used for launching ACP. If unspecified, the
 default for the given launch mode is used.</p></li>
-<li><p><strong>launch_mode</strong> (<a class="reference internal" href="ansys.acp.core.LaunchMode.html#ansys.acp.core.LaunchMode" title="ansys.acp.core._server.common.LaunchMode"><em>LaunchMode</em></a><em> | </em><em>None</em>) – Specifies which ACP launcher is used. One of <code class="docutils literal notranslate"><span class="pre">direct</span></code> or
-<code class="docutils literal notranslate"><span class="pre">docker_compose</span></code>. If unspecified, the configured default is
-used. If no default is configured, <code class="docutils literal notranslate"><span class="pre">direct</span></code> is used.</p></li>
+<li><p><strong>launch_mode</strong> (<a class="reference internal" href="ansys.acp.core.LaunchMode.html#ansys.acp.core.LaunchMode" title="ansys.acp.core._server.common.LaunchMode"><em>LaunchMode</em></a><em> | </em><em>None</em>) – Specifies which ACP launcher is used. One of <code class="docutils literal notranslate"><span class="pre">direct</span></code>,
+<code class="docutils literal notranslate"><span class="pre">docker_compose</span></code>, or <code class="docutils literal notranslate"><span class="pre">connect</span></code>. If unspecified, the
+configured default is used. If no default is configured,
+<code class="docutils literal notranslate"><span class="pre">direct</span></code> is used.</p></li>
 <li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> | </em><em>None</em>) – Timeout to wait until ACP responds. If <code class="docutils literal notranslate"><span class="pre">None</span></code> is specified,
 the check that ACP has started is skipped.</p></li>
+<li><p><strong>auto_transfer_files</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Determines whether input and output files are automatically
+transferred (up- or downloaded) to the server. If <code class="docutils literal notranslate"><span class="pre">True</span></code>,
+files are automatically transferred, and all paths in the
+import or export methods are <em>local</em> paths. If <code class="docutils literal notranslate"><span class="pre">False</span></code>,
+file transfer needs to be handled manually, and the paths
+are relative to the server working directory.
+If the <code class="docutils literal notranslate"><span class="pre">launch_mode</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;direct&quot;</span></code>, this only has an
+effect if the current working directory is changed after
+launching the server.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

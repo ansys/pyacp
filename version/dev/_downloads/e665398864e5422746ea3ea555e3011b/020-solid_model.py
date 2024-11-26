@@ -43,7 +43,6 @@ import pyvista
 # %%
 # Import the PyACP dependencies.
 from ansys.acp.core import (
-    ACPWorkflow,
     CADGeometry,
     CutOffGeometryOrientationType,
     EdgeSetType,
@@ -70,14 +69,8 @@ input_file = get_example_file(ExampleKeys.MINIMAL_FLAT_PLATE, WORKING_DIR)
 acp = launch_acp()
 
 # %%
-# Define the input file and instantiate an ``ACPWorkflow`` instance.
-workflow = ACPWorkflow.from_acph5_file(
-    acp=acp,
-    acph5_file_path=input_file,
-    local_working_directory=WORKING_DIR,
-)
-
-model = workflow.model
+# Load the model from the input file.
+model = acp.import_model(input_file)
 
 # %%
 # Create a simple layup
@@ -107,8 +100,9 @@ def create_virtual_geometry_from_file(
 ) -> tuple[CADGeometry, VirtualGeometry]:
     """Create a CAD geometry and virtual geometry."""
     geometry_file = get_example_file(example_key, WORKING_DIR)
-    geometry_obj = workflow.add_cad_geometry_from_local_file(geometry_file)
-    workflow.model.update()
+    geometry_obj = model.create_cad_geometry()
+    geometry_obj.refresh(geometry_file)  # upload and load the geometry file
+    model.update()
     virtual_geometry = model.create_virtual_geometry(
         name="thickness_virtual_geometry", cad_components=geometry_obj.root_shapes.values()
     )
@@ -123,7 +117,7 @@ def plot_model_with_geometry(cad_geometry: CADGeometry, cad_geom_opacity: float 
     edges = geom_mesh.extract_feature_edges()
     plotter.add_mesh(edges, color="white", line_width=4)
     plotter.add_mesh(edges, color="black", line_width=2)
-    plotter.add_mesh(workflow.model.solid_mesh.to_pyvista(), show_edges=True)
+    plotter.add_mesh(model.solid_mesh.to_pyvista(), show_edges=True)
     plotter.show()
 
 

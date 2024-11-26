@@ -23,9 +23,9 @@ API reference
         other_types
         plot_utils
         other_utils
-        workflow
-        example_helpers
+        dpf_integration_helpers
         mechanical_integration_helpers
+        example_helpers
         internal
     {% else %}
     The API reference is not available in this documentation build.

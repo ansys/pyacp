@@ -57,27 +57,23 @@ Get a model
 You can resume a model from an existing ACP DB (ACPH5) or built it from
 scratch by importing an FE model (mesh).
 
-To load an existing model with PyACP, use the :meth:`.ACPWorkflow.from_acph5_file` method:
+To load an existing model with PyACP, use the :meth:`.import_model` method:
 
 .. testcode::
 
-    workflow = pyacp.ACPWorkflow.from_acph5_file(
-        acp=acp,
-        acph5_file_path="model.acph5",
-    )
-    model = workflow.model
+    model = acp.import_model("model.acph5")
 
-To import an FE model, use the :meth:`.ACPWorkflow.from_cdb_or_dat_file` method.
+To import an FE model, use the ``format="ansys:cdb"`` or ``format="ansys:dat"``
+parameter, respectively.
 The following example imports a CDB file.
 
 .. testcode::
 
-    workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
-        acp=acp,
-        cdb_or_dat_file_path="model.cdb",
+    model = acp.import_model(
+        "model.cdb",
+        format="ansys:cdb",
         unit_system=pyacp.UnitSystemType.MPA,
     )
-    model = workflow.model
 
 .. testcode::
     :hide:

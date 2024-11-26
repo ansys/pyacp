@@ -171,7 +171,7 @@ mechanical.run_python_script(
 # Setup basic ACP lay-up based on the CDB file.
 
 
-model = acp.import_model(path=acp.upload_file(cdb_path_initial), format="ansys:cdb")
+model = acp.import_model(path=cdb_path_initial, format="ansys:cdb")
 
 mat = model.create_material(name="mat")
 
@@ -234,22 +234,13 @@ mg.create_modeling_ply(
 
 model.update()
 
-if acp.is_remote:
-    export_path = pathlib.PurePosixPath(".")
-
-else:
-    export_path = working_dir_path  # type: ignore
-
 cdb_filename_out = "model_from_acp.cdb"
 composite_definitions_h5_filename = "ACPCompositeDefinitions.h5"
 matml_filename = "materials.xml"
 
-model.export_analysis_model(export_path / cdb_filename_out)
-model.export_shell_composite_definitions(export_path / composite_definitions_h5_filename)
-model.export_materials(export_path / matml_filename)
-
-for filename in [cdb_filename_out, composite_definitions_h5_filename, matml_filename]:
-    acp.download_file(export_path / filename, working_dir_path / filename)
+model.export_analysis_model(working_dir_path / cdb_filename_out)
+model.export_shell_composite_definitions(working_dir_path / composite_definitions_h5_filename)
+model.export_materials(working_dir_path / matml_filename)
 
 # %%
 # Solve with PyMAPDL

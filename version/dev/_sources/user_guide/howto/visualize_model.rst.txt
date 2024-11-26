@@ -20,14 +20,13 @@ Visualize model
         >>> input_file = get_example_file(
         ...     ExampleKeys.RACE_CAR_NOSE_ACPH5, pathlib.Path(tempdir.name)
         ... )
-        >>> path = acp.upload_file(input_file)
-        >>> model = acp.import_model(path)
+        >>> model = acp.import_model(input_file)
 
         >>> input_file_geometry = get_example_file(
         ...     ExampleKeys.RACE_CAR_NOSE_STEP, pathlib.Path(tempdir.name)
         ... )
-        >>> path_geometry = acp.upload_file(input_file_geometry)
-        >>> model.create_cad_geometry(name="nose_geometry", external_path=path_geometry)
+        >>> cad_geometry = model.create_cad_geometry(name="nose_geometry")
+        >>> cad_geometry.refresh(input_file_geometry)
 
         >>> model.update()
 

@@ -54,12 +54,11 @@ Import the standard library and third-party dependencies.
 
 Import the PyACP dependencies.
 
-.. GENERATED FROM PYTHON SOURCE LINES 45-60
+.. GENERATED FROM PYTHON SOURCE LINES 45-59
 
 .. code-block:: Python
 
     from ansys.acp.core import (
-        ACPWorkflow,
         CADGeometry,
         CutOffGeometryOrientationType,
         EdgeSetType,
@@ -80,12 +79,12 @@ Import the PyACP dependencies.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 62-64
+.. GENERATED FROM PYTHON SOURCE LINES 61-63
 
 Load a minimal model
 ----------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 64-68
+.. GENERATED FROM PYTHON SOURCE LINES 63-67
 
 .. code-block:: Python
 
@@ -100,11 +99,11 @@ Load a minimal model
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 69-70
+.. GENERATED FROM PYTHON SOURCE LINES 68-69
 
 Launch the PyACP server and connect to it.
 
-.. GENERATED FROM PYTHON SOURCE LINES 70-72
+.. GENERATED FROM PYTHON SOURCE LINES 69-71
 
 .. code-block:: Python
 
@@ -117,21 +116,15 @@ Launch the PyACP server and connect to it.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-74
+.. GENERATED FROM PYTHON SOURCE LINES 72-73
 
-Define the input file and instantiate an ``ACPWorkflow`` instance.
+Load the model from the input file.
 
-.. GENERATED FROM PYTHON SOURCE LINES 74-82
+.. GENERATED FROM PYTHON SOURCE LINES 73-75
 
 .. code-block:: Python
 
-    workflow = ACPWorkflow.from_acph5_file(
-        acp=acp,
-        acph5_file_path=input_file,
-        local_working_directory=WORKING_DIR,
-    )
-
-    model = workflow.model
+    model = acp.import_model(input_file)
 
 
 
@@ -140,7 +133,7 @@ Define the input file and instantiate an ``ACPWorkflow`` instance.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 83-88
+.. GENERATED FROM PYTHON SOURCE LINES 76-81
 
 Create a simple layup
 ---------------------
@@ -148,7 +141,7 @@ Create a simple layup
 Add more layers to the modeling ply so that it is easier to see the
 effects of the selection rules.
 
-.. GENERATED FROM PYTHON SOURCE LINES 88-91
+.. GENERATED FROM PYTHON SOURCE LINES 81-84
 
 .. code-block:: Python
 
@@ -162,14 +155,14 @@ effects of the selection rules.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 92-96
+.. GENERATED FROM PYTHON SOURCE LINES 85-89
 
 Create an initial solid model
 -----------------------------
 
 By default, the layup is extruded along the normal direction of the shell mesh.
 
-.. GENERATED FROM PYTHON SOURCE LINES 96-130
+.. GENERATED FROM PYTHON SOURCE LINES 89-124
 
 .. code-block:: Python
 
@@ -187,8 +180,9 @@ By default, the layup is extruded along the normal direction of the shell mesh.
     ) -> tuple[CADGeometry, VirtualGeometry]:
         """Create a CAD geometry and virtual geometry."""
         geometry_file = get_example_file(example_key, WORKING_DIR)
-        geometry_obj = workflow.add_cad_geometry_from_local_file(geometry_file)
-        workflow.model.update()
+        geometry_obj = model.create_cad_geometry()
+        geometry_obj.refresh(geometry_file)  # upload and load the geometry file
+        model.update()
         virtual_geometry = model.create_virtual_geometry(
             name="thickness_virtual_geometry", cad_components=geometry_obj.root_shapes.values()
         )
@@ -203,7 +197,7 @@ By default, the layup is extruded along the normal direction of the shell mesh.
         edges = geom_mesh.extract_feature_edges()
         plotter.add_mesh(edges, color="white", line_width=4)
         plotter.add_mesh(edges, color="black", line_width=2)
-        plotter.add_mesh(workflow.model.solid_mesh.to_pyvista(), show_edges=True)
+        plotter.add_mesh(model.solid_mesh.to_pyvista(), show_edges=True)
         plotter.show()
 
 
@@ -241,7 +235,7 @@ By default, the layup is extruded along the normal direction of the shell mesh.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 131-136
+.. GENERATED FROM PYTHON SOURCE LINES 125-130
 
 Snap the top to a geometry
 --------------------------
@@ -249,7 +243,7 @@ Snap the top to a geometry
 The :class:`.SnapToGeometry` allows to shape the bottom or top of the solid model.
 First, import the geometry and then add the snap-to feature to the solid model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 136-147
+.. GENERATED FROM PYTHON SOURCE LINES 130-141
 
 .. code-block:: Python
 
@@ -298,7 +292,7 @@ First, import the geometry and then add the snap-to feature to the solid model.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 148-153
+.. GENERATED FROM PYTHON SOURCE LINES 142-147
 
 Shape the walls
 ---------------
@@ -306,7 +300,7 @@ Shape the walls
 The :class:`.ExtrusionGuide` is used to shape the side walls of the solid model.
 The feature can be defined by a direction as shown here or through a geometry.
 
-.. GENERATED FROM PYTHON SOURCE LINES 153-171
+.. GENERATED FROM PYTHON SOURCE LINES 147-165
 
 .. code-block:: Python
 
@@ -362,14 +356,14 @@ The feature can be defined by a direction as shown here or through a geometry.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 172-176
+.. GENERATED FROM PYTHON SOURCE LINES 166-170
 
 Cut-off an edge
 ---------------
 
 The :class:`.CutOffGeometry` is used to crop elements from the solid model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 176-189
+.. GENERATED FROM PYTHON SOURCE LINES 170-183
 
 .. code-block:: Python
 
@@ -420,7 +414,7 @@ The :class:`.CutOffGeometry` is used to crop elements from the solid model.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 190-195
+.. GENERATED FROM PYTHON SOURCE LINES 184-189
 
 Plot results on the solid mesh
 ------------------------------
@@ -428,11 +422,11 @@ Plot results on the solid mesh
 The plotting capabilities also support the visualization of ply-wise results,
 such as directions or thicknesses as shown here.
 
-.. GENERATED FROM PYTHON SOURCE LINES 197-198
+.. GENERATED FROM PYTHON SOURCE LINES 191-192
 
 Get the analysis ply of interest
 
-.. GENERATED FROM PYTHON SOURCE LINES 198-205
+.. GENERATED FROM PYTHON SOURCE LINES 192-199
 
 .. code-block:: Python
 
@@ -450,12 +444,12 @@ Get the analysis ply of interest
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 206-208
+.. GENERATED FROM PYTHON SOURCE LINES 200-202
 
 Plot fiber directions
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. GENERATED FROM PYTHON SOURCE LINES 208-220
+.. GENERATED FROM PYTHON SOURCE LINES 202-214
 
 .. code-block:: Python
 
@@ -505,12 +499,12 @@ Plot fiber directions
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 221-223
+.. GENERATED FROM PYTHON SOURCE LINES 215-217
 
 Plot thicknesses
 ~~~~~~~~~~~~~~~~
 
-.. GENERATED FROM PYTHON SOURCE LINES 223-229
+.. GENERATED FROM PYTHON SOURCE LINES 217-223
 
 .. code-block:: Python
 
@@ -557,7 +551,7 @@ Plot thicknesses
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 7.422 seconds)
+   **Total running time of the script:** (0 minutes 6.288 seconds)
 
 
 .. _sphx_glr_download_examples_modeling_features_020-solid_model.py:
