@@ -96,10 +96,11 @@ model = workflow.model
 # Get the solid mesh file and create an ImportedSolidModel and
 # load the initial mesh.
 
-solid_mesh_file = get_example_file(ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH, WORKING_DIR)
+local_solid_mesh_file = get_example_file(ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH, WORKING_DIR)
+remote_solid_mesh_file = acp.upload_file(local_solid_mesh_file)
 imported_solid_model = model.create_imported_solid_model(
     name="Imported Solid Model",
-    external_path=solid_mesh_file,
+    external_path=remote_solid_mesh_file,
     format="ansys:h5",
 )
 
@@ -242,7 +243,11 @@ model.solid_mesh.to_pyvista().plot(show_edges=True)
 # Show extent and thickness of mapped plies
 # -----------------------------------------
 #
-# Use :func:`.print_model` to get the list of plies.
+# Use :func:`.print_model` to get the list of plies. After identifying the ply
+# of interest, for example the thickness can be visualized. Note that
+# only ply-wise data of :class:`.AnalysisPly` can be visualized on the
+# solid mesh. :class:`.ProductionPly` and :class:`.ModelingPly` cannot
+# be visualized on the solid mesh.
 ap = (
     model.modeling_groups["MG bonding_skin_right"]
     .modeling_plies["ModelingPly.26"]
