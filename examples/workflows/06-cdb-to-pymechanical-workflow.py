@@ -28,7 +28,9 @@
 CDB to PyMechanical shell workflow
 ==================================
 
-This example shows how to ...
+This example shows how to define a composite lay-up in PyACP based on a mesh
+from a CDB file, import the model into PyMechanical for defining the load and
+boundary conditions, and run a failure analysis with PyDPF Composites.
 
 """
 
