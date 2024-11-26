@@ -34,19 +34,22 @@ When passing the ``auto_transfer_files=True`` parameter to :func:`.launch_acp`
 (the default behavior), PyACP automatically uploads files to the ACP instance
 and downloads output files to the local machine.
 
-Paths passed to the PyACP functions are all relative to the current working
-directory of the Python instance, with one exception:
+Paths passed to the PyACP functions are all paths on the local machine. They
+can be either absolute paths, or relative to the current working directory of
+the Python instance.
 
-The ``external_path`` attribute of the :class:`.CADGeometry` and
-:class:`.ImportedSolidModel` classes is always relative to the ACP instance's
+The only exception is the ``external_path`` attribute of the :class:`.CADGeometry`
+and :class:`.ImportedSolidModel` classes. This attribute refers to a path on the
+server side. It can again be an absolute path, or relative to the ACP instance's
 working directory.
-You can use the :meth:`.CADGeometry.refresh` and :meth:`.ImportedSolidModel.refresh`
-methods to define the input file, which also handles the upload automatically.
+You can instead use the :meth:`.CADGeometry.refresh` and
+:meth:`.ImportedSolidModel.refresh` methods to define the input file, which also
+handles the upload automatically.
 
 .. note::
 
     On local ACP instances, the up- and download methods simply convert the
-    paths to be relative to the ACP instance's working directory.
+    paths to be relative to the ACP instance's working directory if needed.
 
 
 Loading input files
