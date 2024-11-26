@@ -27,7 +27,13 @@ PyACP enables you to design and analyze layered composite structures.
 
 import importlib.metadata
 
-from . import extras, material_property_sets, mechanical_integration_helpers, mesh_data
+from . import (
+    dpf_integration_helpers,
+    extras,
+    material_property_sets,
+    mechanical_integration_helpers,
+    mesh_data,
+)
 from ._model_printer import get_model_tree, print_model
 from ._plotter import get_directions_plotter
 from ._recursive_copy import LinkedObjectHandling, recursive_copy
@@ -150,7 +156,6 @@ from ._tree_objects import (
     VirtualGeometry,
     VirtualGeometryDimension,
 )
-from ._workflow import ACPWorkflow, get_composite_post_processing_files, get_dpf_unit_system
 
 __version__ = importlib.metadata.version(__name__.replace(".", "-"))
 
@@ -158,7 +163,6 @@ __version__ = importlib.metadata.version(__name__.replace(".", "-"))
 __all__ = [
     "__version__",
     "ACPInstance",
-    "ACPWorkflow",
     "AnalysisPly",
     "ArrowType",
     "BaseElementMaterialHandling",
@@ -200,9 +204,7 @@ __all__ = [
     "FieldDefinition",
     "GeometricalRuleType",
     "GeometricalSelectionRule",
-    "get_composite_post_processing_files",
     "get_directions_plotter",
-    "get_dpf_unit_system",
     "get_model_tree",
     "HDF5CompositeCAEImportMode",
     "HDF5CompositeCAEProjectionMode",
@@ -234,6 +236,7 @@ __all__ = [
     "material_property_sets",
     "Material",
     "mechanical_integration_helpers",
+    "dpf_integration_helpers",
     "MeshImportType",
     "Model",
     "ModelingGroup",

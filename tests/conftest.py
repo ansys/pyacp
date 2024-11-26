@@ -239,13 +239,9 @@ def load_model_from_tempfile(model_data_dir, acp_instance):
     def inner(relative_file_path="minimal_complete_model_no_matml_link.acph5", format="acp:h5"):
         with tempfile.TemporaryDirectory() as tmp_dir:
             source_path = model_data_dir / relative_file_path
-
-            if acp_instance.is_remote:
-                file_path = acp_instance.upload_file(source_path)
-            else:
-                # Copy the file to a temporary directory, so the original file is never
-                # modified. This can happen for example when a geometry reload happens.
-                file_path = shutil.copy(source_path, tmp_dir)
+            # Copy the file to a temporary directory, so the original file is never
+            # modified. This can happen for example when a geometry reload happens.
+            file_path = shutil.copy(source_path, tmp_dir)
 
             yield acp_instance.import_model(path=file_path, format=format)
 
@@ -259,12 +255,9 @@ def load_model_imported_plies_from_tempfile(model_data_dir, acp_instance):
         with tempfile.TemporaryDirectory() as tmp_dir:
             source_path = model_data_dir / relative_file_path
 
-            if acp_instance.is_remote:
-                file_path = acp_instance.upload_file(source_path)
-            else:
-                # Copy the file to a temporary directory, so the original file is never
-                # modified. This can happen for example when a geometry reload happens.
-                file_path = shutil.copy(source_path, tmp_dir)
+            # Copy the file to a temporary directory, so the original file is never
+            # modified. This can happen for example when a geometry reload happens.
+            file_path = shutil.copy(source_path, tmp_dir)
 
             yield acp_instance.import_model(path=file_path, format=format)
 
@@ -275,9 +268,10 @@ def load_model_imported_plies_from_tempfile(model_data_dir, acp_instance):
 def load_cad_geometry(model_data_dir, acp_instance):
     @contextmanager
     def inner(model, relative_file_path="square_and_solid.stp"):
-        cad_file_path = acp_instance.upload_file(model_data_dir / relative_file_path)
+        cad_file_path_local = model_data_dir / relative_file_path
+        cad_file_path_remote = acp_instance.upload_file(cad_file_path_local)
         yield model.create_cad_geometry(
-            external_path=cad_file_path,
+            external_path=cad_file_path_remote,
         )
 
     return inner
@@ -305,23 +299,5 @@ def skip_before_version(acp_instance):
     def inner(version: str):
         if parse_version(acp_instance.server_version) < parse_version(version):
             pytest.skip(f"Test is not supported before version {version}")
-
-    return inner
-
-
-@pytest.fixture
-def tempdir_if_local_acp(acp_instance):
-    """
-    Context manager which provides a temporary directory if the ACP server is local.
-    Otherwise, an empty path is provided.
-    """
-
-    @contextmanager
-    def inner():
-        if acp_instance.is_remote:
-            yield pathlib.PurePosixPath(".")
-        else:
-            with tempfile.TemporaryDirectory() as tmp_dir:
-                yield pathlib.Path(tmp_dir)
 
     return inner

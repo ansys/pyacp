@@ -50,7 +50,6 @@ import pyvista
 # %%
 # Import the PyACP dependencies.
 from ansys.acp.core import (
-    ACPWorkflow,
     BooleanOperationType,
     DimensionType,
     EdgeSetType,
@@ -77,19 +76,9 @@ input_file = get_example_file(ExampleKeys.MINIMAL_FLAT_PLATE, WORKING_DIR)
 acp = launch_acp()
 
 # %%
-# Define the input file and instantiate an ``ACPWorkflow`` instance.
-# The ``ACPWorkflow`` class provides convenience methods that simplify file handling.
-# It automatically creates a model based on the input file.
-# This example's input file contains a flat plate with a single ply.
+# Load the model from the input file.
 
-workflow = ACPWorkflow.from_acph5_file(
-    acp=acp,
-    acph5_file_path=input_file,
-    local_working_directory=WORKING_DIR,
-)
-
-model = workflow.model
-print(workflow.working_directory.path)
+model = acp.import_model(input_file)
 print(model.unit_system)
 
 # %%
@@ -155,8 +144,8 @@ model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges
 # %%
 # Add a CAD geometry to the model.
 triangle_path = get_example_file(ExampleKeys.RULE_GEOMETRY_TRIANGLE, WORKING_DIR)
-triangle = workflow.add_cad_geometry_from_local_file(triangle_path)
-
+triangle = model.create_cad_geometry()
+triangle.refresh(triangle_path)
 
 # Note: It is important to update the model here, because the root_shapes of the
 # cad_geometry are not available until the model is updated.
@@ -196,7 +185,8 @@ plotter.show()
 # %%
 # Add the cutoff CAD geometry to the model.
 cutoff_plane_path = get_example_file(ExampleKeys.CUT_OFF_GEOMETRY, WORKING_DIR)
-cut_off_plane = workflow.add_cad_geometry_from_local_file(cutoff_plane_path)
+cut_off_plane = model.create_cad_geometry()
+cut_off_plane.refresh(cutoff_plane_path)
 
 # Note: It is important to update the model here, because the root_shapes of the
 # cad_geometry are not available until the model is updated.
