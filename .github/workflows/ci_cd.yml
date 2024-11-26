@@ -118,6 +118,39 @@ jobs:
           dev-mode: ${{ github.ref != 'refs/heads/main' }}
           extra-targets: "plotting"
 
+  testing-direct-launch:
+    name: Testing with direct launch mode
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login in Github Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      # Python version is determined by the base image
+      - name: Build docker image
+        run: docker build -t test_runner -f dockerfiles/DirectLaunchTest.Dockerfile .
+      - name: Run tests
+        run: |
+          docker run \
+          --mount type=bind,source="$(pwd)",target=/home/container/pyacp \
+          -u $(id -u):$(id -g) \
+          -e ANSYSLMD_LICENSE_FILE=$ANSYSLMD_LICENSE_FILE \
+          test_runner
+        env:
+          ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
+      - name: "Upload coverage to Codecov"
+        uses: codecov/codecov-action@v5
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          files: coverage.xml
+          flags: 'direct-launch,server-latest'
+
   testing-minimum-deps:
     name: Testing with minimum dependencies
     runs-on: ubuntu-latest
@@ -513,7 +546,7 @@ jobs:
   build:
     name: Build library
     runs-on: ubuntu-latest
-    needs: [code-style, testing, testing-minimum-deps, doc-style, docs, build-wheelhouse, doctest] # TODO: add check-vulnerabilities once we know it works on main
+    needs: [code-style, testing, testing-minimum-deps, testing-direct-launch, doc-style, docs, build-wheelhouse, doctest] # TODO: add check-vulnerabilities once we know it works on main
     timeout-minutes: 30
     steps:
       - name: Build library source and wheel artifacts

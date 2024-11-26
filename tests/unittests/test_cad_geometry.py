@@ -90,7 +90,7 @@ class TestCADGeometry(NoLockedMixin, TreeObjectTester):
     @staticmethod
     def test_refresh_inexistent_raises(tree_object):
         """Test refreshing the geometry from an inexistent file."""
-        with pytest.raises(FileNotFoundError):
+        with pytest.raises((FileNotFoundError, RuntimeError)):
             tree_object.refresh("inexistent_file")
 
     @staticmethod

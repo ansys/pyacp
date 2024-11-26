@@ -238,7 +238,7 @@ def test_refresh_inexistent_path(parent_object, external_path):
     assume(not pathlib.Path(external_path).exists())
     model = parent_object
     imported_solid_model = model.create_imported_solid_model()
-    with pytest.raises((OSError, ValueError)):
+    with pytest.raises((OSError, ValueError, RuntimeError)):
         imported_solid_model.refresh(external_path)
 
 
