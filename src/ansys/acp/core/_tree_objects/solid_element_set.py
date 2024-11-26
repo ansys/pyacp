@@ -31,6 +31,7 @@ from .._utils.array_conversions import to_tuple_from_1D_array
 from .._utils.property_protocols import ReadOnlyProperty
 from ._elemental_or_nodal_data import ElementalData, NodalData
 from ._grpc_helpers.property_helper import grpc_data_property_read_only, mark_grpc_properties
+from ._mesh_data import solid_mesh_property
 from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
@@ -76,3 +77,5 @@ class SolidElementSet(ReadOnlyTreeObject, IdTreeObject):
     element_labels: ReadOnlyProperty[tuple[int, ...]] = grpc_data_property_read_only(
         "properties.element_labels", from_protobuf=to_tuple_from_1D_array
     )
+
+    solid_mesh = solid_mesh_property

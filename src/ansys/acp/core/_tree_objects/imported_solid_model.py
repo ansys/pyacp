@@ -354,8 +354,9 @@ class ImportedSolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObjec
         layup_mapping_object_pb2_grpc.ObjectServiceStub,
     )
 
-    def refresh(self, path: _PATH) -> None:
+    def refresh(self, path: _PATH, format: SolidModelImportFormat) -> None:
         """Re-import the solid model from the external file."""
+        self.format = format
         self.external_path = self._server_wrapper.auto_upload(path)
         with wrap_grpc_errors():
             self._get_stub().Refresh(  # type: ignore

@@ -55,12 +55,7 @@ import pyvista
 
 # %%
 # Import the PyACP dependencies.
-from ansys.acp.core import (
-    ACPWorkflow,
-    ElementTechnology,
-    LayupMappingRosetteSelectionMethod,
-    launch_acp,
-)
+from ansys.acp.core import ElementTechnology, LayupMappingRosetteSelectionMethod, launch_acp
 from ansys.acp.core.extras import ExampleKeys, get_example_file
 
 # sphinx_gallery_thumbnail_number = 3
@@ -80,14 +75,8 @@ input_file = get_example_file(ExampleKeys.IMPORTED_SOLID_MODEL_ACPH5, WORKING_DI
 acp = launch_acp()
 
 # %%
-# Define the input file and instantiate an ``ACPWorkflow`` instance.
-workflow = ACPWorkflow.from_acph5_file(
-    acp=acp,
-    acph5_file_path=input_file,
-    local_working_directory=WORKING_DIR,
-)
-
-model = workflow.model
+# Load the model from an acph5 file
+model = acp.import_model(input_file)
 
 # %%
 # Import external solid model
@@ -100,18 +89,25 @@ local_solid_mesh_file = get_example_file(ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_
 remote_solid_mesh_file = acp.upload_file(local_solid_mesh_file)
 imported_solid_model = model.create_imported_solid_model(
     name="Imported Solid Model",
-    external_path=remote_solid_mesh_file,
-    format="ansys:h5",
 )
 
 # Load the initial mesh and show the raw mesh without any mapping.
-imported_solid_model.refresh()
+imported_solid_model.refresh(path=remote_solid_mesh_file, format="ansys:h5")
 imported_solid_model.import_initial_mesh()
 model.solid_mesh.to_pyvista().plot(show_edges=True)
 
 # %%
-# The solid element sets can be used as target for the mapping.
-print(imported_solid_model.solid_element_sets)
+# The solid element sets are used as target for the mapping later.
+# Here is the full list and one is visualized.
+imported_solid_model.solid_element_sets.keys()
+
+solid_eset_mesh = imported_solid_model.solid_element_sets[
+    "mapping_target bonding skin right"
+].solid_mesh
+plotter = pyvista.Plotter()
+plotter.add_mesh(solid_eset_mesh.to_pyvista())
+plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=False)
+plotter.show()
 
 # %%
 # Add mapping objects
@@ -258,7 +254,7 @@ thickness_data = ap.elemental_data.thickness
 thickness_pyvista_mesh = thickness_data.get_pyvista_mesh(mesh=ap.solid_mesh)  # type: ignore
 plotter = pyvista.Plotter()
 plotter.add_mesh(thickness_pyvista_mesh)
-plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=True)
+plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=False)
 plotter.show()
 
 
