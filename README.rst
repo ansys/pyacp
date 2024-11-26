@@ -78,8 +78,8 @@ Model from an existing file:
 
 .. code-block:: pycon
 
-    >>> remote_filename = acp.upload_file(local_path="<MODEL_PATH>")
-    >>> model = acp.import_model(path=remote_filename)
+    >>> remote_path = acp.upload_file(local_path="<MODEL_PATH>")
+    >>> model = acp.import_model(path=remote_path)
     >>> model.name
     'ACP Model'
 

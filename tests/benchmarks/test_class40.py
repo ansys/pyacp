@@ -36,10 +36,8 @@ def create_class40(pyacp_client, cdb_file):
     """
     Create a composite lay-up for the Class40 model.
     """
-    cdb_file_path = pyacp_client.upload_file(local_path=cdb_file)
-
     model = pyacp_client.import_model(
-        path=cdb_file_path, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
+        path=cdb_file, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA
     )
 
     # Materials

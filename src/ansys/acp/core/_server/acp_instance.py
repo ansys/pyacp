@@ -25,6 +25,7 @@ from __future__ import annotations
 import os
 import pathlib
 import shutil
+import typing
 from typing import Any, Generic, Protocol, TypeVar, cast
 
 import grpc
@@ -33,49 +34,127 @@ from ansys.api.acp.v0 import control_pb2_grpc, model_pb2_grpc
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, Empty, ListRequest
 from ansys.tools.filetransfer import Client as FileTransferClient
 
-from .._tree_objects import Model
 from .._tree_objects._grpc_helpers.exceptions import wrap_grpc_errors
-from .._tree_objects.base import ServerWrapper
 from .._utils.typing_helper import PATH as _PATH
 from .common import ServerProtocol
+
+if typing.TYPE_CHECKING:  # pragma: no cover
+    from .._tree_objects import Model
+
 
 __all__ = ["ACPInstance"]
 
 
-class FiletransferStrategy(Protocol):
+class FileTransferStrategy(Protocol):
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath: ...
 
-    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None: ...
+    def download_file(self, remote_path: _PATH, local_path: _PATH) -> None: ...
+
+    def to_export_path(self, path: _PATH) -> _PATH: ...
 
 
-class LocalFileTransferStrategy(FiletransferStrategy):
+class LocalFileTransferStrategy(FileTransferStrategy):
+    def __init__(self, working_directory: _PATH) -> None:
+        self._working_directory = pathlib.Path(working_directory)
+
     def upload_file(self, local_path: _PATH) -> pathlib.Path:
-        return pathlib.Path(local_path)
+        return self._get_remote_path(local_path)
 
-    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
-        # TODO: improve the distinction between remote filename and remote path
-        remote_filename = pathlib.Path(remote_filename)
+    def download_file(self, remote_path: _PATH, local_path: _PATH) -> None:
+        remote_path_aslocal = self._get_local_path(remote_path)
         local_filename = pathlib.Path(local_path)
-        if local_filename.exists() and local_filename.samefile(remote_filename):
+        if local_filename.exists() and local_filename.samefile(remote_path_aslocal):
             return
-        shutil.copyfile(remote_filename, local_path)
+        shutil.copyfile(remote_path_aslocal, local_path)
+
+    def to_export_path(self, path: _PATH) -> _PATH:
+        return self._get_remote_path(path)
+
+    def _get_remote_path(self, path: _PATH) -> pathlib.Path:
+        """Get the path in the format understood by the server.
+
+        Convert the path from the format understood by the Python client to
+        the format understood by the server.
+        """
+        return self._get_path_impl(path, pathlib.Path().cwd(), self._working_directory)
+
+    def _get_local_path(self, path: _PATH) -> pathlib.Path:
+        """Get the path in the format understood by the Python client.
+
+        Convert the path from the format understood by the server to
+        the format understood by the Python client.
+        """
+        return self._get_path_impl(path, self._working_directory, pathlib.Path().cwd())
+
+    @staticmethod
+    def _get_path_impl(
+        path: _PATH,
+        initial_working_directory: pathlib.Path,
+        target_working_directory: pathlib.Path,
+    ) -> pathlib.Path:
+        path = pathlib.Path(path)
+        if path.is_absolute() or initial_working_directory == target_working_directory:
+            return path
+        path = (initial_working_directory / path).resolve()
+        try:
+            return path.relative_to(target_working_directory)
+        except ValueError:
+            # If the path cannot be made relative (e.g. since it is on a different drive),
+            # return the absolute path.
+            return path
 
 
-class RemoteFileTransferStrategy(FiletransferStrategy):
+class RemoteFileTransferStrategy(FileTransferStrategy):
     _ft_client: FileTransferClient
 
     def __init__(self, channel: grpc.Channel) -> None:
         self._ft_client = FileTransferClient(channel)
 
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
-        remote_filename = os.path.basename(local_path)
-        self._ft_client.upload_file(local_filename=str(local_path), remote_filename=remote_filename)
-        return pathlib.PurePosixPath(remote_filename)
+        remote_path = os.path.basename(local_path)
+        self._ft_client.upload_file(local_filename=str(local_path), remote_filename=remote_path)
+        return pathlib.PurePosixPath(remote_path)
 
-    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
+    def download_file(self, remote_path: _PATH, local_path: _PATH) -> None:
         self._ft_client.download_file(
-            remote_filename=str(remote_filename), local_filename=str(local_path)
+            remote_filename=str(remote_path), local_filename=str(local_path)
         )
+
+    def to_export_path(self, path: _PATH) -> _PATH:
+        # Export to the working directory of the server
+        return pathlib.Path(path).name
+
+
+class FileTransferHandler:
+    def __init__(
+        self, filetransfer_strategy: FileTransferStrategy, auto_transfer_files: bool
+    ) -> None:
+        self._filetransfer_strategy = filetransfer_strategy
+        self._auto_transfer_files = auto_transfer_files
+
+    def upload_file_if_autotransfer(self, local_path: _PATH) -> pathlib.PurePath:
+        if self._auto_transfer_files:
+            return self.upload_file(local_path)
+        return pathlib.Path(local_path)
+
+    def download_file_if_autotransfer(self, remote_path: _PATH, local_path: _PATH) -> None:
+        if self._auto_transfer_files:
+            self.download_file(remote_path, local_path)
+        else:
+            # If auto-transfer is disabled, the export path should be the
+            # same as the local path. Otherwise, this is a bug in our code.
+            assert remote_path == local_path
+
+    def to_export_path(self, path: _PATH) -> _PATH:
+        if self._auto_transfer_files:
+            return self._filetransfer_strategy.to_export_path(path)
+        return path
+
+    def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
+        return self._filetransfer_strategy.upload_file(local_path)
+
+    def download_file(self, remote_path: _PATH, local_path: _PATH) -> None:
+        self._filetransfer_strategy.download_file(remote_path, local_path)
 
 
 ServerT = TypeVar("ServerT", bound=ServerProtocol, covariant=True)
@@ -98,7 +177,7 @@ class ACPInstance(Generic[ServerT]):
     """
 
     _server: ServerT
-    _filetransfer_strategy: FiletransferStrategy
+    _filetransfer_handler: FileTransferHandler
     _channel: grpc.Channel
     _is_remote: bool
 
@@ -107,12 +186,12 @@ class ACPInstance(Generic[ServerT]):
         *,
         server: ServerT,
         channel: grpc.Channel,
-        filetransfer_strategy: FiletransferStrategy,
+        filetransfer_handler: FileTransferHandler,
         is_remote: bool,
     ) -> None:
         self._server = server
         self._channel = channel
-        self._filetransfer_strategy = filetransfer_strategy
+        self._filetransfer_handler = filetransfer_handler
         self._is_remote = is_remote
 
     @property
@@ -172,6 +251,9 @@ class ACPInstance(Generic[ServerT]):
         :
             The loaded ``Model`` instance.
         """
+        from .._tree_objects import Model
+        from .._tree_objects.base import ServerWrapper
+
         server_wrapper = ServerWrapper.from_acp_instance(self)
         if format == "acp:h5":
             if kwargs:
@@ -197,6 +279,8 @@ class ACPInstance(Generic[ServerT]):
         Closes the models which are currently open, without first
         saving them to a file.
         """
+        from .._tree_objects import Model
+
         model_stub = model_pb2_grpc.ObjectServiceStub(self._channel)
         with wrap_grpc_errors():
             for model in model_stub.List(
@@ -214,6 +298,8 @@ class ACPInstance(Generic[ServerT]):
 
         Note that the models are listed in arbitrary order.
         """
+        from .._tree_objects import Model
+
         model_stub = model_pb2_grpc.ObjectServiceStub(self._channel)
         return tuple(
             [
@@ -243,9 +329,9 @@ class ACPInstance(Generic[ServerT]):
         :
             The path of the uploaded file on the server.
         """
-        return self._filetransfer_strategy.upload_file(local_path)
+        return self._filetransfer_handler.upload_file(local_path)
 
-    def download_file(self, remote_filename: _PATH, local_path: _PATH) -> None:
+    def download_file(self, remote_path: _PATH, local_path: _PATH) -> None:
         """Download a file from the server.
 
         .. warning::
@@ -256,12 +342,12 @@ class ACPInstance(Generic[ServerT]):
 
         Parameters
         ----------
-        remote_filename :
+        remote_path :
             The path of the file on the server.
         local_path :
             The path of the file to be downloaded to.
         """
-        self._filetransfer_strategy.download_file(remote_filename, local_path)
+        self._filetransfer_handler.download_file(remote_path, local_path)
 
     def check(self, timeout: float | None = None) -> bool:
         """Check if the ACP instance is running.
