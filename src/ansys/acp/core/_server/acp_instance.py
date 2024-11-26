@@ -61,7 +61,7 @@ class LocalFileTransferStrategy(FileTransferStrategy):
         return self._get_remote_path(local_path)
 
     def download_file(self, remote_path: _PATH, local_path: _PATH) -> None:
-        remote_path_aslocal = self._to_local_path(remote_path)
+        remote_path_aslocal = self._get_local_path(remote_path)
         local_filename = pathlib.Path(local_path)
         if local_filename.exists() and local_filename.samefile(remote_path_aslocal):
             return
@@ -71,25 +71,36 @@ class LocalFileTransferStrategy(FileTransferStrategy):
         return self._get_remote_path(path)
 
     def _get_remote_path(self, path: _PATH) -> pathlib.Path:
-        """Convert the path to be relative to the instance's working directory."""
-        path = pathlib.Path(path)
-        if path.is_absolute() or pathlib.Path().cwd() == self._working_directory:
-            return path
-        path = path.resolve()
-        try:
-            return path.relative_to(self._working_directory)
-        except ValueError:
-            return path
+        """Get the path in the format understood by the server.
 
-    def _to_local_path(self, path: _PATH) -> pathlib.Path:
-        """Convert the path to be relative to the current working directory."""
+        Convert the path from the format understood by the Python client to
+        the format understood by the server.
+        """
+        return self._get_path_impl(path, pathlib.Path().cwd(), self._working_directory)
+
+    def _get_local_path(self, path: _PATH) -> pathlib.Path:
+        """Get the path in the format understood by the Python client.
+
+        Convert the path from the format understood by the server to
+        the format understood by the Python client.
+        """
+        return self._get_path_impl(path, self._working_directory, pathlib.Path().cwd())
+
+    @staticmethod
+    def _get_path_impl(
+        path: _PATH,
+        initial_working_directory: pathlib.Path,
+        target_working_directory: pathlib.Path,
+    ) -> pathlib.Path:
         path = pathlib.Path(path)
-        if path.is_absolute() or pathlib.Path().cwd() == self._working_directory:
+        if path.is_absolute() or initial_working_directory == target_working_directory:
             return path
-        path = (self._working_directory / path).resolve()
+        path = (initial_working_directory / path).resolve()
         try:
-            return path.relative_to(pathlib.Path().cwd())
+            return path.relative_to(target_working_directory)
         except ValueError:
+            # If the path cannot be made relative (e.g. since it is on a different drive),
+            # return the absolute path.
             return path
 
 
