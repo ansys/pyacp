@@ -22,8 +22,11 @@ $Env:PYACP_DOC_SKIP_GALLERY=0
 # whether to skip the API documentation
 $Env:PYACP_DOC_SKIP_API=0
 
-docker-compose -f ./docker-compose/docker-compose-extras.yaml up -d
+$ParentDir = Split-Path -Parent $PSScriptRoot
+$DockerComposeFile = Join-Path -Path $ParentDir -ChildPath "docker-compose/docker-compose-extras.yaml"
+docker compose -f $DockerComposeFile up -d
 
-.\doc\make.bat html
+$MakeFile = Join-Path -Path $PSScriptRoot -ChildPath "make.bat"
+& $MakeFile html
 
-docker-compose -f ./docker-compose/docker-compose-extras.yaml down
+docker compose -f $DockerComposeFile down

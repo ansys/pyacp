@@ -179,8 +179,9 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
         requires_uptodate=True,
     )
 
-    def refresh(self) -> None:
+    def refresh(self, path: PATH) -> None:
         """Reload the geometry from its external source."""
+        self.external_path = self._server_wrapper.auto_upload(path)
         stub = cast(cad_geometry_pb2_grpc.ObjectServiceStub, self._get_stub())
         with wrap_grpc_errors():
             stub.Refresh(

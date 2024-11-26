@@ -41,9 +41,7 @@ def test_unittest(acp_instance, model_data_dir):
     Test basic properties of the model object
     """
     input_file_path = model_data_dir / "ACP-Pre.h5"
-    remote_path = acp_instance.upload_file(input_file_path)
-
-    model = acp_instance.import_model(name="kiteboard", path=remote_path, format="ansys:h5")
+    model = acp_instance.import_model(name="kiteboard", path=input_file_path, format="ansys:h5")
 
     # TODO: re-activate these tests when the respective features are implemented
     # assert model.unit_system.type == "mks"
@@ -78,19 +76,11 @@ def test_unittest(acp_instance, model_data_dir):
         os.makedirs(working_dir)
         # model.solver.working_dir = str(working_dir)
 
-        if acp_instance.is_remote:
-            save_path: str | pathlib.Path = os.path.join(
-                os.path.dirname(remote_path), "test_model_serialization.acph5"
-            )
+        with tempfile.TemporaryDirectory() as local_working_dir:
+            save_path = pathlib.Path(local_working_dir) / "test_model_serialization.acph5"
             model.save(save_path, save_cache=True)
             acp_instance.clear()
             model = acp_instance.import_model(path=save_path)
-        else:
-            with tempfile.TemporaryDirectory() as local_working_dir:
-                save_path = pathlib.Path(local_working_dir) / "test_model_serialization.acph5"
-                model.save(save_path, save_cache=True)
-                acp_instance.clear()
-                model = acp_instance.import_model(path=save_path)
 
         # TODO: re-activate these tests when the respective features are implemented
         # assert model.unit_system.type == "mks"
@@ -128,32 +118,21 @@ def test_export_analysis_model(acp_instance, model_data_dir):
     are not checked.
     """
     input_file_path = model_data_dir / "minimal_model_2.cdb"
-    remote_file_path = acp_instance.upload_file(input_file_path)
-    remote_workdir = remote_file_path.parent
     model = acp_instance.import_model(
-        name="minimal_model", path=remote_file_path, format="ansys:cdb", unit_system="mpa"
+        name="minimal_model", path=input_file_path, format="ansys:cdb", unit_system="mpa"
     )
 
-    if acp_instance.is_remote:
-        out_file_path = remote_workdir / "out_file.cdb"
-        model.export_analysis_model(out_file_path)
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            local_file_path = pathlib.Path(tmp_dir, "out_file.cdb")
-            acp_instance.download_file(out_file_path, local_file_path)
-            assert local_file_path.exists()
-    else:
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            local_file_path = pathlib.Path(tmp_dir) / "out_file.cdb"
-            model.export_analysis_model(local_file_path)
-            assert local_file_path.exists()
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        local_file_path = pathlib.Path(tmp_dir) / "out_file.cdb"
+        model.export_analysis_model(local_file_path)
+        assert local_file_path.exists()
 
 
 def test_string_representation(acp_instance, model_data_dir):
     input_file_path = model_data_dir / "ACP-Pre.h5"
-    remote_file_path = acp_instance.upload_file(input_file_path)
     model = acp_instance.import_model(
         name="minimal_model",
-        path=remote_file_path,
+        path=input_file_path,
         format="ansys:cdb",
         unit_system=UnitSystemType.MKS,
     )
@@ -271,16 +250,11 @@ def test_modeling_ply_export(acp_instance, minimal_complete_model, raises_before
     out_filename = "modeling_ply_export.step"
 
     with tempfile.TemporaryDirectory() as tmp_dir:
-        local_file_path = pathlib.Path(tmp_dir) / out_filename
-        if acp_instance.is_remote:
-            out_file_path = pathlib.Path(out_filename)
-        else:
-            out_file_path = local_file_path
+        out_file_path = pathlib.Path(tmp_dir) / out_filename
 
         with raises_before_version("25.1"):
             minimal_complete_model.export_modeling_ply_geometries(out_file_path)
-            acp_instance.download_file(out_file_path, local_file_path)
-            assert local_file_path.exists()
+            assert out_file_path.exists()
 
 
 def test_parent_access_raises(minimal_complete_model):
@@ -325,25 +299,21 @@ def test_change_unit_system(minimal_complete_model, unit_system, raises_before_v
             )
 
 
-def test_material_export(acp_instance, minimal_complete_model, tempdir_if_local_acp):
+def test_material_export(minimal_complete_model):
     """Check that the 'export_materials' method produces a file."""
-    with tempdir_if_local_acp() as export_dir:
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            export_file_path = pathlib.Path(export_dir) / "material_exported.xml"
-            local_file_path = pathlib.Path(tmp_dir) / "material_exported.xml"
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        export_path = pathlib.Path(tmp_dir) / "material_exported.xml"
+        minimal_complete_model.export_materials(export_path)
 
-            minimal_complete_model.export_materials(export_file_path)
-            acp_instance.download_file(export_file_path, local_file_path)
-
-            assert local_file_path.exists()
-            assert os.stat(local_file_path).st_size > 0
+        assert export_path.exists()
+        assert os.stat(export_path).st_size > 0
 
 
-def test_material_import(minimal_complete_model, tempdir_if_local_acp, raises_before_version):
+def test_material_import(minimal_complete_model, raises_before_version):
     # GIVEN: a model, and a material XML file containing a material which is
     # not present in the model
 
-    with tempdir_if_local_acp() as export_dir:
+    with tempfile.TemporaryDirectory() as export_dir:
         new_mat_id = "New Material"
         export_file_path = pathlib.Path(export_dir) / "material_exported.xml"
         mat = minimal_complete_model.materials["Structural Steel"].clone()
@@ -373,47 +343,40 @@ def test_hdf5_composite_cae_export(
     acp_instance,
     minimal_complete_model,
     raises_before_version,
-    tempdir_if_local_acp,
     layup_representation_3d,
     offset_type,
 ):
     with raises_before_version("25.1"):
-        with tempdir_if_local_acp() as export_dir:
-            with tempfile.TemporaryDirectory() as tmp_dir:
-                export_file = export_dir / "model_export.h5"
-                local_file = pathlib.Path(tmp_dir) / "model_export.h5"
-                minimal_complete_model.export_hdf5_composite_cae(
-                    export_file,
-                    layup_representation_3d=layup_representation_3d,
-                    offset_type=offset_type,
-                )
-                acp_instance.download_file(export_file, local_file)
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            export_file = pathlib.Path(tmp_dir) / "model_export.h5"
+            minimal_complete_model.export_hdf5_composite_cae(
+                export_file,
+                layup_representation_3d=layup_representation_3d,
+                offset_type=offset_type,
+            )
 
-                assert local_file.exists()
-                assert os.stat(local_file).st_size > 0
+            assert export_file.exists()
+            assert os.stat(export_file).st_size > 0
 
 
 def test_hdf5_composite_cae_export_with_scope(
-    acp_instance, minimal_complete_model, raises_before_version, tempdir_if_local_acp
+    acp_instance, minimal_complete_model, raises_before_version
 ):
     with raises_before_version("25.1"):
-        with tempdir_if_local_acp() as export_dir:
-            with tempfile.TemporaryDirectory() as tmp_dir:
-                export_file = export_dir / "model_export.h5"
-                local_file = pathlib.Path(tmp_dir) / "model_export.h5"
-                minimal_complete_model.export_hdf5_composite_cae(
-                    export_file,
-                    all_elements=False,
-                    element_sets=minimal_complete_model.element_sets.values(),
-                    all_plies=False,
-                    plies=minimal_complete_model.modeling_groups[
-                        "ModelingGroup.1"
-                    ].modeling_plies.values(),
-                )
-                acp_instance.download_file(export_file, local_file)
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            export_file = pathlib.Path(tmp_dir) / "model_export.h5"
+            minimal_complete_model.export_hdf5_composite_cae(
+                export_file,
+                all_elements=False,
+                element_sets=minimal_complete_model.element_sets.values(),
+                all_plies=False,
+                plies=minimal_complete_model.modeling_groups[
+                    "ModelingGroup.1"
+                ].modeling_plies.values(),
+            )
 
-                assert local_file.exists()
-                assert os.stat(local_file).st_size > 0
+            assert export_file.exists()
+            assert os.stat(export_file).st_size > 0
 
 
 @pytest.mark.parametrize(
@@ -427,13 +390,12 @@ def test_hdf5_composite_cae_export_with_scope(
 def test_hdf5_composite_cae_export_import(
     minimal_complete_model,
     raises_before_version,
-    tempdir_if_local_acp,
     import_mode,
     projection_mode,
 ):
     with raises_before_version("25.1"):
-        with tempdir_if_local_acp() as export_dir:
-            export_file = export_dir / "model_export.h5"
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            export_file = pathlib.Path(tmp_dir) / "model_export.h5"
             minimal_complete_model.export_hdf5_composite_cae(export_file)
             minimal_complete_model.import_hdf5_composite_cae(
                 export_file,

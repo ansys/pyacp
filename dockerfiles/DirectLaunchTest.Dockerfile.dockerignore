@@ -1,0 +1,6 @@
+.github
+dev_utils
+doc
+docker-compose
+dockerfiles
+__pycache__
