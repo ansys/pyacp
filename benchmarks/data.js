@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1732539301017,
+  "lastUpdate": 1732626527604,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -20908,6 +20908,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00014485650421675785",
             "extra": "mean: 38.320959962967905 msec\nrounds: 27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bcc80d3e587a7cd042aaf9df4863d78788f46198",
+          "message": "Implement auto-transfer mode, remove ACPWorkflow (#694)\n\nAdd the `auto_transfer_files` parameter (default `True`) to `launch_acp`. When enabled, all paths [1] in the PyACP API are relative to the current Python working directory:\r\n- with a local instance, the paths are automatically translated to be relative to the server working directory if needed\r\n- with a remote instance, files are automatically up- and downloaded, and the paths are translated as needed\r\n\r\nThe `refresh` methods are changed to always require a file path, pointing to the file where the CADGeometry or Imported Solid Model should be refreshed _from_.\r\n\r\nRemove the `ACPWorkflow` class, since its use is mostly superseded by the auto-transfer mode. Having two different APIs for importing / exporting turned out to be difficult to document, and thus probably also confusing to use.\r\n\r\nRework the examples and documentation to match these changes.\r\n\r\nOther changes:\r\n- Rename `remote_filename` to `remote_path` in the download API, since it can contain a directory component in the general case\r\n- Remove the `get_composite_post_processing_files` helper, since it was not general enough: in the PyMechanical workflow, the materials file comes from Mechanical. When making it more generic, it does not provide enough benefit over directly using the PyDPF Composites API.\r\n- Move `get_dpf_unit_system` to a `dpf_integration_helpers` submodule.\r\n\r\n[1] with the exception of `external_path` attributes, which are always relative to the server working directory.\r\n\r\nCloses #693.",
+          "timestamp": "2024-11-26T13:01:38Z",
+          "tree_id": "7c880f3df0c932d2b0dc4e175b6202e6c56a7fa9",
+          "url": "https://github.com/ansys/pyacp/commit/bcc80d3e587a7cd042aaf9df4863d78788f46198"
+        },
+        "date": 1732626498133,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 7.88416160866182,
+            "unit": "iter/sec",
+            "range": "stddev: 0.002898321421304714",
+            "extra": "mean: 126.8365679999969 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.6813146600539204,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0022588843645431783",
+            "extra": "mean: 372.95137899999037 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.38812913363518586,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.576462093000032 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04094899642867432,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.42062290199999 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.1674460363103254,
+            "unit": "iter/sec",
+            "range": "stddev: 0.005221707422015366",
+            "extra": "mean: 461.3725016666687 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.2865541668895784,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.4897416109999995 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.029638470415642135,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 33.739932796000005 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1426.2719700480905,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00017981605748862325",
+            "extra": "mean: 701.1285512161347 usec\nrounds: 1562"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 401.7560083409016,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006967615883737424",
+            "extra": "mean: 2.4890729179872553 msec\nrounds: 378"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 47.91546038678435,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013985454822907771",
+            "extra": "mean: 20.87009061225282 msec\nrounds: 49"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.9740363212736725,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000026177072665851316",
+            "extra": "mean: 201.0439682000424 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 1014.2639802026207,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013032625512692607",
+            "extra": "mean: 985.9366195773105 usec\nrounds: 1083"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 233.66195509903278,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006753372819514606",
+            "extra": "mean: 4.279686864625312 msec\nrounds: 229"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.960070993640734,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00017404221717773878",
+            "extra": "mean: 38.52069588888888 msec\nrounds: 27"
           }
         ]
       }
