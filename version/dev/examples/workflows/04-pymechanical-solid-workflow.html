@@ -463,6 +463,7 @@
 <li class="toctree-l1"><a class="reference internal" href="03-pymechanical-shell-workflow.html">PyMechanical shell workflow</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">PyMechanical solid workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05-pymechanical-to-cdb-workflow.html">PyMechanical to CDB shell workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-cdb-to-pymechanical-workflow.html">CDB to PyMechanical shell workflow</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../use_cases/01-optimizing-ply-angles.html">Optimizing ply angles</a></li>
@@ -756,7 +757,7 @@ files to <code class="docutils literal notranslate"><span class="pre">output_pat
 <section id="import-mesh-materials-and-plies-into-mechanical">
 <h2>Import mesh, materials and plies into Mechanical<a class="headerlink" href="#import-mesh-materials-and-plies-into-mechanical" title="Link to this heading">#</a></h2>
 <p>Import geometry, mesh, and named selections into Mechanical</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pyacp</span><span class="o">.</span><span class="n">mechanical_integration_helpers</span><span class="o">.</span><span class="n">import_acp_solid_mesh</span><span class="p">(</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pyacp</span><span class="o">.</span><span class="n">mechanical_integration_helpers</span><span class="o">.</span><span class="n">import_acp_mesh_from_cdb</span><span class="p">(</span>
     <span class="n">mechanical</span><span class="o">=</span><span class="n">mechanical_solid_model</span><span class="p">,</span> <span class="n">cdb_path</span><span class="o">=</span><span class="n">working_dir_path</span> <span class="o">/</span> <span class="n">solid_model_cdb_file</span>
 <span class="p">)</span>
 </pre></div>

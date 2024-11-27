@@ -262,7 +262,7 @@ solid_model.export(working_dir_path / solid_model_composite_definitions_h5, form
 #
 # Import geometry, mesh, and named selections into Mechanical
 
-pyacp.mechanical_integration_helpers.import_acp_solid_mesh(
+pyacp.mechanical_integration_helpers.import_acp_mesh_from_cdb(
     mechanical=mechanical_solid_model, cdb_path=working_dir_path / solid_model_cdb_file
 )
 
