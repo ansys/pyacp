@@ -111,15 +111,19 @@ from ansys.acp.core import __version__
 
 SKIP_GALLERY = os.environ.get("PYACP_DOC_SKIP_GALLERY", "0").lower() in ("1", "true")
 SKIP_API = os.environ.get("PYACP_DOC_SKIP_API", "0").lower() in ("1", "true")
+SOURCE_DIR = pathlib.Path(__file__).parent
 
 # nested example index files are directly included in the parent index file
 exclude_patterns = ["examples/*/index.rst"]
 if SKIP_API:
-    # Exclude all API documentation except the index
-    # The 'api/!(index).rst' syntax does not appear to be supported by Sphinx
-    for file_path in pathlib.Path("api").glob("**/*.rst"):
-        if str(file_path) != "api/index.rst":
-            exclude_patterns.append(str(file_path))
+    # Exclude all API documentation except the top-level index file:
+    # Exclude files on the top level explicitly, except 'index.rst'
+    for file_path in (SOURCE_DIR / "api").iterdir():
+        if not file_path.name == "index.rst":
+            pattern = str(file_path.relative_to(SOURCE_DIR).as_posix())
+            exclude_patterns.append(pattern)
+    # Exclude all files in nested directories
+    exclude_patterns.append("api/**/*.rst")
 
 
 jinja_contexts = {
@@ -201,7 +205,7 @@ intersphinx_mapping = {
     # "pandas": ("https://pandas.pydata.org/pandas-docs/stable", None),
     "grpc": ("https://grpc.github.io/grpc/python/", None),
     "protobuf": ("https://googleapis.dev/python/protobuf/latest/", None),
-    "pyvista": ("https://docs.pyvista.org/version/stable", None),
+    "pyvista": ("https://docs.pyvista.org/", None),
     "ansys-dpf-core": ("https://dpf.docs.pyansys.com/version/stable/", None),
     "ansys-dpf-composites": ("https://composites.dpf.docs.pyansys.com/version/stable/", None),
     "ansys-mechanical-core": ("https://mechanical.docs.pyansys.com/version/stable/", None),
