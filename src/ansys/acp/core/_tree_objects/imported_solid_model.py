@@ -358,7 +358,13 @@ class ImportedSolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObjec
         """
         Re-import the solid model from the external file.
 
-        The ``format`` parameter is only used to switch it. Otherwise, the current value is used.
+        Parameters
+        ----------
+        path :
+            Path of the new input file.
+        format :
+            Switch format of the input file. Optional, uses the current format of the
+            imported solid model if not specified.
         """
         if format is not None:
             self.format = format

@@ -114,7 +114,7 @@ plotter.show()
 # and show the updated solid model.
 solid_esets = imported_solid_model.solid_element_sets
 
-_ = imported_solid_model.create_layup_mapping_object(
+imported_solid_model.create_layup_mapping_object(
     name="sandwich skin top",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[model.element_sets["els_sandwich_skin_top"]],
@@ -127,7 +127,7 @@ model.solid_mesh.to_pyvista().plot(show_edges=True)
 
 # %%
 # Add other mapping objects
-_ = imported_solid_model.create_layup_mapping_object(
+imported_solid_model.create_layup_mapping_object(
     name="sandwich skin bottom",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[model.element_sets["els_sandwich_skin_bottom"]],
@@ -137,7 +137,7 @@ _ = imported_solid_model.create_layup_mapping_object(
     ],
 )
 
-_ = imported_solid_model.create_layup_mapping_object(
+imported_solid_model.create_layup_mapping_object(
     name="stringer",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[model.element_sets["els_stringer_skin_left"]],
@@ -152,7 +152,7 @@ _ = imported_solid_model.create_layup_mapping_object(
     ],
 )
 
-_ = imported_solid_model.create_layup_mapping_object(
+imported_solid_model.create_layup_mapping_object(
     name="bonding skin",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[
@@ -173,7 +173,7 @@ model.solid_mesh.to_pyvista().plot(show_edges=True)
 # %%
 # The mapping can also be done for specific plies
 # as shown for the core materials.
-_ = imported_solid_model.create_layup_mapping_object(
+imported_solid_model.create_layup_mapping_object(
     name="foam",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[
@@ -189,7 +189,7 @@ _ = imported_solid_model.create_layup_mapping_object(
     rosette_selection_method=LayupMappingRosetteSelectionMethod.MINIMUM_DISTANCE,
 )
 
-_ = imported_solid_model.create_layup_mapping_object(
+imported_solid_model.create_layup_mapping_object(
     name="honeycomb",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[
@@ -211,7 +211,7 @@ model.solid_mesh.to_pyvista().plot(show_edges=True)
 # Add filler mapping objects where the solid mesh is "filled"
 # with a single material. No plies from the layup are used here.
 
-_ = imported_solid_model.create_layup_mapping_object(
+imported_solid_model.create_layup_mapping_object(
     name="resin",
     element_technology=ElementTechnology.LAYERED_ELEMENT,
     shell_element_sets=[],
