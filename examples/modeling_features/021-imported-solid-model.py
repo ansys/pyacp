@@ -82,17 +82,13 @@ model = acp.import_model(input_file)
 # Import external solid model
 # ---------------------------
 #
-# Get the solid mesh file and create an ImportedSolidModel and
-# load the initial mesh.
-
-local_solid_mesh_file = get_example_file(ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH, WORKING_DIR)
-remote_solid_mesh_file = acp.upload_file(local_solid_mesh_file)
+# Get the solid mesh file and create an ImportedSolidModel,
+# load the initial mesh and show the raw mesh without any mapping.
+solid_mesh_file = get_example_file(ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH, WORKING_DIR)
 imported_solid_model = model.create_imported_solid_model(
     name="Imported Solid Model",
 )
-
-# Load the initial mesh and show the raw mesh without any mapping.
-imported_solid_model.refresh(path=remote_solid_mesh_file, format="ansys:h5")
+imported_solid_model.refresh(path=solid_mesh_file, format="ansys:h5")
 imported_solid_model.import_initial_mesh()
 model.solid_mesh.to_pyvista().plot(show_edges=True)
 
