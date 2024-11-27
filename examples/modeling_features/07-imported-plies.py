@@ -34,14 +34,15 @@ is always defined on the initial loaded shell mesh.
 Therefore, an imported ply can only be used in combination with an
 :class:`.ImportedSolidModel`.
 
-These steps are shown in this example:
+This examples shows hot to:
 
 - Load an initial mesh
 - Add a :class:`.Material` and :class:`.Fabric`
-- Import geometries which define the surface of the :class:`.ImportedModelingPly`
-- Add the :class:`.ImportedModelingPly`s
+- Import geometries which will be used to define the surface of the :class:`.ImportedModelingPly`
+- Add two imported modeling plies
 - Create an :class:`.ImportedSolidModel`
 - Map the imported plies to the solid model
+- Visualized the mapped plies.
 """
 
 # %%
@@ -52,18 +53,16 @@ These steps are shown in this example:
 import pathlib
 import tempfile
 import os
-
-import numpy as np
 import pyvista
 
 # %%
 # Import the PyACP dependencies.
-from ansys.acp.core import DimensionType, ThicknessType, launch_acp, ImportedPlyOffsetType, CADGeometry, \
+from ansys.acp.core import launch_acp, ImportedPlyOffsetType, CADGeometry, \
     VirtualGeometry, PlyType
 from ansys.acp.core.extras import ExampleKeys, get_example_file
-from ansys.acp.core.material_property_sets import ConstantEngineeringConstants
+from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, ConstantDensity
 
-# sphinx_gallery_thumbnail_number = 2
+# sphinx_gallery_thumbnail_number = 3
 
 
 # %%
@@ -81,27 +80,47 @@ input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
 acp = launch_acp()
 
 # %%
-# Import a model from the input file
+# Create a model by loading a shell mesh
 model = acp.import_model(path=input_file, format="ansys:dat")
 
 # %%
-# Create a material and a fabric with 1mm thickness.
+# Add a material and a fabric with 1mm thickness.
 # The fabric is used for the imported modeling ply.
 engineering_constants_ud = ConstantEngineeringConstants.from_orthotropic_constants(
     E1=5e10, E2=1e10, E3=1e10, nu12=0.28, nu13=0.28, nu23=0.3, G12=5e9, G23=4e9, G31=4e9
 )
+density_ud = ConstantDensity(rho=2700)
 
 ud_material = model.create_material(
     name="E-Glass UD",
     ply_type=PlyType.REGULAR,
     engineering_constants=engineering_constants_ud,
+    density=density_ud,
+)
+
+engineering_resin = ConstantEngineeringConstants.from_isotropic_constants(
+    E=5e9, nu=0.3
+)
+density_resin = ConstantDensity(rho=1200)
+
+void_material = model.create_material(
+    name="Void material",
+    ply_type=PlyType.ISOTROPIC,
+    engineering_constants=engineering_resin,
+    density=density_resin,
+)
+filler_material = model.create_material(
+    name="Filler material",
+    ply_type=PlyType.ISOTROPIC,
+    engineering_constants=engineering_resin,
+    density=density_resin,
 )
 
 fabric = model.create_fabric(name="E-Glass Fabric", material=ud_material, thickness=0.001)
 
 
 # %%
-# Import two cad surfaces for the definition of the imported modeling plies.
+# Import two cad surfaces to define the surface of the imported modeling plies.
 def create_virtual_geometry_from_file(
         example_key: ExampleKeys,
 ) -> tuple[CADGeometry, VirtualGeometry]:
@@ -144,11 +163,11 @@ model.update()
 # Imported plies cannot be visualized directly but the cad geometries are
 # shown here instead.
 def plotter_with_all_geometries(cad_geometries):
-    colors = ["green", "red", "blue", "yellow"]
+    colors = ["green", "yellow", "blue", "red"]
     plotter = pyvista.Plotter()
     for index, cad in enumerate(cad_geometries):
         geom_mesh = cad.visualization_mesh.to_pyvista()
-        plotter.add_mesh(geom_mesh, color=colors[index], opacity=0.2)
+        plotter.add_mesh(geom_mesh, color=colors[index], opacity=0.1)
         edges = geom_mesh.extract_feature_edges()
         plotter.add_mesh(edges, color="white", line_width=4)
         plotter.add_mesh(edges, color="black", line_width=2)
@@ -174,32 +193,43 @@ plotter.show()
 
 # %%
 # Add a mapping object to link the imported plies with the solid model.
+# In this example, all imported plies are mapped in one go.
+# The remaining elemental volume and elements which do not intersect
+# with the imported plies are filled with a void and filler material,
+# respectively.
 imported_solid_model.create_layup_mapping_object(
     name="Map imported plies",
-    use_imported_plies=True,
-    select_all_plies=True,
+    use_imported_plies=True,  # enable imported plies
+    select_all_plies=True,  # select all plies
     entire_solid_mesh=True,
     scale_ply_thicknesses=False,
-    void_material=model.materials["1"],
+    void_material=void_material,
     delete_lost_elements=False,
-    filler_material=model.materials["1"],
+    filler_material=filler_material,
     rosettes=[model.rosettes["12"]],
 )
-
 model.update()
 
 # %%
-# Show the imported ply geometries and mapped plies
-# on the solid model.
+# Show the imported ply geometries and mapped plies on the solid model.
 # Note that the analysis plies are not yet directly accessible via
-# the API of the imported solid model.
+# the API of the imported solid model. Also, elemental data such as
+# thicknesses are not yet implemented for imported plies.
 plotter = plotter_with_all_geometries([triangle_surf_cad, top_surf_cad])
 for imported_ply in [imported_ply_triangle, imported_ply_top]:
     for pp in imported_ply.imported_production_plies.values():
         for ap in pp.imported_analysis_plies.values():
-            plotter.add_mesh(ap.solid_mesh.to_pyvista(), show_edges=True, opacity=0.5)
+            plotter.add_mesh(ap.solid_mesh.to_pyvista(), show_edges=True, opacity=1)
 plotter.add_mesh(mesh=imported_solid_model.solid_mesh.to_pyvista(), show_edges=False, opacity=0.2)
 plotter.show()
+
+# %%
+# Show the elemental mass for the entire solid model
+"""
+!!! This does not work yet.
+assert model.elemental_data.mass is not None
+model.elemental_data.mass.get_pyvista_mesh(mesh=model.solid_mesh).plot(show_edges=True)
+"""
 
 # %%
 # The imported solid model could be now passed to Mechanical or MAPDL as shown
