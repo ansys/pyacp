@@ -70,6 +70,12 @@ optimization of composite structures.
 
             Information on how to contribute to PyACP.
 
+        .. grid-item-card:: :octicon:`mortar-board` ACP documentation
+            :link: https://ansyshelp.ansys.com/public/?returnurl=/Views/Secured/prod_page.html?pn=Composites&pid=CompositePrepPost
+            :columns: 12
+
+            Describes the modeling features and techniques of Ansys Composite PrepPost.
+
 
 .. _limitations:
 
