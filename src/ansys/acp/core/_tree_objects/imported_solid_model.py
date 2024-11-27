@@ -35,7 +35,7 @@ from ansys.api.acp.v0 import (
     solid_element_set_pb2_grpc,
     solid_model_pb2,
 )
-
+from ._mesh_data import solid_mesh_property
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .._utils.typing_helper import PATH as _PATH
 from ._elemental_or_nodal_data import (
@@ -380,3 +380,5 @@ class ImportedSolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObjec
             self._get_stub().ImportInitialMesh(  # type: ignore
                 imported_solid_model_pb2.ImportInitialMeshRequest(resource_path=self._resource_path)
             )
+
+    solid_mesh = solid_mesh_property

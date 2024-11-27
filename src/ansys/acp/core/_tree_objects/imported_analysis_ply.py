@@ -34,6 +34,7 @@ from ._grpc_helpers.property_helper import (
 )
 from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
+from ._mesh_data import solid_mesh_property
 from .object_registry import register
 
 __all__ = [
@@ -76,3 +77,5 @@ class ImportedAnalysisPly(ReadOnlyTreeObject, IdTreeObject):
     active_in_post_mode: ReadOnlyProperty[bool] = grpc_data_property_read_only(
         "properties.active_in_post_mode"
     )
+
+    solid_mesh = solid_mesh_property

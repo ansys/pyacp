@@ -58,7 +58,7 @@ import pyvista
 from ansys.acp.core import ElementTechnology, LayupMappingRosetteSelectionMethod, launch_acp
 from ansys.acp.core.extras import ExampleKeys, get_example_file
 
-# sphinx_gallery_thumbnail_number = 3
+# sphinx_gallery_thumbnail_number = 4
 
 
 # %%

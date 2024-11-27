@@ -208,7 +208,7 @@ direction_plotter = get_directions_plotter(
     length_factor=10.0,
     culling_factor=10,
 )
-direction_plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=True)
+direction_plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=False)
 direction_plotter.show()
 
 # %%
@@ -218,5 +218,5 @@ thickness_data = ap.elemental_data.thickness
 thickness_pyvista_mesh = thickness_data.get_pyvista_mesh(mesh=ap.solid_mesh)  # type: ignore
 plotter = pyvista.Plotter()
 plotter.add_mesh(thickness_pyvista_mesh)
-plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=True)
+plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=False)
 plotter.show()
