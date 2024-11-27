@@ -615,12 +615,25 @@
 <h1>refresh<a class="headerlink" href="#refresh" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="ansys.acp.core.ImportedSolidModel.refresh">
-<span class="sig-prename descclassname"><span class="pre">ImportedSolidModel.</span></span><span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ImportedSolidModel.refresh" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">ImportedSolidModel.</span></span><span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ImportedSolidModel.refresh" title="Link to this definition">#</a></dt>
 <dd><p>Re-import the solid model from the external file.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.13)"><em>PathLike</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – Path of the new input file.</p></li>
+<li><p><strong>format</strong> (<a class="reference internal" href="ansys.acp.core.SolidModelImportFormat.html#ansys.acp.core.SolidModelImportFormat" title="ansys.acp.core._tree_objects.imported_solid_model.SolidModelImportFormat"><em>SolidModelImportFormat</em></a><em> | </em><em>None</em>) – Switch format of the input file. Optional, uses the current format of the
+imported solid model if not specified.</p></li>
+</ul>
+</dd>
 </dl>
 </dd></dl>
 
+<section id="examples-using-importedsolidmodel-refresh">
+<h2>Examples using ImportedSolidModel.refresh<a class="headerlink" href="#examples-using-importedsolidmodel-refresh" title="Link to this heading">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example guides you through the definition of an .ImportedSolidModel which allows to map the layup onto an external solid mesh. In contrast to the .SolidModel, the raw solid mesh of .ImportedSolidModel is loaded from an external source, such as a CDB file. In this example, the layup is applied onto a t-joint which consists of different parts such as shell, stringer, and bonding skins. The example only shows the PyACP part of the setup. For a complete composite analysis, see pymapdl_workflow_example."><img alt="" src="../../_images/sphx_glr_021-imported-solid-model_thumb.png" />
+<p><a class="reference internal" href="../../examples/modeling_features/021-imported-solid-model.html#sphx-glr-examples-modeling-features-021-imported-solid-model-py"><span class="std std-ref">Imported Solid model</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Imported Solid model</div>
+</div></div></section>
 </section>
 
 
@@ -671,6 +684,7 @@
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ansys.acp.core.ImportedSolidModel.refresh"><code class="docutils literal notranslate"><span class="pre">ImportedSolidModel.refresh()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-using-importedsolidmodel-refresh">Examples using ImportedSolidModel.refresh</a></li>
 </ul>
   </nav></div>
 

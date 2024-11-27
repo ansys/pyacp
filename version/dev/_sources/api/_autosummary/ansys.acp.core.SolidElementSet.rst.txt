@@ -31,6 +31,7 @@ SolidElementSet
       SolidElementSet.locked
       SolidElementSet.name
       SolidElementSet.parent
+      SolidElementSet.solid_mesh
       SolidElementSet.status
    
    

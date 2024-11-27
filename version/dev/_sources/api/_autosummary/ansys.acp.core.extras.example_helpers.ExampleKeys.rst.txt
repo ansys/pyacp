@@ -31,6 +31,8 @@ ExampleKeys
       ExampleKeys.CLASS40_AGDB
       ExampleKeys.CLASS40_CDB
       ExampleKeys.MATERIALS_XML
+      ExampleKeys.IMPORTED_SOLID_MODEL_ACPH5
+      ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH
       ExampleKeys.SNAP_TO_GEOMETRY
       ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL
    
