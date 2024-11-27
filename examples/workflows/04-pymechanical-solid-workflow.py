@@ -180,7 +180,7 @@ pyacp.mechanical_integration_helpers.export_mesh_for_acp(
 # - Solid model composite definitions HDF5 file
 # - Solid model CDB file
 
-matml_file = "materials.xml"  # TODO: load an example materials XML file instead of defining the materials in ACP
+matml_file = "materials.xml"
 solid_model_cdb_file = "SolidModel.cdb"
 solid_model_composite_definitions_h5 = "SolidModel.h5"
 
