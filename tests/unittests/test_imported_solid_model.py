@@ -250,11 +250,21 @@ def test_import_initial_mesh(acp_instance, parent_object):
     model.update()
 
     with tempfile.TemporaryDirectory() as tmp_dir:
-        out_path = pathlib.Path(tmp_dir) / f"out_file.h5"
-        solid_model.export(path=out_path, format=pyacp.SolidModelExportFormat.ANSYS_H5)
+        out_path_h5 = pathlib.Path(tmp_dir) / f"out_file.h5"
+        solid_model.export(path=out_path_h5, format=pyacp.SolidModelExportFormat.ANSYS_H5)
+        out_path_cdb = pathlib.Path(tmp_dir) / f"out_file.cdb"
+        solid_model.export(path=out_path_cdb, format=pyacp.SolidModelExportFormat.ANSYS_CDB)
 
         imported_solid_model = model.create_imported_solid_model(
-            external_path=acp_instance.upload_file(out_path),
+            external_path=acp_instance.upload_file(out_path_h5),
             format=pyacp.SolidModelImportFormat.ANSYS_H5,
         )
+        imported_solid_model.import_initial_mesh()
+
+        # refresh from external source with the same format
+        imported_solid_model.refresh(out_path_h5)
+        imported_solid_model.import_initial_mesh()
+
+        # refresh from external source where the format is different
+        imported_solid_model.refresh(out_path_cdb, format=pyacp.SolidModelImportFormat.ANSYS_CDB)
         imported_solid_model.import_initial_mesh()
