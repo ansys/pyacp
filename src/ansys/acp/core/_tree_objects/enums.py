@@ -56,7 +56,7 @@ __all__ = [
     "DimensionType",
     "DrapingMaterialModel",
     "DrapingType",
-    "DropoffMaterialHandling",
+    "DropOffMaterialHandling",
     "DropOffType",
     "EdgeSetType",
     "ElementalDataType",
@@ -125,11 +125,11 @@ __all__ = [
 )
 
 (
-    DropoffMaterialHandling,
+    DropOffMaterialHandling,
     drop_off_material_type_to_pb,
     drop_off_material_type_from_pb,
 ) = wrap_to_string_enum(
-    "DropoffMaterialHandling",
+    "DropOffMaterialHandling",
     drop_off_material_pb2.MaterialHandlingType,
     module=__name__,
     doc="Options for how drop-off material is selected.",

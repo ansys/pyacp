@@ -16,7 +16,7 @@ Enumeration data types
     DimensionType
     DrapingMaterialModel
     DrapingType
-    DropoffMaterialHandling
+    DropOffMaterialHandling
     DropOffType
     EdgeSetType
     ElementalDataType

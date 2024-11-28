@@ -23,7 +23,7 @@
 from packaging.version import parse as parse_version
 import pytest
 
-from ansys.acp.core import CutOffMaterialHandling, DrapingMaterialModel, DropoffMaterialHandling
+from ansys.acp.core import CutOffMaterialHandling, DrapingMaterialModel, DropOffMaterialHandling
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
@@ -51,7 +51,7 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
                 "thickness": 0.0,
                 "area_price": 0.0,
                 "ignore_for_postprocessing": False,
-                "drop_off_material_handling": DropoffMaterialHandling.GLOBAL,
+                "drop_off_material_handling": DropOffMaterialHandling.GLOBAL,
                 "cut_off_material_handling": CutOffMaterialHandling.COMPUTED,
                 "draping_material_model": DrapingMaterialModel.WOVEN,
                 "draping_ud_coefficient": 0.0,
@@ -63,7 +63,7 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
                 "thickness": 0.0,
                 "area_price": 0.0,
                 "ignore_for_postprocessing": False,
-                "drop_off_material_handling": DropoffMaterialHandling.GLOBAL,
+                "drop_off_material_handling": DropOffMaterialHandling.GLOBAL,
                 "drop_off_material": None,
                 "cut_off_material_handling": CutOffMaterialHandling.COMPUTED,
                 "cut_off_material": None,
@@ -88,7 +88,7 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
                     ("thickness", 1e-6),
                     ("area_price", 5.98),
                     ("ignore_for_postprocessing", True),
-                    ("drop_off_material_handling", DropoffMaterialHandling.GLOBAL),
+                    ("drop_off_material_handling", DropOffMaterialHandling.GLOBAL),
                     ("cut_off_material_handling", CutOffMaterialHandling.COMPUTED),
                     ("draping_material_model", DrapingMaterialModel.UD),
                     ("draping_ud_coefficient", 0.55),
@@ -110,7 +110,7 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
                     ("thickness", 1e-6),
                     ("area_price", 5.98),
                     ("ignore_for_postprocessing", True),
-                    ("drop_off_material_handling", DropoffMaterialHandling.CUSTOM),
+                    ("drop_off_material_handling", DropOffMaterialHandling.CUSTOM),
                     ("drop_off_material", drop_off_material),
                     ("cut_off_material_handling", CutOffMaterialHandling.CUSTOM),
                     ("cut_off_material", cut_off_material),
@@ -132,7 +132,7 @@ class TestFabric(NoLockedMixin, TreeObjectTester):
 def test_solid_model_materials(parent_object, tree_object, acp_instance, material_type):
     """Check that solid model materials are supported since 25.1."""
     tree_object.cut_off_material_handling = CutOffMaterialHandling.CUSTOM
-    tree_object.drop_off_material_handling = DropoffMaterialHandling.CUSTOM
+    tree_object.drop_off_material_handling = DropOffMaterialHandling.CUSTOM
     if parse_version(acp_instance.server_version) < parse_version("25.1"):
         with pytest.raises(RuntimeError) as exc:
             setattr(tree_object, material_type, parent_object.create_material(name="Material"))

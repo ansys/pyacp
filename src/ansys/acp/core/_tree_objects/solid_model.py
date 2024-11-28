@@ -118,14 +118,14 @@ class DropOffSettings(TreeObjectAttributeWithCache):
     drop_off_type :
         Determines whether the ply's drop-off is inside or outside the boundary
         of the ply.
-    disable_dropoffs_on_bottom :
+    disable_drop_offs_on_bottom :
         Whether to remove drop-offs on the bottom surface of the laminate.
-    dropoff_disabled_on_bottom_sets :
+    drop_off_disabled_on_bottom_sets :
         Element sets or oriented selection sets on which drop-offs at the bottom
         surface are disabled.
-    disable_dropoffs_on_top :
+    disable_drop_offs_on_top :
         Whether to remove drop-offs on the top surface of the laminate.
-    dropoff_disabled_on_top_sets :
+    drop_off_disabled_on_top_sets :
         Element sets or oriented selection sets on which drop-offs at the top
         surface are disabled.
     connect_butt_joined_plies :
@@ -139,10 +139,10 @@ class DropOffSettings(TreeObjectAttributeWithCache):
         self,
         *,
         drop_off_type: DropOffType = DropOffType.INSIDE_PLY,
-        disable_dropoffs_on_bottom: bool = False,
-        dropoff_disabled_on_bottom_sets: Iterable[ElementSet | OrientedSelectionSet] = (),
-        disable_dropoffs_on_top: bool = False,
-        dropoff_disabled_on_top_sets: Iterable[ElementSet | OrientedSelectionSet] = (),
+        disable_drop_offs_on_bottom: bool = False,
+        drop_off_disabled_on_bottom_sets: Iterable[ElementSet | OrientedSelectionSet] = (),
+        disable_drop_offs_on_top: bool = False,
+        drop_off_disabled_on_top_sets: Iterable[ElementSet | OrientedSelectionSet] = (),
         connect_butt_joined_plies: bool = True,
         _parent_object: SolidModel | None = None,
         _pb_object: Any | None = None,
@@ -160,10 +160,10 @@ class DropOffSettings(TreeObjectAttributeWithCache):
         # values.
         if _parent_object is None and _pb_object is None:
             self.drop_off_type = drop_off_type
-            self.disable_dropoffs_on_bottom = disable_dropoffs_on_bottom
-            self.dropoff_disabled_on_bottom_sets = dropoff_disabled_on_bottom_sets
-            self.disable_dropoffs_on_top = disable_dropoffs_on_top
-            self.dropoff_disabled_on_top_sets = dropoff_disabled_on_top_sets
+            self.disable_drop_offs_on_bottom = disable_drop_offs_on_bottom
+            self.drop_off_disabled_on_bottom_sets = drop_off_disabled_on_bottom_sets
+            self.disable_drop_offs_on_top = disable_drop_offs_on_top
+            self.drop_off_disabled_on_top_sets = drop_off_disabled_on_top_sets
             self.connect_butt_joined_plies = connect_butt_joined_plies
 
     @classmethod
@@ -187,17 +187,17 @@ class DropOffSettings(TreeObjectAttributeWithCache):
         to_protobuf=drop_off_type_to_pb,
     )
 
-    disable_dropoffs_on_bottom: ReadWriteProperty[bool, bool] = grpc_data_property(
+    disable_drop_offs_on_bottom: ReadWriteProperty[bool, bool] = grpc_data_property(
         "disable_dropoffs_on_bottom"
     )
-    dropoff_disabled_on_bottom_sets = define_polymorphic_linked_object_list(
+    drop_off_disabled_on_bottom_sets = define_polymorphic_linked_object_list(
         "dropoff_disabled_on_bottom_sets", allowed_types=(ElementSet, OrientedSelectionSet)
     )
 
-    disable_dropoffs_on_top: ReadWriteProperty[bool, bool] = grpc_data_property(
+    disable_drop_offs_on_top: ReadWriteProperty[bool, bool] = grpc_data_property(
         "disable_dropoffs_on_top"
     )
-    dropoff_disabled_on_top_sets = define_polymorphic_linked_object_list(
+    drop_off_disabled_on_top_sets = define_polymorphic_linked_object_list(
         "dropoff_disabled_on_top_sets", allowed_types=(ElementSet, OrientedSelectionSet)
     )
 
