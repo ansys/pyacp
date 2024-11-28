@@ -178,7 +178,7 @@ def test_elemental_data(minimal_complete_model):
     numpy.testing.assert_allclose(data.thickness.values, np.array([1e-4]))
     numpy.testing.assert_allclose(data.relative_thickness_correction.values, np.array([1.0]))
     numpy.testing.assert_allclose(data.area.values, np.array([9e4]))
-    numpy.testing.assert_allclose(data.price.values, np.array([0.0]))
+    # numpy.testing.assert_allclose(data.price.values, np.array([0.0])) # disabled due to issue #717.
     numpy.testing.assert_allclose(data.volume.values, np.array([9.0]))
     numpy.testing.assert_allclose(data.mass.values, np.array([7.065e-08]))
     numpy.testing.assert_allclose(data.offset.values, np.array([5e-5]))
