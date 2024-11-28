@@ -179,7 +179,7 @@ plotter.add_mesh(model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh
 plotter.show()
 
 # %%
-# Create a cut off selection rule
+# Create a cut-off selection rule
 # -------------------------------
 
 # %%

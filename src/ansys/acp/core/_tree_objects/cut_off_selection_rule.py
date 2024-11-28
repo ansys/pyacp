@@ -71,25 +71,25 @@ __all__ = [
 
 @dataclasses.dataclass
 class CutOffSelectionRuleElementalData(ElementalData):
-    """Represents elemental data for a Cut Off Selection Rule."""
+    """Represents elemental data for a Cut-Off Selection Rule."""
 
     normal: VectorData | None = None
 
 
 @dataclasses.dataclass
 class CutOffSelectionRuleNodalData(NodalData):
-    """Represents nodal data for a Cut Off Selection Rule."""
+    """Represents nodal data for a Cut-Off Selection Rule."""
 
 
 @mark_grpc_properties
 @register
 class CutOffSelectionRule(CreatableTreeObject, IdTreeObject):
-    """Instantiate a Cut Off Selection Rule.
+    """Instantiate a Cut-Off Selection Rule.
 
     Parameters
     ----------
     name :
-        Name of the Cut Off Selection Rule.
+        Name of the Cut-Off Selection Rule.
     cut_off_rule_type :
         Determines if the cut-off is defined by a geometry or by a tapering edge.
     cut_off_geometry :
