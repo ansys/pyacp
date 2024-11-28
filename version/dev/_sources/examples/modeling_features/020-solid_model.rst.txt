@@ -430,16 +430,11 @@ such as directions or thicknesses as shown here.
 
 Get the analysis ply of interest
 
-.. GENERATED FROM PYTHON SOURCE LINES 196-203
+.. GENERATED FROM PYTHON SOURCE LINES 196-198
 
 .. code-block:: Python
 
-    ap = (
-        model.modeling_groups["modeling_group"]
-        .modeling_plies["ply"]
-        .production_plies["ProductionPly.2"]
-        .analysis_plies["P2L1__ply"]
-    )
+    ap = solid_model.analysis_plies["P2L1__ply"]
 
 
 
@@ -448,12 +443,12 @@ Get the analysis ply of interest
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 204-206
+.. GENERATED FROM PYTHON SOURCE LINES 199-201
 
 Plot fiber directions
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. GENERATED FROM PYTHON SOURCE LINES 206-219
+.. GENERATED FROM PYTHON SOURCE LINES 201-214
 
 .. code-block:: Python
 
@@ -504,12 +499,12 @@ Plot fiber directions
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 220-222
+.. GENERATED FROM PYTHON SOURCE LINES 215-217
 
 Plot thicknesses
 ~~~~~~~~~~~~~~~~
 
-.. GENERATED FROM PYTHON SOURCE LINES 222-229
+.. GENERATED FROM PYTHON SOURCE LINES 217-224
 
 .. code-block:: Python
 
@@ -557,7 +552,7 @@ Plot thicknesses
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 7.476 seconds)
+   **Total running time of the script:** (0 minutes 5.647 seconds)
 
 
 .. _sphx_glr_download_examples_modeling_features_020-solid_model.py:

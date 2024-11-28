@@ -51,6 +51,7 @@ SolidModel
       :toctree:
    
       SolidModel.active
+      SolidModel.analysis_plies
       SolidModel.cut_off_geometries
       SolidModel.cut_off_material
       SolidModel.delete_bad_elements

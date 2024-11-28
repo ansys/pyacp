@@ -748,12 +748,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <p>The plotting capabilities also support the visualization of ply-wise results,
 such as directions or thicknesses as shown here.</p>
 <p>Get the analysis ply of interest</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ap</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;modeling_group&quot;</span><span class="p">]</span>
-    <span class="o">.</span><span class="n">modeling_plies</span><span class="p">[</span><span class="s2">&quot;ply&quot;</span><span class="p">]</span>
-    <span class="o">.</span><span class="n">production_plies</span><span class="p">[</span><span class="s2">&quot;ProductionPly.2&quot;</span><span class="p">]</span>
-    <span class="o">.</span><span class="n">analysis_plies</span><span class="p">[</span><span class="s2">&quot;P2L1__ply&quot;</span><span class="p">]</span>
-<span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ap</span> <span class="o">=</span> <span class="n">solid_model</span><span class="o">.</span><span class="n">analysis_plies</span><span class="p">[</span><span class="s2">&quot;P2L1__ply&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 <section id="plot-fiber-directions">
@@ -808,7 +803,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/modeling_features/images/sphx_glr_020-solid_model_006.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 7.476 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.647 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-modeling-features-020-solid-model-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/fee40c689d044c23fee77c0d16856c81/020-solid_model.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">020-solid_model.ipynb</span></code></a></p>
