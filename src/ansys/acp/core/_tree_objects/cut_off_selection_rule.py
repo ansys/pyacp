@@ -78,7 +78,7 @@ class CutOffSelectionRuleElementalData(ElementalData):
 
 @dataclasses.dataclass
 class CutOffSelectionRuleNodalData(NodalData):
-    """Represents nodal data for a CutOff Selection Rule."""
+    """Represents nodal data for a Cut Off Selection Rule."""
 
 
 @mark_grpc_properties
