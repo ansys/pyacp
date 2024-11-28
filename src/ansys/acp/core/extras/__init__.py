@@ -21,9 +21,16 @@
 # SOFTWARE.
 """Extras of the Ansys Composites PrepPost module."""
 
-from ansys.acp.core.extras.example_helpers import ExampleKeys, get_example_file
+from ansys.acp.core.extras.example_helpers import (
+    FLAT_PLATE_SHELL_CAMERA,
+    FLAT_PLATE_SOLID_CAMERA,
+    ExampleKeys,
+    get_example_file,
+)
 
 __all__ = [
     "ExampleKeys",
     "get_example_file",
+    "FLAT_PLATE_SHELL_CAMERA",
+    "FLAT_PLATE_SOLID_CAMERA",
 ]

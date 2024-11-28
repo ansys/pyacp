@@ -57,6 +57,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
+from ._mesh_data import solid_mesh_property
 from ._solid_model_export import SolidModelExportMixin
 from .base import (
     CreatableTreeObject,
@@ -380,3 +381,5 @@ class ImportedSolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObjec
             self._get_stub().ImportInitialMesh(  # type: ignore
                 imported_solid_model_pb2.ImportInitialMeshRequest(resource_path=self._resource_path)
             )
+
+    solid_mesh = solid_mesh_property
