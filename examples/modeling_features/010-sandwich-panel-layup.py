@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 """
-.. _sandwich_panel:
+.. _sandwich_panel_example:
 
 Sandwich panel
 ==============
