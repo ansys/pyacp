@@ -67,6 +67,8 @@ class ExampleKeys(Enum):
     CLASS40_AGDB = auto()
     CLASS40_CDB = auto()
     MATERIALS_XML = auto()
+    IMPORTED_SOLID_MODEL_ACPH5 = auto()
+    IMPORTED_SOLID_MODEL_SOLID_MESH = auto()
     SNAP_TO_GEOMETRY = auto()
     CUT_OFF_GEOMETRY_SOLID_MODEL = auto()
 
@@ -102,6 +104,12 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
     ExampleKeys.CLASS40_AGDB: _ExampleLocation(directory="class40", filename="class40.agdb"),
     ExampleKeys.CLASS40_CDB: _ExampleLocation(directory="class40", filename="class40.cdb"),
     ExampleKeys.MATERIALS_XML: _ExampleLocation(directory="materials", filename="materials.engd"),
+    ExampleKeys.IMPORTED_SOLID_MODEL_ACPH5: _ExampleLocation(
+        directory="imported_solid_model", filename="t-joint-ACP-Pre.acph5"
+    ),
+    ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH: _ExampleLocation(
+        directory="imported_solid_model", filename="t-joint.solid.h5"
+    ),
     ExampleKeys.SNAP_TO_GEOMETRY: _ExampleLocation(
         directory="geometries", filename="snap_to_geometry.stp"
     ),

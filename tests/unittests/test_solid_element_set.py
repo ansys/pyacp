@@ -89,3 +89,6 @@ class TestSolidElementSet(TreeObjectTesterReadOnly):
             ref_values = properties[solid_element_set.id]
             for prop, value in ref_values.items():
                 assert getattr(solid_element_set, prop) == value
+
+            assert solid_element_set.solid_mesh is not None
+            assert solid_element_set.solid_mesh.element_labels == (2,)
