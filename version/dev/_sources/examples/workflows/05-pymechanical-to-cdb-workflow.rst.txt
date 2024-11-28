@@ -116,7 +116,7 @@ Generate the mesh in PyMechanical
 Load the geometry into Mechanical, generate the mesh, and define the
 load case.
 
-.. GENERATED FROM PYTHON SOURCE LINES 98-167
+.. GENERATED FROM PYTHON SOURCE LINES 98-169
 
 .. code-block:: Python
 
@@ -147,6 +147,8 @@ load case.
                 Ansys.Mechanical.DataModel.Enums.DataModelObjectCategory.Body, True
             ):
                 body.Thickness = Quantity(1e-6, "m")
+
+            Model.Mesh.GenerateMesh()
 
             # Define named selections at the front and back edges
             front_edge = Model.AddNamedSelection()
@@ -190,14 +192,14 @@ load case.
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 168-172
+.. GENERATED FROM PYTHON SOURCE LINES 170-174
 
 Set up the ACP model
 --------------------
 
 Setup basic ACP lay-up based on the CDB file.
 
-.. GENERATED FROM PYTHON SOURCE LINES 172-231
+.. GENERATED FROM PYTHON SOURCE LINES 174-233
 
 .. code-block:: Python
 
@@ -261,12 +263,12 @@ Setup basic ACP lay-up based on the CDB file.
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 232-234
+.. GENERATED FROM PYTHON SOURCE LINES 234-236
 
 Update and Save the ACP model
 -----------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 234-245
+.. GENERATED FROM PYTHON SOURCE LINES 236-247
 
 .. code-block:: Python
 
@@ -282,34 +284,34 @@ Update and Save the ACP model
     model.export_materials(working_dir_path / matml_filename)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 246-248
+.. GENERATED FROM PYTHON SOURCE LINES 248-250
 
 Solve with PyMAPDL
 ------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 248-250
+.. GENERATED FROM PYTHON SOURCE LINES 250-252
 
 .. code-block:: Python
 
 
     mapdl.clear()
 
-.. GENERATED FROM PYTHON SOURCE LINES 251-252
+.. GENERATED FROM PYTHON SOURCE LINES 253-254
 
 Load the CDB file into PyMAPDL.
 
-.. GENERATED FROM PYTHON SOURCE LINES 252-254
+.. GENERATED FROM PYTHON SOURCE LINES 254-256
 
 .. code-block:: Python
 
     mapdl.input(str(working_dir_path / cdb_filename_out))
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 255-256
+.. GENERATED FROM PYTHON SOURCE LINES 257-258
 
 Solve the model.
 
-.. GENERATED FROM PYTHON SOURCE LINES 256-260
+.. GENERATED FROM PYTHON SOURCE LINES 258-262
 
 .. code-block:: Python
 
@@ -318,11 +320,11 @@ Solve the model.
     mapdl.solve()
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 261-262
+.. GENERATED FROM PYTHON SOURCE LINES 263-264
 
 Show the displacements in postprocessing.
 
-.. GENERATED FROM PYTHON SOURCE LINES 262-266
+.. GENERATED FROM PYTHON SOURCE LINES 264-268
 
 .. code-block:: Python
 
@@ -331,11 +333,11 @@ Show the displacements in postprocessing.
     mapdl.post_processing.plot_nodal_displacement(component="NORM")
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 267-268
+.. GENERATED FROM PYTHON SOURCE LINES 269-270
 
 Download the RST file for further postprocessing.
 
-.. GENERATED FROM PYTHON SOURCE LINES 268-272
+.. GENERATED FROM PYTHON SOURCE LINES 270-274
 
 .. code-block:: Python
 
@@ -344,14 +346,14 @@ Download the RST file for further postprocessing.
     mapdl.download(rstfile_name, working_dir_path)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 273-277
+.. GENERATED FROM PYTHON SOURCE LINES 275-279
 
 Postprocessing with PyDPF Composites
 ------------------------------------
 
 Specify the combined failure criterion.
 
-.. GENERATED FROM PYTHON SOURCE LINES 277-284
+.. GENERATED FROM PYTHON SOURCE LINES 279-286
 
 .. code-block:: Python
 
@@ -363,11 +365,11 @@ Specify the combined failure criterion.
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 285-286
+.. GENERATED FROM PYTHON SOURCE LINES 287-288
 
 Create the composite model and configure its input.
 
-.. GENERATED FROM PYTHON SOURCE LINES 286-300
+.. GENERATED FROM PYTHON SOURCE LINES 288-302
 
 .. code-block:: Python
 
@@ -386,24 +388,29 @@ Create the composite model and configure its input.
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 301-302
+.. GENERATED FROM PYTHON SOURCE LINES 303-304
 
 Evaluate the failure criteria.
 
-.. GENERATED FROM PYTHON SOURCE LINES 302-304
+.. GENERATED FROM PYTHON SOURCE LINES 304-306
 
 .. code-block:: Python
 
     output_all_elements = composite_model.evaluate_failure_criteria(cfc)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 305-306
+.. GENERATED FROM PYTHON SOURCE LINES 307-312
 
 Query and plot the results.
 
-.. GENERATED FROM PYTHON SOURCE LINES 306-310
+Note that the maximum IRF is different when compared to :ref:`pymechanical_shell_example`
+because ACP sets the ``ERESX,NO`` option in the CDB file. This option disables interpolation
+of the results from the integration point to the nodes.
+
+.. GENERATED FROM PYTHON SOURCE LINES 312-317
 
 .. code-block:: Python
+
 
     irf_field = output_all_elements.get_field(
         {"failure_label": pydpf_composites.constants.FailureOutput.FAILURE_VALUE}

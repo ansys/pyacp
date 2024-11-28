@@ -91,6 +91,7 @@ input_file = example_helpers.get_example_file(
 
 
 model = acp.import_model(path=input_file, format="ansys:cdb")
+model.unit_system
 
 # %%
 # Visualize the loaded mesh.
@@ -130,7 +131,7 @@ ud_material = model.create_material(
     strain_limits=strain_limits,
 )
 
-fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.1)
+fabric = model.create_fabric(name="UD", material=ud_material, thickness=1e-4)
 
 
 # %%
@@ -259,7 +260,7 @@ mechanical.run_python_script(
 
         force = analysis.AddForce()
         force.DefineBy = LoadDefineBy.Components
-        force.XComponent.Output.SetDiscreteValue(0, Quantity(1e6, "N"))
+        force.XComponent.Output.SetDiscreteValue(0, Quantity(100, "N"))
         force.Location = front_edge
 
         analysis.Solution.Solve(True)

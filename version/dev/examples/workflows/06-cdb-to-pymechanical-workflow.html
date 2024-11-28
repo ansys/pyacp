@@ -588,6 +588,7 @@ to this directory.</p>
 <h2>Set up the ACP model<a class="headerlink" href="#set-up-the-acp-model" title="Link to this heading">#</a></h2>
 <p>Setup basic ACP lay-up based on the CDB file.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">input_file</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">unit_system</span>
 </pre></div>
 </div>
 <p>Visualize the loaded mesh.</p>
@@ -626,7 +627,7 @@ used to postprocess the simulation.</p>
     <span class="n">strain_limits</span><span class="o">=</span><span class="n">strain_limits</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">fabric</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;UD&quot;</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">ud_material</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">fabric</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;UD&quot;</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">ud_material</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Define a rosette and oriented selection set. Plot the orientation.</p>
@@ -744,7 +745,7 @@ information, see <a class="reference internal" href="../../user_guide/howto/view
 
 <span class="sd">        force = analysis.AddForce()</span>
 <span class="sd">        force.DefineBy = LoadDefineBy.Components</span>
-<span class="sd">        force.XComponent.Output.SetDiscreteValue(0, Quantity(1e6, &quot;N&quot;))</span>
+<span class="sd">        force.XComponent.Output.SetDiscreteValue(0, Quantity(100, &quot;N&quot;))</span>
 <span class="sd">        force.Location = front_edge</span>
 
 <span class="sd">        analysis.Solution.Solve(True)</span>

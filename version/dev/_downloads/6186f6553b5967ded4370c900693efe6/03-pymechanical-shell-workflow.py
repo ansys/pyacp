@@ -105,6 +105,7 @@ mechanical.run_python_script(
     # This script runs in the Mechanical Python environment, which uses IronPython 2.7.
     textwrap.dedent(
         f"""\
+        # Import the geometry
         geometry_import = Model.GeometryImportGroup.AddGeometryImport()
 
         import_format = Ansys.Mechanical.DataModel.Enums.GeometryImportPreference.Format.Automatic
@@ -119,6 +120,8 @@ mechanical.run_python_script(
             import_preferences
         )
 
+        # The thickness will be overridden by the ACP model, but is required
+        # for the model to be valid.
         for body in Model.Geometry.GetChildren(
             Ansys.Mechanical.DataModel.Enums.DataModelObjectCategory.Body, True
         ):
@@ -138,7 +141,7 @@ pyacp.mechanical_integration_helpers.export_mesh_for_acp(mechanical=mechanical, 
 # definition file to output_path.
 
 composite_definitions_h5 = "ACPCompositeDefinitions.h5"
-matml_file = "materials.xml"  # TODO: load an example materials XML file instead of defining the materials in ACP
+matml_file = "materials.xml"
 
 
 model = acp.import_model(mesh_path, format="ansys:h5")

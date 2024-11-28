@@ -213,7 +213,7 @@ files to ``output_path``:
 .. code-block:: Python
 
 
-    matml_file = "materials.xml"  # TODO: load an example materials XML file instead of defining the materials in ACP
+    matml_file = "materials.xml"
     solid_model_cdb_file = "SolidModel.cdb"
     solid_model_composite_definitions_h5 = "SolidModel.h5"
 

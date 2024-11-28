@@ -620,6 +620,8 @@ load case.</p>
 <span class="s2">        ):</span>
 <span class="s2">            body.Thickness = Quantity(1e-6, &quot;m&quot;)</span>
 
+<span class="s2">        Model.Mesh.GenerateMesh()</span>
+
 <span class="s2">        # Define named selections at the front and back edges</span>
 <span class="s2">        front_edge = Model.AddNamedSelection()</span>
 <span class="s2">        front_edge.Name = &quot;Front Edge&quot;</span>
@@ -799,6 +801,9 @@ load case.</p>
 </pre></div>
 </div>
 <p>Query and plot the results.</p>
+<p>Note that the maximum IRF is different when compared to <a class="reference internal" href="03-pymechanical-shell-workflow.html#pymechanical-shell-example"><span class="std std-ref">PyMechanical shell workflow</span></a>
+because ACP sets the <code class="docutils literal notranslate"><span class="pre">ERESX,NO</span></code> option in the CDB file. This option disables interpolation
+of the results from the integration point to the nodes.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">irf_field</span> <span class="o">=</span> <span class="n">output_all_elements</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span>
     <span class="p">{</span><span class="s2">&quot;failure_label&quot;</span><span class="p">:</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">FailureOutput</span><span class="o">.</span><span class="n">FAILURE_VALUE</span><span class="p">}</span>
 <span class="p">)</span>

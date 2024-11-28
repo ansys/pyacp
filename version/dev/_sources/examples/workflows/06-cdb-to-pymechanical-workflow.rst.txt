@@ -109,20 +109,21 @@ Set up the ACP model
 
 Setup basic ACP lay-up based on the CDB file.
 
-.. GENERATED FROM PYTHON SOURCE LINES 91-95
+.. GENERATED FROM PYTHON SOURCE LINES 91-96
 
 .. code-block:: Python
 
 
 
     model = acp.import_model(path=input_file, format="ansys:cdb")
+    model.unit_system
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 96-97
+.. GENERATED FROM PYTHON SOURCE LINES 97-98
 
 Visualize the loaded mesh.
 
-.. GENERATED FROM PYTHON SOURCE LINES 97-101
+.. GENERATED FROM PYTHON SOURCE LINES 98-102
 
 .. code-block:: Python
 
@@ -131,7 +132,7 @@ Visualize the loaded mesh.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 102-107
+.. GENERATED FROM PYTHON SOURCE LINES 103-108
 
 Define the composite lay-up
 ---------------------------
@@ -139,7 +140,7 @@ Define the composite lay-up
 Create an orthotropic material and fabric including strain limits, which are later
 used to postprocess the simulation.
 
-.. GENERATED FROM PYTHON SOURCE LINES 107-136
+.. GENERATED FROM PYTHON SOURCE LINES 108-137
 
 .. code-block:: Python
 
@@ -169,15 +170,15 @@ used to postprocess the simulation.
         strain_limits=strain_limits,
     )
 
-    fabric = model.create_fabric(name="UD", material=ud_material, thickness=0.1)
+    fabric = model.create_fabric(name="UD", material=ud_material, thickness=1e-4)
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 137-138
+.. GENERATED FROM PYTHON SOURCE LINES 138-139
 
 Define a rosette and oriented selection set. Plot the orientation.
 
-.. GENERATED FROM PYTHON SOURCE LINES 138-154
+.. GENERATED FROM PYTHON SOURCE LINES 139-155
 
 .. code-block:: Python
 
@@ -198,11 +199,11 @@ Define a rosette and oriented selection set. Plot the orientation.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 155-156
+.. GENERATED FROM PYTHON SOURCE LINES 156-157
 
 Create various plies with different angles and add them to a modeling group.
 
-.. GENERATED FROM PYTHON SOURCE LINES 156-169
+.. GENERATED FROM PYTHON SOURCE LINES 157-170
 
 .. code-block:: Python
 
@@ -220,11 +221,11 @@ Create various plies with different angles and add them to a modeling group.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 170-171
+.. GENERATED FROM PYTHON SOURCE LINES 171-172
 
 Show the fiber directions of a specific ply.
 
-.. GENERATED FROM PYTHON SOURCE LINES 171-184
+.. GENERATED FROM PYTHON SOURCE LINES 172-185
 
 .. code-block:: Python
 
@@ -242,25 +243,25 @@ Show the fiber directions of a specific ply.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 185-188
+.. GENERATED FROM PYTHON SOURCE LINES 186-189
 
 For a quick overview, print the model tree. Note that
 the model can also be opened in the ACP GUI. For more
 information, see :ref:`view_the_model_in_the_acp_gui`.
 
-.. GENERATED FROM PYTHON SOURCE LINES 188-190
+.. GENERATED FROM PYTHON SOURCE LINES 189-191
 
 .. code-block:: Python
 
     pyacp.print_model(model)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 191-193
+.. GENERATED FROM PYTHON SOURCE LINES 192-194
 
 Save the ACP model
 ------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 193-203
+.. GENERATED FROM PYTHON SOURCE LINES 194-204
 
 .. code-block:: Python
 
@@ -275,14 +276,14 @@ Save the ACP model
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 204-208
+.. GENERATED FROM PYTHON SOURCE LINES 205-209
 
 Import mesh, materials and plies into Mechanical
 ------------------------------------------------
 
 Import geometry, mesh, and named selections into Mechanical
 
-.. GENERATED FROM PYTHON SOURCE LINES 208-215
+.. GENERATED FROM PYTHON SOURCE LINES 209-216
 
 .. code-block:: Python
 
@@ -294,11 +295,11 @@ Import geometry, mesh, and named selections into Mechanical
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 216-217
+.. GENERATED FROM PYTHON SOURCE LINES 217-218
 
 Import materials into Mechanical
 
-.. GENERATED FROM PYTHON SOURCE LINES 217-220
+.. GENERATED FROM PYTHON SOURCE LINES 218-221
 
 .. code-block:: Python
 
@@ -306,11 +307,11 @@ Import materials into Mechanical
     mechanical.run_python_script(f"Model.Materials.Import({str(working_dir_path / matml_filename)!r})")
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 221-222
+.. GENERATED FROM PYTHON SOURCE LINES 222-223
 
 Import plies into Mechanical
 
-.. GENERATED FROM PYTHON SOURCE LINES 222-227
+.. GENERATED FROM PYTHON SOURCE LINES 223-228
 
 .. code-block:: Python
 
@@ -320,13 +321,13 @@ Import plies into Mechanical
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 228-231
+.. GENERATED FROM PYTHON SOURCE LINES 229-232
 
 Set boundary condition and solve
 ---------------------------------
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 231-274
+.. GENERATED FROM PYTHON SOURCE LINES 232-275
 
 .. code-block:: Python
 
@@ -361,7 +362,7 @@ Set boundary condition and solve
 
             force = analysis.AddForce()
             force.DefineBy = LoadDefineBy.Components
-            force.XComponent.Output.SetDiscreteValue(0, Quantity(1e6, "N"))
+            force.XComponent.Output.SetDiscreteValue(0, Quantity(100, "N"))
             force.Location = front_edge
 
             analysis.Solution.Solve(True)
@@ -374,14 +375,14 @@ Set boundary condition and solve
     matml_out = [filename for filename in mechanical.list_files() if filename.endswith("MatML.xml")][0]
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 275-279
+.. GENERATED FROM PYTHON SOURCE LINES 276-280
 
 Postprocess results
 -------------------
 
 Evaluate the failure criteria using the PyDPF Composites.
 
-.. GENERATED FROM PYTHON SOURCE LINES 279-309
+.. GENERATED FROM PYTHON SOURCE LINES 280-310
 
 .. code-block:: Python
 

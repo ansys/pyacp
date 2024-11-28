@@ -121,7 +121,7 @@ Generate the mesh in PyMechanical
 Load the geometry into Mechanical, generate the mesh, and export it to the
 appropriate transfer format for ACP.
 
-.. GENERATED FROM PYTHON SOURCE LINES 102-133
+.. GENERATED FROM PYTHON SOURCE LINES 102-136
 
 .. code-block:: Python
 
@@ -131,6 +131,7 @@ appropriate transfer format for ACP.
         # This script runs in the Mechanical Python environment, which uses IronPython 2.7.
         textwrap.dedent(
             f"""\
+            # Import the geometry
             geometry_import = Model.GeometryImportGroup.AddGeometryImport()
 
             import_format = Ansys.Mechanical.DataModel.Enums.GeometryImportPreference.Format.Automatic
@@ -145,6 +146,8 @@ appropriate transfer format for ACP.
                 import_preferences
             )
 
+            # The thickness will be overridden by the ACP model, but is required
+            # for the model to be valid.
             for body in Model.Geometry.GetChildren(
                 Ansys.Mechanical.DataModel.Enums.DataModelObjectCategory.Body, True
             ):
@@ -157,7 +160,7 @@ appropriate transfer format for ACP.
     pyacp.mechanical_integration_helpers.export_mesh_for_acp(mechanical=mechanical, path=mesh_path)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 134-139
+.. GENERATED FROM PYTHON SOURCE LINES 137-142
 
 Set up the ACP model
 --------------------
@@ -165,13 +168,13 @@ Set up the ACP model
 Setup basic ACP lay-up based on the mesh in ``mesh_path``, and export material and composite
 definition file to output_path.
 
-.. GENERATED FROM PYTHON SOURCE LINES 139-201
+.. GENERATED FROM PYTHON SOURCE LINES 142-204
 
 .. code-block:: Python
 
 
     composite_definitions_h5 = "ACPCompositeDefinitions.h5"
-    matml_file = "materials.xml"  # TODO: load an example materials XML file instead of defining the materials in ACP
+    matml_file = "materials.xml"
 
 
     model = acp.import_model(mesh_path, format="ansys:h5")
@@ -232,12 +235,12 @@ definition file to output_path.
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 202-204
+.. GENERATED FROM PYTHON SOURCE LINES 205-207
 
 Update and Save the ACP model
 -----------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 204-210
+.. GENERATED FROM PYTHON SOURCE LINES 207-213
 
 .. code-block:: Python
 
@@ -248,14 +251,14 @@ Update and Save the ACP model
     model.export_materials(working_dir_path / matml_file)
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 211-215
+.. GENERATED FROM PYTHON SOURCE LINES 214-218
 
 Import materials and plies into Mechanical
 ------------------------------------------
 
 Import materials into Mechanical
 
-.. GENERATED FROM PYTHON SOURCE LINES 215-218
+.. GENERATED FROM PYTHON SOURCE LINES 218-221
 
 .. code-block:: Python
 
@@ -263,11 +266,11 @@ Import materials into Mechanical
     mechanical.run_python_script(f"Model.Materials.Import({str(working_dir_path / matml_file)!r})")
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 219-220
+.. GENERATED FROM PYTHON SOURCE LINES 222-223
 
 Import plies into Mechanical
 
-.. GENERATED FROM PYTHON SOURCE LINES 220-226
+.. GENERATED FROM PYTHON SOURCE LINES 223-229
 
 .. code-block:: Python
 
@@ -278,13 +281,13 @@ Import plies into Mechanical
     )
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 227-230
+.. GENERATED FROM PYTHON SOURCE LINES 230-233
 
 Set boundary condition and solve
 ---------------------------------
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 230-274
+.. GENERATED FROM PYTHON SOURCE LINES 233-277
 
 .. code-block:: Python
 
@@ -333,14 +336,14 @@ Set boundary condition and solve
     matml_out = [filename for filename in mechanical.list_files() if filename.endswith("MatML.xml")][0]
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 275-279
+.. GENERATED FROM PYTHON SOURCE LINES 278-282
 
 Postprocess results
 -------------------
 
 Evaluate the failure criteria using the PyDPF Composites.
 
-.. GENERATED FROM PYTHON SOURCE LINES 279-309
+.. GENERATED FROM PYTHON SOURCE LINES 282-312
 
 .. code-block:: Python
 

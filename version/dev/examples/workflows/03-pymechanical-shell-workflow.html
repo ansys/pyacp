@@ -605,6 +605,7 @@ appropriate transfer format for ACP.</p>
     <span class="c1"># This script runs in the Mechanical Python environment, which uses IronPython 2.7.</span>
     <a href="https://docs.python.org/3/library/textwrap.html#textwrap.dedent" title="textwrap.dedent" class="sphx-glr-backref-module-textwrap sphx-glr-backref-type-py-function"><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span></a><span class="p">(</span>
         <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">        # Import the geometry</span>
 <span class="s2">        geometry_import = Model.GeometryImportGroup.AddGeometryImport()</span>
 
 <span class="s2">        import_format = Ansys.Mechanical.DataModel.Enums.GeometryImportPreference.Format.Automatic</span>
@@ -619,6 +620,8 @@ appropriate transfer format for ACP.</p>
 <span class="s2">            import_preferences</span>
 <span class="s2">        )</span>
 
+<span class="s2">        # The thickness will be overridden by the ACP model, but is required</span>
+<span class="s2">        # for the model to be valid.</span>
 <span class="s2">        for body in Model.Geometry.GetChildren(</span>
 <span class="s2">            Ansys.Mechanical.DataModel.Enums.DataModelObjectCategory.Body, True</span>
 <span class="s2">        ):</span>
@@ -637,7 +640,7 @@ appropriate transfer format for ACP.</p>
 <p>Setup basic ACP lay-up based on the mesh in <code class="docutils literal notranslate"><span class="pre">mesh_path</span></code>, and export material and composite
 definition file to output_path.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">composite_definitions_h5</span> <span class="o">=</span> <span class="s2">&quot;ACPCompositeDefinitions.h5&quot;</span>
-<span class="n">matml_file</span> <span class="o">=</span> <span class="s2">&quot;materials.xml&quot;</span>  <span class="c1"># TODO: load an example materials XML file instead of defining the materials in ACP</span>
+<span class="n">matml_file</span> <span class="o">=</span> <span class="s2">&quot;materials.xml&quot;</span>
 
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:h5&quot;</span><span class="p">)</span>
