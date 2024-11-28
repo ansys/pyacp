@@ -26,10 +26,10 @@ import numpy as np
 import pytest
 
 from ansys.acp.core import (
-    DimensionType,
     LookUpTable1DColumn,
     LookUpTable3DColumn,
     LookUpTableColumnValueType,
+    PhysicalDimension,
 )
 
 from .common.tree_object_tester import (
@@ -115,7 +115,7 @@ class TestLookUpTableColumn(WithLockedMixin, TreeObjectTester):
     def default_properties(default_data):
         return {
             "value_type": LookUpTableColumnValueType.SCALAR,
-            "dimension_type": DimensionType.DIMENSIONLESS,
+            "physical_dimension": PhysicalDimension.DIMENSIONLESS,
             "data": default_data,
         }
 
@@ -128,9 +128,9 @@ class TestLookUpTableColumn(WithLockedMixin, TreeObjectTester):
             read_write=[
                 ("name", "some_name"),
                 ("data", column_data),
-                ("dimension_type", DimensionType.TIME),
-                ("dimension_type", DimensionType.CURRENCY),
-                ("dimension_type", DimensionType.MASS),
+                ("physical_dimension", PhysicalDimension.TIME),
+                ("physical_dimension", PhysicalDimension.CURRENCY),
+                ("physical_dimension", PhysicalDimension.MASS),
             ],
             read_only=[
                 ("id", "some_id"),
@@ -141,7 +141,7 @@ class TestLookUpTableColumn(WithLockedMixin, TreeObjectTester):
                 {
                     "name": "some_name",
                     "data": column_data,
-                    "dimension_type": DimensionType.TIME,
+                    "physical_dimension": PhysicalDimension.TIME,
                     "value_type": column_value_type,
                 }
             ],

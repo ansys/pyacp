@@ -94,7 +94,7 @@ from ._mesh_data import full_mesh_property, shell_mesh_property, solid_mesh_prop
 from .base import ServerWrapper, TreeObject
 from .boolean_selection_rule import BooleanSelectionRule
 from .cad_geometry import CADGeometry
-from .cutoff_selection_rule import CutoffSelectionRule
+from .cut_off_selection_rule import CutOffSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .edge_set import EdgeSet
 from .element_set import ElementSet
@@ -855,14 +855,14 @@ class Model(TreeObject):
         TubeSelectionRule, tube_selection_rule_pb2_grpc.ObjectServiceStub
     )
 
-    create_cutoff_selection_rule = define_create_method(
-        CutoffSelectionRule,
-        func_name="create_cutoff_selection_rule",
+    create_cut_off_selection_rule = define_create_method(
+        CutOffSelectionRule,
+        func_name="create_cut_off_selection_rule",
         parent_class_name="Model",
         module_name=__module__,
     )
-    cutoff_selection_rules = define_mutable_mapping(
-        CutoffSelectionRule, cutoff_selection_rule_pb2_grpc.ObjectServiceStub
+    cut_off_selection_rules = define_mutable_mapping(
+        CutOffSelectionRule, cutoff_selection_rule_pb2_grpc.ObjectServiceStub
     )
 
     create_geometrical_selection_rule = define_create_method(

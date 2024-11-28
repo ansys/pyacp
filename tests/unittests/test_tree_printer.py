@@ -73,7 +73,7 @@ def case_more_objects(acp_instance, model_data_dir):
     model.create_parallel_selection_rule()
     model.create_cylindrical_selection_rule()
     model.create_tube_selection_rule()
-    model.create_cutoff_selection_rule()
+    model.create_cut_off_selection_rule()
     model.create_geometrical_selection_rule()
     model.create_boolean_selection_rule()
     model.create_lookup_table_1d()
@@ -116,8 +116,8 @@ def case_more_objects(acp_instance, model_data_dir):
                 'CylindricalSelectionrule'
             Tube Selection Rules
                 'TubeSelectionrule'
-            Cutoff Selection Rules
-                'CutoffSelectionrule'
+            Cut Off Selection Rules
+                'CutOffSelectionrule'
             Geometrical Selection Rules
                 'GeometricalSelectionrule'
             Boolean Selection Rules

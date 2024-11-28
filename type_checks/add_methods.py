@@ -7,7 +7,7 @@ from typing_extensions import assert_type
 from ansys.acp.core import (
     BooleanOperationType,
     BooleanSelectionRule,
-    CutoffSelectionRule,
+    CutOffSelectionRule,
     CylindricalSelectionRule,
     GeometricalSelectionRule,
     LinkedSelectionRule,
@@ -30,7 +30,7 @@ assert_type(
             Arg(
                 Union[
                     BooleanSelectionRule,
-                    CutoffSelectionRule,
+                    CutOffSelectionRule,
                     CylindricalSelectionRule,
                     GeometricalSelectionRule,
                     ParallelSelectionRule,
