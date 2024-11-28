@@ -243,6 +243,3 @@ plotter.show()
 # The imported solid model can be passed to Mechanical or MAPDL to run an analysis
 # as shown in the examples :ref:`pymechanical_solid_example` and
 # :ref:`pymapdl_workflow_example`.
-#
-# Due to the lack of support of visualization of imported plies, the model
-# can be loaded in ACP standalone and reviewed there.
