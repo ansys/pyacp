@@ -36,10 +36,10 @@ LookUpTable1DColumn
       :toctree:
    
       LookUpTable1DColumn.data
-      LookUpTable1DColumn.dimension_type
       LookUpTable1DColumn.id
       LookUpTable1DColumn.name
       LookUpTable1DColumn.parent
+      LookUpTable1DColumn.physical_dimension
       LookUpTable1DColumn.value_type
    
    

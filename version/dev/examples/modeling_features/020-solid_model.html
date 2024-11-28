@@ -717,17 +717,17 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <section id="cut-off-an-edge">
 <h2>Cut-off an edge<a class="headerlink" href="#cut-off-an-edge" title="Link to this heading">#</a></h2>
 <p>The <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.CutOffGeometry.html#ansys.acp.core.CutOffGeometry" title="ansys.acp.core.CutOffGeometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">CutOffGeometry</span></code></a> is used to crop elements from the solid model.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">cutoff_cad_geom</span><span class="p">,</span> <span class="n">cutoff_virtual_geom</span> <span class="o">=</span> <span class="n">create_virtual_geometry_from_file</span><span class="p">(</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">cut_off_cad_geom</span><span class="p">,</span> <span class="n">cut_off_virtual_geom</span> <span class="o">=</span> <span class="n">create_virtual_geometry_from_file</span><span class="p">(</span>
     <a href="https://docs.python.org/3/library/enum.html#enum.Enum" title="enum.Enum" class="sphx-glr-backref-module-enum sphx-glr-backref-type-py-class"><span class="n">ExampleKeys</span></a><span class="o">.</span><span class="n">CUT_OFF_GEOMETRY_SOLID_MODEL</span>
 <span class="p">)</span>
 <span class="n">solid_model</span><span class="o">.</span><span class="n">create_cut_off_geometry</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Cut-off Geometry&quot;</span><span class="p">,</span>
-    <span class="n">cad_geometry</span><span class="o">=</span><span class="n">cutoff_virtual_geom</span><span class="p">,</span>
+    <span class="n">cad_geometry</span><span class="o">=</span><span class="n">cut_off_virtual_geom</span><span class="p">,</span>
     <span class="n">orientation_type</span><span class="o">=</span><span class="n">CutOffGeometryOrientationType</span><span class="o">.</span><span class="n">UP</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-<span class="n">plot_model_with_geometry</span><span class="p">(</span><span class="n">cutoff_cad_geom</span><span class="p">)</span>
+<span class="n">plot_model_with_geometry</span><span class="p">(</span><span class="n">cut_off_cad_geom</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -803,7 +803,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/modeling_features/images/sphx_glr_020-solid_model_006.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.647 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 7.873 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-modeling-features-020-solid-model-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/fee40c689d044c23fee77c0d16856c81/020-solid_model.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">020-solid_model.ipynb</span></code></a></p>

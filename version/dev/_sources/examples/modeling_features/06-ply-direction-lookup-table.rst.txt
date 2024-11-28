@@ -60,9 +60,9 @@ Import the PyACP dependencies.
 .. code-block:: Python
 
     from ansys.acp.core import (
-        DimensionType,
         DrapingType,
         LookUpTableColumnValueType,
+        PhysicalDimension,
         PlyType,
         RosetteSelectionMethod,
         get_directions_plotter,
@@ -353,7 +353,7 @@ Create the lookup table and add the direction data.
     lookup_table.columns["Location"].data = points
     direction_column = lookup_table.create_column(
         data=directions,
-        dimension_type=DimensionType.DIMENSIONLESS,
+        physical_dimension=PhysicalDimension.DIMENSIONLESS,
         value_type=LookUpTableColumnValueType.DIRECTION,
     )
 
@@ -462,7 +462,7 @@ Compute a correction angle to define circular fiber paths.
     correction_angle = np.arctan2(xx.ravel(), zz.ravel()) * 180 / np.pi
     angle_column_1 = lookup_table.create_column(
         data=correction_angle,
-        dimension_type=DimensionType.DIMENSIONLESS,
+        physical_dimension=PhysicalDimension.DIMENSIONLESS,
         value_type=LookUpTableColumnValueType.SCALAR,
     )
 
@@ -485,7 +485,7 @@ Compute the transverse correction angle, assuming a constant shear angle of -30Â
     transverse_correction_angle = correction_angle + shear_angle
     angle_column_2 = lookup_table.create_column(
         data=transverse_correction_angle,
-        dimension_type=DimensionType.DIMENSIONLESS,
+        physical_dimension=PhysicalDimension.DIMENSIONLESS,
         value_type=LookUpTableColumnValueType.SCALAR,
     )
 
@@ -627,7 +627,7 @@ Next, plot the draped directions, including the correction angles, from the look
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 3.897 seconds)
+   **Total running time of the script:** (0 minutes 5.686 seconds)
 
 
 .. _sphx_glr_download_examples_modeling_features_06-ply-direction-lookup-table.py:

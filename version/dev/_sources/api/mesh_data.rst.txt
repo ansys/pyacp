@@ -10,8 +10,8 @@ Mesh data objects
     AnalysisPlyNodalData
     BooleanSelectionRuleElementalData
     BooleanSelectionRuleNodalData
-    CutoffSelectionRuleElementalData
-    CutoffSelectionRuleNodalData
+    CutOffSelectionRuleElementalData
+    CutOffSelectionRuleNodalData
     CylindricalSelectionRuleElementalData
     CylindricalSelectionRuleNodalData
     ElementSetElementalData

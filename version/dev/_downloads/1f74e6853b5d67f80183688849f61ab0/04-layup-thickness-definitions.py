@@ -45,7 +45,7 @@ import pyvista
 
 # %%
 # Import the PyACP dependencies.
-from ansys.acp.core import DimensionType, ThicknessType, launch_acp
+from ansys.acp.core import PhysicalDimension, ThicknessType, launch_acp
 from ansys.acp.core.extras import FLAT_PLATE_SOLID_CAMERA, ExampleKeys, get_example_file
 
 # sphinx_gallery_thumbnail_number = 2
@@ -166,7 +166,9 @@ print(thickness)
 # Create the lookup table and add the coordinates and thickness data.
 lookup_table = model.create_lookup_table_3d()
 lookup_table.columns["Location"].data = points
-thickness_column = lookup_table.create_column(data=thickness, dimension_type=DimensionType.LENGTH)
+thickness_column = lookup_table.create_column(
+    data=thickness, physical_dimension=PhysicalDimension.LENGTH
+)
 
 # %%
 # Set the thickness type to ``FROM_TABLE`` and assign the thickness column.

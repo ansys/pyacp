@@ -171,17 +171,17 @@ plot_model_with_geometry(None)
 # ---------------
 #
 # The :class:`.CutOffGeometry` is used to crop elements from the solid model.
-cutoff_cad_geom, cutoff_virtual_geom = create_virtual_geometry_from_file(
+cut_off_cad_geom, cut_off_virtual_geom = create_virtual_geometry_from_file(
     ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL
 )
 solid_model.create_cut_off_geometry(
     name="Cut-off Geometry",
-    cad_geometry=cutoff_virtual_geom,
+    cad_geometry=cut_off_virtual_geom,
     orientation_type=CutOffGeometryOrientationType.UP,
 )
 
 model.update()
-plot_model_with_geometry(cutoff_cad_geom)
+plot_model_with_geometry(cut_off_cad_geom)
 
 
 # %%

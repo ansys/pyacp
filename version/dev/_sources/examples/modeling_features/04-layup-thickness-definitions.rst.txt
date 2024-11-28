@@ -59,7 +59,7 @@ Import the PyACP dependencies.
 
 .. code-block:: Python
 
-    from ansys.acp.core import DimensionType, ThicknessType, launch_acp
+    from ansys.acp.core import PhysicalDimension, ThicknessType, launch_acp
     from ansys.acp.core.extras import FLAT_PLATE_SOLID_CAMERA, ExampleKeys, get_example_file
 
 
@@ -426,13 +426,15 @@ And the corresponding thickness values.
 
 Create the lookup table and add the coordinates and thickness data.
 
-.. GENERATED FROM PYTHON SOURCE LINES 167-171
+.. GENERATED FROM PYTHON SOURCE LINES 167-173
 
 .. code-block:: Python
 
     lookup_table = model.create_lookup_table_3d()
     lookup_table.columns["Location"].data = points
-    thickness_column = lookup_table.create_column(data=thickness, dimension_type=DimensionType.LENGTH)
+    thickness_column = lookup_table.create_column(
+        data=thickness, physical_dimension=PhysicalDimension.LENGTH
+    )
 
 
 
@@ -441,11 +443,11 @@ Create the lookup table and add the coordinates and thickness data.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 172-173
+.. GENERATED FROM PYTHON SOURCE LINES 174-175
 
 Set the thickness type to ``FROM_TABLE`` and assign the thickness column.
 
-.. GENERATED FROM PYTHON SOURCE LINES 173-176
+.. GENERATED FROM PYTHON SOURCE LINES 175-178
 
 .. code-block:: Python
 
@@ -459,11 +461,11 @@ Set the thickness type to ``FROM_TABLE`` and assign the thickness column.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 177-178
+.. GENERATED FROM PYTHON SOURCE LINES 179-180
 
 Plot the ply thickness.
 
-.. GENERATED FROM PYTHON SOURCE LINES 178-181
+.. GENERATED FROM PYTHON SOURCE LINES 180-183
 
 .. code-block:: Python
 
@@ -507,7 +509,7 @@ Plot the ply thickness.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 3.798 seconds)
+   **Total running time of the script:** (0 minutes 5.558 seconds)
 
 
 .. _sphx_glr_download_examples_modeling_features_04-layup-thickness-definitions.py:

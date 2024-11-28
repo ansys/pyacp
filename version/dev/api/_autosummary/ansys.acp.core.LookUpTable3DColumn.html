@@ -456,7 +456,7 @@
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADComponent.html">CADComponent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADGeometry.html">CADGeometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutOffGeometry.html">CutOffGeometry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutoffSelectionRule.html">CutoffSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutOffSelectionRule.html">CutOffSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CylindricalSelectionRule.html">CylindricalSelectionRule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.EdgeSet.html">EdgeSet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ElementSet.html">ElementSet</a></li>
@@ -479,10 +479,10 @@
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.delete.html">delete</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.store.html">store</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.data.html">data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.dimension_type.html">dimension_type</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.id.html">id</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.name.html">name</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.parent.html">parent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.physical_dimension.html">physical_dimension</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.value_type.html">value_type</a></li>
 </ul>
 </details></li>
@@ -592,7 +592,7 @@
 <h1>LookUpTable3DColumn<a class="headerlink" href="#lookuptable3dcolumn" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ansys.acp.core.LookUpTable3DColumn">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">LookUpTable3DColumn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LookUpTable3DColumn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'scalar'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimension_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dimensionless'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.LookUpTable3DColumn" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">LookUpTable3DColumn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LookUpTable3DColumn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'scalar'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">physical_dimension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dimensionless'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.LookUpTable3DColumn" title="Link to this definition">#</a></dt>
 <dd><p>Instantiate a Column of a 3D Look-Up Table.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -601,7 +601,7 @@
 directional (three entries per row).
 Note that the <code class="docutils literal notranslate"><span class="pre">value_type</span></code> can only be set when constructing the
 column, and is read-only afterwards.</p></li>
-<li><p><strong>dimension_type</strong> (<a class="reference internal" href="ansys.acp.core.DimensionType.html#ansys.acp.core.DimensionType" title="ansys.acp.core._tree_objects.enums.DimensionType"><em>DimensionType</em></a>) – Dimensionality (such as time, length, force, …) of the column data.</p></li>
+<li><p><strong>physical_dimension</strong> (<a class="reference internal" href="ansys.acp.core.PhysicalDimension.html#ansys.acp.core.PhysicalDimension" title="ansys.acp.core._tree_objects.enums.PhysicalDimension"><em>PhysicalDimension</em></a>) – Dimensionality (such as time, length, force, …) of the column data.</p></li>
 <li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><em>ndarray</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a><em>, </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.1)"><em>dtype</em></a><em>[</em><em>float64</em><em>]</em><em>] </em><em>| </em><em>None</em>) – The column data. The shape of the data must match the <code class="docutils literal notranslate"><span class="pre">value_type</span></code>
 and the length of the <code class="docutils literal notranslate"><span class="pre">Location</span></code> column of the parent look-up
 table.</p></li>
@@ -630,17 +630,17 @@ table.</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.data.html#ansys.acp.core.LookUpTable3DColumn.data" title="ansys.acp.core.LookUpTable3DColumn.data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3DColumn.data</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.dimension_type.html#ansys.acp.core.LookUpTable3DColumn.dimension_type" title="ansys.acp.core.LookUpTable3DColumn.dimension_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3DColumn.dimension_type</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.id.html#ansys.acp.core.LookUpTable3DColumn.id" title="ansys.acp.core.LookUpTable3DColumn.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3DColumn.id</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.id.html#ansys.acp.core.LookUpTable3DColumn.id" title="ansys.acp.core.LookUpTable3DColumn.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3DColumn.id</span></code></a></p></td>
 <td><p>Identifier of the object, used for example as key in maps.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.name.html#ansys.acp.core.LookUpTable3DColumn.name" title="ansys.acp.core.LookUpTable3DColumn.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3DColumn.name</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.name.html#ansys.acp.core.LookUpTable3DColumn.name" title="ansys.acp.core.LookUpTable3DColumn.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3DColumn.name</span></code></a></p></td>
 <td><p>The name of the object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.parent.html#ansys.acp.core.LookUpTable3DColumn.parent" title="ansys.acp.core.LookUpTable3DColumn.parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3DColumn.parent</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.parent.html#ansys.acp.core.LookUpTable3DColumn.parent" title="ansys.acp.core.LookUpTable3DColumn.parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3DColumn.parent</span></code></a></p></td>
 <td><p>The parent of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.physical_dimension.html#ansys.acp.core.LookUpTable3DColumn.physical_dimension" title="ansys.acp.core.LookUpTable3DColumn.physical_dimension"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3DColumn.physical_dimension</span></code></a></p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.value_type.html#ansys.acp.core.LookUpTable3DColumn.value_type" title="ansys.acp.core.LookUpTable3DColumn.value_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LookUpTable3DColumn.value_type</span></code></a></p></td>
 <td><p></p></td>

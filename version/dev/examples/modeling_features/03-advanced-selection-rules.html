@@ -561,9 +561,9 @@ see <a class="reference internal" href="../workflows/01-pymapdl-workflow.html#py
 <p>Import the PyACP dependencies.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.acp.core</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">BooleanOperationType</span><span class="p">,</span>
-    <span class="n">DimensionType</span><span class="p">,</span>
     <span class="n">EdgeSetType</span><span class="p">,</span>
     <a href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="typing.Protocol" class="sphx-glr-backref-module-typing sphx-glr-backref-type-py-class"><span class="n">LinkedSelectionRule</span></a><span class="p">,</span>
+    <span class="n">PhysicalDimension</span><span class="p">,</span>
     <span class="n">launch_acp</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ansys.acp.core.extras</span> <span class="kn">import</span> <span class="n">ExampleKeys</span><span class="p">,</span> <span class="n">get_example_file</span>
@@ -729,12 +729,12 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </section>
-<section id="create-a-cutoff-selection-rule">
-<h2>Create a cutoff selection rule<a class="headerlink" href="#create-a-cutoff-selection-rule" title="Link to this heading">#</a></h2>
-<p>Add the cutoff CAD geometry to the model.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cutoff_plane_path</span></a> <span class="o">=</span> <span class="n">get_example_file</span><span class="p">(</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">CUT_OFF_GEOMETRY</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">)</span>
+<section id="create-a-cut-off-selection-rule">
+<h2>Create a cut-off selection rule<a class="headerlink" href="#create-a-cut-off-selection-rule" title="Link to this heading">#</a></h2>
+<p>Add the cut off CAD geometry to the model.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cut_off_plane_path</span></a> <span class="o">=</span> <span class="n">get_example_file</span><span class="p">(</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">CUT_OFF_GEOMETRY</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">)</span>
 <span class="n">cut_off_plane</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_cad_geometry</span><span class="p">()</span>
-<span class="n">cut_off_plane</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cutoff_plane_path</span></a><span class="p">)</span>
+<span class="n">cut_off_plane</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cut_off_plane_path</span></a><span class="p">)</span>
 
 <span class="c1"># Note: It is important to update the model here, because the root_shapes of the</span>
 <span class="c1"># cad_geometry are not available until the model is updated.</span>
@@ -742,21 +742,21 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 <p>Create a virtual geometry from the CAD geometry.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">cutoff_virtual_geometry</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_virtual_geometry</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cutoff_virtual_geometry&quot;</span><span class="p">,</span> <span class="n">cad_components</span><span class="o">=</span><span class="n">cut_off_plane</span><span class="o">.</span><span class="n">root_shapes</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">cut_off_virtual_geometry</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_virtual_geometry</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cut_off_virtual_geometry&quot;</span><span class="p">,</span> <span class="n">cad_components</span><span class="o">=</span><span class="n">cut_off_plane</span><span class="o">.</span><span class="n">root_shapes</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Create the cutoff selection rule.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">cutoff_selection_rule</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_cutoff_selection_rule</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cutoff_rule&quot;</span><span class="p">,</span>
-    <span class="n">cutoff_geometry</span><span class="o">=</span><span class="n">cutoff_virtual_geometry</span><span class="p">,</span>
+<p>Create the cut_off selection rule.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">cut_off_selection_rule</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_cut_off_selection_rule</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cut_off_rule&quot;</span><span class="p">,</span>
+    <span class="n">cut_off_geometry</span><span class="o">=</span><span class="n">cut_off_virtual_geometry</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Assign the cutoff selection rule to the ply. Plot the ply extent with
+<p>Assign the cut_off selection rule to the ply. Plot the ply extent with
 the outline of the geometry.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">modeling_ply</span><span class="o">.</span><span class="n">selection_rules</span> <span class="o">=</span> <span class="p">[</span><a href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="typing.Protocol" class="sphx-glr-backref-module-typing sphx-glr-backref-type-py-class"><span class="n">LinkedSelectionRule</span></a><span class="p">(</span><span class="n">cutoff_selection_rule</span><span class="p">)]</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">modeling_ply</span><span class="o">.</span><span class="n">selection_rules</span> <span class="o">=</span> <span class="p">[</span><a href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="typing.Protocol" class="sphx-glr-backref-module-typing sphx-glr-backref-type-py-class"><span class="n">LinkedSelectionRule</span></a><span class="p">(</span><span class="n">cut_off_selection_rule</span><span class="p">)]</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <span class="k">assert</span> <span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -799,7 +799,7 @@ is always created by default.</p>
 <p>Create the offset column that defines the offsets from the edge.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">offsets_column</span> <span class="o">=</span> <span class="n">lookup_table</span><span class="o">.</span><span class="n">create_column</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;offset&quot;</span><span class="p">,</span>
-    <span class="n">dimension_type</span><span class="o">=</span><span class="n">DimensionType</span><span class="o">.</span><span class="n">LENGTH</span><span class="p">,</span>
+    <span class="n">physical_dimension</span><span class="o">=</span><span class="n">PhysicalDimension</span><span class="o">.</span><span class="n">LENGTH</span><span class="p">,</span>
     <span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([</span><span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.004</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
 <span class="p">)</span>
 </pre></div>
@@ -915,7 +915,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/modeling_features/images/sphx_glr_03-advanced-selection-rules_008.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.390 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 7.499 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-modeling-features-03-advanced-selection-rules-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/6d7043df8b7c829694d9ae58bc9f39ad/03-advanced-selection-rules.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">03-advanced-selection-rules.ipynb</span></code></a></p>
@@ -982,7 +982,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-acp-and-load-the-model">Start ACP and load the model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrized-parallel-rule">Parametrized Parallel Rule</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-geometrical-selection-rule">Create a geometrical selection rule</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-cutoff-selection-rule">Create a cutoff selection rule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-cut-off-selection-rule">Create a cut-off selection rule</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-variable-offset-selection-rule">Create a variable offset selection rule</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-boolean-selection-rule">Create a boolean selection rule</a></li>
 </ul>

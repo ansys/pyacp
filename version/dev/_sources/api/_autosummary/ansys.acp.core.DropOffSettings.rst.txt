@@ -27,11 +27,11 @@ DropOffSettings
       :toctree:
    
       DropOffSettings.connect_butt_joined_plies
-      DropOffSettings.disable_dropoffs_on_bottom
-      DropOffSettings.disable_dropoffs_on_top
+      DropOffSettings.disable_drop_offs_on_bottom
+      DropOffSettings.disable_drop_offs_on_top
+      DropOffSettings.drop_off_disabled_on_bottom_sets
+      DropOffSettings.drop_off_disabled_on_top_sets
       DropOffSettings.drop_off_type
-      DropOffSettings.dropoff_disabled_on_bottom_sets
-      DropOffSettings.dropoff_disabled_on_top_sets
    
    
 

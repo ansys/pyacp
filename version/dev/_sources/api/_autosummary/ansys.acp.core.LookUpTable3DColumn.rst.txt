@@ -36,10 +36,10 @@ LookUpTable3DColumn
       :toctree:
    
       LookUpTable3DColumn.data
-      LookUpTable3DColumn.dimension_type
       LookUpTable3DColumn.id
       LookUpTable3DColumn.name
       LookUpTable3DColumn.parent
+      LookUpTable3DColumn.physical_dimension
       LookUpTable3DColumn.value_type
    
    

@@ -23,7 +23,7 @@ Model
       Model.create_cad_geometry
       
       
-      Model.create_cutoff_selection_rule
+      Model.create_cut_off_selection_rule
       
       
       Model.create_cylindrical_selection_rule
@@ -144,7 +144,7 @@ Model
       Model.average_element_size
       Model.boolean_selection_rules
       Model.cad_geometries
-      Model.cutoff_selection_rules
+      Model.cut_off_selection_rules
       Model.cylindrical_selection_rules
       Model.draping_offset_correction
       Model.edge_sets
