@@ -26,17 +26,19 @@
 HDF5 Composite CAE
 ==================
 
-This example shows how to write and read layup data to and from
-a HDF5 Composite CAE file, respectively. The HDF5 Composite CAE format
-is a vendor independent format to exchange composite layup information
-between CAE tools. PyACP can read and write this format.
+The HDF5 Composite CAE interface of PyACP is demonstrated in
+this example. It shows how to write (export) and read (import)
+layup data to and from a HDF5 Composite CAE file, respectively.
+The HDF5 Composite CAE format is a vendor independent format
+to exchange composite layup information between CAE tools.
 
 This examples demonstrates how to:
+- Load and manipulate a model
 - Export data to a HDF5 Composite CAE file
-- Import a layup onto a different model (model)
-- Export data with offsets (3D plies)
+- Import and map layup from HDF5 Composite CAE onto a different model (mesh)
+- Export data with ply offsets (3D plies)
 - Import a layup as :class:`.ImportedModelingPly`
-- Map the imported layup onto an :class:`.ImportedSolidModel`
+- Import HDF5 Composite CAE with 3D plies and map the layup onto an :class:`.ImportedSolidModel`
 
 """
 
@@ -108,28 +110,26 @@ for ply_name in ["ply_1_45_UD", "ply_2_-45_UD", "ply_3_45_UD", "ply_4_-45_UD"]:
 model.update()
 
 # %%
-# some plies only cover the inner part of the plate
+# Plot the thickness distribution
 thickness = model.elemental_data.thickness
 assert thickness is not None
 thickness.get_pyvista_mesh(mesh=model.mesh).plot(show_edges=True)
 
 # %%
-# Write HDF5 Composite CAE
-# ------------------------
+# Write HDF5 Composite CAE file
+# -----------------------------
 #
-# Export the entire layup to a HDF5 Composite CAE file
-# There are options to export only a certain area and/or
-# certain plies.
+# Export the entire layup to a HDF5 Composite CAE file.
 h5_output_file = WORKING_DIR / "hdf5_composite_cae.h5"
 model.export_hdf5_composite_cae(
     path=h5_output_file,
 )
 
 # %%
-# Map HDF5 Composite CAE to a different model
-# -------------------------------------------
+# Load HDF5 Composite CAE file into a different model
+# ---------------------------------------------------
 #
-# The same plate with a refined mesh is used as target model.
+# A new acp model is created by importing a refined mesh of the same geometry.
 # Both meshes (initial mesh in blue, refined one in red) are shown below.
 dat_input_file_refined = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_REFINED_DAT, WORKING_DIR)
 refined_model = acp.import_model(path=dat_input_file_refined, format="ansys:dat")
@@ -155,15 +155,16 @@ plotter.camera_position = FLAT_PLATE_SHELL_CAMERA
 plotter.show()
 
 # %%
-# Import and map the layup from the HDF5 Composite CAE file
-# The default settings (tolerances, etc.) are used.
+# Import the HDF5 Composite CAE file which is then automatically mapped
+# onto the refined mesh. In this example, the default settings
+# (tolerances, etc.) are used.
 refined_model.import_hdf5_composite_cae(
     path=h5_output_file,
 )
 refined_model.update()
 
 # %%
-# Plot the thickness distribution of the refined model
+# Plot the thickness distribution on the refined model
 thickness = refined_model.elemental_data.thickness
 assert thickness is not None
 thickness.get_pyvista_mesh(mesh=refined_model.mesh).plot(show_edges=True)
@@ -172,10 +173,10 @@ thickness.get_pyvista_mesh(mesh=refined_model.mesh).plot(show_edges=True)
 # 3D plies with ply-offsets
 # -------------------------
 #
-# The interface also allows to export the 3D plies
-# which can then be used to create imported modeling plies.
-# Therefore, the data is written to a HDF5 Composite CAE file
-# again with the offset option enabled.
+# The HDF5 Composite CAE interface also allows to export the 3D plies
+# (plies with offsets) which can then be used to create
+# imported modeling plies. The initial model is used to
+# write a new HDF5 with ``layup_representation_3d`` enabled.
 h5_output_file_3D = WORKING_DIR / "hdf5_composite_cae_3D.h5"
 model.export_hdf5_composite_cae(
     path=h5_output_file_3D,
@@ -184,23 +185,26 @@ model.export_hdf5_composite_cae(
 )
 
 # %%
-# The generated HDF5 composite CAE is now imported and the data is converted into
-# imported modeling plies.
+# A new acp model is created to properly separate the different workflows.
 refined_model_3D = acp.import_model(path=dat_input_file_refined, format="ansys:dat")
 refined_model_3D.import_hdf5_composite_cae(
     path=h5_output_file_3D, projection_mode=HDF5CompositeCAEProjectionMode.SOLID
 )
 
 # %%
-# Import a solid mesh to map the imported modeling plies. Details about the imported solid
-# model and imported plies can be found in the examples :ref:`imported_solid_model_example` and
-# :ref:`imported_plies_example`.
+# An imported solid model is required for the 3D workflow (with imported modeling plies).
+# Details about :class:`.ImportedSolidModel` and :class:`ImportedModelingPly` can be found
+# in the examples :ref:`imported_solid_model_example` and :ref:`imported_plies_example`.
 solid_mesh_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB, WORKING_DIR)
 imported_solid_model = refined_model_3D.create_imported_solid_model(
     name="Imported Solid Model",
     external_path=solid_mesh_file,
     format="ansys:cdb",
 )
+
+# %%
+# The :class:`.LayupMappingObject` is used to configure the mapping of the imported plies
+# onto the imported solid model.
 imported_solid_model.create_layup_mapping_object(
     name="Map imported plies",
     use_imported_plies=True,  # enable imported plies
@@ -212,8 +216,9 @@ imported_solid_model.create_layup_mapping_object(
 refined_model_3D.update()
 
 # %%
-# Show the mapped top layer of the imported laminate. Note that the
-# solid elements which do not intersect with the layup are deleted.
+# The mapped top layer of the imported laminate is shown below.
+# Note that the solid elements which do not intersect with the
+# layup are deleted in this example.
 imported_analysis_ply = (
     refined_model_3D.imported_modeling_groups["modeling_group"]
     .imported_modeling_plies["ply_5_0_UD"]
@@ -225,3 +230,8 @@ plotter.add_mesh(imported_analysis_ply.solid_mesh.to_pyvista(), show_edges=True)
 plotter.add_mesh(refined_model_3D.solid_mesh.to_pyvista(), opacity=0.2, show_edges=False)
 plotter.camera_position = FLAT_PLATE_SOLID_CAMERA
 plotter.show()
+
+# %%
+# Note that the visualization of imported plies and imported solid model
+# is limited. As an alternative, you can save the model and review it
+# in ACP standalone.

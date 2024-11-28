@@ -92,7 +92,23 @@ solid_model = model.create_solid_model(
 )
 
 model.update()
-model.solid_mesh.to_pyvista().plot(show_edges=True)
+
+
+def plot_model_with_geometry(cad_geometry: CADGeometry | None, cad_geom_opacity: float = 0.1):
+    """Plot solid model and geometry."""
+    plotter = pyvista.Plotter()
+    if cad_geometry:
+        geom_mesh = cad_geometry.visualization_mesh.to_pyvista()
+        plotter.add_mesh(geom_mesh, color="green", opacity=cad_geom_opacity)
+        edges = geom_mesh.extract_feature_edges()
+        plotter.add_mesh(edges, color="white", line_width=4)
+        plotter.add_mesh(edges, color="black", line_width=2)
+    plotter.add_mesh(model.solid_mesh.to_pyvista(), show_edges=True)
+    plotter.camera_position = FLAT_PLATE_SOLID_CAMERA
+    plotter.show()
+
+
+plot_model_with_geometry(None)
 
 
 def create_virtual_geometry_from_file(
@@ -107,19 +123,6 @@ def create_virtual_geometry_from_file(
         name="thickness_virtual_geometry", cad_components=geometry_obj.root_shapes.values()
     )
     return geometry_obj, virtual_geometry
-
-
-def plot_model_with_geometry(cad_geometry: CADGeometry, cad_geom_opacity: float = 0.1):
-    """Plot solid model and geometry."""
-    plotter = pyvista.Plotter()
-    geom_mesh = cad_geometry.visualization_mesh.to_pyvista()
-    plotter.add_mesh(geom_mesh, color="green", opacity=cad_geom_opacity)
-    edges = geom_mesh.extract_feature_edges()
-    plotter.add_mesh(edges, color="white", line_width=4)
-    plotter.add_mesh(edges, color="black", line_width=2)
-    plotter.add_mesh(model.solid_mesh.to_pyvista(), show_edges=True)
-    plotter.camera_position = FLAT_PLATE_SOLID_CAMERA
-    plotter.show()
 
 
 # %%
@@ -161,7 +164,7 @@ solid_model.create_extrusion_guide(
     depth=0.6,
 )
 model.update()
-model.solid_mesh.to_pyvista().plot(show_edges=True)
+plot_model_with_geometry(None)
 
 # %%
 # Cut-off an edge
@@ -210,6 +213,7 @@ direction_plotter = get_directions_plotter(
     culling_factor=10,
 )
 direction_plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=False)
+direction_plotter.camera_position = FLAT_PLATE_SOLID_CAMERA
 direction_plotter.show()
 
 # %%

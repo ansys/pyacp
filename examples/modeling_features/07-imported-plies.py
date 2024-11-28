@@ -27,7 +27,7 @@ Imported ply
 ============
 
 The definition and use of imported plies is demonstrated in this example.
-In a nutshell, the difference between :class:`.ImportedModelingPly` and a
+In a nutshell, the difference between :class:`.ImportedModelingPly` and
 :class:`.ModelingPly` is that the surface mesh of an :class:`.ImportedModelingPly`
 is defined by an external source, such as a CAD surface, where a :class:`.ModelingPly`
 is always defined on the initial loaded shell mesh.
@@ -169,7 +169,7 @@ model.update()
 
 
 # %%
-# Imported plies cannot be visualized directly but the cad geometries are
+# Imported plies cannot be visualized directly yet but the cad geometries are
 # shown here instead.
 def plotter_with_all_geometries(cad_geometries):
     colors = ["green", "yellow", "blue", "red"]
@@ -192,7 +192,8 @@ plotter.show()
 # ------------------------------------
 #
 # An external solid mesh is loaded now to map the imported plies
-# onto the solid model.
+# onto the solid model. The next figure shows the imported solid mesh
+# and the imported plies.
 solid_mesh_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB, WORKING_DIR)
 imported_solid_model = model.create_imported_solid_model(
     name="Imported Solid Model",
@@ -236,14 +237,10 @@ for imported_ply in [imported_ply_triangle, imported_ply_top]:
 plotter.add_mesh(mesh=imported_solid_model.solid_mesh.to_pyvista(), show_edges=False, opacity=0.2)
 plotter.show()
 
-"""
-!!! This does not work yet.
-Show the elemental mass for the entire solid model
-assert model.elemental_data.mass is not None
-model.elemental_data.mass.get_pyvista_mesh(mesh=model.solid_mesh).plot(show_edges=True)
-"""
-
 # %%
-# The imported solid model could be now passed to Mechanical or MAPDL as shown
-# in the examples :ref:`pymechanical_solid_example` and
+# The imported solid model can be passed to Mechanical or MAPDL to run an analysis
+# as shown in the examples :ref:`pymechanical_solid_example` and
 # :ref:`pymapdl_workflow_example`.
+#
+# Due to the lack of support of visualization of imported plies, the model
+# can be loaded in ACP standalone and reviewed there.
