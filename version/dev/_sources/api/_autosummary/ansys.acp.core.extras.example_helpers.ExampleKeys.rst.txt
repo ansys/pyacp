@@ -20,7 +20,9 @@ ExampleKeys
       :toctree:
    
       ExampleKeys.BASIC_FLAT_PLATE_DAT
+      ExampleKeys.BASIC_FLAT_PLATE_REFINED_DAT
       ExampleKeys.BASIC_FLAT_PLATE_ACPH5
+      ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB
       ExampleKeys.RACE_CAR_NOSE_ACPH5
       ExampleKeys.RACE_CAR_NOSE_STEP
       ExampleKeys.CUT_OFF_GEOMETRY

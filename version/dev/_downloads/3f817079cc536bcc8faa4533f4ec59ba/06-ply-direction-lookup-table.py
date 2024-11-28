@@ -23,8 +23,8 @@
 """
 .. _direction_definition_example:
 
-Direction definition example
-============================
+Direction definition
+====================
 
 This example shows how to define directions from lookup tables. They can be either
 reference directions for oriented selection sets or draping angles for modeling plies.

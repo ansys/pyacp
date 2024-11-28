@@ -32,6 +32,7 @@ ImportedAnalysisPly
       ImportedAnalysisPly.material
       ImportedAnalysisPly.name
       ImportedAnalysisPly.parent
+      ImportedAnalysisPly.solid_mesh
       ImportedAnalysisPly.status
       ImportedAnalysisPly.thickness
    

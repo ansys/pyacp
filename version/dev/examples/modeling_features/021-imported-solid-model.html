@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Imported Solid model &#8212; PyACP</title>
+    <title>Imported solid model &#8212; PyACP</title>
   
   
   
@@ -69,7 +69,7 @@
     <link rel="icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Advanced selection rules example" href="03-advanced-selection-rules.html" />
+    <link rel="next" title="Advanced selection rules" href="03-advanced-selection-rules.html" />
     <link rel="prev" title="Solid Model" href="020-solid_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -449,14 +449,16 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="001-materials.html">Materials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01-sandwich-panel-layup.html">Sandwich panel example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-simple-selection-rules.html">Basic selection rules example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-sandwich-panel-layup.html">Sandwich panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-simple-selection-rules.html">Basic selection rules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020-solid_model.html">Solid Model</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Imported Solid model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-advanced-selection-rules.html">Advanced selection rules example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04-layup-thickness-definitions.html">Thickness definition example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05-rosettes-ply-directions.html">Rosette example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06-ply-direction-lookup-table.html">Direction definition example</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Imported solid model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-advanced-selection-rules.html">Advanced selection rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-layup-thickness-definitions.html">Thickness definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-rosettes-ply-directions.html">Rosette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050-composite_cae_h5.html">HDF5 Composite CAE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-ply-direction-lookup-table.html">Direction definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-imported-plies.html">Imported ply</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../workflows/01-pymapdl-workflow.html">PyMAPDL workflow</a></li>
@@ -515,7 +517,7 @@
       <a href="../index.html" class="nav-link">Examples</a>
     </li>
       
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Imported Solid model</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Imported solid model</span></li>
     
   </ul>
 </nav>
@@ -539,7 +541,7 @@
 to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="imported-solid-model">
-<span id="imported-solid-model-example"></span><span id="sphx-glr-examples-modeling-features-021-imported-solid-model-py"></span><h1>Imported Solid model<a class="headerlink" href="#imported-solid-model" title="Link to this heading">#</a></h1>
+<span id="imported-solid-model-example"></span><span id="sphx-glr-examples-modeling-features-021-imported-solid-model-py"></span><h1>Imported solid model<a class="headerlink" href="#imported-solid-model" title="Link to this heading">#</a></h1>
 <p>This example guides you through the definition of an <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ImportedSolidModel.html#ansys.acp.core.ImportedSolidModel" title="ansys.acp.core.ImportedSolidModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImportedSolidModel</span></code></a>
 which allows to map the layup onto an external solid mesh.
 In contrast to the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.SolidModel.html#ansys.acp.core.SolidModel" title="ansys.acp.core.SolidModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolidModel</span></code></a>, the raw solid mesh of
@@ -855,10 +857,12 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <p>The <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.CutOffGeometry.html#ansys.acp.core.CutOffGeometry" title="ansys.acp.core.CutOffGeometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">CutOffGeometry</span></code></a> can be used in combination witt the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ImportedSolidModel.html#ansys.acp.core.ImportedSolidModel" title="ansys.acp.core.ImportedSolidModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImportedSolidModel</span></code></a>
 as well. See example <a class="reference internal" href="020-solid_model.html#solid-model-example"><span class="std std-ref">Solid Model</span></a> for more details.
 More plotting capabilities are shown in the example <a class="reference internal" href="020-solid_model.html#solid-model-example"><span class="std std-ref">Solid Model</span></a> as well.</p>
+<p>An example of an <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ImportedSolidModel.html#ansys.acp.core.ImportedSolidModel" title="ansys.acp.core.ImportedSolidModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImportedSolidModel</span></code></a> in combination with <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ImportedModelingPly.html#ansys.acp.core.ImportedModelingPly" title="ansys.acp.core.ImportedModelingPly"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImportedModelingPly</span></code></a>
+is shown in <a class="reference internal" href="07-imported-plies.html#imported-plies-example"><span class="std std-ref">Imported ply</span></a>.</p>
 <p>The solid mesh can be exported as CDB for MAPDL or to PyMechanical for further analysis.
 These workflows are shown in <a class="reference internal" href="../workflows/01-pymapdl-workflow.html#pymapdl-workflow-example"><span class="std std-ref">PyMAPDL workflow</span></a> and
 <a class="reference internal" href="../workflows/04-pymechanical-solid-workflow.html#pymechanical-solid-example"><span class="std std-ref">PyMechanical solid workflow</span></a>.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 21.703 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 20.243 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-modeling-features-021-imported-solid-model-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/398d6566c9e57ab1d370be672eb60897/021-imported-solid-model.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">021-imported-solid-model.ipynb</span></code></a></p>
@@ -898,7 +902,7 @@ These workflows are shown in <a class="reference internal" href="../workflows/01
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Advanced selection rules example</p>
+        <p class="prev-next-title">Advanced selection rules</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

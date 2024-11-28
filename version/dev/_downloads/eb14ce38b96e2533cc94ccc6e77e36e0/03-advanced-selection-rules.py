@@ -23,8 +23,8 @@
 """
 .. _advanced_selection_rules_example:
 
-Advanced selection rules example
-================================
+Advanced selection rules
+========================
 
 This example shows how to use advanced rules, including the geometrical,
 cut-off, and variable offset rules. It also demonstrates how rules can be templated

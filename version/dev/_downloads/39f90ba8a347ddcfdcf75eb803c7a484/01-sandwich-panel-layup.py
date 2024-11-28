@@ -23,8 +23,8 @@
 """
 .. _sandwich_panel:
 
-Sandwich panel example
-======================
+Sandwich panel
+==============
 
 This example defines a composite lay-up for a sandwich panel using PyACP.
 It only shows the PyACP part of the setup. For a complete composite analysis,

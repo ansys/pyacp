@@ -23,8 +23,8 @@
 """
 .. _basic_selection_rules_example:
 
-Basic selection rules example
-=============================
+Basic selection rules
+=====================
 
 This example shows the basic usage of selection rules, which enable you to select elements through
 geometrical operations and thus to shape plies. The example only shows the PyACP part of the setup.

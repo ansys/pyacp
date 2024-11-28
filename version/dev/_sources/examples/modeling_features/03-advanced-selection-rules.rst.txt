@@ -20,8 +20,8 @@
 
 .. _advanced_selection_rules_example:
 
-Advanced selection rules example
-================================
+Advanced selection rules
+========================
 
 This example shows how to use advanced rules, including the geometrical,
 cut-off, and variable offset rules. It also demonstrates how rules can be templated
@@ -924,7 +924,7 @@ Plot the ply extent.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 7.763 seconds)
+   **Total running time of the script:** (0 minutes 8.346 seconds)
 
 
 .. _sphx_glr_download_examples_modeling_features_03-advanced-selection-rules.py:

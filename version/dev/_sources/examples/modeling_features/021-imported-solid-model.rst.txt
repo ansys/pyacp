@@ -20,7 +20,7 @@
 
 .. _imported_solid_model_example:
 
-Imported Solid model
+Imported solid model
 ====================
 
 This example guides you through the definition of an :class:`.ImportedSolidModel`
@@ -632,7 +632,7 @@ be visualized on the solid mesh.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 258-268
+.. GENERATED FROM PYTHON SOURCE LINES 258-271
 
 Other features
 --------------
@@ -641,6 +641,9 @@ The :class:`.CutOffGeometry` can be used in combination witt the :class:`.Import
 as well. See example :ref:`solid_model_example` for more details.
 More plotting capabilities are shown in the example :ref:`solid_model_example` as well.
 
+An example of an :class:`.ImportedSolidModel` in combination with :class:`.ImportedModelingPly`
+is shown in :ref:`imported_plies_example`.
+
 The solid mesh can be exported as CDB for MAPDL or to PyMechanical for further analysis.
 These workflows are shown in :ref:`pymapdl_workflow_example` and
 :ref:`pymechanical_solid_example`.
@@ -648,7 +651,7 @@ These workflows are shown in :ref:`pymapdl_workflow_example` and
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 21.703 seconds)
+   **Total running time of the script:** (0 minutes 20.243 seconds)
 
 
 .. _sphx_glr_download_examples_modeling_features_021-imported-solid-model.py:

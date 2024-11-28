@@ -20,8 +20,8 @@
 
 .. _direction_definition_example:
 
-Direction definition example
-============================
+Direction definition
+====================
 
 This example shows how to define directions from lookup tables. They can be either
 reference directions for oriented selection sets or draping angles for modeling plies.
@@ -627,7 +627,7 @@ Next, plot the draped directions, including the correction angles, from the look
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 6.009 seconds)
+   **Total running time of the script:** (0 minutes 5.302 seconds)
 
 
 .. _sphx_glr_download_examples_modeling_features_06-ply-direction-lookup-table.py:
