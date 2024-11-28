@@ -45,13 +45,12 @@ This examples shows hot to:
 - Visualized the mapped plies.
 """
 
-import os
-
 # %%
 # Import modules
 # --------------
 #
 # Import the standard library and third-party dependencies.
+import os
 import pathlib
 import tempfile
 
@@ -171,6 +170,8 @@ model.update()
 # %%
 # Imported plies cannot be visualized directly yet but the cad geometries are
 # shown here instead.
+# To visualize the imported plies, you can save the model and load it in ACP
+# standalone.
 def plotter_with_all_geometries(cad_geometries):
     colors = ["green", "yellow", "blue", "red"]
     plotter = pyvista.Plotter()
@@ -194,10 +195,11 @@ plotter.show()
 # An external solid mesh is loaded now to map the imported plies
 # onto the solid model. The next figure shows the imported solid mesh
 # and the imported plies.
-solid_mesh_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB, WORKING_DIR)
+local_solid_mesh_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB, WORKING_DIR)
+remote_solid_mesh_file = acp.upload_file(local_solid_mesh_file)
 imported_solid_model = model.create_imported_solid_model(
     name="Imported Solid Model",
-    external_path=solid_mesh_file,
+    external_path=remote_solid_mesh_file,
     format="ansys:cdb",
 )
 imported_solid_model.import_initial_mesh()
@@ -241,6 +243,3 @@ plotter.show()
 # The imported solid model can be passed to Mechanical or MAPDL to run an analysis
 # as shown in the examples :ref:`pymechanical_solid_example` and
 # :ref:`pymapdl_workflow_example`.
-#
-# Due to the lack of support of visualization of imported plies, the model
-# can be loaded in ACP standalone and reviewed there.
