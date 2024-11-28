@@ -45,12 +45,12 @@ from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
 from .edge_set import EdgeSet
 from .enums import (
-    CutoffRuleType,
-    PlyCutoffType,
-    cutoff_rule_type_from_pb,
-    cutoff_rule_type_to_pb,
-    ply_cutoff_type_from_pb,
-    ply_cutoff_type_to_pb,
+    CutOffRuleType,
+    PlyCutOffType,
+    cut_off_rule_type_from_pb,
+    cut_off_rule_type_to_pb,
+    ply_cut_off_type_from_pb,
+    ply_cut_off_type_to_pb,
     status_type_from_pb,
 )
 from .object_registry import register
@@ -63,50 +63,50 @@ from ._elemental_or_nodal_data import ScalarData  # noqa: F401 isort:skip
 
 
 __all__ = [
-    "CutoffSelectionRule",
-    "CutoffSelectionRuleElementalData",
-    "CutoffSelectionRuleNodalData",
+    "CutOffSelectionRule",
+    "CutOffSelectionRuleElementalData",
+    "CutOffSelectionRuleNodalData",
 ]
 
 
 @dataclasses.dataclass
-class CutoffSelectionRuleElementalData(ElementalData):
-    """Represents elemental data for a Cutoff Selection Rule."""
+class CutOffSelectionRuleElementalData(ElementalData):
+    """Represents elemental data for a CutOff Selection Rule."""
 
     normal: VectorData | None = None
 
 
 @dataclasses.dataclass
-class CutoffSelectionRuleNodalData(NodalData):
-    """Represents nodal data for a Cutoff Selection Rule."""
+class CutOffSelectionRuleNodalData(NodalData):
+    """Represents nodal data for a CutOff Selection Rule."""
 
 
 @mark_grpc_properties
 @register
-class CutoffSelectionRule(CreatableTreeObject, IdTreeObject):
-    """Instantiate a Cutoff Selection Rule.
+class CutOffSelectionRule(CreatableTreeObject, IdTreeObject):
+    """Instantiate a Cut Off Selection Rule.
 
     Parameters
     ----------
     name :
-        Name of the Cutoff Selection Rule.
-    cutoff_rule_type :
+        Name of the Cut Off Selection Rule.
+    cut_off_rule_type :
         Determines if the cut-off is defined by a geometry or by a tapering edge.
-    cutoff_geometry :
+    cut_off_geometry :
         Geometry used to define the cut-off. Only applies if
-        ``cutoff_rule_type`` is GEOMETRY.
+        ``cut_off_rule_type`` is GEOMETRY.
     taper_edge_set :
         Edge used to define the cut-off. Only applies if
-        ``cutoff_rule_type`` is :attr:`.CutoffRuleType.TAPER`.
+        ``cut_off_rule_type`` is :attr:`.CutOffRuleType.TAPER`.
     offset :
         Moves the cutting plane along the out-of-plane direction. Always measured
         from the reference surface.
     angle :
         Defines the angle between the cutting plane and the reference surface.
-    ply_cutoff_type :
+    ply_cut_off_type :
         Either the complete production ply is cut-off
-        (:attr:`PlyCutoffType.PRODUCTION_PLY_CUTOFF`) or individual analysis plies
-        (:attr:`PlyCutoffType.ANALYSIS_PLY_CUTOFF`).
+        (:attr:`PlyCutOffType.PRODUCTION_PLY_CUTOFF`) or individual analysis plies
+        (:attr:`PlyCutOffType.ANALYSIS_PLY_CUTOFF`).
     ply_tapering :
         Whether the tapering of analysis plies is enabled.
     """
@@ -121,22 +121,22 @@ class CutoffSelectionRule(CreatableTreeObject, IdTreeObject):
     def __init__(
         self,
         *,
-        name: str = "CutoffSelectionrule",
-        cutoff_rule_type: CutoffRuleType = CutoffRuleType.GEOMETRY,
-        cutoff_geometry: VirtualGeometry | None = None,
+        name: str = "CutOffSelectionrule",
+        cut_off_rule_type: CutOffRuleType = CutOffRuleType.GEOMETRY,
+        cut_off_geometry: VirtualGeometry | None = None,
         taper_edge_set: EdgeSet | None = None,
         offset: float = 0.0,
         angle: float = 0.0,
-        ply_cutoff_type: PlyCutoffType = PlyCutoffType.PRODUCTION_PLY_CUTOFF,
+        ply_cut_off_type: PlyCutOffType = PlyCutOffType.PRODUCTION_PLY_CUTOFF,
         ply_tapering: bool = False,
     ):
         super().__init__(name=name)
-        self.cutoff_rule_type = cutoff_rule_type
-        self.cutoff_geometry = cutoff_geometry
+        self.cut_off_rule_type = cut_off_rule_type
+        self.cut_off_geometry = cut_off_geometry
         self.taper_edge_set = taper_edge_set
         self.offset = offset
         self.angle = angle
-        self.ply_cutoff_type = ply_cutoff_type
+        self.ply_cut_off_type = ply_cut_off_type
         self.ply_tapering = ply_tapering
 
     def _create_stub(self) -> cutoff_selection_rule_pb2_grpc.ObjectServiceStub:
@@ -144,26 +144,26 @@ class CutoffSelectionRule(CreatableTreeObject, IdTreeObject):
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
 
-    cutoff_rule_type = grpc_data_property(
+    cut_off_rule_type = grpc_data_property(
         "properties.cutoff_rule_type",
-        from_protobuf=cutoff_rule_type_from_pb,
-        to_protobuf=cutoff_rule_type_to_pb,
+        from_protobuf=cut_off_rule_type_from_pb,
+        to_protobuf=cut_off_rule_type_to_pb,
     )
-    cutoff_geometry = grpc_link_property(
+    cut_off_geometry = grpc_link_property(
         "properties.cutoff_geometry", allowed_types=VirtualGeometry
     )
     taper_edge_set = grpc_link_property("properties.taper_edge_set", allowed_types=EdgeSet)
     offset: ReadWriteProperty[float, float] = grpc_data_property("properties.offset")
     angle: ReadWriteProperty[float, float] = grpc_data_property("properties.angle")
-    ply_cutoff_type = grpc_data_property(
+    ply_cut_off_type = grpc_data_property(
         "properties.ply_cutoff_type",
-        from_protobuf=ply_cutoff_type_from_pb,
-        to_protobuf=ply_cutoff_type_to_pb,
+        from_protobuf=ply_cut_off_type_from_pb,
+        to_protobuf=ply_cut_off_type_to_pb,
     )
     ply_tapering: ReadWriteProperty[bool, bool] = grpc_data_property("properties.ply_tapering")
 
     mesh = full_mesh_property
     shell_mesh = shell_mesh_property
     # selection rules don't have solid mesh data
-    elemental_data = elemental_data_property(CutoffSelectionRuleElementalData)
-    nodal_data = nodal_data_property(CutoffSelectionRuleNodalData)
+    elemental_data = elemental_data_property(CutOffSelectionRuleElementalData)
+    nodal_data = nodal_data_property(CutOffSelectionRuleNodalData)

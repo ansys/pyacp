@@ -26,7 +26,7 @@ import pytest
 
 from ansys.acp.core import (
     BooleanOperationType,
-    CutoffSelectionRule,
+    CutOffSelectionRule,
     DrapingType,
     ElementalDataType,
     Fabric,
@@ -148,7 +148,7 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
                             parameter_2=0.0,
                         ),
                         LinkedSelectionRule(
-                            selection_rule=parent_model.create_cutoff_selection_rule(),
+                            selection_rule=parent_model.create_cut_off_selection_rule(),
                             operation_type=BooleanOperationType.INTERSECT,
                             template_rule=True,
                             parameter_1=1.2,
@@ -447,11 +447,11 @@ def test_linked_selection_rule_parameters(simple_modeling_ply, minimal_complete_
 @pytest.mark.parametrize(
     "operation_type", [e for e in BooleanOperationType if e != BooleanOperationType.INTERSECT]
 )
-def test_linked_cutoff_selection_rule_operation_type(operation_type):
-    """Check that CutoffSelectionRule only allows INTERSECT operation type."""
+def test_linked_cut_off_selection_rule_operation_type(operation_type):
+    """Check that CutOffSelectionRule only allows INTERSECT operation type."""
     with pytest.raises(ValueError) as exc:
         LinkedSelectionRule(
-            selection_rule=CutoffSelectionRule(),
+            selection_rule=CutOffSelectionRule(),
             operation_type=operation_type,
         )
     assert "INTERSECT" in str(exc.value)

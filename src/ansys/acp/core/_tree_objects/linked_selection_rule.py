@@ -34,7 +34,7 @@ from ._grpc_helpers.edge_property_list import GenericEdgePropertyType
 from ._grpc_helpers.polymorphic_from_pb import tree_object_from_resource_path
 from ._grpc_helpers.property_helper import _exposed_grpc_property, mark_grpc_properties
 from .base import CreatableTreeObject
-from .cutoff_selection_rule import CutoffSelectionRule
+from .cut_off_selection_rule import CutOffSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .enums import (
     BooleanOperationType,
@@ -54,7 +54,7 @@ if typing.TYPE_CHECKING:  # pragma: no cover
 
 _LINKABLE_SELECTION_RULE_TYPES: TypeAlias = Union[
     "BooleanSelectionRule",
-    CutoffSelectionRule,
+    CutOffSelectionRule,
     CylindricalSelectionRule,
     GeometricalSelectionRule,
     ParallelSelectionRule,
@@ -101,7 +101,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     :class:`.BooleanSelectionRule`         \-                                 \-
     ====================================== ================================== ===================
 
-    Note that :class:`.CutoffSelectionRule` and :class:`.BooleanSelectionRule` objects cannot be linked to
+    Note that :class:`.CutOffSelectionRule` and :class:`.BooleanSelectionRule` objects cannot be linked to
     a Boolean Selection Rule, only to a Modeling Ply..
     """
 
@@ -147,11 +147,11 @@ class LinkedSelectionRule(GenericEdgePropertyType):
     def operation_type(self, value: BooleanOperationType) -> None:
         # The backend converts the operation automatically; this is confusing
         # in the scripting context where the associated warning may not be visible.
-        if isinstance(self._selection_rule, CutoffSelectionRule):
+        if isinstance(self._selection_rule, CutOffSelectionRule):
             if value != BooleanOperationType.INTERSECT:
                 raise ValueError(
                     "Cannot use a boolean operation other than 'INTERSECT' with a "
-                    "CutoffSelectionRule."
+                    "CutOffSelectionRule."
                 )
 
         self._operation_type = value
@@ -213,7 +213,7 @@ class LinkedSelectionRule(GenericEdgePropertyType):
             VariableOffsetSelectionRule,
         ]
         if not isinstance(parent_object, BooleanSelectionRule):
-            allowed_types_list += [CutoffSelectionRule, BooleanSelectionRule]
+            allowed_types_list += [CutOffSelectionRule, BooleanSelectionRule]
         allowed_types = tuple(allowed_types_list)
 
         selection_rule = tree_object_from_resource_path(

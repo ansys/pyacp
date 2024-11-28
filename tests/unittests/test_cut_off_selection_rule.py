@@ -22,8 +22,8 @@
 
 import pytest
 
-from ansys.acp.core import CutoffRuleType, PlyCutoffType
-from ansys.acp.core.mesh_data import CutoffSelectionRuleElementalData, CutoffSelectionRuleNodalData
+from ansys.acp.core import CutOffRuleType, PlyCutOffType
+from ansys.acp.core.mesh_data import CutOffSelectionRuleElementalData, CutOffSelectionRuleNodalData
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
@@ -36,27 +36,27 @@ def parent_object(load_model_from_tempfile):
 
 @pytest.fixture
 def tree_object(parent_object):
-    return parent_object.create_cutoff_selection_rule()
+    return parent_object.create_cut_off_selection_rule()
 
 
-class TestCutoffSelectionRule(NoLockedMixin, TreeObjectTester):
-    COLLECTION_NAME = "cutoff_selection_rules"
+class TestCutOffSelectionRule(NoLockedMixin, TreeObjectTester):
+    COLLECTION_NAME = "cut_off_selection_rules"
 
     @staticmethod
     @pytest.fixture
     def default_properties():
         return {
             "status": "NOTUPTODATE",
-            "cutoff_rule_type": CutoffRuleType.GEOMETRY,
-            "cutoff_geometry": None,
+            "cut_off_rule_type": CutOffRuleType.GEOMETRY,
+            "cut_off_geometry": None,
             "taper_edge_set": None,
             "offset": 0.0,
             "angle": 0.0,
-            "ply_cutoff_type": PlyCutoffType.PRODUCTION_PLY_CUTOFF,
+            "ply_cut_off_type": PlyCutOffType.PRODUCTION_PLY_CUTOFF,
             "ply_tapering": False,
         }
 
-    CREATE_METHOD_NAME = "create_cutoff_selection_rule"
+    CREATE_METHOD_NAME = "create_cut_off_selection_rule"
 
     @staticmethod
     @pytest.fixture
@@ -66,13 +66,13 @@ class TestCutoffSelectionRule(NoLockedMixin, TreeObjectTester):
         edge_set = model.create_edge_set()
         return ObjectPropertiesToTest(
             read_write=[
-                ("name", "Cutoff Selection Rule name"),
-                ("cutoff_rule_type", CutoffRuleType.TAPER),
-                ("cutoff_geometry", geometry),
+                ("name", "CutOff Selection Rule name"),
+                ("cut_off_rule_type", CutOffRuleType.TAPER),
+                ("cut_off_geometry", geometry),
                 ("taper_edge_set", edge_set),
                 ("offset", 1.2),
                 ("angle", 2.3),
-                ("ply_cutoff_type", PlyCutoffType.ANALYSIS_PLY_CUTOFF),
+                ("ply_cut_off_type", PlyCutOffType.ANALYSIS_PLY_CUTOFF),
                 ("ply_tapering", True),
             ],
             read_only=[
@@ -83,6 +83,6 @@ class TestCutoffSelectionRule(NoLockedMixin, TreeObjectTester):
 
 
 def test_mesh_data(parent_object):
-    rule = parent_object.create_cutoff_selection_rule()
-    assert isinstance(rule.elemental_data, CutoffSelectionRuleElementalData)
-    assert isinstance(rule.nodal_data, CutoffSelectionRuleNodalData)
+    rule = parent_object.create_cut_off_selection_rule()
+    assert isinstance(rule.elemental_data, CutOffSelectionRuleElementalData)
+    assert isinstance(rule.nodal_data, CutOffSelectionRuleNodalData)

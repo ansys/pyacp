@@ -44,7 +44,7 @@ from ._grpc_helpers.property_helper import (
 )
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import (
-    CutoffMaterialHandling,
+    CutOffMaterialHandling,
     DrapingMaterialModel,
     DropoffMaterialHandling,
     SymmetryType,
@@ -200,7 +200,7 @@ class Stackup(CreatableTreeObject, IdTreeObject):
         drop_off_material_handling: DropoffMaterialHandling = "global",
         drop_off_material: Material | None = None,
         cut_off_material: Material | None = None,
-        cut_off_material_handling: CutoffMaterialHandling = "computed",
+        cut_off_material_handling: CutOffMaterialHandling = "computed",
         draping_material_model: DrapingMaterialModel = "woven",
         draping_ud_coefficient: float = 0.0,
     ):
@@ -212,7 +212,7 @@ class Stackup(CreatableTreeObject, IdTreeObject):
         self.fabrics = fabrics
         self.drop_off_material_handling = DropoffMaterialHandling(drop_off_material_handling)
         self.drop_off_material = drop_off_material
-        self.cut_off_material_handling = CutoffMaterialHandling(cut_off_material_handling)
+        self.cut_off_material_handling = CutOffMaterialHandling(cut_off_material_handling)
         self.cut_off_material = cut_off_material
         self.draping_material_model = DrapingMaterialModel(draping_material_model)
         self.draping_ud_coefficient = draping_ud_coefficient
