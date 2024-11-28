@@ -23,8 +23,8 @@
 """
 .. _imported_plies_example:
 
-Imported ply example
-============================
+Imported ply
+============
 
 The definition and use of imported plies is demonstrated in this example.
 In a nutshell, the difference between :class:`.ImportedModelingPly` and a
@@ -45,6 +45,8 @@ This examples shows hot to:
 - Visualized the mapped plies.
 """
 
+import os
+
 # %%
 # Import modules
 # --------------
@@ -52,18 +54,19 @@ This examples shows hot to:
 # Import the standard library and third-party dependencies.
 import pathlib
 import tempfile
-import os
+
 import pyvista
 
 # %%
 # Import the PyACP dependencies.
-from ansys.acp.core import launch_acp, ImportedPlyOffsetType, CADGeometry, \
-    VirtualGeometry, PlyType
+from ansys.acp.core import CADGeometry, ImportedPlyOffsetType, PlyType, VirtualGeometry, launch_acp
 from ansys.acp.core.extras import ExampleKeys, get_example_file
-from ansys.acp.core.material_property_sets import ConstantEngineeringConstants, ConstantDensity
+from ansys.acp.core.material_property_sets import ConstantDensity, ConstantEngineeringConstants
 
 # sphinx_gallery_thumbnail_number = 3
 
+
+CAMERA_POSITION = [(0.0436, 0.0102, 0.0193), (0.0111, 0.0035, 0.0046), (-0.1685, 0.9827, -0.0773)]
 
 # %%
 # Start ACP and load the model
@@ -98,9 +101,7 @@ ud_material = model.create_material(
     density=density_ud,
 )
 
-engineering_resin = ConstantEngineeringConstants.from_isotropic_constants(
-    E=5e9, nu=0.3
-)
+engineering_resin = ConstantEngineeringConstants.from_isotropic_constants(E=5e9, nu=0.3)
 density_resin = ConstantDensity(rho=1200)
 
 void_material = model.create_material(
@@ -120,9 +121,12 @@ fabric = model.create_fabric(name="E-Glass Fabric", material=ud_material, thickn
 
 
 # %%
+# Import CAD geometries
+# ---------------------
+#
 # Import two cad surfaces to define the surface of the imported modeling plies.
 def create_virtual_geometry_from_file(
-        example_key: ExampleKeys,
+    example_key: ExampleKeys,
 ) -> tuple[CADGeometry, VirtualGeometry]:
     """Create a CAD geometry and virtual geometry."""
     geometry_file = get_example_file(example_key, WORKING_DIR)
@@ -135,9 +139,14 @@ def create_virtual_geometry_from_file(
     return geometry_obj, virtual_geometry
 
 
-triangle_surf_cad, triangle_surf_vcad = create_virtual_geometry_from_file(ExampleKeys.RULE_GEOMETRY_TRIANGLE)
+triangle_surf_cad, triangle_surf_vcad = create_virtual_geometry_from_file(
+    ExampleKeys.RULE_GEOMETRY_TRIANGLE
+)
 top_surf_cad, top_surf_vcad = create_virtual_geometry_from_file(ExampleKeys.SNAP_TO_GEOMETRY)
 
+# %%
+# Definition of Imported Plies
+# ----------------------------
 imported_ply_group = model.create_imported_modeling_group(name="Imported Ply Group")
 imported_ply_triangle = imported_ply_group.create_imported_modeling_ply(
     name="Triangle Ply",
@@ -171,6 +180,7 @@ def plotter_with_all_geometries(cad_geometries):
         edges = geom_mesh.extract_feature_edges()
         plotter.add_mesh(edges, color="white", line_width=4)
         plotter.add_mesh(edges, color="black", line_width=2)
+    plotter.camera_position = CAMERA_POSITION
     return plotter
 
 
@@ -178,6 +188,9 @@ plotter = plotter_with_all_geometries([triangle_surf_cad, top_surf_cad])
 plotter.show()
 
 # %%
+# Map Imported Plies onto a solid mesh
+# ------------------------------------
+#
 # An external solid mesh is loaded now to map the imported plies
 # onto the solid model.
 solid_mesh_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB, WORKING_DIR)
@@ -223,10 +236,9 @@ for imported_ply in [imported_ply_triangle, imported_ply_top]:
 plotter.add_mesh(mesh=imported_solid_model.solid_mesh.to_pyvista(), show_edges=False, opacity=0.2)
 plotter.show()
 
-# %%
-# Show the elemental mass for the entire solid model
 """
 !!! This does not work yet.
+Show the elemental mass for the entire solid model
 assert model.elemental_data.mass is not None
 model.elemental_data.mass.get_pyvista_mesh(mesh=model.solid_mesh).plot(show_edges=True)
 """

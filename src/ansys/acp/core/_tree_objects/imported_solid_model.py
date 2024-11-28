@@ -35,7 +35,7 @@ from ansys.api.acp.v0 import (
     solid_element_set_pb2_grpc,
     solid_model_pb2,
 )
-from ._mesh_data import solid_mesh_property
+
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .._utils.typing_helper import PATH as _PATH
 from ._elemental_or_nodal_data import (
@@ -57,6 +57,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
+from ._mesh_data import solid_mesh_property
 from ._solid_model_export import SolidModelExportMixin
 from .base import (
     CreatableTreeObject,

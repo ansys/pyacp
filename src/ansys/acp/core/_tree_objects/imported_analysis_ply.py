@@ -32,9 +32,9 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property_read_only,
     mark_grpc_properties,
 )
+from ._mesh_data import solid_mesh_property
 from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
-from ._mesh_data import solid_mesh_property
 from .object_registry import register
 
 __all__ = [

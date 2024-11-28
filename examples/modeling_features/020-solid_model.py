@@ -52,7 +52,7 @@ from ansys.acp.core import (
     get_directions_plotter,
     launch_acp,
 )
-from ansys.acp.core.extras import ExampleKeys, get_example_file
+from ansys.acp.core.extras import FLAT_PLATE_SOLID_CAMERA, ExampleKeys, get_example_file
 
 # sphinx_gallery_thumbnail_number = 4
 
@@ -118,6 +118,7 @@ def plot_model_with_geometry(cad_geometry: CADGeometry, cad_geom_opacity: float 
     plotter.add_mesh(edges, color="white", line_width=4)
     plotter.add_mesh(edges, color="black", line_width=2)
     plotter.add_mesh(model.solid_mesh.to_pyvista(), show_edges=True)
+    plotter.camera_position = FLAT_PLATE_SOLID_CAMERA
     plotter.show()
 
 
@@ -219,4 +220,5 @@ thickness_pyvista_mesh = thickness_data.get_pyvista_mesh(mesh=ap.solid_mesh)  # 
 plotter = pyvista.Plotter()
 plotter.add_mesh(thickness_pyvista_mesh)
 plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=False)
+plotter.camera_position = FLAT_PLATE_SOLID_CAMERA
 plotter.show()

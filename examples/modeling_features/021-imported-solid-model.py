@@ -23,7 +23,7 @@
 """
 .. _imported_solid_model_example:
 
-Imported Solid model
+Imported solid model
 ====================
 
 This example guides you through the definition of an :class:`.ImportedSolidModel`
@@ -261,6 +261,9 @@ plotter.show()
 # The :class:`.CutOffGeometry` can be used in combination witt the :class:`.ImportedSolidModel`
 # as well. See example :ref:`solid_model_example` for more details.
 # More plotting capabilities are shown in the example :ref:`solid_model_example` as well.
+#
+# An example of an :class:`.ImportedSolidModel` in combination with :class:`.ImportedModelingPly`
+# is shown in :ref:`imported_plies_example`.
 #
 # The solid mesh can be exported as CDB for MAPDL or to PyMechanical for further analysis.
 # These workflows are shown in :ref:`pymapdl_workflow_example` and

@@ -40,10 +40,23 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:  # pragma: no cover
     from ansys.acp.core import Model
 
-_EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/master/pyacp/"
+# _EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/master/pyacp/"
 
 
-# _EXAMPLE_REPO = "D:\\ANSYSDev\\pyansys-example-data\\pyacp\\"
+_EXAMPLE_REPO = "D:\\ANSYSDev\\pyansys-example-data\\pyacp\\"
+
+
+# Order of inputs: position, rotation point, orientation
+FLAT_PLATE_SHELL_CAMERA = [
+    (-0.0053, 0.0168, 0.0220),
+    (0.0022, 0.0041, 0.0104),
+    (0.3510, 0.7368, -0.5779),
+]
+FLAT_PLATE_SOLID_CAMERA = [
+    (0.0251, 0.0144, 0.0256),
+    (0.0086, 0.0041, 0.0089),
+    (-0.2895, 0.9160, -0.2776),
+]
 
 
 @dataclasses.dataclass
@@ -56,6 +69,7 @@ class ExampleKeys(Enum):
     """Keys for the example files."""
 
     BASIC_FLAT_PLATE_DAT = auto()
+    BASIC_FLAT_PLATE_REFINED_DAT = auto()
     BASIC_FLAT_PLATE_ACPH5 = auto()
     BASIC_FLAT_PLATE_SOLID_MESH_CDB = auto()
     RACE_CAR_NOSE_ACPH5 = auto()
@@ -78,13 +92,15 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
     ExampleKeys.BASIC_FLAT_PLATE_DAT: _ExampleLocation(
         directory="basic_flat_plate_example", filename="flat_plate_input.dat"
     ),
+    ExampleKeys.BASIC_FLAT_PLATE_REFINED_DAT: _ExampleLocation(
+        directory="basic_flat_plate_example", filename="flat_plate_input_refined.dat"
+    ),
     ExampleKeys.BASIC_FLAT_PLATE_ACPH5: _ExampleLocation(
         directory="basic_flat_plate_example", filename="flat_plate.acph5"
     ),
     ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB: _ExampleLocation(
         directory="basic_flat_plate_example", filename="solid_mesh.cdb"
     ),
-
     ExampleKeys.RACE_CAR_NOSE_ACPH5: _ExampleLocation(
         directory="race_car_nose", filename="race_car_nose.acph5"
     ),
