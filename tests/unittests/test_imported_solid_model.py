@@ -271,4 +271,4 @@ def test_import_initial_mesh(acp_instance, parent_object):
         imported_solid_model.refresh(out_path_cdb, format=pyacp.SolidModelImportFormat.ANSYS_CDB)
         imported_solid_model.import_initial_mesh()
         assert imported_solid_model.solid_mesh is not None
-        assert imported_solid_model.solid_mesh.element_labels == (3, )
+        assert imported_solid_model.solid_mesh.element_labels == (3,)
