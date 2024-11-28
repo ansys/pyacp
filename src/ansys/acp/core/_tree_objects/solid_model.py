@@ -27,6 +27,7 @@ import dataclasses
 from typing import Any
 
 from ansys.api.acp.v0 import (
+    analysis_ply_pb2_grpc,
     cut_off_geometry_pb2_grpc,
     extrusion_guide_pb2_grpc,
     snap_to_geometry_pb2_grpc,
@@ -59,6 +60,7 @@ from ._grpc_helpers.property_helper import (
     mark_grpc_properties,
 )
 from ._solid_model_export import SolidModelExportMixin
+from .analysis_ply import AnalysisPly
 from .base import (
     CreatableTreeObject,
     IdTreeObject,
@@ -523,6 +525,10 @@ class SolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObject):
     )
     cut_off_geometries = define_mutable_mapping(
         CutOffGeometry, cut_off_geometry_pb2_grpc.ObjectServiceStub
+    )
+
+    analysis_plies = get_read_only_collection_property(
+        AnalysisPly, analysis_ply_pb2_grpc.ObjectServiceStub
     )
 
     elemental_data = elemental_data_property(SolidModelElementalData)
