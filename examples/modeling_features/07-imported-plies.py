@@ -171,6 +171,8 @@ model.update()
 # %%
 # Imported plies cannot be visualized directly yet but the cad geometries are
 # shown here instead.
+# To visualize the imported plies, you can save the model and load it in ACP
+# standalone.
 def plotter_with_all_geometries(cad_geometries):
     colors = ["green", "yellow", "blue", "red"]
     plotter = pyvista.Plotter()
