@@ -193,12 +193,7 @@ plot_model_with_geometry(cutoff_cad_geom)
 
 # %%
 # Get the analysis ply of interest
-ap = (
-    model.modeling_groups["modeling_group"]
-    .modeling_plies["ply"]
-    .production_plies["ProductionPly.2"]
-    .analysis_plies["P2L1__ply"]
-)
+ap = solid_model.analysis_plies["P2L1__ply"]
 
 # %%
 # Plot fiber directions
