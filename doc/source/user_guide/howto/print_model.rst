@@ -90,7 +90,7 @@ The ``hide_empty`` label can be set to ``False`` to also show empty groups:
         Cylindrical Selection Rules
         Spherical Selection Rules
         Tube Selection Rules
-        CutOff Selection Rules
+        Cut Off Selection Rules
         Geometrical Selection Rules
         Variable Offset Selection Rules
         Boolean Selection Rules
