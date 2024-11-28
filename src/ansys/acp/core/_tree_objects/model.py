@@ -187,7 +187,13 @@ class ModelElementalData(ElementalData):
     thickness: ScalarData[np.float64] | None = None
     relative_thickness_correction: ScalarData[np.float64] | None = None
     area: ScalarData[np.float64] | None = None
-    price: ScalarData[np.float64] | None = None
+    # Retrieving the 'price' can crash the server if the model contains void
+    # analysis plies (on an imported solid model).
+    # This is fixed in the backend for 2025R2, but for now we simply comment
+    # out the property. In this way, the other properties can still be accessed,
+    # and we can avoid the crash.
+    # See https://github.com/ansys/pyacp/issues/717
+    # price: ScalarData[np.float64] | None = None
     volume: ScalarData[np.float64] | None = None
     mass: ScalarData[np.float64] | None = None
     offset: ScalarData[np.float64] | None = None
