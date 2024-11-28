@@ -71,7 +71,7 @@ __all__ = [
 
 @dataclasses.dataclass
 class CutOffSelectionRuleElementalData(ElementalData):
-    """Represents elemental data for a CutOff Selection Rule."""
+    """Represents elemental data for a Cut Off Selection Rule."""
 
     normal: VectorData | None = None
 
