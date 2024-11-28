@@ -195,10 +195,11 @@ plotter.show()
 # An external solid mesh is loaded now to map the imported plies
 # onto the solid model. The next figure shows the imported solid mesh
 # and the imported plies.
-solid_mesh_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB, WORKING_DIR)
+local_solid_mesh_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB, WORKING_DIR)
+remote_solid_mesh_file = acp.upload_file(local_solid_mesh_file)
 imported_solid_model = model.create_imported_solid_model(
     name="Imported Solid Model",
-    external_path=solid_mesh_file,
+    external_path=remote_solid_mesh_file,
     format="ansys:cdb",
 )
 imported_solid_model.import_initial_mesh()
