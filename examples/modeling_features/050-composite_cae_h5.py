@@ -193,7 +193,7 @@ refined_model_3D.import_hdf5_composite_cae(
 
 # %%
 # An imported solid model is required for the 3D workflow (with imported modeling plies).
-# Details about :class:`.ImportedSolidModel` and :class:`ImportedModelingPly` can be found
+# Details about :class:`.ImportedSolidModel` and :class:`.ImportedModelingPly` can be found
 # in the examples :ref:`imported_solid_model_example` and :ref:`imported_plies_example`.
 local_solid_mesh_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB, WORKING_DIR)
 remote_solid_mesh_file = acp.upload_file(local_solid_mesh_file)
