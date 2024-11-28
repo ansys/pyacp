@@ -69,8 +69,8 @@
     <link rel="icon" href="../../_static/ansys-favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Direction definition" href="06-ply-direction-lookup-table.html" />
-    <link rel="prev" title="Rosette" href="05-rosettes-ply-directions.html" />
+    <link rel="next" title="PyMAPDL workflow" href="../workflows/01-pymapdl-workflow.html" />
+    <link rel="prev" title="Imported solid model" href="031-imported-solid-model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.1.dev0" />
@@ -449,16 +449,16 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="001-materials.html">Materials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01-sandwich-panel-layup.html">Sandwich panel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-simple-selection-rules.html">Basic selection rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002-rosettes-ply-directions.html">Rosette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003-simple-selection-rules.html">Basic selection rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004-advanced-selection-rules.html">Advanced selection rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005-ply-direction-lookup-table.html">Direction definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="006-layup-thickness-definitions.html">Thickness definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010-sandwich-panel-layup.html">Sandwich panel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="020-solid_model.html">Solid Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="021-imported-solid-model.html">Imported solid model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-advanced-selection-rules.html">Advanced selection rules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04-layup-thickness-definitions.html">Thickness definition</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05-rosettes-ply-directions.html">Rosette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030-imported-plies.html">Imported ply</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031-imported-solid-model.html">Imported solid model</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">HDF5 Composite CAE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06-ply-direction-lookup-table.html">Direction definition</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07-imported-plies.html">Imported ply</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../workflows/01-pymapdl-workflow.html">PyMAPDL workflow</a></li>
@@ -738,7 +738,7 @@ write a new HDF5 with <code class="docutils literal notranslate"><span class="pr
 </div>
 <p>An imported solid model is required for the 3D workflow (with imported modeling plies).
 Details about <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ImportedSolidModel.html#ansys.acp.core.ImportedSolidModel" title="ansys.acp.core.ImportedSolidModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImportedSolidModel</span></code></a> and <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.ImportedModelingPly.html#ansys.acp.core.ImportedModelingPly" title="ansys.acp.core.ImportedModelingPly"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImportedModelingPly</span></code></a> can be found
-in the examples <a class="reference internal" href="021-imported-solid-model.html#imported-solid-model-example"><span class="std std-ref">Imported solid model</span></a> and <a class="reference internal" href="07-imported-plies.html#imported-plies-example"><span class="std std-ref">Imported ply</span></a>.</p>
+in the examples <a class="reference internal" href="031-imported-solid-model.html#imported-solid-model-example"><span class="std std-ref">Imported solid model</span></a> and <a class="reference internal" href="030-imported-plies.html#imported-plies-example"><span class="std std-ref">Imported ply</span></a>.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">local_solid_mesh_file</span></a> <span class="o">=</span> <span class="n">get_example_file</span><span class="p">(</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">BASIC_FLAT_PLATE_SOLID_MESH_CDB</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">WORKING_DIR</span></a><span class="p">)</span>
 <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePosixPath" title="pathlib.PurePosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">remote_solid_mesh_file</span></a> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">local_solid_mesh_file</span></a><span class="p">)</span>
 <span class="n">imported_solid_model</span> <span class="o">=</span> <span class="n">refined_model_3D</span><span class="o">.</span><span class="n">create_imported_solid_model</span><span class="p">(</span>
@@ -792,7 +792,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <p>Note that the visualization of imported plies and imported solid model
 is limited. As an alternative, you can save the model and review it
 in ACP standalone.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.667 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 4.501 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-modeling-features-050-composite-cae-h5-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/93d0eb01705ae140cb63ef08afb5552d/050-composite_cae_h5.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">050-composite_cae_h5.ipynb</span></code></a></p>
@@ -819,20 +819,20 @@ in ACP standalone.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="05-rosettes-ply-directions.html"
+       href="031-imported-solid-model.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Rosette</p>
+        <p class="prev-next-title">Imported solid model</p>
       </div>
     </a>
     <a class="right-next"
-       href="06-ply-direction-lookup-table.html"
+       href="../workflows/01-pymapdl-workflow.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Direction definition</p>
+        <p class="prev-next-title">PyMAPDL workflow</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
