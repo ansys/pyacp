@@ -23,6 +23,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering",
@@ -33,7 +34,7 @@ Issues = "https://github.com/ansys/pyacp/issues"
 Releases = "https://github.com/ansys/pyacp/releases"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+python = ">=3.10,<4"
 numpy = ">=1.22"
 grpcio-health-checking = ">=1.43"
 packaging = ">=15.0"
