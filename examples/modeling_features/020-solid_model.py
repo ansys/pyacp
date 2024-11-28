@@ -52,7 +52,7 @@ from ansys.acp.core import (
     get_directions_plotter,
     launch_acp,
 )
-from ansys.acp.core.extras import ExampleKeys, get_example_file
+from ansys.acp.core.extras import FLAT_PLATE_SOLID_CAMERA, ExampleKeys, get_example_file
 
 # sphinx_gallery_thumbnail_number = 4
 
@@ -92,7 +92,23 @@ solid_model = model.create_solid_model(
 )
 
 model.update()
-model.solid_mesh.to_pyvista().plot(show_edges=True)
+
+
+def plot_model_with_geometry(cad_geometry: CADGeometry | None, cad_geom_opacity: float = 0.1):
+    """Plot solid model and geometry."""
+    plotter = pyvista.Plotter()
+    if cad_geometry:
+        geom_mesh = cad_geometry.visualization_mesh.to_pyvista()
+        plotter.add_mesh(geom_mesh, color="green", opacity=cad_geom_opacity)
+        edges = geom_mesh.extract_feature_edges()
+        plotter.add_mesh(edges, color="white", line_width=4)
+        plotter.add_mesh(edges, color="black", line_width=2)
+    plotter.add_mesh(model.solid_mesh.to_pyvista(), show_edges=True)
+    plotter.camera_position = FLAT_PLATE_SOLID_CAMERA
+    plotter.show()
+
+
+plot_model_with_geometry(None)
 
 
 def create_virtual_geometry_from_file(
@@ -107,18 +123,6 @@ def create_virtual_geometry_from_file(
         name="thickness_virtual_geometry", cad_components=geometry_obj.root_shapes.values()
     )
     return geometry_obj, virtual_geometry
-
-
-def plot_model_with_geometry(cad_geometry: CADGeometry, cad_geom_opacity: float = 0.1):
-    """Plot solid model and geometry."""
-    plotter = pyvista.Plotter()
-    geom_mesh = cad_geometry.visualization_mesh.to_pyvista()
-    plotter.add_mesh(geom_mesh, color="green", opacity=cad_geom_opacity)
-    edges = geom_mesh.extract_feature_edges()
-    plotter.add_mesh(edges, color="white", line_width=4)
-    plotter.add_mesh(edges, color="black", line_width=2)
-    plotter.add_mesh(model.solid_mesh.to_pyvista(), show_edges=True)
-    plotter.show()
 
 
 # %%
@@ -160,7 +164,7 @@ solid_model.create_extrusion_guide(
     depth=0.6,
 )
 model.update()
-model.solid_mesh.to_pyvista().plot(show_edges=True)
+plot_model_with_geometry(None)
 
 # %%
 # Cut-off an edge
@@ -189,12 +193,7 @@ plot_model_with_geometry(cut_off_cad_geom)
 
 # %%
 # Get the analysis ply of interest
-ap = (
-    model.modeling_groups["modeling_group"]
-    .modeling_plies["ply"]
-    .production_plies["ProductionPly.2"]
-    .analysis_plies["P2L1__ply"]
-)
+ap = solid_model.analysis_plies["P2L1__ply"]
 
 # %%
 # Plot fiber directions
@@ -208,7 +207,8 @@ direction_plotter = get_directions_plotter(
     length_factor=10.0,
     culling_factor=10,
 )
-direction_plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=True)
+direction_plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=False)
+direction_plotter.camera_position = FLAT_PLATE_SOLID_CAMERA
 direction_plotter.show()
 
 # %%
@@ -218,5 +218,6 @@ thickness_data = ap.elemental_data.thickness
 thickness_pyvista_mesh = thickness_data.get_pyvista_mesh(mesh=ap.solid_mesh)  # type: ignore
 plotter = pyvista.Plotter()
 plotter.add_mesh(thickness_pyvista_mesh)
-plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=True)
+plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=False)
+plotter.camera_position = FLAT_PLATE_SOLID_CAMERA
 plotter.show()

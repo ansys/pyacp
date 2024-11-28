@@ -23,8 +23,8 @@
 """
 .. _thickness_definition_example:
 
-Thickness definition example
-============================
+Thickness definition
+====================
 
 This example shows how the thickness of a ply can be defined by a geometry or a lookup table.
 The example only shows the PyACP part of the setup. For a complete composite analysis,
@@ -46,7 +46,7 @@ import pyvista
 # %%
 # Import the PyACP dependencies.
 from ansys.acp.core import DimensionType, ThicknessType, launch_acp
-from ansys.acp.core.extras import ExampleKeys, get_example_file
+from ansys.acp.core.extras import FLAT_PLATE_SOLID_CAMERA, ExampleKeys, get_example_file
 
 # sphinx_gallery_thumbnail_number = 2
 
@@ -117,7 +117,7 @@ plotter.add_mesh(edges, color="white", line_width=4)
 plotter.add_mesh(edges, color="black", line_width=2)
 # Plot the ply thickness
 plotter.add_mesh(model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh), show_edges=True)
-
+plotter.camera_position = FLAT_PLATE_SOLID_CAMERA
 plotter.show()
 
 # %%
