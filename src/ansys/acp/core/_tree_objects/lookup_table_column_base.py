@@ -95,6 +95,9 @@ class LookUpTableColumnBase(CreatableTreeObject, IdTreeObject):
     value_type = grpc_data_property_read_only(
         "properties.value_type", from_protobuf=lookup_table_column_value_type_from_pb
     )
+
+    # We renamed 'dimension_type' to 'physical_dimension' compared to the API, since
+    # 'dimension_type' could also be understood as the number of spatial dimensions.
     physical_dimension = grpc_data_property(
         "properties.dimension_type",
         from_protobuf=physical_dimension_from_pb,
