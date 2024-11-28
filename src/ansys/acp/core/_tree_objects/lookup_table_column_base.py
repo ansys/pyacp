@@ -37,12 +37,12 @@ from ._grpc_helpers.property_helper import (
 )
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import (
-    DimensionType,
     LookUpTableColumnValueType,
-    dimension_type_from_pb,
-    dimension_type_to_pb,
+    PhysicalDimension,
     lookup_table_column_value_type_from_pb,
     lookup_table_column_value_type_to_pb,
+    physical_dimension_from_pb,
+    physical_dimension_to_pb,
 )
 
 __all__ = ["LookUpTableColumnBase"]
@@ -59,7 +59,7 @@ class LookUpTableColumnBase(CreatableTreeObject, IdTreeObject):
         directional (three entries per row).
         Note that the ``value_type`` can only be set when constructing the
         column, and is read-only afterwards.
-    dimension_type :
+    physical_dimension :
         Dimensionality (such as time, length, force, ...) of the column data.
     data :
         The column data. The shape of the data must match the ``value_type``
@@ -74,7 +74,7 @@ class LookUpTableColumnBase(CreatableTreeObject, IdTreeObject):
         *,
         name: str,
         value_type: LookUpTableColumnValueType = LookUpTableColumnValueType.SCALAR,
-        dimension_type: DimensionType = DimensionType.DIMENSIONLESS,
+        physical_dimension: PhysicalDimension = PhysicalDimension.DIMENSIONLESS,
         data: npt.NDArray[np.float64] | None = None,
     ):
         super().__init__(name=name)
@@ -88,17 +88,17 @@ class LookUpTableColumnBase(CreatableTreeObject, IdTreeObject):
             self, value_type
         )
 
-        self.dimension_type = dimension_type
+        self.physical_dimension = physical_dimension
         if data is not None:
             self.data = data
 
     value_type = grpc_data_property_read_only(
         "properties.value_type", from_protobuf=lookup_table_column_value_type_from_pb
     )
-    dimension_type = grpc_data_property(
+    physical_dimension = grpc_data_property(
         "properties.dimension_type",
-        from_protobuf=dimension_type_from_pb,
-        to_protobuf=dimension_type_to_pb,
+        from_protobuf=physical_dimension_from_pb,
+        to_protobuf=physical_dimension_to_pb,
     )
     data: ReadWriteProperty[npt.NDArray[np.float64], npt.NDArray[np.float64]] = grpc_data_property(
         "properties.data",

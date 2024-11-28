@@ -45,9 +45,9 @@ import numpy as np
 # %%
 # Import the PyACP dependencies.
 from ansys.acp.core import (
-    DimensionType,
     DrapingType,
     LookUpTableColumnValueType,
+    PhysicalDimension,
     PlyType,
     RosetteSelectionMethod,
     get_directions_plotter,
@@ -147,7 +147,7 @@ directions = np.cross(points, normal)
 lookup_table.columns["Location"].data = points
 direction_column = lookup_table.create_column(
     data=directions,
-    dimension_type=DimensionType.DIMENSIONLESS,
+    physical_dimension=PhysicalDimension.DIMENSIONLESS,
     value_type=LookUpTableColumnValueType.DIRECTION,
 )
 
@@ -177,7 +177,7 @@ oss.rosette_selection_method = RosetteSelectionMethod.MINIMUM_ANGLE
 correction_angle = np.arctan2(xx.ravel(), zz.ravel()) * 180 / np.pi
 angle_column_1 = lookup_table.create_column(
     data=correction_angle,
-    dimension_type=DimensionType.DIMENSIONLESS,
+    physical_dimension=PhysicalDimension.DIMENSIONLESS,
     value_type=LookUpTableColumnValueType.SCALAR,
 )
 
@@ -187,7 +187,7 @@ shear_angle = -30
 transverse_correction_angle = correction_angle + shear_angle
 angle_column_2 = lookup_table.create_column(
     data=transverse_correction_angle,
-    dimension_type=DimensionType.DIMENSIONLESS,
+    physical_dimension=PhysicalDimension.DIMENSIONLESS,
     value_type=LookUpTableColumnValueType.SCALAR,
 )
 

@@ -13,7 +13,6 @@ Enumeration data types
     CutOffGeometryOrientationType
     CutOffMaterialHandling
     CutOffRuleType
-    DimensionType
     DrapingMaterialModel
     DrapingType
     DropOffMaterialHandling
@@ -26,6 +25,8 @@ Enumeration data types
     ExtrusionType
     FeFormat
     GeometricalRuleType
+    HDF5CompositeCAEImportMode
+    HDF5CompositeCAEProjectionMode
     IgnorableEntity
     ImportedPlyDrapingType
     ImportedPlyOffsetType
@@ -34,14 +35,11 @@ Enumeration data types
     LayupMappingRosetteSelectionMethod
     LinkedObjectHandling
     LookUpTable3DInterpolationAlgorithm
-    HDF5CompositeCAEImportMode
-    HDF5CompositeCAEProjectionMode
     LookUpTableColumnValueType
     MeshImportType
     NodalDataType
-    SolidModelOffsetDirectionType
     OffsetType
-    SnapToGeometryOrientationType
+    PhysicalDimension
     PlyCutOffType
     PlyGeometryExportFormat
     PlyType
@@ -50,8 +48,10 @@ Enumeration data types
     RosetteType
     SectionCutType
     SensorType
+    SnapToGeometryOrientationType
     SolidModelExportFormat
     SolidModelImportFormat
+    SolidModelOffsetDirectionType
     SolidModelSkinExportFormat
     Status
     StressStateType
