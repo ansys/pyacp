@@ -11,12 +11,12 @@ Enumeration data types
     BaseElementMaterialHandling
     BooleanOperationType
     CutOffGeometryOrientationType
-    CutoffMaterialHandling
-    CutoffRuleType
+    CutOffMaterialHandling
+    CutOffRuleType
     DimensionType
     DrapingMaterialModel
     DrapingType
-    DropoffMaterialHandling
+    DropOffMaterialHandling
     DropOffType
     EdgeSetType
     ElementalDataType
@@ -42,7 +42,7 @@ Enumeration data types
     SolidModelOffsetDirectionType
     OffsetType
     SnapToGeometryOrientationType
-    PlyCutoffType
+    PlyCutOffType
     PlyGeometryExportFormat
     PlyType
     ReinforcingBehavior

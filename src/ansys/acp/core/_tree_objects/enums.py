@@ -51,12 +51,12 @@ __all__ = [
     "ArrowType",
     "BooleanOperationType",
     "CutOffGeometryOrientationType",
-    "CutoffMaterialHandling",
-    "CutoffRuleType",
+    "CutOffMaterialHandling",
+    "CutOffRuleType",
     "DimensionType",
     "DrapingMaterialModel",
     "DrapingType",
-    "DropoffMaterialHandling",
+    "DropOffMaterialHandling",
     "DropOffType",
     "EdgeSetType",
     "ElementalDataType",
@@ -77,7 +77,7 @@ __all__ = [
     "NodalDataType",
     "SolidModelOffsetDirectionType",
     "OffsetType",
-    "PlyCutoffType",
+    "PlyCutOffType",
     "PlyGeometryExportFormat",
     "PlyType",
     "RosetteSelectionMethod",
@@ -114,22 +114,22 @@ __all__ = [
 )
 
 (
-    CutoffMaterialHandling,
+    CutOffMaterialHandling,
     cut_off_material_type_to_pb,
     cut_off_material_type_from_pb,
 ) = wrap_to_string_enum(
-    "CutoffMaterialHandling",
+    "CutOffMaterialHandling",
     cut_off_material_pb2.MaterialHandlingType,
     module=__name__,
     doc="Options for how cut-off material is selected.",
 )
 
 (
-    DropoffMaterialHandling,
+    DropOffMaterialHandling,
     drop_off_material_type_to_pb,
     drop_off_material_type_from_pb,
 ) = wrap_to_string_enum(
-    "DropoffMaterialHandling",
+    "DropOffMaterialHandling",
     drop_off_material_pb2.MaterialHandlingType,
     module=__name__,
     doc="Options for how drop-off material is selected.",
@@ -344,25 +344,25 @@ __all__ = [
 )
 
 (
-    CutoffRuleType,
-    cutoff_rule_type_to_pb,
-    cutoff_rule_type_from_pb,
+    CutOffRuleType,
+    cut_off_rule_type_to_pb,
+    cut_off_rule_type_from_pb,
 ) = wrap_to_string_enum(
-    "CutoffRuleType",
+    "CutOffRuleType",
     cutoff_selection_rule_pb2.CutoffRuleType,
     module=__name__,
-    doc="Options for how a cutoff rule is defined.",
+    doc="Options for how a cut off rule is defined.",
 )
 
 (
-    PlyCutoffType,
-    ply_cutoff_type_to_pb,
-    ply_cutoff_type_from_pb,
+    PlyCutOffType,
+    ply_cut_off_type_to_pb,
+    ply_cut_off_type_from_pb,
 ) = wrap_to_string_enum(
-    "PlyCutoffType",
+    "PlyCutOffType",
     cutoff_selection_rule_pb2.PlyCutoffType,
     module=__name__,
-    doc="Options for how ply cutoff is computed.",
+    doc="Options for how ply cut-off is computed.",
 )
 
 (

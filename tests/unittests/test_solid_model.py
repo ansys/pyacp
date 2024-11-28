@@ -105,13 +105,13 @@ class TestSolidModel(WithLockedMixin, TreeObjectTester):
                     PropertyWithCustomComparison(
                         initial_value=pyacp.DropOffSettings(
                             drop_off_type=pyacp.DropOffType.OUTSIDE_PLY,
-                            disable_dropoffs_on_bottom=True,
-                            dropoff_disabled_on_bottom_sets=[
+                            disable_drop_offs_on_bottom=True,
+                            drop_off_disabled_on_bottom_sets=[
                                 model.create_element_set(),
                                 model.create_oriented_selection_set(),
                             ],
-                            disable_dropoffs_on_top=True,
-                            dropoff_disabled_on_top_sets=[
+                            disable_drop_offs_on_top=True,
+                            drop_off_disabled_on_top_sets=[
                                 model.create_oriented_selection_set(),
                                 model.create_element_set(),
                             ],
@@ -155,83 +155,83 @@ class TestSolidModel(WithLockedMixin, TreeObjectTester):
 
 
 @given(
-    disable_dropoffs_on_bottom=st.booleans(),
-    disable_dropoffs_on_top=st.booleans(),
+    disable_drop_offs_on_bottom=st.booleans(),
+    disable_drop_offs_on_top=st.booleans(),
     connect_butt_joined_plies=st.booleans(),
 )
 @settings(suppress_health_check=[HealthCheck.function_scoped_fixture], deadline=None)
 def test_drop_off_settings_on_init(
-    parent_object, disable_dropoffs_on_bottom, disable_dropoffs_on_top, connect_butt_joined_plies
+    parent_object, disable_drop_offs_on_bottom, disable_drop_offs_on_top, connect_butt_joined_plies
 ):
     """Check that the drop-off settings are correctly set when passed to the SolidModel constructor."""
-    dropoff_disabled_on_bottom_sets = [
+    drop_off_disabled_on_bottom_sets = [
         parent_object.create_element_set(),
         parent_object.create_oriented_selection_set(),
     ]
-    dropoff_disabled_on_top_sets = [
+    drop_off_disabled_on_top_sets = [
         parent_object.create_oriented_selection_set(),
         parent_object.create_element_set(),
     ]
 
     drop_off_settings = pyacp.DropOffSettings(
-        disable_dropoffs_on_bottom=disable_dropoffs_on_bottom,
-        dropoff_disabled_on_bottom_sets=dropoff_disabled_on_bottom_sets,
-        disable_dropoffs_on_top=disable_dropoffs_on_top,
-        dropoff_disabled_on_top_sets=dropoff_disabled_on_top_sets,
+        disable_drop_offs_on_bottom=disable_drop_offs_on_bottom,
+        drop_off_disabled_on_bottom_sets=drop_off_disabled_on_bottom_sets,
+        disable_drop_offs_on_top=disable_drop_offs_on_top,
+        drop_off_disabled_on_top_sets=drop_off_disabled_on_top_sets,
         connect_butt_joined_plies=connect_butt_joined_plies,
     )
 
     solid_model = parent_object.create_solid_model(drop_off_settings=drop_off_settings)
-    assert solid_model.drop_off_settings.disable_dropoffs_on_bottom == disable_dropoffs_on_bottom
-    assert solid_model.drop_off_settings.disable_dropoffs_on_top == disable_dropoffs_on_top
+    assert solid_model.drop_off_settings.disable_drop_offs_on_bottom == disable_drop_offs_on_bottom
+    assert solid_model.drop_off_settings.disable_drop_offs_on_top == disable_drop_offs_on_top
     assert solid_model.drop_off_settings.connect_butt_joined_plies == connect_butt_joined_plies
     assert (
-        solid_model.drop_off_settings.dropoff_disabled_on_bottom_sets
-        == dropoff_disabled_on_bottom_sets
+        solid_model.drop_off_settings.drop_off_disabled_on_bottom_sets
+        == drop_off_disabled_on_bottom_sets
     )
     assert (
-        solid_model.drop_off_settings.dropoff_disabled_on_top_sets == dropoff_disabled_on_top_sets
+        solid_model.drop_off_settings.drop_off_disabled_on_top_sets == drop_off_disabled_on_top_sets
     )
 
 
 @given(
-    disable_dropoffs_on_bottom=st.booleans(),
-    disable_dropoffs_on_top=st.booleans(),
+    disable_drop_offs_on_bottom=st.booleans(),
+    disable_drop_offs_on_top=st.booleans(),
     connect_butt_joined_plies=st.booleans(),
 )
 @settings(suppress_health_check=[HealthCheck.function_scoped_fixture], deadline=None)
 def test_drop_off_settings_assign(
-    parent_object, disable_dropoffs_on_bottom, disable_dropoffs_on_top, connect_butt_joined_plies
+    parent_object, disable_drop_offs_on_bottom, disable_drop_offs_on_top, connect_butt_joined_plies
 ):
     """Check that the drop-off settings are correctly set when assigned to the SolidModel."""
-    dropoff_disabled_on_bottom_sets = [
+    drop_off_disabled_on_bottom_sets = [
         parent_object.create_element_set(),
         parent_object.create_oriented_selection_set(),
     ]
-    dropoff_disabled_on_top_sets = [
+    drop_off_disabled_on_top_sets = [
         parent_object.create_oriented_selection_set(),
         parent_object.create_element_set(),
     ]
 
     drop_off_settings = pyacp.DropOffSettings(
-        disable_dropoffs_on_bottom=disable_dropoffs_on_bottom,
-        dropoff_disabled_on_bottom_sets=dropoff_disabled_on_bottom_sets,
-        disable_dropoffs_on_top=disable_dropoffs_on_top,
-        dropoff_disabled_on_top_sets=dropoff_disabled_on_top_sets,
+        disable_drop_offs_on_bottom=disable_drop_offs_on_bottom,
+        drop_off_disabled_on_bottom_sets=drop_off_disabled_on_bottom_sets,
+        disable_drop_offs_on_top=disable_drop_offs_on_top,
+        drop_off_disabled_on_top_sets=drop_off_disabled_on_top_sets,
         connect_butt_joined_plies=connect_butt_joined_plies,
     )
 
     solid_model = parent_object.create_solid_model()
     solid_model.drop_off_settings = drop_off_settings
-    assert solid_model.drop_off_settings.disable_dropoffs_on_bottom == disable_dropoffs_on_bottom
-    assert solid_model.drop_off_settings.disable_dropoffs_on_top == disable_dropoffs_on_top
+    assert solid_model.drop_off_settings.disable_drop_offs_on_bottom == disable_drop_offs_on_bottom
+    assert solid_model.drop_off_settings.disable_drop_offs_on_top == disable_drop_offs_on_top
     assert solid_model.drop_off_settings.connect_butt_joined_plies == connect_butt_joined_plies
     assert (
-        solid_model.drop_off_settings.dropoff_disabled_on_bottom_sets
-        == dropoff_disabled_on_bottom_sets
+        solid_model.drop_off_settings.drop_off_disabled_on_bottom_sets
+        == drop_off_disabled_on_bottom_sets
     )
     assert (
-        solid_model.drop_off_settings.dropoff_disabled_on_top_sets == dropoff_disabled_on_top_sets
+        solid_model.drop_off_settings.drop_off_disabled_on_top_sets == drop_off_disabled_on_top_sets
     )
 
 
@@ -246,21 +246,21 @@ def test_drop_off_settings_assign_wrong_type(parent_object):
 def test_drop_off_settings_string_representation(parent_object):
     """Check that the string representation of the drop-off settings is correct."""
     solid_model = parent_object.create_solid_model()
-    dropoff_disabled_on_bottom_sets = [
+    drop_off_disabled_on_bottom_sets = [
         parent_object.create_element_set(),
         parent_object.create_oriented_selection_set(),
     ]
-    dropoff_disabled_on_top_sets = [
+    drop_off_disabled_on_top_sets = [
         parent_object.create_oriented_selection_set(),
         parent_object.create_element_set(),
     ]
 
     drop_off_settings = pyacp.DropOffSettings(
         drop_off_type=pyacp.DropOffType.OUTSIDE_PLY,
-        disable_dropoffs_on_bottom=True,
-        dropoff_disabled_on_bottom_sets=dropoff_disabled_on_bottom_sets,
-        disable_dropoffs_on_top=True,
-        dropoff_disabled_on_top_sets=dropoff_disabled_on_top_sets,
+        disable_drop_offs_on_bottom=True,
+        drop_off_disabled_on_bottom_sets=drop_off_disabled_on_bottom_sets,
+        disable_drop_offs_on_top=True,
+        drop_off_disabled_on_top_sets=drop_off_disabled_on_top_sets,
         connect_butt_joined_plies=False,
     )
     # When the drop-off settings are not yet linked to the server, the linked
@@ -272,7 +272,7 @@ def test_drop_off_settings_string_representation(parent_object):
     solid_model.drop_off_settings = drop_off_settings
     str_repr = str(solid_model.drop_off_settings)
     assert "DropOffSettings" in str_repr
-    for val in dropoff_disabled_on_bottom_sets + dropoff_disabled_on_top_sets:
+    for val in drop_off_disabled_on_bottom_sets + drop_off_disabled_on_top_sets:
         assert repr(val) in str_repr
 
 

@@ -12,7 +12,7 @@ ACP objects
     CADComponent
     CADGeometry
     CutOffGeometry
-    CutoffSelectionRule
+    CutOffSelectionRule
     CylindricalSelectionRule
     EdgeSet
     ElementSet

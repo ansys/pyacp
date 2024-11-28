@@ -179,14 +179,14 @@ plotter.add_mesh(model.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh
 plotter.show()
 
 # %%
-# Create a cutoff selection rule
-# ------------------------------
+# Create a cut-off selection rule
+# -------------------------------
 
 # %%
-# Add the cutoff CAD geometry to the model.
-cutoff_plane_path = get_example_file(ExampleKeys.CUT_OFF_GEOMETRY, WORKING_DIR)
+# Add the cut off CAD geometry to the model.
+cut_off_plane_path = get_example_file(ExampleKeys.CUT_OFF_GEOMETRY, WORKING_DIR)
 cut_off_plane = model.create_cad_geometry()
-cut_off_plane.refresh(cutoff_plane_path)
+cut_off_plane.refresh(cut_off_plane_path)
 
 # Note: It is important to update the model here, because the root_shapes of the
 # cad_geometry are not available until the model is updated.
@@ -194,22 +194,22 @@ model.update()
 
 # %%
 # Create a virtual geometry from the CAD geometry.
-cutoff_virtual_geometry = model.create_virtual_geometry(
-    name="cutoff_virtual_geometry", cad_components=cut_off_plane.root_shapes.values()
+cut_off_virtual_geometry = model.create_virtual_geometry(
+    name="cut_off_virtual_geometry", cad_components=cut_off_plane.root_shapes.values()
 )
 
 # %%
-# Create the cutoff selection rule.
-cutoff_selection_rule = model.create_cutoff_selection_rule(
-    name="cutoff_rule",
-    cutoff_geometry=cutoff_virtual_geometry,
+# Create the cut_off selection rule.
+cut_off_selection_rule = model.create_cut_off_selection_rule(
+    name="cut_off_rule",
+    cut_off_geometry=cut_off_virtual_geometry,
 )
 
 
 # %%
-# Assign the cutoff selection rule to the ply. Plot the ply extent with
+# Assign the cut_off selection rule to the ply. Plot the ply extent with
 # the outline of the geometry.
-modeling_ply.selection_rules = [LinkedSelectionRule(cutoff_selection_rule)]
+modeling_ply.selection_rules = [LinkedSelectionRule(cut_off_selection_rule)]
 
 model.update()
 assert model.elemental_data.thickness is not None
