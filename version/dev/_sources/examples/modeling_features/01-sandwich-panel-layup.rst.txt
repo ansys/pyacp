@@ -424,52 +424,59 @@ Update and print the model.
 
  .. code-block:: none
 
-    Model
-        Material Data
-            Materials
-                1
-                UD
-                Core
-            Fabrics
-                UD
-                core
-            Stackups
-                Biax_Carbon_UD
-            Sublaminates
-                Sublaminate
+    'ACP Lay-up Model'
+        Materials
+            '1'
+            'UD'
+            'Core'
+        Fabrics
+            'UD'
+            'core'
+        Stackups
+            'Biax_Carbon_UD'
+        Sublaminates
+            'Sublaminate'
         Element Sets
-            All_Elements
+            'All_Elements'
         Edge Sets
-            _FIXEDSU
-        Geometry
+            '_FIXEDSU'
         Rosettes
-            12
-            Rosette
-        Lookup Tables
-        Selection Rules
+            '12'
+            'Rosette'
         Oriented Selection Sets
-            oss
+            'oss'
         Modeling Groups
-            modeling_group
-                bottom_ply
-                    ProductionPly
-                        P1L1__bottom_ply
-                        P1L2__bottom_ply
-                    ProductionPly.2
-                        P2L1__bottom_ply
-                    ProductionPly.3
-                        P3L1__bottom_ply
-                        P3L2__bottom_ply
-                core_ply
-                    ProductionPly.4
-                        P1L1__core_ply
-                top_ply
-                    ProductionPly.5
-                        P1L1__top_ply
-                    ProductionPly.6
-                        P2L1__top_ply
-                    ProductionPly.7
-                        P3L1__top_ply
+            'modeling_group'
+                Modeling Plies
+                    'bottom_ply'
+                        Production Plies
+                            'P1__bottom_ply'
+                                Analysis Plies
+                                    'P1L1__bottom_ply'
+                                    'P1L2__bottom_ply'
+                            'P2__bottom_ply'
+                                Analysis Plies
+                                    'P2L1__bottom_ply'
+                            'P3__bottom_ply'
+                                Analysis Plies
+                                    'P3L1__bottom_ply'
+                                    'P3L2__bottom_ply'
+                    'core_ply'
+                        Production Plies
+                            'P1__core_ply'
+                                Analysis Plies
+                                    'P1L1__core_ply'
+                    'top_ply'
+                        Production Plies
+                            'P1__top_ply'
+                                Analysis Plies
+                                    'P1L1__top_ply'
+                            'P2__top_ply'
+                                Analysis Plies
+                                    'P2L1__top_ply'
+                            'P3__top_ply'
+                                Analysis Plies
+                                    'P3L1__top_ply'
 
     /home/runner/.cache/pypoetry/virtualenvs/ansys-acp-core-O77fA6pn-py3.12/lib/python3.12/site-packages/ansys/mapdl/core/launcher.py:822: UserWarning: The environment variable 'PYMAPDL_START_INSTANCE' is set, hence the argument 'start_instance' is overwritten.
       warnings.warn(
@@ -482,7 +489,7 @@ Update and print the model.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 7.748 seconds)
+   **Total running time of the script:** (0 minutes 12.986 seconds)
 
 
 .. _sphx_glr_download_examples_modeling_features_01-sandwich-panel-layup.py:

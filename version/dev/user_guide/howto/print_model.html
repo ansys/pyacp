@@ -538,46 +538,91 @@
 </div>
 <p>You can print the tree structure using the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.print_model.html#ansys.acp.core.print_model" title="ansys.acp.core.print_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">print_model()</span></code></a> function:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pyacp</span><span class="o">.</span><span class="n">print_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-<span class="go">Model</span>
-<span class="go">    Material Data</span>
-<span class="go">        Materials</span>
-<span class="go">            Structural Steel</span>
-<span class="go">        Fabrics</span>
-<span class="go">            Fabric.1</span>
+<span class="go">&#39;ACP Model&#39;</span>
+<span class="go">    Materials</span>
+<span class="go">        &#39;Structural Steel&#39;</span>
+<span class="go">    Fabrics</span>
+<span class="go">        &#39;Fabric.1&#39;</span>
 <span class="go">    Element Sets</span>
-<span class="go">        All_Elements</span>
+<span class="go">        &#39;All_Elements&#39;</span>
 <span class="go">    Edge Sets</span>
-<span class="go">        ns_edge</span>
-<span class="go">    Geometry</span>
+<span class="go">        &#39;ns_edge&#39;</span>
 <span class="go">    Rosettes</span>
-<span class="go">        Global Coordinate System</span>
-<span class="go">    Lookup Tables</span>
-<span class="go">    Selection Rules</span>
+<span class="go">        &#39;Global Coordinate System&#39;</span>
 <span class="go">    Oriented Selection Sets</span>
-<span class="go">        OrientedSelectionSet.1</span>
+<span class="go">        &#39;OrientedSelectionSet.1&#39;</span>
 <span class="go">    Modeling Groups</span>
-<span class="go">        ModelingGroup.1</span>
-<span class="go">            ModelingPly.1</span>
-<span class="go">                ProductionPly</span>
-<span class="go">                    P1L1__ModelingPly.1</span>
+<span class="go">        &#39;ModelingGroup.1&#39;</span>
+<span class="go">            Modeling Plies</span>
+<span class="go">                &#39;ModelingPly.1&#39;</span>
+<span class="go">                    Production Plies</span>
+<span class="go">                        &#39;P1__ModelingPly.1&#39;</span>
+<span class="go">                            Analysis Plies</span>
+<span class="go">                                &#39;P1L1__ModelingPly.1&#39;</span>
 </pre></div>
 </div>
 <p>Alternatively, you can use <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.get_model_tree.html#ansys.acp.core.get_model_tree" title="ansys.acp.core.get_model_tree"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_model_tree()</span></code></a> to get a tree representation. This allows manually iterating over the tree structure:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tree_root</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">get_model_tree</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tree_root</span><span class="o">.</span><span class="n">label</span>
-<span class="go">&#39;Model&#39;</span>
+<span class="go">&quot;&#39;ACP Model&#39;&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">tree_root</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
 <span class="gp">...</span>
-<span class="go">Material Data</span>
+<span class="go">Materials</span>
+<span class="go">Fabrics</span>
 <span class="go">Element Sets</span>
 <span class="go">Edge Sets</span>
-<span class="go">Geometry</span>
 <span class="go">Rosettes</span>
-<span class="go">Lookup Tables</span>
-<span class="go">Selection Rules</span>
 <span class="go">Oriented Selection Sets</span>
 <span class="go">Modeling Groups</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">hide_empty</span></code> label can be set to <code class="docutils literal notranslate"><span class="pre">False</span></code> to also show empty groups:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pyacp</span><span class="o">.</span><span class="n">print_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">hide_empty</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">&#39;ACP Model&#39;</span>
+<span class="go">    Materials</span>
+<span class="go">        &#39;Structural Steel&#39;</span>
+<span class="go">    Fabrics</span>
+<span class="go">        &#39;Fabric.1&#39;</span>
+<span class="go">    Stackups</span>
+<span class="go">    Sublaminates</span>
+<span class="go">    Element Sets</span>
+<span class="go">        &#39;All_Elements&#39;</span>
+<span class="go">    Edge Sets</span>
+<span class="go">        &#39;ns_edge&#39;</span>
+<span class="go">    Cad Geometries</span>
+<span class="go">    Virtual Geometries</span>
+<span class="go">    Rosettes</span>
+<span class="go">        &#39;Global Coordinate System&#39;</span>
+<span class="go">    Lookup Tables 1d</span>
+<span class="go">    Lookup Tables 3d</span>
+<span class="go">    Parallel Selection Rules</span>
+<span class="go">    Cylindrical Selection Rules</span>
+<span class="go">    Spherical Selection Rules</span>
+<span class="go">    Tube Selection Rules</span>
+<span class="go">    Cutoff Selection Rules</span>
+<span class="go">    Geometrical Selection Rules</span>
+<span class="go">    Variable Offset Selection Rules</span>
+<span class="go">    Boolean Selection Rules</span>
+<span class="go">    Oriented Selection Sets</span>
+<span class="go">        &#39;OrientedSelectionSet.1&#39;</span>
+<span class="go">    Modeling Groups</span>
+<span class="go">        &#39;ModelingGroup.1&#39;</span>
+<span class="go">            Modeling Plies</span>
+<span class="go">                &#39;ModelingPly.1&#39;</span>
+<span class="go">                    Production Plies</span>
+<span class="go">                        &#39;P1__ModelingPly.1&#39;</span>
+<span class="go">                            Analysis Plies</span>
+<span class="go">                                &#39;P1L1__ModelingPly.1&#39;</span>
+<span class="go">            Interface Layers</span>
+<span class="go">            Butt Joint Sequences</span>
+<span class="go">    Imported Modeling Groups</span>
+<span class="go">    Sampling Points</span>
+<span class="go">    Section Cuts</span>
+<span class="go">    Solid Models</span>
+<span class="go">    Imported Solid Models</span>
+<span class="go">    Sensors</span>
+<span class="go">    Field Definitions</span>
 </pre></div>
 </div>
 </section>

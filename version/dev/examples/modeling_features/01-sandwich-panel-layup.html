@@ -734,52 +734,59 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <span class="n">print_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Model
-    Material Data
-        Materials
-            1
-            UD
-            Core
-        Fabrics
-            UD
-            core
-        Stackups
-            Biax_Carbon_UD
-        Sublaminates
-            Sublaminate
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;ACP Lay-up Model&#39;
+    Materials
+        &#39;1&#39;
+        &#39;UD&#39;
+        &#39;Core&#39;
+    Fabrics
+        &#39;UD&#39;
+        &#39;core&#39;
+    Stackups
+        &#39;Biax_Carbon_UD&#39;
+    Sublaminates
+        &#39;Sublaminate&#39;
     Element Sets
-        All_Elements
+        &#39;All_Elements&#39;
     Edge Sets
-        _FIXEDSU
-    Geometry
+        &#39;_FIXEDSU&#39;
     Rosettes
-        12
-        Rosette
-    Lookup Tables
-    Selection Rules
+        &#39;12&#39;
+        &#39;Rosette&#39;
     Oriented Selection Sets
-        oss
+        &#39;oss&#39;
     Modeling Groups
-        modeling_group
-            bottom_ply
-                ProductionPly
-                    P1L1__bottom_ply
-                    P1L2__bottom_ply
-                ProductionPly.2
-                    P2L1__bottom_ply
-                ProductionPly.3
-                    P3L1__bottom_ply
-                    P3L2__bottom_ply
-            core_ply
-                ProductionPly.4
-                    P1L1__core_ply
-            top_ply
-                ProductionPly.5
-                    P1L1__top_ply
-                ProductionPly.6
-                    P2L1__top_ply
-                ProductionPly.7
-                    P3L1__top_ply
+        &#39;modeling_group&#39;
+            Modeling Plies
+                &#39;bottom_ply&#39;
+                    Production Plies
+                        &#39;P1__bottom_ply&#39;
+                            Analysis Plies
+                                &#39;P1L1__bottom_ply&#39;
+                                &#39;P1L2__bottom_ply&#39;
+                        &#39;P2__bottom_ply&#39;
+                            Analysis Plies
+                                &#39;P2L1__bottom_ply&#39;
+                        &#39;P3__bottom_ply&#39;
+                            Analysis Plies
+                                &#39;P3L1__bottom_ply&#39;
+                                &#39;P3L2__bottom_ply&#39;
+                &#39;core_ply&#39;
+                    Production Plies
+                        &#39;P1__core_ply&#39;
+                            Analysis Plies
+                                &#39;P1L1__core_ply&#39;
+                &#39;top_ply&#39;
+                    Production Plies
+                        &#39;P1__top_ply&#39;
+                            Analysis Plies
+                                &#39;P1L1__top_ply&#39;
+                        &#39;P2__top_ply&#39;
+                            Analysis Plies
+                                &#39;P2L1__top_ply&#39;
+                        &#39;P3__top_ply&#39;
+                            Analysis Plies
+                                &#39;P3L1__top_ply&#39;
 
 /home/runner/.cache/pypoetry/virtualenvs/ansys-acp-core-O77fA6pn-py3.12/lib/python3.12/site-packages/ansys/mapdl/core/launcher.py:822: UserWarning: The environment variable &#39;PYMAPDL_START_INSTANCE&#39; is set, hence the argument &#39;start_instance&#39; is overwritten.
   warnings.warn(
@@ -787,7 +794,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
   &quot;&quot;&quot;Collection of MAPDL components.
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 7.748 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 12.986 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-modeling-features-01-sandwich-panel-layup-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/bc0b344e1a9358f9861b9b38700dcb3a/01-sandwich-panel-layup.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">01-sandwich-panel-layup.ipynb</span></code></a></p>
