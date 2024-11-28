@@ -123,6 +123,8 @@ mechanical.run_python_script(
         ):
             body.Thickness = Quantity(1e-6, "m")
 
+        Model.Mesh.GenerateMesh()
+
         # Define named selections at the front and back edges
         front_edge = Model.AddNamedSelection()
         front_edge.Name = "Front Edge"
@@ -303,6 +305,11 @@ output_all_elements = composite_model.evaluate_failure_criteria(cfc)
 
 # %%
 # Query and plot the results.
+#
+# Note that the maximum IRF is different when compared to :ref:`pymechanical_shell_example`
+# because ACP sets the ``ERESX,NO`` option in the CDB file. This option disables interpolation
+# of the results from the integration point to the nodes.
+
 irf_field = output_all_elements.get_field(
     {"failure_label": pydpf_composites.constants.FailureOutput.FAILURE_VALUE}
 )
