@@ -45,13 +45,12 @@ This examples shows hot to:
 - Visualized the mapped plies.
 """
 
-import os
-
 # %%
 # Import modules
 # --------------
 #
 # Import the standard library and third-party dependencies.
+import os
 import pathlib
 import tempfile
 
