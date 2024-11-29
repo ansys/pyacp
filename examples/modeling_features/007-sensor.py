@@ -73,10 +73,12 @@ model.unit_system = UnitSystemType.SI
 print(model.unit_system)
 model.update()
 
-plotter = pyvista.Plotter()
-plotter.add_mesh(model.elemental_data.thickness.get_pyvista_mesh(model.mesh), show_edges=False)
-plotter.camera_position = RACE_CARE_NOSE_CAMERA_METER
-plotter.show()
+thickness_data = model.elemental_data.thickness
+if thickness_data is not None:
+    plotter = pyvista.Plotter()
+    plotter.add_mesh(thickness_data.get_pyvista_mesh(model.mesh), show_edges=False)
+    plotter.camera_position = RACE_CARE_NOSE_CAMERA_METER
+    plotter.show()
 
 # %%
 # Set price per area for all fabrics.
