@@ -122,7 +122,7 @@ print_measures(sensor_by_area)
 # Scope to a specific component
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# Compute the measures for the nose only. Note that :class:`.OrientedSelectSet`
+# Compute the measures for the nose only. Note that :class:`.OrientedSelectionSet`
 # can also be used to scope the sensor.
 eset_nose = model.element_sets["els_nose"]
 sensor_by_area.entities = [eset_nose]
