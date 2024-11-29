@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**01:46.635** total execution time for 12 files **from examples/modeling_features**:
+**02:08.951** total execution time for 12 files **from examples/modeling_features**:
 
 .. container::
 
@@ -33,38 +33,38 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_examples_modeling_features_007-sensor.py` (``007-sensor.py``)
-     - 00:25.783
+     - 00:31.382
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_031-imported-solid-model.py` (``031-imported-solid-model.py``)
-     - 00:19.521
+     - 00:21.251
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_002-rosettes-ply-directions.py` (``002-rosettes-ply-directions.py``)
-     - 00:11.788
+     - 00:10.178
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_001-materials.py` (``001-materials.py``)
-     - 00:09.427
-     - 0.0
-   * - :ref:`sphx_glr_examples_modeling_features_004-advanced-selection-rules.py` (``004-advanced-selection-rules.py``)
-     - 00:05.797
+     - 00:10.094
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_010-sandwich-panel-layup.py` (``010-sandwich-panel-layup.py``)
-     - 00:05.726
+     - 00:09.651
+     - 0.0
+   * - :ref:`sphx_glr_examples_modeling_features_004-advanced-selection-rules.py` (``004-advanced-selection-rules.py``)
+     - 00:07.779
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_020-solid_model.py` (``020-solid_model.py``)
-     - 00:05.443
-     - 0.0
-   * - :ref:`sphx_glr_examples_modeling_features_003-simple-selection-rules.py` (``003-simple-selection-rules.py``)
-     - 00:04.982
-     - 0.0
-   * - :ref:`sphx_glr_examples_modeling_features_030-imported-plies.py` (``030-imported-plies.py``)
-     - 00:04.874
+     - 00:07.350
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_050-composite_cae_h5.py` (``050-composite_cae_h5.py``)
-     - 00:04.668
+     - 00:06.634
+     - 0.0
+   * - :ref:`sphx_glr_examples_modeling_features_003-simple-selection-rules.py` (``003-simple-selection-rules.py``)
+     - 00:06.607
+     - 0.0
+   * - :ref:`sphx_glr_examples_modeling_features_030-imported-plies.py` (``030-imported-plies.py``)
+     - 00:06.308
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_006-layup-thickness-definitions.py` (``006-layup-thickness-definitions.py``)
-     - 00:04.418
+     - 00:06.032
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_005-ply-direction-lookup-table.py` (``005-ply-direction-lookup-table.py``)
-     - 00:04.207
+     - 00:05.687
      - 0.0
