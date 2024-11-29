@@ -33,7 +33,13 @@ import tempfile
 import urllib.parse
 import urllib.request
 
-__all__ = ["ExampleKeys", "get_example_file"]
+__all__ = [
+    "ExampleKeys",
+    "get_example_file",
+    "FLAT_PLATE_SHELL_CAMERA",
+    "FLAT_PLATE_SOLID_CAMERA",
+    "RACE_CARE_NOSE_CAMERA_METER",
+]
 
 from typing import TYPE_CHECKING
 
@@ -56,6 +62,13 @@ FLAT_PLATE_SOLID_CAMERA = [
     (0.0251, 0.0144, 0.0256),
     (0.0086, 0.0041, 0.0089),
     (-0.2895, 0.9160, -0.2776),
+]
+
+# Order of inputs: position, rotation point, orientation
+RACE_CARE_NOSE_CAMERA_METER = [
+    (1.614, 1.154, 2.243),
+    (0.450, 0.238, -0.181),
+    (-0.1094, 0.9460, -0.3050),
 ]
 
 

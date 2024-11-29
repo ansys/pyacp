@@ -100,3 +100,4 @@ Limitations
 * Section cuts cannot be visualized.
 * Sampling point analysis data is not available.
 * Imported solid model mapping statistics are not available.
+* Sensor by solid model is not yet supported.
