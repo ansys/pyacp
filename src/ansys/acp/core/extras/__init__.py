@@ -24,6 +24,7 @@
 from ansys.acp.core.extras.example_helpers import (
     FLAT_PLATE_SHELL_CAMERA,
     FLAT_PLATE_SOLID_CAMERA,
+    RACE_CARE_NOSE_CAMERA_METER,
     ExampleKeys,
     get_example_file,
 )
@@ -33,4 +34,5 @@ __all__ = [
     "get_example_file",
     "FLAT_PLATE_SHELL_CAMERA",
     "FLAT_PLATE_SOLID_CAMERA",
+    "RACE_CARE_NOSE_CAMERA_METER",
 ]
