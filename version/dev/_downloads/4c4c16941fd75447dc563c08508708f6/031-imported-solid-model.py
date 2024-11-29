@@ -58,7 +58,7 @@ import pyvista
 from ansys.acp.core import ElementTechnology, LayupMappingRosetteSelectionMethod, launch_acp
 from ansys.acp.core.extras import ExampleKeys, get_example_file
 
-# sphinx_gallery_thumbnail_number = 4
+# sphinx_gallery_thumbnail_number = 5
 
 
 # %%
@@ -124,6 +124,12 @@ imported_solid_model.create_layup_mapping_object(
 
 model.update()
 model.solid_mesh.to_pyvista().plot(show_edges=True)
+
+# %%
+# Show the mass of the solid model elements
+mass_data = model.elemental_data.mass
+assert mass_data is not None
+mass_data.get_pyvista_mesh(mesh=model.solid_mesh).plot(show_edges=True)
 
 # %%
 # Add other mapping objects

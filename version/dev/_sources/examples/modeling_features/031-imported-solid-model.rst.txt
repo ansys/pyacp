@@ -307,9 +307,55 @@ and show the updated solid model.
 
 .. GENERATED FROM PYTHON SOURCE LINES 129-130
 
+Show the mass of the solid model elements
+
+.. GENERATED FROM PYTHON SOURCE LINES 130-134
+
+.. code-block:: Python
+
+    mass_data = model.elemental_data.mass
+    assert mass_data is not None
+    mass_data.get_pyvista_mesh(mesh=model.solid_mesh).plot(show_edges=True)
+
+
+
+
+
+
+
+
+.. tab-set::
+
+
+
+   .. tab-item:: Static Scene
+
+
+
+            
+     .. image-sg:: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_004.png
+        :alt: 031 imported solid model
+        :srcset: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_004.png
+        :class: sphx-glr-single-img
+     
+
+
+   .. tab-item:: Interactive Scene
+
+
+
+       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/modeling_features/images/sphx_glr_031-imported-solid-model_004.vtksz
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 135-136
+
 Add other mapping objects
 
-.. GENERATED FROM PYTHON SOURCE LINES 130-168
+.. GENERATED FROM PYTHON SOURCE LINES 136-174
 
 .. code-block:: Python
 
@@ -364,11 +410,11 @@ Add other mapping objects
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 169-170
+.. GENERATED FROM PYTHON SOURCE LINES 175-176
 
 Show intermediate result
 
-.. GENERATED FROM PYTHON SOURCE LINES 170-173
+.. GENERATED FROM PYTHON SOURCE LINES 176-179
 
 .. code-block:: Python
 
@@ -391,9 +437,9 @@ Show intermediate result
 
 
             
-     .. image-sg:: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_004.png
+     .. image-sg:: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_005.png
         :alt: 031 imported solid model
-        :srcset: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_004.png
+        :srcset: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_005.png
         :class: sphx-glr-single-img
      
 
@@ -402,19 +448,19 @@ Show intermediate result
 
 
 
-       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/modeling_features/images/sphx_glr_031-imported-solid-model_004.vtksz
+       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/modeling_features/images/sphx_glr_031-imported-solid-model_005.vtksz
 
 
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 174-176
+.. GENERATED FROM PYTHON SOURCE LINES 180-182
 
 The mapping can also be done for specific plies
 as shown for the core materials.
 
-.. GENERATED FROM PYTHON SOURCE LINES 176-210
+.. GENERATED FROM PYTHON SOURCE LINES 182-216
 
 .. code-block:: Python
 
@@ -468,9 +514,9 @@ as shown for the core materials.
 
 
             
-     .. image-sg:: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_005.png
+     .. image-sg:: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_006.png
         :alt: 031 imported solid model
-        :srcset: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_005.png
+        :srcset: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_006.png
         :class: sphx-glr-single-img
      
 
@@ -479,19 +525,19 @@ as shown for the core materials.
 
 
 
-       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/modeling_features/images/sphx_glr_031-imported-solid-model_005.vtksz
+       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/modeling_features/images/sphx_glr_031-imported-solid-model_006.vtksz
 
 
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 211-213
+.. GENERATED FROM PYTHON SOURCE LINES 217-219
 
 Add filler mapping objects where the solid mesh is "filled"
 with a single material. No plies from the layup are used here.
 
-.. GENERATED FROM PYTHON SOURCE LINES 213-228
+.. GENERATED FROM PYTHON SOURCE LINES 219-234
 
 .. code-block:: Python
 
@@ -523,79 +569,16 @@ with a single material. No plies from the layup are used here.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 229-230
+.. GENERATED FROM PYTHON SOURCE LINES 235-236
 
 Show final solid mesh with mapped layup
 
-.. GENERATED FROM PYTHON SOURCE LINES 230-234
+.. GENERATED FROM PYTHON SOURCE LINES 236-240
 
 .. code-block:: Python
 
     model.update()
     model.solid_mesh.to_pyvista().plot(show_edges=True)
-
-
-
-
-
-
-
-
-
-.. tab-set::
-
-
-
-   .. tab-item:: Static Scene
-
-
-
-            
-     .. image-sg:: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_006.png
-        :alt: 031 imported solid model
-        :srcset: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_006.png
-        :class: sphx-glr-single-img
-     
-
-
-   .. tab-item:: Interactive Scene
-
-
-
-       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/modeling_features/images/sphx_glr_031-imported-solid-model_006.vtksz
-
-
-
-
-
-
-.. GENERATED FROM PYTHON SOURCE LINES 235-243
-
-Show extent and thickness of mapped plies
------------------------------------------
-
-Use :func:`.print_model` to get the list of plies. After identifying the ply
-of interest, for example the thickness can be visualized. Note that
-only ply-wise data of :class:`.AnalysisPly` can be visualized on the
-solid mesh. :class:`.ProductionPly` and :class:`.ModelingPly` cannot
-be visualized on the solid mesh.
-
-.. GENERATED FROM PYTHON SOURCE LINES 243-257
-
-.. code-block:: Python
-
-    ap = (
-        model.modeling_groups["MG bonding_skin_right"]
-        .modeling_plies["ModelingPly.26"]
-        .production_plies["ProductionPly.33"]
-        .analysis_plies["P1L1__ModelingPly.26"]
-    )
-    thickness_data = ap.elemental_data.thickness
-    thickness_pyvista_mesh = thickness_data.get_pyvista_mesh(mesh=ap.solid_mesh)  # type: ignore
-    plotter = pyvista.Plotter()
-    plotter.add_mesh(thickness_pyvista_mesh)
-    plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=False)
-    plotter.show()
 
 
 
@@ -632,7 +615,70 @@ be visualized on the solid mesh.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 258-271
+.. GENERATED FROM PYTHON SOURCE LINES 241-249
+
+Show extent and thickness of mapped plies
+-----------------------------------------
+
+Use :func:`.print_model` to get the list of plies. After identifying the ply
+of interest, for example the thickness can be visualized. Note that
+only ply-wise data of :class:`.AnalysisPly` can be visualized on the
+solid mesh. :class:`.ProductionPly` and :class:`.ModelingPly` cannot
+be visualized on the solid mesh.
+
+.. GENERATED FROM PYTHON SOURCE LINES 249-263
+
+.. code-block:: Python
+
+    ap = (
+        model.modeling_groups["MG bonding_skin_right"]
+        .modeling_plies["ModelingPly.26"]
+        .production_plies["ProductionPly.33"]
+        .analysis_plies["P1L1__ModelingPly.26"]
+    )
+    thickness_data = ap.elemental_data.thickness
+    thickness_pyvista_mesh = thickness_data.get_pyvista_mesh(mesh=ap.solid_mesh)  # type: ignore
+    plotter = pyvista.Plotter()
+    plotter.add_mesh(thickness_pyvista_mesh)
+    plotter.add_mesh(model.solid_mesh.to_pyvista(), opacity=0.2, show_edges=False)
+    plotter.show()
+
+
+
+
+
+
+
+
+
+.. tab-set::
+
+
+
+   .. tab-item:: Static Scene
+
+
+
+            
+     .. image-sg:: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_008.png
+        :alt: 031 imported solid model
+        :srcset: /examples/modeling_features/images/sphx_glr_031-imported-solid-model_008.png
+        :class: sphx-glr-single-img
+     
+
+
+   .. tab-item:: Interactive Scene
+
+
+
+       .. offlineviewer:: /home/runner/work/pyacp/pyacp/doc/source/examples/modeling_features/images/sphx_glr_031-imported-solid-model_008.vtksz
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 264-277
 
 Other features
 --------------
@@ -651,7 +697,7 @@ These workflows are shown in :ref:`pymapdl_workflow_example` and
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 18.103 seconds)
+   **Total running time of the script:** (0 minutes 21.697 seconds)
 
 
 .. _sphx_glr_download_examples_modeling_features_031-imported-solid-model.py:
