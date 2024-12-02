@@ -70,7 +70,7 @@ Removed features
 
 - The ``ACPWorkflow`` class for managing file up- and download was removed. Instead,
   file up- and download is now managed automatically by default. You can directly
-  use the :meth:`ACPInstance.import_model` method for importing models, and methods
+  use the :meth:`.ACPInstance.import_model` method for importing models, and methods
   such as :meth:`.Model.save`, :meth:`.Model.export_analysis_model`, or
   :meth:`.Model.export_hdf5_composite_cae` for saving / exporting data.
   See the :ref:`file management section <file_management>` for more information.
