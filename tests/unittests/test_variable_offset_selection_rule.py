@@ -22,7 +22,7 @@
 
 import pytest
 
-from ansys.acp.core import (
+from ansys.acp.core.mesh_data import (
     VariableOffsetSelectionRuleElementalData,
     VariableOffsetSelectionRuleNodalData,
 )
@@ -52,7 +52,7 @@ class TestVariableOffsetSelectionRule(NoLockedMixin, TreeObjectTester):
             "edge_set": None,
             "offsets": None,
             "angles": None,
-            "include_rule_type": True,
+            "include_rule": True,
             "use_offset_correction": False,
             "element_set": None,
             "inherit_from_lookup_table": True,
@@ -78,7 +78,7 @@ class TestVariableOffsetSelectionRule(NoLockedMixin, TreeObjectTester):
                 ("edge_set", edge_set),
                 ("offsets", column_1),
                 ("angles", column_2),
-                ("include_rule_type", False),
+                ("include_rule", False),
                 ("use_offset_correction", True),
                 ("element_set", element_set),
                 ("inherit_from_lookup_table", False),

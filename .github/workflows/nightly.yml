@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.9', '3.10', '3.11', '3.12']
+        python-version: ['3.10', '3.11', '3.12']
     timeout-minutes: 30
 
     steps:
@@ -32,10 +32,10 @@ jobs:
           python -m venv test_env
           . test_env/bin/activate
 
-          pip install $(echo dist/*.whl)
+          pip install $(echo dist/*.whl)[plotting]
 
           poetry config virtualenvs.create false --local
-          poetry install --only test
+          poetry install --no-root --only test --extras plotting
 
       - name: Login in Github Container registry
         uses: docker/login-action@v3

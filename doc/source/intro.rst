@@ -1,3 +1,5 @@
+.. _getting_started:
+
 Getting started
 ---------------
 
@@ -8,7 +10,7 @@ PyACP supports Ansys 2024 R2 and later. To install PyACP, run the following comm
 
 .. code-block:: bash
 
-    pip install ansys-acp-core[examples]
+    pip install ansys-acp-core[all]
 
 You should use a `virtual environment <https://docs.python.org/3/library/venv.html>`_,
 because it keeps Python packages isolated from your system Python.
@@ -55,27 +57,23 @@ Get a model
 You can resume a model from an existing ACP DB (ACPH5) or built it from
 scratch by importing an FE model (mesh).
 
-To load an existing model with PyACP, use the :meth:`.ACPWorkflow.from_acph5_file` method:
+To load an existing model with PyACP, use the :meth:`.import_model` method:
 
 .. testcode::
 
-    workflow = pyacp.ACPWorkflow.from_acph5_file(
-        acp=acp,
-        acph5_file_path="model.acph5",
-    )
-    model = workflow.model
+    model = acp.import_model("model.acph5")
 
-To import an FE model, use the :meth:`.ACPWorkflow.from_cdb_or_dat_file` method.
+To import an FE model, use the ``format="ansys:cdb"`` or ``format="ansys:dat"``
+parameter, respectively.
 The following example imports a CDB file.
 
 .. testcode::
 
-    workflow = pyacp.ACPWorkflow.from_cdb_or_dat_file(
-        acp=acp,
-        cdb_or_dat_file_path="model.cdb",
+    model = acp.import_model(
+        "model.cdb",
+        format="ansys:cdb",
         unit_system=pyacp.UnitSystemType.MPA,
     )
-    model = workflow.model
 
 .. testcode::
     :hide:
@@ -153,9 +151,9 @@ Continue exploring
 
 This is just a brief introduction to PyACP. To learn more:
 
-- Check out the `examples <examples/index>`_ to see complete examples of how to use PyACP.
-- The `how-to guides <howto/index>`_ provide instructions on how to perform specific tasks.
-- The `API reference <api/index>`_ provides detailed information on all available classes and methods.
+- Check out the :ref:`examples <ref_examples>` to see complete examples of how to use PyACP.
+- The :ref:`how-to guides <howto>` provide instructions on how to perform specific tasks.
+- The :ref:`API reference <api_reference>` provides detailed information on all available classes and methods.
 
 .. testcode::
     :hide:

@@ -28,7 +28,7 @@ import tempfile
 import pytest
 
 from ansys.acp.core import Fabric, Lamina, SubLaminate
-from ansys.acp.core._typing_helper import PATH
+from ansys.acp.core._utils.typing_helper import PATH
 
 
 @pytest.fixture
@@ -79,10 +79,7 @@ def test_save_load_with_existing_entries(
 
     # WHEN: the model is saved and loaded
     with tempfile.TemporaryDirectory() as tmp_dir:
-        if not acp_instance.is_remote:
-            file_path: PATH = pathlib.Path(tmp_dir) / "model.acph5"
-        else:
-            file_path = "model.acph5"
+        file_path: PATH = pathlib.Path(tmp_dir) / "model.acph5"
         model.save(file_path)
         acp_instance.clear()
         model = acp_instance.import_model(path=file_path)

@@ -24,12 +24,14 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 import dataclasses
-from typing import cast
+from typing import TYPE_CHECKING, cast
 
 import numpy as np
 import numpy.typing as npt
-import pyvista as pv
 from typing_extensions import Self
+
+if TYPE_CHECKING:  # pragma: no cover
+    import pyvista
 
 from ansys.api.acp.v0 import (
     base_pb2,
@@ -38,10 +40,11 @@ from ansys.api.acp.v0 import (
     cad_geometry_pb2_grpc,
 )
 
-from .._typing_helper import PATH
 from .._utils.array_conversions import to_numpy
 from .._utils.path_to_str import path_to_str_checked
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
+from .._utils.pyvista_import_check import requires_pyvista
+from .._utils.typing_helper import PATH
 from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
@@ -71,11 +74,14 @@ class TriangleMesh:
             to_numpy(response.element_nodes),
         )
 
+    @requires_pyvista
     def to_pyvista(
         self,
-    ) -> pv.PolyData:
+    ) -> pyvista.PolyData:
         """Convert the mesh data to a PyVista object."""
-        return pv.PolyData.from_regular_faces(
+        import pyvista
+
+        return pyvista.PolyData.from_regular_faces(
             points=self.node_coordinates,
             faces=self.element_nodes,
         )
@@ -108,6 +114,7 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "cad_geometries"
     _OBJECT_INFO_TYPE = cad_geometry_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = cad_geometry_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
@@ -172,8 +179,15 @@ class CADGeometry(CreatableTreeObject, IdTreeObject):
         requires_uptodate=True,
     )
 
-    def refresh(self) -> None:
-        """Reload the geometry from its external source."""
+    def refresh(self, path: PATH) -> None:
+        """Reload the geometry from its external source.
+
+        Parameters
+        ----------
+        path :
+            Path of the new input file.
+        """
+        self.external_path = self._server_wrapper.auto_upload(path)
         stub = cast(cad_geometry_pb2_grpc.ObjectServiceStub, self._get_stub())
         with wrap_grpc_errors():
             stub.Refresh(

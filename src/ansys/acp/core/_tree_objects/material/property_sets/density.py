@@ -44,6 +44,7 @@ class ConstantDensity(_DensityMixin, _ConstantPropertySet):
     """Constant density material property set."""
 
     _GRPC_PROPERTIES = tuple()
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
@@ -65,5 +66,6 @@ class VariableDensity(_DensityMixin, _VariablePropertySet):
     """Variable density material property set."""
 
     _GRPC_PROPERTIES = tuple()
+    _SUPPORTED_SINCE = "24.2"
 
     rho = variable_material_grpc_data_property("rho")

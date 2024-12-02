@@ -25,18 +25,27 @@ from __future__ import annotations
 from collections.abc import Iterable
 import dataclasses
 
-from ansys.api.acp.v0 import modeling_group_pb2, modeling_group_pb2_grpc, modeling_ply_pb2_grpc
+from ansys.api.acp.v0 import (
+    butt_joint_sequence_pb2_grpc,
+    interface_layer_pb2_grpc,
+    modeling_group_pb2,
+    modeling_group_pb2_grpc,
+    modeling_ply_pb2_grpc,
+)
 
-from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
-from ._grpc_helpers.property_helper import mark_grpc_properties
-from ._mesh_data import (
+from ._elemental_or_nodal_data import (
     ElementalData,
     NodalData,
     VectorData,
     elemental_data_property,
     nodal_data_property,
 )
+from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
+from ._grpc_helpers.property_helper import mark_grpc_properties
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
+from .butt_joint_sequence import ButtJointSequence
+from .interface_layer import InterfaceLayer
 from .modeling_ply import ModelingPly
 from .object_registry import register
 
@@ -45,14 +54,14 @@ __all__ = ["ModelingGroup"]
 
 @dataclasses.dataclass
 class ModelingGroupElementalData(ElementalData):
-    """Represents elemental data for an Modeling Group."""
+    """Represents elemental data for a Modeling Group."""
 
     normal: VectorData | None = None
 
 
 @dataclasses.dataclass
 class ModelingGroupNodalData(NodalData):
-    """Represents nodal data for an Modeling Group."""
+    """Represents nodal data for a Modeling Group."""
 
 
 @mark_grpc_properties
@@ -62,7 +71,7 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
 
     Parameters
     ----------
-    name
+    name :
         Name of the modeling group.
     """
 
@@ -71,6 +80,7 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "modeling_groups"
     _OBJECT_INFO_TYPE = modeling_group_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = modeling_group_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(self, *, name: str = "ModelingGroup"):
         super().__init__(name=name)
@@ -85,6 +95,28 @@ class ModelingGroup(CreatableTreeObject, IdTreeObject):
         module_name=__module__,
     )
     modeling_plies = define_mutable_mapping(ModelingPly, modeling_ply_pb2_grpc.ObjectServiceStub)
+    create_interface_layer = define_create_method(
+        InterfaceLayer,
+        func_name="create_interface_layer",
+        parent_class_name="ModelingGroup",
+        module_name=__module__,
+    )
+    interface_layers = define_mutable_mapping(
+        InterfaceLayer, interface_layer_pb2_grpc.ObjectServiceStub
+    )
+
+    create_butt_joint_sequence = define_create_method(
+        ButtJointSequence,
+        func_name="create_butt_joint_sequence",
+        parent_class_name="ModelingGroup",
+        module_name=__module__,
+    )
+    butt_joint_sequences = define_mutable_mapping(
+        ButtJointSequence, butt_joint_sequence_pb2_grpc.ObjectServiceStub
+    )
+
+    mesh = full_mesh_property
+    shell_mesh = shell_mesh_property
 
     elemental_data = elemental_data_property(ModelingGroupElementalData)
     nodal_data = nodal_data_property(ModelingGroupNodalData)

@@ -30,6 +30,13 @@ from ansys.api.acp.v0 import oriented_selection_set_pb2, oriented_selection_set_
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadWriteProperty
+from ._elemental_or_nodal_data import (
+    ElementalData,
+    NodalData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from ._grpc_helpers.linked_object_list import (
     define_linked_object_list,
     define_polymorphic_linked_object_list,
@@ -40,19 +47,13 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
-from ._mesh_data import (
-    ElementalData,
-    NodalData,
-    VectorData,
-    elemental_data_property,
-    nodal_data_property,
-)
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
 from .boolean_selection_rule import BooleanSelectionRule
 from .cylindrical_selection_rule import CylindricalSelectionRule
 from .element_set import ElementSet
 from .enums import (
-    DrapingMaterialType,
+    DrapingMaterialModel,
     RosetteSelectionMethod,
     draping_material_type_from_pb,
     draping_material_type_to_pb,
@@ -60,6 +61,7 @@ from .enums import (
     rosette_selection_method_to_pb,
     status_type_from_pb,
 )
+from .lookup_table_1d_column import LookUpTable1DColumn
 from .lookup_table_3d_column import LookUpTable3DColumn
 from .object_registry import register
 from .parallel_selection_rule import ParallelSelectionRule
@@ -67,11 +69,6 @@ from .rosette import Rosette
 from .spherical_selection_rule import SphericalSelectionRule
 from .tube_selection_rule import TubeSelectionRule
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
-
-# Workaround: these imports are needed to make sphinx_autodoc_typehints understand
-# the inherited members of the Elemental- and NodalData classes.
-import numpy as np  # noqa: F401 isort:skip
-from ._mesh_data import ScalarData  # noqa: F401 isort:skip
 
 __all__ = [
     "OrientedSelectionSet",
@@ -84,15 +81,15 @@ if typing.TYPE_CHECKING:  # pragma: no cover
     # this would cause a circular import at run-time.
     from .. import BooleanSelectionRule, GeometricalSelectionRule
 
-    _SELECTION_RULES_LINKABLE_TO_OSS = typing.Union[
-        ParallelSelectionRule,
-        CylindricalSelectionRule,
-        SphericalSelectionRule,
-        TubeSelectionRule,
-        GeometricalSelectionRule,
-        VariableOffsetSelectionRule,
-        BooleanSelectionRule,
-    ]
+_SELECTION_RULES_LINKABLE_TO_OSS: typing.TypeAlias = typing.Union[
+    ParallelSelectionRule,
+    CylindricalSelectionRule,
+    SphericalSelectionRule,
+    TubeSelectionRule,
+    "GeometricalSelectionRule",
+    VariableOffsetSelectionRule,
+    "BooleanSelectionRule",
+]
 
 
 @dataclasses.dataclass
@@ -148,7 +145,9 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
     draping_ud_coefficient :
         Value between ``0`` and ``1`` which determines the amount of deformation
         in the transverse direction if the draping material model is set to
-        :attr:`DrapingMaterialType.UD`.
+        :attr:`DrapingMaterialModel.UD`.
+    rotation_angle :
+        Angle in degrees by which the initial reference directions are rotated around the orientations.
     reference_direction_field :
         A 3D lookup table column that defines the reference directions.
 
@@ -159,6 +158,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "oriented_selection_sets"
     _OBJECT_INFO_TYPE = oriented_selection_set_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = oriented_selection_set_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
@@ -176,10 +176,10 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         draping_direction: tuple[float, float, float] = (0.0, 0.0, 1.0),
         use_default_draping_mesh_size: bool = True,
         draping_mesh_size: float = 0.0,
-        draping_material_model: DrapingMaterialType = DrapingMaterialType.WOVEN,
+        draping_material_model: DrapingMaterialModel = DrapingMaterialModel.WOVEN,
         draping_ud_coefficient: float = 0.0,
         rotation_angle: float = 0.0,
-        reference_direction_field: LookUpTable3DColumn | None = None,
+        reference_direction_field: LookUpTable1DColumn | LookUpTable3DColumn | None = None,
     ):
         super().__init__(name=name)
         self.element_sets = element_sets
@@ -194,7 +194,7 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
         self.draping_direction = draping_direction
         self.use_default_draping_mesh_size = use_default_draping_mesh_size
         self.draping_mesh_size = draping_mesh_size
-        self.draping_material_model = DrapingMaterialType(draping_material_model)
+        self.draping_material_model = DrapingMaterialModel(draping_material_model)
         self.draping_ud_coefficient = draping_ud_coefficient
         self.rotation_angle = rotation_angle
         self.reference_direction_field = reference_direction_field
@@ -270,8 +270,12 @@ class OrientedSelectionSet(CreatableTreeObject, IdTreeObject):
     )
 
     reference_direction_field = grpc_link_property(
-        "properties.reference_direction_field", allowed_types=LookUpTable3DColumn
+        "properties.reference_direction_field",
+        allowed_types=(LookUpTable3DColumn, LookUpTable1DColumn),
     )
+
+    mesh = full_mesh_property
+    shell_mesh = shell_mesh_property
 
     elemental_data = elemental_data_property(OrientedSelectionSetElementalData)
     nodal_data = nodal_data_property(OrientedSelectionSetNodalData)

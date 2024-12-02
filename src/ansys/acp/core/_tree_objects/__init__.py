@@ -20,19 +20,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from ._mesh_data import ScalarData, VectorData
+from ._elemental_or_nodal_data import ScalarData, VectorData
+from ._mesh_data import MeshData
 from .analysis_ply import AnalysisPly, AnalysisPlyElementalData, AnalysisPlyNodalData
 from .boolean_selection_rule import (
     BooleanSelectionRule,
     BooleanSelectionRuleElementalData,
     BooleanSelectionRuleNodalData,
 )
+from .butt_joint_sequence import ButtJointSequence, PrimaryPly
 from .cad_component import CADComponent
 from .cad_geometry import CADGeometry, TriangleMesh
-from .cutoff_selection_rule import (
-    CutoffSelectionRule,
-    CutoffSelectionRuleElementalData,
-    CutoffSelectionRuleNodalData,
+from .cut_off_geometry import CutOffGeometry
+from .cut_off_selection_rule import (
+    CutOffSelectionRule,
+    CutOffSelectionRuleElementalData,
+    CutOffSelectionRuleNodalData,
 )
 from .cylindrical_selection_rule import (
     CylindricalSelectionRule,
@@ -43,46 +46,90 @@ from .edge_set import EdgeSet
 from .element_set import ElementSet, ElementSetElementalData, ElementSetNodalData
 from .enums import (
     ArrowType,
+    BaseElementMaterialHandling,
     BooleanOperationType,
-    CutoffMaterialType,
-    CutoffRuleType,
-    DimensionType,
-    DrapingMaterialType,
+    CutOffGeometryOrientationType,
+    CutOffMaterialHandling,
+    CutOffRuleType,
+    DrapingMaterialModel,
     DrapingType,
-    DropoffMaterialType,
+    DropOffMaterialHandling,
+    DropOffType,
     EdgeSetType,
     ElementalDataType,
+    ElementTechnology,
+    ExtrusionGuideType,
+    ExtrusionMethod,
+    ExtrusionType,
     GeometricalRuleType,
+    ImportedPlyDrapingType,
+    ImportedPlyOffsetType,
+    ImportedPlyThicknessType,
+    IntersectionType,
     LookUpTable3DInterpolationAlgorithm,
     LookUpTableColumnValueType,
+    MeshImportType,
     NodalDataType,
     OffsetType,
-    PlyCutoffType,
+    PhysicalDimension,
+    PlyCutOffType,
     PlyGeometryExportFormat,
     PlyType,
+    ReinforcingBehavior,
     RosetteSelectionMethod,
     RosetteType,
+    SectionCutType,
     SensorType,
-    StatusType,
+    SnapToGeometryOrientationType,
+    SolidModelExportFormat,
+    SolidModelOffsetDirectionType,
+    SolidModelSkinExportFormat,
+    Status,
+    StressStateType,
     SymmetryType,
     ThicknessFieldType,
     ThicknessType,
     UnitSystemType,
     VirtualGeometryDimension,
 )
+from .extrusion_guide import ExtrusionGuide
 from .fabric import Fabric
+from .field_definition import FieldDefinition
 from .geometrical_selection_rule import (
     GeometricalSelectionRule,
     GeometricalSelectionRuleElementalData,
     GeometricalSelectionRuleNodalData,
 )
+from .imported_analysis_ply import ImportedAnalysisPly
+from .imported_modeling_group import ImportedModelingGroup
+from .imported_modeling_ply import ImportedModelingPly
+from .imported_production_ply import ImportedProductionPly
+from .imported_solid_model import (
+    ImportedSolidModel,
+    ImportedSolidModelElementalData,
+    ImportedSolidModelExportSettings,
+    ImportedSolidModelNodalData,
+    SolidModelImportFormat,
+)
+from .interface_layer import InterfaceLayer
+from .layup_mapping_object import LayupMappingObject, LayupMappingRosetteSelectionMethod
 from .linked_selection_rule import LinkedSelectionRule
 from .lookup_table_1d import LookUpTable1D
 from .lookup_table_1d_column import LookUpTable1DColumn
 from .lookup_table_3d import LookUpTable3D
 from .lookup_table_3d_column import LookUpTable3DColumn
 from .material import Material
-from .model import FeFormat, IgnorableEntity, MeshData, Model, ModelElementalData, ModelNodalData
+from .model import (
+    FeFormat,
+    HDF5CompositeCAEImportMode,
+    HDF5CompositeCAEProjectionMode,
+    IgnorableEntity,
+    Model,
+    ModelElementalData,
+    ModelNodalData,
+    ShellMappingProperties,
+    SolidMappingProperties,
+)
 from .modeling_group import ModelingGroup
 from .modeling_ply import ModelingPly, ModelingPlyElementalData, ModelingPlyNodalData, TaperEdge
 from .oriented_selection_set import (
@@ -97,7 +144,22 @@ from .parallel_selection_rule import (
 )
 from .production_ply import ProductionPly, ProductionPlyElementalData, ProductionPlyNodalData
 from .rosette import Rosette
+from .sampling_point import SamplingPoint
+from .section_cut import SectionCut
 from .sensor import Sensor
+from .snap_to_geometry import SnapToGeometry
+from .solid_element_set import (
+    SolidElementSet,
+    SolidElementSetElementalData,
+    SolidElementSetNodalData,
+)
+from .solid_model import (
+    DropOffSettings,
+    SolidModel,
+    SolidModelElementalData,
+    SolidModelExportSettings,
+    SolidModelNodalData,
+)
 from .spherical_selection_rule import (
     SphericalSelectionRule,
     SphericalSelectionRuleElementalData,
@@ -110,6 +172,7 @@ from .tube_selection_rule import (
     TubeSelectionRuleElementalData,
     TubeSelectionRuleNodalData,
 )
+from .utils import CoordinateTransformation
 from .variable_offset_selection_rule import (
     VariableOffsetSelectionRule,
     VariableOffsetSelectionRuleElementalData,
@@ -122,41 +185,70 @@ __all__ = [
     "AnalysisPlyElementalData",
     "AnalysisPlyNodalData",
     "ArrowType",
+    "BaseElementMaterialHandling",
     "BooleanOperationType",
     "BooleanSelectionRule",
     "BooleanSelectionRuleElementalData",
     "BooleanSelectionRuleNodalData",
+    "ButtJointSequence",
     "CADComponent",
     "CADGeometry",
-    "CutoffMaterialType",
-    "CutoffRuleType",
-    "CutoffSelectionRule",
-    "CutoffSelectionRuleElementalData",
-    "CutoffSelectionRuleNodalData",
+    "CoordinateTransformation",
+    "CutOffGeometry",
+    "CutOffGeometryOrientationType",
+    "CutOffMaterialHandling",
+    "CutOffRuleType",
+    "CutOffSelectionRule",
+    "CutOffSelectionRuleElementalData",
+    "CutOffSelectionRuleNodalData",
     "CylindricalSelectionRule",
     "CylindricalSelectionRuleElementalData",
     "CylindricalSelectionRuleNodalData",
-    "DimensionType",
-    "DrapingMaterialType",
+    "DrapingMaterialModel",
     "DrapingType",
-    "DropoffMaterialType",
+    "DropOffMaterialHandling",
+    "DropOffSettings",
+    "DropOffType",
     "EdgeSet",
     "EdgeSetType",
     "ElementalDataType",
     "ElementSet",
     "ElementSetElementalData",
     "ElementSetNodalData",
+    "ElementTechnology",
+    "ExtrusionGuide",
+    "ExtrusionGuideType",
+    "ExtrusionMethod",
+    "ExtrusionType",
     "Fabric",
     "FabricWithAngle",
     "FeFormat",
+    "FieldDefinition",
     "FieldVariable",
     "GeometricalRuleType",
     "GeometricalSelectionRule",
     "GeometricalSelectionRuleElementalData",
     "GeometricalSelectionRuleNodalData",
+    "HDF5CompositeCAEImportMode",
+    "HDF5CompositeCAEProjectionMode",
     "IgnorableEntity",
+    "ImportedAnalysisPly",
+    "ImportedModelingGroup",
+    "ImportedModelingPly",
+    "ImportedPlyDrapingType",
+    "ImportedPlyOffsetType",
+    "ImportedPlyThicknessType",
+    "ImportedProductionPly",
+    "ImportedSolidModel",
+    "ImportedSolidModelElementalData",
+    "ImportedSolidModelExportSettings",
+    "ImportedSolidModelNodalData",
+    "InterfaceLayer",
     "InterpolationOptions",
+    "IntersectionType",
     "Lamina",
+    "LayupMappingObject",
+    "LayupMappingRosetteSelectionMethod",
     "LinkedSelectionRule",
     "LookUpTable1D",
     "LookUpTable1DColumn",
@@ -166,6 +258,7 @@ __all__ = [
     "LookUpTableColumnValueType",
     "Material",
     "MeshData",
+    "MeshImportType",
     "Model",
     "ModelElementalData",
     "ModelingGroup",
@@ -181,24 +274,46 @@ __all__ = [
     "ParallelSelectionRule",
     "ParallelSelectionRuleElementalData",
     "ParallelSelectionRuleNodalData",
-    "PlyCutoffType",
+    "PhysicalDimension",
+    "PlyCutOffType",
     "PlyGeometryExportFormat",
     "PlyType",
+    "PrimaryPly",
     "ProductionPly",
     "ProductionPlyElementalData",
     "ProductionPlyNodalData",
     "PuckMaterialType",
+    "ReinforcingBehavior",
     "Rosette",
     "RosetteSelectionMethod",
     "RosetteType",
+    "SamplingPoint",
     "ScalarData",
+    "SectionCut",
+    "SectionCutType",
     "Sensor",
     "SensorType",
+    "ShellMappingProperties",
+    "SnapToGeometry",
+    "SnapToGeometryOrientationType",
+    "SolidElementSet",
+    "SolidElementSetElementalData",
+    "SolidElementSetNodalData",
+    "SolidMappingProperties",
+    "SolidModel",
+    "SolidModelElementalData",
+    "SolidModelExportFormat",
+    "SolidModelExportSettings",
+    "SolidModelImportFormat",
+    "SolidModelNodalData",
+    "SolidModelOffsetDirectionType",
+    "SolidModelSkinExportFormat",
     "SphericalSelectionRule",
     "SphericalSelectionRuleElementalData",
     "SphericalSelectionRuleNodalData",
     "Stackup",
-    "StatusType",
+    "Status",
+    "StressStateType",
     "SubLaminate",
     "SubShape",
     "SymmetryType",

@@ -1,12 +1,101 @@
 """Sphinx documentation configuration file."""
 
 from datetime import datetime
+import inspect
 import os
+import pathlib
+import sys
 import warnings
 
 import pyvista
 from pyvista.plotting.utilities.sphinx_gallery import DynamicScraper
 from sphinx.builders.latex import LaTeXBuilder
+import sphinx.util.inspect
+
+
+def _signature(
+    subject,
+    bound_method: bool = False,
+    type_aliases=None,
+):
+    """Monkeypatch for 'sphinx.util.inspect.signature'.
+
+    This function defines a custom signature function which is used by the 'sphinx.ext.autodoc'.
+    The main purpose is to force / fix using the class parameter type hints instead of the class
+    attribute type hints.
+    See https://github.com/sphinx-doc/sphinx/issues/11207 for context.
+    """
+
+    # Import classes which were guarded with a 'typing.TYPE_CHECKING' explicitly here, otherwise
+    # the 'eval' in 'inspect.signature' will fail.
+    # Some imports are needed because these types occur in a dataclass base class, which is
+    # not in the same module as the documented class.
+    from collections.abc import Sequence  # noqa: F401
+
+    import numpy as np  # noqa: F401
+    import pyvista  # noqa: F401
+    from pyvista.core.pointset import PolyData, UnstructuredGrid  # noqa: F401
+
+    from ansys.acp.core import (  # noqa: F401
+        BooleanSelectionRule,
+        CADComponent,
+        GeometricalSelectionRule,
+        Model,
+        ModelingGroup,
+    )
+
+    # Import type aliases so that they can be resolved correctly.
+    from ansys.acp.core._tree_objects.field_definition import (  # noqa: F401
+        _SCOPE_ENTITIES_LINKABLE_TO_FIELD_DEFINITION,
+    )
+    from ansys.acp.core._tree_objects.linked_selection_rule import (  # noqa: F401
+        _LINKABLE_SELECTION_RULE_TYPES,
+    )
+    from ansys.acp.core._tree_objects.oriented_selection_set import (  # noqa: F401
+        _SELECTION_RULES_LINKABLE_TO_OSS,
+    )
+    from ansys.acp.core._tree_objects.sensor import _LINKABLE_ENTITY_TYPES  # noqa: F401
+    from ansys.acp.core._tree_objects.sublaminate import _LINKABLE_MATERIAL_TYPES  # noqa: F401
+    from ansys.acp.core._utils.typing_helper import StrEnum
+    from ansys.acp.core.mesh_data import MeshData, ScalarData, VectorData  # noqa: F401
+    from ansys.dpf.composites.data_sources import ContinuousFiberCompositesFiles  # noqa: F401
+    from ansys.dpf.core import UnitSystem  # noqa: F401
+    import ansys.mechanical.core as pymechanical  # noqa: F401
+
+    signature = inspect.signature(subject, locals=locals(), eval_str=True)
+
+    if signature.parameters:
+        parameters = list(signature.parameters.values())
+        if parameters[0].name == "self":
+            parameters.pop(0)
+        # dgresch Oct'24:
+        # Hack to fix the remaining issues with the signature. This is simpler than
+        # trying to get 'inspect.signature' to fully work, which would need to be done
+        # inside the 'define_create_method' function.
+        # I believe (speculation) the reason for this is that the 'create_' and 'add_'
+        # methods have an explicit __signature__ attribute, which stops the
+        # 'inspect.signature' from performing the 'eval'.
+        for i, param in enumerate(parameters):
+            if param.annotation in [
+                "Sequence[_SCOPE_ENTITIES_LINKABLE_TO_FIELD_DEFINITION]",
+                "Sequence[_SELECTION_RULES_LINKABLE_TO_OSS]",
+                "Sequence[_LINKABLE_ENTITY_TYPES]",
+                "_LINKABLE_MATERIAL_TYPES",
+            ]:
+                param = param.replace(annotation=eval(param.annotation))
+            # Represent StrEnum defaults as their string value, since this is
+            # easier to understand for library users. The enum type is still
+            # available in the type annotations.
+            if isinstance(param.default, StrEnum):
+                param = param.replace(default=param.default.value)
+            parameters[i] = param
+        signature = signature.replace(parameters=parameters)
+    return signature
+
+
+sphinx.util.inspect.signature = _signature
+napoleon_attr_annotations = False
+
 
 LaTeXBuilder.supported_image_types = ["image/png", "image/pdf", "image/svg+xml"]
 from ansys_sphinx_theme import (
@@ -22,10 +111,19 @@ from ansys.acp.core import __version__
 
 SKIP_GALLERY = os.environ.get("PYACP_DOC_SKIP_GALLERY", "0").lower() in ("1", "true")
 SKIP_API = os.environ.get("PYACP_DOC_SKIP_API", "0").lower() in ("1", "true")
+SOURCE_DIR = pathlib.Path(__file__).parent
 
-exclude_patterns = []
+# nested example index files are directly included in the parent index file
+exclude_patterns = ["examples/*/index.rst"]
 if SKIP_API:
-    exclude_patterns.append("api/*")
+    # Exclude all API documentation except the top-level index file:
+    # Exclude files on the top level explicitly, except 'index.rst'
+    for file_path in (SOURCE_DIR / "api").iterdir():
+        if not file_path.name == "index.rst":
+            pattern = str(file_path.relative_to(SOURCE_DIR).as_posix())
+            exclude_patterns.append(pattern)
+    # Exclude all files in nested directories
+    exclude_patterns.append("api/**/*.rst")
 
 
 jinja_contexts = {
@@ -70,7 +168,7 @@ cname = os.getenv("DOCUMENTATION_CNAME", "acp.docs.pyansys.com")
 html_theme_options = {
     "logo": "pyansys",
     "github_url": "https://github.com/ansys/pyacp",
-    "show_prev_next": False,
+    "show_prev_next": True,
     "show_breadcrumbs": True,
     "additional_breadcrumbs": [("PyAnsys", "https://docs.pyansys.com/")],
     "switcher": {
@@ -88,13 +186,9 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
-    "sphinx_autodoc_typehints",
     "numpydoc",
     "sphinx_copybutton",
-]
-if not SKIP_GALLERY:
-    extensions += ["sphinx_gallery.gen_gallery"]
-extensions += [
+    "sphinx_gallery.gen_gallery",
     "sphinx_design",  # needed for pyvista offlineviewer directive
     "sphinx_jinja",
     "pyvista.ext.plot_directive",
@@ -111,21 +205,25 @@ intersphinx_mapping = {
     # "pandas": ("https://pandas.pydata.org/pandas-docs/stable", None),
     "grpc": ("https://grpc.github.io/grpc/python/", None),
     "protobuf": ("https://googleapis.dev/python/protobuf/latest/", None),
-    "pyvista": ("https://docs.pyvista.org/version/stable", None),
+    "pyvista": ("https://docs.pyvista.org/", None),
     "ansys-dpf-core": ("https://dpf.docs.pyansys.com/version/stable/", None),
     "ansys-dpf-composites": ("https://composites.dpf.docs.pyansys.com/version/stable/", None),
+    "ansys-mechanical-core": ("https://mechanical.docs.pyansys.com/version/stable/", None),
 }
 
 nitpick_ignore = [
-    ("py:class", "typing.Self"),
-    ("py:class", "numpy.float64"),
-    ("py:class", "numpy.int32"),
-    ("py:class", "numpy.int64"),
     # Ignore TypeVar / TypeAlias defined within PyACP: they are either not recognized correctly,
     # or misidentified as a class.
     ("py:class", "_PATH"),
+    ("py:class", "ChildT"),
+    ("py:class", "CreatableValueT"),
 ]
 nitpick_ignore_regex = [
+    ("py:class", r"(typing\.|typing_extensions\.)?Self"),
+    ("py:class", r"(numpy\.typing|npt)\.NDArray"),
+    ("py:class", r"(numpy|np)\.float64"),
+    ("py:class", r"(numpy|np)\.int32"),
+    ("py:class", r"(numpy|np)\.int64"),
     ("py:class", r"ansys\.api\.acp\..*"),
     ("py:class", "None -- .*"),  # from collections.abc
     # Ignore TypeVars defined within PyACP: they are either not recognized correctly,
@@ -133,15 +231,16 @@ nitpick_ignore_regex = [
     ("py:class", r"^(.*\.)?ValueT$"),
     ("py:class", r"^(.*\.)?TC$"),
     ("py:class", r"^(.*\.)?TV$"),
+    ("py:class", r"ansys\.acp.core\..*\.AttribT"),
     ("py:class", r"ansys\.acp.core\..*\.ChildT"),
     ("py:class", r"ansys\.acp.core\..*\.CreatableValueT"),
-    ("py:class", r"ansys\.acp.core\..*\.MeshDataT"),
     ("py:class", r"ansys\.acp.core\..*\.ScalarDataT"),
+    ("py:class", r"ansys\.acp.core\..*\.MeshDataT"),
 ]
 
-# sphinx_autodoc_typehints configuration
-typehints_defaults = "comma"
-simplify_optional_unions = True
+# sphinx.ext.autodoc configuration
+autodoc_typehints = "description"
+autodoc_typehints_description_target = "documented_params"
 
 # numpydoc configuration
 numpydoc_show_class_members = False
@@ -171,24 +270,42 @@ numpydoc_validation_exclude = {
     r".*\.EdgePropertyList\.clear",
 }
 
+if SKIP_GALLERY:
+    # Generate the gallery without executing the code. The gallery will not
+    # contain the output of the code cells.
+    # This is useful for more quickly building the documentation.
+    gallery_filename_pattern = "<MATCH NOTHING>"
+else:
+    if sys.platform == "win32":
+        gallery_filename_pattern = r".*\.py"
+    else:
+        gallery_filename_pattern = (
+            r"^(?!.*pymechanical.*\.py).*\.py"  # skip pymechanical examples on non-Windows
+        )
+
+examples_dirs_base = pathlib.Path("../../examples/")
+gallery_dirs_base = pathlib.Path("examples/")
+example_subdir_names = ["modeling_features", "workflows", "use_cases"]
+
 # sphinx gallery options
 sphinx_gallery_conf = {
     # convert rst to md for ipynb
     "pypandoc": True,
     # path to your examples scripts
-    "examples_dirs": ["../../examples/"],
+    "examples_dirs": [str(examples_dirs_base / subdir) for subdir in example_subdir_names],
     # path where to save gallery generated examples
-    "gallery_dirs": ["examples/gallery_examples"],
+    "gallery_dirs": [str(gallery_dirs_base / subdir) for subdir in example_subdir_names],
     # Pattern to search for example files
-    "filename_pattern": r"\.py",
+    "filename_pattern": gallery_filename_pattern,
     # Remove the "Download all examples" button from the top level gallery
     "download_all_examples": False,
     # Sort gallery example by filename instead of number of lines (default)
     "within_subsection_order": "FileNameSortKey",
     # directory where function granular galleries are stored
-    "backreferences_dir": None,
-    # Modules for which function level galleries are created.  In
-    "doc_module": "ansys-acp-core",
+    "backreferences_dir": "api/_gallery_backreferences",
+    # Modules for which function level galleries are created.
+    "doc_module": ("ansys.acp.core"),
+    "exclude_implicit_doc": {"ansys\\.acp\\.core\\._.*"},  # ignore private submodules
     "image_scrapers": (DynamicScraper(), "matplotlib"),
     "ignore_pattern": r"__init__\.py",
     "thumbnail_size": (350, 350),
@@ -205,7 +322,7 @@ html_static_path = ["_static"]
 templates_path = ["_templates"]
 
 # The suffix(es) of source filenames.
-source_suffix = ".rst"
+source_suffix = {".rst": "restructuredtext"}
 
 # The master toctree document.
 master_doc = "index"

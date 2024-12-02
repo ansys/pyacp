@@ -22,7 +22,8 @@
 
 import pytest
 
-from ansys.acp.core import Model, ModelingPly, ProductionPlyElementalData, ProductionPlyNodalData
+from ansys.acp.core import Model, ModelingPly
+from ansys.acp.core.mesh_data import ProductionPlyElementalData, ProductionPlyNodalData
 
 from .common.tree_object_tester import TreeObjectTesterReadOnly
 
@@ -49,16 +50,19 @@ class TestProductionPly(TreeObjectTesterReadOnly):
                 "status": "UPTODATE",
                 "material": first_fabric,
                 "angle": 0.0,
+                "thickness": 0.0001,
             },
             "ProductionPly.2": {
                 "status": "UPTODATE",
                 "material": first_fabric,
                 "angle": 0.0,
+                "thickness": 0.0001,
             },
             "ProductionPly.3": {
                 "status": "UPTODATE",
                 "material": first_fabric,
                 "angle": 0.0,
+                "thickness": 0.0001,
             },
         }
 

@@ -26,17 +26,17 @@ from typing import Protocol
 
 import grpc
 
-from .._typing_helper import StrEnum
+from .._utils.typing_helper import StrEnum
 
 __all__ = ["LaunchMode"]
 
 
-class ServerKey(StrEnum):  # type: ignore
+class ServerKey(StrEnum):
     MAIN = "main"
     FILE_TRANSFER = "file_transfer"
 
 
-class LaunchMode(StrEnum):  # type: ignore
+class LaunchMode(StrEnum):
     """Available launch modes for ACP."""
 
     DIRECT = "direct"

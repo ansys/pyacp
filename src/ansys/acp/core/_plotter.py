@@ -23,13 +23,14 @@
 from collections.abc import Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
-import pyvista
-
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
+    import pyvista
     from ansys.acp.core import Model
-    from ansys.acp.core import VectorData
+    from ansys.acp.core.mesh_data import MeshData
+    from ansys.acp.core.mesh_data import VectorData
 
-from ansys.acp.core._utils.visualization import _replace_underscores_and_capitalize
+from ._utils.pyvista_import_check import requires_pyvista
+from ._utils.string_manipulation import replace_underscores_and_capitalize
 
 __all__ = ["get_directions_plotter"]
 
@@ -45,20 +46,27 @@ _acp_direction_colors = {
 }
 
 
+@requires_pyvista
 def get_directions_plotter(
     *,
     model: "Model",
+    mesh: "MeshData | None" = None,
     components: Sequence[Optional["VectorData"]],
     culling_factor: int = 1,
     length_factor: float = 1.0,
     **kwargs: Any,
-) -> pyvista.Plotter:
+) -> "pyvista.Plotter":
     """Get a pyvista plotter that shows the specified directions on the mesh.
 
     Parameters
     ----------
-    model:
-        ACP Model.
+    model :
+        ACP model. Determines the average element size used for scaling the
+        arrows. Unless explicitly specified, the model also determines the
+        mesh to plot.
+    mesh :
+        Mesh defining the scope of the plot. If not provided, the full mesh
+        of the model is used.
     components:
         List of components to plot.
     culling_factor :
@@ -70,9 +78,13 @@ def get_directions_plotter(
     kwargs :
         Keyword arguments passed to the PyVista object constructor.
     """
+    import pyvista
+
+    if mesh is None:
+        mesh = model.mesh
 
     plotter = pyvista.Plotter()
-    plotter.add_mesh(model.mesh.to_pyvista(), color="white", show_edges=True)
+    plotter.add_mesh(mesh.to_pyvista(), color="white", show_edges=True)
 
     for vector_data in components:
         if vector_data is None:
@@ -80,13 +92,13 @@ def get_directions_plotter(
         color = _acp_direction_colors.get(vector_data.component_name, "black")
         plotter.add_mesh(
             vector_data.get_pyvista_glyphs(
-                mesh=model.mesh,
+                mesh=mesh,
                 factor=model.average_element_size * length_factor,
                 culling_factor=culling_factor,
                 **kwargs,
             ),
             color=color,
-            label=_replace_underscores_and_capitalize(vector_data.component_name),
+            label=replace_underscores_and_capitalize(vector_data.component_name),
         )
         plotter.add_legend(face=None, bcolor=[0.2, 0.2, 0.2], size=(0.25, 0.25))
     return plotter

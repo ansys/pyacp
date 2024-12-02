@@ -1,4 +1,5 @@
-from typing import Callable, Union
+from collections.abc import Callable
+from typing import Union
 
 from mypy_extensions import Arg, DefaultNamedArg
 from typing_extensions import assert_type
@@ -6,7 +7,7 @@ from typing_extensions import assert_type
 from ansys.acp.core import (
     BooleanOperationType,
     BooleanSelectionRule,
-    CutoffSelectionRule,
+    CutOffSelectionRule,
     CylindricalSelectionRule,
     GeometricalSelectionRule,
     LinkedSelectionRule,
@@ -29,7 +30,7 @@ assert_type(
             Arg(
                 Union[
                     BooleanSelectionRule,
-                    CutoffSelectionRule,
+                    CutOffSelectionRule,
                     CylindricalSelectionRule,
                     GeometricalSelectionRule,
                     ParallelSelectionRule,

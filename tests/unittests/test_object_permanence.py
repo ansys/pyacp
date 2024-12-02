@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 import gc
+import weakref
 
 import pytest
 
@@ -43,23 +44,23 @@ def test_object_identity(model):
     assert mg_0 is mg_1 is mg_2
 
 
-def test_object_identity_after_deletion(model):
+def test_object_deletion(model):
     """Check that objects are deleted when no longer referenced."""
     key = list(model.modeling_groups.keys())[0]
 
-    # Immediately consume the objects via 'id' to ensure no references
-    # are kept by the test infrastructure.
-    id1 = id(model.modeling_groups[key])
+    # Check the object is deleted when no longer referenced, after
+    # garbage collection.
+    ref = weakref.ref(model.modeling_groups[key])
+    assert ref() is not None
     gc.collect()
-    id2 = id(model.modeling_groups[key])
-    assert id1 != id2
+    assert ref() is None
 
-    # test the inverse: keep a reference alive explicitly
+    # Test the inverse: keep a reference alive explicitly. The object
+    # should not be deleted.
     _ = model.modeling_groups[key]
-    id1 = id(model.modeling_groups[key])
+    ref = weakref.ref(model.modeling_groups[key])
     gc.collect()
-    id2 = id(model.modeling_groups[key])
-    assert id1 == id2
+    assert ref() is not None
 
 
 def test_unstored():

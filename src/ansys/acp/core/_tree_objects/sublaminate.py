@@ -22,9 +22,11 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable, Sequence
+from collections.abc import Callable, Iterable, Sequence
 import typing
-from typing import Any, Callable, Union, get_args
+from typing import Any, TypeAlias, Union, get_args
+
+from typing_extensions import Self
 
 from ansys.api.acp.v0 import sublaminate_pb2, sublaminate_pb2_grpc
 
@@ -36,6 +38,7 @@ from ._grpc_helpers.edge_property_list import (
 )
 from ._grpc_helpers.polymorphic_from_pb import tree_object_from_resource_path
 from ._grpc_helpers.property_helper import (
+    _exposed_grpc_property,
     grpc_data_property,
     grpc_data_property_read_only,
     mark_grpc_properties,
@@ -48,9 +51,10 @@ from .stackup import Stackup
 
 __all__ = ["SubLaminate", "Lamina"]
 
-_LINKABLE_MATERIAL_TYPES = Union[Fabric, Stackup]
+_LINKABLE_MATERIAL_TYPES: TypeAlias = Union[Fabric, Stackup]
 
 
+@mark_grpc_properties
 class Lamina(GenericEdgePropertyType):
     """
     Class to link a material with a sub-laminate.
@@ -64,12 +68,14 @@ class Lamina(GenericEdgePropertyType):
 
     """
 
+    _SUPPORTED_SINCE = "24.2"
+
     def __init__(self, material: _LINKABLE_MATERIAL_TYPES, angle: float = 0.0):
         self._callback_apply_changes: Callable[[], None] | None = None
         self.material = material
         self.angle = angle
 
-    @property
+    @_exposed_grpc_property
     def material(self) -> _LINKABLE_MATERIAL_TYPES:
         """Link to an existing fabric or stackup."""
         return self._material
@@ -85,7 +91,7 @@ class Lamina(GenericEdgePropertyType):
         if self._callback_apply_changes:
             self._callback_apply_changes()
 
-    @property
+    @_exposed_grpc_property
     def angle(self) -> float:
         """Orientation angle in degree of the material with respect to the reference direction."""
         return self._angle
@@ -143,6 +149,10 @@ class Lamina(GenericEdgePropertyType):
     def __repr__(self) -> str:
         return f"Lamina(material={self.material.__repr__()}, angle={self.angle})"
 
+    def clone(self) -> Self:
+        """Create a new unstored Lamina with the same properties."""
+        return type(self)(material=self.material, angle=self.angle)
+
 
 @mark_grpc_properties
 @register
@@ -166,6 +176,7 @@ class SubLaminate(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "sublaminates"
     _OBJECT_INFO_TYPE = sublaminate_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = sublaminate_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,

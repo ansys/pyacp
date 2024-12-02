@@ -1,6 +1,6 @@
 # Contributors
 
-## Project Lead or Owner
+## Project Lead
 
 * [Dominik Gresch](https://github.com/greschd)
 * [Jan von Rickenbach](https://github.com/janvonrickenbach)

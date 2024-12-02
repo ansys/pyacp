@@ -22,7 +22,10 @@
 
 import pytest
 
-from ansys.acp.core import SphericalSelectionRuleElementalData, SphericalSelectionRuleNodalData
+from ansys.acp.core.mesh_data import (
+    SphericalSelectionRuleElementalData,
+    SphericalSelectionRuleNodalData,
+)
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
@@ -50,8 +53,8 @@ class TestSphericalSelectionRule(NoLockedMixin, TreeObjectTester):
             "rosette": None,
             "origin": (0.0, 0.0, 0.0),
             "radius": 0.0,
-            "relative_rule_type": False,
-            "include_rule_type": True,
+            "relative_rule": False,
+            "include_rule": True,
         }
 
     CREATE_METHOD_NAME = "create_spherical_selection_rule"
@@ -68,8 +71,8 @@ class TestSphericalSelectionRule(NoLockedMixin, TreeObjectTester):
                 ("rosette", rosette),
                 ("origin", (1.0, 2.0, 3.0)),
                 ("radius", 4.0),
-                ("relative_rule_type", True),
-                ("include_rule_type", False),
+                ("relative_rule", True),
+                ("include_rule", False),
             ],
             read_only=[
                 ("id", "some_id"),

@@ -10,6 +10,7 @@ if "%SPHINXBUILD%" == "" (
 set SOURCEDIR=source
 set BUILDDIR=build
 set REPO_ROOT=%~dp0\..\
+set SPHINXOPTS=-n
 
 if "%1" == "" goto help
 if "%1" == "clean" goto clean
@@ -33,8 +34,12 @@ goto end
 
 :clean
 rmdir /s /q %BUILDDIR% > /NUL 2>&1
-for /d /r %SOURCEDIR% %%d in (_autosummary) do @if exist "%%d" rmdir /s /q "%%d"
-rmdir /s /q %SOURCEDIR%\examples\gallery_examples
+for /d /r %SOURCEDIR% %%d in (_autosummary,_gallery_backreferences) do @if exist "%%d" rmdir /s /q "%%d"
+rmdir /s /q %SOURCEDIR%\examples\images
+rmdir /s /q %SOURCEDIR%\examples\modeling_features
+rmdir /s /q %SOURCEDIR%\examples\use_cases
+rmdir /s /q %SOURCEDIR%\examples\workflows
+del %SOURCEDIR%\examples\sg_execution_times.rst
 goto end
 
 :pdf

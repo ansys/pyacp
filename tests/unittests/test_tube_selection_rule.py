@@ -22,7 +22,7 @@
 
 import pytest
 
-from ansys.acp.core import TubeSelectionRuleElementalData, TubeSelectionRuleNodalData
+from ansys.acp.core.mesh_data import TubeSelectionRuleElementalData, TubeSelectionRuleNodalData
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
@@ -49,7 +49,7 @@ class TestTubeSelectionRule(NoLockedMixin, TreeObjectTester):
             "edge_set": None,
             "outer_radius": 1.0,
             "inner_radius": 0.0,
-            "include_rule_type": True,
+            "include_rule": True,
             "extend_endings": False,
             "symmetrical_extension": True,
             "head": (0.0, 0.0, 0.0),
@@ -70,7 +70,7 @@ class TestTubeSelectionRule(NoLockedMixin, TreeObjectTester):
                 ("edge_set", edge_set),
                 ("outer_radius", 1.3),
                 ("inner_radius", 0.3),
-                ("include_rule_type", False),
+                ("include_rule", False),
                 ("extend_endings", True),
                 ("symmetrical_extension", False),
                 ("head", (1.0, 2.0, 3.0)),

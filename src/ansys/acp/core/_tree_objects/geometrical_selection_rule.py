@@ -28,6 +28,13 @@ import dataclasses
 from ansys.api.acp.v0 import geometrical_selection_rule_pb2, geometrical_selection_rule_pb2_grpc
 
 from .._utils.property_protocols import ReadWriteProperty
+from ._elemental_or_nodal_data import (
+    ElementalData,
+    NodalData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from ._grpc_helpers.linked_object_list import define_linked_object_list
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
@@ -35,13 +42,7 @@ from ._grpc_helpers.property_helper import (
     grpc_link_property,
     mark_grpc_properties,
 )
-from ._mesh_data import (
-    ElementalData,
-    NodalData,
-    VectorData,
-    elemental_data_property,
-    nodal_data_property,
-)
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
 from .element_set import ElementSet
 from .enums import (
@@ -56,7 +57,7 @@ from .virtual_geometry import VirtualGeometry
 # Workaround: these imports are needed to make sphinx_autodoc_typehints understand
 # the inherited members of the Elemental- and NodalData classes.
 import numpy as np  # noqa: F401 isort:skip
-from ._mesh_data import ScalarData  # noqa: F401 isort:skip
+from ._elemental_or_nodal_data import ScalarData  # noqa: F401 isort:skip
 
 __all__ = [
     "GeometricalSelectionRule",
@@ -93,7 +94,7 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
         Virtual geometry to use for the rule.
     element_sets :
         Element sets to use for the rule.
-    include_rule_type :
+    include_rule :
         Include or exclude area in rule. Setting this to ``False``
         inverts the selection.
     use_default_tolerances :
@@ -111,6 +112,7 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "geometrical_selection_rules"
     _OBJECT_INFO_TYPE = geometrical_selection_rule_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = geometrical_selection_rule_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
@@ -119,7 +121,7 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
         geometrical_rule_type: GeometricalRuleType = GeometricalRuleType.GEOMETRY,
         geometry: VirtualGeometry | None = None,
         element_sets: Iterable[ElementSet] = (),
-        include_rule_type: bool = True,
+        include_rule: bool = True,
         use_default_tolerances: bool = True,
         in_plane_capture_tolerance: float = 0.0,
         negative_capture_tolerance: float = 0.0,
@@ -129,7 +131,7 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
         self.geometrical_rule_type = geometrical_rule_type
         self.geometry = geometry
         self.element_sets = element_sets
-        self.include_rule_type = include_rule_type
+        self.include_rule = include_rule
         self.use_default_tolerances = use_default_tolerances
         self.in_plane_capture_tolerance = in_plane_capture_tolerance
         self.negative_capture_tolerance = negative_capture_tolerance
@@ -147,9 +149,7 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
     )
     geometry = grpc_link_property("properties.geometry", allowed_types=VirtualGeometry)
     element_sets = define_linked_object_list("properties.element_sets", object_class=ElementSet)
-    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.include_rule_type"
-    )
+    include_rule: ReadWriteProperty[bool, bool] = grpc_data_property("properties.include_rule_type")
     use_default_tolerances: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.use_default_tolerances"
     )
@@ -163,5 +163,8 @@ class GeometricalSelectionRule(CreatableTreeObject, IdTreeObject):
         "properties.positive_capture_tolerance"
     )
 
+    mesh = full_mesh_property
+    shell_mesh = shell_mesh_property
+    # selection rules don't have solid mesh data
     elemental_data = elemental_data_property(GeometricalSelectionRuleElementalData)
     nodal_data = nodal_data_property(GeometricalSelectionRuleNodalData)

@@ -29,19 +29,20 @@ from ansys.api.acp.v0 import tube_selection_rule_pb2, tube_selection_rule_pb2_gr
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadWriteProperty
-from ._grpc_helpers.property_helper import (
-    grpc_data_property,
-    grpc_data_property_read_only,
-    grpc_link_property,
-    mark_grpc_properties,
-)
-from ._mesh_data import (
+from ._elemental_or_nodal_data import (
     ElementalData,
     NodalData,
     VectorData,
     elemental_data_property,
     nodal_data_property,
 )
+from ._grpc_helpers.property_helper import (
+    grpc_data_property,
+    grpc_data_property_read_only,
+    grpc_link_property,
+    mark_grpc_properties,
+)
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
 from .edge_set import EdgeSet
 from .enums import status_type_from_pb
@@ -50,7 +51,7 @@ from .object_registry import register
 # Workaround: these imports are needed to make sphinx_autodoc_typehints understand
 # the inherited members of the Elemental- and NodalData classes.
 import numpy as np  # noqa: F401 isort:skip
-from ._mesh_data import ScalarData  # noqa: F401 isort:skip
+from ._elemental_or_nodal_data import ScalarData  # noqa: F401 isort:skip
 
 __all__ = [
     "TubeSelectionRule",
@@ -86,7 +87,7 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
         Outer radius of the tube.
     inner_radius :
         Inner radius of the tube.
-    include_rule_type :
+    include_rule :
         Include or exclude area in rule. Setting this to ``False``
         inverts the selection.
     extend_endings :
@@ -109,6 +110,7 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "tube_selection_rules"
     _OBJECT_INFO_TYPE = tube_selection_rule_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = tube_selection_rule_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
@@ -117,7 +119,7 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
         edge_set: EdgeSet | None = None,
         outer_radius: float = 1.0,
         inner_radius: float = 0.0,
-        include_rule_type: bool = True,
+        include_rule: bool = True,
         extend_endings: bool = False,
         symmetrical_extension: bool = True,
         head: tuple[float, float, float] = (0.0, 0.0, 0.0),
@@ -128,7 +130,7 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
         self.edge_set = edge_set
         self.outer_radius = outer_radius
         self.inner_radius = inner_radius
-        self.include_rule_type = include_rule_type
+        self.include_rule = include_rule
         self.extend_endings = extend_endings
         self.symmetrical_extension = symmetrical_extension
         self.head = head
@@ -143,9 +145,7 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
     edge_set = grpc_link_property("properties.edge_set", allowed_types=EdgeSet)
     outer_radius: ReadWriteProperty[float, float] = grpc_data_property("properties.outer_radius")
     inner_radius: ReadWriteProperty[float, float] = grpc_data_property("properties.inner_radius")
-    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.include_rule_type"
-    )
+    include_rule: ReadWriteProperty[bool, bool] = grpc_data_property("properties.include_rule_type")
     extend_endings: ReadWriteProperty[bool, bool] = grpc_data_property("properties.extend_endings")
     symmetrical_extension: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.symmetrical_extension"
@@ -160,5 +160,8 @@ class TubeSelectionRule(CreatableTreeObject, IdTreeObject):
         "properties.tail_extension"
     )
 
+    mesh = full_mesh_property
+    shell_mesh = shell_mesh_property
+    # selection rules don't have solid mesh data
     elemental_data = elemental_data_property(TubeSelectionRuleElementalData)
     nodal_data = nodal_data_property(TubeSelectionRuleNodalData)

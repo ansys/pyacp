@@ -8,30 +8,53 @@ Enumeration data types
     :template: autosummary/no_methods_doc/class.rst.jinja2
 
     ArrowType
+    BaseElementMaterialHandling
     BooleanOperationType
-    CutoffMaterialType
-    CutoffRuleType
-    DimensionType
-    DrapingMaterialType
+    CutOffGeometryOrientationType
+    CutOffMaterialHandling
+    CutOffRuleType
+    DrapingMaterialModel
     DrapingType
-    DropoffMaterialType
-    EdgeSetType
+    DropOffMaterialHandling
+    DropOffType
     EdgeSetType
     ElementalDataType
+    ElementTechnology
+    ExtrusionGuideType
+    ExtrusionMethod
+    ExtrusionType
     FeFormat
     GeometricalRuleType
+    HDF5CompositeCAEImportMode
+    HDF5CompositeCAEProjectionMode
     IgnorableEntity
+    ImportedPlyDrapingType
+    ImportedPlyOffsetType
+    ImportedPlyThicknessType
+    IntersectionType
+    LayupMappingRosetteSelectionMethod
+    LinkedObjectHandling
     LookUpTable3DInterpolationAlgorithm
     LookUpTableColumnValueType
+    MeshImportType
     NodalDataType
     OffsetType
-    PlyCutoffType
+    PhysicalDimension
+    PlyCutOffType
     PlyGeometryExportFormat
     PlyType
+    ReinforcingBehavior
     RosetteSelectionMethod
     RosetteType
+    SectionCutType
     SensorType
-    StatusType
+    SnapToGeometryOrientationType
+    SolidModelExportFormat
+    SolidModelImportFormat
+    SolidModelOffsetDirectionType
+    SolidModelSkinExportFormat
+    Status
+    StressStateType
     SymmetryType
     ThicknessFieldType
     ThicknessType

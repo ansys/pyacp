@@ -8,14 +8,25 @@ ACP objects
 
     AnalysisPly
     BooleanSelectionRule
+    ButtJointSequence
     CADComponent
     CADGeometry
-    CutoffSelectionRule
+    CutOffGeometry
+    CutOffSelectionRule
     CylindricalSelectionRule
     EdgeSet
     ElementSet
+    ExtrusionGuide
     Fabric
+    FieldDefinition
     GeometricalSelectionRule
+    ImportedAnalysisPly
+    ImportedModelingGroup
+    ImportedModelingPly
+    ImportedProductionPly
+    ImportedSolidModel
+    InterfaceLayer
+    LayupMappingObject
     LookUpTable1D
     LookUpTable1DColumn
     LookUpTable3D
@@ -28,7 +39,12 @@ ACP objects
     ParallelSelectionRule
     ProductionPly
     Rosette
+    SamplingPoint
+    SectionCut
     Sensor
+    SnapToGeometry
+    SolidElementSet
+    SolidModel
     SphericalSelectionRule
     Stackup
     SubLaminate

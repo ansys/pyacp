@@ -23,11 +23,10 @@
 import numpy as np
 import numpy.testing
 import pytest
-import pyvista
 
 from ansys.acp.core import (
     BooleanOperationType,
-    CutoffSelectionRule,
+    CutOffSelectionRule,
     DrapingType,
     ElementalDataType,
     Fabric,
@@ -38,8 +37,8 @@ from ansys.acp.core import (
     TaperEdge,
     ThicknessFieldType,
     ThicknessType,
-    VectorData,
 )
+from ansys.acp.core.mesh_data import VectorData
 
 from .common.linked_object_list_tester import LinkedObjectListTestCase, LinkedObjectListTester
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
@@ -64,6 +63,7 @@ def tree_object(parent_object):
 
 class TestModelingPly(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "modeling_plies"
+    CREATE_METHOD_NAME = "create_modeling_ply"
 
     @staticmethod
     @pytest.fixture
@@ -75,7 +75,7 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
             "ply_angle": 0.0,
             "active": True,
             "global_ply_nr": AnyThing(),
-            "draping": DrapingType.NO_DRAPING,
+            "draping_type": DrapingType.NO_DRAPING,
             "draping_seed_point": (0.0, 0.0, 0.0),
             "auto_draping_direction": True,
             "draping_direction": (1.0, 0.0, 0.0),
@@ -90,8 +90,6 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
             "thickness_field_type": ThicknessFieldType.ABSOLUTE_VALUES,
             "taper_edges": [],
         }
-
-    CREATE_METHOD_NAME = "create_modeling_ply"
 
     @staticmethod
     @pytest.fixture(params=["create_fabric", "create_stackup", "create_sublaminate"])
@@ -150,7 +148,7 @@ class TestModelingPly(NoLockedMixin, TreeObjectTester):
                             parameter_2=0.0,
                         ),
                         LinkedSelectionRule(
-                            selection_rule=parent_model.create_cutoff_selection_rule(),
+                            selection_rule=parent_model.create_cut_off_selection_rule(),
                             operation_type=BooleanOperationType.INTERSECT,
                             template_rule=True,
                             parameter_1=1.2,
@@ -343,7 +341,10 @@ def test_nodal_data(simple_modeling_ply):
     )
 
 
+@pytest.mark.plotting
 def test_elemental_data_to_pyvista(minimal_complete_model, simple_modeling_ply):
+    import pyvista
+
     elemental_data = simple_modeling_ply.elemental_data
     pv_mesh = elemental_data.get_pyvista_mesh(mesh=minimal_complete_model.mesh)
     assert isinstance(pv_mesh, pyvista.core.pointset.UnstructuredGrid)
@@ -351,10 +352,13 @@ def test_elemental_data_to_pyvista(minimal_complete_model, simple_modeling_ply):
     assert pv_mesh.n_cells == 1
 
 
+@pytest.mark.plotting
 @pytest.mark.parametrize("component", [e.value for e in ElementalDataType])
 def test_elemental_data_to_pyvista_with_component(
     minimal_complete_model, simple_modeling_ply, component
 ):
+    import pyvista
+
     data = simple_modeling_ply.elemental_data
     if not hasattr(data, component):
         pytest.skip(f"Modeling Ply elemental data does not contain component '{component}'")
@@ -384,7 +388,10 @@ def test_elemental_data_to_pyvista_with_component(
         assert pv_mesh.n_cells == 1
 
 
+@pytest.mark.plotting
 def test_nodal_data_to_pyvista(minimal_complete_model, simple_modeling_ply):
+    import pyvista
+
     data = simple_modeling_ply.nodal_data
     pv_mesh = data.get_pyvista_mesh(mesh=minimal_complete_model.mesh)
     assert isinstance(pv_mesh, pyvista.core.pointset.UnstructuredGrid)
@@ -392,10 +399,13 @@ def test_nodal_data_to_pyvista(minimal_complete_model, simple_modeling_ply):
     assert pv_mesh.n_cells == 1
 
 
+@pytest.mark.plotting
 @pytest.mark.parametrize("component", [e.value for e in NodalDataType])
 def test_nodal_data_to_pyvista_with_component(
     minimal_complete_model, simple_modeling_ply, component
 ):
+    import pyvista
+
     data = simple_modeling_ply.nodal_data
     if not hasattr(data, component):
         pytest.skip(f"Modeling Ply nodal data does not contain component '{component}'")
@@ -437,11 +447,21 @@ def test_linked_selection_rule_parameters(simple_modeling_ply, minimal_complete_
 @pytest.mark.parametrize(
     "operation_type", [e for e in BooleanOperationType if e != BooleanOperationType.INTERSECT]
 )
-def test_linked_cutoff_selection_rule_operation_type(operation_type):
-    """Check that CutoffSelectionRule only allows INTERSECT operation type."""
+def test_linked_cut_off_selection_rule_operation_type(operation_type):
+    """Check that CutOffSelectionRule only allows INTERSECT operation type."""
     with pytest.raises(ValueError) as exc:
         LinkedSelectionRule(
-            selection_rule=CutoffSelectionRule(),
+            selection_rule=CutOffSelectionRule(),
             operation_type=operation_type,
         )
     assert "INTERSECT" in str(exc.value)
+
+
+def test_taper_edge(parent_model):
+    edge_1 = parent_model.create_edge_set()
+    taper_edge = TaperEdge(edge_set=edge_1, angle=1, offset=2)
+    assert taper_edge != TaperEdge(edge_set=parent_model.create_edge_set(), angle=1, offset=2)
+    assert taper_edge != TaperEdge(edge_set=edge_1, angle=2, offset=2)
+    assert taper_edge != TaperEdge(edge_set=edge_1, angle=1, offset=3)
+    assert taper_edge == TaperEdge(edge_set=edge_1, angle=1, offset=2)
+    print(taper_edge)

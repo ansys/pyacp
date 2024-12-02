@@ -76,19 +76,22 @@ class TestCADGeometry(NoLockedMixin, TreeObjectTester):
         )
 
     @staticmethod
-    def test_refresh(load_cad_geometry, load_model_from_tempfile):
+    def test_refresh(load_model_from_tempfile, model_data_dir):
         """Test refreshing the geometry.
 
         Only tests that the call does not raise an exception.
         """
-        with load_model_from_tempfile() as model, load_cad_geometry(model=model) as cad_geometry:
-            cad_geometry.refresh()
+        with load_model_from_tempfile() as model:
+            cad_geometry = model.create_cad_geometry()
+            local_cad_path = model_data_dir / "square_and_solid.stp"
+            assert local_cad_path.exists()
+            cad_geometry.refresh(local_cad_path)
 
     @staticmethod
     def test_refresh_inexistent_raises(tree_object):
         """Test refreshing the geometry from an inexistent file."""
-        with pytest.raises(RuntimeError, match="source file `[^`]*` does not exist"):
-            tree_object.refresh()
+        with pytest.raises((FileNotFoundError, RuntimeError)):
+            tree_object.refresh("inexistent_file")
 
     @staticmethod
     def test_accessing_root_shapes(load_cad_geometry, load_model_from_tempfile):
