@@ -1,5 +1,3 @@
-<!-- vale off -->
-
 This directory contains thumbnails for the gallery examples which are
 not built in CI. The thumbnails are used in the gallery index page.
 
