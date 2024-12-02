@@ -462,7 +462,7 @@ This function only considers the maximum stress failure criterion.
  .. code-block:: none
 
 
-    1.402323456
+    np.float64(1.402323456)
 
 
 
@@ -538,7 +538,7 @@ To inject the ``acp_workflow``, ``mapdl``, ``dpf_server``, and ``workdir`` argum
 
     Parameters: [0, 45, 90, 135, 180, 225], Max IRF: 1.402323456
 
-    1.402323456
+    np.float64(1.402323456)
 
 
 
@@ -782,7 +782,7 @@ Visualize the resulting fiber directions.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 39.434 seconds)
+   **Total running time of the script:** (0 minutes 39.212 seconds)
 
 
 .. _sphx_glr_download_examples_use_cases_01-optimizing-ply-angles.py:
