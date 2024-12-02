@@ -55,7 +55,7 @@ handles the upload automatically.
 Loading input files
 ~~~~~~~~~~~~~~~~~~~
 
-To load an input file, pass the file path on your local machine to the
+To load an input file, pass its path on your local machine to the
 :meth:`.import_model` method:
 
 .. doctest::
