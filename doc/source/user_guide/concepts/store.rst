@@ -29,7 +29,7 @@ Consider the following example. First, launch an ACP instance and import a model
 .. testcode::
     :hide:
 
-    path = acp.upload_file("../tests/data/minimal_complete_model_no_matml_link.acph5")
+    path = "../tests/data/minimal_complete_model_no_matml_link.acph5"
 
 
 .. doctest::
@@ -91,11 +91,6 @@ You may also use the :meth:`clone <.Material.clone>` method to copy an object be
 .. doctest::
 
     >>> acp2 = pyacp.launch_acp()
-
-.. testcode::
-    :hide:
-
-    path = acp2.upload_file("../tests/data/minimal_complete_model_no_matml_link.acph5")
 
 .. doctest::
 

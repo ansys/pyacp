@@ -20,11 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from collections.abc import Iterable
-from typing import Any, Callable, TypeVar
+from collections.abc import Callable, Iterable
+from typing import Any, Concatenate, TypeAlias, TypeVar
 from weakref import WeakValueDictionary
 
-from typing_extensions import Concatenate, ParamSpec, Self, TypeAlias
+from typing_extensions import ParamSpec, Self
 
 __all__ = ["ObjectCacheMixin", "constructor_with_cache"]
 

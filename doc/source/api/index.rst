@@ -1,21 +1,32 @@
+.. _api_reference:
+
 API reference
 =============
 
-This section describes the API of the public PyACP classes, functions,
-and attributes.
+.. jinja:: conditional_skip
 
-.. currentmodule:: ansys.acp.core
+    {% if not skip_api %}
+    This section describes the API of the public PyACP classes, functions,
+    and attributes.
 
-.. toctree::
-    :maxdepth: 2
+    .. currentmodule:: ansys.acp.core
 
-    server
-    tree_objects
-    mesh_data
-    linked_object_definitions
-    material_property_sets
-    enum_types
-    plot_utils
-    workflow
-    example_helpers
-    internal
+    .. toctree::
+        :maxdepth: 2
+
+        server
+        tree_objects
+        mesh_data
+        linked_object_definitions
+        material_property_sets
+        enum_types
+        other_types
+        plot_utils
+        other_utils
+        dpf_integration_helpers
+        mechanical_integration_helpers
+        example_helpers
+        internal
+    {% else %}
+    The API reference is not available in this documentation build.
+    {% endif %}

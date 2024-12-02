@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 from dataclasses import dataclass
-from typing import Any, Optional
+from typing import Any
 
 import pytest
 
@@ -37,6 +37,14 @@ class PropertyWithConversion:
 
 
 @dataclass
+class PropertyWithCustomComparison:
+    """A class to store a property which is compared using a custom function."""
+
+    initial_value: Any
+    comparison_function: Any
+
+
+@dataclass
 class ObjectPropertiesToTest:
     read_write: list[tuple[str, Any]]
     read_only: list[tuple[str, Any]]
@@ -47,7 +55,7 @@ class ObjectPropertiesToTest:
     # If create_args exists the create method will use the create_args dictionaries
     # to create the object. The object
     # will be created for each dictionary in the list.
-    create_args: Optional[list[dict[str, Any]]] = None
+    create_args: list[dict[str, Any]] | None = None
 
 
 class TreeObjectTesterReadOnly:
@@ -111,6 +119,14 @@ class TreeObjectTesterReadOnly:
             object_collection[INEXISTENT_ID]
         assert object_collection.get(INEXISTENT_ID) is None
 
+    @staticmethod
+    def test_parent_access(collection_test_data, parent_object):
+        """Test the parent access of the objects in the collection."""
+        object_collection, _, object_ids = collection_test_data
+        ref_id = object_ids[0]
+
+        assert object_collection[ref_id].parent is parent_object
+
 
 class TreeObjectTester(TreeObjectTesterReadOnly):
     COLLECTION_NAME: str
@@ -143,6 +159,9 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
 
             new_object = create_method(**init_args_final)
             for key, val in init_args.items():
+                if isinstance(val, PropertyWithCustomComparison):
+                    assert val.comparison_function(getattr(new_object, key), val.initial_value)
+                    continue
                 if isinstance(val, PropertyWithConversion):
                     val = val.converted_value
                 assert_allclose(
@@ -168,13 +187,18 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
             if isinstance(value, PropertyWithConversion):
                 initial_value = value.initial_value
                 converted_value = value.converted_value
+            elif isinstance(value, PropertyWithCustomComparison):
+                initial_value = converted_value = value.initial_value
             else:
                 initial_value = converted_value = value
             setattr(tree_object, prop, initial_value)
-            assert_allclose(
-                actual=getattr(tree_object, prop),
-                desired=converted_value,
-            )
+            if isinstance(value, PropertyWithCustomComparison):
+                assert value.comparison_function(getattr(tree_object, prop), converted_value)
+            else:
+                assert_allclose(
+                    actual=getattr(tree_object, prop),
+                    desired=converted_value,
+                )
 
         for prop, value in object_properties.read_only:
             getattr(
@@ -183,10 +207,11 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
             with pytest.raises(AttributeError):
                 setattr(tree_object, prop, value)
 
+        string_representation = str(tree_object)
         for prop, _ in object_properties.read_only + object_properties.read_write:
-            assert f"{prop}=" in str(
-                tree_object
-            ), f"{prop} not found in object string: {str(tree_object)}"
+            assert (
+                f"{prop}=" in string_representation
+            ), f"{prop} not found in object string: {string_representation}"
 
     @staticmethod
     def test_collection_delitem(collection_test_data):
@@ -198,6 +223,17 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
         del object_collection[ref_id]
         with pytest.raises(KeyError):
             object_collection[ref_id]
+
+    @staticmethod
+    def test_unstored_parent_access_raises(collection_test_data):
+        """Test that unstored objects raise an error when accessing the parent."""
+        object_collection, _, object_ids = collection_test_data
+        ref_id = object_ids[0]
+        object = object_collection[ref_id].clone()
+        with pytest.raises(RuntimeError) as exc:
+            object.parent
+        assert "unstored" in str(exc.value)
+        assert "parent" in str(exc.value)
 
 
 class NoLockedMixin(TreeObjectTester):

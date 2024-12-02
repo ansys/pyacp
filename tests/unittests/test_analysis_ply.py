@@ -20,9 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from numpy.testing import assert_equal
 import pytest
 
-from ansys.acp.core import AnalysisPlyElementalData, AnalysisPlyNodalData, FabricWithAngle, Model
+from ansys.acp.core import FabricWithAngle, Model
+from ansys.acp.core.mesh_data import AnalysisPlyElementalData, AnalysisPlyNodalData
 
 from .common.tree_object_tester import TreeObjectTesterReadOnly
 
@@ -65,24 +67,33 @@ class TestAnalysisPly(TreeObjectTesterReadOnly):
                 "status": "UPTODATE",
                 "material": first_material,
                 "angle": 0.0,
+                "thickness": 0.0001,
             },
             "P1L2__ModelingPly.1": {
                 "status": "UPTODATE",
                 "material": first_material,
                 "angle": 10.0,
+                "thickness": 0.0001,
             },
             "P1L3__ModelingPly.1": {
                 "status": "UPTODATE",
                 "material": first_material,
                 "angle": 20.0,
+                "thickness": 0.0001,
             },
         }
 
+    @staticmethod
     @pytest.fixture
-    def collection_test_data(self, model: Model):
+    def parent_object(model: Model):
         add_stackup_with_3_layers_to_modeling_ply(model)
 
         production_ply = get_first_modeling_ply(model).production_plies["ProductionPly"]
+        return production_ply
+
+    @pytest.fixture
+    def collection_test_data(self, parent_object):
+        production_ply = parent_object
         object_collection = getattr(production_ply, self.COLLECTION_NAME)
         object_collection.values()
         object_names = ["P1L1__ModelingPly.1", "P1L2__ModelingPly.1", "P1L3__ModelingPly.1"]
@@ -140,3 +151,27 @@ def test_mesh_data_existence(model: Model):
     assert isinstance(elemental_data, AnalysisPlyElementalData)
     nodal_data = analysis_ply.nodal_data
     assert isinstance(nodal_data, AnalysisPlyNodalData)
+
+
+def test_meshes(model: Model, raises_before_version):
+    """
+    Test that the mesh properties can be retrieved.
+    """
+    analysis_ply = list(get_first_production_ply(model).analysis_plies.values())[0]
+    with raises_before_version("25.1"):
+        assert_equal(analysis_ply.mesh.element_labels, [1])
+    with raises_before_version("25.1"):
+        assert_equal(analysis_ply.shell_mesh.element_labels, [1])
+    with raises_before_version("25.1"):
+        assert_equal(analysis_ply.solid_mesh.element_labels, [])
+    with raises_before_version("25.1"):
+        model.create_solid_model(
+            element_sets=[model.element_sets["All_Elements"]],
+        )
+    model.update()
+    with raises_before_version("25.1"):
+        assert_equal(analysis_ply.mesh.element_labels, [1, 2])
+    with raises_before_version("25.1"):
+        assert_equal(analysis_ply.shell_mesh.element_labels, [1])
+    with raises_before_version("25.1"):
+        assert_equal(analysis_ply.solid_mesh.element_labels, [2])

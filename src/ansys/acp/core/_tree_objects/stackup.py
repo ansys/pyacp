@@ -22,8 +22,10 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable, Sequence
-from typing import Any, Callable
+from collections.abc import Callable, Iterable, Sequence
+from typing import Any
+
+from typing_extensions import Self
 
 from ansys.api.acp.v0 import stackup_pb2, stackup_pb2_grpc
 
@@ -34,6 +36,7 @@ from ._grpc_helpers.edge_property_list import (
     define_edge_property_list,
 )
 from ._grpc_helpers.property_helper import (
+    _exposed_grpc_property,
     grpc_data_property,
     grpc_data_property_read_only,
     grpc_link_property,
@@ -41,9 +44,9 @@ from ._grpc_helpers.property_helper import (
 )
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import (
-    CutoffMaterialType,
-    DrapingMaterialType,
-    DropoffMaterialType,
+    CutOffMaterialHandling,
+    DrapingMaterialModel,
+    DropOffMaterialHandling,
     SymmetryType,
     cut_off_material_type_from_pb,
     cut_off_material_type_to_pb,
@@ -62,6 +65,7 @@ from .object_registry import register
 __all__ = ["Stackup", "FabricWithAngle"]
 
 
+@mark_grpc_properties
 class FabricWithAngle(GenericEdgePropertyType):
     """Defines a fabric of a stackup.
 
@@ -74,12 +78,14 @@ class FabricWithAngle(GenericEdgePropertyType):
 
     """
 
+    _SUPPORTED_SINCE = "24.2"
+
     def __init__(self, fabric: Fabric, angle: float = 0.0):
         self._callback_apply_changes: Callable[[], None] | None = None
         self.fabric = fabric
         self.angle = angle
 
-    @property
+    @_exposed_grpc_property
     def fabric(self) -> Fabric:
         """Linked fabric."""
         return self._fabric
@@ -92,7 +98,7 @@ class FabricWithAngle(GenericEdgePropertyType):
         if self._callback_apply_changes:
             self._callback_apply_changes()
 
-    @property
+    @_exposed_grpc_property
     def angle(self) -> float:
         """Orientation angle in degree of the fabric with respect to the reference direction."""
         return self._angle
@@ -139,6 +145,10 @@ class FabricWithAngle(GenericEdgePropertyType):
     def __repr__(self) -> str:
         return f"FabricWithAngle(fabric={self.fabric.__repr__()}, angle={self.angle})"
 
+    def clone(self) -> Self:
+        """Create a new unstored FabricWithAngle with the same properties."""
+        return type(self)(fabric=self.fabric, angle=self.angle)
+
 
 @mark_grpc_properties
 @register
@@ -177,6 +187,7 @@ class Stackup(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "stackups"
     _OBJECT_INFO_TYPE = stackup_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = stackup_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
@@ -186,11 +197,11 @@ class Stackup(CreatableTreeObject, IdTreeObject):
         topdown: bool = True,
         fabrics: Sequence[FabricWithAngle] = tuple(),
         area_price: float = 0.0,
-        drop_off_material_handling: DropoffMaterialType = "global",
+        drop_off_material_handling: DropOffMaterialHandling = "global",
         drop_off_material: Material | None = None,
         cut_off_material: Material | None = None,
-        cut_off_material_handling: CutoffMaterialType = "computed",
-        draping_material_model: DrapingMaterialType = "woven",
+        cut_off_material_handling: CutOffMaterialHandling = "computed",
+        draping_material_model: DrapingMaterialModel = "woven",
         draping_ud_coefficient: float = 0.0,
     ):
         super().__init__(name=name)
@@ -199,11 +210,11 @@ class Stackup(CreatableTreeObject, IdTreeObject):
         self.topdown = topdown
         self.area_price = area_price
         self.fabrics = fabrics
-        self.drop_off_material_handling = DropoffMaterialType(drop_off_material_handling)
+        self.drop_off_material_handling = DropOffMaterialHandling(drop_off_material_handling)
         self.drop_off_material = drop_off_material
-        self.cut_off_material_handling = CutoffMaterialType(cut_off_material_handling)
+        self.cut_off_material_handling = CutOffMaterialHandling(cut_off_material_handling)
         self.cut_off_material = cut_off_material
-        self.draping_material_model = DrapingMaterialType(draping_material_model)
+        self.draping_material_model = DrapingMaterialModel(draping_material_model)
         self.draping_ud_coefficient = draping_ud_coefficient
 
     def _create_stub(self) -> stackup_pb2_grpc.ObjectServiceStub:

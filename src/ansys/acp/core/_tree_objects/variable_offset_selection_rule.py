@@ -32,19 +32,20 @@ from ansys.api.acp.v0 import (
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadWriteProperty
-from ._grpc_helpers.property_helper import (
-    grpc_data_property,
-    grpc_data_property_read_only,
-    grpc_link_property,
-    mark_grpc_properties,
-)
-from ._mesh_data import (
+from ._elemental_or_nodal_data import (
     ElementalData,
     NodalData,
     VectorData,
     elemental_data_property,
     nodal_data_property,
 )
+from ._grpc_helpers.property_helper import (
+    grpc_data_property,
+    grpc_data_property_read_only,
+    grpc_link_property,
+    mark_grpc_properties,
+)
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
 from .edge_set import EdgeSet
 from .element_set import ElementSet
@@ -55,7 +56,7 @@ from .object_registry import register
 # Workaround: these imports are needed to make sphinx_autodoc_typehints understand
 # the inherited members of the Elemental- and NodalData classes.
 import numpy as np  # noqa: F401 isort:skip
-from ._mesh_data import ScalarData  # noqa: F401 isort:skip
+from ._elemental_or_nodal_data import ScalarData  # noqa: F401 isort:skip
 
 __all__ = [
     "VariableOffsetSelectionRule",
@@ -91,7 +92,7 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
         Defines the in-plane offset. Cuts elements which are closer to the edge than this value.
     angles :
         Defines the angle between the reference surface and the cutting plane.
-    include_rule_type :
+    include_rule :
         Include or exclude area in rule. Setting this to ``False``
         inverts the selection.
     use_offset_correction :
@@ -116,6 +117,7 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "variable_offset_selection_rules"
     _OBJECT_INFO_TYPE = variable_offset_selection_rule_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = variable_offset_selection_rule_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
@@ -124,7 +126,7 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
         edge_set: EdgeSet | None = None,
         offsets: LookUpTable1DColumn | None = None,
         angles: LookUpTable1DColumn | None = None,
-        include_rule_type: bool = True,
+        include_rule: bool = True,
         use_offset_correction: bool = False,
         element_set: ElementSet | None = None,
         inherit_from_lookup_table: bool = True,
@@ -136,7 +138,7 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
         self.edge_set = edge_set
         self.offsets = offsets
         self.angles = angles
-        self.include_rule_type = include_rule_type
+        self.include_rule = include_rule
         self.use_offset_correction = use_offset_correction
         self.element_set = element_set
         self.inherit_from_lookup_table = inherit_from_lookup_table
@@ -152,9 +154,7 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
     edge_set = grpc_link_property("properties.edge_set", allowed_types=EdgeSet)
     offsets = grpc_link_property("properties.offsets", allowed_types=LookUpTable1DColumn)
     angles = grpc_link_property("properties.angles", allowed_types=LookUpTable1DColumn)
-    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.include_rule_type"
-    )
+    include_rule: ReadWriteProperty[bool, bool] = grpc_data_property("properties.include_rule_type")
     use_offset_correction: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.use_offset_correction"
     )
@@ -176,5 +176,8 @@ class VariableOffsetSelectionRule(CreatableTreeObject, IdTreeObject):
         "properties.distance_along_edge"
     )
 
+    mesh = full_mesh_property
+    shell_mesh = shell_mesh_property
+    # selection rules don't have solid mesh data
     elemental_data = elemental_data_property(VariableOffsetSelectionRuleElementalData)
     nodal_data = nodal_data_property(VariableOffsetSelectionRuleNodalData)

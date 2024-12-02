@@ -23,9 +23,9 @@
 import pytest
 
 from ansys.acp.core import (
-    CutoffMaterialType,
-    DrapingMaterialType,
-    DropoffMaterialType,
+    CutOffMaterialHandling,
+    DrapingMaterialModel,
+    DropOffMaterialHandling,
     FabricWithAngle,
     SymmetryType,
 )
@@ -56,11 +56,11 @@ class TestStackup(NoLockedMixin, TreeObjectTester):
             "topdown": True,
             "fabrics": [],
             "symmetry": SymmetryType.NO_SYMMETRY,
-            "drop_off_material_handling": DropoffMaterialType.GLOBAL,
+            "drop_off_material_handling": DropOffMaterialHandling.GLOBAL,
             "drop_off_material": None,
-            "cut_off_material_handling": CutoffMaterialType.COMPUTED,
+            "cut_off_material_handling": CutOffMaterialHandling.COMPUTED,
             "cut_off_material": None,
-            "draping_material_model": DrapingMaterialType.WOVEN,
+            "draping_material_model": DrapingMaterialModel.WOVEN,
             "draping_ud_coefficient": 0.0,
         }
 
@@ -86,11 +86,11 @@ class TestStackup(NoLockedMixin, TreeObjectTester):
                     ],
                 ),
                 ("symmetry", SymmetryType.EVEN_SYMMETRY),
-                ("drop_off_material_handling", DropoffMaterialType.CUSTOM),
+                ("drop_off_material_handling", DropOffMaterialHandling.CUSTOM),
                 ("drop_off_material", material),
-                ("cut_off_material_handling", CutoffMaterialType.CUSTOM),
+                ("cut_off_material_handling", CutOffMaterialHandling.CUSTOM),
                 ("cut_off_material", material),
-                ("draping_material_model", DrapingMaterialType.UD),
+                ("draping_material_model", DrapingMaterialModel.UD),
                 ("draping_ud_coefficient", 0.55),
             ],
             read_only=[
@@ -188,3 +188,11 @@ def test_add_fabric(parent_object):
     stackup.add_fabric(fabric2, angle=45.0)
     assert stackup.fabrics[-1].fabric == fabric2
     assert stackup.fabrics[-1].angle == 45.0
+
+
+def test_fabric_wit_angle(parent_object):
+    fabric1 = parent_object.create_fabric()
+    fabric_with_angle = FabricWithAngle(fabric=fabric1, angle=45.0)
+    assert fabric_with_angle != FabricWithAngle(fabric=parent_object.create_fabric(), angle=45.0)
+    assert fabric_with_angle != FabricWithAngle(fabric=fabric1, angle=55.0)
+    assert fabric_with_angle == FabricWithAngle(fabric=fabric1, angle=45.0)

@@ -35,9 +35,9 @@ from ._grpc_helpers.property_helper import (
 )
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import (
-    CutoffMaterialType,
-    DrapingMaterialType,
-    DropoffMaterialType,
+    CutOffMaterialHandling,
+    DrapingMaterialModel,
+    DropOffMaterialHandling,
     cut_off_material_type_from_pb,
     cut_off_material_type_to_pb,
     draping_material_type_from_pb,
@@ -71,8 +71,12 @@ class Fabric(CreatableTreeObject, IdTreeObject):
         Enable this option that the failure computation skips all plies made of this fabric.
     drop_off_material_handling :
         Defines the material of drop-off elements in the solid model extrusion.
+    drop_off_material :
+        Specify the material of drop-off elements in the solid model.
     cut_off_material_handling :
         Defines the material of cut-off elements in solid models if cut-off geometries are active.
+    cut_off_material :
+        Define the cut-off material if a ply with this material is shaped by a cut-off geometry.
     draping_material_model :
         Specifies the draping model of the fabric.
     draping_ud_coefficient :
@@ -86,6 +90,7 @@ class Fabric(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "fabrics"
     _OBJECT_INFO_TYPE = fabric_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = fabric_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
@@ -95,9 +100,11 @@ class Fabric(CreatableTreeObject, IdTreeObject):
         thickness: float = 0.0,
         area_price: float = 0.0,
         ignore_for_postprocessing: bool = False,
-        drop_off_material_handling: DropoffMaterialType = "global",
-        cut_off_material_handling: CutoffMaterialType = "computed",
-        draping_material_model: DrapingMaterialType = "woven",
+        drop_off_material_handling: DropOffMaterialHandling = "global",
+        drop_off_material: Material | None = None,
+        cut_off_material_handling: CutOffMaterialHandling = "computed",
+        cut_off_material: Material | None = None,
+        draping_material_model: DrapingMaterialModel = "woven",
         draping_ud_coefficient: float = 0.0,
     ):
         super().__init__(name=name)
@@ -106,9 +113,11 @@ class Fabric(CreatableTreeObject, IdTreeObject):
         self.thickness = thickness
         self.area_price = area_price
         self.ignore_for_postprocessing = ignore_for_postprocessing
-        self.drop_off_material_handling = DropoffMaterialType(drop_off_material_handling)
-        self.cut_off_material_handling = CutoffMaterialType(cut_off_material_handling)
-        self.draping_material_model = DrapingMaterialType(draping_material_model)
+        self.drop_off_material_handling = DropOffMaterialHandling(drop_off_material_handling)
+        self.drop_off_material = drop_off_material
+        self.cut_off_material_handling = CutOffMaterialHandling(cut_off_material_handling)
+        self.cut_off_material = cut_off_material
+        self.draping_material_model = DrapingMaterialModel(draping_material_model)
         self.draping_ud_coefficient = draping_ud_coefficient
 
     def _create_stub(self) -> fabric_pb2_grpc.ObjectServiceStub:
@@ -129,17 +138,29 @@ class Fabric(CreatableTreeObject, IdTreeObject):
         from_protobuf=drop_off_material_type_from_pb,
         to_protobuf=drop_off_material_type_to_pb,
     )
+    drop_off_material = grpc_link_property(
+        "properties.drop_off_material",
+        allowed_types=Material,
+        readable_since="25.1",
+        writable_since="25.1",
+    )
     cut_off_material_handling = grpc_data_property(
         "properties.cut_off_material_handling",
         from_protobuf=cut_off_material_type_from_pb,
         to_protobuf=cut_off_material_type_to_pb,
     )
+    cut_off_material = grpc_link_property(
+        "properties.cut_off_material",
+        allowed_types=Material,
+        readable_since="25.1",
+        writable_since="25.1",
+    )
+
     draping_material_model = grpc_data_property(
         "properties.draping_material_model",
         from_protobuf=draping_material_type_from_pb,
         to_protobuf=draping_material_type_to_pb,
     )
-
     draping_ud_coefficient: ReadWriteProperty[float, float] = grpc_data_property(
         "properties.draping_ud_coefficient"
     )

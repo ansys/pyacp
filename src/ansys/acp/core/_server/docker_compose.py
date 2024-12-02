@@ -29,8 +29,7 @@ import importlib.resources
 import math
 import os
 import pathlib
-import subprocess
-from typing import Optional
+import subprocess  # nosec B404
 import uuid
 
 import grpc
@@ -57,14 +56,11 @@ def _get_default_license_server() -> str:
         return ""
 
 
-_COMPOSE_FILE_DEFAULT_KEY = "default"
-
-
 @dataclasses.dataclass
 class DockerComposeLaunchConfig:
     """Configuration options for launching ACP through docker compose."""
 
-    image_name_pyacp: str = dataclasses.field(
+    image_name_acp: str = dataclasses.field(
         default="ghcr.io/ansys/acp:latest",
         metadata={METADATA_KEY_DOC: "Docker image running the ACP gRPC server."},
     )
@@ -85,7 +81,7 @@ class DockerComposeLaunchConfig:
         default=False,
         metadata={METADATA_KEY_DOC: "If true, keep the volume after docker compose is stopped."},
     )
-    compose_file: Optional[str] = dataclasses.field(
+    compose_file: str | None = dataclasses.field(
         default=None,
         metadata={
             METADATA_KEY_DOC: (
@@ -126,7 +122,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
 
         self._env = copy.deepcopy(os.environ)
         self._env.update(
-            IMAGE_NAME_PYACP=config.image_name_pyacp,
+            IMAGE_NAME_ACP=config.image_name_acp,
             IMAGE_NAME_FILETRANSFER=config.image_name_filetransfer,
             ANSYSLMD_LICENSE_FILE=config.license_server,
         )
@@ -134,23 +130,27 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
         self._keep_volume = config.keep_volume
 
         if config.compose_file is not None:
-            self._compose_file: Optional[pathlib.Path] = pathlib.Path(config.compose_file)
+            self._compose_file: pathlib.Path | None = pathlib.Path(config.compose_file)
         else:
             self._compose_file = None
 
         try:
             self._compose_version = parse_version(
-                subprocess.check_output(
+                subprocess.check_output(  # nosec B603, B607: documented in 'security_considerations.rst'
                     ["docker", "compose", "version", "--short"], text=True
-                ).replace("-", "+")
+                ).replace(
+                    "-", "+"
+                )
             )
             self._compose_cmds = ["docker", "compose"]
         except subprocess.CalledProcessError:
             # If 'docker compose does not work, try 'docker-compose' instead.
             self._compose_version = parse_version(
-                subprocess.check_output(
+                subprocess.check_output(  # nosec B603, B607: documented in 'security_considerations.rst'
                     ["docker-compose", "version", "--short"], text=True
-                ).replace("-", "+")
+                ).replace(
+                    "-", "+"
+                )
             )
             self._compose_cmds = ["docker-compose"]
 
@@ -171,7 +171,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
             }
 
             env = collections.ChainMap(
-                {"PORT_PYACP": str(port_acp), "PORT_FILETRANSFER": str(port_ft)}, self._env
+                {"PORT_ACP": str(port_acp), "PORT_FILETRANSFER": str(port_ft)}, self._env
             )
 
             # The compose_file may be temporary, in particular if the package is a zipfile.
@@ -189,11 +189,11 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 # The '--wait' flag is only available from version >= 2.1.1 of docker compose:
                 # https://github.com/docker/compose/commit/72e4519cbfb6cdfc600e6ebfa377ce4b8e162c78
                 cmd.append("--wait")
-            subprocess.check_call(
+            subprocess.check_call(  # nosec B603: documented in 'security_considerations.rst'
                 cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
             )
 
-    def stop(self, *, timeout: Optional[float] = None) -> None:
+    def stop(self, *, timeout: float | None = None) -> None:
         # The compose file needs to be passed for all commands with docker-compose 1.X.
         # With docker-compose 2.X, this no longer seems to be necessary.
         with self._get_compose_file() as compose_file:
@@ -209,9 +209,13 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 cmd.extend(["--timeout", str(math.ceil(timeout))])
             if not self._keep_volume:
                 cmd.append("--volumes")
-            subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.check_call(  # nosec B603: documented in 'security_considerations.rst'
+                cmd,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
 
-    def check(self, timeout: Optional[float] = None) -> bool:
+    def check(self, timeout: float | None = None) -> bool:
         for url in self.urls.values():
             channel = grpc.insecure_channel(url)
             if not check_grpc_health(channel=channel, timeout=timeout):

@@ -1,7 +1,7 @@
 Mesh data objects
 -----------------
 
-.. currentmodule:: ansys.acp.core
+.. currentmodule:: ansys.acp.core.mesh_data
 
 .. autosummary::
     :toctree: _autosummary
@@ -10,14 +10,16 @@ Mesh data objects
     AnalysisPlyNodalData
     BooleanSelectionRuleElementalData
     BooleanSelectionRuleNodalData
-    CutoffSelectionRuleElementalData
-    CutoffSelectionRuleNodalData
+    CutOffSelectionRuleElementalData
+    CutOffSelectionRuleNodalData
     CylindricalSelectionRuleElementalData
     CylindricalSelectionRuleNodalData
     ElementSetElementalData
     ElementSetNodalData
     GeometricalSelectionRuleElementalData
     GeometricalSelectionRuleNodalData
+    ImportedSolidModelElementalData
+    ImportedSolidModelNodalData
     MeshData
     ModelElementalData
     ModelingPlyElementalData
@@ -30,6 +32,10 @@ Mesh data objects
     ProductionPlyElementalData
     ProductionPlyNodalData
     ScalarData
+    SolidElementSetElementalData
+    SolidElementSetNodalData
+    SolidModelElementalData
+    SolidModelNodalData
     SphericalSelectionRuleElementalData
     SphericalSelectionRuleNodalData
     TriangleMesh

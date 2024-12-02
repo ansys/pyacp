@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "ansys-acp-core"
-version = "0.1b2"
+version = "0.1rc1"
 
 description = "Python library for ACP - Ansys Composite PrepPost"
 readme = "README.rst"
@@ -19,13 +19,13 @@ include = ["src/**/docker-compose.yaml"]
 
 # Less than critical but helpful
 classifiers = [
-    "Development Status :: 4 - Beta",
-    "Programming Language :: Python :: 3.9",
+    "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
 ]
 
 [tool.poetry.urls]
@@ -33,23 +33,24 @@ Issues = "https://github.com/ansys/pyacp/issues"
 Releases = "https://github.com/ansys/pyacp/releases"
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.13"
+python = ">=3.10,<3.13"
 numpy = ">=1.22"
 grpcio-health-checking = ">=1.43"
 packaging = ">=15.0"
 typing-extensions = ">=4.5.0"
-ansys-api-acp = "^0.1.dev9"
+ansys-api-acp = "==0.2.0"
 ansys-tools-path = ">=0"
 ansys-tools-local-product-launcher = ">=0.1"
 ansys-tools-filetransfer = ">=0.1"
-pyvista = ">=0.42.0"
+networkx = ">=3.0.0"
 
-# Dependencies for the examples. Update also the 'dev' group when
-# these are updated.
+# Optional dependencies which are included in the 'extras' section.
+# Update also the 'dev' group when these are updated.
+pyvista = { version = ">=0.42.0", optional = true, extras = ["jupyter", "trame"] }
 ansys-mapdl-core = { version = ">=0.68.3", optional = true }
-ansys-dpf-composites = { version = ">=0.3", optional = true }
-ansys-dpf-core = { version = ">=0.8", optional = true}
-ansys-mechanical-core = { version = ">=0.10.0", optional = true, python = "<3.12" }
+ansys-dpf-composites = { version = ">=0.6", optional = true }
+ansys-dpf-core = { version = ">=0.13", optional = true}
+ansys-mechanical-core = { version = ">=0.10.0", optional = true }
 matplotlib = { version = ">=3.8.3", optional = true }
 scipy = { version = ">=1.12.0", optional = true }
 
@@ -65,25 +66,14 @@ types-protobuf = ">=4.22.0.2"
 
 Sphinx = ">=7.2.6"
 sphinx-copybutton = ">=0.5.2"
-sphinx-autodoc-typehints = ">=2.0.0"
 numpydoc = ">=1.6.0"
 ansys-sphinx-theme = ">=1.0.0"
 pypandoc = ">=1.13"
 sphinx-gallery = ">=0.15.0"
-sphinx-design = ">=0.5.0"                                          # undeclared indirect dependency via PyVista
+sphinx-design = ">=0.5.0"  # undeclared indirect dependency via PyVista
 sphinx-jinja = ">=2.0.2"
 ipykernel = ">=6.22.0"
-pyvista = { version = ">=0.42.0", extras = ["jupyter", "trame"] }
 
-# Repeat optional dependencies from the main group which are
-# included in the 'examples' extra. This is done s.t. the install
-# flag '--with=dev,test' will install all dependencies.
-ansys-mapdl-core = ">=0.68.3"
-ansys-dpf-composites = { version = ">=0.3"}
-ansys-dpf-core = { version = ">=0.8"}
-ansys-mechanical-core = { version = ">=0.10.0", python = "<3.12" }
-matplotlib = ">=3.8.3"
-scipy = ">=1.12.0"
 
 [tool.poetry.group.test]
 optional = true
@@ -99,9 +89,19 @@ docker = ">=7.0"
 [tool.poetry.extras]
 # For the examples, we keep an extra to simplify installing these dependencies for the
 # end user.
+plotting = ["pyvista"]
 examples = [
     "ansys-mapdl-core",
     "ansys-dpf-composites",
+    "ansys-mechanical-core",
+    "matplotlib",
+    "scipy",
+]
+all = [
+    "pyvista",
+    "ansys-mapdl-core",
+    "ansys-dpf-composites",
+    "ansys-dpf-core",
     "ansys-mechanical-core",
     "matplotlib",
     "scipy",
@@ -119,7 +119,7 @@ priority = "primary"
 
 [tool.black]
 line-length = 100
-target-version = ['py38']
+target-version = ['py310']
 
 [tool.isort]
 profile = "black"
@@ -139,7 +139,7 @@ ignore-words-list = 'ans,uptodate,notuptodate,eyt'
 quiet-level = 3
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.10"
 mypy_path = "$MYPY_CONFIG_FILE_DIR/src:$MYPY_CONFIG_FILE_DIR/tests"
 disable_error_code = "type-abstract"
 show_error_context = true
@@ -148,11 +148,14 @@ pretty = true
 [[tool.mypy.overrides]]
 module = [
     "docker.*",
-    "grpc.*",
     "grpc_health.*",
+    "grpc.*",
+    "networkx",
     "scipy.optimize",
     "ansys.mapdl",
     "ansys.mapdl.core",
+    "ansys.mechanical",
+    "ansys.mechanical.*",
     "ansys.dpf.core",
     "ansys.dpf.core.core",
     "ansys.dpf.core.*",
@@ -165,6 +168,7 @@ ignore_missing_imports = true
 # This section is required even if empty, so that pytest recognizes this
 # file as a pytest configuration file, and sets the containing directory
 # as its 'rootdir'.
+markers = "plotting"
 
 [tool.coverage.run]
 branch = true

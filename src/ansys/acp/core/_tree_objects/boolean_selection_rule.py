@@ -28,19 +28,20 @@ import dataclasses
 from ansys.api.acp.v0 import boolean_selection_rule_pb2, boolean_selection_rule_pb2_grpc
 
 from .._utils.property_protocols import ReadWriteProperty
-from ._grpc_helpers.edge_property_list import define_add_method, define_edge_property_list
-from ._grpc_helpers.property_helper import (
-    grpc_data_property,
-    grpc_data_property_read_only,
-    mark_grpc_properties,
-)
-from ._mesh_data import (
+from ._elemental_or_nodal_data import (
     ElementalData,
     NodalData,
     VectorData,
     elemental_data_property,
     nodal_data_property,
 )
+from ._grpc_helpers.edge_property_list import define_add_method, define_edge_property_list
+from ._grpc_helpers.property_helper import (
+    grpc_data_property,
+    grpc_data_property_read_only,
+    mark_grpc_properties,
+)
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .linked_selection_rule import LinkedSelectionRule
@@ -49,7 +50,7 @@ from .object_registry import register
 # Workaround: these imports are needed to make sphinx_autodoc_typehints understand
 # the inherited members of the Elemental- and NodalData classes.
 import numpy as np  # noqa: F401 isort:skip
-from ._mesh_data import ScalarData  # noqa: F401 isort:skip
+from ._elemental_or_nodal_data import ScalarData  # noqa: F401 isort:skip
 
 __all__ = [
     "BooleanSelectionRule",
@@ -81,7 +82,7 @@ class BooleanSelectionRule(CreatableTreeObject, IdTreeObject):
         Name of the Boolean Selection Rule.
     selection_rules :
 
-    include_rule_type :
+    include_rule :
         Include or exclude area in rule. Setting this to ``False``
         inverts the selection.
     """
@@ -91,17 +92,18 @@ class BooleanSelectionRule(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "boolean_selection_rules"
     _OBJECT_INFO_TYPE = boolean_selection_rule_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = boolean_selection_rule_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
         *,
         name: str = "BooleanSelectionrule",
         selection_rules: Iterable[LinkedSelectionRule] = (),
-        include_rule_type: bool = True,
+        include_rule: bool = True,
     ):
         super().__init__(name=name)
         self.selection_rules = selection_rules
-        self.include_rule_type = include_rule_type
+        self.include_rule = include_rule
 
     def _create_stub(self) -> boolean_selection_rule_pb2_grpc.ObjectServiceStub:
         return boolean_selection_rule_pb2_grpc.ObjectServiceStub(self._channel)
@@ -117,9 +119,11 @@ class BooleanSelectionRule(CreatableTreeObject, IdTreeObject):
         module_name=__module__,
     )
 
-    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.include_rule_type"
-    )
+    include_rule: ReadWriteProperty[bool, bool] = grpc_data_property("properties.include_rule_type")
+
+    mesh = full_mesh_property
+    shell_mesh = shell_mesh_property
+    # selection rules don't have solid mesh data
 
     elemental_data = elemental_data_property(BooleanSelectionRuleElementalData)
     nodal_data = nodal_data_property(BooleanSelectionRuleNodalData)

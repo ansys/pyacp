@@ -22,8 +22,9 @@
 
 import dataclasses
 import os
-import subprocess
-from typing import Optional, TextIO, Union
+import pathlib
+import subprocess  # nosec B404
+from typing import TextIO
 
 import grpc
 
@@ -34,33 +35,16 @@ from ansys.tools.local_product_launcher.interface import (
     LauncherProtocol,
     ServerType,
 )
-from ansys.tools.path import get_available_ansys_installations
+from ansys.tools.path import get_latest_ansys_installation
 
 from .common import ServerKey
 
 __all__ = ["DirectLaunchConfig"]
 
 
-def _get_latest_ansys_installation() -> str:
-    """Get the latest installed Ansys installation."""
-
-    installations = get_available_ansys_installations()
-    if not installations:
-        raise ValueError("No Ansys installation found.")
-
-    def sort_key(version_nr: int) -> Union[int, float]:
-        # prefer regular over student installs
-        if version_nr < 0:
-            return abs(version_nr) - 0.5
-        return version_nr
-
-    latest_key = max(installations, key=sort_key)
-    return installations[latest_key]
-
-
 def _get_default_binary_path() -> str:
     try:
-        ans_root = _get_latest_ansys_installation()
+        _, ans_root = get_latest_ansys_installation()
         binary_path = os.path.join(ans_root, "ACP", "acp_grpcserver")
         if os.name == "nt":
             binary_path += ".exe"
@@ -94,7 +78,7 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
     def __init__(self, *, config: DirectLaunchConfig):
         self._config = config
         self._url: str
-        self._process: subprocess.Popen[str]
+        self._process: subprocess.Popen[str] | None = None
         self._stdout: TextIO
         self._stderr: TextIO
 
@@ -103,11 +87,15 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         stdout_file = self._config.stdout_file
         stderr_file = self._config.stderr_file
 
+        binary = pathlib.Path(self._config.binary_path)
+        if not binary.exists():
+            raise FileNotFoundError(f"Binary not found: '{binary}'")
+
         port = find_free_ports()[0]
         self._url = f"localhost:{port}"
         self._stdout = open(stdout_file, mode="w", encoding="utf-8")
         self._stderr = open(stderr_file, mode="w", encoding="utf-8")
-        self._process = subprocess.Popen(
+        self._process = subprocess.Popen(  # nosec B603: documented in 'security_considerations.rst'
             [
                 self._config.binary_path,
                 f"--server-address=0.0.0.0:{port}",
@@ -117,7 +105,10 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
             text=True,
         )
 
-    def stop(self, *, timeout: Optional[float] = None) -> None:
+    def stop(self, *, timeout: float | None = None) -> None:
+        if self._process is None:
+            # The process has not been started, and therefore doesn't need to be stopped
+            return
         self._process.terminate()
         try:
             self._process.wait(timeout=timeout)
@@ -127,7 +118,7 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         self._stdout.close()
         self._stderr.close()
 
-    def check(self, timeout: Optional[float] = None) -> bool:
+    def check(self, timeout: float | None = None) -> bool:
         channel = grpc.insecure_channel(self.urls[ServerKey.MAIN])
         return check_grpc_health(channel=channel, timeout=timeout)
 

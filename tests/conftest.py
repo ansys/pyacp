@@ -31,10 +31,11 @@ import tempfile
 
 import docker
 from hypothesis import settings
+from packaging.version import parse as parse_version
 import pytest
 
 from ansys.acp.core import (
-    ACP,
+    ACPInstance,
     ConnectLaunchConfig,
     DirectLaunchConfig,
     DockerComposeLaunchConfig,
@@ -42,7 +43,7 @@ from ansys.acp.core import (
     launch_acp,
 )
 from ansys.acp.core._server.common import ServerProtocol
-from ansys.acp.core._typing_helper import PATH
+from ansys.acp.core._utils.typing_helper import PATH
 from ansys.tools.local_product_launcher.config import set_config_for
 
 __all__ = [
@@ -81,7 +82,8 @@ NO_SERVER_LOGS_OPTION_KEY = "--no-server-log-files"
 BUILD_BENCHMARK_IMAGE_OPTION_KEY = "--build-benchmark-image"
 VALIDATE_BENCHMARKS_ONLY_OPTION_KEY = "--validate-benchmarks-only"
 SERVER_STARTUP_TIMEOUT = 30.0
-SERVER_STOP_TIMEOUT = 1.0
+SERVER_STOP_TIMEOUT = 2.0
+SERVER_CHECK_TIMEOUT = 2.0
 
 pytest.register_assert_rewrite("common")
 
@@ -189,7 +191,7 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
             product_name="ACP",
             launch_mode=LaunchMode.DOCKER_COMPOSE,
             config=DockerComposeLaunchConfig(
-                image_name_pyacp=image_name,
+                image_name_acp=image_name,
                 image_name_filetransfer=image_name_filetransfer,
                 license_server=license_server,
                 keep_volume=False,
@@ -207,18 +209,18 @@ def model_data_dir() -> pathlib.Path:
 
 
 @pytest.fixture(scope="session")
-def acp_instance(_configure_launcher) -> Generator[ACP[ServerProtocol], None, None]:
+def acp_instance(_configure_launcher) -> Generator[ACPInstance[ServerProtocol], None, None]:
     """Provide the currently active gRPC server."""
     yield launch_acp(timeout=SERVER_STARTUP_TIMEOUT)
 
 
 @pytest.fixture(autouse=True)
 def check_grpc_server_before_run(
-    acp_instance: ACP[ServerProtocol],
+    acp_instance: ACPInstance[ServerProtocol],
 ) -> Generator[None, None, None]:
     """Check if the server still responds before running each test, otherwise restart it."""
     try:
-        acp_instance.wait(timeout=1.0)
+        acp_instance.wait(timeout=SERVER_CHECK_TIMEOUT)
     except RuntimeError:
         acp_instance.restart(stop_timeout=SERVER_STOP_TIMEOUT)
         acp_instance.wait(timeout=SERVER_STARTUP_TIMEOUT)
@@ -237,13 +239,25 @@ def load_model_from_tempfile(model_data_dir, acp_instance):
     def inner(relative_file_path="minimal_complete_model_no_matml_link.acph5", format="acp:h5"):
         with tempfile.TemporaryDirectory() as tmp_dir:
             source_path = model_data_dir / relative_file_path
+            # Copy the file to a temporary directory, so the original file is never
+            # modified. This can happen for example when a geometry reload happens.
+            file_path = shutil.copy(source_path, tmp_dir)
 
-            if acp_instance.is_remote:
-                file_path = acp_instance.upload_file(source_path)
-            else:
-                # Copy the file to a temporary directory, so the original file is never
-                # modified. This can happen for example when a geometry reload happens.
-                file_path = shutil.copy(source_path, tmp_dir)
+            yield acp_instance.import_model(path=file_path, format=format)
+
+    return inner
+
+
+@pytest.fixture
+def load_model_imported_plies_from_tempfile(model_data_dir, acp_instance):
+    @contextmanager
+    def inner(relative_file_path="minimal_model_imported_plies.acph5", format="acp:h5"):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            source_path = model_data_dir / relative_file_path
+
+            # Copy the file to a temporary directory, so the original file is never
+            # modified. This can happen for example when a geometry reload happens.
+            file_path = shutil.copy(source_path, tmp_dir)
 
             yield acp_instance.import_model(path=file_path, format=format)
 
@@ -254,9 +268,36 @@ def load_model_from_tempfile(model_data_dir, acp_instance):
 def load_cad_geometry(model_data_dir, acp_instance):
     @contextmanager
     def inner(model, relative_file_path="square_and_solid.stp"):
-        cad_file_path = acp_instance.upload_file(model_data_dir / relative_file_path)
+        cad_file_path_local = model_data_dir / relative_file_path
+        cad_file_path_remote = acp_instance.upload_file(cad_file_path_local)
         yield model.create_cad_geometry(
-            external_path=cad_file_path,
+            external_path=cad_file_path_remote,
         )
+
+    return inner
+
+
+@pytest.fixture
+def raises_before_version(acp_instance):
+    """Mark a test as expected to fail before a certain server version."""
+
+    @contextmanager
+    def inner(version: str):
+        if parse_version(acp_instance.server_version) < parse_version(version):
+            with pytest.raises(RuntimeError):
+                yield
+        else:
+            yield
+
+    return inner
+
+
+@pytest.fixture
+def skip_before_version(acp_instance):
+    """Skip a test before a certain server version."""
+
+    def inner(version: str):
+        if parse_version(acp_instance.server_version) < parse_version(version):
+            pytest.skip(f"Test is not supported before version {version}")
 
     return inner

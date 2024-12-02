@@ -1,0 +1,8 @@
+# TODO: move this configuration into the main 'pyproject.toml' file
+# once this is supported by the check-vulnerabilities action.
+
+# Skipping B101:assert_used. Assert statements should not be used to
+# check for 'regular' error conditions, but rather for detecting internal
+# errors that should never occur.
+[bandit]
+skips = B101

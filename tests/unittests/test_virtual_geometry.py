@@ -100,3 +100,13 @@ def test_virtual_geometry_no_or_invalid_links(parent_object, load_cad_geometry):
                 cad_components=cad_geometry.root_shapes.values(),
                 sub_shapes=[SubShape(cad_geometry=cad_geometry, path="some/path/to/shape")],
             )
+
+
+def test_sub_shape(parent_object, load_cad_geometry):
+    model = parent_object
+    with load_cad_geometry(model) as cad_geometry:
+        sub_shape = SubShape(cad_geometry=cad_geometry, path="some/path/to/shape")
+        with load_cad_geometry(model) as other_cad_geometry:
+            assert sub_shape != SubShape(cad_geometry=other_cad_geometry, path="some/path/to/shape")
+        assert sub_shape != SubShape(cad_geometry=cad_geometry, path="some/other/path/to/shape")
+        assert sub_shape == SubShape(cad_geometry=cad_geometry, path="some/path/to/shape")

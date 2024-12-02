@@ -30,12 +30,7 @@ import numpy as np
 from ansys.api.acp.v0 import analysis_ply_pb2, analysis_ply_pb2_grpc
 
 from .._utils.property_protocols import ReadOnlyProperty
-from ._grpc_helpers.property_helper import (
-    grpc_data_property_read_only,
-    grpc_link_property_read_only,
-    mark_grpc_properties,
-)
-from ._mesh_data import (
+from ._elemental_or_nodal_data import (
     ElementalData,
     NodalData,
     ScalarData,
@@ -43,6 +38,12 @@ from ._mesh_data import (
     elemental_data_property,
     nodal_data_property,
 )
+from ._grpc_helpers.property_helper import (
+    grpc_data_property_read_only,
+    grpc_link_property_read_only,
+    mark_grpc_properties,
+)
+from ._mesh_data import full_mesh_property, shell_mesh_property, solid_mesh_property
 from .base import IdTreeObject, ReadOnlyTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
@@ -96,6 +97,8 @@ class AnalysisPly(ReadOnlyTreeObject, IdTreeObject):
         Material of the Analysis ply.
     angle: float
         Angle of the Analysis ply in degrees.
+    thickness: float
+        Thickness of the Analysis ply
     active_in_post_mode: bool
         If False, deactivates the failure analysis for this ply during post-processing.
 
@@ -105,6 +108,7 @@ class AnalysisPly(ReadOnlyTreeObject, IdTreeObject):
 
     _COLLECTION_LABEL = "analysis_plies"
     _OBJECT_INFO_TYPE = analysis_ply_pb2.ObjectInfo
+    _SUPPORTED_SINCE = "24.2"
 
     def _create_stub(self) -> analysis_ply_pb2_grpc.ObjectServiceStub:
         return analysis_ply_pb2_grpc.ObjectServiceStub(self._channel)
@@ -112,8 +116,13 @@ class AnalysisPly(ReadOnlyTreeObject, IdTreeObject):
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     material = grpc_link_property_read_only("properties.material")
     angle: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.angle")
+    thickness: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.thickness")
     active_in_post_mode: ReadOnlyProperty[bool] = grpc_data_property_read_only(
         "properties.active_in_post_mode"
     )
+
+    mesh = full_mesh_property
+    shell_mesh = shell_mesh_property
+    solid_mesh = solid_mesh_property
     elemental_data = elemental_data_property(AnalysisPlyElementalData)
     nodal_data = nodal_data_property(AnalysisPlyNodalData)

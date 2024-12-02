@@ -45,7 +45,7 @@ from ..conftest import (
 BENCHMARK_IMAGE_NAME = "pyacp-benchmark-runner"
 
 
-def pytest_ignore_collect(collection_path, path, config):
+def pytest_ignore_collect(collection_path, config):
     # The benchmarks can only be run on Linux, since the 'tc-netem' tool
     # used for manipulating network speeds is not available on Docker for
     # Windows / Mac.
@@ -95,7 +95,7 @@ def launcher_configuration(request):
     license_server = request.config.getoption(LICENSE_SERVER_OPTION_KEY)
 
     return pyacp.DockerComposeLaunchConfig(
-        image_name_pyacp=BENCHMARK_IMAGE_NAME,
+        image_name_acp=BENCHMARK_IMAGE_NAME,
         image_name_filetransfer=image_name_filetransfer,
         compose_file=SOURCE_ROOT_DIR / "docker-compose" / "docker-compose-benchmark.yaml",
         license_server=license_server,
@@ -129,7 +129,7 @@ def _benchmark_servers(launcher_configuration):
             "PYACP_DELAY": f"{network_options.delay_ms}ms",
             "PYACP_RATE": f"{network_options.rate_kbit}kbit",
         }
-        acp = pyacp.launch_acp(config=conf, launch_mode=pyacp.LaunchMode.DOCKER_COMPOSE)  # type: ignore
+        acp = pyacp.launch_acp(config=conf, launch_mode=pyacp.LaunchMode.DOCKER_COMPOSE)
         acp.wait(SERVER_STARTUP_TIMEOUT)
         return acp
 
@@ -159,5 +159,5 @@ def network_options(request):
 
 
 @pytest.fixture
-def grpc_server(_benchmark_servers, network_options):
+def acp_instance(_benchmark_servers, network_options):
     return _benchmark_servers[network_options]

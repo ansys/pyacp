@@ -27,8 +27,10 @@ automatically synchronized with the backend via gRPC.
 """
 from __future__ import annotations
 
+from collections.abc import Callable
 from functools import reduce
-from typing import Any, Callable, TypeVar
+import sys
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from google.protobuf.message import Message
 
@@ -37,6 +39,7 @@ from ansys.api.acp.v0.base_pb2 import ResourcePath
 from ..._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .polymorphic_from_pb import CreatableFromResourcePath, tree_object_from_resource_path
 from .protocols import Editable, GrpcObjectBase, ObjectInfo, Readable
+from .supported_since import supported_since as supported_since_decorator
 
 # Note: The typing of the protobuf objects is fairly loose, maybe it could
 # be improved. The main challenge is that we do not encode the structure of
@@ -50,14 +53,21 @@ _TO_PROTOBUF_T = Callable[[_SET_T], _PROTOBUF_T]
 _FROM_PROTOBUF_T = Callable[[_PROTOBUF_T], _GET_T]
 
 
-class _exposed_grpc_property(property):
-    """Mark a property as exposed via gRPC.
+if TYPE_CHECKING:  # pragma: no cover
+    # This is needed because mypy does not understand custom property
+    # subclasses.
+    # See https://github.com/python/mypy/issues/6158
+    _exposed_grpc_property = property
+else:
 
-    Wrapper around 'property', used to signal that the object should
-    be collected into the '_GRPC_PROPERTIES' class attribute.
-    """
+    class _exposed_grpc_property(property):
+        """Mark a property as exposed via gRPC.
 
-    pass
+        Wrapper around 'property', used to signal that the object should
+        be collected into the '_GRPC_PROPERTIES' class attribute.
+        """
+
+        pass
 
 
 T = TypeVar("T", bound=type[GrpcObjectBase])
@@ -82,17 +92,46 @@ def mark_grpc_properties(cls: T) -> T:
         if name not in props_unique:
             props_unique.append(name)
     cls._GRPC_PROPERTIES = tuple(props_unique)
+
+    # The 'mark_grpc_properties' decorator is also used on intermediate base
+    # classes which do not have the '_SUPPORTED_SINCE' attribute. We only want
+    # to add the version information to the final class.
+    if hasattr(cls, "_SUPPORTED_SINCE"):
+        if isinstance(cls.__doc__, str):
+            # When adding to the docstring, we need to match the existing
+            # indentation of the docstring (except the first line).
+            # See PEP 257 'Handling Docstring Indentation'.
+            # Alternatively, we could strip the common indentation from the
+            # docstring.
+            indent = sys.maxsize
+            for line in cls.__doc__.splitlines()[1:]:
+                stripped = line.lstrip()
+                if stripped:  # ignore empty lines
+                    indent = min(indent, len(line) - len(stripped))
+            if indent == sys.maxsize:
+                indent = 0
+            cls.__doc__ += (
+                f"\n\n{indent * ' '}*Added in ACP server version {cls._SUPPORTED_SINCE}.*\n"
+            )
     return cls
 
 
-def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
+def grpc_linked_object_getter(
+    name: str, readable_since: str | None = None
+) -> Callable[[Readable], Any]:
     """Create a getter method which obtains the linked server object."""
 
+    @supported_since_decorator(
+        readable_since,
+        # The default error message uses 'inner' as the method name, which is confusing
+        err_msg_tpl=(
+            f"The property '{name.split('.')[-1]}' is only readable since version {{required_version}} "
+            f"of the ACP gRPC server. The current server version is {{server_version}}."
+        ),
+    )
     def inner(self: Readable) -> CreatableFromResourcePath | None:
-        #  Import here to avoid circular references. Cannot use the registry before
-        #  all the object have been imported.
         if not self._is_stored:
-            raise Exception("Cannot get linked object from unstored object")
+            raise RuntimeError(f"Cannot get linked object '{name}' from unstored object")
         self._get()
         object_resource_path = _get_data_attribute(self._pb_object, name)
 
@@ -103,8 +142,21 @@ def grpc_linked_object_getter(name: str) -> Callable[[Readable], Any]:
     return inner
 
 
+def _get_data_attribute(pb_obj: Message, name: str, check_optional: bool = False) -> _PROTOBUF_T:
+    name_parts = name.split(".")
+    if check_optional:
+        parent_obj = reduce(getattr, name_parts[:-1], pb_obj)
+        if hasattr(parent_obj, "HasField") and not parent_obj.HasField(name_parts[-1]):
+            return None
+    return reduce(getattr, name_parts, pb_obj)
+
+
 def grpc_data_getter(
-    name: str, from_protobuf: _FROM_PROTOBUF_T[_GET_T], check_optional: bool = False
+    name: str,
+    from_protobuf: _FROM_PROTOBUF_T[_GET_T],
+    check_optional: bool = False,
+    getter_func: Callable[[Message, str, bool], _PROTOBUF_T] = _get_data_attribute,
+    supported_since: str | None = None,
 ) -> Callable[[Readable], _GET_T]:
     """Create a getter method which obtains the server object via the gRPC Get endpoint.
 
@@ -119,9 +171,17 @@ def grpc_data_getter(
         will be used.
     """
 
+    @supported_since_decorator(
+        supported_since,
+        # The default error message uses 'inner' as the method name, which is confusing
+        err_msg_tpl=(
+            f"The property '{name.split('.')[-1]}' is only readable since version {{required_version}} "
+            f"of the ACP gRPC server. The current server version is {{server_version}}."
+        ),
+    )
     def inner(self: Readable) -> Any:
         self._get_if_stored()
-        pb_attribute = _get_data_attribute(self._pb_object, name, check_optional=check_optional)
+        pb_attribute = getter_func(self._pb_object, name, check_optional)
         if check_optional and pb_attribute is None:
             return None
         return from_protobuf(pb_attribute)
@@ -130,10 +190,10 @@ def grpc_data_getter(
 
 
 def grpc_linked_object_setter(
-    name: str, to_protobuf: _TO_PROTOBUF_T[Readable | None]
+    name: str, to_protobuf: _TO_PROTOBUF_T[Readable | None], writable_since: str | None = None
 ) -> Callable[[Editable, Readable | None], None]:
     """Create a setter method which updates the linked object via the gRPC Put endpoint."""
-    func = grpc_data_setter(name, to_protobuf)
+    func = grpc_data_setter(name=name, to_protobuf=to_protobuf, supported_since=writable_since)
 
     def inner(self: Editable, value: Readable | None) -> None:
         if value is not None and not value._is_stored:
@@ -141,35 +201,6 @@ def grpc_linked_object_setter(
         func(self, value)
 
     return inner
-
-
-def grpc_data_setter(
-    name: str, to_protobuf: _TO_PROTOBUF_T[_SET_T]
-) -> Callable[[Editable, _SET_T], None]:
-    """Create a setter method which updates the server object via the gRPC Put endpoint."""
-
-    def inner(self: Editable, value: _SET_T) -> None:
-        self._get_if_stored()
-        current_value = _get_data_attribute(self._pb_object, name)
-        value_pb = to_protobuf(value)
-        try:
-            needs_updating = current_value != value_pb
-        except TypeError:
-            needs_updating = True
-        if needs_updating:
-            _set_data_attribute(self._pb_object, name, value_pb)
-            self._put_if_stored()
-
-    return inner
-
-
-def _get_data_attribute(pb_obj: Message, name: str, check_optional: bool = False) -> _PROTOBUF_T:
-    name_parts = name.split(".")
-    if check_optional:
-        parent_obj = reduce(getattr, name_parts[:-1], pb_obj)
-        if hasattr(parent_obj, "HasField") and not parent_obj.HasField(name_parts[-1]):
-            return None
-    return reduce(getattr, name_parts, pb_obj)
 
 
 def _set_data_attribute(pb_obj: ObjectInfo, name: str, value: _PROTOBUF_T) -> None:
@@ -191,6 +222,37 @@ def _set_data_attribute(pb_obj: ObjectInfo, name: str, value: _PROTOBUF_T) -> No
                     target_object.add().CopyFrom(item)
 
 
+def grpc_data_setter(
+    name: str,
+    to_protobuf: _TO_PROTOBUF_T[_SET_T],
+    setter_func: Callable[[ObjectInfo, str, _PROTOBUF_T], None] = _set_data_attribute,
+    supported_since: str | None = None,
+) -> Callable[[Editable, _SET_T], None]:
+    """Create a setter method which updates the server object via the gRPC Put endpoint."""
+
+    @supported_since_decorator(
+        supported_since,
+        # The default error message uses 'inner' as the method name, which is confusing
+        err_msg_tpl=(
+            f"The property '{name.split('.')[-1]}' is only editable since version {{required_version}} "
+            f"of the ACP gRPC server. The current server version is {{server_version}}."
+        ),
+    )
+    def inner(self: Editable, value: _SET_T) -> None:
+        self._get_if_stored()
+        current_value = _get_data_attribute(self._pb_object, name)
+        value_pb = to_protobuf(value)
+        try:
+            needs_updating = current_value != value_pb
+        except TypeError:
+            needs_updating = True
+        if needs_updating:
+            setter_func(self._pb_object, name, value_pb)
+            self._put_if_stored()
+
+    return inner
+
+
 AnyT = TypeVar("AnyT")
 
 
@@ -206,6 +268,10 @@ def grpc_data_property(
     from_protobuf: _FROM_PROTOBUF_T[_GET_T] = lambda x: x,
     check_optional: bool = False,
     doc: str | None = None,
+    setter_func: Callable[[ObjectInfo, str, _PROTOBUF_T], None] = _set_data_attribute,
+    getter_func: Callable[[Message, str, bool], _PROTOBUF_T] = _get_data_attribute,
+    readable_since: str | None = None,
+    writable_since: str | None = None,
 ) -> ReadWriteProperty[_GET_T, _SET_T]:
     """Define a property which is synchronized with the backend via gRPC.
 
@@ -228,6 +294,18 @@ def grpc_data_property(
         will be used.
     doc :
         Docstring for the property.
+    setter_func :
+        Function to set the property value. Can be customized to
+        implement additional checks or in case properties depend
+        on each other.
+    getter_func :
+        Function to get the property value. Can be customized to
+        implement additional checks or in case properties depend
+        on each other
+    readable_since :
+        Version since which the property is supported for reading.
+    writable_since :
+        Version since which the property is supported for setting.
     """
     # Note jvonrick August 2023: We don't ensure with typechecks that the property returned here is
     # compatible with the class on which this property is created. For example:
@@ -238,8 +316,21 @@ def grpc_data_property(
     # https://github.com/python/typing/issues/985
     return _wrap_doc(
         _exposed_grpc_property(
-            grpc_data_getter(name, from_protobuf=from_protobuf, check_optional=check_optional)
-        ).setter(grpc_data_setter(name, to_protobuf=to_protobuf)),
+            grpc_data_getter(
+                name,
+                from_protobuf=from_protobuf,
+                check_optional=check_optional,
+                getter_func=getter_func,
+                supported_since=readable_since,
+            )
+        ).setter(
+            grpc_data_setter(
+                name,
+                to_protobuf=to_protobuf,
+                setter_func=setter_func,
+                supported_since=writable_since,
+            )
+        ),
         doc=doc,
     )
 
@@ -249,6 +340,7 @@ def grpc_data_property_read_only(
     from_protobuf: _FROM_PROTOBUF_T[_GET_T] = lambda x: x,
     check_optional: bool = False,
     doc: str | None = None,
+    supported_since: str | None = None,
 ) -> ReadOnlyProperty[_GET_T]:
     """Define a read-only property which is synchronized with the backend via gRPC.
 
@@ -269,10 +361,17 @@ def grpc_data_property_read_only(
         will be used.
     doc :
         Docstring for the property.
+    supported_since :
+        Version since which the property is supported.
     """
     return _wrap_doc(
         _exposed_grpc_property(
-            grpc_data_getter(name, from_protobuf=from_protobuf, check_optional=check_optional)
+            grpc_data_getter(
+                name,
+                from_protobuf=from_protobuf,
+                check_optional=check_optional,
+                supported_since=supported_since,
+            )
         ),
         doc=doc,
     )
@@ -283,6 +382,8 @@ def grpc_link_property(
     *,
     doc: str | None = None,
     allowed_types: type[GrpcObjectBase] | tuple[type[GrpcObjectBase], ...],
+    readable_since: str | None = None,
+    writable_since: str | None = None,
 ) -> Any:
     """Define a gRPC-backed property linking to another object.
 
@@ -298,6 +399,10 @@ def grpc_link_property(
     allowed_types :
         Types which are allowed to be set on the property. An
         error will be raised if an object of a different type is set.
+    readable_since :
+        Version since which the property is supported for reading.
+    writable_since :
+        Version since which the property is supported for setting.
     """
 
     def to_protobuf(obj: Readable | None) -> ResourcePath:
@@ -312,9 +417,13 @@ def grpc_link_property(
         return obj._resource_path
 
     return _wrap_doc(
-        _exposed_grpc_property(grpc_linked_object_getter(name)).setter(
+        _exposed_grpc_property(
+            grpc_linked_object_getter(name=name, readable_since=readable_since)
+        ).setter(
             # Resource path represents an object that is not set as an empty string
-            grpc_linked_object_setter(name=name, to_protobuf=to_protobuf)
+            grpc_linked_object_setter(
+                name=name, to_protobuf=to_protobuf, writable_since=writable_since
+            )
         ),
         doc=doc,
     )

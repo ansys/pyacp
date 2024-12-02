@@ -1,4 +1,3 @@
-# check spelling, codestyle
 name: GitHub CI
 
 # run only on main branch.  This avoids duplicated actions on PRs
@@ -56,7 +55,7 @@ jobs:
         run: |
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry install --with dev,test
+          poetry install --with dev,test --all-extras
 
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
@@ -83,7 +82,7 @@ jobs:
     name: "Documentation style"
     runs-on: ubuntu-latest
     steps:
-      - uses: ansys/actions/doc-style@v7
+      - uses: ansys/actions/doc-style@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -93,7 +92,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ['3.9', '3.10', '3.11', '3.12']
+        python-version: ['3.10', '3.11', '3.12']
         should-release:
           - ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags') }}
         exclude:
@@ -101,11 +100,137 @@ jobs:
             os: macos-latest
     steps:
       - name: "Build wheelhouse and perform smoke test"
-        uses: ansys/actions/build-wheelhouse@v7
+        uses: ansys/actions/build-wheelhouse@v8
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           operating-system: ${{ matrix.os }}
           python-version: ${{ matrix.python-version }}
+
+  check-vulnerabilities:
+    name: "Check library vulnerabilities"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ansys/actions/check-vulnerabilities@v8.1
+        with:
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
+          python-package-name: 'ansys-acp-core'
+          dev-mode: ${{ github.ref != 'refs/heads/main' }}
+          extra-targets: "plotting"
+
+  testing-direct-launch:
+    name: Testing with direct launch mode
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login in Github Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      # Python version is determined by the base image
+      - name: Build docker image
+        run: docker build -t test_runner -f dockerfiles/DirectLaunchTest.Dockerfile .
+      - name: Run tests
+        run: |
+          docker run \
+          --mount type=bind,source="$(pwd)",target=/home/container/pyacp \
+          -u $(id -u):$(id -g) \
+          -e ANSYSLMD_LICENSE_FILE=$ANSYSLMD_LICENSE_FILE \
+          test_runner
+        env:
+          ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
+      - name: "Upload coverage to Codecov"
+        uses: codecov/codecov-action@v5
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          files: coverage.xml
+          flags: 'direct-launch,server-latest'
+
+  testing-minimum-deps:
+    name: Testing with minimum dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+        server-version: ["latest"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pip cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}-testing-minimum-deps
+          restore-keys: |
+            pip-${{ runner.os }}-${{ matrix.python-version }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: |
+            3.10
+            ${{ matrix.python-version }}
+
+      - name: Install library, with only the 'main' group
+        run: |
+          pip install -U pip
+          pip install 'poetry!=1.7.0'
+          poetry install --only main
+
+      - name: Check that PyACP can be imported
+        run: |
+          poetry run python -c "import ansys.acp.core"
+
+      - name: Install the 'test' group
+        run: |
+          poetry install --with test
+
+      - name: Build API package from custom branch
+        if: "${{ env.API_BRANCH != '' }}"
+        run: |
+          python3.10 -m venv .api_builder_venv
+          . .api_builder_venv/bin/activate
+          python -m pip install --upgrade pip wheel
+          mkdir .api_package
+          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ env.API_BRANCH }}
+
+      - name: Install custom API branch package
+        if: "${{ env.API_BRANCH != '' }}"
+        # The --no-deps flag is added since this may cause dependency conflicts with
+        # other transitive dependencies. For example, when a newer version of protobuf
+        # is installed.
+        run: |
+          poetry run pip install --no-deps --force-reinstall .api_package/*.whl
+
+      - name: Login in Github Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Unit testing
+        working-directory: tests/unittests
+        run: |
+          docker pull $IMAGE_NAME
+          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html -m "not plotting"
+        env:
+          LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
+          IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
+
+      - name: "Upload coverage to Codecov"
+        uses: codecov/codecov-action@v5
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          files: coverage.xml
+          flags: 'server-${{ matrix.server-version }},python-${{ matrix.python-version }},minimum-deps'
 
   testing:
     name: Testing
@@ -113,7 +238,15 @@ jobs:
     timeout-minutes: 30
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12"]
+        server-version: ["latest"]
+        include:
+          - python-version: "3.12"
+            server-version: "2024R2"
+          - python-version: "3.12"
+            server-version: "2025R1"
+          - python-version: "3.12"
+            server-version: "2025R2"
 
     steps:
       - uses: actions/checkout@v4
@@ -137,7 +270,7 @@ jobs:
         run: |
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry install --with test
+          poetry install --with test --extras plotting
 
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
@@ -170,31 +303,23 @@ jobs:
           poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
-
-      - name: "Upload coverage report (HTML)"
-        uses: actions/upload-artifact@v4
-        if: matrix.python-version == env.MAIN_PYTHON_VERSION
-        with:
-          name: coverage-report-html
-          path: htmlcov
-          retention-days: 7
+          IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
 
       - name: "Upload coverage to Codecov"
-        uses: codecov/codecov-action@v4
-        if: matrix.python-version == env.MAIN_PYTHON_VERSION
+        uses: codecov/codecov-action@v5
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
           files: coverage.xml
+          flags: 'server-${{ matrix.server-version }},python-${{ matrix.python-version }}'
 
       - name: Benchmarks
         working-directory: tests/benchmarks
         run: |
-          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == '3.9' && github.ref == 'refs/heads/main') && ' ' || '--validate-benchmarks-only' }}
+          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == env.MAIN_PYTHON_VERSION && matrix.server-version == 'latest') && ' ' || '--validate-benchmarks-only' }}
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
+          IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
 
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
@@ -205,7 +330,7 @@ jobs:
           benchmark-data-dir-path: benchmarks
           auto-push: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-        if: matrix.python-version == env.MAIN_PYTHON_VERSION && github.ref == 'refs/heads/main'
+        if: matrix.python-version == env.MAIN_PYTHON_VERSION && matrix.server-version == 'latest' && github.ref == 'refs/heads/main'
 
   doctest:
     name: Test documentation snippets
@@ -232,7 +357,7 @@ jobs:
         run: |
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry install --with test,dev
+          poetry install --with test,dev --all-extras
 
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
@@ -268,7 +393,7 @@ jobs:
         run: >
           poetry run
           ansys-launcher configure ACP docker_compose
-          --image_name_pyacp=ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}
+          --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False
@@ -328,7 +453,7 @@ jobs:
         run: |
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry install --with dev
+          poetry install --with dev --all-extras
 
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
@@ -351,7 +476,7 @@ jobs:
         run: >
           poetry run
           ansys-launcher configure ACP docker_compose
-          --image_name_pyacp=${{ env.DOCKER_IMAGE_NAME }}
+          --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --keep_volume=False
@@ -421,11 +546,11 @@ jobs:
   build:
     name: Build library
     runs-on: ubuntu-latest
-    needs: [code-style, testing, doc-style, docs, build-wheelhouse, doctest]
+    needs: [code-style, testing, testing-minimum-deps, testing-direct-launch, doc-style, docs, build-wheelhouse, doctest] # TODO: add check-vulnerabilities once we know it works on main
     timeout-minutes: 30
     steps:
       - name: Build library source and wheel artifacts
-        uses: ansys/actions/build-library@v7
+        uses: ansys/actions/build-library@v8
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
@@ -437,14 +562,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Release to the public PyPI repository
-        uses: ansys/actions/release-pypi-public@v7
+        uses: ansys/actions/release-pypi-public@v8
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           twine-username: "__token__"
           twine-token: ${{ secrets.PYPI_TOKEN }}
 
       - name: Release to GitHub
-        uses: ansys/actions/release-github@v7
+        uses: ansys/actions/release-github@v8
         with:
           library-name: ${{ env.PACKAGE_NAME }}
 
@@ -455,11 +580,13 @@ jobs:
     needs: [build]
     steps:
       - name: Deploy the latest documentation
-        uses: ansys/actions/doc-deploy-dev@v7
+        uses: ansys/actions/doc-deploy-dev@v8
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
           force-orphan: false
+          bot-user: ${{ secrets.PYANSYS_CI_BOT_USERNAME }}
+          bot-email: ${{ secrets.PYANSYS_CI_BOT_EMAIL }}
 
   upload_docs_release:
     name: Upload release documentation
@@ -468,7 +595,9 @@ jobs:
     needs: [release]
     steps:
       - name: Deploy the stable documentation
-        uses: ansys/actions/doc-deploy-stable@v7
+        uses: ansys/actions/doc-deploy-stable@v8
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
+          bot-user: ${{ secrets.PYANSYS_CI_BOT_USERNAME }}
+          bot-email: ${{ secrets.PYANSYS_CI_BOT_EMAIL }}

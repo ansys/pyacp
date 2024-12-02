@@ -22,11 +22,13 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterator
-from typing import Any, Callable, Generic, TypeVar
+from collections.abc import Callable, Iterator
+import inspect
+from typing import Any, Concatenate, Generic, TypeVar
 
 from grpc import Channel
-from typing_extensions import Concatenate, ParamSpec, Self
+from packaging.version import parse as parse_version
+from typing_extensions import ParamSpec, Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 
@@ -34,7 +36,7 @@ from ..._utils.property_protocols import ReadOnlyProperty
 from ..._utils.resource_paths import join as _rp_join
 from .._object_cache import ObjectCacheMixin, constructor_with_cache
 from ..base import CreatableTreeObject, ServerWrapper, TreeObject, TreeObjectBase
-from ..enums import StatusType
+from ..enums import Status
 from .exceptions import wrap_grpc_errors
 from .property_helper import _exposed_grpc_property, _wrap_doc
 from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableResourceStub
@@ -42,7 +44,13 @@ from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableReso
 ValueT = TypeVar("ValueT", bound=TreeObjectBase)
 CreatableValueT = TypeVar("CreatableValueT", bound=CreatableTreeObject)
 
-__all__ = ["Mapping", "MutableMapping", "define_mutable_mapping", "define_create_method"]
+__all__ = [
+    "Mapping",
+    "MutableMapping",
+    "define_mutable_mapping",
+    "define_create_method",
+    "get_read_only_collection_property",
+]
 
 
 class Mapping(ObjectCacheMixin, Generic[ValueT]):
@@ -252,7 +260,7 @@ def get_read_only_collection_property(
     """Define a read-only mapping of child tree objects."""
 
     def collection_property(self: ParentT) -> Mapping[ValueT]:
-        if requires_uptodate and hasattr(self, "status") and not self.status == StatusType.UPTODATE:
+        if requires_uptodate and hasattr(self, "status") and not self.status == Status.UPTODATE:
             raise RuntimeError(
                 f"The object {self.name} must be up-to-date to access {object_class.__name__}."
             )
@@ -288,6 +296,10 @@ def define_create_method(
     # on the class itself, instead of the __init__ method.
     inner.__doc__ = object_class.__doc__
 
+    parameters = [inspect.signature(inner).parameters["self"]]
+    parameters.extend(inspect.signature(object_class).parameters.values())
+    inner.__signature__ = inspect.Signature(parameters, return_annotation=object_class)  # type: ignore
+
     inner.__name__ = func_name
     inner.__qualname__ = f"{parent_class_name}.{func_name}"
     inner.__module__ = module_name
@@ -302,6 +314,14 @@ def define_mutable_mapping(
     """Define a mutable mapping of child tree objects."""
 
     def collection_property(self: ParentT) -> MutableMapping[CreatableValueT]:
+        if self._server_version is not None:
+            if self._server_version < parse_version(object_class._SUPPORTED_SINCE):
+                raise RuntimeError(
+                    f"The '{object_class.__name__}' object is only supported since version "
+                    f"{object_class._SUPPORTED_SINCE} of the ACP gRPC server. The current server version is "
+                    f"{self._server_version}."
+                )
+
         return MutableMapping._initialize_with_cache(
             server_wrapper=self._server_wrapper,
             collection_path=CollectionPath(

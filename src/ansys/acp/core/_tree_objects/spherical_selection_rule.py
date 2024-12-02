@@ -29,19 +29,20 @@ from ansys.api.acp.v0 import spherical_selection_rule_pb2, spherical_selection_r
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadWriteProperty
-from ._grpc_helpers.property_helper import (
-    grpc_data_property,
-    grpc_data_property_read_only,
-    grpc_link_property,
-    mark_grpc_properties,
-)
-from ._mesh_data import (
+from ._elemental_or_nodal_data import (
     ElementalData,
     NodalData,
     VectorData,
     elemental_data_property,
     nodal_data_property,
 )
+from ._grpc_helpers.property_helper import (
+    grpc_data_property,
+    grpc_data_property_read_only,
+    grpc_link_property,
+    mark_grpc_properties,
+)
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .object_registry import register
@@ -50,7 +51,7 @@ from .rosette import Rosette
 # Workaround: these imports are needed to make sphinx_autodoc_typehints understand
 # the inherited members of the Elemental- and NodalData classes.
 import numpy as np  # noqa: F401 isort:skip
-from ._mesh_data import ScalarData  # noqa: F401 isort:skip
+from ._elemental_or_nodal_data import ScalarData  # noqa: F401 isort:skip
 
 __all__ = [
     "SphericalSelectionRule",
@@ -89,9 +90,9 @@ class SphericalSelectionRule(CreatableTreeObject, IdTreeObject):
         Origin of the sphere.
     radius :
         Radius of the sphere.
-    relative_rule_type :
+    relative_rule :
         If True, parameters are evaluated relative to size of the object.
-    include_rule_type :
+    include_rule :
         Include or exclude area in rule. Setting this to ``False``
         inverts the selection.
     """
@@ -101,6 +102,7 @@ class SphericalSelectionRule(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "spherical_selection_rules"
     _OBJECT_INFO_TYPE = spherical_selection_rule_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = spherical_selection_rule_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
@@ -110,16 +112,16 @@ class SphericalSelectionRule(CreatableTreeObject, IdTreeObject):
         rosette: Rosette | None = None,
         origin: tuple[float, ...] = (0.0, 0.0, 0.0),
         radius: float = 0.0,
-        relative_rule_type: bool = False,
-        include_rule_type: bool = True,
+        relative_rule: bool = False,
+        include_rule: bool = True,
     ):
         super().__init__(name=name)
         self.use_global_coordinate_system = use_global_coordinate_system
         self.rosette = rosette
         self.origin = origin
         self.radius = radius
-        self.relative_rule_type = relative_rule_type
-        self.include_rule_type = include_rule_type
+        self.relative_rule = relative_rule
+        self.include_rule = include_rule
 
     def _create_stub(self) -> spherical_selection_rule_pb2_grpc.ObjectServiceStub:
         return spherical_selection_rule_pb2_grpc.ObjectServiceStub(self._channel)
@@ -137,12 +139,13 @@ class SphericalSelectionRule(CreatableTreeObject, IdTreeObject):
         "properties.direction", from_protobuf=to_tuple_from_1D_array, to_protobuf=to_1D_double_array
     )
     radius: ReadWriteProperty[float, float] = grpc_data_property("properties.radius")
-    relative_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
+    relative_rule: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.relative_rule_type"
     )
-    include_rule_type: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.include_rule_type"
-    )
+    include_rule: ReadWriteProperty[bool, bool] = grpc_data_property("properties.include_rule_type")
 
+    mesh = full_mesh_property
+    shell_mesh = shell_mesh_property
+    # selection rules don't have solid mesh data
     elemental_data = elemental_data_property(SphericalSelectionRuleElementalData)
     nodal_data = nodal_data_property(SphericalSelectionRuleNodalData)

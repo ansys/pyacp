@@ -43,7 +43,7 @@ Install PyACP with:
 
 .. code-block::
 
-    pip install ansys-acp-core
+    pip install ansys-acp-core[all]
 
 
 For installing PyACP in development mode, see the `Development Setup`_ instructions below.
@@ -78,8 +78,8 @@ Model from an existing file:
 
 .. code-block:: pycon
 
-    >>> remote_filename = acp.upload_file(local_path="<MODEL_PATH>")
-    >>> model = acp.import_model(path=remote_filename)
+    >>> remote_path = acp.upload_file(local_path="<MODEL_PATH>")
+    >>> model = acp.import_model(path=remote_path)
     >>> model.name
     'ACP Model'
 
@@ -120,7 +120,7 @@ You will need to follow these steps:
 
     .. code-block:: bash
 
-        poetry install --with dev,test
+        poetry install --with dev,test --all-extras
 
     This step installs PyACP in an editable mode (no build step is needed, no re-install when changing the code).
 
@@ -208,6 +208,11 @@ valid license server (e.g ``1055@mylicenseserver.com``). Then start the docker c
 
 Then build the documentation with the `Sphinx`_ commands mentioned above.
 
+On Windows, you can use the shipped shell script:
+
+.. code-block:: batch
+
+    .\doc\create_doc_windows.ps1
 
 Distribution
 ^^^^^^^^^^^^

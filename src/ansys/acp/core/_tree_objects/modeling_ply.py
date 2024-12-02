@@ -22,9 +22,9 @@
 
 from __future__ import annotations
 
-from collections.abc import Container, Iterable
+from collections.abc import Callable, Container, Iterable
 import dataclasses
-from typing import Any, Callable
+from typing import Any
 
 import numpy as np
 from typing_extensions import Self
@@ -33,6 +33,14 @@ from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc, production
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadWriteProperty
+from ._elemental_or_nodal_data import (
+    ElementalData,
+    NodalData,
+    ScalarData,
+    VectorData,
+    elemental_data_property,
+    nodal_data_property,
+)
 from ._grpc_helpers.edge_property_list import (
     GenericEdgePropertyType,
     define_add_method,
@@ -41,19 +49,13 @@ from ._grpc_helpers.edge_property_list import (
 from ._grpc_helpers.linked_object_list import define_linked_object_list
 from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
+    _exposed_grpc_property,
     grpc_data_property,
     grpc_data_property_read_only,
     grpc_link_property,
     mark_grpc_properties,
 )
-from ._mesh_data import (
-    ElementalData,
-    NodalData,
-    ScalarData,
-    VectorData,
-    elemental_data_property,
-    nodal_data_property,
-)
+from ._mesh_data import full_mesh_property, shell_mesh_property
 from .base import CreatableTreeObject, IdTreeObject
 from .edge_set import EdgeSet
 from .enums import (
@@ -114,6 +116,7 @@ class ModelingPlyNodalData(NodalData):
     ply_offset: VectorData | None = None
 
 
+@mark_grpc_properties
 class TaperEdge(GenericEdgePropertyType):
     """Defines a taper edge.
 
@@ -129,13 +132,15 @@ class TaperEdge(GenericEdgePropertyType):
         offset is ``-offset/tan(angle)``.
     """
 
+    _SUPPORTED_SINCE = "24.2"
+
     def __init__(self, edge_set: EdgeSet, *, angle: float, offset: float):
         self._callback_apply_changes: Callable[[], None] | None = None
         self.edge_set = edge_set
         self.angle = angle
         self.offset = offset
 
-    @property
+    @_exposed_grpc_property
     def edge_set(self) -> EdgeSet:
         """Edge along which the ply tapering is applied."""
         return self._edge_set
@@ -148,7 +153,7 @@ class TaperEdge(GenericEdgePropertyType):
         if self._callback_apply_changes is not None:
             self._callback_apply_changes()
 
-    @property
+    @_exposed_grpc_property
     def angle(self) -> float:
         """Angle between the cutting plane and  the reference surface."""
         return self._angle
@@ -159,7 +164,7 @@ class TaperEdge(GenericEdgePropertyType):
         if self._callback_apply_changes is not None:
             self._callback_apply_changes()
 
-    @property
+    @_exposed_grpc_property
     def offset(self) -> float:
         """Move the cutting plane along the out-of-plane direction.
 
@@ -221,6 +226,14 @@ class TaperEdge(GenericEdgePropertyType):
             f"angle={self.angle!r}, offset={self.offset!r})"
         )
 
+    def clone(self) -> Self:
+        """Create a new unstored TaperEdge with the same properties."""
+        return type(self)(
+            edge_set=self.edge_set,
+            angle=self.angle,
+            offset=self.offset,
+        )
+
 
 @mark_grpc_properties
 @register
@@ -243,7 +256,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         Defines the global ply order.
     selection_rules :
         Selection Rules which may limit the extent of the ply.
-    draping :
+    draping_type :
         Chooses between different draping formulations.
     draping_seed_point :
         Starting point of the draping algorithm.
@@ -292,6 +305,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     _COLLECTION_LABEL = "modeling_plies"
     _OBJECT_INFO_TYPE = modeling_ply_pb2.ObjectInfo
     _CREATE_REQUEST_TYPE = modeling_ply_pb2.CreateRequest
+    _SUPPORTED_SINCE = "24.2"
 
     def __init__(
         self,
@@ -306,7 +320,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         # if global_ply_nr == 0
         global_ply_nr: int = 0,
         selection_rules: Iterable[LinkedSelectionRule] = (),
-        draping: DrapingType = DrapingType.NO_DRAPING,
+        draping_type: DrapingType = DrapingType.NO_DRAPING,
         draping_seed_point: tuple[float, float, float] = (0.0, 0.0, 0.0),
         auto_draping_direction: bool = True,
         draping_direction: tuple[float, float, float] = (1.0, 0.0, 0.0),
@@ -330,7 +344,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         self.active = active
         self.global_ply_nr = global_ply_nr
         self.selection_rules = selection_rules
-        self.draping = draping
+        self.draping_type = draping_type
         self.draping_seed_point = draping_seed_point
         self.auto_draping_direction = auto_draping_direction
         self.draping_direction = draping_direction
@@ -365,7 +379,7 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
     active: ReadWriteProperty[bool, bool] = grpc_data_property("properties.active")
     global_ply_nr: ReadWriteProperty[int, int] = grpc_data_property("properties.global_ply_nr")
 
-    draping = grpc_data_property(
+    draping_type = grpc_data_property(
         "properties.draping", from_protobuf=draping_type_from_pb, to_protobuf=draping_type_to_pb
     )
     draping_seed_point = grpc_data_property(
@@ -406,10 +420,6 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         module_name=__module__,
     )
 
-    production_plies = get_read_only_collection_property(
-        ProductionPly, production_ply_pb2_grpc.ObjectServiceStub
-    )
-
     thickness_type = grpc_data_property(
         "properties.thickness_type",
         from_protobuf=thickness_type_from_pb,
@@ -435,6 +445,13 @@ class ModelingPly(CreatableTreeObject, IdTreeObject):
         parent_class_name="ModelingPly",
         module_name=__module__,
     )
+
+    production_plies = get_read_only_collection_property(
+        ProductionPly, production_ply_pb2_grpc.ObjectServiceStub
+    )
+
+    mesh = full_mesh_property
+    shell_mesh = shell_mesh_property
 
     elemental_data = elemental_data_property(ModelingPlyElementalData)
     nodal_data = nodal_data_property(ModelingPlyNodalData)

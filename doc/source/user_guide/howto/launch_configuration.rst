@@ -94,7 +94,7 @@ This parameter expects a configuration object matching the selected ``launch_mod
 
     acp = pyacp.launch_acp(
         config=pyacp.DockerComposeLaunchConfig(
-            image_name_pyacp="ghcr.io/ansys/acp:latest",
+            image_name_acp="ghcr.io/ansys/acp:latest",
             image_name_filetransfer="ghcr.io/ansys/tools-filetransfer:latest",
             keep_volume=True,
             license_server=f"1055@{os.environ['LICENSE_SERVER']}",
