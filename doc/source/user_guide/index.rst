@@ -11,4 +11,5 @@ section provides in-depth explanations.
 
     howto/index
     concepts/index
+    compatibility
     security_considerations
