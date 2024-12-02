@@ -1,3 +1,5 @@
+.. _file_management:
+
 Manage input and output files
 =============================
 
