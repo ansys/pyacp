@@ -62,6 +62,8 @@ File up- and downloads
 
 The :py:meth:`.ACPInstance.upload_file` and :py:meth:`.ACPInstance.download_file` methods create files
 on the local or remote machine, without any validation of the file content or path.
+The same is true for file load / save methods if the ``auto_transfer_files`` parameter is set to
+``True`` in :func:`.launch_acp`.
 
 When exposing these methods to untrusted users, it is important to validate that
 only files that are safe to be uploaded or downloaded are processed.
