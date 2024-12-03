@@ -308,7 +308,7 @@ sphinx_gallery_conf = {
     "exclude_implicit_doc": {"ansys\\.acp\\.core\\._.*"},  # ignore private submodules
     "image_scrapers": (DynamicScraper(), "matplotlib"),
     "ignore_pattern": r"__init__\.py",
-    "thumbnail_size": (350, 350),
+    "thumbnail_size": (320, 240),
     "remove_config_comments": True,
 }
 
@@ -317,6 +317,10 @@ html_favicon = ansys_favicon
 
 # static path
 html_static_path = ["_static"]
+
+# Custom CSS files
+# These paths are either relative to html_static_path or fully qualified paths (eg. https://...)
+html_css_files = ["custom.css"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
