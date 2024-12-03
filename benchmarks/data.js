@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1733237562952,
+  "lastUpdate": 1733238440363,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -23592,6 +23592,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00010727864474700765",
             "extra": "mean: 38.838370961535965 msec\nrounds: 26"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8be6a44fc537e26c477ce868924198e68bef8dae",
+          "message": "Docs: make example thumbnails bigger (#733)\n\nMake the example thumbnails in the documentation bigger:\r\n- Create the thumbnails in 4:3 aspect ratio, which matches the\r\n  aspect ratio used when creating images in the examples. This\r\n  avoids empty space on the top / bottom of the thumbnail.\r\n- Increase the `max-width` and `max-height` of the thumbnails\r\n  to 100% by adding a custom CSS file.",
+          "timestamp": "2024-12-03T14:59:37Z",
+          "tree_id": "89c1dc9ebd22ea5ecec5bc94fd7cdfb2b8782fd9",
+          "url": "https://github.com/ansys/pyacp/commit/8be6a44fc537e26c477ce868924198e68bef8dae"
+        },
+        "date": 1733238408635,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 7.211252064384531,
+            "unit": "iter/sec",
+            "range": "stddev: 0.019052028892317278",
+            "extra": "mean: 138.6721738571412 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.5763395206297175,
+            "unit": "iter/sec",
+            "range": "stddev: 0.010340824125407638",
+            "extra": "mean: 388.14759933332726 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.3784922753172728,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.6420618470000363 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04092166764701036,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.436931764999997 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.102200726459968,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0033009380180048986",
+            "extra": "mean: 475.69196766664845 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.2814982850149099,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.5524195109999823 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.029604998119441246,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 33.77808017299998 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1416.0644813079361,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00017980218659513118",
+            "extra": "mean: 706.182531374813 usec\nrounds: 1498"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 398.3839884264275,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00007707961598546047",
+            "extra": "mean: 2.510141042439705 msec\nrounds: 377"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 47.592130303349514,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00008436146965789978",
+            "extra": "mean: 21.01187725000031 msec\nrounds: 48"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.973394532517618,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00003793958913887483",
+            "extra": "mean: 201.06991180001614 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 1012.1083320658774,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00012872941773470477",
+            "extra": "mean: 988.0365256541635 usec\nrounds: 1033"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 230.90592014437217,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00008525561818536083",
+            "extra": "mean: 4.330768130045161 msec\nrounds: 223"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.790023994770042,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00012096278983043769",
+            "extra": "mean: 38.774682807693 msec\nrounds: 26"
           }
         ]
       }
