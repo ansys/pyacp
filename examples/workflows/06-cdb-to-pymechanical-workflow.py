@@ -32,6 +32,11 @@ This example shows how to define a composite lay-up in PyACP based on a mesh
 from a CDB file, import the model into PyMechanical for defining the load and
 boundary conditions, and run a failure analysis with PyDPF Composites.
 
+.. warning::
+
+    The PyACP / PyMechanical integration is still experimental. Refer to the
+    :ref:`limitations section <limitations>` for more information.
+
 """
 
 
