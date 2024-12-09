@@ -715,7 +715,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 Compute a correction angle to define circular fiber paths.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">correction_angle</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">xx</span></a><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">zz</span></a><span class="o">.</span><span class="n">ravel</span><span class="p">())</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">/</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">pi</span></a>
 <span class="n">angle_column_1</span> <span class="o">=</span> <span class="n">lookup_table</span><span class="o">.</span><span class="n">create_column</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">correction_angle</span></a><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">correction_angle</span></a><span class="p">,</span>  <span class="c1"># type: ignore</span>
     <span class="n">physical_dimension</span><span class="o">=</span><span class="n">PhysicalDimension</span><span class="o">.</span><span class="n">DIMENSIONLESS</span><span class="p">,</span>
     <span class="n">value_type</span><span class="o">=</span><span class="n">LookUpTableColumnValueType</span><span class="o">.</span><span class="n">SCALAR</span><span class="p">,</span>
 <span class="p">)</span>
@@ -725,7 +725,7 @@ Compute a correction angle to define circular fiber paths.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">shear_angle</span></a> <span class="o">=</span> <span class="o">-</span><span class="mi">30</span>
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">transverse_correction_angle</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">correction_angle</span></a> <span class="o">+</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">shear_angle</span></a>
 <span class="n">angle_column_2</span> <span class="o">=</span> <span class="n">lookup_table</span><span class="o">.</span><span class="n">create_column</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">transverse_correction_angle</span></a><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">transverse_correction_angle</span></a><span class="p">,</span>  <span class="c1"># type: ignore</span>
     <span class="n">physical_dimension</span><span class="o">=</span><span class="n">PhysicalDimension</span><span class="o">.</span><span class="n">DIMENSIONLESS</span><span class="p">,</span>
     <span class="n">value_type</span><span class="o">=</span><span class="n">LookUpTableColumnValueType</span><span class="o">.</span><span class="n">SCALAR</span><span class="p">,</span>
 <span class="p">)</span>
@@ -791,7 +791,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/modeling_features/images/sphx_glr_005-ply-direction-lookup-table_004.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.365 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.239 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-modeling-features-005-ply-direction-lookup-table-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/44ff5308b754384578a8f37adcfd4114/005-ply-direction-lookup-table.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">005-ply-direction-lookup-table.ipynb</span></code></a></p>
@@ -938,14 +938,14 @@ const SEARCH_FILE = "../../_static/search.json";
   <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
     >Ansys Sphinx Theme</a
   >
-  1.2.2. <br />Last updated on
-  <span id="date"></span>
+  1.2.3. <br />Last updated on
+  <span id="ast_build_date"></span>
 </p>
 <script>
   var options = { day: "numeric", month: "long", year: "numeric" };
-  var lastModifiedDate = new Date(document.lastModified);
-  var date = lastModifiedDate.toLocaleDateString("en-US", options);
-  document.getElementById("date").innerHTML = date;
+  var ast_lastModifiedDate = new Date(document.lastModified);
+  var ast_build_date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("ast_build_date").innerHTML = ast_build_date;
 </script></div>
       
     </div>
