@@ -61,7 +61,7 @@ __all__ = [
 class _LabelInfo:
     mesh_labels: npt.NDArray[np.int32]
     data_labels: npt.NDArray[np.int32]
-    mesh_label_to_index_map: dict[int, int]
+    mesh_label_to_index_map: dict[np.int32, int]
 
 
 def _get_labels(
@@ -85,7 +85,7 @@ def _expand_array(
 ) -> npt.NDArray[np.float64]:
     """Expand the array to the size of the mesh."""
     target_shape = tuple([labels.mesh_labels.size] + list(array.shape[1:]))
-    target_array = np.ones(target_shape, dtype=np.float64) * np.nan
+    target_array = np.full(target_shape, np.nan, dtype=np.float64)
     for idx, (label, value) in enumerate(zip(labels.data_labels, array)):
         if idx % culling_factor == 0:
             try:
