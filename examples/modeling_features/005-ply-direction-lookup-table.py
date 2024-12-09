@@ -174,7 +174,7 @@ oss.rosette_selection_method = RosetteSelectionMethod.MINIMUM_ANGLE
 #
 # %%
 # Compute a correction angle to define circular fiber paths.
-correction_angle = np.arctan2(xx.ravel(), zz.ravel()) * 180.0 / np.pi
+correction_angle = np.arctan2(xx.ravel(), zz.ravel()) * 180 / np.pi
 angle_column_1 = lookup_table.create_column(
     data=correction_angle,  # type: ignore
     physical_dimension=PhysicalDimension.DIMENSIONLESS,
