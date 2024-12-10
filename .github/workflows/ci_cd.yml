@@ -18,7 +18,7 @@ on:
         required: false
 
 env:
-  MAIN_PYTHON_VERSION: "3.13"
+  MAIN_PYTHON_VERSION: "3.12"
   PACKAGE_NAME: "ansys-acp-core"
   DOCUMENTATION_CNAME: "acp.docs.pyansys.com"
   API_BRANCH: ${{ github.event.inputs.api_branch || '' }}
