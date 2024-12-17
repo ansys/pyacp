@@ -83,9 +83,9 @@ The following example imports a CDB file.
 See :class:`.FeFormat` for a list of supported FE formats. Check out the
 :ref:`input_file_for_pyacp` section to see how input files can be created.
 
-.. warning::
+.. danger::
     When working on Windows, be careful of possible **escape sequences** in paths that could result in errors.
-    To avoid issues, make sure to quote the backslashes in your path or use a *raw string literal* by prefixing your string with *r*,
+    To avoid issues, make sure to quote the backslashes in your path or use a *raw string literal* by prefixing your string with **r**,
     like ``model = acp.import_model(r"path\to\your\model.acph5")``.
 
 
