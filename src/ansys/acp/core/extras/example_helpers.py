@@ -264,3 +264,6 @@ def _run_analysis(model: "Model") -> None:
         # %%
         # Release composite model to close open streams to result file.
         composite_model = None  # type: ignore
+
+        # Close MAPDL instance
+        mapdl.exit()
