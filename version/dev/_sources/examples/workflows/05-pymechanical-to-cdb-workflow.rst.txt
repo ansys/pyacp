@@ -407,7 +407,7 @@ Note that the maximum IRF is different when compared to :ref:`pymechanical_shell
 because ACP sets the ``ERESX,NO`` option in the CDB file. This option disables interpolation
 of the results from the integration point to the nodes.
 
-.. GENERATED FROM PYTHON SOURCE LINES 312-317
+.. GENERATED FROM PYTHON SOURCE LINES 312-320
 
 .. code-block:: Python
 
@@ -416,6 +416,9 @@ of the results from the integration point to the nodes.
         {"failure_label": pydpf_composites.constants.FailureOutput.FAILURE_VALUE}
     )
     irf_field.plot()
+
+    # Close MAPDL instance
+    mapdl.exit()
 
 
 .. _sphx_glr_download_examples_workflows_05-pymechanical-to-cdb-workflow.py:

@@ -314,3 +314,6 @@ irf_field = output_all_elements.get_field(
     {"failure_label": pydpf_composites.constants.FailureOutput.FAILURE_VALUE}
 )
 irf_field.plot()
+
+# Close MAPDL instance
+mapdl.exit()

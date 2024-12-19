@@ -390,3 +390,6 @@ output_all_elements = composite_model.evaluate_failure_criteria(cfc)
 # Query and plot the results.
 irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
 irf_field.plot()
+
+# Close MAPDL instance
+mapdl.exit()

@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:52.364** total execution time for 1 file **from examples/use_cases**:
+**00:48.226** total execution time for 1 file **from examples/use_cases**:
 
 .. container::
 
@@ -33,5 +33,5 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_examples_use_cases_01-optimizing-ply-angles.py` (``01-optimizing-ply-angles.py``)
-     - 00:52.364
+     - 00:48.226
      - 0.0
