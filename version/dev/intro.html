@@ -552,6 +552,14 @@ The following example imports a CDB file.</p>
 </div>
 <p>See <a class="reference internal" href="api/_autosummary/ansys.acp.core.FeFormat.html#ansys.acp.core.FeFormat" title="ansys.acp.core.FeFormat"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeFormat</span></code></a> for a list of supported FE formats. Check out the
 <a class="reference internal" href="user_guide/howto/create_input_file.html#input-file-for-pyacp"><span class="std std-ref">Create input file for PyACP</span></a> section to see how input files can be created.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>When working on Windows, be careful of backslashes in paths: These may correspond to
+<a class="reference external" href="https://docs.python.org/3/reference/lexical_analysis.html#escape-sequences">escape sequences</a>, resulting in errors.
+To avoid issues, make sure to quote the backslashes (by using <code class="docutils literal notranslate"><span class="pre">\\</span></code>) or use a
+<a class="reference external" href="https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals">raw string literal</a> by prefixing your string with <strong>r</strong>,
+like <code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">=</span> <span class="pre">acp.import_model(r&quot;path\to\your\model.acph5&quot;)</span></code>.</p>
+</div>
 </section>
 <section id="start-modelling">
 <h3>Start modelling<a class="headerlink" href="#start-modelling" title="Link to this heading">#</a></h3>
