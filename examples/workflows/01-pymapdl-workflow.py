@@ -270,3 +270,6 @@ irf_field.plot()
 # %%
 # Release the composite model to close the open streams to the result file.
 composite_model = None  # type: ignore
+
+# Close MAPDL instance
+mapdl.exit()
