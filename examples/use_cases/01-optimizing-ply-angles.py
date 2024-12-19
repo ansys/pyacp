@@ -493,3 +493,6 @@ ax.axis("off")  # Hide the x and y axes
 
 plt.tight_layout()
 plt.show()
+
+# Close MAPDL instance
+mapdl.exit()
