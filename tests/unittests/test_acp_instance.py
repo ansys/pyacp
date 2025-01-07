@@ -75,3 +75,14 @@ def test_import_from_differenct_cwd(acp_instance, model_data_dir):
             assert (tmp_dir_path / export_filename).exists()
         # Check that the exported file does not exist on the original CWD
         assert not pathlib.Path(export_filename).exists()
+
+
+def test_import_inexistent(acp_instance):
+    """Test that inexistent files raise a FileNotFoundError.
+
+    Regression test for #748 (when run with 'direct' launch mode).
+    """
+    filename = "inexistent_file.acph5"
+    with pytest.raises(FileNotFoundError) as exc:
+        acp_instance.import_model(filename)
+    assert filename in str(exc.value)
