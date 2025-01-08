@@ -30,7 +30,7 @@ PyMechanical to CDB shell workflow
 
 This example shows how to set up a workflow that uses PyMechanical to mesh the
 geometry and define the load case, PyACP to define a layup, PyMAPDL to solve the
-model, and PyDPF Composites to post-process the results.
+model, and PyDPF - Composites to post-process the results.
 
 This workflow does *not* suffer from the limitations of the PyACP to
 PyMechanical integration.
@@ -52,7 +52,7 @@ import tempfile
 import textwrap
 
 # %%
-# Import PyACP, PyMechanical, and PyDPF Composites.
+# Import PyACP, PyMechanical, and PyDPF - Composites.
 
 # isort: off
 import ansys.acp.core as pyacp
@@ -272,7 +272,7 @@ rst_file_local_path = working_dir_path / rstfile_name
 mapdl.download(rstfile_name, working_dir_path)
 
 # %%
-# Postprocessing with PyDPF Composites
+# Postprocessing with PyDPF - Composites
 # ------------------------------------
 #
 # Specify the combined failure criterion.

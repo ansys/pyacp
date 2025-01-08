@@ -233,7 +233,7 @@ model.export_analysis_model(cdb_file_path)
 rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file_path, workdir=workdir)
 
 # %%
-# The ``get_max_irf()`` function uses PyDPF Composites to calculate the maximum
+# The ``get_max_irf()`` function uses PyDPF - Composites to calculate the maximum
 # inverse reserve factor (IRF) for a given RST, composite definitions,
 # or materials file.
 #
