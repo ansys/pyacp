@@ -27,13 +27,13 @@ Advanced PyMAPDL workflow
 =========================
 
 This example shows how to define a composite lay-up with PyACP, solve the resulting
-model with PyMAPDL, and run a failure analysis with PyDPF Composites.
+model with PyMAPDL, and run a failure analysis with PyDPF - Composites.
 
 Begin with an MAPDL CDB file that contains the mesh, material data, and
 boundary conditions. Import the file to PyACP to define the lay-up, and then export the
 resulting model to PyMAPDL. Once the results are available, the RST file is loaded in
-PyDPF Composites for postprocessing. The additional input files (``material.xml``
-and ``ACPCompositeDefinitions.h5``) can also be stored with PyACP and passed to PyDPF Composites.
+PyDPF - Composites for postprocessing. The additional input files (``material.xml``
+and ``ACPCompositeDefinitions.h5``) can also be stored with PyACP and passed to PyDPF - Composites.
 
 """
 
@@ -292,7 +292,7 @@ model.save(working_dir_path / acph5_filename, save_cache=True)
 # %%
 # Save the model as a CDB file for solving with PyMAPDL.
 model.export_analysis_model(working_dir_path / cdb_filename_out)
-# Export the shell lay-up and material file for PyDPF Composites.
+# Export the shell lay-up and material file for PyDPF - Composites.
 model.export_shell_composite_definitions(working_dir_path / composite_definition_h5_filename)
 model.export_materials(working_dir_path / matml_filename)
 
@@ -329,11 +329,11 @@ rstfile_name = f"{mapdl.jobname}.rst"
 mapdl.download(rstfile_name, working_dir_path)
 
 # %%
-# Postprocessing with PyDPF Composites
-# ------------------------------------
+# Postprocessing with PyDPF - Composites
+# --------------------------------------
 #
 # To postprocess the results, you must configure the imports, connect to the
-# PyDPF Composites server, and load its plugin.
+# PyDPF - Composites server, and load its plugin.
 
 from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput
