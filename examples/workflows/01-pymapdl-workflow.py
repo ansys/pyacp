@@ -217,7 +217,7 @@ mapdl.download(rstfile_name, str(WORKING_DIR))
 
 # %%
 # Postprocessing with PyDPF - Composites
-# ------------------------------------
+# --------------------------------------
 #
 # To postprocess the results, you must configure the imports, connect to the
 # PyDPF - Composites server, and load its plugin.

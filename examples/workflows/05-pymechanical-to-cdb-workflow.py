@@ -273,7 +273,7 @@ mapdl.download(rstfile_name, working_dir_path)
 
 # %%
 # Postprocessing with PyDPF - Composites
-# ------------------------------------
+# --------------------------------------
 #
 # Specify the combined failure criterion.
 max_strain = pydpf_composites.failure_criteria.MaxStrainCriterion()
