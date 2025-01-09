@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -30,7 +30,12 @@ CDB to PyMechanical shell workflow
 
 This example shows how to define a composite lay-up in PyACP based on a mesh
 from a CDB file, import the model into PyMechanical for defining the load and
-boundary conditions, and run a failure analysis with PyDPF Composites.
+boundary conditions, and run a failure analysis with PyDPF - Composites.
+
+.. warning::
+
+    The PyACP / PyMechanical integration is still experimental. Refer to the
+    :ref:`limitations section <limitations>` for more information.
 
 """
 
@@ -49,7 +54,7 @@ import tempfile
 import textwrap
 
 # %%
-# Import PyACP, PyMechanical, and PyDPF Composites.
+# Import PyACP, PyMechanical, and PyDPF - Composites.
 
 # isort: off
 import ansys.acp.core as pyacp
@@ -276,7 +281,7 @@ matml_out = [filename for filename in mechanical.list_files() if filename.endswi
 # Postprocess results
 # -------------------
 #
-# Evaluate the failure criteria using the PyDPF Composites.
+# Evaluate the failure criteria using the PyDPF - Composites.
 
 
 max_strain = pydpf_composites.failure_criteria.MaxStrainCriterion()
