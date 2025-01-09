@@ -12,8 +12,12 @@
     contributing
 
 
-PyACP
------
+.. image:: ../source/_static/pyacp.svg
+    :width: 400
+    :alt: PyACP Logo
+    :align: center
+
+.. title:: PyACP
 
 PyACP enables modelling continuous-fiber composite structures from within your
 Python environment. It provides access to the features of Ansys Composite
