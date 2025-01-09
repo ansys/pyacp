@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""Helper functions for exchanging data between PyACP and PyDPF or PyDPF Composites."""
+"""Helper functions for exchanging data between PyACP and PyDPF or PyDPF - Composites."""
 
 import typing
 
