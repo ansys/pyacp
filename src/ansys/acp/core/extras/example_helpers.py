@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -264,3 +264,6 @@ def _run_analysis(model: "Model") -> None:
         # %%
         # Release composite model to close open streams to result file.
         composite_model = None  # type: ignore
+
+        # Close MAPDL instance
+        mapdl.exit()

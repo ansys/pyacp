@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -58,6 +58,8 @@ class LocalFileTransferStrategy(FileTransferStrategy):
         self._working_directory = pathlib.Path(working_directory)
 
     def upload_file(self, local_path: _PATH) -> pathlib.Path:
+        if not pathlib.Path(local_path).exists():
+            raise FileNotFoundError(f"No such file or directory: '{local_path}'")
         return self._get_remote_path(local_path)
 
     def download_file(self, remote_path: _PATH, local_path: _PATH) -> None:

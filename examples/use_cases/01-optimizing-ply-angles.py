@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -233,7 +233,7 @@ model.export_analysis_model(cdb_file_path)
 rst_file = solve_cdb(mapdl=mapdl, cdb_file=cdb_file_path, workdir=workdir)
 
 # %%
-# The ``get_max_irf()`` function uses PyDPF Composites to calculate the maximum
+# The ``get_max_irf()`` function uses PyDPF - Composites to calculate the maximum
 # inverse reserve factor (IRF) for a given RST, composite definitions,
 # or materials file.
 #
@@ -493,3 +493,6 @@ ax.axis("off")  # Hide the x and y axes
 
 plt.tight_layout()
 plt.show()
+
+# Close MAPDL instance
+mapdl.exit()

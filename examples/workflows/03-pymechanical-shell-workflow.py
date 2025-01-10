@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2024 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -37,7 +37,7 @@ PyMechanical:
 - Plies and materials are exported from ACP, and imported into Mechanical.
 - Boundary conditions are set in Mechanical.
 - The model is solved.
-- The results are post-processed in PyDPF Composites.
+- The results are post-processed in PyDPF - Composites.
 
 .. warning::
 
@@ -60,7 +60,7 @@ import tempfile
 import textwrap
 
 # %%
-# Import PyACP, PyMechanical, and PyDPF Composites.
+# Import PyACP, PyMechanical, and PyDPF - Composites.
 
 # isort: off
 import ansys.acp.core as pyacp
@@ -278,7 +278,7 @@ matml_out = [filename for filename in mechanical.list_files() if filename.endswi
 # Postprocess results
 # -------------------
 #
-# Evaluate the failure criteria using the PyDPF Composites.
+# Evaluate the failure criteria using the PyDPF - Composites.
 
 
 max_strain = pydpf_composites.failure_criteria.MaxStrainCriterion()
