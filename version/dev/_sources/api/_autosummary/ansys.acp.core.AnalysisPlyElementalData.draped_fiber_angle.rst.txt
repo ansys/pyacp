@@ -1,0 +1,13 @@
+.. vale off
+
+draped\_fiber\_angle
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: AnalysisPlyElementalData.draped_fiber_angle
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPlyElementalData.draped_fiber_angle
+
+   ansys.acp.core.AnalysisPlyElementalData.draped_fiber_angle

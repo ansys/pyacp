@@ -1,0 +1,6 @@
+algorithm
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: InterpolationOptions.algorithm

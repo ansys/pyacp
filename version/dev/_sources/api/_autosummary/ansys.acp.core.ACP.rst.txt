@@ -1,0 +1,65 @@
+﻿.. vale off
+
+ACP
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ACP
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ACP.check
+      
+      
+      ACP.clear
+      
+      
+      ACP.download_file
+      
+      
+      ACP.import_model
+      
+      
+      ACP.restart
+      
+      
+      ACP.start
+      
+      
+      ACP.stop
+      
+      
+      ACP.upload_file
+      
+      
+      ACP.wait
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ACP.is_remote
+      ACP.models
+      ACP.server_version
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ACP
+
+   ansys.acp.core.ACP

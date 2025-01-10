@@ -1,0 +1,13 @@
+.. vale off
+
+orientation
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ProductionPlyElementalData.orientation
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.orientation
+
+   ansys.acp.core.ProductionPlyElementalData.orientation

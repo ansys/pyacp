@@ -1,0 +1,6 @@
+E2
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableEngineeringConstants.E2

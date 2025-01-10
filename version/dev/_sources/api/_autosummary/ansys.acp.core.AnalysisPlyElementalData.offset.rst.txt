@@ -1,0 +1,13 @@
+.. vale off
+
+offset
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: AnalysisPlyElementalData.offset
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPlyElementalData.offset
+
+   ansys.acp.core.AnalysisPlyElementalData.offset

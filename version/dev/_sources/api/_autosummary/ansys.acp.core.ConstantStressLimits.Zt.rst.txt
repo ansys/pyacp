@@ -1,0 +1,6 @@
+Zt
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantStressLimits.Zt

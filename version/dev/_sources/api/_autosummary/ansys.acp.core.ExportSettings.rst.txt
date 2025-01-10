@@ -1,0 +1,45 @@
+﻿ExportSettings
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ExportSettings
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ExportSettings.coordinate_system_index
+      ExportSettings.drop_hanging_nodes
+      ExportSettings.element_index
+      ExportSettings.material_index
+      ExportSettings.node_index
+      ExportSettings.section_index
+      ExportSettings.transfer_all_sets
+      ExportSettings.transferred_edge_sets
+      ExportSettings.transferred_element_sets
+      ExportSettings.use_default_coordinate_system_index
+      ExportSettings.use_default_element_index
+      ExportSettings.use_default_material_index
+      ExportSettings.use_default_node_index
+      ExportSettings.use_default_section_index
+      ExportSettings.use_solid_model_prefix
+      ExportSettings.use_solsh_elements
+      ExportSettings.write_degenerated_elements
+   
+   

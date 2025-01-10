@@ -1,0 +1,39 @@
+﻿.. vale off
+
+CylindricalSelectionRuleNodalData
+=================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: CylindricalSelectionRuleNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      CylindricalSelectionRuleNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CylindricalSelectionRuleNodalData.node_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRuleNodalData
+
+   ansys.acp.core.CylindricalSelectionRuleNodalData

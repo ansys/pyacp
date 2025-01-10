@@ -1,0 +1,6 @@
+rpartition
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ThicknessType.rpartition

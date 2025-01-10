@@ -1,0 +1,6 @@
+fracture\_toughness\_ratio
+==========================
+
+.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets
+
+.. autoproperty:: ConstantLaRCConstants.fracture_toughness_ratio

@@ -1,0 +1,6 @@
+orientation\_2
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableWovenCharacterization.orientation_2

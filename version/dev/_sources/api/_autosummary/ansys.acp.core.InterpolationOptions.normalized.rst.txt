@@ -1,0 +1,6 @@
+normalized
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: InterpolationOptions.normalized

@@ -1,0 +1,13 @@
+.. vale off
+
+id
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutoffSelectionRule.id
+
+.. minigallery::
+   :add-heading: Examples using CutoffSelectionRule.id
+
+   ansys.acp.core.CutoffSelectionRule.id

@@ -1,0 +1,6 @@
+interpolation\_options
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableTsaiWuConstants.interpolation_options

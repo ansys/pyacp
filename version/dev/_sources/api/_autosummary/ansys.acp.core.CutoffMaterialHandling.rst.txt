@@ -1,0 +1,31 @@
+﻿CutoffMaterialHandling
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: CutoffMaterialHandling
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        CutoffMaterialHandling.COMPUTED
+      
+      
+        CutoffMaterialHandling.GLOBAL
+      
+      
+        CutoffMaterialHandling.CUSTOM
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using CutoffMaterialHandling
+
+   ansys.acp.core.CutoffMaterialHandling

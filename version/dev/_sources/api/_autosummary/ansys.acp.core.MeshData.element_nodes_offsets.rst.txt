@@ -1,0 +1,13 @@
+.. vale off
+
+element\_nodes\_offsets
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: MeshData.element_nodes_offsets
+
+.. minigallery::
+   :add-heading: Examples using MeshData.element_nodes_offsets
+
+   ansys.acp.core.MeshData.element_nodes_offsets

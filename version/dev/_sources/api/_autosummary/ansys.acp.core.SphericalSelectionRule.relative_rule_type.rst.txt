@@ -1,0 +1,6 @@
+relative\_rule\_type
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.relative_rule_type

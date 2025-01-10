@@ -1,0 +1,13 @@
+.. vale off
+
+get\_pyvista\_mesh
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SphericalSelectionRuleElementalData.get_pyvista_mesh
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRuleElementalData.get_pyvista_mesh
+
+   ansys.acp.core.SphericalSelectionRuleElementalData.get_pyvista_mesh

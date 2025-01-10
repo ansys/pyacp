@@ -1,0 +1,13 @@
+.. vale off
+
+stress\_limits
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.stress_limits
+
+.. minigallery::
+   :add-heading: Examples using Material.stress_limits
+
+   ansys.acp.core.Material.stress_limits

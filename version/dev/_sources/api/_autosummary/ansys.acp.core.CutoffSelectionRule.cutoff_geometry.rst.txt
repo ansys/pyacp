@@ -1,0 +1,13 @@
+.. vale off
+
+cutoff\_geometry
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutoffSelectionRule.cutoff_geometry
+
+.. minigallery::
+   :add-heading: Examples using CutoffSelectionRule.cutoff_geometry
+
+   ansys.acp.core.CutoffSelectionRule.cutoff_geometry

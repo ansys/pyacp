@@ -1,0 +1,6 @@
+lstrip
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: BooleanOperationType.lstrip

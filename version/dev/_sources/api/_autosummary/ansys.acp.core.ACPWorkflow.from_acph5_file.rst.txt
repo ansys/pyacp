@@ -1,0 +1,13 @@
+.. vale off
+
+from\_acph5\_file
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPWorkflow.from_acph5_file
+
+.. minigallery::
+   :add-heading: Examples using ACPWorkflow.from_acph5_file
+
+   ansys.acp.core.ACPWorkflow.from_acph5_file

@@ -1,0 +1,40 @@
+﻿.. vale off
+
+CutoffSelectionRuleElementalData
+================================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: CutoffSelectionRuleElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      CutoffSelectionRuleElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CutoffSelectionRuleElementalData.normal
+      CutoffSelectionRuleElementalData.element_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using CutoffSelectionRuleElementalData
+
+   ansys.acp.core.mesh_data.CutoffSelectionRuleElementalData

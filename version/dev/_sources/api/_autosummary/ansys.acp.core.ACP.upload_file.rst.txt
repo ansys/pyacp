@@ -1,0 +1,13 @@
+.. vale off
+
+upload\_file
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACP.upload_file
+
+.. minigallery::
+   :add-heading: Examples using ACP.upload_file
+
+   ansys.acp.core.ACP.upload_file

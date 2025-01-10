@@ -1,0 +1,6 @@
+center
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: EdgeSetType.center

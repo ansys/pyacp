@@ -1,0 +1,13 @@
+.. vale off
+
+normal
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: GeometricalSelectionRuleElementalData.normal
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRuleElementalData.normal
+
+   ansys.acp.core.GeometricalSelectionRuleElementalData.normal

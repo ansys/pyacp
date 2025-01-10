@@ -1,0 +1,6 @@
+cached
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: InterpolationOptions.cached

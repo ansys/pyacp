@@ -1,0 +1,6 @@
+isprintable
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ThicknessFieldType.isprintable

@@ -1,0 +1,6 @@
+G12\_2
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantWovenCharacterization.G12_2

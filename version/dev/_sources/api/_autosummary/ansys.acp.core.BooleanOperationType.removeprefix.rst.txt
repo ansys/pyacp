@@ -1,0 +1,6 @@
+removeprefix
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: BooleanOperationType.removeprefix

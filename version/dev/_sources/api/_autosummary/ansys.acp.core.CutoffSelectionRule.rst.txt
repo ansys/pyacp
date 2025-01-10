@@ -1,0 +1,59 @@
+﻿.. vale off
+
+CutoffSelectionRule
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: CutoffSelectionRule
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      CutoffSelectionRule.clone
+      
+      
+      CutoffSelectionRule.delete
+      
+      
+      CutoffSelectionRule.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CutoffSelectionRule.angle
+      CutoffSelectionRule.cutoff_geometry
+      CutoffSelectionRule.cutoff_rule_type
+      CutoffSelectionRule.elemental_data
+      CutoffSelectionRule.id
+      CutoffSelectionRule.mesh
+      CutoffSelectionRule.name
+      CutoffSelectionRule.nodal_data
+      CutoffSelectionRule.offset
+      CutoffSelectionRule.parent
+      CutoffSelectionRule.ply_cutoff_type
+      CutoffSelectionRule.ply_tapering
+      CutoffSelectionRule.shell_mesh
+      CutoffSelectionRule.status
+      CutoffSelectionRule.taper_edge_set
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using CutoffSelectionRule
+
+   ansys.acp.core.CutoffSelectionRule

@@ -1,0 +1,6 @@
+splitlines
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: NodalDataType.splitlines

@@ -1,0 +1,6 @@
+rjust
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SymmetryType.rjust

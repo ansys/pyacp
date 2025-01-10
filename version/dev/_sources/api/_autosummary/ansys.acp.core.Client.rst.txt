@@ -1,0 +1,42 @@
+﻿Client
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Client
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Client.clear
+      
+      
+      Client.download_file
+      
+      
+      Client.import_model
+      
+      
+      Client.upload_file
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Client.is_remote
+      Client.server_version
+   
+   

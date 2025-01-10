@@ -1,0 +1,40 @@
+﻿.. vale off
+
+VariableOffsetSelectionRuleElementalData
+========================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: VariableOffsetSelectionRuleElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      VariableOffsetSelectionRuleElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VariableOffsetSelectionRuleElementalData.normal
+      VariableOffsetSelectionRuleElementalData.element_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRuleElementalData
+
+   ansys.acp.core.VariableOffsetSelectionRuleElementalData

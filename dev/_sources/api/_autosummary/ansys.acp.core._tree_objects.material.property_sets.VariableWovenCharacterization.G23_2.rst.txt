@@ -1,0 +1,6 @@
+G23\_2
+======
+
+.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets
+
+.. autoproperty:: VariableWovenCharacterization.G23_2

@@ -1,0 +1,6 @@
+maketrans
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: BooleanOperationType.maketrans

@@ -1,0 +1,13 @@
+.. vale off
+
+area
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: AnalysisPlyElementalData.area
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPlyElementalData.area
+
+   ansys.acp.core.AnalysisPlyElementalData.area

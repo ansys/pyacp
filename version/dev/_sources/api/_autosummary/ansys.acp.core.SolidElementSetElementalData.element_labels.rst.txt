@@ -1,0 +1,13 @@
+.. vale off
+
+element\_labels
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidElementSetElementalData.element_labels
+
+.. minigallery::
+   :add-heading: Examples using SolidElementSetElementalData.element_labels
+
+   ansys.acp.core.SolidElementSetElementalData.element_labels

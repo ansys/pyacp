@@ -1,0 +1,6 @@
+format\_map
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SensorType.format_map

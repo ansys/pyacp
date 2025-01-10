@@ -1,0 +1,13 @@
+.. vale off
+
+stop
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACP.stop
+
+.. minigallery::
+   :add-heading: Examples using ACP.stop
+
+   ansys.acp.core.ACP.stop

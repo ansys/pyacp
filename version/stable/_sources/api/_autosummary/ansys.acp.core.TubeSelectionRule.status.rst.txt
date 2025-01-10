@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.status
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.status
+
+   ansys.acp.core.TubeSelectionRule.status

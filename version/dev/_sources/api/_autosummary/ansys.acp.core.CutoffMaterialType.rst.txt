@@ -1,0 +1,25 @@
+﻿CutoffMaterialType
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: CutoffMaterialType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        CutoffMaterialType.COMPUTED
+      
+      
+        CutoffMaterialType.GLOBAL
+      
+      
+        CutoffMaterialType.CUSTOM
+      
+   
+   

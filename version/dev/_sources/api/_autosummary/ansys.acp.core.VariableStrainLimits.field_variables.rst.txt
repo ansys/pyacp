@@ -1,0 +1,6 @@
+field\_variables
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableStrainLimits.field_variables

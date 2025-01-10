@@ -1,0 +1,6 @@
+casefold
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ThicknessFieldType.casefold

@@ -1,0 +1,6 @@
+G12
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantEngineeringConstants.G12

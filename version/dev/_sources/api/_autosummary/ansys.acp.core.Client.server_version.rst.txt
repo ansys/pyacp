@@ -1,0 +1,6 @@
+server\_version
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Client.server_version

@@ -1,0 +1,13 @@
+.. vale off
+
+LENGTH
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DimensionType.LENGTH
+
+.. minigallery::
+   :add-heading: Examples using DimensionType.LENGTH
+
+   ansys.acp.core.DimensionType.LENGTH

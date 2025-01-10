@@ -1,0 +1,13 @@
+.. vale off
+
+check
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACP.check
+
+.. minigallery::
+   :add-heading: Examples using ACP.check
+
+   ansys.acp.core.ACP.check

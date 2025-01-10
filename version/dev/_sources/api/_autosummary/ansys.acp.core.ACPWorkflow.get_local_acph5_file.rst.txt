@@ -1,0 +1,13 @@
+.. vale off
+
+get\_local\_acph5\_file
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPWorkflow.get_local_acph5_file
+
+.. minigallery::
+   :add-heading: Examples using ACPWorkflow.get_local_acph5_file
+
+   ansys.acp.core.ACPWorkflow.get_local_acph5_file

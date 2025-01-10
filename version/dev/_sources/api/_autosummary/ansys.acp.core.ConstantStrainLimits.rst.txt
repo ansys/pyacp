@@ -1,0 +1,38 @@
+﻿ConstantStrainLimits
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ConstantStrainLimits
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConstantStrainLimits.eSxy
+      ConstantStrainLimits.eSxz
+      ConstantStrainLimits.eSyz
+      ConstantStrainLimits.eXc
+      ConstantStrainLimits.eXt
+      ConstantStrainLimits.eYc
+      ConstantStrainLimits.eYt
+      ConstantStrainLimits.eZc
+      ConstantStrainLimits.eZt
+      ConstantStrainLimits.effective_strain
+   
+   

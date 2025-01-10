@@ -1,0 +1,6 @@
+TOP
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: OrientationType.TOP

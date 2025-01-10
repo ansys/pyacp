@@ -1,0 +1,13 @@
+.. vale off
+
+topdown
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SubLaminate.topdown
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.topdown
+
+   ansys.acp.core.SubLaminate.topdown

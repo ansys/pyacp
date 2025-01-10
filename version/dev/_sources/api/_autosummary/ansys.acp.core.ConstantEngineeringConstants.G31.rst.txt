@@ -1,0 +1,6 @@
+G31
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantEngineeringConstants.G31

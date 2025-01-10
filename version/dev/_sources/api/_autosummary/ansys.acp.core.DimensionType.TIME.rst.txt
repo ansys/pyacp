@@ -1,0 +1,13 @@
+.. vale off
+
+TIME
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DimensionType.TIME
+
+.. minigallery::
+   :add-heading: Examples using DimensionType.TIME
+
+   ansys.acp.core.DimensionType.TIME

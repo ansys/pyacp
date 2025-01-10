@@ -1,0 +1,40 @@
+﻿.. vale off
+
+SphericalSelectionRuleElementalData
+===================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SphericalSelectionRuleElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SphericalSelectionRuleElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SphericalSelectionRuleElementalData.normal
+      SphericalSelectionRuleElementalData.element_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRuleElementalData
+
+   ansys.acp.core.SphericalSelectionRuleElementalData

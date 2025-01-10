@@ -1,0 +1,6 @@
+E1\_2
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantWovenCharacterization.E1_2

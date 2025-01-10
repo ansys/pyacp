@@ -1,0 +1,13 @@
+.. vale off
+
+get\_pyvista\_mesh
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CylindricalSelectionRuleElementalData.get_pyvista_mesh
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRuleElementalData.get_pyvista_mesh
+
+   ansys.acp.core.CylindricalSelectionRuleElementalData.get_pyvista_mesh

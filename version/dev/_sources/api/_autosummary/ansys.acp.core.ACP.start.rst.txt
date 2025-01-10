@@ -1,0 +1,13 @@
+.. vale off
+
+start
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACP.start
+
+.. minigallery::
+   :add-heading: Examples using ACP.start
+
+   ansys.acp.core.ACP.start

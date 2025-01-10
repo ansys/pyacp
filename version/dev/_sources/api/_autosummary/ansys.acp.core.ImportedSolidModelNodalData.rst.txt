@@ -1,0 +1,39 @@
+﻿.. vale off
+
+ImportedSolidModelNodalData
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ImportedSolidModelNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ImportedSolidModelNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ImportedSolidModelNodalData.node_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModelNodalData
+
+   ansys.acp.core.ImportedSolidModelNodalData

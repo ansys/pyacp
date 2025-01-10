@@ -1,0 +1,64 @@
+﻿.. vale off
+
+ACPWorkflow
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ACPWorkflow
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ACPWorkflow.add_cad_geometry_from_local_file
+      
+      
+      ACPWorkflow.from_acph5_file
+      
+      
+      ACPWorkflow.from_cdb_or_dat_file
+      
+      
+      ACPWorkflow.from_mechanical_h5_file
+      
+      
+      ACPWorkflow.get_local_acph5_file
+      
+      
+      ACPWorkflow.get_local_cdb_file
+      
+      
+      ACPWorkflow.get_local_composite_definitions_file
+      
+      
+      ACPWorkflow.get_local_materials_file
+      
+      
+      ACPWorkflow.refresh_cad_geometry_from_local_file
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ACPWorkflow.model
+      ACPWorkflow.working_directory
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ACPWorkflow
+
+   ansys.acp.core.ACPWorkflow

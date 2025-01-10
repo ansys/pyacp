@@ -1,0 +1,6 @@
+effective\_stress
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableStressLimits.effective_stress

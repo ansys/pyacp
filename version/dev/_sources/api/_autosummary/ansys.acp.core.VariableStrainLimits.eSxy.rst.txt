@@ -1,0 +1,6 @@
+eSxy
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableStrainLimits.eSxy

@@ -1,0 +1,13 @@
+.. vale off
+
+working\_directory
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ACPWorkflow.working_directory
+
+.. minigallery::
+   :add-heading: Examples using ACPWorkflow.working_directory
+
+   ansys.acp.core.ACPWorkflow.working_directory

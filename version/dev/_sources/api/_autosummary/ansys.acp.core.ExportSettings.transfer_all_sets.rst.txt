@@ -1,0 +1,6 @@
+transfer\_all\_sets
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExportSettings.transfer_all_sets

@@ -1,0 +1,6 @@
+isnumeric
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: BooleanOperationType.isnumeric

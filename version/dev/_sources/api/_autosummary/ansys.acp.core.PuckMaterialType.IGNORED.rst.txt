@@ -1,0 +1,6 @@
+IGNORED
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PuckMaterialType.IGNORED

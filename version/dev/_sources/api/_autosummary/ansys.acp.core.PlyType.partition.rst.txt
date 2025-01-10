@@ -1,0 +1,6 @@
+partition
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: PlyType.partition

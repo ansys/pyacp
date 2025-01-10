@@ -1,0 +1,13 @@
+.. vale off
+
+draped\_fiber\_direction
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: AnalysisPlyElementalData.draped_fiber_direction
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPlyElementalData.draped_fiber_direction
+
+   ansys.acp.core.AnalysisPlyElementalData.draped_fiber_direction

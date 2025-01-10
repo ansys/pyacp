@@ -1,0 +1,6 @@
+YZ
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableTsaiWuConstants.YZ

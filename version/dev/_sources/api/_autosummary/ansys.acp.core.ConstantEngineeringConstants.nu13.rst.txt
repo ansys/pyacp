@@ -1,0 +1,6 @@
+nu13
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantEngineeringConstants.nu13

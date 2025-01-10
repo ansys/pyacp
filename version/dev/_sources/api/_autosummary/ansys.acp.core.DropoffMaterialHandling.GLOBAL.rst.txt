@@ -1,0 +1,13 @@
+.. vale off
+
+GLOBAL
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DropoffMaterialHandling.GLOBAL
+
+.. minigallery::
+   :add-heading: Examples using DropoffMaterialHandling.GLOBAL
+
+   ansys.acp.core.DropoffMaterialHandling.GLOBAL

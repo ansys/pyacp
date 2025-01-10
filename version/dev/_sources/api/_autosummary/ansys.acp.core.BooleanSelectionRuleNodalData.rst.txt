@@ -1,0 +1,39 @@
+﻿.. vale off
+
+BooleanSelectionRuleNodalData
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: BooleanSelectionRuleNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      BooleanSelectionRuleNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      BooleanSelectionRuleNodalData.node_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRuleNodalData
+
+   ansys.acp.core.BooleanSelectionRuleNodalData

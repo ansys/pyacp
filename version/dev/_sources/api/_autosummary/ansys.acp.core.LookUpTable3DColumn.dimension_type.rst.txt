@@ -1,0 +1,13 @@
+.. vale off
+
+dimension\_type
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3DColumn.dimension_type
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3DColumn.dimension_type
+
+   ansys.acp.core.LookUpTable3DColumn.dimension_type

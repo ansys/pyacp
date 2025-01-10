@@ -1,0 +1,13 @@
+.. vale off
+
+volume
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ModelingPlyElementalData.volume
+
+.. minigallery::
+   :add-heading: Examples using ModelingPlyElementalData.volume
+
+   ansys.acp.core.ModelingPlyElementalData.volume

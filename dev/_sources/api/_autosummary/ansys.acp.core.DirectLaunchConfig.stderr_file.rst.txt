@@ -1,0 +1,6 @@
+stderr\_file
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DirectLaunchConfig.stderr_file

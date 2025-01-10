@@ -1,0 +1,48 @@
+﻿.. vale off
+
+VariableEngineeringConstants
+============================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: VariableEngineeringConstants
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VariableEngineeringConstants.E
+      VariableEngineeringConstants.E1
+      VariableEngineeringConstants.E2
+      VariableEngineeringConstants.E3
+      VariableEngineeringConstants.G12
+      VariableEngineeringConstants.G23
+      VariableEngineeringConstants.G31
+      VariableEngineeringConstants.field_variables
+      VariableEngineeringConstants.interpolation_options
+      VariableEngineeringConstants.nu
+      VariableEngineeringConstants.nu12
+      VariableEngineeringConstants.nu13
+      VariableEngineeringConstants.nu23
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VariableEngineeringConstants
+
+   ansys.acp.core.material_property_sets.VariableEngineeringConstants

@@ -1,0 +1,13 @@
+.. vale off
+
+angle
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutoffSelectionRule.angle
+
+.. minigallery::
+   :add-heading: Examples using CutoffSelectionRule.angle
+
+   ansys.acp.core.CutoffSelectionRule.angle

@@ -1,0 +1,6 @@
+istitle
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: DropoffMaterialType.istitle

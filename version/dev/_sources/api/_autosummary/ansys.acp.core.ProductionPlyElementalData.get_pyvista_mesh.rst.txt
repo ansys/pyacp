@@ -1,0 +1,13 @@
+.. vale off
+
+get\_pyvista\_mesh
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ProductionPlyElementalData.get_pyvista_mesh
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.get_pyvista_mesh
+
+   ansys.acp.core.ProductionPlyElementalData.get_pyvista_mesh

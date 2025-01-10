@@ -1,0 +1,39 @@
+﻿.. vale off
+
+OrientedSelectionSetNodalData
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: OrientedSelectionSetNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      OrientedSelectionSetNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      OrientedSelectionSetNodalData.node_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSetNodalData
+
+   ansys.acp.core.OrientedSelectionSetNodalData

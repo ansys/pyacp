@@ -1,0 +1,13 @@
+.. vale off
+
+element\_types
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: MeshData.element_types
+
+.. minigallery::
+   :add-heading: Examples using MeshData.element_types
+
+   ansys.acp.core.MeshData.element_types

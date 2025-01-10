@@ -1,0 +1,6 @@
+M
+=
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantPuckConstants.M

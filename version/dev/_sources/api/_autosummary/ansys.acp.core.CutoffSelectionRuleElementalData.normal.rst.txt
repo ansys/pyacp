@@ -1,0 +1,13 @@
+.. vale off
+
+normal
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CutoffSelectionRuleElementalData.normal
+
+.. minigallery::
+   :add-heading: Examples using CutoffSelectionRuleElementalData.normal
+
+   ansys.acp.core.CutoffSelectionRuleElementalData.normal

@@ -1,0 +1,6 @@
+mat\_type
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ConstantPuckConstants.mat_type

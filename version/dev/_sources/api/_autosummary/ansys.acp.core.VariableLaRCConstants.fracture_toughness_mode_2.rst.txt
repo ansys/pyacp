@@ -1,0 +1,6 @@
+fracture\_toughness\_mode\_2
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableLaRCConstants.fracture_toughness_mode_2

@@ -1,0 +1,6 @@
+interpolation\_options
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableStrainLimits.interpolation_options

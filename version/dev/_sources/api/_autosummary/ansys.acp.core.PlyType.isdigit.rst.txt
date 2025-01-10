@@ -1,0 +1,6 @@
+isdigit
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: PlyType.isdigit

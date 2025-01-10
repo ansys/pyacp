@@ -1,0 +1,6 @@
+nu12
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableEngineeringConstants.nu12

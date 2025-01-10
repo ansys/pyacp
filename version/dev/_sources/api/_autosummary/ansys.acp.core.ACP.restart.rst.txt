@@ -1,0 +1,13 @@
+.. vale off
+
+restart
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACP.restart
+
+.. minigallery::
+   :add-heading: Examples using ACP.restart
+
+   ansys.acp.core.ACP.restart

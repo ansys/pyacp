@@ -1,0 +1,39 @@
+﻿.. vale off
+
+SolidModelNodalData
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SolidModelNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SolidModelNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SolidModelNodalData.node_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using SolidModelNodalData
+
+   ansys.acp.core.SolidModelNodalData

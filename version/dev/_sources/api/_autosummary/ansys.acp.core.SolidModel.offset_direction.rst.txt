@@ -1,0 +1,6 @@
+offset\_direction
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.offset_direction

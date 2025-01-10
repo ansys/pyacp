@@ -1,0 +1,13 @@
+.. vale off
+
+element\_labels
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CylindricalSelectionRuleElementalData.element_labels
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRuleElementalData.element_labels
+
+   ansys.acp.core.CylindricalSelectionRuleElementalData.element_labels

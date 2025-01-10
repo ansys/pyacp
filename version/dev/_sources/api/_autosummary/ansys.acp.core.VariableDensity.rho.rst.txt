@@ -1,0 +1,6 @@
+rho
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableDensity.rho
