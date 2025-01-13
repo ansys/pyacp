@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1736761095130,
+  "lastUpdate": 1736763458901,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -24932,6 +24932,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00014285934890496122",
             "extra": "mean: 38.69782707407568 msec\nrounds: 27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d47183c083168fb70a763c965bcb3eb6a2839489",
+          "message": "Set LIBGL_ALWAYS_SOFTWARE env variable in doc build (#762)\n\nGets rid of the MESA errors [1] which appeared since `ubuntu-latest` switched to 24.04.\n\n[1] errors like the following. They seemed to ultimately not cause any build failure, but pollute the output.\n```\nMESA: error: ZINK: vkCreateInstance failed (VK_ERROR_INCOMPATIBLE_DRIVER)\nglx: failed to create drisw screen\n```",
+          "timestamp": "2025-01-13T11:10:54+01:00",
+          "tree_id": "c909255a3c5e07fed85392c5ea4b45355ea3ce92",
+          "url": "https://github.com/ansys/pyacp/commit/d47183c083168fb70a763c965bcb3eb6a2839489"
+        },
+        "date": 1736763451027,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 7.522691128492133,
+            "unit": "iter/sec",
+            "range": "stddev: 0.012976139783937716",
+            "extra": "mean: 132.931152285717 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.6810501623798046,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003928984628391229",
+            "extra": "mean: 372.98817233332215 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.384860107091913,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.5983467279999957 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04093688770674034,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.427846277999976 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.135104167853561,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004814387098150723",
+            "extra": "mean: 468.3612233333368 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.2860073918913587,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.496413129000018 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.02964020727902496,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 33.73795569599997 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1312.9896332312076,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002132354515985468",
+            "extra": "mean: 761.6206363633243 usec\nrounds: 1793"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 401.4854423337283,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00007058801869682142",
+            "extra": "mean: 2.4907503350240185 msec\nrounds: 394"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 48.38340689441109,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013765972679538035",
+            "extra": "mean: 20.668242775510567 msec\nrounds: 49"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.975297176863696,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006539393610038852",
+            "extra": "mean: 200.99301899999773 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 1009.5569908041336,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013454236211568168",
+            "extra": "mean: 990.5334806343906 usec\nrounds: 1136"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 234.41434099351076,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00005709271751497554",
+            "extra": "mean: 4.265950605930217 msec\nrounds: 236"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 26.10328459283291,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013022654039514093",
+            "extra": "mean: 38.3093551481474 msec\nrounds: 27"
           }
         ]
       }
