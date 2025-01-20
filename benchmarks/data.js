@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1736763458901,
+  "lastUpdate": 1737362462120,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -25054,6 +25054,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00013022654039514093",
             "extra": "mean: 38.3093551481474 msec\nrounds: 27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b944c2c389260399a27edbceffd32ede0d942765",
+          "message": "Bump the dependencies group across 1 directory with 6 updates (#766)\n\n* Bump the dependencies group across 1 directory with 6 updates\n\nBumps the dependencies group with 6 updates in the / directory:\n\n| Package | From | To |\n| --- | --- | --- |\n| [numpy](https://github.com/numpy/numpy) | `2.2.1` | `2.2.2` |\n| [ansys-mechanical-core](https://github.com/ansys/pymechanical) | `0.11.10` | `0.11.12` |\n| [scipy](https://github.com/scipy/scipy) | `1.15.0` | `1.15.1` |\n| [ansys-sphinx-theme](https://github.com/ansys/ansys-sphinx-theme) | `1.2.4` | `1.2.6` |\n| [pypandoc](https://github.com/JessicaTegner/pypandoc) | `1.14` | `1.15` |\n| [hypothesis](https://github.com/HypothesisWorks/hypothesis) | `6.123.7` | `6.124.1` |\n\n\n\nUpdates `numpy` from 2.2.1 to 2.2.2\n- [Release notes](https://github.com/numpy/numpy/releases)\n- [Changelog](https://github.com/numpy/numpy/blob/main/doc/RELEASE_WALKTHROUGH.rst)\n- [Commits](https://github.com/numpy/numpy/compare/v2.2.1...v2.2.2)\n\nUpdates `ansys-mechanical-core` from 0.11.10 to 0.11.12\n- [Release notes](https://github.com/ansys/pymechanical/releases)\n- [Changelog](https://github.com/ansys/pymechanical/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/ansys/pymechanical/compare/v0.11.10...v0.11.12)\n\nUpdates `scipy` from 1.15.0 to 1.15.1\n- [Release notes](https://github.com/scipy/scipy/releases)\n- [Commits](https://github.com/scipy/scipy/compare/v1.15.0...v1.15.1)\n\nUpdates `ansys-sphinx-theme` from 1.2.4 to 1.2.6\n- [Release notes](https://github.com/ansys/ansys-sphinx-theme/releases)\n- [Commits](https://github.com/ansys/ansys-sphinx-theme/compare/v1.2.4...v1.2.6)\n\nUpdates `pypandoc` from 1.14 to 1.15\n- [Release notes](https://github.com/JessicaTegner/pypandoc/releases)\n- [Changelog](https://github.com/JessicaTegner/pypandoc/blob/master/release.md)\n- [Commits](https://github.com/JessicaTegner/pypandoc/compare/v1.14...v1.15)\n\nUpdates `hypothesis` from 6.123.7 to 6.124.1\n- [Release notes](https://github.com/HypothesisWorks/hypothesis/releases)\n- [Commits](https://github.com/HypothesisWorks/hypothesis/compare/hypothesis-python-6.123.7...hypothesis-python-6.124.1)\n\n---\nupdated-dependencies:\n- dependency-name: numpy\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n  dependency-group: dependencies\n- dependency-name: ansys-mechanical-core\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n  dependency-group: dependencies\n- dependency-name: scipy\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n  dependency-group: dependencies\n- dependency-name: ansys-sphinx-theme\n  dependency-type: direct:development\n  update-type: version-update:semver-patch\n  dependency-group: dependencies\n- dependency-name: pypandoc\n  dependency-type: direct:development\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: hypothesis\n  dependency-type: direct:development\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\n\n* Remove now-unused type ignore statements\n\n---------\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: Dominik Gresch <dominik.gresch@ansys.com>",
+          "timestamp": "2025-01-20T08:34:23Z",
+          "tree_id": "fd827e8018fc7c8ca320dd33ad250e9cd37b73fa",
+          "url": "https://github.com/ansys/pyacp/commit/b944c2c389260399a27edbceffd32ede0d942765"
+        },
+        "date": 1737362450612,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 7.103649008815792,
+            "unit": "iter/sec",
+            "range": "stddev: 0.017289768960028314",
+            "extra": "mean: 140.77272100000673 msec\nrounds: 7"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.5771794280356524,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004086589151679951",
+            "extra": "mean: 388.02110133333184 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.3829690156937875,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.611177299000019 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04094259473274375,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.424441258 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.1719047854231026,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003151032049772352",
+            "extra": "mean: 460.4253403333208 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.28616916247246227,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.4944366170000194 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.029622766110205097,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 33.757819788999996 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1346.6618797107672,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00019598275131095522",
+            "extra": "mean: 742.5768970417264 usec\nrounds: 1690"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 402.5694635139974,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006309987378368176",
+            "extra": "mean: 2.484043353092602 msec\nrounds: 388"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 48.0301874236904,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013055312398446462",
+            "extra": "mean: 20.820239387755546 msec\nrounds: 49"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.974422771662228,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00009185228043559581",
+            "extra": "mean: 201.028349600017 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 1020.8607086847599,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00012385580827049638",
+            "extra": "mean: 979.565568047343 usec\nrounds: 1014"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 232.437474813208,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00008372711694565353",
+            "extra": "mean: 4.302232248924673 msec\nrounds: 233"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 25.878574017612436,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00015125739264522977",
+            "extra": "mean: 38.642005518519696 msec\nrounds: 27"
           }
         ]
       }
