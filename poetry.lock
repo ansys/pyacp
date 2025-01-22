@@ -254,15 +254,15 @@ test = ["pytest (>=7.1.2)", "pytest-cov (>=3.0.0)", "pytest-rerunfailures (>=11.
 
 [[package]]
 name = "ansys-dpf-core"
-version = "0.13.3"
+version = "0.13.4"
 description = "Data Processing Framework - Python Core"
 optional = true
 python-versions = "<4,>=3.9"
 files = [
-    {file = "ansys_dpf_core-0.13.3-py3-none-any.whl", hash = "sha256:09d1089005043728b8ac53dd0c88dee9c27b3a3dc051ab586bc658bf403ab0e2"},
-    {file = "ansys_dpf_core-0.13.3-py3-none-manylinux1_x86_64.whl", hash = "sha256:ff76d86892eb34a6f8ac97b26e50aefc7456c0b9535a72b71a2d05d1897a4065"},
-    {file = "ansys_dpf_core-0.13.3-py3-none-manylinux_2_17_x86_64.whl", hash = "sha256:bd1a6a80f8f56c8efb1bf67c3f621aaa5adaa45b427802fc2fbeb952c8ad4a47"},
-    {file = "ansys_dpf_core-0.13.3-py3-none-win_amd64.whl", hash = "sha256:4daa55f8644e5745eff34eeecad23671957508bb5a2878b484b29ad0375677ce"},
+    {file = "ansys_dpf_core-0.13.4-py3-none-any.whl", hash = "sha256:3f51a2cc317693924f9e956ac81b06d850177393fe89ef1847e616bfa89784af"},
+    {file = "ansys_dpf_core-0.13.4-py3-none-manylinux1_x86_64.whl", hash = "sha256:3efa1b377f45f51e5d3fb022da8867ea1a8f418a2626d77aa11bac90a000f92d"},
+    {file = "ansys_dpf_core-0.13.4-py3-none-manylinux_2_17_x86_64.whl", hash = "sha256:b030cc006a3f38ffca2d588aeca2085bd51c3c3cb79d7946894cab4bbd28a3d5"},
+    {file = "ansys_dpf_core-0.13.4-py3-none-win_amd64.whl", hash = "sha256:d168a9245d57f45dd0ff589b93dd59c382d9e5ccb26528a1f7c67c052b1c392d"},
 ]
 
 [package.dependencies]
@@ -281,13 +281,13 @@ plotting = ["imageio (<2.28.1)", "imageio-ffmpeg", "matplotlib (>=3.2)", "pyvist
 
 [[package]]
 name = "ansys-mapdl-core"
-version = "0.68.6"
+version = "0.69.2"
 description = "A Python wrapper for Ansys MAPDL."
 optional = true
 python-versions = "<3.13,>=3.10"
 files = [
-    {file = "ansys_mapdl_core-0.68.6-py3-none-any.whl", hash = "sha256:8a62178e7b0aeb71a40edd4b97cfc2fa7849df643ad574f41b52aebea552b2f8"},
-    {file = "ansys_mapdl_core-0.68.6.tar.gz", hash = "sha256:cb387b4f6a251f8da1ce0f5a6cca73b2ad83cdd8574fdb1da102280cb95c9f44"},
+    {file = "ansys_mapdl_core-0.69.2-py3-none-any.whl", hash = "sha256:a7207bf631e9fb0e7008e97efb6629be66d54cb925db5f454f1f0b9a84dc84e1"},
+    {file = "ansys_mapdl_core-0.69.2.tar.gz", hash = "sha256:8b5e631bf18335a1a92c712cafcc860b066fbcf7a50ac847ba8b79775b10a320"},
 ]
 
 [package.dependencies]
@@ -299,9 +299,8 @@ ansys-tools-path = ">=0.3.1"
 ansys-tools-visualization-interface = ">=0.2.6"
 click = ">=8.1.3"
 grpcio = ">=1.30.0"
-importlib-metadata = ">=4.0"
 matplotlib = ">=3.0.0"
-numpy = {version = ">=1.14.0,<3.0.0", markers = "python_version >= \"3.9\""}
+numpy = ">=1.14.0,<3.0.0"
 pexpect = {version = ">=4.8.0", markers = "platform_system == \"Linux\""}
 platformdirs = ">=3.6.0"
 protobuf = ">=3.12.2"
@@ -314,9 +313,9 @@ tqdm = ">=4.45.0"
 vtk = ">=9.0.0"
 
 [package.extras]
-doc = ["ansys-dpf-core (==0.10.1)", "ansys-mapdl-reader (==0.54.1)", "ansys-sphinx-theme (==1.1.2)", "ansys-tools-visualization-interface (==0.4.5)", "grpcio (==1.66.2)", "imageio (==2.35.1)", "imageio-ffmpeg (==0.5.1)", "jupyter (==1.1.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.9.2)", "nbformat (==5.10.4)", "numpydoc (==1.8.0)", "pandas (==2.2.3)", "plotly (==5.24.1)", "pyiges[full] (==0.3.1)", "pypandoc (==1.14)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "sphinx (==8.1.0)", "sphinx-autobuild (==2024.10.3)", "sphinx-autodoc-typehints (==1.25.2)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.6.1)", "sphinx-gallery (==0.18.0)", "sphinx-jinja (==2.0.2)", "sphinx-notfound-page (==1.0.4)", "sphinxcontrib-websupport (==2.0.0)", "sphinxemoji (==0.3.1)", "vtk (==9.3.1)"]
+doc = ["ansys-dpf-core (==0.10.1)", "ansys-mapdl-reader (==0.54.2)", "ansys-sphinx-theme (==1.2.6)", "ansys-tools-visualization-interface (==0.8.1)", "grpcio (==1.69.0)", "imageio (==2.36.1)", "imageio-ffmpeg (==0.6.0)", "jupyter (==1.1.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.10.0)", "nbformat (==5.10.4)", "numpydoc (==1.8.0)", "pandas (==2.2.3)", "plotly (==5.24.1)", "pyiges[full] (==0.3.1)", "pypandoc (==1.15)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "sphinx (==8.1.3)", "sphinx-autobuild (==2024.10.3)", "sphinx-autodoc-typehints (==1.25.2)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.6.1)", "sphinx-gallery (==0.18.0)", "sphinx-jinja (==2.0.2)", "sphinx-notfound-page (==1.0.4)", "sphinxcontrib-websupport (==2.0.0)", "sphinxemoji (==0.3.1)", "vtk (==9.3.1)"]
 jupyter = ["ipywidgets", "jupyterlab (>=3)"]
-tests = ["ansys-dpf-core (==0.10.1)", "ansys-tools-visualization-interface (==0.4.5)", "autopep8 (==2.3.1)", "matplotlib (==3.9.2)", "pandas (==2.2.3)", "pyansys-tools-report (==0.8.0)", "pyiges[full] (==0.3.1)", "pytest (==8.3.3)", "pytest-cov (==5.0.0)", "pytest-memprof (<0.3.0)", "pytest-pyvista (==0.1.9)", "pytest-rerunfailures (==14.0)", "scipy (==1.14.1)", "vtk (==9.3.1)"]
+tests = ["ansys-dpf-core (==0.10.1)", "ansys-tools-visualization-interface (==0.8.1)", "autopep8 (==2.3.2)", "matplotlib (==3.10.0)", "pandas (==2.2.3)", "pyansys-tools-report (==0.8.1)", "pyfakefs (==5.7.4)", "pyiges[full] (==0.3.1)", "pytest (==8.3.4)", "pytest-cov (==6.0.0)", "pytest-profiling (==1.8.1)", "pytest-pyvista (==0.1.9)", "pytest-random-order (==1.1.1)", "pytest-rerunfailures (==15.0)", "pytest-timeout (==2.3.1)", "scipy (==1.15.1)", "vtk (==9.3.1)"]
 
 [[package]]
 name = "ansys-mapdl-reader"
@@ -1845,13 +1844,13 @@ pyparsing = {version = ">=2.4.2,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.0.2 || >3.0
 
 [[package]]
 name = "hypothesis"
-version = "6.124.1"
+version = "6.124.2"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "hypothesis-6.124.1-py3-none-any.whl", hash = "sha256:40c8be982d3a79b26d5ae11b6606189784f1654f3c750ffcb99fc5b352d5e2ba"},
-    {file = "hypothesis-6.124.1.tar.gz", hash = "sha256:6e21995c3cb3198ef7e60853acce1fbaa6c16de59c2fb3158845664dfe639bd9"},
+    {file = "hypothesis-6.124.2-py3-none-any.whl", hash = "sha256:fef7709a404929a9cd3e785f60a6e026089aab986e288b1fdced13091574d474"},
+    {file = "hypothesis-6.124.2.tar.gz", hash = "sha256:c98823fc1323f23399e5f2251982fd1f38259f84cf627aaaea1b3f0a0d4d2b03"},
 ]
 
 [package.dependencies]
@@ -3296,13 +3295,13 @@ xxhash = ["xxhash (>=1.4.3)"]
 
 [[package]]
 name = "pre-commit"
-version = "4.0.1"
+version = "4.1.0"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "pre_commit-4.0.1-py2.py3-none-any.whl", hash = "sha256:efde913840816312445dc98787724647c65473daefe420785f885e8ed9a06878"},
-    {file = "pre_commit-4.0.1.tar.gz", hash = "sha256:80905ac375958c0444c65e9cebebd948b3cdb518f335a091a670a89d652139d2"},
+    {file = "pre_commit-4.1.0-py2.py3-none-any.whl", hash = "sha256:d29e7cb346295bcc1cc75fc3e92e343495e3ea0196c9ec6ba53f49f10ab6ae7b"},
+    {file = "pre_commit-4.1.0.tar.gz", hash = "sha256:ae3f018575a588e30dfddfab9a05448bfbd6b73d78709617b5a2b853549716d4"},
 ]
 
 [package.dependencies]
