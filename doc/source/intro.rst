@@ -18,28 +18,20 @@ because it keeps Python packages isolated from your system Python.
 Usage
 ^^^^^
 
+.. important::
+    The tutorial assumes you have a copy of the source code of `pyacp <https://github.com/ansys/pyacp>`_ and run the interpreter from its root folder.
+
 Start ACP
 ~~~~~~~~~
 
 Start a Python interpreter and import the PyACP package:
 
-.. testcode::
-    :hide:
+.. testsetup::
 
-    import tempfile
-    import shutil
-    import pathlib
     import os
 
-    workdir_doctest = tempfile.TemporaryDirectory()
-    DATA_DIRECTORY = pathlib.Path(workdir_doctest.name)
-    _ = shutil.copyfile(
-        "../tests/data/minimal_complete_model_no_matml_link.acph5",
-        DATA_DIRECTORY / "model.acph5",
-    )
-    _ = shutil.copyfile("../tests/data/minimal_model_2.cdb", DATA_DIRECTORY / "model.cdb")
     old_cwd = os.getcwd()
-    os.chdir(DATA_DIRECTORY)
+    os.chdir(r"..")
 
 .. testcode::
 
@@ -61,22 +53,23 @@ To load an existing model with PyACP, use the :meth:`.import_model` method:
 
 .. testcode::
 
-    model = acp.import_model("model.acph5")
+    model = acp.import_model(r"examples/getting_started/model.acph5")
 
 To import an FE model, use the ``format="ansys:cdb"`` or ``format="ansys:dat"``
 parameter, respectively.
-The following example imports a CDB file.
+The following example imports a CDB file (make sure to load this model before continuing the tutorial).
 
 .. testcode::
 
     model = acp.import_model(
-        "model.cdb",
+        r"examples/getting_started/model.cdb",
         format="ansys:cdb",
         unit_system=pyacp.UnitSystemType.MPA,
     )
 
+Once loaded, you can modify the object directly, for example like assigning a name to a material with:
+
 .. testcode::
-    :hide:
 
     model.materials["2"].name = "Carbon Woven"
 
@@ -162,7 +155,6 @@ This is just a brief introduction to PyACP. To learn more:
 - The :ref:`how-to guides <howto>` provide instructions on how to perform specific tasks.
 - The :ref:`API reference <api_reference>` provides detailed information on all available classes and methods.
 
-.. testcode::
-    :hide:
+.. testcleanup::
 
     os.chdir(old_cwd)
