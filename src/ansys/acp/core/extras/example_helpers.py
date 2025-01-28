@@ -99,6 +99,8 @@ class ExampleKeys(Enum):
     IMPORTED_SOLID_MODEL_SOLID_MESH = auto()
     SNAP_TO_GEOMETRY = auto()
     CUT_OFF_GEOMETRY_SOLID_MODEL = auto()
+    GETTING_STARTED_MODEL = auto()
+    GETTING_STARTED_MODEL_CDB = auto()
 
 
 EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
@@ -150,6 +152,12 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
     ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL: _ExampleLocation(
         directory="geometries", filename="cut_off_geometry_solid_model.stp"
     ),
+    ExampleKeys.GETTING_STARTED_MODEL: _ExampleLocation(
+        directory="getting_started", filename="model.acph5"
+    ),
+    ExampleKeys.GETTING_STARTED_MODEL_CDB: _ExampleLocation(
+        directory="getting_started", filename="model.cdb"
+    )
 }
 
 
