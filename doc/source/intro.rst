@@ -18,9 +18,6 @@ because it keeps Python packages isolated from your system Python.
 Usage
 ^^^^^
 
-.. important::
-    The tutorial assumes you have a copy of the source code of `pyacp <https://github.com/ansys/pyacp>`_ and run the interpreter from its root folder.
-
 Start ACP
 ~~~~~~~~~
 
@@ -29,6 +26,11 @@ Start a Python interpreter and import the PyACP package:
 .. testsetup::
 
     import os
+    import tempfile
+    import pathlib
+
+    tempdir = tempfile.TemporaryDirectory()
+    WORKING_DIR = pathlib.Path(tempdir.name)
 
     old_cwd = os.getcwd()
     os.chdir(r"..")
