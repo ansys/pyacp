@@ -28,42 +28,25 @@ Start a python interpreter and import the required PyACP packages:
     import ansys.acp.core as pyacp
     from ansys.acp.core.extras import ExampleKeys, get_example_file # This is only required for the tutorial
 
-To not pollute the filesystem, we are going to create a temporary directory were we can download the example files:
+To not pollute the filesystem, we are going to create a temporary directory were we can download the files:
 
 .. testcode::
+
     import tempfile
     import pathlib
 
     tempdir = tempfile.TemporaryDirectory()
     WORKING_DIR = pathlib.Path(tempdir.name)
 
+Download the example files by using the provided helper function as:
+
+.. testcode::
+
+    plate_no_matml_path = get_example_file(ExampleKeys.GS_MINIMAL_PLATE_NO_MATML, WORKING_DIR)
+    plate_path = get_example_file(ExampleKeys.GS_MINIMAL_PLATE, WORKING_DIR)
+
 Start ACP
 ~~~~~~~~~
-
-Start a Python interpreter and import the PyACP package:
-
-.. testsetup::
-
-    import os
-    import tempfile
-    import pathlib
-
-    workdir_doctest = tempfile.TemporaryDirectory()
-    WORKING_DIR = pathlib.Path(workdir_doctest.name)
-
-    old_cwd = os.getcwd()
-    os.chdir(WORKING_DIR)
-
-.. testcode::
-
-    import ansys.acp.core as pyacp
-
-In order to run the tutorial, we are going to need some extra functions to download the example files
- (you will not need this extra import in general):
-
-.. testcode::
-
-    from ansys.acp.core.extras import ExampleKeys, get_example_file
 
 Next, start an ACP instance:
 
@@ -71,35 +54,36 @@ Next, start an ACP instance:
 
     acp = pyacp.launch_acp()
 
-Get a model
-~~~~~~~~~~~
+Load a model
+~~~~~~~~~~~~
 
 You can resume a model from an existing ACP DB (ACPH5) or built it from
-scratch by importing an FE model (mesh).
+scratch by importing an FE model (mesh). We are going to use the path to the model returned by the ``get_example_file``
+function, but a raw path like ``r"path\to\your\model.acph5"`` can also be used.
 
 To load an existing model with PyACP, use the :meth:`.import_model` method:
 
 .. testcode::
 
-    model = acp.import_model(r"examples/getting_started/model.acph5")
+    plate_no_matml_model = acp.import_model(plate_no_matml_path)
 
 To import an FE model, use the ``format="ansys:cdb"`` or ``format="ansys:dat"``
 parameter, respectively.
-The following example imports a CDB file (make sure to load this model before continuing the tutorial).
+The following example imports a CDB file.
 
 .. testcode::
 
-    model = acp.import_model(
-        r"examples/getting_started/model.cdb",
+    plate_model = acp.import_model(
+        plate_path,
         format="ansys:cdb",
         unit_system=pyacp.UnitSystemType.MPA,
     )
 
-Once loaded, you can modify the object directly, for example like assigning a name to a material with:
+Once loaded, you can modify the object directly, for example you can assigning a name to a material with:
 
 .. testcode::
 
-    model.materials["2"].name = "Carbon Woven"
+    plate_model.materials["2"].name = "Carbon Woven"
 
 See :class:`.FeFormat` for a list of supported FE formats. Check out the
 :ref:`input_file_for_pyacp` section to see how input files can be created.
@@ -119,14 +103,14 @@ Start defining new objects in the model. For example, to create a ply and all it
 
 .. testcode::
 
-    fabric = model.create_fabric(name="Carbon Woven 0.2mm", thickness=0.2)
-    oss = model.create_oriented_selection_set(
+    fabric = plate_model.create_fabric(name="Carbon Woven 0.2mm", thickness=0.2)
+    oss = plate_model.create_oriented_selection_set(
         name="OSS",
         orientation_direction=(-0.0, 1.0, 0.0),
-        element_sets=[model.element_sets["All_Elements"]],
-        rosettes=[model.rosettes["12"]],
+        element_sets=[plate_model.element_sets["All_Elements"]],
+        rosettes=[plate_model.rosettes["12"]],
     )
-    modeling_group = model.create_modeling_group(name="Modeling Group 1")
+    modeling_group = plate_model.create_modeling_group(name="Modeling Group 1")
     modeling_ply = modeling_group.create_modeling_ply(name="Ply 1", ply_angle=10.0)
 
 These ``create_*`` methods take additional parameters, which can be used to immediately set the properties of the new object.
@@ -136,7 +120,7 @@ Alternatively, you can always set the properties of an object after it has been 
 
 .. testcode::
 
-    fabric.material = model.materials["Carbon Woven"]
+    fabric.material = plate_model.materials["Carbon Woven"]
     modeling_ply.ply_material = fabric
     modeling_ply.oriented_selection_sets = [oss]
 
@@ -153,21 +137,21 @@ To perform the update, use the :meth:`update <.Model.update>` method:
 
 .. testcode::
 
-    model.update()
+    plate_model.update()
 
 Many PyACP objects provide data which can be plotted. For example, to show the mesh:
 
 .. testcode::
 
-    model.mesh.to_pyvista().plot()
+    plate_model.mesh.to_pyvista().plot()
 
 Or to show the thickness of a modeling ply or fiber directions:
 
 .. testcode::
 
-    modeling_ply.elemental_data.thickness.get_pyvista_mesh(mesh=model.mesh).plot()
+    modeling_ply.elemental_data.thickness.get_pyvista_mesh(mesh=plate_model.mesh).plot()
     plotter = pyacp.get_directions_plotter(
-        model=model, components=[modeling_ply.elemental_data.reference_direction]
+        model=plate_model, components=[modeling_ply.elemental_data.reference_direction]
     )
     plotter.show()
 
@@ -183,6 +167,3 @@ This is just a brief introduction to PyACP. To learn more:
 - The :ref:`how-to guides <howto>` provide instructions on how to perform specific tasks.
 - The :ref:`API reference <api_reference>` provides detailed information on all available classes and methods.
 
-.. testcleanup::
-
-    os.chdir(old_cwd)
