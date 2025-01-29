@@ -26,7 +26,10 @@ Start a python interpreter and import the required PyACP packages:
 .. testcode::
 
     import ansys.acp.core as pyacp
-    from ansys.acp.core.extras import ExampleKeys, get_example_file # This is only required for the tutorial
+    from ansys.acp.core.extras import (
+        ExampleKeys,
+        get_example_file,
+    )  # This is only required for the tutorial
 
 To not pollute the filesystem, we are going to create a temporary directory were we can download the files:
 
@@ -42,7 +45,9 @@ Download the example files by using the provided helper function as:
 
 .. testcode::
 
-    plate_no_matml_path = get_example_file(ExampleKeys.GS_MINIMAL_PLATE_NO_MATML, WORKING_DIR)
+    plate_no_matml_path = get_example_file(
+        ExampleKeys.GS_MINIMAL_PLATE_NO_MATML, WORKING_DIR
+    )
     plate_path = get_example_file(ExampleKeys.GS_MINIMAL_PLATE, WORKING_DIR)
 
 Start ACP

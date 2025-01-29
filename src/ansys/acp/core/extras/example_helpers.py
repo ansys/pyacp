@@ -157,7 +157,7 @@ EXAMPLE_FILES: dict[ExampleKeys, _ExampleLocation] = {
     ),
     ExampleKeys.GS_MINIMAL_PLATE: _ExampleLocation(
         directory="getting_started", filename="minimal_plate.cdb"
-    )
+    ),
 }
 
 
