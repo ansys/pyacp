@@ -18,6 +18,25 @@ because it keeps Python packages isolated from your system Python.
 Usage
 ^^^^^
 
+Tutorial setup
+~~~~~~~~~~~~~~
+
+Start a python interpreter and import the required PyACP packages:
+
+.. testcode::
+
+    import ansys.acp.core as pyacp
+    from ansys.acp.core.extras import ExampleKeys, get_example_file # This is only required for the tutorial
+
+To not pollute the filesystem, we are going to create a temporary directory were we can download the example files:
+
+.. testcode::
+    import tempfile
+    import pathlib
+
+    tempdir = tempfile.TemporaryDirectory()
+    WORKING_DIR = pathlib.Path(tempdir.name)
+
 Start ACP
 ~~~~~~~~~
 
@@ -29,15 +48,22 @@ Start a Python interpreter and import the PyACP package:
     import tempfile
     import pathlib
 
-    tempdir = tempfile.TemporaryDirectory()
-    WORKING_DIR = pathlib.Path(tempdir.name)
+    workdir_doctest = tempfile.TemporaryDirectory()
+    WORKING_DIR = pathlib.Path(workdir_doctest.name)
 
     old_cwd = os.getcwd()
-    os.chdir(r"..")
+    os.chdir(WORKING_DIR)
 
 .. testcode::
 
     import ansys.acp.core as pyacp
+
+In order to run the tutorial, we are going to need some extra functions to download the example files
+ (you will not need this extra import in general):
+
+.. testcode::
+
+    from ansys.acp.core.extras import ExampleKeys, get_example_file
 
 Next, start an ACP instance:
 
