@@ -66,7 +66,7 @@ You can resume a model from an existing ACP DB (ACPH5) or built it from
 scratch by importing an FE model (mesh). We are going to use the path to the model returned by the ``get_example_file``
 function, but a raw path like ``r"path\to\your\model.acph5"`` can also be used.
 
-To load an existing model with PyACP, use the :meth:`.import_model` method:
+To load an existing ACP layup model with PyACP, use the :meth:`.import_model` method:
 
 .. testcode::
 
