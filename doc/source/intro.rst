@@ -45,10 +45,8 @@ Download the example files by using the provided helper function as:
 
 .. testcode::
 
-    plate_no_matml_path = get_example_file(
-        ExampleKeys.GS_MINIMAL_PLATE_NO_MATML, WORKING_DIR
-    )
-    plate_path = get_example_file(ExampleKeys.GS_MINIMAL_PLATE, WORKING_DIR)
+    plate_acph5_path = get_example_file(ExampleKeys.MINIMAL_PLATE_ACPH5, WORKING_DIR)
+    plate_cdb_path = get_example_file(ExampleKeys.MINIMAL_PLATE_CDB, WORKING_DIR)
 
 Start ACP
 ~~~~~~~~~
@@ -70,7 +68,7 @@ To load an existing model with PyACP, use the :meth:`.import_model` method:
 
 .. testcode::
 
-    plate_no_matml_model = acp.import_model(plate_no_matml_path)
+    plate_acph5_model = acp.import_model(plate_acph5_path)
 
 To import an FE model, use the ``format="ansys:cdb"`` or ``format="ansys:dat"``
 parameter, respectively.
@@ -78,8 +76,8 @@ The following example imports a CDB file.
 
 .. testcode::
 
-    plate_model = acp.import_model(
-        plate_path,
+    plate_cdb_model = acp.import_model(
+        plate_cdb_path,
         format="ansys:cdb",
         unit_system=pyacp.UnitSystemType.MPA,
     )
@@ -88,7 +86,7 @@ Once loaded, you can modify the object directly, for example you can assigning a
 
 .. testcode::
 
-    plate_model.materials["2"].name = "Carbon Woven"
+    plate_cdb_model.materials["2"].name = "Carbon Woven"
 
 See :class:`.FeFormat` for a list of supported FE formats. Check out the
 :ref:`input_file_for_pyacp` section to see how input files can be created.
@@ -108,14 +106,14 @@ Start defining new objects in the model. For example, to create a ply and all it
 
 .. testcode::
 
-    fabric = plate_model.create_fabric(name="Carbon Woven 0.2mm", thickness=0.2)
-    oss = plate_model.create_oriented_selection_set(
+    fabric = plate_cdb_model.create_fabric(name="Carbon Woven 0.2mm", thickness=0.2)
+    oss = plate_cdb_model.create_oriented_selection_set(
         name="OSS",
         orientation_direction=(-0.0, 1.0, 0.0),
-        element_sets=[plate_model.element_sets["All_Elements"]],
-        rosettes=[plate_model.rosettes["12"]],
+        element_sets=[plate_cdb_model.element_sets["All_Elements"]],
+        rosettes=[plate_cdb_model.rosettes["12"]],
     )
-    modeling_group = plate_model.create_modeling_group(name="Modeling Group 1")
+    modeling_group = plate_cdb_model.create_modeling_group(name="Modeling Group 1")
     modeling_ply = modeling_group.create_modeling_ply(name="Ply 1", ply_angle=10.0)
 
 These ``create_*`` methods take additional parameters, which can be used to immediately set the properties of the new object.
@@ -125,7 +123,7 @@ Alternatively, you can always set the properties of an object after it has been 
 
 .. testcode::
 
-    fabric.material = plate_model.materials["Carbon Woven"]
+    fabric.material = plate_cdb_model.materials["Carbon Woven"]
     modeling_ply.ply_material = fabric
     modeling_ply.oriented_selection_sets = [oss]
 
@@ -142,21 +140,21 @@ To perform the update, use the :meth:`update <.Model.update>` method:
 
 .. testcode::
 
-    plate_model.update()
+    plate_cdb_model.update()
 
 Many PyACP objects provide data which can be plotted. For example, to show the mesh:
 
 .. testcode::
 
-    plate_model.mesh.to_pyvista().plot()
+    plate_cdb_model.mesh.to_pyvista().plot()
 
 Or to show the thickness of a modeling ply or fiber directions:
 
 .. testcode::
 
-    modeling_ply.elemental_data.thickness.get_pyvista_mesh(mesh=plate_model.mesh).plot()
+    modeling_ply.elemental_data.thickness.get_pyvista_mesh(mesh=plate_cdb_model.mesh).plot()
     plotter = pyacp.get_directions_plotter(
-        model=plate_model, components=[modeling_ply.elemental_data.reference_direction]
+        model=plate_cdb_model, components=[modeling_ply.elemental_data.reference_direction]
     )
     plotter.show()
 
