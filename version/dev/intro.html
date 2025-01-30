@@ -544,30 +544,51 @@ because it keeps Python packages isolated from your system Python.</p>
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
-<section id="start-acp">
-<h3>Start ACP<a class="headerlink" href="#start-acp" title="Link to this heading">#</a></h3>
-<p>Start a Python interpreter and import the PyACP package:</p>
+<section id="tutorial-setup">
+<h3>Tutorial setup<a class="headerlink" href="#tutorial-setup" title="Link to this heading">#</a></h3>
+<p>Start a python interpreter and import the required PyACP packages:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
+<span class="kn">from</span> <span class="nn">ansys.acp.core.extras</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ExampleKeys</span><span class="p">,</span>
+    <span class="n">get_example_file</span><span class="p">,</span>
+<span class="p">)</span>  <span class="c1"># This is only required for the tutorial</span>
 </pre></div>
 </div>
+<p>To not pollute the filesystem, we are going to create a temporary directory where we can download the files:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+
+<span class="n">tempdir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span>
+<span class="n">WORKING_DIR</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">tempdir</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Download the example files by using the provided helper function as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plate_acph5_path</span> <span class="o">=</span> <span class="n">get_example_file</span><span class="p">(</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">MINIMAL_PLATE_ACPH5</span><span class="p">,</span> <span class="n">WORKING_DIR</span><span class="p">)</span>
+<span class="n">plate_cdb_path</span> <span class="o">=</span> <span class="n">get_example_file</span><span class="p">(</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">MINIMAL_PLATE_CDB</span><span class="p">,</span> <span class="n">WORKING_DIR</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="start-acp">
+<h3>Start ACP<a class="headerlink" href="#start-acp" title="Link to this heading">#</a></h3>
 <p>Next, start an ACP instance:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">acp</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
-<section id="get-a-model">
-<h3>Get a model<a class="headerlink" href="#get-a-model" title="Link to this heading">#</a></h3>
+<section id="load-a-model">
+<h3>Load a model<a class="headerlink" href="#load-a-model" title="Link to this heading">#</a></h3>
 <p>You can resume a model from an existing ACP DB (ACPH5) or built it from
-scratch by importing an FE model (mesh).</p>
-<p>To load an existing model with PyACP, use the <a class="reference internal" href="api/_autosummary/ansys.acp.core.ACPInstance.import_model.html#ansys.acp.core.ACPInstance.import_model" title="ansys.acp.core.ACPInstance.import_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">import_model()</span></code></a> method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="s2">&quot;model.acph5&quot;</span><span class="p">)</span>
+scratch by importing an FE model (mesh). We are going to use the path to the model returned by the <code class="docutils literal notranslate"><span class="pre">get_example_file</span></code>
+function, but a raw path like <code class="docutils literal notranslate"><span class="pre">r&quot;path\to\your\model.acph5&quot;</span></code> can also be used.</p>
+<p>To load an existing ACP layup model with PyACP, use the <a class="reference internal" href="api/_autosummary/ansys.acp.core.ACPInstance.import_model.html#ansys.acp.core.ACPInstance.import_model" title="ansys.acp.core.ACPInstance.import_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">import_model()</span></code></a> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plate_acph5_model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">plate_acph5_path</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To import an FE model, use the <code class="docutils literal notranslate"><span class="pre">format=&quot;ansys:cdb&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">format=&quot;ansys:dat&quot;</span></code>
 parameter, respectively.
 The following example imports a CDB file.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span>
-    <span class="s2">&quot;model.cdb&quot;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plate_cdb_model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span>
+    <span class="n">plate_cdb_path</span><span class="p">,</span>
     <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">,</span>
     <span class="n">unit_system</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">UnitSystemType</span><span class="o">.</span><span class="n">MPA</span><span class="p">,</span>
 <span class="p">)</span>
@@ -586,22 +607,26 @@ like <code class="docutils literal notranslate"><span class="pre">model</span> <
 </section>
 <section id="start-modelling">
 <h3>Start modelling<a class="headerlink" href="#start-modelling" title="Link to this heading">#</a></h3>
+<p>Once loaded, you can modify the object directly, for example you can assigning a name to a material with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plate_cdb_model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Carbon Woven&quot;</span>
+</pre></div>
+</div>
 <p>Start defining new objects in the model. For example, to create a ply and all its dependencies:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fabric</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Carbon Woven 0.2mm&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">oss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fabric</span> <span class="o">=</span> <span class="n">plate_cdb_model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Carbon Woven 0.2mm&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">oss</span> <span class="o">=</span> <span class="n">plate_cdb_model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;OSS&quot;</span><span class="p">,</span>
     <span class="n">orientation_direction</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
-    <span class="n">element_sets</span><span class="o">=</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">element_sets</span><span class="p">[</span><span class="s2">&quot;All_Elements&quot;</span><span class="p">]],</span>
-    <span class="n">rosettes</span><span class="o">=</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">rosettes</span><span class="p">[</span><span class="s2">&quot;12&quot;</span><span class="p">]],</span>
+    <span class="n">element_sets</span><span class="o">=</span><span class="p">[</span><span class="n">plate_cdb_model</span><span class="o">.</span><span class="n">element_sets</span><span class="p">[</span><span class="s2">&quot;All_Elements&quot;</span><span class="p">]],</span>
+    <span class="n">rosettes</span><span class="o">=</span><span class="p">[</span><span class="n">plate_cdb_model</span><span class="o">.</span><span class="n">rosettes</span><span class="p">[</span><span class="s2">&quot;12&quot;</span><span class="p">]],</span>
 <span class="p">)</span>
-<span class="n">modeling_group</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_modeling_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Modeling Group 1&quot;</span><span class="p">)</span>
+<span class="n">modeling_group</span> <span class="o">=</span> <span class="n">plate_cdb_model</span><span class="o">.</span><span class="n">create_modeling_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Modeling Group 1&quot;</span><span class="p">)</span>
 <span class="n">modeling_ply</span> <span class="o">=</span> <span class="n">modeling_group</span><span class="o">.</span><span class="n">create_modeling_ply</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Ply 1&quot;</span><span class="p">,</span> <span class="n">ply_angle</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>These <code class="docutils literal notranslate"><span class="pre">create_*</span></code> methods take additional parameters, which can be used to immediately set the properties of the new object.
 For example, refer to the documentation of <a class="reference internal" href="api/_autosummary/ansys.acp.core.ModelingGroup.create_modeling_ply.html#ansys.acp.core.ModelingGroup.create_modeling_ply" title="ansys.acp.core.ModelingGroup.create_modeling_ply"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_modeling_ply</span></code></a>.</p>
 <p>Alternatively, you can always set the properties of an object after it has been created:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fabric</span><span class="o">.</span><span class="n">material</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;Carbon Woven&quot;</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fabric</span><span class="o">.</span><span class="n">material</span> <span class="o">=</span> <span class="n">plate_cdb_model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;Carbon Woven&quot;</span><span class="p">]</span>
 <span class="n">modeling_ply</span><span class="o">.</span><span class="n">ply_material</span> <span class="o">=</span> <span class="n">fabric</span>
 <span class="n">modeling_ply</span><span class="o">.</span><span class="n">oriented_selection_sets</span> <span class="o">=</span> <span class="p">[</span><span class="n">oss</span><span class="p">]</span>
 </pre></div>
@@ -616,17 +641,17 @@ For example, refer to the documentation of <a class="reference internal" href="a
 <p>The lay-up is not automatically updated. So data such as ply thicknesses
 and fiber directions are only available after updating the model.
 To perform the update, use the <a class="reference internal" href="api/_autosummary/ansys.acp.core.Model.update.html#ansys.acp.core.Model.update" title="ansys.acp.core.Model.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">update</span></code></a> method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plate_cdb_model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Many PyACP objects provide data which can be plotted. For example, to show the mesh:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plate_cdb_model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_pyvista</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Or to show the thickness of a modeling ply or fiber directions:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">plate_cdb_model</span><span class="o">.</span><span class="n">mesh</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plotter</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">get_directions_plotter</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="p">[</span><span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">reference_direction</span><span class="p">]</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">plate_cdb_model</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="p">[</span><span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">reference_direction</span><span class="p">]</span>
 <span class="p">)</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -693,8 +718,9 @@ To perform the update, use the <a class="reference internal" href="api/_autosumm
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-setup">Tutorial setup</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-acp">Start ACP</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-a-model">Get a model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-a-model">Load a model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-modelling">Start modelling</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-and-plot-the-model">Update and plot the model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-exploring">Continue exploring</a></li>

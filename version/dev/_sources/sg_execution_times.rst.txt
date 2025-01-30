@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**02:53.608** total execution time for 19 files **from all galleries**:
+**03:31.470** total execution time for 19 files **from all galleries**:
 
 .. container::
 
@@ -33,49 +33,49 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_examples_use_cases_01-optimizing-ply-angles.py` (``../../examples/use_cases/01-optimizing-ply-angles.py``)
-     - 00:43.156
+     - 00:51.576
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_007-sensor.py` (``../../examples/modeling_features/007-sensor.py``)
-     - 00:23.768
-     - 0.0
-   * - :ref:`sphx_glr_examples_modeling_features_031-imported-solid-model.py` (``../../examples/modeling_features/031-imported-solid-model.py``)
-     - 00:20.101
+     - 00:25.682
      - 0.0
    * - :ref:`sphx_glr_examples_workflows_02-advanced-pymapdl-workflow.py` (``../../examples/workflows/02-advanced-pymapdl-workflow.py``)
-     - 00:19.371
+     - 00:22.958
+     - 0.0
+   * - :ref:`sphx_glr_examples_modeling_features_031-imported-solid-model.py` (``../../examples/modeling_features/031-imported-solid-model.py``)
+     - 00:20.366
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_001-materials.py` (``../../examples/modeling_features/001-materials.py``)
-     - 00:12.604
-     - 0.0
-   * - :ref:`sphx_glr_examples_workflows_01-pymapdl-workflow.py` (``../../examples/workflows/01-pymapdl-workflow.py``)
-     - 00:07.549
+     - 00:11.300
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_002-rosettes-ply-directions.py` (``../../examples/modeling_features/002-rosettes-ply-directions.py``)
-     - 00:07.509
+     - 00:11.284
+     - 0.0
+   * - :ref:`sphx_glr_examples_workflows_01-pymapdl-workflow.py` (``../../examples/workflows/01-pymapdl-workflow.py``)
+     - 00:11.005
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_010-sandwich-panel-layup.py` (``../../examples/modeling_features/010-sandwich-panel-layup.py``)
-     - 00:06.201
+     - 00:10.604
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_004-advanced-selection-rules.py` (``../../examples/modeling_features/004-advanced-selection-rules.py``)
-     - 00:05.439
+     - 00:07.839
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_020-solid_model.py` (``../../examples/modeling_features/020-solid_model.py``)
-     - 00:05.327
-     - 0.0
-   * - :ref:`sphx_glr_examples_modeling_features_030-imported-plies.py` (``../../examples/modeling_features/030-imported-plies.py``)
-     - 00:05.061
+     - 00:07.552
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_003-simple-selection-rules.py` (``../../examples/modeling_features/003-simple-selection-rules.py``)
-     - 00:04.750
+     - 00:06.682
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_050-composite_cae_h5.py` (``../../examples/modeling_features/050-composite_cae_h5.py``)
-     - 00:04.583
+     - 00:06.661
+     - 0.0
+   * - :ref:`sphx_glr_examples_modeling_features_030-imported-plies.py` (``../../examples/modeling_features/030-imported-plies.py``)
+     - 00:06.632
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_006-layup-thickness-definitions.py` (``../../examples/modeling_features/006-layup-thickness-definitions.py``)
-     - 00:04.298
+     - 00:05.991
      - 0.0
    * - :ref:`sphx_glr_examples_modeling_features_005-ply-direction-lookup-table.py` (``../../examples/modeling_features/005-ply-direction-lookup-table.py``)
-     - 00:03.893
+     - 00:05.340
      - 0.0
    * - :ref:`sphx_glr_examples_workflows_03-pymechanical-shell-workflow.py` (``../../examples/workflows/03-pymechanical-shell-workflow.py``)
      - 00:00.000

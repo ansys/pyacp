@@ -37,6 +37,8 @@ ExampleKeys
       ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH
       ExampleKeys.SNAP_TO_GEOMETRY
       ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL
+      ExampleKeys.MINIMAL_PLATE_ACPH5
+      ExampleKeys.MINIMAL_PLATE_CDB
    
    
 
