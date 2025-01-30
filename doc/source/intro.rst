@@ -82,12 +82,6 @@ The following example imports a CDB file.
         unit_system=pyacp.UnitSystemType.MPA,
     )
 
-Once loaded, you can modify the object directly, for example you can assigning a name to a material with:
-
-.. testcode::
-
-    plate_cdb_model.materials["2"].name = "Carbon Woven"
-
 See :class:`.FeFormat` for a list of supported FE formats. Check out the
 :ref:`input_file_for_pyacp` section to see how input files can be created.
 
@@ -101,6 +95,12 @@ See :class:`.FeFormat` for a list of supported FE formats. Check out the
 
 Start modelling
 ~~~~~~~~~~~~~~~
+
+Once loaded, you can modify the object directly, for example you can assigning a name to a material with:
+
+.. testcode::
+
+    plate_cdb_model.materials["2"].name = "Carbon Woven"
 
 Start defining new objects in the model. For example, to create a ply and all its dependencies:
 
