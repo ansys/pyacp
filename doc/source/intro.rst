@@ -31,7 +31,7 @@ Start a python interpreter and import the required PyACP packages:
         get_example_file,
     )  # This is only required for the tutorial
 
-To not pollute the filesystem, we are going to create a temporary directory were we can download the files:
+To not pollute the filesystem, we are going to create a temporary directory where we can download the files:
 
 .. testcode::
 
