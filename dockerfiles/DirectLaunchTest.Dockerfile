@@ -33,7 +33,7 @@ RUN chmod -R 777 /home/container/
 
 COPY --chmod=755 <<EOF /home/container/install_and_run_tests.sh
 #!/usr/bin/bash
-poetry install --with=dev,test --all-extras
+poetry install --all-groups --all-extras
 poetry run pytest --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html --server-bin=/usr/ansys_inc/acp/acp_grpcserver "\$@"
 EOF
 
