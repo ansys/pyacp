@@ -1,0 +1,51 @@
+﻿.. vale off
+
+ConstantStressLimits
+====================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: ConstantStressLimits
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ConstantStressLimits.from_isotropic_constants
+      
+      
+      ConstantStressLimits.from_orthotropic_constants
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConstantStressLimits.Sxy
+      ConstantStressLimits.Sxz
+      ConstantStressLimits.Syz
+      ConstantStressLimits.Xc
+      ConstantStressLimits.Xt
+      ConstantStressLimits.Yc
+      ConstantStressLimits.Yt
+      ConstantStressLimits.Zc
+      ConstantStressLimits.Zt
+      ConstantStressLimits.effective_stress
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ConstantStressLimits
+
+   ansys.acp.core.material_property_sets.ConstantStressLimits

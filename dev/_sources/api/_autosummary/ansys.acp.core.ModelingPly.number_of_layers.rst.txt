@@ -1,0 +1,6 @@
+number\_of\_layers
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.number_of_layers

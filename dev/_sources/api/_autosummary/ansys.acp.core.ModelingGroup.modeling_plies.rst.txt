@@ -1,0 +1,6 @@
+modeling\_plies
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingGroup.modeling_plies

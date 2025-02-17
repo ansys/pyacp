@@ -1,0 +1,90 @@
+﻿Model
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Model
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Model.clone
+      
+      
+      Model.create_edge_set
+      
+      
+      Model.create_element_set
+      
+      
+      Model.create_fabric
+      
+      
+      Model.create_material
+      
+      
+      Model.create_modeling_group
+      
+      
+      Model.create_oriented_selection_set
+      
+      
+      Model.create_rosette
+      
+      
+      Model.delete
+      
+      
+      Model.export_materials
+      
+      
+      Model.export_shell_composite_definitions
+      
+      
+      Model.from_fe_file
+      
+      
+      Model.from_file
+      
+      
+      Model.save
+      
+      
+      Model.save_analysis_model
+      
+      
+      Model.update
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Model.angle_tolerance
+      Model.draping_offset_correction
+      Model.edge_sets
+      Model.element_sets
+      Model.fabrics
+      Model.materials
+      Model.minimum_analysis_ply_thickness
+      Model.modeling_groups
+      Model.name
+      Model.oriented_selection_sets
+      Model.relative_thickness_tolerance
+      Model.rosettes
+      Model.unit_system
+      Model.use_nodal_thicknesses
+   
+   

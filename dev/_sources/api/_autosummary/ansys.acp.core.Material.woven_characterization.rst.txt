@@ -1,0 +1,6 @@
+woven\_characterization
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.woven_characterization

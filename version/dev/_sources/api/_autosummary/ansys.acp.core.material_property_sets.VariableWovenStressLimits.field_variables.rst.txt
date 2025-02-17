@@ -1,0 +1,13 @@
+.. vale off
+
+field\_variables
+================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableWovenStressLimits.field_variables
+
+.. minigallery::
+   :add-heading: Examples using VariableWovenStressLimits.field_variables
+
+   ansys.acp.core.material_property_sets.VariableWovenStressLimits.field_variables

@@ -1,0 +1,6 @@
+density
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.density

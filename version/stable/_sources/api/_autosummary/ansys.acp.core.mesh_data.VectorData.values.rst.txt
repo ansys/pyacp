@@ -1,0 +1,13 @@
+.. vale off
+
+values
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoproperty:: VectorData.values
+
+.. minigallery::
+   :add-heading: Examples using VectorData.values
+
+   ansys.acp.core.mesh_data.VectorData.values

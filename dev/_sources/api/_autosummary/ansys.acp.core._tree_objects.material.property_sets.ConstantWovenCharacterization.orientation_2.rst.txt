@@ -1,0 +1,6 @@
+orientation\_2
+==============
+
+.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets
+
+.. autoproperty:: ConstantWovenCharacterization.orientation_2

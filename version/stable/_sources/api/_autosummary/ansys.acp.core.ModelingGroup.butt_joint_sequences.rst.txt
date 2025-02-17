@@ -1,0 +1,13 @@
+.. vale off
+
+butt\_joint\_sequences
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingGroup.butt_joint_sequences
+
+.. minigallery::
+   :add-heading: Examples using ModelingGroup.butt_joint_sequences
+
+   ansys.acp.core.ModelingGroup.butt_joint_sequences
