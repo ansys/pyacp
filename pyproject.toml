@@ -135,7 +135,7 @@ add-ignore = "D201,D202,D203,D204,D105" # blank line rules before / after docstr
 
 [tool.codespell]
 skip = '*.cdb,*.dat'
-ignore-words-list = 'ans,uptodate,notuptodate,eyt'
+ignore-words-list = 'ans,uptodate,notuptodate,eyt,abd'
 quiet-level = 3
 
 [tool.mypy]

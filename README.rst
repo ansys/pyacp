@@ -103,13 +103,14 @@ You will need to follow these steps:
         git clone https://github.com/ansys/pyacp
         cd pyacp
 
-2.  Make sure you have the latest version of poetry:
+2.  Make sure you have the latest version of poetry and its shell plugin:
 
     .. code-block:: bash
 
         python -m pip install pipx
         pipx ensurepath
         pipx install poetry
+        pipx inject poetry poetry-plugin-shell
 
     .. note::
 
@@ -120,7 +121,7 @@ You will need to follow these steps:
 
     .. code-block:: bash
 
-        poetry install --with dev,test --all-extras
+        poetry install --all-groups --all-extras
 
     This step installs PyACP in an editable mode (no build step is needed, no re-install when changing the code).
 
