@@ -31,7 +31,7 @@ Start a python interpreter and import the required PyACP packages:
         get_example_file,
     )  # This is only required for the tutorial
 
-To not pollute the filesystem, we are going to create a temporary directory where we can download the files:
+To not pollute the filesystem, create a temporary directory for the example files:
 
 .. testcode::
 
@@ -61,8 +61,9 @@ Load a model
 ~~~~~~~~~~~~
 
 You can resume a model from an existing ACP DB (ACPH5) or built it from
-scratch by importing an FE model (mesh). We are going to use the path to the model returned by the ``get_example_file``
-function, but a raw path like ``r"path\to\your\model.acph5"`` can also be used.
+scratch by importing an FE model (mesh). The example uses the path to the model
+returned by the ``get_example_file`` function, but a raw path like
+``r"path\to\your\model.acph5"`` can also be used.
 
 To load an existing ACP layup model with PyACP, use the :meth:`.import_model` method:
 
@@ -88,7 +89,7 @@ See :class:`.FeFormat` for a list of supported FE formats. Check out the
 .. danger::
     When working on Windows, be careful of backslashes in paths: These may correspond to
     `escape sequences <https://docs.python.org/3/reference/lexical_analysis.html#escape-sequences>`_, resulting in errors.
-    To avoid issues, make sure to quote the backslashes (by using ``\\``) or use a 
+    To avoid issues, make sure to quote the backslashes (by using ``\\``) or use a
     `raw string literal <https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals>`_ by prefixing your string with **r**,
     like ``model = acp.import_model(r"path\to\your\model.acph5")``.
 
@@ -169,4 +170,3 @@ This is just a brief introduction to PyACP. To learn more:
 - Check out the :ref:`examples <ref_examples>` to see complete examples of how to use PyACP.
 - The :ref:`how-to guides <howto>` provide instructions on how to perform specific tasks.
 - The :ref:`API reference <api_reference>` provides detailed information on all available classes and methods.
-
