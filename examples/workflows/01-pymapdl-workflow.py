@@ -78,10 +78,10 @@ input_file = get_example_file(ExampleKeys.BASIC_FLAT_PLATE_DAT, WORKING_DIR)
 acp = launch_acp()
 
 # %%
-# Create an ACP workflow instance and load the model
-# --------------------------------------------------
+# Import the model
+# ----------------
 #
-# Import the model from the input file.
+# Import the model from the input DAT file.
 
 model = acp.import_model(input_file, format="ansys:dat")
 print(model.unit_system)
