@@ -14,7 +14,7 @@ services:
       - ANSYS_LOCK="OFF"
   pydpf-composites-server:
     restart: unless-stopped
-    image: ${IMAGE_NAME_DPF_COMPOSITES:-ghcr.io/ansys/pydpf-composites:2023r2_pre1}
+    image: ${IMAGE_NAME_DPF_COMPOSITES:-ghcr.io/ansys/pydpf-composites:latest}
     ports:
     - "${PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT:-50558}:50052"
     environment:

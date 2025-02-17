@@ -53,8 +53,6 @@ Documentation
 
 The PyACP documentation can be viewed online at https://acp.docs.pyansys.com.
 
-.. _launching_server:
-
 Getting Started
 ---------------
 
@@ -178,9 +176,11 @@ need to create a commit without running the hooks, you can skip them with ``git 
 
 Documentation
 ^^^^^^^^^^^^^
-Before generating the documentation, configure the PyACP server via the
-``ansys-launcher``, see `Launching ACP <launching_server>`_ above.
-If Ansys is installed the examples can directly built with `Sphinx`_.
+
+Basic documentation build
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To build the documentation, run the following commands:
 
 On Linux & MacOS:
 
@@ -196,24 +196,61 @@ On Windows:
 
 The generated HTML files can be viewed with the browser of your choice.
 
-Alternatively you can build the documentation by starting a mapdl and pydpf-composites docker
-container. First ensure that you have accepted the DPF Preview License Agreement by setting the
-ANSYS_DPF_ACCEPT_LA environment variable to Y
-(see `DPF Preview License Agreement <https://dpf.docs.pyansys.com/version/stable/user_guide/getting_started_with_dpf_server.html#dpf-preview-license-agreement>`_
-). In addition the  ANSYSLMD_LICENSE_FILE environment variable needs be set to a
-valid license server (e.g ``1055@mylicenseserver.com``). Then start the docker containers with:
+This method of building the documentation will run the examples with the default or currently
+configured launch options for the ACP, MAPDL, and DPF servers. Make sure to have these installed
+and configured correctly, or alternatively follow the Docker-based instructions below.
 
-.. code-block:: bash
 
-    docker compose -f docker-compose/docker-compose-extras.yaml up -d
+Alternative: start services with docker
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Then build the documentation with the `Sphinx`_ commands mentioned above.
+Alternatively, you can use the provided docker-compose file to start the MAPDL and DPF servers.
 
-On Windows, you can use the shipped shell script:
+First, review the DPF preview license agreement, and if you agree, set the ``ANSYS_DPF_ACCEPT_LA`` environment variable to ``Y``. See `the PyDPF documentation <https://dpf.docs.pyansys.com/version/stable/getting_started/licensing.html#dpf-preview-license-agreement>`_ for details.
+
+On Windows, you can use then use the shipped shell script:
 
 .. code-block:: batch
 
     .\doc\create_doc_windows.ps1
+
+The following manual steps can be used on any platform:
+
+1. Set the following additional environment variables in your shell:
+
+   - ``ANSYSLMD_LICENSE_FILE``: To a valid license server (e.g ``1055@mylicenseserver.com``).
+   - ``PYMAPDL_PORT``: Choose any free port.
+   - ``PYMAPDL_START_INSTANCE=FALSE``
+   - ``PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT``: Choose any free port.
+
+2. Start the docker containers with:
+
+   .. code-block:: bash
+
+       docker compose -f docker-compose/docker-compose-extras.yaml up -d
+
+3. Build the documentation with the `Sphinx`_ commands mentioned above:
+
+   On Linux & MacOS:
+
+   .. code-block:: sh
+
+       make -C doc html
+
+   On Windows:
+
+   .. code-block:: batch
+
+       cd doc; .\make.bat html
+
+
+Partial builds
+~~~~~~~~~~~~~~
+
+Two environment variables can be used to run a quicker partial documentation build:
+
+- ``PYACP_DOC_SKIP_API=1``: Skip the API reference build.
+- ``PYACP_DOC_SKIP_GALLERY=1``: Skip running the examples.
 
 Distribution
 ^^^^^^^^^^^^
