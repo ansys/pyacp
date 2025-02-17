@@ -54,8 +54,8 @@ jobs:
       - name: Install library, with all optional groups
         run: |
           pip install -U pip
-          pip install 'poetry!=1.7.0'
-          poetry install --with dev,test --all-extras
+          pip install poetry
+          poetry install --all-groups --all-extras
 
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
@@ -357,7 +357,7 @@ jobs:
         run: |
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry install --with test,dev --all-extras
+          poetry install --all-groups --all-extras
 
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
