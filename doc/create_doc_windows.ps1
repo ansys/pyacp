@@ -11,21 +11,18 @@ if ($Env:ANSYS_DPF_ACCEPT_LA -ne 'Y')
     exit 1
 }
 
-docker pull ghcr.io/ansys/pydpf-composites:latest
-docker pull ghcr.io/ansys/mapdl:latest
-
 $Env:PYMAPDL_PORT=59991
 $Env:PYMAPDL_START_INSTANCE="FALSE"
 $Env:PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT=59992
 $Env:SPHINXOPT_NITPICKY=0
 # whether to skip the gallery (examples)
-$Env:PYACP_DOC_SKIP_GALLERY="0"
+$Env:PYACP_DOC_SKIP_GALLERY = $Env:PYACP_DOC_SKIP_GALLERY ?? "0"
 # whether to skip the API documentation
-$Env:PYACP_DOC_SKIP_API="0"
+$Env:PYACP_DOC_SKIP_API = $Env:PYACP_DOC_SKIP_API ?? "0"
 
 $ParentDir = Split-Path -Parent $PSScriptRoot
 $DockerComposeFile = Join-Path -Path $ParentDir -ChildPath "docker-compose/docker-compose-extras.yaml"
-docker compose -f $DockerComposeFile up -d
+docker compose -f $DockerComposeFile up -d --pull always
 
 $MakeFile = Join-Path -Path $PSScriptRoot -ChildPath "make.bat"
 & $MakeFile html
