@@ -1,4 +1,4 @@
-.. image:: https://github.com/ansys/pyacp/blob/feat/pyacp_logo/doc/source/_static/pyacp.svg
+.. image:: https://raw.githubusercontent.com/ansys/pyacp/refs/heads/main/doc/source/_static/pyacp.svg
     :width: 400
     :alt: PyACP Logo
     :align: center
