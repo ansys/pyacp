@@ -476,13 +476,13 @@ clr_loader = ">=0.2.5,<0.3.0"
 
 [[package]]
 name = "ansys-sphinx-theme"
-version = "1.3.1"
+version = "1.3.2"
 description = "A theme devised by ANSYS, Inc. for Sphinx documentation."
 optional = false
 python-versions = "<4,>=3.10"
 files = [
-    {file = "ansys_sphinx_theme-1.3.1-py3-none-any.whl", hash = "sha256:f2b2611d63ac96218a1b78d0f80e8624570a4910d56b84fe01980cd9c9fc914e"},
-    {file = "ansys_sphinx_theme-1.3.1.tar.gz", hash = "sha256:a2bf336bc39dff95cd6166476c9ddacf06d21d147398ae68de52d39239b84273"},
+    {file = "ansys_sphinx_theme-1.3.2-py3-none-any.whl", hash = "sha256:62a11d9ecabdb0f01bf6859e8f42d5bc69550295fe09fb5fc9289459df2c6f6c"},
+    {file = "ansys_sphinx_theme-1.3.2.tar.gz", hash = "sha256:29515ac58b2bfcc1a622ea2679063af9dac0ff3ca88988e70fdfd2d0dc469b24"},
 ]
 
 [package.dependencies]
@@ -1846,13 +1846,13 @@ pyparsing = {version = ">=2.4.2,<3.0.0 || >3.0.0,<3.0.1 || >3.0.1,<3.0.2 || >3.0
 
 [[package]]
 name = "hypothesis"
-version = "6.125.3"
+version = "6.127.1"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "hypothesis-6.125.3-py3-none-any.whl", hash = "sha256:ae0381987d0ccacc62867343acc38a0ca5e959fc4da98b3e018b0debf080a557"},
-    {file = "hypothesis-6.125.3.tar.gz", hash = "sha256:6276d9d8f7f91ebd7ad95081f004bcf5699afb4d680a8321861cbf3a5de45d3b"},
+    {file = "hypothesis-6.127.1-py3-none-any.whl", hash = "sha256:6600a03dfe5406bee9a74eb0b92f0aa40b5b7f3df84ae6bc2a564edc3bb6168b"},
+    {file = "hypothesis-6.127.1.tar.gz", hash = "sha256:9cf339b28e5c394f811eaa43023a118e7c4d384102b7b06bab91b6d06cc0437f"},
 ]
 
 [package.dependencies]
@@ -1861,7 +1861,7 @@ exceptiongroup = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 sortedcontainers = ">=2.1.0,<3.0.0"
 
 [package.extras]
-all = ["black (>=19.10b0)", "click (>=7.0)", "crosshair-tool (>=0.0.82)", "django (>=4.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.19)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.19.3)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2025.1)"]
+all = ["black (>=19.10b0)", "click (>=7.0)", "crosshair-tool (>=0.0.82)", "django (>=4.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.19)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.19.3)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2025.1)", "watchdog (>=4.0.0)"]
 cli = ["black (>=19.10b0)", "click (>=7.0)", "rich (>=9.0.0)"]
 codemods = ["libcst (>=0.3.16)"]
 crosshair = ["crosshair-tool (>=0.0.82)", "hypothesis-crosshair (>=0.0.19)"]
@@ -1875,6 +1875,7 @@ pandas = ["pandas (>=1.1)"]
 pytest = ["pytest (>=4.6)"]
 pytz = ["pytz (>=2014.1)"]
 redis = ["redis (>=3.0.0)"]
+watchdog = ["watchdog (>=4.0.0)"]
 zoneinfo = ["tzdata (>=2025.1)"]
 
 [[package]]
