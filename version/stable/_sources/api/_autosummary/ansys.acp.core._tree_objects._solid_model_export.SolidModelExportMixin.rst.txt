@@ -1,0 +1,10 @@
+﻿SolidModelExportMixin
+=====================
+
+.. currentmodule:: ansys.acp.core._tree_objects._solid_model_export
+
+.. warning::
+
+    This is an internal object. It should not be used directly, and subject to change without notice.
+
+.. autoclass:: SolidModelExportMixin

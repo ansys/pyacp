@@ -1,0 +1,6 @@
+eZt
+===
+
+.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets
+
+.. autoproperty:: ConstantStrainLimits.eZt

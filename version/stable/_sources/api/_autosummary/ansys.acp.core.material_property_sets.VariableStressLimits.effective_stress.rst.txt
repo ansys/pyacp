@@ -1,0 +1,13 @@
+.. vale off
+
+effective\_stress
+=================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableStressLimits.effective_stress
+
+.. minigallery::
+   :add-heading: Examples using VariableStressLimits.effective_stress
+
+   ansys.acp.core.material_property_sets.VariableStressLimits.effective_stress

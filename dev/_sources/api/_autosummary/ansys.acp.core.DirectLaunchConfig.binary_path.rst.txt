@@ -1,0 +1,6 @@
+binary\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DirectLaunchConfig.binary_path

@@ -1,0 +1,6 @@
+use\_nodal\_thicknesses
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.use_nodal_thicknesses

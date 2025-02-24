@@ -1,0 +1,13 @@
+.. vale off
+
+WOVEN
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DrapingMaterialModel.WOVEN
+
+.. minigallery::
+   :add-heading: Examples using DrapingMaterialModel.WOVEN
+
+   ansys.acp.core.DrapingMaterialModel.WOVEN

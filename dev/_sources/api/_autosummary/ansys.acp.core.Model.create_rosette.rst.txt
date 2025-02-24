@@ -1,0 +1,6 @@
+create\_rosette
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_rosette

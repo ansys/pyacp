@@ -1,0 +1,13 @@
+.. vale off
+
+eZc
+===
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantStrainLimits.eZc
+
+.. minigallery::
+   :add-heading: Examples using ConstantStrainLimits.eZc
+
+   ansys.acp.core.material_property_sets.ConstantStrainLimits.eZc

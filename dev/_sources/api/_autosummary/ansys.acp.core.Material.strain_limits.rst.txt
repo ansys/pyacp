@@ -1,0 +1,6 @@
+strain\_limits
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.strain_limits

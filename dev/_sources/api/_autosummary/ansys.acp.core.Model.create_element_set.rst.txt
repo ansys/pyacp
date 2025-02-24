@@ -1,0 +1,6 @@
+create\_element\_set
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_element_set
