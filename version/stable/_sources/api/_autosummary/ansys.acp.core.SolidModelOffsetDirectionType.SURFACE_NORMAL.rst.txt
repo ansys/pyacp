@@ -1,0 +1,13 @@
+.. vale off
+
+SURFACE\_NORMAL
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelOffsetDirectionType.SURFACE_NORMAL
+
+.. minigallery::
+   :add-heading: Examples using SolidModelOffsetDirectionType.SURFACE_NORMAL
+
+   ansys.acp.core.SolidModelOffsetDirectionType.SURFACE_NORMAL

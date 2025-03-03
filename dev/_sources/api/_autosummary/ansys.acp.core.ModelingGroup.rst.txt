@@ -1,0 +1,43 @@
+﻿ModelingGroup
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ModelingGroup
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ModelingGroup.clone
+      
+      
+      ModelingGroup.create_modeling_ply
+      
+      
+      ModelingGroup.delete
+      
+      
+      ModelingGroup.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ModelingGroup.id
+      ModelingGroup.modeling_plies
+      ModelingGroup.name
+   
+   

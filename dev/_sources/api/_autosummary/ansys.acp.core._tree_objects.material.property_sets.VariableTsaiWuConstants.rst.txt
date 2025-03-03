@@ -1,0 +1,33 @@
+﻿VariableTsaiWuConstants
+=======================
+
+.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets
+
+.. autoclass:: VariableTsaiWuConstants
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VariableTsaiWuConstants.XY
+      VariableTsaiWuConstants.XZ
+      VariableTsaiWuConstants.YZ
+      VariableTsaiWuConstants.field_variables
+      VariableTsaiWuConstants.interpolation_options
+   
+   
