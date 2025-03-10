@@ -1,0 +1,48 @@
+﻿.. vale off
+
+ImportedSolidModelExportSettings
+================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ImportedSolidModelExportSettings
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ImportedSolidModelExportSettings.coordinate_system_index
+      ImportedSolidModelExportSettings.drop_hanging_nodes
+      ImportedSolidModelExportSettings.element_index
+      ImportedSolidModelExportSettings.material_index
+      ImportedSolidModelExportSettings.node_index
+      ImportedSolidModelExportSettings.section_index
+      ImportedSolidModelExportSettings.use_default_coordinate_system_index
+      ImportedSolidModelExportSettings.use_default_element_index
+      ImportedSolidModelExportSettings.use_default_material_index
+      ImportedSolidModelExportSettings.use_default_node_index
+      ImportedSolidModelExportSettings.use_default_section_index
+      ImportedSolidModelExportSettings.use_solid_model_prefix
+      ImportedSolidModelExportSettings.use_solsh_elements
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModelExportSettings
+
+   ansys.acp.core.ImportedSolidModelExportSettings

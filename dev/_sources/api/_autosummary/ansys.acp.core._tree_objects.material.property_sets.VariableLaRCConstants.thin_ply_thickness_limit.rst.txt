@@ -1,0 +1,6 @@
+thin\_ply\_thickness\_limit
+===========================
+
+.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets
+
+.. autoproperty:: VariableLaRCConstants.thin_ply_thickness_limit

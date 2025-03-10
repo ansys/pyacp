@@ -1,0 +1,6 @@
+woven\_stress\_limits\_1
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.woven_stress_limits_1

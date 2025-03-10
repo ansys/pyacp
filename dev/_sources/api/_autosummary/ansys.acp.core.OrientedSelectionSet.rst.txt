@@ -1,0 +1,45 @@
+﻿OrientedSelectionSet
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: OrientedSelectionSet
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      OrientedSelectionSet.clone
+      
+      
+      OrientedSelectionSet.delete
+      
+      
+      OrientedSelectionSet.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      OrientedSelectionSet.element_sets
+      OrientedSelectionSet.id
+      OrientedSelectionSet.name
+      OrientedSelectionSet.orientation_direction
+      OrientedSelectionSet.orientation_point
+      OrientedSelectionSet.rosette_selection_method
+      OrientedSelectionSet.rosettes
+      OrientedSelectionSet.status
+   
+   

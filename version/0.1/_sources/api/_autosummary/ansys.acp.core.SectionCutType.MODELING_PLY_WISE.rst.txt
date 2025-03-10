@@ -1,0 +1,13 @@
+.. vale off
+
+MODELING\_PLY\_WISE
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SectionCutType.MODELING_PLY_WISE
+
+.. minigallery::
+   :add-heading: Examples using SectionCutType.MODELING_PLY_WISE
+
+   ansys.acp.core.SectionCutType.MODELING_PLY_WISE

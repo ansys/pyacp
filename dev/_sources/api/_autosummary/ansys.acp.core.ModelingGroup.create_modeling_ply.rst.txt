@@ -1,0 +1,6 @@
+create\_modeling\_ply
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ModelingGroup.create_modeling_ply

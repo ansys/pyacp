@@ -1,0 +1,6 @@
+tsai\_wu\_constants
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.tsai_wu_constants

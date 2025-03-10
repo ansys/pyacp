@@ -1,0 +1,6 @@
+edge\_set\_type
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: EdgeSet.edge_set_type

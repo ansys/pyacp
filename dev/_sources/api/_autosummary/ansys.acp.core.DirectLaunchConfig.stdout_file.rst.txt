@@ -1,0 +1,6 @@
+stdout\_file
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DirectLaunchConfig.stdout_file
