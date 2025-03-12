@@ -39,9 +39,11 @@ from .base import CreatableTreeObject, IdTreeObject
 from .element_set import ElementSet
 from .enums import SensorType, sensor_type_from_pb, sensor_type_to_pb, status_type_from_pb
 from .fabric import Fabric
+from .imported_solid_model import ImportedSolidModel
 from .modeling_ply import ModelingPly
 from .object_registry import register
 from .oriented_selection_set import OrientedSelectionSet
+from .solid_model import SolidModel
 from .stackup import Stackup
 from .sublaminate import SubLaminate
 
@@ -49,7 +51,14 @@ __all__ = ["Sensor"]
 
 
 _LINKABLE_ENTITY_TYPES = Union[
-    Fabric, Stackup, SubLaminate, ElementSet, OrientedSelectionSet, ModelingPly
+    Fabric,
+    Stackup,
+    SubLaminate,
+    ElementSet,
+    OrientedSelectionSet,
+    ModelingPly,
+    SolidModel,
+    ImportedSolidModel,
 ]
 
 

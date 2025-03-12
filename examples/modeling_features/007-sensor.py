@@ -106,12 +106,19 @@ model.update()
 
 
 def print_measures(my_sensor):
-    print(f"Price: {my_sensor.price:.2f} $")
-    print(f"Weight: {my_sensor.weight:.2f} kg")
-    print(f"Covered area: {my_sensor.covered_area:.2f} m²")
-    print(f"Production ply area: {my_sensor.production_ply_area:.2f} m²")
+    if my_sensor.price is not None:
+        print(f"Price: {my_sensor.price:.2f} $")
+    if my_sensor.weight is not None:
+        print(f"Weight: {my_sensor.weight:.2f} kg")
+    if my_sensor.covered_area is not None:
+        print(f"Covered area: {my_sensor.covered_area:.2f} m²")
+    if my_sensor.modeling_ply_area is not None:
+        print(f"Modeling ply area: {my_sensor.modeling_ply_area:.2f} m²")
+    if my_sensor.production_ply_area is not None:
+        print(f"Production ply area: {my_sensor.production_ply_area:.2f} m²")
     cog = my_sensor.center_of_gravity
-    print(f"Center of gravity: ({cog[0]:.2f}, {cog[1]:.2f}, {cog[2]:.2f}) m")
+    if cog is not None:
+        print(f"Center of gravity: ({cog[0]:.2f}, {cog[1]:.2f}, {cog[2]:.2f}) m")
 
 
 # %%
@@ -171,3 +178,28 @@ for ply in modeling_plies:
 plotter.add_mesh(model.mesh.to_pyvista(), show_edges=False, opacity=0.2)
 plotter.camera_position = RACE_CARE_NOSE_CAMERA_METER
 plotter.show()
+
+# %%
+# Sensor by solid model
+# ---------------------
+#
+# .. note::
+#
+#     The sensor by solid model is only supported in PyACP from server version 25.2 onwards.
+#
+# Finally, a sensor can be scoped to a solid model. In this case, only the weight and
+# center of gravity are computed.
+
+solid_model = model.create_solid_model()
+solid_model.element_sets = [model.element_sets["els_nose"]]
+solid_model.drop_off_material = model.materials["Resin_Epoxy"]
+
+sensor_by_solid_model = model.create_sensor(
+    name="By Solid Model",
+    sensor_type=SensorType.SENSOR_BY_SOLID_MODEL,
+    entities=[solid_model],
+)
+
+model.update()
+print_measures(sensor_by_solid_model)
+model.solid_mesh.to_pyvista().plot(show_edges=True)
