@@ -171,3 +171,28 @@ for ply in modeling_plies:
 plotter.add_mesh(model.mesh.to_pyvista(), show_edges=False, opacity=0.2)
 plotter.camera_position = RACE_CARE_NOSE_CAMERA_METER
 plotter.show()
+
+# %%
+# Sensor by solid model
+# ---------------------
+#
+# .. note::
+#
+#     The sensor by solid model is only supported in PyACP from server version 25.2 onwards.
+#
+# Finally, the sensor can be scoped to solid models. In this example, the sensor is scoped
+# a solid model of the nose.
+
+solid_model = model.create_solid_model()
+solid_model.element_sets = [model.element_sets["els_nose"]]
+solid_model.drop_off_material = model.materials["Resin_Epoxy"]
+
+sensor_by_solid_model = model.create_sensor(
+    name="By Solid Model",
+    sensor_type=SensorType.SENSOR_BY_SOLID_MODEL,
+    entities=[solid_model],
+)
+
+model.update()
+print_measures(sensor_by_solid_model)
+model.solid_mesh.to_pyvista().plot(show_edges=True)
