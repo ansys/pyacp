@@ -68,6 +68,8 @@ class TestSensor(NoLockedMixin, TreeObjectTester):
         fabric = model.create_fabric()
         stackup = model.create_stackup()
         sublaminate = model.create_sublaminate()
+        solid_model = model.create_solid_model()
+        imported_solid_model = model.create_imported_solid_model()
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Sensor name"),
@@ -79,6 +81,8 @@ class TestSensor(NoLockedMixin, TreeObjectTester):
                 ("entities", [modeling_ply]),
                 ("sensor_type", SensorType.SENSOR_BY_SOLID_MODEL),
                 ("entities", []),
+                ("sensor_type", SensorType.SENSOR_BY_SOLID_MODEL),
+                ("entities", [solid_model, imported_solid_model]),
                 ("active", False),
             ],
             read_only=[
