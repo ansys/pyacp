@@ -1,0 +1,6 @@
+element\_set
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: EdgeSet.element_set

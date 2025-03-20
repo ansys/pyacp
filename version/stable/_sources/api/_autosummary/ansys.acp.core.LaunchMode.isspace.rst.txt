@@ -1,0 +1,13 @@
+.. vale off
+
+isspace
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.isspace
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.isspace
+
+   ansys.acp.core.LaunchMode.isspace

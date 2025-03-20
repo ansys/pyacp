@@ -1,0 +1,6 @@
+create\_material
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_material

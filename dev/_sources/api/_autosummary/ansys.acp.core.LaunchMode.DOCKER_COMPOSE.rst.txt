@@ -1,0 +1,6 @@
+DOCKER\_COMPOSE
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LaunchMode.DOCKER_COMPOSE

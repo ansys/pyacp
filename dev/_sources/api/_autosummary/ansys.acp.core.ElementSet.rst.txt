@@ -1,0 +1,43 @@
+﻿ElementSet
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ElementSet
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ElementSet.clone
+      
+      
+      ElementSet.delete
+      
+      
+      ElementSet.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ElementSet.element_labels
+      ElementSet.id
+      ElementSet.locked
+      ElementSet.middle_offset
+      ElementSet.name
+      ElementSet.status
+   
+   

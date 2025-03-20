@@ -1,0 +1,6 @@
+save
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.save

@@ -1,0 +1,6 @@
+edge\_sets
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.edge_sets

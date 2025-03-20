@@ -1,0 +1,13 @@
+.. vale off
+
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: BooleanSelectionRule.elemental_data
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRule.elemental_data
+
+   ansys.acp.core.BooleanSelectionRule.elemental_data

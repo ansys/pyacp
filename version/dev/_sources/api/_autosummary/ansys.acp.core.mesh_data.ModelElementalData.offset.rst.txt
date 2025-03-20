@@ -1,0 +1,13 @@
+.. vale off
+
+offset
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ModelElementalData.offset
+
+.. minigallery::
+   :add-heading: Examples using ModelElementalData.offset
+
+   ansys.acp.core.mesh_data.ModelElementalData.offset
