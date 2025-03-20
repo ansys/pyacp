@@ -208,7 +208,7 @@ Alternatively, you can use the provided docker-compose file to start the MAPDL a
 
 First, review the DPF preview license agreement, and if you agree, set the ``ANSYS_DPF_ACCEPT_LA`` environment variable to ``Y``. See `the PyDPF documentation <https://dpf.docs.pyansys.com/version/stable/getting_started/licensing.html#dpf-preview-license-agreement>`_ for details.
 
-On Windows, you can use then use the shipped shell script:
+On Windows, you can then use the shipped shell script:
 
 .. code-block:: batch
 
