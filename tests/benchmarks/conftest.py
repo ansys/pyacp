@@ -129,8 +129,14 @@ def _benchmark_servers(launcher_configuration):
             "PYACP_DELAY": f"{network_options.delay_ms}ms",
             "PYACP_RATE": f"{network_options.rate_kbit}kbit",
         }
-        acp = pyacp.launch_acp(config=conf, launch_mode=pyacp.LaunchMode.DOCKER_COMPOSE)
-        acp.wait(SERVER_STARTUP_TIMEOUT)
+        for num_retries in reversed(range(2)):
+            try:
+                acp = pyacp.launch_acp(config=conf, launch_mode=pyacp.LaunchMode.DOCKER_COMPOSE)
+                acp.wait(SERVER_STARTUP_TIMEOUT)
+                break
+            except subprocess.CalledProcessError as e:
+                if num_retries == 0:
+                    raise e
         return acp
 
     servers_list = list(executor.map(launch_benchmark_server, NETWORK_OPTIONS))
