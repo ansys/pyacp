@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 
+import os
 import pathlib
 import tempfile
 
@@ -236,6 +237,19 @@ def test_refresh(parent_object, acp_instance):
 def test_refresh_inexistent_path(parent_object, external_path):
     """Check that refreshing with an inexistent path raises an exception."""
     assume(not pathlib.Path(external_path).exists())
+
+    # check for paths which are invalid (e.g. file name too long), and ignore them
+    def path_valid(path):
+        try:
+            os.lstat(path)
+        except FileNotFoundError:
+            return True
+        except OSError:
+            return False
+        return True
+
+    assume(path_valid(external_path))
+
     model = parent_object
     imported_solid_model = model.create_imported_solid_model()
     with pytest.raises((OSError, ValueError, RuntimeError)):
