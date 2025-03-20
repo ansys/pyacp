@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from packaging.version import parse as parse_version
 import pytest
 
 from ansys.acp.core import SensorType
@@ -60,7 +61,7 @@ class TestSensor(NoLockedMixin, TreeObjectTester):
 
     @staticmethod
     @pytest.fixture
-    def object_properties(parent_object):
+    def object_properties(parent_object, acp_instance):
         model = parent_object
         elset = model.create_element_set()
         oriented_selection_set = model.create_oriented_selection_set()
@@ -68,6 +69,11 @@ class TestSensor(NoLockedMixin, TreeObjectTester):
         fabric = model.create_fabric()
         stackup = model.create_stackup()
         sublaminate = model.create_sublaminate()
+        # Sensor by solid model is only supported with server version 25.2 or higher
+        if parse_version(acp_instance.server_version) >= parse_version("25.2"):
+            solid_model_entities = [model.create_solid_model(), model.create_imported_solid_model()]
+        else:
+            solid_model_entities = []
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "Sensor name"),
@@ -79,6 +85,8 @@ class TestSensor(NoLockedMixin, TreeObjectTester):
                 ("entities", [modeling_ply]),
                 ("sensor_type", SensorType.SENSOR_BY_SOLID_MODEL),
                 ("entities", []),
+                ("sensor_type", SensorType.SENSOR_BY_SOLID_MODEL),
+                ("entities", solid_model_entities),
                 ("active", False),
             ],
             read_only=[
