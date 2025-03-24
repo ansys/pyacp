@@ -1,0 +1,13 @@
+.. vale off
+
+include\_rule
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CylindricalSelectionRule.include_rule
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule.include_rule
+
+   ansys.acp.core.CylindricalSelectionRule.include_rule

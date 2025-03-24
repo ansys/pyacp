@@ -1,0 +1,13 @@
+.. vale off
+
+draping\_material\_model
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.draping_material_model
+
+.. minigallery::
+   :add-heading: Examples using Fabric.draping_material_model
+
+   ansys.acp.core.Fabric.draping_material_model

@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ParallelSelectionRule.clone
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.clone
+
+   ansys.acp.core.ParallelSelectionRule.clone

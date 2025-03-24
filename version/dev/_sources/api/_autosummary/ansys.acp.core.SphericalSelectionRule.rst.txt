@@ -1,0 +1,59 @@
+﻿.. vale off
+
+SphericalSelectionRule
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SphericalSelectionRule
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SphericalSelectionRule.clone
+      
+      
+      SphericalSelectionRule.delete
+      
+      
+      SphericalSelectionRule.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SphericalSelectionRule.direction
+      SphericalSelectionRule.elemental_data
+      SphericalSelectionRule.id
+      SphericalSelectionRule.include_rule
+      SphericalSelectionRule.mesh
+      SphericalSelectionRule.name
+      SphericalSelectionRule.nodal_data
+      SphericalSelectionRule.origin
+      SphericalSelectionRule.parent
+      SphericalSelectionRule.radius
+      SphericalSelectionRule.relative_rule
+      SphericalSelectionRule.rosette
+      SphericalSelectionRule.shell_mesh
+      SphericalSelectionRule.status
+      SphericalSelectionRule.use_global_coordinate_system
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule
+
+   ansys.acp.core.SphericalSelectionRule

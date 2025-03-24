@@ -1,0 +1,23 @@
+﻿LaunchMode
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: LaunchMode
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      LaunchMode.DIRECT
+      LaunchMode.DOCKER_COMPOSE
+   
+   

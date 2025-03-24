@@ -1,0 +1,6 @@
+draping\_offset\_correction
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.draping_offset_correction

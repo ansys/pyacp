@@ -1,0 +1,6 @@
+larc\_constants
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.larc_constants

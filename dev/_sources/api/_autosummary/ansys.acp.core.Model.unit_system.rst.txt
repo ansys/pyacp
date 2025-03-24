@@ -1,0 +1,6 @@
+unit\_system
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.unit_system

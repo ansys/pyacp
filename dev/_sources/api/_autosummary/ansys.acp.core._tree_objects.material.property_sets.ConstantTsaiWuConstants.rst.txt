@@ -1,0 +1,31 @@
+﻿ConstantTsaiWuConstants
+=======================
+
+.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets
+
+.. autoclass:: ConstantTsaiWuConstants
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConstantTsaiWuConstants.XY
+      ConstantTsaiWuConstants.XZ
+      ConstantTsaiWuConstants.YZ
+   
+   

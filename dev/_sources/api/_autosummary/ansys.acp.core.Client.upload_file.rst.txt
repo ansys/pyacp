@@ -1,0 +1,6 @@
+upload\_file
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Client.upload_file

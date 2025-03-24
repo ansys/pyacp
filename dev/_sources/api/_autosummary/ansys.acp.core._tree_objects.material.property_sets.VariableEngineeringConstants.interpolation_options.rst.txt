@@ -1,0 +1,6 @@
+interpolation\_options
+======================
+
+.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets
+
+.. autoproperty:: VariableEngineeringConstants.interpolation_options
