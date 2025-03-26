@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 from numpy.testing import assert_equal
+from packaging.version import parse as parse_version
 import pytest
 
 from ansys.acp.core import FabricWithAngle, Model
@@ -145,9 +146,17 @@ class TestAnalysisPlyAlternateParents(TreeObjectTesterReadOnly):
     COLLECTION_NAME = "analysis_plies"
 
     @pytest.fixture(params=["solid_model", "imported_solid_model", "layup_mapping_object"])
-    def parent_object(self, request, model):
+    def parent_object(self, request, model, acp_instance):
+        server_version_parsed = parse_version(acp_instance.server_version)
+        if server_version_parsed < parse_version("25.1"):
+            pytest.skip("Supported only from version 25.1")
+
         if request.param == "solid_model":
             return next(iter(model.solid_models.values()))
+
+        if server_version_parsed < parse_version("25.2"):
+            pytest.skip("Supported only from version 25.2")
+
         ism = next(iter(model.imported_solid_models.values()))
         if request.param == "imported_solid_model":
             return ism
