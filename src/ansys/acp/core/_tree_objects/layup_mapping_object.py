@@ -24,7 +24,13 @@ from __future__ import annotations
 
 from collections.abc import Iterable, Sequence
 
-from ansys.api.acp.v0 import enum_types_pb2, layup_mapping_object_pb2, layup_mapping_object_pb2_grpc
+from ansys.api.acp.v0 import (
+    analysis_ply_pb2_grpc,
+    enum_types_pb2,
+    imported_analysis_ply_pb2_grpc,
+    layup_mapping_object_pb2,
+    layup_mapping_object_pb2_grpc,
+)
 
 from .._utils.property_protocols import ReadWriteProperty
 from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
@@ -32,12 +38,14 @@ from ._grpc_helpers.linked_object_list import (
     define_linked_object_list,
     define_polymorphic_linked_object_list,
 )
+from ._grpc_helpers.mapping import get_read_only_collection_property
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
     grpc_link_property,
     mark_grpc_properties,
 )
+from .analysis_ply import AnalysisPly
 from .base import CreatableTreeObject, IdTreeObject
 from .element_set import ElementSet
 from .enums import (
@@ -55,6 +63,7 @@ from .enums import (
     stress_state_type_from_pb,
     stress_state_type_to_pb,
 )
+from .imported_analysis_ply import ImportedAnalysisPly
 from .imported_modeling_group import ImportedModelingGroup
 from .imported_modeling_ply import ImportedModelingPly
 from .material import Material
@@ -310,4 +319,13 @@ class LayupMappingObject(CreatableTreeObject, IdTreeObject):
         "properties.base_element_rosette_selection_method",
         from_protobuf=layup_mapping_rosette_selection_method_from_pb,
         to_protobuf=layup_mapping_rosette_selection_method_to_pb,
+    )
+
+    analysis_plies = get_read_only_collection_property(
+        AnalysisPly, analysis_ply_pb2_grpc.ObjectServiceStub, supported_since="25.2"
+    )
+    imported_analysis_plies = get_read_only_collection_property(
+        ImportedAnalysisPly,
+        imported_analysis_ply_pb2_grpc.ObjectServiceStub,
+        supported_since="25.2",
     )

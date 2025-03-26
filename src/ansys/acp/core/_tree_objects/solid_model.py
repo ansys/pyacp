@@ -30,6 +30,7 @@ from ansys.api.acp.v0 import (
     analysis_ply_pb2_grpc,
     cut_off_geometry_pb2_grpc,
     extrusion_guide_pb2_grpc,
+    interface_layer_pb2_grpc,
     snap_to_geometry_pb2_grpc,
     solid_element_set_pb2_grpc,
     solid_model_pb2,
@@ -83,6 +84,7 @@ from .enums import (
     status_type_from_pb,
 )
 from .extrusion_guide import ExtrusionGuide
+from .interface_layer import InterfaceLayer
 from .material import Material
 from .modeling_ply import ModelingPly
 from .object_registry import register
@@ -529,6 +531,9 @@ class SolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObject):
 
     analysis_plies = get_read_only_collection_property(
         AnalysisPly, analysis_ply_pb2_grpc.ObjectServiceStub
+    )
+    interface_layers = get_read_only_collection_property(
+        InterfaceLayer, interface_layer_pb2_grpc.ObjectServiceStub, supported_since="25.2"
     )
 
     elemental_data = elemental_data_property(SolidModelElementalData)

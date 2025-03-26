@@ -1,0 +1,94 @@
+/COM,Composite Solid Model SolidModel.1
+/COM,Generated with: ACP Version 2024 R1
+/COM,Copyright (c) 2005 - 2025 by ANSYS Switzerland GmbH
+/COM,Unauthorized use, distribution, or duplication is prohibited.
+/COM,Last updated: 2025-Mar-26 11:35:32
+/COM,Data in consistent MPA units.
+/UNITS,MPA
+/NOPR
+/PREP7
+SHPP, OFF
+! Layered linear structural solid 8n element
+ET, 185,185
+KEYOPT, 185, 3, 1
+KEYOPT, 185, 8, 1
+! Layered quadratic structural solid 20n element
+ET, 186,186
+KEYOPT, 186, 3, 1
+KEYOPT, 186, 8, 1
+! Layered linear structural solid-shell 8n element
+ET, 190,190
+KEYOPT, 190, 8, 1
+! Homogeneous linear structural solid 8n element
+ET, 1,185
+! Homogeneous quadratic structural solid 20n element
+ET, 2,186
+NBLOCK,6,SOLID
+(3i9,6e16.9)
+        5        0        0  -1.5000000e+02   1.5000000e+02   0.0000000e+00
+        6        0        0  -1.5000000e+02  -1.5000000e+02   0.0000000e+00
+        7        0        0   1.5000000e+02  -1.5000000e+02   0.0000000e+00
+        8        0        0   1.5000000e+02   1.5000000e+02   0.0000000e+00
+        9        0        0  -1.5000000e+02   1.5000000e+02   1.0000000e-04
+       10        0        0  -1.5000000e+02  -1.5000000e+02   1.0000000e-04
+       11        0        0   1.5000000e+02  -1.5000000e+02   1.0000000e-04
+       12        0        0   1.5000000e+02   1.5000000e+02   1.0000000e-04
+N,R5.3,LOC,     -1,
+LOCAL,R5.0,LOC,11,0,0,0,5e-05
+LOCAL,R5.0,ANG,11,0,-3.50835e-15,0,-0
+LOCAL,R5.0,PRM,11,0,1.0,1.0
+CSCIR,11,0,0
+CSYS,0
+EBLOCK,19,SOLID,        1
+(19i9)
+        1      185        0        1       11        0        0        0        8        0        2        5        6        7        8        9       10       11       12
+       -1
+! Unit system DS_SOLV_NMM
+! GUID 3b85c5a1-88c1-47d1-a83d-9b46d2cf38a6
+! Material 1 = Structural Steel
+Temperature = 'TEMP' ! Temperature
+MP,DENS,1,7.85e-09,	! tonne mm^-3
+MP,ALPX,1,1.2e-05,	! C^-1
+MP,C,1,434000000,	! mm^2 s^-2 C^-1
+MP,KXX,1,60.5,	! tonne mm s^-3 C^-1
+MP,RSVX,1,0.00017,	! ohm mm
+MP,EX,1,200000,	! tonne s^-2 mm^-1
+MP,NUXY,1,0.3,
+MP,MURX,1,10000,
+MP,UVID,1,3b85c5a1-88c1-47d1-a83d-9b46d2cf38a6
+MP,UMID,1,59002a79-71c2-428e-906b-55d7dbee100e
+
+SECTYPE,1,SHELL
+SECOFFSET,USER,0
+SECBLOCK,1
+0.0001,1,0,3
+CMBLOCK,SolidModel.1_ALL,ELEM,        1  ! users element component definition
+(8i10)
+         2
+CMBLOCK,SolidModel.1_All_Elements,ELEM,        1  ! users element component definition
+(8i10)
+         2
+CMBLOCK,SolidModel.1_P1L1__ModelingPly.1,ELEM,        1  ! users element component definition
+(8i10)
+         2
+CMBLOCK,_ACP_SolidModel.1_1_bot,NODE,        4  ! users node component definition
+(8i10)
+         5         6         7         8
+CMBLOCK,_ACP_SolidModel.1_1_top,NODE,        4  ! users node component definition
+(8i10)
+         9        10        11        12
+CMBLOCK,_ACP_SolidModel.1_1_wall,NODE,        4  ! users node component definition
+(8i10)
+         5         8         9        12
+CMBLOCK,_ACP_SolidModel.1_2_wall,NODE,        4  ! users node component definition
+(8i10)
+         7         8        11        12
+CMBLOCK,_ACP_SolidModel.1_3_wall,NODE,        4  ! users node component definition
+(8i10)
+         6         7        10        11
+CMBLOCK,_ACP_SolidModel.1_4_wall,NODE,        4  ! users node component definition
+(8i10)
+         5         6         9        10
+CMGRP,R5.2,SolidModel.1_All_Elements_bot,_ACP_SolidModel.1_1_bot
+CMGRP,R5.2,SolidModel.1_All_Elements_top,_ACP_SolidModel.1_1_top
+/GOPR
