@@ -82,3 +82,22 @@ class TestInterfaceLayer(NoLockedMixin, TreeObjectTester):
                 ("status", "UPTODATE"),
             ],
         )
+
+
+def test_interface_layer_on_solid_model(load_model_from_tempfile, raises_before_version):
+    with load_model_from_tempfile("minimal_complete_model.acph5") as model:
+        modeling_group = next(iter(model.modeling_groups.values()))
+        interface_layer = modeling_group.create_interface_layer()
+        interface_layer.oriented_selection_sets = [
+            next(iter(model.oriented_selection_sets.values()))
+        ]
+        # The interface layer needs to be surrounded by modeling plies to be present
+        # in the solid model.
+        new_ply = modeling_group.modeling_plies["ModelingPly.1"].clone()
+        new_ply.global_ply_nr = 0  # at the end
+        new_ply.store(parent=modeling_group)
+        model.update()
+
+        with raises_before_version("25.2"):
+            solid_model = next(iter(model.solid_models.values()))
+            assert interface_layer in list(solid_model.interface_layers.values())
