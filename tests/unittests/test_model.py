@@ -190,7 +190,7 @@ def test_nodal_data(minimal_complete_model):
     numpy.testing.assert_allclose(data.node_labels.values, np.array([1, 2, 3, 4]))
 
 
-@pytest.mark.plotting
+@pytest.mark.graphics
 def test_mesh_data_to_pyvista(minimal_complete_model):
     import pyvista
 
@@ -200,7 +200,7 @@ def test_mesh_data_to_pyvista(minimal_complete_model):
     assert pv_mesh.n_cells == 1
 
 
-@pytest.mark.plotting
+@pytest.mark.graphics
 def test_elemental_data_to_pyvista(minimal_complete_model):
     import pyvista
 
@@ -211,7 +211,7 @@ def test_elemental_data_to_pyvista(minimal_complete_model):
     assert pv_mesh.n_cells == 1
 
 
-@pytest.mark.plotting
+@pytest.mark.graphics
 @pytest.mark.parametrize("component", [e.value for e in ElementalDataType])
 def test_elemental_data_to_pyvista_with_component(minimal_complete_model, component):
     import pyvista

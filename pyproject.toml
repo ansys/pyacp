@@ -169,7 +169,7 @@ ignore_missing_imports = true
 # This section is required even if empty, so that pytest recognizes this
 # file as a pytest configuration file, and sets the containing directory
 # as its 'rootdir'.
-markers = "plotting"
+markers = "graphics"
 
 [tool.coverage.run]
 branch = true

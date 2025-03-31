@@ -51,7 +51,7 @@ def case_empty_mesh_invalid(model, skip_before_version):
     return model.create_element_set().mesh
 
 
-@pytest.mark.plotting
+@pytest.mark.graphics
 @parametrize_with_cases("mesh", cases=".", glob="*_valid")
 def test_direction_plotter_valid_cases(model, mesh, load_model_from_tempfile):
     with load_model_from_tempfile() as model:
@@ -81,7 +81,7 @@ def test_direction_plotter_valid_cases(model, mesh, load_model_from_tempfile):
             )
 
 
-@pytest.mark.plotting
+@pytest.mark.graphics
 @parametrize_with_cases("mesh", cases=".", glob="*_invalid")
 def test_direction_plotter_invalid_cases(model, mesh, load_model_from_tempfile):
     with load_model_from_tempfile() as model:

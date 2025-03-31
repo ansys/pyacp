@@ -116,7 +116,7 @@ jobs:
           token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
           python-package-name: 'ansys-acp-core'
           dev-mode: ${{ github.ref != 'refs/heads/main' }}
-          extra-targets: "plotting"
+          extra-targets: "graphics"
 
   testing-direct-launch:
     name: Testing with direct launch mode
@@ -219,7 +219,7 @@ jobs:
         working-directory: tests/unittests
         run: |
           docker pull $IMAGE_NAME
-          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html -m "not plotting"
+          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html -m "not graphics"
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
@@ -270,7 +270,7 @@ jobs:
         run: |
           pip install -U pip
           pip install 'poetry!=1.7.0'
-          poetry install --with test --extras plotting
+          poetry install --with test --extras graphics
 
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
