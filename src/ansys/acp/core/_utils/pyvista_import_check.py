@@ -42,7 +42,7 @@ def requires_pyvista(func: Callable[P, T]) -> Callable[P, T]:
         except ImportError as exc:
             raise ImportError(
                 f"The '{func.__name__}' function requires the 'pyvista' package. "
-                "Please reinstall PyACP with 'pip install ansys-acp-core[plotting]'."
+                "Please reinstall PyACP with 'pip install ansys-acp-core[graphics]'."
             ) from exc
         return func(*args, **kwargs)
 

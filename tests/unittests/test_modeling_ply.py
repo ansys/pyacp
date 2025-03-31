@@ -341,7 +341,7 @@ def test_nodal_data(simple_modeling_ply):
     )
 
 
-@pytest.mark.plotting
+@pytest.mark.graphics
 def test_elemental_data_to_pyvista(minimal_complete_model, simple_modeling_ply):
     import pyvista
 
@@ -352,7 +352,7 @@ def test_elemental_data_to_pyvista(minimal_complete_model, simple_modeling_ply):
     assert pv_mesh.n_cells == 1
 
 
-@pytest.mark.plotting
+@pytest.mark.graphics
 @pytest.mark.parametrize("component", [e.value for e in ElementalDataType])
 def test_elemental_data_to_pyvista_with_component(
     minimal_complete_model, simple_modeling_ply, component
@@ -388,7 +388,7 @@ def test_elemental_data_to_pyvista_with_component(
         assert pv_mesh.n_cells == 1
 
 
-@pytest.mark.plotting
+@pytest.mark.graphics
 def test_nodal_data_to_pyvista(minimal_complete_model, simple_modeling_ply):
     import pyvista
 
@@ -399,7 +399,7 @@ def test_nodal_data_to_pyvista(minimal_complete_model, simple_modeling_ply):
     assert pv_mesh.n_cells == 1
 
 
-@pytest.mark.plotting
+@pytest.mark.graphics
 @pytest.mark.parametrize("component", [e.value for e in NodalDataType])
 def test_nodal_data_to_pyvista_with_component(
     minimal_complete_model, simple_modeling_ply, component
