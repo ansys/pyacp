@@ -89,7 +89,8 @@ docker = ">=7.0"
 [tool.poetry.extras]
 # For the examples, we keep an extra to simplify installing these dependencies for the
 # end user.
-plotting = ["pyvista"]
+plotting = ["pyvista"]  # To be deprecated by "graphics"
+graphics = ["pyvista"]
 examples = [
     "ansys-mapdl-core",
     "ansys-dpf-composites",
