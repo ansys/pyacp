@@ -64,7 +64,15 @@ class TestImportedAnalysisPly(TreeObjectTesterReadOnly):
     @pytest.fixture(
         params=["imported_production_ply", "imported_solid_model", "layup_mapping_object"]
     )
-    def parent_kind(request):
+    def parent_kind(request, acp_instance):
+        # We are skipping the test entirely instead of using 'raises_before_version'
+        # because it is generally the test _setup_ which fails, not the test itself.
+        if request.param != "imported_production_ply" and parse_version(
+            acp_instance.server_version
+        ) < parse_version("25.2"):
+            pytest.skip(
+                "Accessing imported analysis plies from other parents is not supported in this version."
+            )
         return request.param
 
     @staticmethod
