@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 from numpy.testing import assert_equal
+from packaging.version import parse as parse_version
 import pytest
 
 from ansys.acp.core import FabricWithAngle, Model
@@ -31,7 +32,7 @@ from .common.tree_object_tester import TreeObjectTesterReadOnly
 
 @pytest.fixture
 def model(load_model_from_tempfile):
-    with load_model_from_tempfile() as model:
+    with load_model_from_tempfile(relative_file_path="minimal_complete_model.acph5") as model:
         yield model
 
 
@@ -141,6 +142,40 @@ class TestAnalysisPly(TreeObjectTesterReadOnly):
             _ = analysis_ply_that_gets_removed_on_update.status
 
 
+class TestAnalysisPlyAlternateParents(TreeObjectTesterReadOnly):
+    COLLECTION_NAME = "analysis_plies"
+
+    @pytest.fixture(params=["solid_model", "imported_solid_model", "layup_mapping_object"])
+    def parent_object(self, request, model, acp_instance):
+        server_version_parsed = parse_version(acp_instance.server_version)
+        if server_version_parsed < parse_version("25.1"):
+            pytest.skip("Supported only from version 25.1")
+
+        if request.param == "solid_model":
+            return next(iter(model.solid_models.values()))
+
+        if server_version_parsed < parse_version("25.2"):
+            pytest.skip("Supported only from version 25.2")
+
+        ism = next(iter(model.imported_solid_models.values()))
+        if request.param == "imported_solid_model":
+            return ism
+        else:
+            return next(iter(ism.layup_mapping_objects.values()))
+
+    @pytest.fixture
+    def collection_test_data(self, parent_object):
+        object_collection = getattr(parent_object, self.COLLECTION_NAME)
+        object_collection.values()
+        object_names = ["P1L1__ModelingPly.1"]
+        object_ids = ["P1L1__ModelingPly.1"]
+        return object_collection, object_names, object_ids
+
+    @staticmethod
+    def test_parent_access():
+        pytest.skip("Not applicable, since the parent object is the production ply.")
+
+
 def test_mesh_data_existence(model: Model):
     """
     Test that the elemental and nodal data can be retrieved. Does not
@@ -159,19 +194,19 @@ def test_meshes(model: Model, raises_before_version):
     """
     analysis_ply = list(get_first_production_ply(model).analysis_plies.values())[0]
     with raises_before_version("25.1"):
-        assert_equal(analysis_ply.mesh.element_labels, [1])
+        assert_equal(analysis_ply.mesh.element_labels, [1, 2, 3])
     with raises_before_version("25.1"):
         assert_equal(analysis_ply.shell_mesh.element_labels, [1])
     with raises_before_version("25.1"):
-        assert_equal(analysis_ply.solid_mesh.element_labels, [])
+        assert_equal(analysis_ply.solid_mesh.element_labels, [2, 3])
     with raises_before_version("25.1"):
         model.create_solid_model(
             element_sets=[model.element_sets["All_Elements"]],
         )
     model.update()
     with raises_before_version("25.1"):
-        assert_equal(analysis_ply.mesh.element_labels, [1, 2])
+        assert_equal(analysis_ply.mesh.element_labels, [1, 2, 3, 4])
     with raises_before_version("25.1"):
         assert_equal(analysis_ply.shell_mesh.element_labels, [1])
     with raises_before_version("25.1"):
-        assert_equal(analysis_ply.solid_mesh.element_labels, [2])
+        assert_equal(analysis_ply.solid_mesh.element_labels, [2, 3, 4])

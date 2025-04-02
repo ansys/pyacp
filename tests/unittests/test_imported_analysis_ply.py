@@ -61,18 +61,48 @@ class TestImportedAnalysisPly(TreeObjectTesterReadOnly):
     COLLECTION_NAME = "imported_analysis_plies"
 
     @staticmethod
+    @pytest.fixture(
+        params=["imported_production_ply", "imported_solid_model", "layup_mapping_object"]
+    )
+    def parent_kind(request, acp_instance):
+        # We are skipping the test entirely instead of using 'raises_before_version'
+        # because it is generally the test _setup_ which fails, not the test itself.
+        if request.param != "imported_production_ply" and parse_version(
+            acp_instance.server_version
+        ) < parse_version("25.2"):
+            pytest.skip(
+                "Accessing imported analysis plies from other parents is not supported in this version."
+            )
+        return request.param
+
+    @staticmethod
     @pytest.fixture
-    def parent_object(model: Model):
-        img = get_hdf5_imported_modeling_group(model)
-        return img.imported_modeling_plies["ud"].imported_production_plies["ImportedProductionPly"]
+    def parent_object(model: Model, parent_kind):
+        if parent_kind == "imported_production_ply":
+            img = get_hdf5_imported_modeling_group(model)
+            return img.imported_modeling_plies["ud"].imported_production_plies[
+                "ImportedProductionPly"
+            ]
+        else:
+            ism = next(iter(model.imported_solid_models.values()))
+            if parent_kind == "imported_solid_model":
+                return ism
+            else:
+                assert parent_kind == "layup_mapping_object"
+                return next(iter(ism.layup_mapping_objects.values()))
 
     @pytest.fixture
-    def collection_test_data(self, parent_object):
+    def collection_test_data(self, parent_object, parent_kind):
         imported_production_ply = parent_object
         object_collection = getattr(imported_production_ply, self.COLLECTION_NAME)
         object_collection.values()
-        object_names = ["P1L1__ud"]
-        object_ids = ["P1L1__ud"]
+        if parent_kind == "imported_production_ply":
+            object_names = ["P1L1__ud"]
+            object_ids = ["P1L1__ud"]
+        else:
+            # solid model and layup mapping object contain all imported analysis plies
+            object_names = ["P1L1__ud", "P1L1__woven", "P1L1__ud 2"]
+            object_ids = ["P1L1__ud", "P1L1__woven", "P1L1__ud 2"]
 
         return object_collection, object_names, object_ids
 
@@ -130,3 +160,10 @@ class TestImportedAnalysisPly(TreeObjectTesterReadOnly):
 
         model.update()
         assert len(all_imported_analysis_plies(model)) == 3
+
+    def test_parent_access(self, collection_test_data, parent_object, parent_kind):  # type: ignore
+        if parent_kind != "imported_production_ply":
+            pytest.skip(
+                "This test only applies to the canonical resource path parent (imported production ply)."
+            )
+        super().test_parent_access(collection_test_data, parent_object)

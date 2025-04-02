@@ -27,8 +27,10 @@ import dataclasses
 from typing import Any
 
 from ansys.api.acp.v0 import (
+    analysis_ply_pb2_grpc,
     cut_off_geometry_pb2_grpc,
     enum_types_pb2,
+    imported_analysis_ply_pb2_grpc,
     imported_solid_model_pb2,
     imported_solid_model_pb2_grpc,
     layup_mapping_object_pb2_grpc,
@@ -59,6 +61,7 @@ from ._grpc_helpers.property_helper import (
 )
 from ._mesh_data import solid_mesh_property
 from ._solid_model_export import SolidModelExportMixin
+from .analysis_ply import AnalysisPly
 from .base import (
     CreatableTreeObject,
     IdTreeObject,
@@ -72,6 +75,7 @@ from .enums import (
     unit_system_type_from_pb,
     unit_system_type_to_pb,
 )
+from .imported_analysis_ply import ImportedAnalysisPly
 from .layup_mapping_object import LayupMappingObject
 from .material import Material
 from .object_registry import register
@@ -353,6 +357,15 @@ class ImportedSolidModel(SolidModelExportMixin, CreatableTreeObject, IdTreeObjec
     layup_mapping_objects = define_mutable_mapping(
         LayupMappingObject,
         layup_mapping_object_pb2_grpc.ObjectServiceStub,
+    )
+
+    analysis_plies = get_read_only_collection_property(
+        AnalysisPly, analysis_ply_pb2_grpc.ObjectServiceStub, supported_since="25.2"
+    )
+    imported_analysis_plies = get_read_only_collection_property(
+        ImportedAnalysisPly,
+        imported_analysis_ply_pb2_grpc.ObjectServiceStub,
+        supported_since="25.2",
     )
 
     def refresh(self, path: _PATH, format: SolidModelImportFormat | None = None) -> None:  # type: ignore
