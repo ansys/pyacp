@@ -1,0 +1,6 @@
+create\_oriented\_selection\_set
+================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_oriented_selection_set

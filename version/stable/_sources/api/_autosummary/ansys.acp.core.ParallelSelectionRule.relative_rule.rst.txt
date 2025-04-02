@@ -1,0 +1,13 @@
+.. vale off
+
+relative\_rule
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.relative_rule
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.relative_rule
+
+   ansys.acp.core.ParallelSelectionRule.relative_rule

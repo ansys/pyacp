@@ -1,0 +1,6 @@
+drop\_off\_material\_handling
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.drop_off_material_handling

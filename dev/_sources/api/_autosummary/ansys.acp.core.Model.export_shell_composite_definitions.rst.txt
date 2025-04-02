@@ -1,0 +1,6 @@
+export\_shell\_composite\_definitions
+=====================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.export_shell_composite_definitions

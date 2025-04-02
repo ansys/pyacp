@@ -1,0 +1,13 @@
+.. vale off
+
+CONNECT
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LaunchMode.CONNECT
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.CONNECT
+
+   ansys.acp.core.LaunchMode.CONNECT

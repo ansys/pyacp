@@ -1,0 +1,13 @@
+.. vale off
+
+ply\_angle
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.ply_angle
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.ply_angle
+
+   ansys.acp.core.ImportedModelingPly.ply_angle

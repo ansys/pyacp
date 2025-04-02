@@ -1,0 +1,13 @@
+.. vale off
+
+weight
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.weight
+
+.. minigallery::
+   :add-heading: Examples using Sensor.weight
+
+   ansys.acp.core.Sensor.weight

@@ -1,0 +1,6 @@
+effective\_stress
+=================
+
+.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets
+
+.. autoproperty:: VariableStressLimits.effective_stress

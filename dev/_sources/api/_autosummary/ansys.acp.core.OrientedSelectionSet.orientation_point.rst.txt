@@ -1,0 +1,6 @@
+orientation\_point
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.orientation_point

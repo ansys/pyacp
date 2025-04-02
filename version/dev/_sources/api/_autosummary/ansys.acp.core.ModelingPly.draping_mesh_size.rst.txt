@@ -1,0 +1,13 @@
+.. vale off
+
+draping\_mesh\_size
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.draping_mesh_size
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.draping_mesh_size
+
+   ansys.acp.core.ModelingPly.draping_mesh_size
