@@ -1,0 +1,31 @@
+﻿DirectLaunchConfig
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: DirectLaunchConfig
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      DirectLaunchConfig.binary_path
+      DirectLaunchConfig.stderr_file
+      DirectLaunchConfig.stdout_file
+   
+   

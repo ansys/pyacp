@@ -1,0 +1,13 @@
+.. vale off
+
+radius
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.radius
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.radius
+
+   ansys.acp.core.SphericalSelectionRule.radius

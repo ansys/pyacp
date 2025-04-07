@@ -1,0 +1,6 @@
+middle\_offset
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ElementSet.middle_offset

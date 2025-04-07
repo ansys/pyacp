@@ -1,0 +1,6 @@
+create\_edge\_set
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_edge_set

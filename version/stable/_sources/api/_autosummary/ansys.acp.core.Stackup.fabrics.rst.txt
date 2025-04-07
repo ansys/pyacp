@@ -1,0 +1,13 @@
+.. vale off
+
+fabrics
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.fabrics
+
+.. minigallery::
+   :add-heading: Examples using Stackup.fabrics
+
+   ansys.acp.core.Stackup.fabrics

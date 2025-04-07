@@ -1,0 +1,44 @@
+﻿Rosette
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Rosette
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Rosette.clone
+      
+      
+      Rosette.delete
+      
+      
+      Rosette.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Rosette.dir1
+      Rosette.dir2
+      Rosette.id
+      Rosette.locked
+      Rosette.name
+      Rosette.origin
+      Rosette.status
+   
+   

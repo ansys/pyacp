@@ -1,0 +1,6 @@
+materials
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.materials

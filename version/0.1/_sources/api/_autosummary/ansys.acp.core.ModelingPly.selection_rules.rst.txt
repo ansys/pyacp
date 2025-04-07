@@ -1,0 +1,13 @@
+.. vale off
+
+selection\_rules
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.selection_rules
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.selection_rules
+
+   ansys.acp.core.ModelingPly.selection_rules

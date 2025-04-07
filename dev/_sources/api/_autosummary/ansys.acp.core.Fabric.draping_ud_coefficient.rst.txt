@@ -1,0 +1,6 @@
+draping\_ud\_coefficient
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.draping_ud_coefficient

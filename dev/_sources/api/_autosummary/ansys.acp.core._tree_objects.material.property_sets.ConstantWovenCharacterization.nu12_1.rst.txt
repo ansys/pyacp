@@ -1,0 +1,6 @@
+nu12\_1
+=======
+
+.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets
+
+.. autoproperty:: ConstantWovenCharacterization.nu12_1

@@ -1,0 +1,13 @@
+.. vale off
+
+rosette
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CylindricalSelectionRule.rosette
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule.rosette
+
+   ansys.acp.core.CylindricalSelectionRule.rosette

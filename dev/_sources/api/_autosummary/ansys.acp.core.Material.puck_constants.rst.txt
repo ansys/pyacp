@@ -1,0 +1,6 @@
+puck\_constants
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.puck_constants

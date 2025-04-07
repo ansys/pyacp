@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Sensor.clone
+
+.. minigallery::
+   :add-heading: Examples using Sensor.clone
+
+   ansys.acp.core.Sensor.clone
