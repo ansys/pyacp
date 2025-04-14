@@ -5,7 +5,7 @@
     :maxdepth: 3
 
     PyACP home<self>
-    intro
+    getting_started
     user_guide/index
     examples/index
     api/index
