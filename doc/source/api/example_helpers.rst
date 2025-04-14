@@ -8,3 +8,4 @@ Example helpers
 
     ExampleKeys
     get_example_file
+    set_plot_theme
