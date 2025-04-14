@@ -79,7 +79,6 @@ print(model.unit_system)
 # Setup materials and oriented selection set
 # ------------------------------------------
 
-#
 # %%
 # Create a material and fabric.
 ud_material = model.create_material(
