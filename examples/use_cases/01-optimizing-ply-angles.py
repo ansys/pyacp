@@ -39,6 +39,8 @@ it demonstrates the process of optimizing a composite lay-up with PyACP.
     When copy / pasting the blocks in this example, make sure to use either a Jupyter
     notebook, or an IPython console. The default Python interactive console (prior to
     Python 3.13) does not allow empty lines in indented code.
+    To run the example with the default Python interpreter, download and execute the
+    example script.
 
 """
 
