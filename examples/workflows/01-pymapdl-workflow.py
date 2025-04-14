@@ -59,10 +59,14 @@ from ansys.acp.core import (
     material_property_sets,
     print_model,
 )
-from ansys.acp.core.extras import ExampleKeys, get_example_file
+from ansys.acp.core.extras import ExampleKeys, get_example_file, set_plot_theme
 
 # sphinx_gallery_thumbnail_number = 3
 
+# %%
+# Set the plot theme for the example. This is optional, and ensures that you get the
+# same plot style (theme, color map, etc.) as in the online documentation.
+set_plot_theme()
 
 # %%
 # Launch PyACP

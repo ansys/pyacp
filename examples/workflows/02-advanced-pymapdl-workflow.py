@@ -51,8 +51,14 @@ import pyvista
 # %%
 # Import the Ansys libraries.
 import ansys.acp.core as pyacp
+from ansys.acp.core.extras import set_plot_theme
 
 # sphinx_gallery_thumbnail_number = -1
+
+# %%
+# Set the plot theme for the example. This is optional, and ensures that you get the
+# same plot style (theme, color map, etc.) as in the online documentation.
+set_plot_theme()
 
 
 # %%

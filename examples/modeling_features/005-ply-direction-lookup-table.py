@@ -53,7 +53,12 @@ from ansys.acp.core import (
     get_directions_plotter,
     launch_acp,
 )
-from ansys.acp.core.extras import ExampleKeys, get_example_file
+from ansys.acp.core.extras import ExampleKeys, get_example_file, set_plot_theme
+
+# %%
+# Set the plot theme for the example. This is optional, and ensures that you get the
+# same plot style (theme, color map, etc.) as in the online documentation.
+set_plot_theme()
 
 # %%
 # Start ACP and load the model
