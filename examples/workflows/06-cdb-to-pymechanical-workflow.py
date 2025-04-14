@@ -37,6 +37,12 @@ boundary conditions, and run a failure analysis with PyDPF - Composites.
     The PyACP / PyMechanical integration is still experimental. Refer to the
     :ref:`limitations section <limitations>` for more information.
 
+.. note::
+
+    Outputs and plots for this example are not shown in the rendered online
+    documentation. To see the outputs and plots, run the example script or
+    Jupyter notebook locally.
+
 """
 
 

@@ -35,6 +35,12 @@ model, and PyDPF - Composites to post-process the results.
 This workflow does *not* suffer from the limitations of the PyACP to
 PyMechanical integration.
 
+.. note::
+
+    Outputs and plots for this example are not shown in the rendered online
+    documentation. To see the outputs and plots, run the example script or
+    Jupyter notebook locally.
+
 """
 
 
