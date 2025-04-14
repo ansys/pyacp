@@ -162,7 +162,7 @@ Many PyACP objects provide data which can be plotted. For example, to show the m
 
 .. testcode::
 
-    plate_cdb_model.mesh.to_pyvista().plot()
+    plate_cdb_model.mesh.to_pyvista().plot(show_edges=True)
 
 Or to show the thickness of a modeling ply or fiber directions:
 
