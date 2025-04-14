@@ -26,6 +26,7 @@ from collections.abc import Callable, Iterator
 import inspect
 from typing import Any, Concatenate, Generic, TypeVar
 
+import grpc
 from grpc import Channel
 from packaging.version import parse as parse_version
 from typing_extensions import ParamSpec, Self
@@ -225,11 +226,26 @@ class MutableMapping(Mapping[CreatableValueT]):
         """Remove all items from the mapping."""
         for obj_info in self._get_objectinfo_list():
             with wrap_grpc_errors():
-                self._stub.Delete(
-                    DeleteRequest(
-                        resource_path=obj_info.info.resource_path, version=obj_info.info.version
+                try:
+                    self._stub.Delete(
+                        DeleteRequest(
+                            resource_path=obj_info.info.resource_path, version=obj_info.info.version
+                        )
                     )
-                )
+                except grpc.RpcError as e:
+                    # The object version may have changed since the 'List' call,
+                    # since the object may become outdated when other objects are deleted.
+                    # In this case, we need to get the object info again and delete it.
+                    if e.code() == grpc.StatusCode.FAILED_PRECONDITION:
+                        obj_info = self._get_objectinfo_by_id(obj_info.info.id)
+                        self._stub.Delete(
+                            DeleteRequest(
+                                resource_path=obj_info.info.resource_path,
+                                version=obj_info.info.version,
+                            )
+                        )
+                    else:
+                        raise e
 
     def pop(self, key: str) -> CreatableValueT:
         """Remove and return the value for key."""
