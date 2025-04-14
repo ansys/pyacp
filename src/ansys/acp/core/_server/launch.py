@@ -111,7 +111,7 @@ def launch_acp(
         filetransfer_handler=FileTransferHandler(
             filetransfer_strategy, auto_transfer_files=auto_transfer_files
         ),
-        channel=server_instance.channels[ServerKey.MAIN],
+        # channel=server_instance.channels[ServerKey.MAIN],
         is_remote=is_remote,
     )
     if timeout is not None:
