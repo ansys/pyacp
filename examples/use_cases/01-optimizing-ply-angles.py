@@ -33,6 +33,13 @@ reserve factor (IRF) of the composite structure under two load cases.
 The example uses the :py:func:`scipy.optimize.minimize` function to perform the optimization.
 While the procedure itself is not the focus of this example and could be improved,
 it demonstrates the process of optimizing a composite lay-up with PyACP.
+
+.. note::
+
+    When copy / pasting the blocks in this example, make sure to use either a Jupyter
+    notebook, or an IPython console. The default Python interactive console (prior to
+    Python 3.13) does not allow empty lines in indented code.
+
 """
 
 # %%
