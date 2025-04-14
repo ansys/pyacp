@@ -3,10 +3,18 @@
 Getting started
 ---------------
 
+Prerequisites
+^^^^^^^^^^^^^
+
+To use PyACP, you need the following prerequisites:
+
+- Ansys Composite PrepPost (ACP), version 2024 R2 or later.
+- Python, version 3.10, 3.11 or 3.12.
+
 Installation
 ^^^^^^^^^^^^
 
-PyACP supports Ansys 2024 R2 and later. To install PyACP, run the following command:
+To install PyACP, run the following command:
 
 .. code-block:: bash
 
@@ -56,6 +64,13 @@ Next, start an ACP instance:
 .. testcode::
 
     acp = pyacp.launch_acp()
+
+This launches ACP in the background and creates a connection to it. You can interact
+with this ACP instance using the PyACP API.
+
+.. note::
+
+    It's not possible to connect to the ACP GUI with PyACP.
 
 Load a model
 ~~~~~~~~~~~~
