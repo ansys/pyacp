@@ -244,7 +244,7 @@ def test_refresh_inexistent_path(parent_object, external_path):
             os.lstat(path)
         except FileNotFoundError:
             return True
-        except OSError:
+        except (OSError, ValueError):
             return False
         return True
 
