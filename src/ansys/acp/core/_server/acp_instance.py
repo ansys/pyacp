@@ -22,6 +22,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 import os
 import pathlib
 import shutil
@@ -36,7 +37,7 @@ from ansys.tools.filetransfer import Client as FileTransferClient
 
 from .._tree_objects._grpc_helpers.exceptions import wrap_grpc_errors
 from .._utils.typing_helper import PATH as _PATH
-from .common import ServerProtocol
+from .common import ServerKey, ServerProtocol
 
 if typing.TYPE_CHECKING:  # pragma: no cover
     from .._tree_objects import Model
@@ -107,10 +108,12 @@ class LocalFileTransferStrategy(FileTransferStrategy):
 
 
 class RemoteFileTransferStrategy(FileTransferStrategy):
-    _ft_client: FileTransferClient
+    def __init__(self, channel_getter: Callable[[], grpc.Channel]) -> None:
+        self._channel_getter = channel_getter
 
-    def __init__(self, channel: grpc.Channel) -> None:
-        self._ft_client = FileTransferClient(channel)
+    @property
+    def _ft_client(self) -> FileTransferClient:
+        return FileTransferClient(self._channel_getter())
 
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
         remote_path = os.path.basename(local_path)
@@ -180,21 +183,22 @@ class ACPInstance(Generic[ServerT]):
 
     _server: ServerT
     _filetransfer_handler: FileTransferHandler
-    _channel: grpc.Channel
     _is_remote: bool
 
     def __init__(
         self,
         *,
         server: ServerT,
-        channel: grpc.Channel,
         filetransfer_handler: FileTransferHandler,
         is_remote: bool,
     ) -> None:
         self._server = server
-        self._channel = channel
         self._filetransfer_handler = filetransfer_handler
         self._is_remote = is_remote
+
+    @property
+    def _channel(self) -> grpc.Channel:
+        return self._server.channels[ServerKey.MAIN]
 
     @property
     def is_remote(self) -> bool:
@@ -382,8 +386,14 @@ class ACPInstance(Generic[ServerT]):
         """
         self._server.wait(timeout=timeout)
 
-    def start(self) -> None:
+    def start(self, timeout: float | None = None) -> None:
         """Start the product instance.
+
+        Parameters
+        ----------
+        timeout :
+            Timeout to wait until ACP responds. If ``None`` is specified,
+            the check that ACP has started is skipped.
 
         Raises
         ------
@@ -398,6 +408,8 @@ class ACPInstance(Generic[ServerT]):
                 "Please use a different launch method."
             )
         self._server.start()
+        if timeout is not None:
+            self.wait(timeout=timeout)
 
     def stop(self, *, timeout: float | None = None) -> None:
         """Stop the product instance.
@@ -423,7 +435,9 @@ class ACPInstance(Generic[ServerT]):
             )
         self._server.stop(timeout=timeout)
 
-    def restart(self, stop_timeout: float | None = None) -> None:
+    def restart(
+        self, stop_timeout: float | None = None, start_timeout: float | None = None
+    ) -> None:
         """Stop, then start the product instance.
 
         Parameters
@@ -432,6 +446,9 @@ class ACPInstance(Generic[ServerT]):
             Time in seconds after which the instance is forcefully stopped. Note
             that not all launch methods may implement this parameter. If they
             do not, the parameter is ignored.
+        start_timeout :
+            Timeout to wait until ACP responds. If ``None`` is specified,
+            the check that ACP has started is skipped.
 
         Raises
         ------
@@ -446,3 +463,5 @@ class ACPInstance(Generic[ServerT]):
                 "Please use a different launch method."
             )
         self._server.restart(stop_timeout=stop_timeout)
+        if start_timeout is not None:
+            self.wait(timeout=start_timeout)

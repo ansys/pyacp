@@ -100,7 +100,7 @@ def launch_acp(
         is_remote = False
     elif launch_mode_evaluated in (LaunchMode.DOCKER_COMPOSE, LaunchMode.CONNECT):
         filetransfer_strategy = RemoteFileTransferStrategy(
-            channel=server_instance.channels[ServerKey.FILE_TRANSFER],
+            channel_getter=lambda: server_instance.channels[ServerKey.FILE_TRANSFER],
         )
         is_remote = True
     else:
@@ -111,7 +111,6 @@ def launch_acp(
         filetransfer_handler=FileTransferHandler(
             filetransfer_strategy, auto_transfer_files=auto_transfer_files
         ),
-        channel=server_instance.channels[ServerKey.MAIN],
         is_remote=is_remote,
     )
     if timeout is not None:
