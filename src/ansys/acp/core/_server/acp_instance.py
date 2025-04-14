@@ -22,6 +22,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 import os
 import pathlib
 import shutil
@@ -107,10 +108,12 @@ class LocalFileTransferStrategy(FileTransferStrategy):
 
 
 class RemoteFileTransferStrategy(FileTransferStrategy):
-    _ft_client: FileTransferClient
+    def __init__(self, channel_getter: Callable[[], grpc.Channel]) -> None:
+        self._channel_getter = channel_getter
 
-    def __init__(self, channel: grpc.Channel) -> None:
-        self._ft_client = FileTransferClient(channel)
+    @property
+    def _ft_client(self) -> FileTransferClient:
+        return FileTransferClient(self._channel_getter())
 
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
         remote_path = os.path.basename(local_path)

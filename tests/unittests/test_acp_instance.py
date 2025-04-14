@@ -88,11 +88,13 @@ def test_import_inexistent(acp_instance):
     assert filename in str(exc.value)
 
 
-def test_restart_wait(acp_instance):
+def test_restart_wait(acp_instance, load_model_from_tempfile):
     """Test that the server is accessible after restart.
 
     Regression test for missing '.wait()' in the restart method, and
     the 'ACPInstance._channel' not being set to the new channel on restart.
     """
     acp_instance.restart(start_timeout=30)
-    acp_instance.server_version  # This should not raise an error
+    # Check that the server is fully functional again (also exercises filetransfer)
+    with load_model_from_tempfile():
+        pass
