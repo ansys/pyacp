@@ -39,6 +39,7 @@ __all__ = [
     "FLAT_PLATE_SHELL_CAMERA",
     "FLAT_PLATE_SOLID_CAMERA",
     "RACE_CARE_NOSE_CAMERA_METER",
+    "set_plot_theme",
 ]
 
 from typing import TYPE_CHECKING
@@ -275,3 +276,24 @@ def _run_analysis(model: "Model") -> None:
 
         # Close MAPDL instance
         mapdl.exit()
+
+
+def set_plot_theme() -> None:
+    """Set the theme options used in the examples.
+
+    This function sets the default plotting theme options to the ones used
+    in the examples. You can call this function to ensure the plots are using
+    the same theme (color maps etc.) as the rendered online documentation.
+    """
+    # PyMAPDL and PyDPF override the default PyVista theme, so we need to import it
+    # here to have a chance of re-setting it.
+    import ansys.mapdl.core  # isort:skip
+    import ansys.dpf.core  # isort:skip # noqa: F401
+    import pyvista
+
+    # Use the PyVista 'document' theme (white background, black text, etc.),
+    # except with the 'reversed' viridis color map. This is more suited to
+    # e.g. thickness plots, because the thicker parts of the model will be
+    # in dark colors, instead of light colors.
+    pyvista.global_theme = pyvista.themes.DocumentTheme()
+    pyvista.global_theme.cmap = "viridis_r"
