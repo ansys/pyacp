@@ -291,5 +291,9 @@ def set_plot_theme() -> None:
     import ansys.dpf.core  # isort:skip # noqa: F401
     import pyvista
 
+    # Use the PyVista 'document' theme (white background, black text, etc.),
+    # except with the 'reversed' viridis color map. This is more suited to
+    # e.g. thickness plots, because the thicker parts of the model will be
+    # in dark colors, instead of light colors.
     pyvista.global_theme = pyvista.themes.DocumentTheme()
     pyvista.global_theme.cmap = "viridis_r"
