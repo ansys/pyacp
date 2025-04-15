@@ -12,6 +12,8 @@ from pyvista.plotting.utilities.sphinx_gallery import DynamicScraper
 from sphinx.builders.latex import LaTeXBuilder
 import sphinx.util.inspect
 
+from ansys.acp.core import extras
+
 
 def _signature(
     subject,
@@ -130,12 +132,6 @@ jinja_contexts = {
     "conditional_skip": {"skip_api": SKIP_API, "skip_gallery": SKIP_GALLERY},
 }
 
-
-# PyMAPDL and PyDPF override the default PyVista theme, so we need to import it
-# here to have a chance of re-setting it.
-import ansys.mapdl.core  # isort:skip
-import ansys.dpf.core  # isort:skip # noqa: F401
-
 # Manage errors
 pyvista.set_error_output_file("errors.txt")
 
@@ -145,8 +141,8 @@ pyvista.OFF_SCREEN = True
 # necessary when building the sphinx gallery
 pyvista.BUILDING_GALLERY = True
 
-pyvista.global_theme = pyvista.themes.DocumentTheme()
-pyvista.global_theme.cmap = "viridis_r"
+# Set the plot theme to be used in the documentation
+extras.set_plot_theme()
 
 # ignore the matplotlib warning when .show() is called
 warnings.filterwarnings("ignore", category=UserWarning, message=".*is non-interactive.*")
