@@ -236,6 +236,7 @@ for imported_ply in [imported_ply_triangle, imported_ply_top]:
     for pp in imported_ply.imported_production_plies.values():
         for ap in pp.imported_analysis_plies.values():
             plotter.add_mesh(ap.solid_mesh.to_pyvista(), show_edges=True, opacity=1)
+
 plotter.add_mesh(mesh=imported_solid_model.solid_mesh.to_pyvista(), show_edges=False, opacity=0.2)
 plotter.show()
 

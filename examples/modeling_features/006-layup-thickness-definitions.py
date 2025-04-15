@@ -72,6 +72,7 @@ model = acp.import_model(input_file)
 print(model.unit_system)
 
 
+# %%
 # Plot the nominal ply thickness.
 modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
 model.update()
