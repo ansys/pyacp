@@ -27,12 +27,14 @@ from ansys.acp.core.extras.example_helpers import (
     RACE_CARE_NOSE_CAMERA_METER,
     ExampleKeys,
     get_example_file,
+    set_plot_theme,
 )
 
 __all__ = [
     "ExampleKeys",
-    "get_example_file",
     "FLAT_PLATE_SHELL_CAMERA",
     "FLAT_PLATE_SOLID_CAMERA",
+    "get_example_file",
     "RACE_CARE_NOSE_CAMERA_METER",
+    "set_plot_theme",
 ]

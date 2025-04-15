@@ -49,7 +49,7 @@ import tempfile
 # %%
 # Import the PyACP dependencies.
 from ansys.acp.core import FabricWithAngle, Lamina, PlyType, SymmetryType, launch_acp
-from ansys.acp.core.extras import ExampleKeys, get_example_file
+from ansys.acp.core.extras import ExampleKeys, get_example_file, set_plot_theme
 from ansys.acp.core.material_property_sets import (
     ConstantEngineeringConstants,
     ConstantStrainLimits,
@@ -58,6 +58,10 @@ from ansys.acp.core.material_property_sets import (
 
 # sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_001-materials_thumb.png'
 
+# %%
+# Set the plot theme for the example. This is optional, and ensures that you get the
+# same plot style (theme, color map, etc.) as in the online documentation.
+set_plot_theme()
 
 # %%
 # Start ACP and load the model

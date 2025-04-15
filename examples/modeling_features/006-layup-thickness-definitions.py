@@ -46,10 +46,19 @@ import pyvista
 # %%
 # Import the PyACP dependencies.
 from ansys.acp.core import PhysicalDimension, ThicknessType, launch_acp
-from ansys.acp.core.extras import FLAT_PLATE_SOLID_CAMERA, ExampleKeys, get_example_file
+from ansys.acp.core.extras import (
+    FLAT_PLATE_SOLID_CAMERA,
+    ExampleKeys,
+    get_example_file,
+    set_plot_theme,
+)
 
 # sphinx_gallery_thumbnail_number = 2
 
+# %%
+# Set the plot theme for the example. This is optional, and ensures that you get the
+# same plot style (theme, color map, etc.) as in the online documentation.
+set_plot_theme()
 
 # %%
 # Start ACP and load the model
@@ -72,6 +81,7 @@ model = acp.import_model(input_file)
 print(model.unit_system)
 
 
+# %%
 # Plot the nominal ply thickness.
 modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
 model.update()
