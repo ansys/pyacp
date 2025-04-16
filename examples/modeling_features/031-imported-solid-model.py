@@ -95,7 +95,7 @@ model = acp.import_model(input_file)
 #     To avoid this, you can use the ``.extract_surface(nonlinear_subdivision=0)`` call
 #     to extract a linearized surface.
 #     Alternatively, you can use ``.separate_cells().extract_feature_edges()`` to
-#     obtain the edges as a separate PyVista :py:class:`.PolyData` object.
+#     obtain the edges as a separate :py:class:`pyvista.PolyData` object.
 #
 #     For more information, see this PyVista discussion:
 #     https://github.com/pyvista/pyvista/discussions/5777

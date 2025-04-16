@@ -170,7 +170,7 @@ Or to show the thickness of a modeling ply or fiber directions:
 
     modeling_ply.elemental_data.thickness.get_pyvista_mesh(mesh=plate_cdb_model.mesh).plot()
     plotter = pyacp.get_directions_plotter(
-        model=plate_cdb_model, components=[modeling_ply.elemental_data.reference_direction]
+        model=plate_cdb_model, components=[modeling_ply.elemental_data.fiber_direction]
     )
     plotter.show()
 
