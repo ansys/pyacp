@@ -91,8 +91,6 @@ Limitations
   * The ``ansys.acp.core.mechanical_integration_helpers`` module may be
     changed or removed in future versions, when the corresponding features
     are available in PyMechanical directly.
-  * Post-processing with the Composite Failure Tool inside Mechanical is not
-    yet supported.
 
 * Visualization and mesh data of imported plies are not supported yet.
 * Section cuts cannot be visualized.
