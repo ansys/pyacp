@@ -33,6 +33,15 @@ reserve factor (IRF) of the composite structure under two load cases.
 The example uses the :py:func:`scipy.optimize.minimize` function to perform the optimization.
 While the procedure itself is not the focus of this example and could be improved,
 it demonstrates the process of optimizing a composite lay-up with PyACP.
+
+.. note::
+
+    When copy / pasting the blocks in this example, make sure to use either a Jupyter
+    notebook, or an IPython console. The default Python interactive console (prior to
+    Python 3.13) does not allow empty lines in indented code.
+    To run the example with the default Python interpreter, download and execute the
+    example script.
+
 """
 
 # %%
@@ -61,12 +70,16 @@ from scipy.optimize import minimize
 # %%
 # Import Ansys libraries
 import ansys.acp.core as pyacp
-from ansys.acp.core.extras import ExampleKeys, get_example_file
+from ansys.acp.core.extras import ExampleKeys, get_example_file, set_plot_theme
 import ansys.dpf.composites as pydpf_composites
 import ansys.mapdl.core as pymapdl
 
 # sphinx_gallery_thumbnail_number = -2
 
+# %%
+# Set the plot theme for the example. This is optional, and ensures that you get the
+# same plot style (theme, color map, etc.) as in the online documentation.
+set_plot_theme()
 
 # %%
 # Launch the PyACP server.

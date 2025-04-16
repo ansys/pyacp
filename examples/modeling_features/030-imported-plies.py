@@ -59,11 +59,15 @@ import pyvista
 # %%
 # Import the PyACP dependencies.
 from ansys.acp.core import CADGeometry, ImportedPlyOffsetType, PlyType, VirtualGeometry, launch_acp
-from ansys.acp.core.extras import ExampleKeys, get_example_file
+from ansys.acp.core.extras import ExampleKeys, get_example_file, set_plot_theme
 from ansys.acp.core.material_property_sets import ConstantDensity, ConstantEngineeringConstants
 
 # sphinx_gallery_thumbnail_number = 3
 
+# %%
+# Set the plot theme for the example. This is optional, and ensures that you get the
+# same plot style (theme, color map, etc.) as in the online documentation.
+set_plot_theme()
 
 CAMERA_POSITION = [(0.0436, 0.0102, 0.0193), (0.0111, 0.0035, 0.0046), (-0.1685, 0.9827, -0.0773)]
 
@@ -236,6 +240,7 @@ for imported_ply in [imported_ply_triangle, imported_ply_top]:
     for pp in imported_ply.imported_production_plies.values():
         for ap in pp.imported_analysis_plies.values():
             plotter.add_mesh(ap.solid_mesh.to_pyvista(), show_edges=True, opacity=1)
+
 plotter.add_mesh(mesh=imported_solid_model.solid_mesh.to_pyvista(), show_edges=False, opacity=0.2)
 plotter.show()
 

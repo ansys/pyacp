@@ -46,6 +46,12 @@ PyMechanical:
     The PyACP / PyMechanical integration is still experimental. Refer to the
     :ref:`limitations section <limitations>` for more information.
 
+.. note::
+
+    Outputs and plots for this example are not shown in the rendered online
+    documentation. To see the outputs and plots, run the example script or
+    Jupyter notebook locally.
+
 """
 
 # %%
@@ -67,10 +73,16 @@ import textwrap
 # isort: off
 
 import ansys.acp.core as pyacp
+from ansys.acp.core.extras import set_plot_theme
 import ansys.dpf.composites as pydpf_composites
 import ansys.mechanical.core as pymechanical
 
 # sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_04-pymechanical-solid-workflow_thumb.png'
+
+# %%
+# Set the plot theme for the example. This is optional, and ensures that you get the
+# same plot style (theme, color map, etc.) as in the online documentation.
+set_plot_theme()
 
 # %%
 # Start the ACP, Mechanical, and DPF servers. We use a ``ThreadPoolExecutor``

@@ -45,9 +45,19 @@ import pyvista
 # %%
 # Import the PyACP dependencies.
 from ansys.acp.core import SensorType, UnitSystemType, launch_acp
-from ansys.acp.core.extras import RACE_CARE_NOSE_CAMERA_METER, ExampleKeys, get_example_file
+from ansys.acp.core.extras import (
+    RACE_CARE_NOSE_CAMERA_METER,
+    ExampleKeys,
+    get_example_file,
+    set_plot_theme,
+)
 
 # sphinx_gallery_thumbnail_number = 2
+
+# %%
+# Set the plot theme for the example. This is optional, and ensures that you get the
+# same plot style (theme, color map, etc.) as in the online documentation.
+set_plot_theme()
 
 
 # %%
@@ -65,14 +75,15 @@ acph5_input_file = get_example_file(ExampleKeys.RACE_CAR_NOSE_ACPH5, WORKING_DIR
 acp = launch_acp()
 
 # %%
-# Load the model from the input file which contains
-# a formula 1 front wing with layup. The plot shows the total
-# laminate thickness per element.
+# Load the model from the input file which contains a formula 1 front
+# wing with layup.
 model = acp.import_model(acph5_input_file)
 model.unit_system = UnitSystemType.SI
 print(model.unit_system)
 model.update()
 
+# %%
+# The plot shows the total laminate thickness per element.
 thickness_data = model.elemental_data.thickness
 if thickness_data is not None:
     plotter = pyvista.Plotter()
@@ -175,6 +186,7 @@ print_measures(sensor_by_ply)
 plotter = pyvista.Plotter()
 for ply in modeling_plies:
     plotter.add_mesh(ply.mesh.to_pyvista(), show_edges=False, opacity=1, color="turquoise")
+
 plotter.add_mesh(model.mesh.to_pyvista(), show_edges=False, opacity=0.2)
 plotter.camera_position = RACE_CARE_NOSE_CAMERA_METER
 plotter.show()
