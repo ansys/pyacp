@@ -88,13 +88,25 @@ model = acp.import_model(input_file)
 #
 # Get the solid mesh file and create an ImportedSolidModel,
 # load the initial mesh and show the raw mesh without any mapping.
+#
+# .. hint::
+#
+#     When plotting quadratic meshes with edges, PyVista shows internal (false) edges.
+#     To avoid this, you can use the ``.extract_surface(nonlinear_subdivision=0)`` call
+#     to extract a linearized surface.
+#     Alternatively, you can use ``.separate_cells().extract_feature_edges()`` to
+#     obtain the edges as a separate PyVista :py:class:`.PolyData` object.
+#
+#     For more information, see this PyVista discussion:
+#     https://github.com/pyvista/pyvista/discussions/5777
+#
 solid_mesh_file = get_example_file(ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH, WORKING_DIR)
 imported_solid_model = model.create_imported_solid_model(
     name="Imported Solid Model",
 )
 imported_solid_model.refresh(path=solid_mesh_file, format="ansys:h5")
 imported_solid_model.import_initial_mesh()
-model.solid_mesh.to_pyvista().plot(show_edges=True)
+model.solid_mesh.to_pyvista().extract_surface(nonlinear_subdivision=0).plot(show_edges=True)
 
 # %%
 # The solid element sets are used as target for the mapping later.
