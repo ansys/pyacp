@@ -58,6 +58,7 @@ if TYPE_CHECKING:  # pragma: no cover
     # subclasses.
     # See https://github.com/python/mypy/issues/6158
     _exposed_grpc_property = property
+    _exposed_grpc_mapping_property = property
 else:
 
     class _exposed_grpc_property(property):
@@ -68,6 +69,18 @@ else:
         """
 
         pass
+
+    class _exposed_grpc_mapping_property(_exposed_grpc_property):
+        """Mark a property as a mapping.
+
+        Wrapper around 'property', used to signal that the object should
+        be collected into the '_GRPC_PROPERTIES' class attribute.
+        """
+
+        def __init__(self, *args, value_type, read_only: bool, **kwargs):
+            super().__init__(*args, **kwargs)
+            self._value_type = value_type
+            self._read_only = read_only
 
 
 T = TypeVar("T", bound=type[GrpcObjectBase])

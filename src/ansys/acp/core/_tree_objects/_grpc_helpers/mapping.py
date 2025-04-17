@@ -39,7 +39,7 @@ from .._object_cache import ObjectCacheMixin, constructor_with_cache
 from ..base import CreatableTreeObject, ServerWrapper, TreeObject, TreeObjectBase
 from ..enums import Status
 from .exceptions import wrap_grpc_errors
-from .property_helper import _exposed_grpc_property, _wrap_doc
+from .property_helper import _exposed_grpc_mapping_property, _wrap_doc
 from .protocols import EditableAndReadableResourceStub, ObjectInfo, ReadableResourceStub
 
 ValueT = TypeVar("ValueT", bound=TreeObjectBase)
@@ -297,7 +297,12 @@ def get_read_only_collection_property(
             stub=stub_class(channel=self._server_wrapper.channel),
         )
 
-    return _wrap_doc(_exposed_grpc_property(collection_property), doc=doc)
+    return _wrap_doc(
+        _exposed_grpc_mapping_property(  # type: ignore
+            collection_property, value_type=object_class, read_only=True
+        ),
+        doc=doc,
+    )
 
 
 P = ParamSpec("P")
@@ -355,4 +360,9 @@ def define_mutable_mapping(
             stub=stub_class(channel=self._server_wrapper.channel),
         )
 
-    return _wrap_doc(_exposed_grpc_property(collection_property), doc=doc)
+    return _wrap_doc(
+        _exposed_grpc_mapping_property(
+            collection_property, value_type=object_class, read_only=False  # type: ignore
+        ),
+        doc=doc,
+    )

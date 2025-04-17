@@ -25,7 +25,7 @@ API reference
         other_utils
         dpf_integration_helpers
         mechanical_integration_helpers
-        example_helpers
+        extras
         internal
     {% else %}
     The API reference is not available in this documentation build.

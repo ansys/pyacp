@@ -22,26 +22,26 @@ You can print the tree structure using the :func:`.print_model` function:
 
     >>> pyacp.print_model(model)
     'ACP Model'
-        Materials
-            'Structural Steel'
-        Fabrics
-            'Fabric.1'
-        Element Sets
-            'All_Elements'
-        Edge Sets
-            'ns_edge'
-        Rosettes
-            'Global Coordinate System'
-        Oriented Selection Sets
-            'OrientedSelectionSet.1'
-        Modeling Groups
-            'ModelingGroup.1'
-                Modeling Plies
-                    'ModelingPly.1'
-                        Production Plies
-                            'P1__ModelingPly.1'
-                                Analysis Plies
-                                    'P1L1__ModelingPly.1'
+    ├── Materials
+    │   └── 'Structural Steel'
+    ├── Fabrics
+    │   └── 'Fabric.1'
+    ├── Element Sets
+    │   └── 'All_Elements'
+    ├── Edge Sets
+    │   └── 'ns_edge'
+    ├── Rosettes
+    │   └── 'Global Coordinate System'
+    ├── Oriented Selection Sets
+    │   └── 'OrientedSelectionSet.1'
+    └── Modeling Groups
+        └── 'ModelingGroup.1'
+            └── Modeling Plies
+                └── 'ModelingPly.1'
+                    └── Production Plies
+                        └── 'P1__ModelingPly.1'
+                            └── Analysis Plies
+                                └── 'P1L1__ModelingPly.1'
     <BLANKLINE>
 
 
@@ -70,47 +70,47 @@ The ``hide_empty`` label can be set to ``False`` to also show empty groups:
 
     >>> pyacp.print_model(model, hide_empty=False)
     'ACP Model'
-        Materials
-            'Structural Steel'
-        Fabrics
-            'Fabric.1'
-        Stackups
-        Sublaminates
-        Element Sets
-            'All_Elements'
-        Edge Sets
-            'ns_edge'
-        Cad Geometries
-        Virtual Geometries
-        Rosettes
-            'Global Coordinate System'
-        Lookup Tables 1d
-        Lookup Tables 3d
-        Parallel Selection Rules
-        Cylindrical Selection Rules
-        Spherical Selection Rules
-        Tube Selection Rules
-        Cut Off Selection Rules
-        Geometrical Selection Rules
-        Variable Offset Selection Rules
-        Boolean Selection Rules
-        Oriented Selection Sets
-            'OrientedSelectionSet.1'
-        Modeling Groups
-            'ModelingGroup.1'
-                Modeling Plies
-                    'ModelingPly.1'
-                        Production Plies
-                            'P1__ModelingPly.1'
-                                Analysis Plies
-                                    'P1L1__ModelingPly.1'
-                Interface Layers
-                Butt Joint Sequences
-        Imported Modeling Groups
-        Sampling Points
-        Section Cuts
-        Solid Models
-        Imported Solid Models
-        Sensors
-        Field Definitions
+    ├── Materials
+    │   └── 'Structural Steel'
+    ├── Fabrics
+    │   └── 'Fabric.1'
+    ├── Stackups
+    ├── Sublaminates
+    ├── Element Sets
+    │   └── 'All_Elements'
+    ├── Edge Sets
+    │   └── 'ns_edge'
+    ├── Cad Geometries
+    ├── Virtual Geometries
+    ├── Rosettes
+    │   └── 'Global Coordinate System'
+    ├── Lookup Tables 1d
+    ├── Lookup Tables 3d
+    ├── Parallel Selection Rules
+    ├── Cylindrical Selection Rules
+    ├── Spherical Selection Rules
+    ├── Tube Selection Rules
+    ├── Cut Off Selection Rules
+    ├── Geometrical Selection Rules
+    ├── Variable Offset Selection Rules
+    ├── Boolean Selection Rules
+    ├── Oriented Selection Sets
+    │   └── 'OrientedSelectionSet.1'
+    ├── Modeling Groups
+    │   └── 'ModelingGroup.1'
+    │       ├── Modeling Plies
+    │       │   └── 'ModelingPly.1'
+    │       │       └── Production Plies
+    │       │           └── 'P1__ModelingPly.1'
+    │       │               └── Analysis Plies
+    │       │                   └── 'P1L1__ModelingPly.1'
+    │       ├── Interface Layers
+    │       └── Butt Joint Sequences
+    ├── Imported Modeling Groups
+    ├── Sampling Points
+    ├── Section Cuts
+    ├── Solid Models
+    ├── Imported Solid Models
+    ├── Sensors
+    └── Field Definitions
     <BLANKLINE>

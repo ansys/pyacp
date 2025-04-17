@@ -32,30 +32,34 @@ def case_simple_model(acp_instance, model_data_dir):
     input_file_path = model_data_dir / "minimal_complete_model_no_matml_link.acph5"
     model = acp_instance.import_model(name="minimal_complete", path=input_file_path)
     model.update()
-    return model, textwrap.dedent(
-        """\
-        'minimal_complete'
-            Materials
-                'Structural Steel'
-            Fabrics
-                'Fabric.1'
-            Element Sets
-                'All_Elements'
-            Edge Sets
-                'ns_edge'
-            Rosettes
-                'Global Coordinate System'
-            Oriented Selection Sets
-                'OrientedSelectionSet.1'
-            Modeling Groups
-                'ModelingGroup.1'
-                    Modeling Plies
-                        'ModelingPly.1'
-                            Production Plies
-                                'P1__ModelingPly.1'
-                                    Analysis Plies
-                                        'P1L1__ModelingPly.1'
-        """
+    return (
+        model,
+        False,
+        textwrap.dedent(
+            """\
+            'minimal_complete'
+                Materials
+                    'Structural Steel'
+                Fabrics
+                    'Fabric.1'
+                Element Sets
+                    'All_Elements'
+                Edge Sets
+                    'ns_edge'
+                Rosettes
+                    'Global Coordinate System'
+                Oriented Selection Sets
+                    'OrientedSelectionSet.1'
+                Modeling Groups
+                    'ModelingGroup.1'
+                        Modeling Plies
+                            'ModelingPly.1'
+                                Production Plies
+                                    'P1__ModelingPly.1'
+                                        Analysis Plies
+                                            'P1L1__ModelingPly.1'
+            """
+        ),
     )
 
 
@@ -80,8 +84,11 @@ def case_more_objects(acp_instance, model_data_dir):
     model.create_lookup_table_3d()
     model.create_sensor()
 
-    return model, textwrap.dedent(
-        """\
+    return (
+        model,
+        False,
+        textwrap.dedent(
+            """\
         'minimal_complete'
             Materials
                 'Structural Steel'
@@ -135,15 +142,99 @@ def case_more_objects(acp_instance, model_data_dir):
             Sensors
                 'Sensor'
         """
+        ),
     )
 
 
-@parametrize_with_cases("model,expected", cases=".", glob="*")
-def test_printed_model(model, expected):
+def case_more_objects_lines(acp_instance, model_data_dir):
+    input_file_path = model_data_dir / "minimal_complete_model_no_matml_link.acph5"
+    model = acp_instance.import_model(name="minimal_complete", path=input_file_path)
+
+    model.update()
+
+    model.create_edge_set()
+    model.create_stackup()
+    model.create_sublaminate()
+    model.create_virtual_geometry()
+    model.create_cad_geometry()
+    model.create_parallel_selection_rule()
+    model.create_cylindrical_selection_rule()
+    model.create_tube_selection_rule()
+    model.create_cut_off_selection_rule()
+    model.create_geometrical_selection_rule()
+    model.create_boolean_selection_rule()
+    model.create_lookup_table_1d()
+    model.create_lookup_table_3d()
+    model.create_sensor()
+
+    return (
+        model,
+        True,
+        textwrap.dedent(
+            """\
+        'minimal_complete'
+        ├── Materials
+        │   └── 'Structural Steel'
+        ├── Fabrics
+        │   └── 'Fabric.1'
+        ├── Stackups
+        │   └── 'Stackup'
+        ├── Sublaminates
+        │   └── 'SubLaminate'
+        ├── Element Sets
+        │   └── 'All_Elements'
+        ├── Edge Sets
+        │   ├── 'ns_edge'
+        │   └── 'EdgeSet'
+        ├── Cad Geometries
+        │   └── 'CADGeometry'
+        ├── Virtual Geometries
+        │   └── 'VirtualGeometry'
+        ├── Rosettes
+        │   └── 'Global Coordinate System'
+        ├── Lookup Tables 1d
+        │   └── 'LookUpTable1D'
+        │       └── Columns
+        │           └── 'Location'
+        ├── Lookup Tables 3d
+        │   └── 'LookUpTable3D'
+        │       └── Columns
+        │           └── 'Location'
+        ├── Parallel Selection Rules
+        │   └── 'ParallelSelectionrule'
+        ├── Cylindrical Selection Rules
+        │   └── 'CylindricalSelectionrule'
+        ├── Tube Selection Rules
+        │   └── 'TubeSelectionrule'
+        ├── Cut Off Selection Rules
+        │   └── 'CutOffSelectionrule'
+        ├── Geometrical Selection Rules
+        │   └── 'GeometricalSelectionrule'
+        ├── Boolean Selection Rules
+        │   └── 'BooleanSelectionrule'
+        ├── Oriented Selection Sets
+        │   └── 'OrientedSelectionSet.1'
+        ├── Modeling Groups
+        │   └── 'ModelingGroup.1'
+        │       └── Modeling Plies
+        │           └── 'ModelingPly.1'
+        │               └── Production Plies
+        │                   └── 'P1__ModelingPly.1'
+        │                       └── Analysis Plies
+        │                           └── 'P1L1__ModelingPly.1'
+        └── Sensors
+            └── 'Sensor'
+        """
+        ),
+    )
+
+
+@parametrize_with_cases("model,show_lines,expected", cases=".", glob="*")
+def test_printed_model(model, show_lines, expected):
     """
     Test that model tree looks correct.
     """
 
     tree = get_model_tree(model)
 
-    assert str(tree) == expected.replace("\n", os.linesep)
+    assert tree._to_string(show_lines=show_lines) == expected.replace("\n", os.linesep)
