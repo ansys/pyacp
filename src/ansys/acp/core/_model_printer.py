@@ -45,16 +45,45 @@ class Node:
         self.label = label
         self.children: list["Node"] = children if children else []
 
-    def __str__(self, level: int | None = 0) -> str:
-        assert level is not None
-        four_spaces = "    "
-        ret = four_spaces * level + self.label + os.linesep
-        for child in self.children:
-            ret += child.__str__(level + 1)
-        return ret
+    def __str__(self) -> str:
+        return self._to_string(_prefix="", show_lines=True)
+
+    def _to_string(
+        self,
+        *,
+        show_lines: bool,
+        _prefix: str = "",
+        _is_last_child: bool = True,
+        _is_root: bool = True,
+    ) -> str:
+        if show_lines:
+            elbow = "└── "
+            line = "│   "
+            tee = "├── "
+            empty = "    "
+        else:
+            elbow = line = tee = empty = " " * 4
+        if _is_root:
+            res = _prefix + self.label + os.linesep
+        else:
+            res = _prefix + (elbow if _is_last_child else tee) + self.label + os.linesep
+        for i, child in enumerate(self.children):
+            if _is_root:
+                new_prefix = _prefix
+            elif _is_last_child:
+                new_prefix = _prefix + empty
+            else:
+                new_prefix = _prefix + line
+            res += child._to_string(
+                _prefix=new_prefix,
+                show_lines=show_lines,
+                _is_last_child=(i == len(self.children) - 1),
+                _is_root=False,
+            )
+        return res
 
 
-def print_model(model: Model, *, hide_empty: bool = True) -> None:
+def print_model(model: Model, *, hide_empty: bool = True, show_lines: bool = True) -> None:
     """Print a tree representation of the model.
 
     Parameters
@@ -63,9 +92,11 @@ def print_model(model: Model, *, hide_empty: bool = True) -> None:
         pyACP model
     hide_empty :
         Whether to hide empty collections.
+    show_lines :
+        Whether to show lines connecting the nodes.
 
     """
-    return print(get_model_tree(model, hide_empty=hide_empty))
+    return print(get_model_tree(model, hide_empty=hide_empty)._to_string(show_lines=show_lines))
 
 
 def get_model_tree(model: Model, *, hide_empty: bool = True) -> Node:
