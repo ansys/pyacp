@@ -1,0 +1,13 @@
+.. vale off
+
+rosette
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.rosette
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.rosette
+
+   ansys.acp.core.SphericalSelectionRule.rosette

@@ -1,0 +1,13 @@
+.. vale off
+
+lower\_limit
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.lower_limit
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.lower_limit
+
+   ansys.acp.core.ParallelSelectionRule.lower_limit

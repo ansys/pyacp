@@ -1,0 +1,13 @@
+.. vale off
+
+fracture\_toughness\_mode\_1
+============================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantLaRCConstants.fracture_toughness_mode_1
+
+.. minigallery::
+   :add-heading: Examples using ConstantLaRCConstants.fracture_toughness_mode_1
+
+   ansys.acp.core.material_property_sets.ConstantLaRCConstants.fracture_toughness_mode_1

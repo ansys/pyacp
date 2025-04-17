@@ -1,0 +1,13 @@
+.. vale off
+
+expandtabs
+==========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.expandtabs
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.expandtabs
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.expandtabs

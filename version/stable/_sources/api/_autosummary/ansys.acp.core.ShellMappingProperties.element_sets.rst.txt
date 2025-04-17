@@ -1,0 +1,13 @@
+.. vale off
+
+element\_sets
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ShellMappingProperties.element_sets
+
+.. minigallery::
+   :add-heading: Examples using ShellMappingProperties.element_sets
+
+   ansys.acp.core.ShellMappingProperties.element_sets

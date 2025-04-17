@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LayupMappingObject.delete
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.delete
+
+   ansys.acp.core.LayupMappingObject.delete
