@@ -34,7 +34,7 @@ Issues = "https://github.com/ansys/pyacp/issues"
 Releases = "https://github.com/ansys/pyacp/releases"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<4"
+python = ">=3.10,<3.14"
 numpy = ">=1.22"
 grpcio-health-checking = ">=1.43"
 packaging = ">=15.0"
@@ -46,13 +46,13 @@ ansys-tools-filetransfer = ">=0.1"
 networkx = ">=3.0.0"
 
 # Optional dependencies which are included in the 'extras' section.
-# TODO: Once ansys-mapdl-core and ansys-mechanical-core support Python 3.13,
+# TODO: Once ansys-mapdl-core supports Python 3.13
 # remove the 'python' limit below and update the main Python version in CI.
 pyvista = { version = ">=0.42.0,!=0.42.2", optional = true, extras = ["jupyter", "trame"] }
 ansys-mapdl-core = { version = ">=0.68.3", optional = true, python=">=3.10,<3.13" }
 ansys-dpf-composites = { version = ">=0.6", optional = true }
 ansys-dpf-core = { version = ">=0.13", optional = true}
-ansys-mechanical-core = { version = ">=0.10.0", optional = true, python=">=3.10,<3.13" }
+ansys-mechanical-core = { version = ">=0.10.0", optional = true }
 matplotlib = { version = ">=3.8.3", optional = true }
 scipy = { version = ">=1.12.0", optional = true }
 
