@@ -81,9 +81,9 @@ class TriangleMesh:
         """Convert the mesh data to a PyVista object."""
         import pyvista
 
-        return pyvista.PolyData.from_regular_faces(
+        return pyvista.PolyData.from_regular_faces(  # type: ignore
             points=self.node_coordinates,
-            faces=self.element_nodes,
+            faces=self.element_nodes,  # type: ignore[arg-type]
         )
 
 
