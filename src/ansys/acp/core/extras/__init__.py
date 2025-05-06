@@ -21,7 +21,7 @@
 # SOFTWARE.
 """Extras of the Ansys Composites PrepPost module."""
 
-from ansys.acp.core.extras.example_helpers import (
+from .example_helpers import (
     FLAT_PLATE_SHELL_CAMERA,
     FLAT_PLATE_SOLID_CAMERA,
     RACE_CARE_NOSE_CAMERA_METER,
@@ -29,6 +29,7 @@ from ansys.acp.core.extras.example_helpers import (
     get_example_file,
     set_plot_theme,
 )
+from .feature_tree import get_feature_tree, print_feature_tree
 
 __all__ = [
     "ExampleKeys",
@@ -37,4 +38,6 @@ __all__ = [
     "get_example_file",
     "RACE_CARE_NOSE_CAMERA_METER",
     "set_plot_theme",
+    "print_feature_tree",
+    "get_feature_tree",
 ]
