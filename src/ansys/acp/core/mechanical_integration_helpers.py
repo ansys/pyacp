@@ -101,18 +101,6 @@ def import_acp_mesh_from_cdb(*, mechanical: "pymechanical.Mechanical", cdb_path:
             model_import.ProcessValidBlockedCDBFile = False
             model_import.ProcessModelData = False
             model_import.Import()
-
-            final_geometry_ids = {{obj.ObjectId for obj in Model.Geometry.Children}}
-            new_geometry_ids = final_geometry_ids - initial_geometry_ids
-
-            for geometry_id in new_geometry_ids:
-                new_geometry = DataModel.GetObjectById(geometry_id)
-                if len(new_geometry.Children) != 1:
-                    raise ValueError("Expected 1 body, but got {{}}.".format(len(new_geometry.Children)))
-                body = new_geometry.GetChildren(
-                    Ansys.Mechanical.DataModel.Enums.DataModelObjectCategory.Body, True
-                )[0]
-                body.AddCommandSnippet().Input = "keyo,matid,3,1\\nkeyo,matid,8,1"
             """
         )
     )
