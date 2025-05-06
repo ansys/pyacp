@@ -122,22 +122,21 @@ def import_acp_composite_definitions(*, mechanical: "pymechanical.Mechanical", p
         The path of the file to import. The extension must be '.h5'.
     """
     path = pathlib.Path(path)
-    setup_folder_name = "Setup"
 
     if path.suffix != ".h5":
         raise ValueError(
             f"The composite definitions file extension must be '.h5', not '{path.suffix}'."
         )
 
-    setup_folder = pathlib.Path(mechanical.project_directory) / setup_folder_name
-    setup_folder.mkdir(exist_ok=True)
-    target_path = setup_folder / path.name
+    user_files_dir = pathlib.Path(mechanical.project_directory) / "UserFiles"
+    user_files_dir.mkdir(exist_ok=True)
+    target_path = user_files_dir / path.name
     try:
         shutil.copyfile(path, target_path)
     except shutil.SameFileError:
         pass
 
-    target_path_str = f"{setup_folder_name}::{target_path.resolve()}".replace("\\", "\\\\")
+    target_path_str = f"Setup::{str(target_path.resolve())}"
 
     mechanical.run_python_script(
         textwrap.dedent(
