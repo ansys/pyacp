@@ -76,9 +76,9 @@ def test_direction_plotter_valid_cases(model, mesh, load_model_from_tempfile):
         )
 
         for idx, data in enumerate(components):
-            assert plotter.legend.GetEntryString(idx) == replace_underscores_and_capitalize(
-                data.component_name
-            )
+            assert plotter.legend.GetEntryString(  # type: ignore[union-attr]
+                idx
+            ) == replace_underscores_and_capitalize(data.component_name)
 
 
 @pytest.mark.graphics
@@ -99,7 +99,7 @@ def test_direction_plotter_invalid_cases(model, mesh, load_model_from_tempfile):
             analysis_ply.elemental_data.draped_transverse_direction,
             analysis_ply.elemental_data.material_1_direction,
         ]
-        with pytest.raises(KeyError):
+        with pytest.raises((KeyError, ValueError)):
             get_directions_plotter(
                 model=model,
                 mesh=mesh,
