@@ -83,7 +83,7 @@ def get_directions_plotter(
     if mesh is None:
         mesh = model.mesh
 
-    plotter = pyvista.Plotter()
+    plotter: pyvista.Plotter = pyvista.Plotter()  # type: ignore
     plotter.add_mesh(mesh.to_pyvista(), color="white", show_edges=True)
 
     for vector_data in components:
@@ -100,5 +100,5 @@ def get_directions_plotter(
             color=color,
             label=replace_underscores_and_capitalize(vector_data.component_name),
         )
-        plotter.add_legend(face=None, bcolor=[0.2, 0.2, 0.2], size=(0.25, 0.25))
+        plotter.add_legend(face=None, bcolor=[0.2, 0.2, 0.2], size=(0.25, 0.25))  # type: ignore
     return plotter
