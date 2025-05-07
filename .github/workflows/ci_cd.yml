@@ -389,7 +389,7 @@ jobs:
           sudo apt-get install pandoc
 
       - name: Set up headless display
-        uses: pyvista/setup-headless-display-action@48066dd0b79cf46babc16223a1dce3aa4803ec43 # v4.0
+        uses: pyvista/setup-headless-display-action@f744438e29e50189f40f1749859bac7d0f69b5fa # v4.1
 
       - name: Configure Local Product Launcher for ACP
         working-directory: tests/unittests
@@ -453,7 +453,7 @@ jobs:
           sudo apt-get install pandoc
 
       - name: Set up headless display
-        uses: pyvista/setup-headless-display-action@48066dd0b79cf46babc16223a1dce3aa4803ec43 # v4.0
+        uses: pyvista/setup-headless-display-action@f744438e29e50189f40f1749859bac7d0f69b5fa # v4.1
 
       - name: Install library, with dev group
         run: |
