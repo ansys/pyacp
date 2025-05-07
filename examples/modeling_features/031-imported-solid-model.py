@@ -68,7 +68,6 @@ set_plot_theme()
 # %%
 # Start ACP and load the model
 # ----------------------------
-# %%
 # Get the example file from the server.
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)

@@ -66,7 +66,6 @@ set_plot_theme()
 # %%
 # Start ACP and load the model
 # ----------------------------
-# %%
 # Get the example file from the server.
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
@@ -83,14 +82,13 @@ model = acp.import_model(input_file, format="ansys:dat")
 # %%
 # Create a Material
 # -----------------
-# %%
 # Create property sets elastic constants, strain and stress limits.
 engineering_constants_ud = ConstantEngineeringConstants.from_orthotropic_constants(
     E1=5e10, E2=1e10, E3=1e10, nu12=0.28, nu13=0.28, nu23=0.3, G12=5e9, G23=4e9, G31=4e9
 )
 
 strain_limit_tension = 0.01
-strain_limit_compression = 0.008
+strain_limit_compression = -0.008
 strain_limit_shear = 0.012
 strain_limits = ConstantStrainLimits.from_orthotropic_constants(
     eXc=strain_limit_compression,
