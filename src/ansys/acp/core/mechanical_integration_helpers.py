@@ -101,21 +101,6 @@ def import_acp_mesh_from_cdb(*, mechanical: "pymechanical.Mechanical", cdb_path:
             model_import.ProcessValidBlockedCDBFile = False
             model_import.ProcessModelData = False
             model_import.Import()
-
-            final_geometry_ids = {{obj.ObjectId for obj in Model.Geometry.Children}}
-            new_geometry_ids = final_geometry_ids - initial_geometry_ids
-            if len(new_geometry_ids) != 1:
-                raise ValueError("Expected 1 new geometry object, but found {{}}.".format(len(new_geometry_ids)))
-            new_geometry_id = new_geometry_ids.pop()
-
-            new_geometry = DataModel.GetObjectById(new_geometry_id)
-            if len(new_geometry.Children) != 1:
-                raise ValueError("Expected 1 body, but got {{}}.".format(len(new_geometry.Children)))
-
-            body = new_geometry.GetChildren(
-                Ansys.Mechanical.DataModel.Enums.DataModelObjectCategory.Body, True
-            )[0]
-            body.AddCommandSnippet().Input = "keyo,matid,3,1\\nkeyo,matid,8,1"
             """
         )
     )
@@ -137,22 +122,21 @@ def import_acp_composite_definitions(*, mechanical: "pymechanical.Mechanical", p
         The path of the file to import. The extension must be '.h5'.
     """
     path = pathlib.Path(path)
-    setup_folder_name = "Setup"
 
     if path.suffix != ".h5":
         raise ValueError(
             f"The composite definitions file extension must be '.h5', not '{path.suffix}'."
         )
 
-    setup_folder = pathlib.Path(mechanical.project_directory) / setup_folder_name
-    setup_folder.mkdir(exist_ok=True)
-    target_path = setup_folder / path.name
+    user_files_dir = pathlib.Path(mechanical.project_directory) / "UserFiles"
+    user_files_dir.mkdir(exist_ok=True)
+    target_path = user_files_dir / path.name
     try:
         shutil.copyfile(path, target_path)
     except shutil.SameFileError:
         pass
 
-    target_path_str = f"{setup_folder_name}::{target_path.resolve()}".replace("\\", "\\\\")
+    target_path_str = f"Setup::{str(target_path.resolve())}"
 
     mechanical.run_python_script(
         textwrap.dedent(
