@@ -94,8 +94,6 @@ def import_acp_mesh_from_cdb(*, mechanical: "pymechanical.Mechanical", cdb_path:
     mechanical.run_python_script(
         textwrap.dedent(
             f"""\
-            initial_geometry_ids = {{obj.ObjectId for obj in Model.Geometry.Children}}
-
             model_import = Model.AddGeometryImportGroup().AddModelImport()
             model_import.ModelImportSourceFilePath = {cdb_path_str!r}
             model_import.ProcessValidBlockedCDBFile = False
