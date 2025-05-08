@@ -68,7 +68,7 @@ set_plot_theme()
 
 # %%
 # Load a minimal model
-# ----------------------------
+# --------------------
 tempdir = tempfile.TemporaryDirectory()
 WORKING_DIR = pathlib.Path(tempdir.name)
 input_file = get_example_file(ExampleKeys.MINIMAL_FLAT_PLATE, WORKING_DIR)
@@ -84,7 +84,7 @@ model = acp.import_model(input_file)
 # %%
 # Create a simple layup
 # ---------------------
-# %%
+#
 # Add more layers to the modeling ply so that it is easier to see the
 # effects of the selection rules.
 modeling_ply = model.modeling_groups["modeling_group"].modeling_plies["ply"]
