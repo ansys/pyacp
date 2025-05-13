@@ -58,10 +58,13 @@ class TestLookUpTable3D(NoLockedMixin, TreeObjectTester):
 
     @staticmethod
     @pytest.fixture
-    def object_properties():
+    def object_properties(parent_object):
+        rosette = parent_object.create_rosette()
         return ObjectPropertiesToTest(
             read_write=[
                 ("name", "1D Look-Up Table name"),
+                ("use_global_coordinate_system", False),
+                ("rosette", rosette),
                 ("interpolation_algorithm", LookUpTable3DInterpolationAlgorithm.NEAREST_NEIGHBOR),
                 (
                     "interpolation_algorithm",
