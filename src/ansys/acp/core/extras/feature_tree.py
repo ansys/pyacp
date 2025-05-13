@@ -33,7 +33,7 @@ __all__ = [
 ]
 
 
-def print_feature_tree(show_lines: bool = True) -> None:
+def print_feature_tree(show_lines: bool = False) -> None:
     """Print a tree representation of the PyACP features.
 
     Parameters
@@ -42,7 +42,7 @@ def print_feature_tree(show_lines: bool = True) -> None:
         Whether to show lines connecting the nodes.
 
     """
-    print(get_feature_tree()._to_string(show_lines=show_lines))
+    print(get_feature_tree().to_string(show_lines=show_lines))
 
 
 def get_feature_tree() -> Node:
