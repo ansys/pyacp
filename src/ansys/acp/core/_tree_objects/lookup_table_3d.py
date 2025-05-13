@@ -35,6 +35,7 @@ from ._grpc_helpers.mapping import define_create_method, define_mutable_mapping
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
+    grpc_link_property,
     mark_grpc_properties,
 )
 from .base import CreatableTreeObject, IdTreeObject
@@ -46,6 +47,7 @@ from .enums import (
 )
 from .lookup_table_3d_column import LookUpTable3DColumn
 from .object_registry import register
+from .rosette import Rosette
 
 __all__ = ["LookUpTable3D"]
 
@@ -69,6 +71,13 @@ class LookUpTable3D(CreatableTreeObject, IdTreeObject):
 
     Parameters
     ----------
+    name:
+        Name of the 3D look-up table.
+    use_global_coordinate_system :
+        Use global coordinate system for origin and directions.
+    rosette :
+        Rosette used for origin and directions. Only applies if
+        ``use_global_coordinate_system`` is False.
     interpolation_algorithm :
         Algorithm used to interpolate the values of the look-up table.
     use_default_search_radius :
@@ -93,13 +102,16 @@ class LookUpTable3D(CreatableTreeObject, IdTreeObject):
         self,
         *,
         name: str = "LookUpTable3D",
+        use_global_coordinate_system: bool = True,
+        rosette: Rosette | None = None,
         interpolation_algorithm: LookUpTable3DInterpolationAlgorithm = LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR,  # noqa: E501
         use_default_search_radius: bool = True,
         search_radius: float = 0.0,
         num_min_neighbors: int = 1,
     ):
         super().__init__(name=name)
-
+        self.use_global_coordinate_system = use_global_coordinate_system
+        self.rosette = rosette
         self.interpolation_algorithm = interpolation_algorithm
         self.use_default_search_radius = use_default_search_radius
         self.search_radius = search_radius
@@ -109,6 +121,13 @@ class LookUpTable3D(CreatableTreeObject, IdTreeObject):
         return lookup_table_3d_pb2_grpc.ObjectServiceStub(self._channel)
 
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
+
+    use_global_coordinate_system: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_global_coordinate_system"
+    )
+
+    rosette = grpc_link_property("properties.rosette", allowed_types=Rosette)
+
     interpolation_algorithm = grpc_data_property(
         "properties.interpolation_algorithm",
         from_protobuf=lookup_table_3d_interpolation_algorithm_from_pb,
