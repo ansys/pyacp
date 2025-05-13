@@ -38,7 +38,7 @@ def tree_object(parent_object):
     return parent_object.create_lookup_table_3d()
 
 
-class TestLookUpTable1D(NoLockedMixin, TreeObjectTester):
+class TestLookUpTable3D(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "lookup_tables_3d"
 
     @staticmethod
