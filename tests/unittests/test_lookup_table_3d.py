@@ -46,6 +46,8 @@ class TestLookUpTable1D(NoLockedMixin, TreeObjectTester):
     def default_properties():
         return {
             "status": "NOTUPTODATE",
+            "use_global_coordinate_system": True,
+            "rosette": None,
             "interpolation_algorithm": LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR,
             "use_default_search_radius": True,
             "search_radius": 0.0,
