@@ -23,67 +23,137 @@
 import os
 import textwrap
 
+import pytest
+
 from ansys.acp.core.extras.feature_tree import get_feature_tree
 
 
-def test_feature_tree():
+@pytest.mark.parametrize(
+    "show_lines,expected",
+    [
+        (
+            False,
+            textwrap.dedent(
+                """\
+                Model
+                    Material
+                    Fabric
+                    Stackup
+                    SubLaminate
+                    ElementSet
+                    EdgeSet
+                    CADGeometry
+                        CADComponent (read-only)
+                    VirtualGeometry
+                    Rosette
+                    LookUpTable1D
+                        LookUpTable1DColumn
+                    LookUpTable3D
+                        LookUpTable3DColumn
+                    ParallelSelectionRule
+                    CylindricalSelectionRule
+                    SphericalSelectionRule
+                    TubeSelectionRule
+                    CutOffSelectionRule
+                    GeometricalSelectionRule
+                    VariableOffsetSelectionRule
+                    BooleanSelectionRule
+                    OrientedSelectionSet
+                    ModelingGroup
+                        ModelingPly
+                            ProductionPly (read-only)
+                                AnalysisPly (read-only)
+                        InterfaceLayer
+                        ButtJointSequence
+                    ImportedModelingGroup
+                        ImportedModelingPly
+                            ImportedProductionPly (read-only)
+                                ImportedAnalysisPly (read-only)
+                    SamplingPoint
+                    SectionCut
+                    SolidModel
+                        ExtrusionGuide
+                        SnapToGeometry
+                        SolidElementSet (read-only)
+                        CutOffGeometry
+                        AnalysisPly (read-only)
+                        InterfaceLayer (read-only)
+                    ImportedSolidModel
+                        SolidElementSet (read-only)
+                        CutOffGeometry
+                        LayupMappingObject
+                            AnalysisPly (read-only)
+                            ImportedAnalysisPly (read-only)
+                        AnalysisPly (read-only)
+                        ImportedAnalysisPly (read-only)
+                    Sensor
+                    FieldDefinition
+                """
+            ),
+        ),
+        (
+            True,
+            textwrap.dedent(
+                """\
+                Model
+                ├── Material
+                ├── Fabric
+                ├── Stackup
+                ├── SubLaminate
+                ├── ElementSet
+                ├── EdgeSet
+                ├── CADGeometry
+                │   └── CADComponent (read-only)
+                ├── VirtualGeometry
+                ├── Rosette
+                ├── LookUpTable1D
+                │   └── LookUpTable1DColumn
+                ├── LookUpTable3D
+                │   └── LookUpTable3DColumn
+                ├── ParallelSelectionRule
+                ├── CylindricalSelectionRule
+                ├── SphericalSelectionRule
+                ├── TubeSelectionRule
+                ├── CutOffSelectionRule
+                ├── GeometricalSelectionRule
+                ├── VariableOffsetSelectionRule
+                ├── BooleanSelectionRule
+                ├── OrientedSelectionSet
+                ├── ModelingGroup
+                │   ├── ModelingPly
+                │   │   └── ProductionPly (read-only)
+                │   │       └── AnalysisPly (read-only)
+                │   ├── InterfaceLayer
+                │   └── ButtJointSequence
+                ├── ImportedModelingGroup
+                │   └── ImportedModelingPly
+                │       └── ImportedProductionPly (read-only)
+                │           └── ImportedAnalysisPly (read-only)
+                ├── SamplingPoint
+                ├── SectionCut
+                ├── SolidModel
+                │   ├── ExtrusionGuide
+                │   ├── SnapToGeometry
+                │   ├── SolidElementSet (read-only)
+                │   ├── CutOffGeometry
+                │   ├── AnalysisPly (read-only)
+                │   └── InterfaceLayer (read-only)
+                ├── ImportedSolidModel
+                │   ├── SolidElementSet (read-only)
+                │   ├── CutOffGeometry
+                │   ├── LayupMappingObject
+                │   │   ├── AnalysisPly (read-only)
+                │   │   └── ImportedAnalysisPly (read-only)
+                │   ├── AnalysisPly (read-only)
+                │   └── ImportedAnalysisPly (read-only)
+                ├── Sensor
+                └── FieldDefinition
+                """
+            ),
+        ),
+    ],
+)
+def test_feature_tree(show_lines, expected):
     """Test that the feature tree is correct."""
     tree = get_feature_tree()
-    expected = textwrap.dedent(
-        """\
-        Model
-        ├── Material
-        ├── Fabric
-        ├── Stackup
-        ├── SubLaminate
-        ├── ElementSet
-        ├── EdgeSet
-        ├── CADGeometry
-        │   └── CADComponent (read-only)
-        ├── VirtualGeometry
-        ├── Rosette
-        ├── LookUpTable1D
-        │   └── LookUpTable1DColumn
-        ├── LookUpTable3D
-        │   └── LookUpTable3DColumn
-        ├── ParallelSelectionRule
-        ├── CylindricalSelectionRule
-        ├── SphericalSelectionRule
-        ├── TubeSelectionRule
-        ├── CutOffSelectionRule
-        ├── GeometricalSelectionRule
-        ├── VariableOffsetSelectionRule
-        ├── BooleanSelectionRule
-        ├── OrientedSelectionSet
-        ├── ModelingGroup
-        │   ├── ModelingPly
-        │   │   └── ProductionPly (read-only)
-        │   │       └── AnalysisPly (read-only)
-        │   ├── InterfaceLayer
-        │   └── ButtJointSequence
-        ├── ImportedModelingGroup
-        │   └── ImportedModelingPly
-        │       └── ImportedProductionPly (read-only)
-        │           └── ImportedAnalysisPly (read-only)
-        ├── SamplingPoint
-        ├── SectionCut
-        ├── SolidModel
-        │   ├── ExtrusionGuide
-        │   ├── SnapToGeometry
-        │   ├── SolidElementSet (read-only)
-        │   ├── CutOffGeometry
-        │   ├── AnalysisPly (read-only)
-        │   └── InterfaceLayer (read-only)
-        ├── ImportedSolidModel
-        │   ├── SolidElementSet (read-only)
-        │   ├── CutOffGeometry
-        │   ├── LayupMappingObject
-        │   │   ├── AnalysisPly (read-only)
-        │   │   └── ImportedAnalysisPly (read-only)
-        │   ├── AnalysisPly (read-only)
-        │   └── ImportedAnalysisPly (read-only)
-        ├── Sensor
-        └── FieldDefinition
-        """
-    )
-    assert str(tree) == expected.replace("\n", os.linesep)
+    assert tree.to_string(show_lines=show_lines) == expected.replace("\n", os.linesep)

@@ -46,16 +46,23 @@ class Node:
         self.children: list["Node"] = children if children else []
 
     def __str__(self) -> str:
-        return self._to_string(_prefix="", show_lines=True)
+        return self.to_string(_prefix="", show_lines=False)
 
-    def _to_string(
+    def to_string(
         self,
         *,
-        show_lines: bool,
+        show_lines: bool = False,
         _prefix: str = "",
         _is_last_child: bool = True,
         _is_root: bool = True,
     ) -> str:
+        """Convert the node to a string representation.
+
+        Parameters
+        ----------
+        show_lines :
+            Whether to show lines connecting the nodes.
+        """
         if show_lines:
             elbow = "└── "
             line = "│   "
@@ -74,7 +81,7 @@ class Node:
                 new_prefix = _prefix + empty
             else:
                 new_prefix = _prefix + line
-            res += child._to_string(
+            res += child.to_string(
                 _prefix=new_prefix,
                 show_lines=show_lines,
                 _is_last_child=(i == len(self.children) - 1),
@@ -83,7 +90,7 @@ class Node:
         return res
 
 
-def print_model(model: Model, *, hide_empty: bool = True, show_lines: bool = True) -> None:
+def print_model(model: Model, *, hide_empty: bool = True, show_lines: bool = False) -> None:
     """Print a tree representation of the model.
 
     Parameters
@@ -96,7 +103,7 @@ def print_model(model: Model, *, hide_empty: bool = True, show_lines: bool = Tru
         Whether to show lines connecting the nodes.
 
     """
-    return print(get_model_tree(model, hide_empty=hide_empty)._to_string(show_lines=show_lines))
+    return print(get_model_tree(model, hide_empty=hide_empty).to_string(show_lines=show_lines))
 
 
 def get_model_tree(model: Model, *, hide_empty: bool = True) -> Node:

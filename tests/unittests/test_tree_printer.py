@@ -89,59 +89,59 @@ def case_more_objects(acp_instance, model_data_dir):
         False,
         textwrap.dedent(
             """\
-        'minimal_complete'
-            Materials
-                'Structural Steel'
-            Fabrics
-                'Fabric.1'
-            Stackups
-                'Stackup'
-            Sublaminates
-                'SubLaminate'
-            Element Sets
-                'All_Elements'
-            Edge Sets
-                'ns_edge'
-                'EdgeSet'
-            Cad Geometries
-                'CADGeometry'
-            Virtual Geometries
-                'VirtualGeometry'
-            Rosettes
-                'Global Coordinate System'
-            Lookup Tables 1d
-                'LookUpTable1D'
-                    Columns
-                        'Location'
-            Lookup Tables 3d
-                'LookUpTable3D'
-                    Columns
-                        'Location'
-            Parallel Selection Rules
-                'ParallelSelectionrule'
-            Cylindrical Selection Rules
-                'CylindricalSelectionrule'
-            Tube Selection Rules
-                'TubeSelectionrule'
-            Cut Off Selection Rules
-                'CutOffSelectionrule'
-            Geometrical Selection Rules
-                'GeometricalSelectionrule'
-            Boolean Selection Rules
-                'BooleanSelectionrule'
-            Oriented Selection Sets
-                'OrientedSelectionSet.1'
-            Modeling Groups
-                'ModelingGroup.1'
-                    Modeling Plies
-                        'ModelingPly.1'
-                            Production Plies
-                                'P1__ModelingPly.1'
-                                    Analysis Plies
-                                        'P1L1__ModelingPly.1'
-            Sensors
-                'Sensor'
-        """
+            'minimal_complete'
+                Materials
+                    'Structural Steel'
+                Fabrics
+                    'Fabric.1'
+                Stackups
+                    'Stackup'
+                Sublaminates
+                    'SubLaminate'
+                Element Sets
+                    'All_Elements'
+                Edge Sets
+                    'ns_edge'
+                    'EdgeSet'
+                Cad Geometries
+                    'CADGeometry'
+                Virtual Geometries
+                    'VirtualGeometry'
+                Rosettes
+                    'Global Coordinate System'
+                Lookup Tables 1d
+                    'LookUpTable1D'
+                        Columns
+                            'Location'
+                Lookup Tables 3d
+                    'LookUpTable3D'
+                        Columns
+                            'Location'
+                Parallel Selection Rules
+                    'ParallelSelectionrule'
+                Cylindrical Selection Rules
+                    'CylindricalSelectionrule'
+                Tube Selection Rules
+                    'TubeSelectionrule'
+                Cut Off Selection Rules
+                    'CutOffSelectionrule'
+                Geometrical Selection Rules
+                    'GeometricalSelectionrule'
+                Boolean Selection Rules
+                    'BooleanSelectionrule'
+                Oriented Selection Sets
+                    'OrientedSelectionSet.1'
+                Modeling Groups
+                    'ModelingGroup.1'
+                        Modeling Plies
+                            'ModelingPly.1'
+                                Production Plies
+                                    'P1__ModelingPly.1'
+                                        Analysis Plies
+                                            'P1L1__ModelingPly.1'
+                Sensors
+                    'Sensor'
+            """
         ),
     )
 
@@ -172,59 +172,59 @@ def case_more_objects_lines(acp_instance, model_data_dir):
         True,
         textwrap.dedent(
             """\
-        'minimal_complete'
-        ├── Materials
-        │   └── 'Structural Steel'
-        ├── Fabrics
-        │   └── 'Fabric.1'
-        ├── Stackups
-        │   └── 'Stackup'
-        ├── Sublaminates
-        │   └── 'SubLaminate'
-        ├── Element Sets
-        │   └── 'All_Elements'
-        ├── Edge Sets
-        │   ├── 'ns_edge'
-        │   └── 'EdgeSet'
-        ├── Cad Geometries
-        │   └── 'CADGeometry'
-        ├── Virtual Geometries
-        │   └── 'VirtualGeometry'
-        ├── Rosettes
-        │   └── 'Global Coordinate System'
-        ├── Lookup Tables 1d
-        │   └── 'LookUpTable1D'
-        │       └── Columns
-        │           └── 'Location'
-        ├── Lookup Tables 3d
-        │   └── 'LookUpTable3D'
-        │       └── Columns
-        │           └── 'Location'
-        ├── Parallel Selection Rules
-        │   └── 'ParallelSelectionrule'
-        ├── Cylindrical Selection Rules
-        │   └── 'CylindricalSelectionrule'
-        ├── Tube Selection Rules
-        │   └── 'TubeSelectionrule'
-        ├── Cut Off Selection Rules
-        │   └── 'CutOffSelectionrule'
-        ├── Geometrical Selection Rules
-        │   └── 'GeometricalSelectionrule'
-        ├── Boolean Selection Rules
-        │   └── 'BooleanSelectionrule'
-        ├── Oriented Selection Sets
-        │   └── 'OrientedSelectionSet.1'
-        ├── Modeling Groups
-        │   └── 'ModelingGroup.1'
-        │       └── Modeling Plies
-        │           └── 'ModelingPly.1'
-        │               └── Production Plies
-        │                   └── 'P1__ModelingPly.1'
-        │                       └── Analysis Plies
-        │                           └── 'P1L1__ModelingPly.1'
-        └── Sensors
-            └── 'Sensor'
-        """
+            'minimal_complete'
+            ├── Materials
+            │   └── 'Structural Steel'
+            ├── Fabrics
+            │   └── 'Fabric.1'
+            ├── Stackups
+            │   └── 'Stackup'
+            ├── Sublaminates
+            │   └── 'SubLaminate'
+            ├── Element Sets
+            │   └── 'All_Elements'
+            ├── Edge Sets
+            │   ├── 'ns_edge'
+            │   └── 'EdgeSet'
+            ├── Cad Geometries
+            │   └── 'CADGeometry'
+            ├── Virtual Geometries
+            │   └── 'VirtualGeometry'
+            ├── Rosettes
+            │   └── 'Global Coordinate System'
+            ├── Lookup Tables 1d
+            │   └── 'LookUpTable1D'
+            │       └── Columns
+            │           └── 'Location'
+            ├── Lookup Tables 3d
+            │   └── 'LookUpTable3D'
+            │       └── Columns
+            │           └── 'Location'
+            ├── Parallel Selection Rules
+            │   └── 'ParallelSelectionrule'
+            ├── Cylindrical Selection Rules
+            │   └── 'CylindricalSelectionrule'
+            ├── Tube Selection Rules
+            │   └── 'TubeSelectionrule'
+            ├── Cut Off Selection Rules
+            │   └── 'CutOffSelectionrule'
+            ├── Geometrical Selection Rules
+            │   └── 'GeometricalSelectionrule'
+            ├── Boolean Selection Rules
+            │   └── 'BooleanSelectionrule'
+            ├── Oriented Selection Sets
+            │   └── 'OrientedSelectionSet.1'
+            ├── Modeling Groups
+            │   └── 'ModelingGroup.1'
+            │       └── Modeling Plies
+            │           └── 'ModelingPly.1'
+            │               └── Production Plies
+            │                   └── 'P1__ModelingPly.1'
+            │                       └── Analysis Plies
+            │                           └── 'P1L1__ModelingPly.1'
+            └── Sensors
+                └── 'Sensor'
+            """
         ),
     )
 
@@ -237,4 +237,4 @@ def test_printed_model(model, show_lines, expected):
 
     tree = get_model_tree(model)
 
-    assert tree._to_string(show_lines=show_lines) == expected.replace("\n", os.linesep)
+    assert tree.to_string(show_lines=show_lines) == expected.replace("\n", os.linesep)
