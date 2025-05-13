@@ -69,6 +69,8 @@ class TestLookUpTable3D(NoLockedMixin, TreeObjectTester):
     @staticmethod
     @pytest.fixture
     def object_properties(parent_object, acp_instance):
+        model = parent_object
+        rosette = model.create_rosette(name="Rosette")
         if parse_version(acp_instance.server_version) < parse_version("25.2"):
             return ObjectPropertiesToTest(
                 read_write=[
@@ -91,7 +93,6 @@ class TestLookUpTable3D(NoLockedMixin, TreeObjectTester):
                 ],
             )
         else:
-            rosette = parent_object.create_rosette()
             return ObjectPropertiesToTest(
                 read_write=[
                     ("name", "3D Look-Up Table name"),
