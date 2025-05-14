@@ -63,16 +63,17 @@ mypy = ">=1.0"
 mypy-extensions = ">=1.0"
 types-protobuf = ">=4.22.0.2"
 
-Sphinx = ">=7.2.6"
-sphinx-copybutton = ">=0.5.2"
-numpydoc = ">=1.6.0,!=1.9.0"  # exclude 1.9.0 due to https://github.com/numpy/numpydoc/issues/638
-ansys-sphinx-theme = ">=1.0.0"
-pypandoc = ">=1.13"
-sphinx-gallery = ">=0.15.0"
-sphinx-design = ">=0.5.0"  # undeclared indirect dependency via PyVista
-sphinx-jinja = ">=2.0.2"
-ipykernel = ">=6.22.0"
-vtk = ">=9.5.1"
+# Building the documentation is currently supported only for Python 3.11+
+Sphinx = { version = ">=8.2.0", python = ">=3.11" }
+sphinx-copybutton = { version = ">=0.5.2", python = ">=3.11" }
+numpydoc = { version = ">=1.6.0,!=1.9.0" , python = ">=3.11" } # exclude 1.9.0 due to https://github.com/numpy/numpydoc/issues/638
+ansys-sphinx-theme = { version = ">=1.0.0", python = ">=3.11" }
+pypandoc = { version = ">=1.13", python = ">=3.11" }
+sphinx-gallery = { version = ">=0.15.0", python = ">=3.11" }
+sphinx-design = { version = ">=0.5.0", python = ">=3.11" } # undeclared indirect dependency via PyVisa
+sphinx-jinja = { version = ">=2.0.2", python=">=3.11" }
+ipykernel = { version = ">=6.22.0", python=">=3.11" }
+vtk = { version = ">=9.5.1", python=">=3.11" }
 
 
 [tool.poetry.group.test]
