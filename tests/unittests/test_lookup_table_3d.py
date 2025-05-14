@@ -96,7 +96,7 @@ class TestLookUpTable3D(NoLockedMixin, TreeObjectTester):
             return ObjectPropertiesToTest(
                 read_write=[
                     ("name", "3D Look-Up Table name"),
-                    ("use_global_coordinate_system", False),
+                    ("use_global_coordinate_system", True),
                     ("rosette", rosette),
                     (
                         "interpolation_algorithm",
