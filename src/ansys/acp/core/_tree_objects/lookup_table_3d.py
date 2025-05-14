@@ -123,7 +123,10 @@ class LookUpTable3D(CreatableTreeObject, IdTreeObject):
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
 
     use_global_coordinate_system: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.use_global_coordinate_system", readable_since="25.2", writable_since="25.2"
+        "properties.use_global_coordinate_system",
+        check_optional=True,
+        readable_since="25.2",
+        writable_since="25.2",
     )
 
     rosette = grpc_link_property(
