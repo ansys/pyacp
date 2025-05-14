@@ -180,6 +180,10 @@ Documentation
 Basic documentation build
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. note::
+
+    For building the documentation, Python 3.11 or higher is required.
+
 To build the documentation, run the following commands:
 
 On Linux & MacOS:
