@@ -124,7 +124,6 @@ class LookUpTable3D(CreatableTreeObject, IdTreeObject):
 
     use_global_coordinate_system: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.use_global_coordinate_system",
-        check_optional=True,
         readable_since="25.2",
         writable_since="25.2",
     )
