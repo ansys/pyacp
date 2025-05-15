@@ -20,7 +20,7 @@ You can print the tree structure using the :func:`.print_model` function:
 
 .. doctest::
 
-    >>> pyacp.print_model(model)
+    >>> pyacp.print_model(model, show_lines=True)
     'ACP Model'
     ├── Materials
     │   └── 'Structural Steel'
@@ -68,7 +68,7 @@ The ``hide_empty`` label can be set to ``False`` to also show empty groups:
 
 .. doctest::
 
-    >>> pyacp.print_model(model, hide_empty=False)
+    >>> pyacp.print_model(model, hide_empty=False, show_lines=True)
     'ACP Model'
     ├── Materials
     │   └── 'Structural Steel'
