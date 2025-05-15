@@ -1,0 +1,13 @@
+.. vale off
+
+use\_curvature\_correction
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExtrusionGuide.use_curvature_correction
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide.use_curvature_correction
+
+   ansys.acp.core.ExtrusionGuide.use_curvature_correction

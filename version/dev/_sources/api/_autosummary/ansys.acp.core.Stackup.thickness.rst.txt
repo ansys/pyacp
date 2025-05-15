@@ -1,0 +1,13 @@
+.. vale off
+
+thickness
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.thickness
+
+.. minigallery::
+   :add-heading: Examples using Stackup.thickness
+
+   ansys.acp.core.Stackup.thickness

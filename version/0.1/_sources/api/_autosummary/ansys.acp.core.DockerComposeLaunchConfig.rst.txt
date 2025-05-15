@@ -1,0 +1,41 @@
+﻿.. vale off
+
+DockerComposeLaunchConfig
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: DockerComposeLaunchConfig
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      DockerComposeLaunchConfig.compose_file
+      DockerComposeLaunchConfig.image_name_acp
+      DockerComposeLaunchConfig.image_name_filetransfer
+      DockerComposeLaunchConfig.keep_volume
+      DockerComposeLaunchConfig.license_server
+      DockerComposeLaunchConfig.environment_variables
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using DockerComposeLaunchConfig
+
+   ansys.acp.core.DockerComposeLaunchConfig

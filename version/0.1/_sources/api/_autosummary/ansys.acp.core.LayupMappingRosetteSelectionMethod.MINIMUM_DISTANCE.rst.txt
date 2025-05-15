@@ -1,0 +1,13 @@
+.. vale off
+
+MINIMUM\_DISTANCE
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LayupMappingRosetteSelectionMethod.MINIMUM_DISTANCE
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingRosetteSelectionMethod.MINIMUM_DISTANCE
+
+   ansys.acp.core.LayupMappingRosetteSelectionMethod.MINIMUM_DISTANCE

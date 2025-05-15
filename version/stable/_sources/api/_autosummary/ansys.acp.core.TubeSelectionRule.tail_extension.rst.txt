@@ -1,0 +1,13 @@
+.. vale off
+
+tail\_extension
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.tail_extension
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.tail_extension
+
+   ansys.acp.core.TubeSelectionRule.tail_extension

@@ -1,0 +1,13 @@
+.. vale off
+
+PLANE\_STRESS\_STATE
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: StressStateType.PLANE_STRESS_STATE
+
+.. minigallery::
+   :add-heading: Examples using StressStateType.PLANE_STRESS_STATE
+
+   ansys.acp.core.StressStateType.PLANE_STRESS_STATE

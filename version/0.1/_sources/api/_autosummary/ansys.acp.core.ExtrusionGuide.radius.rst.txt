@@ -1,0 +1,13 @@
+.. vale off
+
+radius
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExtrusionGuide.radius
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide.radius
+
+   ansys.acp.core.ExtrusionGuide.radius
