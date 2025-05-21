@@ -287,6 +287,9 @@ class SectionCut(CreatableTreeObject, IdTreeObject):
         # The 'auto_download' context manager cannot be directly used here
         # because the export path is not a file but a directory. The BECAS
         # export produces multiple files, which we all need to download.
+        # Currently (May '25), this is the only export that produces multiple
+        # files at once. If there are more, we should either extend 'auto_download',
+        # or create a new context manager for this purpose.
         export_path = pathlib.Path(
             self._server_wrapper.filetransfer_handler.to_export_path(path, is_directory=True)
         )
