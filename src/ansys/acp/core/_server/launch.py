@@ -38,6 +38,7 @@ from .acp_instance import (
     RemoteFileTransferStrategy,
 )
 from .common import ControllableServerProtocol, LaunchMode, ServerKey
+from .connect import ConnectLaunchConfig
 from .direct import DirectLaunchConfig
 from .docker_compose import DockerComposeLaunchConfig
 
@@ -45,7 +46,7 @@ __all__ = ["launch_acp"]
 
 
 def launch_acp(
-    config: DirectLaunchConfig | DockerComposeLaunchConfig | None = None,
+    config: DirectLaunchConfig | DockerComposeLaunchConfig | ConnectLaunchConfig | None = None,
     launch_mode: LaunchMode | None = None,
     timeout: float | None = 30.0,
     auto_transfer_files: bool = True,
