@@ -213,8 +213,15 @@ def test_elemental_data_to_pyvista(minimal_complete_model):
 
 @pytest.mark.graphics
 @pytest.mark.parametrize("component", [e.value for e in ElementalDataType])
-def test_elemental_data_to_pyvista_with_component(minimal_complete_model, component):
+def test_elemental_data_to_pyvista_with_component(
+    acp_instance,
+    minimal_complete_model,
+    component,
+):
     import pyvista
+
+    if component == "price" and parse_version(acp_instance.server_version) < parse_version("25.2"):
+        pytest.skip("Price is not supported on this version of the server.")
 
     data = minimal_complete_model.elemental_data
     if not hasattr(data, component):
