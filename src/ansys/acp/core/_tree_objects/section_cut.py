@@ -23,11 +23,14 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
+import typing
 
 from ansys.api.acp.v0 import section_cut_pb2, section_cut_pb2_grpc
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
+from .._utils.typing_helper import PATH as _PATH
+from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.linked_object_list import define_linked_object_list
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
@@ -39,11 +42,13 @@ from .element_set import ElementSet
 from .enums import (
     ExtrusionType,
     IntersectionType,
+    SectionCutCDBExportType,
     SectionCutType,
     extrusion_type_from_pb,
     extrusion_type_to_pb,
     intersection_type_from_pb,
     intersection_type_to_pb,
+    section_cut_cdb_export_type_to_pb,
     section_cut_type_from_pb,
     section_cut_type_to_pb,
     status_type_from_pb,
@@ -225,3 +230,64 @@ class SectionCut(CreatableTreeObject, IdTreeObject):
     number_of_interpolation_points: ReadWriteProperty[int, int] = grpc_data_property(
         "properties.number_of_interpolation_points"
     )
+
+    def export(
+        self,
+        path: _PATH,
+        *,
+        export_type: SectionCutCDBExportType = "mesh_only",
+    ) -> None:
+        """Export the section cut to a CDB file.
+
+        Parameters
+        ----------
+        path :
+            Path to the file where the section cut is saved.
+        export_type :
+            Determines what is exported to the CDB file. Options are
+            - ``"mesh_only"``: Only the mesh (elements and nodes) is exported.
+            - ``"solid_model"``: The section cut is expanded into a slice of
+              solid elements. In addition, the material properties are exported
+              and the element coordinate systems are aligned with the fiber
+              direction. This model can be used to compute the equivalent
+              beam properties of the section cut.
+
+        """
+        with self._server_wrapper.auto_download(path) as export_path:
+            with wrap_grpc_errors():
+                self._get_stub().ExportToCDB(  # type: ignore
+                    section_cut_pb2.ExportToCDBRequest(
+                        resource_path=self._resource_path,
+                        path=export_path,
+                        export_type=typing.cast(
+                            typing.Any, section_cut_cdb_export_type_to_pb(export_type)
+                        ),
+                    )
+                )
+
+    def export_becas_input(
+        self,
+        path: _PATH,
+        *,
+        export_strength_limits: bool = True,
+    ) -> None:
+        """Export the section cut to a BECAS input file.
+
+        Parameters
+        ----------
+        path :
+            Path to the file where the section cut is saved.
+        export_strength_limits :
+            Determines whether strength limits are exported to the
+            BECAS input file.
+
+        """
+        with self._server_wrapper.auto_download(path) as export_path:
+            with wrap_grpc_errors():
+                self._get_stub().ExportToBECAS(  # type: ignore
+                    section_cut_pb2.ExportToBECASRequest(
+                        resource_path=self._resource_path,
+                        path=export_path,
+                        export_strength_limits=export_strength_limits,
+                    )
+                )
