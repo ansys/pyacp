@@ -80,6 +80,7 @@ __all__ = [
     "ReinforcingBehavior",
     "RosetteSelectionMethod",
     "RosetteType",
+    "SectionCutCDBExportType",
     "SectionCutType",
     "SensorType",
     "SnapToGeometryOrientationType",
