@@ -1,6 +1,7 @@
 """Sphinx documentation configuration file."""
 
 from datetime import datetime
+import doctest
 import inspect
 import os
 import pathlib
@@ -190,6 +191,13 @@ extensions = [
     "pyvista.ext.plot_directive",
     "pyvista.ext.viewer_directive",
 ]
+
+doctest_default_flags = (
+    doctest.NORMALIZE_WHITESPACE
+    | doctest.ELLIPSIS
+    | doctest.IGNORE_EXCEPTION_DETAIL
+    | doctest.DONT_ACCEPT_TRUE_FOR_1
+)
 
 # Intersphinx mapping
 intersphinx_mapping = {

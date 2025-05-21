@@ -12,5 +12,6 @@ These short guides teach you how to use particular features of PyACP.
     visualize_model
     view_model_in_acp_gui
     print_model
+    copy_objects
     file_management
     launch_configuration
