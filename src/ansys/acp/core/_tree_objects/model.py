@@ -246,6 +246,10 @@ class Model(TreeObject):
     minimum_analysis_ply_thickness :
         Section computation minimum analysis ply thickness (in length
         unit of model).
+    force_disable_result_extrapolation :
+        Force the result extrapolation to be disabled ('ERESX,NO' command)
+        when exporting to APDL or CDB format. Available since ACP server
+        version 25.2.
     """
 
     __slots__: Iterable[str] = tuple()
@@ -263,6 +267,7 @@ class Model(TreeObject):
         angle_tolerance: float = 1.0,
         relative_thickness_tolerance: float = 0.01,
         minimum_analysis_ply_thickness: float = 1e-6,
+        force_disable_result_extrapolation: bool = False,
     ) -> None:
         super().__init__(name=name)
 
@@ -271,6 +276,7 @@ class Model(TreeObject):
         self.angle_tolerance = angle_tolerance
         self.relative_thickness_tolerance = relative_thickness_tolerance
         self.minimum_analysis_ply_thickness = minimum_analysis_ply_thickness
+        self.force_disable_result_extrapolation = force_disable_result_extrapolation
 
     def _get_stub(self) -> model_pb2_grpc.ObjectServiceStub:
         return cast(model_pb2_grpc.ObjectServiceStub, super()._get_stub())
@@ -294,6 +300,11 @@ class Model(TreeObject):
     )
     minimum_analysis_ply_thickness: ReadWriteProperty[float, float] = grpc_data_property(
         "properties.minimum_analysis_ply_thickness"
+    )
+    force_disable_result_extrapolation: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.force_disable_result_extrapolation",
+        readable_since="25.2",
+        writable_since="25.2",
     )
 
     @staticmethod

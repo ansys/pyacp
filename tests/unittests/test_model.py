@@ -25,6 +25,7 @@ from __future__ import annotations
 import os
 import pathlib
 import tempfile
+from typing import Any, TypeVar
 
 import numpy as np
 import numpy.testing
@@ -33,48 +34,42 @@ import pytest
 from ansys.acp.core import ElementalDataType, UnitSystemType
 from ansys.acp.core.mesh_data import VectorData
 
-from .helpers import check_property
+T = TypeVar("T")
 
 
-def test_unittest(acp_instance, model_data_dir):
+def _check_property(obj: Any, *, name: str, value: T, set_value: T | None = None):
+    assert hasattr(obj, name), f"Object '{obj}' has no property named '{name}'"
+    assert (
+        getattr(obj, name) == value
+    ), f"Test of property '{name}' failed! value '{getattr( obj, name )}' instead of '{value}'."
+    if set_value is not None:
+        setattr(obj, name, set_value)
+        assert (
+            getattr(obj, name) == set_value
+        ), f"Setter of property '{name}' failed! value '{getattr(obj, name)}' instead of '{value}'."
+
+
+def test_unittest(acp_instance, model_data_dir, raises_before_version):
     """
     Test basic properties of the model object
     """
+
     input_file_path = model_data_dir / "ACP-Pre.h5"
     model = acp_instance.import_model(name="kiteboard", path=input_file_path, format="ansys:h5")
 
-    # TODO: re-activate these tests when the respective features are implemented
-    # assert model.unit_system.type == "mks"
-
-    check_property(model, name="name", value="kiteboard", set_value="kiteboard_renamed")
-    # TODO: re-activate these tests when the respective features are implemented
-    # check_property(model, name="save_path", value="")
-    # check_property(model, name="format", value="ansys:h5")
-    # check_property(model, name="cache_update_results", value=True, set_value=False),
-    # check_property(model, name="path", value=input_file_path),
-    check_property(model, name="use_nodal_thicknesses", value=False, set_value=True),
-    check_property(model, name="draping_offset_correction", value=False, set_value=True),
-    check_property(model, name="angle_tolerance", value=1.0, set_value=2.0),
-    check_property(model, name="relative_thickness_tolerance", value=0.01, set_value=0.03)
-
-    # TODO: re-activate these tests when the respective features are implemented
-    # The minimum analysis ply thickness is an absolute value, and depends on the
-    # unit system being set. This is currently not implemented in PyACP, hence the
-    # values are wrong (it's not using the expected unit system).
-    # check_property(model, name="minimum_analysis_ply_thickness", value=1e-09, set_value=2e-09)
-    # check_property(
-    #     model,
-    #     name="reference_surface_bounding_box",
-    #     value=(
-    #         (-0.6750000000000003, -0.2, 0.0005419999999999998),
-    #         (0.6750000000000003, 0.20000000000000007, 0.0005420000000000003),
-    #     ),
-    # )
+    _check_property(model, name="name", value="kiteboard", set_value="kiteboard_renamed")
+    _check_property(model, name="use_nodal_thicknesses", value=False, set_value=True),
+    _check_property(model, name="draping_offset_correction", value=False, set_value=True),
+    _check_property(model, name="angle_tolerance", value=1.0, set_value=2.0),
+    _check_property(model, name="relative_thickness_tolerance", value=0.01, set_value=0.03)
+    with raises_before_version("25.2"):
+        _check_property(
+            model, name="force_disable_result_extrapolation", value=False, set_value=True
+        )
 
     with tempfile.TemporaryDirectory() as tmp_dir:
         working_dir = pathlib.Path(tmp_dir) / "workdir"
         os.makedirs(working_dir)
-        # model.solver.working_dir = str(working_dir)
 
         with tempfile.TemporaryDirectory() as local_working_dir:
             save_path = pathlib.Path(local_working_dir) / "test_model_serialization.acph5"
@@ -82,34 +77,13 @@ def test_unittest(acp_instance, model_data_dir):
             acp_instance.clear()
             model = acp_instance.import_model(path=save_path)
 
-        # TODO: re-activate these tests when the respective features are implemented
-        # assert model.unit_system.type == "mks"
-
-        check_property(model, name="name", value="kiteboard_renamed")
-        # TODO: re-activate these tests when the respective features are implemented
-        # check_property(model, name="save_path", value=save_path)
-        # check_property(model, name="format", value="ansys:h5")
-        # check_property(model, name="cache_update_results", value=False)
-        # check_property(model, name="path", value=input_file_path)
-        check_property(model, name="use_nodal_thicknesses", value=True)
-        check_property(model, name="draping_offset_correction", value=True)
-        check_property(model, name="angle_tolerance", value=2.0)
-        check_property(model, name="relative_thickness_tolerance", value=0.03)
-
-        # TODO: re-activate these tests when the respective features are implemented
-        # check_property(model, name="minimum_analysis_ply_thickness", value=2e-09)
-        # check_property(
-        #     model,
-        #     name="reference_surface_bounding_box",
-        #     value=(
-        #         (-0.6750000000000003, -0.2, 0.0005419999999999998),
-        #         (0.6750000000000003, 0.20000000000000007, 0.0005420000000000003),
-        #     ),
-        # )
-
-        # rel_path_posix = pathlib.Path(relpath_if_possible(model.solver.working_dir)).as_posix()
-        # # To ensure platform independency we store file paths using POSIX format
-        # assert model.solver.working_dir == rel_path_posix
+        _check_property(model, name="name", value="kiteboard_renamed")
+        _check_property(model, name="use_nodal_thicknesses", value=True)
+        _check_property(model, name="draping_offset_correction", value=True)
+        _check_property(model, name="angle_tolerance", value=2.0)
+        _check_property(model, name="relative_thickness_tolerance", value=0.03)
+        with raises_before_version("25.2"):
+            _check_property(model, name="force_disable_result_extrapolation", value=True)
 
 
 def test_export_analysis_model(acp_instance, model_data_dir):
