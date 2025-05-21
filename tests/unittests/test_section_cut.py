@@ -133,6 +133,26 @@ def test_section_cut_export(parent_object, export_type):
         assert os.stat(path).st_size > 0
 
 
+def test_section_cut_export_outofdate(parent_object):
+    """Test that the CDB export fails for an out-of-date section cut."""
+
+    model = parent_object
+    section_cut = model.create_section_cut()
+    section_cut.normal = (1, 0, 0)
+    section_cut.extrusion_type = ExtrusionType.SURFACE_NORMAL
+    section_cut.section_cut_type = SectionCutType.ANALYSIS_PLY_WISE
+
+    with tempfile.TemporaryDirectory() as tempdir:
+        path = pathlib.Path(tempdir) / "section_cut.cdb"
+        with pytest.raises(RuntimeError):
+            # without update, the export should fail
+            section_cut.export(path=path)
+
+        # after update, the export should work
+        model.update()
+        section_cut.export(path=path)
+
+
 @pytest.fixture(params=[True, False])
 def use_pathlib_path(request):
     return request.param
@@ -171,3 +191,21 @@ def test_section_cut_becas_export(parent_object, export_strength_limits, use_pat
         assert sorted(tempdir_path.iterdir()) == sorted(
             [tempdir_path / filename for filename in expected_filename]
         )
+
+
+def test_section_cut_becas_export_outofdate(parent_object):
+    """Test that the BECAS export fails for an out-of-date section cut."""
+
+    model = parent_object
+    section_cut = model.create_section_cut()
+    section_cut.normal = (1, 0, 0)
+    section_cut.extrusion_type = ExtrusionType.SURFACE_NORMAL
+    section_cut.section_cut_type = SectionCutType.ANALYSIS_PLY_WISE
+
+    with tempfile.TemporaryDirectory() as tempdir:
+        with pytest.raises(RuntimeError):
+            # without update, the export should fail
+            section_cut.export_becas_input(path=tempdir)
+        # after update, the export should work
+        model.update()
+        section_cut.export_becas_input(path=tempdir)
