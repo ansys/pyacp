@@ -21,6 +21,9 @@
 # SOFTWARE.
 
 import math
+import os
+import pathlib
+import tempfile
 
 from packaging.version import parse as parse_version
 import pytest
@@ -108,4 +111,63 @@ class TestSectionCut(NoLockedMixin, TreeObjectTester):
                 ("status", "UPTODATE"),
                 ("locked", True),
             ],
+        )
+
+
+@pytest.mark.parametrize("export_type", ["mesh_only", "solid_model"])
+def test_section_cut_export(parent_object, export_type):
+    """Test the export to CDB. Only the presence of the file is checked."""
+
+    model = parent_object
+    section_cut = model.create_section_cut()
+    section_cut.normal = (1, 0, 0)
+    section_cut.extrusion_type = ExtrusionType.SURFACE_NORMAL
+    section_cut.section_cut_type = SectionCutType.ANALYSIS_PLY_WISE
+    model.update()
+
+    with tempfile.TemporaryDirectory() as tempdir:
+        path = pathlib.Path(tempdir) / "section_cut.cdb"
+        section_cut.export(path=path, export_type=export_type)
+        assert path.exists()
+        assert path.is_file()
+        assert os.stat(path).st_size > 0
+
+
+@pytest.fixture(params=[True, False])
+def use_pathlib_path(request):
+    return request.param
+
+
+@pytest.fixture(params=[True, False])
+def export_strength_limits(request):
+    return request.param
+
+
+def test_section_cut_becas_export(parent_object, export_strength_limits, use_pathlib_path):
+    """Test the export to CDB. Only the presence of the file is checked."""
+
+    model = parent_object
+    section_cut = model.create_section_cut()
+    section_cut.normal = (1, 0, 0)
+    section_cut.extrusion_type = ExtrusionType.SURFACE_NORMAL
+    section_cut.section_cut_type = SectionCutType.ANALYSIS_PLY_WISE
+    model.update()
+
+    expected_filename = ["E2D.in", "EMAT.in", "MATPROPS.in", "N2D.in"]
+    if export_strength_limits:
+        expected_filename.append("FAILMAT.in")
+
+    with tempfile.TemporaryDirectory() as tempdir:
+        tempdir_path = pathlib.Path(tempdir)
+        if use_pathlib_path:
+            section_cut.export_becas_input(
+                path=tempdir_path, export_strength_limits=export_strength_limits
+            )
+        else:
+            section_cut.export_becas_input(
+                path=tempdir, export_strength_limits=export_strength_limits
+            )
+
+        assert sorted(tempdir_path.iterdir()) == sorted(
+            [tempdir_path / filename for filename in expected_filename]
         )

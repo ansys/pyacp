@@ -23,11 +23,13 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
+import pathlib
 import typing
 
 from ansys.api.acp.v0 import section_cut_pb2, section_cut_pb2_grpc
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
+from .._utils.path_to_str import path_to_str_checked
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from .._utils.typing_helper import PATH as _PATH
 from ._grpc_helpers.exceptions import wrap_grpc_errors
@@ -271,23 +273,36 @@ class SectionCut(CreatableTreeObject, IdTreeObject):
         *,
         export_strength_limits: bool = True,
     ) -> None:
-        """Export the section cut to a BECAS input file.
+        """Export the section cut to BECAS input files.
 
         Parameters
         ----------
         path :
-            Path to the file where the section cut is saved.
+            Path to the directory where the input files are saved.
         export_strength_limits :
             Determines whether strength limits are exported to the
-            BECAS input file.
+            BECAS input files.
 
         """
-        with self._server_wrapper.auto_download(path) as export_path:
-            with wrap_grpc_errors():
-                self._get_stub().ExportToBECAS(  # type: ignore
-                    section_cut_pb2.ExportToBECASRequest(
-                        resource_path=self._resource_path,
-                        path=export_path,
-                        export_strength_limits=export_strength_limits,
-                    )
+        # The 'auto_download' context manager cannot be directly used here
+        # because the export path is not a file but a directory. The BECAS
+        # export produces multiple files, which we all need to download.
+        export_path = pathlib.Path(
+            self._server_wrapper.filetransfer_handler.to_export_path(path, is_directory=True)
+        )
+        expected_filenames = ["E2D.in", "EMAT.in", "MATPROPS.in", "N2D.in"]
+        if export_strength_limits:
+            expected_filenames.append("FAILMAT.in")
+
+        with wrap_grpc_errors():
+            self._get_stub().ExportToBECAS(  # type: ignore
+                section_cut_pb2.ExportToBECASRequest(
+                    resource_path=self._resource_path,
+                    path=path_to_str_checked(export_path),
+                    export_strength_limits=export_strength_limits,
                 )
+            )
+        for filename in expected_filenames:
+            self._server_wrapper.filetransfer_handler.download_file_if_autotransfer(
+                export_path / filename, pathlib.Path(path) / filename
+            )
