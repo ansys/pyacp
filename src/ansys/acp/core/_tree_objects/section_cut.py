@@ -246,7 +246,8 @@ class SectionCut(CreatableTreeObject, IdTreeObject):
         path :
             Path to the file where the section cut is saved.
         export_type :
-            Determines what is exported to the CDB file. Options are
+            Determines what is exported to the CDB file. Options are:
+
             - ``"mesh_only"``: Only the mesh (elements and nodes) is exported.
             - ``"solid_model"``: The section cut is expanded into a slice of
               solid elements. In addition, the material properties are exported
