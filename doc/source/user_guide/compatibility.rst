@@ -22,8 +22,8 @@ Attributes
 - :attr:`.ImportedSolidModel.imported_analysis_plies`
 - :attr:`.LayupMappingObject.analysis_plies`
 - :attr:`.LayupMappingObject.imported_analysis_plies`
-- :attr:`.LookupTable3D.rosette`
-- :attr:`.LookupTable3D.use_global_coordinate_system`
+- :attr:`.LookUpTable3D.rosette`
+- :attr:`.LookUpTable3D.use_global_coordinate_system`
 - :attr:`.Model.force_disable_result_extrapolation`
 - :attr:`.ModelElementalData.price`
 - :attr:`.SolidModel.interface_layers`
