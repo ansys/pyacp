@@ -164,12 +164,18 @@ def test_elemental_data(acp_instance, minimal_complete_model):
     numpy.testing.assert_allclose(data.cog.values, np.array([[0.0, 0.0, 5e-5]]))
 
 
-def test_elemental_data_with_void_analysis_plies(acp_instance, load_model_from_tempfile):
+def test_elemental_data_with_void_filler_analysis_plies(
+    acp_instance, load_model_from_tempfile, skip_before_version
+):
     """Regression test for issue #717.
 
-    Retrieving the price of a model with void analysis plies crashes the server
+    Retrieving the price of a model with void and filler analysis plies crashes the server
     prior to 25.2.
     """
+    # On 2024R2, accessing the elemental data failed for this model since the
+    # CoG is not supported for LayeredPolyhedron elements.
+    skip_before_version("25.1")
+
     is_supported = parse_version(acp_instance.server_version) >= parse_version("25.2")
 
     with load_model_from_tempfile("regression_model_717.acph5") as model:
