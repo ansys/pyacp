@@ -25,7 +25,14 @@ Attributes
 - :attr:`.LookupTable3D.rosette`
 - :attr:`.LookupTable3D.use_global_coordinate_system`
 - :attr:`.Model.force_disable_result_extrapolation`
+- :attr:`.ModelElementalData.price`
 - :attr:`.SolidModel.interface_layers`
+
+
+Other features
+''''''''''''''
+
+- Sensors can now be scoped to solid models.
 
 
 Added in 2025R1
