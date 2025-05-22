@@ -19,6 +19,8 @@ Model setup
 
 To get started, launch an ACP instance and load a model:
 
+**Code:**
+
 .. testcode::
 
     import pathlib
@@ -37,10 +39,13 @@ To get started, launch an ACP instance and load a model:
 
 The model structure is as follows:
 
+**Code:**
+
 .. testcode::
 
     pyacp.print_model(model, show_lines=True, label_by_id=True)
 
+**Output:**
 
 .. testoutput::
 
@@ -69,6 +74,8 @@ The model structure is as follows:
 
 At the start of each example, the model is deleted and rel-loaded to get back to the initial state:
 
+**Code:**
+
 .. testcode::
 
     acp.clear()
@@ -78,6 +85,8 @@ Copy one object
 ~~~~~~~~~~~~~~~
 
 The objects to be copied are passed to :func:`.recursive_copy` in the ``source_objects`` parameter. For example, the following code copies the fabric ``Fabric.1``:
+
+**Code:**
 
 .. testcode::
 
@@ -91,6 +100,8 @@ The objects to be copied are passed to :func:`.recursive_copy` in the ``source_o
     for source, target in res.items():
         print(f"Copied '{source.id}' to '{target.id}'")
 
+**Output:**
+
 .. testoutput::
 
     Copied 'Fabric.1' to 'Fabric.2'
@@ -99,9 +110,13 @@ The return value of :func:`.recursive_copy` is a dictionary that maps the pre-ex
 
 The model now has the following structure:
 
+**Code:**
+
 .. testcode::
 
     pyacp.print_model(model, show_lines=True, label_by_id=True)
+
+**Output:**
 
 .. testoutput::
 
@@ -131,9 +146,13 @@ The model now has the following structure:
 
 The ``linked_object_handling="keep"`` parameter indicates that links from the fabric to other objects in the tree should be preserved. This means that the new fabric will still have the same material assigned:
 
+**Code:**
+
 .. testcode::
 
     print(model.fabrics["Fabric.2"].material.id)
+
+**Output:**
 
 .. testoutput::
 
@@ -142,12 +161,16 @@ The ``linked_object_handling="keep"`` parameter indicates that links from the fa
 Discard object links
 ~~~~~~~~~~~~~~~~~~~~
 
+**Code:**
+
 .. testcode::
 
     acp.clear()
     model = acp.import_model(input_file)
 
 To instead discard links between the copied objects and other objects in the tree, set the ``linked_object_handling`` parameter to ``discard``. For example, the following code copies the fabric ``Fabric.1`` and discards its link to the material:
+
+**Code:**
 
 .. testcode::
 
@@ -161,13 +184,21 @@ To instead discard links between the copied objects and other objects in the tre
     for source, target in res.items():
         print(f"Copied '{source.id}' to '{target.id}'")
 
+**Output:**
+
 .. testoutput::
 
     Copied 'Fabric.1' to 'Fabric.2'
 
+The fabric ``Fabric.2`` does not have a material assigned:
+
+**Code:**
+
 .. testcode::
 
     print(model.fabrics["Fabric.2"].material)
+
+**Output:**
 
 .. testoutput::
 
@@ -176,12 +207,16 @@ To instead discard links between the copied objects and other objects in the tre
 Copy multiple objects
 ~~~~~~~~~~~~~~~~~~~~~
 
+**Code:**
+
 .. testcode::
 
     acp.clear()
     model = acp.import_model(input_file)
 
 The ``source_objects`` parameter can include multiple objects. The following example copies the fabric ``Fabric.1`` and the element set ``All_Elements``:
+
+**Code:**
 
 .. testcode::
 
@@ -196,6 +231,8 @@ The ``source_objects`` parameter can include multiple objects. The following exa
     for source, target in res.items():
         print(f"Copied '{source.id}' to '{target.id}'")
 
+**Output:**
+
 .. testoutput::
 
     Copied 'All_Elements' to 'All_Elements.2'
@@ -203,10 +240,14 @@ The ``source_objects`` parameter can include multiple objects. The following exa
 
 This is the model tree after copying:
 
+**Code:**
+
 .. testcode::
 
     pyacp.print_model(model, show_lines=True, label_by_id=True)
 
+
+**Output:**
 
 .. testoutput::
 
@@ -238,12 +279,16 @@ This is the model tree after copying:
 Copy an object and its children
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+**Code:**
+
 .. testcode::
 
     acp.clear()
     model = acp.import_model(input_file)
 
 When an object has children in the ACP model tree, these are automatically included in the copy. The following example copies the modeling group ``ModelingGroup.1`` and its children:
+
+**Code:**
 
 .. testcode::
 
@@ -256,14 +301,20 @@ When an object has children in the ACP model tree, these are automatically inclu
     for source, target in res.items():
         print(f"Copied '{source.id}' to '{target.id}'")
 
+**Output:**
+
 .. testoutput::
 
     Copied 'ModelingGroup.1' to 'ModelingGroup.2'
     Copied 'ModelingPly.1' to 'ModelingPly.2'
 
+**Code:**
+
 .. testcode::
 
     pyacp.print_model(model, show_lines=True, label_by_id=True)
+
+**Output:**
 
 .. testoutput::
 
@@ -294,10 +345,14 @@ When an object has children in the ACP model tree, these are automatically inclu
 
 You may notice that the production and analysis plies have not been copied. This is because these are read-only objects which are generated on update. After a model update, they are present:
 
+**Code:**
+
 .. testcode::
 
     model.update()
     pyacp.print_model(model, show_lines=True, label_by_id=True)
+
+**Output:**
 
 .. testoutput::
 
@@ -333,6 +388,8 @@ You may notice that the production and analysis plies have not been copied. This
 Copy to a different location
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+**Code:**
+
 .. testcode::
 
     acp.clear()
@@ -345,6 +402,8 @@ The ``parent_mapping`` parameter controls where in the model tree the copied obj
     The key and value of the ``parent_mapping`` dictionary must generally (with some exceptions) be of the same type. For example, a :class:`.ModelingPly` object always has a :class:`.ModelingGroup` as its parent. For more details, consult the :ref:`feature_tree` section of the user guide.
 
 The following example copies a the modeling ply ``ModelingPly.1`` into its own parent, ``ModelingGroup.1``.
+
+**Code:**
 
 .. testcode::
 
@@ -359,16 +418,22 @@ The following example copies a the modeling ply ``ModelingPly.1`` into its own p
     for source, target in res.items():
         print(f"Copied '{source.id}' to '{target.id}'")
 
+**Output:**
+
 .. testoutput::
 
     Copied 'ModelingPly.1' to 'ModelingPly.2'
 
 This results in the following model tree:
 
+**Code:**
+
 .. testcode::
 
     model.update()
     pyacp.print_model(model, show_lines=True, label_by_id=True)
+
+**Output:**
 
 .. testoutput::
 
@@ -402,6 +467,8 @@ This results in the following model tree:
 
 By changing the value in the ``parent_mapping`` dictionary, you can instead copy it to a new modeling group:
 
+**Code:**
+
 .. testcode::
 
     modeling_group_2 = model.create_modeling_group(name="New Modeling Group")
@@ -414,15 +481,21 @@ By changing the value in the ``parent_mapping`` dictionary, you can instead copy
     for source, target in res.items():
         print(f"Copied '{source.id}' to '{target.id}'")
 
+**Output:**
+
 .. testoutput::
 
     Copied 'ModelingPly.1' to 'ModelingPly.3'
 
 
+**Code:**
+
 .. testcode::
 
     model.update()
     pyacp.print_model(model, show_lines=True, label_by_id=True)
+
+**Output:**
 
 .. testoutput::
 
@@ -463,6 +536,8 @@ By changing the value in the ``parent_mapping`` dictionary, you can instead copy
 Copy linked objects
 ~~~~~~~~~~~~~~~~~~~
 
+**Code:**
+
 .. testcode::
 
     acp.clear()
@@ -470,6 +545,8 @@ Copy linked objects
 
 Instead of keeping or discarding links to other objects, you can also copy the linked objects. This is done by setting the ``linked_object_handling`` parameter to ``copy``. The following example copies the fabric ``Fabric.1`` and its linked material ``Structural Steel``:
 
+
+**Code:**
 
 .. testcode::
 
@@ -482,15 +559,21 @@ Instead of keeping or discarding links to other objects, you can also copy the l
     for source, target in res.items():
         print(f"Copied '{source.id}' to '{target.id}'")
 
+**Output:**
+
 .. testoutput::
 
     Copied 'Structural Steel' to 'Structural Steel.2'
     Copied 'Fabric.1' to 'Fabric.2'
 
 
+**Code:**
+
 .. testcode::
 
     pyacp.print_model(model, show_lines=True, label_by_id=True)
+
+**Output:**
 
 .. testoutput::
 
@@ -521,9 +604,13 @@ Instead of keeping or discarding links to other objects, you can also copy the l
 
 The copied fabric uses the copied material:
 
+**Code:**
+
 .. testcode::
 
     print(model.fabrics["Fabric.2"].material.id)
+
+**Output:**
 
 .. testoutput::
 
@@ -533,12 +620,16 @@ The copied fabric uses the copied material:
 Copy linked objects recursively
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+**Code:**
+
 .. testcode::
 
     acp.clear()
     model = acp.import_model(input_file)
 
 The copy of linked objects is recursive. In the following example, the modeling group ``ModelingGroup.1`` is used as a source object. Since its child modeling ply ``ModelingPly.1`` has a linked fabric, this fabric and its linked material are also copied. Similarly, the oriented selection set and its linked element set and rosette are copied:
+
+**Code:**
 
 .. testcode::
 
@@ -551,6 +642,8 @@ The copy of linked objects is recursive. In the following example, the modeling 
     for source, target in res.items():
         print(f"Copied '{source.id}' to '{target.id}'")
 
+**Output:**
+
 .. testoutput::
 
     Copied 'Structural Steel' to 'Structural Steel.2'
@@ -562,10 +655,14 @@ The copy of linked objects is recursive. In the following example, the modeling 
     Copied 'ModelingPly.1' to 'ModelingPly.2'
 
 
+**Code:**
+
 .. testcode::
 
     model.update()
     pyacp.print_model(model, show_lines=True, label_by_id=True)
+
+**Output:**
 
 .. testoutput::
 
@@ -606,6 +703,8 @@ The copy of linked objects is recursive. In the following example, the modeling 
 Control the copy of linked objects
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+**Code:**
+
 .. testcode::
 
     acp.clear()
@@ -613,6 +712,8 @@ Control the copy of linked objects
 
 To avoid copying a specific linked object, you can add it (as both key and value) to the ``parent_mapping`` dictionary. The following example copies the modeling group ``ModelingGroup.1`` and its children, but does not copy the material ``Structural Steel`` and rosette ``Global Coordinate System``:
 
+
+**Code:**
 
 .. testcode::
 
@@ -629,6 +730,8 @@ To avoid copying a specific linked object, you can add it (as both key and value
         print(f"Copied '{source.id}' to '{target.id}'")
 
 
+**Output:**
+
 .. testoutput::
 
     Copied 'All_Elements' to 'All_Elements.2'
@@ -637,10 +740,14 @@ To avoid copying a specific linked object, you can add it (as both key and value
     Copied 'ModelingGroup.1' to 'ModelingGroup.2'
     Copied 'ModelingPly.1' to 'ModelingPly.2'
 
+**Code:**
+
 .. testcode::
 
     model.update()
     pyacp.print_model(model, show_lines=True, label_by_id=True)
+
+**Output:**
 
 .. testoutput::
 
@@ -683,6 +790,8 @@ Copying objects to a different model works exactly the same as within the same m
 
 For the subsequent examples, a second model is created:
 
+**Code:**
+
 .. testcode::
 
     input_file_2 = get_example_file(
@@ -696,6 +805,8 @@ For the subsequent examples, a second model is created:
     )
 
     pyacp.print_model(target_model, show_lines=True, label_by_id=True)
+
+**Output:**
 
 .. testoutput::
 
@@ -727,6 +838,8 @@ Copy the entire layup
 
 The following example copies all tree objects from the source model to the target model. All children of the ``source_model`` are copied, but the model itself is not copied since it is present in the ``parent_mapping`` dictionary:
 
+**Code:**
+
 .. testcode::
 
     res = pyacp.recursive_copy(
@@ -737,6 +850,8 @@ The following example copies all tree objects from the source model to the targe
     for source, target in res.items():
         print(f"Copied '{source.id}' to '{target.id}'")
 
+
+**Output:**
 
 .. testoutput::
 
@@ -750,10 +865,14 @@ The following example copies all tree objects from the source model to the targe
     Copied 'ns_edge' to 'ns_edge'
 
 
+**Code:**
+
 .. testcode::
 
     target_model.update()
     pyacp.print_model(target_model, show_lines=True, label_by_id=True)
+
+**Output:**
 
 .. testoutput::
 
@@ -799,6 +918,8 @@ The following example copies all tree objects from the source model to the targe
 Control the copy of linked objects
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+**Code:**
+
 .. testcode::
 
     acp.clear()
@@ -808,6 +929,8 @@ Control the copy of linked objects
     )
 
 As with the copy within the same model, the ``parent_mapping`` dictionary can be used to limit the copy of linked objects. The following example copies the entire layup, except for the material ``Structural Steel``, element set ``All_Elements``, edge set ``ns_edge``, and rosette ``Global Coordinate System``:
+
+**Code:**
 
 .. testcode::
 
@@ -827,6 +950,8 @@ As with the copy within the same model, the ``parent_mapping`` dictionary can be
     for source, target in res.items():
         print(f"Copied '{source.id}' to '{target.id}'")
 
+**Output:**
+
 .. testoutput::
 
     Copied 'Fabric.1' to 'Fabric.1'
@@ -835,10 +960,14 @@ As with the copy within the same model, the ``parent_mapping`` dictionary can be
     Copied 'ModelingPly.1' to 'ModelingPly.1'
 
 
+**Code:**
+
 .. testcode::
 
     target_model.update()
     pyacp.print_model(target_model, show_lines=True, label_by_id=True)
+
+**Output:**
 
 .. testoutput::
 
