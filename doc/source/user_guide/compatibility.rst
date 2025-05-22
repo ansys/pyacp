@@ -10,6 +10,31 @@ However, some features are not available when using older versions of the server
 Version 2025R1 is the first full release of the ACP gRPC server, which makes
 almost all features of ACP available through PyACP.
 
+Added in 2025R2
+~~~~~~~~~~~~~~~
+
+The following features were added in version 2025R2 of the ACP gRPC server.
+
+Attributes
+''''''''''
+
+- :attr:`.ImportedSolidModel.analysis_plies`
+- :attr:`.ImportedSolidModel.imported_analysis_plies`
+- :attr:`.LayupMappingObject.analysis_plies`
+- :attr:`.LayupMappingObject.imported_analysis_plies`
+- :attr:`.LookUpTable3D.rosette`
+- :attr:`.LookUpTable3D.use_global_coordinate_system`
+- :attr:`.Model.force_disable_result_extrapolation`
+- :attr:`.ModelElementalData.price`
+- :attr:`.SolidModel.interface_layers`
+
+
+Other features
+''''''''''''''
+
+- Sensors can now be scoped to solid models.
+
+
 Added in 2025R1
 ~~~~~~~~~~~~~~~
 
