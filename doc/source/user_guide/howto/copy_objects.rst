@@ -9,8 +9,8 @@ The :func:`.recursive_copy` function is a powerful tool for copying ACP tree obj
 
 The following sections explain the parameters of the :func:`.recursive_copy` function by applying them to an example model.
 
-Copies within the same model
-----------------------------
+Copy to the same model
+----------------------
 
 This section shows how to use :func:`.recursive_copy` to duplicate objects within the same ACP model.
 
