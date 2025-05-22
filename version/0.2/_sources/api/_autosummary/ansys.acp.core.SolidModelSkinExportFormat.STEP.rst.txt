@@ -1,0 +1,13 @@
+.. vale off
+
+STEP
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelSkinExportFormat.STEP
+
+.. minigallery::
+   :add-heading: Examples using SolidModelSkinExportFormat.STEP
+
+   ansys.acp.core.SolidModelSkinExportFormat.STEP

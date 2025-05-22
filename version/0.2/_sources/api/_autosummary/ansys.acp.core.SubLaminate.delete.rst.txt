@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SubLaminate.delete
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.delete
+
+   ansys.acp.core.SubLaminate.delete

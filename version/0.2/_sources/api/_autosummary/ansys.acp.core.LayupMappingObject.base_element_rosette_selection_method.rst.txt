@@ -1,0 +1,13 @@
+.. vale off
+
+base\_element\_rosette\_selection\_method
+=========================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.base_element_rosette_selection_method
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.base_element_rosette_selection_method
+
+   ansys.acp.core.LayupMappingObject.base_element_rosette_selection_method
