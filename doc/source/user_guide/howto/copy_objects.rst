@@ -788,6 +788,9 @@ Copy to a different model
 
 Copying objects to a different model works exactly the same as within the same model, with one exception: Since the linked objects do not exist on the target model, ``linked_object_handling="keep"`` is not allowed. Only ``linked_object_handling="discard"`` and ``linked_object_handling="copy"`` are possible.
 
+Model setup
+~~~~~~~~~~~
+
 For the subsequent examples, a second model is created:
 
 **Code:**
