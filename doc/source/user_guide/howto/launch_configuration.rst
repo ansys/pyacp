@@ -12,6 +12,8 @@ To change this behavior, you can use the ``ansys-launcher`` command line tool to
 
 .. note::
 
+    The virtual environment in which PyACP is installed must be activated before running the ``ansys-launcher`` command.
+
     On Windows, the executable may be called ``ansys-launcher.exe``.
 
 .. code-block:: bash
@@ -41,7 +43,7 @@ You may configure any of the three methods with the ``ansys-launcher`` tool. For
     ansys-launcher configure ACP direct
 
 The tool prompts you for the required information, providing the default value
-in square brackets. You can accept the default value by pressing the **Enter** key or input a 
+in square brackets. You can accept the default value by pressing the **Enter** key or input a
 new value by typing it and then pressing the **Enter** key.
 
 .. code-block:: bash
