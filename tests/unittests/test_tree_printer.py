@@ -35,6 +35,7 @@ def case_simple_model(acp_instance, model_data_dir):
     return (
         model,
         False,
+        False,
         textwrap.dedent(
             """\
             'minimal_complete'
@@ -63,6 +64,45 @@ def case_simple_model(acp_instance, model_data_dir):
     )
 
 
+def case_simple_model_use_ids(acp_instance, model_data_dir):
+    input_file_path = model_data_dir / "minimal_complete_model_no_matml_link.acph5"
+    model = acp_instance.import_model(name="minimal_complete", path=input_file_path)
+    # Create another 'ModelingGroup.1' to have two objects with the same name but different IDs
+    model.create_modeling_group(name="ModelingGroup.1")
+    model.update()
+    return (
+        model,
+        False,
+        True,
+        textwrap.dedent(
+            """\
+            'minimal_complete'
+                Materials
+                    'Structural Steel'
+                Fabrics
+                    'Fabric.1'
+                Element Sets
+                    'All_Elements'
+                Edge Sets
+                    'ns_edge'
+                Rosettes
+                    'Global Coordinate System'
+                Oriented Selection Sets
+                    'OrientedSelectionSet.1'
+                Modeling Groups
+                    'ModelingGroup.1'
+                        Modeling Plies
+                            'ModelingPly.1'
+                                Production Plies
+                                    'ProductionPly'
+                                        Analysis Plies
+                                            'P1L1__ModelingPly.1'
+                    'ModelingGroup.2'
+            """
+        ),
+    )
+
+
 def case_more_objects(acp_instance, model_data_dir):
     input_file_path = model_data_dir / "minimal_complete_model_no_matml_link.acph5"
     model = acp_instance.import_model(name="minimal_complete", path=input_file_path)
@@ -86,6 +126,7 @@ def case_more_objects(acp_instance, model_data_dir):
 
     return (
         model,
+        False,
         False,
         textwrap.dedent(
             """\
@@ -170,6 +211,7 @@ def case_more_objects_lines(acp_instance, model_data_dir):
     return (
         model,
         True,
+        False,
         textwrap.dedent(
             """\
             'minimal_complete'
@@ -229,12 +271,12 @@ def case_more_objects_lines(acp_instance, model_data_dir):
     )
 
 
-@parametrize_with_cases("model,show_lines,expected", cases=".", glob="*")
-def test_printed_model(model, show_lines, expected):
+@parametrize_with_cases("model,show_lines,label_by_id,expected", cases=".", glob="*")
+def test_printed_model(model, show_lines, label_by_id, expected):
     """
     Test that model tree looks correct.
     """
 
-    tree = get_model_tree(model)
+    tree = get_model_tree(model, label_by_id=label_by_id)
 
     assert tree.to_string(show_lines=show_lines) == expected.replace("\n", os.linesep)
