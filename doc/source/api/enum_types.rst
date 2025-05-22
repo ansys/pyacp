@@ -47,6 +47,7 @@ Enumeration data types
     RosetteSelectionMethod
     RosetteType
     SectionCutType
+    SectionCutCDBExportType
     SensorType
     SnapToGeometryOrientationType
     SolidModelExportFormat
