@@ -43,6 +43,7 @@ def wrap_to_string_enum(
     doc: str,
     explicit_value_list: tuple[int, ...] | None = None,
     extra_aliases: Mapping[str, tuple[str, str]] = types.MappingProxyType({}),
+    normalization_function: Callable[[str], str] = lambda val: val.lower(),
 ) -> tuple[_StrEnumT, Callable[[_StrEnumT], int], Callable[[int], _StrEnumT]]:
     """Create a string Enum with the same keys as the given protobuf Enum.
 
@@ -64,6 +65,10 @@ def wrap_to_string_enum(
         and the alias field value.
         Note that the alias will not be used when converting from the protobuf value to the string
         enum: the primary field name will be used instead.
+    normalization_function :
+        A callable which is applied to strings before converting them to protobuf. This means that
+        any string which will result in an enum value will be accepted, for example if it has the
+        wrong capitalization.
 
     Returns
     -------
@@ -93,6 +98,7 @@ def wrap_to_string_enum(
     res_enum.__doc__ = doc
 
     def to_pb_conversion_func(val: _StrEnumT) -> int:
+        val = normalization_function(val)
         val = res_enum(val)  # generates a nicer error if 'val' is not a valid enum value
         return to_pb_conversion_dict[val]
 

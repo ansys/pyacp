@@ -28,6 +28,8 @@ import typing
 from typing import Any, cast
 
 import numpy as np
+from packaging.version import Version
+from packaging.version import parse as parse_version
 
 from ansys.api.acp.v0 import (
     boolean_selection_rule_pb2_grpc,
@@ -187,17 +189,28 @@ class ModelElementalData(ElementalData):
     thickness: ScalarData[np.float64] | None = None
     relative_thickness_correction: ScalarData[np.float64] | None = None
     area: ScalarData[np.float64] | None = None
-    # Retrieving the 'price' can crash the server if the model contains void
-    # analysis plies (on an imported solid model).
-    # This is fixed in the backend for 2025R2, but for now we simply comment
-    # out the property. In this way, the other properties can still be accessed,
-    # and we can avoid the crash.
-    # See https://github.com/ansys/pyacp/issues/717
-    # price: ScalarData[np.float64] | None = None
+    price: ScalarData[np.float64] | None = None
     volume: ScalarData[np.float64] | None = None
     mass: ScalarData[np.float64] | None = None
     offset: ScalarData[np.float64] | None = None
     cog: VectorData | None = None
+
+    @classmethod
+    def _field_names(cls, server_version: Version | None = None) -> list[str]:
+        """Bugfix override for #717.
+
+        Override the base class _field_names method to remove the 'price' field
+        if the server version is less than 25.2.
+
+        Before 25.2, retrieving the 'price' could crash the server if the model
+        contains void analysis plies (on an imported solid model).
+        In this way, the other properties can still be accessed, and we can avoid
+        the crash.
+        """
+        res = super()._field_names(server_version)
+        if server_version is not None and server_version < parse_version("25.2"):
+            res.remove("price")
+        return res
 
 
 @dataclasses.dataclass
