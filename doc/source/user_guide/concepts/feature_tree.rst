@@ -14,7 +14,7 @@ The following tree shows the hierarchy of PyACP objects:
 
 .. doctest::
 
-    >>> pyacp.extras.feature_tree.print_feature_tree()
+    >>> pyacp.extras.feature_tree.print_feature_tree(show_lines=True)
     Model
     ├── Material
     ├── Fabric

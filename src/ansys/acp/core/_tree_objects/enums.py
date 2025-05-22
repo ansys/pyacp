@@ -80,6 +80,7 @@ __all__ = [
     "ReinforcingBehavior",
     "RosetteSelectionMethod",
     "RosetteType",
+    "SectionCutCDBExportType",
     "SectionCutType",
     "SensorType",
     "SnapToGeometryOrientationType",
@@ -470,6 +471,13 @@ __all__ = [
     section_cut_pb2.IntersectionType,
     module=__name__,
     doc="Determines how the intersection is computed for wireframe section cuts.",
+)
+
+SectionCutCDBExportType, section_cut_cdb_export_type_to_pb, _ = wrap_to_string_enum(
+    "SectionCutCDBExportType",
+    section_cut_pb2.CDBExportType,
+    module=__name__,
+    doc="Determines the type of section cut model to be exported to ANSYS Mechanical APDL.",
 )
 
 (ExtrusionMethod, extrusion_method_type_to_pb, extrusion_method_type_from_pb) = wrap_to_string_enum(

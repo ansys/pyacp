@@ -28,6 +28,8 @@ import typing
 from typing import Any, cast
 
 import numpy as np
+from packaging.version import Version
+from packaging.version import parse as parse_version
 
 from ansys.api.acp.v0 import (
     boolean_selection_rule_pb2_grpc,
@@ -187,17 +189,28 @@ class ModelElementalData(ElementalData):
     thickness: ScalarData[np.float64] | None = None
     relative_thickness_correction: ScalarData[np.float64] | None = None
     area: ScalarData[np.float64] | None = None
-    # Retrieving the 'price' can crash the server if the model contains void
-    # analysis plies (on an imported solid model).
-    # This is fixed in the backend for 2025R2, but for now we simply comment
-    # out the property. In this way, the other properties can still be accessed,
-    # and we can avoid the crash.
-    # See https://github.com/ansys/pyacp/issues/717
-    # price: ScalarData[np.float64] | None = None
+    price: ScalarData[np.float64] | None = None
     volume: ScalarData[np.float64] | None = None
     mass: ScalarData[np.float64] | None = None
     offset: ScalarData[np.float64] | None = None
     cog: VectorData | None = None
+
+    @classmethod
+    def _field_names(cls, server_version: Version | None = None) -> list[str]:
+        """Bugfix override for #717.
+
+        Override the base class _field_names method to remove the 'price' field
+        if the server version is less than 25.2.
+
+        Before 25.2, retrieving the 'price' could crash the server if the model
+        contains void analysis plies (on an imported solid model).
+        In this way, the other properties can still be accessed, and we can avoid
+        the crash.
+        """
+        res = super()._field_names(server_version)
+        if server_version is not None and server_version < parse_version("25.2"):
+            res.remove("price")
+        return res
 
 
 @dataclasses.dataclass
@@ -246,6 +259,10 @@ class Model(TreeObject):
     minimum_analysis_ply_thickness :
         Section computation minimum analysis ply thickness (in length
         unit of model).
+    force_disable_result_extrapolation :
+        Force the result extrapolation to be disabled ('ERESX,NO' command)
+        when exporting to APDL or CDB format. Available since ACP server
+        version 25.2.
     """
 
     __slots__: Iterable[str] = tuple()
@@ -263,6 +280,7 @@ class Model(TreeObject):
         angle_tolerance: float = 1.0,
         relative_thickness_tolerance: float = 0.01,
         minimum_analysis_ply_thickness: float = 1e-6,
+        force_disable_result_extrapolation: bool = False,
     ) -> None:
         super().__init__(name=name)
 
@@ -271,6 +289,7 @@ class Model(TreeObject):
         self.angle_tolerance = angle_tolerance
         self.relative_thickness_tolerance = relative_thickness_tolerance
         self.minimum_analysis_ply_thickness = minimum_analysis_ply_thickness
+        self.force_disable_result_extrapolation = force_disable_result_extrapolation
 
     def _get_stub(self) -> model_pb2_grpc.ObjectServiceStub:
         return cast(model_pb2_grpc.ObjectServiceStub, super()._get_stub())
@@ -294,6 +313,11 @@ class Model(TreeObject):
     )
     minimum_analysis_ply_thickness: ReadWriteProperty[float, float] = grpc_data_property(
         "properties.minimum_analysis_ply_thickness"
+    )
+    force_disable_result_extrapolation: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.force_disable_result_extrapolation",
+        readable_since="25.2",
+        writable_since="25.2",
     )
 
     @staticmethod
