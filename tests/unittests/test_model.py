@@ -29,6 +29,7 @@ from typing import Any, TypeVar
 
 import numpy as np
 import numpy.testing
+from packaging.version import parse as parse_version
 import pytest
 
 from ansys.acp.core import ElementalDataType, UnitSystemType
@@ -145,18 +146,43 @@ def test_mesh_data(minimal_complete_model):
     numpy.testing.assert_equal(mesh.element_nodes_offsets, np.array([0]))
 
 
-def test_elemental_data(minimal_complete_model):
+def test_elemental_data(acp_instance, minimal_complete_model):
     data = minimal_complete_model.elemental_data
     numpy.testing.assert_allclose(data.element_labels.values, np.array([1]))
     numpy.testing.assert_allclose(data.normal.values, np.array([[0.0, 0.0, 1.0]]))
     numpy.testing.assert_allclose(data.thickness.values, np.array([1e-4]))
     numpy.testing.assert_allclose(data.relative_thickness_correction.values, np.array([1.0]))
     numpy.testing.assert_allclose(data.area.values, np.array([9e4]))
-    # numpy.testing.assert_allclose(data.price.values, np.array([0.0])) # disabled due to issue #717.
+    # The 'price' is disabled on servers prior to 25.2 due to issue #717.
+    if parse_version(acp_instance.server_version) >= parse_version("25.2"):
+        numpy.testing.assert_allclose(data.price.values, np.array([0.0]))
+    else:
+        data.price is None
     numpy.testing.assert_allclose(data.volume.values, np.array([9.0]))
     numpy.testing.assert_allclose(data.mass.values, np.array([7.065e-08]))
     numpy.testing.assert_allclose(data.offset.values, np.array([5e-5]))
     numpy.testing.assert_allclose(data.cog.values, np.array([[0.0, 0.0, 5e-5]]))
+
+
+def test_elemental_data_with_void_filler_analysis_plies(
+    acp_instance, load_model_from_tempfile, skip_before_version
+):
+    """Regression test for issue #717.
+
+    Retrieving the price of a model with void and filler analysis plies crashes the server
+    prior to 25.2.
+    """
+    # On 2024R2, accessing the elemental data failed for this model since the
+    # CoG is not supported for LayeredPolyhedron elements.
+    skip_before_version("25.1")
+
+    is_supported = parse_version(acp_instance.server_version) >= parse_version("25.2")
+
+    with load_model_from_tempfile("regression_model_717.acph5") as model:
+        if is_supported:
+            assert model.elemental_data.price is not None
+        else:
+            assert model.elemental_data.price is None
 
 
 def test_nodal_data(minimal_complete_model):
@@ -187,8 +213,15 @@ def test_elemental_data_to_pyvista(minimal_complete_model):
 
 @pytest.mark.graphics
 @pytest.mark.parametrize("component", [e.value for e in ElementalDataType])
-def test_elemental_data_to_pyvista_with_component(minimal_complete_model, component):
+def test_elemental_data_to_pyvista_with_component(
+    acp_instance,
+    minimal_complete_model,
+    component,
+):
     import pyvista
+
+    if component == "price" and parse_version(acp_instance.server_version) < parse_version("25.2"):
+        pytest.skip("Price is not supported on this version of the server.")
 
     data = minimal_complete_model.elemental_data
     if not hasattr(data, component):
