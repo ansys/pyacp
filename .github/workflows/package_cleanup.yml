@@ -18,5 +18,5 @@ jobs:
         with:
           package-org: 'ansys'
           package-name: 'acp'
-          allow-last-days: '7'
+          allow-last-days: '6'
           token: ${{ secrets.GITHUB_TOKEN }}
