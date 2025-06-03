@@ -35,7 +35,7 @@ from ansys.tools.local_product_launcher.interface import (
 
 from .common import ServerKey
 
-__all__ = ["ConnectLaunchConfig"]
+__all__ = ["ConnectLaunchConfig", "ConnectLocalLaunchConfig"]
 
 
 @dataclasses.dataclass
@@ -76,4 +76,40 @@ class ConnectLauncher(LauncherProtocol[ConnectLaunchConfig]):
         return {
             ServerKey.MAIN: self._config.url_acp,
             ServerKey.FILE_TRANSFER: self._config.url_filetransfer,
+        }
+
+
+@dataclasses.dataclass
+class ConnectLocalLaunchConfig:
+    """Configuration options for attaching to an existing ACP server without filetransfer."""
+
+    url_acp: str = dataclasses.field(
+        default="localhost:9090",
+        metadata={METADATA_KEY_DOC: "URL to connect to for the main ACP server."},
+    )
+
+
+class ConnectLocalLauncher(LauncherProtocol[ConnectLocalLaunchConfig]):
+    CONFIG_MODEL = ConnectLocalLaunchConfig
+    SERVER_SPEC = {ServerKey.MAIN: ServerType.GRPC}
+
+    def __init__(self, *, config: ConnectLocalLaunchConfig):
+        self._config = config
+
+    def start(self) -> None:
+        # Since this launcher simply connects to an existing server, we don't need to start it.
+        return
+
+    def stop(self, *, timeout: float | None = None) -> None:
+        # Since this launcher simply connects to an existing server, we don't need to stop it.
+        return
+
+    def check(self, timeout: float | None = None) -> bool:
+        channel = grpc.insecure_channel(self.urls[ServerKey.MAIN])
+        return check_grpc_health(channel=channel, timeout=timeout)
+
+    @property
+    def urls(self) -> dict[str, str]:
+        return {
+            ServerKey.MAIN: self._config.url_acp,
         }

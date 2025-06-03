@@ -40,6 +40,7 @@ from ._recursive_copy import LinkedObjectHandling, recursive_copy
 from ._server import (
     ACPInstance,
     ConnectLaunchConfig,
+    ConnectLocalLaunchConfig,
     DirectLaunchConfig,
     DockerComposeLaunchConfig,
     LaunchMode,
@@ -173,6 +174,7 @@ __all__ = [
     "CADComponent",
     "CADGeometry",
     "ConnectLaunchConfig",
+    "ConnectLocalLaunchConfig",
     "CoordinateTransformation",
     "CutOffGeometry",
     "CutOffGeometryOrientationType",

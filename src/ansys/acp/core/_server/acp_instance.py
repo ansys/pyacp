@@ -307,11 +307,13 @@ class ACPInstance(Generic[ServerT]):
         Note that the models are listed in arbitrary order.
         """
         from .._tree_objects import Model
+        from .._tree_objects.base import ServerWrapper
 
         model_stub = model_pb2_grpc.ObjectServiceStub(self._channel)
+        server_wrapper = ServerWrapper.from_acp_instance(self)
         return tuple(
             [
-                Model._from_object_info(model_info, self._channel)
+                Model._from_object_info(model_info, server_wrapper)
                 for model_info in model_stub.List(
                     ListRequest(collection_path=CollectionPath(value=Model._COLLECTION_LABEL))
                 ).objects
