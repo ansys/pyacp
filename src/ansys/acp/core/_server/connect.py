@@ -84,7 +84,6 @@ class ConnectLocalLaunchConfig:
     """Configuration options for attaching to an existing ACP server without filetransfer."""
 
     url_acp: str = dataclasses.field(
-        default="localhost:9090",
         metadata={METADATA_KEY_DOC: "URL to connect to for the main ACP server."},
     )
 
