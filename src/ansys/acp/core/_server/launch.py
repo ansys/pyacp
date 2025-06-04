@@ -38,7 +38,7 @@ from .acp_instance import (
     RemoteFileTransferStrategy,
 )
 from .common import ControllableServerProtocol, LaunchMode, ServerKey
-from .connect import ConnectLaunchConfig
+from .connect import ConnectLaunchConfig, ConnectLocalLaunchConfig
 from .direct import DirectLaunchConfig
 from .docker_compose import DockerComposeLaunchConfig
 
@@ -46,7 +46,13 @@ __all__ = ["launch_acp"]
 
 
 def launch_acp(
-    config: DirectLaunchConfig | DockerComposeLaunchConfig | ConnectLaunchConfig | None = None,
+    config: (
+        DirectLaunchConfig
+        | DockerComposeLaunchConfig
+        | ConnectLaunchConfig
+        | ConnectLocalLaunchConfig
+        | None
+    ) = None,
     launch_mode: LaunchMode | None = None,
     timeout: float | None = 30.0,
     auto_transfer_files: bool = True,
@@ -96,7 +102,11 @@ def launch_acp(
         product_name="ACP", config=config, launch_mode=launch_mode_evaluated
     )
     # The fallback launch mode for ACP is the direct launch mode.
-    if launch_mode_evaluated in (LaunchMode.DIRECT, FALLBACK_LAUNCH_MODE_NAME):
+    if launch_mode_evaluated in (
+        LaunchMode.DIRECT,
+        LaunchMode.CONNECT_LOCAL,
+        FALLBACK_LAUNCH_MODE_NAME,
+    ):
         filetransfer_strategy: FileTransferStrategy = LocalFileTransferStrategy(os.getcwd())
         is_remote = False
     elif launch_mode_evaluated in (LaunchMode.DOCKER_COMPOSE, LaunchMode.CONNECT):

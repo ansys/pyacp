@@ -88,6 +88,7 @@ This parameter expects a configuration object matching the selected ``launch_mod
 - :class:`.DirectLaunchConfig` for the ``direct`` launch mode.
 - :class:`.DockerComposeLaunchConfig` for the ``docker_compose`` launch mode.
 - :class:`.ConnectLaunchConfig` for the ``connect`` launch mode.
+- :class:`.ConnectLocalLaunchConfig` for the ``connect_local`` launch mode.
 
 .. testcode::
 

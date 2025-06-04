@@ -112,6 +112,7 @@ all = [
 "ACP.direct" = "ansys.acp.core._server.direct:DirectLauncher"
 "ACP.docker_compose" = "ansys.acp.core._server.docker_compose:DockerComposeLauncher"
 "ACP.connect" = "ansys.acp.core._server.connect:ConnectLauncher"
+"ACP.connect_local" = "ansys.acp.core._server.connect:ConnectLocalLauncher"
 "ACP.__fallback__" = "ansys.acp.core._server.direct:DirectLauncher"
 
 [[tool.poetry.source]]
