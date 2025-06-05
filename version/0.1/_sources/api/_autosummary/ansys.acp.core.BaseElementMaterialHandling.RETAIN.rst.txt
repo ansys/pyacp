@@ -1,0 +1,13 @@
+.. vale off
+
+RETAIN
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: BaseElementMaterialHandling.RETAIN
+
+.. minigallery::
+   :add-heading: Examples using BaseElementMaterialHandling.RETAIN
+
+   ansys.acp.core.BaseElementMaterialHandling.RETAIN

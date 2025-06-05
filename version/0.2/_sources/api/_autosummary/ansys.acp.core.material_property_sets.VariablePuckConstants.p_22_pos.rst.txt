@@ -1,0 +1,13 @@
+.. vale off
+
+p\_22\_pos
+==========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariablePuckConstants.p_22_pos
+
+.. minigallery::
+   :add-heading: Examples using VariablePuckConstants.p_22_pos
+
+   ansys.acp.core.material_property_sets.VariablePuckConstants.p_22_pos

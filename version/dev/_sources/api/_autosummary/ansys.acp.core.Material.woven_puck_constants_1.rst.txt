@@ -1,0 +1,13 @@
+.. vale off
+
+woven\_puck\_constants\_1
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.woven_puck_constants_1
+
+.. minigallery::
+   :add-heading: Examples using Material.woven_puck_constants_1
+
+   ansys.acp.core.Material.woven_puck_constants_1

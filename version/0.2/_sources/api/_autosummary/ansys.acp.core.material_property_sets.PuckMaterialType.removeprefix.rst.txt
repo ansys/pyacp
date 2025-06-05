@@ -1,0 +1,13 @@
+.. vale off
+
+removeprefix
+============
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.removeprefix
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.removeprefix
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.removeprefix

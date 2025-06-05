@@ -1,0 +1,13 @@
+.. vale off
+
+WEIGHTED\_NEAREST\_NEIGHBOR
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR
+
+   ansys.acp.core.LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR

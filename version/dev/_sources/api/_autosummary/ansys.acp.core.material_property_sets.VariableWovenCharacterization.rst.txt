@@ -1,0 +1,48 @@
+﻿.. vale off
+
+VariableWovenCharacterization
+=============================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: VariableWovenCharacterization
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VariableWovenCharacterization.E1_1
+      VariableWovenCharacterization.E1_2
+      VariableWovenCharacterization.E2_1
+      VariableWovenCharacterization.E2_2
+      VariableWovenCharacterization.G12_1
+      VariableWovenCharacterization.G12_2
+      VariableWovenCharacterization.G23_1
+      VariableWovenCharacterization.G23_2
+      VariableWovenCharacterization.field_variables
+      VariableWovenCharacterization.interpolation_options
+      VariableWovenCharacterization.nu12_1
+      VariableWovenCharacterization.nu12_2
+      VariableWovenCharacterization.orientation_2
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VariableWovenCharacterization
+
+   ansys.acp.core.material_property_sets.VariableWovenCharacterization
