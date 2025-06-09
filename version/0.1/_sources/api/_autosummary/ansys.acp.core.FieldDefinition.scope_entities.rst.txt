@@ -1,0 +1,13 @@
+.. vale off
+
+scope\_entities
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: FieldDefinition.scope_entities
+
+.. minigallery::
+   :add-heading: Examples using FieldDefinition.scope_entities
+
+   ansys.acp.core.FieldDefinition.scope_entities

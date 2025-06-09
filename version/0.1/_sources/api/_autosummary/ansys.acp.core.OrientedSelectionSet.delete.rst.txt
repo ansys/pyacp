@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: OrientedSelectionSet.delete
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.delete
+
+   ansys.acp.core.OrientedSelectionSet.delete

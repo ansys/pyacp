@@ -1,0 +1,13 @@
+.. vale off
+
+mesh
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: InterfaceLayer.mesh
+
+.. minigallery::
+   :add-heading: Examples using InterfaceLayer.mesh
+
+   ansys.acp.core.InterfaceLayer.mesh

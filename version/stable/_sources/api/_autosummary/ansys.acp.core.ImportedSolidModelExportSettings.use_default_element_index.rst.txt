@@ -1,0 +1,13 @@
+.. vale off
+
+use\_default\_element\_index
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModelExportSettings.use_default_element_index
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModelExportSettings.use_default_element_index
+
+   ansys.acp.core.ImportedSolidModelExportSettings.use_default_element_index

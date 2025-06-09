@@ -1,0 +1,13 @@
+.. vale off
+
+TENSION\_AND\_COMPRESSION
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ReinforcingBehavior.TENSION_AND_COMPRESSION
+
+.. minigallery::
+   :add-heading: Examples using ReinforcingBehavior.TENSION_AND_COMPRESSION
+
+   ansys.acp.core.ReinforcingBehavior.TENSION_AND_COMPRESSION

@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ElementSet.name
+
+.. minigallery::
+   :add-heading: Examples using ElementSet.name
+
+   ansys.acp.core.ElementSet.name
