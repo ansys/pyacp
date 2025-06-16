@@ -576,14 +576,14 @@ grpcio-health-checking = ">=1.43"
 
 [[package]]
 name = "ansys-tools-path"
-version = "0.7.1"
+version = "0.7.2"
 description = "Library to locate Ansys products in a local machine."
 optional = false
 python-versions = "<4,>=3.10"
 groups = ["main"]
 files = [
-    {file = "ansys_tools_path-0.7.1-py3-none-any.whl", hash = "sha256:e4e6f1c7b6ab6f05c7646488ac553d265ae2cce7b38bfb5e84a4851782b846f7"},
-    {file = "ansys_tools_path-0.7.1.tar.gz", hash = "sha256:203e16af8ad2d28c64a48fe1a0a8040a1a2528a644b00d69d2bfb941caa26b39"},
+    {file = "ansys_tools_path-0.7.2-py3-none-any.whl", hash = "sha256:9f6c93a5d190123b23518e4fa93c6c4e3474b08e6901d126c23dafc6de6e606c"},
+    {file = "ansys_tools_path-0.7.2.tar.gz", hash = "sha256:3c8fb0e8d6d54c46235d4e11f951a4478a50d29bab400853cc54507f003d9f0d"},
 ]
 
 [package.dependencies]
@@ -591,9 +591,9 @@ click = ">=8.1.3"
 platformdirs = ">=3.6.0"
 
 [package.extras]
-build = ["build (==1.2.2.post1)", "twine (==6.0.1)"]
-doc = ["Sphinx (==8.1.3)", "ansys-sphinx-theme[autoapi] (==1.2.3)", "numpydoc (==1.8.0)", "sphinx-copybutton (==0.5.2)"]
-tests = ["pyfakefs (==5.7.3)", "pytest (==8.3.4)", "pytest-cov (==6.0.0)"]
+build = ["build (==1.2.2.post1)", "twine (==6.1.0)"]
+doc = ["Sphinx (==8.2.3)", "ansys-sphinx-theme[autoapi] (==1.5.2)", "numpydoc (==1.8.0)", "sphinx-copybutton (==0.5.2)"]
+tests = ["pyfakefs (==5.8.0)", "pytest (==8.4.0)", "pytest-cov (==6.1.1)"]
 
 [[package]]
 name = "ansys-tools-visualization-interface"
@@ -1836,14 +1836,14 @@ protobuf = ">=4.21.6"
 
 [[package]]
 name = "hypothesis"
-version = "6.135.3"
+version = "6.135.10"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.9"
 groups = ["test"]
 files = [
-    {file = "hypothesis-6.135.3-py3-none-any.whl", hash = "sha256:0f9029cd1d2f0cd144ee191b76878c792e5b98dc304d79b8dbfea70c35483133"},
-    {file = "hypothesis-6.135.3.tar.gz", hash = "sha256:e0036bad4b8b7e36e485e949299f71a7e8eaeac1be2e8550e475a57c8e135127"},
+    {file = "hypothesis-6.135.10-py3-none-any.whl", hash = "sha256:275012ee9a7a1a64fd38745c2b7a07e838fc9f738d49c97a881d235b53fe28c1"},
+    {file = "hypothesis-6.135.10.tar.gz", hash = "sha256:ce224e310012e40b8e3aa6edba226c032c57bbcbdccad41212ab6d2d74b602cf"},
 ]
 
 [package.dependencies]
@@ -3776,36 +3776,38 @@ histogram = ["pygal", "pygaljs", "setuptools"]
 
 [[package]]
 name = "pytest-cases"
-version = "3.8.6"
+version = "3.9.1"
 description = "Separate test code from test cases in pytest."
 optional = false
 python-versions = "*"
 groups = ["test"]
 files = [
-    {file = "pytest_cases-3.8.6-py2.py3-none-any.whl", hash = "sha256:564c722492ea7e7ec3ac433fd14070180e65866f49fa35bfe938c0d5d9afba67"},
-    {file = "pytest_cases-3.8.6.tar.gz", hash = "sha256:5c24e0ab0cb6f8e802a469b7965906a333d3babb874586ebc56f7e2cbe1a7c44"},
+    {file = "pytest_cases-3.9.1-py2.py3-none-any.whl", hash = "sha256:60507716650c5ed1ce4a36a3c137f1c3ec58f4fef1ee8678404be074612fcd21"},
+    {file = "pytest_cases-3.9.1.tar.gz", hash = "sha256:c4e181f1b525c931a318d4812fa8de656c2c8fb77fccf1571ecf0cc5fe8e7f8f"},
 ]
 
 [package.dependencies]
 decopatch = "*"
 makefun = ">=1.15.1"
 packaging = "*"
+pytest = "*"
 
 [[package]]
 name = "pytest-cov"
-version = "6.1.1"
+version = "6.2.1"
 description = "Pytest plugin for measuring coverage."
 optional = false
 python-versions = ">=3.9"
 groups = ["test"]
 files = [
-    {file = "pytest_cov-6.1.1-py3-none-any.whl", hash = "sha256:bddf29ed2d0ab6f4df17b4c55b0a657287db8684af9c42ea546b21b1041b3dde"},
-    {file = "pytest_cov-6.1.1.tar.gz", hash = "sha256:46935f7aaefba760e716c2ebfbe1c216240b9592966e7da99ea8292d4d3e2a0a"},
+    {file = "pytest_cov-6.2.1-py3-none-any.whl", hash = "sha256:f5bc4c23f42f1cdd23c70b1dab1bbaef4fc505ba950d53e0081d0730dd7e86d5"},
+    {file = "pytest_cov-6.2.1.tar.gz", hash = "sha256:25cc6cc0a5358204b8108ecedc51a9b57b34cc6b8c967cc2c01a4e00d8a67da2"},
 ]
 
 [package.dependencies]
 coverage = {version = ">=7.5", extras = ["toml"]}
-pytest = ">=4.6"
+pluggy = ">=1.2"
+pytest = ">=6.2.5"
 
 [package.extras]
 testing = ["fields", "hunter", "process-tests", "pytest-xdist", "virtualenv"]
@@ -5048,14 +5050,14 @@ files = [
 
 [[package]]
 name = "typing-extensions"
-version = "4.13.2"
-description = "Backported and Experimental Type Hints for Python 3.8+"
+version = "4.14.0"
+description = "Backported and Experimental Type Hints for Python 3.9+"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 groups = ["main", "dev", "test"]
 files = [
-    {file = "typing_extensions-4.13.2-py3-none-any.whl", hash = "sha256:a439e7c04b49fec3e5d3e2beaa21755cadbbdc391694e28ccdd36ca4a1408f8c"},
-    {file = "typing_extensions-4.13.2.tar.gz", hash = "sha256:e6c81219bd689f51865d9e372991c540bda33a0379d5573cddb9a3a23f7caaef"},
+    {file = "typing_extensions-4.14.0-py3-none-any.whl", hash = "sha256:a1514509136dd0b477638fc68d6a91497af5076466ad0fa6c338e44e359944af"},
+    {file = "typing_extensions-4.14.0.tar.gz", hash = "sha256:8676b788e32f02ab42d9e7c61324048ae4c6d844a399eebace3d4979d75ceef4"},
 ]
 
 [[package]]
