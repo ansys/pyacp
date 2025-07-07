@@ -306,15 +306,15 @@ plotting = ["imageio (<2.28.1)", "imageio-ffmpeg", "matplotlib (>=3.2)", "pyvist
 
 [[package]]
 name = "ansys-mapdl-core"
-version = "0.70.1"
+version = "0.70.2"
 description = "A Python client library for Ansys MAPDL."
 optional = true
 python-versions = "<3.14,>=3.10"
 groups = ["main"]
 markers = "extra == \"all\" or extra == \"examples\""
 files = [
-    {file = "ansys_mapdl_core-0.70.1-py3-none-any.whl", hash = "sha256:3c62d7480f6dbf00ad9c40f137015357e88e8b6b254675a4006a28aca4b5b268"},
-    {file = "ansys_mapdl_core-0.70.1.tar.gz", hash = "sha256:634b5625851a09465f692161dafa93e3efed0e4d22fa19828925fb3c5e3d787b"},
+    {file = "ansys_mapdl_core-0.70.2-py3-none-any.whl", hash = "sha256:688d41b7e3a004a8bcf0bc2f94173ef36f906ce4d37a0d582ad9bd9edb202566"},
+    {file = "ansys_mapdl_core-0.70.2.tar.gz", hash = "sha256:403ebe47bd33da211e52170d388b37af3e8795891e857a5cbdc6a78a6afbf22f"},
 ]
 
 [package.dependencies]
@@ -323,7 +323,7 @@ ansys-mapdl-reader = ">=0.51.7"
 ansys-math-core = ">=0.1.2"
 ansys-platform-instancemanagement = ">=1.0,<2.0"
 ansys-tools-path = ">=0.3.1"
-ansys-tools-visualization-interface = {version = ">=0.2.6", optional = true, markers = "extra == \"graphics\""}
+ansys-tools-visualization-interface = {version = ">=0.2.6,<0.10.0", optional = true, markers = "extra == \"graphics\""}
 click = ">=8.1.3"
 grpcio = ">=1.30.0"
 matplotlib = {version = ">=3.0.0", optional = true, markers = "extra == \"graphics\""}
@@ -340,9 +340,9 @@ tqdm = ">=4.45.0"
 vtk = ">=9.0.0"
 
 [package.extras]
-all = ["ansys-tools-visualization-interface (>=0.9.0)", "ipywidgets", "jupyterlab (>=3)", "matplotlib (>=3.0.0)"]
+all = ["ansys-tools-visualization-interface (>=0.9.0,<0.10.0)", "ipywidgets", "jupyterlab (>=3)", "matplotlib (>=3.0.0)"]
 doc = ["ansys-dpf-core (==0.13.6)", "ansys-mapdl-reader (==0.55.0)", "ansys-sphinx-theme (==1.4.4)", "ansys-tools-visualization-interface (==0.9.1)", "grpcio (==1.70.0)", "imageio (==2.37.0)", "imageio-ffmpeg (==0.6.0)", "jupyter (==1.1.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.10.3)", "nbformat (==5.10.4)", "numpydoc (==1.8.0)", "pandas (==2.2.3)", "plotly (==6.0.1)", "pyiges[full] (==0.3.1)", "pypandoc (==1.15)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "sphinx (==8.2.3)", "sphinx-autobuild (==2024.10.3)", "sphinx-autodoc-typehints (==3.1.0)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.6.1)", "sphinx-gallery (==0.19.0)", "sphinx-jinja (==2.0.2)", "sphinx-notfound-page (==1.1.0)", "sphinxcontrib-websupport (==2.0.0)", "sphinxemoji (==0.3.1)", "vtk (==9.4.2)"]
-graphics = ["ansys-tools-visualization-interface (>=0.2.6)", "matplotlib (>=3.0.0)"]
+graphics = ["ansys-tools-visualization-interface (>=0.2.6,<0.10.0)", "matplotlib (>=3.0.0)"]
 jupyter = ["ipywidgets", "jupyterlab (>=3)"]
 tests = ["ansys-dpf-core (==0.13.6)", "ansys-tools-visualization-interface (==0.9.1)", "autopep8 (==2.3.2)", "matplotlib (==3.10.3)", "pandas (==2.2.3)", "pyansys-tools-report (==0.8.2)", "pyfakefs (==5.8.0)", "pyiges[full] (==0.3.1)", "pytest (==8.3.5)", "pytest-cov (==6.1.1)", "pytest-profiling (==1.8.1)", "pytest-pyvista (==0.1.9)", "pytest-random-order (==1.1.1)", "pytest-reportlog (==0.4.0)", "pytest-rerunfailures (==15.1)", "pytest-timeout (==2.4.0)", "scipy (==1.15.3)", "vtk (==9.4.2)"]
 
@@ -409,20 +409,20 @@ tests = ["ansys-mapdl-core (==0.68.6)", "numpy (==2.2.2)", "pyansys-tools-report
 
 [[package]]
 name = "ansys-mechanical-core"
-version = "0.11.19"
+version = "0.11.25"
 description = "A python wrapper for Ansys Mechanical"
 optional = true
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 markers = "extra == \"all\" or extra == \"examples\""
 files = [
-    {file = "ansys_mechanical_core-0.11.19-py3-none-any.whl", hash = "sha256:e7de74d20e624d1a41d0b652bfd05e878410ce821e502528b7c4444635e80258"},
-    {file = "ansys_mechanical_core-0.11.19.tar.gz", hash = "sha256:026604d8702eb9132bd872578343e714f24d72531274262e892b23a65944dfd5"},
+    {file = "ansys_mechanical_core-0.11.25-py3-none-any.whl", hash = "sha256:5c01be2799ca741dc78da32d80d3d955bc133d4adf73e981d745a3c85b0e1146"},
+    {file = "ansys_mechanical_core-0.11.25.tar.gz", hash = "sha256:e54fcf0979a365da049f06f4fd4bc9f0aae70526aab3555a8171f58690207f04"},
 ]
 
 [package.dependencies]
 ansys-api-mechanical = "0.1.2"
-ansys-mechanical-env = "0.1.12"
+ansys-mechanical-env = "0.1.14"
 ansys-mechanical-stubs = "0.1.6"
 ansys-pythonnet = ">=3.1.0rc6"
 ansys-tools-path = ">=0.3.1"
@@ -436,24 +436,24 @@ requests = ">=2,<3"
 tqdm = ">=4.45.0"
 
 [package.extras]
-doc = ["ansys-sphinx-theme[autoapi,changelog] (==1.4.4)", "grpcio (==1.70.0)", "imageio (==2.37.0)", "imageio-ffmpeg (==0.6.0)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.10.3)", "numpy (==2.2.6)", "numpydoc (==1.8.0)", "pandas (==2.2.3)", "panel (==1.6.1)", "plotly (==6.1.1)", "pypandoc (==1.15)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "pyvista (>=0.39.1)", "sphinx (==8.2.3)", "sphinx-autobuild (==2024.10.3)", "sphinx-autodoc-typehints (==3.1.0)", "sphinx-copybutton (==0.5.2)", "sphinx-gallery (==0.19.0)", "sphinx-notfound-page (==1.1.0)", "sphinx_design (==0.6.1)", "sphinxcontrib-websupport (==2.0.0)", "sphinxemoji (==0.3.1)"]
+doc = ["ansys-sphinx-theme[autoapi,changelog] (==1.5.2)", "imageio (==2.37.0)", "imageio-ffmpeg (==0.6.0)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.10.3)", "numpy (==2.2.6)", "numpydoc (==1.8.0)", "pypandoc (==1.15)", "pyvista (>=0.39.1)", "sphinx (==8.2.3)", "sphinx-autobuild (==2024.10.3)", "sphinx-autodoc-typehints (==3.1.0)", "sphinx-copybutton (==0.5.2)", "sphinx-gallery (==0.19.0)", "sphinx-notfound-page (==1.1.0)", "sphinx_design (==0.6.1)", "sphinxcontrib-websupport (==2.0.0)"]
 graphics = ["ansys-tools-visualization-interface (>=0.2.6)", "usd-core (==25.5.1)"]
 pim = ["ansys-platform-instancemanagement (>=1.0.1)"]
 rpc = ["rpyc (==6.0.2)", "toolz (==1.0.0)"]
-tests = ["psutil (==7.0.0)", "pytest (==8.3.5)", "pytest-cov (==6.1.1)", "pytest-print (==1.1.0)"]
+tests = ["psutil (==7.0.0)", "pytest (==8.4.1)", "pytest-cov (==6.2.1)", "pytest-print (==1.1.0)"]
 viz = ["ansys-tools-visualization-interface (>=0.2.6)", "usd-core (==25.5.1)"]
 
 [[package]]
 name = "ansys-mechanical-env"
-version = "0.1.12"
+version = "0.1.14"
 description = "A python wrapper for loading environment variables when using PyMechanical embedded instances in Linux."
 optional = true
 python-versions = "<4,>=3.10"
 groups = ["main"]
 markers = "extra == \"all\" or extra == \"examples\""
 files = [
-    {file = "ansys_mechanical_env-0.1.12-py3-none-any.whl", hash = "sha256:1b241553d9e8d964f513c83e4c378265e904e91185a45805bdc5c4c08bd842ee"},
-    {file = "ansys_mechanical_env-0.1.12.tar.gz", hash = "sha256:4e755c3c5435bedf26435f7a2b789a7227cf67ac40c9539fd4dd1172e58a562e"},
+    {file = "ansys_mechanical_env-0.1.14-py3-none-any.whl", hash = "sha256:e1c75a05a1e908eeb8291ac910969fbfc7005643f1f5095d8575db500dca8988"},
+    {file = "ansys_mechanical_env-0.1.14.tar.gz", hash = "sha256:6383c78a2f9efaa0c978c9c6a9fdfbb6e07820f5a9155ad870e7291a5da570b4"},
 ]
 
 [package.dependencies]
@@ -518,14 +518,14 @@ clr_loader = ">=0.2.5,<0.3.0"
 
 [[package]]
 name = "ansys-sphinx-theme"
-version = "1.5.2"
+version = "1.5.3"
 description = "A theme devised by ANSYS, Inc. for Sphinx documentation."
 optional = false
 python-versions = "<4,>=3.10"
 groups = ["dev"]
 files = [
-    {file = "ansys_sphinx_theme-1.5.2-py3-none-any.whl", hash = "sha256:aa19e0cb42cacc6d7e9e459f43f3f6a85c3aabbbf6481f5030d324312ad86e1b"},
-    {file = "ansys_sphinx_theme-1.5.2.tar.gz", hash = "sha256:38eb0a49655f5276a867d857eef4b4b29c2c9199ab82a2e4d3879408aa3c4918"},
+    {file = "ansys_sphinx_theme-1.5.3-py3-none-any.whl", hash = "sha256:53e6917f52dccef340f185d7bae49605791fb15766886df7917d7cd14c31f46c"},
+    {file = "ansys_sphinx_theme-1.5.3.tar.gz", hash = "sha256:ac122be17048679d42b1b7a0dbb2778f8b78a062691cd2a811a6e939a7d63431"},
 ]
 
 [package.dependencies]
@@ -1836,14 +1836,14 @@ protobuf = ">=4.21.6"
 
 [[package]]
 name = "hypothesis"
-version = "6.135.14"
+version = "6.135.26"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.9"
 groups = ["test"]
 files = [
-    {file = "hypothesis-6.135.14-py3-none-any.whl", hash = "sha256:0dd5b8095e36bd288367c631f864a16c30500b01b17943dcea681233f7421860"},
-    {file = "hypothesis-6.135.14.tar.gz", hash = "sha256:2666df50b3cc40ea08b161a5389d6a1cd5aa3cab0dd8fde0ae339389714a4f67"},
+    {file = "hypothesis-6.135.26-py3-none-any.whl", hash = "sha256:fa237cbe2ae2c31d65f7230dcb866139ace635dcfec6c30dddf25974dd8ff4b9"},
+    {file = "hypothesis-6.135.26.tar.gz", hash = "sha256:73af0e46cd5039c6806f514fed6a3c185d91ef88b5a1577477099ddbd1a2e300"},
 ]
 
 [package.dependencies]
@@ -3083,25 +3083,19 @@ files = [
 
 [[package]]
 name = "numpydoc"
-version = "1.8.0"
+version = "1.9.0"
 description = "Sphinx extension to support docstrings in Numpy format"
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "numpydoc-1.8.0-py3-none-any.whl", hash = "sha256:72024c7fd5e17375dec3608a27c03303e8ad00c81292667955c6fea7a3ccf541"},
-    {file = "numpydoc-1.8.0.tar.gz", hash = "sha256:022390ab7464a44f8737f79f8b31ce1d3cfa4b4af79ccaa1aac5e8368db587fb"},
+    {file = "numpydoc-1.9.0-py3-none-any.whl", hash = "sha256:8a2983b2d62bfd0a8c470c7caa25e7e0c3d163875cdec12a8a1034020a9d1135"},
+    {file = "numpydoc-1.9.0.tar.gz", hash = "sha256:5fec64908fe041acc4b3afc2a32c49aab1540cf581876f5563d68bb129e27c5b"},
 ]
 
 [package.dependencies]
 sphinx = ">=6"
-tabulate = ">=0.8.10"
 tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
-
-[package.extras]
-developer = ["pre-commit (>=3.3)", "tomli ; python_version < \"3.11\""]
-doc = ["intersphinx-registry", "matplotlib (>=3.5)", "numpy (>=1.22)", "pydata-sphinx-theme (>=0.13.3)", "sphinx (>=7)"]
-test = ["matplotlib", "pytest", "pytest-cov"]
 
 [[package]]
 name = "overrides"
@@ -4742,14 +4736,14 @@ tests = ["cython", "littleutils", "pygments", "pytest", "typeguard"]
 name = "tabulate"
 version = "0.9.0"
 description = "Pretty-print tabular data"
-optional = false
+optional = true
 python-versions = ">=3.7"
-groups = ["main", "dev"]
+groups = ["main"]
+markers = "extra == \"all\" or extra == \"examples\""
 files = [
     {file = "tabulate-0.9.0-py3-none-any.whl", hash = "sha256:024ca478df22e9340661486f85298cff5f6dcdba14f3813e8830015b9ed1948f"},
     {file = "tabulate-0.9.0.tar.gz", hash = "sha256:0095b12bf5966de529c0feb1fa08671671b3368eec77d7ef7ab114be2c068b3c"},
 ]
-markers = {main = "extra == \"all\" or extra == \"examples\""}
 
 [package.extras]
 widechars = ["wcwidth"]
@@ -5025,14 +5019,14 @@ dev = ["pre-commit", "pytest", "ruff"]
 
 [[package]]
 name = "types-protobuf"
-version = "6.30.2.20250516"
+version = "6.30.2.20250703"
 description = "Typing stubs for protobuf"
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "types_protobuf-6.30.2.20250516-py3-none-any.whl", hash = "sha256:8c226d05b5e8b2623111765fa32d6e648bbc24832b4c2fddf0fa340ba5d5b722"},
-    {file = "types_protobuf-6.30.2.20250516.tar.gz", hash = "sha256:aecd1881770a9bb225ede66872ef7f0da4505edd0b193108edd9892e48d49a41"},
+    {file = "types_protobuf-6.30.2.20250703-py3-none-any.whl", hash = "sha256:fa5aff9036e9ef432d703abbdd801b436a249b6802e4df5ef74513e272434e57"},
+    {file = "types_protobuf-6.30.2.20250703.tar.gz", hash = "sha256:609a974754bbb71fa178fc641f51050395e8e1849f49d0420a6281ed8d1ddf46"},
 ]
 
 [[package]]
@@ -5050,14 +5044,14 @@ files = [
 
 [[package]]
 name = "typing-extensions"
-version = "4.14.0"
+version = "4.14.1"
 description = "Backported and Experimental Type Hints for Python 3.9+"
 optional = false
 python-versions = ">=3.9"
 groups = ["main", "dev", "test"]
 files = [
-    {file = "typing_extensions-4.14.0-py3-none-any.whl", hash = "sha256:a1514509136dd0b477638fc68d6a91497af5076466ad0fa6c338e44e359944af"},
-    {file = "typing_extensions-4.14.0.tar.gz", hash = "sha256:8676b788e32f02ab42d9e7c61324048ae4c6d844a399eebace3d4979d75ceef4"},
+    {file = "typing_extensions-4.14.1-py3-none-any.whl", hash = "sha256:d1e1e3b58374dc93031d6eda2420a48ea44a36c2b4766a4fdeb3710755731d76"},
+    {file = "typing_extensions-4.14.1.tar.gz", hash = "sha256:38b39f4aeeab64884ce9f74c94263ef78f3c22467c8724005483154c26648d36"},
 ]
 
 [[package]]
