@@ -190,9 +190,22 @@ def test_add_fabric(parent_object):
     assert stackup.fabrics[-1].angle == 45.0
 
 
-def test_fabric_wit_angle(parent_object):
+def test_fabric_with_angle(parent_object):
     fabric1 = parent_object.create_fabric()
     fabric_with_angle = FabricWithAngle(fabric=fabric1, angle=45.0)
     assert fabric_with_angle != FabricWithAngle(fabric=parent_object.create_fabric(), angle=45.0)
     assert fabric_with_angle != FabricWithAngle(fabric=fabric1, angle=55.0)
     assert fabric_with_angle == FabricWithAngle(fabric=fabric1, angle=45.0)
+
+
+def test_fabric_without_material(parent_object, skip_before_version):
+    """Verify that a fabric without material can be added to a stackup.
+
+    Checks that the properties which should not be computable are 'None'.
+    """
+    skip_before_version("26.1")
+    fabric = parent_object.create_fabric()
+    stackup = parent_object.create_stackup()
+    stackup.add_fabric(fabric)
+    assert stackup.thickness is None
+    assert stackup.area_weight is None
