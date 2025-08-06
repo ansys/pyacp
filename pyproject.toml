@@ -66,7 +66,7 @@ types-protobuf = ">=4.22.0.2"
 
 Sphinx = ">=7.2.6"
 sphinx-copybutton = ">=0.5.2"
-numpydoc = ">=1.6.0"
+numpydoc = ">=1.6.0,!=1.9.0"  # exclude 1.9.0 due to https://github.com/numpy/numpydoc/issues/638
 ansys-sphinx-theme = ">=1.0.0"
 pypandoc = ">=1.13"
 sphinx-gallery = ">=0.15.0"
