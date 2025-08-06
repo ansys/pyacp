@@ -8,7 +8,7 @@ services:
     command: ${MAPDL_CMD:--smp -np 1}
     shm_size: '4gb'
     ports:
-    - "${PYMAPDL_PORT:-50557}:50052"
+    - "127.0.0.1:${PYMAPDL_PORT:-50557}:50052"
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
       - ANSYS_LOCK="OFF"
@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
     image: ${IMAGE_NAME_DPF_COMPOSITES:-ghcr.io/ansys/pydpf-composites:latest}
     ports:
-    - "${PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT:-50558}:50052"
+    - "127.0.0.1:${PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT:-50558}:50052"
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
       - ANSYS_DPF_ACCEPT_LA=${ANSYS_DPF_ACCEPT_LA}
