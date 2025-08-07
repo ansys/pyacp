@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1754566813576,
+  "lastUpdate": 1754576219428,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -33710,6 +33710,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00007650767716606487",
             "extra": "mean: 38.3102208888949 msec\nrounds: 27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "greschd@users.noreply.github.com",
+            "name": "Dominik Gresch",
+            "username": "greschd"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6fe19abce76876715b1a6a28a82754ea1fe65e76",
+          "message": "Allow stackup thickness and area weight to be None (#873)\n\nWhen the fabrics in a stackup do have a material, or the stackup\nhas no fabrics, the 'thickness' and 'area_weight' properties\ncannot be computed. This change allows these properties to be\n'None' in these cases.\nThis case is only supported in the 26.1 server version or later.\nEarlier versions would raise an error when getting the properties\nunder these conditions.",
+          "timestamp": "2025-08-07T14:09:57Z",
+          "tree_id": "4951c6b13ee55f4ea931811cac6c9f5ba12c27c6",
+          "url": "https://github.com/ansys/pyacp/commit/6fe19abce76876715b1a6a28a82754ea1fe65e76"
+        },
+        "date": 1754576209519,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 7.277110819049498,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00407797892973874",
+            "extra": "mean: 137.41717349999286 msec\nrounds: 6"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.61441363851609,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0060822138298107205",
+            "extra": "mean: 382.4949446666703 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.38561134917193884,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.5932846690000133 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04096337555874073,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.412050676000035 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.1323508400793116,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0036077178372739653",
+            "extra": "mean: 468.9659793333097 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.28524995909087436,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.5056972600000336 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.029584629582991018,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 33.80133583199995 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1240.28873150067,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00022590596472467914",
+            "extra": "mean: 806.2638759847991 usec\nrounds: 2032"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 399.20333473121997,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006181715903652824",
+            "extra": "mean: 2.504989094525704 msec\nrounds: 402"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 48.58270232774237,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00007781603058233671",
+            "extra": "mean: 20.583457734687727 msec\nrounds: 49"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.982920238631702,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00005939711848053889",
+            "extra": "mean: 200.68553220000922 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 1006.4783675286192,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00012732827673429725",
+            "extra": "mean: 993.5633315750973 usec\nrounds: 1137"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 232.22244811829572,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006222926518736583",
+            "extra": "mean: 4.306215906786897 msec\nrounds: 236"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 26.090767614031762,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001092685260039119",
+            "extra": "mean: 38.32773396295916 msec\nrounds: 27"
           }
         ]
       }
