@@ -5,7 +5,7 @@ services:
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
     ports:
-      - "${PORT_ACP:-50555}:50051"
+      - "127.0.0.1:${PORT_ACP:-50555}:50051"
     working_dir: /home/container/workdir
     volumes:
       - "acp_data:/home/container/workdir/"
@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
     image: ${IMAGE_NAME_FILETRANSFER:-ghcr.io/ansys/tools-filetransfer:latest}
     ports:
-      - "${PORT_FILETRANSFER:-50556}:50000"
+      - "127.0.0.1:${PORT_FILETRANSFER:-50556}:50000"
     working_dir: /home/container/workdir
     volumes:
       - "acp_data:/home/container/workdir/"
