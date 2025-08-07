@@ -1,0 +1,13 @@
+.. vale off
+
+create\_parallel\_selection\_rule
+=================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_parallel_selection_rule
+
+.. minigallery::
+   :add-heading: Examples using Model.create_parallel_selection_rule
+
+   ansys.acp.core.Model.create_parallel_selection_rule

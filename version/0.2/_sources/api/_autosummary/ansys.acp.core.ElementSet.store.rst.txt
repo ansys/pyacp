@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ElementSet.store
+
+.. minigallery::
+   :add-heading: Examples using ElementSet.store
+
+   ansys.acp.core.ElementSet.store

@@ -1,0 +1,13 @@
+.. vale off
+
+encode
+======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.encode
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.encode
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.encode

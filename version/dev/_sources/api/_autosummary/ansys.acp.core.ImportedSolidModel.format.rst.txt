@@ -1,0 +1,13 @@
+.. vale off
+
+format
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.format
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.format
+
+   ansys.acp.core.ImportedSolidModel.format

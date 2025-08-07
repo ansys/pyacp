@@ -1,0 +1,13 @@
+.. vale off
+
+use\_imported\_plies
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.use_imported_plies
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.use_imported_plies
+
+   ansys.acp.core.LayupMappingObject.use_imported_plies

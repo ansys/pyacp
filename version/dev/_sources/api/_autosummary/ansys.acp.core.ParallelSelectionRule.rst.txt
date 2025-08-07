@@ -1,0 +1,60 @@
+﻿.. vale off
+
+ParallelSelectionRule
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ParallelSelectionRule
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ParallelSelectionRule.clone
+      
+      
+      ParallelSelectionRule.delete
+      
+      
+      ParallelSelectionRule.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ParallelSelectionRule.direction
+      ParallelSelectionRule.elemental_data
+      ParallelSelectionRule.id
+      ParallelSelectionRule.include_rule
+      ParallelSelectionRule.lower_limit
+      ParallelSelectionRule.mesh
+      ParallelSelectionRule.name
+      ParallelSelectionRule.nodal_data
+      ParallelSelectionRule.origin
+      ParallelSelectionRule.parent
+      ParallelSelectionRule.relative_rule
+      ParallelSelectionRule.rosette
+      ParallelSelectionRule.shell_mesh
+      ParallelSelectionRule.status
+      ParallelSelectionRule.upper_limit
+      ParallelSelectionRule.use_global_coordinate_system
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule
+
+   ansys.acp.core.ParallelSelectionRule
