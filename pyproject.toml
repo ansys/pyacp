@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "ansys-acp-core"
-version = "0.2.0"
+version = "0.2.1"
 
 description = "Python library for ACP - Ansys Composite PrepPost"
 readme = "README.rst"
@@ -39,7 +39,7 @@ numpy = ">=1.22"
 grpcio-health-checking = ">=1.43"
 packaging = ">=15.0"
 typing-extensions = ">=4.5.0"
-ansys-api-acp = "==0.3.0"
+ansys-api-acp = "==0.3.1"
 ansys-tools-path = ">=0"
 ansys-tools-local-product-launcher = ">=0.1"
 ansys-tools-filetransfer = ">=0.1"
@@ -66,7 +66,7 @@ types-protobuf = ">=4.22.0.2"
 
 Sphinx = ">=7.2.6"
 sphinx-copybutton = ">=0.5.2"
-numpydoc = ">=1.6.0"
+numpydoc = ">=1.6.0,!=1.9.0"  # exclude 1.9.0 due to https://github.com/numpy/numpydoc/issues/638
 ansys-sphinx-theme = ">=1.0.0"
 pypandoc = ">=1.13"
 sphinx-gallery = ">=0.15.0"
@@ -112,6 +112,7 @@ all = [
 "ACP.direct" = "ansys.acp.core._server.direct:DirectLauncher"
 "ACP.docker_compose" = "ansys.acp.core._server.docker_compose:DockerComposeLauncher"
 "ACP.connect" = "ansys.acp.core._server.connect:ConnectLauncher"
+"ACP.connect_local" = "ansys.acp.core._server.connect:ConnectLocalLauncher"
 "ACP.__fallback__" = "ansys.acp.core._server.direct:DirectLauncher"
 
 [[tool.poetry.source]]

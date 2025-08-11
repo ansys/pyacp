@@ -222,8 +222,12 @@ class Stackup(CreatableTreeObject, IdTreeObject):
 
     locked: ReadOnlyProperty[bool] = grpc_data_property_read_only("properties.locked")
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
-    thickness: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.thickness")
-    area_weight: ReadOnlyProperty[float] = grpc_data_property_read_only("properties.area_weight")
+    thickness: ReadOnlyProperty[float] = grpc_data_property_read_only(
+        "properties.thickness", check_optional=True
+    )
+    area_weight: ReadOnlyProperty[float] = grpc_data_property_read_only(
+        "properties.area_weight", check_optional=True
+    )
 
     symmetry = grpc_data_property(
         "properties.symmetry",
