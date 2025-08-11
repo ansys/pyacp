@@ -237,16 +237,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
+      fail-fast: false
       matrix:
         python-version: ["3.10", "3.11", "3.12", '3.13']
         server-version: ["latest"]
         include:
           - python-version: "3.13"
-            server-version: "2024R2"
+            server-version: "2024R2SP5"
           - python-version: "3.13"
-            server-version: "2025R1"
+            server-version: "2025R1SP4"
           - python-version: "3.13"
-            server-version: "2025R2"
+            server-version: "2025R2SP2"
           - python-version: "3.13"
             server-version: "2026R1"
 
