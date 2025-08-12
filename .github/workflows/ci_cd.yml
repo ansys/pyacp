@@ -569,9 +569,10 @@ jobs:
           twine-token: ${{ secrets.PYPI_TOKEN }}
 
       - name: Release to GitHub
-        uses: ansys/actions/release-github@v8
+        uses: ansys/actions/release-github@v10
         with:
           library-name: ${{ env.PACKAGE_NAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
   upload_docs_dev:
     name: "Upload dev documentation"
