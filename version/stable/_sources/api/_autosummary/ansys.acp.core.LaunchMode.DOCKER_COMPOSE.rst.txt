@@ -1,0 +1,13 @@
+.. vale off
+
+DOCKER\_COMPOSE
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LaunchMode.DOCKER_COMPOSE
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.DOCKER_COMPOSE
+
+   ansys.acp.core.LaunchMode.DOCKER_COMPOSE

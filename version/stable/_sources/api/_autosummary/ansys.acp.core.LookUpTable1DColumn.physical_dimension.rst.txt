@@ -1,0 +1,13 @@
+.. vale off
+
+physical\_dimension
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable1DColumn.physical_dimension
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable1DColumn.physical_dimension
+
+   ansys.acp.core.LookUpTable1DColumn.physical_dimension

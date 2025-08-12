@@ -1,0 +1,13 @@
+.. vale off
+
+COG
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.COG
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.COG
+
+   ansys.acp.core.ElementalDataType.COG

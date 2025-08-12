@@ -1,0 +1,13 @@
+.. vale off
+
+shell\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.shell_mesh
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.shell_mesh
+
+   ansys.acp.core.GeometricalSelectionRule.shell_mesh

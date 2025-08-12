@@ -1,0 +1,13 @@
+.. vale off
+
+parameter\_2
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LinkedSelectionRule.parameter_2
+
+.. minigallery::
+   :add-heading: Examples using LinkedSelectionRule.parameter_2
+
+   ansys.acp.core.LinkedSelectionRule.parameter_2
