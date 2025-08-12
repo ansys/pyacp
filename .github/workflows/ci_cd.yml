@@ -242,11 +242,11 @@ jobs:
         server-version: ["latest"]
         include:
           - python-version: "3.13"
-            server-version: "2024R2"
+            server-version: "2024R2SP5"
           - python-version: "3.13"
-            server-version: "2025R1"
+            server-version: "2025R1SP4"
           - python-version: "3.13"
-            server-version: "2025R2"
+            server-version: "2025R2SP2"
           - python-version: "3.13"
             server-version: "2026R1"
 
