@@ -83,7 +83,7 @@ def get_directions_plotter(
     if mesh is None:
         mesh = model.mesh
 
-    plotter: pyvista.Plotter = pyvista.Plotter()  # type: ignore
+    plotter: pyvista.Plotter = pyvista.Plotter()
     plotter.add_mesh(mesh.to_pyvista(), color="white", show_edges=True)
 
     for vector_data in components:
