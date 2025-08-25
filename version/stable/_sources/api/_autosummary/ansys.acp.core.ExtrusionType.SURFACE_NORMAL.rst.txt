@@ -1,0 +1,13 @@
+.. vale off
+
+SURFACE\_NORMAL
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionType.SURFACE_NORMAL
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionType.SURFACE_NORMAL
+
+   ansys.acp.core.ExtrusionType.SURFACE_NORMAL

@@ -1,0 +1,13 @@
+.. vale off
+
+TRANSVERSE\_DIRECTION
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.TRANSVERSE_DIRECTION
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.TRANSVERSE_DIRECTION
+
+   ansys.acp.core.ElementalDataType.TRANSVERSE_DIRECTION

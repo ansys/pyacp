@@ -1,0 +1,13 @@
+.. vale off
+
+BASIC\_FLAT\_PLATE\_SOLID\_MESH\_CDB
+====================================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB
