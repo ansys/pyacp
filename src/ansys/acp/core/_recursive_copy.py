@@ -25,10 +25,13 @@ from collections.abc import Iterable
 
 import networkx as nx
 
+from ansys.api.acp.v0.base_pb2 import ResourcePath
+
 from ._dependency_graph import _build_dependency_graph, _WalkTreeOptions
 from ._tree_objects import LookUpTable1D, LookUpTable1DColumn, LookUpTable3D, LookUpTable3DColumn
 from ._tree_objects._grpc_helpers.linked_object_helpers import get_linked_paths
 from ._tree_objects.base import CreatableTreeObject, TreeObject
+from ._tree_objects.model import Model
 from ._utils.resource_paths import common_path, to_parts
 from ._utils.typing_helper import StrEnum
 
@@ -148,13 +151,34 @@ def recursive_copy(
     common_target_path = common_path(*[obj._resource_path.value for obj in parent_mapping.values()])
     if len(to_parts(common_target_path)) < 2:
         raise ValueError("The 'parent_mapping' values must all belong to the same model.")
-    if linked_object_handling == LinkedObjectHandling.KEEP:
-        if len(to_parts(common_path(common_source_path, common_target_path))) < 2:
+
+    if not parent_mapping:
+        raise ValueError("The 'parent_mapping' must contain at least one entry.")
+
+    # Checks when copying to a different model
+    if len(to_parts(common_path(common_source_path, common_target_path))) < 2:
+        if linked_object_handling == LinkedObjectHandling.KEEP:
             raise ValueError(
                 "When using 'linked_object_handling=\"keep\"', objects cannot be copied from one model "
                 "to another. The objects in 'source_objects' and 'parent_mapping' must all belong to the "
                 'same model. Use \'linked_object_handling="copy"\' or linked_object_handling="discard"\' '
                 "to copy objects between models."
+            )
+        # Check that the unit systems of the two models are the same
+        source_server_wrapper, target_server_wrapper = (
+            obj._server_wrapper for obj in next(iter(parent_mapping.items()))
+        )
+        source_model_rp = "/".join(to_parts(common_source_path)[:2])
+        target_model_rp = "/".join(to_parts(common_target_path)[:2])
+        source_model = Model._from_resource_path(
+            resource_path=ResourcePath(value=source_model_rp), server_wrapper=source_server_wrapper
+        )
+        target_model = Model._from_resource_path(
+            ResourcePath(value=target_model_rp), server_wrapper=target_server_wrapper
+        )
+        if source_model.unit_system != target_model.unit_system:
+            raise ValueError(
+                "When copying objects between models, the models must have the same unit system."
             )
 
     linked_object_handling = LinkedObjectHandling(linked_object_handling)
