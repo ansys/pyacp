@@ -30,7 +30,7 @@ from ansys.api.acp.v0.base_pb2 import ResourcePath
 from ._dependency_graph import _build_dependency_graph, _WalkTreeOptions
 from ._tree_objects import LookUpTable1D, LookUpTable1DColumn, LookUpTable3D, LookUpTable3DColumn
 from ._tree_objects._grpc_helpers.linked_object_helpers import get_linked_paths
-from ._tree_objects.base import CreatableTreeObject, TreeObject
+from ._tree_objects.base import CreatableTreeObject, ServerWrapper, TreeObject
 from ._tree_objects.model import Model
 from ._utils.resource_paths import common_path, to_parts
 from ._utils.typing_helper import StrEnum
@@ -141,19 +141,20 @@ def recursive_copy(
     """
     # Check that the given source objects and parent mapping keys belong to the same
     # model.
+    if not source_objects:
+        raise ValueError("The 'source_objects' cannot be empty.")
+    if not parent_mapping:
+        raise ValueError("The 'parent_mapping' cannot be empty.")
     common_source_path = common_path(
         *[obj._resource_path.value for obj in list(source_objects) + list(parent_mapping.keys())]
     )
     if len(to_parts(common_source_path)) < 2:
         raise ValueError(
-            "The 'source_objects' and 'parent_mapping' keys must all belong to the same model."
+            "The 'source_objects' and 'parent_mapping' keys must all belong to the same source model."
         )
     common_target_path = common_path(*[obj._resource_path.value for obj in parent_mapping.values()])
     if len(to_parts(common_target_path)) < 2:
-        raise ValueError("The 'parent_mapping' values must all belong to the same model.")
-
-    if not parent_mapping:
-        raise ValueError("The 'parent_mapping' must contain at least one entry.")
+        raise ValueError("The 'parent_mapping' values must all belong to the same target model.")
 
     # Checks when copying to a different model
     if len(to_parts(common_path(common_source_path, common_target_path))) < 2:
@@ -170,10 +171,12 @@ def recursive_copy(
         )
         source_model_rp = "/".join(to_parts(common_source_path)[:2])
         target_model_rp = "/".join(to_parts(common_target_path)[:2])
-        def _get_model_from_path(model_rp, server_wrapper):
+
+        def _get_model_from_path(model_rp: str, server_wrapper: ServerWrapper) -> Model:
             return Model._from_resource_path(
                 resource_path=ResourcePath(value=model_rp), server_wrapper=server_wrapper
             )
+
         source_model = _get_model_from_path(source_model_rp, source_server_wrapper)
         target_model = _get_model_from_path(target_model_rp, target_server_wrapper)
         if source_model.unit_system != target_model.unit_system:
