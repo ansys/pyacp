@@ -170,12 +170,12 @@ def recursive_copy(
         )
         source_model_rp = "/".join(to_parts(common_source_path)[:2])
         target_model_rp = "/".join(to_parts(common_target_path)[:2])
-        source_model = Model._from_resource_path(
-            resource_path=ResourcePath(value=source_model_rp), server_wrapper=source_server_wrapper
-        )
-        target_model = Model._from_resource_path(
-            ResourcePath(value=target_model_rp), server_wrapper=target_server_wrapper
-        )
+        def _get_model_from_path(model_rp, server_wrapper):
+            return Model._from_resource_path(
+                resource_path=ResourcePath(value=model_rp), server_wrapper=server_wrapper
+            )
+        source_model = _get_model_from_path(source_model_rp, source_server_wrapper)
+        target_model = _get_model_from_path(target_model_rp, target_server_wrapper)
         if source_model.unit_system != target_model.unit_system:
             raise ValueError(
                 "When copying objects between models, the models must have the same unit system."
