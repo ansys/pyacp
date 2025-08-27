@@ -308,8 +308,9 @@ def test_keep_links_across_models_raises(minimal_complete_model, load_model_from
         assert "copy objects between models" in str(exc.value)
 
 
-def test_unit_system_check(minimal_complete_model, load_model_from_tempfile):
+def test_unit_system_check(minimal_complete_model, load_model_from_tempfile, skip_before_version):
     """Test that an exception is raised when copying objects between models with different unit systems."""
+    skip_before_version("25.1")  # Cannot change unit system before 25.1
     # GIVEN: Two models with different unit systems
     model1 = minimal_complete_model
     with load_model_from_tempfile() as model2:
