@@ -98,7 +98,7 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         self._process = subprocess.Popen(  # nosec B603: documented in 'security_considerations.rst'
             [
                 self._config.binary_path,
-                f"--server-address=0.0.0.0:{port}",
+                f"--server-address=localhost:{port}",
             ],
             stdout=self._stdout,
             stderr=self._stderr,

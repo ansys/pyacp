@@ -35,7 +35,7 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -124,7 +124,7 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Login in Github Container registry
         uses: docker/login-action@v3
         with:
@@ -160,7 +160,7 @@ jobs:
         python-version: ["3.10", "3.11", "3.12", '3.13']
         server-version: ["latest"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Pip cache
         uses: actions/cache@v4
@@ -242,16 +242,16 @@ jobs:
         server-version: ["latest"]
         include:
           - python-version: "3.13"
-            server-version: "2024R2"
+            server-version: "2024R2SP5"
           - python-version: "3.13"
-            server-version: "2025R1"
+            server-version: "2025R1SP4"
           - python-version: "3.13"
-            server-version: "2025R2"
+            server-version: "2025R2SP2"
           - python-version: "3.13"
             server-version: "2026R1"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -340,7 +340,7 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -427,7 +427,7 @@ jobs:
         build_type: ["quick", "full"]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
