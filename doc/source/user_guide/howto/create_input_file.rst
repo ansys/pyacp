@@ -47,8 +47,9 @@ One way to create an input file for PyACP is to create a static structural setup
 * Save the input file to a DAT file in the desired location.
 * Convert the DAT file to a CDB file with Ansys Mechanical APDL: Load the DAT file in Mechanical APDL and use the CDWRITE command to write a CDB file.
 
+.. note::
 
-For a complete example, see :ref:`pymapdl_workflow_example`.
+    The conversion from DAT to CDB format is not strictly required, but improves the reliability of loading the model into downstream analyses. The unit system information is lost when exporting to CDB, so it needs to be specified when importing the CDB file into ACP.
 
 .. note::
 
