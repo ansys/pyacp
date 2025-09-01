@@ -112,7 +112,8 @@ input_file_dat = example_helpers.get_example_file(
 mapdl.clear()
 mapdl.input(str(input_file_dat))
 input_file_cdb = working_dir_path / "model.cdb"
-mapdl.cdwrite(fname=str(working_dir_path / "model"), ext="cdb")
+mapdl.cdwrite(fname="model", ext="cdb")
+mapdl.download("model.cdb", working_dir_path)
 mapdl.exit()
 
 # %%
