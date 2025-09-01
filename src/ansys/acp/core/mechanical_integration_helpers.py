@@ -96,7 +96,6 @@ def import_acp_mesh_from_cdb(*, mechanical: "pymechanical.Mechanical", cdb_path:
             f"""\
             model_import = Model.AddGeometryImportGroup().AddModelImport()
             model_import.ModelImportSourceFilePath = {cdb_path_str!r}
-            model_import.ProcessValidBlockedCDBFile = False
             model_import.ProcessModelData = False
             model_import.Import()
             """
