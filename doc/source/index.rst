@@ -4,7 +4,6 @@
     :hidden:
     :maxdepth: 3
 
-    PyACP home<self>
     getting_started
     user_guide/index
     examples/index
