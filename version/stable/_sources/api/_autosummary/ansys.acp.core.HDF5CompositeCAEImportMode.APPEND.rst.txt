@@ -1,0 +1,13 @@
+.. vale off
+
+APPEND
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: HDF5CompositeCAEImportMode.APPEND
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImportMode.APPEND
+
+   ansys.acp.core.HDF5CompositeCAEImportMode.APPEND

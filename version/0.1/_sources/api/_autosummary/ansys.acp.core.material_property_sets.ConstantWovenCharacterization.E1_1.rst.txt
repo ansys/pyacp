@@ -1,0 +1,13 @@
+.. vale off
+
+E1\_1
+=====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantWovenCharacterization.E1_1
+
+.. minigallery::
+   :add-heading: Examples using ConstantWovenCharacterization.E1_1
+
+   ansys.acp.core.material_property_sets.ConstantWovenCharacterization.E1_1

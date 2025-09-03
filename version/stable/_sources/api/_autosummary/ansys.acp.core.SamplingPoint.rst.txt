@@ -1,0 +1,56 @@
+﻿.. vale off
+
+SamplingPoint
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SamplingPoint
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SamplingPoint.clone
+      
+      
+      SamplingPoint.delete
+      
+      
+      SamplingPoint.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SamplingPoint.consider_coupling_effect
+      SamplingPoint.direction
+      SamplingPoint.id
+      SamplingPoint.locked
+      SamplingPoint.name
+      SamplingPoint.offset_is_middle
+      SamplingPoint.parent
+      SamplingPoint.point
+      SamplingPoint.reference_direction
+      SamplingPoint.rosette
+      SamplingPoint.status
+      SamplingPoint.use_default_reference_direction
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint
+
+   ansys.acp.core.SamplingPoint

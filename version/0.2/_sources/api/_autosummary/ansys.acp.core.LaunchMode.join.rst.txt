@@ -1,0 +1,13 @@
+.. vale off
+
+join
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.join
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.join
+
+   ansys.acp.core.LaunchMode.join

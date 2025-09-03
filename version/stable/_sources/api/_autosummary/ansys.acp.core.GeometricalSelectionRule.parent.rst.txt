@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.parent
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.parent
+
+   ansys.acp.core.GeometricalSelectionRule.parent

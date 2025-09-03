@@ -1,0 +1,13 @@
+.. vale off
+
+offset\_type
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.offset_type
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.offset_type
+
+   ansys.acp.core.ImportedModelingPly.offset_type

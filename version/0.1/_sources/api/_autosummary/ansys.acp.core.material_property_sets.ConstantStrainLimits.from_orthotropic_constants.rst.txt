@@ -1,0 +1,13 @@
+.. vale off
+
+from\_orthotropic\_constants
+============================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: ConstantStrainLimits.from_orthotropic_constants
+
+.. minigallery::
+   :add-heading: Examples using ConstantStrainLimits.from_orthotropic_constants
+
+   ansys.acp.core.material_property_sets.ConstantStrainLimits.from_orthotropic_constants
