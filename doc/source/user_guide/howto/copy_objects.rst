@@ -72,7 +72,7 @@ The model structure is as follows:
                                 └── 'P1L1__ModelingPly.1'
 
 
-At the start of each example, the model is deleted and rel-loaded to get back to the initial state:
+At the start of each example, the model is deleted and re-loaded to get back to the initial state:
 
 **Code:**
 
@@ -788,6 +788,8 @@ Copy to a different model
 
 Copying objects to a different model works exactly the same as within the same model, with one exception: Since the linked objects do not exist on the target model, ``linked_object_handling="keep"`` is not allowed. Only ``linked_object_handling="discard"`` and ``linked_object_handling="copy"`` are possible.
 
+Note that the target model must use the same unit system as the source model.
+
 Model setup
 ~~~~~~~~~~~
 
@@ -806,6 +808,7 @@ For the subsequent examples, a second model is created:
     target_model = acp.import_model(
         input_file_2, name="New ACP Model", format="ansys:cdb", unit_system="SI"
     )
+    target_model.unit_system = source_model.unit_system
 
     pyacp.print_model(target_model, show_lines=True, label_by_id=True)
 
@@ -930,6 +933,7 @@ Control the copy of linked objects
     target_model = acp.import_model(
         input_file_2, name="New ACP Model", format="ansys:cdb", unit_system="SI"
     )
+    target_model.unit_system = source_model.unit_system
 
 As with the copy within the same model, the ``parent_mapping`` dictionary can be used to limit the copy of linked objects. The following example copies the entire layup, except for the material ``Structural Steel``, element set ``All_Elements``, edge set ``ns_edge``, and rosette ``Global Coordinate System``:
 
