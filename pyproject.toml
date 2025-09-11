@@ -36,6 +36,7 @@ Releases = "https://github.com/ansys/pyacp/releases"
 [tool.poetry.dependencies]
 python = ">=3.10,<3.14"
 numpy = ">=1.22"
+grpcio = "!=1.74.0" # exclude 1.74.0 because it causes segfaults
 grpcio-health-checking = ">=1.43"
 packaging = ">=15.0"
 typing-extensions = ">=4.5.0"
