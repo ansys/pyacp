@@ -68,6 +68,7 @@ from ansys.acp.core.extras import set_plot_theme
 from ansys.acp.core.extras import example_helpers
 import ansys.dpf.composites as pydpf_composites
 import ansys.mechanical.core as pymechanical
+import ansys.mapdl.core as pymapdl
 
 # sphinx_gallery_thumbnail_path = '_static/gallery_thumbnails/sphx_glr_06-cdb-to-pymechanical-workflow_thumb.png'
 
@@ -84,8 +85,9 @@ with ThreadPoolExecutor() as executor:
         executor.submit(pyacp.launch_acp),
         executor.submit(pymechanical.launch_mechanical, batch=True),
         executor.submit(pydpf_composites.server_helpers.connect_to_or_start_server),
+        executor.submit(pymapdl.launch_mapdl),
     ]
-    acp, mechanical, dpf = (fut.result() for fut in futures)
+    acp, mechanical, dpf, mapdl = (fut.result() for fut in futures)
 
 # %%
 # Get example input files
@@ -96,9 +98,23 @@ with ThreadPoolExecutor() as executor:
 
 working_dir = tempfile.TemporaryDirectory()
 working_dir_path = pathlib.Path(working_dir.name)
-input_file = example_helpers.get_example_file(
+input_file_dat = example_helpers.get_example_file(
     example_helpers.ExampleKeys.BASIC_FLAT_PLATE_DAT, working_dir_path
 )
+
+# %%
+# Convert the DAT file to a CDB file
+# ----------------------------------
+#
+# Use PyMAPDL to convert the DAT file to a CDB file. This improves the reliability
+# of loading the model into ACP and Mechanical.
+
+mapdl.clear()
+mapdl.input(str(input_file_dat))
+input_file_cdb = working_dir_path / "model.cdb"
+mapdl.cdwrite(fname="model", ext="cdb")
+mapdl.download("model.cdb", working_dir_path)
+mapdl.exit()
 
 # %%
 # Set up the ACP model
@@ -107,7 +123,7 @@ input_file = example_helpers.get_example_file(
 # Setup basic ACP lay-up based on the CDB file.
 
 
-model = acp.import_model(path=input_file, format="ansys:cdb")
+model = acp.import_model(path=input_file_cdb, format="ansys:cdb", unit_system="MKS")
 model.unit_system
 
 # %%

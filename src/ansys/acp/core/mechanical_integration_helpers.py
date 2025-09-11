@@ -67,7 +67,12 @@ def export_mesh_for_acp(*, mechanical: "pymechanical.Mechanical", path: PATH) ->
     )
 
 
-def import_acp_mesh_from_cdb(*, mechanical: "pymechanical.Mechanical", cdb_path: PATH) -> None:
+def import_acp_mesh_from_cdb(
+    *,
+    mechanical: "pymechanical.Mechanical",
+    cdb_path: PATH,
+    check_valid_blocked_cdb_file: bool = True,
+) -> None:
     """Import an ACP CDB mesh into Mechanical.
 
     Import a mesh exported from ACP in CDB format into Mechanical. This function
@@ -84,6 +89,8 @@ def import_acp_mesh_from_cdb(*, mechanical: "pymechanical.Mechanical", cdb_path:
         The PyMechanical instance. This must be a remote instance.
     cdb_path :
         The path of the CDB file to import. The extension must be '.cdb'.
+    check_valid_blocked_cdb_file :
+        If True, check that the CDB file is a valid blocked CDB file.
     """
     cdb_path = pathlib.Path(cdb_path)
 
@@ -96,7 +103,7 @@ def import_acp_mesh_from_cdb(*, mechanical: "pymechanical.Mechanical", cdb_path:
             f"""\
             model_import = Model.AddGeometryImportGroup().AddModelImport()
             model_import.ModelImportSourceFilePath = {cdb_path_str!r}
-            model_import.ProcessValidBlockedCDBFile = False
+            model_import.ProcessValidBlockedCDBFile = {check_valid_blocked_cdb_file}
             model_import.ProcessModelData = False
             model_import.Import()
             """
