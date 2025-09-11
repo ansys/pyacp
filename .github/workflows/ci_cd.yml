@@ -421,7 +421,6 @@ jobs:
     name: Build Documentation
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    continue-on-error: true
     strategy:
       matrix:
         build_type: ["quick", "full"]
