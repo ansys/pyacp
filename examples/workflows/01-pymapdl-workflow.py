@@ -29,7 +29,8 @@ PyMAPDL workflow
 This example shows how to define a composite lay-up with PyACP, solve the resulting model with PyMAPDL, and
 run a failure analysis with PyDPF - Composites.
 """
-
+# import os
+# raise RuntimeError(os.getcwd())
 # %%
 # Description
 # -----------
@@ -275,5 +276,5 @@ irf_field.plot()
 # Release the composite model to close the open streams to the result file.
 composite_model = None  # type: ignore
 
-# Close MAPDL instance
-mapdl.exit()
+# # Close MAPDL instance
+# mapdl.exit()
