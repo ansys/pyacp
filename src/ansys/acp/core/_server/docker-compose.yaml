@@ -4,8 +4,11 @@ services:
     image: ${IMAGE_NAME_ACP:-ghcr.io/ansys/acp:latest}
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
+    command:
+      - "--server-address=0.0.0.0:50051"
+      - "--allow-remote-access" # Access to the server is limited to '127.0.0.1' by the 'port' option below
     ports:
-      - "${PORT_ACP:-50555}:50051"
+      - "127.0.0.1:${PORT_ACP:-50555}:50051"
     working_dir: /home/container/workdir
     volumes:
       - "acp_data:/home/container/workdir/"
@@ -14,7 +17,7 @@ services:
     restart: unless-stopped
     image: ${IMAGE_NAME_FILETRANSFER:-ghcr.io/ansys/tools-filetransfer:latest}
     ports:
-      - "${PORT_FILETRANSFER:-50556}:50000"
+      - "127.0.0.1:${PORT_FILETRANSFER:-50556}:50000"
     working_dir: /home/container/workdir
     volumes:
       - "acp_data:/home/container/workdir/"

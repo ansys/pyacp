@@ -23,11 +23,16 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
+import pathlib
+import typing
 
 from ansys.api.acp.v0 import section_cut_pb2, section_cut_pb2_grpc
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
+from .._utils.path_to_str import path_to_str_checked
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
+from .._utils.typing_helper import PATH as _PATH
+from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.linked_object_list import define_linked_object_list
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
@@ -39,11 +44,13 @@ from .element_set import ElementSet
 from .enums import (
     ExtrusionType,
     IntersectionType,
+    SectionCutCDBExportType,
     SectionCutType,
     extrusion_type_from_pb,
     extrusion_type_to_pb,
     intersection_type_from_pb,
     intersection_type_to_pb,
+    section_cut_cdb_export_type_to_pb,
     section_cut_type_from_pb,
     section_cut_type_to_pb,
     status_type_from_pb,
@@ -225,3 +232,81 @@ class SectionCut(CreatableTreeObject, IdTreeObject):
     number_of_interpolation_points: ReadWriteProperty[int, int] = grpc_data_property(
         "properties.number_of_interpolation_points"
     )
+
+    def export(
+        self,
+        path: _PATH,
+        *,
+        export_type: SectionCutCDBExportType = "mesh_only",
+    ) -> None:
+        """Export the section cut to a CDB file.
+
+        Parameters
+        ----------
+        path :
+            Path to the file where the section cut is saved.
+        export_type :
+            Determines what is exported to the CDB file. Options are:
+
+            - ``"mesh_only"``: Only the mesh (elements and nodes) is exported.
+            - ``"solid_model"``: The section cut is expanded into a slice of
+              solid elements. In addition, the material properties are exported
+              and the element coordinate systems are aligned with the fiber
+              direction. This model can be used to compute the equivalent
+              beam properties of the section cut.
+
+        """
+        with self._server_wrapper.auto_download(path) as export_path:
+            with wrap_grpc_errors():
+                self._get_stub().ExportToCDB(  # type: ignore
+                    section_cut_pb2.ExportToCDBRequest(
+                        resource_path=self._resource_path,
+                        path=export_path,
+                        export_type=typing.cast(
+                            typing.Any, section_cut_cdb_export_type_to_pb(export_type)
+                        ),
+                    )
+                )
+
+    def export_becas_input(
+        self,
+        path: _PATH,
+        *,
+        export_strength_limits: bool = True,
+    ) -> None:
+        """Export the section cut to BECAS input files.
+
+        Parameters
+        ----------
+        path :
+            Path to the directory where the input files are saved.
+        export_strength_limits :
+            Determines whether strength limits are exported to the
+            BECAS input files.
+
+        """
+        # The 'auto_download' context manager cannot be directly used here
+        # because the export path is not a file but a directory. The BECAS
+        # export produces multiple files, which we all need to download.
+        # Currently (May '25), this is the only export that produces multiple
+        # files at once. If there are more, we should either extend 'auto_download',
+        # or create a new context manager for this purpose.
+        export_path = pathlib.Path(
+            self._server_wrapper.filetransfer_handler.to_export_path(path, is_directory=True)
+        )
+        expected_filenames = ["E2D.in", "EMAT.in", "MATPROPS.in", "N2D.in"]
+        if export_strength_limits:
+            expected_filenames.append("FAILMAT.in")
+
+        with wrap_grpc_errors():
+            self._get_stub().ExportToBECAS(  # type: ignore
+                section_cut_pb2.ExportToBECASRequest(
+                    resource_path=self._resource_path,
+                    path=path_to_str_checked(export_path),
+                    export_strength_limits=export_strength_limits,
+                )
+            )
+        for filename in expected_filenames:
+            self._server_wrapper.filetransfer_handler.download_file_if_autotransfer(
+                export_path / filename, pathlib.Path(path) / filename
+            )

@@ -22,7 +22,7 @@
 
 from .acp_instance import ACPInstance
 from .common import LaunchMode
-from .connect import ConnectLaunchConfig
+from .connect import ConnectLaunchConfig, ConnectLocalLaunchConfig
 from .direct import DirectLaunchConfig
 from .docker_compose import DockerComposeLaunchConfig
 from .launch import launch_acp
@@ -30,6 +30,7 @@ from .launch import launch_acp
 __all__ = [
     "ACPInstance",
     "ConnectLaunchConfig",
+    "ConnectLocalLaunchConfig",
     "DirectLaunchConfig",
     "DockerComposeLaunchConfig",
     "launch_acp",

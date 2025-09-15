@@ -42,6 +42,7 @@ class LaunchMode(StrEnum):
     DIRECT = "direct"
     DOCKER_COMPOSE = "docker_compose"
     CONNECT = "connect"
+    CONNECT_LOCAL = "connect_local"
 
 
 class ServerProtocol(Protocol):

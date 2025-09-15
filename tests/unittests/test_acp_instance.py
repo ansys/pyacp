@@ -29,6 +29,8 @@ import tempfile
 
 import pytest
 
+import ansys.acp.core as pyacp
+
 
 def test_server_version(acp_instance):
     version = acp_instance.server_version
@@ -86,6 +88,35 @@ def test_import_inexistent(acp_instance):
     with pytest.raises(FileNotFoundError) as exc:
         acp_instance.import_model(filename)
     assert filename in str(exc.value)
+
+
+@pytest.mark.parametrize(
+    "input_unit_system,expected_unit_system",
+    [
+        ("SI", pyacp.UnitSystemType.SI),
+        ("Si", pyacp.UnitSystemType.SI),
+        ("si", pyacp.UnitSystemType.SI),
+        (pyacp.UnitSystemType.SI, pyacp.UnitSystemType.SI),
+        ("uMKS", pyacp.UnitSystemType.uMKS),
+    ],
+)
+def test_import_unit_system(acp_instance, model_data_dir, input_unit_system, expected_unit_system):
+    model = acp_instance.import_model(
+        model_data_dir / "class40.cdb",
+        unit_system=input_unit_system,
+        format="ansys:cdb",
+    )
+    assert model.unit_system == expected_unit_system
+
+
+@pytest.mark.parametrize("format", ["ansys:cdb", "AnSYS:cDB", pyacp.FeFormat.ANSYS_CDB])
+def test_format_capitalization(acp_instance, model_data_dir, format):
+    """Test that the format is case insensitive."""
+    acp_instance.import_model(
+        model_data_dir / "class40.cdb",
+        unit_system="SI",
+        format=format,
+    )
 
 
 def test_restart_wait(acp_instance, load_model_from_tempfile):

@@ -25,56 +25,52 @@ from __future__ import annotations
 import os
 import pathlib
 import tempfile
+from typing import Any, TypeVar
 
 import numpy as np
 import numpy.testing
+from packaging.version import parse as parse_version
 import pytest
 
 from ansys.acp.core import ElementalDataType, UnitSystemType
 from ansys.acp.core.mesh_data import VectorData
 
-from .helpers import check_property
+T = TypeVar("T")
 
 
-def test_unittest(acp_instance, model_data_dir):
+def _check_property(obj: Any, *, name: str, value: T, set_value: T | None = None):
+    assert hasattr(obj, name), f"Object '{obj}' has no property named '{name}'"
+    assert (
+        getattr(obj, name) == value
+    ), f"Test of property '{name}' failed! value '{getattr( obj, name )}' instead of '{value}'."
+    if set_value is not None:
+        setattr(obj, name, set_value)
+        assert (
+            getattr(obj, name) == set_value
+        ), f"Setter of property '{name}' failed! value '{getattr(obj, name)}' instead of '{value}'."
+
+
+def test_unittest(acp_instance, model_data_dir, raises_before_version):
     """
     Test basic properties of the model object
     """
+
     input_file_path = model_data_dir / "ACP-Pre.h5"
     model = acp_instance.import_model(name="kiteboard", path=input_file_path, format="ansys:h5")
 
-    # TODO: re-activate these tests when the respective features are implemented
-    # assert model.unit_system.type == "mks"
-
-    check_property(model, name="name", value="kiteboard", set_value="kiteboard_renamed")
-    # TODO: re-activate these tests when the respective features are implemented
-    # check_property(model, name="save_path", value="")
-    # check_property(model, name="format", value="ansys:h5")
-    # check_property(model, name="cache_update_results", value=True, set_value=False),
-    # check_property(model, name="path", value=input_file_path),
-    check_property(model, name="use_nodal_thicknesses", value=False, set_value=True),
-    check_property(model, name="draping_offset_correction", value=False, set_value=True),
-    check_property(model, name="angle_tolerance", value=1.0, set_value=2.0),
-    check_property(model, name="relative_thickness_tolerance", value=0.01, set_value=0.03)
-
-    # TODO: re-activate these tests when the respective features are implemented
-    # The minimum analysis ply thickness is an absolute value, and depends on the
-    # unit system being set. This is currently not implemented in PyACP, hence the
-    # values are wrong (it's not using the expected unit system).
-    # check_property(model, name="minimum_analysis_ply_thickness", value=1e-09, set_value=2e-09)
-    # check_property(
-    #     model,
-    #     name="reference_surface_bounding_box",
-    #     value=(
-    #         (-0.6750000000000003, -0.2, 0.0005419999999999998),
-    #         (0.6750000000000003, 0.20000000000000007, 0.0005420000000000003),
-    #     ),
-    # )
+    _check_property(model, name="name", value="kiteboard", set_value="kiteboard_renamed")
+    _check_property(model, name="use_nodal_thicknesses", value=False, set_value=True),
+    _check_property(model, name="draping_offset_correction", value=False, set_value=True),
+    _check_property(model, name="angle_tolerance", value=1.0, set_value=2.0),
+    _check_property(model, name="relative_thickness_tolerance", value=0.01, set_value=0.03)
+    with raises_before_version("25.2"):
+        _check_property(
+            model, name="force_disable_result_extrapolation", value=False, set_value=True
+        )
 
     with tempfile.TemporaryDirectory() as tmp_dir:
         working_dir = pathlib.Path(tmp_dir) / "workdir"
         os.makedirs(working_dir)
-        # model.solver.working_dir = str(working_dir)
 
         with tempfile.TemporaryDirectory() as local_working_dir:
             save_path = pathlib.Path(local_working_dir) / "test_model_serialization.acph5"
@@ -82,34 +78,13 @@ def test_unittest(acp_instance, model_data_dir):
             acp_instance.clear()
             model = acp_instance.import_model(path=save_path)
 
-        # TODO: re-activate these tests when the respective features are implemented
-        # assert model.unit_system.type == "mks"
-
-        check_property(model, name="name", value="kiteboard_renamed")
-        # TODO: re-activate these tests when the respective features are implemented
-        # check_property(model, name="save_path", value=save_path)
-        # check_property(model, name="format", value="ansys:h5")
-        # check_property(model, name="cache_update_results", value=False)
-        # check_property(model, name="path", value=input_file_path)
-        check_property(model, name="use_nodal_thicknesses", value=True)
-        check_property(model, name="draping_offset_correction", value=True)
-        check_property(model, name="angle_tolerance", value=2.0)
-        check_property(model, name="relative_thickness_tolerance", value=0.03)
-
-        # TODO: re-activate these tests when the respective features are implemented
-        # check_property(model, name="minimum_analysis_ply_thickness", value=2e-09)
-        # check_property(
-        #     model,
-        #     name="reference_surface_bounding_box",
-        #     value=(
-        #         (-0.6750000000000003, -0.2, 0.0005419999999999998),
-        #         (0.6750000000000003, 0.20000000000000007, 0.0005420000000000003),
-        #     ),
-        # )
-
-        # rel_path_posix = pathlib.Path(relpath_if_possible(model.solver.working_dir)).as_posix()
-        # # To ensure platform independency we store file paths using POSIX format
-        # assert model.solver.working_dir == rel_path_posix
+        _check_property(model, name="name", value="kiteboard_renamed")
+        _check_property(model, name="use_nodal_thicknesses", value=True)
+        _check_property(model, name="draping_offset_correction", value=True)
+        _check_property(model, name="angle_tolerance", value=2.0)
+        _check_property(model, name="relative_thickness_tolerance", value=0.03)
+        with raises_before_version("25.2"):
+            _check_property(model, name="force_disable_result_extrapolation", value=True)
 
 
 def test_export_analysis_model(acp_instance, model_data_dir):
@@ -171,18 +146,43 @@ def test_mesh_data(minimal_complete_model):
     numpy.testing.assert_equal(mesh.element_nodes_offsets, np.array([0]))
 
 
-def test_elemental_data(minimal_complete_model):
+def test_elemental_data(acp_instance, minimal_complete_model):
     data = minimal_complete_model.elemental_data
     numpy.testing.assert_allclose(data.element_labels.values, np.array([1]))
     numpy.testing.assert_allclose(data.normal.values, np.array([[0.0, 0.0, 1.0]]))
     numpy.testing.assert_allclose(data.thickness.values, np.array([1e-4]))
     numpy.testing.assert_allclose(data.relative_thickness_correction.values, np.array([1.0]))
     numpy.testing.assert_allclose(data.area.values, np.array([9e4]))
-    # numpy.testing.assert_allclose(data.price.values, np.array([0.0])) # disabled due to issue #717.
+    # The 'price' is disabled on servers prior to 25.2 due to issue #717.
+    if parse_version(acp_instance.server_version) >= parse_version("25.2"):
+        numpy.testing.assert_allclose(data.price.values, np.array([0.0]))
+    else:
+        data.price is None
     numpy.testing.assert_allclose(data.volume.values, np.array([9.0]))
     numpy.testing.assert_allclose(data.mass.values, np.array([7.065e-08]))
     numpy.testing.assert_allclose(data.offset.values, np.array([5e-5]))
     numpy.testing.assert_allclose(data.cog.values, np.array([[0.0, 0.0, 5e-5]]))
+
+
+def test_elemental_data_with_void_filler_analysis_plies(
+    acp_instance, load_model_from_tempfile, skip_before_version
+):
+    """Regression test for issue #717.
+
+    Retrieving the price of a model with void and filler analysis plies crashes the server
+    prior to 25.2.
+    """
+    # On 2024R2, accessing the elemental data failed for this model since the
+    # CoG is not supported for LayeredPolyhedron elements.
+    skip_before_version("25.1")
+
+    is_supported = parse_version(acp_instance.server_version) >= parse_version("25.2")
+
+    with load_model_from_tempfile("regression_model_717.acph5") as model:
+        if is_supported:
+            assert model.elemental_data.price is not None
+        else:
+            assert model.elemental_data.price is None
 
 
 def test_nodal_data(minimal_complete_model):
@@ -213,8 +213,15 @@ def test_elemental_data_to_pyvista(minimal_complete_model):
 
 @pytest.mark.graphics
 @pytest.mark.parametrize("component", [e.value for e in ElementalDataType])
-def test_elemental_data_to_pyvista_with_component(minimal_complete_model, component):
+def test_elemental_data_to_pyvista_with_component(
+    acp_instance,
+    minimal_complete_model,
+    component,
+):
     import pyvista
+
+    if component == "price" and parse_version(acp_instance.server_version) < parse_version("25.2"):
+        pytest.skip("Price is not supported on this version of the server.")
 
     data = minimal_complete_model.elemental_data
     if not hasattr(data, component):

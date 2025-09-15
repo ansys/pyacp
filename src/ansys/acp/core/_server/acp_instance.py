@@ -51,7 +51,7 @@ class FileTransferStrategy(Protocol):
 
     def download_file(self, remote_path: _PATH, local_path: _PATH) -> None: ...
 
-    def to_export_path(self, path: _PATH) -> _PATH: ...
+    def to_export_path(self, path: _PATH, is_directory: bool = False) -> pathlib.Path: ...
 
 
 class LocalFileTransferStrategy(FileTransferStrategy):
@@ -70,7 +70,7 @@ class LocalFileTransferStrategy(FileTransferStrategy):
             return
         shutil.copyfile(remote_path_aslocal, local_path)
 
-    def to_export_path(self, path: _PATH) -> _PATH:
+    def to_export_path(self, path: _PATH, is_directory: bool = False) -> pathlib.Path:
         return self._get_remote_path(path)
 
     def _get_remote_path(self, path: _PATH) -> pathlib.Path:
@@ -125,9 +125,11 @@ class RemoteFileTransferStrategy(FileTransferStrategy):
             remote_filename=str(remote_path), local_filename=str(local_path)
         )
 
-    def to_export_path(self, path: _PATH) -> _PATH:
+    def to_export_path(self, path: _PATH, is_directory: bool = False) -> pathlib.Path:
         # Export to the working directory of the server
-        return pathlib.Path(path).name
+        if is_directory:
+            return pathlib.Path(".")
+        return pathlib.Path(pathlib.Path(path).name)
 
 
 class FileTransferHandler:
@@ -150,9 +152,9 @@ class FileTransferHandler:
             # same as the local path. Otherwise, this is a bug in our code.
             assert remote_path == local_path
 
-    def to_export_path(self, path: _PATH) -> _PATH:
+    def to_export_path(self, path: _PATH, is_directory: bool = False) -> _PATH:
         if self._auto_transfer_files:
-            return self._filetransfer_strategy.to_export_path(path)
+            return self._filetransfer_strategy.to_export_path(path, is_directory=is_directory)
         return path
 
     def upload_file(self, local_path: _PATH) -> pathlib.PurePath:
@@ -305,11 +307,13 @@ class ACPInstance(Generic[ServerT]):
         Note that the models are listed in arbitrary order.
         """
         from .._tree_objects import Model
+        from .._tree_objects.base import ServerWrapper
 
         model_stub = model_pb2_grpc.ObjectServiceStub(self._channel)
+        server_wrapper = ServerWrapper.from_acp_instance(self)
         return tuple(
             [
-                Model._from_object_info(model_info, self._channel)
+                Model._from_object_info(model_info, server_wrapper)
                 for model_info in model_stub.List(
                     ListRequest(collection_path=CollectionPath(value=Model._COLLECTION_LABEL))
                 ).objects

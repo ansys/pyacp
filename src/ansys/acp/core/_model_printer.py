@@ -90,7 +90,9 @@ class Node:
         return res
 
 
-def print_model(model: Model, *, hide_empty: bool = True, show_lines: bool = False) -> None:
+def print_model(
+    model: Model, *, hide_empty: bool = True, show_lines: bool = False, label_by_id: bool = False
+) -> None:
     """Print a tree representation of the model.
 
     Parameters
@@ -101,12 +103,17 @@ def print_model(model: Model, *, hide_empty: bool = True, show_lines: bool = Fal
         Whether to hide empty collections.
     show_lines :
         Whether to show lines connecting the nodes.
-
+    label_by_id :
+        Prefer the ID over the name for the label of a node, for objects that have both.
     """
-    return print(get_model_tree(model, hide_empty=hide_empty).to_string(show_lines=show_lines))
+    return print(
+        get_model_tree(model, hide_empty=hide_empty, label_by_id=label_by_id).to_string(
+            show_lines=show_lines
+        )
+    )
 
 
-def get_model_tree(model: Model, *, hide_empty: bool = True) -> Node:
+def get_model_tree(model: Model, *, hide_empty: bool = True, label_by_id: bool = False) -> Node:
     """Get a tree representation of the model.
 
     Returns the root node.
@@ -117,12 +124,14 @@ def get_model_tree(model: Model, *, hide_empty: bool = True) -> Node:
         ACP model.
     hide_empty :
         Whether to hide empty collections.
+    label_by_id :
+        Prefer the ID over the name for the label of a node, for objects that have both.
     """
-    return _get_model_tree_impl(obj=model, hide_empty=hide_empty)
+    return _get_model_tree_impl(obj=model, hide_empty=hide_empty, label_by_id=label_by_id)
 
 
-def _get_model_tree_impl(obj: TreeObjectBase, *, hide_empty: bool) -> Node:
-    obj_node = Node(repr(_name_or_id(obj)))
+def _get_model_tree_impl(obj: TreeObjectBase, *, hide_empty: bool, label_by_id: bool) -> Node:
+    obj_node = Node(repr(_name_or_id(obj, label_by_id=label_by_id)))
     for attr_name in obj._GRPC_PROPERTIES:
         try:
             attr = getattr(obj, attr_name)
@@ -133,15 +142,21 @@ def _get_model_tree_impl(obj: TreeObjectBase, *, hide_empty: bool) -> Node:
             obj_node.children.append(collection_node)
             for child_obj in attr.values():
                 collection_node.children.append(
-                    _get_model_tree_impl(child_obj, hide_empty=hide_empty)
+                    _get_model_tree_impl(child_obj, hide_empty=hide_empty, label_by_id=label_by_id)
                 )
             if hide_empty and not collection_node.children:
                 obj_node.children.pop()
     return obj_node
 
 
-def _name_or_id(obj: TreeObjectBase) -> str:
-    try:
-        return obj.name
-    except AttributeError:
-        return obj.id  # type: ignore
+def _name_or_id(obj: TreeObjectBase, label_by_id: bool) -> str:
+    if label_by_id:
+        try:
+            return obj.id  # type: ignore
+        except AttributeError:
+            return obj.name
+    else:
+        try:
+            return obj.name
+        except AttributeError:
+            return obj.id  # type: ignore

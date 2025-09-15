@@ -250,7 +250,7 @@ def test_inconsistent_source_model(minimal_complete_model, load_model_from_tempf
             )
         assert "source_objects" in str(exc.value)
         assert "'parent_mapping' keys" in str(exc.value)
-        assert "same model" in str(exc.value)
+        assert "same source model" in str(exc.value)
 
 
 def test_inconsistent_source_model_2(minimal_complete_model, load_model_from_tempfile):
@@ -268,7 +268,7 @@ def test_inconsistent_source_model_2(minimal_complete_model, load_model_from_tem
             )
         assert "source_objects" in str(exc.value)
         assert "'parent_mapping' keys" in str(exc.value)
-        assert "same model" in str(exc.value)
+        assert "same source model" in str(exc.value)
 
 
 def test_inconsistent_target_model(minimal_complete_model, load_model_from_tempfile):
@@ -287,7 +287,7 @@ def test_inconsistent_target_model(minimal_complete_model, load_model_from_tempf
             )
         assert "parent_mapping" in str(exc.value)
         assert "'parent_mapping' values" in str(exc.value)
-        assert "same model" in str(exc.value)
+        assert "same target model" in str(exc.value)
 
 
 def test_keep_links_across_models_raises(minimal_complete_model, load_model_from_tempfile):
@@ -306,3 +306,58 @@ def test_keep_links_across_models_raises(minimal_complete_model, load_model_from
         assert "linked_object_handling" in str(exc.value)
         assert "keep" in str(exc.value)
         assert "copy objects between models" in str(exc.value)
+
+
+def test_unit_system_check(minimal_complete_model, load_model_from_tempfile, skip_before_version):
+    """Test that an exception is raised when copying objects between models with different unit systems."""
+    skip_before_version("25.1")  # Cannot change unit system before 25.1
+    # GIVEN: Two models with different unit systems
+    model1 = minimal_complete_model
+    with load_model_from_tempfile() as model2:
+        model2.unit_system = "SI"
+
+        # WHEN: Copying objects across models
+        # THEN: An exception is raised
+        with pytest.raises(ValueError) as exc:
+            recursive_copy(
+                source_objects=[model1],
+                parent_mapping={model1: model2},
+                linked_object_handling="copy",
+            )
+        assert "unit system" in str(exc.value)
+        assert "same unit system" in str(exc.value)
+
+
+def test_empty_parent_mapping(minimal_complete_model):
+    """Test that an exception is raised when parent_mapping is empty."""
+    # GIVEN: A simple model
+    mg = minimal_complete_model.modeling_groups["ModelingGroup.1"]
+    mp = mg.modeling_plies["ModelingPly.1"]
+
+    # WHEN: Recursively copying a Modeling Ply with an empty parent_mapping
+    # THEN: An exception is raised
+    with pytest.raises(ValueError) as exc:
+        recursive_copy(
+            source_objects=[mp],
+            parent_mapping={},  # Empty parent_mapping
+            linked_object_handling="copy",
+        )
+    assert "parent_mapping" in str(exc.value)
+    assert "cannot be empty" in str(exc.value)
+
+
+def test_empty_source_objects(minimal_complete_model):
+    """Test that an exception is raised when source_objects is empty."""
+    # GIVEN: A simple model
+    mg = minimal_complete_model.modeling_groups["ModelingGroup.1"]
+
+    # WHEN: Recursively copying with an empty source_objects list
+    # THEN: An exception is raised
+    with pytest.raises(ValueError) as exc:
+        recursive_copy(
+            source_objects=[],  # Empty source_objects
+            parent_mapping={mg: mg},
+            linked_object_handling="copy",
+        )
+    assert "source_objects" in str(exc.value)
+    assert "cannot be empty" in str(exc.value)

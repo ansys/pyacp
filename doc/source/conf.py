@@ -1,6 +1,7 @@
 """Sphinx documentation configuration file."""
 
 from datetime import datetime
+import doctest
 import inspect
 import os
 import pathlib
@@ -191,6 +192,13 @@ extensions = [
     "pyvista.ext.viewer_directive",
 ]
 
+doctest_default_flags = (
+    doctest.NORMALIZE_WHITESPACE
+    | doctest.ELLIPSIS
+    | doctest.IGNORE_EXCEPTION_DETAIL
+    | doctest.DONT_ACCEPT_TRUE_FOR_1
+)
+
 # Intersphinx mapping
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
@@ -333,3 +341,6 @@ latex_additional_files = [watermark, ansys_logo_white, ansys_logo_white_cropped]
 # change the preamble of latex with customized title page
 # variables are the title of pdf, watermark
 latex_elements = {"preamble": latex.generate_preamble(html_title)}
+
+# PyAnsys tags configuration
+html_context = {"pyansys_tags": ["Structures"]}

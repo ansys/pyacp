@@ -8,6 +8,7 @@ Server management
 
     ACPInstance
     ConnectLaunchConfig
+    ConnectLocalLaunchConfig
     DirectLaunchConfig
     DockerComposeLaunchConfig
     launch_acp

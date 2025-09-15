@@ -33,6 +33,8 @@ from typing_extensions import Self
 if typing.TYPE_CHECKING:  # pragma: no cover
     from pyvista.core.pointset import PolyData, UnstructuredGrid
 
+from packaging.version import Version
+
 from ansys.acp.core._utils.array_conversions import dataarray_to_numpy, to_numpy
 from ansys.api.acp.v0 import mesh_query_pb2, mesh_query_pb2_grpc
 
@@ -113,6 +115,11 @@ def _get_pyvista_mesh_with_all_data(
     )
 
     for name in mesh_data_base._field_names():
+        data = getattr(mesh_data_base, name)
+        # The data can be missing if the field depends on the server version - see
+        # for example the ModelElementalData._field_names method.
+        if data is None:
+            continue
         values = getattr(mesh_data_base, name).values
         target_array = _expand_array(array=values, labels=labels)
         mesh_data_field[name] = target_array
@@ -307,7 +314,7 @@ class ElementalOrNodalDataBase:
     _PB_VALUE_FROM_FIELD_NAME: ClassVar[typing.Callable[[StrEnum], int]]
 
     @classmethod
-    def _field_names(cls) -> list[str]:
+    def _field_names(cls, server_version: Version | None = None) -> list[str]:
         return [
             field.name
             for field in dataclasses.fields(cls)
@@ -459,7 +466,7 @@ def _mesh_data_property_impl(
                 resource_path=self._resource_path,
                 data_types=[
                     wrapped_cls._PB_VALUE_FROM_FIELD_NAME(name)  # type: ignore
-                    for name in wrapped_cls._field_names()
+                    for name in wrapped_cls._field_names(server_version=self._server_version)
                 ],
             ),
         )

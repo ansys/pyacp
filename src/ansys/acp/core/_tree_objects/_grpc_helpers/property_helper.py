@@ -159,8 +159,12 @@ def _get_data_attribute(pb_obj: Message, name: str, check_optional: bool = False
     name_parts = name.split(".")
     if check_optional:
         parent_obj = reduce(getattr, name_parts[:-1], pb_obj)
-        if hasattr(parent_obj, "HasField") and not parent_obj.HasField(name_parts[-1]):
-            return None
+        try:
+            if hasattr(parent_obj, "HasField") and not parent_obj.HasField(name_parts[-1]):
+                return None
+        except ValueError:
+            # The field is not optional, so HasField raises a ValueError.
+            pass
     return reduce(getattr, name_parts, pb_obj)
 
 
@@ -253,7 +257,7 @@ def grpc_data_setter(
     )
     def inner(self: Editable, value: _SET_T) -> None:
         self._get_if_stored()
-        current_value = _get_data_attribute(self._pb_object, name)
+        current_value = _get_data_attribute(self._pb_object, name, check_optional=True)
         value_pb = to_protobuf(value)
         try:
             needs_updating = current_value != value_pb
