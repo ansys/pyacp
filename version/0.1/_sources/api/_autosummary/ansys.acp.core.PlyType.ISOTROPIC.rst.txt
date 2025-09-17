@@ -1,0 +1,13 @@
+.. vale off
+
+ISOTROPIC
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyType.ISOTROPIC
+
+.. minigallery::
+   :add-heading: Examples using PlyType.ISOTROPIC
+
+   ansys.acp.core.PlyType.ISOTROPIC

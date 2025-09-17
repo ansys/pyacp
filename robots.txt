@@ -1,0 +1,5 @@
+User-agent: *
+
+Disallow: /version/0.1
+
+Sitemap: https://acp.docs.pyansys.com/sitemap.xml

@@ -1,0 +1,13 @@
+.. vale off
+
+UP
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CutOffGeometryOrientationType.UP
+
+.. minigallery::
+   :add-heading: Examples using CutOffGeometryOrientationType.UP
+
+   ansys.acp.core.CutOffGeometryOrientationType.UP

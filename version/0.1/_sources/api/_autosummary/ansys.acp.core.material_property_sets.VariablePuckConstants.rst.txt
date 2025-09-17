@@ -1,0 +1,45 @@
+﻿.. vale off
+
+VariablePuckConstants
+=====================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: VariablePuckConstants
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VariablePuckConstants.M
+      VariablePuckConstants.field_variables
+      VariablePuckConstants.interface_weakening_factor
+      VariablePuckConstants.interpolation_options
+      VariablePuckConstants.mat_type
+      VariablePuckConstants.p_21_neg
+      VariablePuckConstants.p_21_pos
+      VariablePuckConstants.p_22_neg
+      VariablePuckConstants.p_22_pos
+      VariablePuckConstants.s
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VariablePuckConstants
+
+   ansys.acp.core.material_property_sets.VariablePuckConstants

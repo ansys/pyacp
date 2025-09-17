@@ -1,0 +1,13 @@
+.. vale off
+
+fabric\_fiber\_angle
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.fabric_fiber_angle
+
+.. minigallery::
+   :add-heading: Examples using Material.fabric_fiber_angle
+
+   ansys.acp.core.Material.fabric_fiber_angle
