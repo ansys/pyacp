@@ -191,7 +191,7 @@ mapdl.clear()
 mapdl.input(str(dat_path_initial))
 cdb_filename_initial = "model_from_mechanical.cdb"
 mapdl.cdwrite(fname="model_from_mechanical", ext="cdb")
-mapdl.download("model_from_mechanical.cdb", working_dir_path)
+mapdl.download(cdb_filename_initial, working_dir_path)
 
 # %%
 # Set up the ACP model
