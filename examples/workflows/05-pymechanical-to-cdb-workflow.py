@@ -108,7 +108,7 @@ input_geometry = pyacp.extras.example_helpers.get_example_file(
 # Load the geometry into Mechanical, generate the mesh, and define the
 # load case.
 
-cdb_path_initial = working_dir_path / "model_from_mechanical.cdb"
+dat_path_initial = working_dir_path / "model_from_mechanical.dat"
 mechanical.run_python_script(
     # This script runs in the Mechanical Python environment, which uses IronPython 2.7.
     textwrap.dedent(
@@ -173,10 +173,25 @@ mechanical.run_python_script(
         force.Location = front_edge
 
         # Export the model to a CDB file
-        analysis.WriteInputFile({str(cdb_path_initial)!r})
+        analysis.WriteInputFile({str(dat_path_initial)!r})
         """
     )
 )
+
+# %%
+# Convert the DAT file to a CDB file with MAPDL
+# --------------------------------------------------------
+#
+# Converting the model from DAT to CDB format improves the reliability of loading
+# the model into downstream analyses.
+# The unit system information is lost when exporting to CDB, so it needs to be
+# specified when importing the CDB file into ACP.
+
+mapdl.clear()
+mapdl.input(str(dat_path_initial))
+cdb_filename_initial = "model_from_mechanical.cdb"
+mapdl.cdwrite(fname="model_from_mechanical", ext="cdb")
+mapdl.download(cdb_filename_initial, working_dir_path)
 
 # %%
 # Set up the ACP model
@@ -185,7 +200,9 @@ mechanical.run_python_script(
 # Setup basic ACP lay-up based on the CDB file.
 
 
-model = acp.import_model(path=cdb_path_initial, format="ansys:cdb")
+model = acp.import_model(
+    path=working_dir_path / cdb_filename_initial, format="ansys:cdb", unit_system="MKS"
+)
 
 mat = model.create_material(name="mat")
 
