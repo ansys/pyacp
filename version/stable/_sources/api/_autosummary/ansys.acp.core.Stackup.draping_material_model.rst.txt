@@ -1,0 +1,13 @@
+.. vale off
+
+draping\_material\_model
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.draping_material_model
+
+.. minigallery::
+   :add-heading: Examples using Stackup.draping_material_model
+
+   ansys.acp.core.Stackup.draping_material_model

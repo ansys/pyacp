@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.parent
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.parent
+
+   ansys.acp.core.SphericalSelectionRule.parent

@@ -1,0 +1,13 @@
+.. vale off
+
+RELATIVE\_THICKNESS\_CORRECTION
+===============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.RELATIVE_THICKNESS_CORRECTION
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.RELATIVE_THICKNESS_CORRECTION
+
+   ansys.acp.core.ElementalDataType.RELATIVE_THICKNESS_CORRECTION

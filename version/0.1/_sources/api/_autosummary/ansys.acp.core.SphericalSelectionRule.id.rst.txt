@@ -1,0 +1,13 @@
+.. vale off
+
+id
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.id
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.id
+
+   ansys.acp.core.SphericalSelectionRule.id

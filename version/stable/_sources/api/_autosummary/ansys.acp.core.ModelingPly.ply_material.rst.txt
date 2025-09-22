@@ -1,0 +1,13 @@
+.. vale off
+
+ply\_material
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.ply_material
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.ply_material
+
+   ansys.acp.core.ModelingPly.ply_material

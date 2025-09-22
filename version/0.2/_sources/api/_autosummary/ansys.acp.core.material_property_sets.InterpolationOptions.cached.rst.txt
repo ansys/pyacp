@@ -1,0 +1,13 @@
+.. vale off
+
+cached
+======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoattribute:: InterpolationOptions.cached
+
+.. minigallery::
+   :add-heading: Examples using InterpolationOptions.cached
+
+   ansys.acp.core.material_property_sets.InterpolationOptions.cached

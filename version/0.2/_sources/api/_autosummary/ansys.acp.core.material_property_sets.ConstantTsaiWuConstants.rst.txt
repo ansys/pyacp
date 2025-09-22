@@ -1,0 +1,38 @@
+﻿.. vale off
+
+ConstantTsaiWuConstants
+=======================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: ConstantTsaiWuConstants
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConstantTsaiWuConstants.XY
+      ConstantTsaiWuConstants.XZ
+      ConstantTsaiWuConstants.YZ
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ConstantTsaiWuConstants
+
+   ansys.acp.core.material_property_sets.ConstantTsaiWuConstants
