@@ -9,8 +9,10 @@ services:
       [
         "${PYACP_DELAY:-100ms}",
         "${PYACP_RATE:-1mbit}",
-        "--server-address=0.0.0.0:50051",
-        "--allow-remote-access" # Access to the server is limited to '127.0.0.1' by the 'port' option below
+        "--host=0.0.0.0",
+        "--port=50051",
+        "--allow-remote-host", # Access to the server is limited to '127.0.0.1' by the 'port' option below
+        "--transport-mode=insecure",
       ]
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
