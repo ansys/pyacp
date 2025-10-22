@@ -27,6 +27,13 @@ import subprocess  # nosec B404
 from typing import TextIO
 import uuid
 
+from ansys.tools.local_product_launcher.grpc_transport import (
+    InsecureOptions,
+    MTLSOptions,
+    TransportOptions,
+    UDSOptions,
+    WNUAOptions,
+)
 from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
 from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
 from ansys.tools.local_product_launcher.interface import (
@@ -34,7 +41,6 @@ from ansys.tools.local_product_launcher.interface import (
     LauncherProtocol,
     ServerType,
 )
-from ansys.tools.local_product_launcher.grpc_transport import TransportOptions, UDSOptions, WNUAOptions, MTLSOptions, InsecureOptions
 from ansys.tools.path import get_latest_ansys_installation
 
 from .common import ServerKey
@@ -77,11 +83,15 @@ class DirectLaunchConfig:
     )
     uds_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
-        metadata={METADATA_KEY_DOC: "Directory for Unix Domain Sockets. Only used if transport_mode is 'uds'."},
+        metadata={
+            METADATA_KEY_DOC: "Directory for Unix Domain Sockets. Only used if transport_mode is 'uds'."
+        },
     )
-    certs_dir: str  | pathlib.Path | None = dataclasses.field(
+    certs_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
-        metadata={METADATA_KEY_DOC: "Directory containing TLS certificates. Only used if transport_mode is 'mtls'."},
+        metadata={
+            METADATA_KEY_DOC: "Directory containing TLS certificates. Only used if transport_mode is 'mtls'."
+        },
     )
 
 
@@ -112,14 +122,18 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
             if self._config.transport_mode == "wnua":
                 raise RuntimeError("WNUA transport mode is only supported on Windows.")
         # Determine if the patched or unpatched version of the server is used
-        is_patched_server = 'allow-remote-host' in subprocess.check_output([
-            self._config.binary_path, "--help",
-        ],
-        text=True)
+        is_patched_server = "allow-remote-host" in subprocess.check_output(
+            [
+                self._config.binary_path,
+                "--help",
+            ],
+            text=True,
+        )
         if not is_patched_server and self._config.transport_mode != "insecure":
             raise RuntimeError(
-                f"The {self._config.transport_mode} transport mode requires a patched version of the ACP gRPC server. "
-                "Please install the latest Service Pack for your Ansys installation."
+                f"The {self._config.transport_mode} transport mode requires a patched version "
+                "of the ACP gRPC server. Please install the latest Service Pack for your "
+                "Ansys installation."
             )
 
         if self._config.transport_mode == "uds":
@@ -148,18 +162,18 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
                 ]
                 self._transport_options = TransportOptions(
                     mode="wnua",
-                    options=WNUAOptions(
-                        port=port
-                    ),
+                    options=WNUAOptions(port=port),
                 )
             elif self._config.transport_mode == "mtls":
+                if self._config.certs_dir is None:
+                    raise ValueError("certs_dir must be specified for mtls transport mode.")
                 transport_args = [
                     "--transport-mode=mtls",
                     "--host=localhost",
                     f"--port={port}",
                 ]
                 if self._config.certs_dir is not None:
-                    transport_args.extend(["--certs-dir", self._config.certs_dir])
+                    transport_args.extend(["--certs-dir", str(self._config.certs_dir)])
                 self._transport_options = TransportOptions(
                     mode="mtls",
                     options=MTLSOptions(
@@ -189,13 +203,13 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
                     ),
                 )
 
-
         self._stdout = open(stdout_file, mode="w", encoding="utf-8")
         self._stderr = open(stderr_file, mode="w", encoding="utf-8")
         self._process = subprocess.Popen(  # nosec B603: documented in 'security_considerations.rst'
             [
                 self._config.binary_path,
-            ] + transport_args,
+            ]
+            + transport_args,
             stdout=self._stdout,
             stderr=self._stderr,
             text=True,
@@ -219,5 +233,5 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         return check_grpc_health(channel=channel, timeout=timeout)
 
     @property
-    def transport_options(self) -> TransportOptions:
+    def transport_options(self) -> dict[str, TransportOptions]:
         return {ServerKey.MAIN: self._transport_options}

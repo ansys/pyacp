@@ -32,9 +32,13 @@ import pathlib
 import subprocess  # nosec B404
 import uuid
 
-import grpc
 from packaging.version import parse as parse_version
 
+from ansys.tools.local_product_launcher.grpc_transport import (
+    InsecureOptions,
+    MTLSOptions,
+    TransportOptions,
+)
 from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
 from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
 from ansys.tools.local_product_launcher.interface import (
@@ -43,7 +47,6 @@ from ansys.tools.local_product_launcher.interface import (
     LauncherProtocol,
     ServerType,
 )
-from ansys.tools.local_product_launcher.grpc_transport import TransportOptions, MTLSOptions, InsecureOptions
 
 from .common import ServerKey
 
@@ -106,11 +109,15 @@ class DockerComposeLaunchConfig:
     )
     transport_mode: str = dataclasses.field(
         default="mtls",
-        metadata={METADATA_KEY_DOC: "gRPC transport mode to use. Only 'mtls' and 'insecure' are supported."},
+        metadata={
+            METADATA_KEY_DOC: "gRPC transport mode to use. Only 'mtls' and 'insecure' are supported."
+        },
     )
     certs_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
-        metadata={METADATA_KEY_DOC: "Directory containing TLS certificates. Only used if transport_mode is 'mtls'."},
+        metadata={
+            METADATA_KEY_DOC: "Directory containing TLS certificates. Only used if transport_mode is 'mtls'."
+        },
     )
 
 
@@ -131,7 +138,9 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
             ) from err
 
         if self._config.transport_mode == "mtls" and self._config.certs_dir is None:
-            raise ValueError("The 'certs_dir' parameter must be specified when 'transport_mode' is 'mtls'.")
+            raise ValueError(
+                "The 'certs_dir' parameter must be specified when 'transport_mode' is 'mtls'."
+            )
 
         self._env = copy.deepcopy(os.environ)
         self._env.update(
@@ -141,6 +150,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
         )
         self._env.update(self._config.environment_variables)
         if self._config.transport_mode == "mtls":
+            assert self._config.certs_dir is not None
             self._env["CERTS_DIR"] = str(pathlib.Path(self._config.certs_dir).resolve())
 
         self._keep_volume = config.keep_volume
@@ -184,6 +194,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
             port_acp, port_ft = find_free_ports(2)
 
             if self._config.transport_mode == "mtls":
+                assert self._config.certs_dir is not None
                 self._transport_options = {
                     ServerKey.MAIN: TransportOptions(
                         mode="mtls",

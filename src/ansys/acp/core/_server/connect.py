@@ -27,13 +27,19 @@ import pathlib
 
 import grpc
 
+from ansys.tools.local_product_launcher.grpc_transport import (
+    InsecureOptions,
+    MTLSOptions,
+    TransportOptions,
+    UDSOptions,
+    WNUAOptions,
+)
 from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
 from ansys.tools.local_product_launcher.interface import (
     METADATA_KEY_DOC,
     LauncherProtocol,
     ServerType,
 )
-from ansys.tools.local_product_launcher.grpc_transport import TransportOptions, UDSOptions, WNUAOptions, MTLSOptions, InsecureOptions
 
 from .common import ServerKey
 
@@ -43,6 +49,7 @@ __all__ = ["ConnectLaunchConfig", "ConnectLocalLaunchConfig"]
 @dataclasses.dataclass(kw_only=True)
 class ConnectLaunchConfig:
     """Configuration options for attaching to an existing ACP server."""
+
     acp_transport_mode: str = dataclasses.field(
         default="mtls",
         metadata={METADATA_KEY_DOC: "gRPC transport mode to use."},
@@ -53,24 +60,36 @@ class ConnectLaunchConfig:
     )
     acp_port: int = dataclasses.field(
         default=50555,
-        metadata={METADATA_KEY_DOC: "Port to connect to for the main ACP server."
-    },
+        metadata={METADATA_KEY_DOC: "Port to connect to for the main ACP server."},
     )
     acp_uds_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
-        metadata={METADATA_KEY_DOC: "Directory for Unix Domain Sockets to connect to ACP. Only used if acp_transport_mode is 'uds'."},
+        metadata={
+            METADATA_KEY_DOC: (
+                "Directory for Unix Domain Sockets to connect to ACP. "
+                "Only used if acp_transport_mode is 'uds'."
+            )
+        },
     )
-    acp_uds_id : str | None = dataclasses.field(
+    acp_uds_id: str | None = dataclasses.field(
         default=None,
-        metadata={METADATA_KEY_DOC: "Identifier for the Unix Domain Socket to connect to ACP. Only used if acp_transport_mode is 'uds'."},
+        metadata={
+            METADATA_KEY_DOC: "Identifier for the Unix Domain Socket to connect to ACP. "
+            "Only used if acp_transport_mode is 'uds'."
+        },
     )
-    acp_certs_dir: str  | pathlib.Path | None = dataclasses.field(
+    acp_certs_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
-        metadata={METADATA_KEY_DOC: "Directory containing TLS certificates for ACP. Only used if acp_transport_mode is 'mtls'."},
+        metadata={
+            METADATA_KEY_DOC: "Directory containing TLS certificates for ACP. "
+            "Only used if acp_transport_mode is 'mtls'."
+        },
     )
     acp_allow_remote_host: bool = dataclasses.field(
         default=False,
-        metadata={METADATA_KEY_DOC: "Whether to allow connecting to a remote host for the main ACP server."},
+        metadata={
+            METADATA_KEY_DOC: "Whether to allow connecting to a remote host for the main ACP server."
+        },
     )
 
     filetransfer_transport_mode: str = dataclasses.field(
@@ -87,19 +106,30 @@ class ConnectLaunchConfig:
     )
     filetransfer_uds_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
-        metadata={METADATA_KEY_DOC: "Directory for Unix Domain Sockets to connect to file transfer. Only used if filetransfer_transport_mode is 'uds'."},
+        metadata={
+            METADATA_KEY_DOC: "Directory for Unix Domain Sockets to connect to file transfer. "
+            "Only used if filetransfer_transport_mode is 'uds'."
+        },
     )
     filetransfer_uds_id: str | None = dataclasses.field(
         default=None,
-        metadata={METADATA_KEY_DOC: "Identifier for the Unix Domain Socket to connect to file transfer. Only used if filetransfer_transport_mode is 'uds'."},
+        metadata={
+            METADATA_KEY_DOC: "Identifier for the Unix Domain Socket to connect to file transfer. "
+            "Only used if filetransfer_transport_mode is 'uds'."
+        },
     )
-    filetransfer_certs_dir: str  | pathlib.Path | None = dataclasses.field(
+    filetransfer_certs_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
-        metadata={METADATA_KEY_DOC: "Directory containing TLS certificates for file transfer. Only used if filetransfer_transport_mode is 'mtls'."},
+        metadata={
+            METADATA_KEY_DOC: "Directory containing TLS certificates for file transfer. "
+            "Only used if filetransfer_transport_mode is 'mtls'."
+        },
     )
     filetransfer_allow_remote_host: bool = dataclasses.field(
         default=False,
-        metadata={METADATA_KEY_DOC: "Whether to allow connecting to a remote host for the file transfer server."},
+        metadata={
+            METADATA_KEY_DOC: "Whether to allow connecting to a remote host for the file transfer server."
+        },
     )
 
 
@@ -111,7 +141,7 @@ class ConnectLauncher(LauncherProtocol[ConnectLaunchConfig]):
         self._config = config
 
         if self._config.acp_transport_mode == "uds":
-            acp_options = UDSOptions(
+            acp_options: UDSOptions | WNUAOptions | MTLSOptions | InsecureOptions = UDSOptions(
                 uds_service="acp_grpcserver",
                 uds_dir=self._config.acp_uds_dir,
                 uds_id=self._config.acp_uds_id,
@@ -137,7 +167,7 @@ class ConnectLauncher(LauncherProtocol[ConnectLaunchConfig]):
             raise ValueError(f"Invalid transport mode for ACP: {self._config.acp_transport_mode}")
 
         if self._config.filetransfer_transport_mode == "uds":
-            filetransfer_options = UDSOptions(
+            filetransfer_options: UDSOptions | MTLSOptions | InsecureOptions = UDSOptions(
                 uds_service="filetransfer_grpcserver",
                 uds_dir=self._config.filetransfer_uds_dir,
                 uds_id=self._config.filetransfer_uds_id,
@@ -156,7 +186,9 @@ class ConnectLauncher(LauncherProtocol[ConnectLaunchConfig]):
                 allow_remote_host=self._config.filetransfer_allow_remote_host,
             )
         else:
-            raise ValueError(f"Invalid transport mode for filetransfer: {self._config.filetransfer_transport_mode}")
+            raise ValueError(
+                f"Invalid transport mode for filetransfer: {self._config.filetransfer_transport_mode}"
+            )
 
         self._acp_transport_options = TransportOptions(
             mode=self._config.acp_transport_mode,
@@ -166,7 +198,6 @@ class ConnectLauncher(LauncherProtocol[ConnectLaunchConfig]):
             mode=self._config.filetransfer_transport_mode,
             options=filetransfer_options,
         )
-
 
     def start(self) -> None:
         # Since this launcher simply connects to an existing server, we don't need to start it.
