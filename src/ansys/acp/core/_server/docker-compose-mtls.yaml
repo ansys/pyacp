@@ -14,7 +14,6 @@ services:
         "--allow-remote-host", # Access to the server is limited to '127.0.0.1' by the 'ports' option
         "--transport-mode=mtls",
         "--certs-dir=/certs",
-        "--log-level=debug",
       ]
     volumes:
       - "acp_data:/home/container/workdir/"

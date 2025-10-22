@@ -12,10 +12,12 @@ services:
         "--host=0.0.0.0",
         "--port=50051",
         "--allow-remote-host", # Access to the server is limited to '127.0.0.1' by the 'port' option below
-        "--transport-mode=insecure",
+        "--transport-mode=mtls",
+        "--certs-dir=/certs",
       ]
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
+      - "${CERTS_DIR}:/certs:ro"
     ports:
       - "127.0.0.1:${PORT_ACP:-50555}:50051"
     working_dir: /home/container/workdir
@@ -30,9 +32,18 @@ services:
     ports:
       - "127.0.0.1:${PORT_FILETRANSFER:-50556}:50000"
     working_dir: /home/container/workdir
+    user: "1000:1000"
+    command:
+      [
+        "--host=0.0.0.0",
+        "--port=50000",
+        "--allow-remote-host", # Access to the server is limited to '127.0.0.1' by the 'ports' option
+        "--transport-mode=mtls",
+        "--certs-dir=/certs",
+      ]
     volumes:
       - "acp_data:/home/container/workdir/"
-    user: "1000:1000"
+      - "${CERTS_DIR}:/certs:ro"
 
 volumes:
   acp_data:
