@@ -27,8 +27,6 @@ import subprocess  # nosec B404
 from typing import TextIO
 import uuid
 
-import grpc
-
 from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
 from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
 from ansys.tools.local_product_launcher.interface import (
@@ -55,17 +53,6 @@ def _get_default_binary_path() -> str:
         return binary_path
     except (ValueError, FileNotFoundError):
         return ""
-
-# _TRANSPORT_MODE = "insecure"
-
-# def _create_channel(port: int) -> grpc.Channel:
-#     return create_channel(
-#         host="localhost",
-#         port=port,
-#         transport_mode=_TRANSPORT_MODE,
-#         certs_dir="D:\\ANSYSDev\\internal\\acp1\\grpc\\test\\python\\insecure_certs",
-#         grpc_options=[("grpc.max_receive_message_length", _GRPC_MAX_MESSAGE_LENGTH)],
-#     )
 
 
 @dataclasses.dataclass

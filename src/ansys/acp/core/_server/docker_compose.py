@@ -103,6 +103,14 @@ class DockerComposeLaunchConfig:
             METADATA_KEY_NOPROMPT: True,
         },
     )
+    transport_mode: str = dataclasses.field(
+        default="mtls",
+        metadata={METADATA_KEY_DOC: "gRPC transport mode to use. Only 'mtls' and 'insecure' are supported."},
+    )
+    certs_dir: str | None = dataclasses.field(
+        default=None,
+        metadata={METADATA_KEY_DOC: "Directory containing TLS certificates. Only used if transport_mode is 'mtls'."},
+    )
 
 
 class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
