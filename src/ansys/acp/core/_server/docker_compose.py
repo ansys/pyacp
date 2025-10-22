@@ -284,5 +284,5 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
         return True
 
     @property
-    def transport_options(self) -> dict[str, TransportOptionsType]:
+    def transport_options(self) -> dict[str, TransportOptionsType]:  # type: ignore[override]
         return self._transport_options
