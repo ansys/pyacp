@@ -17,12 +17,12 @@ services:
       ]
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
-      - "${CERTS_DIR}:/certs:ro"
     ports:
       - "127.0.0.1:${PORT_ACP:-50555}:50051"
     working_dir: /home/container/workdir
     volumes:
       - "acp_data:/home/container/workdir/"
+      - "${CERTS_DIR}:/certs:ro"
     user: "0:0"
     cap_add:
       - NET_ADMIN
