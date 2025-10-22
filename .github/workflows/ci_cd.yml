@@ -401,7 +401,7 @@ jobs:
           --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
-          --transport-mode=insecure
+          --transport_mode=insecure
           --keep_volume=False
           --overwrite_default
         env:
@@ -487,7 +487,7 @@ jobs:
           --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
-          --transport-mode=insecure
+          --transport_mode=insecure
           --keep_volume=False
           --overwrite_default
         env:
