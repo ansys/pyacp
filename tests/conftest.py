@@ -76,7 +76,7 @@ SOURCE_ROOT_DIR = TEST_ROOT_DIR.parent
 
 SERVER_BIN_OPTION_KEY = "--server-bin"
 LICENSE_SERVER_OPTION_KEY = "--license-server"
-SERVER_URLS_OPTION_KEY = "--server-urls"
+SERVER_PORTS_OPTION_KEY = "--server-ports"
 DOCKER_IMAGENAME_OPTION_KEY = "--docker-image"
 NO_SERVER_LOGS_OPTION_KEY = "--no-server-log-files"
 BUILD_BENCHMARK_IMAGE_OPTION_KEY = "--build-benchmark-image"
@@ -102,7 +102,7 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         action="store",
         help=(
             "Docker image to be used for running the test. Only used if "
-            f"'{SERVER_BIN_OPTION_KEY}' and '{SERVER_URLS_OPTION_KEY}' are not set."
+            f"'{SERVER_BIN_OPTION_KEY}' and '{SERVER_PORTS_OPTION_KEY}' are not set."
         ),
         default="ghcr.io/ansys/acp:latest",
     )
@@ -118,9 +118,9 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         help="Value of the ANSYSLMD_LICENSE_FILE for the gRPC server.",
     )
     parser.addoption(
-        SERVER_URLS_OPTION_KEY,
+        SERVER_PORTS_OPTION_KEY,
         action="store",
-        help="URLs of the gRPC server and file transfer server, separated by a comma.",
+        help="Ports of the gRPC server and file transfer server, separated by a comma.",
     )
     parser.addoption(
         NO_SERVER_LOGS_OPTION_KEY,
@@ -144,7 +144,7 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
     """Parse test options and set up server handling."""
     server_bin = request.config.getoption(SERVER_BIN_OPTION_KEY)
     license_server = request.config.getoption(LICENSE_SERVER_OPTION_KEY)
-    server_urls = request.config.getoption(SERVER_URLS_OPTION_KEY)
+    server_ports = request.config.getoption(SERVER_PORTS_OPTION_KEY)
     transport_mode = request.config.getoption(TRANSPORT_MODE_OPTION_KEY)
     if transport_mode is None:
         if server_bin:
@@ -152,10 +152,10 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
         else:
             transport_mode = "mtls"
 
-    if sum(bool(option) for option in (server_bin, server_urls, license_server)) != 1:
+    if sum(bool(option) for option in (server_bin, server_ports, license_server)) != 1:
         raise ValueError(
             f"Exactly one of '{SERVER_BIN_OPTION_KEY}', '{LICENSE_SERVER_OPTION_KEY}' and "
-            f"'{SERVER_URLS_OPTION_KEY}' must be specified."
+            f"'{SERVER_PORTS_OPTION_KEY}' must be specified."
         )
 
     if request.config.getoption(NO_SERVER_LOGS_OPTION_KEY):
@@ -185,13 +185,22 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
             ),
             overwrite_default=True,
         )
-    elif server_urls:
+    elif server_ports:
         # Connect to an existing ACP server.
-        acp_url, filetransfer_url = server_urls.split(",")
+        acp_port, filetransfer_port = server_ports.split(",")
         set_config_for(
             product_name="ACP",
             launch_mode=LaunchMode.CONNECT,
-            config=ConnectLaunchConfig(url_acp=acp_url, url_filetransfer=filetransfer_url),
+            config=ConnectLaunchConfig(
+                acp_host="localhost",
+                filetransfer_host="localhost",
+                acp_port=int(acp_port),
+                filetransfer_port=int(filetransfer_port),
+                acp_transport_mode=transport_mode,
+                filetransfer_transport_mode=transport_mode,
+                acp_certs_dir=certs_dir,
+                filetransfer_certs_dir=certs_dir,
+            ),
             overwrite_default=True,
         )
 
