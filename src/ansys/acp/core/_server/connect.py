@@ -30,7 +30,7 @@ import grpc
 from ansys.tools.local_product_launcher.grpc_transport import (
     InsecureOptions,
     MTLSOptions,
-    TransportOptions,
+    TransportOptionsType,
     UDSOptions,
     WNUAOptions,
 )
@@ -141,24 +141,24 @@ class ConnectLauncher(LauncherProtocol[ConnectLaunchConfig]):
         self._config = config
 
         if self._config.acp_transport_mode == "uds":
-            acp_options: UDSOptions | WNUAOptions | MTLSOptions | InsecureOptions = UDSOptions(
+            acp_transport_options: TransportOptionsType = UDSOptions(
                 uds_service="acp_grpcserver",
                 uds_dir=self._config.acp_uds_dir,
                 uds_id=self._config.acp_uds_id,
             )
         elif self._config.acp_transport_mode == "wnua":
-            acp_options = WNUAOptions(
+            acp_transport_options = WNUAOptions(
                 port=self._config.acp_port,
             )
         elif self._config.acp_transport_mode == "mtls":
-            acp_options = MTLSOptions(
+            acp_transport_options = MTLSOptions(
                 certs_dir=self._config.acp_certs_dir,
                 host=self._config.acp_host,
                 port=self._config.acp_port,
                 allow_remote_host=self._config.acp_allow_remote_host,
             )
         elif self._config.acp_transport_mode == "insecure":
-            acp_options = InsecureOptions(
+            acp_transport_options = InsecureOptions(
                 host=self._config.acp_host,
                 port=self._config.acp_port,
                 allow_remote_host=self._config.acp_allow_remote_host,
@@ -167,20 +167,20 @@ class ConnectLauncher(LauncherProtocol[ConnectLaunchConfig]):
             raise ValueError(f"Invalid transport mode for ACP: {self._config.acp_transport_mode}")
 
         if self._config.filetransfer_transport_mode == "uds":
-            filetransfer_options: UDSOptions | MTLSOptions | InsecureOptions = UDSOptions(
+            filetransfer_transport_options: UDSOptions | MTLSOptions | InsecureOptions = UDSOptions(
                 uds_service="filetransfer_grpcserver",
                 uds_dir=self._config.filetransfer_uds_dir,
                 uds_id=self._config.filetransfer_uds_id,
             )
         elif self._config.filetransfer_transport_mode == "mtls":
-            filetransfer_options = MTLSOptions(
+            filetransfer_transport_options = MTLSOptions(
                 certs_dir=self._config.filetransfer_certs_dir,
                 host=self._config.filetransfer_host,
                 port=self._config.filetransfer_port,
                 allow_remote_host=self._config.filetransfer_allow_remote_host,
             )
         elif self._config.filetransfer_transport_mode == "insecure":
-            filetransfer_options = InsecureOptions(
+            filetransfer_transport_options = InsecureOptions(
                 host=self._config.filetransfer_host,
                 port=self._config.filetransfer_port,
                 allow_remote_host=self._config.filetransfer_allow_remote_host,
@@ -190,14 +190,8 @@ class ConnectLauncher(LauncherProtocol[ConnectLaunchConfig]):
                 f"Invalid transport mode for filetransfer: {self._config.filetransfer_transport_mode}"
             )
 
-        self._acp_transport_options = TransportOptions(
-            mode=self._config.acp_transport_mode,
-            options=acp_options,
-        )
-        self._filetransfer_transport_options = TransportOptions(
-            mode=self._config.filetransfer_transport_mode,
-            options=filetransfer_options,
-        )
+        self._acp_transport_options = acp_transport_options
+        self._filetransfer_transport_options = filetransfer_transport_options
 
     def start(self) -> None:
         # Since this launcher simply connects to an existing server, we don't need to start it.
@@ -209,13 +203,13 @@ class ConnectLauncher(LauncherProtocol[ConnectLaunchConfig]):
 
     def check(self, timeout: float | None = None) -> bool:
         for transport_opt in self.transport_options.values():
-            channel = transport_opt.to_channel()
+            channel = transport_opt.create_channel()
             if not check_grpc_health(channel=channel, timeout=timeout):
                 return False
         return True
 
     @property
-    def transport_options(self) -> dict[str, TransportOptions]:
+    def transport_options(self) -> dict[str, TransportOptionsType]:
         return {
             ServerKey.MAIN: self._acp_transport_options,
             ServerKey.FILE_TRANSFER: self._filetransfer_transport_options,

@@ -30,7 +30,7 @@ import uuid
 from ansys.tools.local_product_launcher.grpc_transport import (
     InsecureOptions,
     MTLSOptions,
-    TransportOptions,
+    TransportOptionsType,
     UDSOptions,
     WNUAOptions,
 )
@@ -105,7 +105,7 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         self._stdout: TextIO
         self._stderr: TextIO
         self._url: str
-        self._transport_options: TransportOptions
+        self._transport_options: TransportOptionsType
 
     def start(self) -> None:
         stdout_file = self._config.stdout_file
@@ -145,13 +145,10 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
             if self._config.uds_dir is not None:
                 transport_args.append(f"--uds-dir={self._config.uds_dir}")
 
-            self._transport_options = TransportOptions(
-                mode="uds",
-                options=UDSOptions(
-                    uds_service="acp_grpcserver",
-                    uds_dir=self._config.uds_dir,
-                    uds_id=uds_id,
-                ),
+            self._transport_options = UDSOptions(
+                uds_service="acp_grpcserver",
+                uds_dir=self._config.uds_dir,
+                uds_id=uds_id,
             )
         else:
             port = find_free_ports()[0]
@@ -160,10 +157,7 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
                     "--transport-mode=wnua",
                     f"--port={port}",
                 ]
-                self._transport_options = TransportOptions(
-                    mode="wnua",
-                    options=WNUAOptions(port=port),
-                )
+                self._transport_options = WNUAOptions(port=port)
             elif self._config.transport_mode == "mtls":
                 if self._config.certs_dir is None:
                     raise ValueError("certs_dir must be specified for mtls transport mode.")
@@ -174,14 +168,11 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
                 ]
                 if self._config.certs_dir is not None:
                     transport_args.extend(["--certs-dir", str(self._config.certs_dir)])
-                self._transport_options = TransportOptions(
-                    mode="mtls",
-                    options=MTLSOptions(
-                        certs_dir=self._config.certs_dir,
-                        host="localhost",
-                        port=port,
-                        allow_remote_host=False,
-                    ),
+                self._transport_options = MTLSOptions(
+                    certs_dir=self._config.certs_dir,
+                    host="localhost",
+                    port=port,
+                    allow_remote_host=False,
                 )
             elif self._config.transport_mode == "insecure":
                 if is_patched_server:
@@ -195,12 +186,9 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
                         f"--server-address=localhost:{port}",
                     ]
 
-                self._transport_options = TransportOptions(
-                    mode="insecure",
-                    options=InsecureOptions(
-                        host="localhost",
-                        port=port,
-                    ),
+                self._transport_options = InsecureOptions(
+                    host="localhost",
+                    port=port,
                 )
 
         self._stdout = open(stdout_file, mode="w", encoding="utf-8")
@@ -229,9 +217,9 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         self._stderr.close()
 
     def check(self, timeout: float | None = None) -> bool:
-        channel = self._transport_options.to_channel()
+        channel = self._transport_options.create_channel()
         return check_grpc_health(channel=channel, timeout=timeout)
 
     @property
-    def transport_options(self) -> dict[str, TransportOptions]:
+    def transport_options(self) -> dict[str, TransportOptionsType]:
         return {ServerKey.MAIN: self._transport_options}

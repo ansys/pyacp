@@ -37,7 +37,6 @@ from packaging.version import parse as parse_version
 from ansys.tools.local_product_launcher.grpc_transport import (
     InsecureOptions,
     MTLSOptions,
-    TransportOptions,
 )
 from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
 from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
@@ -51,6 +50,10 @@ from ansys.tools.local_product_launcher.interface import (
 from .common import ServerKey
 
 __all__ = ["DockerComposeLaunchConfig"]
+
+TransportOptionsType = (
+    InsecureOptions | MTLSOptions
+)  # UDS and WNUA are not supported for docker-compose
 
 
 def _get_default_license_server() -> str:
@@ -128,7 +131,7 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
     def __init__(self, *, config: DockerComposeLaunchConfig):
         self._compose_name = f"pyacp_compose_{uuid.uuid4().hex}"
         self._config = config
-        self._transport_options: dict[str, TransportOptions] = {}
+        self._transport_options: dict[str, TransportOptionsType] = {}
 
         try:
             import ansys.tools.filetransfer  # noqa
@@ -196,42 +199,30 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
             if self._config.transport_mode == "mtls":
                 assert self._config.certs_dir is not None
                 self._transport_options = {
-                    ServerKey.MAIN: TransportOptions(
-                        mode="mtls",
-                        options=MTLSOptions(
-                            host="localhost",
-                            port=port_acp,
-                            certs_dir=pathlib.Path(self._config.certs_dir),
-                            allow_remote_host=False,
-                        ),
+                    ServerKey.MAIN: MTLSOptions(
+                        host="localhost",
+                        port=port_acp,
+                        certs_dir=pathlib.Path(self._config.certs_dir),
+                        allow_remote_host=False,
                     ),
-                    ServerKey.FILE_TRANSFER: TransportOptions(
-                        mode="mtls",
-                        options=MTLSOptions(
-                            host="localhost",
-                            port=port_ft,
-                            certs_dir=pathlib.Path(self._config.certs_dir),
-                            allow_remote_host=False,
-                        ),
+                    ServerKey.FILE_TRANSFER: MTLSOptions(
+                        host="localhost",
+                        port=port_ft,
+                        certs_dir=pathlib.Path(self._config.certs_dir),
+                        allow_remote_host=False,
                     ),
                 }
             elif self._config.transport_mode == "insecure":
                 self._transport_options = {
-                    ServerKey.MAIN: TransportOptions(
-                        mode="insecure",
-                        options=InsecureOptions(
-                            host="localhost",
-                            port=port_acp,
-                            allow_remote_host=False,
-                        ),
+                    ServerKey.MAIN: InsecureOptions(
+                        host="localhost",
+                        port=port_acp,
+                        allow_remote_host=False,
                     ),
-                    ServerKey.FILE_TRANSFER: TransportOptions(
-                        mode="insecure",
-                        options=InsecureOptions(
-                            host="localhost",
-                            port=port_ft,
-                            allow_remote_host=False,
-                        ),
+                    ServerKey.FILE_TRANSFER: InsecureOptions(
+                        host="localhost",
+                        port=port_ft,
+                        allow_remote_host=False,
                     ),
                 }
             else:
@@ -287,11 +278,11 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
 
     def check(self, timeout: float | None = None) -> bool:
         for transport_options in self.transport_options.values():
-            channel = transport_options.to_channel()
+            channel = transport_options.create_channel()
             if not check_grpc_health(channel=channel, timeout=timeout):
                 return False
         return True
 
     @property
-    def transport_options(self) -> dict[str, TransportOptions]:
+    def transport_options(self) -> dict[str, TransportOptionsType]:
         return self._transport_options
