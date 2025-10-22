@@ -81,6 +81,7 @@ DOCKER_IMAGENAME_OPTION_KEY = "--docker-image"
 NO_SERVER_LOGS_OPTION_KEY = "--no-server-log-files"
 BUILD_BENCHMARK_IMAGE_OPTION_KEY = "--build-benchmark-image"
 VALIDATE_BENCHMARKS_ONLY_OPTION_KEY = "--validate-benchmarks-only"
+TRANSPORT_MODE_OPTION_KEY = "--transport-mode"
 SERVER_STARTUP_TIMEOUT = 30.0
 SERVER_STOP_TIMEOUT = 2.0
 SERVER_CHECK_TIMEOUT = 2.0
@@ -104,6 +105,12 @@ def pytest_addoption(parser: pytest.Parser) -> None:
             f"'{SERVER_BIN_OPTION_KEY}' and '{SERVER_URLS_OPTION_KEY}' are not set."
         ),
         default="ghcr.io/ansys/acp:latest",
+    )
+    parser.addoption(
+        TRANSPORT_MODE_OPTION_KEY,
+        action="store",
+        help="gRPC transport mode to use (uds, wnua, mtls, insecure).",
+        default=None,
     )
     parser.addoption(
         LICENSE_SERVER_OPTION_KEY,
@@ -138,6 +145,12 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
     server_bin = request.config.getoption(SERVER_BIN_OPTION_KEY)
     license_server = request.config.getoption(LICENSE_SERVER_OPTION_KEY)
     server_urls = request.config.getoption(SERVER_URLS_OPTION_KEY)
+    transport_mode = request.config.getoption(TRANSPORT_MODE_OPTION_KEY)
+    if transport_mode is None:
+        if server_bin:
+            transport_mode = "wnua" if os.name == "nt" else "uds"
+        else:
+            transport_mode = "mtls"
 
     if sum(bool(option) for option in (server_bin, server_urls, license_server)) != 1:
         raise ValueError(
@@ -152,6 +165,11 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
         server_log_stdout = TEST_ROOT_DIR / "server_log_out.txt"
         server_log_stderr = TEST_ROOT_DIR / "server_log_err.txt"
 
+    if transport_mode == "mtls":
+        certs_dir = TEST_ROOT_DIR / "insecure_certs"
+    else:
+        certs_dir = None
+
     if server_bin:
         # Run the ACP server directly, with the provided binary.
         # This assumes that licensing is already configured on the host.
@@ -162,6 +180,8 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
                 binary_path=server_bin,
                 stdout_file=str(server_log_stdout),
                 stderr_file=str(server_log_stderr),
+                transport_mode=transport_mode,
+                certs_dir=certs_dir,
             ),
             overwrite_default=True,
         )
@@ -195,6 +215,8 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
                 image_name_filetransfer=image_name_filetransfer,
                 license_server=license_server,
                 keep_volume=False,
+                transport_mode=transport_mode,
+                certs_dir=certs_dir,
             ),
             overwrite_default=True,
         )

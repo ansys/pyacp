@@ -1,8 +1,13 @@
 services:
   acp-grpc-server:
-    extends:
-      file: ./docker-compose-base.yaml
-      service: acp-grpc-server
+    restart: unless-stopped
+    image: ${IMAGE_NAME_ACP:-ghcr.io/ansys-internal/acp-fox:latest}
+    environment:
+      - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
+    ports:
+      - "127.0.0.1:${PORT_ACP:-50555}:50051"
+    working_dir: /home/container/workdir
+    user: "1000:1000"
     command: [
         "--host=0.0.0.0",
         "--port=50051",
@@ -12,9 +17,12 @@ services:
     volumes:
       - "acp_data:/home/container/workdir/"
   ansys-tools-filetransfer:
-    extends:
-      file: ./docker-compose-base.yaml
-      service: ansys-tools-filetransfer
+    restart: unless-stopped
+    image: ${IMAGE_NAME_FILETRANSFER:-ghcr.io/ansys-internal/tools-filetransfer-fox:latest}
+    ports:
+      - "127.0.0.1:${PORT_FILETRANSFER:-50556}:50000"
+    working_dir: /home/container/workdir
+    user: "1000:1000"
     command:
       [
         "--host=0.0.0.0",

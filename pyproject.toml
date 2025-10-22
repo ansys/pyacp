@@ -15,7 +15,7 @@ authors = ["ANSYS, Inc. <pyansys.core@ansys.com>"]                # this is requ
 maintainers = ["ANSYS, Inc. <pyansys.core@ansys.com>"]
 license = "MIT"
 packages = [{ include = "ansys", from = "src" }]
-include = ["src/**/docker-compose.yaml"]
+include = ["src/**/docker-compose-*.yaml"]
 
 # Less than critical but helpful
 classifiers = [

@@ -75,11 +75,11 @@ class DirectLaunchConfig:
         default="wnua" if os.name == "nt" else "uds",
         metadata={METADATA_KEY_DOC: "gRPC transport mode to use."},
     )
-    uds_dir: str | None = dataclasses.field(
+    uds_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
         metadata={METADATA_KEY_DOC: "Directory for Unix Domain Sockets. Only used if transport_mode is 'uds'."},
     )
-    certs_dir: str | None = dataclasses.field(
+    certs_dir: str  | pathlib.Path | None = dataclasses.field(
         default=None,
         metadata={METADATA_KEY_DOC: "Directory containing TLS certificates. Only used if transport_mode is 'mtls'."},
     )
@@ -98,17 +98,31 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         self._transport_options: TransportOptions
 
     def start(self) -> None:
-        # TODO: implement patterns
         stdout_file = self._config.stdout_file
         stderr_file = self._config.stderr_file
 
+        # Sanity checks
         binary = pathlib.Path(self._config.binary_path)
         if not binary.exists():
             raise FileNotFoundError(f"Binary not found: '{binary}'")
+        if os.name == "nt":
+            if self._config.transport_mode == "uds":
+                raise RuntimeError("UDS transport mode is not supported on Windows.")
+        else:
+            if self._config.transport_mode == "wnua":
+                raise RuntimeError("WNUA transport mode is only supported on Windows.")
+        # Determine if the patched or unpatched version of the server is used
+        is_patched_server = 'allow-remote-host' in subprocess.check_output([
+            self._config.binary_path, "--help",
+        ],
+        text=True)
+        if not is_patched_server and self._config.transport_mode != "insecure":
+            raise RuntimeError(
+                f"The {self._config.transport_mode} transport mode requires a patched version of the ACP gRPC server. "
+                "Please install the latest Service Pack for your Ansys installation."
+            )
 
         if self._config.transport_mode == "uds":
-            if os.name == "nt":
-                raise RuntimeError("UDS transport mode is not supported on Windows.")
             uds_id = uuid.uuid4().hex
             transport_args = [
                 "--transport-mode=uds",
@@ -128,8 +142,6 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         else:
             port = find_free_ports()[0]
             if self._config.transport_mode == "wnua":
-                if os.name != "nt":
-                    raise RuntimeError("WNUA transport mode is only supported on Windows.")
                 transport_args = [
                     "--transport-mode=wnua",
                     f"--port={port}",
@@ -158,11 +170,17 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
                     ),
                 )
             elif self._config.transport_mode == "insecure":
-                transport_args = [
-                    "--transport-mode=insecure",
-                    "--host=localhost",
-                    f"--port={port}",
-                ]
+                if is_patched_server:
+                    transport_args = [
+                        "--transport-mode=insecure",
+                        "--host=localhost",
+                        f"--port={port}",
+                    ]
+                else:
+                    transport_args = [
+                        f"--server-address=localhost:{port}",
+                    ]
+
                 self._transport_options = TransportOptions(
                     mode="insecure",
                     options=InsecureOptions(
