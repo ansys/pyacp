@@ -497,10 +497,13 @@ jobs:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
         if: ${{ matrix.build_type == 'full' }}
 
-      - name: Launch MAPDL and DPF servers via docker-compose
+      - name: Launch MAPDL and DPF servers via docker-compose, pull images
         run: |
           docker compose -f ./docker-compose/docker-compose-extras.yaml up -d
+          docker pull $IMAGE_NAME
+          docker pull ghcr.io/ansys-internal/tools-filetransfer-fox:latest
         env:
+          IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
           ANSYS_DPF_ACCEPT_LA: "Y"
         if: ${{ matrix.build_type == 'full' }}
