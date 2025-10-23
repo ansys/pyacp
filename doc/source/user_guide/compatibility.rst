@@ -10,6 +10,14 @@ However, some features are not available when using older versions of the server
 Version 2025R1 is the first full release of the ACP gRPC server, which makes
 almost all features of ACP available through PyACP.
 
+
+.. important::
+
+  For the 2024R2, 2025R1, and 2025R2 release, we strongly recommend using the Service
+  Pack versions 2024R2 SP5, 2025R1 SP4, and 2025R2 SP3 or newer, respectively.
+  Older versions of each release support only the INSECURE transport mode, which
+  is not recommended for production use.
+
 Added in 2025R2
 ~~~~~~~~~~~~~~~
 

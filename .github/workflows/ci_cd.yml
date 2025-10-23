@@ -401,7 +401,7 @@ jobs:
           --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
-          --transport_mode=insecure
+          --transport_mode=mtls
           --certs_dir=null
           --keep_volume=False
           --overwrite_default
@@ -418,6 +418,7 @@ jobs:
           IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
           PYACP_DOC_SKIP_GALLERY: "true"
           PYACP_DOC_SKIP_API: "true"
+          ANSYS_GRPC_CERTIFICATES: ${{ github.workspace }}/tests/insecure_certs
 
   docs:
     name: Build Documentation
@@ -488,7 +489,7 @@ jobs:
           --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
-          --transport_mode=insecure
+          --transport_mode=mtls
           --certs_dir=null
           --keep_volume=False
           --overwrite_default
@@ -515,6 +516,7 @@ jobs:
           SPHINXOPT_NITPICKY: ${{ matrix.build_type == 'quick' && ' ' || '-n' }}
           PYACP_DOC_SKIP_GALLERY: ${{ matrix.build_type == 'quick' && 'true' || 'false' }}
           PYACP_DOC_SKIP_API: ${{ matrix.build_type == 'quick' && 'true' || 'false' }}
+          ANSYS_GRPC_CERTIFICATES: ${{ github.workspace }}/tests/insecure_certs
 
       - name: Stop and clean up MAPDL and DPF servers
         run: |
