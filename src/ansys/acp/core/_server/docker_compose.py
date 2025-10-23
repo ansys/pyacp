@@ -71,10 +71,14 @@ class DockerComposeLaunchConfig:
         default="ghcr.io/ansys/acp:latest",
         metadata={METADATA_KEY_DOC: "Docker image running the ACP gRPC server."},
     )
+    """Docker image running the ACP gRPC server."""
+
     image_name_filetransfer: str = dataclasses.field(
         default="ghcr.io/ansys/tools-filetransfer:latest",
         metadata={METADATA_KEY_DOC: "Docker image running the file transfer service."},
     )
+    """Docker image running the file transfer service."""
+
     license_server: str = dataclasses.field(
         default=_get_default_license_server(),
         metadata={
@@ -84,10 +88,14 @@ class DockerComposeLaunchConfig:
             )
         },
     )
+    """License server passed to the container as 'ANSYSLMD_LICENSE_FILE' environment variable."""
+
     keep_volume: bool = dataclasses.field(
         default=False,
         metadata={METADATA_KEY_DOC: "If true, keep the volume after docker compose is stopped."},
     )
+    """If true, keep the volume after docker compose is stopped."""
+
     compose_file: str | None = dataclasses.field(
         default=None,
         metadata={
@@ -98,6 +106,8 @@ class DockerComposeLaunchConfig:
             METADATA_KEY_NOPROMPT: True,
         },
     )
+    """Docker compose file used to start the services. Uses the compose files shipped with PyACP by default."""
+
     environment_variables: dict[str, str] = dataclasses.field(
         default_factory=dict,
         metadata={
@@ -110,18 +120,37 @@ class DockerComposeLaunchConfig:
             METADATA_KEY_NOPROMPT: True,
         },
     )
+    """Additional environment variables passed to docker compose.
+
+    These take precedence over environment variables defined through another configuration
+    option (for example 'license_server' which defines 'ANSYSLMD_LICENSE_FILE') or the pre-existing
+    environment variables.
+    """
+
     transport_mode: str = dataclasses.field(
         default="mtls",
         metadata={
-            METADATA_KEY_DOC: "gRPC transport mode to use. Only 'mtls' and 'insecure' are supported."
+            METADATA_KEY_DOC: "Specifies the gRPC transport mode to use. Only 'mtls' and 'insecure' are supported."
         },
     )
+    """
+    Specifies the gRPC transport mode to use. Possible values are:
+
+    - ``"mtls"`` : Mutual TLS
+    - ``"insecure"`` : Insecure TCP connection (not recommended)
+    """
+
     certs_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
         metadata={
             METADATA_KEY_DOC: "Directory containing TLS certificates. Only used if transport_mode is 'mtls'."
         },
     )
+    """
+    Directory path for mTLS certificate files. Defaults to the ``ANSYS_GRPC_CERTIFICATES``
+    environment variable, or ``certs`` if the variable is not set.
+    Only used if ``transport_mode`` is ``"mtls"``.
+    """
 
 
 class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):

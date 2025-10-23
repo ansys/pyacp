@@ -65,21 +65,6 @@ def _get_default_binary_path() -> str:
 class DirectLaunchConfig:
     """Configuration options for launching ACP as a sub-process."""
 
-    # Attributes
-    # ----------
-    # binary_path :
-    #     Path to the ACP gRPC server executable.
-    # stdout_file :
-    #
-    # stderr_file :
-    #     File in which the server stderr is stored.
-
-    # uds_dir :
-    #
-    # certs_dir :
-
-    # """
-
     binary_path: str = dataclasses.field(
         default=_get_default_binary_path(),
         metadata={METADATA_KEY_DOC: "Path to the ACP gRPC server executable."},
@@ -105,8 +90,9 @@ class DirectLaunchConfig:
             f"Possible values: '{'wnua' if os.name == 'nt' else 'uds'}' (default), 'mtls', 'insecure'."
         },
     )
-    """
-    Specifies the gRPC transport mode to use. Possible values are:
+    """Specifies the gRPC transport mode to use.
+
+    Possible values are:
 
     - ``"uds"`` : Unix Domain Sockets (default on Unix systems, unsupported on Windows)
     - ``"wnua"`` : Windows Named User Authentication (default on Windows systems, unsupported on Unix)
@@ -117,10 +103,11 @@ class DirectLaunchConfig:
     uds_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
         metadata={
-            METADATA_KEY_DOC: "Directory for Unix Domain Sockets. Only used if transport_mode is 'uds'."
+            METADATA_KEY_DOC: "Directory path for UDS socket files (default: ~/.conn). "
+            "Only used if transport_mode is 'uds'."
         },
     )
-    """Directory for Unix Domain Sockets. Only used if ``transport_mode`` is ``"uds"``."""
+    """Directory path for UDS socket files (default: ``~/.conn``). Only used if ``transport_mode`` is ``"uds"``."""
 
     certs_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
@@ -128,9 +115,9 @@ class DirectLaunchConfig:
             METADATA_KEY_DOC: "Directory path for mTLS certificate files. Only used if transport_mode is 'mtls'."
         },
     )
-    """
-    Directory path for mTLS certificate files. Defaults to the ``ANSYS_GRPC_CERTIFICATES``
-    environment variable, or ``certs`` if the variable is not set.
+    """Directory path for mTLS certificate files.
+
+    Defaults to the ``ANSYS_GRPC_CERTIFICATES`` environment variable, or ``certs`` if the variable is not set.
     Only used if ``transport_mode`` is ``"mtls"``.
     """
 

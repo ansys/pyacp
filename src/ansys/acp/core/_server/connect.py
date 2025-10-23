@@ -50,72 +50,133 @@ class ConnectLaunchConfig:
 
     acp_transport_mode: str = dataclasses.field(
         default="mtls",
-        metadata={METADATA_KEY_DOC: "gRPC transport mode to use."},
+        metadata={
+            METADATA_KEY_DOC: "Specifies the gRPC transport mode to use for the main ACP server. "
+            "Possible values: 'mtls' (default), 'uds' (Unix only), 'wnua' (Windows only), 'insecure'."
+        },
     )
+    """
+    Specifies the gRPC transport mode to use for the main ACP server. Possible values are:
+
+    - ``"mtls"`` : Mutual TLS (default)
+    - ``"uds"`` : Unix Domain Sockets (unsupported on Windows)
+    - ``"wnua"`` : Windows Named User Authentication (unsupported on Unix)
+    - ``"insecure"`` : Insecure TCP connection (not recommended)
+    """
+
     acp_host: str = dataclasses.field(
         default="localhost",
-        metadata={METADATA_KEY_DOC: "Host to connect to for the main ACP server."},
+        metadata={
+            METADATA_KEY_DOC: "Hostname or IP address to connect to for the main ACP server."
+        },
     )
+    """Hostname or IP address to connect to for the main ACP server."""
+
     acp_port: int = dataclasses.field(
         default=50555,
-        metadata={METADATA_KEY_DOC: "Port to connect to for the main ACP server."},
+        metadata={METADATA_KEY_DOC: "Port number to connect to for the main ACP server."},
     )
+    """Port number to connect to for the main ACP server."""
+
     acp_uds_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
         metadata={
             METADATA_KEY_DOC: (
-                "Directory for Unix Domain Sockets to connect to ACP. "
+                "Directory path for UDS socket files used by the main ACP server (default: ~/.conn). "
                 "Only used if acp_transport_mode is 'uds'."
             )
         },
     )
+    """
+    Directory path for UDS socket files used by the main ACP server (default: ~/.conn).
+    Only used if ``acp_transport_mode`` is ``"uds"``.
+    """
+
     acp_uds_id: str | None = dataclasses.field(
         default=None,
         metadata={
-            METADATA_KEY_DOC: "Identifier for the Unix Domain Socket to connect to ACP. "
-            "Only used if acp_transport_mode is 'uds'."
+            METADATA_KEY_DOC: "Optional ID for UDS socket file naming for the main ACP server "
+            "(acp_grpcserver-<id>.sock). Only used if acp_transport_mode is 'uds'."
         },
     )
+    """
+    Optional ID for UDS socket file naming for the main ACP server (acp_grpcserver-<id>.sock).
+    Only used if ``acp_transport_mode`` is ``"uds"``.
+    """
+
     acp_certs_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
         metadata={
-            METADATA_KEY_DOC: "Directory containing TLS certificates for ACP. "
+            METADATA_KEY_DOC: "Directory path for mTLS certificate files for the main ACP server. "
             "Only used if acp_transport_mode is 'mtls'."
         },
     )
+    """Directory path for mTLS certificate files for the main ACP server.
+
+    Defaults to the ``ANSYS_GRPC_CERTIFICATES`` environment variable, or ``certs`` if the variable is not set.
+    Only used if ``acp_transport_mode`` is ``"mtls"``.
+    """
+
     acp_allow_remote_host: bool = dataclasses.field(
         default=False,
         metadata={
             METADATA_KEY_DOC: "Whether to allow connecting to a remote host for the main ACP server."
         },
     )
+    """Whether to allow connecting to a remote host for the main ACP server."""
 
     filetransfer_transport_mode: str = dataclasses.field(
         default="mtls",
-        metadata={METADATA_KEY_DOC: "gRPC transport mode to use for file transfer."},
+        metadata={
+            METADATA_KEY_DOC: "Specifies the gRPC transport mode to use. "
+            "Possible values: 'mtls' (default), 'uds', 'insecure'."
+        },
     )
+    """Specifies the gRPC transport mode to use for the file transfer server. Possible values are:
+
+    - ``"mtls"`` : Mutual TLS (default)
+    - ``"uds"`` : Unix Domain Sockets (unsupported on Windows)
+    - ``"insecure"`` : Insecure TCP connection (not recommended)
+    """
+
     filetransfer_host: str = dataclasses.field(
         default="localhost",
         metadata={METADATA_KEY_DOC: "Host to connect to for the file transfer server."},
     )
+    """Hostname or IP address to connect to for the file transfer server."""
+
     filetransfer_port: int = dataclasses.field(
         default=50556,
         metadata={METADATA_KEY_DOC: "Port to connect to for the file transfer server."},
     )
+    """Port number to connect to for the file transfer server."""
+
     filetransfer_uds_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
         metadata={
-            METADATA_KEY_DOC: "Directory for Unix Domain Sockets to connect to file transfer. "
-            "Only used if filetransfer_transport_mode is 'uds'."
+            METADATA_KEY_DOC: (
+                "Directory path for UDS socket files used by the filetransfer server (default: ~/.conn). "
+                "Only used if acp_transport_mode is 'uds'."
+            )
         },
     )
+    """
+    Directory path for UDS socket files used by the filetransfer server (default: ~/.conn).
+    Only used if ``filetransfer_transport_mode`` is ``"uds"``.
+    """
+
     filetransfer_uds_id: str | None = dataclasses.field(
         default=None,
         metadata={
-            METADATA_KEY_DOC: "Identifier for the Unix Domain Socket to connect to file transfer. "
-            "Only used if filetransfer_transport_mode is 'uds'."
+            METADATA_KEY_DOC: "Optional ID for UDS socket file naming for the filetransfer server "
+            "(filetransfer_grpcserver-<id>.sock). Only used if filetransfer_transport_mode is 'uds'."
         },
     )
+    """
+    Optional ID for UDS socket file naming for the filetransfer server (filetransfer_grpcserver-<id>.sock).
+    Only used if ``filetransfer_transport_mode`` is ``"uds"``.
+    """
+
     filetransfer_certs_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
         metadata={
@@ -123,12 +184,19 @@ class ConnectLaunchConfig:
             "Only used if filetransfer_transport_mode is 'mtls'."
         },
     )
+    """Directory path for mTLS certificate files for the filetransfer server.
+
+    Defaults to the ``ANSYS_GRPC_CERTIFICATES`` environment variable, or ``certs`` if the variable is not set.
+    Only used if ``filetransfer_transport_mode`` is ``"mtls"``.
+    """
+
     filetransfer_allow_remote_host: bool = dataclasses.field(
         default=False,
         metadata={
             METADATA_KEY_DOC: "Whether to allow connecting to a remote host for the file transfer server."
         },
     )
+    """Whether to allow connecting to a remote host for the filetransfer server."""
 
 
 class ConnectLauncher(LauncherProtocol[ConnectLaunchConfig]):
@@ -218,47 +286,78 @@ class ConnectLauncher(LauncherProtocol[ConnectLaunchConfig]):
 class ConnectLocalLaunchConfig:
     """Configuration options for attaching to an existing ACP server without filetransfer."""
 
-    acp_transport_mode: str = dataclasses.field(
+    transport_mode: str = dataclasses.field(
         default="mtls",
-        metadata={METADATA_KEY_DOC: "gRPC transport mode to use."},
+        metadata={
+            METADATA_KEY_DOC: "Specifies the gRPC transport mode to use."
+            "Possible values: 'mtls' (default), 'uds' (Unix only), 'wnua' (Windows only), 'insecure'."
+        },
     )
-    acp_host: str = dataclasses.field(
+    """Specifies the gRPC transport mode to use.
+
+    Possible values are:
+    - ``"mtls"`` : Mutual TLS (default)
+    - ``"uds"`` : Unix Domain Sockets (unsupported on Windows)
+    - ``"wnua"`` : Windows Named User Authentication (unsupported on Unix)
+    - ``"insecure"`` : Insecure TCP connection (not recommended)
+    """
+
+    host: str = dataclasses.field(
         default="localhost",
-        metadata={METADATA_KEY_DOC: "Host to connect to for the main ACP server."},
+        metadata={METADATA_KEY_DOC: "Hostname or IP to connect to."},
     )
-    acp_port: int = dataclasses.field(
+    """Hostname or IP to connect to."""
+
+    port: int = dataclasses.field(
         default=50555,
-        metadata={METADATA_KEY_DOC: "Port to connect to for the main ACP server."},
+        metadata={METADATA_KEY_DOC: "Port number to connect to."},
     )
-    acp_uds_dir: str | pathlib.Path | None = dataclasses.field(
+    """Port number to connect to."""
+
+    uds_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
         metadata={
             METADATA_KEY_DOC: (
-                "Directory for Unix Domain Sockets to connect to ACP. "
-                "Only used if acp_transport_mode is 'uds'."
+                "Directory path for UDS socket files (default: ~/.conn). "
+                "Only used if transport_mode is 'uds'."
             )
         },
     )
-    acp_uds_id: str | None = dataclasses.field(
+    """Directory path for UDS socket files (default: ~/.conn).
+
+    Only used if ``transport_mode`` is ``"uds"``.
+    """
+
+    uds_id: str | None = dataclasses.field(
         default=None,
         metadata={
-            METADATA_KEY_DOC: "Identifier for the Unix Domain Socket to connect to ACP. "
-            "Only used if acp_transport_mode is 'uds'."
+            METADATA_KEY_DOC: "Optional ID for UDS socket file naming (acp_grpcserver-<id>.sock). "
+            "Only used if transport_mode is 'uds'."
         },
     )
-    acp_certs_dir: str | pathlib.Path | None = dataclasses.field(
+    """
+    Optional ID for UDS socket file naming (acp_grpcserver-<id>.sock).
+    Only used if ``transport_mode`` is ``"uds"``.
+    """
+
+    certs_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,
         metadata={
-            METADATA_KEY_DOC: "Directory containing TLS certificates for ACP. "
-            "Only used if acp_transport_mode is 'mtls'."
+            METADATA_KEY_DOC: "Directory path for mTLS certificate files. "
+            "Only used if transport_mode is 'mtls'."
         },
     )
-    acp_allow_remote_host: bool = dataclasses.field(
+    """Directory path for mTLS certificate files.
+
+    Defaults to the ``ANSYS_GRPC_CERTIFICATES`` environment variable, or ``certs`` if the variable is not set.
+    Only used if ``transport_mode`` is ``"mtls"``.
+    """
+
+    allow_remote_host: bool = dataclasses.field(
         default=False,
-        metadata={
-            METADATA_KEY_DOC: "Whether to allow connecting to a remote host for the main ACP server."
-        },
+        metadata={METADATA_KEY_DOC: "Whether to allow connecting to a remote host."},
     )
+    """Whether to allow connecting to a remote host."""
 
 
 class ConnectLocalLauncher(LauncherProtocol[ConnectLocalLaunchConfig]):
@@ -267,31 +366,31 @@ class ConnectLocalLauncher(LauncherProtocol[ConnectLocalLaunchConfig]):
 
     def __init__(self, *, config: ConnectLocalLaunchConfig):
         self._config = config
-        if self._config.acp_transport_mode == "uds":
+        if self._config.transport_mode == "uds":
             acp_transport_options: TransportOptionsType = UDSOptions(
                 uds_service="acp_grpcserver",
-                uds_dir=self._config.acp_uds_dir,
-                uds_id=self._config.acp_uds_id,
+                uds_dir=self._config.uds_dir,
+                uds_id=self._config.uds_id,
             )
-        elif self._config.acp_transport_mode == "wnua":
+        elif self._config.transport_mode == "wnua":
             acp_transport_options = WNUAOptions(
-                port=self._config.acp_port,
+                port=self._config.port,
             )
-        elif self._config.acp_transport_mode == "mtls":
+        elif self._config.transport_mode == "mtls":
             acp_transport_options = MTLSOptions(
-                certs_dir=self._config.acp_certs_dir,
-                host=self._config.acp_host,
-                port=self._config.acp_port,
-                allow_remote_host=self._config.acp_allow_remote_host,
+                certs_dir=self._config.certs_dir,
+                host=self._config.host,
+                port=self._config.port,
+                allow_remote_host=self._config.allow_remote_host,
             )
-        elif self._config.acp_transport_mode == "insecure":
+        elif self._config.transport_mode == "insecure":
             acp_transport_options = InsecureOptions(
-                host=self._config.acp_host,
-                port=self._config.acp_port,
-                allow_remote_host=self._config.acp_allow_remote_host,
+                host=self._config.host,
+                port=self._config.port,
+                allow_remote_host=self._config.allow_remote_host,
             )
         else:
-            raise ValueError(f"Invalid transport mode for ACP: {self._config.acp_transport_mode}")
+            raise ValueError(f"Invalid transport mode for ACP: {self._config.transport_mode}")
 
         self._acp_transport_options = acp_transport_options
 
