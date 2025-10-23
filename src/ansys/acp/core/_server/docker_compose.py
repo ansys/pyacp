@@ -252,9 +252,11 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 # The '--wait' flag is only available from version >= 2.1.1 of docker compose:
                 # https://github.com/docker/compose/commit/72e4519cbfb6cdfc600e6ebfa377ce4b8e162c78
                 cmd.append("--wait")
-            subprocess.check_call(  # nosec B603: documented in 'security_considerations.rst'
-                cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+            proc_res = subprocess.run(  # nosec B603: documented in 'security_considerations.rst'
+                cmd, env=env, capture_output=True, text=True
             )
+            if proc_res.returncode != 0:
+                raise RuntimeError(f"Docker compose failed to start:\n{proc_res.stderr}")
 
     def stop(self, *, timeout: float | None = None) -> None:
         # The compose file needs to be passed for all commands with docker-compose 1.X.
