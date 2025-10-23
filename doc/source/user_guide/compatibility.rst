@@ -13,8 +13,9 @@ almost all features of ACP available through PyACP.
 
 .. important::
 
-  For the 2024R2, 2025R1, and 2025R2 release, we strongly recommend using the Service
-  Pack versions 2024R2 SP5, 2025R1 SP4, and 2025R2 SP3 or newer, respectively.
+  For the 2024R2, 2025R1, and 2025R2 release, it is strongly recommended to use
+  the Service Pack versions 2024R2 SP5, 2025R1 SP4, and 2025R2 SP3 or newer, respectively.
+
   Older versions of each release support only the INSECURE transport mode, which
   is not recommended for production use.
 
