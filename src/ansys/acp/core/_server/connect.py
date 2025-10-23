@@ -55,8 +55,9 @@ class ConnectLaunchConfig:
             "Possible values: 'mtls' (default), 'uds' (Unix only), 'wnua' (Windows only), 'insecure'."
         },
     )
-    """
-    Specifies the gRPC transport mode to use for the main ACP server. Possible values are:
+    """Specifies the gRPC transport mode to use for the main ACP server.
+
+    Possible values are:
 
     - ``"mtls"`` : Mutual TLS (default)
     - ``"uds"`` : Unix Domain Sockets (unsupported on Windows)
@@ -88,8 +89,9 @@ class ConnectLaunchConfig:
         },
     )
     """
-    Directory path for UDS socket files used by the main ACP server (default: ~/.conn).
-    Only used if ``acp_transport_mode`` is ``"uds"``.
+    Directory path for UDS socket files used by the main ACP server.
+
+    Defaults to ``~/.conn``. Only used if ``acp_transport_mode`` is ``"uds"``.
     """
 
     acp_uds_id: str | None = dataclasses.field(
@@ -132,7 +134,9 @@ class ConnectLaunchConfig:
             "Possible values: 'mtls' (default), 'uds', 'insecure'."
         },
     )
-    """Specifies the gRPC transport mode to use for the file transfer server. Possible values are:
+    """Specifies the gRPC transport mode to use for the file transfer server.
+
+    Possible values are:
 
     - ``"mtls"`` : Mutual TLS (default)
     - ``"uds"`` : Unix Domain Sockets (unsupported on Windows)
@@ -161,8 +165,9 @@ class ConnectLaunchConfig:
         },
     )
     """
-    Directory path for UDS socket files used by the filetransfer server (default: ~/.conn).
-    Only used if ``filetransfer_transport_mode`` is ``"uds"``.
+    Directory path for UDS socket files used by the filetransfer server.
+
+    Defaults to ``~/.conn``. Only used if ``filetransfer_transport_mode`` is ``"uds"``.
     """
 
     filetransfer_uds_id: str | None = dataclasses.field(
@@ -323,9 +328,9 @@ class ConnectLocalLaunchConfig:
             )
         },
     )
-    """Directory path for UDS socket files (default: ~/.conn).
+    """Directory path for UDS socket files.
 
-    Only used if ``transport_mode`` is ``"uds"``.
+    Defaults to ``~/.conn``. Only used if ``transport_mode`` is ``"uds"``.
     """
 
     uds_id: str | None = dataclasses.field(

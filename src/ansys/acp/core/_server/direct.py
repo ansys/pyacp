@@ -107,7 +107,10 @@ class DirectLaunchConfig:
             "Only used if transport_mode is 'uds'."
         },
     )
-    """Directory path for UDS socket files (default: ``~/.conn``). Only used if ``transport_mode`` is ``"uds"``."""
+    """Directory path for UDS socket files.
+
+    Defaults to ``~/.conn``. Only used if ``transport_mode`` is ``"uds"``.
+    """
 
     certs_dir: str | pathlib.Path | None = dataclasses.field(
         default=None,

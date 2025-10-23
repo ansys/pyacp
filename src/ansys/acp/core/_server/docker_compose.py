@@ -133,8 +133,9 @@ class DockerComposeLaunchConfig:
             METADATA_KEY_DOC: "Specifies the gRPC transport mode to use. Only 'mtls' and 'insecure' are supported."
         },
     )
-    """
-    Specifies the gRPC transport mode to use. Possible values are:
+    """Specifies the gRPC transport mode to use.
+
+    Possible values are:
 
     - ``"mtls"`` : Mutual TLS
     - ``"insecure"`` : Insecure TCP connection (not recommended)
@@ -146,9 +147,9 @@ class DockerComposeLaunchConfig:
             METADATA_KEY_DOC: "Directory containing TLS certificates. Only used if transport_mode is 'mtls'."
         },
     )
-    """
-    Directory path for mTLS certificate files. Defaults to the ``ANSYS_GRPC_CERTIFICATES``
-    environment variable, or ``certs`` if the variable is not set.
+    """Directory path for mTLS certificate files.
+
+    Defaults to the ``ANSYS_GRPC_CERTIFICATES`` environment variable, or ``certs`` if the variable is not set.
     Only used if ``transport_mode`` is ``"mtls"``.
     """
 
