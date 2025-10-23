@@ -25,8 +25,6 @@ from __future__ import annotations
 import dataclasses
 import pathlib
 
-import grpc
-
 from ansys.tools.local_product_launcher.grpc_transport import (
     InsecureOptions,
     MTLSOptions,
@@ -220,8 +218,46 @@ class ConnectLauncher(LauncherProtocol[ConnectLaunchConfig]):
 class ConnectLocalLaunchConfig:
     """Configuration options for attaching to an existing ACP server without filetransfer."""
 
-    url_acp: str = dataclasses.field(
-        metadata={METADATA_KEY_DOC: "URL to connect to for the main ACP server."},
+    acp_transport_mode: str = dataclasses.field(
+        default="mtls",
+        metadata={METADATA_KEY_DOC: "gRPC transport mode to use."},
+    )
+    acp_host: str = dataclasses.field(
+        default="localhost",
+        metadata={METADATA_KEY_DOC: "Host to connect to for the main ACP server."},
+    )
+    acp_port: int = dataclasses.field(
+        default=50555,
+        metadata={METADATA_KEY_DOC: "Port to connect to for the main ACP server."},
+    )
+    acp_uds_dir: str | pathlib.Path | None = dataclasses.field(
+        default=None,
+        metadata={
+            METADATA_KEY_DOC: (
+                "Directory for Unix Domain Sockets to connect to ACP. "
+                "Only used if acp_transport_mode is 'uds'."
+            )
+        },
+    )
+    acp_uds_id: str | None = dataclasses.field(
+        default=None,
+        metadata={
+            METADATA_KEY_DOC: "Identifier for the Unix Domain Socket to connect to ACP. "
+            "Only used if acp_transport_mode is 'uds'."
+        },
+    )
+    acp_certs_dir: str | pathlib.Path | None = dataclasses.field(
+        default=None,
+        metadata={
+            METADATA_KEY_DOC: "Directory containing TLS certificates for ACP. "
+            "Only used if acp_transport_mode is 'mtls'."
+        },
+    )
+    acp_allow_remote_host: bool = dataclasses.field(
+        default=False,
+        metadata={
+            METADATA_KEY_DOC: "Whether to allow connecting to a remote host for the main ACP server."
+        },
     )
 
 
@@ -231,6 +267,33 @@ class ConnectLocalLauncher(LauncherProtocol[ConnectLocalLaunchConfig]):
 
     def __init__(self, *, config: ConnectLocalLaunchConfig):
         self._config = config
+        if self._config.acp_transport_mode == "uds":
+            acp_transport_options: TransportOptionsType = UDSOptions(
+                uds_service="acp_grpcserver",
+                uds_dir=self._config.acp_uds_dir,
+                uds_id=self._config.acp_uds_id,
+            )
+        elif self._config.acp_transport_mode == "wnua":
+            acp_transport_options = WNUAOptions(
+                port=self._config.acp_port,
+            )
+        elif self._config.acp_transport_mode == "mtls":
+            acp_transport_options = MTLSOptions(
+                certs_dir=self._config.acp_certs_dir,
+                host=self._config.acp_host,
+                port=self._config.acp_port,
+                allow_remote_host=self._config.acp_allow_remote_host,
+            )
+        elif self._config.acp_transport_mode == "insecure":
+            acp_transport_options = InsecureOptions(
+                host=self._config.acp_host,
+                port=self._config.acp_port,
+                allow_remote_host=self._config.acp_allow_remote_host,
+            )
+        else:
+            raise ValueError(f"Invalid transport mode for ACP: {self._config.acp_transport_mode}")
+
+        self._acp_transport_options = acp_transport_options
 
     def start(self) -> None:
         # Since this launcher simply connects to an existing server, we don't need to start it.
@@ -241,11 +304,14 @@ class ConnectLocalLauncher(LauncherProtocol[ConnectLocalLaunchConfig]):
         return
 
     def check(self, timeout: float | None = None) -> bool:
-        channel = grpc.insecure_channel(self.urls[ServerKey.MAIN])
-        return check_grpc_health(channel=channel, timeout=timeout)
+        for transport_opt in self.transport_options.values():
+            channel = transport_opt.create_channel()
+            if not check_grpc_health(channel=channel, timeout=timeout):
+                return False
+        return True
 
     @property
-    def urls(self) -> dict[str, str]:
+    def transport_options(self) -> dict[str, TransportOptionsType]:
         return {
-            ServerKey.MAIN: self._config.url_acp,
+            ServerKey.MAIN: self._acp_transport_options,
         }

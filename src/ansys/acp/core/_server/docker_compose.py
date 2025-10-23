@@ -141,9 +141,9 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
             ) from err
 
         if self._config.transport_mode == "mtls" and self._config.certs_dir is None:
-            raise ValueError(
-                "The 'certs_dir' parameter must be specified when 'transport_mode' is 'mtls'."
-            )
+            # The default 'certs_dir' needs to be implemented explicitly here
+            # since it needs to be mounted into the docker container.
+            self._config.certs_dir = pathlib.Path.cwd() / "certs"
 
         self._env = copy.deepcopy(os.environ)
         self._env.update(
