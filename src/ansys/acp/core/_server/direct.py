@@ -162,7 +162,7 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
         if not is_patched_server and self._config.transport_mode != "insecure":
             raise RuntimeError(
                 f"The {self._config.transport_mode} transport mode requires a patched version "
-                "of the ACP gRPC server. Please install the latest Service Pack for your "
+                "of the ACP gRPC server. Install the latest Service Pack for your "
                 "Ansys installation."
             )
 

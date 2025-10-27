@@ -72,7 +72,7 @@ gRPC transport mode
 -------------------
 
 The gRPC transport mode used to communicate with the ACP server determines how
-data is transmitted, and how the client and server authenticate each other.
+data is transmitted, and how the client and server are authenticated.
 
 Refer to :ref:`launch_configuration_transport_mode` for more information on the
 available transport modes and their security implications.

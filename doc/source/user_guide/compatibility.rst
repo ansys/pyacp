@@ -13,11 +13,13 @@ almost all features of ACP available through PyACP.
 
 .. important::
 
-  For the 2024R2, 2025R1, and 2025R2 release, it is strongly recommended to use
-  the Service Pack versions 2024R2 SP5, 2025R1 SP4, and 2025R2 SP3 or newer, respectively.
+  For releases 2024 R2, 2025 R1, and 2025 R2, it is strongly recommended that you use 
+  Service Pack versions 2024 R2 SP5, 2025 R1 SP4, and 2025 R2 SP3 or newer, respectively. 
+  In these versions, the gRPC server now restricts connections to only the user who launched 
+  the gRPC server on the local machine (127.0.0.1) by default.
 
-  Older versions of each release support only the INSECURE transport mode, which
-  is not recommended for production use.
+  Older versions of each release only support the INSECURE transport mode, which is not 
+  recommended because there is no encryption or authentication.
 
 Added in 2025R2
 ~~~~~~~~~~~~~~~

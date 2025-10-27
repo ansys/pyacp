@@ -69,7 +69,7 @@ new value by typing it and then pressing the **Enter** key.
     [/dev/null]:
 
     transport_mode:
-        Specifies the gRPC transport mode to use. Possible values: 'uds' (default), 'mtls', 'insecure'.
+        Specifies the gRPC transport mode. Possible values: 'uds' (default), 'mtls', 'insecure'.
 
     uds_dir:
         Directory path for UDS socket files (default: ~/.conn). Only used if transport_mode is 'uds'.
@@ -132,7 +132,7 @@ on the selected ``launch_mode`` and the operating system.
 If needed, each ``launch_mode`` configuration provides additional parameters for controlling the
 transport mode.
 
-The following example shows how to use mutual TLS (mTLS) as the transport mode when using the
+The following example demonstrates how to enable mutual TLS (mTLS) as the transport mode using direct launch:
 ``direct`` launch mode:
 
 .. code::
@@ -152,7 +152,9 @@ In general, the following transport modes are available:
 
 - **UDS (Unix Domain Sockets):**
 
-  Recommended for local connections on Unix systems. A file-based socket is created for communication
+Default transport mode for local connections on Linux systems. The gRPC connection occurs through a file-based socket used for communication between the client and server. The local Unix domain socket file is created in the ``$HOME/.conn`` directory. You can change this directory by setting the ``uds_dir`` parameter to a valid path. This mode does not allow remote connections.
+
+The access permissions to the socket file determine which users can connect to the server. 
   between the client and server. The socket file is created in the ``$HOME/.conn`` directory by default
   but can be customized using the ``uds_dir`` parameter.
 
@@ -160,12 +162,14 @@ In general, the following transport modes are available:
 
 - **WNUA (Windows Named User Authentication):**
 
-  Recommended for local connections on Windows systems. The gRPC server checks that the user making the
+Default transport mode for local connections on Windows systems. The gRPC server checks that the user making the connection is the same as the user who launched the server. If not, the gRPC server rejects the connection. This mode does not allow remote connections. No additional configuration is required.
   connection is the same as the user who started the server. No additional configuration is required.
 
 - **mTLS (Mutual TLS):**
 
-  Recommended for secure remote connections.
+  Recommended transport for secure remote connections. By default, the connection is local only.
+  To make remote connections, you must set the ``allow_remote_host`` option to ``True``, and set
+  the ``host`` parameter to the server's remotely accessible IP or URL.
   mTLS uses the TLS protocol to encrypt communication between client and server and requires that both
   the server and client have the appropriate certificates configured. By default, these certificates
   are searched in the ``certs`` directory within the working directory from which the ACP instance is
@@ -188,11 +192,16 @@ In general, the following transport modes are available:
 
 - **INSECURE (not recommended):**
 
-  Not recommended. Communication between client and server is not encrypted. Any user on the machine
+  Not recommended because there is no encryption or authentication between the 
+  client and server. Any user on the same machine or network can potentially intercept 
+  and read the data being transmitted. To make unsecure remote connections, you must 
+  explicitly enable them with the ``allow_remote_host`` option. Note that insecure transport 
+  does not check user identity, hence any user on the local machine or, if ``allow_remote_host`` 
+  is set, within the network can connect to the gRPC server.
   can potentially intercept and read the data being transmitted. If the ``allow_remote_host`` option
   is used, any user on the network may be able to connect to the server without authentication.
 
-Refer to the API documentation for each launch mode configuration class for details on how to set the transport options:
+For details on setting transport options with launch mode configuration classes, refer to the API documentation:
 
 - :class:`.DirectLaunchConfig` for the ``direct`` launch mode.
 - :class:`.DockerComposeLaunchConfig` for the ``docker_compose`` launch mode.
