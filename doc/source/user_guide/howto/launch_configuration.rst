@@ -133,7 +133,6 @@ If needed, each ``launch_mode`` configuration provides additional parameters for
 transport mode.
 
 The following example demonstrates how to enable mutual TLS (mTLS) as the transport mode using direct launch:
-``direct`` launch mode:
 
 .. code::
 
@@ -154,7 +153,7 @@ In general, the following transport modes are available:
 
 Default transport mode for local connections on Linux systems. The gRPC connection occurs through a file-based socket used for communication between the client and server. The local Unix domain socket file is created in the ``$HOME/.conn`` directory. You can change this directory by setting the ``uds_dir`` parameter to a valid path. This mode does not allow remote connections.
 
-The access permissions to the socket file determine which users can connect to the server. 
+The access permissions to the socket file determine which users can connect to the server.
   between the client and server. The socket file is created in the ``$HOME/.conn`` directory by default
   but can be customized using the ``uds_dir`` parameter.
 
@@ -192,11 +191,11 @@ Default transport mode for local connections on Windows systems. The gRPC server
 
 - **INSECURE (not recommended):**
 
-  Not recommended because there is no encryption or authentication between the 
-  client and server. Any user on the same machine or network can potentially intercept 
-  and read the data being transmitted. To make unsecure remote connections, you must 
-  explicitly enable them with the ``allow_remote_host`` option. Note that insecure transport 
-  does not check user identity, hence any user on the local machine or, if ``allow_remote_host`` 
+  Not recommended because there is no encryption or authentication between the
+  client and server. Any user on the same machine or network can potentially intercept
+  and read the data being transmitted. To make insecure remote connections, you must
+  explicitly enable them with the ``allow_remote_host`` option. Note that insecure transport
+  does not check user identity, hence any user on the local machine or, if ``allow_remote_host``
   is set, within the network can connect to the gRPC server.
   can potentially intercept and read the data being transmitted. If the ``allow_remote_host`` option
   is used, any user on the network may be able to connect to the server without authentication.
