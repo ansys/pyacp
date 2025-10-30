@@ -156,7 +156,9 @@ In general, the following transport modes are available:
   file is created in the ``$HOME/.conn`` directory. You can change this directory by setting the
   ``uds_dir`` parameter to a valid path. This mode does not allow remote connections.
 
-  The access permissions to the socket file determine which users can connect to the server.
+  .. important::
+
+    The access permissions to the socket file determine which users can connect to the server.
 
 - **WNUA (Windows Named User Authentication):**
 
