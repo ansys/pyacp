@@ -11,9 +11,9 @@ services:
     - "127.0.0.1:${PYMAPDL_PORT:-50557}:50052"
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
-      - ANSYS_LOCK="OFF"
-      - ANSYS_MAPDL_GRPC_TRANSPORT="insecure"
-      - ANSYS_MAPDL_GRPC_ALLOWREMOTE="true"
+      - ANSYS_LOCK=OFF
+      - ANSYS_MAPDL_GRPC_TRANSPORT=insecure
+      - ANSYS_MAPDL_GRPC_ALLOWREMOTE=true
   pydpf-composites-server:
     restart: unless-stopped
     image: ${IMAGE_NAME_DPF_COMPOSITES:-ghcr.io/ansys/pydpf-composites:latest}
