@@ -13,6 +13,7 @@ services:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
       - ANSYS_LOCK="OFF"
       - ANSYS_MAPDL_GRPC_TRANSPORT="insecure"
+      - ANSYS_MAPDL_GRPC_ALLOWREMOTE="true"
   pydpf-composites-server:
     restart: unless-stopped
     image: ${IMAGE_NAME_DPF_COMPOSITES:-ghcr.io/ansys/pydpf-composites:latest}
