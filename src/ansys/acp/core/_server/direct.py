@@ -152,12 +152,15 @@ class DirectLauncher(LauncherProtocol[DirectLaunchConfig]):
             if self._config.transport_mode == "wnua":
                 raise RuntimeError("WNUA transport mode is only supported on Windows.")
         # Determine if the patched or unpatched version of the server is used
-        is_patched_server = "allow-remote-host" in subprocess.check_output(
-            [
-                self._config.binary_path,
-                "--help",
-            ],
-            text=True,
+        is_patched_server = (
+            "allow-remote-host"
+            in subprocess.check_output(  # nosec B603, B607: documented in 'security_considerations.rst'
+                [
+                    self._config.binary_path,
+                    "--help",
+                ],
+                text=True,
+            )
         )
         if not is_patched_server and self._config.transport_mode != "insecure":
             raise RuntimeError(
