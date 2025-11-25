@@ -246,7 +246,7 @@ jobs:
           - python-version: "3.13"
             server-version: "2025R1SP4"
           - python-version: "3.13"
-            server-version: "2025R2SP2"
+            server-version: "2025R2SP3"
           - python-version: "3.13"
             server-version: "2026R1"
 
