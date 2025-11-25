@@ -516,7 +516,7 @@ jobs:
       - name: Pull ACP and filetransfer images
         run: |
           docker pull $IMAGE_NAME
-          docker pull ghcr.io/ansys-internal/tools-filetransfer-fox:latest
+          docker pull ghcr.io/ansys/tools-filetransfer:latest
         env:
           IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
         if: ${{ matrix.build_type == 'full' }}

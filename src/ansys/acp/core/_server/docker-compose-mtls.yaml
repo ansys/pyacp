@@ -1,7 +1,7 @@
 services:
   acp-grpc-server:
     restart: unless-stopped
-    image: ${IMAGE_NAME_ACP:-ghcr.io/ansys-internal/acp-fox:latest}
+    image: ${IMAGE_NAME_ACP:-ghcr.io/ansys/acp:latest}
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
     ports:
@@ -20,7 +20,7 @@ services:
       - "${CERTS_DIR}:/certs:ro"
   ansys-tools-filetransfer:
     restart: unless-stopped
-    image: ${IMAGE_NAME_FILETRANSFER:-ghcr.io/ansys-internal/tools-filetransfer-fox:latest}
+    image: ${IMAGE_NAME_FILETRANSFER:-ghcr.io/ansys/tools-filetransfer:latest}
     ports:
       - "127.0.0.1:${PORT_FILETRANSFER:-50556}:50000"
     working_dir: /home/container/workdir
