@@ -505,14 +505,6 @@ jobs:
           ANSYS_DPF_ACCEPT_LA: "Y"
         if: ${{ matrix.build_type == 'full' }}
 
-      - name: Login in Github Container registry (github.actor)
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-        if: ${{ matrix.build_type == 'full' }}
-
       - name: Pull ACP and filetransfer images
         run: |
           docker pull $IMAGE_NAME
