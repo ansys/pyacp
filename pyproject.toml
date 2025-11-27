@@ -15,7 +15,7 @@ authors = ["ANSYS, Inc. <pyansys.core@ansys.com>"]                # this is requ
 maintainers = ["ANSYS, Inc. <pyansys.core@ansys.com>"]
 license = "MIT"
 packages = [{ include = "ansys", from = "src" }]
-include = ["src/**/docker-compose.yaml"]
+include = ["src/**/docker-compose-*.yaml"]
 
 # Less than critical but helpful
 classifiers = [
@@ -41,8 +41,8 @@ packaging = ">=15.0"
 typing-extensions = ">=4.5.0"
 ansys-api-acp = "==0.3.1"
 ansys-tools-path = ">=0"
-ansys-tools-local-product-launcher = ">=0.1"
-ansys-tools-filetransfer = ">=0.1"
+ansys-tools-local-product-launcher = ">=0.2"
+ansys-tools-filetransfer = ">=0.2"
 networkx = ">=3.0.0"
 
 # Optional dependencies which are included in the 'extras' section.

@@ -1,31 +1,21 @@
 services:
   acp-grpc-server:
     restart: unless-stopped
-    # This docker-compose file should be used only with the container generated from
-    # 'ConnectionTest.Dockerfile', since that image switches from the 'root' user
-    # to the 'container' user in the ENTRYPOINT script.
-    image: ${IMAGE_NAME_ACP:-pyacp-benchmark-runner}
-    command:
-      [
-        "${PYACP_DELAY:-100ms}",
-        "${PYACP_RATE:-1mbit}",
-        "--host=0.0.0.0",
-        "--port=50051",
-        "--allow-remote-host", # Access to the server is limited to '127.0.0.1' by the 'port' option below
-        "--transport-mode=mtls",
-        "--certs-dir=/certs",
-      ]
+    image: ${IMAGE_NAME_ACP:-ghcr.io/ansys/acp:latest}
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
     ports:
       - "127.0.0.1:${PORT_ACP:-50555}:50051"
     working_dir: /home/container/workdir
+    user: "1000:1000"
+    command: [
+        "--host=0.0.0.0",
+        "--port=50051",
+        "--allow-remote-host", # Access to the server is limited to '127.0.0.1' by the 'ports' option
+        "--transport-mode=insecure",
+      ]
     volumes:
       - "acp_data:/home/container/workdir/"
-      - "${CERTS_DIR}:/certs:ro"
-    user: "0:0"
-    cap_add:
-      - NET_ADMIN
   ansys-tools-filetransfer:
     restart: unless-stopped
     image: ${IMAGE_NAME_FILETRANSFER:-ghcr.io/ansys/tools-filetransfer:latest}
@@ -38,12 +28,10 @@ services:
         "--host=0.0.0.0",
         "--port=50000",
         "--allow-remote-host", # Access to the server is limited to '127.0.0.1' by the 'ports' option
-        "--transport-mode=mtls",
-        "--certs-dir=/certs",
+        "--transport-mode=insecure",
       ]
     volumes:
       - "acp_data:/home/container/workdir/"
-      - "${CERTS_DIR}:/certs:ro"
 
 volumes:
   acp_data:
