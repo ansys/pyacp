@@ -44,6 +44,7 @@ from ansys.acp.core import (
 )
 from ansys.acp.core._server.common import ServerProtocol
 from ansys.acp.core._utils.typing_helper import PATH
+from ansys.tools.common.exceptions import ProductInstanceError
 from ansys.tools.common.launcher.config import set_config_for
 
 __all__ = [
@@ -84,7 +85,7 @@ VALIDATE_BENCHMARKS_ONLY_OPTION_KEY = "--validate-benchmarks-only"
 TRANSPORT_MODE_OPTION_KEY = "--transport-mode"
 SERVER_STARTUP_TIMEOUT = 30.0
 SERVER_STOP_TIMEOUT = 2.0
-SERVER_CHECK_TIMEOUT = 2.0
+SERVER_CHECK_TIMEOUT = 5.0
 
 pytest.register_assert_rewrite("common")
 
@@ -252,7 +253,7 @@ def check_grpc_server_before_run(
     """Check if the server still responds before running each test, otherwise restart it."""
     try:
         acp_instance.wait(timeout=SERVER_CHECK_TIMEOUT)
-    except RuntimeError:
+    except ProductInstanceError:
         acp_instance.restart(stop_timeout=SERVER_STOP_TIMEOUT)
         acp_instance.wait(timeout=SERVER_STARTUP_TIMEOUT)
     yield
