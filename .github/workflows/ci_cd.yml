@@ -246,7 +246,7 @@ jobs:
           - python-version: "3.13"
             server-version: "2025R1SP4"
           - python-version: "3.13"
-            server-version: "2025R2SP2"
+            server-version: "2025R2SP3"
           - python-version: "3.13"
             server-version: "2026R1"
 
@@ -401,6 +401,8 @@ jobs:
           --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
+          --transport_mode=mtls
+          --certs_dir=null
           --keep_volume=False
           --overwrite_default
         env:
@@ -416,6 +418,7 @@ jobs:
           IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
           PYACP_DOC_SKIP_GALLERY: "true"
           PYACP_DOC_SKIP_API: "true"
+          ANSYS_GRPC_CERTIFICATES: ${{ github.workspace }}/tests/insecure_certs
 
   docs:
     name: Build Documentation
@@ -439,14 +442,6 @@ jobs:
           key: pip-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-docs
           restore-keys: |
             pip-${{ runner.os }}
-
-      - name: Login in Github Container registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ secrets.PYANSYS_CI_BOT_USERNAME }}
-          password: ${{ secrets.PYANSYS_CI_BOT_PACKAGE_TOKEN }}
-        if: ${{ matrix.build_type == 'full' }}
 
       - name: Install OS packages
         run: |
@@ -486,18 +481,36 @@ jobs:
           --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
+          --transport_mode=mtls
+          --certs_dir=null
           --keep_volume=False
           --overwrite_default
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
         if: ${{ matrix.build_type == 'full' }}
 
-      - name: Launch MAPDL and DPF servers via docker-compose
+      - name: Login in Github Container registry (PYANSYS_CI_BOT)
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.PYANSYS_CI_BOT_USERNAME }}
+          password: ${{ secrets.PYANSYS_CI_BOT_PACKAGE_TOKEN }}
+        if: ${{ matrix.build_type == 'full' }}
+
+      - name: Launch MAPDL and DPF servers via docker-compose, pull images
         run: |
           docker compose -f ./docker-compose/docker-compose-extras.yaml up -d
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
           ANSYS_DPF_ACCEPT_LA: "Y"
+        if: ${{ matrix.build_type == 'full' }}
+
+      - name: Pull ACP and filetransfer images
+        run: |
+          docker pull $IMAGE_NAME
+          docker pull ghcr.io/ansys/tools-filetransfer:latest
+        env:
+          IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
         if: ${{ matrix.build_type == 'full' }}
 
       - name: Build HTML
@@ -511,6 +524,7 @@ jobs:
           SPHINXOPT_NITPICKY: ${{ matrix.build_type == 'quick' && ' ' || '-n' }}
           PYACP_DOC_SKIP_GALLERY: ${{ matrix.build_type == 'quick' && 'true' || 'false' }}
           PYACP_DOC_SKIP_API: ${{ matrix.build_type == 'quick' && 'true' || 'false' }}
+          ANSYS_GRPC_CERTIFICATES: ${{ github.workspace }}/tests/insecure_certs
 
       - name: Stop and clean up MAPDL and DPF servers
         run: |
