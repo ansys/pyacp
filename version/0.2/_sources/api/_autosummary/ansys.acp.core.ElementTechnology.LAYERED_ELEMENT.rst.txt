@@ -1,0 +1,13 @@
+.. vale off
+
+LAYERED\_ELEMENT
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementTechnology.LAYERED_ELEMENT
+
+.. minigallery::
+   :add-heading: Examples using ElementTechnology.LAYERED_ELEMENT
+
+   ansys.acp.core.ElementTechnology.LAYERED_ELEMENT

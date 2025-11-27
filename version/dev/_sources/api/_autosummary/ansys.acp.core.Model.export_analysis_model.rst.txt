@@ -1,0 +1,13 @@
+.. vale off
+
+export\_analysis\_model
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.export_analysis_model
+
+.. minigallery::
+   :add-heading: Examples using Model.export_analysis_model
+
+   ansys.acp.core.Model.export_analysis_model

@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidElementSet.status
+
+.. minigallery::
+   :add-heading: Examples using SolidElementSet.status
+
+   ansys.acp.core.SolidElementSet.status

@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CylindricalSelectionRule.clone
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule.clone
+
+   ansys.acp.core.CylindricalSelectionRule.clone

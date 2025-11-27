@@ -1,0 +1,13 @@
+.. vale off
+
+acp\_transport\_mode
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLaunchConfig.acp_transport_mode
+
+.. minigallery::
+   :add-heading: Examples using ConnectLaunchConfig.acp_transport_mode
+
+   ansys.acp.core.ConnectLaunchConfig.acp_transport_mode

@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SnapToGeometry.delete
+
+.. minigallery::
+   :add-heading: Examples using SnapToGeometry.delete
+
+   ansys.acp.core.SnapToGeometry.delete
