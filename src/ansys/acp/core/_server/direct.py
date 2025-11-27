@@ -27,16 +27,16 @@ import subprocess  # nosec B404
 from typing import TextIO
 import uuid
 
-from ansys.tools.local_product_launcher.grpc_transport import (
+from ansys.tools.common.launcher.grpc_transport import (
     InsecureOptions,
     MTLSOptions,
     TransportOptionsType,
     UDSOptions,
     WNUAOptions,
 )
-from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
-from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
-from ansys.tools.local_product_launcher.interface import (
+from ansys.tools.common.launcher.helpers.grpc import check_grpc_health
+from ansys.tools.common.launcher.helpers.ports import find_free_ports
+from ansys.tools.common.launcher.interface import (
     METADATA_KEY_DOC,
     LauncherProtocol,
     ServerType,

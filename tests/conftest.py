@@ -44,7 +44,7 @@ from ansys.acp.core import (
 )
 from ansys.acp.core._server.common import ServerProtocol
 from ansys.acp.core._utils.typing_helper import PATH
-from ansys.tools.local_product_launcher.config import set_config_for
+from ansys.tools.common.launcher.config import set_config_for
 
 __all__ = [
     "pytest_addoption",

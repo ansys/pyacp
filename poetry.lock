@@ -563,15 +563,13 @@ doc = ["Pillow (>=9.0)", "PyGitHub (==2.7.0)", "PyYAML (==6.0.2)", "jupytext (==
 
 [[package]]
 name = "ansys-tools-common"
-version = "0.3.0"
+version = "0.4.dev0"
 description = "A set of tools for PyAnsys libraries"
 optional = false
-python-versions = "<4,>=3.10"
+python-versions = ">=3.10,<4"
 groups = ["main"]
-files = [
-    {file = "ansys_tools_common-0.3.0-py3-none-any.whl", hash = "sha256:b86caf45ad84a73f2c5005f31ab9fd13ed0d6a00b358218be392ae3736b9c2e9"},
-    {file = "ansys_tools_common-0.3.0.tar.gz", hash = "sha256:29b3b64f62094d6cd41d01123462a3abf0525a9725fa253fd3daf9a67fcbfcf6"},
-]
+files = []
+develop = false
 
 [package.dependencies]
 appdirs = ">=1.4.4"
@@ -585,6 +583,12 @@ typing-extensions = ">=4.5"
 all = ["ansys-tools-filetransfer (>=0.1.1)", "ansys-tools-visualization-interface (>=0.9.2)"]
 filetransfer = ["ansys-tools-filetransfer (>=0.1.1)"]
 graphics = ["ansys-tools-visualization-interface (>=0.9.2)"]
+
+[package.source]
+type = "git"
+url = "https://github.com/ansys/ansys-tools-common.git"
+reference = "feat/launcher-grpc-transport-options"
+resolved_reference = "07ef3707ea343fd692e2433aa917a733400378a3"
 
 [[package]]
 name = "ansys-tools-filetransfer"
@@ -5903,4 +5907,4 @@ plotting = ["pyvista"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.14"
-content-hash = "a371d7c98ce3ac3e978fdf614bba3f17a56ba722f69d52dca0fc0f47acc336f1"
+content-hash = "fa3dcd2f10d98d10fafb740461a4abb20502a9ef733d33859c772b7c72576ab4"
