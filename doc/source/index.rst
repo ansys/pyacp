@@ -80,8 +80,11 @@ Limitations
 ^^^^^^^^^^^
 
 * Field definitions are currently only supported through (Py)Mechanical.
-  The workflow from PyACP to (Py)MADL ignores field definitions.
-* The PyACP to PyMADL workflow does not fully support variable materials.
+  The workflow from PyACP to (Py)MAPDL ignores field definitions.
+* Variable material properties can be read with PyACP, but cannot be edited.
+* Thermal expansion coefficients cannot be read or edited, but will be passed
+  to downstream analyses if present in the material definition.
+* The PyACP to PyMAPDL workflow does not fully support variable materials.
 * The PyACP to PyMechanical workflow is experimental and has the following limitations:
 
   * It only works on Windows, with a remote (not embedded) PyMechanical session.
