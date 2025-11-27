@@ -588,7 +588,7 @@ graphics = ["ansys-tools-visualization-interface (>=0.9.2)"]
 type = "git"
 url = "https://github.com/ansys/ansys-tools-common.git"
 reference = "feat/launcher-grpc-transport-options"
-resolved_reference = "07ef3707ea343fd692e2433aa917a733400378a3"
+resolved_reference = "2f8e4c0c957f3101873ad2a278a0794a92967e90"
 
 [[package]]
 name = "ansys-tools-filetransfer"
