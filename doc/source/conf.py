@@ -213,6 +213,7 @@ intersphinx_mapping = {
     "ansys-dpf-core": ("https://dpf.docs.pyansys.com/version/stable/", None),
     "ansys-dpf-composites": ("https://composites.dpf.docs.pyansys.com/version/stable/", None),
     "ansys-mechanical-core": ("https://mechanical.docs.pyansys.com/version/stable/", None),
+    "ansys-tools-common": ("https://tools.docs.pyansys.com/version/stable/", None),
 }
 
 nitpick_ignore = [
