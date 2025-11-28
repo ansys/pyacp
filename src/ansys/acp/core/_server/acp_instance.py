@@ -386,7 +386,7 @@ class ACPInstance(Generic[ServerT]):
 
         Raises
         ------
-        ProductInstanceError
+        ansys.tools.common.exceptions.ProductInstanceError
             In case the server still has not responded after ``timeout`` seconds.
         """
         self._server.wait(timeout=timeout)
@@ -402,9 +402,9 @@ class ACPInstance(Generic[ServerT]):
 
         Raises
         ------
-        ProductInstanceError
+        ansys.tools.common.exceptions.ProductInstanceError
             If the instance is already in the started state.
-        ProductInstanceError
+        ansys.tools.common.exceptions.ProductInstanceError
             If the instance does not allow manual starting.
         """
         if not hasattr(self._server, "start"):
@@ -428,9 +428,9 @@ class ACPInstance(Generic[ServerT]):
 
         Raises
         ------
-        ProductInstanceError
+        ansys.tools.common.exceptions.ProductInstanceError
             If the instance is already in the stopped state.
-        ProductInstanceError
+        ansys.tools.common.exceptions.ProductInstanceError
             If the instance does not allow stopping.
         """
         if not hasattr(self._server, "stop"):
@@ -457,9 +457,9 @@ class ACPInstance(Generic[ServerT]):
 
         Raises
         ------
-        ProductInstanceError
+        ansys.tools.common.exceptions.ProductInstanceError
             If the instance is already in the stopped state.
-        ProductInstanceError
+        ansys.tools.common.exceptions.ProductInstanceError
             If the instance does not allow restarting.
         """
         if not hasattr(self._server, "restart"):
