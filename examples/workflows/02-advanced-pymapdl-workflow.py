@@ -85,7 +85,7 @@ input_file = pyacp.extras.example_helpers.get_example_file(
 
 # %%
 # Load the CDB file into PyACP and set the unit system.
-model = acp.import_model(path=input_file, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MPA)
+model = acp.import_model(path=input_file, format="ansys:cdb", unit_system=pyacp.UnitSystemType.MKS)
 model
 
 
@@ -99,7 +99,7 @@ mesh.plot()
 # Build Composite Lay-up
 # ----------------------
 #
-# Create the model (MPA unit system).
+# Create the model (MKS unit system).
 
 # %%
 # Materials
@@ -341,6 +341,8 @@ mapdl.download(rstfile_name, working_dir_path)
 # To postprocess the results, you must configure the imports, connect to the
 # PyDPF - Composites server, and load its plugin.
 
+
+from ansys.acp.core.dpf_integration_helpers import get_dpf_unit_system
 from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput
 from ansys.dpf.composites.data_sources import (
@@ -354,7 +356,6 @@ from ansys.dpf.composites.failure_criteria import (
     MaxStressCriterion,
 )
 from ansys.dpf.composites.server_helpers import connect_to_or_start_server
-from ansys.dpf.core.unit_system import unit_systems
 
 # %%
 # Connect to the server. The ``connect_to_or_start_server`` function
@@ -384,7 +385,7 @@ composite_model = CompositeModel(
         },
         engineering_data=working_dir_path / matml_filename,
     ),
-    default_unit_system=unit_systems.solver_nmm,
+    default_unit_system=get_dpf_unit_system(model.unit_system),
     server=dpf_server,
 )
 
