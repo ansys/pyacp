@@ -26,9 +26,9 @@ import os
 
 from packaging import version
 
-from ansys.tools.local_product_launcher.config import get_launch_mode_for
-from ansys.tools.local_product_launcher.interface import FALLBACK_LAUNCH_MODE_NAME
-from ansys.tools.local_product_launcher.launch import launch_product
+from ansys.tools.common.launcher.config import get_launch_mode_for
+from ansys.tools.common.launcher.interface import FALLBACK_LAUNCH_MODE_NAME
+from ansys.tools.common.launcher.launch import launch_product
 
 from .acp_instance import (
     ACPInstance,
