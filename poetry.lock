@@ -1981,14 +1981,14 @@ protobuf = ">=4.21.6"
 
 [[package]]
 name = "hypothesis"
-version = "6.148.1"
+version = "6.148.5"
 description = "The property-based testing library for Python"
 optional = false
 python-versions = ">=3.10"
 groups = ["test"]
 files = [
-    {file = "hypothesis-6.148.1-py3-none-any.whl", hash = "sha256:2cca1a20e8fcd230da86bb6d9f3e940a052caef0d4327c12b5694d164ea0f89e"},
-    {file = "hypothesis-6.148.1.tar.gz", hash = "sha256:98851429bd89b0c8835e8ebca6705c28dec56517576e5606fc3b841ddb0dc1c7"},
+    {file = "hypothesis-6.148.5-py3-none-any.whl", hash = "sha256:63cde596a48cdbbabac0591ea19a1bffa812c30afbe3d948bc2a8ee8ed49a11a"},
+    {file = "hypothesis-6.148.5.tar.gz", hash = "sha256:bb0c67bff155b8d8cfe8fbc1f1218028f7e2f0ee7f24d8ccc89f4c14ee4e65c0"},
 ]
 
 [package.dependencies]
@@ -1996,10 +1996,10 @@ exceptiongroup = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 sortedcontainers = ">=2.1.0,<3.0.0"
 
 [package.extras]
-all = ["black (>=20.8b0)", "click (>=7.0)", "crosshair-tool (>=0.0.97)", "django (>=4.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.25)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.21.6)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2025.2) ; sys_platform == \"win32\" or sys_platform == \"emscripten\"", "watchdog (>=4.0.0)"]
+all = ["black (>=20.8b0)", "click (>=7.0)", "crosshair-tool (>=0.0.98)", "django (>=4.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.26)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.21.6)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2025.2) ; sys_platform == \"win32\" or sys_platform == \"emscripten\"", "watchdog (>=4.0.0)"]
 cli = ["black (>=20.8b0)", "click (>=7.0)", "rich (>=9.0.0)"]
 codemods = ["libcst (>=0.3.16)"]
-crosshair = ["crosshair-tool (>=0.0.97)", "hypothesis-crosshair (>=0.0.25)"]
+crosshair = ["crosshair-tool (>=0.0.98)", "hypothesis-crosshair (>=0.0.26)"]
 dateutil = ["python-dateutil (>=1.4)"]
 django = ["django (>=4.2)"]
 dpcontracts = ["dpcontracts (>=0.4)"]
@@ -3362,25 +3362,19 @@ files = [
 
 [[package]]
 name = "numpydoc"
-version = "1.8.0"
+version = "1.10.0"
 description = "Sphinx extension to support docstrings in Numpy format"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "numpydoc-1.8.0-py3-none-any.whl", hash = "sha256:72024c7fd5e17375dec3608a27c03303e8ad00c81292667955c6fea7a3ccf541"},
-    {file = "numpydoc-1.8.0.tar.gz", hash = "sha256:022390ab7464a44f8737f79f8b31ce1d3cfa4b4af79ccaa1aac5e8368db587fb"},
+    {file = "numpydoc-1.10.0-py3-none-any.whl", hash = "sha256:3149da9874af890bcc2a82ef7aae5484e5aa81cb2778f08e3c307ba6d963721b"},
+    {file = "numpydoc-1.10.0.tar.gz", hash = "sha256:3f7970f6eee30912260a6b31ac72bba2432830cd6722569ec17ee8d3ef5ffa01"},
 ]
 
 [package.dependencies]
 sphinx = ">=6"
-tabulate = ">=0.8.10"
 tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
-
-[package.extras]
-developer = ["pre-commit (>=3.3)", "tomli ; python_version < \"3.11\""]
-doc = ["intersphinx-registry", "matplotlib (>=3.5)", "numpy (>=1.22)", "pydata-sphinx-theme (>=0.13.3)", "sphinx (>=7)"]
-test = ["matplotlib", "pytest", "pytest-cov"]
 
 [[package]]
 name = "overrides"
@@ -5119,14 +5113,14 @@ tests = ["cython", "littleutils", "pygments", "pytest", "typeguard"]
 name = "tabulate"
 version = "0.9.0"
 description = "Pretty-print tabular data"
-optional = false
+optional = true
 python-versions = ">=3.7"
-groups = ["main", "dev"]
+groups = ["main"]
+markers = "extra == \"all\" or extra == \"examples\""
 files = [
     {file = "tabulate-0.9.0-py3-none-any.whl", hash = "sha256:024ca478df22e9340661486f85298cff5f6dcdba14f3813e8830015b9ed1948f"},
     {file = "tabulate-0.9.0.tar.gz", hash = "sha256:0095b12bf5966de529c0feb1fa08671671b3368eec77d7ef7ab114be2c068b3c"},
 ]
-markers = {main = "extra == \"all\" or extra == \"examples\""}
 
 [package.extras]
 widechars = ["wcwidth"]
