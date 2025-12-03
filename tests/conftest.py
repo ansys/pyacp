@@ -76,11 +76,12 @@ SOURCE_ROOT_DIR = TEST_ROOT_DIR.parent
 
 SERVER_BIN_OPTION_KEY = "--server-bin"
 LICENSE_SERVER_OPTION_KEY = "--license-server"
-SERVER_URLS_OPTION_KEY = "--server-urls"
+SERVER_PORTS_OPTION_KEY = "--server-ports"
 DOCKER_IMAGENAME_OPTION_KEY = "--docker-image"
 NO_SERVER_LOGS_OPTION_KEY = "--no-server-log-files"
 BUILD_BENCHMARK_IMAGE_OPTION_KEY = "--build-benchmark-image"
 VALIDATE_BENCHMARKS_ONLY_OPTION_KEY = "--validate-benchmarks-only"
+TRANSPORT_MODE_OPTION_KEY = "--transport-mode"
 SERVER_STARTUP_TIMEOUT = 30.0
 SERVER_STOP_TIMEOUT = 2.0
 SERVER_CHECK_TIMEOUT = 2.0
@@ -101,9 +102,15 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         action="store",
         help=(
             "Docker image to be used for running the test. Only used if "
-            f"'{SERVER_BIN_OPTION_KEY}' and '{SERVER_URLS_OPTION_KEY}' are not set."
+            f"'{SERVER_BIN_OPTION_KEY}' and '{SERVER_PORTS_OPTION_KEY}' are not set."
         ),
         default="ghcr.io/ansys/acp:latest",
+    )
+    parser.addoption(
+        TRANSPORT_MODE_OPTION_KEY,
+        action="store",
+        help="gRPC transport mode to use (uds, wnua, mtls, insecure).",
+        default=None,
     )
     parser.addoption(
         LICENSE_SERVER_OPTION_KEY,
@@ -111,9 +118,9 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         help="Value of the ANSYSLMD_LICENSE_FILE for the gRPC server.",
     )
     parser.addoption(
-        SERVER_URLS_OPTION_KEY,
+        SERVER_PORTS_OPTION_KEY,
         action="store",
-        help="URLs of the gRPC server and file transfer server, separated by a comma.",
+        help="Ports of the gRPC server and file transfer server, separated by a comma.",
     )
     parser.addoption(
         NO_SERVER_LOGS_OPTION_KEY,
@@ -137,12 +144,18 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
     """Parse test options and set up server handling."""
     server_bin = request.config.getoption(SERVER_BIN_OPTION_KEY)
     license_server = request.config.getoption(LICENSE_SERVER_OPTION_KEY)
-    server_urls = request.config.getoption(SERVER_URLS_OPTION_KEY)
+    server_ports = request.config.getoption(SERVER_PORTS_OPTION_KEY)
+    transport_mode = request.config.getoption(TRANSPORT_MODE_OPTION_KEY)
+    if transport_mode is None:
+        if server_bin:
+            transport_mode = "wnua" if os.name == "nt" else "uds"
+        else:
+            transport_mode = "mtls"
 
-    if sum(bool(option) for option in (server_bin, server_urls, license_server)) != 1:
+    if sum(bool(option) for option in (server_bin, server_ports, license_server)) != 1:
         raise ValueError(
             f"Exactly one of '{SERVER_BIN_OPTION_KEY}', '{LICENSE_SERVER_OPTION_KEY}' and "
-            f"'{SERVER_URLS_OPTION_KEY}' must be specified."
+            f"'{SERVER_PORTS_OPTION_KEY}' must be specified."
         )
 
     if request.config.getoption(NO_SERVER_LOGS_OPTION_KEY):
@@ -151,6 +164,11 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
     else:
         server_log_stdout = TEST_ROOT_DIR / "server_log_out.txt"
         server_log_stderr = TEST_ROOT_DIR / "server_log_err.txt"
+
+    if transport_mode == "mtls":
+        certs_dir = TEST_ROOT_DIR / "insecure_certs"
+    else:
+        certs_dir = None
 
     if server_bin:
         # Run the ACP server directly, with the provided binary.
@@ -162,16 +180,27 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
                 binary_path=server_bin,
                 stdout_file=str(server_log_stdout),
                 stderr_file=str(server_log_stderr),
+                transport_mode=transport_mode,
+                certs_dir=certs_dir,
             ),
             overwrite_default=True,
         )
-    elif server_urls:
+    elif server_ports:
         # Connect to an existing ACP server.
-        acp_url, filetransfer_url = server_urls.split(",")
+        acp_port, filetransfer_port = server_ports.split(",")
         set_config_for(
             product_name="ACP",
             launch_mode=LaunchMode.CONNECT,
-            config=ConnectLaunchConfig(url_acp=acp_url, url_filetransfer=filetransfer_url),
+            config=ConnectLaunchConfig(
+                acp_host="localhost",
+                filetransfer_host="localhost",
+                acp_port=int(acp_port),
+                filetransfer_port=int(filetransfer_port),
+                acp_transport_mode=transport_mode,
+                filetransfer_transport_mode=transport_mode,
+                acp_certs_dir=certs_dir,
+                filetransfer_certs_dir=certs_dir,
+            ),
             overwrite_default=True,
         )
 
@@ -195,6 +224,8 @@ def _configure_launcher(request: pytest.FixtureRequest) -> None:
                 image_name_filetransfer=image_name_filetransfer,
                 license_server=license_server,
                 keep_volume=False,
+                transport_mode=transport_mode,
+                certs_dir=certs_dir,
             ),
             overwrite_default=True,
         )
