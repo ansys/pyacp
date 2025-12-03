@@ -39,6 +39,7 @@ from ..conftest import (
     SERVER_STARTUP_TIMEOUT,
     SERVER_STOP_TIMEOUT,
     SOURCE_ROOT_DIR,
+    TEST_ROOT_DIR,
     VALIDATE_BENCHMARKS_ONLY_OPTION_KEY,
 )
 
@@ -100,6 +101,7 @@ def launcher_configuration(request):
         compose_file=SOURCE_ROOT_DIR / "docker-compose" / "docker-compose-benchmark.yaml",
         license_server=license_server,
         keep_volume=False,
+        certs_dir=TEST_ROOT_DIR / "insecure_certs",
     )
 
 

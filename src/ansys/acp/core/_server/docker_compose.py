@@ -32,9 +32,12 @@ import pathlib
 import subprocess  # nosec B404
 import uuid
 
-import grpc
 from packaging.version import parse as parse_version
 
+from ansys.tools.local_product_launcher.grpc_transport import (
+    InsecureOptions,
+    MTLSOptions,
+)
 from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
 from ansys.tools.local_product_launcher.helpers.ports import find_free_ports
 from ansys.tools.local_product_launcher.interface import (
@@ -47,6 +50,10 @@ from ansys.tools.local_product_launcher.interface import (
 from .common import ServerKey
 
 __all__ = ["DockerComposeLaunchConfig"]
+
+TransportOptionsType = (
+    InsecureOptions | MTLSOptions
+)  # UDS and WNUA are not supported for docker-compose
 
 
 def _get_default_license_server() -> str:
@@ -64,10 +71,14 @@ class DockerComposeLaunchConfig:
         default="ghcr.io/ansys/acp:latest",
         metadata={METADATA_KEY_DOC: "Docker image running the ACP gRPC server."},
     )
+    """Docker image running the ACP gRPC server."""
+
     image_name_filetransfer: str = dataclasses.field(
         default="ghcr.io/ansys/tools-filetransfer:latest",
         metadata={METADATA_KEY_DOC: "Docker image running the file transfer service."},
     )
+    """Docker image running the file transfer service."""
+
     license_server: str = dataclasses.field(
         default=_get_default_license_server(),
         metadata={
@@ -77,20 +88,26 @@ class DockerComposeLaunchConfig:
             )
         },
     )
+    """License server passed to the container as 'ANSYSLMD_LICENSE_FILE' environment variable."""
+
     keep_volume: bool = dataclasses.field(
         default=False,
         metadata={METADATA_KEY_DOC: "If true, keep the volume after docker compose is stopped."},
     )
+    """If true, keep the volume after docker compose is stopped."""
+
     compose_file: str | None = dataclasses.field(
         default=None,
         metadata={
             METADATA_KEY_DOC: (
                 "Docker compose file used to start the services. Uses the "
-                "'docker-compose.yaml' shipped with PyACP by default."
+                "compose files shipped with PyACP by default."
             ),
             METADATA_KEY_NOPROMPT: True,
         },
     )
+    """Docker compose file used to start the services. Uses the compose files shipped with PyACP by default."""
+
     environment_variables: dict[str, str] = dataclasses.field(
         default_factory=dict,
         metadata={
@@ -103,6 +120,38 @@ class DockerComposeLaunchConfig:
             METADATA_KEY_NOPROMPT: True,
         },
     )
+    """Additional environment variables passed to docker compose.
+
+    These take precedence over environment variables defined through another configuration
+    option (for example 'license_server' which defines 'ANSYSLMD_LICENSE_FILE') or the pre-existing
+    environment variables.
+    """
+
+    transport_mode: str = dataclasses.field(
+        default="mtls",
+        metadata={
+            METADATA_KEY_DOC: "Specifies the gRPC transport mode to use. Only 'mtls' and 'insecure' are supported."
+        },
+    )
+    """Specifies the gRPC transport mode to use.
+
+    Possible values are:
+
+    - ``"mtls"`` : Mutual TLS
+    - ``"insecure"`` : Insecure TCP connection (not recommended)
+    """
+
+    certs_dir: str | pathlib.Path | None = dataclasses.field(
+        default=None,
+        metadata={
+            METADATA_KEY_DOC: "Directory containing TLS certificates. Only used if transport_mode is 'mtls'."
+        },
+    )
+    """Directory path for mTLS certificate files.
+
+    Defaults to the ``ANSYS_GRPC_CERTIFICATES`` environment variable, or ``certs`` if the variable is not set.
+    Only used if ``transport_mode`` is ``"mtls"``.
+    """
 
 
 class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
@@ -111,7 +160,8 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
 
     def __init__(self, *, config: DockerComposeLaunchConfig):
         self._compose_name = f"pyacp_compose_{uuid.uuid4().hex}"
-        self._urls: dict[str, str]
+        self._config = config
+        self._transport_options: dict[str, TransportOptionsType] = {}
 
         try:
             import ansys.tools.filetransfer  # noqa
@@ -120,13 +170,24 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 "The 'ansys.tools.filetransfer' module is needed to launch ACP via docker-compose."
             ) from err
 
+        if self._config.transport_mode == "mtls" and self._config.certs_dir is None:
+            # The default 'certs_dir' needs to be implemented explicitly here
+            # since it needs to be mounted into the docker container.
+            self._config.certs_dir = os.environ.get("ANSYS_GRPC_CERTIFICATES")
+            if self._config.certs_dir is None:
+                self._config.certs_dir = pathlib.Path.cwd() / "certs"
+
         self._env = copy.deepcopy(os.environ)
         self._env.update(
-            IMAGE_NAME_ACP=config.image_name_acp,
-            IMAGE_NAME_FILETRANSFER=config.image_name_filetransfer,
-            ANSYSLMD_LICENSE_FILE=config.license_server,
+            IMAGE_NAME_ACP=self._config.image_name_acp,
+            IMAGE_NAME_FILETRANSFER=self._config.image_name_filetransfer,
+            ANSYSLMD_LICENSE_FILE=self._config.license_server,
         )
-        self._env.update(config.environment_variables)
+        self._env.update(self._config.environment_variables)
+        if self._config.transport_mode == "mtls":
+            assert self._config.certs_dir is not None
+            self._env["CERTS_DIR"] = str(pathlib.Path(self._config.certs_dir).resolve())
+
         self._keep_volume = config.keep_volume
 
         if config.compose_file is not None:
@@ -159,16 +220,48 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
         if self._compose_file is not None:
             yield self._compose_file
         else:
-            with importlib.resources.path(__package__, "docker-compose.yaml") as compose_file:
+            compose_filename = f"docker-compose-{self._config.transport_mode}.yaml"
+            with importlib.resources.path(__package__, compose_filename) as compose_file:
                 yield compose_file
 
     def start(self) -> None:
         with self._get_compose_file() as compose_file:
             port_acp, port_ft = find_free_ports(2)
-            self._urls = {
-                ServerKey.MAIN: f"localhost:{port_acp}",
-                ServerKey.FILE_TRANSFER: f"localhost:{port_ft}",
-            }
+
+            if self._config.transport_mode == "mtls":
+                assert self._config.certs_dir is not None
+                self._transport_options = {
+                    ServerKey.MAIN: MTLSOptions(
+                        host="localhost",
+                        port=port_acp,
+                        certs_dir=pathlib.Path(self._config.certs_dir),
+                        allow_remote_host=False,
+                    ),
+                    ServerKey.FILE_TRANSFER: MTLSOptions(
+                        host="localhost",
+                        port=port_ft,
+                        certs_dir=pathlib.Path(self._config.certs_dir),
+                        allow_remote_host=False,
+                    ),
+                }
+            elif self._config.transport_mode == "insecure":
+                self._transport_options = {
+                    ServerKey.MAIN: InsecureOptions(
+                        host="localhost",
+                        port=port_acp,
+                        allow_remote_host=False,
+                    ),
+                    ServerKey.FILE_TRANSFER: InsecureOptions(
+                        host="localhost",
+                        port=port_ft,
+                        allow_remote_host=False,
+                    ),
+                }
+            else:
+                raise ValueError(
+                    f"Unsupported transport mode '{self._config.transport_mode}'. "
+                    "Only 'mtls' and 'insecure' are supported."
+                )
 
             env = collections.ChainMap(
                 {"PORT_ACP": str(port_acp), "PORT_FILETRANSFER": str(port_ft)}, self._env
@@ -189,9 +282,11 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
                 # The '--wait' flag is only available from version >= 2.1.1 of docker compose:
                 # https://github.com/docker/compose/commit/72e4519cbfb6cdfc600e6ebfa377ce4b8e162c78
                 cmd.append("--wait")
-            subprocess.check_call(  # nosec B603: documented in 'security_considerations.rst'
-                cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+            proc_res = subprocess.run(  # nosec B603: documented in 'security_considerations.rst'
+                cmd, env=env, capture_output=True, text=True
             )
+            if proc_res.returncode != 0:
+                raise RuntimeError(f"Docker compose failed to start:\n{proc_res.stderr}")
 
     def stop(self, *, timeout: float | None = None) -> None:
         # The compose file needs to be passed for all commands with docker-compose 1.X.
@@ -216,12 +311,12 @@ class DockerComposeLauncher(LauncherProtocol[DockerComposeLaunchConfig]):
             )
 
     def check(self, timeout: float | None = None) -> bool:
-        for url in self.urls.values():
-            channel = grpc.insecure_channel(url)
+        for transport_options in self.transport_options.values():
+            channel = transport_options.create_channel()
             if not check_grpc_health(channel=channel, timeout=timeout):
                 return False
         return True
 
     @property
-    def urls(self) -> dict[str, str]:
-        return self._urls
+    def transport_options(self) -> dict[str, TransportOptionsType]:  # type: ignore[override]
+        return self._transport_options
