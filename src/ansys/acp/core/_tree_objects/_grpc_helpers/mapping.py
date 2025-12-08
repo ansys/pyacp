@@ -185,12 +185,12 @@ class MutableMapping(Mapping[CreatableValueT]):
         key_getter=lambda *args, collection_path, **kwargs: collection_path.value,
         raise_on_invalid_key=True,
     )
-    def _initialize_with_cache(
+    def _initialize_with_cache(  # type: ignore[override] # violates Liskov substitution
         cls,
         *,
         server_wrapper: ServerWrapper,
         collection_path: CollectionPath,
-        stub: EditableAndReadableResourceStub,  # type: ignore # violates Liskov substitution
+        stub: EditableAndReadableResourceStub,
         object_constructor: Callable[[ObjectInfo, Channel | None], CreatableValueT],
     ) -> Self:
         return cls(
