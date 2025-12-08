@@ -1,0 +1,13 @@
+.. vale off
+
+isidentifier
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.isidentifier
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.isidentifier
+
+   ansys.acp.core.LaunchMode.isidentifier

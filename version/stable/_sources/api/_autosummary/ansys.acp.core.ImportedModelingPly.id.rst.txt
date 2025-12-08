@@ -1,0 +1,13 @@
+.. vale off
+
+id
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.id
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.id
+
+   ansys.acp.core.ImportedModelingPly.id

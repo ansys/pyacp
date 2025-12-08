@@ -1,0 +1,13 @@
+.. vale off
+
+check
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPInstance.check
+
+.. minigallery::
+   :add-heading: Examples using ACPInstance.check
+
+   ansys.acp.core.ACPInstance.check

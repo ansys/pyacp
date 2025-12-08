@@ -1,0 +1,13 @@
+.. vale off
+
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.elemental_data
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.elemental_data
+
+   ansys.acp.core.GeometricalSelectionRule.elemental_data

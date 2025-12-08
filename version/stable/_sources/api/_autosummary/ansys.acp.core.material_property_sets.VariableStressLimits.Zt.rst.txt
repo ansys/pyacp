@@ -1,0 +1,13 @@
+.. vale off
+
+Zt
+==
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableStressLimits.Zt
+
+.. minigallery::
+   :add-heading: Examples using VariableStressLimits.Zt
+
+   ansys.acp.core.material_property_sets.VariableStressLimits.Zt

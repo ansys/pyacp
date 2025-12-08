@@ -1,0 +1,13 @@
+.. vale off
+
+reference\_direction
+====================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: OrientedSelectionSetElementalData.reference_direction
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSetElementalData.reference_direction
+
+   ansys.acp.core.mesh_data.OrientedSelectionSetElementalData.reference_direction
