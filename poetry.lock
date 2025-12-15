@@ -347,15 +347,15 @@ plotting = ["imageio", "imageio-ffmpeg", "matplotlib (>=3.2)", "pyvista (>=0.32.
 
 [[package]]
 name = "ansys-mapdl-core"
-version = "0.70.2"
+version = "0.71.3"
 description = "A Python client library for Ansys MAPDL."
 optional = true
 python-versions = "<3.14,>=3.10"
 groups = ["main"]
 markers = "extra == \"all\" or extra == \"examples\""
 files = [
-    {file = "ansys_mapdl_core-0.70.2-py3-none-any.whl", hash = "sha256:688d41b7e3a004a8bcf0bc2f94173ef36f906ce4d37a0d582ad9bd9edb202566"},
-    {file = "ansys_mapdl_core-0.70.2.tar.gz", hash = "sha256:403ebe47bd33da211e52170d388b37af3e8795891e857a5cbdc6a78a6afbf22f"},
+    {file = "ansys_mapdl_core-0.71.3-py3-none-any.whl", hash = "sha256:1218f254d4a50057ba3386771efdac35eb70a5d740805acfe5a39e95d5fecbd6"},
+    {file = "ansys_mapdl_core-0.71.3.tar.gz", hash = "sha256:23ec7bb68d2e073ea5a7d95eb2b27eea0c639f0fc763f00de62e8a9912ae387c"},
 ]
 
 [package.dependencies]
@@ -363,8 +363,8 @@ ansys-api-mapdl = "0.5.2"
 ansys-mapdl-reader = ">=0.51.7"
 ansys-math-core = ">=0.1.2"
 ansys-platform-instancemanagement = ">=1.0,<2.0"
-ansys-tools-path = ">=0.3.1"
-ansys-tools-visualization-interface = {version = ">=0.2.6,<0.10.0", optional = true, markers = "extra == \"graphics\""}
+ansys-tools-common = ">=0.2.1"
+ansys-tools-visualization-interface = {version = ">=0.9.0,<0.13.0", optional = true, markers = "extra == \"graphics\""}
 click = ">=8.1.3"
 grpcio = ">=1.30.0"
 matplotlib = {version = ">=3.0.0", optional = true, markers = "extra == \"graphics\""}
@@ -375,17 +375,18 @@ protobuf = ">=3.12.2"
 psutil = ">=5.9.4"
 pyansys-tools-versioning = ">=0.3.3"
 pyiges = {version = ">=0.3.1", extras = ["full"]}
+pyvista = "<=0.46.4"
 scipy = ">=1.3.0"
 tabulate = ">=0.8.0"
 tqdm = ">=4.45.0"
-vtk = ">=9.0.0"
+vtk = ">=9.0.0,<9.5.3"
 
 [package.extras]
-all = ["ansys-tools-visualization-interface (>=0.9.0,<0.10.0)", "ipywidgets", "jupyterlab (>=3)", "matplotlib (>=3.0.0)"]
-doc = ["ansys-dpf-core (==0.13.6)", "ansys-mapdl-reader (==0.55.0)", "ansys-sphinx-theme (==1.4.4)", "ansys-tools-visualization-interface (==0.9.1)", "grpcio (==1.70.0)", "imageio (==2.37.0)", "imageio-ffmpeg (==0.6.0)", "jupyter (==1.1.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "matplotlib (==3.10.3)", "nbformat (==5.10.4)", "numpydoc (==1.8.0)", "pandas (==2.2.3)", "plotly (==6.0.1)", "pyiges[full] (==0.3.1)", "pypandoc (==1.15)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "sphinx (==8.2.3)", "sphinx-autobuild (==2024.10.3)", "sphinx-autodoc-typehints (==3.1.0)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.6.1)", "sphinx-gallery (==0.19.0)", "sphinx-jinja (==2.0.2)", "sphinx-notfound-page (==1.1.0)", "sphinxcontrib-websupport (==2.0.0)", "sphinxemoji (==0.3.1)", "vtk (==9.4.2)"]
-graphics = ["ansys-tools-visualization-interface (>=0.2.6,<0.10.0)", "matplotlib (>=3.0.0)"]
+all = ["ansys-tools-visualization-interface (>=0.9.0,<0.12.0)", "ipywidgets", "jupyterlab (>=3)", "matplotlib (>=3.0.0)"]
+doc = ["ansys-dpf-core[graphics] (==0.13.6)", "ansys-mapdl-reader (==0.55.1)", "ansys-sphinx-theme (==1.6.3)", "ansys-tools-visualization-interface (==0.12.1)", "grpcio (==1.76.0)", "imageio (==2.37.2)", "imageio-ffmpeg (==0.6.0)", "jupyter (==1.1.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "linuxdoc (==20240924)", "matplotlib (==3.10.7)", "nbformat (==5.10.4)", "numpydoc (==1.9.0)", "pandas (==2.3.3)", "plotly (==6.5.0)", "pyiges[full] (==0.3.2)", "pypandoc (==1.16.2)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "sphinx (==8.2.3)", "sphinx-autobuild (==2024.10.3)", "sphinx-autodoc-typehints (==3.1.0)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.6.1)", "sphinx-gallery (==0.19.0)", "sphinx-jinja (==2.0.2)", "sphinx-notfound-page (==1.1.0)", "sphinxcontrib-websupport (==2.0.0)", "sphinxemoji (==0.3.1)", "vtk (==9.5.2)"]
+graphics = ["ansys-tools-visualization-interface (>=0.9.0,<0.13.0)", "matplotlib (>=3.0.0)"]
 jupyter = ["ipywidgets", "jupyterlab (>=3)"]
-tests = ["ansys-dpf-core (==0.13.6)", "ansys-tools-visualization-interface (==0.9.1)", "autopep8 (==2.3.2)", "matplotlib (==3.10.3)", "pandas (==2.2.3)", "pyansys-tools-report (==0.8.2)", "pyfakefs (==5.8.0)", "pyiges[full] (==0.3.1)", "pytest (==8.3.5)", "pytest-cov (==6.1.1)", "pytest-profiling (==1.8.1)", "pytest-pyvista (==0.1.9)", "pytest-random-order (==1.1.1)", "pytest-reportlog (==0.4.0)", "pytest-rerunfailures (==15.1)", "pytest-timeout (==2.4.0)", "scipy (==1.15.3)", "vtk (==9.4.2)"]
+tests = ["ansys-dpf-core[graphics] (==0.13.6)", "ansys-tools-visualization-interface (==0.12.1)", "autopep8 (==2.3.2)", "matplotlib (==3.10.7)", "pandas (==2.3.3)", "pyansys-tools-report (==0.9.0)", "pyfakefs (==5.10.2)", "pyiges[full] (==0.3.2)", "pytest (==9.0.1)", "pytest-cov (==7.0.0)", "pytest-profiling (==1.8.1)", "pytest-pyvista (==0.3.1)", "pytest-random-order (==1.2.0)", "pytest-reportlog (==1.0.0)", "pytest-rerunfailures (==16.1)", "pytest-timeout (==2.4.0)", "scipy (==1.15.3)", "vtk (==9.5.2)"]
 
 [[package]]
 name = "ansys-mapdl-reader"
@@ -1981,14 +1982,14 @@ protobuf = ">=4.21.6"
 
 [[package]]
 name = "hypothesis"
-version = "6.148.5"
+version = "6.148.7"
 description = "The property-based testing library for Python"
 optional = false
 python-versions = ">=3.10"
 groups = ["test"]
 files = [
-    {file = "hypothesis-6.148.5-py3-none-any.whl", hash = "sha256:63cde596a48cdbbabac0591ea19a1bffa812c30afbe3d948bc2a8ee8ed49a11a"},
-    {file = "hypothesis-6.148.5.tar.gz", hash = "sha256:bb0c67bff155b8d8cfe8fbc1f1218028f7e2f0ee7f24d8ccc89f4c14ee4e65c0"},
+    {file = "hypothesis-6.148.7-py3-none-any.whl", hash = "sha256:94dbd58ebf259afa3bafb1d3bf5761ac1bde6f1477de494798cbf7960aabbdee"},
+    {file = "hypothesis-6.148.7.tar.gz", hash = "sha256:b96e817e715c5b1a278411e3b9baf6d599d5b12207ba25e41a8f066929f6c2a6"},
 ]
 
 [package.dependencies]
@@ -1996,10 +1997,10 @@ exceptiongroup = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 sortedcontainers = ">=2.1.0,<3.0.0"
 
 [package.extras]
-all = ["black (>=20.8b0)", "click (>=7.0)", "crosshair-tool (>=0.0.98)", "django (>=4.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.26)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.21.6)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2025.2) ; sys_platform == \"win32\" or sys_platform == \"emscripten\"", "watchdog (>=4.0.0)"]
+all = ["black (>=20.8b0)", "click (>=7.0)", "crosshair-tool (>=0.0.99)", "django (>=4.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.26)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.21.6)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2025.2) ; sys_platform == \"win32\" or sys_platform == \"emscripten\"", "watchdog (>=4.0.0)"]
 cli = ["black (>=20.8b0)", "click (>=7.0)", "rich (>=9.0.0)"]
 codemods = ["libcst (>=0.3.16)"]
-crosshair = ["crosshair-tool (>=0.0.98)", "hypothesis-crosshair (>=0.0.26)"]
+crosshair = ["crosshair-tool (>=0.0.99)", "hypothesis-crosshair (>=0.0.26)"]
 dateutil = ["python-dateutil (>=1.4)"]
 django = ["django (>=4.2)"]
 dpcontracts = ["dpcontracts (>=0.4)"]
@@ -4136,14 +4137,14 @@ diagrams = ["jinja2", "railroad-diagrams"]
 
 [[package]]
 name = "pytest"
-version = "9.0.1"
+version = "9.0.2"
 description = "pytest: simple powerful testing with Python"
 optional = false
 python-versions = ">=3.10"
 groups = ["test"]
 files = [
-    {file = "pytest-9.0.1-py3-none-any.whl", hash = "sha256:67be0030d194df2dfa7b556f2e56fb3c3315bd5c8822c6951162b92b32ce7dad"},
-    {file = "pytest-9.0.1.tar.gz", hash = "sha256:3e9c069ea73583e255c3b21cf46b8d3c56f6e3a1a8f6da94ccb0fcf57b9d73c8"},
+    {file = "pytest-9.0.2-py3-none-any.whl", hash = "sha256:711ffd45bf766d5264d487b917733b453d917afd2b0ad65223959f59089f875b"},
+    {file = "pytest-9.0.2.tar.gz", hash = "sha256:75186651a92bd89611d1d9fc20f0b4345fd827c41ccd5c299a868a05d70edf11"},
 ]
 
 [package.dependencies]
@@ -5035,14 +5036,14 @@ theme-sbt = ["sphinx-book-theme (>=1.1,<2.0)"]
 
 [[package]]
 name = "sphinx-gallery"
-version = "0.19.0"
+version = "0.20.0"
 description = "A Sphinx extension that builds an HTML gallery of examples from any set of Python scripts."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "sphinx_gallery-0.19.0-py3-none-any.whl", hash = "sha256:4c28751973f81769d5bbbf5e4ebaa0dc49dff8c48eb7f11131eb5f6e4aa25f0e"},
-    {file = "sphinx_gallery-0.19.0.tar.gz", hash = "sha256:8400cb5240ad642e28a612fdba0667f725d0505a9be0222d0243de60e8af2eb3"},
+    {file = "sphinx_gallery-0.20.0-py3-none-any.whl", hash = "sha256:188b7456e269649945825661b76cdbfbf0b70c2cfd5b75c9a11fe52519879e4d"},
+    {file = "sphinx_gallery-0.20.0.tar.gz", hash = "sha256:70281510c6183d812d3595957005ccf555c5a793f207410f6cd16a25bf08d735"},
 ]
 
 [package.dependencies]
@@ -5051,7 +5052,7 @@ sphinx = ">=5"
 
 [package.extras]
 animations = ["sphinxcontrib-video"]
-dev = ["absl-py", "graphviz", "intersphinx-registry", "ipython", "joblib", "jupyterlite-sphinx (>=0.17.1)", "lxml", "matplotlib", "numpy", "packaging", "plotly", "pydata-sphinx-theme", "pytest", "pytest-coverage", "seaborn", "sphinxcontrib-video", "statsmodels"]
+dev = ["absl-py", "graphviz", "intersphinx-registry", "ipython", "joblib", "jupyterlite-sphinx (>=0.17.1)", "lxml", "matplotlib", "numpy", "packaging", "plotly", "pydata-sphinx-theme", "pytest", "pytest-coverage", "seaborn", "sphinx-design", "sphinxcontrib-video", "statsmodels"]
 jupyterlite = ["jupyterlite-sphinx"]
 parallel = ["joblib"]
 recommender = ["numpy"]
