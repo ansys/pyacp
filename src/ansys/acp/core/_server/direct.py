@@ -41,7 +41,7 @@ from ansys.tools.common.launcher.interface import (
     LauncherProtocol,
     ServerType,
 )
-from ansys.tools.path import get_latest_ansys_installation
+from ansys.tools.common.path import get_latest_ansys_installation
 
 from .common import ServerKey
 

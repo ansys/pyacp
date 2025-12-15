@@ -40,8 +40,8 @@ grpcio-health-checking = ">=1.43"
 packaging = ">=15.0"
 typing-extensions = ">=4.5.0"
 ansys-api-acp = "==0.3.1"
-ansys-tools-path = ">=0"
-ansys-tools-filetransfer = ">=0.2"
+ansys-tools-common = ">=0.4.0"
+ansys-tools-filetransfer = ">=0.2.1"
 networkx = ">=3.0.0"
 
 # Optional dependencies which are included in the 'extras' section.
@@ -52,7 +52,6 @@ ansys-dpf-core = { version = ">=0.13", optional = true}
 ansys-mechanical-core = { version = ">=0.10.0", optional = true }
 matplotlib = { version = ">=3.8.3", optional = true }
 scipy = { version = ">=1.12.0", optional = true }
-ansys-tools-common = {git = "https://github.com/ansys/ansys-tools-common.git", rev = "feat/launcher-grpc-transport-options"}
 
 [tool.poetry.group.dev]
 optional = true
