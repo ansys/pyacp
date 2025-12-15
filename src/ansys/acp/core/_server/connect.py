@@ -25,15 +25,15 @@ from __future__ import annotations
 import dataclasses
 import pathlib
 
-from ansys.tools.local_product_launcher.grpc_transport import (
+from ansys.tools.common.launcher.grpc_transport import (
     InsecureOptions,
     MTLSOptions,
     TransportOptionsType,
     UDSOptions,
     WNUAOptions,
 )
-from ansys.tools.local_product_launcher.helpers.grpc import check_grpc_health
-from ansys.tools.local_product_launcher.interface import (
+from ansys.tools.common.launcher.helpers.grpc import check_grpc_health
+from ansys.tools.common.launcher.interface import (
     METADATA_KEY_DOC,
     LauncherProtocol,
     ServerType,
