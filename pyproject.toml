@@ -108,7 +108,7 @@ all = [
     "scipy",
 ]
 
-[tool.poetry.plugins."ansys.tools.local_product_launcher.launcher"]
+[tool.poetry.plugins."ansys.tools.common.launcher"]
 "ACP.direct" = "ansys.acp.core._server.direct:DirectLauncher"
 "ACP.docker_compose" = "ansys.acp.core._server.docker_compose:DockerComposeLauncher"
 "ACP.connect" = "ansys.acp.core._server.connect:ConnectLauncher"
