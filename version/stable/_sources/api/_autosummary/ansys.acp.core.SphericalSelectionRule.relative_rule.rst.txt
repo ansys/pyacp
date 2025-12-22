@@ -1,0 +1,13 @@
+.. vale off
+
+relative\_rule
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.relative_rule
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.relative_rule
+
+   ansys.acp.core.SphericalSelectionRule.relative_rule

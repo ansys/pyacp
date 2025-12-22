@@ -1,0 +1,13 @@
+.. vale off
+
+rstrip
+======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.rstrip
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.rstrip
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.rstrip

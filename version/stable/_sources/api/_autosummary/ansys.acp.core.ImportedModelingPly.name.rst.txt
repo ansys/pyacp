@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.name
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.name
+
+   ansys.acp.core.ImportedModelingPly.name
