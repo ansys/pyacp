@@ -1,0 +1,13 @@
+.. vale off
+
+compose\_file
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DockerComposeLaunchConfig.compose_file
+
+.. minigallery::
+   :add-heading: Examples using DockerComposeLaunchConfig.compose_file
+
+   ansys.acp.core.DockerComposeLaunchConfig.compose_file

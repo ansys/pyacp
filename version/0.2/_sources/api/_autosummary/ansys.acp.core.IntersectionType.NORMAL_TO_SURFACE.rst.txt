@@ -1,0 +1,13 @@
+.. vale off
+
+NORMAL\_TO\_SURFACE
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: IntersectionType.NORMAL_TO_SURFACE
+
+.. minigallery::
+   :add-heading: Examples using IntersectionType.NORMAL_TO_SURFACE
+
+   ansys.acp.core.IntersectionType.NORMAL_TO_SURFACE

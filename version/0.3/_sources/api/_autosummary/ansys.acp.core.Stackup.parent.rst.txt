@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.parent
+
+.. minigallery::
+   :add-heading: Examples using Stackup.parent
+
+   ansys.acp.core.Stackup.parent

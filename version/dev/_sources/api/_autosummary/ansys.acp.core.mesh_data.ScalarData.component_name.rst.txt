@@ -1,0 +1,13 @@
+.. vale off
+
+component\_name
+===============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoproperty:: ScalarData.component_name
+
+.. minigallery::
+   :add-heading: Examples using ScalarData.component_name
+
+   ansys.acp.core.mesh_data.ScalarData.component_name

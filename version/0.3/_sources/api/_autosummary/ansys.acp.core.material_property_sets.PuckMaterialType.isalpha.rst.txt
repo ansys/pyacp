@@ -1,0 +1,13 @@
+.. vale off
+
+isalpha
+=======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.isalpha
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.isalpha
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.isalpha

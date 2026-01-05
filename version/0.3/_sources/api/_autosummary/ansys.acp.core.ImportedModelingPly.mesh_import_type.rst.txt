@@ -1,0 +1,13 @@
+.. vale off
+
+mesh\_import\_type
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.mesh_import_type
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.mesh_import_type
+
+   ansys.acp.core.ImportedModelingPly.mesh_import_type

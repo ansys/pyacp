@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>rosettes &#8212; PyACP</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=77703c5e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=800b1921" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  
+    <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../../_static/documentation_options.js?v=91f6191e"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/ansys.acp.core.OrientedSelectionSet.rosettes';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://acp.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.1';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="rotation_angle" href="ansys.acp.core.OrientedSelectionSet.rotation_angle.html" />
+    <link rel="prev" title="rosette_selection_method" href="ansys.acp.core.OrientedSelectionSet.rosette_selection_method.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <link rel="canonical" href="https://acp.docs.pyansys.com/version/stable/api/_autosummary/ansys.acp.core.OrientedSelectionSet.rosettes.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyACP - Home"/>
+    <script>document.write(`<img src="../../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark" alt="PyACP - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    PyACP home
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../intro.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pyacp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    PyACP home
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../intro.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pyacp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../server.html">Server management</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../tree_objects.html">ACP objects</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.AnalysisPly.html">AnalysisPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.html">BooleanSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ButtJointSequence.html">ButtJointSequence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADComponent.html">CADComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADGeometry.html">CADGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutOffGeometry.html">CutOffGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutOffSelectionRule.html">CutOffSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CylindricalSelectionRule.html">CylindricalSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.EdgeSet.html">EdgeSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ElementSet.html">ElementSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ExtrusionGuide.html">ExtrusionGuide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Fabric.html">Fabric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.FieldDefinition.html">FieldDefinition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.GeometricalSelectionRule.html">GeometricalSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedAnalysisPly.html">ImportedAnalysisPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedModelingGroup.html">ImportedModelingGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedModelingPly.html">ImportedModelingPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedProductionPly.html">ImportedProductionPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.html">ImportedSolidModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.InterfaceLayer.html">InterfaceLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LayupMappingObject.html">LayupMappingObject</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable1D.html">LookUpTable1D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html">LookUpTable1DColumn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable3D.html">LookUpTable3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html">LookUpTable3DColumn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Material.html">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Model.html">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ModelingGroup.html">ModelingGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ModelingPly.html">ModelingPly</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.html">OrientedSelectionSet</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.clone.html">clone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.delete.html">delete</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.store.html">store</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.auto_draping_direction.html">auto_draping_direction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.draping.html">draping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.draping_direction.html">draping_direction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.draping_material_model.html">draping_material_model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.draping_mesh_size.html">draping_mesh_size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.draping_seed_point.html">draping_seed_point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.draping_ud_coefficient.html">draping_ud_coefficient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.element_sets.html">element_sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.elemental_data.html">elemental_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.id.html">id</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.mesh.html">mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.name.html">name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.nodal_data.html">nodal_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.orientation_direction.html">orientation_direction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.orientation_point.html">orientation_point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.parent.html">parent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.reference_direction_field.html">reference_direction_field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rosette_selection_method.html">rosette_selection_method</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">rosettes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.rotation_angle.html">rotation_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.selection_rules.html">selection_rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.shell_mesh.html">shell_mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.status.html">status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.use_default_draping_mesh_size.html">use_default_draping_mesh_size</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ParallelSelectionRule.html">ParallelSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ProductionPly.html">ProductionPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Rosette.html">Rosette</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SamplingPoint.html">SamplingPoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidElementSet.html">SolidElementSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.TubeSelectionRule.html">TubeSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.VariableOffsetSelectionRule.html">VariableOffsetSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.VirtualGeometry.html">VirtualGeometry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../mesh_data.html">Mesh data objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linked_object_definitions.html">Linked object definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material_property_sets.html">Material property sets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enum_types.html">Enumeration data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other_types.html">Other types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot_utils.html">Plot utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other_utils.html">Other utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dpf_integration_helpers.html">DPF integration helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mechanical_integration_helpers.html">Mechanical integration helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example_helpers.html">Example helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal.html">Internal objects</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">API reference</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../tree_objects.html" class="nav-link">ACP objects</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="ansys.acp.core.OrientedSelectionSet.html" class="nav-link">OrientedSelectionSet</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">rosettes</span></li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="rosettes">
+<h1>rosettes<a class="headerlink" href="#rosettes" title="Link to this heading">#</a></h1>
+<dl class="py property">
+<dt class="sig sig-object py" id="ansys.acp.core.OrientedSelectionSet.rosettes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">OrientedSelectionSet.</span></span><span class="sig-name descname"><span class="pre">rosettes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="ansys.acp.core._tree_objects._grpc_helpers.linked_object_list.LinkedObjectList.html#ansys.acp.core._tree_objects._grpc_helpers.linked_object_list.LinkedObjectList" title="ansys.acp.core._tree_objects._grpc_helpers.linked_object_list.LinkedObjectList"><span class="pre">LinkedObjectList</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ChildT</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ansys.acp.core.OrientedSelectionSet.rosettes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<section id="examples-using-orientedselectionset-rosettes">
+<h2>Examples using OrientedSelectionSet.rosettes<a class="headerlink" href="#examples-using-orientedselectionset-rosettes" title="Link to this heading">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example illustrates how you can use rosettes to define the reference directions of a ply. It only shows the PyACP part of the setup. For a complete composite analysis, see pymapdl_workflow_example."><img alt="" src="../../_images/sphx_glr_002-rosettes-ply-directions_thumb.png" />
+<p><a class="reference internal" href="../../examples/modeling_features/002-rosettes-ply-directions.html#sphx-glr-examples-modeling-features-002-rosettes-ply-directions-py"><span class="std std-ref">Rosette</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Rosette</div>
+</div></div></section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ansys.acp.core.OrientedSelectionSet.rosette_selection_method.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">rosette_selection_method</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ansys.acp.core.OrientedSelectionSet.rotation_angle.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">rotation_angle</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ansys.acp.core.OrientedSelectionSet.rosettes"><code class="docutils literal notranslate"><span class="pre">OrientedSelectionSet.rosettes</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-using-orientedselectionset-rosettes">Examples using OrientedSelectionSet.rosettes</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/api/_autosummary/ansys.acp.core.OrientedSelectionSet.rosettes.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+<link rel="stylesheet" href="../../_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('{"keys": ["title", "text"], "limit": 10, "threshold": 0.2}');
+const SEARCH_FILE = "../../_static/search.json";
+</script>
+
+
+<script src="../../_static/js/search.js"></script>
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2025 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  1.2.4. <br />Last updated on
+  <span id="ast_build_date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var ast_lastModifiedDate = new Date(document.lastModified);
+  var ast_build_date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("ast_build_date").innerHTML = ast_build_date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

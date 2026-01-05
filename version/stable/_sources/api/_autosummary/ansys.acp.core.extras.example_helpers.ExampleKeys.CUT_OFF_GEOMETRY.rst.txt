@@ -1,0 +1,13 @@
+.. vale off
+
+CUT\_OFF\_GEOMETRY
+==================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.CUT_OFF_GEOMETRY
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.CUT_OFF_GEOMETRY
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.CUT_OFF_GEOMETRY

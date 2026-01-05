@@ -1,0 +1,40 @@
+﻿.. vale off
+
+Lamina
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Lamina
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Lamina.clone
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Lamina.angle
+      Lamina.material
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using Lamina
+
+   ansys.acp.core.Lamina

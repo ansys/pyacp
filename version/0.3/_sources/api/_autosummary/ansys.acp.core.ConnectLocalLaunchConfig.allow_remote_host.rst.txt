@@ -1,0 +1,13 @@
+.. vale off
+
+allow\_remote\_host
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLocalLaunchConfig.allow_remote_host
+
+.. minigallery::
+   :add-heading: Examples using ConnectLocalLaunchConfig.allow_remote_host
+
+   ansys.acp.core.ConnectLocalLaunchConfig.allow_remote_host

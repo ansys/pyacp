@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Fabric.store
+
+.. minigallery::
+   :add-heading: Examples using Fabric.store
+
+   ansys.acp.core.Fabric.store

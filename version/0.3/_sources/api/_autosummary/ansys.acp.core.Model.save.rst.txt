@@ -1,0 +1,13 @@
+.. vale off
+
+save
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.save
+
+.. minigallery::
+   :add-heading: Examples using Model.save
+
+   ansys.acp.core.Model.save

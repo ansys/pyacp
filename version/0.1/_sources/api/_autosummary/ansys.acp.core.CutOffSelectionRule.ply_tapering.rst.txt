@@ -1,0 +1,13 @@
+.. vale off
+
+ply\_tapering
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffSelectionRule.ply_tapering
+
+.. minigallery::
+   :add-heading: Examples using CutOffSelectionRule.ply_tapering
+
+   ansys.acp.core.CutOffSelectionRule.ply_tapering

@@ -1,0 +1,13 @@
+.. vale off
+
+transferred\_element\_sets
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModelExportSettings.transferred_element_sets
+
+.. minigallery::
+   :add-heading: Examples using SolidModelExportSettings.transferred_element_sets
+
+   ansys.acp.core.SolidModelExportSettings.transferred_element_sets

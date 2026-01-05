@@ -1,0 +1,13 @@
+.. vale off
+
+solid\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.solid_mesh
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.solid_mesh
+
+   ansys.acp.core.ImportedSolidModel.solid_mesh

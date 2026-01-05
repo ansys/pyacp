@@ -1,0 +1,13 @@
+.. vale off
+
+center\_of\_gravity
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.center_of_gravity
+
+.. minigallery::
+   :add-heading: Examples using Sensor.center_of_gravity
+
+   ansys.acp.core.Sensor.center_of_gravity

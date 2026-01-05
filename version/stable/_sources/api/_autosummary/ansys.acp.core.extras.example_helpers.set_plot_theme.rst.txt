@@ -1,0 +1,13 @@
+﻿.. vale off
+
+set\_plot\_theme
+================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autofunction:: set_plot_theme
+
+.. minigallery::
+   :add-heading: Examples using set_plot_theme
+
+   ansys.acp.core.extras.example_helpers.set_plot_theme

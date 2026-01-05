@@ -1,0 +1,13 @@
+.. vale off
+
+visualization\_mesh
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.visualization_mesh
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.visualization_mesh
+
+   ansys.acp.core.CADGeometry.visualization_mesh

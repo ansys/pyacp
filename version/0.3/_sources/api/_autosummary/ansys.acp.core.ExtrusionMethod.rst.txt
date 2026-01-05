@@ -1,0 +1,46 @@
+﻿ExtrusionMethod
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ExtrusionMethod
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        ExtrusionMethod.ANALYSIS_PLY_WISE
+      
+      
+        ExtrusionMethod.MONOLITHIC
+      
+      
+        ExtrusionMethod.PRODUCTION_PLY_WISE
+      
+      
+        ExtrusionMethod.MODELING_PLY_WISE
+      
+      
+        ExtrusionMethod.SPECIFY_THICKNESS
+      
+      
+        ExtrusionMethod.MATERIAL_WISE
+      
+      
+        ExtrusionMethod.USER_DEFINED
+      
+      
+        ExtrusionMethod.SANDWICH_WISE
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionMethod
+
+   ansys.acp.core.ExtrusionMethod

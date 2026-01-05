@@ -1,0 +1,13 @@
+.. vale off
+
+BY\_REFERENCE
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: EdgeSetType.BY_REFERENCE
+
+.. minigallery::
+   :add-heading: Examples using EdgeSetType.BY_REFERENCE
+
+   ansys.acp.core.EdgeSetType.BY_REFERENCE

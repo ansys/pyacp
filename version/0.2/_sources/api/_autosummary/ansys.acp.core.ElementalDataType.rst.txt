@@ -1,0 +1,85 @@
+﻿ElementalDataType
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ElementalDataType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        ElementalDataType.COORDINATES
+      
+      
+        ElementalDataType.NORMAL
+      
+      
+        ElementalDataType.ORIENTATION
+      
+      
+        ElementalDataType.REFERENCE_DIRECTION
+      
+      
+        ElementalDataType.FIBER_DIRECTION
+      
+      
+        ElementalDataType.DRAPED_FIBER_DIRECTION
+      
+      
+        ElementalDataType.TRANSVERSE_DIRECTION
+      
+      
+        ElementalDataType.DRAPED_TRANSVERSE_DIRECTION
+      
+      
+        ElementalDataType.THICKNESS
+      
+      
+        ElementalDataType.RELATIVE_THICKNESS_CORRECTION
+      
+      
+        ElementalDataType.DESIGN_ANGLE
+      
+      
+        ElementalDataType.SHEAR_ANGLE
+      
+      
+        ElementalDataType.DRAPED_FIBER_ANGLE
+      
+      
+        ElementalDataType.DRAPED_TRANSVERSE_ANGLE
+      
+      
+        ElementalDataType.AREA
+      
+      
+        ElementalDataType.PRICE
+      
+      
+        ElementalDataType.VOLUME
+      
+      
+        ElementalDataType.MASS
+      
+      
+        ElementalDataType.OFFSET
+      
+      
+        ElementalDataType.MATERIAL_1_DIRECTION
+      
+      
+        ElementalDataType.COG
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType
+
+   ansys.acp.core.ElementalDataType

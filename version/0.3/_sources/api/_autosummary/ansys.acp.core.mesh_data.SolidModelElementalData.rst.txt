@@ -1,0 +1,40 @@
+﻿.. vale off
+
+SolidModelElementalData
+=======================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: SolidModelElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SolidModelElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SolidModelElementalData.normal
+      SolidModelElementalData.element_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using SolidModelElementalData
+
+   ansys.acp.core.mesh_data.SolidModelElementalData

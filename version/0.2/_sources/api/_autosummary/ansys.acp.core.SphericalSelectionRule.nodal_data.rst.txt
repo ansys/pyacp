@@ -1,0 +1,13 @@
+.. vale off
+
+nodal\_data
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.nodal_data
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.nodal_data
+
+   ansys.acp.core.SphericalSelectionRule.nodal_data

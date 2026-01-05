@@ -1,0 +1,13 @@
+.. vale off
+
+DISCARD
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LinkedObjectHandling.DISCARD
+
+.. minigallery::
+   :add-heading: Examples using LinkedObjectHandling.DISCARD
+
+   ansys.acp.core.LinkedObjectHandling.DISCARD

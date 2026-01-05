@@ -1,0 +1,13 @@
+.. vale off
+
+shell\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingGroup.shell_mesh
+
+.. minigallery::
+   :add-heading: Examples using ModelingGroup.shell_mesh
+
+   ansys.acp.core.ModelingGroup.shell_mesh

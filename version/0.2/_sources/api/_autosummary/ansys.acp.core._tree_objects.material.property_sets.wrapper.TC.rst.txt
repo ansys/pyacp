@@ -1,0 +1,10 @@
+﻿TC
+==
+
+.. currentmodule:: ansys.acp.core._tree_objects.material.property_sets.wrapper
+
+.. warning::
+
+    This is an internal object. It should not be used directly, and subject to change without notice.
+
+.. autodata:: TC

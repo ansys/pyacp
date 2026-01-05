@@ -1,0 +1,13 @@
+.. vale off
+
+relative\_thickness\_tolerance
+==============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.relative_thickness_tolerance
+
+.. minigallery::
+   :add-heading: Examples using Model.relative_thickness_tolerance
+
+   ansys.acp.core.Model.relative_thickness_tolerance

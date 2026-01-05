@@ -1,0 +1,13 @@
+.. vale off
+
+cad\_geometry
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExtrusionGuide.cad_geometry
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide.cad_geometry
+
+   ansys.acp.core.ExtrusionGuide.cad_geometry

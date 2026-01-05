@@ -1,0 +1,42 @@
+﻿.. vale off
+
+VariableLaRCConstants
+=====================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: VariableLaRCConstants
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VariableLaRCConstants.field_variables
+      VariableLaRCConstants.fracture_angle_under_compression
+      VariableLaRCConstants.fracture_toughness_mode_1
+      VariableLaRCConstants.fracture_toughness_mode_2
+      VariableLaRCConstants.fracture_toughness_ratio
+      VariableLaRCConstants.interpolation_options
+      VariableLaRCConstants.thin_ply_thickness_limit
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VariableLaRCConstants
+
+   ansys.acp.core.material_property_sets.VariableLaRCConstants

@@ -1,0 +1,40 @@
+﻿.. vale off
+
+SubShape
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SubShape
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SubShape.clone
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SubShape.cad_geometry
+      SubShape.path
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using SubShape
+
+   ansys.acp.core.SubShape

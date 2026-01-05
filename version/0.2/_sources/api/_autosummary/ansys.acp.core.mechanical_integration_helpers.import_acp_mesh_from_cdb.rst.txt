@@ -1,0 +1,10 @@
+﻿import\_acp\_mesh\_from\_cdb
+============================
+
+.. currentmodule:: ansys.acp.core.mechanical_integration_helpers
+
+.. warning::
+
+    This is an internal object. It should not be used directly, and subject to change without notice.
+
+.. autofunction:: import_acp_mesh_from_cdb

@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.name
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.name
+
+   ansys.acp.core.SectionCut.name

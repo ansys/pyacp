@@ -1,0 +1,13 @@
+.. vale off
+
+capitalize
+==========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.capitalize
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.capitalize
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.capitalize

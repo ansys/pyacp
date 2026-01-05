@@ -1,0 +1,13 @@
+.. vale off
+
+sampling\_points
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.sampling_points
+
+.. minigallery::
+   :add-heading: Examples using Model.sampling_points
+
+   ansys.acp.core.Model.sampling_points

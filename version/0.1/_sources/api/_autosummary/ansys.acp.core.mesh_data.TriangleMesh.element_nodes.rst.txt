@@ -1,0 +1,13 @@
+.. vale off
+
+element\_nodes
+==============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: TriangleMesh.element_nodes
+
+.. minigallery::
+   :add-heading: Examples using TriangleMesh.element_nodes
+
+   ansys.acp.core.mesh_data.TriangleMesh.element_nodes

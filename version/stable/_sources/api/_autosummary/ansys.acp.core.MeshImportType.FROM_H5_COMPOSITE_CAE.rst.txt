@@ -1,0 +1,13 @@
+.. vale off
+
+FROM\_H5\_COMPOSITE\_CAE
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: MeshImportType.FROM_H5_COMPOSITE_CAE
+
+.. minigallery::
+   :add-heading: Examples using MeshImportType.FROM_H5_COMPOSITE_CAE
+
+   ansys.acp.core.MeshImportType.FROM_H5_COMPOSITE_CAE

@@ -1,0 +1,13 @@
+.. vale off
+
+add\_primary\_ply
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ButtJointSequence.add_primary_ply
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence.add_primary_ply
+
+   ansys.acp.core.ButtJointSequence.add_primary_ply

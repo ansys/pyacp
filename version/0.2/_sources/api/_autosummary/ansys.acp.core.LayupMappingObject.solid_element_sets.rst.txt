@@ -1,0 +1,13 @@
+.. vale off
+
+solid\_element\_sets
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.solid_element_sets
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.solid_element_sets
+
+   ansys.acp.core.LayupMappingObject.solid_element_sets

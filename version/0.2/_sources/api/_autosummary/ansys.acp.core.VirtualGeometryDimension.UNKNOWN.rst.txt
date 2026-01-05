@@ -1,0 +1,13 @@
+.. vale off
+
+UNKNOWN
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: VirtualGeometryDimension.UNKNOWN
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometryDimension.UNKNOWN
+
+   ansys.acp.core.VirtualGeometryDimension.UNKNOWN

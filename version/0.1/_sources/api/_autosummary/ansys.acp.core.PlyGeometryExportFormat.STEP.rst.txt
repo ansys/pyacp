@@ -1,0 +1,13 @@
+.. vale off
+
+STEP
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyGeometryExportFormat.STEP
+
+.. minigallery::
+   :add-heading: Examples using PlyGeometryExportFormat.STEP
+
+   ansys.acp.core.PlyGeometryExportFormat.STEP

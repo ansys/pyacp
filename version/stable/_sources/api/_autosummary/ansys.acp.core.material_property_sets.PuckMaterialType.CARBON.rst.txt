@@ -1,0 +1,13 @@
+.. vale off
+
+CARBON
+======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoattribute:: PuckMaterialType.CARBON
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.CARBON
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.CARBON

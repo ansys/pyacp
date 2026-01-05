@@ -1,0 +1,13 @@
+.. vale off
+
+cut\_off\_material\_handling
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.cut_off_material_handling
+
+.. minigallery::
+   :add-heading: Examples using Fabric.cut_off_material_handling
+
+   ansys.acp.core.Fabric.cut_off_material_handling

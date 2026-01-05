@@ -1,0 +1,13 @@
+.. vale off
+
+section\_cuts
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.section_cuts
+
+.. minigallery::
+   :add-heading: Examples using Model.section_cuts
+
+   ansys.acp.core.Model.section_cuts

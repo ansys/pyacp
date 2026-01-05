@@ -1,0 +1,13 @@
+.. vale off
+
+section\_cut\_type
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.section_cut_type
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.section_cut_type
+
+   ansys.acp.core.SectionCut.section_cut_type

@@ -1,0 +1,13 @@
+.. vale off
+
+FORCE
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PhysicalDimension.FORCE
+
+.. minigallery::
+   :add-heading: Examples using PhysicalDimension.FORCE
+
+   ansys.acp.core.PhysicalDimension.FORCE

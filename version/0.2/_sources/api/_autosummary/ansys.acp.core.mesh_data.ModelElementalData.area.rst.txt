@@ -1,0 +1,13 @@
+.. vale off
+
+area
+====
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ModelElementalData.area
+
+.. minigallery::
+   :add-heading: Examples using ModelElementalData.area
+
+   ansys.acp.core.mesh_data.ModelElementalData.area

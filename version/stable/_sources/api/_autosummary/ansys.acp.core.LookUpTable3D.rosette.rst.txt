@@ -1,0 +1,13 @@
+.. vale off
+
+rosette
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3D.rosette
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3D.rosette
+
+   ansys.acp.core.LookUpTable3D.rosette

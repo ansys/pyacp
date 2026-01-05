@@ -1,0 +1,40 @@
+﻿.. vale off
+
+TriangleMesh
+============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: TriangleMesh
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      TriangleMesh.to_pyvista
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      TriangleMesh.node_coordinates
+      TriangleMesh.element_nodes
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using TriangleMesh
+
+   ansys.acp.core.mesh_data.TriangleMesh

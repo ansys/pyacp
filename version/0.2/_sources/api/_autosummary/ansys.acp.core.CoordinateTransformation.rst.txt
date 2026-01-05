@@ -1,0 +1,41 @@
+﻿.. vale off
+
+CoordinateTransformation
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: CoordinateTransformation
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CoordinateTransformation.rotation_angle_x
+      CoordinateTransformation.rotation_angle_y
+      CoordinateTransformation.rotation_angle_z
+      CoordinateTransformation.translation_x
+      CoordinateTransformation.translation_y
+      CoordinateTransformation.translation_z
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using CoordinateTransformation
+
+   ansys.acp.core.CoordinateTransformation

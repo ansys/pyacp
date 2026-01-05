@@ -1,0 +1,13 @@
+.. vale off
+
+rho
+===
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableDensity.rho
+
+.. minigallery::
+   :add-heading: Examples using VariableDensity.rho
+
+   ansys.acp.core.material_property_sets.VariableDensity.rho

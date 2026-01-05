@@ -1,0 +1,13 @@
+.. vale off
+
+draping\_seed\_point
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.draping_seed_point
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.draping_seed_point
+
+   ansys.acp.core.OrientedSelectionSet.draping_seed_point

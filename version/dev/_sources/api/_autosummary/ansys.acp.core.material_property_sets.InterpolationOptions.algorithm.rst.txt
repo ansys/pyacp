@@ -1,0 +1,13 @@
+.. vale off
+
+algorithm
+=========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoattribute:: InterpolationOptions.algorithm
+
+.. minigallery::
+   :add-heading: Examples using InterpolationOptions.algorithm
+
+   ansys.acp.core.material_property_sets.InterpolationOptions.algorithm

@@ -1,0 +1,13 @@
+.. vale off
+
+export\_materials
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.export_materials
+
+.. minigallery::
+   :add-heading: Examples using Model.export_materials
+
+   ansys.acp.core.Model.export_materials

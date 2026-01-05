@@ -1,0 +1,40 @@
+﻿.. vale off
+
+FabricWithAngle
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: FabricWithAngle
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      FabricWithAngle.clone
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      FabricWithAngle.angle
+      FabricWithAngle.fabric
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using FabricWithAngle
+
+   ansys.acp.core.FabricWithAngle

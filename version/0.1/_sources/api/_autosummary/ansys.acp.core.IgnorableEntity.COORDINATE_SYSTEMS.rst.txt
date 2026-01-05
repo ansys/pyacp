@@ -1,0 +1,13 @@
+.. vale off
+
+COORDINATE\_SYSTEMS
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: IgnorableEntity.COORDINATE_SYSTEMS
+
+.. minigallery::
+   :add-heading: Examples using IgnorableEntity.COORDINATE_SYSTEMS
+
+   ansys.acp.core.IgnorableEntity.COORDINATE_SYSTEMS

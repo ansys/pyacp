@@ -1,0 +1,1004 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="og:site_name" content="PyAnsys" />
+    <title>PyMechanical shell workflow &#8212; PyACP</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/ansys-sphinx-theme.css?v=ce7f2556" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/ansys-sphinx-theme.css?v=ce7f2556" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=800b1921" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+
+  <!-- Include desired assets -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  
+
+  
+    <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../../_static/documentation_options.js?v=3ca669d2"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/workflows/03-pymechanical-shell-workflow';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://acp.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="icon" href="../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PyMechanical solid workflow" href="04-pymechanical-solid-workflow.html" />
+    <link rel="prev" title="Advanced PyMAPDL workflow" href="02-advanced-pymapdl-workflow.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.1" />
+  <link rel="canonical" href="https://acp.docs.pyansys.com/version/stable/examples/workflows/03-pymechanical-shell-workflow.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyACP - Home"/>
+    <img src="../../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark pst-js-only" alt="PyACP - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    PyACP home
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pyacp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    PyACP home
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pyacp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/001-materials.html">Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/002-rosettes-ply-directions.html">Rosette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/003-simple-selection-rules.html">Basic selection rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/004-advanced-selection-rules.html">Advanced selection rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/005-ply-direction-lookup-table.html">Direction definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/006-layup-thickness-definitions.html">Thickness definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/007-sensor.html">Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/010-sandwich-panel-layup.html">Sandwich panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/020-solid_model.html">Solid Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/030-imported-plies.html">Imported ply</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/031-imported-solid-model.html">Imported solid model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/050-composite_cae_h5.html">HDF5 Composite CAE</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-pymapdl-workflow.html">PyMAPDL workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-advanced-pymapdl-workflow.html">Advanced PyMAPDL workflow</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PyMechanical shell workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-pymechanical-solid-workflow.html">PyMechanical solid workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-pymechanical-to-cdb-workflow.html">PyMechanical to CDB shell workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-cdb-to-pymechanical-workflow.html">CDB to PyMechanical shell workflow</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../use_cases/01-optimizing-ply-angles.html">Optimizing ply angles</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">Examples</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">PyMechanical shell workflow</span></li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-workflows-03-pymechanical-shell-workflow-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="pymechanical-shell-workflow">
+<span id="pymechanical-shell-example"></span><span id="sphx-glr-examples-workflows-03-pymechanical-shell-workflow-py"></span><h1>PyMechanical shell workflow<a class="headerlink" href="#pymechanical-shell-workflow" title="Link to this heading">#</a></h1>
+<p>This example shows how to set up a simple shell model with PyACP and
+PyMechanical:</p>
+<ul class="simple">
+<li><p>The geometry is imported into Mechanical and meshed.</p></li>
+<li><p>The mesh is exported to ACP.</p></li>
+<li><p>A simple lay-up is defined in ACP.</p></li>
+<li><p>Plies and materials are exported from ACP, and imported into Mechanical.</p></li>
+<li><p>Boundary conditions are set in Mechanical.</p></li>
+<li><p>The model is solved.</p></li>
+<li><p>The results are post-processed in PyDPF - Composites.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The PyACP / PyMechanical integration is still experimental. Refer to the
+<a class="reference internal" href="../../index.html#limitations"><span class="std std-ref">limitations section</span></a> for more information.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Outputs and plots for this example are not shown in the rendered online
+documentation. To see the outputs and plots, run the example script or
+Jupyter notebook locally.</p>
+</div>
+<section id="import-modules-and-start-the-ansys-products">
+<h2>Import modules and start the Ansys products<a class="headerlink" href="#import-modules-and-start-the-ansys-products" title="Link to this heading">#</a></h2>
+<p>Import the standard library and third-party dependencies.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <a href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor" title="concurrent.futures.ThreadPoolExecutor" class="sphx-glr-backref-module-concurrent-futures sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ThreadPoolExecutor</span></a>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">textwrap</span>
+</pre></div>
+</div>
+<p>Import PyACP, PyMechanical, and PyDPF - Composites.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># isort: off</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ansys.acp.core</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pyacp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ansys.acp.core.extras</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_plot_theme</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ansys.dpf.composites</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pydpf_composites</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ansys.mechanical.core</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pymechanical</span>
+</pre></div>
+</div>
+<p>Set the plot theme for the example. This is optional, and ensures that you get the
+same plot style (theme, color map, etc.) as in the online documentation.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">set_plot_theme</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Start the ACP, Mechanical, and DPF servers. We use a <code class="docutils literal notranslate"><span class="pre">ThreadPoolExecutor</span></code>
+to start them in parallel.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <a href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor" title="concurrent.futures.ThreadPoolExecutor" class="sphx-glr-backref-module-concurrent-futures sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ThreadPoolExecutor</span></a><span class="p">()</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">pymechanical</span><span class="o">.</span><span class="n">launch_mechanical</span><span class="p">,</span> <span class="n">batch</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">),</span>
+        <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">pydpf_composites</span><span class="o">.</span><span class="n">server_helpers</span><span class="o">.</span><span class="n">connect_to_or_start_server</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="n">mechanical</span><span class="p">,</span> <span class="n">acp</span><span class="p">,</span> <span class="n">dpf</span> <span class="o">=</span> <span class="p">(</span><span class="n">fut</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">fut</span> <span class="ow">in</span> <span class="n">futures</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="get-example-input-files">
+<h2>Get example input files<a class="headerlink" href="#get-example-input-files" title="Link to this heading">#</a></h2>
+<p>Create a temporary working directory, and download the example input files
+to this directory.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">working_dir</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span></a><span class="p">()</span>
+<span class="n">working_dir_path</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><span class="n">working_dir</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="n">input_geometry</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">extras</span><span class="o">.</span><span class="n">example_helpers</span><span class="o">.</span><span class="n">get_example_file</span><span class="p">(</span>
+    <span class="n">pyacp</span><span class="o">.</span><span class="n">extras</span><span class="o">.</span><span class="n">example_helpers</span><span class="o">.</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">CLASS40_AGDB</span><span class="p">,</span> <span class="n">working_dir_path</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="generate-the-mesh-in-pymechanical">
+<h2>Generate the mesh in PyMechanical<a class="headerlink" href="#generate-the-mesh-in-pymechanical" title="Link to this heading">#</a></h2>
+<p>Load the geometry into Mechanical, generate the mesh, and export it to the
+appropriate transfer format for ACP.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mesh_path</span> <span class="o">=</span> <span class="n">working_dir_path</span> <span class="o">/</span> <span class="s2">&quot;mesh.h5&quot;</span>
+<span class="n">mechanical</span><span class="o">.</span><span class="n">run_python_script</span><span class="p">(</span>
+    <span class="c1"># This script runs in the Mechanical Python environment, which uses IronPython 2.7.</span>
+    <a href="https://docs.python.org/3/library/textwrap.html#textwrap.dedent" title="textwrap.dedent" class="sphx-glr-backref-module-textwrap sphx-glr-backref-type-py-function"><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span></a><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">        # Import the geometry</span>
+<span class="s2">        geometry_import = Model.GeometryImportGroup.AddGeometryImport()</span>
+
+<span class="s2">        import_format = Ansys.Mechanical.DataModel.Enums.GeometryImportPreference.Format.Automatic</span>
+<span class="s2">        import_preferences = Ansys.ACT.Mechanical.Utilities.GeometryImportPreferences()</span>
+<span class="s2">        import_preferences.ProcessNamedSelections = True</span>
+<span class="s2">        import_preferences.ProcessCoordinateSystems = True</span>
+
+<span class="s2">        geometry_file = </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">input_geometry</span><span class="p">)</span><span class="si">!r}</span>
+<span class="s2">        geometry_import.Import(</span>
+<span class="s2">            geometry_file,</span>
+<span class="s2">            import_format,</span>
+<span class="s2">            import_preferences</span>
+<span class="s2">        )</span>
+
+<span class="s2">        # The thickness will be overridden by the ACP model, but is required</span>
+<span class="s2">        # for the model to be valid.</span>
+<span class="s2">        for body in Model.Geometry.GetChildren(</span>
+<span class="s2">            Ansys.Mechanical.DataModel.Enums.DataModelObjectCategory.Body, True</span>
+<span class="s2">        ):</span>
+<span class="s2">            body.Thickness = Quantity(1e-6, &quot;m&quot;)</span>
+
+<span class="s2">        Model.Mesh.GenerateMesh()</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="n">pyacp</span><span class="o">.</span><span class="n">mechanical_integration_helpers</span><span class="o">.</span><span class="n">export_mesh_for_acp</span><span class="p">(</span><span class="n">mechanical</span><span class="o">=</span><span class="n">mechanical</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">mesh_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="set-up-the-acp-model">
+<h2>Set up the ACP model<a class="headerlink" href="#set-up-the-acp-model" title="Link to this heading">#</a></h2>
+<p>Setup basic ACP lay-up based on the mesh in <code class="docutils literal notranslate"><span class="pre">mesh_path</span></code>, and export material and composite
+definition file to output_path.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">composite_definitions_h5</span> <span class="o">=</span> <span class="s2">&quot;ACPCompositeDefinitions.h5&quot;</span>
+<span class="n">matml_file</span> <span class="o">=</span> <span class="s2">&quot;materials.xml&quot;</span>
+
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:h5&quot;</span><span class="p">)</span>
+
+<span class="n">mat</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_material</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;mat&quot;</span><span class="p">)</span>
+
+<span class="n">mat</span><span class="o">.</span><span class="n">ply_type</span> <span class="o">=</span> <span class="s2">&quot;regular&quot;</span>
+<span class="n">mat</span><span class="o">.</span><span class="n">engineering_constants</span><span class="o">.</span><span class="n">E1</span> <span class="o">=</span> <span class="mf">1e12</span>
+<span class="n">mat</span><span class="o">.</span><span class="n">engineering_constants</span><span class="o">.</span><span class="n">E2</span> <span class="o">=</span> <span class="mf">1e11</span>
+<span class="n">mat</span><span class="o">.</span><span class="n">engineering_constants</span><span class="o">.</span><span class="n">E3</span> <span class="o">=</span> <span class="mf">1e11</span>
+<span class="n">mat</span><span class="o">.</span><span class="n">engineering_constants</span><span class="o">.</span><span class="n">G12</span> <span class="o">=</span> <span class="mf">1e10</span>
+<span class="n">mat</span><span class="o">.</span><span class="n">engineering_constants</span><span class="o">.</span><span class="n">G23</span> <span class="o">=</span> <span class="mf">1e10</span>
+<span class="n">mat</span><span class="o">.</span><span class="n">engineering_constants</span><span class="o">.</span><span class="n">G31</span> <span class="o">=</span> <span class="mf">1e10</span>
+<span class="n">mat</span><span class="o">.</span><span class="n">engineering_constants</span><span class="o">.</span><span class="n">nu12</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">mat</span><span class="o">.</span><span class="n">engineering_constants</span><span class="o">.</span><span class="n">nu13</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">mat</span><span class="o">.</span><span class="n">engineering_constants</span><span class="o">.</span><span class="n">nu23</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="n">mat</span><span class="o">.</span><span class="n">strain_limits</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">material_property_sets</span><span class="o">.</span><span class="n">ConstantStrainLimits</span><span class="o">.</span><span class="n">from_orthotropic_constants</span><span class="p">(</span>
+    <span class="n">eXc</span><span class="o">=-</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">eYc</span><span class="o">=-</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">eZc</span><span class="o">=-</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">eXt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">eYt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">eZt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">eSxy</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">eSyz</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">eSxz</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">corecell_81kg_5mm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Corecell 81kg&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">mat</span><span class="p">)</span>
+
+<span class="n">ros</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ros&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">oss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;oss&quot;</span><span class="p">,</span>
+    <span class="n">orientation_point</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">orientation_direction</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">element_sets</span><span class="o">=</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">element_sets</span><span class="p">[</span><span class="s2">&quot;All_Elements&quot;</span><span class="p">]],</span>
+    <span class="n">rosettes</span><span class="o">=</span><span class="p">[</span><span class="n">ros</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">mg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_modeling_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;group&quot;</span><span class="p">)</span>
+<span class="n">mg</span><span class="o">.</span><span class="n">create_modeling_ply</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ply&quot;</span><span class="p">,</span>
+    <span class="n">ply_material</span><span class="o">=</span><span class="n">corecell_81kg_5mm</span><span class="p">,</span>
+    <span class="n">oriented_selection_sets</span><span class="o">=</span><span class="p">[</span><span class="n">oss</span><span class="p">],</span>
+    <span class="n">ply_angle</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span>
+    <span class="n">number_of_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">global_ply_nr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># add at the end</span>
+<span class="p">)</span>
+<span class="n">mg</span><span class="o">.</span><span class="n">create_modeling_ply</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ply2&quot;</span><span class="p">,</span>
+    <span class="n">ply_material</span><span class="o">=</span><span class="n">corecell_81kg_5mm</span><span class="p">,</span>
+    <span class="n">oriented_selection_sets</span><span class="o">=</span><span class="p">[</span><span class="n">oss</span><span class="p">],</span>
+    <span class="n">ply_angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">number_of_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">global_ply_nr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># add at the end</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="update-and-save-the-acp-model">
+<h2>Update and Save the ACP model<a class="headerlink" href="#update-and-save-the-acp-model" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">export_shell_composite_definitions</span><span class="p">(</span><span class="n">working_dir_path</span> <span class="o">/</span> <span class="n">composite_definitions_h5</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">export_materials</span><span class="p">(</span><span class="n">working_dir_path</span> <span class="o">/</span> <span class="n">matml_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="import-materials-and-plies-into-mechanical">
+<h2>Import materials and plies into Mechanical<a class="headerlink" href="#import-materials-and-plies-into-mechanical" title="Link to this heading">#</a></h2>
+<p>Import materials into Mechanical</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mechanical</span><span class="o">.</span><span class="n">run_python_script</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model.Materials.Import(</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">working_dir_path</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">matml_file</span><span class="p">)</span><span class="si">!r}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Import plies into Mechanical</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pyacp</span><span class="o">.</span><span class="n">mechanical_integration_helpers</span><span class="o">.</span><span class="n">import_acp_composite_definitions</span><span class="p">(</span>
+    <span class="n">mechanical</span><span class="o">=</span><span class="n">mechanical</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="n">working_dir_path</span> <span class="o">/</span> <span class="n">composite_definitions_h5</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="set-boundary-condition-and-solve">
+<h2>Set boundary condition and solve<a class="headerlink" href="#set-boundary-condition-and-solve" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mechanical</span><span class="o">.</span><span class="n">run_python_script</span><span class="p">(</span>
+    <a href="https://docs.python.org/3/library/textwrap.html#textwrap.dedent" title="textwrap.dedent" class="sphx-glr-backref-module-textwrap sphx-glr-backref-type-py-function"><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span></a><span class="p">(</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">        front_edge = Model.AddNamedSelection()</span>
+<span class="sd">        front_edge.Name = &quot;Front Edge&quot;</span>
+<span class="sd">        front_edge.ScopingMethod = GeometryDefineByType.Worksheet</span>
+
+<span class="sd">        front_edge.GenerationCriteria.Add(None)</span>
+<span class="sd">        front_edge.GenerationCriteria[0].EntityType = SelectionType.GeoEdge</span>
+<span class="sd">        front_edge.GenerationCriteria[0].Criterion = SelectionCriterionType.LocationX</span>
+<span class="sd">        front_edge.GenerationCriteria[0].Operator = SelectionOperatorType.GreaterThan</span>
+<span class="sd">        front_edge.GenerationCriteria[0].Value = Quantity(&#39;-4.6 [m]&#39;)</span>
+<span class="sd">        front_edge.Generate()</span>
+
+<span class="sd">        back_edge = Model.AddNamedSelection()</span>
+<span class="sd">        back_edge.Name = &quot;Back Edge&quot;</span>
+<span class="sd">        back_edge.ScopingMethod = GeometryDefineByType.Worksheet</span>
+
+<span class="sd">        back_edge.GenerationCriteria.Add(None)</span>
+<span class="sd">        back_edge.GenerationCriteria[0].EntityType = SelectionType.GeoEdge</span>
+<span class="sd">        back_edge.GenerationCriteria[0].Criterion = SelectionCriterionType.LocationX</span>
+<span class="sd">        back_edge.GenerationCriteria[0].Operator = SelectionOperatorType.LessThan</span>
+<span class="sd">        back_edge.GenerationCriteria[0].Value = Quantity(&#39;-7.8 [m]&#39;)</span>
+<span class="sd">        back_edge.Generate()</span>
+
+<span class="sd">        analysis = Model.AddStaticStructuralAnalysis()</span>
+
+<span class="sd">        fixed_support = analysis.AddFixedSupport()</span>
+<span class="sd">        fixed_support.Location = back_edge</span>
+
+<span class="sd">        force = analysis.AddForce()</span>
+<span class="sd">        force.DefineBy = LoadDefineBy.Components</span>
+<span class="sd">        force.XComponent.Output.SetDiscreteValue(0, Quantity(1e6, &quot;N&quot;))</span>
+<span class="sd">        force.Location = front_edge</span>
+
+<span class="sd">        analysis.Solution.Solve(True)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">rst_file</span> <span class="o">=</span> <span class="p">[</span><span class="n">filename</span> <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">mechanical</span><span class="o">.</span><span class="n">list_files</span><span class="p">()</span> <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.rst&quot;</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">matml_out</span> <span class="o">=</span> <span class="p">[</span><span class="n">filename</span> <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">mechanical</span><span class="o">.</span><span class="n">list_files</span><span class="p">()</span> <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;MatML.xml&quot;</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="postprocess-results">
+<h2>Postprocess results<a class="headerlink" href="#postprocess-results" title="Link to this heading">#</a></h2>
+<p>Evaluate the failure criteria using the PyDPF - Composites.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">max_strain</span> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">failure_criteria</span><span class="o">.</span><span class="n">MaxStrainCriterion</span><span class="p">()</span>
+<span class="n">cfc</span> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">failure_criteria</span><span class="o">.</span><span class="n">CombinedFailureCriterion</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Combined Failure Criterion&quot;</span><span class="p">,</span>
+    <span class="n">failure_criteria</span><span class="o">=</span><span class="p">[</span><span class="n">max_strain</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">composite_model</span> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">composite_model</span><span class="o">.</span><span class="n">CompositeModel</span><span class="p">(</span>
+    <span class="n">composite_files</span><span class="o">=</span><span class="n">pydpf_composites</span><span class="o">.</span><span class="n">data_sources</span><span class="o">.</span><span class="n">ContinuousFiberCompositesFiles</span><span class="p">(</span>
+        <span class="n">rst</span><span class="o">=</span><span class="n">rst_file</span><span class="p">,</span>
+        <span class="n">composite</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;shell&quot;</span><span class="p">:</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">data_sources</span><span class="o">.</span><span class="n">CompositeDefinitionFiles</span><span class="p">(</span>
+                <span class="n">definition</span><span class="o">=</span><span class="n">working_dir_path</span> <span class="o">/</span> <span class="n">composite_definitions_h5</span>
+            <span class="p">),</span>
+        <span class="p">},</span>
+        <span class="n">engineering_data</span><span class="o">=</span><span class="n">working_dir_path</span> <span class="o">/</span> <span class="n">matml_out</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">server</span><span class="o">=</span><span class="n">dpf</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Evaluate the failure criteria</span>
+<span class="n">output_all_elements</span> <span class="o">=</span> <span class="n">composite_model</span><span class="o">.</span><span class="n">evaluate_failure_criteria</span><span class="p">(</span><span class="n">cfc</span><span class="p">)</span>
+
+<span class="c1"># Query and plot the results</span>
+<span class="n">irf_field</span> <span class="o">=</span> <span class="n">output_all_elements</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;failure_label&quot;</span><span class="p">:</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">FailureOutput</span><span class="o">.</span><span class="n">FAILURE_VALUE</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">irf_field</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-workflows-03-pymechanical-shell-workflow-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/58f38b60d6f443aaa2051cfdaa43c502/03-pymechanical-shell-workflow.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">03-pymechanical-shell-workflow.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/6186f6553b5967ded4370c900693efe6/03-pymechanical-shell-workflow.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">03-pymechanical-shell-workflow.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/248aa0b06cb4d5c4f050de205fe8d666/03-pymechanical-shell-workflow.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">03-pymechanical-shell-workflow.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02-advanced-pymapdl-workflow.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Advanced PyMAPDL workflow</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04-pymechanical-solid-workflow.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PyMechanical solid workflow</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-modules-and-start-the-ansys-products">Import modules and start the Ansys products</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-example-input-files">Get example input files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-the-mesh-in-pymechanical">Generate the mesh in PyMechanical</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-the-acp-model">Set up the ACP model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-and-save-the-acp-model">Update and Save the ACP model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-materials-and-plies-into-mechanical">Import materials and plies into Mechanical</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-boundary-condition-and-solve">Set boundary condition and solve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocess-results">Postprocess results</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/examples/workflows/03-pymechanical-shell-workflow.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+
+  <!-- Include desired assets -->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('{"keys": ["title", "text", "objectID"], "limit": 10, "threshold": 0.2}');
+const SEARCH_FILE = "../../_static/search.json";
+const ADVANCE_SEARCH_PATH = "../../search.html";
+const EXTRA_SOURCES = JSON.parse('""');
+</script>
+
+
+<script src="../../_static/js/search.js"></script>
+
+  
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2025 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  1.5.3. <br />Last updated on
+  <span id="ast_build_date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var ast_lastModifiedDate = new Date(document.lastModified);
+  var ast_build_date = ast_lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("ast_build_date").innerHTML = ast_build_date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+.. vale off
+
+models
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ACPInstance.models
+
+.. minigallery::
+   :add-heading: Examples using ACPInstance.models
+
+   ansys.acp.core.ACPInstance.models

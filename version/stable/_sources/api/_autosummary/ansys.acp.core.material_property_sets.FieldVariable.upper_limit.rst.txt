@@ -1,0 +1,13 @@
+.. vale off
+
+upper\_limit
+============
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoattribute:: FieldVariable.upper_limit
+
+.. minigallery::
+   :add-heading: Examples using FieldVariable.upper_limit
+
+   ansys.acp.core.material_property_sets.FieldVariable.upper_limit

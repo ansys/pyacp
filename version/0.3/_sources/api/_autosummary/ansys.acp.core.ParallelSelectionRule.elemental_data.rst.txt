@@ -1,0 +1,13 @@
+.. vale off
+
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.elemental_data
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.elemental_data
+
+   ansys.acp.core.ParallelSelectionRule.elemental_data

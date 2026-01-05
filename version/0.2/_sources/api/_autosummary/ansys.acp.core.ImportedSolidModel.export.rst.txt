@@ -1,0 +1,13 @@
+.. vale off
+
+export
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedSolidModel.export
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.export
+
+   ansys.acp.core.ImportedSolidModel.export

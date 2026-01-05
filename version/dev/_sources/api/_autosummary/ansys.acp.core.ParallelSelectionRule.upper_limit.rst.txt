@@ -1,0 +1,13 @@
+.. vale off
+
+upper\_limit
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.upper_limit
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.upper_limit
+
+   ansys.acp.core.ParallelSelectionRule.upper_limit

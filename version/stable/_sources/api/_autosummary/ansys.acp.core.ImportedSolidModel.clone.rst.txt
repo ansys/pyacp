@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedSolidModel.clone
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.clone
+
+   ansys.acp.core.ImportedSolidModel.clone

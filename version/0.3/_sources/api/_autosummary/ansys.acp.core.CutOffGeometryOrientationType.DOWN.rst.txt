@@ -1,0 +1,13 @@
+.. vale off
+
+DOWN
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CutOffGeometryOrientationType.DOWN
+
+.. minigallery::
+   :add-heading: Examples using CutOffGeometryOrientationType.DOWN
+
+   ansys.acp.core.CutOffGeometryOrientationType.DOWN

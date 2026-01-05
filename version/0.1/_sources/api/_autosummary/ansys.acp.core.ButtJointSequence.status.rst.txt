@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ButtJointSequence.status
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence.status
+
+   ansys.acp.core.ButtJointSequence.status

@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SubLaminate.name
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.name
+
+   ansys.acp.core.SubLaminate.name

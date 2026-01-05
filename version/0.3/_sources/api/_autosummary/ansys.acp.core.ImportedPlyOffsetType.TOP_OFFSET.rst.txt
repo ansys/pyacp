@@ -1,0 +1,13 @@
+.. vale off
+
+TOP\_OFFSET
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ImportedPlyOffsetType.TOP_OFFSET
+
+.. minigallery::
+   :add-heading: Examples using ImportedPlyOffsetType.TOP_OFFSET
+
+   ansys.acp.core.ImportedPlyOffsetType.TOP_OFFSET

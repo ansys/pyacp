@@ -1,0 +1,13 @@
+.. vale off
+
+RULE\_GEOMETRY\_TRIANGLE
+========================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.RULE_GEOMETRY_TRIANGLE
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.RULE_GEOMETRY_TRIANGLE
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.RULE_GEOMETRY_TRIANGLE

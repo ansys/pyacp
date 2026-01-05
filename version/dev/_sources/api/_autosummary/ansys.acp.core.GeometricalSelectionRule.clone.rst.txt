@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: GeometricalSelectionRule.clone
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.clone
+
+   ansys.acp.core.GeometricalSelectionRule.clone

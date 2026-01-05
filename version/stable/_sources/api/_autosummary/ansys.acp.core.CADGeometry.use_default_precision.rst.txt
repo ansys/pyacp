@@ -1,0 +1,13 @@
+.. vale off
+
+use\_default\_precision
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.use_default_precision
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.use_default_precision
+
+   ansys.acp.core.CADGeometry.use_default_precision

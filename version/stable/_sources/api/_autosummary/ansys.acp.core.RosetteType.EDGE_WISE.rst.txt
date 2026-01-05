@@ -1,0 +1,13 @@
+.. vale off
+
+EDGE\_WISE
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteType.EDGE_WISE
+
+.. minigallery::
+   :add-heading: Examples using RosetteType.EDGE_WISE
+
+   ansys.acp.core.RosetteType.EDGE_WISE

@@ -1,0 +1,13 @@
+.. vale off
+
+BOTTOM
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SnapToGeometryOrientationType.BOTTOM
+
+.. minigallery::
+   :add-heading: Examples using SnapToGeometryOrientationType.BOTTOM
+
+   ansys.acp.core.SnapToGeometryOrientationType.BOTTOM

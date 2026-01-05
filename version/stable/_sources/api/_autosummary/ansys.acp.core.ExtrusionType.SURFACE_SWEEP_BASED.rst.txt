@@ -1,0 +1,13 @@
+.. vale off
+
+SURFACE\_SWEEP\_BASED
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionType.SURFACE_SWEEP_BASED
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionType.SURFACE_SWEEP_BASED
+
+   ansys.acp.core.ExtrusionType.SURFACE_SWEEP_BASED

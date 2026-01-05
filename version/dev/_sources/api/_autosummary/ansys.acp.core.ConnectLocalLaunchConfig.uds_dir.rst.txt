@@ -1,0 +1,13 @@
+.. vale off
+
+uds\_dir
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLocalLaunchConfig.uds_dir
+
+.. minigallery::
+   :add-heading: Examples using ConnectLocalLaunchConfig.uds_dir
+
+   ansys.acp.core.ConnectLocalLaunchConfig.uds_dir

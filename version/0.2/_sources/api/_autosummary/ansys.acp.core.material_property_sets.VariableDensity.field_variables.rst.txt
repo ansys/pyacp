@@ -1,0 +1,13 @@
+.. vale off
+
+field\_variables
+================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableDensity.field_variables
+
+.. minigallery::
+   :add-heading: Examples using VariableDensity.field_variables
+
+   ansys.acp.core.material_property_sets.VariableDensity.field_variables

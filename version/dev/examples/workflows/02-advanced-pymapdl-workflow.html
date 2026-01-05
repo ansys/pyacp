@@ -1,0 +1,1305 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Advanced PyMAPDL workflow &#8212; PyACP</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/ansys-sphinx-theme.css?v=9e79609d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/ansys-sphinx-theme.css?v=9e79609d" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=800b1921" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+
+  <!-- Include desired assets -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  
+
+  
+    <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../../_static/documentation_options.js?v=17d02985"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/workflows/02-advanced-pymapdl-workflow';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://acp.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="icon" href="../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PyMechanical shell workflow" href="03-pymechanical-shell-workflow.html" />
+    <link rel="prev" title="PyMAPDL workflow" href="01-pymapdl-workflow.html" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.4.0.dev0" />
+  <meta property="og:site_name" content="PyAnsys" />
+  <meta name="physics" content="Structures" />
+  <link rel="canonical" href="https://acp.docs.pyansys.com/version/stable/examples/workflows/02-advanced-pymapdl-workflow.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyACP - Home"/>
+    <img src="../../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark pst-js-only" alt="PyACP - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html" title="PyACP home">Home</a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav>
+</div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pyacp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html" title="PyACP home">Home</a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+  </ul>
+</nav>
+</div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pyacp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/001-materials.html">Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/002-rosettes-ply-directions.html">Rosette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/003-simple-selection-rules.html">Basic selection rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/004-advanced-selection-rules.html">Advanced selection rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/005-ply-direction-lookup-table.html">Direction definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/006-layup-thickness-definitions.html">Thickness definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/007-sensor.html">Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/010-sandwich-panel-layup.html">Sandwich panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/020-solid_model.html">Solid Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/030-imported-plies.html">Imported ply</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/031-imported-solid-model.html">Imported solid model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/050-composite_cae_h5.html">HDF5 Composite CAE</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-pymapdl-workflow.html">PyMAPDL workflow</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Advanced PyMAPDL workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-pymechanical-shell-workflow.html">PyMechanical shell workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-pymechanical-solid-workflow.html">PyMechanical solid workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-pymechanical-to-cdb-workflow.html">PyMechanical to CDB shell workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-cdb-to-pymechanical-workflow.html">CDB to PyMechanical shell workflow</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../use_cases/01-optimizing-ply-angles.html">Optimizing ply angles</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">Examples</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Advanced PyMAPDL workflow</span></li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-workflows-02-advanced-pymapdl-workflow-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="advanced-pymapdl-workflow">
+<span id="advanced-pymapdl-workflow-example"></span><span id="sphx-glr-examples-workflows-02-advanced-pymapdl-workflow-py"></span><h1>Advanced PyMAPDL workflow<a class="headerlink" href="#advanced-pymapdl-workflow" title="Link to this heading">#</a></h1>
+<p>This example shows how to define a composite lay-up with PyACP, solve the resulting
+model with PyMAPDL, and run a failure analysis with PyDPF - Composites.</p>
+<p>Begin with an MAPDL CDB file that contains the mesh, material data, and
+boundary conditions. Import the file to PyACP to define the lay-up, and then export the
+resulting model to PyMAPDL. Once the results are available, the RST file is loaded in
+PyDPF - Composites for postprocessing. The additional input files (<code class="docutils literal notranslate"><span class="pre">material.xml</span></code>
+and <code class="docutils literal notranslate"><span class="pre">ACPCompositeDefinitions.h5</span></code>) can also be stored with PyACP and passed to PyDPF - Composites.</p>
+<section id="import-modules-and-start-acp">
+<h2>Import modules and start ACP<a class="headerlink" href="#import-modules-and-start-acp" title="Link to this heading">#</a></h2>
+<p>Import the standard library and third-party dependencies.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span>
+</pre></div>
+</div>
+<p>Import the Ansys libraries.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ansys.acp.core</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pyacp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ansys.acp.core.extras</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_plot_theme</span>
+</pre></div>
+</div>
+<p>Set the plot theme for the example. This is optional, and ensures that you get the
+same plot style (theme, color map, etc.) as in the online documentation.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">set_plot_theme</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Launch the PyACP server and connect to it.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">acp</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="get-example-input-files">
+<h2>Get example input files<a class="headerlink" href="#get-example-input-files" title="Link to this heading">#</a></h2>
+<p>Create a temporary working directory, and download the example input files
+to this directory.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">working_dir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class"><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span></a><span class="p">()</span>
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">working_dir_path</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">working_dir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">extras</span><span class="o">.</span><span class="n">example_helpers</span><span class="o">.</span><span class="n">get_example_file</span><span class="p">(</span>
+    <span class="n">pyacp</span><span class="o">.</span><span class="n">extras</span><span class="o">.</span><span class="n">example_helpers</span><span class="o">.</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">CLASS40_CDB</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">working_dir_path</span></a>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="load-mesh-and-materials-from-cdb-file">
+<h2>Load mesh and materials from CDB file<a class="headerlink" href="#load-mesh-and-materials-from-cdb-file" title="Link to this heading">#</a></h2>
+<p>Load the CDB file into PyACP and set the unit system.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:cdb&quot;</span><span class="p">,</span> <span class="n">unit_system</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">UnitSystemType</span><span class="o">.</span><span class="n">MKS</span><span class="p">)</span>
+<span class="n">model</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Model with name &#39;ACP Lay-up Model&#39;&gt;
+</pre></div>
+</div>
+<p>Visualize the loaded mesh.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">.</span><span class="n">to_pyvista</span><span class="p">()</span>
+<a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.DataSet.plot.html#pyvista.DataSet.plot" title="pyvista.DataSet.plot" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">mesh</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Static Scene</label><div class="sd-tab-content docutils">
+<img src="../../_images/sphx_glr_02-advanced-pymapdl-workflow_001.png" srcset="../../_images/sphx_glr_02-advanced-pymapdl-workflow_001.png" alt="02 advanced pymapdl workflow" class = "sphx-glr-single-img"/></div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Interactive Scene</label><div class="sd-tab-content docutils">
+<iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/workflows/images/sphx_glr_02-advanced-pymapdl-workflow_001.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
+</div>
+</section>
+<section id="build-composite-lay-up">
+<h2>Build Composite Lay-up<a class="headerlink" href="#build-composite-lay-up" title="Link to this heading">#</a></h2>
+<p>Create the model (MKS unit system).</p>
+<section id="materials">
+<h3>Materials<a class="headerlink" href="#materials" title="Link to this heading">#</a></h3>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mat_corecell_81kg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span>
+<span class="n">mat_corecell_81kg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Core Cell 81kg&quot;</span>
+<span class="n">mat_corecell_81kg</span><span class="o">.</span><span class="n">ply_type</span> <span class="o">=</span> <span class="s2">&quot;isotropic_homogeneous_core&quot;</span>
+
+<span class="n">mat_corecell_103kg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">]</span>
+<span class="n">mat_corecell_103kg</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Core Cell 103kg&quot;</span>
+<span class="n">mat_corecell_103kg</span><span class="o">.</span><span class="n">ply_type</span> <span class="o">=</span> <span class="s2">&quot;isotropic_homogeneous_core&quot;</span>
+
+<span class="n">mat_eglass_ud</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;3&quot;</span><span class="p">]</span>
+<span class="n">mat_eglass_ud</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;E-Glass (uni-directional)&quot;</span>
+<span class="n">mat_eglass_ud</span><span class="o">.</span><span class="n">ply_type</span> <span class="o">=</span> <span class="s2">&quot;regular&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="fabrics">
+<h3>Fabrics<a class="headerlink" href="#fabrics" title="Link to this heading">#</a></h3>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">corecell_81kg_5mm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Corecell 81kg&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">mat_corecell_81kg</span>
+<span class="p">)</span>
+<span class="n">corecell_103kg_10mm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Corecell 103kg&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">mat_corecell_103kg</span>
+<span class="p">)</span>
+<span class="n">eglass_ud_02mm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;eglass UD&quot;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.0002</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="n">mat_eglass_ud</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="rosettes">
+<h3>Rosettes<a class="headerlink" href="#rosettes" title="Link to this heading">#</a></h3>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ros_deck</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ros_deck&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.9334</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0481</span><span class="p">,</span> <span class="mf">1.693</span><span class="p">))</span>
+<span class="n">ros_hull</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ros_hull&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.3711</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0506</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2551</span><span class="p">))</span>
+<span class="n">ros_bulkhead</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ros_bulkhead&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.622</span><span class="p">,</span> <span class="mf">0.0022</span><span class="p">,</span> <span class="mf">0.0847</span><span class="p">),</span> <span class="n">dir1</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">dir2</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">ros_keeltower</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ros_keeltower&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">6.0699</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0502</span><span class="p">,</span> <span class="mf">0.623</span><span class="p">),</span> <span class="n">dir1</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="oriented-selection-sets">
+<h3>Oriented Selection Sets<a class="headerlink" href="#oriented-selection-sets" title="Link to this heading">#</a></h3>
+<p>Note that the element sets are imported from the initial mesh (CBD file).</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">oss_deck</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;oss_deck&quot;</span><span class="p">,</span>
+    <span class="n">orientation_point</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.3806</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0016</span><span class="p">,</span> <span class="mf">1.6449</span><span class="p">),</span>
+    <span class="n">orientation_direction</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">),</span>
+    <span class="n">element_sets</span><span class="o">=</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">element_sets</span><span class="p">[</span><span class="s2">&quot;DECK&quot;</span><span class="p">]],</span>
+    <span class="n">rosettes</span><span class="o">=</span><span class="p">[</span><span class="n">ros_deck</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">oss_hull</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;oss_hull&quot;</span><span class="p">,</span>
+    <span class="n">orientation_point</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.12</span><span class="p">,</span> <span class="mf">0.1949</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2487</span><span class="p">),</span>
+    <span class="n">orientation_direction</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="n">element_sets</span><span class="o">=</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">element_sets</span><span class="p">[</span><span class="s2">&quot;HULL_ALL&quot;</span><span class="p">]],</span>
+    <span class="n">rosettes</span><span class="o">=</span><span class="p">[</span><span class="n">ros_hull</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">oss_bulkhead</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;oss_bulkhead&quot;</span><span class="p">,</span>
+    <span class="n">orientation_point</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">5.622</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0465</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.094</span><span class="p">),</span>
+    <span class="n">orientation_direction</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">element_sets</span><span class="o">=</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">element_sets</span><span class="p">[</span><span class="s2">&quot;BULKHEAD_ALL&quot;</span><span class="p">]],</span>
+    <span class="n">rosettes</span><span class="o">=</span><span class="p">[</span><span class="n">ros_bulkhead</span><span class="p">],</span>
+<span class="p">)</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">esets</span></a> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">element_sets</span><span class="p">[</span><span class="s2">&quot;KEELTOWER_AFT&quot;</span><span class="p">],</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">element_sets</span><span class="p">[</span><span class="s2">&quot;KEELTOWER_FRONT&quot;</span><span class="p">],</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">element_sets</span><span class="p">[</span><span class="s2">&quot;KEELTOWER_PORT&quot;</span><span class="p">],</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">element_sets</span><span class="p">[</span><span class="s2">&quot;KEELTOWER_STB&quot;</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="n">oss_keeltower</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;oss_keeltower&quot;</span><span class="p">,</span>
+    <span class="n">orientation_point</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">6.1019</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.162</span><span class="p">),</span>
+    <span class="n">orientation_direction</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">element_sets</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">esets</span></a><span class="p">,</span>
+    <span class="n">rosettes</span><span class="o">=</span><span class="p">[</span><span class="n">ros_keeltower</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Show the orientations on the hull oriented selection set (OSS).</p>
+<p>Note that the model must be updated before the orientations are available.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class"><span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span></a><span class="p">()</span>
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.add_mesh.html#pyvista.Plotter.add_mesh" title="pyvista.Plotter.add_mesh" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span></a><span class="p">(</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">orientation</span> <span class="o">=</span> <span class="n">oss_hull</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">orientation</span>
+<span class="k">assert</span> <span class="n">orientation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.add_mesh.html#pyvista.Plotter.add_mesh" title="pyvista.Plotter.add_mesh" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span></a><span class="p">(</span>
+    <span class="n">orientation</span><span class="o">.</span><span class="n">get_pyvista_glyphs</span><span class="p">(</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">=</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">culling_factor</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+Static Scene</label><div class="sd-tab-content docutils">
+<img src="../../_images/sphx_glr_02-advanced-pymapdl-workflow_002.png" srcset="../../_images/sphx_glr_02-advanced-pymapdl-workflow_002.png" alt="02 advanced pymapdl workflow" class = "sphx-glr-single-img"/></div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-3">
+Interactive Scene</label><div class="sd-tab-content docutils">
+<iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/workflows/images/sphx_glr_02-advanced-pymapdl-workflow_002.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
+</div>
+</section>
+<section id="modeling-plies">
+<h3>Modeling Plies<a class="headerlink" href="#modeling-plies" title="Link to this heading">#</a></h3>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">ply_material</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span> <span class="n">oss</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">mg</span><span class="o">.</span><span class="n">create_modeling_ply</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+        <span class="n">ply_material</span><span class="o">=</span><span class="n">ply_material</span><span class="p">,</span>
+        <span class="n">oriented_selection_sets</span><span class="o">=</span><span class="n">oss</span><span class="p">,</span>
+        <span class="n">ply_angle</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span>
+        <span class="n">number_of_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">global_ply_nr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># add at the end</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Define plies for the hull, deck, and bulkhead.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles</span></a> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">90.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">60.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">45.0</span> <span class="o">-</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">45.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">]</span>
+<span class="k">for</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mg_name</span></a> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;hull&quot;</span><span class="p">,</span> <span class="s2">&quot;deck&quot;</span><span class="p">,</span> <span class="s2">&quot;bulkhead&quot;</span><span class="p">]:</span>
+    <span class="n">mg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_modeling_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mg_name</span></a><span class="p">)</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">oriented_selection_sets</span><span class="p">[</span><span class="s2">&quot;oss_&quot;</span> <span class="o">+</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mg_name</span></a><span class="p">]]</span>
+    <span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles</span></a><span class="p">:</span>
+        <span class="n">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="s2">&quot;eglass_ud_02mm_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">),</span> <span class="n">eglass_ud_02mm</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a><span class="p">)</span>
+    <span class="n">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="s2">&quot;corecell_103kg_10mm&quot;</span><span class="p">,</span> <span class="n">corecell_103kg_10mm</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a><span class="p">)</span>
+    <span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles</span></a><span class="p">:</span>
+        <span class="n">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="s2">&quot;eglass_ud_02mm_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">),</span> <span class="n">eglass_ud_02mm</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add plies to the keeltower.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_modeling_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;keeltower&quot;</span><span class="p">)</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">oriented_selection_sets</span><span class="p">[</span><span class="s2">&quot;oss_keeltower&quot;</span><span class="p">]]</span>
+<span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles</span></a><span class="p">:</span>
+    <span class="n">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="s2">&quot;eglass_ud_02mm_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">),</span> <span class="n">eglass_ud_02mm</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a><span class="p">)</span>
+
+<span class="n">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="s2">&quot;corecell_81kg_5mm&quot;</span><span class="p">,</span> <span class="n">corecell_81kg_5mm</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a><span class="p">)</span>
+
+<span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles</span></a><span class="p">:</span>
+    <span class="n">add_ply</span><span class="p">(</span><span class="n">mg</span><span class="p">,</span> <span class="s2">&quot;eglass_ud_02mm_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">),</span> <span class="n">eglass_ud_02mm</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">oss_list</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>Inspect the number of modeling groups and plies.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;hull&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;deck&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;bulkhead&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;keeltower&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>4
+19
+19
+19
+19
+</pre></div>
+</div>
+<p>Show the thickness of one of the plies.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<span class="n">modeling_ply</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;deck&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="p">[</span><span class="s2">&quot;eglass_ud_02mm_0.5&quot;</span><span class="p">]</span>
+<span class="n">thickness</span> <span class="o">=</span> <span class="n">modeling_ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span>
+<span class="k">assert</span> <span class="n">thickness</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">=</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-4">
+Static Scene</label><div class="sd-tab-content docutils">
+<img src="../../_images/sphx_glr_02-advanced-pymapdl-workflow_003.png" srcset="../../_images/sphx_glr_02-advanced-pymapdl-workflow_003.png" alt="02 advanced pymapdl workflow" class = "sphx-glr-single-img"/></div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-5">
+Interactive Scene</label><div class="sd-tab-content docutils">
+<iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/workflows/images/sphx_glr_02-advanced-pymapdl-workflow_003.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
+</div>
+<p>Show the ply offsets that are scaled by a factor of 200.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plotter</span></a> <span class="o">=</span> <a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.html#pyvista.Plotter" title="pyvista.Plotter" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class"><span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span></a><span class="p">()</span>
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.add_mesh.html#pyvista.Plotter.add_mesh" title="pyvista.Plotter.add_mesh" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span></a><span class="p">(</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">.</span><span class="n">to_pyvista</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">ply_offset</span> <span class="o">=</span> <span class="n">modeling_ply</span><span class="o">.</span><span class="n">nodal_data</span><span class="o">.</span><span class="n">ply_offset</span>
+<span class="k">assert</span> <span class="n">ply_offset</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.add_mesh.html#pyvista.Plotter.add_mesh" title="pyvista.Plotter.add_mesh" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span></a><span class="p">(</span>
+    <span class="n">ply_offset</span><span class="o">.</span><span class="n">get_pyvista_glyphs</span><span class="p">(</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">=</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mi">200</span><span class="p">),</span>
+<span class="p">)</span>
+<a href="https://docs.pyvista.org/api/plotting/_autosummary/pyvista.Plotter.show.html#pyvista.Plotter.show" title="pyvista.Plotter.show" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">plotter</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-6">
+Static Scene</label><div class="sd-tab-content docutils">
+<img src="../../_images/sphx_glr_02-advanced-pymapdl-workflow_004.png" srcset="../../_images/sphx_glr_02-advanced-pymapdl-workflow_004.png" alt="02 advanced pymapdl workflow" class = "sphx-glr-single-img"/></div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-7">
+Interactive Scene</label><div class="sd-tab-content docutils">
+<iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/workflows/images/sphx_glr_02-advanced-pymapdl-workflow_004.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
+</div>
+<p>Show the thickness of the entire lay-up.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">thickness</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">thickness</span>
+<span class="k">assert</span> <span class="n">thickness</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="n">thickness</span><span class="o">.</span><span class="n">get_pyvista_mesh</span><span class="p">(</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="o">=</span><span class="n">model</span><span class="o">.</span><a href="https://docs.pyvista.org/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh</span></a><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-8">
+Static Scene</label><div class="sd-tab-content docutils">
+<img src="../../_images/sphx_glr_02-advanced-pymapdl-workflow_005.png" srcset="../../_images/sphx_glr_02-advanced-pymapdl-workflow_005.png" alt="02 advanced pymapdl workflow" class = "sphx-glr-single-img"/></div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-9">
+Interactive Scene</label><div class="sd-tab-content docutils">
+<iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/workflows/images/sphx_glr_02-advanced-pymapdl-workflow_005.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
+</div>
+</section>
+</section>
+<section id="write-out-acp-model">
+<h2>Write out ACP Model<a class="headerlink" href="#write-out-acp-model" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">acph5_filename</span></a> <span class="o">=</span> <span class="s2">&quot;class40.acph5&quot;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_filename_out</span></a> <span class="o">=</span> <span class="s2">&quot;class40_analysis_model.cdb&quot;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">composite_definition_h5_filename</span></a> <span class="o">=</span> <span class="s2">&quot;ACPCompositeDefinitions.h5&quot;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">matml_filename</span></a> <span class="o">=</span> <span class="s2">&quot;materials.xml&quot;</span>
+</pre></div>
+</div>
+<p>Update and save the ACP model.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">working_dir_path</span></a> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">acph5_filename</span></a><span class="p">,</span> <span class="n">save_cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Save the model as a CDB file for solving with PyMAPDL.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">export_analysis_model</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">working_dir_path</span></a> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_filename_out</span></a><span class="p">)</span>
+<span class="c1"># Export the shell lay-up and material file for PyDPF - Composites.</span>
+<span class="n">model</span><span class="o">.</span><span class="n">export_shell_composite_definitions</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">working_dir_path</span></a> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">composite_definition_h5_filename</span></a><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">export_materials</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">working_dir_path</span></a> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">matml_filename</span></a><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="solve-with-pymapdl">
+<h2>Solve with PyMAPDL<a class="headerlink" href="#solve-with-pymapdl" title="Link to this heading">#</a></h2>
+<p>Import PyMAPDL and connect to its server.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ansys.mapdl.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">launch_mapdl</span>
+
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Load the CDB file into PyMAPDL.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">working_dir_path</span></a> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_filename_out</span></a><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n /INPUT FILE=    LINE=       0\n ANSYS RELEASE 11.0    UP20070125       16:39:41    03/10/2009\n   *****MAPDL VERIFICATION RUN ONLY*****\n     DO NOT USE RESULTS FOR PRODUCTION\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n\n ***** ROUTINE COMPLETED *****  ELAPSED TIME =         0.000\n\n\n&#39;
+</pre></div>
+</div>
+<p>Solve the model.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
+
+ *** NOTE ***                            ELAPSED TIME =       0.000   TIME= 00:00:00
+ There is no title defined for this analysis.
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+                ---GIVE SUGGESTIONS ONLY---
+
+ ELEMENT TYPE         1 IS SHELL181. IT IS ASSOCIATED WITH ELASTOPLASTIC
+ MATERIALS ONLY. KEYOPT(8) IS ALREADY SET AS SUGGESTED. KEYOPT(3)=2
+ IS SUGGESTED FOR HIGHER ACCURACY OF MEMBRANE STRESSES; OTHERWISE,
+ KEYOPT(3)=0 IS SUGGESTED.
+
+ ELEMENT TYPE         2 IS BEAM188 . KEYOPT(1)=1 IS SUGGESTED FOR NON-CIRCULAR CROSS
+ SECTIONS AND KEYOPT(3)=2 IS ALWAYS SUGGESTED.
+
+ ELEMENT TYPE         2 IS BEAM188 . KEYOPT(15) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         3 IS SHELL181. IT IS ASSOCIATED WITH ELASTOPLASTIC
+ MATERIALS ONLY. KEYOPT(8) IS ALREADY SET AS SUGGESTED. KEYOPT(3)=2
+ IS SUGGESTED FOR HIGHER ACCURACY OF MEMBRANE STRESSES; OTHERWISE,
+ KEYOPT(3)=0 IS SUGGESTED.
+
+
+   *****MAPDL VERIFICATION RUN ONLY*****
+     DO NOT USE RESULTS FOR PRODUCTION
+
+                       S O L U T I O N   O P T I O N S
+
+   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D
+   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   ROTX ROTY ROTZ
+   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
+   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
+
+ *** NOTE ***                            ELAPSED TIME =       0.000   TIME= 00:00:00
+ Poisson&#39;s ratio PR input has been converted to NU input.
+
+ *** NOTE ***                            ELAPSED TIME =       0.000   TIME= 00:00:00
+ Present time 0 is less than or equal to the previous time.  Time will
+ default to 1.
+
+ *** NOTE ***                            ELAPSED TIME =       0.000   TIME= 00:00:00
+ The conditions for direct assembly have been met.  No .emat or .erot
+ files will be produced.
+
+                      L O A D   S T E P   O P T I O N S
+
+   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1
+   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000
+   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1
+   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO
+   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT
+   DATABASE OUTPUT CONTROLS. . . . . . . . . . . .ALL DATA WRITTEN
+                                                  FOR THE LAST SUBSTEP
+
+
+ *** NOTE ***                            ELAPSED TIME =       0.000   TIME= 00:00:00
+ Predictor is ON by default for structural elements with rotational
+ degrees of freedom.  Use the PRED,OFF command to turn the predictor
+ OFF if it adversely affects the convergence.
+
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+         324.96       0.46544E-18   0.14304E-17 |   -0.11582E-16    211.44      -0.36088E-02
+        0.46544E-18    324.96      -0.49693E-17 |    -211.44      -0.96175E-17   -2015.3
+        0.14304E-17  -0.49693E-17    324.96     |    0.36088E-02    2015.3       0.20783E-16
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |     759.66       0.20436E-01    1316.9
+                                                |    0.20436E-01    13054.      -0.32469E-02
+                                                |     1316.9      -0.32469E-02    13218.
+
+   TOTAL MASS =  324.96
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=   -6.2017       0.11105E-04   0.65067
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+         622.08      -0.19444E-02    5.6093
+       -0.19444E-02    418.20      -0.89877E-03
+         5.6093      -0.89877E-03    719.59
+
+   PRINCIPAL INERTIAS =    621.76        418.20        719.92
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.998,-0.000,-0.057) ( 0.000, 1.000, 0.000) ( 0.057,-0.000, 0.998)
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1   322.570
+     2   1.65744
+     3  0.729815
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 104467551 at element 0.
+ Minimum = 31671440.9 at element 0.
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER     ENAME   TOTAL ELAPSED   AVG ELAPSED
+
+        1      3973  SHELL181          0.0000   0.000000000
+        2        88   BEAM188          0.0000   0.000000000
+        3        22  SHELL181          0.0000   0.000000000
+ Elapsed Time at end of element matrix formulation = 0.
+
+ SPARSE MATRIX DIRECT SOLVER.
+  Number of equations =       24096,    Maximum wavefront =      0
+  Memory available (MB) =    0.0    ,  Memory required (MB) =    0.0
+
+ Sparse solver maximum pivot= 0 at node 0 .
+ Sparse solver minimum pivot= 0 at node 0 .
+ Sparse solver minimum pivot in absolute value= 0 at node 0 .
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER     ENAME   TOTAL ELAPSED   AVG ELAPSED
+
+        1      3973  SHELL181          0.0000   0.000000000
+        2        88   BEAM188          0.0000   0.000000000
+        3        22  SHELL181          0.0000   0.000000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER     ENAME   TOTAL ELAPSED   AVG ELAPSED
+
+        1      3973  SHELL181          0.0000   0.000000000
+        2        88   BEAM188          0.0000   0.000000000
+        3        22  SHELL181          0.0000   0.000000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+</pre></div>
+</div>
+<p>Show the displacements in postprocessing.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span><span class="n">component</span><span class="o">=</span><span class="s2">&quot;NORM&quot;</span><span class="p">)</span>
+
+<span class="c1"># Download the RST file for further postprocessing.</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mapdl</span><span class="o">.</span><span class="n">jobname</span><span class="si">}</span><span class="s2">.rst&quot;</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">working_dir_path</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-10">
+Static Scene</label><div class="sd-tab-content docutils">
+<img src="../../_images/sphx_glr_02-advanced-pymapdl-workflow_006.png" srcset="../../_images/sphx_glr_02-advanced-pymapdl-workflow_006.png" alt="02 advanced pymapdl workflow" class = "sphx-glr-single-img"/></div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-11">
+Interactive Scene</label><div class="sd-tab-content docutils">
+<iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/workflows/images/sphx_glr_02-advanced-pymapdl-workflow_006.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[82, 87, 110]
+
+[&#39;file.rst&#39;]
+</pre></div>
+</div>
+</section>
+<section id="postprocessing-with-pydpf-composites">
+<h2>Postprocessing with PyDPF - Composites<a class="headerlink" href="#postprocessing-with-pydpf-composites" title="Link to this heading">#</a></h2>
+<p>To postprocess the results, you must configure the imports, connect to the
+PyDPF - Composites server, and load its plugin.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ansys.acp.core.dpf_integration_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_dpf_unit_system</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ansys.dpf.composites.composite_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">CompositeModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ansys.dpf.composites.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">FailureOutput</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ansys.dpf.composites.data_sources</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CompositeDefinitionFiles</span><span class="p">,</span>
+    <span class="n">ContinuousFiberCompositesFiles</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ansys.dpf.composites.failure_criteria</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CombinedFailureCriterion</span><span class="p">,</span>
+    <span class="n">CoreFailureCriterion</span><span class="p">,</span>
+    <span class="n">MaxStrainCriterion</span><span class="p">,</span>
+    <span class="n">MaxStressCriterion</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ansys.dpf.composites.server_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">connect_to_or_start_server</span>
+</pre></div>
+</div>
+<p>Connect to the server. The <code class="docutils literal notranslate"><span class="pre">connect_to_or_start_server</span></code> function
+automatically loads the composites plugin.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">dpf_server</span> <span class="o">=</span> <span class="n">connect_to_or_start_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Specify the combined failure criterion.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">max_strain</span> <span class="o">=</span> <span class="n">MaxStrainCriterion</span><span class="p">()</span>
+<span class="n">max_stress</span> <span class="o">=</span> <span class="n">MaxStressCriterion</span><span class="p">()</span>
+<span class="n">core_failure</span> <span class="o">=</span> <span class="n">CoreFailureCriterion</span><span class="p">()</span>
+
+<span class="n">cfc</span> <span class="o">=</span> <span class="n">CombinedFailureCriterion</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Combined Failure Criterion&quot;</span><span class="p">,</span>
+    <span class="n">failure_criteria</span><span class="o">=</span><span class="p">[</span><span class="n">max_strain</span><span class="p">,</span> <span class="n">max_stress</span><span class="p">,</span> <span class="n">core_failure</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Create the composite model and configure its input.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">composite_model</span> <span class="o">=</span> <span class="n">CompositeModel</span><span class="p">(</span>
+    <span class="n">composite_files</span><span class="o">=</span><span class="n">ContinuousFiberCompositesFiles</span><span class="p">(</span>
+        <span class="n">rst</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">working_dir_path</span></a> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rstfile_name</span></a><span class="p">,</span>
+        <span class="n">composite</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;shell&quot;</span><span class="p">:</span> <span class="n">CompositeDefinitionFiles</span><span class="p">(</span>
+                <span class="n">definition</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">working_dir_path</span></a> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">composite_definition_h5_filename</span></a>
+            <span class="p">),</span>
+        <span class="p">},</span>
+        <span class="n">engineering_data</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">working_dir_path</span></a> <span class="o">/</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">matml_filename</span></a><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">default_unit_system</span><span class="o">=</span><span class="n">get_dpf_unit_system</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">unit_system</span><span class="p">),</span>
+    <span class="n">server</span><span class="o">=</span><span class="n">dpf_server</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Evaluate the failure criteria.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">output_all_elements</span> <span class="o">=</span> <span class="n">composite_model</span><span class="o">.</span><span class="n">evaluate_failure_criteria</span><span class="p">(</span><span class="n">cfc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Query and plot the results.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">irf_field</span> <span class="o">=</span> <span class="n">output_all_elements</span><span class="o">.</span><span class="n">get_field</span><span class="p">({</span><span class="s2">&quot;failure_label&quot;</span><span class="p">:</span> <span class="n">FailureOutput</span><span class="o">.</span><span class="n">FAILURE_VALUE</span><span class="p">})</span>
+<span class="n">irf_field</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="c1"># Close MAPDL instance</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-12">
+Static Scene</label><div class="sd-tab-content docutils">
+<img src="../../_images/sphx_glr_02-advanced-pymapdl-workflow_007.png" srcset="../../_images/sphx_glr_02-advanced-pymapdl-workflow_007.png" alt="02 advanced pymapdl workflow" class = "sphx-glr-single-img"/></div>
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-13">
+Interactive Scene</label><div class="sd-tab-content docutils">
+<iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/workflows/images/sphx_glr_02-advanced-pymapdl-workflow_007.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 36.045 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-workflows-02-advanced-pymapdl-workflow-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/1e750f59c648aaccb5335cc11a8f5c98/02-advanced-pymapdl-workflow.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">02-advanced-pymapdl-workflow.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/3bc14d6bd2c9899e09e819a9207b66cf/02-advanced-pymapdl-workflow.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">02-advanced-pymapdl-workflow.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/66812baa5177ab94605e929d91929737/02-advanced-pymapdl-workflow.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">02-advanced-pymapdl-workflow.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01-pymapdl-workflow.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PyMAPDL workflow</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03-pymechanical-shell-workflow.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PyMechanical shell workflow</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-modules-and-start-acp">Import modules and start ACP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-example-input-files">Get example input files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-mesh-and-materials-from-cdb-file">Load mesh and materials from CDB file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-composite-lay-up">Build Composite Lay-up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#materials">Materials</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fabrics">Fabrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rosettes">Rosettes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oriented-selection-sets">Oriented Selection Sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-plies">Modeling Plies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-out-acp-model">Write out ACP Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-with-pymapdl">Solve with PyMAPDL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postprocessing-with-pydpf-composites">Postprocessing with PyDPF - Composites</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/examples/workflows/02-advanced-pymapdl-workflow.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+
+  <!-- Include desired assets -->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('{"keys": ["title", "text", "objectID"], "limit": 10, "threshold": 0.2}');
+const SEARCH_FILE = "../../_static/search.json";
+const ADVANCE_SEARCH_PATH = "../../search.html";
+const EXTRA_SOURCES = JSON.parse('""');
+</script>
+
+
+<script src="../../_static/js/search.js"></script>
+
+  
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2026 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  1.6.4. <br />Last updated on
+  <span id="ast_build_date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var ast_lastModifiedDate = new Date(document.lastModified);
+  var ast_build_date = ast_lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("ast_build_date").innerHTML = ast_build_date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

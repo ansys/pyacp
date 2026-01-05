@@ -1,0 +1,13 @@
+.. vale off
+
+BY\_GEOMETRY
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionGuideType.BY_GEOMETRY
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuideType.BY_GEOMETRY
+
+   ansys.acp.core.ExtrusionGuideType.BY_GEOMETRY

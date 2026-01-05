@@ -1,0 +1,13 @@
+.. vale off
+
+origin
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable1D.origin
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable1D.origin
+
+   ansys.acp.core.LookUpTable1D.origin

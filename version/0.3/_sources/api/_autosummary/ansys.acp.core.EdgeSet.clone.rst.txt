@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: EdgeSet.clone
+
+.. minigallery::
+   :add-heading: Examples using EdgeSet.clone
+
+   ansys.acp.core.EdgeSet.clone

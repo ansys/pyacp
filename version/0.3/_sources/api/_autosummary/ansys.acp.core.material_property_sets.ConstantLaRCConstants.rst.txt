@@ -1,0 +1,40 @@
+﻿.. vale off
+
+ConstantLaRCConstants
+=====================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: ConstantLaRCConstants
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConstantLaRCConstants.fracture_angle_under_compression
+      ConstantLaRCConstants.fracture_toughness_mode_1
+      ConstantLaRCConstants.fracture_toughness_mode_2
+      ConstantLaRCConstants.fracture_toughness_ratio
+      ConstantLaRCConstants.thin_ply_thickness_limit
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ConstantLaRCConstants
+
+   ansys.acp.core.material_property_sets.ConstantLaRCConstants

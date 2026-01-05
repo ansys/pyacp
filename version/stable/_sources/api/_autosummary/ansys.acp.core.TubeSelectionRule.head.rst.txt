@@ -1,0 +1,13 @@
+.. vale off
+
+head
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.head
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.head
+
+   ansys.acp.core.TubeSelectionRule.head

@@ -1,0 +1,13 @@
+.. vale off
+
+SHEAR\_ANGLE
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.SHEAR_ANGLE
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.SHEAR_ANGLE
+
+   ansys.acp.core.ElementalDataType.SHEAR_ANGLE

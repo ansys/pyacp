@@ -1,0 +1,48 @@
+﻿.. vale off
+
+AnalysisPly
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: AnalysisPly
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      AnalysisPly.active_in_post_mode
+      AnalysisPly.angle
+      AnalysisPly.elemental_data
+      AnalysisPly.id
+      AnalysisPly.material
+      AnalysisPly.mesh
+      AnalysisPly.name
+      AnalysisPly.nodal_data
+      AnalysisPly.parent
+      AnalysisPly.shell_mesh
+      AnalysisPly.solid_mesh
+      AnalysisPly.status
+      AnalysisPly.thickness
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPly
+
+   ansys.acp.core.AnalysisPly

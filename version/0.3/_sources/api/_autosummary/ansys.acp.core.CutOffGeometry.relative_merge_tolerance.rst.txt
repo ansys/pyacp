@@ -1,0 +1,13 @@
+.. vale off
+
+relative\_merge\_tolerance
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffGeometry.relative_merge_tolerance
+
+.. minigallery::
+   :add-heading: Examples using CutOffGeometry.relative_merge_tolerance
+
+   ansys.acp.core.CutOffGeometry.relative_merge_tolerance

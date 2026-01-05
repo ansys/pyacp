@@ -1,0 +1,13 @@
+﻿.. vale off
+
+launch\_acp
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autofunction:: launch_acp
+
+.. minigallery::
+   :add-heading: Examples using launch_acp
+
+   ansys.acp.core.launch_acp

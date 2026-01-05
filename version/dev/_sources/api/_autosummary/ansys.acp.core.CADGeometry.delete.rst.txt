@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CADGeometry.delete
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.delete
+
+   ansys.acp.core.CADGeometry.delete

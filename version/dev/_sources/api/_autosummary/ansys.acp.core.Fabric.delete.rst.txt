@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Fabric.delete
+
+.. minigallery::
+   :add-heading: Examples using Fabric.delete
+
+   ansys.acp.core.Fabric.delete

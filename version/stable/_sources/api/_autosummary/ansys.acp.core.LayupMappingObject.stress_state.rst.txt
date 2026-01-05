@@ -1,0 +1,13 @@
+.. vale off
+
+stress\_state
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.stress_state
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.stress_state
+
+   ansys.acp.core.LayupMappingObject.stress_state

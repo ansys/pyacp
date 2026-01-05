@@ -1,0 +1,13 @@
+.. vale off
+
+format\_map
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.format_map
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.format_map
+
+   ansys.acp.core.LaunchMode.format_map

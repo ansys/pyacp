@@ -1,0 +1,13 @@
+.. vale off
+
+SPHERICAL
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteType.SPHERICAL
+
+.. minigallery::
+   :add-heading: Examples using RosetteType.SPHERICAL
+
+   ansys.acp.core.RosetteType.SPHERICAL

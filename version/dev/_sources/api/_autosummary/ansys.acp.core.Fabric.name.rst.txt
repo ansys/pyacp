@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.name
+
+.. minigallery::
+   :add-heading: Examples using Fabric.name
+
+   ansys.acp.core.Fabric.name

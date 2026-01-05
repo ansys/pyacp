@@ -1,0 +1,13 @@
+.. vale off
+
+ply\_material
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.ply_material
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.ply_material
+
+   ansys.acp.core.ImportedModelingPly.ply_material

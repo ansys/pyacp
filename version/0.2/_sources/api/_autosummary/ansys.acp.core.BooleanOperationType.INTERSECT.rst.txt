@@ -1,0 +1,13 @@
+.. vale off
+
+INTERSECT
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: BooleanOperationType.INTERSECT
+
+.. minigallery::
+   :add-heading: Examples using BooleanOperationType.INTERSECT
+
+   ansys.acp.core.BooleanOperationType.INTERSECT

@@ -1,0 +1,13 @@
+.. vale off
+
+defining\_node\_labels
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: EdgeSet.defining_node_labels
+
+.. minigallery::
+   :add-heading: Examples using EdgeSet.defining_node_labels
+
+   ansys.acp.core.EdgeSet.defining_node_labels

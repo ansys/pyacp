@@ -1,0 +1,13 @@
+.. vale off
+
+normal
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.normal
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.normal
+
+   ansys.acp.core.SectionCut.normal

@@ -1,0 +1,13 @@
+.. vale off
+
+drop\_off\_settings
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.drop_off_settings
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.drop_off_settings
+
+   ansys.acp.core.SolidModel.drop_off_settings

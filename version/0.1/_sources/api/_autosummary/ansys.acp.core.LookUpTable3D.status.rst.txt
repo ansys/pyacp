@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3D.status
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3D.status
+
+   ansys.acp.core.LookUpTable3D.status

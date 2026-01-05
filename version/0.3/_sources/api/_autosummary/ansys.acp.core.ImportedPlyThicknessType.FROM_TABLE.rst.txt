@@ -1,0 +1,13 @@
+.. vale off
+
+FROM\_TABLE
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ImportedPlyThicknessType.FROM_TABLE
+
+.. minigallery::
+   :add-heading: Examples using ImportedPlyThicknessType.FROM_TABLE
+
+   ansys.acp.core.ImportedPlyThicknessType.FROM_TABLE

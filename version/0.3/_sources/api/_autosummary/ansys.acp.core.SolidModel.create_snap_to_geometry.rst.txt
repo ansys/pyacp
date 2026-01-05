@@ -1,0 +1,13 @@
+.. vale off
+
+create\_snap\_to\_geometry
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SolidModel.create_snap_to_geometry
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.create_snap_to_geometry
+
+   ansys.acp.core.SolidModel.create_snap_to_geometry

@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Stackup.store
+
+.. minigallery::
+   :add-heading: Examples using Stackup.store
+
+   ansys.acp.core.Stackup.store

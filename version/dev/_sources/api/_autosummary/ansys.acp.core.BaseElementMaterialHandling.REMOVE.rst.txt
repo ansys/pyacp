@@ -1,0 +1,13 @@
+.. vale off
+
+REMOVE
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: BaseElementMaterialHandling.REMOVE
+
+.. minigallery::
+   :add-heading: Examples using BaseElementMaterialHandling.REMOVE
+
+   ansys.acp.core.BaseElementMaterialHandling.REMOVE

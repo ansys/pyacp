@@ -1,0 +1,48 @@
+﻿.. vale off
+
+ModelElementalData
+==================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: ModelElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ModelElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ModelElementalData.area
+      ModelElementalData.cog
+      ModelElementalData.mass
+      ModelElementalData.normal
+      ModelElementalData.offset
+      ModelElementalData.price
+      ModelElementalData.relative_thickness_correction
+      ModelElementalData.thickness
+      ModelElementalData.volume
+      ModelElementalData.element_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ModelElementalData
+
+   ansys.acp.core.mesh_data.ModelElementalData

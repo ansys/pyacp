@@ -1,0 +1,13 @@
+.. vale off
+
+interpolation\_options
+======================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableStressLimits.interpolation_options
+
+.. minigallery::
+   :add-heading: Examples using VariableStressLimits.interpolation_options
+
+   ansys.acp.core.material_property_sets.VariableStressLimits.interpolation_options

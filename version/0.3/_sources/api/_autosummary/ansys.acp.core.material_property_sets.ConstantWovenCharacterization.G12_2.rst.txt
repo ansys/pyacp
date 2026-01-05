@@ -1,0 +1,13 @@
+.. vale off
+
+G12\_2
+======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantWovenCharacterization.G12_2
+
+.. minigallery::
+   :add-heading: Examples using ConstantWovenCharacterization.G12_2
+
+   ansys.acp.core.material_property_sets.ConstantWovenCharacterization.G12_2

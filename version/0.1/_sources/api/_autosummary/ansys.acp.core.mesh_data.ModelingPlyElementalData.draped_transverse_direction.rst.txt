@@ -1,0 +1,13 @@
+.. vale off
+
+draped\_transverse\_direction
+=============================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ModelingPlyElementalData.draped_transverse_direction
+
+.. minigallery::
+   :add-heading: Examples using ModelingPlyElementalData.draped_transverse_direction
+
+   ansys.acp.core.mesh_data.ModelingPlyElementalData.draped_transverse_direction

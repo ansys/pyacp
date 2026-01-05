@@ -1,0 +1,13 @@
+.. vale off
+
+use\_default\_draping\_mesh\_size
+=================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.use_default_draping_mesh_size
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.use_default_draping_mesh_size
+
+   ansys.acp.core.OrientedSelectionSet.use_default_draping_mesh_size

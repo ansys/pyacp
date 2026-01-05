@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: InterfaceLayer.parent
+
+.. minigallery::
+   :add-heading: Examples using InterfaceLayer.parent
+
+   ansys.acp.core.InterfaceLayer.parent

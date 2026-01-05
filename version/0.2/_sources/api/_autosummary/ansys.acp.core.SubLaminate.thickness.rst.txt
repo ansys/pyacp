@@ -1,0 +1,13 @@
+.. vale off
+
+thickness
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SubLaminate.thickness
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.thickness
+
+   ansys.acp.core.SubLaminate.thickness

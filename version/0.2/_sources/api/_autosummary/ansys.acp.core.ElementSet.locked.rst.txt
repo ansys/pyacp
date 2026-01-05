@@ -1,0 +1,13 @@
+.. vale off
+
+locked
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ElementSet.locked
+
+.. minigallery::
+   :add-heading: Examples using ElementSet.locked
+
+   ansys.acp.core.ElementSet.locked

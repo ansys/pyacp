@@ -1,0 +1,13 @@
+.. vale off
+
+THICKNESS\_GEOMETRY
+===================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.THICKNESS_GEOMETRY
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.THICKNESS_GEOMETRY
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.THICKNESS_GEOMETRY

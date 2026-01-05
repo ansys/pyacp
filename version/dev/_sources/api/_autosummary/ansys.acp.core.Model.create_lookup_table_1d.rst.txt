@@ -1,0 +1,13 @@
+.. vale off
+
+create\_lookup\_table\_1d
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_lookup_table_1d
+
+.. minigallery::
+   :add-heading: Examples using Model.create_lookup_table_1d
+
+   ansys.acp.core.Model.create_lookup_table_1d

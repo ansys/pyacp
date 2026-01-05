@@ -1,0 +1,13 @@
+.. vale off
+
+istitle
+=======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.istitle
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.istitle
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.istitle

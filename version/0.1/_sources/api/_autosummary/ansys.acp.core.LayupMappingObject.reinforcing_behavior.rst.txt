@@ -1,0 +1,13 @@
+.. vale off
+
+reinforcing\_behavior
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.reinforcing_behavior
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.reinforcing_behavior
+
+   ansys.acp.core.LayupMappingObject.reinforcing_behavior

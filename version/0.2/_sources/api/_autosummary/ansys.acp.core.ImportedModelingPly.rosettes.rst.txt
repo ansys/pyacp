@@ -1,0 +1,13 @@
+.. vale off
+
+rosettes
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.rosettes
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.rosettes
+
+   ansys.acp.core.ImportedModelingPly.rosettes

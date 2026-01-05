@@ -1,0 +1,13 @@
+.. vale off
+
+offset
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TaperEdge.offset
+
+.. minigallery::
+   :add-heading: Examples using TaperEdge.offset
+
+   ansys.acp.core.TaperEdge.offset

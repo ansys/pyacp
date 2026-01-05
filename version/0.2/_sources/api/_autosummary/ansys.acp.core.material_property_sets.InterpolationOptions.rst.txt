@@ -1,0 +1,38 @@
+﻿.. vale off
+
+InterpolationOptions
+====================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: InterpolationOptions
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      InterpolationOptions.algorithm
+      InterpolationOptions.cached
+      InterpolationOptions.normalized
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using InterpolationOptions
+
+   ansys.acp.core.material_property_sets.InterpolationOptions

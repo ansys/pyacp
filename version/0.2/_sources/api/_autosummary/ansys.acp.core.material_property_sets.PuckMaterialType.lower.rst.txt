@@ -1,0 +1,13 @@
+.. vale off
+
+lower
+=====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.lower
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.lower
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.lower

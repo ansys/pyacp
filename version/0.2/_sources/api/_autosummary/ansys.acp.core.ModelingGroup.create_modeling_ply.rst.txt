@@ -1,0 +1,13 @@
+.. vale off
+
+create\_modeling\_ply
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ModelingGroup.create_modeling_ply
+
+.. minigallery::
+   :add-heading: Examples using ModelingGroup.create_modeling_ply
+
+   ansys.acp.core.ModelingGroup.create_modeling_ply

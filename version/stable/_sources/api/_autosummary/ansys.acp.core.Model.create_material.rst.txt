@@ -1,0 +1,13 @@
+.. vale off
+
+create\_material
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_material
+
+.. minigallery::
+   :add-heading: Examples using Model.create_material
+
+   ansys.acp.core.Model.create_material

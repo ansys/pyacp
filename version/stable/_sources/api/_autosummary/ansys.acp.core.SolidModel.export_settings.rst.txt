@@ -1,0 +1,13 @@
+.. vale off
+
+export\_settings
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.export_settings
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.export_settings
+
+   ansys.acp.core.SolidModel.export_settings

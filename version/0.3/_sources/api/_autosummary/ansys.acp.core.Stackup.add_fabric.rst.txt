@@ -1,0 +1,13 @@
+.. vale off
+
+add\_fabric
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Stackup.add_fabric
+
+.. minigallery::
+   :add-heading: Examples using Stackup.add_fabric
+
+   ansys.acp.core.Stackup.add_fabric

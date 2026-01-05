@@ -1,0 +1,13 @@
+.. vale off
+
+search\_radius
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.search_radius
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.search_radius
+
+   ansys.acp.core.SectionCut.search_radius

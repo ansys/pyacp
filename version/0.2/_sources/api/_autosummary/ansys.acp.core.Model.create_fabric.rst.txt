@@ -1,0 +1,13 @@
+.. vale off
+
+create\_fabric
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_fabric
+
+.. minigallery::
+   :add-heading: Examples using Model.create_fabric
+
+   ansys.acp.core.Model.create_fabric

@@ -1,0 +1,13 @@
+.. vale off
+
+LINE
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: VirtualGeometryDimension.LINE
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometryDimension.LINE
+
+   ansys.acp.core.VirtualGeometryDimension.LINE

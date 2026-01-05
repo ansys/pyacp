@@ -1,0 +1,13 @@
+.. vale off
+
+imported\_modeling\_plies
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingGroup.imported_modeling_plies
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingGroup.imported_modeling_plies
+
+   ansys.acp.core.ImportedModelingGroup.imported_modeling_plies

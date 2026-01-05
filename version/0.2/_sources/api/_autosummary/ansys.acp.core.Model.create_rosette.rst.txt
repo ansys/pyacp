@@ -1,0 +1,13 @@
+.. vale off
+
+create\_rosette
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_rosette
+
+.. minigallery::
+   :add-heading: Examples using Model.create_rosette
+
+   ansys.acp.core.Model.create_rosette

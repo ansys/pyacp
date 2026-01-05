@@ -1,0 +1,13 @@
+.. vale off
+
+OUTSIDE\_PLY
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DropOffType.OUTSIDE_PLY
+
+.. minigallery::
+   :add-heading: Examples using DropOffType.OUTSIDE_PLY
+
+   ansys.acp.core.DropOffType.OUTSIDE_PLY

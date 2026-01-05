@@ -1,0 +1,13 @@
+.. vale off
+
+direction
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SamplingPoint.direction
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint.direction
+
+   ansys.acp.core.SamplingPoint.direction

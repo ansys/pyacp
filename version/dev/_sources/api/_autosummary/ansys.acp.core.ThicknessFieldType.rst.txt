@@ -1,0 +1,28 @@
+﻿ThicknessFieldType
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ThicknessFieldType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        ThicknessFieldType.ABSOLUTE_VALUES
+      
+      
+        ThicknessFieldType.RELATIVE_SCALING_FACTOR
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using ThicknessFieldType
+
+   ansys.acp.core.ThicknessFieldType

@@ -1,0 +1,13 @@
+.. vale off
+
+locked
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.locked
+
+.. minigallery::
+   :add-heading: Examples using Stackup.locked
+
+   ansys.acp.core.Stackup.locked

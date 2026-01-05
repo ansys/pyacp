@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExtrusionGuide.parent
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide.parent
+
+   ansys.acp.core.ExtrusionGuide.parent

@@ -1,0 +1,13 @@
+.. vale off
+
+price
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.price
+
+.. minigallery::
+   :add-heading: Examples using Sensor.price
+
+   ansys.acp.core.Sensor.price
