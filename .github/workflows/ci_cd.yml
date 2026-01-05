@@ -525,6 +525,7 @@ jobs:
           PYACP_DOC_SKIP_GALLERY: ${{ matrix.build_type == 'quick' && 'true' || 'false' }}
           PYACP_DOC_SKIP_API: ${{ matrix.build_type == 'quick' && 'true' || 'false' }}
           ANSYS_GRPC_CERTIFICATES: ${{ github.workspace }}/tests/insecure_certs
+          DPF_DEFAULT_GRPC_MODE: "insecure"
 
       - name: Stop and clean up MAPDL and DPF servers
         run: |
