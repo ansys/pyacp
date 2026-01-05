@@ -22,3 +22,4 @@ services:
     environment:
       - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE}
       - ANSYS_DPF_ACCEPT_LA=${ANSYS_DPF_ACCEPT_LA}
+      - DPF_DEFAULT_GRPC_MODE=insecure
