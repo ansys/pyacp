@@ -195,7 +195,6 @@ __all__ = [
     "ElementalDataType",
     "ElementSet",
     "ElementTechnology",
-    "ExportSettings",
     "extras",
     "ExtrusionGuide",
     "ExtrusionGuideType",
