@@ -347,15 +347,15 @@ plotting = ["imageio", "imageio-ffmpeg", "matplotlib (>=3.2)", "pyvista (>=0.32.
 
 [[package]]
 name = "ansys-mapdl-core"
-version = "0.71.3"
+version = "0.72.0"
 description = "A Python client library for Ansys MAPDL."
 optional = true
 python-versions = "<3.14,>=3.10"
 groups = ["main"]
 markers = "extra == \"all\" or extra == \"examples\""
 files = [
-    {file = "ansys_mapdl_core-0.71.3-py3-none-any.whl", hash = "sha256:1218f254d4a50057ba3386771efdac35eb70a5d740805acfe5a39e95d5fecbd6"},
-    {file = "ansys_mapdl_core-0.71.3.tar.gz", hash = "sha256:23ec7bb68d2e073ea5a7d95eb2b27eea0c639f0fc763f00de62e8a9912ae387c"},
+    {file = "ansys_mapdl_core-0.72.0-py3-none-any.whl", hash = "sha256:a707b6d859aa89631d94c4169ac037e7f2c6ed2dc034325e69ff4e4c53de4c92"},
+    {file = "ansys_mapdl_core-0.72.0.tar.gz", hash = "sha256:15d1dd8c447d36251d9eff3a4802fabdb5e5c683c30ab9a0a305a8d96194ceef"},
 ]
 
 [package.dependencies]
@@ -363,7 +363,7 @@ ansys-api-mapdl = "0.5.2"
 ansys-mapdl-reader = ">=0.51.7"
 ansys-math-core = ">=0.1.2"
 ansys-platform-instancemanagement = ">=1.0,<2.0"
-ansys-tools-common = ">=0.2.1"
+ansys-tools-common = ">=0.3.0"
 ansys-tools-visualization-interface = {version = ">=0.9.0,<0.13.0", optional = true, markers = "extra == \"graphics\""}
 click = ">=8.1.3"
 grpcio = ">=1.30.0"
@@ -373,7 +373,6 @@ pexpect = {version = ">=4.8.0", markers = "platform_system == \"Linux\""}
 platformdirs = ">=3.6.0"
 protobuf = ">=3.12.2"
 psutil = ">=5.9.4"
-pyansys-tools-versioning = ">=0.3.3"
 pyiges = {version = ">=0.3.1", extras = ["full"]}
 pyvista = "<=0.46.4"
 scipy = ">=1.3.0"
@@ -383,10 +382,10 @@ vtk = ">=9.0.0,<9.5.3"
 
 [package.extras]
 all = ["ansys-tools-visualization-interface (>=0.9.0,<0.12.0)", "ipywidgets", "jupyterlab (>=3)", "matplotlib (>=3.0.0)"]
-doc = ["ansys-dpf-core[graphics] (==0.13.6)", "ansys-mapdl-reader (==0.55.1)", "ansys-sphinx-theme (==1.6.3)", "ansys-tools-visualization-interface (==0.12.1)", "grpcio (==1.76.0)", "imageio (==2.37.2)", "imageio-ffmpeg (==0.6.0)", "jupyter (==1.1.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "linuxdoc (==20240924)", "matplotlib (==3.10.7)", "nbformat (==5.10.4)", "numpydoc (==1.9.0)", "pandas (==2.3.3)", "plotly (==6.5.0)", "pyiges[full] (==0.3.2)", "pypandoc (==1.16.2)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "sphinx (==8.2.3)", "sphinx-autobuild (==2024.10.3)", "sphinx-autodoc-typehints (==3.1.0)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.6.1)", "sphinx-gallery (==0.19.0)", "sphinx-jinja (==2.0.2)", "sphinx-notfound-page (==1.1.0)", "sphinxcontrib-websupport (==2.0.0)", "sphinxemoji (==0.3.1)", "vtk (==9.5.2)"]
+doc = ["ansys-dpf-core[graphics] (==0.13.6)", "ansys-mapdl-reader (==0.55.2)", "ansys-sphinx-theme (==1.6.4)", "ansys-tools-visualization-interface (==0.12.1)", "grpcio (==1.76.0)", "imageio (==2.37.2)", "imageio-ffmpeg (==0.6.0)", "jupyter (==1.1.1)", "jupyter_sphinx (==0.5.3)", "jupyterlab (>=3.2.8)", "linuxdoc (==20240924)", "matplotlib (==3.10.8)", "nbformat (==5.10.4)", "numpydoc (==1.10.0)", "pandas (==2.3.3)", "plotly (==6.5.2)", "pyiges[full] (==0.3.2)", "pypandoc (==1.16.2)", "pytest-sphinx (==0.6.3)", "pythreejs (==2.4.2)", "sphinx (==8.2.3)", "sphinx-autobuild (==2024.10.3)", "sphinx-autodoc-typehints (==3.1.0)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.6.1)", "sphinx-gallery (==0.20.0)", "sphinx-jinja (==2.0.2)", "sphinx-notfound-page (==1.1.0)", "sphinxcontrib-websupport (==2.0.0)", "sphinxemoji (==0.3.2)", "vtk (==9.5.2)"]
 graphics = ["ansys-tools-visualization-interface (>=0.9.0,<0.13.0)", "matplotlib (>=3.0.0)"]
 jupyter = ["ipywidgets", "jupyterlab (>=3)"]
-tests = ["ansys-dpf-core[graphics] (==0.13.6)", "ansys-tools-visualization-interface (==0.12.1)", "autopep8 (==2.3.2)", "matplotlib (==3.10.7)", "pandas (==2.3.3)", "pyansys-tools-report (==0.9.0)", "pyfakefs (==5.10.2)", "pyiges[full] (==0.3.2)", "pytest (==9.0.1)", "pytest-cov (==7.0.0)", "pytest-profiling (==1.8.1)", "pytest-pyvista (==0.3.1)", "pytest-random-order (==1.2.0)", "pytest-reportlog (==1.0.0)", "pytest-rerunfailures (==16.1)", "pytest-timeout (==2.4.0)", "scipy (==1.15.3)", "vtk (==9.5.2)"]
+tests = ["ansys-dpf-core[graphics] (==0.13.6)", "ansys-mapdl-reader (==0.55.2)", "ansys-tools-visualization-interface (==0.12.1)", "autopep8 (==2.3.2)", "matplotlib (==3.10.8)", "pandas (==2.3.3)", "pyansys-tools-report (==0.9.0)", "pyfakefs (==6.0.0)", "pyiges[full] (==0.3.2)", "pytest (==9.0.2)", "pytest-cov (==7.0.0)", "pytest-profiling (==1.8.1)", "pytest-pyvista (==0.3.2)", "pytest-random-order (==1.2.0)", "pytest-reportlog (==1.0.0)", "pytest-rerunfailures (==16.1)", "pytest-timeout (==2.4.0)", "scipy (==1.15.3)", "vtk (==9.5.2)"]
 
 [[package]]
 name = "ansys-mapdl-reader"
@@ -450,15 +449,15 @@ tests = ["ansys-mapdl-core (==0.69.3)", "numpy (==2.2.4)", "pyansys-tools-report
 
 [[package]]
 name = "ansys-mechanical-core"
-version = "0.12.0"
+version = "0.12.2"
 description = "A python wrapper for Ansys Mechanical"
 optional = true
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 markers = "extra == \"all\" or extra == \"examples\""
 files = [
-    {file = "ansys_mechanical_core-0.12.0-py3-none-any.whl", hash = "sha256:1f1ab332a3a237674652745d4d34b798f347c1fcea67d932a32c49479e3a613a"},
-    {file = "ansys_mechanical_core-0.12.0.tar.gz", hash = "sha256:5979232c5bafc8caa21322393b5cf4aff5a862f30bd09288fcfb024ea0f20316"},
+    {file = "ansys_mechanical_core-0.12.2-py3-none-any.whl", hash = "sha256:3e726b0922149f02d5ca3b0517063c28ac036389c97fe1462ee995d84c9f9738"},
+    {file = "ansys_mechanical_core-0.12.2.tar.gz", hash = "sha256:ea49c50874ec91f0f87f0995f3c5de2686c776bd634e613e908ca6d8a0384269"},
 ]
 
 [package.dependencies]
@@ -470,7 +469,7 @@ appdirs = ">=1.4.0"
 click = ">=8.1.3"
 clr-loader = ">=0.2.6"
 grpcio = ">=1.30.0"
-protobuf = ">=3.12.2,<6"
+protobuf = ">=3.12.2,<7"
 psutil = ">=6"
 requests = ">=2,<3"
 tqdm = ">=4.45.0"
@@ -539,14 +538,14 @@ clr_loader = ">=0.2.5,<0.3.0"
 
 [[package]]
 name = "ansys-sphinx-theme"
-version = "1.6.4"
+version = "1.7.0"
 description = "A theme devised by ANSYS, Inc. for Sphinx documentation."
 optional = false
 python-versions = "<4,>=3.10"
 groups = ["dev"]
 files = [
-    {file = "ansys_sphinx_theme-1.6.4-py3-none-any.whl", hash = "sha256:f7f28df5e69d7093febdd561118c88ea574bafdce691a049153e372b7aabd794"},
-    {file = "ansys_sphinx_theme-1.6.4.tar.gz", hash = "sha256:beb49095bc0bc2dd9a3a1f79e9ee4ddd727d0ade62080ca5a8ac5e87a2f9e267"},
+    {file = "ansys_sphinx_theme-1.7.0-py3-none-any.whl", hash = "sha256:e346943742f16a1e74b2d9f4d29e0c984c6a47b1c4229ac8909a88c0202e7ae9"},
+    {file = "ansys_sphinx_theme-1.7.0.tar.gz", hash = "sha256:8ff959f9af58e39f81bdf5311e1c22f20688e951803e68664fa9b3dc0fda169b"},
 ]
 
 [package.dependencies]
@@ -558,20 +557,19 @@ PyYAML = ">=6.0"
 Sphinx = ">=6.1.0"
 
 [package.extras]
-autoapi = ["sphinx-autoapi (==3.6.1)", "sphinx-design (==0.6.1)", "sphinx-jinja (==2.0.2)"]
-changelog = ["PyYAML (==6.0.2)", "sphinx-design (==0.6.1)"]
-doc = ["Pillow (>=9.0)", "PyGitHub (==2.7.0)", "PyYAML (==6.0.2)", "jupytext (==1.17.3)", "nbsphinx (==0.9.7)", "notebook (==7.4.5)", "numpydoc (==1.9.0)", "pandas (==2.3.2)", "plotly (==6.3.0)", "pyvista[jupyter] (==0.46.2)", "requests (==2.32.5)", "sphinx-autoapi (==3.6.1)", "sphinx-copybutton (==0.5.2)", "sphinx-design (==0.6.1)", "sphinx-gallery (==0.19.0)", "sphinx-jinja (==2.0.2)", "sphinx-notfound-page (==1.1.0)", "sphinx-theme-builder[cli] (==0.2.0b2)", "tox (==4.28.4)"]
+autoapi = ["sphinx-autoapi (==3.6.1)", "sphinx-design (==0.7.0)", "sphinx-jinja (==2.0.2)"]
+changelog = ["PyYAML (==6.0.3)", "sphinx-design (==0.7.0)"]
 
 [[package]]
 name = "ansys-tools-common"
-version = "0.4.2"
+version = "0.4.3"
 description = "A set of tools for PyAnsys libraries"
 optional = false
 python-versions = "<4,>=3.10"
 groups = ["main"]
 files = [
-    {file = "ansys_tools_common-0.4.2-py3-none-any.whl", hash = "sha256:d47e3772ca5c8bbecaa0404f896bc0303329bcec2f22e5f0872baa50c1f66c05"},
-    {file = "ansys_tools_common-0.4.2.tar.gz", hash = "sha256:0947188b76f057160ee8daf8fed029f3a67df6a1d8201c38f70cf18222850f80"},
+    {file = "ansys_tools_common-0.4.3-py3-none-any.whl", hash = "sha256:1af500504774b28ee72f45398bcc2004e9ff5b60ae3284872f418d0cd98c3398"},
+    {file = "ansys_tools_common-0.4.3.tar.gz", hash = "sha256:92765d82fc87d492339b8426b3c36008ac4067c1eca08d522656cca8f66be006"},
 ]
 
 [package.dependencies]
@@ -1965,14 +1963,14 @@ protobuf = ">=4.21.6"
 
 [[package]]
 name = "hypothesis"
-version = "6.151.4"
+version = "6.151.6"
 description = "The property-based testing library for Python"
 optional = false
 python-versions = ">=3.10"
 groups = ["test"]
 files = [
-    {file = "hypothesis-6.151.4-py3-none-any.whl", hash = "sha256:a1cf7e0fdaa296d697a68ff3c0b3912c0050f07aa37e7d2ff33a966749d1d9b4"},
-    {file = "hypothesis-6.151.4.tar.gz", hash = "sha256:658a62da1c3ccb36746ac2f7dc4bb1a6e76bd314e0dc54c4e1aaba2503d5545c"},
+    {file = "hypothesis-6.151.6-py3-none-any.whl", hash = "sha256:4e6e933a98c6f606b3e0ada97a750e7fff12277a40260b9300a05e7a5c3c5e2e"},
+    {file = "hypothesis-6.151.6.tar.gz", hash = "sha256:755decfa326c8c97a4c8766fe40509985003396442138554b0ae824f9584318f"},
 ]
 
 [package.dependencies]
@@ -2078,14 +2076,14 @@ files = [
 
 [[package]]
 name = "ipykernel"
-version = "7.1.0"
+version = "7.2.0"
 description = "IPython Kernel for Jupyter"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "ipykernel-7.1.0-py3-none-any.whl", hash = "sha256:763b5ec6c5b7776f6a8d7ce09b267693b4e5ce75cb50ae696aaefb3c85e1ea4c"},
-    {file = "ipykernel-7.1.0.tar.gz", hash = "sha256:58a3fc88533d5930c3546dc7eac66c6d288acde4f801e2001e65edc5dc9cf0db"},
+    {file = "ipykernel-7.2.0-py3-none-any.whl", hash = "sha256:3bbd4420d2b3cc105cbdf3756bfc04500b1e52f090a90716851f3916c62e1661"},
+    {file = "ipykernel-7.2.0.tar.gz", hash = "sha256:18ed160b6dee2cbb16e5f3575858bc19d8f1fe6046a9a680c708494ce31d909e"},
 ]
 
 [package.dependencies]
@@ -2093,14 +2091,14 @@ appnope = {version = ">=0.1.2", markers = "platform_system == \"Darwin\""}
 comm = ">=0.1.1"
 debugpy = ">=1.6.5"
 ipython = ">=7.23.1"
-jupyter-client = ">=8.0.0"
-jupyter-core = ">=4.12,<5.0.dev0 || >=5.1.dev0"
+jupyter-client = ">=8.8.0"
+jupyter-core = ">=5.1,<6.0.dev0 || >=6.1.dev0"
 matplotlib-inline = ">=0.1"
 nest-asyncio = ">=1.4"
 packaging = ">=22"
 psutil = ">=5.7"
 pyzmq = ">=25"
-tornado = ">=6.2"
+tornado = ">=6.4.1"
 traitlets = ">=5.4.0"
 
 [package.extras]
@@ -2108,7 +2106,7 @@ cov = ["coverage[toml]", "matplotlib", "pytest-cov", "trio"]
 docs = ["intersphinx-registry", "myst-parser", "pydata-sphinx-theme", "sphinx (<8.2.0)", "sphinx-autodoc-typehints", "sphinxcontrib-github-alt", "sphinxcontrib-spelling", "trio"]
 pyqt5 = ["pyqt5"]
 pyside6 = ["pyside6"]
-test = ["flaky", "ipyparallel", "pre-commit", "pytest (>=7.0,<9)", "pytest-asyncio (>=0.23.5)", "pytest-cov", "pytest-timeout"]
+test = ["flaky", "ipyparallel", "pre-commit", "pytest (>=7.0,<10)", "pytest-asyncio (>=0.23.5)", "pytest-cov", "pytest-timeout"]
 
 [[package]]
 name = "ipython"
