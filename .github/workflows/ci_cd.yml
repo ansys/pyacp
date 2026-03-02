@@ -520,6 +520,7 @@ jobs:
           PYMAPDL_IP: "127.0.0.1"
           PYMAPDL_PORT: "50557"
           PYMAPDL_START_INSTANCE: "FALSE"
+          PYMAPDL_GRPC_TRANSPORT: "insecure"
           PYDPF_COMPOSITES_DOCKER_CONTAINER_PORT: "50558"
           SPHINXOPT_NITPICKY: ${{ matrix.build_type == 'quick' && ' ' || '-n' }}
           PYACP_DOC_SKIP_GALLERY: ${{ matrix.build_type == 'quick' && 'true' || 'false' }}
