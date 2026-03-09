@@ -85,12 +85,14 @@ set_plot_theme()
 # Start the ACP, Mechanical, and DPF servers. We use a ``ThreadPoolExecutor``
 # to start them in parallel.
 with ThreadPoolExecutor() as executor:
-    futures = [
-        executor.submit(pymechanical.launch_mechanical, batch=True),
+    futures = (
+        executor.submit(pymechanical.launch_mechanical, batch=True),  # type: ignore[attr-defined]
         executor.submit(pyacp.launch_acp),
         executor.submit(pydpf_composites.server_helpers.connect_to_or_start_server),
-    ]
-    mechanical, acp, dpf = (fut.result() for fut in futures)
+    )
+    mechanical = futures[0].result()
+    acp = futures[1].result()
+    dpf = futures[2].result()
 
 # %%
 # Get example input files
