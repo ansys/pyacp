@@ -533,7 +533,7 @@ jobs:
           docker compose -f ./docker-compose/docker-compose-extras.yaml down -v
 
       - name: Upload HTML Documentation
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: documentation-html
           path: doc/build/html
@@ -559,7 +559,7 @@ jobs:
         if: ${{ matrix.build_type == 'full' }}
 
       - name: Upload PDF Documentation
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: documentation-pdf
           path: doc/build/latex/ansys-acp-core.pdf
