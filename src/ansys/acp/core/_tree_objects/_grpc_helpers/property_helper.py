@@ -25,6 +25,7 @@
 Defines helpers which can be used to define properties which are
 automatically synchronized with the backend via gRPC.
 """
+
 from __future__ import annotations
 
 from collections.abc import Callable

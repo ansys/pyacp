@@ -45,7 +45,6 @@ boundary conditions, and run a failure analysis with PyDPF - Composites.
 
 """
 
-
 # %%
 # Import modules and start the Ansys products
 # -------------------------------------------
@@ -263,9 +262,7 @@ pyacp.mechanical_integration_helpers.import_acp_composite_definitions(
 # ---------------------------------
 #
 
-mechanical.run_python_script(
-    textwrap.dedent(
-        """\
+mechanical.run_python_script(textwrap.dedent("""\
         front_edge = Model.AddNamedSelection()
         front_edge.Name = "Front Edge"
         front_edge.ScopingMethod = GeometryDefineByType.Worksheet
@@ -297,9 +294,7 @@ mechanical.run_python_script(
         force.Location = front_edge
 
         analysis.Solution.Solve(True)
-        """
-    )
-)
+        """))
 
 
 rst_file = [filename for filename in mechanical.list_files() if filename.endswith(".rst")][0]

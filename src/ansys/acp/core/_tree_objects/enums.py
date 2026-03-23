@@ -96,7 +96,7 @@ __all__ = [
     "VirtualGeometryDimension",
 ]
 
-(Status, status_type_to_pb, status_type_from_pb) = wrap_to_string_enum(
+Status, status_type_to_pb, status_type_from_pb = wrap_to_string_enum(
     "Status",
     enum_types_pb2.StatusType,
     module=__name__,
@@ -228,14 +228,14 @@ __all__ = [
     doc="Options for combining selection rules.",
 )
 
-(OffsetType, offset_type_to_pb, _) = wrap_to_string_enum(
+OffsetType, offset_type_to_pb, _ = wrap_to_string_enum(
     "OffsetType",
     enum_types_pb2.OffsetType,
     module=__name__,
     doc="Options for the ply offset type.",
 )
 
-(ArrowType, arrow_type_to_pb, _) = wrap_to_string_enum(
+ArrowType, arrow_type_to_pb, _ = wrap_to_string_enum(
     "ArrowType",
     enum_types_pb2.ArrowType,
     module=__name__,
@@ -413,7 +413,7 @@ __all__ = [
     doc="Options for how thickness from a table is defined.",
 )
 
-(PlyGeometryExportFormat, ply_geometry_export_format_to_pb, _) = wrap_to_string_enum(
+PlyGeometryExportFormat, ply_geometry_export_format_to_pb, _ = wrap_to_string_enum(
     "PlyGeometryExportFormat",
     enum_types_pb2.FileFormat,
     module=__name__,
@@ -452,21 +452,21 @@ __all__ = [
     doc="Options for the definition of the source of the imported mesh.",
 )
 
-(ExtrusionType, extrusion_type_to_pb, extrusion_type_from_pb) = wrap_to_string_enum(
+ExtrusionType, extrusion_type_to_pb, extrusion_type_from_pb = wrap_to_string_enum(
     "ExtrusionType",
     section_cut_pb2.ExtrusionType,
     module=__name__,
     doc="Extrusion method used in a section cut.",
 )
 
-(SectionCutType, section_cut_type_to_pb, section_cut_type_from_pb) = wrap_to_string_enum(
+SectionCutType, section_cut_type_to_pb, section_cut_type_from_pb = wrap_to_string_enum(
     "SectionCutType",
     section_cut_pb2.SectionCutType,
     module=__name__,
     doc="Determines whether the section cut is extruded by modeling ply, production ply, or analysis ply.",
 )
 
-(IntersectionType, intersection_type_to_pb, intersection_type_from_pb) = wrap_to_string_enum(
+IntersectionType, intersection_type_to_pb, intersection_type_from_pb = wrap_to_string_enum(
     "IntersectionType",
     section_cut_pb2.IntersectionType,
     module=__name__,
@@ -480,23 +480,21 @@ SectionCutCDBExportType, section_cut_cdb_export_type_to_pb, _ = wrap_to_string_e
     doc="Determines the type of section cut model to be exported to ANSYS Mechanical APDL.",
 )
 
-(ExtrusionMethod, extrusion_method_type_to_pb, extrusion_method_type_from_pb) = wrap_to_string_enum(
+ExtrusionMethod, extrusion_method_type_to_pb, extrusion_method_type_from_pb = wrap_to_string_enum(
     "ExtrusionMethod",
     solid_model_pb2.ExtrusionMethodType,
     module=__name__,
     doc="Extrusion method used in a solid model.",
 )
 
-(ExtrusionGuideType, extrusion_guide_type_to_pb, extrusion_guide_type_from_pb) = (
-    wrap_to_string_enum(
-        "ExtrusionGuideType",
-        extrusion_guide_pb2.ExtrusionGuideType,
-        module=__name__,
-        doc="Extrusion guide type used in an extrusion guide (solid model).",
-    )
+ExtrusionGuideType, extrusion_guide_type_to_pb, extrusion_guide_type_from_pb = wrap_to_string_enum(
+    "ExtrusionGuideType",
+    extrusion_guide_pb2.ExtrusionGuideType,
+    module=__name__,
+    doc="Extrusion guide type used in an extrusion guide (solid model).",
 )
 
-(SolidModelOffsetDirectionType, offset_direction_type_to_pb, offset_direction_type_from_pb) = (
+SolidModelOffsetDirectionType, offset_direction_type_to_pb, offset_direction_type_from_pb = (
     wrap_to_string_enum(
         "SolidModelOffsetDirectionType",
         solid_model_pb2.OffsetDirectionType,
@@ -509,7 +507,7 @@ SectionCutCDBExportType, section_cut_cdb_export_type_to_pb, _ = wrap_to_string_e
         ),
     )
 )
-(DropOffType, drop_off_type_to_pb, drop_off_type_from_pb) = wrap_to_string_enum(
+DropOffType, drop_off_type_to_pb, drop_off_type_from_pb = wrap_to_string_enum(
     "DropOffType",
     solid_model_pb2.DropOffType,
     module=__name__,

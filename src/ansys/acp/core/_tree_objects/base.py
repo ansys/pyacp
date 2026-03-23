@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 """Base classes for tree objects backed via gRPC API."""
+
 from __future__ import annotations
 
 from abc import abstractmethod

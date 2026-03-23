@@ -33,7 +33,6 @@ For more advanced selection rule usage, see
 analysis, see :ref:`pymapdl_workflow_example`.
 """
 
-
 # %%
 # Import modules
 # --------------

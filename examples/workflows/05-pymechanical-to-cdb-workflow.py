@@ -43,7 +43,6 @@ PyMechanical integration.
 
 """
 
-
 # %%
 # Import modules and start the Ansys products
 # -------------------------------------------
@@ -111,8 +110,7 @@ input_geometry = pyacp.extras.example_helpers.get_example_file(
 dat_path_initial = working_dir_path / "model_from_mechanical.dat"
 mechanical.run_python_script(
     # This script runs in the Mechanical Python environment, which uses IronPython 2.7.
-    textwrap.dedent(
-        f"""\
+    textwrap.dedent(f"""\
         # Import the geometry
         geometry_import = Model.GeometryImportGroup.AddGeometryImport()
 
@@ -174,8 +172,7 @@ mechanical.run_python_script(
 
         # Export the model to a CDB file
         analysis.WriteInputFile({str(dat_path_initial)!r})
-        """
-    )
+        """)
 )
 
 # %%
