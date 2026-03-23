@@ -39,7 +39,11 @@ __all__ = [
 ]
 
 
-def export_mesh_for_acp(*, mechanical: "pymechanical.Mechanical", path: PATH) -> None:
+def export_mesh_for_acp(
+    *,
+    mechanical: "pymechanical.Mechanical",  # type: ignore[name-defined]
+    path: PATH
+) -> None:
     """Export the mesh from PyMechanical for use in PyACP.
 
     Parameters
@@ -69,7 +73,7 @@ def export_mesh_for_acp(*, mechanical: "pymechanical.Mechanical", path: PATH) ->
 
 def import_acp_mesh_from_cdb(
     *,
-    mechanical: "pymechanical.Mechanical",
+    mechanical: "pymechanical.Mechanical",  # type: ignore[name-defined]
     cdb_path: PATH,
     check_valid_blocked_cdb_file: bool = True,
 ) -> None:
@@ -111,7 +115,11 @@ def import_acp_mesh_from_cdb(
     )
 
 
-def import_acp_composite_definitions(*, mechanical: "pymechanical.Mechanical", path: PATH) -> None:
+def import_acp_composite_definitions(
+    *,
+    mechanical: "pymechanical.Mechanical",  # type: ignore[name-defined]
+    path: PATH
+) -> None:
     """Import ACP composite definitions HDF5 into Mechanical.
 
     Imports the composite layup defined in ACP into Mechanical, as Imported Plies.
