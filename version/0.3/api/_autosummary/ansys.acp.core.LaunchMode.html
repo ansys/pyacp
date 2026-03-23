@@ -1,0 +1,931 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>LaunchMode &#8212; PyACP</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/ansys-sphinx-theme.css?v=9e79609d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/ansys-sphinx-theme.css?v=9e79609d" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=800b1921" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+
+  <!-- Include desired assets -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  
+
+  
+    <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../../_static/documentation_options.js?v=5869b996"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/ansys.acp.core.LaunchMode';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://acp.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.3';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="icon" href="../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="encode" href="ansys.acp.core.LaunchMode.encode.html" />
+    <link rel="prev" title="launch_acp" href="ansys.acp.core.launch_acp.html" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.3.1" />
+  <meta property="og:site_name" content="PyAnsys" />
+  <meta name="physics" content="Structures" />
+  <link rel="canonical" href="https://acp.docs.pyansys.com/version/stable/api/_autosummary/ansys.acp.core.LaunchMode.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyACP - Home"/>
+    <img src="../../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark pst-js-only" alt="PyACP - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html" title="PyACP home">Home</a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav>
+</div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pyacp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html" title="PyACP home">Home</a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+  </ul>
+</nav>
+</div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pyacp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../server.html">Server management</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ACPInstance.html">ACPInstance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ConnectLaunchConfig.html">ConnectLaunchConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ConnectLocalLaunchConfig.html">ConnectLocalLaunchConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.DirectLaunchConfig.html">DirectLaunchConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.DockerComposeLaunchConfig.html">DockerComposeLaunchConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.launch_acp.html">launch_acp</a></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">LaunchMode</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.encode.html">encode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.replace.html">replace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.split.html">split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.rsplit.html">rsplit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.join.html">join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.capitalize.html">capitalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.casefold.html">casefold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.title.html">title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.center.html">center</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.count.html">count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.expandtabs.html">expandtabs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.find.html">find</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.partition.html">partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.index.html">index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.ljust.html">ljust</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.lower.html">lower</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.lstrip.html">lstrip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.rfind.html">rfind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.rindex.html">rindex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.rjust.html">rjust</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.rstrip.html">rstrip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.rpartition.html">rpartition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.splitlines.html">splitlines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.strip.html">strip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.swapcase.html">swapcase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.translate.html">translate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.upper.html">upper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.startswith.html">startswith</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.endswith.html">endswith</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.removeprefix.html">removeprefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.removesuffix.html">removesuffix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.isascii.html">isascii</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.islower.html">islower</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.isupper.html">isupper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.istitle.html">istitle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.isspace.html">isspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.isdecimal.html">isdecimal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.isdigit.html">isdigit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.isnumeric.html">isnumeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.isalpha.html">isalpha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.isalnum.html">isalnum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.isidentifier.html">isidentifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.isprintable.html">isprintable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.zfill.html">zfill</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.format.html">format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.format_map.html">format_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.maketrans.html">maketrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.DIRECT.html">DIRECT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.DOCKER_COMPOSE.html">DOCKER_COMPOSE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.CONNECT.html">CONNECT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.LaunchMode.CONNECT_LOCAL.html">CONNECT_LOCAL</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../tree_objects.html">ACP objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mesh_data.html">Mesh data objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linked_object_definitions.html">Linked object definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material_property_sets.html">Material property sets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enum_types.html">Enumeration data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other_types.html">Other types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot_utils.html">Plot utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other_utils.html">Other utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dpf_integration_helpers.html">DPF integration helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mechanical_integration_helpers.html">Mechanical integration helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extras.html">Extras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal.html">Internal objects</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">API reference</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../server.html" class="nav-link">Server management</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">LaunchMode</span></li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="launchmode">
+<h1>LaunchMode<a class="headerlink" href="#launchmode" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="ansys.acp.core.LaunchMode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">LaunchMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names=&lt;not</span> <span class="pre">given&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.LaunchMode" title="Link to this definition">#</a></dt>
+<dd><p>Available launch modes for ACP.</p>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.encode.html#ansys.acp.core.LaunchMode.encode" title="ansys.acp.core.LaunchMode.encode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.encode</span></code></a>(/[, encoding, errors])</p></td>
+<td><p>Encode the string using the codec registered for encoding.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.replace.html#ansys.acp.core.LaunchMode.replace" title="ansys.acp.core.LaunchMode.replace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.replace</span></code></a>(old, new[, count])</p></td>
+<td><p>Return a copy with all occurrences of substring old replaced by new.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.split.html#ansys.acp.core.LaunchMode.split" title="ansys.acp.core.LaunchMode.split"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.split</span></code></a>(/[, sep, maxsplit])</p></td>
+<td><p>Return a list of the substrings in the string, using sep as the separator string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.rsplit.html#ansys.acp.core.LaunchMode.rsplit" title="ansys.acp.core.LaunchMode.rsplit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.rsplit</span></code></a>(/[, sep, maxsplit])</p></td>
+<td><p>Return a list of the substrings in the string, using sep as the separator string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.join.html#ansys.acp.core.LaunchMode.join" title="ansys.acp.core.LaunchMode.join"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.join</span></code></a>(iterable, /)</p></td>
+<td><p>Concatenate any number of strings.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.capitalize.html#ansys.acp.core.LaunchMode.capitalize" title="ansys.acp.core.LaunchMode.capitalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.capitalize</span></code></a>(/)</p></td>
+<td><p>Return a capitalized version of the string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.casefold.html#ansys.acp.core.LaunchMode.casefold" title="ansys.acp.core.LaunchMode.casefold"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.casefold</span></code></a>(/)</p></td>
+<td><p>Return a version of the string suitable for caseless comparisons.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.title.html#ansys.acp.core.LaunchMode.title" title="ansys.acp.core.LaunchMode.title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.title</span></code></a>(/)</p></td>
+<td><p>Return a version of the string where each word is titlecased.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.center.html#ansys.acp.core.LaunchMode.center" title="ansys.acp.core.LaunchMode.center"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.center</span></code></a>(width[, fillchar])</p></td>
+<td><p>Return a centered string of length width.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.count.html#ansys.acp.core.LaunchMode.count" title="ansys.acp.core.LaunchMode.count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.count</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the number of non-overlapping occurrences of substring sub in string S[start:end].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.expandtabs.html#ansys.acp.core.LaunchMode.expandtabs" title="ansys.acp.core.LaunchMode.expandtabs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.expandtabs</span></code></a>(/[, tabsize])</p></td>
+<td><p>Return a copy where all tab characters are expanded using spaces.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.find.html#ansys.acp.core.LaunchMode.find" title="ansys.acp.core.LaunchMode.find"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.find</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the lowest index in S where substring sub is found, such that sub is contained within S[start:end].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.partition.html#ansys.acp.core.LaunchMode.partition" title="ansys.acp.core.LaunchMode.partition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.partition</span></code></a>(sep, /)</p></td>
+<td><p>Partition the string into three parts using the given separator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.index.html#ansys.acp.core.LaunchMode.index" title="ansys.acp.core.LaunchMode.index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.index</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the lowest index in S where substring sub is found, such that sub is contained within S[start:end].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.ljust.html#ansys.acp.core.LaunchMode.ljust" title="ansys.acp.core.LaunchMode.ljust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.ljust</span></code></a>(width[, fillchar])</p></td>
+<td><p>Return a left-justified string of length width.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.lower.html#ansys.acp.core.LaunchMode.lower" title="ansys.acp.core.LaunchMode.lower"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.lower</span></code></a>(/)</p></td>
+<td><p>Return a copy of the string converted to lowercase.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.lstrip.html#ansys.acp.core.LaunchMode.lstrip" title="ansys.acp.core.LaunchMode.lstrip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.lstrip</span></code></a>([chars])</p></td>
+<td><p>Return a copy of the string with leading whitespace removed.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.rfind.html#ansys.acp.core.LaunchMode.rfind" title="ansys.acp.core.LaunchMode.rfind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.rfind</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the highest index in S where substring sub is found, such that sub is contained within S[start:end].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.rindex.html#ansys.acp.core.LaunchMode.rindex" title="ansys.acp.core.LaunchMode.rindex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.rindex</span></code></a>(sub[, start[, end]])</p></td>
+<td><p>Return the highest index in S where substring sub is found, such that sub is contained within S[start:end].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.rjust.html#ansys.acp.core.LaunchMode.rjust" title="ansys.acp.core.LaunchMode.rjust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.rjust</span></code></a>(width[, fillchar])</p></td>
+<td><p>Return a right-justified string of length width.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.rstrip.html#ansys.acp.core.LaunchMode.rstrip" title="ansys.acp.core.LaunchMode.rstrip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.rstrip</span></code></a>([chars])</p></td>
+<td><p>Return a copy of the string with trailing whitespace removed.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.rpartition.html#ansys.acp.core.LaunchMode.rpartition" title="ansys.acp.core.LaunchMode.rpartition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.rpartition</span></code></a>(sep, /)</p></td>
+<td><p>Partition the string into three parts using the given separator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.splitlines.html#ansys.acp.core.LaunchMode.splitlines" title="ansys.acp.core.LaunchMode.splitlines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.splitlines</span></code></a>(/[, keepends])</p></td>
+<td><p>Return a list of the lines in the string, breaking at line boundaries.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.strip.html#ansys.acp.core.LaunchMode.strip" title="ansys.acp.core.LaunchMode.strip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.strip</span></code></a>([chars])</p></td>
+<td><p>Return a copy of the string with leading and trailing whitespace removed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.swapcase.html#ansys.acp.core.LaunchMode.swapcase" title="ansys.acp.core.LaunchMode.swapcase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.swapcase</span></code></a>(/)</p></td>
+<td><p>Convert uppercase characters to lowercase and lowercase characters to uppercase.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.translate.html#ansys.acp.core.LaunchMode.translate" title="ansys.acp.core.LaunchMode.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.translate</span></code></a>(table, /)</p></td>
+<td><p>Replace each character in the string using the given translation table.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.upper.html#ansys.acp.core.LaunchMode.upper" title="ansys.acp.core.LaunchMode.upper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.upper</span></code></a>(/)</p></td>
+<td><p>Return a copy of the string converted to uppercase.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.startswith.html#ansys.acp.core.LaunchMode.startswith" title="ansys.acp.core.LaunchMode.startswith"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.startswith</span></code></a>(prefix[, start[, end]])</p></td>
+<td><p>Return True if S starts with the specified prefix, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.endswith.html#ansys.acp.core.LaunchMode.endswith" title="ansys.acp.core.LaunchMode.endswith"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.endswith</span></code></a>(suffix[, start[, end]])</p></td>
+<td><p>Return True if S ends with the specified suffix, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.removeprefix.html#ansys.acp.core.LaunchMode.removeprefix" title="ansys.acp.core.LaunchMode.removeprefix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.removeprefix</span></code></a>(prefix, /)</p></td>
+<td><p>Return a str with the given prefix string removed if present.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.removesuffix.html#ansys.acp.core.LaunchMode.removesuffix" title="ansys.acp.core.LaunchMode.removesuffix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.removesuffix</span></code></a>(suffix, /)</p></td>
+<td><p>Return a str with the given suffix string removed if present.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.isascii.html#ansys.acp.core.LaunchMode.isascii" title="ansys.acp.core.LaunchMode.isascii"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.isascii</span></code></a>(/)</p></td>
+<td><p>Return True if all characters in the string are ASCII, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.islower.html#ansys.acp.core.LaunchMode.islower" title="ansys.acp.core.LaunchMode.islower"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.islower</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a lowercase string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.isupper.html#ansys.acp.core.LaunchMode.isupper" title="ansys.acp.core.LaunchMode.isupper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.isupper</span></code></a>(/)</p></td>
+<td><p>Return True if the string is an uppercase string, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.istitle.html#ansys.acp.core.LaunchMode.istitle" title="ansys.acp.core.LaunchMode.istitle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.istitle</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a title-cased string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.isspace.html#ansys.acp.core.LaunchMode.isspace" title="ansys.acp.core.LaunchMode.isspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.isspace</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a whitespace string, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.isdecimal.html#ansys.acp.core.LaunchMode.isdecimal" title="ansys.acp.core.LaunchMode.isdecimal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.isdecimal</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a decimal string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.isdigit.html#ansys.acp.core.LaunchMode.isdigit" title="ansys.acp.core.LaunchMode.isdigit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.isdigit</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a digit string, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.isnumeric.html#ansys.acp.core.LaunchMode.isnumeric" title="ansys.acp.core.LaunchMode.isnumeric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.isnumeric</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a numeric string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.isalpha.html#ansys.acp.core.LaunchMode.isalpha" title="ansys.acp.core.LaunchMode.isalpha"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.isalpha</span></code></a>(/)</p></td>
+<td><p>Return True if the string is an alphabetic string, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.isalnum.html#ansys.acp.core.LaunchMode.isalnum" title="ansys.acp.core.LaunchMode.isalnum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.isalnum</span></code></a>(/)</p></td>
+<td><p>Return True if the string is an alpha-numeric string, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.isidentifier.html#ansys.acp.core.LaunchMode.isidentifier" title="ansys.acp.core.LaunchMode.isidentifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.isidentifier</span></code></a>(/)</p></td>
+<td><p>Return True if the string is a valid Python identifier, False otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.isprintable.html#ansys.acp.core.LaunchMode.isprintable" title="ansys.acp.core.LaunchMode.isprintable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.isprintable</span></code></a>(/)</p></td>
+<td><p>Return True if all characters in the string are printable, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.zfill.html#ansys.acp.core.LaunchMode.zfill" title="ansys.acp.core.LaunchMode.zfill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.zfill</span></code></a>(width, /)</p></td>
+<td><p>Pad a numeric string with zeros on the left, to fill a field of the given width.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.format.html#ansys.acp.core.LaunchMode.format" title="ansys.acp.core.LaunchMode.format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.format</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Return a formatted version of S, using substitutions from args and kwargs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.format_map.html#ansys.acp.core.LaunchMode.format_map" title="ansys.acp.core.LaunchMode.format_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.format_map</span></code></a>(mapping)</p></td>
+<td><p>Return a formatted version of S, using substitutions from mapping.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.maketrans.html#ansys.acp.core.LaunchMode.maketrans" title="ansys.acp.core.LaunchMode.maketrans"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.maketrans</span></code></a>(x[, y, z])</p></td>
+<td><p>Return a translation table usable for str.translate().</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Attributes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.DIRECT.html#ansys.acp.core.LaunchMode.DIRECT" title="ansys.acp.core.LaunchMode.DIRECT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.DIRECT</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.DOCKER_COMPOSE.html#ansys.acp.core.LaunchMode.DOCKER_COMPOSE" title="ansys.acp.core.LaunchMode.DOCKER_COMPOSE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.DOCKER_COMPOSE</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.CONNECT.html#ansys.acp.core.LaunchMode.CONNECT" title="ansys.acp.core.LaunchMode.CONNECT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.CONNECT</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.LaunchMode.CONNECT_LOCAL.html#ansys.acp.core.LaunchMode.CONNECT_LOCAL" title="ansys.acp.core.LaunchMode.CONNECT_LOCAL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaunchMode.CONNECT_LOCAL</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ansys.acp.core.launch_acp.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">launch_acp</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ansys.acp.core.LaunchMode.encode.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">encode</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ansys.acp.core.LaunchMode"><code class="docutils literal notranslate"><span class="pre">LaunchMode</span></code></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/api/_autosummary/ansys.acp.core.LaunchMode.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+
+  <!-- Include desired assets -->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('{"keys": ["title", "text", "objectID"], "limit": 10, "threshold": 0.2}');
+const SEARCH_FILE = "../../_static/search.json";
+const ADVANCE_SEARCH_PATH = "../../search.html";
+const EXTRA_SOURCES = JSON.parse('""');
+</script>
+
+
+<script src="../../_static/js/search.js"></script>
+
+  
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2025 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  1.6.3. <br />Last updated on
+  <span id="ast_build_date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var ast_lastModifiedDate = new Date(document.lastModified);
+  var ast_build_date = ast_lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("ast_build_date").innerHTML = ast_build_date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

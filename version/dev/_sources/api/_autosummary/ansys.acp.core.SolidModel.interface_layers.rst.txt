@@ -1,0 +1,13 @@
+.. vale off
+
+interface\_layers
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.interface_layers
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.interface_layers
+
+   ansys.acp.core.SolidModel.interface_layers

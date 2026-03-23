@@ -1,0 +1,13 @@
+.. vale off
+
+port
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLocalLaunchConfig.port
+
+.. minigallery::
+   :add-heading: Examples using ConnectLocalLaunchConfig.port
+
+   ansys.acp.core.ConnectLocalLaunchConfig.port

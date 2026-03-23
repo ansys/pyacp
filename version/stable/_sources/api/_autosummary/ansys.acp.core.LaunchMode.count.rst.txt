@@ -1,0 +1,13 @@
+.. vale off
+
+count
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.count
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.count
+
+   ansys.acp.core.LaunchMode.count

@@ -1,0 +1,13 @@
+.. vale off
+
+angle
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: AnalysisPly.angle
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPly.angle
+
+   ansys.acp.core.AnalysisPly.angle

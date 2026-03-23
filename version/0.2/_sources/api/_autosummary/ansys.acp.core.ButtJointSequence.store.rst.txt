@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ButtJointSequence.store
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence.store
+
+   ansys.acp.core.ButtJointSequence.store

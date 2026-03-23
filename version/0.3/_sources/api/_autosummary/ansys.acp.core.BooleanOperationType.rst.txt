@@ -1,0 +1,31 @@
+﻿BooleanOperationType
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: BooleanOperationType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        BooleanOperationType.INTERSECT
+      
+      
+        BooleanOperationType.ADD
+      
+      
+        BooleanOperationType.REMOVE
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using BooleanOperationType
+
+   ansys.acp.core.BooleanOperationType

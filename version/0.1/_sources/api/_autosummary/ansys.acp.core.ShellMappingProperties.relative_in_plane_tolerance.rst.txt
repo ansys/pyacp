@@ -1,0 +1,13 @@
+.. vale off
+
+relative\_in\_plane\_tolerance
+==============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ShellMappingProperties.relative_in_plane_tolerance
+
+.. minigallery::
+   :add-heading: Examples using ShellMappingProperties.relative_in_plane_tolerance
+
+   ansys.acp.core.ShellMappingProperties.relative_in_plane_tolerance

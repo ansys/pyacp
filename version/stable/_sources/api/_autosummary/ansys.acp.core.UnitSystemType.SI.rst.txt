@@ -1,0 +1,13 @@
+.. vale off
+
+SI
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.SI
+
+.. minigallery::
+   :add-heading: Examples using UnitSystemType.SI
+
+   ansys.acp.core.UnitSystemType.SI
