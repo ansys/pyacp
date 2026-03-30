@@ -1,0 +1,13 @@
+.. vale off
+
+node\_coordinates
+=================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: MeshData.node_coordinates
+
+.. minigallery::
+   :add-heading: Examples using MeshData.node_coordinates
+
+   ansys.acp.core.mesh_data.MeshData.node_coordinates

@@ -1,0 +1,13 @@
+.. vale off
+
+eXc
+===
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableStrainLimits.eXc
+
+.. minigallery::
+   :add-heading: Examples using VariableStrainLimits.eXc
+
+   ansys.acp.core.material_property_sets.VariableStrainLimits.eXc

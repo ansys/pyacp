@@ -1,0 +1,13 @@
+.. vale off
+
+MIDDLE\_OFFSET
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ImportedPlyOffsetType.MIDDLE_OFFSET
+
+.. minigallery::
+   :add-heading: Examples using ImportedPlyOffsetType.MIDDLE_OFFSET
+
+   ansys.acp.core.ImportedPlyOffsetType.MIDDLE_OFFSET

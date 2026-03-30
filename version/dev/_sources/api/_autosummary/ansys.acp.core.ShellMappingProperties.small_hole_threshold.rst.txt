@@ -1,0 +1,13 @@
+.. vale off
+
+small\_hole\_threshold
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ShellMappingProperties.small_hole_threshold
+
+.. minigallery::
+   :add-heading: Examples using ShellMappingProperties.small_hole_threshold
+
+   ansys.acp.core.ShellMappingProperties.small_hole_threshold

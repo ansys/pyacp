@@ -1,0 +1,31 @@
+﻿ThicknessType
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ThicknessType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        ThicknessType.NOMINAL
+      
+      
+        ThicknessType.FROM_GEOMETRY
+      
+      
+        ThicknessType.FROM_TABLE
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using ThicknessType
+
+   ansys.acp.core.ThicknessType

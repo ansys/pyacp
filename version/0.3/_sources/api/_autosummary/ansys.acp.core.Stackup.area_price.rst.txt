@@ -1,0 +1,13 @@
+.. vale off
+
+area\_price
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.area_price
+
+.. minigallery::
+   :add-heading: Examples using Stackup.area_price
+
+   ansys.acp.core.Stackup.area_price

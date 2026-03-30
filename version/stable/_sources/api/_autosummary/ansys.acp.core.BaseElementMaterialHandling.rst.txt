@@ -1,0 +1,28 @@
+﻿BaseElementMaterialHandling
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: BaseElementMaterialHandling
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        BaseElementMaterialHandling.RETAIN
+      
+      
+        BaseElementMaterialHandling.REMOVE
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using BaseElementMaterialHandling
+
+   ansys.acp.core.BaseElementMaterialHandling

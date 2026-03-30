@@ -1,0 +1,13 @@
+.. vale off
+
+isdecimal
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.isdecimal
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.isdecimal
+
+   ansys.acp.core.LaunchMode.isdecimal

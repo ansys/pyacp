@@ -1,0 +1,13 @@
+.. vale off
+
+values
+======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoattribute:: FieldVariable.values
+
+.. minigallery::
+   :add-heading: Examples using FieldVariable.values
+
+   ansys.acp.core.material_property_sets.FieldVariable.values
