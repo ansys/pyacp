@@ -36,8 +36,7 @@ def case_simple_model(acp_instance, model_data_dir):
         model,
         False,
         False,
-        textwrap.dedent(
-            """\
+        textwrap.dedent("""\
             'minimal_complete'
                 Materials
                     'Structural Steel'
@@ -59,8 +58,7 @@ def case_simple_model(acp_instance, model_data_dir):
                                     'P1__ModelingPly.1'
                                         Analysis Plies
                                             'P1L1__ModelingPly.1'
-            """
-        ),
+            """),
     )
 
 
@@ -74,8 +72,7 @@ def case_simple_model_use_ids(acp_instance, model_data_dir):
         model,
         False,
         True,
-        textwrap.dedent(
-            """\
+        textwrap.dedent("""\
             'minimal_complete'
                 Materials
                     'Structural Steel'
@@ -98,8 +95,7 @@ def case_simple_model_use_ids(acp_instance, model_data_dir):
                                         Analysis Plies
                                             'P1L1__ModelingPly.1'
                     'ModelingGroup.2'
-            """
-        ),
+            """),
     )
 
 
@@ -128,8 +124,7 @@ def case_more_objects(acp_instance, model_data_dir):
         model,
         False,
         False,
-        textwrap.dedent(
-            """\
+        textwrap.dedent("""\
             'minimal_complete'
                 Materials
                     'Structural Steel'
@@ -182,8 +177,7 @@ def case_more_objects(acp_instance, model_data_dir):
                                             'P1L1__ModelingPly.1'
                 Sensors
                     'Sensor'
-            """
-        ),
+            """),
     )
 
 
@@ -212,8 +206,7 @@ def case_more_objects_lines(acp_instance, model_data_dir):
         model,
         True,
         False,
-        textwrap.dedent(
-            """\
+        textwrap.dedent("""\
             'minimal_complete'
             ├── Materials
             │   └── 'Structural Steel'
@@ -266,8 +259,7 @@ def case_more_objects_lines(acp_instance, model_data_dir):
             │                           └── 'P1L1__ModelingPly.1'
             └── Sensors
                 └── 'Sensor'
-            """
-        ),
+            """),
     )
 
 

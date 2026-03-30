@@ -89,12 +89,14 @@ set_plot_theme()
 # to start them in parallel.
 with ThreadPoolExecutor() as executor:
     futures = [
-        executor.submit(pymechanical.launch_mechanical, batch=True),
-        executor.submit(pymechanical.launch_mechanical, batch=True),
+        executor.submit(pymechanical.launch_mechanical, batch=True),  # type: ignore[attr-defined]
+        executor.submit(pymechanical.launch_mechanical, batch=True),  # type: ignore[attr-defined]
         executor.submit(pyacp.launch_acp),
         executor.submit(pydpf_composites.server_helpers.connect_to_or_start_server),
     ]
-    mechanical_shell_geometry, mechanical_solid_model, acp, dpf = (fut.result() for fut in futures)
+    mechanical_shell_geometry, mechanical_solid_model, acp, dpf = (
+        fut.result() for fut in futures  # type: ignore[attr-defined]
+    )
 
 # %%
 # Get example input files
@@ -120,8 +122,7 @@ input_geometry = pyacp.extras.example_helpers.get_example_file(
 mesh_path = working_dir_path / "mesh.h5"
 mechanical_shell_geometry.run_python_script(
     # This script runs in the Mechanical Python environment, which uses IronPython 2.7.
-    textwrap.dedent(
-        f"""\
+    textwrap.dedent(f"""\
         geometry_import = Model.GeometryImportGroup.AddGeometryImport()
 
         import_format = Ansys.Mechanical.DataModel.Enums.GeometryImportPreference.Format.Automatic
@@ -172,8 +173,7 @@ mechanical_shell_geometry.run_python_script(
         hull.Generate()
 
         Model.Mesh.GenerateMesh()
-        """
-    )
+        """)
 )
 pyacp.mechanical_integration_helpers.export_mesh_for_acp(
     mechanical=mechanical_shell_geometry, path=mesh_path
@@ -302,9 +302,7 @@ pyacp.mechanical_integration_helpers.import_acp_composite_definitions(
 #
 # Set boundary condition and solve
 
-mechanical_solid_model.run_python_script(
-    textwrap.dedent(
-        """\
+mechanical_solid_model.run_python_script(textwrap.dedent("""\
         analysis = Model.AddStaticStructuralAnalysis()
 
         front_face = Model.AddNamedSelection()
@@ -334,9 +332,7 @@ mechanical_solid_model.run_python_script(
         force.Location = front_face
 
         analysis.Solve(True)
-        """
-    )
-)
+        """))
 
 rst_file = [
     filename for filename in mechanical_solid_model.list_files() if filename.endswith(".rst")

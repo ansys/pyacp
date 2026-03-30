@@ -86,11 +86,11 @@ set_plot_theme()
 # to start them in parallel.
 with ThreadPoolExecutor() as executor:
     futures = [
-        executor.submit(pymechanical.launch_mechanical, batch=True),
+        executor.submit(pymechanical.launch_mechanical, batch=True),  # type: ignore[attr-defined]
         executor.submit(pyacp.launch_acp),
         executor.submit(pydpf_composites.server_helpers.connect_to_or_start_server),
     ]
-    mechanical, acp, dpf = (fut.result() for fut in futures)
+    mechanical, acp, dpf = (fut.result() for fut in futures)  # type: ignore[attr-defined]
 
 # %%
 # Get example input files
@@ -115,8 +115,7 @@ input_geometry = pyacp.extras.example_helpers.get_example_file(
 mesh_path = working_dir_path / "mesh.h5"
 mechanical.run_python_script(
     # This script runs in the Mechanical Python environment, which uses IronPython 2.7.
-    textwrap.dedent(
-        f"""\
+    textwrap.dedent(f"""\
         # Import the geometry
         geometry_import = Model.GeometryImportGroup.AddGeometryImport()
 
@@ -140,8 +139,7 @@ mechanical.run_python_script(
             body.Thickness = Quantity(1e-6, "m")
 
         Model.Mesh.GenerateMesh()
-        """
-    )
+        """)
 )
 pyacp.mechanical_integration_helpers.export_mesh_for_acp(mechanical=mechanical, path=mesh_path)
 
@@ -243,9 +241,7 @@ pyacp.mechanical_integration_helpers.import_acp_composite_definitions(
 # ---------------------------------
 #
 
-mechanical.run_python_script(
-    textwrap.dedent(
-        """\
+mechanical.run_python_script(textwrap.dedent("""\
         front_edge = Model.AddNamedSelection()
         front_edge.Name = "Front Edge"
         front_edge.ScopingMethod = GeometryDefineByType.Worksheet
@@ -279,9 +275,7 @@ mechanical.run_python_script(
         force.Location = front_edge
 
         analysis.Solution.Solve(True)
-        """
-    )
-)
+        """))
 
 rst_file = [filename for filename in mechanical.list_files() if filename.endswith(".rst")][0]
 matml_out = [filename for filename in mechanical.list_files() if filename.endswith("MatML.xml")][0]

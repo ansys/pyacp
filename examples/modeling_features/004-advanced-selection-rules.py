@@ -35,7 +35,6 @@ This example only shows the PyACP part of the setup. For a complete composite an
 see :ref:`pymapdl_workflow_example`.
 """
 
-
 # %%
 # Import modules
 # --------------

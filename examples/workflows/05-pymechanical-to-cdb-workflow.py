@@ -43,7 +43,6 @@ PyMechanical integration.
 
 """
 
-
 # %%
 # Import modules and start the Ansys products
 # -------------------------------------------
@@ -80,12 +79,12 @@ set_plot_theme()
 # to start them in parallel.
 with ThreadPoolExecutor() as executor:
     futures = [
-        executor.submit(pymechanical.launch_mechanical, batch=True),
+        executor.submit(pymechanical.launch_mechanical, batch=True),  # type: ignore[attr-defined]
         executor.submit(pyacp.launch_acp),
         executor.submit(pymapdl.launch_mapdl),
         executor.submit(pydpf_composites.server_helpers.connect_to_or_start_server),
     ]
-    mechanical, acp, mapdl, dpf = (fut.result() for fut in futures)
+    mechanical, acp, mapdl, dpf = (fut.result() for fut in futures)  # type: ignore[attr-defined]
     mapdl.clear()
 
 # %%
@@ -111,8 +110,7 @@ input_geometry = pyacp.extras.example_helpers.get_example_file(
 dat_path_initial = working_dir_path / "model_from_mechanical.dat"
 mechanical.run_python_script(
     # This script runs in the Mechanical Python environment, which uses IronPython 2.7.
-    textwrap.dedent(
-        f"""\
+    textwrap.dedent(f"""\
         # Import the geometry
         geometry_import = Model.GeometryImportGroup.AddGeometryImport()
 
@@ -174,8 +172,7 @@ mechanical.run_python_script(
 
         # Export the model to a CDB file
         analysis.WriteInputFile({str(dat_path_initial)!r})
-        """
-    )
+        """)
 )
 
 # %%
