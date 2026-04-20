@@ -339,7 +339,7 @@ class CreatableTreeObject(TreeObject):
             unlink_objects(new_object_info.properties)
             # Since there may be links in the unknown fields, we need to
             # discard them to avoid errors when storing the object.
-            new_object_info.properties.DiscardUnknownFields()  # type: ignore
+            new_object_info.properties.DiscardUnknownFields()
         new_object_info.info.name = self._pb_object.info.name
         return type(self)._from_object_info(object_info=new_object_info)
 
