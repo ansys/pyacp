@@ -39,7 +39,7 @@ def unlink_objects(pb_object: Message) -> None:
 def get_linked_paths(pb_object: Message) -> Iterable[ResourcePath]:
     """Get all resource paths present in a protobuf object."""
     for _, field_descriptor, field_value in _linked_path_fields(pb_object):
-        if field_descriptor.label == field_descriptor.LABEL_REPEATED:
+        if _is_repeated(field_descriptor):
             yield from field_value  # type: ignore
         else:
             yield field_value  # type: ignore
@@ -58,8 +58,17 @@ def _linked_path_fields(
         if getattr(field_descriptor.message_type, "name", None) == "ResourcePath":
             yield (pb_object, field_descriptor, field_value)
         elif field_descriptor.type == field_descriptor.TYPE_MESSAGE:
-            if field_descriptor.label == field_descriptor.LABEL_REPEATED:
+            if _is_repeated(field_descriptor):
                 for sub_obj in field_value:
                     yield from _linked_path_fields(sub_obj)
             else:
                 yield from _linked_path_fields(field_value)
+
+
+def _is_repeated(field_descriptor: FieldDescriptor) -> bool:
+    """Check if a field descriptor is for a repeated field."""
+    if hasattr(field_descriptor, "is_repeated"):
+        return field_descriptor.is_repeated
+    # Older versions of protobuf do not have the is_repeated attribute, but
+    # have a 'label' attribute instead.
+    return field_descriptor.label == field_descriptor.LABEL_REPEATED  # type: ignore
