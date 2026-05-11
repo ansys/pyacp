@@ -450,15 +450,15 @@ tests = ["ansys-mapdl-core (==0.69.3)", "numpy (==2.2.4)", "pyansys-tools-report
 
 [[package]]
 name = "ansys-mechanical-core"
-version = "0.12.6"
+version = "0.12.7"
 description = "A python wrapper for Ansys Mechanical"
 optional = true
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 markers = "extra == \"all\" or extra == \"examples\""
 files = [
-    {file = "ansys_mechanical_core-0.12.6-py3-none-any.whl", hash = "sha256:7431cd24a67250cbeef803d9d2466de07fc251cbcd9e5cd75253597014d5882b"},
-    {file = "ansys_mechanical_core-0.12.6.tar.gz", hash = "sha256:935b982b6095bd010579b0aa54f70656dd944a704da26e5cae58d3061e41de50"},
+    {file = "ansys_mechanical_core-0.12.7-py3-none-any.whl", hash = "sha256:63d434d9155df29416196db6e371c8859f0cb9acb28dae711cd41b8722139cc9"},
+    {file = "ansys_mechanical_core-0.12.7.tar.gz", hash = "sha256:4756b9ea6f1be27bebdece154c68277c5447602ccc92def60c259deb056f58f1"},
 ]
 
 [package.dependencies]
@@ -4426,15 +4426,15 @@ dev = ["black", "build", "mypy", "pytest", "pytest-cov", "setuptools", "tox", "t
 
 [[package]]
 name = "pyvista"
-version = "0.47.0"
-description = "Easier Pythonic interface to VTK"
+version = "0.48.2"
+description = "3D visualization and mesh analysis for science and engineering."
 optional = true
 python-versions = ">=3.10"
 groups = ["main"]
 markers = "extra == \"all\" or extra == \"examples\" or extra == \"graphics\" or extra == \"plotting\""
 files = [
-    {file = "pyvista-0.47.0-py3-none-any.whl", hash = "sha256:35d9b003d3bfac709da5b76dd264919b6847c469be08283d3295833f6a7ea657"},
-    {file = "pyvista-0.47.0.tar.gz", hash = "sha256:3956348e3e1529ef51bb1d08ceb102d2bf1972bc52fe9545a1c53c2a35406025"},
+    {file = "pyvista-0.48.2-py3-none-any.whl", hash = "sha256:79a9205368a8ab2664463af523c27d37beb0c5fd522d009e788c11d5810737c6"},
+    {file = "pyvista-0.48.2.tar.gz", hash = "sha256:0b115b107f03e8e57bfb5d9dd2a40591f4e641b6a87dc8beb5d0c2099a225e2e"},
 ]
 
 [package.dependencies]
@@ -4450,7 +4450,7 @@ scooby = ">=0.5.1"
 trame = {version = ">=2.5.2", optional = true, markers = "extra == \"jupyter\""}
 trame-client = {version = ">=2.12.7", optional = true, markers = "extra == \"jupyter\""}
 trame-server = {version = ">=2.11.7,<3.7.dev0 || >3.8.0", optional = true, markers = "extra == \"jupyter\""}
-trame-vtk = {version = ">=2.5.8", optional = true, markers = "extra == \"jupyter\""}
+trame-vtk = {version = ">=2.5.8,<2.10.3 || >2.10.3,<2.11.0 || >2.11.0,<2.11.1 || >2.11.1,<2.11.2 || >2.11.2,<2.11.3 || >2.11.3,<2.11.4 || >2.11.4,<2.11.5 || >2.11.5,<2.11.6 || >2.11.6,<2.11.9", optional = true, markers = "extra == \"jupyter\""}
 trame-vuetify = {version = ">=2.3.1", optional = true, markers = "extra == \"jupyter\""}
 typing-extensions = ">=4.10"
 vtk = ">=9.2.2,<9.4.0 || >9.4.0,<9.4.1 || >9.4.1,<9.7.0"
@@ -4458,8 +4458,8 @@ vtk = ">=9.2.2,<9.4.0 || >9.4.0,<9.4.1 || >9.4.1,<9.7.0"
 [package.extras]
 all = ["pyvista[colormaps,io,jupyter]"]
 colormaps = ["cmcrameri", "cmocean", "colorcet"]
-io = ["imageio", "meshio (>=5.2)"]
-jupyter = ["ipywidgets", "jupyter-server-proxy", "nest-asyncio2", "trame (>=2.5.2)", "trame-client (>=2.12.7)", "trame-server (>=2.11.7,<3.7.dev0 || >3.8.0)", "trame-vtk (>=2.5.8)", "trame-vuetify (>=2.3.1)"]
+io = ["fsspec", "imageio", "meshio (>=5.2)", "pyvista-zstd (>=0.2.2)"]
+jupyter = ["ipywidgets", "jupyter-server-proxy", "nest-asyncio2", "trame (>=2.5.2)", "trame-client (>=2.12.7)", "trame-server (>=2.11.7,<3.7.dev0 || >3.8.0)", "trame-vtk (!=2.10.3,!=2.11.0,!=2.11.1,!=2.11.2,!=2.11.3,!=2.11.4,!=2.11.5,!=2.11.6)", "trame-vtk (>=2.5.8,<2.11.9)", "trame-vuetify (>=2.3.1)"]
 
 [[package]]
 name = "pywin32"
@@ -5702,14 +5702,14 @@ dev = ["pre-commit", "pytest", "ruff"]
 
 [[package]]
 name = "types-protobuf"
-version = "7.34.1.20260408"
+version = "7.34.1.20260508"
 description = "Typing stubs for protobuf"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "types_protobuf-7.34.1.20260408-py3-none-any.whl", hash = "sha256:ebbcd4e27b145aef6a59bc0cb6c013b3528151c1ba5e7f7337aeee355d276a5e"},
-    {file = "types_protobuf-7.34.1.20260408.tar.gz", hash = "sha256:e2c0a0430e08c75b52671a6f0035abfdcc791aad12af16274282de1b721758ab"},
+    {file = "types_protobuf-7.34.1.20260508-py3-none-any.whl", hash = "sha256:a5d647381f8651bd505304ed1148b8a7b342781796e0f80e0284c774c2262a09"},
+    {file = "types_protobuf-7.34.1.20260508.tar.gz", hash = "sha256:1c93e8c294281b76a5255fc21c747db0004694463ac6ea9866ee06da969fa555"},
 ]
 
 [[package]]
