@@ -324,7 +324,7 @@ jobs:
           IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
 
       - name: Store benchmark result
-        uses: benchmark-action/github-action-benchmark@v1
+        uses: benchmark-action/github-action-benchmark@52576c92bccf6ac60c8223ec7eb2565637cae9ba # v1.22.0
         with:
           name: 'PyACP benchmarks'
           tool: 'pytest'
