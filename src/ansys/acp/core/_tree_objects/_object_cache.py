@@ -21,10 +21,8 @@
 # SOFTWARE.
 
 from collections.abc import Callable, Iterable
-from typing import Any, Concatenate, Self, TypeAlias, TypeVar
+from typing import Any, Concatenate, ParamSpec, Self, TypeAlias, TypeVar
 from weakref import WeakValueDictionary
-
-from typing_extensions import ParamSpec
 
 __all__ = ["ObjectCacheMixin", "constructor_with_cache"]
 

@@ -26,10 +26,9 @@ from collections.abc import Callable, Iterable, Iterator, MutableSequence
 import inspect
 import sys
 import textwrap
-from typing import Any, Concatenate, Protocol, Self, TypeVar, cast, overload
+from typing import Any, Concatenate, ParamSpec, Protocol, Self, TypeVar, cast, overload
 
 from google.protobuf.message import Message
-from typing_extensions import ParamSpec
 
 from .._object_cache import ObjectCacheMixin, constructor_with_cache
 from ..base import CreatableTreeObject
