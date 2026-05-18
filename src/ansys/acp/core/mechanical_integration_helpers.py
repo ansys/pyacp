@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -54,17 +54,13 @@ def export_mesh_for_acp(*, mechanical: "pymechanical.Mechanical", path: PATH) ->
     if path.suffix != ".h5":
         raise ValueError(f"The output path extension must be '.h5', not '{path.suffix}'.")
     output_path_str = str(path)
-    mechanical.run_python_script(
-        textwrap.dedent(
-            f"""\
+    mechanical.run_python_script(textwrap.dedent(f"""\
             geometry_type = Ansys.Mechanical.DataModel.Enums.GeometryType.Sheet
             unit = Ansys.Mechanical.DataModel.Enums.WBUnitSystemType.ConsistentMKS
             dsid = 0
 
             Model.InternalObject.WriteHDF5TransferFile(geometry_type, {output_path_str!r}, unit, dsid)
-            """
-        )
-    )
+            """))
 
 
 def import_acp_mesh_from_cdb(
@@ -98,17 +94,13 @@ def import_acp_mesh_from_cdb(
         raise ValueError(f"The CDB file extension must be '.cdb', not '{cdb_path.suffix}'.")
     cdb_path_str = str(cdb_path)
 
-    mechanical.run_python_script(
-        textwrap.dedent(
-            f"""\
+    mechanical.run_python_script(textwrap.dedent(f"""\
             model_import = Model.AddGeometryImportGroup().AddModelImport()
             model_import.ModelImportSourceFilePath = {cdb_path_str!r}
             model_import.ProcessValidBlockedCDBFile = {check_valid_blocked_cdb_file}
             model_import.ProcessModelData = False
             model_import.Import()
-            """
-        )
-    )
+            """))
 
 
 def import_acp_composite_definitions(*, mechanical: "pymechanical.Mechanical", path: PATH) -> None:
@@ -143,9 +135,7 @@ def import_acp_composite_definitions(*, mechanical: "pymechanical.Mechanical", p
 
     target_path_str = f"Setup::{str(target_path.resolve())}"
 
-    mechanical.run_python_script(
-        textwrap.dedent(
-            f"""\
+    mechanical.run_python_script(textwrap.dedent(f"""\
             import clr
             clr.AddReference("Ansys.Common.Interop.{mechanical.version}")
             composite_definition_paths_coll = Ansys.Common.Interop.AnsCoreObjects.AnsBSTRColl()
@@ -157,6 +147,4 @@ def import_acp_composite_definitions(*, mechanical: "pymechanical.Mechanical", p
             )
             external_model.Import(composite_definition_paths_coll, mapping_paths_coll)
             external_model.Update()
-            """
-        )
-    )
+            """))

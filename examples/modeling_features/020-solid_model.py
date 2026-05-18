@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -33,6 +33,7 @@ a layered solid mesh based on the shell mesh and layup definition.
 This solid mesh can be further processed by :class:`.ExtrusionGuide`,
 :class:`.SnapToGeometry`, and :class:`.CutOffGeometry`.
 """
+
 # %%
 # Import the standard library and third-party dependencies.
 import pathlib

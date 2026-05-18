@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -32,7 +32,6 @@ For more advanced selection rule usage, see
 :ref:`advanced_selection_rules_example`. For a complete composite
 analysis, see :ref:`pymapdl_workflow_example`.
 """
-
 
 # %%
 # Import modules

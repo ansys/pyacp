@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -45,7 +45,6 @@ boundary conditions, and run a failure analysis with PyDPF - Composites.
 
 """
 
-
 # %%
 # Import modules and start the Ansys products
 # -------------------------------------------
@@ -87,7 +86,7 @@ with ThreadPoolExecutor() as executor:
         executor.submit(pydpf_composites.server_helpers.connect_to_or_start_server),
         executor.submit(pymapdl.launch_mapdl),
     ]
-    acp, mechanical, dpf, mapdl = (fut.result() for fut in futures)
+    acp, mechanical, dpf, mapdl = (fut.result() for fut in futures)  # type: ignore[attr-defined]
 
 # %%
 # Get example input files
@@ -263,9 +262,7 @@ pyacp.mechanical_integration_helpers.import_acp_composite_definitions(
 # ---------------------------------
 #
 
-mechanical.run_python_script(
-    textwrap.dedent(
-        """\
+mechanical.run_python_script(textwrap.dedent("""\
         front_edge = Model.AddNamedSelection()
         front_edge.Name = "Front Edge"
         front_edge.ScopingMethod = GeometryDefineByType.Worksheet
@@ -297,9 +294,7 @@ mechanical.run_python_script(
         force.Location = front_edge
 
         analysis.Solution.Solve(True)
-        """
-    )
-)
+        """))
 
 
 rst_file = [filename for filename in mechanical.list_files() if filename.endswith(".rst")][0]

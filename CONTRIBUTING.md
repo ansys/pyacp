@@ -7,4 +7,6 @@ PyACP.
 
 [Contributing]: https://dev.docs.pyansys.com/how-to/contributing.html
 
+<!-- Begin content specific to your library here. -->
+
 Contributing information specific to PyACP can be found in the [Contributing topic](https://acp.docs.pyansys.com/version/stable/contributing.html) in the *PyACP documentation*.
