@@ -1,0 +1,13 @@
+.. vale off
+
+orientation\_type
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffGeometry.orientation_type
+
+.. minigallery::
+   :add-heading: Examples using CutOffGeometry.orientation_type
+
+   ansys.acp.core.CutOffGeometry.orientation_type

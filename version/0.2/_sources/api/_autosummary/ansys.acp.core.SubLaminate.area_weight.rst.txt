@@ -1,0 +1,13 @@
+.. vale off
+
+area\_weight
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SubLaminate.area_weight
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.area_weight
+
+   ansys.acp.core.SubLaminate.area_weight

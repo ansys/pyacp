@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.parent
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.parent
+
+   ansys.acp.core.SectionCut.parent

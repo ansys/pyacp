@@ -1,0 +1,13 @@
+.. vale off
+
+rosette\_type
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Rosette.rosette_type
+
+.. minigallery::
+   :add-heading: Examples using Rosette.rosette_type
+
+   ansys.acp.core.Rosette.rosette_type

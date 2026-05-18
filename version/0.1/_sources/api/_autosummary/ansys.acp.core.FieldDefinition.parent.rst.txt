@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: FieldDefinition.parent
+
+.. minigallery::
+   :add-heading: Examples using FieldDefinition.parent
+
+   ansys.acp.core.FieldDefinition.parent

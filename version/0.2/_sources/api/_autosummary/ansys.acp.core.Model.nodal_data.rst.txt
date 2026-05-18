@@ -1,0 +1,13 @@
+.. vale off
+
+nodal\_data
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.nodal_data
+
+.. minigallery::
+   :add-heading: Examples using Model.nodal_data
+
+   ansys.acp.core.Model.nodal_data

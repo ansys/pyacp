@@ -1,0 +1,13 @@
+.. vale off
+
+delete\_bad\_elements
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.delete_bad_elements
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.delete_bad_elements
+
+   ansys.acp.core.ImportedSolidModel.delete_bad_elements

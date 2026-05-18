@@ -1,0 +1,13 @@
+.. vale off
+
+locked
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Rosette.locked
+
+.. minigallery::
+   :add-heading: Examples using Rosette.locked
+
+   ansys.acp.core.Rosette.locked

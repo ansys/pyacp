@@ -1,0 +1,13 @@
+.. vale off
+
+create\_sensor
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_sensor
+
+.. minigallery::
+   :add-heading: Examples using Model.create_sensor
+
+   ansys.acp.core.Model.create_sensor

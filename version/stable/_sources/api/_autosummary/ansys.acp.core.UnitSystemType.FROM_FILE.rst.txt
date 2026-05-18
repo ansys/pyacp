@@ -1,0 +1,13 @@
+.. vale off
+
+FROM\_FILE
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.FROM_FILE
+
+.. minigallery::
+   :add-heading: Examples using UnitSystemType.FROM_FILE
+
+   ansys.acp.core.UnitSystemType.FROM_FILE

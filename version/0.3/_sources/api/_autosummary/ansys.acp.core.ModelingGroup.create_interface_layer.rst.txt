@@ -1,0 +1,13 @@
+.. vale off
+
+create\_interface\_layer
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ModelingGroup.create_interface_layer
+
+.. minigallery::
+   :add-heading: Examples using ModelingGroup.create_interface_layer
+
+   ansys.acp.core.ModelingGroup.create_interface_layer

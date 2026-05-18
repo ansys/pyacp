@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: TubeSelectionRule.delete
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.delete
+
+   ansys.acp.core.TubeSelectionRule.delete

@@ -1,0 +1,37 @@
+﻿IgnorableEntity
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: IgnorableEntity
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        IgnorableEntity.MESH
+      
+      
+        IgnorableEntity.ELEMENT_SETS
+      
+      
+        IgnorableEntity.MATERIALS
+      
+      
+        IgnorableEntity.COORDINATE_SYSTEMS
+      
+      
+        IgnorableEntity.SHELL_SECTIONS
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using IgnorableEntity
+
+   ansys.acp.core.IgnorableEntity

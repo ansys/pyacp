@@ -1,0 +1,13 @@
+.. vale off
+
+shell\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.shell_mesh
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.shell_mesh
+
+   ansys.acp.core.TubeSelectionRule.shell_mesh

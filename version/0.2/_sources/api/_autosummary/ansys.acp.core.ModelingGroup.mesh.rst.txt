@@ -1,0 +1,13 @@
+.. vale off
+
+mesh
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingGroup.mesh
+
+.. minigallery::
+   :add-heading: Examples using ModelingGroup.mesh
+
+   ansys.acp.core.ModelingGroup.mesh

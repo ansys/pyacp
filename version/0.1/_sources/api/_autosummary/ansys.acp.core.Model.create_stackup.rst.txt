@@ -1,0 +1,13 @@
+.. vale off
+
+create\_stackup
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_stackup
+
+.. minigallery::
+   :add-heading: Examples using Model.create_stackup
+
+   ansys.acp.core.Model.create_stackup

@@ -1,0 +1,13 @@
+.. vale off
+
+draping\_direction
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.draping_direction
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.draping_direction
+
+   ansys.acp.core.OrientedSelectionSet.draping_direction

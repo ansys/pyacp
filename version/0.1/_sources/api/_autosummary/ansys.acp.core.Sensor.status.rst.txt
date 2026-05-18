@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.status
+
+.. minigallery::
+   :add-heading: Examples using Sensor.status
+
+   ansys.acp.core.Sensor.status

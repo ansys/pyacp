@@ -1,0 +1,13 @@
+.. vale off
+
+SANDWICH\_WISE
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethod.SANDWICH_WISE
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionMethod.SANDWICH_WISE
+
+   ansys.acp.core.ExtrusionMethod.SANDWICH_WISE

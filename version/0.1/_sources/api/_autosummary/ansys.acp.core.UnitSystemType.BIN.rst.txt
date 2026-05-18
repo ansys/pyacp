@@ -1,0 +1,13 @@
+.. vale off
+
+BIN
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.BIN
+
+.. minigallery::
+   :add-heading: Examples using UnitSystemType.BIN
+
+   ansys.acp.core.UnitSystemType.BIN

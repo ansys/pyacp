@@ -1,0 +1,13 @@
+.. vale off
+
+middle\_offset
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ElementSet.middle_offset
+
+.. minigallery::
+   :add-heading: Examples using ElementSet.middle_offset
+
+   ansys.acp.core.ElementSet.middle_offset

@@ -1,0 +1,86 @@
+﻿.. vale off
+
+SolidModel
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SolidModel
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SolidModel.clone
+      
+      
+      SolidModel.create_cut_off_geometry
+      
+      
+      SolidModel.create_extrusion_guide
+      
+      
+      SolidModel.create_snap_to_geometry
+      
+      
+      SolidModel.delete
+      
+      
+      SolidModel.export
+      
+      
+      SolidModel.export_skin
+      
+      
+      SolidModel.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SolidModel.active
+      SolidModel.analysis_plies
+      SolidModel.cut_off_geometries
+      SolidModel.cut_off_material
+      SolidModel.delete_bad_elements
+      SolidModel.drop_off_material
+      SolidModel.drop_off_settings
+      SolidModel.element_sets
+      SolidModel.elemental_data
+      SolidModel.export_settings
+      SolidModel.extrusion_guides
+      SolidModel.extrusion_method
+      SolidModel.id
+      SolidModel.interface_layers
+      SolidModel.locked
+      SolidModel.max_element_thickness
+      SolidModel.minimum_volume
+      SolidModel.name
+      SolidModel.nodal_data
+      SolidModel.offset_direction_type
+      SolidModel.parent
+      SolidModel.ply_group_pointers
+      SolidModel.skip_elements_without_plies
+      SolidModel.snap_to_geometries
+      SolidModel.solid_element_sets
+      SolidModel.status
+      SolidModel.warping_limit
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using SolidModel
+
+   ansys.acp.core.SolidModel

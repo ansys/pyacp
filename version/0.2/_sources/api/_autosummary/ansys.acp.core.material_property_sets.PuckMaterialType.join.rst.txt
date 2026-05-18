@@ -1,0 +1,13 @@
+.. vale off
+
+join
+====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.join
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.join
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.join

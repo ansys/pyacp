@@ -1,0 +1,13 @@
+.. vale off
+
+node\_labels
+============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: SphericalSelectionRuleNodalData.node_labels
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRuleNodalData.node_labels
+
+   ansys.acp.core.mesh_data.SphericalSelectionRuleNodalData.node_labels

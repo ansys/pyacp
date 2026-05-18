@@ -1,0 +1,13 @@
+.. vale off
+
+drop\_off\_type
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: DropOffSettings.drop_off_type
+
+.. minigallery::
+   :add-heading: Examples using DropOffSettings.drop_off_type
+
+   ansys.acp.core.DropOffSettings.drop_off_type

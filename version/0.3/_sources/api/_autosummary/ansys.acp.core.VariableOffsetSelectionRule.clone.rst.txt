@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: VariableOffsetSelectionRule.clone
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule.clone
+
+   ansys.acp.core.VariableOffsetSelectionRule.clone

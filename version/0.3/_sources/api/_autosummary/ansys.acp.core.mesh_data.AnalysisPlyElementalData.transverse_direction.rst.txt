@@ -1,0 +1,13 @@
+.. vale off
+
+transverse\_direction
+=====================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: AnalysisPlyElementalData.transverse_direction
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPlyElementalData.transverse_direction
+
+   ansys.acp.core.mesh_data.AnalysisPlyElementalData.transverse_direction

@@ -1,0 +1,13 @@
+.. vale off
+
+cut\_off\_material
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.cut_off_material
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.cut_off_material
+
+   ansys.acp.core.ImportedSolidModel.cut_off_material

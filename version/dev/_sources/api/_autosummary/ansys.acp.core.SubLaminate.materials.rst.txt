@@ -1,0 +1,13 @@
+.. vale off
+
+materials
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SubLaminate.materials
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.materials
+
+   ansys.acp.core.SubLaminate.materials

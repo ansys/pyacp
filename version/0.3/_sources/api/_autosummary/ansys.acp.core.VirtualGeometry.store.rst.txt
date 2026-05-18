@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: VirtualGeometry.store
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometry.store
+
+   ansys.acp.core.VirtualGeometry.store

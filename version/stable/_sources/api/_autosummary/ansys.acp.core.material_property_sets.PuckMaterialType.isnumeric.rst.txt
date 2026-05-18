@@ -1,0 +1,13 @@
+.. vale off
+
+isnumeric
+=========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.isnumeric
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.isnumeric
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.isnumeric

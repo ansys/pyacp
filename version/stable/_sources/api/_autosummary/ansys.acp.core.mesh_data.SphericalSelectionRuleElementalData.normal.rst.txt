@@ -1,0 +1,13 @@
+.. vale off
+
+normal
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: SphericalSelectionRuleElementalData.normal
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRuleElementalData.normal
+
+   ansys.acp.core.mesh_data.SphericalSelectionRuleElementalData.normal

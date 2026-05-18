@@ -1,0 +1,13 @@
+.. vale off
+
+index
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.index
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.index
+
+   ansys.acp.core.LaunchMode.index

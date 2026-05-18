@@ -1,0 +1,13 @@
+.. vale off
+
+locked
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.locked
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.locked
+
+   ansys.acp.core.CADGeometry.locked

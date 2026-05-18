@@ -1,0 +1,82 @@
+﻿.. vale off
+
+ImportedSolidModel
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ImportedSolidModel
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ImportedSolidModel.clone
+      
+      
+      ImportedSolidModel.create_cut_off_geometry
+      
+      
+      ImportedSolidModel.create_layup_mapping_object
+      
+      
+      ImportedSolidModel.delete
+      
+      
+      ImportedSolidModel.export
+      
+      
+      ImportedSolidModel.export_skin
+      
+      
+      ImportedSolidModel.import_initial_mesh
+      
+      
+      ImportedSolidModel.refresh
+      
+      
+      ImportedSolidModel.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ImportedSolidModel.active
+      ImportedSolidModel.cut_off_geometries
+      ImportedSolidModel.cut_off_material
+      ImportedSolidModel.delete_bad_elements
+      ImportedSolidModel.elemental_data
+      ImportedSolidModel.export_settings
+      ImportedSolidModel.external_path
+      ImportedSolidModel.format
+      ImportedSolidModel.id
+      ImportedSolidModel.layup_mapping_objects
+      ImportedSolidModel.locked
+      ImportedSolidModel.minimum_volume
+      ImportedSolidModel.name
+      ImportedSolidModel.nodal_data
+      ImportedSolidModel.parent
+      ImportedSolidModel.solid_element_sets
+      ImportedSolidModel.solid_mesh
+      ImportedSolidModel.status
+      ImportedSolidModel.unit_system
+      ImportedSolidModel.warping_limit
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel
+
+   ansys.acp.core.ImportedSolidModel

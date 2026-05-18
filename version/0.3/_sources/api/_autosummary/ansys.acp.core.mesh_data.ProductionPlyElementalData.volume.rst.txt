@@ -1,0 +1,13 @@
+.. vale off
+
+volume
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ProductionPlyElementalData.volume
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.volume
+
+   ansys.acp.core.mesh_data.ProductionPlyElementalData.volume

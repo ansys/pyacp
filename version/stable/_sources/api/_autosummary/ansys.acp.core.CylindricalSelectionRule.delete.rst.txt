@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CylindricalSelectionRule.delete
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule.delete
+
+   ansys.acp.core.CylindricalSelectionRule.delete

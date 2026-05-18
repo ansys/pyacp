@@ -1,0 +1,13 @@
+.. vale off
+
+edge\_set
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.edge_set
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.edge_set
+
+   ansys.acp.core.TubeSelectionRule.edge_set

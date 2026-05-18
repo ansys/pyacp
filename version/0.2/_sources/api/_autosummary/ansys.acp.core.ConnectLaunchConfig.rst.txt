@@ -1,0 +1,37 @@
+﻿.. vale off
+
+ConnectLaunchConfig
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ConnectLaunchConfig
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConnectLaunchConfig.url_acp
+      ConnectLaunchConfig.url_filetransfer
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ConnectLaunchConfig
+
+   ansys.acp.core.ConnectLaunchConfig

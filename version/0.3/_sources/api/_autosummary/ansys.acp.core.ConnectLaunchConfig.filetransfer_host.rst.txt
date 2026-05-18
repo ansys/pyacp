@@ -1,0 +1,13 @@
+.. vale off
+
+filetransfer\_host
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLaunchConfig.filetransfer_host
+
+.. minigallery::
+   :add-heading: Examples using ConnectLaunchConfig.filetransfer_host
+
+   ansys.acp.core.ConnectLaunchConfig.filetransfer_host

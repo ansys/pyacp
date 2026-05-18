@@ -1,0 +1,13 @@
+.. vale off
+
+number\_of\_layers
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.number_of_layers
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.number_of_layers
+
+   ansys.acp.core.ModelingPly.number_of_layers

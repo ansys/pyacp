@@ -1,0 +1,13 @@
+.. vale off
+
+environment\_variables
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DockerComposeLaunchConfig.environment_variables
+
+.. minigallery::
+   :add-heading: Examples using DockerComposeLaunchConfig.environment_variables
+
+   ansys.acp.core.DockerComposeLaunchConfig.environment_variables

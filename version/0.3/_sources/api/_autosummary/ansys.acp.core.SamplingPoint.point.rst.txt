@@ -1,0 +1,13 @@
+.. vale off
+
+point
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SamplingPoint.point
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint.point
+
+   ansys.acp.core.SamplingPoint.point

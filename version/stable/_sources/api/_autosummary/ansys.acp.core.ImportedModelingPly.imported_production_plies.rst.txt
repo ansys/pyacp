@@ -1,0 +1,13 @@
+.. vale off
+
+imported\_production\_plies
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.imported_production_plies
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.imported_production_plies
+
+   ansys.acp.core.ImportedModelingPly.imported_production_plies

@@ -1,0 +1,13 @@
+.. vale off
+
+element\_sets
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.element_sets
+
+.. minigallery::
+   :add-heading: Examples using Model.element_sets
+
+   ansys.acp.core.Model.element_sets

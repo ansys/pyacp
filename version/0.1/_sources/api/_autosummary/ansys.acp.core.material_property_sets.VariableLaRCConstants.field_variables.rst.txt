@@ -1,0 +1,13 @@
+.. vale off
+
+field\_variables
+================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableLaRCConstants.field_variables
+
+.. minigallery::
+   :add-heading: Examples using VariableLaRCConstants.field_variables
+
+   ansys.acp.core.material_property_sets.VariableLaRCConstants.field_variables

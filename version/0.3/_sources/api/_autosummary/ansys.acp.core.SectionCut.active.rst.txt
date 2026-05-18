@@ -1,0 +1,13 @@
+.. vale off
+
+active
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.active
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.active
+
+   ansys.acp.core.SectionCut.active

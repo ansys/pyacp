@@ -1,0 +1,13 @@
+.. vale off
+
+material
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedAnalysisPly.material
+
+.. minigallery::
+   :add-heading: Examples using ImportedAnalysisPly.material
+
+   ansys.acp.core.ImportedAnalysisPly.material

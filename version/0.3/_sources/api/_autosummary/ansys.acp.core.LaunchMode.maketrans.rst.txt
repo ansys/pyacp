@@ -1,0 +1,13 @@
+.. vale off
+
+maketrans
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.maketrans
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.maketrans
+
+   ansys.acp.core.LaunchMode.maketrans

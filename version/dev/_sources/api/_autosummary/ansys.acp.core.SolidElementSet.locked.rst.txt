@@ -1,0 +1,13 @@
+.. vale off
+
+locked
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidElementSet.locked
+
+.. minigallery::
+   :add-heading: Examples using SolidElementSet.locked
+
+   ansys.acp.core.SolidElementSet.locked

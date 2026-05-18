@@ -1,0 +1,13 @@
+.. vale off
+
+translate
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.translate
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.translate
+
+   ansys.acp.core.LaunchMode.translate

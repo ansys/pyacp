@@ -1,0 +1,13 @@
+.. vale off
+
+IMPORTED\_SOLID\_MODEL\_SOLID\_MESH
+===================================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH

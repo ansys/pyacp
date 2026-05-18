@@ -1,0 +1,13 @@
+.. vale off
+
+node\_labels
+============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: GeometricalSelectionRuleNodalData.node_labels
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRuleNodalData.node_labels
+
+   ansys.acp.core.mesh_data.GeometricalSelectionRuleNodalData.node_labels

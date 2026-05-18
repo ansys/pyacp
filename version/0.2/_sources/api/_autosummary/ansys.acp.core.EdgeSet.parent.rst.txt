@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: EdgeSet.parent
+
+.. minigallery::
+   :add-heading: Examples using EdgeSet.parent
+
+   ansys.acp.core.EdgeSet.parent

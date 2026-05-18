@@ -1,0 +1,13 @@
+.. vale off
+
+is\_remote
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ACPInstance.is_remote
+
+.. minigallery::
+   :add-heading: Examples using ACPInstance.is_remote
+
+   ansys.acp.core.ACPInstance.is_remote

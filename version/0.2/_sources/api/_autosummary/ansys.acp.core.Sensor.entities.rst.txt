@@ -1,0 +1,13 @@
+.. vale off
+
+entities
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.entities
+
+.. minigallery::
+   :add-heading: Examples using Sensor.entities
+
+   ansys.acp.core.Sensor.entities

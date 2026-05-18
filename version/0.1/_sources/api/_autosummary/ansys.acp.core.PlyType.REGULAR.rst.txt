@@ -1,0 +1,13 @@
+.. vale off
+
+REGULAR
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyType.REGULAR
+
+.. minigallery::
+   :add-heading: Examples using PlyType.REGULAR
+
+   ansys.acp.core.PlyType.REGULAR

@@ -1,0 +1,13 @@
+.. vale off
+
+node\_coordinates
+=================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: TriangleMesh.node_coordinates
+
+.. minigallery::
+   :add-heading: Examples using TriangleMesh.node_coordinates
+
+   ansys.acp.core.mesh_data.TriangleMesh.node_coordinates

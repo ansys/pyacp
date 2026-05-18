@@ -1,0 +1,13 @@
+.. vale off
+
+title
+=====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.title
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.title
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.title

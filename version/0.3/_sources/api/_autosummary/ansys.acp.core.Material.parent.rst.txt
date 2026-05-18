@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.parent
+
+.. minigallery::
+   :add-heading: Examples using Material.parent
+
+   ansys.acp.core.Material.parent

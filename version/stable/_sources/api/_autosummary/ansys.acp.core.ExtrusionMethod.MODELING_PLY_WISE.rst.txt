@@ -1,0 +1,13 @@
+.. vale off
+
+MODELING\_PLY\_WISE
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethod.MODELING_PLY_WISE
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionMethod.MODELING_PLY_WISE
+
+   ansys.acp.core.ExtrusionMethod.MODELING_PLY_WISE

@@ -1,0 +1,41 @@
+﻿.. vale off
+
+TaperEdge
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: TaperEdge
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      TaperEdge.clone
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      TaperEdge.angle
+      TaperEdge.edge_set
+      TaperEdge.offset
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using TaperEdge
+
+   ansys.acp.core.TaperEdge

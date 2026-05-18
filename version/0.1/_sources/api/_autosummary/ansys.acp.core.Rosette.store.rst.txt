@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Rosette.store
+
+.. minigallery::
+   :add-heading: Examples using Rosette.store
+
+   ansys.acp.core.Rosette.store

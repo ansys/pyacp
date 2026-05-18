@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffGeometry.status
+
+.. minigallery::
+   :add-heading: Examples using CutOffGeometry.status
+
+   ansys.acp.core.CutOffGeometry.status

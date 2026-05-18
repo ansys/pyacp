@@ -1,0 +1,13 @@
+.. vale off
+
+node\_labels
+============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: MeshData.node_labels
+
+.. minigallery::
+   :add-heading: Examples using MeshData.node_labels
+
+   ansys.acp.core.mesh_data.MeshData.node_labels

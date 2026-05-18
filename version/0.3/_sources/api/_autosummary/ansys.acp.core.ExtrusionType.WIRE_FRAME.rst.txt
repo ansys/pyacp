@@ -1,0 +1,13 @@
+.. vale off
+
+WIRE\_FRAME
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionType.WIRE_FRAME
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionType.WIRE_FRAME
+
+   ansys.acp.core.ExtrusionType.WIRE_FRAME

@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.name
+
+.. minigallery::
+   :add-heading: Examples using Material.name
+
+   ansys.acp.core.Material.name

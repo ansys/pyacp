@@ -1,0 +1,13 @@
+.. vale off
+
+angle\_tolerance
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ShellMappingProperties.angle_tolerance
+
+.. minigallery::
+   :add-heading: Examples using ShellMappingProperties.angle_tolerance
+
+   ansys.acp.core.ShellMappingProperties.angle_tolerance

@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: FabricWithAngle.clone
+
+.. minigallery::
+   :add-heading: Examples using FabricWithAngle.clone
+
+   ansys.acp.core.FabricWithAngle.clone

@@ -1,0 +1,13 @@
+.. vale off
+
+RADIAL
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteType.RADIAL
+
+.. minigallery::
+   :add-heading: Examples using RosetteType.RADIAL
+
+   ansys.acp.core.RosetteType.RADIAL

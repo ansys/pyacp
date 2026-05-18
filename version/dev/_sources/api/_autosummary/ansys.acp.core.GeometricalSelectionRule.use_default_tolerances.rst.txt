@@ -1,0 +1,13 @@
+.. vale off
+
+use\_default\_tolerances
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.use_default_tolerances
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.use_default_tolerances
+
+   ansys.acp.core.GeometricalSelectionRule.use_default_tolerances

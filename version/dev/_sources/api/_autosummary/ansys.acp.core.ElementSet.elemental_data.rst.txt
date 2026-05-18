@@ -1,0 +1,13 @@
+.. vale off
+
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ElementSet.elemental_data
+
+.. minigallery::
+   :add-heading: Examples using ElementSet.elemental_data
+
+   ansys.acp.core.ElementSet.elemental_data

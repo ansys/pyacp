@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: VariableOffsetSelectionRule.delete
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule.delete
+
+   ansys.acp.core.VariableOffsetSelectionRule.delete

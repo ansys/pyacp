@@ -1,0 +1,58 @@
+﻿.. vale off
+
+Sensor
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Sensor
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Sensor.clone
+      
+      
+      Sensor.delete
+      
+      
+      Sensor.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Sensor.active
+      Sensor.center_of_gravity
+      Sensor.covered_area
+      Sensor.entities
+      Sensor.id
+      Sensor.locked
+      Sensor.modeling_ply_area
+      Sensor.name
+      Sensor.parent
+      Sensor.price
+      Sensor.production_ply_area
+      Sensor.sensor_type
+      Sensor.status
+      Sensor.weight
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using Sensor
+
+   ansys.acp.core.Sensor

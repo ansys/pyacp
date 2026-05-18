@@ -1,0 +1,13 @@
+.. vale off
+
+symmetry
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.symmetry
+
+.. minigallery::
+   :add-heading: Examples using Stackup.symmetry
+
+   ansys.acp.core.Stackup.symmetry

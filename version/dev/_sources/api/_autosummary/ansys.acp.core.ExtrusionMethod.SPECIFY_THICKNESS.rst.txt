@@ -1,0 +1,13 @@
+.. vale off
+
+SPECIFY\_THICKNESS
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethod.SPECIFY_THICKNESS
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionMethod.SPECIFY_THICKNESS
+
+   ansys.acp.core.ExtrusionMethod.SPECIFY_THICKNESS

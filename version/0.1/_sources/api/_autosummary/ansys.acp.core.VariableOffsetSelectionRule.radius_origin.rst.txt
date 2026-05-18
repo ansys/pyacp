@@ -1,0 +1,13 @@
+.. vale off
+
+radius\_origin
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.radius_origin
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule.radius_origin
+
+   ansys.acp.core.VariableOffsetSelectionRule.radius_origin

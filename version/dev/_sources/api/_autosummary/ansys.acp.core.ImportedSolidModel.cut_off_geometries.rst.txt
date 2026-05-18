@@ -1,0 +1,13 @@
+.. vale off
+
+cut\_off\_geometries
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.cut_off_geometries
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.cut_off_geometries
+
+   ansys.acp.core.ImportedSolidModel.cut_off_geometries

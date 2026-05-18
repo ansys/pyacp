@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SubLaminate.clone
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.clone
+
+   ansys.acp.core.SubLaminate.clone

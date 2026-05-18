@@ -1,0 +1,13 @@
+.. vale off
+
+DIRECT
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LaunchMode.DIRECT
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.DIRECT
+
+   ansys.acp.core.LaunchMode.DIRECT

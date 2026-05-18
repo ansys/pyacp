@@ -1,0 +1,13 @@
+.. vale off
+
+mesh
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.mesh
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.mesh
+
+   ansys.acp.core.OrientedSelectionSet.mesh

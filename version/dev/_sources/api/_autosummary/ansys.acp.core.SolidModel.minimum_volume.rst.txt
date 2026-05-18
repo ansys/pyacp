@@ -1,0 +1,13 @@
+.. vale off
+
+minimum\_volume
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.minimum_volume
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.minimum_volume
+
+   ansys.acp.core.SolidModel.minimum_volume

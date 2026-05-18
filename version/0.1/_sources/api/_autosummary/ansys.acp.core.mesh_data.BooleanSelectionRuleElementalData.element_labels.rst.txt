@@ -1,0 +1,13 @@
+.. vale off
+
+element\_labels
+===============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: BooleanSelectionRuleElementalData.element_labels
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRuleElementalData.element_labels
+
+   ansys.acp.core.mesh_data.BooleanSelectionRuleElementalData.element_labels

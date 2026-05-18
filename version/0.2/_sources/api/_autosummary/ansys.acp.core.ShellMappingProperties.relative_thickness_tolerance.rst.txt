@@ -1,0 +1,13 @@
+.. vale off
+
+relative\_thickness\_tolerance
+==============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ShellMappingProperties.relative_thickness_tolerance
+
+.. minigallery::
+   :add-heading: Examples using ShellMappingProperties.relative_thickness_tolerance
+
+   ansys.acp.core.ShellMappingProperties.relative_thickness_tolerance

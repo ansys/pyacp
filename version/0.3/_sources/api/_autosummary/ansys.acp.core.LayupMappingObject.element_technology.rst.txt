@@ -1,0 +1,13 @@
+.. vale off
+
+element\_technology
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.element_technology
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.element_technology
+
+   ansys.acp.core.LayupMappingObject.element_technology

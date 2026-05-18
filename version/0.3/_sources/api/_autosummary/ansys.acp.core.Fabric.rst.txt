@@ -1,0 +1,59 @@
+﻿.. vale off
+
+Fabric
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Fabric
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Fabric.clone
+      
+      
+      Fabric.delete
+      
+      
+      Fabric.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Fabric.area_price
+      Fabric.area_weight
+      Fabric.cut_off_material
+      Fabric.cut_off_material_handling
+      Fabric.draping_material_model
+      Fabric.draping_ud_coefficient
+      Fabric.drop_off_material
+      Fabric.drop_off_material_handling
+      Fabric.id
+      Fabric.ignore_for_postprocessing
+      Fabric.material
+      Fabric.name
+      Fabric.parent
+      Fabric.status
+      Fabric.thickness
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using Fabric
+
+   ansys.acp.core.Fabric

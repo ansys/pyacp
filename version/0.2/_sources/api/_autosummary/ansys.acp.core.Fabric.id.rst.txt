@@ -1,0 +1,13 @@
+.. vale off
+
+id
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.id
+
+.. minigallery::
+   :add-heading: Examples using Fabric.id
+
+   ansys.acp.core.Fabric.id

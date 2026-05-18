@@ -1,0 +1,13 @@
+.. vale off
+
+SENSOR\_BY\_MATERIAL
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SensorType.SENSOR_BY_MATERIAL
+
+.. minigallery::
+   :add-heading: Examples using SensorType.SENSOR_BY_MATERIAL
+
+   ansys.acp.core.SensorType.SENSOR_BY_MATERIAL

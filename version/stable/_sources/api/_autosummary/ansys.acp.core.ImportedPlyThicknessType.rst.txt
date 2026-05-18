@@ -1,0 +1,28 @@
+﻿ImportedPlyThicknessType
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ImportedPlyThicknessType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        ImportedPlyThicknessType.NOMINAL
+      
+      
+        ImportedPlyThicknessType.FROM_TABLE
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using ImportedPlyThicknessType
+
+   ansys.acp.core.ImportedPlyThicknessType

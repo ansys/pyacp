@@ -1,0 +1,13 @@
+.. vale off
+
+offset\_direction\_type
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.offset_direction_type
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.offset_direction_type
+
+   ansys.acp.core.SolidModel.offset_direction_type

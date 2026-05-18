@@ -1,0 +1,13 @@
+.. vale off
+
+use\_solid\_model\_prefix
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModelExportSettings.use_solid_model_prefix
+
+.. minigallery::
+   :add-heading: Examples using SolidModelExportSettings.use_solid_model_prefix
+
+   ansys.acp.core.SolidModelExportSettings.use_solid_model_prefix

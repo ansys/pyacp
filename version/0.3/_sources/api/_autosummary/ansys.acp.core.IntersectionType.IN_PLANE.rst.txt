@@ -1,0 +1,13 @@
+.. vale off
+
+IN\_PLANE
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: IntersectionType.IN_PLANE
+
+.. minigallery::
+   :add-heading: Examples using IntersectionType.IN_PLANE
+
+   ansys.acp.core.IntersectionType.IN_PLANE

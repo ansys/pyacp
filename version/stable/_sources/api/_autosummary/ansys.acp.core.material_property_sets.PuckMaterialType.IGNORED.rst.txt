@@ -1,0 +1,13 @@
+.. vale off
+
+IGNORED
+=======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoattribute:: PuckMaterialType.IGNORED
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.IGNORED
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.IGNORED

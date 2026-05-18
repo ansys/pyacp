@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: VirtualGeometry.clone
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometry.clone
+
+   ansys.acp.core.VirtualGeometry.clone

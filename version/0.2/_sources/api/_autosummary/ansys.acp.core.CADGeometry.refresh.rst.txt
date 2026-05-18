@@ -1,0 +1,13 @@
+.. vale off
+
+refresh
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CADGeometry.refresh
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.refresh
+
+   ansys.acp.core.CADGeometry.refresh

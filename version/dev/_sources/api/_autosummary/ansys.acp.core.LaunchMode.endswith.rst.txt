@@ -1,0 +1,13 @@
+.. vale off
+
+endswith
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.endswith
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.endswith
+
+   ansys.acp.core.LaunchMode.endswith

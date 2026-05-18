@@ -1,0 +1,13 @@
+.. vale off
+
+orientation
+===========
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: OrientedSelectionSetElementalData.orientation
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSetElementalData.orientation
+
+   ansys.acp.core.mesh_data.OrientedSelectionSetElementalData.orientation

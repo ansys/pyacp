@@ -1,0 +1,13 @@
+.. vale off
+
+CONNECT\_LOCAL
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LaunchMode.CONNECT_LOCAL
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.CONNECT_LOCAL
+
+   ansys.acp.core.LaunchMode.CONNECT_LOCAL

@@ -1,0 +1,40 @@
+﻿.. vale off
+
+CylindricalSelectionRuleElementalData
+=====================================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: CylindricalSelectionRuleElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      CylindricalSelectionRuleElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CylindricalSelectionRuleElementalData.normal
+      CylindricalSelectionRuleElementalData.element_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRuleElementalData
+
+   ansys.acp.core.mesh_data.CylindricalSelectionRuleElementalData

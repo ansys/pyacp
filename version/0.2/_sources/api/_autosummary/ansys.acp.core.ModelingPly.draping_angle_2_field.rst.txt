@@ -1,0 +1,13 @@
+.. vale off
+
+draping\_angle\_2\_field
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.draping_angle_2_field
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.draping_angle_2_field
+
+   ansys.acp.core.ModelingPly.draping_angle_2_field

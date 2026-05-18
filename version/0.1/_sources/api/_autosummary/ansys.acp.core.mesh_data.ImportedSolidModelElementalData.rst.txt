@@ -1,0 +1,39 @@
+﻿.. vale off
+
+ImportedSolidModelElementalData
+===============================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: ImportedSolidModelElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ImportedSolidModelElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ImportedSolidModelElementalData.element_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModelElementalData
+
+   ansys.acp.core.mesh_data.ImportedSolidModelElementalData

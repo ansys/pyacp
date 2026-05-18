@@ -1,0 +1,46 @@
+﻿RosetteSelectionMethod
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: RosetteSelectionMethod
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        RosetteSelectionMethod.MINIMUM_ANGLE
+      
+      
+        RosetteSelectionMethod.MAXIMUM_ANGLE
+      
+      
+        RosetteSelectionMethod.MINIMUM_DISTANCE
+      
+      
+        RosetteSelectionMethod.MINIMUM_ANGLE_SUPERPOSED
+      
+      
+        RosetteSelectionMethod.MAXIMUM_ANGLE_SUPERPOSED
+      
+      
+        RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED
+      
+      
+        RosetteSelectionMethod.ANSYS_CLASSIC
+      
+      
+        RosetteSelectionMethod.DIRECTIONS_FROM_TABULAR_VALUES
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using RosetteSelectionMethod
+
+   ansys.acp.core.RosetteSelectionMethod

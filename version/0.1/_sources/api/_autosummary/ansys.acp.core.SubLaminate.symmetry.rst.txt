@@ -1,0 +1,13 @@
+.. vale off
+
+symmetry
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SubLaminate.symmetry
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.symmetry
+
+   ansys.acp.core.SubLaminate.symmetry

@@ -1,0 +1,13 @@
+.. vale off
+
+shell\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.shell_mesh
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.shell_mesh
+
+   ansys.acp.core.ParallelSelectionRule.shell_mesh

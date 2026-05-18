@@ -1,0 +1,13 @@
+.. vale off
+
+field\_variable\_name
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: FieldDefinition.field_variable_name
+
+.. minigallery::
+   :add-heading: Examples using FieldDefinition.field_variable_name
+
+   ansys.acp.core.FieldDefinition.field_variable_name

@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CutOffSelectionRule.store
+
+.. minigallery::
+   :add-heading: Examples using CutOffSelectionRule.store
+
+   ansys.acp.core.CutOffSelectionRule.store

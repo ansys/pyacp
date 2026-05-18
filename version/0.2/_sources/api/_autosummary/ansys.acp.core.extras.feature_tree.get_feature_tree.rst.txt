@@ -1,0 +1,13 @@
+﻿.. vale off
+
+get\_feature\_tree
+==================
+
+.. currentmodule:: ansys.acp.core.extras.feature_tree
+
+.. autofunction:: get_feature_tree
+
+.. minigallery::
+   :add-heading: Examples using get_feature_tree
+
+   ansys.acp.core.extras.feature_tree.get_feature_tree

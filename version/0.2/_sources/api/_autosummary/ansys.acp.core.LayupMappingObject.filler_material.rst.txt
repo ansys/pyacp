@@ -1,0 +1,13 @@
+.. vale off
+
+filler\_material
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.filler_material
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.filler_material
+
+   ansys.acp.core.LayupMappingObject.filler_material

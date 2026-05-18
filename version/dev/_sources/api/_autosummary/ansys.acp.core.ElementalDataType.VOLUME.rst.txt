@@ -1,0 +1,13 @@
+.. vale off
+
+VOLUME
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.VOLUME
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.VOLUME
+
+   ansys.acp.core.ElementalDataType.VOLUME

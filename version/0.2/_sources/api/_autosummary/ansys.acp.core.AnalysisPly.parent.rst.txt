@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: AnalysisPly.parent
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPly.parent
+
+   ansys.acp.core.AnalysisPly.parent

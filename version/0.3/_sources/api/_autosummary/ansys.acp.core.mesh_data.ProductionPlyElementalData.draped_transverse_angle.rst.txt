@@ -1,0 +1,13 @@
+.. vale off
+
+draped\_transverse\_angle
+=========================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ProductionPlyElementalData.draped_transverse_angle
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.draped_transverse_angle
+
+   ansys.acp.core.mesh_data.ProductionPlyElementalData.draped_transverse_angle

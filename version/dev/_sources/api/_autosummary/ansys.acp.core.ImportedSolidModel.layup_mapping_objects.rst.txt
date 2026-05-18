@@ -1,0 +1,13 @@
+.. vale off
+
+layup\_mapping\_objects
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.layup_mapping_objects
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.layup_mapping_objects
+
+   ansys.acp.core.ImportedSolidModel.layup_mapping_objects

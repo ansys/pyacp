@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.name
+
+.. minigallery::
+   :add-heading: Examples using Model.name
+
+   ansys.acp.core.Model.name

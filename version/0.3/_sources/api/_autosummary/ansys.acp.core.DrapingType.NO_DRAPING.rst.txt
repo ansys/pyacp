@@ -1,0 +1,13 @@
+.. vale off
+
+NO\_DRAPING
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DrapingType.NO_DRAPING
+
+.. minigallery::
+   :add-heading: Examples using DrapingType.NO_DRAPING
+
+   ansys.acp.core.DrapingType.NO_DRAPING

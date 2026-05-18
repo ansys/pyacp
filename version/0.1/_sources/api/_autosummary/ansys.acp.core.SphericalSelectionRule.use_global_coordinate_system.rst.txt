@@ -1,0 +1,13 @@
+.. vale off
+
+use\_global\_coordinate\_system
+===============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.use_global_coordinate_system
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.use_global_coordinate_system
+
+   ansys.acp.core.SphericalSelectionRule.use_global_coordinate_system

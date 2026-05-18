@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.parent
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.parent
+
+   ansys.acp.core.CADGeometry.parent

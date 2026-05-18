@@ -1,0 +1,13 @@
+.. vale off
+
+FROM\_GEOMETRY
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ThicknessType.FROM_GEOMETRY
+
+.. minigallery::
+   :add-heading: Examples using ThicknessType.FROM_GEOMETRY
+
+   ansys.acp.core.ThicknessType.FROM_GEOMETRY

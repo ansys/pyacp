@@ -1,0 +1,13 @@
+.. vale off
+
+nu13
+====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantEngineeringConstants.nu13
+
+.. minigallery::
+   :add-heading: Examples using ConstantEngineeringConstants.nu13
+
+   ansys.acp.core.material_property_sets.ConstantEngineeringConstants.nu13

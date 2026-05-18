@@ -1,0 +1,13 @@
+.. vale off
+
+sub\_shapes
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VirtualGeometry.sub_shapes
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometry.sub_shapes
+
+   ansys.acp.core.VirtualGeometry.sub_shapes

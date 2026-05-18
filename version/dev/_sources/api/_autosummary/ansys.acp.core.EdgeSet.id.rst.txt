@@ -1,0 +1,13 @@
+.. vale off
+
+id
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: EdgeSet.id
+
+.. minigallery::
+   :add-heading: Examples using EdgeSet.id
+
+   ansys.acp.core.EdgeSet.id

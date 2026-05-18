@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.parent
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.parent
+
+   ansys.acp.core.LayupMappingObject.parent

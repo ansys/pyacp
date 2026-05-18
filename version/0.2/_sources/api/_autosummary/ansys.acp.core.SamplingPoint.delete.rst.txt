@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SamplingPoint.delete
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint.delete
+
+   ansys.acp.core.SamplingPoint.delete

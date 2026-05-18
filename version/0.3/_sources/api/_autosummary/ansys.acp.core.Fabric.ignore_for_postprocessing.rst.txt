@@ -1,0 +1,13 @@
+.. vale off
+
+ignore\_for\_postprocessing
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.ignore_for_postprocessing
+
+.. minigallery::
+   :add-heading: Examples using Fabric.ignore_for_postprocessing
+
+   ansys.acp.core.Fabric.ignore_for_postprocessing

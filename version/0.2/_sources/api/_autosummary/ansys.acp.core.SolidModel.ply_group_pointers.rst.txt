@@ -1,0 +1,13 @@
+.. vale off
+
+ply\_group\_pointers
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.ply_group_pointers
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.ply_group_pointers
+
+   ansys.acp.core.SolidModel.ply_group_pointers

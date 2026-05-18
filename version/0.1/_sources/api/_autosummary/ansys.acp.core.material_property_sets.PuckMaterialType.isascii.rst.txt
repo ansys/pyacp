@@ -1,0 +1,13 @@
+.. vale off
+
+isascii
+=======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.isascii
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.isascii
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.isascii

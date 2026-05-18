@@ -1,0 +1,13 @@
+.. vale off
+
+drop\_off\_disabled\_on\_bottom\_sets
+=====================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: DropOffSettings.drop_off_disabled_on_bottom_sets
+
+.. minigallery::
+   :add-heading: Examples using DropOffSettings.drop_off_disabled_on_bottom_sets
+
+   ansys.acp.core.DropOffSettings.drop_off_disabled_on_bottom_sets

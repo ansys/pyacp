@@ -1,0 +1,13 @@
+.. vale off
+
+MINIMAL\_PLATE\_CDB
+===================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.MINIMAL_PLATE_CDB
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.MINIMAL_PLATE_CDB
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.MINIMAL_PLATE_CDB

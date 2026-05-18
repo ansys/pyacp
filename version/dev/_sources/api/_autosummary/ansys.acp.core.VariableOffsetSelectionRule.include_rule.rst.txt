@@ -1,0 +1,13 @@
+.. vale off
+
+include\_rule
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.include_rule
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule.include_rule
+
+   ansys.acp.core.VariableOffsetSelectionRule.include_rule

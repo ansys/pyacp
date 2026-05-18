@@ -1,0 +1,13 @@
+.. vale off
+
+REFERENCE\_DIRECTION
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.REFERENCE_DIRECTION
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.REFERENCE_DIRECTION
+
+   ansys.acp.core.ElementalDataType.REFERENCE_DIRECTION

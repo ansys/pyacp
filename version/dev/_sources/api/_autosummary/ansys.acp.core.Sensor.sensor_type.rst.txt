@@ -1,0 +1,13 @@
+.. vale off
+
+sensor\_type
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.sensor_type
+
+.. minigallery::
+   :add-heading: Examples using Sensor.sensor_type
+
+   ansys.acp.core.Sensor.sensor_type

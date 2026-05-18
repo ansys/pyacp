@@ -1,0 +1,13 @@
+.. vale off
+
+field\_variables
+================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableEngineeringConstants.field_variables
+
+.. minigallery::
+   :add-heading: Examples using VariableEngineeringConstants.field_variables
+
+   ansys.acp.core.material_property_sets.VariableEngineeringConstants.field_variables

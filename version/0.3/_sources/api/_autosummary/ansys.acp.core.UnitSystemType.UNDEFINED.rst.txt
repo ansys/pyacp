@@ -1,0 +1,13 @@
+.. vale off
+
+UNDEFINED
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.UNDEFINED
+
+.. minigallery::
+   :add-heading: Examples using UnitSystemType.UNDEFINED
+
+   ansys.acp.core.UnitSystemType.UNDEFINED

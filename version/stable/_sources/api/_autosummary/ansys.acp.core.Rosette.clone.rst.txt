@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Rosette.clone
+
+.. minigallery::
+   :add-heading: Examples using Rosette.clone
+
+   ansys.acp.core.Rosette.clone

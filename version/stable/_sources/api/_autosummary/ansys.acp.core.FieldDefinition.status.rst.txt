@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: FieldDefinition.status
+
+.. minigallery::
+   :add-heading: Examples using FieldDefinition.status
+
+   ansys.acp.core.FieldDefinition.status

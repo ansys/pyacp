@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.status
+
+.. minigallery::
+   :add-heading: Examples using Fabric.status
+
+   ansys.acp.core.Fabric.status

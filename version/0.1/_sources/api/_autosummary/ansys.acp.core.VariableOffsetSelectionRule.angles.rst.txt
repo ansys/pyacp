@@ -1,0 +1,13 @@
+.. vale off
+
+angles
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.angles
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule.angles
+
+   ansys.acp.core.VariableOffsetSelectionRule.angles

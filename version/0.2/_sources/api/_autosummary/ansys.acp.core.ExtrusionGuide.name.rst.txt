@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExtrusionGuide.name
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide.name
+
+   ansys.acp.core.ExtrusionGuide.name

@@ -1,0 +1,13 @@
+.. vale off
+
+thickness
+=========
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ProductionPlyElementalData.thickness
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.thickness
+
+   ansys.acp.core.mesh_data.ProductionPlyElementalData.thickness

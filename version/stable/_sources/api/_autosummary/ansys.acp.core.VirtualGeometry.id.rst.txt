@@ -1,0 +1,13 @@
+.. vale off
+
+id
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VirtualGeometry.id
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometry.id
+
+   ansys.acp.core.VirtualGeometry.id

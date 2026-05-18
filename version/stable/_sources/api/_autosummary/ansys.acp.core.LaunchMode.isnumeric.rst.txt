@@ -1,0 +1,13 @@
+.. vale off
+
+isnumeric
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.isnumeric
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.isnumeric
+
+   ansys.acp.core.LaunchMode.isnumeric

@@ -1,0 +1,13 @@
+.. vale off
+
+isascii
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.isascii
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.isascii
+
+   ansys.acp.core.LaunchMode.isascii

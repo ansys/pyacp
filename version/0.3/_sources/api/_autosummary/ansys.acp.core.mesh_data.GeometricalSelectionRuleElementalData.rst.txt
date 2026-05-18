@@ -1,0 +1,40 @@
+﻿.. vale off
+
+GeometricalSelectionRuleElementalData
+=====================================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: GeometricalSelectionRuleElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      GeometricalSelectionRuleElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      GeometricalSelectionRuleElementalData.normal
+      GeometricalSelectionRuleElementalData.element_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRuleElementalData
+
+   ansys.acp.core.mesh_data.GeometricalSelectionRuleElementalData

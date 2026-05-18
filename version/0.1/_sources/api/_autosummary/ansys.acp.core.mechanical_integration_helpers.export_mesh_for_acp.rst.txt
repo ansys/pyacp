@@ -1,0 +1,10 @@
+﻿export\_mesh\_for\_acp
+======================
+
+.. currentmodule:: ansys.acp.core.mechanical_integration_helpers
+
+.. warning::
+
+    This is an internal object. It should not be used directly, and subject to change without notice.
+
+.. autofunction:: export_mesh_for_acp

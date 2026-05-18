@@ -1,0 +1,55 @@
+﻿.. vale off
+
+ButtJointSequence
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ButtJointSequence
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ButtJointSequence.add_primary_ply
+      
+      
+      ButtJointSequence.clone
+      
+      
+      ButtJointSequence.delete
+      
+      
+      ButtJointSequence.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ButtJointSequence.active
+      ButtJointSequence.global_ply_nr
+      ButtJointSequence.id
+      ButtJointSequence.name
+      ButtJointSequence.parent
+      ButtJointSequence.primary_plies
+      ButtJointSequence.secondary_plies
+      ButtJointSequence.status
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence
+
+   ansys.acp.core.ButtJointSequence

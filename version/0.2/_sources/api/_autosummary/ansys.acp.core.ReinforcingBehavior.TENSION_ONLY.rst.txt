@@ -1,0 +1,13 @@
+.. vale off
+
+TENSION\_ONLY
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ReinforcingBehavior.TENSION_ONLY
+
+.. minigallery::
+   :add-heading: Examples using ReinforcingBehavior.TENSION_ONLY
+
+   ansys.acp.core.ReinforcingBehavior.TENSION_ONLY

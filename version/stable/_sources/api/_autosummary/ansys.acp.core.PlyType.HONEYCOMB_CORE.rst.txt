@@ -1,0 +1,13 @@
+.. vale off
+
+HONEYCOMB\_CORE
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyType.HONEYCOMB_CORE
+
+.. minigallery::
+   :add-heading: Examples using PlyType.HONEYCOMB_CORE
+
+   ansys.acp.core.PlyType.HONEYCOMB_CORE

@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: GeometricalSelectionRule.delete
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.delete
+
+   ansys.acp.core.GeometricalSelectionRule.delete

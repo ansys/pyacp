@@ -1,0 +1,13 @@
+.. vale off
+
+isidentifier
+============
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.isidentifier
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.isidentifier
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.isidentifier

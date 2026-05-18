@@ -1,0 +1,13 @@
+.. vale off
+
+edge\_set
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TaperEdge.edge_set
+
+.. minigallery::
+   :add-heading: Examples using TaperEdge.edge_set
+
+   ansys.acp.core.TaperEdge.edge_set

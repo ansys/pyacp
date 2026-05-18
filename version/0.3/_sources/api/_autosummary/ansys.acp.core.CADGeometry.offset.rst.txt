@@ -1,0 +1,13 @@
+.. vale off
+
+offset
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.offset
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.offset
+
+   ansys.acp.core.CADGeometry.offset

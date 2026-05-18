@@ -1,0 +1,13 @@
+.. vale off
+
+import\_initial\_mesh
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedSolidModel.import_initial_mesh
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.import_initial_mesh
+
+   ansys.acp.core.ImportedSolidModel.import_initial_mesh

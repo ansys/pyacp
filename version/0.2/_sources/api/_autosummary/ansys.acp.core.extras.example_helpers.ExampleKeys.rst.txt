@@ -1,0 +1,48 @@
+﻿.. vale off
+
+ExampleKeys
+===========
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoclass:: ExampleKeys
+
+   
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ExampleKeys.BASIC_FLAT_PLATE_DAT
+      ExampleKeys.BASIC_FLAT_PLATE_REFINED_DAT
+      ExampleKeys.BASIC_FLAT_PLATE_ACPH5
+      ExampleKeys.BASIC_FLAT_PLATE_SOLID_MESH_CDB
+      ExampleKeys.RACE_CAR_NOSE_ACPH5
+      ExampleKeys.RACE_CAR_NOSE_STEP
+      ExampleKeys.CUT_OFF_GEOMETRY
+      ExampleKeys.RULE_GEOMETRY_TRIANGLE
+      ExampleKeys.THICKNESS_GEOMETRY
+      ExampleKeys.MINIMAL_FLAT_PLATE
+      ExampleKeys.OPTIMIZATION_EXAMPLE_DAT
+      ExampleKeys.CLASS40_AGDB
+      ExampleKeys.CLASS40_CDB
+      ExampleKeys.MATERIALS_XML
+      ExampleKeys.IMPORTED_SOLID_MODEL_ACPH5
+      ExampleKeys.IMPORTED_SOLID_MODEL_SOLID_MESH
+      ExampleKeys.SNAP_TO_GEOMETRY
+      ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL
+      ExampleKeys.MINIMAL_PLATE_ACPH5
+      ExampleKeys.MINIMAL_PLATE_CDB
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys

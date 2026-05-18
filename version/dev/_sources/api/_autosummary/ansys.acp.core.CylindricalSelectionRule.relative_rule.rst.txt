@@ -1,0 +1,13 @@
+.. vale off
+
+relative\_rule
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CylindricalSelectionRule.relative_rule
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule.relative_rule
+
+   ansys.acp.core.CylindricalSelectionRule.relative_rule

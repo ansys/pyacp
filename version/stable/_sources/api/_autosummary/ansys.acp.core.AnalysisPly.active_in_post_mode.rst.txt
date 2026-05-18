@@ -1,0 +1,13 @@
+.. vale off
+
+active\_in\_post\_mode
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: AnalysisPly.active_in_post_mode
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPly.active_in_post_mode
+
+   ansys.acp.core.AnalysisPly.active_in_post_mode

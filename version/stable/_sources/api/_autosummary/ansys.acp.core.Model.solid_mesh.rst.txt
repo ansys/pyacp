@@ -1,0 +1,13 @@
+.. vale off
+
+solid\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.solid_mesh
+
+.. minigallery::
+   :add-heading: Examples using Model.solid_mesh
+
+   ansys.acp.core.Model.solid_mesh

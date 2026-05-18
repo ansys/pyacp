@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: BooleanSelectionRule.parent
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRule.parent
+
+   ansys.acp.core.BooleanSelectionRule.parent

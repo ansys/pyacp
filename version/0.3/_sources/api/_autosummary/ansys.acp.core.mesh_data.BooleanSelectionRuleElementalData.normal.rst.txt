@@ -1,0 +1,13 @@
+.. vale off
+
+normal
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: BooleanSelectionRuleElementalData.normal
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRuleElementalData.normal
+
+   ansys.acp.core.mesh_data.BooleanSelectionRuleElementalData.normal

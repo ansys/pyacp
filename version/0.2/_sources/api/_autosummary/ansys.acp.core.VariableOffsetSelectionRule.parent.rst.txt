@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.parent
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule.parent
+
+   ansys.acp.core.VariableOffsetSelectionRule.parent

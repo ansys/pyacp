@@ -1,0 +1,13 @@
+.. vale off
+
+HALF\_ARROW
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ArrowType.HALF_ARROW
+
+.. minigallery::
+   :add-heading: Examples using ArrowType.HALF_ARROW
+
+   ansys.acp.core.ArrowType.HALF_ARROW

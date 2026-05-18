@@ -1,0 +1,13 @@
+.. vale off
+
+isprintable
+===========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.isprintable
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.isprintable
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.isprintable

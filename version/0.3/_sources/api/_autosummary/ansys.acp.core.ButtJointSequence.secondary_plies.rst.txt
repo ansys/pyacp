@@ -1,0 +1,13 @@
+.. vale off
+
+secondary\_plies
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ButtJointSequence.secondary_plies
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence.secondary_plies
+
+   ansys.acp.core.ButtJointSequence.secondary_plies

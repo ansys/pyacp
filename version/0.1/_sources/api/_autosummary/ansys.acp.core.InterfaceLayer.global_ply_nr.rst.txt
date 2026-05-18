@@ -1,0 +1,13 @@
+.. vale off
+
+global\_ply\_nr
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: InterfaceLayer.global_ply_nr
+
+.. minigallery::
+   :add-heading: Examples using InterfaceLayer.global_ply_nr
+
+   ansys.acp.core.InterfaceLayer.global_ply_nr

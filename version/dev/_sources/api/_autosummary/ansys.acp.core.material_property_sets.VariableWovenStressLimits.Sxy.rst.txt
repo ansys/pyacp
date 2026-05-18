@@ -1,0 +1,13 @@
+.. vale off
+
+Sxy
+===
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableWovenStressLimits.Sxy
+
+.. minigallery::
+   :add-heading: Examples using VariableWovenStressLimits.Sxy
+
+   ansys.acp.core.material_property_sets.VariableWovenStressLimits.Sxy
