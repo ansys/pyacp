@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -136,7 +136,7 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
     @staticmethod
     def _cache_key_valid(key: Any) -> bool:
         try:
-            (parent_object_id, attribute_name) = key
+            parent_object_id, attribute_name = key
             if not attribute_name:
                 return False
             if not isinstance(parent_object_id, int):
@@ -443,12 +443,10 @@ def define_add_method(
         edge_prop_list.append(value_type(*args, **kwargs))
         return edge_prop_list[-1]
 
-    inner.__doc__ = textwrap.dedent(
-        f"""\
+    inner.__doc__ = textwrap.dedent(f"""\
         Add a {value_type.__name__} to the {parent_class_name}.
 
-        """
-    )
+        """)
     found_parameters = False
     if value_type.__doc__ is not None:
         doc_lines = textwrap.dedent(value_type.__doc__).splitlines()

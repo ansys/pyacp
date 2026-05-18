@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -24,6 +24,7 @@
 
 These utilities can download the input files used in the PyACP examples.
 """
+
 import dataclasses
 from enum import Enum, auto
 import pathlib

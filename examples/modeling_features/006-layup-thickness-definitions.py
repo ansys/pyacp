@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -30,7 +30,6 @@ This example shows how the thickness of a ply can be defined by a geometry or a 
 The example only shows the PyACP part of the setup. For a complete composite analysis,
 see :ref:`pymapdl_workflow_example`.
 """
-
 
 # %%
 # Import modules

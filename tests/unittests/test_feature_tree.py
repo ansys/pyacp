@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -33,8 +33,7 @@ from ansys.acp.core.extras.feature_tree import get_feature_tree
     [
         (
             False,
-            textwrap.dedent(
-                """\
+            textwrap.dedent("""\
                 Model
                     Material
                     Fabric
@@ -88,13 +87,11 @@ from ansys.acp.core.extras.feature_tree import get_feature_tree
                         ImportedAnalysisPly (read-only)
                     Sensor
                     FieldDefinition
-                """
-            ),
+                """),
         ),
         (
             True,
-            textwrap.dedent(
-                """\
+            textwrap.dedent("""\
                 Model
                 ├── Material
                 ├── Fabric
@@ -148,8 +145,7 @@ from ansys.acp.core.extras.feature_tree import get_feature_tree
                 │   └── ImportedAnalysisPly (read-only)
                 ├── Sensor
                 └── FieldDefinition
-                """
-            ),
+                """),
         ),
     ],
 )
