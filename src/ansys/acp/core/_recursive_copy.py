@@ -22,6 +22,7 @@
 
 import collections
 from collections.abc import Iterable
+from enum import StrEnum
 
 import networkx as nx
 
@@ -33,7 +34,6 @@ from ._tree_objects._grpc_helpers.linked_object_helpers import get_linked_paths
 from ._tree_objects.base import CreatableTreeObject, ServerWrapper, TreeObject
 from ._tree_objects.model import Model
 from ._utils.resource_paths import common_path, to_parts
-from ._utils.typing_helper import StrEnum
 
 __all__ = ["recursive_copy", "LinkedObjectHandling"]
 

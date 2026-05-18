@@ -23,9 +23,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Sequence
-from typing import Any
-
-from typing_extensions import Self
+from typing import Any, Self
 
 from ansys.api.acp.v0 import stackup_pb2, stackup_pb2_grpc
 

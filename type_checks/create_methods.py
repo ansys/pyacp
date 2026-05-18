@@ -1,7 +1,7 @@
 from collections.abc import Callable
+from typing import assert_type
 
 from mypy_extensions import DefaultNamedArg
-from typing_extensions import assert_type
 
 from ansys.acp.core import CADGeometry, Model
 

@@ -24,10 +24,9 @@ from __future__ import annotations
 
 from collections.abc import Callable, Container, Iterable
 import dataclasses
-from typing import Any
+from typing import Any, Self
 
 import numpy as np
-from typing_extensions import Self
 
 from ansys.api.acp.v0 import modeling_ply_pb2, modeling_ply_pb2_grpc, production_ply_pb2_grpc
 

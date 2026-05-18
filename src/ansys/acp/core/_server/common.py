@@ -22,11 +22,10 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
 from typing import Protocol
 
 import grpc
-
-from .._utils.typing_helper import StrEnum
 
 __all__ = ["LaunchMode"]
 

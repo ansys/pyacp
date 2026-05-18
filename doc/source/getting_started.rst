@@ -9,7 +9,7 @@ Prerequisites
 To use PyACP, you need the following prerequisites:
 
 - Ansys Composite PrepPost (ACP), version 2024 R2 or later.
-- Python, version 3.10, 3.11 or 3.12.
+- Python, version 3.11, 3.12, 3.13 or 3.14.
 
 Installation
 ^^^^^^^^^^^^
