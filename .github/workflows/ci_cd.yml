@@ -40,7 +40,9 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          python-version: |
+            3.11
+            ${{ matrix.python-version }}
 
       - name: Pip cache
         uses: actions/cache@v5
@@ -131,7 +133,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      # Python version is determined by the base image
+      # Python version is determined by the Docker image
       - name: Build docker image
         run: docker build -t test_runner -f dockerfiles/DirectLaunchTest.Dockerfile .
       - name: Run tests
@@ -345,7 +347,9 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          python-version: |
+            3.11
+            ${{ env.MAIN_PYTHON_VERSION }}
 
       - name: Pip cache
         uses: actions/cache@v5
@@ -433,7 +437,9 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          python-version: |
+            3.11
+            ${{ env.MAIN_PYTHON_VERSION }}
 
       - name: Pip cache
         uses: actions/cache@v5
