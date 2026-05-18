@@ -61,7 +61,6 @@ from .virtual_geometry import VirtualGeometry
 import numpy as np  # noqa: F401 isort:skip
 from ._elemental_or_nodal_data import ScalarData  # noqa: F401 isort:skip
 
-
 __all__ = [
     "CutOffSelectionRule",
     "CutOffSelectionRuleElementalData",

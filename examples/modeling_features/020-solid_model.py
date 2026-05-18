@@ -33,6 +33,7 @@ a layered solid mesh based on the shell mesh and layup definition.
 This solid mesh can be further processed by :class:`.ExtrusionGuide`,
 :class:`.SnapToGeometry`, and :class:`.CutOffGeometry`.
 """
+
 # %%
 # Import the standard library and third-party dependencies.
 import pathlib

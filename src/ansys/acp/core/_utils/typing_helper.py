@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 """Helpers for defining type annotations."""
+
 import enum
 import os
 from typing import TYPE_CHECKING, Union
