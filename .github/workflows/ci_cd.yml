@@ -40,7 +40,9 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          python-version: |
+            3.11
+            ${{ matrix.python-version }}
 
       - name: Pip cache
         uses: actions/cache@v5
@@ -60,7 +62,7 @@ jobs:
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
         run: |
-          python3.10 -m venv .api_builder_venv
+          python3.11 -m venv .api_builder_venv
           . .api_builder_venv/bin/activate
           python -m pip install --upgrade pip wheel
           mkdir .api_package
@@ -92,7 +94,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
+        python-version: ['3.11', '3.12', '3.13', '3.14']
         should-release:
           - ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags') }}
         exclude:
@@ -131,7 +133,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      # Python version is determined by the base image
+      # Python version is determined by the Docker image
       - name: Build docker image
         run: docker build -t test_runner -f dockerfiles/DirectLaunchTest.Dockerfile .
       - name: Run tests
@@ -157,7 +159,7 @@ jobs:
     timeout-minutes: 30
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12", '3.13', '3.14']
+        python-version: ["3.11", "3.12", '3.13', '3.14']
         server-version: ["latest"]
     steps:
       - uses: actions/checkout@v6
@@ -174,7 +176,7 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: |
-            3.10
+            3.11
             ${{ matrix.python-version }}
 
       - name: Install library, with only the 'main' group
@@ -194,7 +196,7 @@ jobs:
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
         run: |
-          python3.10 -m venv .api_builder_venv
+          python3.11 -m venv .api_builder_venv
           . .api_builder_venv/bin/activate
           python -m pip install --upgrade pip wheel
           mkdir .api_package
@@ -238,7 +240,7 @@ jobs:
     timeout-minutes: 30
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12", '3.13', '3.14']
+        python-version: ["3.11", "3.12", '3.13', '3.14']
         server-version: ["latest"]
         include:
           - python-version: "3.14"
@@ -257,7 +259,7 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: |
-            3.10
+            3.11
             ${{ matrix.python-version }}
 
       - name: Pip cache
@@ -277,7 +279,7 @@ jobs:
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
         run: |
-          python3.10 -m venv .api_builder_venv
+          python3.11 -m venv .api_builder_venv
           . .api_builder_venv/bin/activate
           python -m pip install --upgrade pip wheel
           mkdir .api_package
@@ -345,7 +347,9 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          python-version: |
+            3.11
+            ${{ env.MAIN_PYTHON_VERSION }}
 
       - name: Pip cache
         uses: actions/cache@v5
@@ -364,7 +368,7 @@ jobs:
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
         run: |
-          python3.10 -m venv .api_builder_venv
+          python3.11 -m venv .api_builder_venv
           . .api_builder_venv/bin/activate
           python -m pip install --upgrade pip wheel
           mkdir .api_package
@@ -433,7 +437,9 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          python-version: |
+            3.11
+            ${{ env.MAIN_PYTHON_VERSION }}
 
       - name: Pip cache
         uses: actions/cache@v5
@@ -460,7 +466,7 @@ jobs:
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
         run: |
-          python3.10 -m venv .api_builder_venv
+          python3.11 -m venv .api_builder_venv
           . .api_builder_venv/bin/activate
           python -m pip install --upgrade pip wheel
           mkdir .api_package

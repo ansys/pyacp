@@ -24,9 +24,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 import typing
-from typing import TypeAlias, Union
-
-from typing_extensions import Self
+from typing import Self, TypeAlias, Union
 
 from ansys.api.acp.v0 import linked_selection_rule_pb2
 

@@ -22,10 +22,9 @@
 
 from collections.abc import Callable
 from functools import wraps
-from typing import Concatenate, TypeAlias, TypeVar
+from typing import Concatenate, ParamSpec, TypeAlias, TypeVar
 
 from packaging.version import parse as parse_version
-from typing_extensions import ParamSpec
 
 from .protocols import Readable
 

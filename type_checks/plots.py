@@ -1,7 +1,6 @@
-from typing import Optional
+from typing import Optional, assert_type
 
 import numpy as np
-from typing_extensions import assert_type
 
 from ansys.acp.core import Model
 from ansys.acp.core.mesh_data import ModelingPlyElementalData, ScalarData, VectorData

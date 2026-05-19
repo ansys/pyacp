@@ -25,11 +25,10 @@ from __future__ import annotations
 from collections.abc import Callable, Iterable, Iterator, MutableSequence
 from functools import partial
 import sys
-from typing import Any, TypeVar, cast, overload
+from typing import Any, Self, TypeVar, cast, overload
 
 from grpc import Channel
 import numpy as np
-from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 

@@ -3,10 +3,10 @@ repos:
     rev: v3.21.2
     hooks:
       - id: pyupgrade
-        args: [--py310-plus]
+        args: [--py311-plus]
 
   - repo: https://github.com/psf/black
-    rev: "26.3.1" # when changed, also update the version in blacken-docs
+    rev: "26.5.1" # when changed, also update the version in blacken-docs
     hooks:
       - id: black
 
@@ -14,10 +14,10 @@ repos:
     rev: 1.20.0
     hooks:
       - id: blacken-docs
-        additional_dependencies: [black==25.1.0]
+        additional_dependencies: [black==26.5.1]
 
   - repo: https://github.com/pycqa/isort
-    rev: "8.0.1"
+    rev: "9.0.0a3"
     hooks:
       - id: isort
 
@@ -34,7 +34,7 @@ repos:
         exclude: '^poetry\.lock|pyproject\.toml|.*\.svg$'
 
   - repo: https://github.com/python-poetry/poetry/
-    rev: "2.3.2"
+    rev: "2.4.1"
     hooks:
       - id: poetry-check
         name: "poetry: check pyproject.toml syntax"
@@ -61,7 +61,7 @@ repos:
           ]
 
   - repo: https://github.com/ansys/pre-commit-hooks
-    rev: v0.6.0
+    rev: v0.7.2
     hooks:
     - id: add-license-headers
       args: ["--start_year", "2022"]
