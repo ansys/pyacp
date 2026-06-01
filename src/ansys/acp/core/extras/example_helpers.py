@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -24,6 +24,7 @@
 
 These utilities can download the input files used in the PyACP examples.
 """
+
 import dataclasses
 from enum import Enum, auto
 import pathlib
@@ -47,7 +48,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:  # pragma: no cover
     from ansys.acp.core import Model
 
-_EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/master/pyacp/"
+_EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/main/pyacp/"
 
 
 # _EXAMPLE_REPO = "D:\\ANSYSDev\\pyansys-example-data\\pyacp\\"

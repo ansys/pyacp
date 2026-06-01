@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -110,7 +110,7 @@ class SphericalSelectionRule(CreatableTreeObject, IdTreeObject):
         name: str = "SphericalSelectionrule",
         use_global_coordinate_system: bool = True,
         rosette: Rosette | None = None,
-        origin: tuple[float, ...] = (0.0, 0.0, 0.0),
+        origin: tuple[float, float, float] = (0.0, 0.0, 0.0),
         radius: float = 0.0,
         relative_rule: bool = False,
         include_rule: bool = True,

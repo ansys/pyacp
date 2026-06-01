@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -172,7 +172,7 @@ class TestAnalysisPlyAlternateParents(TreeObjectTesterReadOnly):
         return object_collection, object_names, object_ids
 
     @staticmethod
-    def test_parent_access():
+    def test_parent_access():  # type: ignore[override]
         pytest.skip("Not applicable, since the parent object is the production ply.")
 
 

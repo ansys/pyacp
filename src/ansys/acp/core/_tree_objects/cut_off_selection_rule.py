@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -60,7 +60,6 @@ from .virtual_geometry import VirtualGeometry
 # the inherited members of the Elemental- and NodalData classes.
 import numpy as np  # noqa: F401 isort:skip
 from ._elemental_or_nodal_data import ScalarData  # noqa: F401 isort:skip
-
 
 __all__ = [
     "CutOffSelectionRule",

@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -33,6 +33,7 @@ import grpc
 
 from ansys.api.acp.v0 import control_pb2_grpc, model_pb2_grpc
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, Empty, ListRequest
+from ansys.tools.common.exceptions import ProductInstanceError
 from ansys.tools.filetransfer import Client as FileTransferClient
 
 from .._tree_objects._grpc_helpers.exceptions import wrap_grpc_errors
@@ -307,11 +308,13 @@ class ACPInstance(Generic[ServerT]):
         Note that the models are listed in arbitrary order.
         """
         from .._tree_objects import Model
+        from .._tree_objects.base import ServerWrapper
 
         model_stub = model_pb2_grpc.ObjectServiceStub(self._channel)
+        server_wrapper = ServerWrapper.from_acp_instance(self)
         return tuple(
             [
-                Model._from_object_info(model_info, self._channel)
+                Model._from_object_info(model_info, server_wrapper)
                 for model_info in model_stub.List(
                     ListRequest(collection_path=CollectionPath(value=Model._COLLECTION_LABEL))
                 ).objects
@@ -383,7 +386,7 @@ class ACPInstance(Generic[ServerT]):
 
         Raises
         ------
-        RuntimeError
+        ansys.tools.common.exceptions.ProductInstanceError
             In case the server still has not responded after ``timeout`` seconds.
         """
         self._server.wait(timeout=timeout)
@@ -399,9 +402,9 @@ class ACPInstance(Generic[ServerT]):
 
         Raises
         ------
-        RuntimeError
+        ansys.tools.common.exceptions.ProductInstanceError
             If the instance is already in the started state.
-        RuntimeError
+        ansys.tools.common.exceptions.ProductInstanceError
             If the instance does not allow manual starting.
         """
         if not hasattr(self._server, "start"):
@@ -425,13 +428,13 @@ class ACPInstance(Generic[ServerT]):
 
         Raises
         ------
-        RuntimeError
+        ansys.tools.common.exceptions.ProductInstanceError
             If the instance is already in the stopped state.
-        RuntimeError
+        ansys.tools.common.exceptions.ProductInstanceError
             If the instance does not allow stopping.
         """
         if not hasattr(self._server, "stop"):
-            raise RuntimeError(
+            raise ProductInstanceError(
                 "This ACP server does not expose a method to stop it. "
                 "Please use a different launch method."
             )
@@ -454,13 +457,13 @@ class ACPInstance(Generic[ServerT]):
 
         Raises
         ------
-        RuntimeError
+        ansys.tools.common.exceptions.ProductInstanceError
             If the instance is already in the stopped state.
-        RuntimeError
+        ansys.tools.common.exceptions.ProductInstanceError
             If the instance does not allow restarting.
         """
         if not hasattr(self._server, "restart"):
-            raise RuntimeError(
+            raise ProductInstanceError(
                 "This ACP server does not expose a method to restart it. "
                 "Please use a different launch method."
             )

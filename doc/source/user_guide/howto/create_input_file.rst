@@ -45,9 +45,11 @@ One way to create an input file for PyACP is to create a static structural setup
 * Optional: Define the boundary conditions.
 * Select "Static Structural (A5)" in the tree and then click **Environment/Write Input File** in the navigation bar.
 * Save the input file to a DAT file in the desired location.
+* Convert the DAT file to a CDB file with Ansys Mechanical APDL: Load the DAT file in Mechanical APDL and use the CDWRITE command to write a CDB file.
 
+.. note::
 
-For a complete example, see :ref:`pymapdl_workflow_example`.
+    The conversion from DAT to CDB format is not strictly required, but improves the reliability of loading the model into downstream analyses. The unit system information is lost when exporting to CDB, so it needs to be specified when importing the CDB file into ACP.
 
 .. note::
 
@@ -56,7 +58,19 @@ For a complete example, see :ref:`pymapdl_workflow_example`.
 With scripting
 ''''''''''''''
 
-You can also create a CDB file from Mechanical or PyMechanical with scripting, using the ``WriteInputFile`` method of the analysis object. See :ref:`pymechanical_to_cdb_example` for a complete example.
+You can also create a DAT file from Mechanical or PyMechanical with scripting, using the ``WriteInputFile`` method of the analysis object. See :ref:`pymechanical_to_cdb_example` for a complete example.
+
+The DAT file can be converted to a CDB file with PyMAPDL:
+
+.. code-block::python
+
+    from ansys.mapdl.core import launch_mapdl
+
+    mapdl = launch_mapdl()
+    mapdl.clear()
+    mapdl.input("model.dat")  # Load the DAT file
+    mapdl.cdwrite(fname="model", ext="cdb")  # Write the CDB file
+    mapdl.exit()
 
 
 Create an input file with Ansys Mechanical APDL

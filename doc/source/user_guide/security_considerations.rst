@@ -67,3 +67,12 @@ The same is true for file load / save methods if the ``auto_transfer_files`` par
 
 When exposing these methods to untrusted users, it is important to validate that
 only files that are safe to be uploaded or downloaded are processed.
+
+gRPC transport mode
+-------------------
+
+The gRPC transport mode used to communicate with the ACP server determines how
+data is transmitted, and how the client and server are authenticated.
+
+Refer to :ref:`launch_configuration_transport_mode` for more information on the
+available transport modes and their security implications.

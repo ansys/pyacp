@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -82,7 +82,7 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
     @staticmethod
     def _cache_key_valid(key: Any) -> bool:
         try:
-            (parent_object_id, attribute_name) = key
+            parent_object_id, attribute_name = key
             if not attribute_name:
                 return False
             if not isinstance(parent_object_id, int):

@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -42,6 +42,7 @@ class LaunchMode(StrEnum):
     DIRECT = "direct"
     DOCKER_COMPOSE = "docker_compose"
     CONNECT = "connect"
+    CONNECT_LOCAL = "connect_local"
 
 
 class ServerProtocol(Protocol):

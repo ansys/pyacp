@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -40,6 +40,7 @@ from ._recursive_copy import LinkedObjectHandling, recursive_copy
 from ._server import (
     ACPInstance,
     ConnectLaunchConfig,
+    ConnectLocalLaunchConfig,
     DirectLaunchConfig,
     DockerComposeLaunchConfig,
     LaunchMode,
@@ -173,6 +174,7 @@ __all__ = [
     "CADComponent",
     "CADGeometry",
     "ConnectLaunchConfig",
+    "ConnectLocalLaunchConfig",
     "CoordinateTransformation",
     "CutOffGeometry",
     "CutOffGeometryOrientationType",
@@ -193,7 +195,6 @@ __all__ = [
     "ElementalDataType",
     "ElementSet",
     "ElementTechnology",
-    "ExportSettings",
     "extras",
     "ExtrusionGuide",
     "ExtrusionGuideType",

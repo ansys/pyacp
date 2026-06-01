@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2025 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -114,8 +114,8 @@ class ParallelSelectionRule(CreatableTreeObject, IdTreeObject):
         name: str = "ParallelSelectionrule",
         use_global_coordinate_system: bool = True,
         rosette: Rosette | None = None,
-        origin: tuple[float, ...] = (0.0, 0.0, 0.0),
-        direction: tuple[float, ...] = (1.0, 0.0, 0.0),
+        origin: tuple[float, float, float] = (0.0, 0.0, 0.0),
+        direction: tuple[float, float, float] = (1.0, 0.0, 0.0),
         lower_limit: float = 0.0,
         upper_limit: float = 0.0,
         relative_rule: bool = False,
