@@ -97,7 +97,7 @@ Breaking changes:
 
 - The ``PuckMaterialType.IGNORED`` option was removed. Disable the Puck constants
   by setting the ``Material.puck_constants`` attribute to ``None`` for the
-  material(s) that used this option.
+  materials which used this option.
 
 Upgrading from the beta version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
