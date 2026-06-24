@@ -226,7 +226,7 @@ nitpick_ignore = [
 ]
 nitpick_ignore_regex = [
     ("py:class", r"(typing\.|typing_extensions\.)?Self"),
-    ("py:class", r"(numpy\.typing|npt)\.NDArray"),
+    ("py:class", r"(numpy\.typing|numpy\._typing\._array_like|npt)\.NDArray"),
     ("py:class", r"(numpy|np)\.float64"),
     ("py:class", r"(numpy|np)\.int32"),
     ("py:class", r"(numpy|np)\.int64"),
