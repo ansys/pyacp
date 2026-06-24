@@ -61,7 +61,7 @@ repos:
           ]
 
   - repo: https://github.com/ansys/pre-commit-hooks
-    rev: v0.6.0
+    rev: v0.8.0
     hooks:
     - id: add-license-headers
       args: ["--start_year", "2022"]
@@ -83,6 +83,7 @@ repos:
         types: [python]
         require_serial: true
         files: "^(tests/)|^(examples/)"
+        exclude: "^(examples/pymechanical_with_shim)"
         args: [
           "--strict",
           "--namespace-packages",
