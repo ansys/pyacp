@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -23,9 +23,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Sequence
-from typing import TYPE_CHECKING, Any, Union, cast
-
-from typing_extensions import Self
+from typing import TYPE_CHECKING, Any, Self, Union, cast
 
 from ansys.api.acp.v0 import butt_joint_sequence_pb2, butt_joint_sequence_pb2_grpc
 

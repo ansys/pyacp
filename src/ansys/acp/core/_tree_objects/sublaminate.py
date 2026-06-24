@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -24,9 +24,7 @@ from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Sequence
 import typing
-from typing import Any, TypeAlias, Union, get_args
-
-from typing_extensions import Self
+from typing import Any, Self, TypeAlias, Union, get_args
 
 from ansys.api.acp.v0 import sublaminate_pb2, sublaminate_pb2_grpc
 

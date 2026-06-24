@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -26,10 +26,9 @@ from collections.abc import Callable, Iterable, Iterator, MutableSequence
 import inspect
 import sys
 import textwrap
-from typing import Any, Concatenate, Protocol, TypeVar, cast, overload
+from typing import Any, Concatenate, ParamSpec, Protocol, Self, TypeVar, cast, overload
 
 from google.protobuf.message import Message
-from typing_extensions import ParamSpec, Self
 
 from .._object_cache import ObjectCacheMixin, constructor_with_cache
 from ..base import CreatableTreeObject

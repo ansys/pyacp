@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -20,7 +20,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# type: ignore
 from constants import COMPOSITE_DEFINITIONS_H5, MATML_FILE
 
 import ansys.acp.core as pyacp
@@ -53,7 +52,7 @@ def setup_and_update_acp_model(output_path, mesh_path, is_local=False):
     mat.engineering_constants.nu13 = 0.3
     mat.engineering_constants.nu23 = 0.3
 
-    mat.strain_limits = ConstantStrainLimits(
+    mat.strain_limits = ConstantStrainLimits.from_orthotropic_constants(
         eXc=-0.01,
         eYc=-0.01,
         eZc=-0.01,

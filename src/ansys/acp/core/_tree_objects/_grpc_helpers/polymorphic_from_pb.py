@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -23,9 +23,7 @@
 from __future__ import annotations
 
 import typing
-from typing import Protocol
-
-from typing_extensions import Self
+from typing import Protocol, Self
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 

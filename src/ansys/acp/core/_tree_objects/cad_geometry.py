@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -24,11 +24,10 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 import dataclasses
-from typing import TYPE_CHECKING, cast
+from typing import TYPE_CHECKING, Self, cast
 
 import numpy as np
 import numpy.typing as npt
-from typing_extensions import Self
 
 if TYPE_CHECKING:  # pragma: no cover
     import pyvista

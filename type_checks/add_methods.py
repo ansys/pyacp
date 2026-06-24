@@ -1,8 +1,7 @@
 from collections.abc import Callable
-from typing import Union
+from typing import Union, assert_type
 
 from mypy_extensions import Arg, DefaultNamedArg
-from typing_extensions import assert_type
 
 from ansys.acp.core import (
     BooleanOperationType,
