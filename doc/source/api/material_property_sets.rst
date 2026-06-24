@@ -17,8 +17,6 @@ Material property sets
     ConstantWovenCharacterization
     ConstantWovenStressLimits
     FieldVariable
-    InterpolationOptions
-    PuckMaterialType
     VariableDensity
     VariableEngineeringConstants
     VariableFabricFiberAngle
@@ -29,3 +27,10 @@ Material property sets
     VariableTsaiWuConstants
     VariableWovenCharacterization
     VariableWovenStressLimits
+
+.. autosummary::
+    :toctree: _autosummary
+    :template: autosummary/no_methods_doc/class.rst.jinja2
+
+    InterpolationOptions
+    PuckMaterialType

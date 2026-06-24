@@ -12,4 +12,3 @@ Server management
     DirectLaunchConfig
     DockerComposeLaunchConfig
     launch_acp
-    LaunchMode
