@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -22,11 +22,10 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
 from typing import Protocol
 
 import grpc
-
-from .._utils.typing_helper import StrEnum
 
 __all__ = ["LaunchMode"]
 

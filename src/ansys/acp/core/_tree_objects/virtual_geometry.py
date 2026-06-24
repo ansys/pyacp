@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -24,9 +24,7 @@ from __future__ import annotations
 
 from collections.abc import Callable, Iterable
 import typing
-from typing import Any
-
-from typing_extensions import Self
+from typing import Any, Self
 
 from ansys.api.acp.v0 import base_pb2, virtual_geometry_pb2, virtual_geometry_pb2_grpc
 

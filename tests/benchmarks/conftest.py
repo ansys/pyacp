@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -51,7 +51,13 @@ def pytest_ignore_collect(collection_path, config):
     # used for manipulating network speeds is not available on Docker for
     # Windows / Mac.
     if sys.platform != "linux":
-        return True
+        if not config.getoption(VALIDATE_BENCHMARKS_ONLY_OPTION_KEY):
+            print(
+                "Skipping benchmarks since they can only be run on Linux. "
+                "Use the '--validate-benchmarks-only' option to validate the "
+                "benchmarks on any platform."
+            )
+            return True
     # The benchmarks make use of the 'ConnectionTest.Dockerfile' and
     # 'docker-compose-benchmark.yaml', so can only be used with the
     # docker-compose launcher.
@@ -80,6 +86,8 @@ def launcher_configuration(request):
                 "build",
                 "--tag",
                 BENCHMARK_IMAGE_NAME,
+                "--build-arg",
+                f"BASE_IMAGE={base_image_name}",
                 "-f",
                 benchmark_dockerfile,
                 dockerfiles_dir,

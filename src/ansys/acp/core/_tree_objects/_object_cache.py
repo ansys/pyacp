@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -21,10 +21,8 @@
 # SOFTWARE.
 
 from collections.abc import Callable, Iterable
-from typing import Any, Concatenate, TypeAlias, TypeVar
+from typing import Any, Concatenate, ParamSpec, Self, TypeAlias, TypeVar
 from weakref import WeakValueDictionary
-
-from typing_extensions import ParamSpec, Self
 
 __all__ = ["ObjectCacheMixin", "constructor_with_cache"]
 

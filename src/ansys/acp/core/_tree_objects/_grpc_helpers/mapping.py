@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -24,12 +24,11 @@ from __future__ import annotations
 
 from collections.abc import Callable, Iterator
 import inspect
-from typing import Any, Concatenate, Generic, TypeVar
+from typing import Any, Concatenate, Generic, ParamSpec, Self, TypeVar
 
 import grpc
 from grpc import Channel
 from packaging.version import parse as parse_version
-from typing_extensions import ParamSpec, Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, ListRequest
 

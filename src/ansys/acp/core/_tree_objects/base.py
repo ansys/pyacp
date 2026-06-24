@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 """Base classes for tree objects backed via gRPC API."""
+
 from __future__ import annotations
 
 from abc import abstractmethod
@@ -28,12 +29,11 @@ from collections.abc import Callable, Iterable, Iterator
 import contextlib
 from dataclasses import dataclass
 import typing
-from typing import Any, Generic, TypeVar, cast
+from typing import Any, Generic, Self, TypeVar, cast
 
 from grpc import Channel
 from packaging.version import Version
 from packaging.version import parse as parse_version
-from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, GetRequest, ResourcePath
 
@@ -338,7 +338,7 @@ class CreatableTreeObject(TreeObject):
             unlink_objects(new_object_info.properties)
             # Since there may be links in the unknown fields, we need to
             # discard them to avoid errors when storing the object.
-            new_object_info.properties.DiscardUnknownFields()  # type: ignore
+            new_object_info.properties.DiscardUnknownFields()
         new_object_info.info.name = self._pb_object.info.name
         return type(self)._from_object_info(object_info=new_object_info)
 

@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -22,10 +22,9 @@
 
 from collections.abc import Callable
 from functools import wraps
-from typing import Concatenate, TypeAlias, TypeVar
+from typing import Concatenate, ParamSpec, TypeAlias, TypeVar
 
 from packaging.version import parse as parse_version
-from typing_extensions import ParamSpec
 
 from .protocols import Readable
 

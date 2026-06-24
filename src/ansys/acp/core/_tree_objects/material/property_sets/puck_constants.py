@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -45,10 +45,17 @@ __all__ = ["ConstantPuckConstants", "VariablePuckConstants", "PuckMaterialType"]
 class PuckMaterialType(str, Enum):
     """Possible Puck material types."""
 
-    IGNORED = "ignored"
     CARBON = "carbon"
     GLASS = "glass"
     MATERIAL_SPECIFIC = "material-specific"
+
+    @classmethod
+    def _missing_(cls, value: object) -> None:
+        if isinstance(value, str) and value.lower() == "ignored":
+            # Raise custom error for the removed "ignored" material type
+            raise ValueError(
+                "The 'ignored' Puck material type is no longer supported. Disable the Puck constants instead."
+            )
 
 
 class _PuckConstantsMixin:
@@ -72,7 +79,7 @@ class ConstantPuckConstants(_PuckConstantsMixin, _ConstantPropertySet):
         s: float = 0.5,
         M: float = 0.5,
         interface_weakening_factor: float = 0.8,
-        mat_type: str = PuckMaterialType.IGNORED,
+        mat_type: str = PuckMaterialType.CARBON,
         _parent_object: TreeObject | None = None,
         _attribute_path: str | None = None,
     ):
@@ -87,7 +94,11 @@ class ConstantPuckConstants(_PuckConstantsMixin, _ConstantPropertySet):
 
         self.mat_type = PuckMaterialType(mat_type)
 
-        if mat_type in (PuckMaterialType.IGNORED, PuckMaterialType.MATERIAL_SPECIFIC):
+        if mat_type == "ignored":
+            raise ValueError(
+                "The 'ignored' Puck material type is no longer supported. Remove the Puck constants instead."
+            )
+        elif mat_type == PuckMaterialType.MATERIAL_SPECIFIC:
             self.p_21_pos = val_or_default(p_21_pos, 0.325)
             self.p_21_neg = val_or_default(p_21_neg, 0.275)
             self.p_22_pos = val_or_default(p_22_pos, 0.225)

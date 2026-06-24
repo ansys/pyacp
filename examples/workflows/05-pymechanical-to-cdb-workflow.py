@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -19,7 +19,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
 
 """
 
@@ -42,7 +41,6 @@ PyMechanical integration.
     Jupyter notebook locally.
 
 """
-
 
 # %%
 # Import modules and start the Ansys products
@@ -85,7 +83,7 @@ with ThreadPoolExecutor() as executor:
         executor.submit(pymapdl.launch_mapdl),
         executor.submit(pydpf_composites.server_helpers.connect_to_or_start_server),
     ]
-    mechanical, acp, mapdl, dpf = (fut.result() for fut in futures)
+    mechanical, acp, mapdl, dpf = (fut.result() for fut in futures)  # type: ignore[attr-defined]
     mapdl.clear()
 
 # %%
@@ -111,8 +109,7 @@ input_geometry = pyacp.extras.example_helpers.get_example_file(
 dat_path_initial = working_dir_path / "model_from_mechanical.dat"
 mechanical.run_python_script(
     # This script runs in the Mechanical Python environment, which uses IronPython 2.7.
-    textwrap.dedent(
-        f"""\
+    textwrap.dedent(f"""\
         # Import the geometry
         geometry_import = Model.GeometryImportGroup.AddGeometryImport()
 
@@ -174,8 +171,7 @@ mechanical.run_python_script(
 
         # Export the model to a CDB file
         analysis.WriteInputFile({str(dat_path_initial)!r})
-        """
-    )
+        """)
 )
 
 # %%
