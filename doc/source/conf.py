@@ -84,6 +84,7 @@ def _signature(
                 "Sequence[_SELECTION_RULES_LINKABLE_TO_OSS]",
                 "Sequence[_LINKABLE_ENTITY_TYPES]",
                 "_LINKABLE_MATERIAL_TYPES",
+                "_LINKABLE_SELECTION_RULE_TYPES",
             ]:
                 param = param.replace(annotation=eval(param.annotation))
             # Represent StrEnum defaults as their string value, since this is
@@ -225,7 +226,7 @@ nitpick_ignore = [
 ]
 nitpick_ignore_regex = [
     ("py:class", r"(typing\.|typing_extensions\.)?Self"),
-    ("py:class", r"(numpy\.typing|npt)\.NDArray"),
+    ("py:class", r"(numpy\.typing|numpy\._typing\._array_like|npt)\.NDArray"),
     ("py:class", r"(numpy|np)\.float64"),
     ("py:class", r"(numpy|np)\.int32"),
     ("py:class", r"(numpy|np)\.int64"),
