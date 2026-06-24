@@ -1,4 +1,4 @@
-# Copyright (C) 2022 - 2026 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2022 - 2026 Synopsys, Inc. and ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
 #
@@ -20,7 +20,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# type: ignore
 from ansys.dpf.composites.composite_model import CompositeModel
 from ansys.dpf.composites.constants import FailureOutput
 from ansys.dpf.composites.data_sources import (
@@ -61,5 +60,7 @@ def postprocess_results(rst_file, matml_file, composite_definitions_path):
     # Query and plot the results
     irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
 
-    assert composite_model.get_element_info(1).n_layers == 3
+    element_info = composite_model.get_element_info(1)
+    assert element_info is not None
+    assert element_info.n_layers == 3
     irf_field.plot()
