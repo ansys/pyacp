@@ -11,6 +11,6 @@
 * [Jan von Rickenbach](https://github.com/janvonrickenbach)
 * [Jonathan Zopes](https://github.com/jonathanzopes)
 * [Kathy Pippert](https://github.com/PipKat)
-* [Nellie Shum](https://github.com/nshum4)
 * [Revathy Venugopal](https://github.com/Revathyvenugopal162)
 * [Roberto Pastor Muela](https://github.com/RobPasMue)
+* [Zack Shum](https://github.com/zshum4)
