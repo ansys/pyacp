@@ -78,7 +78,7 @@ vtk = ">=9.5.1"
 optional = true
 
 [tool.poetry.group.test.dependencies]
-pytest = ">=7.3.1"
+pytest = ">=7.3.1,<9.1.0" # limiting to <9.1.0 due to pytest-cases incompatibility, see https://github.com/smarie/python-pytest-cases/issues/385
 pytest-cov = ">=4.0.0"
 pytest-cases = ">=3.6.14"
 pytest-benchmark = ">=4.0.0"
