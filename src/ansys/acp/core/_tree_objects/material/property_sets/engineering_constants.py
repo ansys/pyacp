@@ -22,7 +22,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Self
+from typing import Self
 
 from ansys.api.acp.v0 import material_pb2
 

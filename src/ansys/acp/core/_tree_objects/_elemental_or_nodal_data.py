@@ -23,12 +23,12 @@
 from __future__ import annotations
 
 import dataclasses
+from enum import StrEnum
 import typing
-from typing import Any, ClassVar, Literal, cast
+from typing import Any, ClassVar, Literal, Self, cast
 
 import numpy as np
 import numpy.typing as npt
-from typing_extensions import Self
 
 if typing.TYPE_CHECKING:  # pragma: no cover
     from pyvista.core.pointset import PolyData, UnstructuredGrid
@@ -39,7 +39,6 @@ from ansys.acp.core._utils.array_conversions import dataarray_to_numpy, to_numpy
 from ansys.api.acp.v0 import mesh_query_pb2, mesh_query_pb2_grpc
 
 from .._utils.property_protocols import ReadOnlyProperty
-from .._utils.typing_helper import StrEnum
 from ._mesh_data import MeshData
 from .base import TreeObject
 from .enums import (

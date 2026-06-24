@@ -21,12 +21,12 @@
 # SOFTWARE.
 
 from collections.abc import Callable, Mapping
+from enum import StrEnum
 import types
 from typing import Any
 
 __all__ = ["wrap_to_string_enum"]
 
-from ansys.acp.core._utils.typing_helper import StrEnum
 
 # mypy doesn't understand this dynamically created Enum, so we have to
 # fall back to 'Any'.
