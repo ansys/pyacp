@@ -23,9 +23,7 @@
 from __future__ import annotations
 
 import typing
-from typing import Protocol
-
-from typing_extensions import Self
+from typing import Protocol, Self
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 

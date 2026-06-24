@@ -29,12 +29,11 @@ from collections.abc import Callable, Iterable, Iterator
 import contextlib
 from dataclasses import dataclass
 import typing
-from typing import Any, Generic, TypeVar, cast
+from typing import Any, Generic, Self, TypeVar, cast
 
 from grpc import Channel
 from packaging.version import Version
 from packaging.version import parse as parse_version
-from typing_extensions import Self
 
 from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, GetRequest, ResourcePath
 
