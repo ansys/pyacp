@@ -84,6 +84,7 @@ def _signature(
                 "Sequence[_SELECTION_RULES_LINKABLE_TO_OSS]",
                 "Sequence[_LINKABLE_ENTITY_TYPES]",
                 "_LINKABLE_MATERIAL_TYPES",
+                "_LINKABLE_SELECTION_RULE_TYPES",
             ]:
                 param = param.replace(annotation=eval(param.annotation))
             # Represent StrEnum defaults as their string value, since this is
