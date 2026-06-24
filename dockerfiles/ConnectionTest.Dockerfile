@@ -34,6 +34,10 @@ tc filter add dev eth0 parent ffff: protocol ip u32 match u32 0 0 flowid 1:1 act
 
 tc qdisc add dev eth0 root netem delay \$DELAY rate \$RATE
 tc qdisc add dev ifb0 root netem delay \$DELAY rate \$RATE
+
+# Ensure the working directory is writable by the container user
+chmod -R 777 /home/container/workdir
+
 sudo -u container --preserve-env /usr/ansys_inc/acp/acp_grpcserver "\$@"
 EOF
 #escape=\
