@@ -23,6 +23,7 @@ env:
   DOCUMENTATION_CNAME: "acp.docs.pyansys.com"
   API_BRANCH: ${{ github.event.inputs.api_branch || '' }}
   DOCKER_IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
+  UV_FROZEN: "true"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -37,27 +38,22 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Setup Python
-        uses: actions/setup-python@v6.2.0
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: |
-            3.11
-            ${{ matrix.python-version }}
-
-      - name: Pip cache
-        uses: actions/cache@v5.0.5
-        with:
-          path: ~/.cache/pip
-          key: pip-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-precommit
-          restore-keys: |
-            pip-${{ runner.os }}
+          python-version: "3.11"
 
       # pre-commit needs all dev dependencies, since it also checks the test and example files
       - name: Install library, with all optional groups
         run: |
           pip install -U pip
-          pip install poetry
-          poetry install --all-groups --all-extras
+          uv sync --all-groups --all-extras
+
+      - name: Setup Python 3.11 for API package build
+        if: "${{ env.API_BRANCH != '' }}"
+        uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.11"
 
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
@@ -74,11 +70,11 @@ jobs:
         # other transitive dependencies. For example, when a newer version of protobuf
         # is installed.
         run: |
-          poetry run pip install --no-deps --force-reinstall .api_package/*.whl
+          uv pip install --no-deps --force-reinstall .api_package/*.whl
 
       - name: Run pre-commit
         run: |
-          poetry run pre-commit run --all-files || ( git status --short ; git diff ; exit 1 )
+          uv run pre-commit run --all-files || ( git status --short ; git diff ; exit 1 )
 
   doc-style:
     name: "Documentation style"
@@ -164,34 +160,29 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Pip cache
-        uses: actions/cache@v5.0.5
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
         with:
-          path: ~/.cache/pip
-          key: pip-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}-testing-minimum-deps
-          restore-keys: |
-            pip-${{ runner.os }}-${{ matrix.python-version }}
-
-      - name: Setup Python
-        uses: actions/setup-python@v6.2.0
-        with:
-          python-version: |
-            3.11
-            ${{ matrix.python-version }}
+          python-version: ${{ matrix.python-version }}
 
       - name: Install library, with only the 'main' group
         run: |
           pip install -U pip
-          pip install 'poetry!=1.7.0'
-          poetry install --only main
+          uv sync --no-dev --no-group test
 
       - name: Check that PyACP can be imported
         run: |
-          poetry run python -c "import ansys.acp.core"
+          uv run python -c "import ansys.acp.core"
 
       - name: Install the 'test' group
         run: |
-          poetry install --with test
+          uv sync --group test --no-dev
+
+      - name: Setup Python 3.11 for API package build
+        if: "${{ env.API_BRANCH != '' }}"
+        uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.11"
 
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
@@ -208,7 +199,7 @@ jobs:
         # other transitive dependencies. For example, when a newer version of protobuf
         # is installed.
         run: |
-          poetry run pip install --no-deps --force-reinstall .api_package/*.whl
+          uv pip install --no-deps --force-reinstall .api_package/*.whl
 
       - name: Login in Github Container registry
         uses: docker/login-action@v4
@@ -221,7 +212,7 @@ jobs:
         working-directory: tests/unittests
         run: |
           docker pull $IMAGE_NAME
-          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html -m "not graphics"
+          uv run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html -m "not graphics"
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
@@ -256,26 +247,21 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Setup Python
-        uses: actions/setup-python@v6.2.0
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: |
-            3.11
-            ${{ matrix.python-version }}
-
-      - name: Pip cache
-        uses: actions/cache@v5.0.5
-        with:
-          path: ~/.cache/pip
-          key: pip-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}-testing
-          restore-keys: |
-            pip-${{ runner.os }}-${{ matrix.python-version }}
+          python-version: ${{ matrix.python-version }}
 
       - name: Install library, with test group
         run: |
           pip install -U pip
-          pip install 'poetry!=1.7.0'
-          poetry install --with test --extras graphics
+          uv sync --group test --extra graphics --no-dev
+
+      - name: Setup Python 3.11 for API package build
+        if: "${{ env.API_BRANCH != '' }}"
+        uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.11"
 
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
@@ -292,7 +278,7 @@ jobs:
         # other transitive dependencies. For example, when a newer version of protobuf
         # is installed.
         run: |
-          poetry run pip install --no-deps --force-reinstall .api_package/*.whl
+          uv pip install --no-deps --force-reinstall .api_package/*.whl
 
       - name: Login in Github Container registry
         uses: docker/login-action@v4
@@ -305,7 +291,7 @@ jobs:
         working-directory: tests/unittests
         run: |
           docker pull $IMAGE_NAME
-          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html
+          uv run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
@@ -321,7 +307,7 @@ jobs:
       - name: Benchmarks
         working-directory: tests/benchmarks
         run: |
-          poetry run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == env.MAIN_PYTHON_VERSION && matrix.server-version == 'latest') && ' ' || '--validate-benchmarks-only' }}
+          uv run pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == env.MAIN_PYTHON_VERSION && matrix.server-version == 'latest') && ' ' || '--validate-benchmarks-only' }}
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
@@ -345,26 +331,21 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Setup Python
-        uses: actions/setup-python@v6.2.0
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: |
-            3.11
-            ${{ env.MAIN_PYTHON_VERSION }}
-
-      - name: Pip cache
-        uses: actions/cache@v5.0.5
-        with:
-          path: ~/.cache/pip
-          key: pip-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-doctest
-          restore-keys: |
-            pip-${{ runner.os }}
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
       - name: Install library, with test,dev groups
         run: |
           pip install -U pip
-          pip install 'poetry!=1.7.0'
-          poetry install --all-groups --all-extras
+          uv sync --all-groups --all-extras
+
+      - name: Setup Python 3.11 for API package build
+        if: "${{ env.API_BRANCH != '' }}"
+        uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.11"
 
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
@@ -381,7 +362,7 @@ jobs:
         # other transitive dependencies. For example, when a newer version of protobuf
         # is installed.
         run: |
-          poetry run pip install --no-deps --force-reinstall .api_package/*.whl
+          uv pip install --no-deps --force-reinstall .api_package/*.whl
 
       - name: Login in Github Container registry
         uses: docker/login-action@v4
@@ -401,8 +382,7 @@ jobs:
       - name: Configure Local Product Launcher for ACP
         working-directory: tests/unittests
         run: >
-          poetry run
-          ansys-launcher configure ACP docker_compose
+          uv run ansys-launcher configure ACP docker_compose
           --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
@@ -417,7 +397,7 @@ jobs:
         run: |
           docker pull $IMAGE_NAME
           docker pull ghcr.io/ansys/tools-filetransfer:latest
-          poetry run make -C doc doctest
+          uv run make -C doc doctest
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
@@ -435,20 +415,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
-      - name: Setup Python
-        uses: actions/setup-python@v6.2.0
-        with:
-          python-version: |
-            3.11
-            ${{ env.MAIN_PYTHON_VERSION }}
 
-      - name: Pip cache
-        uses: actions/cache@v5.0.5
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
         with:
-          path: ~/.cache/pip
-          key: pip-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-docs
-          restore-keys: |
-            pip-${{ runner.os }}
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
       - name: Install OS packages
         run: |
@@ -461,8 +432,13 @@ jobs:
       - name: Install library, with dev group
         run: |
           pip install -U pip
-          pip install 'poetry!=1.7.0'
-          poetry install --with dev --all-extras
+          uv sync --group dev --all-extras --no-group test
+
+      - name: Setup Python 3.11 for API package build
+        if: "${{ env.API_BRANCH != '' }}"
+        uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.11"
 
       - name: Build API package from custom branch
         if: "${{ env.API_BRANCH != '' }}"
@@ -479,12 +455,11 @@ jobs:
         # other transitive dependencies. For example, when a newer version of protobuf
         # is installed.
         run: |
-          poetry run pip install --no-deps --force-reinstall .api_package/*.whl
+          uv pip install --no-deps --force-reinstall .api_package/*.whl
 
       - name: Configure Local Product Launcher for ACP
         run: >
-          poetry run
-          ansys-launcher configure ACP docker_compose
+          uv run ansys-launcher configure ACP docker_compose
           --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
@@ -522,7 +497,7 @@ jobs:
 
       - name: Build HTML
         run: |
-          poetry run make -C doc html SPHINXOPTS="-W --keep-going -v $SPHINXOPT_NITPICKY"
+          uv run make -C doc html SPHINXOPTS="-W --keep-going -v $SPHINXOPT_NITPICKY"
         env:
           PYMAPDL_IP: "127.0.0.1"
           PYMAPDL_PORT: "50557"
@@ -562,7 +537,7 @@ jobs:
         if: ${{ matrix.build_type == 'full' }}
 
       - name: Build PDF Documentation
-        run: poetry run make -C doc pdf
+        run: uv run make -C doc pdf
         if: ${{ matrix.build_type == 'full' }}
 
       - name: Upload PDF Documentation

@@ -5,6 +5,9 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
 
+env:
+  UV_FROZEN: "true"
+
 jobs:
   main:
     name: Build and Test
@@ -17,25 +20,23 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Setup Python
-        uses: actions/setup-python@v6.2.0
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Create wheel
         run: |
-          pip install poetry
-          poetry build --format wheel
+          uv build --wheel
 
-      - name: Install library from wheel, test dependencies from poetry.lock
+      - name: Install library from wheel, test dependencies from uv.lock
         run: |
           python -m venv test_env
           . test_env/bin/activate
 
           pip install $(echo dist/*.whl)[graphics]
-
-          poetry config virtualenvs.create false --local
-          poetry install --no-root --only test --extras graphics
+          uv export --group test --extra graphics --no-emit-project --output-file requirements-test.txt
+          pip install -r requirements-test.txt
 
       - name: Login in Github Container registry
         uses: docker/login-action@v4

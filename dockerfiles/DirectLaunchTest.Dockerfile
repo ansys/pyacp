@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 
 USER container
 
-RUN pipx install poetry
+RUN pipx install uv
 
 ENV PATH="$PATH:/home/container/.local/bin"
 
@@ -33,9 +33,9 @@ RUN chmod -R 777 /home/container/
 
 COPY --chmod=755 <<EOF /home/container/install_and_run_tests.sh
 #!/usr/bin/bash
-poetry env use python3.12
-poetry install --all-groups --all-extras
-poetry run pytest --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html --server-bin=/usr/ansys_inc/acp/acp_grpcserver "\$@"
+uv venv --python python3.12
+uv sync --all-groups --all-extras
+uv run pytest --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html --server-bin=/usr/ansys_inc/acp/acp_grpcserver "\$@"
 EOF
 
 ENTRYPOINT ["/home/container/install_and_run_tests.sh"]

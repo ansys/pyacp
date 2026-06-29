@@ -101,25 +101,24 @@ You will need to follow these steps:
         git clone https://github.com/ansys/pyacp
         cd pyacp
 
-2.  Make sure you have the latest version of poetry and its shell plugin:
+2.  Make sure you have the latest version of uv:
 
     .. code-block:: bash
 
         python -m pip install pipx
         pipx ensurepath
-        pipx install poetry
-        pipx inject poetry poetry-plugin-shell
+        pipx install uv
 
     .. note::
 
-        At this point, you may need to restart your shell or editor to ensure that the new ``poetry`` command is available.
+        At this point, you may need to restart your shell or editor to ensure that the new ``uv`` command is available.
 
-4.  Install the project and all its development dependencies using poetry. This also takes care of
+    4.  Install the project and all its development dependencies using uv. This also takes care of
     creating a new virtual environment:
 
     .. code-block:: bash
 
-        poetry install --all-groups --all-extras
+        uv sync --all-groups --all-extras
 
     This step installs PyACP in an editable mode (no build step is needed, no re-install when changing the code).
 
@@ -127,7 +126,13 @@ You will need to follow these steps:
 
     .. code-block:: bash
 
-        poetry shell
+        source .venv/bin/activate
+
+    On Windows PowerShell:
+
+    .. code-block:: powershell
+
+        .venv\Scripts\Activate.ps1
 
 Testing
 ^^^^^^^
@@ -259,7 +264,7 @@ The following commands can be used to build and check the PyACP package:
 
 .. code-block:: bash
 
-    poetry build
+    uv build
     twine check dist/*
 
 This creates both a source distribution, and a wheel file. An alternative is
