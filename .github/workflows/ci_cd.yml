@@ -19,7 +19,7 @@ env:
   PACKAGE_NAME: "ansys-acp-core"
   DOCUMENTATION_CNAME: "acp.docs.pyansys.com"
   DOCKER_IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
-  UV_FROZEN: "true"
+  UV_LOCKED: "true"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
