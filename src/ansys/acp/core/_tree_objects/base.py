@@ -31,6 +31,7 @@ from dataclasses import dataclass
 import typing
 from typing import Any, Generic, Self, TypeVar, cast
 
+import grpc
 from grpc import Channel
 from packaging.version import Version
 from packaging.version import parse as parse_version
@@ -258,12 +259,24 @@ class TreeObject(TreeObjectBase):
     def delete(self) -> None:
         """Delete the object."""
         with wrap_grpc_errors():
-            self._get_stub().Delete(
-                DeleteRequest(
-                    resource_path=self._pb_object.info.resource_path,
-                    version=self._pb_object.info.version,
+            try:
+                self._get_stub().Delete(
+                    DeleteRequest(
+                        resource_path=self._pb_object.info.resource_path,
+                        version=self._pb_object.info.version,
+                    )
                 )
-            )
+            except grpc.RpcError as e:
+                # Handle version changes which have not yet
+                # propagated to PyACP.
+                if e.code() == grpc.StatusCode.FAILED_PRECONDITION:
+                    self._get()
+                    self._get_stub().Delete(
+                        DeleteRequest(
+                            resource_path=self._pb_object.info.resource_path,
+                            version=self._pb_object.info.version,
+                        )
+                    )
 
     def _get(self) -> None:
         with wrap_grpc_errors():
