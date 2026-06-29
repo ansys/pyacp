@@ -10,9 +10,6 @@ on:
       - main
   workflow_dispatch:
     inputs:
-      api_branch:
-        description: "Branch of the 'ansys-api-acp' repository used during the build."
-        required: false
       docker_image_suffix:
         description: "Suffix of the 'acp' docker image used for testing. For example, ':latest', or '@sha256:<hash>' (without quotes)."
         required: false
@@ -21,7 +18,6 @@ env:
   MAIN_PYTHON_VERSION: "3.14"
   PACKAGE_NAME: "ansys-acp-core"
   DOCUMENTATION_CNAME: "acp.docs.pyansys.com"
-  API_BRANCH: ${{ github.event.inputs.api_branch || '' }}
   DOCKER_IMAGE_NAME: "ghcr.io/ansys/acp${{ github.event.inputs.docker_image_suffix || ':latest' }}"
   UV_FROZEN: "true"
 
@@ -45,32 +41,7 @@ jobs:
 
       # pre-commit needs all dev dependencies, since it also checks the test and example files
       - name: Install library, with all optional groups
-        run: |
-          pip install -U pip
-          uv sync --all-groups --all-extras
-
-      - name: Setup Python 3.11 for API package build
-        if: "${{ env.API_BRANCH != '' }}"
-        uses: actions/setup-python@v6.2.0
-        with:
-          python-version: "3.11"
-
-      - name: Build API package from custom branch
-        if: "${{ env.API_BRANCH != '' }}"
-        run: |
-          python3.11 -m venv .api_builder_venv
-          . .api_builder_venv/bin/activate
-          python -m pip install --upgrade pip wheel
-          mkdir .api_package
-          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ env.API_BRANCH }}
-
-      - name: Install custom API branch package
-        if: "${{ env.API_BRANCH != '' }}"
-        # The --no-deps flag is added since this may cause dependency conflicts with
-        # other transitive dependencies. For example, when a newer version of protobuf
-        # is installed.
-        run: |
-          uv pip install --no-deps --force-reinstall .api_package/*.whl
+        run: uv sync --all-groups --all-extras
 
       - name: Run pre-commit
         run: |
@@ -166,40 +137,13 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install library, with only the 'main' group
-        run: |
-          pip install -U pip
-          uv sync --no-dev --no-group test
+        run: uv sync --no-dev --no-group test
 
       - name: Check that PyACP can be imported
-        run: |
-          uv run python -c "import ansys.acp.core"
+        run: uv run python -c "import ansys.acp.core"
 
       - name: Install the 'test' group
-        run: |
-          uv sync --group test --no-dev
-
-      - name: Setup Python 3.11 for API package build
-        if: "${{ env.API_BRANCH != '' }}"
-        uses: actions/setup-python@v6.2.0
-        with:
-          python-version: "3.11"
-
-      - name: Build API package from custom branch
-        if: "${{ env.API_BRANCH != '' }}"
-        run: |
-          python3.11 -m venv .api_builder_venv
-          . .api_builder_venv/bin/activate
-          python -m pip install --upgrade pip wheel
-          mkdir .api_package
-          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ env.API_BRANCH }}
-
-      - name: Install custom API branch package
-        if: "${{ env.API_BRANCH != '' }}"
-        # The --no-deps flag is added since this may cause dependency conflicts with
-        # other transitive dependencies. For example, when a newer version of protobuf
-        # is installed.
-        run: |
-          uv pip install --no-deps --force-reinstall .api_package/*.whl
+        run: uv sync --group test --no-dev
 
       - name: Login in Github Container registry
         uses: docker/login-action@v4
@@ -253,32 +197,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install library, with test group
-        run: |
-          pip install -U pip
-          uv sync --group test --extra graphics --no-dev
-
-      - name: Setup Python 3.11 for API package build
-        if: "${{ env.API_BRANCH != '' }}"
-        uses: actions/setup-python@v6.2.0
-        with:
-          python-version: "3.11"
-
-      - name: Build API package from custom branch
-        if: "${{ env.API_BRANCH != '' }}"
-        run: |
-          python3.11 -m venv .api_builder_venv
-          . .api_builder_venv/bin/activate
-          python -m pip install --upgrade pip wheel
-          mkdir .api_package
-          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ env.API_BRANCH }}
-
-      - name: Install custom API branch package
-        if: "${{ env.API_BRANCH != '' }}"
-        # The --no-deps flag is added since this may cause dependency conflicts with
-        # other transitive dependencies. For example, when a newer version of protobuf
-        # is installed.
-        run: |
-          uv pip install --no-deps --force-reinstall .api_package/*.whl
+        run: uv sync --group test --extra graphics --no-dev
 
       - name: Login in Github Container registry
         uses: docker/login-action@v4
@@ -337,9 +256,7 @@ jobs:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
       - name: Install library, with test,dev groups
-        run: |
-          pip install -U pip
-          uv sync --all-groups --all-extras
+        run: uv sync --all-groups --all-extras
 
       - name: Setup Python 3.11 for API package build
         if: "${{ env.API_BRANCH != '' }}"
@@ -430,32 +347,7 @@ jobs:
         uses: pyvista/setup-headless-display-action@5bc8de3bc71fcda7a96439571287a554901541a0 # v4.3
 
       - name: Install library, with dev group
-        run: |
-          pip install -U pip
-          uv sync --group dev --all-extras --no-group test
-
-      - name: Setup Python 3.11 for API package build
-        if: "${{ env.API_BRANCH != '' }}"
-        uses: actions/setup-python@v6.2.0
-        with:
-          python-version: "3.11"
-
-      - name: Build API package from custom branch
-        if: "${{ env.API_BRANCH != '' }}"
-        run: |
-          python3.11 -m venv .api_builder_venv
-          . .api_builder_venv/bin/activate
-          python -m pip install --upgrade pip wheel
-          mkdir .api_package
-          python -m pip wheel --no-deps --wheel-dir .api_package git+https://github.com/ansys/ansys-api-acp.git@${{ env.API_BRANCH }}
-
-      - name: Install custom API branch package
-        if: "${{ env.API_BRANCH != '' }}"
-        # The --no-deps flag is added since this may cause dependency conflicts with
-        # other transitive dependencies. For example, when a newer version of protobuf
-        # is installed.
-        run: |
-          uv pip install --no-deps --force-reinstall .api_package/*.whl
+        run: uv sync --group dev --all-extras --no-group test
 
       - name: Configure Local Product Launcher for ACP
         run: >
