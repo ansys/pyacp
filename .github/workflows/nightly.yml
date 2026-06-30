@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  packages: read # needed for pulling the Docker image
 env:
   UV_FROZEN: "true"
 

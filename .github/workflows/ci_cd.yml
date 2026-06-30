@@ -104,6 +104,8 @@ jobs:
     name: Testing with direct launch mode
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      packages: read # needed for pulling the Docker image
 
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
@@ -143,6 +145,8 @@ jobs:
       matrix:
         python-version: ["3.11", "3.12", '3.13', '3.14']
         server-version: ["latest"]
+    permissions:
+      packages: read # needed for pulling the Docker image
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
@@ -192,6 +196,8 @@ jobs:
     name: Testing
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      packages: read # needed for pulling the Docker image
     strategy:
       fail-fast: false
       matrix:
@@ -268,6 +274,8 @@ jobs:
     name: Test documentation snippets
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      packages: read # needed for pulling the Docker image
 
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
@@ -328,6 +336,8 @@ jobs:
     name: Build Documentation
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      packages: read # needed for pulling the Docker image
     strategy:
       matrix:
         build_type: ["quick", "full"]
@@ -472,10 +482,8 @@ jobs:
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
     needs: [build]
     runs-on: ubuntu-latest
-    # INFO: Specifying a GitHub environment is optional but encouraged
     environment: release
-    # INFO: Trusted publishers require these permissions
-    permissions:
+    permissions: # INFO: Trusted publishers require these permissions
       id-token: write
       contents: write
     steps:
