@@ -16,9 +16,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
-USER container
-
-
 ENV PATH="$PATH:/home/container/.local/bin"
 
 # COPY --chown=container:container . /home/container/pyacp
@@ -27,6 +24,8 @@ WORKDIR /home/container/pyacp
 
 # Make /home/container writable to any user
 RUN chmod -R 777 /home/container/
+
+USER container
 
 COPY --chmod=755 <<EOF /home/container/install_and_run_tests.sh
 #!/usr/bin/bash

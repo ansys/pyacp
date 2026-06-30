@@ -138,8 +138,7 @@ jobs:
 
       - name: Check that PyACP can be imported
         run: |
-          . .venv/bin/activate
-          python -c "import ansys.acp.core"
+          uv run --no-sync python -c "import ansys.acp.core"
 
       - name: Install the 'test' group
         run: uv sync --group test --no-dev
@@ -154,9 +153,8 @@ jobs:
       - name: Unit testing
         working-directory: tests/unittests
         run: |
-          . .venv/bin/activate
           docker pull $IMAGE_NAME
-          pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html -m "not graphics"
+          uv run --no-sync pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html -m "not graphics"
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
@@ -209,9 +207,8 @@ jobs:
       - name: Unit testing
         working-directory: tests/unittests
         run: |
-          . .venv/bin/activate
           docker pull $IMAGE_NAME
-          pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html
+          uv run --no-sync pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
@@ -227,8 +224,7 @@ jobs:
       - name: Benchmarks
         working-directory: tests/benchmarks
         run: |
-          . .venv/bin/activate
-          pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == env.MAIN_PYTHON_VERSION && matrix.server-version == 'latest') && ' ' || '--validate-benchmarks-only' }}
+          uv run --no-sync pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == env.MAIN_PYTHON_VERSION && matrix.server-version == 'latest') && ' ' || '--validate-benchmarks-only' }}
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
@@ -277,25 +273,23 @@ jobs:
 
       - name: Configure Local Product Launcher for ACP
         working-directory: tests/unittests
-        run: |
-          . .venv/bin/activate
-          ansys-launcher configure ACP docker_compose \
-          --image_name_acp=${{ env.DOCKER_IMAGE_NAME }} \
-          --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest \
-          --license_server=1055@$LICENSE_SERVER \
-          --transport_mode=mtls \
-          --certs_dir=null \
-          --keep_volume=False \
+        run: >
+          uv run --no-sync ansys-launcher configure ACP docker_compose
+          --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
+          --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
+          --license_server=1055@$LICENSE_SERVER
+          --transport_mode=mtls
+          --certs_dir=null
+          --keep_volume=False
           --overwrite_default
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
 
       - name: Run doctest
         run: |
-          . .venv/bin/activate
           docker pull $IMAGE_NAME
           docker pull ghcr.io/ansys/tools-filetransfer:latest
-          make -C doc doctest
+          uv run --no-sync make -C doc doctest
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
@@ -331,15 +325,14 @@ jobs:
         run: uv sync --group dev --all-extras --no-group test
 
       - name: Configure Local Product Launcher for ACP
-        run: |
-          . .venv/bin/activate
-          ansys-launcher configure ACP docker_compose \
-          --image_name_acp=${{ env.DOCKER_IMAGE_NAME }} \
-          --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest \
-          --license_server=1055@$LICENSE_SERVER \
-          --transport_mode=mtls \
-          --certs_dir=null \
-          --keep_volume=False \
+        run: >
+          uv run --no-sync ansys-launcher configure ACP docker_compose
+          --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
+          --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
+          --license_server=1055@$LICENSE_SERVER
+          --transport_mode=mtls
+          --certs_dir=null
+          --keep_volume=False
           --overwrite_default
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
@@ -371,8 +364,7 @@ jobs:
 
       - name: Build HTML
         run: |
-          . .venv/bin/activate
-          make -C doc html SPHINXOPTS="-W --keep-going -v $SPHINXOPT_NITPICKY"
+          uv run --no-sync make -C doc html SPHINXOPTS="-W --keep-going -v $SPHINXOPT_NITPICKY"
         env:
           PYMAPDL_IP: "127.0.0.1"
           PYMAPDL_PORT: "50557"
@@ -412,9 +404,7 @@ jobs:
         if: ${{ matrix.build_type == 'full' }}
 
       - name: Build PDF Documentation
-        run: |
-          . .venv/bin/activate
-          make -C doc pdf
+        run: uv run --no-sync make -C doc pdf
         if: ${{ matrix.build_type == 'full' }}
 
       - name: Upload PDF Documentation
