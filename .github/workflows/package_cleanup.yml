@@ -5,6 +5,9 @@ on:
     - cron: "0 2 * * *"
 permissions:
   contents: read
+concurrency:
+  group: package-cleanup
+  cancel-in-progress: true
 
 jobs:
   cleanup:
