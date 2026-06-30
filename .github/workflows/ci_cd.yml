@@ -254,10 +254,15 @@ jobs:
       - name: Benchmarks
         working-directory: tests/benchmarks
         run: |
-          uv run --no-sync pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname ${{ (matrix.python-version == env.MAIN_PYTHON_VERSION && matrix.server-version == 'latest') && ' ' || '--validate-benchmarks-only' }}
+          benchmark_mode_args=""
+          if [ "$RUN_FULL_BENCHMARKS" != "true" ]; then
+            benchmark_mode_args="--validate-benchmarks-only"
+          fi
+          uv run --no-sync pytest -v --license-server=1055@$LICENSE_SERVER --no-server-log-files --docker-image=$IMAGE_NAME --build-benchmark-image --benchmark-json benchmark_output.json --benchmark-group-by=fullname $benchmark_mode_args
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
           IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
+          RUN_FULL_BENCHMARKS: ${{ matrix.python-version == env.MAIN_PYTHON_VERSION && matrix.server-version == 'latest' }}
 
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@52576c92bccf6ac60c8223ec7eb2565637cae9ba # v1.22.1
