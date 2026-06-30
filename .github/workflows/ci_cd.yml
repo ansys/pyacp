@@ -244,7 +244,7 @@ jobs:
           IMAGE_NAME: ghcr.io/ansys/acp:${{ matrix.server-version }}
 
       - name: Store benchmark result
-        uses: benchmark-action/github-action-benchmark@v1
+        uses: benchmark-action/github-action-benchmark@52576c92bccf6ac60c8223ec7eb2565637cae9ba # v1.22.1
         with:
           name: 'PyACP benchmarks'
           tool: 'pytest'
@@ -398,7 +398,7 @@ jobs:
           docker compose -f ./docker-compose/docker-compose-extras.yaml down -v
 
       - name: Upload HTML Documentation
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: documentation-html
           path: doc/build/html
@@ -424,7 +424,7 @@ jobs:
         if: ${{ matrix.build_type == 'full' }}
 
       - name: Upload PDF Documentation
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: documentation-pdf
           path: doc/build/latex/ansys-acp-core.pdf
