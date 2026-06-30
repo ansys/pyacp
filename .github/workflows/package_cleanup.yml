@@ -3,6 +3,8 @@ on:
   workflow_dispatch:
   schedule: # UTC at 0200
     - cron: "0 2 * * *"
+permissions:
+  contents: read
 
 jobs:
   cleanup:

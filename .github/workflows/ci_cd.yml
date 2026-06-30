@@ -13,6 +13,8 @@ on:
       docker_image_suffix:
         description: "Suffix of the 'acp' docker image used for testing. For example, ':latest', or '@sha256:<hash>' (without quotes)."
         required: false
+permissions:
+  contents: read
 
 env:
   MAIN_PYTHON_VERSION: "3.14"
