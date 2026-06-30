@@ -21,5 +21,6 @@ Mechanical integration helpers
     :template: autosummary/internal/base.rst.jinja2
 
     export_mesh_for_acp
+    get_mechanical_unit_system_name
     import_acp_composite_definitions
     import_acp_mesh_from_cdb

@@ -238,9 +238,12 @@ model.export_materials(working_dir_path / matml_filename)
 #
 # Import geometry, mesh, and named selections into Mechanical
 
-
 pyacp.mechanical_integration_helpers.import_acp_mesh_from_cdb(
-    mechanical=mechanical, cdb_path=working_dir_path / cdb_filename
+    mechanical_unit_system_name=pyacp.mechanical_integration_helpers.get_mechanical_unit_system_name(
+        model.unit_system
+    ),
+    mechanical=mechanical,
+    cdb_path=working_dir_path / cdb_filename,
 )
 
 
