@@ -9,18 +9,15 @@ USER root
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
+    curl \
     libxrender1 \
-    pipx \
-    python3-pip \
-    python3.12 \
-    python3.12-venv \
     && \
     rm -rf /var/lib/apt/lists/*
 
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 USER container
 
-RUN pipx install uv
 
 ENV PATH="$PATH:/home/container/.local/bin"
 

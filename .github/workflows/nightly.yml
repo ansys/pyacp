@@ -35,7 +35,7 @@ jobs:
           . test_env/bin/activate
 
           pip install $(echo dist/*.whl)[graphics]
-          uv export --group test --extra graphics --no-emit-project --output-file requirements-test.txt
+          uv export --group test --no-emit-project --output-file requirements-test.txt
           pip install -r requirements-test.txt
 
       - name: Login in Github Container registry

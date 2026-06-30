@@ -101,13 +101,7 @@ You will need to follow these steps:
         git clone https://github.com/ansys/pyacp
         cd pyacp
 
-2.  Make sure you have the latest version of uv:
-
-    .. code-block:: bash
-
-        python -m pip install pipx
-        pipx ensurepath
-        pipx install uv
+2.  Make sure you have the latest version of uv, using one of the methods described at https://docs.astral.sh/uv/getting-started/installation/.
 
     .. note::
 

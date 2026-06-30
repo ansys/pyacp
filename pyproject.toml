@@ -9,7 +9,7 @@ description = "Python library for ACP - Ansys Composite PrepPost"
 readme = "README.rst"
 requires-python = ">=3.11,<3.15"
 license = { text = "MIT" }
-authors = [{ name = "ANSYS, Inc.", email = "pyansys.core@ansys.com" }] # this is required
+authors = [{ name = "ANSYS, Inc.", email = "pyansys.core@ansys.com" }]
 maintainers = [{ name = "ANSYS, Inc.", email = "pyansys.core@ansys.com" }]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
