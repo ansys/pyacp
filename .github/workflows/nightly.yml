@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
+concurrency:
+  group: nightly-test
+  cancel-in-progress: true
 permissions:
   contents: read
   packages: read # needed for pulling the Docker image
