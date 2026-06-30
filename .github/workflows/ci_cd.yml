@@ -310,7 +310,7 @@ jobs:
         working-directory: tests/unittests
         run: >
           uv run --no-sync ansys-launcher configure ACP docker_compose
-          --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
+          --image_name_acp=${DOCKER_IMAGE_NAME}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --transport_mode=mtls
@@ -322,12 +322,11 @@ jobs:
 
       - name: Run doctest
         run: |
-          docker pull $IMAGE_NAME
+          docker pull ${DOCKER_IMAGE_NAME}
           docker pull ghcr.io/ansys/tools-filetransfer:latest
           uv run --no-sync make -C doc doctest
         env:
           LICENSE_SERVER: ${{ secrets.LICENSE_SERVER }}
-          IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
           PYACP_DOC_SKIP_GALLERY: "true"
           PYACP_DOC_SKIP_API: "true"
           ANSYS_GRPC_CERTIFICATES: ${{ github.workspace }}/tests/insecure_certs
@@ -367,7 +366,7 @@ jobs:
       - name: Configure Local Product Launcher for ACP
         run: >
           uv run --no-sync ansys-launcher configure ACP docker_compose
-          --image_name_acp=${{ env.DOCKER_IMAGE_NAME }}
+          --image_name_acp=${DOCKER_IMAGE_NAME}
           --image_name_filetransfer=ghcr.io/ansys/tools-filetransfer:latest
           --license_server=1055@$LICENSE_SERVER
           --transport_mode=mtls
@@ -396,10 +395,8 @@ jobs:
 
       - name: Pull ACP and filetransfer images
         run: |
-          docker pull $IMAGE_NAME
+          docker pull ${DOCKER_IMAGE_NAME}
           docker pull ghcr.io/ansys/tools-filetransfer:latest
-        env:
-          IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
         if: ${{ matrix.build_type == 'full' }}
 
       - name: Build HTML
