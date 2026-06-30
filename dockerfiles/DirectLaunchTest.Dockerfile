@@ -9,18 +9,12 @@ USER root
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
+    curl \
     libxrender1 \
-    pipx \
-    python3-pip \
-    python3.12 \
-    python3.12-venv \
     && \
     rm -rf /var/lib/apt/lists/*
 
-
-USER container
-
-RUN pipx install poetry
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ENV PATH="$PATH:/home/container/.local/bin"
 
@@ -31,11 +25,13 @@ WORKDIR /home/container/pyacp
 # Make /home/container writable to any user
 RUN chmod -R 777 /home/container/
 
+USER container
+
 COPY --chmod=755 <<EOF /home/container/install_and_run_tests.sh
 #!/usr/bin/bash
-poetry env use python3.12
-poetry install --all-groups --all-extras
-poetry run pytest --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html --server-bin=/usr/ansys_inc/acp/acp_grpcserver "\$@"
+uv venv --python python3.12
+uv sync --all-groups --all-extras
+uv run pytest --cov=ansys.acp.core --cov-report=term --cov-report=xml --cov-report=html --server-bin=/usr/ansys_inc/acp/acp_grpcserver "\$@"
 EOF
 
 ENTRYPOINT ["/home/container/install_and_run_tests.sh"]

@@ -29,19 +29,11 @@ repos:
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.2
     hooks:
+
       - id: codespell
         additional_dependencies: ["tomli"] # needed to parse pyproject.toml
-        exclude: '^poetry\.lock|pyproject\.toml|.*\.svg$'
+        exclude: '^uv\.lock|pyproject\.toml|.*\.svg$'
 
-  - repo: https://github.com/python-poetry/poetry/
-    rev: "2.4.1"
-    hooks:
-      - id: poetry-check
-        name: "poetry: check pyproject.toml syntax"
-      - id: poetry-check
-        name: "poetry: check poetry.lock consistency"
-        args: ["--lock"]
-        files: '^(pyproject\.toml|poetry\.lock)$'
 
   - repo: https://github.com/pycqa/pydocstyle
     rev: 6.3.0
@@ -60,6 +52,12 @@ repos:
             "metadata.interpreter metadata.kernelspec metadata.language_info metadata.vscode",
           ]
 
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: "0.7.8"
+    hooks:
+      - id: uv-lock
+        args: ["--check"]
+
   - repo: https://github.com/ansys/pre-commit-hooks
     rev: v0.8.0
     hooks:
@@ -70,21 +68,39 @@ repos:
     hooks:
       - id: mypy-code
         name: "mypy: strict checks on code"
-        entry: mypy
-        language: python
+        entry: uv
+        language: system
         types: [python]
         require_serial: true
         exclude: "^(doc/)|(tests/)|^(examples/)"
-        args: ["--strict", "--namespace-packages", "--explicit-package-bases"]
+        args: [
+          "run",
+          "--python=3.11",
+          "--isolated",
+          "--all-groups",
+          "--all-extras",
+          "--",
+          "mypy",
+          "--strict",
+          "--namespace-packages",
+          "--explicit-package-bases"
+        ]
       - id: mypy-tests
         name: "mypy: lenient checks on tests"
-        entry: mypy
-        language: python
+        entry: uv
+        language: system
         types: [python]
         require_serial: true
         files: "^(tests/)|^(examples/)"
         exclude: "^(examples/pymechanical_with_shim)"
         args: [
+          "run",
+          "--python=3.11",
+          "--isolated",
+          "--all-groups",
+          "--all-extras",
+          "--",
+          "mypy",
           "--strict",
           "--namespace-packages",
           "--explicit-package-bases",
