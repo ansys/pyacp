@@ -9,7 +9,7 @@ jobs:
     name: "Delete untagged package versions"
     runs-on: ubuntu-latest
     permissions:
-      packages: write
+      packages: write # needs to be able to delete packages
     steps:
       - name: "Delete untagged package versions"
         uses: ansys/actions/hk-package-clean-untagged@v10.3.2

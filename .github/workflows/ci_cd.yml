@@ -35,9 +35,10 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          enable-cache: ${{ !startsWith(github.ref, 'refs/tags/') }}
 
 
       - name: Run pre-commit
@@ -140,9 +141,10 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
           python-version: ${{ matrix.python-version }}
+          enable-cache: ${{ !startsWith(github.ref, 'refs/tags/') }}
 
       - name: Install library, with only the 'main' group
         run: uv sync --no-dev --no-group test
@@ -201,9 +203,10 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
           python-version: ${{ matrix.python-version }}
+          enable-cache: ${{ !startsWith(github.ref, 'refs/tags/') }}
 
       - name: Install library, with test group and graphics extra
         run: uv sync --group test --extra graphics --no-dev
@@ -260,9 +263,10 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          enable-cache: ${{ !startsWith(github.ref, 'refs/tags/') }}
 
       - name: Install library, with test,dev groups
         run: uv sync --all-groups --all-extras
@@ -320,9 +324,10 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          enable-cache: ${{ !startsWith(github.ref, 'refs/tags/') }}
 
       - name: Install OS packages
         run: |
