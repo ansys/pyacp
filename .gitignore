@@ -66,8 +66,8 @@ dmypy.json
 # Pycharm config
 .idea
 
-# Local poetry config
-poetry.toml
+# Local uv config
+uv.toml
 
 # Hypothesis testing
 .hypothesis
