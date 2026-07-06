@@ -249,7 +249,7 @@ requires-dist = [
     { name = "ansys-mechanical-core", marker = "extra == 'examples'", specifier = ">=0.10.0" },
     { name = "ansys-tools-common", specifier = ">=0.4.0" },
     { name = "ansys-tools-filetransfer", specifier = ">=0.2.1" },
-    { name = "grpcio-health-checking", specifier = ">=1.43" },
+    { name = "grpcio-health-checking", specifier = ">=1.71" },
     { name = "matplotlib", marker = "extra == 'all'", specifier = ">=3.8.3" },
     { name = "matplotlib", marker = "extra == 'examples'", specifier = ">=3.8.3" },
     { name = "networkx", specifier = ">=3.0.0" },
