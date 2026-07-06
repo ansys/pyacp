@@ -239,7 +239,7 @@ test = [
 
 [package.metadata]
 requires-dist = [
-    { name = "ansys-api-acp", git = "https://github.com/ansys/ansys-api-acp.git?branch=feat%2Fupdate_protos" },
+    { name = "ansys-api-acp", specifier = "==0.4.0" },
     { name = "ansys-dpf-composites", marker = "extra == 'all'", specifier = ">=0.6" },
     { name = "ansys-dpf-composites", marker = "extra == 'examples'", specifier = ">=0.6" },
     { name = "ansys-dpf-core", marker = "extra == 'all'", specifier = ">=0.13" },
@@ -292,11 +292,15 @@ test = [
 
 [[package]]
 name = "ansys-api-acp"
-version = "0.4.0.dev0"
-source = { git = "https://github.com/ansys/ansys-api-acp.git?branch=feat%2Fupdate_protos#7e892deb9ff926db71f667269faa31551e0fa35f" }
+version = "0.4.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "grpcio" },
     { name = "protobuf" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/88/a0/0c4dd9c1c1aaa8cb87e45d6ac7f9e725ceb7bbd0ac0e2ffc020c969bb9e8/ansys_api_acp-0.4.0.tar.gz", hash = "sha256:64426ce9a0fde5dd9b61eca41af7dc605ac6367e3ed6842993582256e00a63ef", size = 227559, upload-time = "2026-07-06T12:17:32.945Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a7/79/643513cd581241da1b4b73c0e91015c895bc3035d59fbdafcc61f419721a/ansys_api_acp-0.4.0-py3-none-any.whl", hash = "sha256:7913e3de8d676aad55a23655e685355989911b470f8fb3313288b041dfc0ae3c", size = 481276, upload-time = "2026-07-06T12:17:31.283Z" },
 ]
 
 [[package]]
