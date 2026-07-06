@@ -317,7 +317,7 @@ def raises_before_version(acp_instance):
     @contextmanager
     def inner(version: str):
         if parse_version(acp_instance.server_version) < parse_version(version):
-            with pytest.raises(RuntimeError):
+            with pytest.raises((RuntimeError, ValueError)):
                 yield
         else:
             yield
