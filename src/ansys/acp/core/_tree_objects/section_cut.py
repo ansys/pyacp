@@ -113,6 +113,10 @@ class SectionCut(CreatableTreeObject, IdTreeObject):
         False.
     tolerance :
         Deprecated alias for ``minimum_segment_length``.
+    minimum_thickness_to_length_ratio :
+        Defines the minimum thickness to length ratio of the elements. Elements with a smaller
+        ratio are refined. Zero means that no refinement is applied. It's recommended to use a
+        value between 0 and 1.
     use_default_interpolation_settings :
         If True, default interpolation settings are used by the sweep-based extrusion.
         Used only if ``extrusion_type`` is ``ExtrusionType.SURFACE_SWEEP_BASED``.
@@ -152,6 +156,7 @@ class SectionCut(CreatableTreeObject, IdTreeObject):
         intersection_type: IntersectionType = IntersectionType.NORMAL_TO_SURFACE,
         use_default_minimum_segment_length: bool | None = None,
         minimum_segment_length: float | None = None,
+        minimum_thickness_to_length_ratio: float = 0.0,
         use_default_tolerance: bool | None = None,
         tolerance: float | None = None,
         use_default_interpolation_settings: bool = True,
@@ -209,6 +214,7 @@ class SectionCut(CreatableTreeObject, IdTreeObject):
         self.intersection_type = intersection_type
         self.use_default_minimum_segment_length = use_default_minimum_segment_length
         self.minimum_segment_length = minimum_segment_length
+        self.minimum_thickness_to_length_ratio = minimum_thickness_to_length_ratio
         self.use_default_interpolation_settings = use_default_interpolation_settings
         self.search_radius = search_radius
         self.number_of_interpolation_points = number_of_interpolation_points
