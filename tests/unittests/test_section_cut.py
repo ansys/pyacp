@@ -100,8 +100,8 @@ class TestSectionCut(NoLockedMixin, TreeObjectTester):
                 ("section_cut_type", SectionCutType.PRODUCTION_PLY_WISE),
                 ("section_cut_type", SectionCutType.ANALYSIS_PLY_WISE),
                 ("intersection_type", IntersectionType.IN_PLANE),
-                ("use_default_tolerance", False),
-                ("tolerance", 0.6),
+                ("use_default_minimum_segment_length", False),
+                ("minimum_segment_length", 0.6),
                 ("use_default_interpolation_settings", False),
                 ("search_radius", 12.3),
                 ("number_of_interpolation_points", 5),
@@ -112,6 +112,62 @@ class TestSectionCut(NoLockedMixin, TreeObjectTester):
                 ("locked", True),
             ],
         )
+
+
+@pytest.mark.parametrize(
+    "deprecated_property,value",
+    [
+        ("use_default_tolerance", False),
+        ("tolerance", 0.6),
+    ],
+)
+def test_section_cut_deprecated_property_set_warns(tree_object, deprecated_property, value):
+    with pytest.warns(DeprecationWarning, match=rf"'{deprecated_property}'.*deprecated"):
+        setattr(tree_object, deprecated_property, value)
+
+
+@pytest.mark.parametrize("deprecated_property", ["use_default_tolerance", "tolerance"])
+def test_section_cut_deprecated_property_get_warns(tree_object, deprecated_property):
+    with pytest.warns(DeprecationWarning, match=rf"'{deprecated_property}'.*deprecated"):
+        getattr(tree_object, deprecated_property)
+
+
+@pytest.mark.parametrize(
+    "deprecated_arg,replacement_arg,value",
+    [
+        (
+            "use_default_tolerance",
+            "use_default_minimum_segment_length",
+            False,
+        ),
+        ("tolerance", "minimum_segment_length", 0.6),
+    ],
+)
+def test_section_cut_constructor_deprecated_argument_warns(deprecated_arg, replacement_arg, value):
+    with pytest.warns(DeprecationWarning, match=rf"'{deprecated_arg}'.*deprecated"):
+        section_cut = SectionCut(**{deprecated_arg: value})
+
+    assert getattr(section_cut, replacement_arg) == value
+
+
+@pytest.mark.parametrize(
+    "deprecated_arg,replacement_arg,value",
+    [
+        (
+            "use_default_tolerance",
+            "use_default_minimum_segment_length",
+            False,
+        ),
+        ("tolerance", "minimum_segment_length", 0.6),
+    ],
+)
+def test_section_cut_create_method_deprecated_argument_warns(
+    parent_object, deprecated_arg, replacement_arg, value
+):
+    with pytest.warns(DeprecationWarning, match=rf"'{deprecated_arg}'.*deprecated"):
+        section_cut = parent_object.create_section_cut(**{deprecated_arg: value})
+
+    assert getattr(section_cut, replacement_arg) == value
 
 
 @pytest.mark.parametrize("export_type", ["mesh_only", "solid_model"])
