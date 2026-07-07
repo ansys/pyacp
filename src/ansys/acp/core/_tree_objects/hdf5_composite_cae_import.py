@@ -28,6 +28,7 @@ from typing import Any
 from ansys.api.acp.v0 import hdf5_composite_cae_import_pb2, hdf5_composite_cae_import_pb2_grpc
 
 from .._utils.property_protocols import ReadWriteProperty
+from .._utils.typing_helper import PATH as _PATH
 from ._grpc_helpers.linked_object_list import define_linked_object_list
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
@@ -250,7 +251,7 @@ class HDF5CompositeCAEImport(ImportObjectMixin, CreatableTreeObject, IdTreeObjec
         self,
         *,
         name: str = "HDF5CompositeCAEImport",
-        path: str = "",
+        path: _PATH = "",
         projection_mode: HDF5CompositeCAEProjectionMode = HDF5CompositeCAEProjectionMode.SHELL,
         minimum_angle_tolerance: float = 0.001,
         recompute_reference_directions: bool = False,
@@ -271,7 +272,7 @@ class HDF5CompositeCAEImport(ImportObjectMixin, CreatableTreeObject, IdTreeObjec
         """Create a gRPC stub for the HDF5CompositeCAEImport object."""
         return hdf5_composite_cae_import_pb2_grpc.ObjectServiceStub(self._channel)
 
-    path: ReadWriteProperty[str, str] = grpc_data_property("properties.path")
+    path: ReadWriteProperty[str, _PATH] = grpc_data_property("properties.path", to_protobuf=str)
     projection_mode = grpc_data_property(
         "properties.projection_mode",
         to_protobuf=hdf5_composite_cae_projection_mode_to_pb,
