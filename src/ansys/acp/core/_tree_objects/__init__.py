@@ -62,6 +62,7 @@ from .enums import (
     ExtrusionMethod,
     ExtrusionType,
     GeometricalRuleType,
+    HDF5CompositeCAEProjectionMode,
     ImportedPlyDrapingType,
     ImportedPlyOffsetType,
     ImportedPlyThicknessType,
@@ -101,6 +102,7 @@ from .geometrical_selection_rule import (
     GeometricalSelectionRuleElementalData,
     GeometricalSelectionRuleNodalData,
 )
+from .hdf5_composite_cae_import import CoordinateTransformation, HDF5CompositeCAEImport
 from .imported_analysis_ply import ImportedAnalysisPly
 from .imported_modeling_group import ImportedModelingGroup
 from .imported_modeling_ply import ImportedModelingPly
@@ -123,7 +125,6 @@ from .material import Material
 from .model import (
     FeFormat,
     HDF5CompositeCAEImportMode,
-    HDF5CompositeCAEProjectionMode,
     IgnorableEntity,
     Model,
     ModelElementalData,
@@ -173,7 +174,6 @@ from .tube_selection_rule import (
     TubeSelectionRuleElementalData,
     TubeSelectionRuleNodalData,
 )
-from .utils import CoordinateTransformation
 from .variable_offset_selection_rule import (
     VariableOffsetSelectionRule,
     VariableOffsetSelectionRuleElementalData,
@@ -232,6 +232,7 @@ __all__ = [
     "GeometricalSelectionRuleNodalData",
     "HDF5CompositeCAEImportMode",
     "HDF5CompositeCAEProjectionMode",
+    "HDF5CompositeCAEImport",
     "IgnorableEntity",
     "ImportedAnalysisPly",
     "ImportedModelingGroup",

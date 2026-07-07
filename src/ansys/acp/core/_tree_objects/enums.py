@@ -29,6 +29,7 @@ from ansys.api.acp.v0 import (
     enum_types_pb2,
     extrusion_guide_pb2,
     geometrical_selection_rule_pb2,
+    hdf5_composite_cae_import_pb2,
     imported_modeling_ply_pb2,
     layup_mapping_object_pb2,
     lookup_table_3d_pb2,
@@ -65,6 +66,8 @@ __all__ = [
     "ExtrusionMethod",
     "ExtrusionType",
     "GeometricalRuleType",
+    "HDF5CompositeCAEImportMode",
+    "HDF5CompositeCAEProjectionMode",
     "ImportedPlyDrapingType",
     "ImportedPlyOffsetType",
     "ImportedPlyThicknessType",
@@ -102,6 +105,16 @@ Status, status_type_to_pb, status_type_from_pb = wrap_to_string_enum(
     module=__name__,
     value_converter=lambda val: val,
     doc="Options for the update status of an object.",
+)
+(
+    HDF5CompositeCAEProjectionMode,
+    hdf5_composite_cae_projection_mode_to_pb,
+    hdf5_composite_cae_projection_mode_from_pb,
+) = wrap_to_string_enum(
+    "HDF5CompositeCAEProjectionMode",
+    hdf5_composite_cae_import_pb2.ProjectionMode,
+    module=__name__,
+    doc="Options for the projection mode of the HDF5 Composite CAE file.",
 )
 (
     RosetteSelectionMethod,
@@ -228,7 +241,7 @@ Status, status_type_to_pb, status_type_from_pb = wrap_to_string_enum(
     doc="Options for combining selection rules.",
 )
 
-OffsetType, offset_type_to_pb, _ = wrap_to_string_enum(
+OffsetType, offset_type_to_pb, offset_type_from_pb = wrap_to_string_enum(
     "OffsetType",
     enum_types_pb2.OffsetType,
     module=__name__,
