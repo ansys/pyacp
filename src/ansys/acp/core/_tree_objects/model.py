@@ -44,6 +44,7 @@ from ansys.api.acp.v0 import (
     field_definition_pb2_grpc,
     geometrical_selection_rule_pb2_grpc,
     hdf5_composite_cae_import_pb2,
+    hdf5_composite_cae_import_pb2_grpc,
     imported_modeling_group_pb2_grpc,
     imported_solid_model_pb2_grpc,
     lookup_table_1d_pb2_grpc,
@@ -120,6 +121,7 @@ from .field_definition import FieldDefinition
 from .geometrical_selection_rule import GeometricalSelectionRule
 from .hdf5_composite_cae_import import (
     CoordinateTransformation,
+    HDF5CompositeCAEImport,
     ShellMappingProperties,
     SolidMappingProperties,
 )
@@ -744,6 +746,16 @@ class Model(TreeObject):
                         ),
                     )
                 )
+
+    create_hdf5_composite_cae_import = define_create_method(
+        HDF5CompositeCAEImport,
+        func_name="create_hdf5_composite_cae_import",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    hdf5_composite_cae_imports = define_mutable_mapping(
+        HDF5CompositeCAEImport, hdf5_composite_cae_import_pb2_grpc.ObjectServiceStub
+    )
 
     create_material = define_create_method(
         Material, func_name="create_material", parent_class_name="Model", module_name=__module__

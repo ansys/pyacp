@@ -33,6 +33,7 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property,
     mark_grpc_properties,
 )
+from ._import_object import ImportObjectMixin
 from .base import (
     CreatableTreeObject,
     IdTreeObject,
@@ -211,7 +212,7 @@ class CoordinateTransformation(TreeObjectAttributeWithCache):
 
 @mark_grpc_properties
 @register
-class HDF5CompositeCAEImport(CreatableTreeObject, IdTreeObject):
+class HDF5CompositeCAEImport(ImportObjectMixin, CreatableTreeObject, IdTreeObject):
     """Initialize a HDF5CompositeCAEImport object.
 
     Parameters
@@ -294,3 +295,23 @@ class HDF5CompositeCAEImport(CreatableTreeObject, IdTreeObject):
         "properties.coordinate_transformation",
         object_type=CoordinateTransformation,
     )
+
+    def run(self) -> None:
+        """Run the HDF5 composite CAE import using the stored settings.
+
+        If the server is configured to automatically upload files, the ``path``
+        parameter is treated as a local file path and the file is uploaded
+        to the server.
+        """
+        upload_path = self._server_wrapper.auto_upload(self.path)
+        orig_path = self.path
+        has_uploaded = upload_path != orig_path
+        try:
+            if has_uploaded:
+                # temporarily set the path to the uploaded file path for the
+                # duration of the run
+                self.path = upload_path
+            super().run()
+        finally:
+            if has_uploaded:
+                self.path = orig_path

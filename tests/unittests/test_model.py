@@ -423,10 +423,11 @@ def test_hdf5_composite_cae_export_with_scope(
 def test_hdf5_composite_cae_export_import(
     minimal_complete_model,
     raises_before_version,
+    warns_from_version,
     import_mode,
     projection_mode,
 ):
-    with raises_before_version("25.1"):
+    with raises_before_version("25.1"), warns_from_version("27.1", DeprecationWarning):
         with tempfile.TemporaryDirectory() as tmp_dir:
             export_file = pathlib.Path(tmp_dir) / "model_export.h5"
             minimal_complete_model.export_hdf5_composite_cae(export_file)
