@@ -29,13 +29,18 @@ from ansys.api.acp.v0.import_object_pb2 import (
     RunRequest,
 )
 
+from .._utils.property_protocols import ReadOnlyProperty
 from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.polymorphic_from_pb import tree_object_from_resource_path
+from ._grpc_helpers.property_helper import grpc_data_property_read_only, mark_grpc_properties
 from .base import CreatableTreeObject
 
 
+@mark_grpc_properties
 class ImportObjectMixin(CreatableTreeObject):
     """Mixin class for import objects."""
+
+    has_run: ReadOnlyProperty[bool] = grpc_data_property_read_only("properties.has_run")
 
     def run(self) -> None:
         """Run the import object using the stored settings.

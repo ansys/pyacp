@@ -154,6 +154,7 @@ class TestHDF5CompositeCAEImport(NoLockedMixin, TreeObjectTester):
             ],
             read_only=[
                 ("id", "some_id"),
+                ("has_run", False),
             ],
         )
 
@@ -175,7 +176,9 @@ def test_run_method(model_with_h5_export):
     hdf5_import = model.create_hdf5_composite_cae_import(
         path=export_file,
     )
+    assert not hdf5_import.has_run
     hdf5_import.run()
+    assert hdf5_import.has_run
 
 
 def test_list_delete_generated_objects(model_with_h5_export):
@@ -195,11 +198,13 @@ def test_list_delete_generated_objects(model_with_h5_export):
     generated_objects = hdf5_import.list_generated_objects()
     assert generated_objects == []
     hdf5_import.delete_generated_objects()
+    assert not hdf5_import.has_run
 
     # WHEN: The run method is called
     hdf5_import.run()
 
     # THEN: list_generated_objects should return a non-empty list of generated objects
+    assert hdf5_import.has_run
     generated_objects = hdf5_import.list_generated_objects()
     assert len(generated_objects) > 0
     # Check expected object types and counts
@@ -220,3 +225,4 @@ def test_list_delete_generated_objects(model_with_h5_export):
     # THEN: list_generated_objects should return an empty list again
     generated_objects = hdf5_import.list_generated_objects()
     assert generated_objects == []
+    assert not hdf5_import.has_run
