@@ -20,6 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from collections import Counter
+import pathlib
+import tempfile
+
 from packaging.version import parse as parse_version
 import pytest
 
@@ -152,3 +156,67 @@ class TestHDF5CompositeCAEImport(NoLockedMixin, TreeObjectTester):
                 ("id", "some_id"),
             ],
         )
+
+
+@pytest.fixture
+def model_with_h5_export(load_model_from_tempfile):
+    with load_model_from_tempfile() as model:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            export_file = pathlib.Path(tmp_dir) / "model_export.h5"
+            model.export_hdf5_composite_cae(export_file)
+            yield model, export_file
+
+
+def test_run_method(model_with_h5_export):
+    """
+    Test the run method of HDF5CompositeCAEImport.
+    """
+    model, export_file = model_with_h5_export
+    hdf5_import = model.create_hdf5_composite_cae_import(
+        path=export_file,
+    )
+    hdf5_import.run()
+
+
+def test_list_delete_generated_objects(model_with_h5_export):
+    """
+    Test the list_generated_objects and delete_generated_objects method of HDF5CompositeCAEImport.
+    """
+    # GIVEN: A model with an exported HDF5 Composite CAE file
+    model, export_file = model_with_h5_export
+    hdf5_import = model.create_hdf5_composite_cae_import(
+        path=export_file,
+    )
+
+    # WHEN: The run method has not been called yet
+    # THEN:
+    # - list_generated_objects should return an empty list
+    # - delete_generated_objects should not raise an error
+    generated_objects = hdf5_import.list_generated_objects()
+    assert generated_objects == []
+    hdf5_import.delete_generated_objects()
+
+    # WHEN: The run method is called
+    hdf5_import.run()
+
+    # THEN: list_generated_objects should return a non-empty list of generated objects
+    generated_objects = hdf5_import.list_generated_objects()
+    assert len(generated_objects) > 0
+    # Check expected object types and counts
+    assert Counter(type(obj) for obj in generated_objects) == {
+        pyacp.ElementSet: 2,
+        pyacp.Material: 1,
+        pyacp.Fabric: 1,
+        pyacp.LookUpTable3D: 1,
+        pyacp.OrientedSelectionSet: 1,
+        pyacp.Rosette: 1,
+        pyacp.ModelingPly: 1,
+        pyacp.ModelingGroup: 1,
+    }
+
+    # WHEN: The delete_generated_objects method is called
+    hdf5_import.delete_generated_objects()
+
+    # THEN: list_generated_objects should return an empty list again
+    generated_objects = hdf5_import.list_generated_objects()
+    assert generated_objects == []
