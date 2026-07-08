@@ -52,3 +52,4 @@ ACP objects
     TubeSelectionRule
     VariableOffsetSelectionRule
     VirtualGeometry
+    WindingWizard
