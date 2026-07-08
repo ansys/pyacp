@@ -213,7 +213,8 @@ class Layer(GenericEdgePropertyType):
             f"add_mirrored_ply={self.add_mirrored_ply})"
         )
 
-    def __clone__(self) -> Self:
+    def clone(self) -> Self:
+        """Create a new unstored layer with the same properties."""
         return type(self)(
             fabric=self.fabric,
             nominal_angle=self.nominal_angle,
@@ -289,7 +290,7 @@ class WindingWizard(ImportObjectMixin, CreatableTreeObject, IdTreeObject):
     max_angle_with_thickness_correction: ReadWriteProperty[float, float] = grpc_data_property(
         "properties.max_angle_with_thickness_correction"
     )
-    layers = define_edge_property_list("properties.fabrics", Layer)
+    layers = define_edge_property_list("properties.layers", Layer)
     add_layer = define_add_method(
         Layer,
         attribute_name="layers",
