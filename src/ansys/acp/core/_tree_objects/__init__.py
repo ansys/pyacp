@@ -102,7 +102,12 @@ from .geometrical_selection_rule import (
     GeometricalSelectionRuleElementalData,
     GeometricalSelectionRuleNodalData,
 )
-from .hdf5_composite_cae_import import CoordinateTransformation, HDF5CompositeCAEImport
+from .hdf5_composite_cae_import import (
+    CoordinateTransformation,
+    HDF5CompositeCAEImport,
+    ShellMappingProperties,
+    SolidMappingProperties,
+)
 from .imported_analysis_ply import ImportedAnalysisPly
 from .imported_modeling_group import ImportedModelingGroup
 from .imported_modeling_ply import ImportedModelingPly

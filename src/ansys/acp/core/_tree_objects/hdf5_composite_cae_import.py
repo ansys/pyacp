@@ -255,17 +255,23 @@ class HDF5CompositeCAEImport(ImportObjectMixin, CreatableTreeObject, IdTreeObjec
         projection_mode: HDF5CompositeCAEProjectionMode = HDF5CompositeCAEProjectionMode.SHELL,
         minimum_angle_tolerance: float = 0.001,
         recompute_reference_directions: bool = False,
-        shell_mapping_properties: ShellMappingProperties = ShellMappingProperties(),
-        solid_mapping_properties: SolidMappingProperties = SolidMappingProperties(),
-        coordinate_transformation: CoordinateTransformation = CoordinateTransformation(),
+        shell_mapping_properties: ShellMappingProperties | None = None,
+        solid_mapping_properties: SolidMappingProperties | None = None,
+        coordinate_transformation: CoordinateTransformation | None = None,
     ) -> None:
         super().__init__(name=name)
         self.path = path
         self.projection_mode = projection_mode
         self.minimum_angle_tolerance = minimum_angle_tolerance
         self.recompute_reference_directions = recompute_reference_directions
+        if shell_mapping_properties is None:
+            shell_mapping_properties = ShellMappingProperties()
         self.shell_mapping_properties = shell_mapping_properties
+        if solid_mapping_properties is None:
+            solid_mapping_properties = SolidMappingProperties()
         self.solid_mapping_properties = solid_mapping_properties
+        if coordinate_transformation is None:
+            coordinate_transformation = CoordinateTransformation()
         self.coordinate_transformation = coordinate_transformation
 
     def _create_stub(self) -> hdf5_composite_cae_import_pb2_grpc.ObjectServiceStub:
