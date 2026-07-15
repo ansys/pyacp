@@ -32,6 +32,7 @@ from collections.abc import Callable
 from functools import reduce
 import sys
 from typing import TYPE_CHECKING, Any, TypeVar
+import warnings
 
 from google.protobuf.message import Message
 
@@ -175,6 +176,7 @@ def grpc_data_getter(
     check_optional: bool = False,
     getter_func: Callable[[Message, str, bool], _PROTOBUF_T] = _get_data_attribute,
     supported_since: str | None = None,
+    deprecated_msg: str | None = None,
 ) -> Callable[[Readable], _GET_T]:
     """Create a getter method which obtains the server object via the gRPC Get endpoint.
 
@@ -198,6 +200,12 @@ def grpc_data_getter(
         ),
     )
     def inner(self: Readable) -> Any:
+        if deprecated_msg is not None:
+            warnings.warn(
+                deprecated_msg,
+                DeprecationWarning,
+                stacklevel=2,
+            )
         self._get_if_stored()
         pb_attribute = getter_func(self._pb_object, name, check_optional)
         if check_optional and pb_attribute is None:
@@ -245,6 +253,7 @@ def grpc_data_setter(
     to_protobuf: _TO_PROTOBUF_T[_SET_T],
     setter_func: Callable[[ObjectInfo, str, _PROTOBUF_T], None] = _set_data_attribute,
     supported_since: str | None = None,
+    deprecated_msg: str | None = None,
 ) -> Callable[[Editable, _SET_T], None]:
     """Create a setter method which updates the server object via the gRPC Put endpoint."""
 
@@ -257,6 +266,12 @@ def grpc_data_setter(
         ),
     )
     def inner(self: Editable, value: _SET_T) -> None:
+        if deprecated_msg is not None:
+            warnings.warn(
+                deprecated_msg,
+                DeprecationWarning,
+                stacklevel=2,
+            )
         self._get_if_stored()
         current_value = _get_data_attribute(self._pb_object, name, check_optional=True)
         value_pb = to_protobuf(value)
@@ -290,6 +305,7 @@ def grpc_data_property(
     getter_func: Callable[[Message, str, bool], _PROTOBUF_T] = _get_data_attribute,
     readable_since: str | None = None,
     writable_since: str | None = None,
+    deprecated_msg: str | None = None,
 ) -> ReadWriteProperty[_GET_T, _SET_T]:
     """Define a property which is synchronized with the backend via gRPC.
 
@@ -340,6 +356,7 @@ def grpc_data_property(
                 check_optional=check_optional,
                 getter_func=getter_func,
                 supported_since=readable_since,
+                deprecated_msg=deprecated_msg,
             )
         ).setter(
             grpc_data_setter(
@@ -347,6 +364,7 @@ def grpc_data_property(
                 to_protobuf=to_protobuf,
                 setter_func=setter_func,
                 supported_since=writable_since,
+                deprecated_msg=deprecated_msg,
             )
         ),
         doc=doc,
