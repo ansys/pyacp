@@ -34,12 +34,12 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
           enable-cache: false
@@ -53,7 +53,7 @@ jobs:
     name: "Documentation style"
     runs-on: ubuntu-latest
     steps:
-      - uses: ansys/actions/doc-style@v10.3.3
+      - uses: ansys/actions/doc-style@v10.3.5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -71,7 +71,7 @@ jobs:
             os: macos-latest
     steps:
       - name: "Build wheelhouse and perform smoke test"
-        uses: ansys/actions/build-wheelhouse@v10.3.3
+        uses: ansys/actions/build-wheelhouse@v10.3.5
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           operating-system: ${{ matrix.os }}
@@ -81,7 +81,7 @@ jobs:
     name: "Check library vulnerabilities"
     runs-on: ubuntu-latest
     steps:
-      - uses: ansys/actions/check-vulnerabilities@v10.3.3
+      - uses: ansys/actions/check-vulnerabilities@v10.3.5
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
           token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
@@ -93,7 +93,7 @@ jobs:
     name: "Check actions security"
     runs-on: ubuntu-latest
     steps:
-      - uses: ansys/actions/check-actions-security@v10.3.3
+      - uses: ansys/actions/check-actions-security@v10.3.5
         with:
           generate-summary: true
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -108,7 +108,7 @@ jobs:
       packages: read # needed for pulling the Docker image
 
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Login in Github Container registry
@@ -148,12 +148,12 @@ jobs:
     permissions:
       packages: read # needed for pulling the Docker image
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
         with:
           python-version: ${{ matrix.python-version }}
           enable-cache: false
@@ -214,12 +214,12 @@ jobs:
             server-version: "2026R1"
 
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
         with:
           python-version: ${{ matrix.python-version }}
           enable-cache: false
@@ -283,12 +283,12 @@ jobs:
       packages: read # needed for pulling the Docker image
 
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
           enable-cache: false
@@ -347,12 +347,12 @@ jobs:
         build_type: ["quick", "full"]
 
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
           enable-cache: false
@@ -474,7 +474,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Build library source and wheel artifacts
-        uses: ansys/actions/build-library@v10.3.3
+        uses: ansys/actions/build-library@v10.3.5
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
@@ -504,7 +504,7 @@ jobs:
           skip-existing: false
 
       - name: Release to GitHub
-        uses: ansys/actions/release-github@v10.3.3
+        uses: ansys/actions/release-github@v10.3.5
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -518,7 +518,7 @@ jobs:
       contents: write # needs to write to the gh-pages branch
     steps:
       - name: Deploy the latest documentation
-        uses: ansys/actions/doc-deploy-dev@v10.3.3
+        uses: ansys/actions/doc-deploy-dev@v10.3.5
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
@@ -534,7 +534,7 @@ jobs:
       contents: write # needs to write to the gh-pages branch
     steps:
       - name: Deploy the stable documentation
-        uses: ansys/actions/doc-deploy-stable@v10.3.3
+        uses: ansys/actions/doc-deploy-stable@v10.3.5
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
