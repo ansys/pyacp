@@ -42,6 +42,7 @@ from ansys.api.acp.v0 import (
     fabric_pb2_grpc,
     field_definition_pb2_grpc,
     geometrical_selection_rule_pb2_grpc,
+    hdf5_composite_cae_import_pb2,
     imported_modeling_group_pb2_grpc,
     imported_solid_model_pb2_grpc,
     lookup_table_1d_pb2_grpc,
@@ -169,13 +170,13 @@ IgnorableEntity, ignorable_entity_to_pb, _ = wrap_to_string_enum(
 )
 HDF5CompositeCAEImportMode, hdf5_composite_cae_import_mode_to_pb, _ = wrap_to_string_enum(
     "HDF5CompositeCAEImportMode",
-    model_pb2.ImportMode,
+    hdf5_composite_cae_import_pb2.ImportMode,
     module=__name__,
     doc="Options for the import mode of the HDF5 Composite CAE file.",
 )
 HDF5CompositeCAEProjectionMode, hdf5_composite_cae_projection_mode_to_pb, _ = wrap_to_string_enum(
     "HDF5CompositeCAEProjectionMode",
-    model_pb2.ProjectionMode,
+    hdf5_composite_cae_import_pb2.ProjectionMode,
     module=__name__,
     doc="Options for the projection mode of the HDF5 Composite CAE file.",
 )
@@ -416,7 +417,7 @@ class Model(TreeObject):
         with wrap_grpc_errors():
             self._get_stub().Update(
                 model_pb2.UpdateRequest(
-                    resource_path=self._resource_path, relations_only=relations_only
+                    resource_path=[self._resource_path], relations_only=relations_only
                 )
             )
 
@@ -563,10 +564,10 @@ class Model(TreeObject):
         """
         if projection_mode == HDF5CompositeCAEProjectionMode.SHELL:
             mapping_properties_kwargs: (
-                dict[str, model_pb2.ShellMappingProperties]
-                | dict[str, model_pb2.SolidMappingProperties]
+                dict[str, hdf5_composite_cae_import_pb2.ShellMappingProperties]
+                | dict[str, hdf5_composite_cae_import_pb2.SolidMappingProperties]
             ) = {
-                "shell_mapping_properties": model_pb2.ShellMappingProperties(
+                "shell_mapping_properties": hdf5_composite_cae_import_pb2.ShellMappingProperties(
                     all_elements=shell_mapping_properties.all_elements,
                     element_sets=[
                         element_set._resource_path
@@ -581,7 +582,7 @@ class Model(TreeObject):
         else:
             assert projection_mode == HDF5CompositeCAEProjectionMode.SOLID
             mapping_properties_kwargs = {
-                "solid_mapping_properties": model_pb2.SolidMappingProperties(
+                "solid_mapping_properties": hdf5_composite_cae_import_pb2.SolidMappingProperties(
                     offset_type=offset_type_to_pb(solid_mapping_properties.offset_type)  # type: ignore
                 ),
             }
@@ -595,7 +596,7 @@ class Model(TreeObject):
                     projection_mode=hdf5_composite_cae_projection_mode_to_pb(projection_mode),  # type: ignore
                     minimum_angle_tolerance=minimum_angle_tolerance,
                     recompute_reference_directions=recompute_reference_directions,
-                    coordinate_transformation=model_pb2.CoordinateTransformation(
+                    coordinate_transformation=hdf5_composite_cae_import_pb2.CoordinateTransformation(
                         **dataclasses.asdict(coordinate_transformation)
                     ),
                     **mapping_properties_kwargs,

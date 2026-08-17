@@ -32,7 +32,6 @@ Enumeration data types
     ImportedPlyOffsetType
     ImportedPlyThicknessType
     IntersectionType
-    LaunchMode
     LayupMappingRosetteSelectionMethod
     LinkedObjectHandling
     LookUpTable3DInterpolationAlgorithm

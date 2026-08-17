@@ -3,18 +3,21 @@ on:
   workflow_dispatch:
   schedule: # UTC at 0200
     - cron: "0 2 * * *"
-
 permissions:
-  contents: write
-  packages: write
+  contents: read
+concurrency:
+  group: package-cleanup
+  cancel-in-progress: true
 
 jobs:
   cleanup:
     name: "Delete untagged package versions"
     runs-on: ubuntu-latest
+    permissions:
+      packages: write # needs to be able to delete packages
     steps:
       - name: "Delete untagged package versions"
-        uses: ansys/actions/hk-package-clean-untagged@v10.3.2
+        uses: ansys/actions/hk-package-clean-untagged@v10.3.5
         with:
           package-org: 'ansys'
           package-name: 'acp'
