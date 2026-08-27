@@ -127,6 +127,13 @@ class TreeObjectTesterReadOnly:
 
         assert object_collection[ref_id].parent is parent_object
 
+    @staticmethod
+    def test_access_path_eval(acp_instance, collection_test_data):
+        """Test the ACP instance access string of the objects in the collection."""
+        object_collection, _, object_ids = collection_test_data
+        tree_object = object_collection[object_ids[0]]
+        assert eval(f"acp_instance{tree_object.access_path}") is tree_object
+
 
 class TreeObjectTester(TreeObjectTesterReadOnly):
     COLLECTION_NAME: str
@@ -234,6 +241,14 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
             object.parent
         assert "unstored" in str(exc.value)
         assert "parent" in str(exc.value)
+
+    @staticmethod
+    def test_unstored_access_path_raises(tree_object):
+        """Test that unstored objects raise an error when accessing the access string."""
+        with pytest.raises(RuntimeError) as exc:
+            tree_object.clone().access_path
+        assert "unstored" in str(exc.value)
+        assert "access string" in str(exc.value)
 
 
 class NoLockedMixin(TreeObjectTester):

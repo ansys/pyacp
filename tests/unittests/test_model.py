@@ -119,6 +119,25 @@ def test_string_representation(acp_instance, model_data_dir):
     assert f"name='{model.name}'" in model_str
 
 
+def test_access_path(acp_instance, model_data_dir):
+    first_model = acp_instance.import_model(
+        path=model_data_dir / "ACP-Pre.h5",
+        format="ansys:h5",
+    )
+    second_model = acp_instance.import_model(
+        path=model_data_dir / "ACP-Pre.h5",
+        format="ansys:h5",
+    )
+    third_model = acp_instance.import_model(
+        path=model_data_dir / "ACP-Pre.h5",
+        format="ansys:h5",
+    )
+
+    assert eval(f"acp_instance{first_model.access_path}") is first_model
+    assert eval(f"acp_instance{second_model.access_path}") is second_model
+    assert eval(f"acp_instance{third_model.access_path}") is third_model
+
+
 @pytest.fixture
 def minimal_complete_model(load_model_from_tempfile):
     with load_model_from_tempfile() as model:

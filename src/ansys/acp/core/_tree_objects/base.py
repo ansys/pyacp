@@ -35,7 +35,13 @@ from grpc import Channel
 from packaging.version import Version
 from packaging.version import parse as parse_version
 
-from ansys.api.acp.v0.base_pb2 import CollectionPath, DeleteRequest, GetRequest, ResourcePath
+from ansys.api.acp.v0.base_pb2 import (
+    CollectionPath,
+    DeleteRequest,
+    GetRequest,
+    ListRequest,
+    ResourcePath,
+)
 
 from .._server.acp_instance import ACPInstance, FileTransferHandler
 from .._utils.path_to_str import path_to_str_checked
@@ -175,6 +181,54 @@ class TreeObjectBase(ObjectCacheMixin, GrpcObjectBase):
         if parent is None:
             raise RuntimeError("The parent object could not be found.")
         return parent
+
+    @property
+    def access_path(self) -> str:
+        """Python expression suffix for accessing this object from an ACP instance.
+
+        When appended to an ACP instance variable, this expression evaluates to the object.
+        """
+        # The collection name used in PyACP is not inherently tied to the API.
+        # This mapping tracks cases where the two differ.
+        collection_name_mapping = {
+            "cad_components": "root_shapes",
+            "lookup_table_1d_columns": "columns",
+            "lookup_table_3d_columns": "columns",
+            "cutoff_selection_rules": "cut_off_selection_rules",
+        }
+        collection_label = collection_name_mapping.get(
+            self._COLLECTION_LABEL, self._COLLECTION_LABEL
+        )
+
+        if not self._is_stored:
+            raise RuntimeError("Cannot get the access string of an unstored object.")
+
+        from .model import Model
+
+        if not isinstance(self, Model):
+            if not isinstance(self, IdTreeObject):
+                raise RuntimeError(
+                    f"The '{type(self).__name__}' object does not have an identifier."
+                )
+            parent = self.parent
+            if not isinstance(parent, TreeObjectBase):
+                raise RuntimeError("The parent object is not a tree object.")
+            return f"{parent.access_path}.{collection_label}[{self.id!r}]"
+
+        from ansys.api.acp.v0 import model_pb2_grpc
+
+        model_stub = model_pb2_grpc.ObjectServiceStub(self._channel)
+        with wrap_grpc_errors():
+            model_infos = sorted(
+                model_stub.List(
+                    ListRequest(collection_path=CollectionPath(value=Model._COLLECTION_LABEL))
+                ).objects,
+                key=lambda model_info: model_info.info.resource_path.value,
+            )
+        for model_index, model_info in enumerate(model_infos):
+            if model_info.info.resource_path == self._resource_path:
+                return f".models[{model_index}]"
+        raise RuntimeError("The model could not be found.")
 
     def __repr__(self) -> str:
         return f"<{type(self).__name__} with name '{self.name}'>"
