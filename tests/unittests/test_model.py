@@ -285,9 +285,16 @@ def test_change_unit_system(minimal_complete_model, unit_system, raises_before_v
         "bin": 0.03937008,
         "bft": 0.00328084,
         "umks": 1e3,
+        "mmkms": 1.0,
     }
 
-    with raises_before_version("25.1"):
+    # The MMKMS unit system is not supported on servers prior to 27.1:
+    if unit_system == UnitSystemType.MMKMS:
+        supported_since = "27.1"
+    else:
+        supported_since = "25.1"
+
+    with raises_before_version(supported_since):
         if unit_system in (UnitSystemType.UNDEFINED, UnitSystemType.FROM_FILE):
             with pytest.raises(ValueError):
                 minimal_complete_model.unit_system = unit_system

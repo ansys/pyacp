@@ -56,8 +56,8 @@ class TestSectionCut(NoLockedMixin, TreeObjectTester):
 
     @staticmethod
     @pytest.fixture
-    def default_properties():
-        return {
+    def default_properties(acp_instance):
+        properties = {
             "status": "NOTUPTODATE",
             "locked": False,
             "active": True,
@@ -77,41 +77,104 @@ class TestSectionCut(NoLockedMixin, TreeObjectTester):
             "search_radius": 0.0,
             "number_of_interpolation_points": 1,
         }
+        if parse_version(acp_instance.server_version) >= parse_version("27.1"):
+            properties["minimum_thickness_to_length_ratio"] = 0.0
+        return properties
 
     @staticmethod
     @pytest.fixture
-    def object_properties(parent_object):
+    def object_properties(parent_object, acp_instance):
+        read_write = [
+            ("name", "new_name"),
+            ("active", False),
+            ("origin", (0.1, 0.2, 0.3)),
+            ("normal", (0, 1.0 / math.sqrt(2), 1.0 / math.sqrt(2))),
+            ("in_plane_reference_direction1", (math.sqrt(1 / 3), math.sqrt(2 / 3), 0)),
+            ("scope_entire_model", False),
+            (
+                "scope_element_sets",
+                [parent_object.create_element_set(), parent_object.create_element_set()],
+            ),
+            ("extrusion_type", ExtrusionType.SURFACE_NORMAL),
+            ("extrusion_type", ExtrusionType.SURFACE_SWEEP_BASED),
+            ("scale_factor", 1.5),
+            ("core_scale_factor", 12.3),
+            ("section_cut_type", SectionCutType.PRODUCTION_PLY_WISE),
+            ("section_cut_type", SectionCutType.ANALYSIS_PLY_WISE),
+            ("intersection_type", IntersectionType.IN_PLANE),
+            ("use_default_minimum_segment_length", False),
+            ("minimum_segment_length", 0.6),
+            ("use_default_interpolation_settings", False),
+            ("search_radius", 12.3),
+            ("number_of_interpolation_points", 5),
+        ]
+        if parse_version(acp_instance.server_version) >= parse_version("27.1"):
+            read_write.append(("minimum_thickness_to_length_ratio", 0.25))
+
         return ObjectPropertiesToTest(
-            read_write=[
-                ("name", "new_name"),
-                ("active", False),
-                ("origin", (0.1, 0.2, 0.3)),
-                ("normal", (0, 1.0 / math.sqrt(2), 1.0 / math.sqrt(2))),
-                ("in_plane_reference_direction1", (math.sqrt(1 / 3), math.sqrt(2 / 3), 0)),
-                ("scope_entire_model", False),
-                (
-                    "scope_element_sets",
-                    [parent_object.create_element_set(), parent_object.create_element_set()],
-                ),
-                ("extrusion_type", ExtrusionType.SURFACE_NORMAL),
-                ("extrusion_type", ExtrusionType.SURFACE_SWEEP_BASED),
-                ("scale_factor", 1.5),
-                ("core_scale_factor", 12.3),
-                ("section_cut_type", SectionCutType.PRODUCTION_PLY_WISE),
-                ("section_cut_type", SectionCutType.ANALYSIS_PLY_WISE),
-                ("intersection_type", IntersectionType.IN_PLANE),
-                ("use_default_tolerance", False),
-                ("tolerance", 0.6),
-                ("use_default_interpolation_settings", False),
-                ("search_radius", 12.3),
-                ("number_of_interpolation_points", 5),
-            ],
+            read_write=read_write,
             read_only=[
                 ("id", "some_id"),
                 ("status", "UPTODATE"),
                 ("locked", True),
             ],
         )
+
+
+@pytest.mark.parametrize(
+    "deprecated_property,value",
+    [
+        ("use_default_tolerance", False),
+        ("tolerance", 0.6),
+    ],
+)
+def test_section_cut_deprecated_property_set_warns(tree_object, deprecated_property, value):
+    with pytest.warns(DeprecationWarning, match=rf"'{deprecated_property}'.*deprecated"):
+        setattr(tree_object, deprecated_property, value)
+
+
+@pytest.mark.parametrize("deprecated_property", ["use_default_tolerance", "tolerance"])
+def test_section_cut_deprecated_property_get_warns(tree_object, deprecated_property):
+    with pytest.warns(DeprecationWarning, match=rf"'{deprecated_property}'.*deprecated"):
+        getattr(tree_object, deprecated_property)
+
+
+@pytest.mark.parametrize(
+    "deprecated_arg,replacement_arg,value",
+    [
+        (
+            "use_default_tolerance",
+            "use_default_minimum_segment_length",
+            False,
+        ),
+        ("tolerance", "minimum_segment_length", 0.6),
+    ],
+)
+def test_section_cut_constructor_deprecated_argument_warns(deprecated_arg, replacement_arg, value):
+    with pytest.warns(DeprecationWarning, match=rf"'{deprecated_arg}'.*deprecated"):
+        section_cut = SectionCut(**{deprecated_arg: value})
+
+    assert getattr(section_cut, replacement_arg) == value
+
+
+@pytest.mark.parametrize(
+    "deprecated_arg,replacement_arg,value",
+    [
+        (
+            "use_default_tolerance",
+            "use_default_minimum_segment_length",
+            False,
+        ),
+        ("tolerance", "minimum_segment_length", 0.6),
+    ],
+)
+def test_section_cut_create_method_deprecated_argument_warns(
+    parent_object, deprecated_arg, replacement_arg, value
+):
+    with pytest.warns(DeprecationWarning, match=rf"'{deprecated_arg}'.*deprecated"):
+        section_cut = parent_object.create_section_cut(**{deprecated_arg: value})
+
+    assert getattr(section_cut, replacement_arg) == value
 
 
 @pytest.mark.parametrize("export_type", ["mesh_only", "solid_model"])

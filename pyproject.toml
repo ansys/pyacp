@@ -8,7 +8,8 @@ version = "0.4.0.dev0"
 description = "Python library for ACP - Ansys Composite PrepPost"
 readme = "README.rst"
 requires-python = ">=3.11,<3.15"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "ANSYS, Inc.", email = "pyansys.core@ansys.com" }]
 maintainers = [{ name = "ANSYS, Inc.", email = "pyansys.core@ansys.com" }]
 classifiers = [
@@ -17,18 +18,17 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering"
 ]
 dependencies = [
     "numpy>=1.22",
-    "grpcio-health-checking>=1.43",
+    "grpcio-health-checking>=1.71",
     "packaging>=15.0",
-    "ansys-api-acp==0.3.1",
+    "ansys-api-acp==0.4.1",
     "ansys-tools-common>=0.4.0",
     "ansys-tools-filetransfer>=0.2.1",
-    "networkx>=3.0.0",
+    "networkx>=3.0.0"
 ]
 
 # Optional dependencies which are included in the 'extras' section.
@@ -40,7 +40,7 @@ examples = [
     "ansys-dpf-composites>=0.6",
     "ansys-mechanical-core>=0.10.0",
     "matplotlib>=3.8.3",
-    "scipy>=1.12.0",
+    "scipy>=1.12.0"
 ]
 all = [
     "pyvista[jupyter]>=0.42.0,!=0.42.2",
@@ -49,7 +49,7 @@ all = [
     "ansys-dpf-core>=0.13",
     "ansys-mechanical-core>=0.10.0",
     "matplotlib>=3.8.3",
-    "scipy>=1.12.0",
+    "scipy>=1.12.0"
 ]
 
 [project.urls]
@@ -82,7 +82,7 @@ dev = [
     "sphinx-design>=0.5.0", # undeclared indirect dependency via PyVista
     "sphinx-jinja>=2.0.2",
     "ipykernel>=6.22.0",
-    "vtk>=9.5.1",
+    "vtk>=9.5.1"
 ]
 test = [
     "pytest>=7.3.1,<9.1.0", # limiting to <9.1.0 due to pytest-cases incompatibility, see https://github.com/smarie/python-pytest-cases/issues/385
@@ -90,7 +90,7 @@ test = [
     "pytest-cases>=3.6.14",
     "pytest-benchmark>=4.0.0",
     "hypothesis>=6.68.2",
-    "docker>=7.0",
+    "docker>=7.0"
 ]
 
 [tool.hatch.build]

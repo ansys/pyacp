@@ -25,6 +25,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 import pathlib
 import typing
+import warnings
 
 from ansys.api.acp.v0 import section_cut_pb2, section_cut_pb2_grpc
 
@@ -97,17 +98,25 @@ class SectionCut(CreatableTreeObject, IdTreeObject):
     intersection_type :
         Determines the method used to compute a wire frame section cut. Used only
         if ``extrusion_type`` is ``ExtrusionType.WIRE_FRAME``.
-    use_default_tolerance :
+    use_default_minimum_segment_length :
         If True, the segment tolerance is computed as 0.1\% of the averaged element size.
         Otherwise, the ``tolerance`` value is used.
         Used only if ``extrusion_type`` is ``ExtrusionType.SURFACE_NORMAL`` or
         ``ExtrusionType.SURFACE_SWEEP_BASED``.
-    tolerance :
+    use_default_tolerance:
+        Deprecated alias for ``use_default_minimum_segment_length``.
+    minimum_segment_length  :
         Defines the minimum length of the segments. Segments shorter than this value
         are merged.
         Used only if ``extrusion_type`` is ``ExtrusionType.SURFACE_NORMAL`` or
-        ``ExtrusionType.SURFACE_SWEEP_BASED``, and ``use_default_tolerance`` is
+        ``ExtrusionType.SURFACE_SWEEP_BASED``, and ``use_default_minimum_segment_length`` is
         False.
+    tolerance :
+        Deprecated alias for ``minimum_segment_length``.
+    minimum_thickness_to_length_ratio :
+        Defines the minimum thickness to length ratio of the elements. Elements with a smaller
+        ratio are refined. Zero means that no refinement is applied. It's recommended to use a
+        value between 0 and 1.
     use_default_interpolation_settings :
         If True, default interpolation settings are used by the sweep-based extrusion.
         Used only if ``extrusion_type`` is ``ExtrusionType.SURFACE_SWEEP_BASED``.
@@ -145,13 +154,53 @@ class SectionCut(CreatableTreeObject, IdTreeObject):
         core_scale_factor: float = 1.0,
         section_cut_type: SectionCutType = SectionCutType.MODELING_PLY_WISE,
         intersection_type: IntersectionType = IntersectionType.NORMAL_TO_SURFACE,
-        use_default_tolerance: bool = True,
-        tolerance: float = 0.0,
+        use_default_minimum_segment_length: bool | None = None,
+        minimum_segment_length: float | None = None,
+        minimum_thickness_to_length_ratio: float = 0.0,
+        use_default_tolerance: bool | None = None,
+        tolerance: float | None = None,
         use_default_interpolation_settings: bool = True,
         search_radius: float = 0.0,
         number_of_interpolation_points: int = 1,
     ) -> None:
         super().__init__(name=name)
+        if use_default_tolerance is not None:
+            if use_default_minimum_segment_length is not None:
+                raise ValueError(
+                    "Cannot specify both 'use_default_tolerance' and "
+                    "'use_default_minimum_segment_length'. Use only "
+                    "'use_default_minimum_segment_length'."
+                )
+            warnings.warn(
+                "The SectionCut property 'use_default_tolerance' is deprecated; use "
+                "the equivalent 'use_default_minimum_segment_length' instead.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            use_default_minimum_segment_length = use_default_tolerance
+        if tolerance is not None:
+            if minimum_segment_length is not None:
+                raise ValueError(
+                    "Cannot specify both 'tolerance' and "
+                    "'minimum_segment_length'. Use only "
+                    "'minimum_segment_length'."
+                )
+            warnings.warn(
+                "The SectionCut property 'tolerance' is deprecated; use "
+                "the equivalent 'minimum_segment_length' instead.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            minimum_segment_length = tolerance
+
+        # Defaults for minimum_segment_length and use_default_minimum_segment_length if not provided.
+        # We cannot set it as defaults in the function signature due to the check for the deprecated
+        # parameters above.
+        if use_default_minimum_segment_length is None:
+            use_default_minimum_segment_length = True
+        if minimum_segment_length is None:
+            minimum_segment_length = 0.0
+
         self.active = active
         self.origin = origin
         self.normal = normal
@@ -163,8 +212,9 @@ class SectionCut(CreatableTreeObject, IdTreeObject):
         self.core_scale_factor = core_scale_factor
         self.section_cut_type = section_cut_type
         self.intersection_type = intersection_type
-        self.use_default_tolerance = use_default_tolerance
-        self.tolerance = tolerance
+        self.use_default_minimum_segment_length = use_default_minimum_segment_length
+        self.minimum_segment_length = minimum_segment_length
+        self.minimum_thickness_to_length_ratio = minimum_thickness_to_length_ratio
         self.use_default_interpolation_settings = use_default_interpolation_settings
         self.search_radius = search_radius
         self.number_of_interpolation_points = number_of_interpolation_points
@@ -220,10 +270,32 @@ class SectionCut(CreatableTreeObject, IdTreeObject):
     )
 
     # surface properties - general
-    use_default_tolerance: ReadWriteProperty[bool, bool] = grpc_data_property(
-        "properties.use_default_tolerance"
+    use_default_minimum_segment_length: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_default_minimum_segment_length"
     )
-    tolerance: ReadWriteProperty[float, float] = grpc_data_property("properties.tolerance")
+    minimum_segment_length: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.minimum_segment_length"
+    )
+
+    use_default_tolerance: ReadWriteProperty[bool, bool] = grpc_data_property(
+        "properties.use_default_minimum_segment_length",
+        deprecated_msg=(
+            "The SectionCut parameter 'use_default_tolerance' is deprecated; use the equivalent "
+            "'use_default_minimum_segment_length' instead."
+        ),
+    )
+    tolerance: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.minimum_segment_length",
+        deprecated_msg=(
+            "The SectionCut parameter 'tolerance' is deprecated; use the equivalent "
+            "'minimum_segment_length' instead."
+        ),
+    )
+
+    minimum_thickness_to_length_ratio: ReadWriteProperty[float, float] = grpc_data_property(
+        "properties.minimum_thickness_to_length_ratio", readable_since="27.1", writable_since="27.1"
+    )
+
     # surface properties - sweep-based
     use_default_interpolation_settings: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.use_default_interpolation_settings"
