@@ -60,6 +60,8 @@ jobs:
   build-wheelhouse:
     name: "Build wheelhouse"
     runs-on: ${{ matrix.os }}
+    env:
+      UV_LOCKED: "false"
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -80,6 +82,8 @@ jobs:
   check-vulnerabilities:
     name: "Check library vulnerabilities"
     runs-on: ubuntu-latest
+    env:
+      UV_LOCKED: "false"
     steps:
       - uses: ansys/actions/check-vulnerabilities@v11.0.3
         with:
@@ -472,6 +476,8 @@ jobs:
       - testing-direct-launch
       - testing-minimum-deps
     timeout-minutes: 30
+    env:
+      UV_LOCKED: "false"
     steps:
       - name: Build library source and wheel artifacts
         uses: ansys/actions/build-library@v11.0.3
