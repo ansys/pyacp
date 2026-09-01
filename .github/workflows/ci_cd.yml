@@ -39,7 +39,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
           enable-cache: false
@@ -53,13 +53,15 @@ jobs:
     name: "Documentation style"
     runs-on: ubuntu-latest
     steps:
-      - uses: ansys/actions/doc-style@v10.3.5
+      - uses: ansys/actions/doc-style@v11.0.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
   build-wheelhouse:
     name: "Build wheelhouse"
     runs-on: ${{ matrix.os }}
+    env:
+      UV_LOCKED: "false"
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -71,7 +73,7 @@ jobs:
             os: macos-latest
     steps:
       - name: "Build wheelhouse and perform smoke test"
-        uses: ansys/actions/build-wheelhouse@v10.3.5
+        uses: ansys/actions/build-wheelhouse@v11.0.3
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           operating-system: ${{ matrix.os }}
@@ -80,8 +82,10 @@ jobs:
   check-vulnerabilities:
     name: "Check library vulnerabilities"
     runs-on: ubuntu-latest
+    env:
+      UV_LOCKED: "false"
     steps:
-      - uses: ansys/actions/check-vulnerabilities@v10.3.5
+      - uses: ansys/actions/check-vulnerabilities@v11.0.3
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
           token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
@@ -93,7 +97,7 @@ jobs:
     name: "Check actions security"
     runs-on: ubuntu-latest
     steps:
-      - uses: ansys/actions/check-actions-security@v10.3.5
+      - uses: ansys/actions/check-actions-security@v11.0.3
         with:
           generate-summary: true
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -112,7 +116,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Login in Github Container registry
-        uses: docker/login-action@abd2ef45e78c5afb21d64d4ca52ee8550d9572c7 # v4.5.1
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -153,7 +157,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
           python-version: ${{ matrix.python-version }}
           enable-cache: false
@@ -169,7 +173,7 @@ jobs:
         run: uv sync --group test --no-dev
 
       - name: Login in Github Container registry
-        uses: docker/login-action@abd2ef45e78c5afb21d64d4ca52ee8550d9572c7 # v4.5.1
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -219,7 +223,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
           python-version: ${{ matrix.python-version }}
           enable-cache: false
@@ -228,7 +232,7 @@ jobs:
         run: uv sync --group test --extra graphics --no-dev
 
       - name: Login in Github Container registry
-        uses: docker/login-action@abd2ef45e78c5afb21d64d4ca52ee8550d9572c7 # v4.5.1
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -288,7 +292,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
           enable-cache: false
@@ -297,7 +301,7 @@ jobs:
         run: uv sync --all-groups --all-extras
 
       - name: Login in Github Container registry
-        uses: docker/login-action@abd2ef45e78c5afb21d64d4ca52ee8550d9572c7 # v4.5.1
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -309,7 +313,7 @@ jobs:
           sudo apt-get install pandoc
 
       - name: Set up headless display
-        uses: pyvista/setup-headless-display-action@5bc8de3bc71fcda7a96439571287a554901541a0 # v4.3
+        uses: pyvista/setup-headless-display-action@b0bf9f57d62d2b3fee9f1c0e0c7e390f05e97a4e # v5.0.0
 
       - name: Configure Local Product Launcher for ACP
         working-directory: tests/unittests
@@ -352,7 +356,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
           enable-cache: false
@@ -363,7 +367,7 @@ jobs:
           sudo apt-get install pandoc
 
       - name: Set up headless display
-        uses: pyvista/setup-headless-display-action@5bc8de3bc71fcda7a96439571287a554901541a0 # v4.3
+        uses: pyvista/setup-headless-display-action@b0bf9f57d62d2b3fee9f1c0e0c7e390f05e97a4e # v5.0.0
 
       - name: Install library, with dev group
         run: uv sync --group dev --all-extras --no-group test
@@ -383,7 +387,7 @@ jobs:
         if: ${{ matrix.build_type == 'full' }}
 
       - name: Login in Github Container registry (PYANSYS_CI_BOT)
-        uses: docker/login-action@abd2ef45e78c5afb21d64d4ca52ee8550d9572c7 # v4.5.1
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         with:
           registry: ghcr.io
           username: ${{ secrets.PYANSYS_CI_BOT_USERNAME }}
@@ -472,9 +476,11 @@ jobs:
       - testing-direct-launch
       - testing-minimum-deps
     timeout-minutes: 30
+    env:
+      UV_LOCKED: "false"
     steps:
       - name: Build library source and wheel artifacts
-        uses: ansys/actions/build-library@v10.3.5
+        uses: ansys/actions/build-library@v11.0.3
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
@@ -496,7 +502,7 @@ jobs:
           path: ${{ env.PACKAGE_NAME }}-artifacts
 
       - name: "Upload artifacts to PyPI using trusted publisher"
-        uses: pypa/gh-action-pypi-publish@ba38be9e461d3875417946c167d0b5f3d385a247 # v1.14.1
+        uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
         with:
           repository-url: "https://upload.pypi.org/legacy/"
           print-hash: true
@@ -504,7 +510,7 @@ jobs:
           skip-existing: false
 
       - name: Release to GitHub
-        uses: ansys/actions/release-github@v10.3.5
+        uses: ansys/actions/release-github@v11.0.3
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -518,7 +524,7 @@ jobs:
       contents: write # needs to write to the gh-pages branch
     steps:
       - name: Deploy the latest documentation
-        uses: ansys/actions/doc-deploy-dev@v10.3.5
+        uses: ansys/actions/doc-deploy-dev@v11.0.3
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
@@ -534,7 +540,7 @@ jobs:
       contents: write # needs to write to the gh-pages branch
     steps:
       - name: Deploy the stable documentation
-        uses: ansys/actions/doc-deploy-stable@v10.3.5
+        uses: ansys/actions/doc-deploy-stable@v11.0.3
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
