@@ -476,6 +476,8 @@ jobs:
       - testing-direct-launch
       - testing-minimum-deps
     timeout-minutes: 30
+    env:
+      UV_LOCKED: "false"
     steps:
       - name: Build library source and wheel artifacts
         uses: ansys/actions/build-library@v11.0.3
