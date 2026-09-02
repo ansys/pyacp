@@ -29,14 +29,19 @@ import warnings
 from ansys.api.acp.v0 import butt_joint_sequence_pb2, butt_joint_sequence_pb2_grpc
 
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
-from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
-from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.edge_property_list import (
     GenericEdgePropertyType,
     define_add_method,
     define_edge_property_list,
 )
-from ._grpc_helpers.linked_object_list import define_linked_object_list, define_polymorphic_linked_object_list
+from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
+from ._grpc_helpers.exceptions import wrap_grpc_errors
+from ._grpc_helpers.linked_object_list import (
+    ReadOnlyLinkedObjectList,
+    define_linked_object_list,
+    define_polymorphic_linked_object_list,
+    define_read_only_linked_object_list,
+)
 from ._grpc_helpers.polymorphic_from_pb import tree_object_from_resource_path
 from ._grpc_helpers.property_helper import (
     _exposed_grpc_property,
@@ -65,7 +70,11 @@ __all__ = ["ButtJointSequenceDefinitionType", "ButtJointSequence", "PrimaryPly"]
     "ButtJointSequenceDefinitionType",
     butt_joint_sequence_pb2.DefinitionType,
     module=__name__,
-    doc="Options for how the butt-joint plies are defined, either manually or automatically. If set to one of the 'automatic' modes, the algorithm searches for plies of the selected type that butt-join the given ply.",
+    doc=(
+        "Options for how the butt-joint plies are defined, either manually or automatically. "
+        "If set to one of the 'automatic' modes, the algorithm searches for plies of the "
+        "selected type that butt-join the given ply."
+    ),
 )
 
 
@@ -270,25 +279,18 @@ class ButtJointSequence(CreatableTreeObject, IdTreeObject):
         "properties.starting_modeling_plies", ModelingPly, supported_since="27.1"
     )
 
-    @_exposed_grpc_property
-    def automatically_added_sequences(self) -> tuple[ModelingGroup | ModelingPly, ...]:
-        """Ply sequences added by automatic butt-joint detection."""
-        self._get_if_stored()
-        properties = cast(butt_joint_sequence_pb2.Properties, self._pb_object.properties)
-        return tuple(
-            cast(
-                ModelingGroup | ModelingPly,
-                tree_object_from_resource_path(
-                    resource_path,
-                    server_wrapper=self._server_wrapper,
-                    allowed_types=_get_allowed_secondary_ply_types(),
-                ),
-            )
-            for resource_path in properties.automatically_added_sequences
+    automatically_added_sequences: ReadOnlyProperty[ReadOnlyLinkedObjectList[ModelingPly]] = (
+        define_read_only_linked_object_list(
+            "properties.automatically_added_sequences",
+            ModelingPly,
+            doc="Ply sequences added by automatic butt-joint detection.",
+            supported_since="27.1",
         )
+    )
 
     def convert_to_manual_definition(self) -> None:
         """Convert automatically detected butt joints to a manual definition."""
+        self._get()
         stub = cast(butt_joint_sequence_pb2_grpc.ObjectServiceStub, self._get_stub())
         with wrap_grpc_errors():
             stub.ConvertToManualDefinition(

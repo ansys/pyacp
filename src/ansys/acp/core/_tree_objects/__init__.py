@@ -28,7 +28,7 @@ from .boolean_selection_rule import (
     BooleanSelectionRuleElementalData,
     BooleanSelectionRuleNodalData,
 )
-from .butt_joint_sequence import ButtJointSequenceDefinitionType, ButtJointSequence, PrimaryPly
+from .butt_joint_sequence import ButtJointSequence, ButtJointSequenceDefinitionType, PrimaryPly
 from .cad_component import CADComponent
 from .cad_geometry import CADGeometry, TriangleMesh
 from .cut_off_geometry import CutOffGeometry
