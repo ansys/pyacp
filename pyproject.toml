@@ -93,6 +93,19 @@ test = [
     "docker>=7.0"
 ]
 
+[tool.uv]
+exclude-newer = "7 days"
+
+[tool.uv.exclude-newer-package]
+ansys-api-acp = false
+ansys-dpf-composites = false
+ansys-dpf-core = false
+ansys-mapdl-core = false
+ansys-mechanical-core = false
+ansys-tools-common = false
+ansys-tools-filetransfer = false
+ansys-sphinx-theme = false
+
 [tool.hatch.build]
 include = ["src/**/docker-compose-*.yaml"]
 
