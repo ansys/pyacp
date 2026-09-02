@@ -30,10 +30,12 @@ import typing
 if typing.TYPE_CHECKING:
     import ansys.mechanical.core as pymechanical
 
+from ._tree_objects.enums import UnitSystemType
 from ._utils.typing_helper import PATH
 
 __all__ = [
     "export_mesh_for_acp",
+    "get_mechanical_unit_system_name",
     "import_acp_composite_definitions",
     "import_acp_mesh_from_cdb",
 ]
@@ -63,10 +65,42 @@ def export_mesh_for_acp(*, mechanical: "pymechanical.Mechanical", path: PATH) ->
             """))
 
 
+def get_mechanical_unit_system_name(unit_system: UnitSystemType) -> str:
+    """Get the name of the Mechanical unit system corresponding to a PyACP unit system.
+
+    The returned names are values of the ``ModelImportUnitSystemType`` enum in Mechanical.
+    They can be used as the ``mechanical_unit_system_name`` argument of :func:`import_acp_mesh_from_cdb`.
+
+    .. note::
+
+        The Mechanical unit system names are not unique for all PyACP unit systems. For example,
+        ``MPA`` is consistent with both ``UnitSystemMetricNMMton`` and ``UnitSystemConsistentNMM``
+        since ACP uses a more limited set of unit types than Mechanical.
+        For general use, carefully review the Mechanical unit system name to select the appropriate
+        one.
+
+    """
+    unit_systems_map = {
+        # no equivalent for the 'UNDEFINED' unit system
+        UnitSystemType.SI: "UnitSystemSI",
+        UnitSystemType.MKS: "UnitSystemMetricMKS",
+        UnitSystemType.uMKS: "UnitSystemMetricUMKS",
+        UnitSystemType.CGS: "UnitSystemMetricCGS",
+        UnitSystemType.MPA: "UnitSystemMetricNMMton",
+        UnitSystemType.BFT: "UnitSystemConsistentBFT",
+        UnitSystemType.BIN: "UnitSystemConsistentBIN",
+    }
+
+    if unit_system not in unit_systems_map:
+        raise ValueError(f"Unit system {unit_system} not supported.")
+    return unit_systems_map[unit_system]
+
+
 def import_acp_mesh_from_cdb(
     *,
     mechanical: "pymechanical.Mechanical",
     cdb_path: PATH,
+    mechanical_unit_system_name: str,
     check_valid_blocked_cdb_file: bool = True,
 ) -> None:
     """Import an ACP CDB mesh into Mechanical.
@@ -85,6 +119,10 @@ def import_acp_mesh_from_cdb(
         The PyMechanical instance. This must be a remote instance.
     cdb_path :
         The path of the CDB file to import. The extension must be '.cdb'.
+    mechanical_unit_system_name :
+        The name of the Mechanical unit system corresponding to the CDB file units.
+        The value must be one of the values of the ``ModelImportUnitSystemType`` enum
+        in Mechanical.
     check_valid_blocked_cdb_file :
         If True, check that the CDB file is a valid blocked CDB file.
     """
@@ -94,13 +132,15 @@ def import_acp_mesh_from_cdb(
         raise ValueError(f"The CDB file extension must be '.cdb', not '{cdb_path.suffix}'.")
     cdb_path_str = str(cdb_path)
 
-    mechanical.run_python_script(textwrap.dedent(f"""\
-            model_import = Model.AddGeometryImportGroup().AddModelImport()
-            model_import.ModelImportSourceFilePath = {cdb_path_str!r}
-            model_import.ProcessValidBlockedCDBFile = {check_valid_blocked_cdb_file}
-            model_import.ProcessModelData = False
-            model_import.Import()
-            """))
+    mechanical_script = textwrap.dedent(f"""\
+        model_import = Model.AddGeometryImportGroup().AddModelImport()
+        model_import.UnitSystemTypeForImport = ModelImportUnitSystemType.{mechanical_unit_system_name}
+        model_import.ModelImportSourceFilePath = {cdb_path_str!r}
+        model_import.ProcessValidBlockedCDBFile = {check_valid_blocked_cdb_file}
+        model_import.ProcessModelData = False
+        model_import.Import()
+        """)
+    mechanical.run_python_script(mechanical_script)
 
 
 def import_acp_composite_definitions(*, mechanical: "pymechanical.Mechanical", path: PATH) -> None:
