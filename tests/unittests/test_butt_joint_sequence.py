@@ -23,7 +23,7 @@
 from packaging.version import parse as parse_version
 import pytest
 
-from ansys.acp.core import ButtJointSequence, PrimaryPly
+from ansys.acp.core import ButtJointSequenceDefinitionType, ButtJointSequence, PrimaryPly
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 from .common.utils import AnyThing
@@ -65,6 +65,9 @@ class TestButtJointSequence(NoLockedMixin, TreeObjectTester):
             "global_ply_nr": AnyThing(),
             "primary_plies": [],
             "secondary_plies": [],
+            "definition_type": ButtJointSequenceDefinitionType.MANUAL,
+            "starting_modeling_plies": [],
+            "automatically_added_sequences": (),
         }
 
     CREATE_METHOD_NAME = "create_butt_joint_sequence"
@@ -89,10 +92,13 @@ class TestButtJointSequence(NoLockedMixin, TreeObjectTester):
                     ],
                 ),
                 ("secondary_plies", [mg2, mp1]),
+                ("definition_type", ButtJointSequenceDefinitionType.AUTOMATIC_IDENTICAL_PLY_TYPE),
+                ("starting_modeling_plies", [mp2]),
             ],
             read_only=[
                 ("id", "some_id"),
                 ("status", "UPTODATE"),
+                ("automatically_added_sequences", ()),
             ],
         )
 
@@ -119,3 +125,16 @@ def test_add_primary_ply(parent_object):
     butt_joint_sequence.add_primary_ply(modeling_ply_2, level=3)
     assert butt_joint_sequence.primary_plies[-1].sequence == modeling_ply_2
     assert butt_joint_sequence.primary_plies[-1].level == 3
+
+
+def test_convert_to_manual_definition(tree_object):
+    """Verify conversion from automatic to manual definition."""
+    tree_object.convert_to_manual_definition()
+    assert tree_object.definition_type == ButtJointSequenceDefinitionType.MANUAL
+
+
+def test_default_definition_type_warns(parent_object):
+    """Verify the backwards-compatible default definition type."""
+    with pytest.warns(DeprecationWarning, match="'definition_type'.*will change"):
+        butt_joint_sequence = parent_object.create_butt_joint_sequence()
+    assert butt_joint_sequence.definition_type == ButtJointSequenceDefinitionType.MANUAL
