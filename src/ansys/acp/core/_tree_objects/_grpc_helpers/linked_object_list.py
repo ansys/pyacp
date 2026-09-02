@@ -22,7 +22,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Callable, Iterable, Iterator, MutableSequence
+from collections.abc import Callable, Iterable, Iterator, MutableSequence, Sequence
 from functools import partial
 import sys
 from typing import Any, Self, TypeVar, cast, overload
@@ -41,11 +41,17 @@ from .property_helper import _exposed_grpc_property, _wrap_doc, grpc_data_getter
 ValueT = TypeVar("ValueT", bound=TreeObjectBase)
 
 
-__all__ = ["LinkedObjectList", "define_linked_object_list", "define_polymorphic_linked_object_list"]
+__all__ = [
+    "LinkedObjectList",
+    "ReadOnlyLinkedObjectList",
+    "define_linked_object_list",
+    "define_polymorphic_linked_object_list",
+    "define_read_only_linked_object_list",
+]
 
 
-class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
-    """List of linked tree objects."""
+class ReadOnlyLinkedObjectList(ObjectCacheMixin, Sequence[ValueT]):
+    """Read-only list of linked tree objects."""
 
     @classmethod
     @constructor_with_cache(
@@ -135,6 +141,43 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
             return self._object_constructor(resource_path)
         return [self._object_constructor(item) for item in resource_path]
 
+    def __iter__(self) -> Iterator[ValueT]:
+        resource_path_list = self._get_resourcepath_list()
+        yield from (self._object_constructor(item) for item in resource_path_list)
+
+    def __reversed__(self) -> Iterator[ValueT]:
+        resource_path_list = self._get_resourcepath_list()
+        yield from (self._object_constructor(item) for item in reversed(resource_path_list))
+
+    def __contains__(self, item: object) -> bool:
+        return (
+            hasattr(item, "_resource_path") and item._resource_path in self._get_resourcepath_list()
+        )
+
+    def count(self, value: ValueT) -> int:
+        """Count the number of occurrences of an object in the list."""
+        return self._get_resourcepath_list().count(value._resource_path)
+
+    def index(self, value: ValueT, start: int = 0, stop: int = sys.maxsize) -> int:
+        """Return the index of the first occurrence of an object in the list."""
+        return self._get_resourcepath_list().index(value._resource_path, start, stop)
+
+    def __eq__(self, other: Any) -> Any:
+        return list(self) == other
+
+    def __repr__(self) -> str:
+        return f"<{type(self).__name__}([{', '.join(repr(val) for val in self)}])>"
+
+    def _check_type(self, object: Any) -> None:
+        if not isinstance(object, self._allowed_types):
+            raise TypeError(
+                f"List items must be of type {self._allowed_types_str}, not {type(object).__name__}."
+            )
+
+
+class LinkedObjectList(ReadOnlyLinkedObjectList[ValueT], MutableSequence[ValueT]):
+    """Read-write list of linked tree objects."""
+
     @overload
     def __setitem__(self, key: int, value: ValueT) -> None: ...
 
@@ -161,19 +204,6 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
         del resource_path_list[key]
         self._set_resourcepath_list(resource_path_list)
 
-    def __iter__(self) -> Iterator[ValueT]:
-        resource_path_list = self._get_resourcepath_list()
-        yield from (self._object_constructor(item) for item in resource_path_list)
-
-    def __reversed__(self) -> Iterator[ValueT]:
-        resource_path_list = self._get_resourcepath_list()
-        yield from (self._object_constructor(item) for item in reversed(resource_path_list))
-
-    def __contains__(self, item: object) -> bool:
-        return (
-            hasattr(item, "_resource_path") and item._resource_path in self._get_resourcepath_list()
-        )
-
     def append(self, object: ValueT) -> None:
         """Append an object to the list.
 
@@ -186,26 +216,6 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
         resource_path_list = self._get_resourcepath_list()
         resource_path_list.append(object._resource_path)
         self._set_resourcepath_list(resource_path_list)
-
-    def count(self, value: ValueT) -> int:
-        """Count the number of occurrences of an object in the list.
-
-        Parameters
-        ----------
-        value:
-            Object to count.
-        """
-        return self._get_resourcepath_list().count(value._resource_path)
-
-    def index(self, value: ValueT, start: int = 0, stop: int = sys.maxsize) -> int:
-        """Return the index of the first occurrence of an object in the list.
-
-        Parameters
-        ----------
-        value:
-            Object to find.
-        """
-        return self._get_resourcepath_list().index(value._resource_path, start, stop)
 
     def extend(self, iterable: Iterable[ValueT]) -> None:
         """Extend the list with an iterable of objects.
@@ -285,40 +295,33 @@ class LinkedObjectList(ObjectCacheMixin, MutableSequence[ValueT]):
         resource_path_list = list(np.array(resource_path_list)[idx_list])
         self._set_resourcepath_list(resource_path_list)
 
-    def __eq__(self, other: Any) -> Any:
-        return list(self) == other
-
-    def __repr__(self) -> str:
-        return f"<LinkedObjectList([{', '.join(repr(val) for val in self)}])>"
-
-    def _check_type(self, object: Any) -> None:
-        if not isinstance(object, self._allowed_types):
-            raise TypeError(
-                f"List items must be of type {self._allowed_types_str}, not {type(object).__name__}."
-            )
-
 
 ParentT = TypeVar("ParentT", bound=TreeObject)
 ChildT = TypeVar("ChildT", bound=TreeObjectBase)
 
 
+def _check_server_version(
+    parent_object: ParentT, attribute_name: str, supported_since: str | None
+) -> None:
+    if supported_since is not None and parent_object._server_version is not None:
+        if parent_object._server_version < parse_version(supported_since):
+            raise RuntimeError(
+                f"Accessing the '{attribute_name}' attribute on '{type(parent_object).__name__}' "
+                f"requires version {supported_since} of the ACP gRPC server. The current server version is "
+                f"{parent_object._server_version}."
+            )
+
+
 def define_linked_object_list(
-    attribute_name: str, object_class: type[ChildT], doc: str | None = None,
-    supported_since: str|None=None,
+    attribute_name: str,
+    object_class: type[ChildT],
+    doc: str | None = None,
+    supported_since: str | None = None,
 ) -> Any:
     """Define a list of linked tree objects."""
 
-    def supported_since_check(self: ParentT) -> None:
-        if supported_since is not None and self._server_version is not None:
-            if self._server_version < parse_version(supported_since):
-                raise RuntimeError(
-                    f"Accessing the '{attribute_name}' attribute on '{type(self).__name__}' "
-                    f"requires version {supported_since} of the ACP gRPC server. The current server version is "
-                    f"{self._server_version}."
-                )
-
     def getter(self: ParentT) -> LinkedObjectList[ChildT]:
-        supported_since_check(self)
+        _check_server_version(self, attribute_name, supported_since)
         return LinkedObjectList._initialize_with_cache(
             parent_object=self,
             attribute_name=attribute_name,
@@ -327,10 +330,30 @@ def define_linked_object_list(
         )
 
     def setter(self: ParentT, value: list[ChildT]) -> None:
-        supported_since_check(self)
+        _check_server_version(self, attribute_name, supported_since)
         getter(self)[:] = value
 
     return _wrap_doc(_exposed_grpc_property(getter).setter(setter), doc=doc)
+
+
+def define_read_only_linked_object_list(
+    attribute_name: str,
+    object_class: type[ChildT],
+    doc: str | None = None,
+    supported_since: str | None = None,
+) -> Any:
+    """Define a read-only list of linked tree objects."""
+
+    def getter(self: ParentT) -> ReadOnlyLinkedObjectList[ChildT]:
+        _check_server_version(self, attribute_name, supported_since)
+        return ReadOnlyLinkedObjectList._initialize_with_cache(
+            parent_object=self,
+            attribute_name=attribute_name,
+            object_constructor=object_class._from_resource_path,
+            allowed_types=(object_class,),
+        )
+
+    return _wrap_doc(_exposed_grpc_property(getter), doc=doc)
 
 
 def define_polymorphic_linked_object_list(

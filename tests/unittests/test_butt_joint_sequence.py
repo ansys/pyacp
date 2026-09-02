@@ -20,10 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Any, cast
+
 from packaging.version import parse as parse_version
 import pytest
 
-from ansys.acp.core import ButtJointSequenceDefinitionType, ButtJointSequence, PrimaryPly
+from ansys.acp.core import ButtJointSequence, ButtJointSequenceDefinitionType, PrimaryPly
+from ansys.acp.core._tree_objects._grpc_helpers.linked_object_list import ReadOnlyLinkedObjectList
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 from .common.utils import AnyThing
@@ -67,7 +70,7 @@ class TestButtJointSequence(NoLockedMixin, TreeObjectTester):
             "secondary_plies": [],
             "definition_type": ButtJointSequenceDefinitionType.MANUAL,
             "starting_modeling_plies": [],
-            "automatically_added_sequences": (),
+            "automatically_added_sequences": [],
         }
 
     CREATE_METHOD_NAME = "create_butt_joint_sequence"
@@ -92,13 +95,12 @@ class TestButtJointSequence(NoLockedMixin, TreeObjectTester):
                     ],
                 ),
                 ("secondary_plies", [mg2, mp1]),
-                ("definition_type", ButtJointSequenceDefinitionType.AUTOMATIC_IDENTICAL_PLY_TYPE),
-                ("starting_modeling_plies", [mp2]),
+                ("definition_type", ButtJointSequenceDefinitionType.MANUAL),
             ],
             read_only=[
                 ("id", "some_id"),
                 ("status", "UPTODATE"),
-                ("automatically_added_sequences", ()),
+                ("automatically_added_sequences", []),
             ],
         )
 
@@ -127,10 +129,36 @@ def test_add_primary_ply(parent_object):
     assert butt_joint_sequence.primary_plies[-1].level == 3
 
 
-def test_convert_to_manual_definition(tree_object):
+def test_convert_to_manual_definition(load_model_from_tempfile):
     """Verify conversion from automatic to manual definition."""
-    tree_object.convert_to_manual_definition()
-    assert tree_object.definition_type == ButtJointSequenceDefinitionType.MANUAL
+    with load_model_from_tempfile("minimal_complete_model.acph5") as model:
+        modeling_group = model.modeling_groups["ModelingGroup.1"]
+        modeling_ply = modeling_group.modeling_plies["ModelingPly.1"]
+        butt_joint_sequence = modeling_group.create_butt_joint_sequence(
+            definition_type=ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES,
+            starting_modeling_plies=[modeling_ply],
+        )
+        assert (
+            butt_joint_sequence.definition_type
+            == ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES
+        )
+        model.update()
+        butt_joint_sequence.convert_to_manual_definition()
+        assert butt_joint_sequence.definition_type == ButtJointSequenceDefinitionType.MANUAL
+
+
+def test_automatically_added_sequences_is_read_only(parent_object):
+    """Verify automatically added sequences use a read-only linked-object list."""
+    butt_joint_sequence = parent_object.create_butt_joint_sequence(
+        definition_type=ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES
+    )
+
+    automatically_added_sequences = butt_joint_sequence.automatically_added_sequences
+
+    assert isinstance(automatically_added_sequences, ReadOnlyLinkedObjectList)
+    assert list(automatically_added_sequences) == []
+    with pytest.raises(AttributeError):
+        cast(Any, automatically_added_sequences).append(parent_object.create_modeling_ply())
 
 
 def test_default_definition_type_warns(parent_object):
