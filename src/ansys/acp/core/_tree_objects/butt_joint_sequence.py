@@ -72,7 +72,7 @@ __all__ = ["ButtJointSequenceDefinitionType", "ButtJointSequence", "PrimaryPly"]
     module=__name__,
     doc=(
         "Options for how the butt-joint plies are defined, either manually or automatically. "
-        "If set to one of the 'automatic' modes, the algorithm searches for plies of the "
+        "If set to one of the automatic modes, the algorithm searches for plies of the "
         "selected type that butt-join the given ply."
     ),
 )
@@ -204,10 +204,10 @@ class ButtJointSequence(CreatableTreeObject, IdTreeObject):
         the thickness.
     definition_type :
         Specifies how the butt-joint plies are defined. Either manually or automatically.
-        If set to one of the 'automatic' modes, the algorithm searches for plies of the
+        If set to one of the automatic modes, the algorithm searches for plies of the
         selected type that butt-join the given ply.
         When ``None`` is passed, manual definition is used, which matches the behavior
-        of ACP 26.1 and earlier. This default will change to ``AUTOMATIC_ALL_PLY_TYPES``
+        of ACP 26.1 and earlier. This default will change to ``"automatic_all_ply_types"``
         in a future release.
     starting_modeling_plies :
         The automatic detection will search for plies which butt-join with the selected
@@ -240,7 +240,7 @@ class ButtJointSequence(CreatableTreeObject, IdTreeObject):
         if definition_type is None:
             warnings.warn(
                 "The default value of 'definition_type' is deprecated and will change "
-                "from 'manual' to 'automatic_all_ply_types' in a future release. "
+                'from "manual" to "automatic_all_ply_types" in a future release. '
                 "Pass 'definition_type=\"manual\"' explicitly to preserve the current behavior.",
                 DeprecationWarning,
                 stacklevel=2,
@@ -283,13 +283,17 @@ class ButtJointSequence(CreatableTreeObject, IdTreeObject):
         define_read_only_linked_object_list(
             "properties.automatically_added_sequences",
             ModelingPly,
-            doc="Ply sequences added by automatic butt-joint detection.",
+            doc="Modeling plies that are added by the automatic butt-joint detection.",
             supported_since="27.1",
         )
     )
 
     def convert_to_manual_definition(self) -> None:
-        """Convert automatically detected butt joints to a manual definition."""
+        """Convert automatically detected butt joints to a manual definition.
+
+        This function can be used to add the automatically found sequences
+        to the manual definition. This operation is irreversible.
+        """
         self._get()
         stub = cast(butt_joint_sequence_pb2_grpc.ObjectServiceStub, self._get_stub())
         with wrap_grpc_errors():
