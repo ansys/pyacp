@@ -30,7 +30,6 @@ Tree objects
 ''''''''''''
 
 - :class:`.HDF5CompositeCAEImport`
-- :class:`.WindingWizard`
 
 Attributes
 ''''''''''
