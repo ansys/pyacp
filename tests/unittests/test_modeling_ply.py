@@ -465,3 +465,37 @@ def test_taper_edge(parent_model):
     assert taper_edge != TaperEdge(edge_set=edge_1, angle=1, offset=3)
     assert taper_edge == TaperEdge(edge_set=edge_1, angle=1, offset=2)
     print(taper_edge)
+
+
+def test_modeling_plies_clear(load_model_from_tempfile):
+    """Test that modeling ply collection can be cleared.
+
+    Regression test for #808.
+    """
+    with load_model_from_tempfile(relative_file_path="minimal_complete_model.acph5") as model:
+        modeling_group = model.modeling_groups["ModelingGroup.1"]
+        modeling_plies = modeling_group.modeling_plies
+
+        modeling_group.create_modeling_ply(name="ModelingPly.2")
+        modeling_group.create_modeling_ply(name="ModelingPly.3")
+
+        assert len(modeling_plies) == 3
+
+        modeling_plies.clear()
+
+        assert len(modeling_plies) == 0
+
+
+def test_modeling_ply_delete_after_backend_version_change(load_model_from_tempfile):
+    """Test that a modeling ply can be deleted after its version is bumped in the backend.
+
+    Regression test for #950.
+    """
+    with load_model_from_tempfile(relative_file_path="minimal_complete_model.acph5") as model:
+        modeling_group = model.modeling_groups["ModelingGroup.1"]
+
+        first_modeling_ply = modeling_group.create_modeling_ply()
+        second_modeling_ply = modeling_group.create_modeling_ply()
+
+        first_modeling_ply.delete()  # bumps the version of the second modeling ply
+        second_modeling_ply.delete()  # fails if the version bump is not handled correctly
