@@ -56,52 +56,75 @@ def tree_object(parent_object):
     return parent_object.create_butt_joint_sequence()
 
 
+@pytest.fixture
+def require_version_27_1(acp_instance):
+    if parse_version(acp_instance.server_version) < parse_version("27.1"):
+        pytest.skip(
+            "This ButtJointSequence feature is not supported on this version of the server."
+        )
+
+
 class TestButtJointSequence(NoLockedMixin, TreeObjectTester):
     COLLECTION_NAME = "butt_joint_sequences"
 
     @staticmethod
     @pytest.fixture
-    def default_properties():
-        return {
+    def default_properties(acp_instance):
+        properties: dict[str, Any] = {
             "status": "NOTUPTODATE",
             "active": True,
             "global_ply_nr": AnyThing(),
             "primary_plies": [],
             "secondary_plies": [],
-            "definition_type": ButtJointSequenceDefinitionType.MANUAL,
-            "starting_modeling_plies": [],
-            "automatically_added_sequences": [],
         }
+        if parse_version(acp_instance.server_version) >= parse_version("27.1"):
+            properties.update(
+                {
+                    "definition_type": ButtJointSequenceDefinitionType.MANUAL,
+                    "starting_modeling_plies": [],
+                    "automatically_added_sequences": [],
+                }
+            )
+        return properties
 
     CREATE_METHOD_NAME = "create_butt_joint_sequence"
 
     @staticmethod
     @pytest.fixture
-    def object_properties(parent_model):
+    def object_properties(parent_model, acp_instance):
         mg1 = parent_model.create_modeling_group()
         mg2 = parent_model.create_modeling_group()
         mp1 = mg1.create_modeling_ply()
         mp2 = mg1.create_modeling_ply()
+        read_write: list[tuple[str, Any]] = [
+            ("name", "ButtJointSequence name"),
+            ("active", False),
+            ("global_ply_nr", 3),
+            (
+                "primary_plies",
+                [
+                    PrimaryPly(sequence=mg1, level=1),
+                    PrimaryPly(sequence=mp2, level=3),
+                ],
+            ),
+            ("secondary_plies", [mg2, mp1]),
+        ]
+        read_only: list[tuple[str, Any]] = [
+            ("id", "some_id"),
+            ("status", "UPTODATE"),
+        ]
+        if parse_version(acp_instance.server_version) >= parse_version("27.1"):
+            read_write.extend(
+                [
+                    ("definition_type", ButtJointSequenceDefinitionType.MANUAL),
+                    ("starting_modeling_plies", [mp2]),
+                ]
+            )
+            read_only.append(("automatically_added_sequences", []))
+
         return ObjectPropertiesToTest(
-            read_write=[
-                ("name", "ButtJointSequence name"),
-                ("active", False),
-                ("global_ply_nr", 3),
-                (
-                    "primary_plies",
-                    [
-                        PrimaryPly(sequence=mg1, level=1),
-                        PrimaryPly(sequence=mp2, level=3),
-                    ],
-                ),
-                ("secondary_plies", [mg2, mp1]),
-                ("definition_type", ButtJointSequenceDefinitionType.MANUAL),
-            ],
-            read_only=[
-                ("id", "some_id"),
-                ("status", "UPTODATE"),
-                ("automatically_added_sequences", []),
-            ],
+            read_write=read_write,
+            read_only=read_only,
         )
 
 
@@ -129,7 +152,7 @@ def test_add_primary_ply(parent_object):
     assert butt_joint_sequence.primary_plies[-1].level == 3
 
 
-def test_convert_to_manual_definition(load_model_from_tempfile):
+def test_convert_to_manual_definition(load_model_from_tempfile, require_version_27_1):
     """Verify conversion from automatic to manual definition."""
     with load_model_from_tempfile("minimal_complete_model.acph5") as model:
         modeling_group = model.modeling_groups["ModelingGroup.1"]
@@ -147,7 +170,7 @@ def test_convert_to_manual_definition(load_model_from_tempfile):
         assert butt_joint_sequence.definition_type == ButtJointSequenceDefinitionType.MANUAL
 
 
-def test_automatically_added_sequences_is_read_only(parent_object):
+def test_automatically_added_sequences_is_read_only(parent_object, require_version_27_1):
     """Verify automatically added sequences use a read-only linked-object list."""
     butt_joint_sequence = parent_object.create_butt_joint_sequence(
         definition_type=ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES
@@ -161,7 +184,7 @@ def test_automatically_added_sequences_is_read_only(parent_object):
         cast(Any, automatically_added_sequences).append(parent_object.create_modeling_ply())
 
 
-def test_default_definition_type_warns(parent_object):
+def test_default_definition_type_warns(parent_object, require_version_27_1):
     """Verify the backwards-compatible default definition type."""
     with pytest.warns(DeprecationWarning, match="'definition_type'.*will change"):
         butt_joint_sequence = parent_object.create_butt_joint_sequence()
