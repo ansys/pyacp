@@ -29,6 +29,7 @@ from typing import Any, Self, TypeVar, cast, overload
 
 from grpc import Channel
 import numpy as np
+from packaging.version import parse as parse_version
 
 from ansys.api.acp.v0.base_pb2 import ResourcePath
 
@@ -302,11 +303,22 @@ ChildT = TypeVar("ChildT", bound=TreeObjectBase)
 
 
 def define_linked_object_list(
-    attribute_name: str, object_class: type[ChildT], doc: str | None = None
+    attribute_name: str, object_class: type[ChildT], doc: str | None = None,
+    supported_since: str|None=None,
 ) -> Any:
     """Define a list of linked tree objects."""
 
+    def supported_since_check(self: ParentT) -> None:
+        if supported_since is not None and self._server_version is not None:
+            if self._server_version < parse_version(supported_since):
+                raise RuntimeError(
+                    f"Accessing the '{attribute_name}' attribute on '{type(self).__name__}' "
+                    f"requires version {supported_since} of the ACP gRPC server. The current server version is "
+                    f"{self._server_version}."
+                )
+
     def getter(self: ParentT) -> LinkedObjectList[ChildT]:
+        supported_since_check(self)
         return LinkedObjectList._initialize_with_cache(
             parent_object=self,
             attribute_name=attribute_name,
@@ -315,6 +327,7 @@ def define_linked_object_list(
         )
 
     def setter(self: ParentT, value: list[ChildT]) -> None:
+        supported_since_check(self)
         getter(self)[:] = value
 
     return _wrap_doc(_exposed_grpc_property(getter).setter(setter), doc=doc)
