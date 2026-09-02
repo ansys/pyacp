@@ -17,6 +17,7 @@ The following tree shows the hierarchy of PyACP objects:
     >>> pyacp.extras.feature_tree.print_feature_tree(show_lines=True)
     Model
     ├── HDF5CompositeCAEImport
+    ├── WindingWizard
     ├── Material
     ├── Fabric
     ├── Stackup
