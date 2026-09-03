@@ -413,6 +413,25 @@ def test_hdf5_composite_cae_export_with_scope(
 
 
 @pytest.mark.parametrize(
+    "projection_mode",
+    ["shell", "solid"],
+)
+def test_hdf5_composite_cae_export_import(
+    minimal_complete_model,
+    raises_before_version,
+    projection_mode,
+):
+    with raises_before_version("27.1"):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            export_file = pathlib.Path(tmp_dir) / "model_export.h5"
+            minimal_complete_model.export_hdf5_composite_cae(export_file)
+            minimal_complete_model.create_hdf5_composite_cae_import(
+                path=export_file,
+                projection_mode=projection_mode,
+            ).run()
+
+
+@pytest.mark.parametrize(
     "import_mode",
     ["append", "overwrite"],
 )
@@ -420,13 +439,14 @@ def test_hdf5_composite_cae_export_with_scope(
     "projection_mode",
     ["shell", "solid"],
 )
-def test_hdf5_composite_cae_export_import(
+def test_hdf5_composite_cae_export_legacy_import(
     minimal_complete_model,
     raises_before_version,
+    warns_from_version,
     import_mode,
     projection_mode,
 ):
-    with raises_before_version("25.1"):
+    with raises_before_version("25.1"), warns_from_version("27.1", DeprecationWarning):
         with tempfile.TemporaryDirectory() as tmp_dir:
             export_file = pathlib.Path(tmp_dir) / "model_export.h5"
             minimal_complete_model.export_hdf5_composite_cae(export_file)

@@ -147,6 +147,12 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
             new_object = create_method(name=ref_name)
             assert new_object.name == ref_name
             for key, val in default_properties.items():
+                if isinstance(val, PropertyWithCustomComparison):
+                    assert val.comparison_function(getattr(new_object, key), val.initial_value), (
+                        f"Attribute {key} not set correctly. "
+                        f"Expected {val.initial_value}, got {getattr(new_object, key)}"
+                    )
+                    continue
                 assert_allclose(
                     actual=getattr(new_object, key),
                     desired=val,
@@ -167,7 +173,10 @@ class TreeObjectTester(TreeObjectTesterReadOnly):
             new_object = create_method(**init_args_final)
             for key, val in init_args.items():
                 if isinstance(val, PropertyWithCustomComparison):
-                    assert val.comparison_function(getattr(new_object, key), val.initial_value)
+                    assert val.comparison_function(getattr(new_object, key), val.initial_value), (
+                        f"Attribute {key} not set correctly. "
+                        f"Expected {val.initial_value}, got {getattr(new_object, key)}"
+                    )
                     continue
                 if isinstance(val, PropertyWithConversion):
                     val = val.converted_value

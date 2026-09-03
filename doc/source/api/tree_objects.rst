@@ -20,6 +20,7 @@ ACP objects
     Fabric
     FieldDefinition
     GeometricalSelectionRule
+    HDF5CompositeCAEImport
     ImportedAnalysisPly
     ImportedModelingGroup
     ImportedModelingPly
