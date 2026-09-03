@@ -49,6 +49,7 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
+from ._grpc_helpers.supported_since import supported_since
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .modeling_ply import ModelingPly
@@ -288,6 +289,7 @@ class ButtJointSequence(CreatableTreeObject, IdTreeObject):
         )
     )
 
+    @supported_since("27.1")
     def convert_to_manual_definition(self) -> None:
         """Convert automatically detected butt joints to a manual definition.
 

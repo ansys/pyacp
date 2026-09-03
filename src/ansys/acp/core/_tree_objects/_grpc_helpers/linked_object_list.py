@@ -155,18 +155,30 @@ class ReadOnlyLinkedObjectList(ObjectCacheMixin, Sequence[ValueT]):
         )
 
     def count(self, value: ValueT) -> int:
-        """Count the number of occurrences of an object in the list."""
+        """Count the number of occurrences of an object in the list.
+
+        Parameters
+        ----------
+        value:
+            Object to count.
+        """
         return self._get_resourcepath_list().count(value._resource_path)
 
     def index(self, value: ValueT, start: int = 0, stop: int = sys.maxsize) -> int:
-        """Return the index of the first occurrence of an object in the list."""
+        """Return the index of the first occurrence of an object in the list.
+
+        Parameters
+        ----------
+        value:
+            Object to find.
+        """
         return self._get_resourcepath_list().index(value._resource_path, start, stop)
 
     def __eq__(self, other: Any) -> Any:
         return list(self) == other
 
     def __repr__(self) -> str:
-        return f"<{type(self).__name__}([{', '.join(repr(val) for val in self)}])>"
+        return f"<LinkedObjectList([{', '.join(repr(val) for val in self)}])>"
 
     def _check_type(self, object: Any) -> None:
         if not isinstance(object, self._allowed_types):
