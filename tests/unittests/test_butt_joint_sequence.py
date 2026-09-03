@@ -151,19 +151,19 @@ def test_add_primary_ply(parent_object):
 
 def test_convert_to_manual_definition(load_model_from_tempfile, raises_before_version):
     """Verify conversion from automatic to manual definition."""
-    with load_model_from_tempfile("minimal_complete_model.acph5") as model:
-        modeling_group = model.modeling_groups["ModelingGroup.1"]
-        modeling_ply = modeling_group.modeling_plies["ModelingPly.1"]
-        butt_joint_sequence = modeling_group.create_butt_joint_sequence(
-            definition_type=ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES,
-            starting_modeling_plies=[modeling_ply],
-        )
-        assert (
-            butt_joint_sequence.definition_type
-            == ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES
-        )
-        model.update()
-        with raises_before_version("27.1"):
+    with raises_before_version("27.1"):
+        with load_model_from_tempfile("minimal_complete_model.acph5") as model:
+            modeling_group = model.modeling_groups["ModelingGroup.1"]
+            modeling_ply = modeling_group.modeling_plies["ModelingPly.1"]
+            butt_joint_sequence = modeling_group.create_butt_joint_sequence(
+                definition_type=ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES,
+                starting_modeling_plies=[modeling_ply],
+            )
+            assert (
+                butt_joint_sequence.definition_type
+                == ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES
+            )
+            model.update()
             butt_joint_sequence.convert_to_manual_definition()
             assert butt_joint_sequence.definition_type == ButtJointSequenceDefinitionType.MANUAL
 
