@@ -10,6 +10,7 @@ Enumeration data types
     ArrowType
     BaseElementMaterialHandling
     BooleanOperationType
+    ButtJointSequenceDefinitionType
     CutOffGeometryOrientationType
     CutOffMaterialHandling
     CutOffRuleType

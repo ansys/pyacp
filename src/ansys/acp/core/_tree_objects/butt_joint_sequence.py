@@ -24,16 +24,24 @@ from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Sequence
 from typing import TYPE_CHECKING, Any, Self, Union, cast
+import warnings
 
 from ansys.api.acp.v0 import butt_joint_sequence_pb2, butt_joint_sequence_pb2_grpc
 
-from .._utils.property_protocols import ReadWriteProperty
+from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
 from ._grpc_helpers.edge_property_list import (
     GenericEdgePropertyType,
     define_add_method,
     define_edge_property_list,
 )
-from ._grpc_helpers.linked_object_list import define_polymorphic_linked_object_list
+from ._grpc_helpers.enum_wrapper import wrap_to_string_enum
+from ._grpc_helpers.exceptions import wrap_grpc_errors
+from ._grpc_helpers.linked_object_list import (
+    ReadOnlyLinkedObjectList,
+    define_linked_object_list,
+    define_polymorphic_linked_object_list,
+    define_read_only_linked_object_list,
+)
 from ._grpc_helpers.polymorphic_from_pb import tree_object_from_resource_path
 from ._grpc_helpers.property_helper import (
     _exposed_grpc_property,
@@ -41,6 +49,7 @@ from ._grpc_helpers.property_helper import (
     grpc_data_property_read_only,
     mark_grpc_properties,
 )
+from ._grpc_helpers.supported_since import supported_since
 from .base import CreatableTreeObject, IdTreeObject
 from .enums import status_type_from_pb
 from .modeling_ply import ModelingPly
@@ -51,7 +60,23 @@ if TYPE_CHECKING:  # pragma: no cover
     # is a direct child of the ModelingGroup.
     from .modeling_group import ModelingGroup
 
-__all__ = ["ButtJointSequence", "PrimaryPly"]
+__all__ = ["ButtJointSequenceDefinitionType", "ButtJointSequence", "PrimaryPly"]
+
+
+(
+    ButtJointSequenceDefinitionType,
+    butt_joint_definition_type_to_pb,
+    butt_joint_definition_type_from_pb,
+) = wrap_to_string_enum(
+    "ButtJointSequenceDefinitionType",
+    butt_joint_sequence_pb2.DefinitionType,
+    module=__name__,
+    doc=(
+        "Options for how the butt-joint plies are defined, either manually or automatically. "
+        "If set to one of the automatic modes, the algorithm searches for plies of the "
+        "selected type that butt-join the given ply."
+    ),
+)
 
 
 @mark_grpc_properties
@@ -178,6 +203,16 @@ class ButtJointSequence(CreatableTreeObject, IdTreeObject):
     secondary_plies :
         Secondary plies are butt-joined to adjacent primary plies and they inherit
         the thickness.
+    definition_type :
+        Specifies how the butt-joint plies are defined. Either manually or automatically.
+        If set to one of the automatic modes, the algorithm searches for plies of the
+        selected type that butt-join the given ply.
+        When ``None`` is passed, manual definition is used, which matches the behavior
+        of ACP 26.1 and earlier. This default will change to ``"automatic_all_ply_types"``
+        in a future release.
+    starting_modeling_plies :
+        The automatic detection will search for plies which butt-join with the selected
+        modeling plies.
     """
 
     __slots__: Iterable[str] = tuple()
@@ -195,12 +230,25 @@ class ButtJointSequence(CreatableTreeObject, IdTreeObject):
         global_ply_nr: int = 0,
         primary_plies: Sequence[PrimaryPly] = (),
         secondary_plies: Sequence[ModelingGroup | ModelingPly] = (),
+        definition_type: Any | None = None,
+        starting_modeling_plies: Sequence[ModelingPly] = (),
     ):
         super().__init__(name=name)
         self.active = active
         self.global_ply_nr = global_ply_nr
         self.primary_plies = primary_plies
         self.secondary_plies = secondary_plies
+        if definition_type is None:
+            warnings.warn(
+                "The default value of 'definition_type' is deprecated and will change "
+                'from "manual" to "automatic_all_ply_types" in a future release. '
+                "Pass 'definition_type=\"manual\"' explicitly to preserve the current behavior.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            definition_type = ButtJointSequenceDefinitionType.MANUAL
+        self.definition_type = definition_type
+        self.starting_modeling_plies = starting_modeling_plies
 
     def _create_stub(self) -> butt_joint_sequence_pb2_grpc.ObjectServiceStub:
         return butt_joint_sequence_pb2_grpc.ObjectServiceStub(self._channel)
@@ -208,6 +256,13 @@ class ButtJointSequence(CreatableTreeObject, IdTreeObject):
     status = grpc_data_property_read_only("properties.status", from_protobuf=status_type_from_pb)
     active: ReadWriteProperty[bool, bool] = grpc_data_property("properties.active")
     global_ply_nr: ReadWriteProperty[int, int] = grpc_data_property("properties.global_ply_nr")
+    definition_type = grpc_data_property(
+        "properties.definition_type",
+        from_protobuf=butt_joint_definition_type_from_pb,
+        to_protobuf=butt_joint_definition_type_to_pb,
+        readable_since="27.1",
+        writable_since="27.1",
+    )
 
     primary_plies = define_edge_property_list("properties.primary_plies", PrimaryPly)
     add_primary_ply = define_add_method(
@@ -221,3 +276,31 @@ class ButtJointSequence(CreatableTreeObject, IdTreeObject):
     secondary_plies = define_polymorphic_linked_object_list(
         "properties.secondary_plies", allowed_types_getter=_get_allowed_secondary_ply_types
     )
+    starting_modeling_plies = define_linked_object_list(
+        "properties.starting_modeling_plies", ModelingPly, supported_since="27.1"
+    )
+
+    automatically_added_sequences: ReadOnlyProperty[ReadOnlyLinkedObjectList[ModelingPly]] = (
+        define_read_only_linked_object_list(
+            "properties.automatically_added_sequences",
+            ModelingPly,
+            doc="Modeling plies that are added by the automatic butt-joint detection.",
+            supported_since="27.1",
+        )
+    )
+
+    @supported_since("27.1")
+    def convert_to_manual_definition(self) -> None:
+        """Convert automatically detected butt joints to a manual definition.
+
+        This function can be used to add the automatically found sequences
+        to the manual definition. This operation is irreversible.
+        """
+        self._get()
+        stub = cast(butt_joint_sequence_pb2_grpc.ObjectServiceStub, self._get_stub())
+        with wrap_grpc_errors():
+            stub.ConvertToManualDefinition(
+                butt_joint_sequence_pb2.ConvertToManualDefinitionRequest(
+                    info=self._pb_object.info,
+                )
+            )
