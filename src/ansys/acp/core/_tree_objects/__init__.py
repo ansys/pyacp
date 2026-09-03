@@ -185,6 +185,7 @@ from .variable_offset_selection_rule import (
     VariableOffsetSelectionRuleNodalData,
 )
 from .virtual_geometry import SubShape, VirtualGeometry
+from .winding_wizard import Layer, WindingWizard
 
 __all__ = [
     "AnalysisPly",
@@ -254,6 +255,7 @@ __all__ = [
     "InterpolationOptions",
     "IntersectionType",
     "Lamina",
+    "Layer",
     "LayupMappingObject",
     "LayupMappingRosetteSelectionMethod",
     "LinkedSelectionRule",
@@ -339,4 +341,5 @@ __all__ = [
     "VectorData",
     "VirtualGeometry",
     "VirtualGeometryDimension",
+    "WindingWizard",
 ]

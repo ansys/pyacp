@@ -118,7 +118,7 @@ class FabricWithAngle(GenericEdgePropertyType):
         apply_changes: Callable[[], None],
     ) -> FabricWithAngle:
         new_obj = cls(
-            fabric=Fabric._from_resource_path(message.fabric, parent_object._channel),
+            fabric=Fabric._from_resource_path(message.fabric, parent_object._server_wrapper),
             angle=message.angle,
         )
         new_obj._set_callback_apply_changes(apply_changes)

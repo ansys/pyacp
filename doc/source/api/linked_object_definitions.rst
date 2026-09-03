@@ -8,6 +8,7 @@ Linked object definitions
 
     FabricWithAngle
     Lamina
+    Layer
     LinkedSelectionRule
     PrimaryPly
     SubShape

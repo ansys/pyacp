@@ -32,6 +32,7 @@ import numpy as np
 from packaging.version import Version
 from packaging.version import parse as parse_version
 
+from ansys.acp.core._tree_objects.winding_wizard import WindingWizard
 from ansys.api.acp.v0 import (
     boolean_selection_rule_pb2_grpc,
     cad_geometry_pb2_grpc,
@@ -69,6 +70,7 @@ from ansys.api.acp.v0 import (
     tube_selection_rule_pb2_grpc,
     variable_offset_selection_rule_pb2_grpc,
     virtual_geometry_pb2_grpc,
+    winding_wizard_pb2_grpc,
 )
 from ansys.api.acp.v0.base_pb2 import CollectionPath
 
@@ -755,6 +757,16 @@ class Model(TreeObject):
     )
     hdf5_composite_cae_imports = define_mutable_mapping(
         HDF5CompositeCAEImport, hdf5_composite_cae_import_pb2_grpc.ObjectServiceStub
+    )
+
+    create_winding_wizard = define_create_method(
+        WindingWizard,
+        func_name="create_winding_wizard",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    winding_wizards = define_mutable_mapping(
+        WindingWizard, winding_wizard_pb2_grpc.ObjectServiceStub
     )
 
     create_material = define_create_method(
