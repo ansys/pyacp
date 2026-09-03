@@ -27,6 +27,7 @@ import pytest
 
 from ansys.acp.core import ButtJointSequence, ButtJointSequenceDefinitionType, PrimaryPly
 from ansys.acp.core._tree_objects._grpc_helpers.linked_object_list import ReadOnlyLinkedObjectList
+from tests.conftest import raises_before_version
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 from .common.utils import AnyThing
@@ -157,7 +158,7 @@ def test_add_primary_ply(parent_object):
     assert butt_joint_sequence.primary_plies[-1].level == 3
 
 
-def test_convert_to_manual_definition(load_model_from_tempfile, require_version_27_1):
+def test_convert_to_manual_definition(load_model_from_tempfile):
     """Verify conversion from automatic to manual definition."""
     with load_model_from_tempfile("minimal_complete_model.acph5") as model:
         modeling_group = model.modeling_groups["ModelingGroup.1"]
@@ -171,8 +172,9 @@ def test_convert_to_manual_definition(load_model_from_tempfile, require_version_
             == ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES
         )
         model.update()
-        butt_joint_sequence.convert_to_manual_definition()
-        assert butt_joint_sequence.definition_type == ButtJointSequenceDefinitionType.MANUAL
+        with raises_before_version("27.1"):
+            butt_joint_sequence.convert_to_manual_definition()
+            assert butt_joint_sequence.definition_type == ButtJointSequenceDefinitionType.MANUAL
 
 
 def test_automatically_added_sequences_is_read_only(parent_object, require_version_27_1):

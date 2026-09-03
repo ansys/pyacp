@@ -21,6 +21,7 @@ Internal objects
     _tree_objects._grpc_helpers.edge_property_list.GenericEdgePropertyType
     _tree_objects._grpc_helpers.linked_object_list.ChildT
     _tree_objects._grpc_helpers.linked_object_list.LinkedObjectList
+    _tree_objects._grpc_helpers.linked_object_list.ReadOnlyLinkedObjectList
     _tree_objects._grpc_helpers.mapping.CreatableValueT
     _tree_objects._grpc_helpers.mapping.Mapping
     _tree_objects._grpc_helpers.mapping.MutableMapping

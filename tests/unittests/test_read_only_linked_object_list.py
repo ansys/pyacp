@@ -40,7 +40,14 @@ def oriented_selection_set(model):
 
 
 @pytest.fixture
-def read_only_rosettes(oriented_selection_set):
+def read_only_rosettes(model, oriented_selection_set):
+    # Read-only linked object lists are currently only used on
+    # automatic mode butt joint sequences.
+    # For the tes, we construct a ReadOnlyLinkedObjectList on an
+    # editable property, to avoid having to set up a more complex
+    # model.
+    for _ in range(2):
+        oriented_selection_set.rosettes.append(model.create_rosette())
     return ReadOnlyLinkedObjectList._initialize_with_cache(
         parent_object=oriented_selection_set,
         attribute_name="properties.rosettes",
@@ -55,7 +62,7 @@ def test_read_only_linked_object_list_reads_existing_values(
     """Test read access through a read-only linked-object list."""
     expected_rosettes = list(oriented_selection_set.rosettes)
 
-    assert len(read_only_rosettes) == len(expected_rosettes)
+    assert len(read_only_rosettes) == len(expected_rosettes) == 3
     assert list(read_only_rosettes) == expected_rosettes
     assert read_only_rosettes[0] == expected_rosettes[0]
     assert read_only_rosettes[:] == expected_rosettes
@@ -76,12 +83,12 @@ def test_read_only_linked_object_list_has_no_mutation_methods(read_only_rosettes
 
 
 def test_read_only_linked_object_list_rejects_item_assignment(read_only_rosettes):
-    """Test item assignment raises instead of silently changing a read-only list."""
+    """Test item assignment raises."""
     with pytest.raises(TypeError):
         cast(Any, read_only_rosettes)[0] = None
 
 
 def test_read_only_linked_object_list_rejects_item_deletion(read_only_rosettes):
-    """Test item deletion raises instead of silently changing a read-only list."""
+    """Test item deletion raises."""
     with pytest.raises(TypeError):
         del cast(Any, read_only_rosettes)[0]
