@@ -275,6 +275,9 @@ solid_model.export(working_dir_path / solid_model_composite_definitions_h5, form
 
 pyacp.mechanical_integration_helpers.import_acp_mesh_from_cdb(
     mechanical=mechanical_solid_model,
+    mechanical_unit_system_name=pyacp.mechanical_integration_helpers.get_mechanical_unit_system_name(
+        model.unit_system
+    ),
     cdb_path=working_dir_path / solid_model_cdb_file,
     check_valid_blocked_cdb_file=False,
 )

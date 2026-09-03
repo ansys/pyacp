@@ -64,9 +64,9 @@ def get_dpf_unit_system(unit_system: UnitSystemType) -> "UnitSystem":
         UnitSystemType.BIN: unit_systems.solver_bin,
     }
 
-    if unit_systems_map[unit_system] is None:
-        raise ValueError(f"Unit system {unit_system} not supported. Use MKS instead of SI.")
     if unit_system not in unit_systems_map:
         raise ValueError(f"Unit system {unit_system} not supported.")
+    if unit_systems_map[unit_system] is None:
+        raise ValueError(f"Unit system {unit_system} not supported. Use MKS instead of SI.")
 
     return unit_systems_map[unit_system]
