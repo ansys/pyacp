@@ -1,0 +1,13 @@
+.. vale off
+
+islower
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.islower
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.islower
+
+   ansys.acp.core.LaunchMode.islower

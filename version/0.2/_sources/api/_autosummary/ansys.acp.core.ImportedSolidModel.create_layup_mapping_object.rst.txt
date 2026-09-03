@@ -1,0 +1,13 @@
+.. vale off
+
+create\_layup\_mapping\_object
+==============================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedSolidModel.create_layup_mapping_object
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.create_layup_mapping_object
+
+   ansys.acp.core.ImportedSolidModel.create_layup_mapping_object

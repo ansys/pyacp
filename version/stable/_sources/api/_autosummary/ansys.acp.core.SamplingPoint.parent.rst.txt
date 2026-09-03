@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SamplingPoint.parent
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint.parent
+
+   ansys.acp.core.SamplingPoint.parent

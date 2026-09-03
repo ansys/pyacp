@@ -1,0 +1,13 @@
+.. vale off
+
+find
+====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.find
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.find
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.find

@@ -1,0 +1,13 @@
+.. vale off
+
+ABSOLUTE\_VALUES
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ThicknessFieldType.ABSOLUTE_VALUES
+
+.. minigallery::
+   :add-heading: Examples using ThicknessFieldType.ABSOLUTE_VALUES
+
+   ansys.acp.core.ThicknessFieldType.ABSOLUTE_VALUES

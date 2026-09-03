@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: OrientedSelectionSet.clone
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.clone
+
+   ansys.acp.core.OrientedSelectionSet.clone

@@ -1,0 +1,13 @@
+.. vale off
+
+SNAP\_TO\_GEOMETRY
+==================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.SNAP_TO_GEOMETRY
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.SNAP_TO_GEOMETRY
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.SNAP_TO_GEOMETRY

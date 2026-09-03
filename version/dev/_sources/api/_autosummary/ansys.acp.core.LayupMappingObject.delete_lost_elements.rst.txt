@@ -1,0 +1,13 @@
+.. vale off
+
+delete\_lost\_elements
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.delete_lost_elements
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.delete_lost_elements
+
+   ansys.acp.core.LayupMappingObject.delete_lost_elements

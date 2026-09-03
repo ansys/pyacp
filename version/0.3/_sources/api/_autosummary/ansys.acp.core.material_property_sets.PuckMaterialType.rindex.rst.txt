@@ -1,0 +1,13 @@
+.. vale off
+
+rindex
+======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.rindex
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.rindex
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.rindex

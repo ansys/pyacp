@@ -1,0 +1,13 @@
+.. vale off
+
+nodal\_data
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.nodal_data
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.nodal_data
+
+   ansys.acp.core.GeometricalSelectionRule.nodal_data

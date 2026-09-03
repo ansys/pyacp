@@ -1,0 +1,13 @@
+.. vale off
+
+stackups
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.stackups
+
+.. minigallery::
+   :add-heading: Examples using Model.stackups
+
+   ansys.acp.core.Model.stackups

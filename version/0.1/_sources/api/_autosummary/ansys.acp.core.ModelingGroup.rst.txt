@@ -1,0 +1,63 @@
+﻿.. vale off
+
+ModelingGroup
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ModelingGroup
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ModelingGroup.clone
+      
+      
+      ModelingGroup.create_butt_joint_sequence
+      
+      
+      ModelingGroup.create_interface_layer
+      
+      
+      ModelingGroup.create_modeling_ply
+      
+      
+      ModelingGroup.delete
+      
+      
+      ModelingGroup.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ModelingGroup.butt_joint_sequences
+      ModelingGroup.elemental_data
+      ModelingGroup.id
+      ModelingGroup.interface_layers
+      ModelingGroup.mesh
+      ModelingGroup.modeling_plies
+      ModelingGroup.name
+      ModelingGroup.nodal_data
+      ModelingGroup.parent
+      ModelingGroup.shell_mesh
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ModelingGroup
+
+   ansys.acp.core.ModelingGroup

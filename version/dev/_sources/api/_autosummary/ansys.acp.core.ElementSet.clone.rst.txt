@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ElementSet.clone
+
+.. minigallery::
+   :add-heading: Examples using ElementSet.clone
+
+   ansys.acp.core.ElementSet.clone

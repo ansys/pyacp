@@ -1,0 +1,13 @@
+.. vale off
+
+use\_default\_offset
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.use_default_offset
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.use_default_offset
+
+   ansys.acp.core.CADGeometry.use_default_offset

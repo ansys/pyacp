@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: BooleanSelectionRule.clone
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRule.clone
+
+   ansys.acp.core.BooleanSelectionRule.clone

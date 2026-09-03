@@ -1,0 +1,13 @@
+.. vale off
+
+DIRECTION
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LookUpTableColumnValueType.DIRECTION
+
+.. minigallery::
+   :add-heading: Examples using LookUpTableColumnValueType.DIRECTION
+
+   ansys.acp.core.LookUpTableColumnValueType.DIRECTION

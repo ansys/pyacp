@@ -1,0 +1,13 @@
+.. vale off
+
+ADHESIVE
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyType.ADHESIVE
+
+.. minigallery::
+   :add-heading: Examples using PlyType.ADHESIVE
+
+   ansys.acp.core.PlyType.ADHESIVE

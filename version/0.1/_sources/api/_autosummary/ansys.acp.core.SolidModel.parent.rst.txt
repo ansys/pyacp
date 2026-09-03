@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.parent
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.parent
+
+   ansys.acp.core.SolidModel.parent

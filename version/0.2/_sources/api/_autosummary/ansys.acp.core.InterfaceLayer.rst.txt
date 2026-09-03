@@ -1,0 +1,56 @@
+﻿.. vale off
+
+InterfaceLayer
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: InterfaceLayer
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      InterfaceLayer.clone
+      
+      
+      InterfaceLayer.delete
+      
+      
+      InterfaceLayer.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      InterfaceLayer.active
+      InterfaceLayer.elemental_data
+      InterfaceLayer.global_ply_nr
+      InterfaceLayer.id
+      InterfaceLayer.mesh
+      InterfaceLayer.name
+      InterfaceLayer.nodal_data
+      InterfaceLayer.open_area_sets
+      InterfaceLayer.oriented_selection_sets
+      InterfaceLayer.parent
+      InterfaceLayer.shell_mesh
+      InterfaceLayer.status
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using InterfaceLayer
+
+   ansys.acp.core.InterfaceLayer

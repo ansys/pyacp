@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Stackup.clone
+
+.. minigallery::
+   :add-heading: Examples using Stackup.clone
+
+   ansys.acp.core.Stackup.clone

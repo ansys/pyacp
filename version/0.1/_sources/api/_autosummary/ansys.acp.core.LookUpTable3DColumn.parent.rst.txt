@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3DColumn.parent
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3DColumn.parent
+
+   ansys.acp.core.LookUpTable3DColumn.parent

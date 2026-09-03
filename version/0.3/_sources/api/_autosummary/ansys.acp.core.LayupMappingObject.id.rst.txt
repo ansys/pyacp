@@ -1,0 +1,13 @@
+.. vale off
+
+id
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.id
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.id
+
+   ansys.acp.core.LayupMappingObject.id

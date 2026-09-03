@@ -1,0 +1,13 @@
+.. vale off
+
+swapcase
+========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.swapcase
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.swapcase
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.swapcase

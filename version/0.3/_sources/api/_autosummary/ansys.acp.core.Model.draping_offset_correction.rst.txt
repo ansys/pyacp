@@ -1,0 +1,13 @@
+.. vale off
+
+draping\_offset\_correction
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.draping_offset_correction
+
+.. minigallery::
+   :add-heading: Examples using Model.draping_offset_correction
+
+   ansys.acp.core.Model.draping_offset_correction

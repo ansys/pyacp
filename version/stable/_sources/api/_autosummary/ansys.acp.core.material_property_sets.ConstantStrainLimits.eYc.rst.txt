@@ -1,0 +1,13 @@
+.. vale off
+
+eYc
+===
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantStrainLimits.eYc
+
+.. minigallery::
+   :add-heading: Examples using ConstantStrainLimits.eYc
+
+   ansys.acp.core.material_property_sets.ConstantStrainLimits.eYc

@@ -1,0 +1,57 @@
+﻿.. vale off
+
+BooleanSelectionRule
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: BooleanSelectionRule
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      BooleanSelectionRule.add_selection_rule
+      
+      
+      BooleanSelectionRule.clone
+      
+      
+      BooleanSelectionRule.delete
+      
+      
+      BooleanSelectionRule.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      BooleanSelectionRule.elemental_data
+      BooleanSelectionRule.id
+      BooleanSelectionRule.include_rule
+      BooleanSelectionRule.mesh
+      BooleanSelectionRule.name
+      BooleanSelectionRule.nodal_data
+      BooleanSelectionRule.parent
+      BooleanSelectionRule.selection_rules
+      BooleanSelectionRule.shell_mesh
+      BooleanSelectionRule.status
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRule
+
+   ansys.acp.core.BooleanSelectionRule

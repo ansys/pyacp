@@ -1,0 +1,13 @@
+.. vale off
+
+CLASS40\_CDB
+============
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.CLASS40_CDB
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.CLASS40_CDB
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.CLASS40_CDB

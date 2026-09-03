@@ -1,0 +1,13 @@
+.. vale off
+
+MINIMAL\_PLATE\_ACPH5
+=====================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.MINIMAL_PLATE_ACPH5
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.MINIMAL_PLATE_ACPH5
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.MINIMAL_PLATE_ACPH5

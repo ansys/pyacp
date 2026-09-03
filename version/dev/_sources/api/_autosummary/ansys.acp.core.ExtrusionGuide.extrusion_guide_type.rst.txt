@@ -1,0 +1,13 @@
+.. vale off
+
+extrusion\_guide\_type
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExtrusionGuide.extrusion_guide_type
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide.extrusion_guide_type
+
+   ansys.acp.core.ExtrusionGuide.extrusion_guide_type

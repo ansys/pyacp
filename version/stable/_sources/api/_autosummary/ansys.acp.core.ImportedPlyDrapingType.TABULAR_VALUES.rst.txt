@@ -1,0 +1,13 @@
+.. vale off
+
+TABULAR\_VALUES
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ImportedPlyDrapingType.TABULAR_VALUES
+
+.. minigallery::
+   :add-heading: Examples using ImportedPlyDrapingType.TABULAR_VALUES
+
+   ansys.acp.core.ImportedPlyDrapingType.TABULAR_VALUES

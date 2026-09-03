@@ -1,0 +1,13 @@
+.. vale off
+
+IGES
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyGeometryExportFormat.IGES
+
+.. minigallery::
+   :add-heading: Examples using PlyGeometryExportFormat.IGES
+
+   ansys.acp.core.PlyGeometryExportFormat.IGES

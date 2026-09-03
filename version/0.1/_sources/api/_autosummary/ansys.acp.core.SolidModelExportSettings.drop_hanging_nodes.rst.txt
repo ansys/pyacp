@@ -1,0 +1,13 @@
+.. vale off
+
+drop\_hanging\_nodes
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModelExportSettings.drop_hanging_nodes
+
+.. minigallery::
+   :add-heading: Examples using SolidModelExportSettings.drop_hanging_nodes
+
+   ansys.acp.core.SolidModelExportSettings.drop_hanging_nodes

@@ -1,0 +1,13 @@
+.. vale off
+
+BFT
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.BFT
+
+.. minigallery::
+   :add-heading: Examples using UnitSystemType.BFT
+
+   ansys.acp.core.UnitSystemType.BFT

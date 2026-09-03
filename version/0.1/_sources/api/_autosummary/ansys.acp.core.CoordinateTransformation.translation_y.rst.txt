@@ -1,0 +1,13 @@
+.. vale off
+
+translation\_y
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CoordinateTransformation.translation_y
+
+.. minigallery::
+   :add-heading: Examples using CoordinateTransformation.translation_y
+
+   ansys.acp.core.CoordinateTransformation.translation_y

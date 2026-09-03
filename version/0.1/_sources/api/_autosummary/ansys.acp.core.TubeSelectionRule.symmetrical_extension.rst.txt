@@ -1,0 +1,13 @@
+.. vale off
+
+symmetrical\_extension
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.symmetrical_extension
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.symmetrical_extension
+
+   ansys.acp.core.TubeSelectionRule.symmetrical_extension

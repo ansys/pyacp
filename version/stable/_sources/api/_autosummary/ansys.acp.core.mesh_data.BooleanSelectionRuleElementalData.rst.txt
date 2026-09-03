@@ -1,0 +1,40 @@
+﻿.. vale off
+
+BooleanSelectionRuleElementalData
+=================================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: BooleanSelectionRuleElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      BooleanSelectionRuleElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      BooleanSelectionRuleElementalData.normal
+      BooleanSelectionRuleElementalData.element_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRuleElementalData
+
+   ansys.acp.core.mesh_data.BooleanSelectionRuleElementalData

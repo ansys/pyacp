@@ -1,0 +1,13 @@
+.. vale off
+
+removesuffix
+============
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.removesuffix
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.removesuffix
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.removesuffix

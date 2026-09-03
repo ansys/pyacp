@@ -1,0 +1,13 @@
+.. vale off
+
+price
+=====
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ModelElementalData.price
+
+.. minigallery::
+   :add-heading: Examples using ModelElementalData.price
+
+   ansys.acp.core.mesh_data.ModelElementalData.price

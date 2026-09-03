@@ -1,0 +1,13 @@
+.. vale off
+
+PARALLEL
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteType.PARALLEL
+
+.. minigallery::
+   :add-heading: Examples using RosetteType.PARALLEL
+
+   ansys.acp.core.RosetteType.PARALLEL

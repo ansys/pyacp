@@ -1,0 +1,13 @@
+.. vale off
+
+dimension
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VirtualGeometry.dimension
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometry.dimension
+
+   ansys.acp.core.VirtualGeometry.dimension

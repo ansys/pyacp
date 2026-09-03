@@ -1,0 +1,13 @@
+.. vale off
+
+acp\_uds\_id
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLaunchConfig.acp_uds_id
+
+.. minigallery::
+   :add-heading: Examples using ConnectLaunchConfig.acp_uds_id
+
+   ansys.acp.core.ConnectLaunchConfig.acp_uds_id

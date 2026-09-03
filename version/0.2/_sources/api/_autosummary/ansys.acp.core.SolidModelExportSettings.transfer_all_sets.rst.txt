@@ -1,0 +1,13 @@
+.. vale off
+
+transfer\_all\_sets
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModelExportSettings.transfer_all_sets
+
+.. minigallery::
+   :add-heading: Examples using SolidModelExportSettings.transfer_all_sets
+
+   ansys.acp.core.SolidModelExportSettings.transfer_all_sets

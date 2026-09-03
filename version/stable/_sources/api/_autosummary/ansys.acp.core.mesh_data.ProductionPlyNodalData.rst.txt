@@ -1,0 +1,40 @@
+﻿.. vale off
+
+ProductionPlyNodalData
+======================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: ProductionPlyNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ProductionPlyNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ProductionPlyNodalData.ply_offset
+      ProductionPlyNodalData.node_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyNodalData
+
+   ansys.acp.core.mesh_data.ProductionPlyNodalData

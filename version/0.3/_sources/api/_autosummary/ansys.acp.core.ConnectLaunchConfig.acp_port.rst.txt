@@ -1,0 +1,13 @@
+.. vale off
+
+acp\_port
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLaunchConfig.acp_port
+
+.. minigallery::
+   :add-heading: Examples using ConnectLaunchConfig.acp_port
+
+   ansys.acp.core.ConnectLaunchConfig.acp_port

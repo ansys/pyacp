@@ -1,0 +1,13 @@
+.. vale off
+
+UNKNOWN
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: Status.UNKNOWN
+
+.. minigallery::
+   :add-heading: Examples using Status.UNKNOWN
+
+   ansys.acp.core.Status.UNKNOWN

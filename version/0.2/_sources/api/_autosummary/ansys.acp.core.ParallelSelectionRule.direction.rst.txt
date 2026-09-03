@@ -1,0 +1,13 @@
+.. vale off
+
+direction
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.direction
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.direction
+
+   ansys.acp.core.ParallelSelectionRule.direction

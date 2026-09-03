@@ -1,0 +1,988 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="og:site_name" content="PyAnsys" />
+    <title>ModelingPly &#8212; PyACP</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/ansys-sphinx-theme.css?v=ce7f2556" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/ansys-sphinx-theme.css?v=ce7f2556" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=800b1921" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+
+  <!-- Include desired assets -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  
+
+  
+    <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../../_static/documentation_options.js?v=3ca669d2"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/ansys.acp.core.ModelingPly';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://acp.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="icon" href="../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="add_selection_rule" href="ansys.acp.core.ModelingPly.add_selection_rule.html" />
+    <link rel="prev" title="shell_mesh" href="ansys.acp.core.ModelingGroup.shell_mesh.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.1" />
+  <link rel="canonical" href="https://acp.docs.pyansys.com/version/stable/api/_autosummary/ansys.acp.core.ModelingPly.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyACP - Home"/>
+    <img src="../../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark pst-js-only" alt="PyACP - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    PyACP home
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pyacp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    PyACP home
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pyacp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../server.html">Server management</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../tree_objects.html">ACP objects</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.AnalysisPly.html">AnalysisPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.BooleanSelectionRule.html">BooleanSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ButtJointSequence.html">ButtJointSequence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADComponent.html">CADComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CADGeometry.html">CADGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutOffGeometry.html">CutOffGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CutOffSelectionRule.html">CutOffSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.CylindricalSelectionRule.html">CylindricalSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.EdgeSet.html">EdgeSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ElementSet.html">ElementSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ExtrusionGuide.html">ExtrusionGuide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Fabric.html">Fabric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.FieldDefinition.html">FieldDefinition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.GeometricalSelectionRule.html">GeometricalSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedAnalysisPly.html">ImportedAnalysisPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedModelingGroup.html">ImportedModelingGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedModelingPly.html">ImportedModelingPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedProductionPly.html">ImportedProductionPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ImportedSolidModel.html">ImportedSolidModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.InterfaceLayer.html">InterfaceLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LayupMappingObject.html">LayupMappingObject</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable1D.html">LookUpTable1D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html">LookUpTable1DColumn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable3D.html">LookUpTable3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html">LookUpTable3DColumn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Material.html">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Model.html">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ModelingGroup.html">ModelingGroup</a></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">ModelingPly</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.add_selection_rule.html">add_selection_rule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.add_taper_edge.html">add_taper_edge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.clone.html">clone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.delete.html">delete</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.store.html">store</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.active.html">active</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.auto_draping_direction.html">auto_draping_direction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_angle_1_field.html">draping_angle_1_field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_angle_2_field.html">draping_angle_2_field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_direction.html">draping_direction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_mesh_size.html">draping_mesh_size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_seed_point.html">draping_seed_point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_thickness_correction.html">draping_thickness_correction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_type.html">draping_type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.elemental_data.html">elemental_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.global_ply_nr.html">global_ply_nr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.id.html">id</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.mesh.html">mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.name.html">name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.nodal_data.html">nodal_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.number_of_layers.html">number_of_layers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.oriented_selection_sets.html">oriented_selection_sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.parent.html">parent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_angle.html">ply_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_material.html">ply_material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.production_plies.html">production_plies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.selection_rules.html">selection_rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.shell_mesh.html">shell_mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.status.html">status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.taper_edges.html">taper_edges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.thickness_field.html">thickness_field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.thickness_field_type.html">thickness_field_type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.thickness_geometry.html">thickness_geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.thickness_type.html">thickness_type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.acp.core.ModelingPly.use_default_draping_mesh_size.html">use_default_draping_mesh_size</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.OrientedSelectionSet.html">OrientedSelectionSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ParallelSelectionRule.html">ParallelSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.ProductionPly.html">ProductionPly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Rosette.html">Rosette</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SamplingPoint.html">SamplingPoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SectionCut.html">SectionCut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Sensor.html">Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SnapToGeometry.html">SnapToGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidElementSet.html">SolidElementSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SolidModel.html">SolidModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SphericalSelectionRule.html">SphericalSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.Stackup.html">Stackup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.SubLaminate.html">SubLaminate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.TubeSelectionRule.html">TubeSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.VariableOffsetSelectionRule.html">VariableOffsetSelectionRule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.acp.core.VirtualGeometry.html">VirtualGeometry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../mesh_data.html">Mesh data objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linked_object_definitions.html">Linked object definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material_property_sets.html">Material property sets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enum_types.html">Enumeration data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other_types.html">Other types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot_utils.html">Plot utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other_utils.html">Other utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dpf_integration_helpers.html">DPF integration helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mechanical_integration_helpers.html">Mechanical integration helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extras.html">Extras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internal.html">Internal objects</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">API reference</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../tree_objects.html" class="nav-link">ACP objects</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">ModelingPly</span></li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="modelingply">
+<h1>ModelingPly<a class="headerlink" href="#modelingply" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="ansys.acp.core.ModelingPly">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.acp.core.</span></span><span class="sig-name descname"><span class="pre">ModelingPly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ModelingPly'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ply_material</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oriented_selection_sets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ply_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_ply_nr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selection_rules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'no_draping'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_seed_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_draping_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_default_draping_mesh_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_mesh_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_thickness_correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_angle_1_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draping_angle_2_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nominal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness_geometry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness_field_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'absolute_values'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taper_edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.acp.core.ModelingPly" title="Link to this definition">#</a></dt>
+<dd><p>Instantiate a Modeling Ply.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the Modeling Ply</p></li>
+<li><p><strong>ply_material</strong> (<a class="reference internal" href="ansys.acp.core.Fabric.html#ansys.acp.core.Fabric" title="ansys.acp.core._tree_objects.fabric.Fabric"><em>Fabric</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.Stackup.html#ansys.acp.core.Stackup" title="ansys.acp.core._tree_objects.stackup.Stackup"><em>Stackup</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.SubLaminate.html#ansys.acp.core.SubLaminate" title="ansys.acp.core._tree_objects.sublaminate.SubLaminate"><em>SubLaminate</em></a><em> | </em><em>None</em>) – The material (fabric, stackup or sub-laminate) of the ply.</p></li>
+<li><p><strong>ply_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Design angle between the reference direction and the ply fiber direction.</p></li>
+<li><p><strong>number_of_layers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of times the plies are generated.</p></li>
+<li><p><strong>active</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Inactive plies are ignored in ACP and the downstream analysis.</p></li>
+<li><p><strong>global_ply_nr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Defines the global ply order.</p></li>
+<li><p><strong>selection_rules</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.13)"><em>Iterable</em></a><em>[</em><a class="reference internal" href="ansys.acp.core.LinkedSelectionRule.html#ansys.acp.core.LinkedSelectionRule" title="ansys.acp.core._tree_objects.linked_selection_rule.LinkedSelectionRule"><em>LinkedSelectionRule</em></a><em>]</em>) – Selection Rules which may limit the extent of the ply.</p></li>
+<li><p><strong>draping_type</strong> (<a class="reference internal" href="ansys.acp.core.DrapingType.html#ansys.acp.core.DrapingType" title="ansys.acp.core._tree_objects.enums.DrapingType"><em>DrapingType</em></a>) – Chooses between different draping formulations.</p></li>
+<li><p><strong>draping_seed_point</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>]</em>) – Starting point of the draping algorithm.</p></li>
+<li><p><strong>auto_draping_direction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – <dl class="simple">
+<dt>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the fiber direction of the production ply at the draping</dt><dd><p>seed point is used as draping direction.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>draping_direction</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>]</em>) – Set the primary draping direction for the draping algorithm. Only used if
+<code class="docutils literal notranslate"><span class="pre">auto_draping_direction</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>use_default_draping_mesh_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Whether to use the average element size of the shell mesh for the draping.</p></li>
+<li><p><strong>draping_mesh_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Defines the mesh size for the draping algorithm.  If set to <code class="docutils literal notranslate"><span class="pre">-1.</span></code>, the
+mesh size is automatically determined based on the average element size.</p></li>
+<li><p><strong>draping_thickness_correction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Enables the thickness correction of draped plies based on the draping
+shear angle.</p></li>
+<li><p><strong>draping_angle_1_field</strong> (<a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html#ansys.acp.core.LookUpTable1DColumn" title="ansys.acp.core._tree_objects.lookup_table_1d_column.LookUpTable1DColumn"><em>LookUpTable1DColumn</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html#ansys.acp.core.LookUpTable3DColumn" title="ansys.acp.core._tree_objects.lookup_table_3d_column.LookUpTable3DColumn"><em>LookUpTable3DColumn</em></a><em> | </em><em>None</em>) – Correction angle between the fiber and draped fiber directions, in degree.</p></li>
+<li><p><strong>draping_angle_2_field</strong> (<a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html#ansys.acp.core.LookUpTable1DColumn" title="ansys.acp.core._tree_objects.lookup_table_1d_column.LookUpTable1DColumn"><em>LookUpTable1DColumn</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html#ansys.acp.core.LookUpTable3DColumn" title="ansys.acp.core._tree_objects.lookup_table_3d_column.LookUpTable3DColumn"><em>LookUpTable3DColumn</em></a><em> | </em><em>None</em>) – Correction angle between the transverse and draped transverse directions,
+in degree. Optional, uses the same values as <code class="docutils literal notranslate"><span class="pre">draping_angle_1_field</span></code>
+(no shear) by default.</p></li>
+<li><p><strong>thickness_type</strong> (<a class="reference internal" href="ansys.acp.core.ThicknessType.html#ansys.acp.core.ThicknessType" title="ansys.acp.core._tree_objects.enums.ThicknessType"><em>ThicknessType</em></a>) – Choose between <a class="reference internal" href="ansys.acp.core.ThicknessType.FROM_GEOMETRY.html#ansys.acp.core.ThicknessType.FROM_GEOMETRY" title="ansys.acp.core.ThicknessType.FROM_GEOMETRY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_GEOMETRY</span></code></a> or
+<a class="reference internal" href="ansys.acp.core.ThicknessType.FROM_TABLE.html#ansys.acp.core.ThicknessType.FROM_TABLE" title="ansys.acp.core.ThicknessType.FROM_TABLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_TABLE</span></code></a> to define a ply with variable thickness.
+The default value is <a class="reference internal" href="ansys.acp.core.ThicknessType.NOMINAL.html#ansys.acp.core.ThicknessType.NOMINAL" title="ansys.acp.core.ThicknessType.NOMINAL"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.NOMINAL</span></code></a>, which means the ply
+thickness is constant and determined by the thickness of the ply material.</p></li>
+<li><p><strong>thickness_geometry</strong> (<a class="reference internal" href="ansys.acp.core.VirtualGeometry.html#ansys.acp.core.VirtualGeometry" title="ansys.acp.core._tree_objects.virtual_geometry.VirtualGeometry"><em>VirtualGeometry</em></a><em> | </em><em>None</em>) – Defines the geometry used to determine the ply thickness. Only applies if
+<code class="docutils literal notranslate"><span class="pre">thickness_type</span></code> is <a class="reference internal" href="ansys.acp.core.ThicknessType.FROM_GEOMETRY.html#ansys.acp.core.ThicknessType.FROM_GEOMETRY" title="ansys.acp.core.ThicknessType.FROM_GEOMETRY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_GEOMETRY</span></code></a>.</p></li>
+<li><p><strong>thickness_field</strong> (<a class="reference internal" href="ansys.acp.core.LookUpTable1DColumn.html#ansys.acp.core.LookUpTable1DColumn" title="ansys.acp.core._tree_objects.lookup_table_1d_column.LookUpTable1DColumn"><em>LookUpTable1DColumn</em></a><em> | </em><a class="reference internal" href="ansys.acp.core.LookUpTable3DColumn.html#ansys.acp.core.LookUpTable3DColumn" title="ansys.acp.core._tree_objects.lookup_table_3d_column.LookUpTable3DColumn"><em>LookUpTable3DColumn</em></a><em> | </em><em>None</em>) – Defines the look-up table column used to determine the ply thickness.
+Only applies if <code class="docutils literal notranslate"><span class="pre">thickness_type</span></code> is <a class="reference internal" href="ansys.acp.core.ThicknessType.FROM_TABLE.html#ansys.acp.core.ThicknessType.FROM_TABLE" title="ansys.acp.core.ThicknessType.FROM_TABLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_TABLE</span></code></a>.</p></li>
+<li><p><strong>thickness_field_type</strong> (<a class="reference internal" href="ansys.acp.core.ThicknessFieldType.html#ansys.acp.core.ThicknessFieldType" title="ansys.acp.core._tree_objects.enums.ThicknessFieldType"><em>ThicknessFieldType</em></a>) – If <code class="docutils literal notranslate"><span class="pre">thickness_type</span></code> is <a class="reference internal" href="ansys.acp.core.ThicknessType.FROM_TABLE.html#ansys.acp.core.ThicknessType.FROM_TABLE" title="ansys.acp.core.ThicknessType.FROM_TABLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessType.FROM_TABLE</span></code></a>, this parameter
+determines how the thickness values are interpreted. They can be either
+absolute values (<a class="reference internal" href="ansys.acp.core.ThicknessFieldType.ABSOLUTE_VALUES.html#ansys.acp.core.ThicknessFieldType.ABSOLUTE_VALUES" title="ansys.acp.core.ThicknessFieldType.ABSOLUTE_VALUES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessFieldType.ABSOLUTE_VALUES</span></code></a>) or relative
+values (<a class="reference internal" href="ansys.acp.core.ThicknessFieldType.RELATIVE_SCALING_FACTOR.html#ansys.acp.core.ThicknessFieldType.RELATIVE_SCALING_FACTOR" title="ansys.acp.core.ThicknessFieldType.RELATIVE_SCALING_FACTOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ThicknessFieldType.RELATIVE_SCALING_FACTOR</span></code></a>).</p></li>
+<li><p><strong>taper_edges</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.13)"><em>Iterable</em></a><em>[</em><a class="reference internal" href="ansys.acp.core.TaperEdge.html#ansys.acp.core.TaperEdge" title="ansys.acp.core._tree_objects.modeling_ply.TaperEdge"><em>TaperEdge</em></a><em>]</em>) – Defines the taper edges of the ply.</p></li>
+</ul>
+</dd>
+</dl>
+<p><em>Added in ACP server version 24.2.</em></p>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.add_selection_rule.html#ansys.acp.core.ModelingPly.add_selection_rule" title="ansys.acp.core.ModelingPly.add_selection_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.add_selection_rule</span></code></a>(selection_rule, *)</p></td>
+<td><p>Add a LinkedSelectionRule to the ModelingPly.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.add_taper_edge.html#ansys.acp.core.ModelingPly.add_taper_edge" title="ansys.acp.core.ModelingPly.add_taper_edge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.add_taper_edge</span></code></a>(edge_set, *, ...)</p></td>
+<td><p>Add a TaperEdge to the ModelingPly.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.clone.html#ansys.acp.core.ModelingPly.clone" title="ansys.acp.core.ModelingPly.clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.clone</span></code></a>(*[, unlink])</p></td>
+<td><p>Create a new unstored object with the same properties.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.delete.html#ansys.acp.core.ModelingPly.delete" title="ansys.acp.core.ModelingPly.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.delete</span></code></a>()</p></td>
+<td><p>Delete the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.store.html#ansys.acp.core.ModelingPly.store" title="ansys.acp.core.ModelingPly.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.store</span></code></a>(parent)</p></td>
+<td><p>Store the object on the server.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Attributes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.active.html#ansys.acp.core.ModelingPly.active" title="ansys.acp.core.ModelingPly.active"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.active</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.auto_draping_direction.html#ansys.acp.core.ModelingPly.auto_draping_direction" title="ansys.acp.core.ModelingPly.auto_draping_direction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.auto_draping_direction</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_angle_1_field.html#ansys.acp.core.ModelingPly.draping_angle_1_field" title="ansys.acp.core.ModelingPly.draping_angle_1_field"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.draping_angle_1_field</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_angle_2_field.html#ansys.acp.core.ModelingPly.draping_angle_2_field" title="ansys.acp.core.ModelingPly.draping_angle_2_field"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.draping_angle_2_field</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_direction.html#ansys.acp.core.ModelingPly.draping_direction" title="ansys.acp.core.ModelingPly.draping_direction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.draping_direction</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_mesh_size.html#ansys.acp.core.ModelingPly.draping_mesh_size" title="ansys.acp.core.ModelingPly.draping_mesh_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.draping_mesh_size</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_seed_point.html#ansys.acp.core.ModelingPly.draping_seed_point" title="ansys.acp.core.ModelingPly.draping_seed_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.draping_seed_point</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_thickness_correction.html#ansys.acp.core.ModelingPly.draping_thickness_correction" title="ansys.acp.core.ModelingPly.draping_thickness_correction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.draping_thickness_correction</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.draping_type.html#ansys.acp.core.ModelingPly.draping_type" title="ansys.acp.core.ModelingPly.draping_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.draping_type</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.elemental_data.html#ansys.acp.core.ModelingPly.elemental_data" title="ansys.acp.core.ModelingPly.elemental_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.elemental_data</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.global_ply_nr.html#ansys.acp.core.ModelingPly.global_ply_nr" title="ansys.acp.core.ModelingPly.global_ply_nr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.global_ply_nr</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.id.html#ansys.acp.core.ModelingPly.id" title="ansys.acp.core.ModelingPly.id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.id</span></code></a></p></td>
+<td><p>Identifier of the object, used for example as key in maps.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.mesh.html#ansys.acp.core.ModelingPly.mesh" title="ansys.acp.core.ModelingPly.mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.mesh</span></code></a></p></td>
+<td><p>Full mesh associated with the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.name.html#ansys.acp.core.ModelingPly.name" title="ansys.acp.core.ModelingPly.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.name</span></code></a></p></td>
+<td><p>The name of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.nodal_data.html#ansys.acp.core.ModelingPly.nodal_data" title="ansys.acp.core.ModelingPly.nodal_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.nodal_data</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.number_of_layers.html#ansys.acp.core.ModelingPly.number_of_layers" title="ansys.acp.core.ModelingPly.number_of_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.number_of_layers</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.oriented_selection_sets.html#ansys.acp.core.ModelingPly.oriented_selection_sets" title="ansys.acp.core.ModelingPly.oriented_selection_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.oriented_selection_sets</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.parent.html#ansys.acp.core.ModelingPly.parent" title="ansys.acp.core.ModelingPly.parent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.parent</span></code></a></p></td>
+<td><p>The parent of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_angle.html#ansys.acp.core.ModelingPly.ply_angle" title="ansys.acp.core.ModelingPly.ply_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.ply_angle</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.ply_material.html#ansys.acp.core.ModelingPly.ply_material" title="ansys.acp.core.ModelingPly.ply_material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.ply_material</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.production_plies.html#ansys.acp.core.ModelingPly.production_plies" title="ansys.acp.core.ModelingPly.production_plies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.production_plies</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.selection_rules.html#ansys.acp.core.ModelingPly.selection_rules" title="ansys.acp.core.ModelingPly.selection_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.selection_rules</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.shell_mesh.html#ansys.acp.core.ModelingPly.shell_mesh" title="ansys.acp.core.ModelingPly.shell_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.shell_mesh</span></code></a></p></td>
+<td><p>Shell mesh associated with the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.status.html#ansys.acp.core.ModelingPly.status" title="ansys.acp.core.ModelingPly.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.status</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.taper_edges.html#ansys.acp.core.ModelingPly.taper_edges" title="ansys.acp.core.ModelingPly.taper_edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.taper_edges</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.thickness_field.html#ansys.acp.core.ModelingPly.thickness_field" title="ansys.acp.core.ModelingPly.thickness_field"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.thickness_field</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.thickness_field_type.html#ansys.acp.core.ModelingPly.thickness_field_type" title="ansys.acp.core.ModelingPly.thickness_field_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.thickness_field_type</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.thickness_geometry.html#ansys.acp.core.ModelingPly.thickness_geometry" title="ansys.acp.core.ModelingPly.thickness_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.thickness_geometry</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.thickness_type.html#ansys.acp.core.ModelingPly.thickness_type" title="ansys.acp.core.ModelingPly.thickness_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.thickness_type</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.acp.core.ModelingPly.use_default_draping_mesh_size.html#ansys.acp.core.ModelingPly.use_default_draping_mesh_size" title="ansys.acp.core.ModelingPly.use_default_draping_mesh_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelingPly.use_default_draping_mesh_size</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd></dl>
+
+<section id="examples-using-modelingply">
+<h2>Examples using ModelingPly<a class="headerlink" href="#examples-using-modelingply" title="Link to this heading">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example illustrates how you can use rosettes to define the reference directions of a ply. It only shows the PyACP part of the setup. For a complete composite analysis, see pymapdl_workflow_example."><img alt="" src="../../_images/sphx_glr_002-rosettes-ply-directions_thumb.png" />
+<p><a class="reference internal" href="../../examples/modeling_features/002-rosettes-ply-directions.html#sphx-glr-examples-modeling-features-002-rosettes-ply-directions-py"><span class="std std-ref">Rosette</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Rosette</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows the basic usage of selection rules, which enable you to select elements through geometrical operations and thus to shape plies. The example only shows the PyACP part of the setup. For more advanced selection rule usage, see advanced_selection_rules_example. For a complete composite analysis, see pymapdl_workflow_example."><img alt="" src="../../_images/sphx_glr_003-simple-selection-rules_thumb.png" />
+<p><a class="reference internal" href="../../examples/modeling_features/003-simple-selection-rules.html#sphx-glr-examples-modeling-features-003-simple-selection-rules-py"><span class="std std-ref">Basic selection rules</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Basic selection rules</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use advanced rules, including the geometrical, cut-off, and variable offset rules. It also demonstrates how rules can be templated and reused with different parameters. For more basic rules, see basic_selection_rules_example."><img alt="" src="../../_images/sphx_glr_004-advanced-selection-rules_thumb.png" />
+<p><a class="reference internal" href="../../examples/modeling_features/004-advanced-selection-rules.html#sphx-glr-examples-modeling-features-004-advanced-selection-rules-py"><span class="std std-ref">Advanced selection rules</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Advanced selection rules</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to define directions from lookup tables. They can be either reference directions for oriented selection sets or draping angles for modeling plies. The example only shows the PyACP part of the setup. For a complete composite analysis, see pymapdl_workflow_example."><img alt="" src="../../_images/sphx_glr_005-ply-direction-lookup-table_thumb.png" />
+<p><a class="reference internal" href="../../examples/modeling_features/005-ply-direction-lookup-table.html#sphx-glr-examples-modeling-features-005-ply-direction-lookup-table-py"><span class="std std-ref">Direction definition</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Direction definition</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how the thickness of a ply can be defined by a geometry or a lookup table. The example only shows the PyACP part of the setup. For a complete composite analysis, see pymapdl_workflow_example."><img alt="" src="../../_images/sphx_glr_006-layup-thickness-definitions_thumb.png" />
+<p><a class="reference internal" href="../../examples/modeling_features/006-layup-thickness-definitions.html#sphx-glr-examples-modeling-features-006-layup-thickness-definitions-py"><span class="std std-ref">Thickness definition</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Thickness definition</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="The .Sensor capabilities to analyze the composite structure is demonstrated in this example. A sensor is used to compute the weight, area, cost, etc. of the model or specific entities such as ply material, modeling ply, etc."><img alt="" src="../../_images/sphx_glr_007-sensor_thumb.png" />
+<p><a class="reference internal" href="../../examples/modeling_features/007-sensor.html#sphx-glr-examples-modeling-features-007-sensor-py"><span class="std std-ref">Sensor</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Sensor</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example defines a composite lay-up for a sandwich panel using PyACP. It only shows the PyACP part of the setup. For a complete composite analysis, see pymapdl_workflow_example."><img alt="" src="../../_images/sphx_glr_010-sandwich-panel-layup_thumb.png" />
+<p><a class="reference internal" href="../../examples/modeling_features/010-sandwich-panel-layup.html#sphx-glr-examples-modeling-features-010-sandwich-panel-layup-py"><span class="std std-ref">Sandwich panel</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Sandwich panel</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to create and shape a solid model."><img alt="" src="../../_images/sphx_glr_020-solid_model_thumb.png" />
+<p><a class="reference internal" href="../../examples/modeling_features/020-solid_model.html#sphx-glr-examples-modeling-features-020-solid-model-py"><span class="std std-ref">Solid Model</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Solid Model</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="The HDF5 Composite CAE interface of PyACP is demonstrated in this example. It shows how to write (export) and read (import) layup data to and from a HDF5 Composite CAE file, respectively. The HDF5 Composite CAE format is a vendor independent format to exchange composite layup information between CAE tools."><img alt="" src="../../_images/sphx_glr_050-composite_cae_h5_thumb.png" />
+<p><a class="reference internal" href="../../examples/modeling_features/050-composite_cae_h5.html#sphx-glr-examples-modeling-features-050-composite-cae-h5-py"><span class="std std-ref">HDF5 Composite CAE</span></a></p>
+  <div class="sphx-glr-thumbnail-title">HDF5 Composite CAE</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to use the ACP, MAPDL, and DPF servers to optimize the ply angles in a composite lay-up. The optimization aims to minimize the maximum inverse reserve factor (IRF) of the composite structure under two load cases."><img alt="" src="../../_images/sphx_glr_01-optimizing-ply-angles_thumb.png" />
+<p><a class="reference internal" href="../../examples/use_cases/01-optimizing-ply-angles.html#sphx-glr-examples-use-cases-01-optimizing-ply-angles-py"><span class="std std-ref">Optimizing ply angles</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Optimizing ply angles</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to define a composite lay-up with PyACP, solve the resulting model with PyMAPDL, and run a failure analysis with PyDPF - Composites."><img alt="" src="../../_images/sphx_glr_01-pymapdl-workflow_thumb.png" />
+<p><a class="reference internal" href="../../examples/workflows/01-pymapdl-workflow.html#sphx-glr-examples-workflows-01-pymapdl-workflow-py"><span class="std std-ref">PyMAPDL workflow</span></a></p>
+  <div class="sphx-glr-thumbnail-title">PyMAPDL workflow</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to define a composite lay-up with PyACP, solve the resulting model with PyMAPDL, and run a failure analysis with PyDPF - Composites."><img alt="" src="../../_images/sphx_glr_02-advanced-pymapdl-workflow_thumb.png" />
+<p><a class="reference internal" href="../../examples/workflows/02-advanced-pymapdl-workflow.html#sphx-glr-examples-workflows-02-advanced-pymapdl-workflow-py"><span class="std std-ref">Advanced PyMAPDL workflow</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Advanced PyMAPDL workflow</div>
+</div></div></section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ansys.acp.core.ModelingGroup.shell_mesh.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">shell_mesh</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ansys.acp.core.ModelingPly.add_selection_rule.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">add_selection_rule</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ansys.acp.core.ModelingPly"><code class="docutils literal notranslate"><span class="pre">ModelingPly</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-using-modelingply">Examples using ModelingPly</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/api/_autosummary/ansys.acp.core.ModelingPly.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+
+  <!-- Include desired assets -->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('{"keys": ["title", "text", "objectID"], "limit": 10, "threshold": 0.2}');
+const SEARCH_FILE = "../../_static/search.json";
+const ADVANCE_SEARCH_PATH = "../../search.html";
+const EXTRA_SOURCES = JSON.parse('""');
+</script>
+
+
+<script src="../../_static/js/search.js"></script>
+
+  
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2025 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  1.5.3. <br />Last updated on
+  <span id="ast_build_date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var ast_lastModifiedDate = new Date(document.lastModified);
+  var ast_build_date = ast_lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("ast_build_date").innerHTML = ast_build_date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

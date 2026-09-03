@@ -1,0 +1,13 @@
+.. vale off
+
+PRODUCTION\_PLY\_WISE
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethod.PRODUCTION_PLY_WISE
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionMethod.PRODUCTION_PLY_WISE
+
+   ansys.acp.core.ExtrusionMethod.PRODUCTION_PLY_WISE

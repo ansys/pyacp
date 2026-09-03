@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: FieldDefinition.access_path
+
+.. minigallery::
+   :add-heading: Examples using FieldDefinition.access_path
+
+   ansys.acp.core.FieldDefinition.access_path

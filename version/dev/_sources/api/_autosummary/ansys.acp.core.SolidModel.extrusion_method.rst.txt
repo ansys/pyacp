@@ -1,0 +1,13 @@
+.. vale off
+
+extrusion\_method
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.extrusion_method
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.extrusion_method
+
+   ansys.acp.core.SolidModel.extrusion_method

@@ -1,0 +1,13 @@
+.. vale off
+
+filetransfer\_port
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLaunchConfig.filetransfer_port
+
+.. minigallery::
+   :add-heading: Examples using ConnectLaunchConfig.filetransfer_port
+
+   ansys.acp.core.ConnectLaunchConfig.filetransfer_port

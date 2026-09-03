@@ -1,0 +1,13 @@
+.. vale off
+
+interface\_weakening\_factor
+============================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantPuckConstants.interface_weakening_factor
+
+.. minigallery::
+   :add-heading: Examples using ConstantPuckConstants.interface_weakening_factor
+
+   ansys.acp.core.material_property_sets.ConstantPuckConstants.interface_weakening_factor

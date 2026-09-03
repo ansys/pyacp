@@ -1,0 +1,13 @@
+.. vale off
+
+analysis\_plies
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ProductionPly.analysis_plies
+
+.. minigallery::
+   :add-heading: Examples using ProductionPly.analysis_plies
+
+   ansys.acp.core.ProductionPly.analysis_plies

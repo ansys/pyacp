@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VirtualGeometry.name
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometry.name
+
+   ansys.acp.core.VirtualGeometry.name

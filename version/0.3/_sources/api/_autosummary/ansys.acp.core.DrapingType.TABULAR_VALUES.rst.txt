@@ -1,0 +1,13 @@
+.. vale off
+
+TABULAR\_VALUES
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DrapingType.TABULAR_VALUES
+
+.. minigallery::
+   :add-heading: Examples using DrapingType.TABULAR_VALUES
+
+   ansys.acp.core.DrapingType.TABULAR_VALUES

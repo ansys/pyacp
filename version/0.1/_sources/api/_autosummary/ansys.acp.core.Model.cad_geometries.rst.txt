@@ -1,0 +1,13 @@
+.. vale off
+
+cad\_geometries
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.cad_geometries
+
+.. minigallery::
+   :add-heading: Examples using Model.cad_geometries
+
+   ansys.acp.core.Model.cad_geometries

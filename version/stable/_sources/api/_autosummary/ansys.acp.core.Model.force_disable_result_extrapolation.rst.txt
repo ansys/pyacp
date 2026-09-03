@@ -1,0 +1,13 @@
+.. vale off
+
+force\_disable\_result\_extrapolation
+=====================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.force_disable_result_extrapolation
+
+.. minigallery::
+   :add-heading: Examples using Model.force_disable_result_extrapolation
+
+   ansys.acp.core.Model.force_disable_result_extrapolation

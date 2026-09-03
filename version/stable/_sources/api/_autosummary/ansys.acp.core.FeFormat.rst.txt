@@ -1,0 +1,31 @@
+﻿FeFormat
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: FeFormat
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        FeFormat.ANSYS_H5
+      
+      
+        FeFormat.ANSYS_CDB
+      
+      
+        FeFormat.ANSYS_DAT
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using FeFormat
+
+   ansys.acp.core.FeFormat

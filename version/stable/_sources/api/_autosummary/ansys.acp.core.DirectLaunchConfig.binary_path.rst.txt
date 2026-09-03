@@ -1,0 +1,13 @@
+.. vale off
+
+binary\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DirectLaunchConfig.binary_path
+
+.. minigallery::
+   :add-heading: Examples using DirectLaunchConfig.binary_path
+
+   ansys.acp.core.DirectLaunchConfig.binary_path

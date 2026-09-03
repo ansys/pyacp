@@ -1,0 +1,47 @@
+﻿.. vale off
+
+VariableStressLimits
+====================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: VariableStressLimits
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VariableStressLimits.Sxy
+      VariableStressLimits.Sxz
+      VariableStressLimits.Syz
+      VariableStressLimits.Xc
+      VariableStressLimits.Xt
+      VariableStressLimits.Yc
+      VariableStressLimits.Yt
+      VariableStressLimits.Zc
+      VariableStressLimits.Zt
+      VariableStressLimits.effective_stress
+      VariableStressLimits.field_variables
+      VariableStressLimits.interpolation_options
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VariableStressLimits
+
+   ansys.acp.core.material_property_sets.VariableStressLimits

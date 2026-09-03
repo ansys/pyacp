@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.access_path
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.access_path
+
+   ansys.acp.core.OrientedSelectionSet.access_path

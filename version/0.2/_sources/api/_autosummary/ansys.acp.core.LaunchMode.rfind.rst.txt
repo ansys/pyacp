@@ -1,0 +1,13 @@
+.. vale off
+
+rfind
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.rfind
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.rfind
+
+   ansys.acp.core.LaunchMode.rfind

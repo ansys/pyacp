@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.access_path
+
+.. minigallery::
+   :add-heading: Examples using Stackup.access_path
+
+   ansys.acp.core.Stackup.access_path

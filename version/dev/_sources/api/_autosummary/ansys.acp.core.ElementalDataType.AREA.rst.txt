@@ -1,0 +1,13 @@
+.. vale off
+
+AREA
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.AREA
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.AREA
+
+   ansys.acp.core.ElementalDataType.AREA

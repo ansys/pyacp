@@ -1,0 +1,13 @@
+.. vale off
+
+rjust
+=====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.rjust
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.rjust
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.rjust

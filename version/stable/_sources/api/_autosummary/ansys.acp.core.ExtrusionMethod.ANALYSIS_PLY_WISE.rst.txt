@@ -1,0 +1,13 @@
+.. vale off
+
+ANALYSIS\_PLY\_WISE
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethod.ANALYSIS_PLY_WISE
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionMethod.ANALYSIS_PLY_WISE
+
+   ansys.acp.core.ExtrusionMethod.ANALYSIS_PLY_WISE

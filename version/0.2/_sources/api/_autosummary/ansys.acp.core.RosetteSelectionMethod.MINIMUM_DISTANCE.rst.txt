@@ -1,0 +1,13 @@
+.. vale off
+
+MINIMUM\_DISTANCE
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteSelectionMethod.MINIMUM_DISTANCE
+
+.. minigallery::
+   :add-heading: Examples using RosetteSelectionMethod.MINIMUM_DISTANCE
+
+   ansys.acp.core.RosetteSelectionMethod.MINIMUM_DISTANCE

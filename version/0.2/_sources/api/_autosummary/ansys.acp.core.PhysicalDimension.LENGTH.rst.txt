@@ -1,0 +1,13 @@
+.. vale off
+
+LENGTH
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PhysicalDimension.LENGTH
+
+.. minigallery::
+   :add-heading: Examples using PhysicalDimension.LENGTH
+
+   ansys.acp.core.PhysicalDimension.LENGTH

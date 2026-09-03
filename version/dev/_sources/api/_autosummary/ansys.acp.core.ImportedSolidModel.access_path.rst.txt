@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.access_path
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.access_path
+
+   ansys.acp.core.ImportedSolidModel.access_path

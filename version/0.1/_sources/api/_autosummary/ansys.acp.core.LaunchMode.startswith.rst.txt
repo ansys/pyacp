@@ -1,0 +1,13 @@
+.. vale off
+
+startswith
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.startswith
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.startswith
+
+   ansys.acp.core.LaunchMode.startswith

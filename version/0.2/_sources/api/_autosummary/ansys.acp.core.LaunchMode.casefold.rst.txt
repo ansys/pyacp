@@ -1,0 +1,13 @@
+.. vale off
+
+casefold
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.casefold
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.casefold
+
+   ansys.acp.core.LaunchMode.casefold

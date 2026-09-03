@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Material.clone
+
+.. minigallery::
+   :add-heading: Examples using Material.clone
+
+   ansys.acp.core.Material.clone

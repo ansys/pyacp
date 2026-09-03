@@ -1,0 +1,13 @@
+.. vale off
+
+ADD
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: BooleanOperationType.ADD
+
+.. minigallery::
+   :add-heading: Examples using BooleanOperationType.ADD
+
+   ansys.acp.core.BooleanOperationType.ADD

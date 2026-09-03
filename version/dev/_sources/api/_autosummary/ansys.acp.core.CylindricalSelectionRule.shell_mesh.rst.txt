@@ -1,0 +1,13 @@
+.. vale off
+
+shell\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CylindricalSelectionRule.shell_mesh
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule.shell_mesh
+
+   ansys.acp.core.CylindricalSelectionRule.shell_mesh

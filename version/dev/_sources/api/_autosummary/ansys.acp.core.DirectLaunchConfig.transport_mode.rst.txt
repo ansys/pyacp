@@ -1,0 +1,13 @@
+.. vale off
+
+transport\_mode
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DirectLaunchConfig.transport_mode
+
+.. minigallery::
+   :add-heading: Examples using DirectLaunchConfig.transport_mode
+
+   ansys.acp.core.DirectLaunchConfig.transport_mode

@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: EdgeSet.store
+
+.. minigallery::
+   :add-heading: Examples using EdgeSet.store
+
+   ansys.acp.core.EdgeSet.store

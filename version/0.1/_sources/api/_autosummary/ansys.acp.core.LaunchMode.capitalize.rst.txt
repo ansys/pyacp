@@ -1,0 +1,13 @@
+.. vale off
+
+capitalize
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.capitalize
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.capitalize
+
+   ansys.acp.core.LaunchMode.capitalize

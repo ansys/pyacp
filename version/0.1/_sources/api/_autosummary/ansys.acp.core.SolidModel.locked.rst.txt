@@ -1,0 +1,13 @@
+.. vale off
+
+locked
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.locked
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.locked
+
+   ansys.acp.core.SolidModel.locked

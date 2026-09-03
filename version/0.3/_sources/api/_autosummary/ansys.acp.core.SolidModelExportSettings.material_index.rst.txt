@@ -1,0 +1,13 @@
+.. vale off
+
+material\_index
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModelExportSettings.material_index
+
+.. minigallery::
+   :add-heading: Examples using SolidModelExportSettings.material_index
+
+   ansys.acp.core.SolidModelExportSettings.material_index

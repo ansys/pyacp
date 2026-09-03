@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingGroup.parent
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingGroup.parent
+
+   ansys.acp.core.ImportedModelingGroup.parent

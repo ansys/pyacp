@@ -1,0 +1,13 @@
+.. vale off
+
+ORIENTATION
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.ORIENTATION
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.ORIENTATION
+
+   ansys.acp.core.ElementalDataType.ORIENTATION

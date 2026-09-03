@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CADGeometry.clone
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.clone
+
+   ansys.acp.core.CADGeometry.clone

@@ -1,0 +1,13 @@
+.. vale off
+
+BASIC\_FLAT\_PLATE\_ACPH5
+=========================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.BASIC_FLAT_PLATE_ACPH5
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.BASIC_FLAT_PLATE_ACPH5
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.BASIC_FLAT_PLATE_ACPH5

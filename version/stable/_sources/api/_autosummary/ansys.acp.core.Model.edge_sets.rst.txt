@@ -1,0 +1,13 @@
+.. vale off
+
+edge\_sets
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.edge_sets
+
+.. minigallery::
+   :add-heading: Examples using Model.edge_sets
+
+   ansys.acp.core.Model.edge_sets

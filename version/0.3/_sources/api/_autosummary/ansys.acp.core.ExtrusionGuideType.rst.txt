@@ -1,0 +1,28 @@
+﻿ExtrusionGuideType
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ExtrusionGuideType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        ExtrusionGuideType.BY_GEOMETRY
+      
+      
+        ExtrusionGuideType.BY_DIRECTION
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuideType
+
+   ansys.acp.core.ExtrusionGuideType

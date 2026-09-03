@@ -1,0 +1,13 @@
+.. vale off
+
+isalpha
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.isalpha
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.isalpha
+
+   ansys.acp.core.LaunchMode.isalpha

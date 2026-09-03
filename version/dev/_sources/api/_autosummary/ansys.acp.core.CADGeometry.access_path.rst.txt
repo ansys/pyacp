@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.access_path
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.access_path
+
+   ansys.acp.core.CADGeometry.access_path

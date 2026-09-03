@@ -1,0 +1,13 @@
+.. vale off
+
+rosette
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.rosette
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.rosette
+
+   ansys.acp.core.ParallelSelectionRule.rosette

@@ -1,0 +1,13 @@
+.. vale off
+
+ply\_type
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.ply_type
+
+.. minigallery::
+   :add-heading: Examples using Material.ply_type
+
+   ansys.acp.core.Material.ply_type

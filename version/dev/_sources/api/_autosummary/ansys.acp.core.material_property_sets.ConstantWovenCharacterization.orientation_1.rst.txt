@@ -1,0 +1,13 @@
+.. vale off
+
+orientation\_1
+==============
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantWovenCharacterization.orientation_1
+
+.. minigallery::
+   :add-heading: Examples using ConstantWovenCharacterization.orientation_1
+
+   ansys.acp.core.material_property_sets.ConstantWovenCharacterization.orientation_1

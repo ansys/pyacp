@@ -1,0 +1,13 @@
+.. vale off
+
+split
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.split
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.split
+
+   ansys.acp.core.LaunchMode.split

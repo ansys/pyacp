@@ -1,0 +1,13 @@
+.. vale off
+
+create\_imported\_modeling\_ply
+===============================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedModelingGroup.create_imported_modeling_ply
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingGroup.create_imported_modeling_ply
+
+   ansys.acp.core.ImportedModelingGroup.create_imported_modeling_ply

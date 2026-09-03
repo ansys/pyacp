@@ -1,0 +1,69 @@
+﻿.. vale off
+
+LayupMappingObject
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: LayupMappingObject
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      LayupMappingObject.clone
+      
+      
+      LayupMappingObject.delete
+      
+      
+      LayupMappingObject.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      LayupMappingObject.active
+      LayupMappingObject.base_element_material_handling
+      LayupMappingObject.base_element_rosette_selection_method
+      LayupMappingObject.base_element_rosettes
+      LayupMappingObject.base_material
+      LayupMappingObject.delete_lost_elements
+      LayupMappingObject.element_technology
+      LayupMappingObject.entire_solid_mesh
+      LayupMappingObject.filler_material
+      LayupMappingObject.id
+      LayupMappingObject.minimum_void_material_thickness
+      LayupMappingObject.name
+      LayupMappingObject.parent
+      LayupMappingObject.reinforcing_behavior
+      LayupMappingObject.rosette_selection_method
+      LayupMappingObject.rosettes
+      LayupMappingObject.scale_ply_thicknesses
+      LayupMappingObject.select_all_plies
+      LayupMappingObject.sequences
+      LayupMappingObject.shell_element_sets
+      LayupMappingObject.solid_element_sets
+      LayupMappingObject.status
+      LayupMappingObject.stress_state
+      LayupMappingObject.use_imported_plies
+      LayupMappingObject.void_material
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject
+
+   ansys.acp.core.LayupMappingObject

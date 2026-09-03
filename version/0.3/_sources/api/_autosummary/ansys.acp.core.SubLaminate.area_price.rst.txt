@@ -1,0 +1,13 @@
+.. vale off
+
+area\_price
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SubLaminate.area_price
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.area_price
+
+   ansys.acp.core.SubLaminate.area_price

@@ -1,0 +1,13 @@
+.. vale off
+
+global\_ply\_nr
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.global_ply_nr
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.global_ply_nr
+
+   ansys.acp.core.ModelingPly.global_ply_nr

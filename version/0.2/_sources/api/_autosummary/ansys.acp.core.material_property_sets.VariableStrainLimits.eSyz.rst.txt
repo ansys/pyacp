@@ -1,0 +1,13 @@
+.. vale off
+
+eSyz
+====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableStrainLimits.eSyz
+
+.. minigallery::
+   :add-heading: Examples using VariableStrainLimits.eSyz
+
+   ansys.acp.core.material_property_sets.VariableStrainLimits.eSyz

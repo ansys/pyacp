@@ -1,0 +1,13 @@
+.. vale off
+
+reference\_direction
+====================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ProductionPlyElementalData.reference_direction
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.reference_direction
+
+   ansys.acp.core.mesh_data.ProductionPlyElementalData.reference_direction

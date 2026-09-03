@@ -1,0 +1,58 @@
+﻿.. vale off
+
+SubLaminate
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SubLaminate
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SubLaminate.add_material
+      
+      
+      SubLaminate.clone
+      
+      
+      SubLaminate.delete
+      
+      
+      SubLaminate.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SubLaminate.area_price
+      SubLaminate.area_weight
+      SubLaminate.id
+      SubLaminate.locked
+      SubLaminate.materials
+      SubLaminate.name
+      SubLaminate.parent
+      SubLaminate.status
+      SubLaminate.symmetry
+      SubLaminate.thickness
+      SubLaminate.topdown
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate
+
+   ansys.acp.core.SubLaminate

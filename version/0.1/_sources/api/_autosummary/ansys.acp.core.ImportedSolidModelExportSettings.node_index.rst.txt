@@ -1,0 +1,13 @@
+.. vale off
+
+node\_index
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModelExportSettings.node_index
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModelExportSettings.node_index
+
+   ansys.acp.core.ImportedSolidModelExportSettings.node_index

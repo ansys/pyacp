@@ -1,0 +1,13 @@
+.. vale off
+
+ANSYS\_DAT
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelImportFormat.ANSYS_DAT
+
+.. minigallery::
+   :add-heading: Examples using SolidModelImportFormat.ANSYS_DAT
+
+   ansys.acp.core.SolidModelImportFormat.ANSYS_DAT

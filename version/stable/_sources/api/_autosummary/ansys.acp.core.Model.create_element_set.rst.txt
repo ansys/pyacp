@@ -1,0 +1,13 @@
+.. vale off
+
+create\_element\_set
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_element_set
+
+.. minigallery::
+   :add-heading: Examples using Model.create_element_set
+
+   ansys.acp.core.Model.create_element_set

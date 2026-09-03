@@ -1,0 +1,34 @@
+﻿LaunchMode
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: LaunchMode
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        LaunchMode.DIRECT
+      
+      
+        LaunchMode.DOCKER_COMPOSE
+      
+      
+        LaunchMode.CONNECT
+      
+      
+        LaunchMode.CONNECT_LOCAL
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode
+
+   ansys.acp.core.LaunchMode

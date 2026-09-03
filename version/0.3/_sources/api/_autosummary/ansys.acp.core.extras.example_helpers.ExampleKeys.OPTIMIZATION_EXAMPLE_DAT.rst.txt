@@ -1,0 +1,13 @@
+.. vale off
+
+OPTIMIZATION\_EXAMPLE\_DAT
+==========================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.OPTIMIZATION_EXAMPLE_DAT
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.OPTIMIZATION_EXAMPLE_DAT
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.OPTIMIZATION_EXAMPLE_DAT

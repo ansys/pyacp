@@ -1,0 +1,28 @@
+﻿SolidModelExportFormat
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SolidModelExportFormat
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        SolidModelExportFormat.ANSYS_H5
+      
+      
+        SolidModelExportFormat.ANSYS_CDB
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using SolidModelExportFormat
+
+   ansys.acp.core.SolidModelExportFormat

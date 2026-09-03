@@ -1,0 +1,13 @@
+.. vale off
+
+G31
+===
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantEngineeringConstants.G31
+
+.. minigallery::
+   :add-heading: Examples using ConstantEngineeringConstants.G31
+
+   ansys.acp.core.material_property_sets.ConstantEngineeringConstants.G31

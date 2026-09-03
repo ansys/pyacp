@@ -1,0 +1,40 @@
+﻿.. vale off
+
+ElementSetElementalData
+=======================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: ElementSetElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ElementSetElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ElementSetElementalData.normal
+      ElementSetElementalData.element_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ElementSetElementalData
+
+   ansys.acp.core.mesh_data.ElementSetElementalData

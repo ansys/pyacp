@@ -1,0 +1,13 @@
+.. vale off
+
+connect\_butt\_joined\_plies
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: DropOffSettings.connect_butt_joined_plies
+
+.. minigallery::
+   :add-heading: Examples using DropOffSettings.connect_butt_joined_plies
+
+   ansys.acp.core.DropOffSettings.connect_butt_joined_plies

@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADComponent.name
+
+.. minigallery::
+   :add-heading: Examples using CADComponent.name
+
+   ansys.acp.core.CADComponent.name

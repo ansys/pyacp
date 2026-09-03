@@ -1,0 +1,13 @@
+.. vale off
+
+create\_section\_cut
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_section_cut
+
+.. minigallery::
+   :add-heading: Examples using Model.create_section_cut
+
+   ansys.acp.core.Model.create_section_cut

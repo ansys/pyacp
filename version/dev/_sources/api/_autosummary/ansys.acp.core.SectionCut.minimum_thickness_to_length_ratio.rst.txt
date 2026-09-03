@@ -1,0 +1,13 @@
+.. vale off
+
+minimum\_thickness\_to\_length\_ratio
+=====================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.minimum_thickness_to_length_ratio
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.minimum_thickness_to_length_ratio
+
+   ansys.acp.core.SectionCut.minimum_thickness_to_length_ratio

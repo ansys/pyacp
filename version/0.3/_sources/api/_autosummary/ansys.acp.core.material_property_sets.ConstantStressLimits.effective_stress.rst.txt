@@ -1,0 +1,13 @@
+.. vale off
+
+effective\_stress
+=================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantStressLimits.effective_stress
+
+.. minigallery::
+   :add-heading: Examples using ConstantStressLimits.effective_stress
+
+   ansys.acp.core.material_property_sets.ConstantStressLimits.effective_stress

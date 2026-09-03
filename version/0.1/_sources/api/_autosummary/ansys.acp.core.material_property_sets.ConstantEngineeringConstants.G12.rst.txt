@@ -1,0 +1,13 @@
+.. vale off
+
+G12
+===
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantEngineeringConstants.G12
+
+.. minigallery::
+   :add-heading: Examples using ConstantEngineeringConstants.G12
+
+   ansys.acp.core.material_property_sets.ConstantEngineeringConstants.G12

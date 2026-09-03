@@ -1,0 +1,13 @@
+.. vale off
+
+use\_global\_coordinate\_system
+===============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3D.use_global_coordinate_system
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3D.use_global_coordinate_system
+
+   ansys.acp.core.LookUpTable3D.use_global_coordinate_system

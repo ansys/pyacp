@@ -1,0 +1,13 @@
+.. vale off
+
+partition
+=========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.partition
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.partition
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.partition

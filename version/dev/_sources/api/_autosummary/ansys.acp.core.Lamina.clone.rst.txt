@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Lamina.clone
+
+.. minigallery::
+   :add-heading: Examples using Lamina.clone
+
+   ansys.acp.core.Lamina.clone

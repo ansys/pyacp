@@ -1,0 +1,13 @@
+.. vale off
+
+DESIGN\_ANGLE
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.DESIGN_ANGLE
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.DESIGN_ANGLE
+
+   ansys.acp.core.ElementalDataType.DESIGN_ANGLE

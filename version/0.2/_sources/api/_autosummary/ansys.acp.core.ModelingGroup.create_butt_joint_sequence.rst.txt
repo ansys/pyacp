@@ -1,0 +1,13 @@
+.. vale off
+
+create\_butt\_joint\_sequence
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ModelingGroup.create_butt_joint_sequence
+
+.. minigallery::
+   :add-heading: Examples using ModelingGroup.create_butt_joint_sequence
+
+   ansys.acp.core.ModelingGroup.create_butt_joint_sequence

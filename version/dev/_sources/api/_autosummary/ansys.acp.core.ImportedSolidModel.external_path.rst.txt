@@ -1,0 +1,13 @@
+.. vale off
+
+external\_path
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.external_path
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.external_path
+
+   ansys.acp.core.ImportedSolidModel.external_path

@@ -1,0 +1,13 @@
+.. vale off
+
+element\_set
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: EdgeSet.element_set
+
+.. minigallery::
+   :add-heading: Examples using EdgeSet.element_set
+
+   ansys.acp.core.EdgeSet.element_set

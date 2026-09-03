@@ -1,0 +1,13 @@
+.. vale off
+
+start
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPInstance.start
+
+.. minigallery::
+   :add-heading: Examples using ACPInstance.start
+
+   ansys.acp.core.ACPInstance.start

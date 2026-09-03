@@ -1,0 +1,13 @@
+.. vale off
+
+upper
+=====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.upper
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.upper
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.upper

@@ -1,0 +1,13 @@
+.. vale off
+
+rpartition
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.rpartition
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.rpartition
+
+   ansys.acp.core.LaunchMode.rpartition

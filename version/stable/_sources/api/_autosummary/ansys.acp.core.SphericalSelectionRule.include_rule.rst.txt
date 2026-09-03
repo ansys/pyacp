@@ -1,0 +1,13 @@
+.. vale off
+
+include\_rule
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.include_rule
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.include_rule
+
+   ansys.acp.core.SphericalSelectionRule.include_rule

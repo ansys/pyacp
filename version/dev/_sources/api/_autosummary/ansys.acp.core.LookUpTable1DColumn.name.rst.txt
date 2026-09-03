@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable1DColumn.name
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable1DColumn.name
+
+   ansys.acp.core.LookUpTable1DColumn.name

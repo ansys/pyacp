@@ -1,0 +1,28 @@
+﻿ImportedPlyDrapingType
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ImportedPlyDrapingType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        ImportedPlyDrapingType.NO_DRAPING
+      
+      
+        ImportedPlyDrapingType.TABULAR_VALUES
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using ImportedPlyDrapingType
+
+   ansys.acp.core.ImportedPlyDrapingType

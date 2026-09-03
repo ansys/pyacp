@@ -1,0 +1,13 @@
+.. vale off
+
+E
+=
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableEngineeringConstants.E
+
+.. minigallery::
+   :add-heading: Examples using VariableEngineeringConstants.E
+
+   ansys.acp.core.material_property_sets.VariableEngineeringConstants.E

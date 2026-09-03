@@ -1,0 +1,13 @@
+.. vale off
+
+INSIDE\_PLY
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DropOffType.INSIDE_PLY
+
+.. minigallery::
+   :add-heading: Examples using DropOffType.INSIDE_PLY
+
+   ansys.acp.core.DropOffType.INSIDE_PLY

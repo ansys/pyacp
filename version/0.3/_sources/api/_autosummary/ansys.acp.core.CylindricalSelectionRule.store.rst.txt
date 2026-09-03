@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CylindricalSelectionRule.store
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule.store
+
+   ansys.acp.core.CylindricalSelectionRule.store

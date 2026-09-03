@@ -1,0 +1,13 @@
+.. vale off
+
+swapcase
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.swapcase
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.swapcase
+
+   ansys.acp.core.LaunchMode.swapcase

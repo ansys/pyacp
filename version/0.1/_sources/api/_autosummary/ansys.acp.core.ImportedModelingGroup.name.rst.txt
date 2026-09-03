@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingGroup.name
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingGroup.name
+
+   ansys.acp.core.ImportedModelingGroup.name

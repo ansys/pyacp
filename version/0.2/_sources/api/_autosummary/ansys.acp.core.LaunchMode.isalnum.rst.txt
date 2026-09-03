@@ -1,0 +1,13 @@
+.. vale off
+
+isalnum
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.isalnum
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.isalnum
+
+   ansys.acp.core.LaunchMode.isalnum

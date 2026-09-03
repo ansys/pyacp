@@ -1,0 +1,53 @@
+﻿.. vale off
+
+FieldDefinition
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: FieldDefinition
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      FieldDefinition.clone
+      
+      
+      FieldDefinition.delete
+      
+      
+      FieldDefinition.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      FieldDefinition.active
+      FieldDefinition.field_variable_name
+      FieldDefinition.full_mapping
+      FieldDefinition.id
+      FieldDefinition.name
+      FieldDefinition.parent
+      FieldDefinition.scalar_field
+      FieldDefinition.scope_entities
+      FieldDefinition.status
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using FieldDefinition
+
+   ansys.acp.core.FieldDefinition

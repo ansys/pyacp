@@ -1,0 +1,13 @@
+.. vale off
+
+rosette
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SamplingPoint.rosette
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint.rosette
+
+   ansys.acp.core.SamplingPoint.rosette

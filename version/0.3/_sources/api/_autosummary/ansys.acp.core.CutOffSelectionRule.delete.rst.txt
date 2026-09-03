@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CutOffSelectionRule.delete
+
+.. minigallery::
+   :add-heading: Examples using CutOffSelectionRule.delete
+
+   ansys.acp.core.CutOffSelectionRule.delete

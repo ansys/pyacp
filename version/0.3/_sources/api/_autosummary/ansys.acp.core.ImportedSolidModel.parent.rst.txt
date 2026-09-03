@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.parent
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.parent
+
+   ansys.acp.core.ImportedSolidModel.parent

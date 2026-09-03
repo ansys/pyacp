@@ -1,0 +1,13 @@
+.. vale off
+
+thickness\_type
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.thickness_type
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.thickness_type
+
+   ansys.acp.core.ImportedModelingPly.thickness_type

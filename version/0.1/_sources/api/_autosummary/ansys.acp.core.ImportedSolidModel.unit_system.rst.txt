@@ -1,0 +1,13 @@
+.. vale off
+
+unit\_system
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.unit_system
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.unit_system
+
+   ansys.acp.core.ImportedSolidModel.unit_system

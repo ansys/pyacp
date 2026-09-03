@@ -1,0 +1,13 @@
+.. vale off
+
+COORDINATES
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.COORDINATES
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.COORDINATES
+
+   ansys.acp.core.ElementalDataType.COORDINATES

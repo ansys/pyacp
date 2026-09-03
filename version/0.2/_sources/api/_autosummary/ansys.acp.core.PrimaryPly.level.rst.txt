@@ -1,0 +1,13 @@
+.. vale off
+
+level
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: PrimaryPly.level
+
+.. minigallery::
+   :add-heading: Examples using PrimaryPly.level
+
+   ansys.acp.core.PrimaryPly.level

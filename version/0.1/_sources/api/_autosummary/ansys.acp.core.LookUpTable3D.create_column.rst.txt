@@ -1,0 +1,13 @@
+.. vale off
+
+create\_column
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LookUpTable3D.create_column
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3D.create_column
+
+   ansys.acp.core.LookUpTable3D.create_column

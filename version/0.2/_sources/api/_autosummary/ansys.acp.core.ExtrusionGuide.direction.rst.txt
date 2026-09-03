@@ -1,0 +1,13 @@
+.. vale off
+
+direction
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExtrusionGuide.direction
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide.direction
+
+   ansys.acp.core.ExtrusionGuide.direction

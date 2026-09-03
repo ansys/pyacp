@@ -1,0 +1,28 @@
+﻿DropOffType
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: DropOffType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        DropOffType.INSIDE_PLY
+      
+      
+        DropOffType.OUTSIDE_PLY
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using DropOffType
+
+   ansys.acp.core.DropOffType
