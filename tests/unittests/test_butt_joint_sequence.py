@@ -27,7 +27,6 @@ import pytest
 
 from ansys.acp.core import ButtJointSequence, ButtJointSequenceDefinitionType, PrimaryPly
 from ansys.acp.core._tree_objects._grpc_helpers.linked_object_list import ReadOnlyLinkedObjectList
-from tests.conftest import raises_before_version
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 from .common.utils import AnyThing
@@ -55,14 +54,6 @@ def parent_object(parent_model):
 @pytest.fixture
 def tree_object(parent_object):
     return parent_object.create_butt_joint_sequence()
-
-
-@pytest.fixture
-def require_version_27_1(acp_instance):
-    if parse_version(acp_instance.server_version) < parse_version("27.1"):
-        pytest.skip(
-            "This ButtJointSequence feature is not supported on this version of the server."
-        )
 
 
 class TestButtJointSequence(NoLockedMixin, TreeObjectTester):
@@ -158,7 +149,7 @@ def test_add_primary_ply(parent_object):
     assert butt_joint_sequence.primary_plies[-1].level == 3
 
 
-def test_convert_to_manual_definition(load_model_from_tempfile):
+def test_convert_to_manual_definition(load_model_from_tempfile, raises_before_version):
     """Verify conversion from automatic to manual definition."""
     with load_model_from_tempfile("minimal_complete_model.acph5") as model:
         modeling_group = model.modeling_groups["ModelingGroup.1"]
@@ -177,8 +168,9 @@ def test_convert_to_manual_definition(load_model_from_tempfile):
             assert butt_joint_sequence.definition_type == ButtJointSequenceDefinitionType.MANUAL
 
 
-def test_automatically_added_sequences_is_read_only(parent_object, require_version_27_1):
+def test_automatically_added_sequences_is_read_only(parent_object, skip_before_version):
     """Verify automatically added sequences use a read-only linked-object list."""
+    skip_before_version("27.1")  # automatically_added_sequences is only available since 27.1
     butt_joint_sequence = parent_object.create_butt_joint_sequence(
         definition_type=ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES
     )
@@ -191,8 +183,9 @@ def test_automatically_added_sequences_is_read_only(parent_object, require_versi
         cast(Any, automatically_added_sequences).append(parent_object.create_modeling_ply())
 
 
-def test_default_definition_type_warns(parent_object, require_version_27_1):
+def test_default_definition_type_warns(parent_object, skip_before_version):
     """Verify the backwards-compatible default definition type."""
+    skip_before_version("27.1")  # definition_type is only available since 27.1
     with pytest.warns(DeprecationWarning, match="'definition_type'.*will change"):
         butt_joint_sequence = parent_object.create_butt_joint_sequence()
     assert butt_joint_sequence.definition_type == ButtJointSequenceDefinitionType.MANUAL
