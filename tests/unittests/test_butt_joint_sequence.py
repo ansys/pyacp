@@ -116,8 +116,13 @@ class TestButtJointSequence(NoLockedMixin, TreeObjectTester):
         if parse_version(acp_instance.server_version) >= parse_version("27.1"):
             read_write.extend(
                 [
-                    ("definition_type", ButtJointSequenceDefinitionType.MANUAL),
+                    ("definition_type", ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES),
                     ("starting_modeling_plies", [mp2]),
+                    # Set the 'primary_plies' and 'secondary_plies' to match the 'automatic' mode:
+                    # The 'create_with_defined_properties' test picks the last entry for each attribute
+                    # in the 'read_write' list, so they need to be consistent.
+                    ("primary_plies", []),
+                    ("secondary_plies", []),
                 ]
             )
             read_only.append(("automatically_added_sequences", []))
