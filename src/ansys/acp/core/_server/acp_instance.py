@@ -305,7 +305,7 @@ class ACPInstance(Generic[ServerT]):
     def models(self) -> tuple[Model, ...]:
         """Models currently loaded on the server.
 
-        Note that the models are listed in arbitrary order.
+        Note that models are listed in an arbitrary but deterministic (per session) order.
         """
         from .._tree_objects import Model
         from .._tree_objects.base import ServerWrapper
