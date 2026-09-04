@@ -17,7 +17,7 @@ jobs:
       packages: write # needs to be able to delete packages
     steps:
       - name: "Delete untagged package versions"
-        uses: ansys/actions/hk-package-clean-untagged@v11.0.3
+        uses: ansys/actions/hk-package-clean-untagged@v11.0.4
         with:
           package-org: 'ansys'
           package-name: 'acp'
