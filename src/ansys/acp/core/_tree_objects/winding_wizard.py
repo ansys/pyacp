@@ -236,10 +236,10 @@ class WindingWizard(ImportObjectMixin, CreatableTreeObject, IdTreeObject):
         Name of the winding wizard object.
     origin :
         Point on the axis of symmetry.
-    reference_radius :
-        Reference radius where nominal angle and nominal thickness are defined.
     axial_direction :
         Direction vector of the axis of symmetry.
+    reference_radius :
+        Reference radius where nominal angle and nominal thickness are defined.
     max_angle_with_thickness_correction :
         No thickness correction is applied for absolute angles above this limit.
     layers :
