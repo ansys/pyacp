@@ -26,6 +26,7 @@ from collections.abc import Iterable, Sequence
 import dataclasses
 import typing
 from typing import Any, cast
+import warnings
 
 import numpy as np
 from packaging.version import Version
@@ -43,6 +44,7 @@ from ansys.api.acp.v0 import (
     field_definition_pb2_grpc,
     geometrical_selection_rule_pb2_grpc,
     hdf5_composite_cae_import_pb2,
+    hdf5_composite_cae_import_pb2_grpc,
     imported_modeling_group_pb2_grpc,
     imported_solid_model_pb2_grpc,
     lookup_table_1d_pb2_grpc,
@@ -103,10 +105,12 @@ from .edge_set import EdgeSet
 from .element_set import ElementSet
 from .enums import (
     ArrowType,
+    HDF5CompositeCAEProjectionMode,
     OffsetType,
     PlyGeometryExportFormat,
     UnitSystemType,
     arrow_type_to_pb,
+    hdf5_composite_cae_projection_mode_to_pb,
     offset_type_to_pb,
     ply_geometry_export_format_to_pb,
     unit_system_type_from_pb,
@@ -115,6 +119,12 @@ from .enums import (
 from .fabric import Fabric
 from .field_definition import FieldDefinition
 from .geometrical_selection_rule import GeometricalSelectionRule
+from .hdf5_composite_cae_import import (
+    CoordinateTransformation,
+    HDF5CompositeCAEImport,
+    ShellMappingProperties,
+    SolidMappingProperties,
+)
 from .imported_modeling_group import ImportedModelingGroup
 from .imported_solid_model import ImportedSolidModel
 from .lookup_table_1d import LookUpTable1D
@@ -134,20 +144,18 @@ from .spherical_selection_rule import SphericalSelectionRule
 from .stackup import Stackup
 from .sublaminate import SubLaminate
 from .tube_selection_rule import TubeSelectionRule
-from .utils import CoordinateTransformation
 from .variable_offset_selection_rule import VariableOffsetSelectionRule
 from .virtual_geometry import VirtualGeometry
 
 __all__ = [
     "FeFormat",
-    "HDF5CompositeCAEImportMode",
-    "HDF5CompositeCAEProjectionMode",
+    "HDF5CompositeCAEProjectionMode",  # export kept for backward compatibility
     "IgnorableEntity",
     "Model",
     "ModelElementalData",
     "ModelNodalData",
-    "ShellMappingProperties",
-    "SolidMappingProperties",
+    "ShellMappingProperties",  # export kept for backward compatibility
+    "SolidMappingProperties",  # export kept for backward compatibility
 ]
 
 FeFormat, fe_format_to_pb, _ = wrap_to_string_enum(
@@ -168,17 +176,14 @@ IgnorableEntity, ignorable_entity_to_pb, _ = wrap_to_string_enum(
     module=__name__,
     doc="Options for the entities to ignore when loading an FE file.",
 )
+
+# Implemented here since the HDF5CompositeCAEImport
+# tree object does not support the import_mode option.
 HDF5CompositeCAEImportMode, hdf5_composite_cae_import_mode_to_pb, _ = wrap_to_string_enum(
     "HDF5CompositeCAEImportMode",
     hdf5_composite_cae_import_pb2.ImportMode,
     module=__name__,
     doc="Options for the import mode of the HDF5 Composite CAE file.",
-)
-HDF5CompositeCAEProjectionMode, hdf5_composite_cae_projection_mode_to_pb, _ = wrap_to_string_enum(
-    "HDF5CompositeCAEProjectionMode",
-    hdf5_composite_cae_import_pb2.ProjectionMode,
-    module=__name__,
-    doc="Options for the projection mode of the HDF5 Composite CAE file.",
 )
 
 
@@ -217,25 +222,6 @@ class ModelElementalData(ElementalData):
 @dataclasses.dataclass
 class ModelNodalData(NodalData):
     """Represents nodal data for a Model."""
-
-
-@dataclasses.dataclass
-class ShellMappingProperties:
-    """Properties for mapping to the shell on importing HDF5 Composite CAE files."""
-
-    all_elements: bool = True
-    element_sets: Sequence[ElementSet] = ()
-    relative_thickness_tolerance: float = 0.5
-    relative_in_plane_tolerance: float = 0.01
-    angle_tolerance: float = 35.0
-    small_hole_threshold: float = 0.0
-
-
-@dataclasses.dataclass
-class SolidMappingProperties:
-    """Properties for importing HDF5 Composite CAE files as imported plies."""
-
-    offset_type: OffsetType = OffsetType.BOTTOM_OFFSET
 
 
 @mark_grpc_properties
@@ -527,7 +513,7 @@ class Model(TreeObject):
         self,
         path: _PATH,
         import_mode: HDF5CompositeCAEImportMode = HDF5CompositeCAEImportMode.APPEND,  # type: ignore
-        projection_mode: HDF5CompositeCAEProjectionMode = HDF5CompositeCAEProjectionMode.SHELL,  # type: ignore
+        projection_mode: HDF5CompositeCAEProjectionMode = HDF5CompositeCAEProjectionMode.SHELL,
         minimum_angle_tolerance: float = 0.001,
         recompute_reference_directions: bool = False,
         shell_mapping_properties: ShellMappingProperties = ShellMappingProperties(),
@@ -562,29 +548,25 @@ class Model(TreeObject):
         coordinate_transformation :
             Coordinate transformation applied to the imported lay-up.
         """
+        if self._server_wrapper.version >= parse_version("27.1"):
+            warnings.warn(
+                "The import_hdf5_composite_cae method is deprecated since ACP server version 27.1. "
+                "Use the HDF5CompositeCAEImport tree object instead.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+
         if projection_mode == HDF5CompositeCAEProjectionMode.SHELL:
             mapping_properties_kwargs: (
                 dict[str, hdf5_composite_cae_import_pb2.ShellMappingProperties]
                 | dict[str, hdf5_composite_cae_import_pb2.SolidMappingProperties]
             ) = {
-                "shell_mapping_properties": hdf5_composite_cae_import_pb2.ShellMappingProperties(
-                    all_elements=shell_mapping_properties.all_elements,
-                    element_sets=[
-                        element_set._resource_path
-                        for element_set in shell_mapping_properties.element_sets
-                    ],
-                    relative_thickness_tolerance=shell_mapping_properties.relative_thickness_tolerance,
-                    relative_in_plane_tolerance=shell_mapping_properties.relative_in_plane_tolerance,
-                    angle_tolerance=shell_mapping_properties.angle_tolerance,
-                    small_hole_threshold=shell_mapping_properties.small_hole_threshold,
-                ),
+                "shell_mapping_properties": shell_mapping_properties._pb_object,
             }
         else:
             assert projection_mode == HDF5CompositeCAEProjectionMode.SOLID
             mapping_properties_kwargs = {
-                "solid_mapping_properties": hdf5_composite_cae_import_pb2.SolidMappingProperties(
-                    offset_type=offset_type_to_pb(solid_mapping_properties.offset_type)  # type: ignore
-                ),
+                "solid_mapping_properties": solid_mapping_properties._pb_object,
             }
 
         with wrap_grpc_errors():
@@ -596,9 +578,7 @@ class Model(TreeObject):
                     projection_mode=hdf5_composite_cae_projection_mode_to_pb(projection_mode),  # type: ignore
                     minimum_angle_tolerance=minimum_angle_tolerance,
                     recompute_reference_directions=recompute_reference_directions,
-                    coordinate_transformation=hdf5_composite_cae_import_pb2.CoordinateTransformation(
-                        **dataclasses.asdict(coordinate_transformation)
-                    ),
+                    coordinate_transformation=coordinate_transformation._pb_object,
                     **mapping_properties_kwargs,
                 )
             )
@@ -766,6 +746,16 @@ class Model(TreeObject):
                         ),
                     )
                 )
+
+    create_hdf5_composite_cae_import = define_create_method(
+        HDF5CompositeCAEImport,
+        func_name="create_hdf5_composite_cae_import",
+        parent_class_name="Model",
+        module_name=__module__,
+    )
+    hdf5_composite_cae_imports = define_mutable_mapping(
+        HDF5CompositeCAEImport, hdf5_composite_cae_import_pb2_grpc.ObjectServiceStub
+    )
 
     create_material = define_create_method(
         Material, func_name="create_material", parent_class_name="Model", module_name=__module__

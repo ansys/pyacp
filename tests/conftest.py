@@ -326,6 +326,21 @@ def raises_before_version(acp_instance):
 
 
 @pytest.fixture
+def warns_from_version(acp_instance):
+    """Mark a test as expected to raise a warning from a certain server version."""
+
+    @contextmanager
+    def inner(version: str, warning_type: type[Warning]):
+        if parse_version(acp_instance.server_version) >= parse_version(version):
+            with pytest.warns(warning_type):
+                yield
+        else:
+            yield
+
+    return inner
+
+
+@pytest.fixture
 def skip_before_version(acp_instance):
     """Skip a test before a certain server version."""
 

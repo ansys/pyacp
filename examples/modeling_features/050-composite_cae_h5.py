@@ -162,10 +162,12 @@ plotter.show()
 # Import the HDF5 Composite CAE file which is then automatically mapped
 # onto the refined mesh. In this example, the default settings
 # (tolerances, etc.) are used.
-refined_model.import_hdf5_composite_cae(
+hdf5_import = refined_model.create_hdf5_composite_cae_import(
     path=h5_output_file,
 )
+hdf5_import.run()
 refined_model.update()
+hdf5_import.list_generated_objects()
 
 # %%
 # Plot the thickness distribution on the refined model

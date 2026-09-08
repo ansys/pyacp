@@ -70,6 +70,7 @@ The ``hide_empty`` label can be set to ``False`` to also show empty groups:
 
     >>> pyacp.print_model(model, hide_empty=False, show_lines=True)
     'ACP Model'
+    ├── Hdf5 Composite Cae Imports
     ├── Materials
     │   └── 'Structural Steel'
     ├── Fabrics

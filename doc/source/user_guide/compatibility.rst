@@ -21,6 +21,27 @@ almost all features of ACP available through PyACP.
   Older versions of each release only support the INSECURE transport mode, which is not
   recommended because there is no encryption or authentication.
 
+Added in 2027R1
+~~~~~~~~~~~~~~~
+
+The following features were added in version 2027R1 of the ACP gRPC server.
+
+Tree objects
+''''''''''''
+
+- :class:`.HDF5CompositeCAEImport`
+
+Attributes
+''''''''''
+
+- :attr:`.SectionCut.minimum_thickness_to_length_ratio`
+
+Other features
+''''''''''''''
+
+- The ``MMKMS`` (mm, kg, ms) unit system is now supported on the server. It can be set
+  using the :attr:`.Model.unit_system` attribute.
+
 Added in 2025R2
 ~~~~~~~~~~~~~~~
 
@@ -98,6 +119,17 @@ Breaking changes:
 - The ``PuckMaterialType.IGNORED`` option was removed. Disable the Puck constants
   by setting the ``Material.puck_constants`` attribute to ``None`` for the
   materials which used this option.
+
+Deprecated features:
+
+- The SectionCut ``tolerance`` attribute was renamed to ``minimum_segment_length``,
+  and ``use_default_tolerance`` was renamed to ``use_default_minimum_segment_length``.
+  Using the old attribute names will emit a deprecation warning, and will raise an
+  exception from PyACP version 0.5.0 onwards.
+- The :meth:`.Model.import_hdf5_composite_cae` method is deprecated in favor of the
+  :class:`.HDF5CompositeCAEImport` tree object (available since server version 2027R1).
+  Using the old method will emit a deprecation warning when used with server version 2027R1
+  or newer. Removal of the method is not yet scheduled.
 
 Upgrading from the beta version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

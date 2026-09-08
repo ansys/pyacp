@@ -171,7 +171,7 @@ class DropOffSettings(TreeObjectAttributeWithCache):
             self.connect_butt_joined_plies = connect_butt_joined_plies
 
     @classmethod
-    def _create_default_pb_object(self) -> solid_model_pb2.DropOffSettings:
+    def _create_default_pb_object(cls) -> solid_model_pb2.DropOffSettings:
         # There's no need to define the 'real' default values here, since
         # this method is only called when the object is created from scratch.
         # In that case, the '__init__' method will be called with the default
