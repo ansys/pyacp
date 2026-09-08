@@ -36,6 +36,7 @@ from ansys.acp.core.extras.feature_tree import get_feature_tree
             textwrap.dedent("""\
                 Model
                     HDF5CompositeCAEImport
+                    WindingWizard
                     Material
                     Fabric
                     Stackup
@@ -95,6 +96,7 @@ from ansys.acp.core.extras.feature_tree import get_feature_tree
             textwrap.dedent("""\
                 Model
                 ├── HDF5CompositeCAEImport
+                ├── WindingWizard
                 ├── Material
                 ├── Fabric
                 ├── Stackup

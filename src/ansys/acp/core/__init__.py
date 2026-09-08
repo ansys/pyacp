@@ -98,6 +98,7 @@ from ._tree_objects import (
     InterfaceLayer,
     IntersectionType,
     Lamina,
+    Layer,
     LayupMappingObject,
     LayupMappingRosetteSelectionMethod,
     LinkedSelectionRule,
@@ -158,6 +159,7 @@ from ._tree_objects import (
     VariableOffsetSelectionRule,
     VirtualGeometry,
     VirtualGeometryDimension,
+    WindingWizard,
 )
 
 __version__ = importlib.metadata.version(__name__.replace(".", "-"))
@@ -227,6 +229,7 @@ __all__ = [
     "Lamina",
     "launch_acp",
     "LaunchMode",
+    "Layer",
     "LayupMappingObject",
     "LayupMappingRosetteSelectionMethod",
     "LinkedObjectHandling",
@@ -293,4 +296,5 @@ __all__ = [
     "VariableOffsetSelectionRule",
     "VirtualGeometry",
     "VirtualGeometryDimension",
+    "WindingWizard",
 ]
