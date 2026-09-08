@@ -20,9 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from collections import Counter
+
 from packaging.version import parse as parse_version
 import pytest
 
+import ansys.acp.core as pyacp
 from ansys.acp.core._tree_objects.winding_wizard import Layer, WindingWizard
 
 from .common.tree_object_tester import (
@@ -163,3 +166,62 @@ def test_layer_equality_check(parent_object):
         upper_limit=2.0,
         add_mirrored_ply=True,
     )
+
+
+@pytest.fixture
+def model_with_winding_wizard(parent_object):
+    fabric = parent_object.create_fabric()
+    winding_wizard = parent_object.create_winding_wizard(
+        reference_radius=10.0,
+        axial_direction=(0.0, 0.0, 1.0),
+        layers=[
+            Layer(fabric=fabric, nominal_angle=30.0),
+            Layer(fabric=fabric, nominal_angle=20.0),
+        ],
+    )
+    return parent_object, winding_wizard
+
+
+def test_run_method(model_with_winding_wizard):
+    model, winding_wizard = model_with_winding_wizard
+
+    assert not winding_wizard.has_run
+    winding_wizard.run()
+    assert winding_wizard.has_run
+
+
+def test_list_delete_generated_objects(model_with_winding_wizard):
+    model, winding_wizard = model_with_winding_wizard
+
+    # WHEN: The run method has not been called yet
+    # THEN:
+    # - list_generated_objects should return an empty list
+    # - delete_generated_objects should not raise an error
+    generated_objects = winding_wizard.list_generated_objects()
+    assert generated_objects == []
+    winding_wizard.delete_generated_objects()  # Should not raise an error
+    assert not winding_wizard.has_run
+
+    # WHEN: The run method is called
+    winding_wizard.run()
+
+    # THEN: list_generated_objects should return a non-empty list of generated objects
+    assert winding_wizard.has_run
+    generated_objects = winding_wizard.list_generated_objects()
+    assert len(generated_objects) > 0
+    # Check expected object types and counts
+    assert Counter(type(obj) for obj in generated_objects) == {
+        pyacp.LookUpTable3D: 1,
+        pyacp.Rosette: 1,
+        pyacp.OrientedSelectionSet: 1,
+        pyacp.ModelingGroup: 1,
+        pyacp.ModelingPly: 2,
+    }
+
+    # WHEN: The delete_generated_objects method is called
+    winding_wizard.delete_generated_objects()
+
+    # THEN: list_generated_objects should return an empty list again
+    generated_objects = winding_wizard.list_generated_objects()
+    assert generated_objects == []
+    assert not winding_wizard.has_run
