@@ -43,7 +43,7 @@ def oriented_selection_set(model):
 def read_only_rosettes(model, oriented_selection_set):
     # Read-only linked object lists are currently only used on
     # automatic mode butt joint sequences.
-    # For the tes, we construct a ReadOnlyLinkedObjectList on an
+    # For the test, we construct a ReadOnlyLinkedObjectList on an
     # editable property, to avoid having to set up a more complex
     # model.
     for _ in range(2):
