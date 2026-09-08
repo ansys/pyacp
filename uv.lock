@@ -242,7 +242,7 @@ test = [
 
 [package.metadata]
 requires-dist = [
-    { name = "ansys-api-acp", specifier = "==0.4.1" },
+    { name = "ansys-api-acp", specifier = "==0.5.0" },
     { name = "ansys-dpf-composites", marker = "extra == 'all'", specifier = ">=0.6" },
     { name = "ansys-dpf-composites", marker = "extra == 'examples'", specifier = ">=0.6" },
     { name = "ansys-dpf-core", marker = "extra == 'all'", specifier = ">=0.13" },
@@ -295,15 +295,15 @@ test = [
 
 [[package]]
 name = "ansys-api-acp"
-version = "0.4.1"
+version = "0.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "grpcio" },
     { name = "protobuf" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/be/56/2b84561d7bd8cade38d3c7f142c979b03a0351f81082ca260aad849220bf/ansys_api_acp-0.4.1.tar.gz", hash = "sha256:121524bf2db03a20b87b093b28f36f99c17ca05765f29baad6b8407b699bbb2d", size = 227503, upload-time = "2026-07-09T20:11:59.942Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7b/c3/41d50b8b5f0eb173e83437eb369aa6ab98df92e331ed5c8e267ebc82cce7/ansys_api_acp-0.5.0.tar.gz", hash = "sha256:412ad1a97fcdaa4f4d7b508cfcd30d138e888c42c1c3a93a676c66f1f251bc21", size = 282188, upload-time = "2026-09-02T12:12:40.098Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ae/1d/e8668b792b53a1f4b6070437e302dad61add2ab729d481f6899d8ac61da2/ansys_api_acp-0.4.1-py3-none-any.whl", hash = "sha256:781fe20fbfe029a0969df45d8093d7c454acafe12d0f8a75f4993b071398205e", size = 481320, upload-time = "2026-07-09T20:11:58.05Z" },
+    { url = "https://files.pythonhosted.org/packages/3f/10/e143c306b93b94d4aae79d8c830e69a7f5e54bc1a599a0d1d47b5537955b/ansys_api_acp-0.5.0-py3-none-any.whl", hash = "sha256:fad2eceee3f49957a512fd8772546fa5b14cce9125858cd11b38cc26cd502ebc", size = 520470, upload-time = "2026-09-02T12:12:38.735Z" },
 ]
 
 [[package]]

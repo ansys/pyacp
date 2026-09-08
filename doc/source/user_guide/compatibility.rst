@@ -36,12 +36,22 @@ Attributes
 ''''''''''
 
 - :attr:`.SectionCut.minimum_thickness_to_length_ratio`
+- :attr:`.ButtJointSequence.automatically_added_sequences`
+- :attr:`.ButtJointSequence.definition_type`
+- :attr:`.ButtJointSequence.starting_modeling_plies`
+
+Enumeration data types
+''''''''''''''''''''''
+
+- :class:`.ButtJointSequenceDefinitionType`
+
 
 Other features
 ''''''''''''''
 
 - The ``MMKMS`` (mm, kg, ms) unit system is now supported on the server. It can be set
   using the :attr:`.Model.unit_system` attribute.
+
 
 Added in 2025R2
 ~~~~~~~~~~~~~~~
