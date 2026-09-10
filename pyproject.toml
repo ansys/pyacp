@@ -107,7 +107,7 @@ ansys-tools-filetransfer = false
 ansys-sphinx-theme = false
 
 [tool.hatch.build]
-include = ["src/**/docker-compose-*.yaml"]
+include = ["src/**/*.py", "src/**/docker-compose-*.yaml"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ansys"]
