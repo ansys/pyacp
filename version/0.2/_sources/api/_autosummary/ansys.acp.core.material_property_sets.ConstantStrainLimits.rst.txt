@@ -1,0 +1,51 @@
+﻿.. vale off
+
+ConstantStrainLimits
+====================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: ConstantStrainLimits
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ConstantStrainLimits.from_isotropic_constants
+      
+      
+      ConstantStrainLimits.from_orthotropic_constants
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConstantStrainLimits.eSxy
+      ConstantStrainLimits.eSxz
+      ConstantStrainLimits.eSyz
+      ConstantStrainLimits.eXc
+      ConstantStrainLimits.eXt
+      ConstantStrainLimits.eYc
+      ConstantStrainLimits.eYt
+      ConstantStrainLimits.eZc
+      ConstantStrainLimits.eZt
+      ConstantStrainLimits.effective_strain
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ConstantStrainLimits
+
+   ansys.acp.core.material_property_sets.ConstantStrainLimits

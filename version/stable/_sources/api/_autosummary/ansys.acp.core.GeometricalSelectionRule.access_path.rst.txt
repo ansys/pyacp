@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.access_path
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.access_path
+
+   ansys.acp.core.GeometricalSelectionRule.access_path

@@ -1,0 +1,13 @@
+.. vale off
+
+STL
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelSkinExportFormat.STL
+
+.. minigallery::
+   :add-heading: Examples using SolidModelSkinExportFormat.STL
+
+   ansys.acp.core.SolidModelSkinExportFormat.STL

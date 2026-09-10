@@ -1,0 +1,13 @@
+.. vale off
+
+interpolation\_options
+======================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableTsaiWuConstants.interpolation_options
+
+.. minigallery::
+   :add-heading: Examples using VariableTsaiWuConstants.interpolation_options
+
+   ansys.acp.core.material_property_sets.VariableTsaiWuConstants.interpolation_options

@@ -1,0 +1,13 @@
+.. vale off
+
+field\_definitions
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.field_definitions
+
+.. minigallery::
+   :add-heading: Examples using Model.field_definitions
+
+   ansys.acp.core.Model.field_definitions

@@ -1,0 +1,13 @@
+.. vale off
+
+material
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Lamina.material
+
+.. minigallery::
+   :add-heading: Examples using Lamina.material
+
+   ansys.acp.core.Lamina.material

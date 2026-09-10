@@ -1,0 +1,13 @@
+.. vale off
+
+NEAREST\_NEIGHBOR
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LookUpTable3DInterpolationAlgorithm.NEAREST_NEIGHBOR
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3DInterpolationAlgorithm.NEAREST_NEIGHBOR
+
+   ansys.acp.core.LookUpTable3DInterpolationAlgorithm.NEAREST_NEIGHBOR

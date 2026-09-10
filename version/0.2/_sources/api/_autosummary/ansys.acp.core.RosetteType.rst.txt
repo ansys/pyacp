@@ -1,0 +1,37 @@
+﻿RosetteType
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: RosetteType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        RosetteType.PARALLEL
+      
+      
+        RosetteType.RADIAL
+      
+      
+        RosetteType.CYLINDRICAL
+      
+      
+        RosetteType.SPHERICAL
+      
+      
+        RosetteType.EDGE_WISE
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using RosetteType
+
+   ansys.acp.core.RosetteType

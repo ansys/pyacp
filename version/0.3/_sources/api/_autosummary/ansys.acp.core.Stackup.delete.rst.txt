@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Stackup.delete
+
+.. minigallery::
+   :add-heading: Examples using Stackup.delete
+
+   ansys.acp.core.Stackup.delete

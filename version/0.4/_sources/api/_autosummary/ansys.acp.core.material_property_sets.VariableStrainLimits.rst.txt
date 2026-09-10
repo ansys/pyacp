@@ -1,0 +1,47 @@
+﻿.. vale off
+
+VariableStrainLimits
+====================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: VariableStrainLimits
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VariableStrainLimits.eSxy
+      VariableStrainLimits.eSxz
+      VariableStrainLimits.eSyz
+      VariableStrainLimits.eXc
+      VariableStrainLimits.eXt
+      VariableStrainLimits.eYc
+      VariableStrainLimits.eYt
+      VariableStrainLimits.eZc
+      VariableStrainLimits.eZt
+      VariableStrainLimits.effective_strain
+      VariableStrainLimits.field_variables
+      VariableStrainLimits.interpolation_options
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VariableStrainLimits
+
+   ansys.acp.core.material_property_sets.VariableStrainLimits

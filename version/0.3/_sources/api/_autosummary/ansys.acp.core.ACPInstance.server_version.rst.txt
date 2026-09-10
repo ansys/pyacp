@@ -1,0 +1,13 @@
+.. vale off
+
+server\_version
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ACPInstance.server_version
+
+.. minigallery::
+   :add-heading: Examples using ACPInstance.server_version
+
+   ansys.acp.core.ACPInstance.server_version

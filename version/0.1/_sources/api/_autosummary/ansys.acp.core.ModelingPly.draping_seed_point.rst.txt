@@ -1,0 +1,13 @@
+.. vale off
+
+draping\_seed\_point
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.draping_seed_point
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.draping_seed_point
+
+   ansys.acp.core.ModelingPly.draping_seed_point

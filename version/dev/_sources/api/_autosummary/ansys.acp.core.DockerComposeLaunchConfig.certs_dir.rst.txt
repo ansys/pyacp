@@ -1,0 +1,13 @@
+.. vale off
+
+certs\_dir
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DockerComposeLaunchConfig.certs_dir
+
+.. minigallery::
+   :add-heading: Examples using DockerComposeLaunchConfig.certs_dir
+
+   ansys.acp.core.DockerComposeLaunchConfig.certs_dir

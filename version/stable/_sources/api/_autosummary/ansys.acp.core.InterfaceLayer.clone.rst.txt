@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: InterfaceLayer.clone
+
+.. minigallery::
+   :add-heading: Examples using InterfaceLayer.clone
+
+   ansys.acp.core.InterfaceLayer.clone

@@ -1,0 +1,13 @@
+.. vale off
+
+virtual\_geometries
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.virtual_geometries
+
+.. minigallery::
+   :add-heading: Examples using Model.virtual_geometries
+
+   ansys.acp.core.Model.virtual_geometries

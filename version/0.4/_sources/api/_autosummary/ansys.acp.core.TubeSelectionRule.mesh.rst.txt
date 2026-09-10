@@ -1,0 +1,13 @@
+.. vale off
+
+mesh
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.mesh
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.mesh
+
+   ansys.acp.core.TubeSelectionRule.mesh

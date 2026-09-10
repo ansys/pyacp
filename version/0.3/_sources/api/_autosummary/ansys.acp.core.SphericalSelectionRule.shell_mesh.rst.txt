@@ -1,0 +1,13 @@
+.. vale off
+
+shell\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.shell_mesh
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.shell_mesh
+
+   ansys.acp.core.SphericalSelectionRule.shell_mesh

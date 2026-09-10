@@ -1,0 +1,13 @@
+.. vale off
+
+material
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ProductionPly.material
+
+.. minigallery::
+   :add-heading: Examples using ProductionPly.material
+
+   ansys.acp.core.ProductionPly.material

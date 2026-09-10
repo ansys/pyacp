@@ -1,0 +1,13 @@
+.. vale off
+
+splitlines
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.splitlines
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.splitlines
+
+   ansys.acp.core.LaunchMode.splitlines

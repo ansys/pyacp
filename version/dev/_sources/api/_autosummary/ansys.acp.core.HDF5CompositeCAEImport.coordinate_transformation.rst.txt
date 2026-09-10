@@ -1,0 +1,13 @@
+.. vale off
+
+coordinate\_transformation
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: HDF5CompositeCAEImport.coordinate_transformation
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport.coordinate_transformation
+
+   ansys.acp.core.HDF5CompositeCAEImport.coordinate_transformation

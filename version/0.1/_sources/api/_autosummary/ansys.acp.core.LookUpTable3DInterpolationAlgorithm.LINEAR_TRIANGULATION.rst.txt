@@ -1,0 +1,13 @@
+.. vale off
+
+LINEAR\_TRIANGULATION
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LookUpTable3DInterpolationAlgorithm.LINEAR_TRIANGULATION
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3DInterpolationAlgorithm.LINEAR_TRIANGULATION
+
+   ansys.acp.core.LookUpTable3DInterpolationAlgorithm.LINEAR_TRIANGULATION

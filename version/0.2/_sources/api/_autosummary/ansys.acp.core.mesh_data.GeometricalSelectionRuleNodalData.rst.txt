@@ -1,0 +1,39 @@
+﻿.. vale off
+
+GeometricalSelectionRuleNodalData
+=================================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: GeometricalSelectionRuleNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      GeometricalSelectionRuleNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      GeometricalSelectionRuleNodalData.node_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRuleNodalData
+
+   ansys.acp.core.mesh_data.GeometricalSelectionRuleNodalData

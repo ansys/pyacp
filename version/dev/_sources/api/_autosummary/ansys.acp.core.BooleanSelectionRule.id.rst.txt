@@ -1,0 +1,13 @@
+.. vale off
+
+id
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: BooleanSelectionRule.id
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRule.id
+
+   ansys.acp.core.BooleanSelectionRule.id

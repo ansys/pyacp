@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CADGeometry.store
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.store
+
+   ansys.acp.core.CADGeometry.store

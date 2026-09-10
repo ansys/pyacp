@@ -1,0 +1,41 @@
+﻿.. vale off
+
+DirectLaunchConfig
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: DirectLaunchConfig
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      DirectLaunchConfig.binary_path
+      DirectLaunchConfig.certs_dir
+      DirectLaunchConfig.stderr_file
+      DirectLaunchConfig.stdout_file
+      DirectLaunchConfig.transport_mode
+      DirectLaunchConfig.uds_dir
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using DirectLaunchConfig
+
+   ansys.acp.core.DirectLaunchConfig

@@ -1,0 +1,13 @@
+.. vale off
+
+mesh
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffSelectionRule.mesh
+
+.. minigallery::
+   :add-heading: Examples using CutOffSelectionRule.mesh
+
+   ansys.acp.core.CutOffSelectionRule.mesh

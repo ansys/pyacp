@@ -1,0 +1,1194 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Optimizing ply angles &#8212; PyACP</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=77703c5e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=800b1921" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  
+    <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../../_static/documentation_options.js?v=91f6191e"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/use_cases/01-optimizing-ply-angles';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://acp.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.1';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="API reference" href="../../api/index.html" />
+    <link rel="prev" title="CDB to PyMechanical shell workflow" href="../workflows/06-cdb-to-pymechanical-workflow.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <link rel="canonical" href="https://acp.docs.pyansys.com/version/stable/examples/use_cases/01-optimizing-ply-angles.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyACP - Home"/>
+    <script>document.write(`<img src="../../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark" alt="PyACP - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    PyACP home
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../intro.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pyacp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    PyACP home
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../intro.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pyacp" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/001-materials.html">Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/002-rosettes-ply-directions.html">Rosette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/003-simple-selection-rules.html">Basic selection rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/004-advanced-selection-rules.html">Advanced selection rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/005-ply-direction-lookup-table.html">Direction definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/006-layup-thickness-definitions.html">Thickness definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/007-sensor.html">Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/010-sandwich-panel-layup.html">Sandwich panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/020-solid_model.html">Solid Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/030-imported-plies.html">Imported ply</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/031-imported-solid-model.html">Imported solid model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling_features/050-composite_cae_h5.html">HDF5 Composite CAE</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workflows/01-pymapdl-workflow.html">PyMAPDL workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/02-advanced-pymapdl-workflow.html">Advanced PyMAPDL workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/03-pymechanical-shell-workflow.html">PyMechanical shell workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/04-pymechanical-solid-workflow.html">PyMechanical solid workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/05-pymechanical-to-cdb-workflow.html">PyMechanical to CDB shell workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/06-cdb-to-pymechanical-workflow.html">CDB to PyMechanical shell workflow</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Optimizing ply angles</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">Examples</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Optimizing ply angles</span></li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-use-cases-01-optimizing-ply-angles-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="optimizing-ply-angles">
+<span id="optimization-example"></span><span id="sphx-glr-examples-use-cases-01-optimizing-ply-angles-py"></span><h1>Optimizing ply angles<a class="headerlink" href="#optimizing-ply-angles" title="Link to this heading">#</a></h1>
+<p>This example demonstrates how to use the ACP, MAPDL, and DPF servers to optimize the ply
+angles in a composite lay-up. The optimization aims to minimize the maximum inverse
+reserve factor (IRF) of the composite structure under two load cases.</p>
+<p>The example uses the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.16.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a> function to perform the optimization.
+While the procedure itself is not the focus of this example and could be improved,
+it demonstrates the process of optimizing a composite lay-up with PyACP.</p>
+<section id="import-modules-and-setup">
+<h2>Import modules and setup<a class="headerlink" href="#import-modules-and-setup" title="Link to this heading">#</a></h2>
+<p>To setup the environment for this optimization example, you must perform these steps which are
+covered in the subsequent example code:</p>
+<ul class="simple">
+<li><p>Import the required libraries.</p></li>
+<li><p>Launch the ACP, MAPDL, and DPF servers.</p></li>
+<li><p>Create a temporary directory to store the input and output files.</p></li>
+</ul>
+<p>Import the standard library and third-party dependencies.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/functools.html#functools.partial" title="functools.partial" class="sphx-glr-backref-module-functools sphx-glr-backref-type-py-function"><span class="n">partial</span></a>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">patches</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="scipy.optimize.minimize" class="sphx-glr-backref-module-scipy-optimize sphx-glr-backref-type-py-function"><span class="n">minimize</span></a>
+</pre></div>
+</div>
+<p>Import Ansys libraries</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ansys.acp.core</span> <span class="k">as</span> <span class="nn">pyacp</span>
+<span class="kn">from</span> <span class="nn">ansys.acp.core.extras</span> <span class="kn">import</span> <span class="n">ExampleKeys</span><span class="p">,</span> <span class="n">get_example_file</span>
+<span class="kn">import</span> <span class="nn">ansys.dpf.composites</span> <span class="k">as</span> <span class="nn">pydpf_composites</span>
+<span class="kn">import</span> <span class="nn">ansys.mapdl.core</span> <span class="k">as</span> <span class="nn">pymapdl</span>
+</pre></div>
+</div>
+<p>Launch the PyACP server.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">acp_instance</span> <span class="o">=</span> <span class="n">pyacp</span><span class="o">.</span><span class="n">launch_acp</span><span class="p">()</span>
+<span class="n">acp_instance</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Launch the MAPDL server.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">pymapdl</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Launch the DPF server.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">dpf_server</span> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">server_helpers</span><span class="o">.</span><span class="n">connect_to_or_start_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Create a temporary directory to store the input and output files.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmpdir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class"><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span></a><span class="p">()</span>
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">tmpdir</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="prepare-the-acp-model">
+<h2>Prepare the ACP model<a class="headerlink" href="#prepare-the-acp-model" title="Link to this heading">#</a></h2>
+<p>This example uses the <code class="docutils literal notranslate"><span class="pre">optimization_model.dat</span></code> file, which contains a simple ACP model
+of a rounded square tube.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">prepare_acp_model</span></code> function imports the <code class="docutils literal notranslate"><span class="pre">optimization_model.dat</span></code> file into a new
+ACP model and creates a lay-up with six plies.
+It returns the <a class="reference internal" href="../../api/_autosummary/ansys.acp.core.Model.html#ansys.acp.core.Model" title="ansys.acp.core.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> instance.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a> <span class="o">=</span> <span class="n">get_example_file</span><span class="p">(</span>
+    <span class="n">example_key</span><span class="o">=</span><span class="n">ExampleKeys</span><span class="o">.</span><span class="n">OPTIMIZATION_EXAMPLE_DAT</span><span class="p">,</span>
+    <span class="n">working_directory</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">prepare_acp_model</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">acp</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">):</span>
+    <span class="c1"># Import the DAT input file into a new ACP model</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">acp</span><span class="o">.</span><span class="n">import_model</span><span class="p">(</span>
+        <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">,</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ansys:dat&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;optimization_example&quot;</span>
+
+    <span class="n">element_set</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">element_sets</span><span class="p">[</span><span class="s2">&quot;All_Elements&quot;</span><span class="p">]</span>
+    <span class="n">material</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_material</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Epoxy_Carbon_Woven_230GPa_Prepreg&quot;</span><span class="p">,</span>
+        <span class="n">ply_type</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">PlyType</span><span class="o">.</span><span class="n">WOVEN</span><span class="p">,</span>
+        <span class="n">engineering_constants</span><span class="o">=</span><span class="p">(</span>
+            <span class="n">pyacp</span><span class="o">.</span><span class="n">material_property_sets</span><span class="o">.</span><span class="n">ConstantEngineeringConstants</span><span class="o">.</span><span class="n">from_orthotropic_constants</span><span class="p">(</span>
+                <span class="n">E1</span><span class="o">=</span><span class="mf">6.134e10</span><span class="p">,</span>
+                <span class="n">E2</span><span class="o">=</span><span class="mf">6.134e10</span><span class="p">,</span>
+                <span class="n">E3</span><span class="o">=</span><span class="mf">6.9e9</span><span class="p">,</span>
+                <span class="n">nu12</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+                <span class="n">nu23</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                <span class="n">nu13</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                <span class="n">G12</span><span class="o">=</span><span class="mf">1.95e10</span><span class="p">,</span>
+                <span class="n">G23</span><span class="o">=</span><span class="mf">2.7e9</span><span class="p">,</span>
+                <span class="n">G31</span><span class="o">=</span><span class="mf">2.7e9</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">),</span>
+        <span class="n">stress_limits</span><span class="o">=</span><span class="p">(</span>
+            <span class="n">pyacp</span><span class="o">.</span><span class="n">material_property_sets</span><span class="o">.</span><span class="n">ConstantStressLimits</span><span class="o">.</span><span class="n">from_orthotropic_constants</span><span class="p">(</span>
+                <span class="n">Xt</span><span class="o">=</span><span class="mf">8.05e8</span><span class="p">,</span>
+                <span class="n">Yt</span><span class="o">=</span><span class="mf">8.05e8</span><span class="p">,</span>
+                <span class="n">Zt</span><span class="o">=</span><span class="mf">5.0e7</span><span class="p">,</span>
+                <span class="n">Xc</span><span class="o">=-</span><span class="mf">5.09e8</span><span class="p">,</span>
+                <span class="n">Yc</span><span class="o">=-</span><span class="mf">5.09e8</span><span class="p">,</span>
+                <span class="n">Zc</span><span class="o">=-</span><span class="mf">1.7e8</span><span class="p">,</span>
+                <span class="n">Sxy</span><span class="o">=</span><span class="mf">1.25e8</span><span class="p">,</span>
+                <span class="n">Syz</span><span class="o">=</span><span class="mf">6.5e7</span><span class="p">,</span>
+                <span class="n">Sxz</span><span class="o">=</span><span class="mf">6.5e7</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">fabric</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_fabric</span><span class="p">(</span>
+        <span class="n">material</span><span class="o">=</span><span class="n">material</span><span class="p">,</span>
+        <span class="n">thickness</span><span class="o">=</span><span class="mf">0.000254</span><span class="p">,</span>  <span class="c1"># 0.01 in</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Epoxy_Carbon_Woven_230GPa_Prepreg_0.01in&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">rosette</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_rosette</span><span class="p">(</span>
+        <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0026</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0119</span><span class="p">),</span>
+        <span class="n">dir1</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">),</span>
+        <span class="n">dir2</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">oss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_oriented_selection_set</span><span class="p">(</span>
+        <span class="n">element_sets</span><span class="o">=</span><span class="p">[</span><span class="n">element_set</span><span class="p">],</span>
+        <span class="n">orientation_point</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0021</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0111</span><span class="p">),</span>
+        <span class="n">orientation_direction</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">rosette_selection_method</span><span class="o">=</span><span class="n">pyacp</span><span class="o">.</span><span class="n">RosetteSelectionMethod</span><span class="o">.</span><span class="n">MINIMUM_ANGLE</span><span class="p">,</span>
+        <span class="n">rosettes</span><span class="o">=</span><span class="p">[</span><span class="n">rosette</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="n">modeling_group</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_modeling_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Modeling_Group&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+        <span class="n">modeling_group</span><span class="o">.</span><span class="n">create_modeling_ply</span><span class="p">(</span>
+            <span class="n">ply_material</span><span class="o">=</span><span class="n">fabric</span><span class="p">,</span>
+            <span class="n">oriented_selection_sets</span><span class="o">=</span><span class="p">[</span><span class="n">oss</span><span class="p">],</span>
+            <span class="n">number_of_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">model</span>
+</pre></div>
+</div>
+<p>Create the ACP model and visualize the first ply’s fiber direction.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">prepare_acp_model</span><span class="p">(</span><span class="n">acp</span><span class="o">=</span><span class="n">acp_instance</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">input_file</span></a><span class="p">)</span>
+<span class="n">ply</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;Modeling_Group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pyacp</span><span class="o">.</span><span class="n">get_directions_plotter</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">components</span><span class="o">=</span><span class="p">[</span><span class="n">ply</span><span class="o">.</span><span class="n">elemental_data</span><span class="o">.</span><span class="n">fiber_direction</span><span class="p">],</span>
+    <span class="n">length_factor</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+    <span class="n">culling_factor</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Static Scene</label><div class="sd-tab-content docutils">
+<img src="../../_images/sphx_glr_01-optimizing-ply-angles_001.png" srcset="../../_images/sphx_glr_01-optimizing-ply-angles_001.png" alt="01 optimizing ply angles" class = "sphx-glr-single-img"/></div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='../../_static/static_viewer.html?fileURL=../_images/examples/use_cases/images/sphx_glr_01-optimizing-ply-angles_001.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="create-functions-for-the-optimization">
+<h2>Create functions for the optimization<a class="headerlink" href="#create-functions-for-the-optimization" title="Link to this heading">#</a></h2>
+<p>To optimize the ply angles, you must define functions to update, solve, and postprocess
+the ACP model for a given set of ply angles.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">update_ply_angles()</span></code> function changes the ply angles in the model to the given values and
+updates the model.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_ply_angles</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+    <span class="n">modeling_plies</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">modeling_groups</span><span class="p">[</span><span class="s2">&quot;Modeling_Group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">modeling_plies</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">modeling_plies</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">angle</span><span class="p">,</span> <span class="n">modeling_ply</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">modeling_plies</span><span class="p">):</span>
+        <span class="n">modeling_ply</span><span class="o">.</span><span class="n">ply_angle</span> <span class="o">=</span> <span class="n">angle</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+
+<span class="n">update_ply_angles</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">225</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">solve_cdb()</span></code> function solves the CDB file with MAPDL and returns the path to the RST file.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_cdb</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">mapdl</span><span class="p">,</span> <span class="n">cdb_file</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">):</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">cdb_file</span><span class="p">))</span>
+    <span class="c1"># Solve the model. Note that the model contains two timesteps.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+    <span class="c1"># Download the RST file for further postprocessing</span>
+    <span class="n">rstfile_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mapdl</span><span class="o">.</span><span class="n">jobname</span><span class="si">}</span><span class="s2">.rst&quot;</span>
+    <span class="n">rst_file_local_path</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a> <span class="o">/</span> <span class="n">rstfile_name</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">rstfile_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">))</span>
+    <span class="k">return</span> <span class="n">rst_file_local_path</span>
+
+
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_path</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a> <span class="o">/</span> <span class="s2">&quot;optimization_example.cdb&quot;</span>
+<span class="n">model</span><span class="o">.</span><span class="n">export_analysis_model</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_path</span></a><span class="p">)</span>
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a> <span class="o">=</span> <span class="n">solve_cdb</span><span class="p">(</span><span class="n">mapdl</span><span class="o">=</span><span class="n">mapdl</span><span class="p">,</span> <span class="n">cdb_file</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_path</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">get_max_irf()</span></code> function uses PyDPF - Composites to calculate the maximum
+inverse reserve factor (IRF) for a given RST, composite definitions,
+or materials file.</p>
+<p>This function only considers the maximum stress failure criterion.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">max_stress_criterion</span> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">failure_criteria</span><span class="o">.</span><span class="n">MaxStressCriterion</span><span class="p">()</span>
+<span class="n">combined_failure_criterion</span> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">failure_criteria</span><span class="o">.</span><span class="n">CombinedFailureCriterion</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Combined Failure Criterion&quot;</span><span class="p">,</span>
+    <span class="n">failure_criteria</span><span class="o">=</span><span class="p">[</span><span class="n">max_stress_criterion</span><span class="p">],</span>
+<span class="p">)</span>
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">materials_file_path</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a> <span class="o">/</span> <span class="s2">&quot;materials.xml&quot;</span>
+<span class="n">model</span><span class="o">.</span><span class="n">export_materials</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">materials_file_path</span></a><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_max_irf</span><span class="p">(</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">dpf_server</span><span class="p">,</span>
+    <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a><span class="p">,</span>
+    <span class="n">failure_criterion</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">composite_definitions_file</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a> <span class="o">/</span> <span class="s2">&quot;ACPCompositeDefinitions.h5&quot;</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">export_shell_composite_definitions</span><span class="p">(</span><span class="n">composite_definitions_file</span><span class="p">)</span>
+    <span class="c1"># Create the composite model and configure its input</span>
+    <span class="n">composite_model</span> <span class="o">=</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">composite_model</span><span class="o">.</span><span class="n">CompositeModel</span><span class="p">(</span>
+        <span class="n">composite_files</span><span class="o">=</span><span class="n">pydpf_composites</span><span class="o">.</span><span class="n">data_sources</span><span class="o">.</span><span class="n">ContinuousFiberCompositesFiles</span><span class="p">(</span>
+            <span class="n">rst</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a><span class="p">,</span>
+            <span class="n">composite</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;shell&quot;</span><span class="p">:</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">data_sources</span><span class="o">.</span><span class="n">CompositeDefinitionFiles</span><span class="p">(</span>
+                    <span class="n">composite_definitions_file</span>
+                <span class="p">)</span>
+            <span class="p">},</span>
+            <span class="n">engineering_data</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">materials_file_path</span></a><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">server</span><span class="o">=</span><span class="n">dpf_server</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_max_irf_for_time</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the maximum IRF for a given time step.&quot;&quot;&quot;</span>
+        <span class="n">output_all_elements</span> <span class="o">=</span> <span class="n">composite_model</span><span class="o">.</span><span class="n">evaluate_failure_criteria</span><span class="p">(</span>
+            <span class="n">failure_criterion</span><span class="p">,</span>
+            <span class="n">composite_scope</span><span class="o">=</span><span class="n">pydpf_composites</span><span class="o">.</span><span class="n">composite_scope</span><span class="o">.</span><span class="n">CompositeScope</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">irf_field</span> <span class="o">=</span> <span class="n">output_all_elements</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;failure_label&quot;</span><span class="p">:</span> <span class="n">pydpf_composites</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">FailureOutput</span><span class="o">.</span><span class="n">FAILURE_VALUE</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">irf_field</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span>
+        <span class="n">get_max_irf_for_time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="k">for</span> <span class="n">time</span> <span class="ow">in</span> <span class="n">composite_model</span><span class="o">.</span><span class="n">get_result_times_or_frequencies</span><span class="p">()</span>
+    <span class="p">)</span>
+
+
+<span class="n">get_max_irf</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">dpf_server</span><span class="o">=</span><span class="n">dpf_server</span><span class="p">,</span>
+    <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a><span class="p">,</span>
+    <span class="n">failure_criterion</span><span class="o">=</span><span class="n">combined_failure_criterion</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>np.float64(1.457604224)
+</pre></div>
+</div>
+</section>
+<section id="optimize-the-ply-angles">
+<h2>Optimize the ply angles<a class="headerlink" href="#optimize-the-ply-angles" title="Link to this heading">#</a></h2>
+<p>For the optimization, you must define a single function that takes the ply angles
+as its input and returns the maximum IRF.
+The <code class="docutils literal notranslate"><span class="pre">get_max_irf_for_parameters()</span></code> function combines the previously defined functions
+to perform all the necessary steps for a given set of ply angles.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_max_irf_for_parameters</span><span class="p">(</span>
+    <span class="n">parameters</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">mapdl</span><span class="p">,</span> <span class="n">dpf_server</span><span class="p">,</span> <span class="n">failure_criterion</span><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a>
+<span class="p">):</span>
+    <span class="n">update_ply_angles</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
+    <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_path</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a> <span class="o">/</span> <span class="s2">&quot;optimization_example.cdb&quot;</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">export_analysis_model</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_path</span></a><span class="p">)</span>
+    <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a> <span class="o">=</span> <span class="n">solve_cdb</span><span class="p">(</span><span class="n">mapdl</span><span class="o">=</span><span class="n">mapdl</span><span class="p">,</span> <span class="n">cdb_file</span><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cdb_file_path</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">)</span>
+    <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.OptimizeResult.html#scipy.optimize.OptimizeResult" title="scipy.optimize.OptimizeResult" class="sphx-glr-backref-module-scipy-optimize sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">res</span></a> <span class="o">=</span> <span class="n">get_max_irf</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">dpf_server</span><span class="o">=</span><span class="n">dpf_server</span><span class="p">,</span>
+        <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_file</span></a><span class="p">,</span>
+        <span class="n">failure_criterion</span><span class="o">=</span><span class="n">failure_criterion</span><span class="p">,</span>
+    <span class="p">)</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.OptimizeResult.html#scipy.optimize.OptimizeResult" title="scipy.optimize.OptimizeResult" class="sphx-glr-backref-module-scipy-optimize sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">res</span></a><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameters: </span><span class="si">{</span><span class="n">parameters</span><span class="si">}</span><span class="s2">, Max IRF: </span><span class="si">{</span><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.OptimizeResult.html#scipy.optimize.OptimizeResult" title="scipy.optimize.OptimizeResult" class="sphx-glr-backref-module-scipy-optimize sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">res</span></a><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.OptimizeResult.html#scipy.optimize.OptimizeResult" title="scipy.optimize.OptimizeResult" class="sphx-glr-backref-module-scipy-optimize sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">res</span></a>
+</pre></div>
+</div>
+<p>To inject the <code class="docutils literal notranslate"><span class="pre">acp_workflow</span></code>, <code class="docutils literal notranslate"><span class="pre">mapdl</span></code>, <code class="docutils literal notranslate"><span class="pre">dpf_server</span></code>, and <code class="docutils literal notranslate"><span class="pre">workdir</span></code> arguments into the
+<code class="docutils literal notranslate"><span class="pre">get_max_irf_for_parameters()</span></code> function, you can use the <code class="docutils literal notranslate"><span class="pre">functools.partial()</span></code> function.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<a href="https://docs.python.org/3/library/functools.html#functools.partial" title="functools.partial" class="sphx-glr-backref-module-functools sphx-glr-backref-type-py-function"><span class="n">optimization_function</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/functools.html#functools.partial" title="functools.partial" class="sphx-glr-backref-module-functools sphx-glr-backref-type-py-function"><span class="n">partial</span></a><span class="p">(</span>
+    <span class="n">get_max_irf_for_parameters</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">mapdl</span><span class="o">=</span><span class="n">mapdl</span><span class="p">,</span>
+    <span class="n">dpf_server</span><span class="o">=</span><span class="n">dpf_server</span><span class="p">,</span>
+    <span class="n">failure_criterion</span><span class="o">=</span><span class="n">combined_failure_criterion</span><span class="p">,</span>
+    <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">workdir</span></a><span class="p">,</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="p">,</span>
+<span class="p">)</span>
+<a href="https://docs.python.org/3/library/functools.html#functools.partial" title="functools.partial" class="sphx-glr-backref-module-functools sphx-glr-backref-type-py-function"><span class="n">optimization_function</span></a><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">225</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Parameters: [0, 45, 90, 135, 180, 225], Max IRF: 1.457604224
+
+np.float64(1.457604224)
+</pre></div>
+</div>
+<p>For the optimization, you can use the Nelder-Mead method available in
+the <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code> function. This is a downhill simplex algorithm that
+does not require the gradient of the objective function. It is suitable for finding
+a local minimum of the objective function.</p>
+<p>To have the Nelder-Mead method cover a reasonable part of the parameter space,
+define an initial simplex (matrix of shape (n+1, n), where n is the number of parameters).</p>
+<p>The initial simplex is chosen with random ply angles between 0 and 90 degrees. To make
+the results reproducible, the random seed is fixed.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/random.html#random.seed" title="random.seed" class="sphx-glr-backref-module-random sphx-glr-backref-type-py-function"><span class="n">random</span><span class="o">.</span><span class="n">seed</span></a><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">initial_simplex</span></a> <span class="o">=</span> <span class="p">[[</span><a href="https://docs.python.org/3/library/random.html#random.uniform" title="random.uniform" class="sphx-glr-backref-module-random sphx-glr-backref-type-py-function"><span class="n">random</span><span class="o">.</span><span class="n">uniform</span></a><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>To build this example, the number of function evaluations is limited to 1. In practice, you
+should increase or remove this limit.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">maxfev</span></a> <span class="o">=</span> <span class="mi">1</span>
+<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.OptimizeResult.html#scipy.optimize.OptimizeResult" title="scipy.optimize.OptimizeResult" class="sphx-glr-backref-module-scipy-optimize sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">res</span></a> <span class="o">=</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="scipy.optimize.minimize" class="sphx-glr-backref-module-scipy-optimize sphx-glr-backref-type-py-function"><span class="n">minimize</span></a><span class="p">(</span>
+    <a href="https://docs.python.org/3/library/functools.html#functools.partial" title="functools.partial" class="sphx-glr-backref-module-functools sphx-glr-backref-type-py-function"><span class="n">optimization_function</span></a><span class="p">,</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;Nelder-Mead&quot;</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;disp&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;initial_simplex&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">initial_simplex</span></a><span class="p">,</span>
+        <span class="s2">&quot;xatol&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="s2">&quot;fatol&quot;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
+        <span class="s2">&quot;maxfev&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">maxfev</span></a><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Parameters: [57.54841186  2.25096797 24.75263865 20.08896643 66.28240927 60.90295387], Max IRF: 1.291393408
+</pre></div>
+</div>
+</section>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Link to this heading">#</a></h2>
+<p>Without the <code class="docutils literal notranslate"><span class="pre">maxfev</span></code> limit, the optimization would take roughly 30 minutes to complete and
+converge to the following result:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.OptimizeResult.html#scipy.optimize.OptimizeResult" title="scipy.optimize.OptimizeResult" class="sphx-glr-backref-module-scipy-optimize sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">res</span></a><span class="p">)</span>
+<span class="go">       message: Optimization terminated successfully.</span>
+<span class="go">       success: True</span>
+<span class="go">        status: 0</span>
+<span class="go">           fun: 0.9129640864440078</span>
+<span class="go">             x: [ 7.826e+01  1.777e+00  1.042e+02  8.848e+01  1.083e+01</span>
+<span class="go">                 -1.288e+01]</span>
+<span class="go">           nit: 88</span>
+<span class="go">          nfev: 156</span>
+<span class="go"> final_simplex: (array([[ 7.826e+01,  1.777e+00, ...,  1.083e+01,</span>
+<span class="go">                        -1.288e+01],</span>
+<span class="go">                       [ 7.820e+01,  1.691e+00, ...,  1.046e+01,</span>
+<span class="go">                        -1.292e+01],</span>
+<span class="go">                       ...,</span>
+<span class="go">                       [ 7.821e+01,  1.067e+00, ...,  1.113e+01,</span>
+<span class="go">                        -1.299e+01],</span>
+<span class="go">                       [ 7.832e+01,  1.725e+00, ...,  1.090e+01,</span>
+<span class="go">                        -1.303e+01]]), array([ 9.130e-01,  9.130e-01,  9.132e-01,  9.133e-01,</span>
+<span class="go">                        9.133e-01,  9.133e-01,  9.134e-01]))</span>
+</pre></div>
+</div>
+<p>The following code defines the <code class="docutils literal notranslate"><span class="pre">results</span></code> list as it would be obtained from the full optimization.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># fmt: off</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a> <span class="o">=</span> <span class="p">[</span>
+    <span class="mf">1.251633536</span><span class="p">,</span> <span class="mf">1.406139904</span><span class="p">,</span> <span class="mf">1.400375936</span><span class="p">,</span> <span class="mf">1.188398336</span><span class="p">,</span> <span class="mf">1.292364032</span><span class="p">,</span> <span class="mf">1.478680192</span><span class="p">,</span>
+    <span class="mf">1.328360704</span><span class="p">,</span> <span class="mf">1.403241856</span><span class="p">,</span> <span class="mf">1.294695808</span><span class="p">,</span> <span class="mf">1.499538048</span><span class="p">,</span> <span class="mf">1.33415104</span><span class="p">,</span> <span class="mf">1.34713472</span><span class="p">,</span>
+    <span class="mf">1.313087872</span><span class="p">,</span> <span class="mf">1.331134976</span><span class="p">,</span> <span class="mf">1.3513568</span><span class="p">,</span> <span class="mf">1.470391296</span><span class="p">,</span> <span class="mf">1.42062272</span><span class="p">,</span> <span class="mf">1.322532224</span><span class="p">,</span>
+    <span class="mf">1.31974336</span><span class="p">,</span> <span class="mf">1.373317248</span><span class="p">,</span> <span class="mf">1.422083072</span><span class="p">,</span> <span class="mf">1.343358464</span><span class="p">,</span> <span class="mf">1.311241344</span><span class="p">,</span> <span class="mf">1.316675968</span><span class="p">,</span>
+    <span class="mf">1.340961792</span><span class="p">,</span> <span class="mf">1.360485888</span><span class="p">,</span> <span class="mf">1.343539456</span><span class="p">,</span> <span class="mf">1.32766528</span><span class="p">,</span> <span class="mf">1.270421504</span><span class="p">,</span> <span class="mf">1.36705344</span><span class="p">,</span>
+    <span class="mf">1.379165312</span><span class="p">,</span> <span class="mf">1.322511232</span><span class="p">,</span> <span class="mf">1.314317184</span><span class="p">,</span> <span class="mf">1.223874304</span><span class="p">,</span> <span class="mf">1.153106048</span><span class="p">,</span> <span class="mf">1.007141504</span><span class="p">,</span>
+    <span class="mf">1.05296512</span><span class="p">,</span> <span class="mf">0.974143168</span><span class="p">,</span> <span class="mf">0.9371091866404715</span><span class="p">,</span> <span class="mf">0.9365409823182711</span><span class="p">,</span> <span class="mf">0.9408823575638506</span><span class="p">,</span>
+    <span class="mf">0.93918688</span><span class="p">,</span> <span class="mf">0.994062912</span><span class="p">,</span> <span class="mf">1.191067648</span><span class="p">,</span> <span class="mf">0.9764623339882121</span><span class="p">,</span> <span class="mf">0.938809398821218</span><span class="p">,</span>
+    <span class="mf">0.9395024597249508</span><span class="p">,</span> <span class="mf">0.99409632</span><span class="p">,</span> <span class="mf">0.9367536031434185</span><span class="p">,</span> <span class="mf">1.069221952</span><span class="p">,</span> <span class="mf">0.9537923772102161</span><span class="p">,</span>
+    <span class="mf">0.935515347740668</span><span class="p">,</span> <span class="mf">1.069221952</span><span class="p">,</span> <span class="mf">0.9373682043222004</span><span class="p">,</span> <span class="mf">1.016040256</span><span class="p">,</span> <span class="mf">0.9331018939096267</span><span class="p">,</span>
+    <span class="mf">0.9388053752455796</span><span class="p">,</span> <span class="mf">0.9323877092337918</span><span class="p">,</span> <span class="mf">0.940058278978389</span><span class="p">,</span> <span class="mf">0.9336497917485265</span><span class="p">,</span>
+    <span class="mf">0.9311696345776032</span><span class="p">,</span> <span class="mf">0.9494098231827112</span><span class="p">,</span> <span class="mf">0.94191456</span><span class="p">,</span> <span class="mf">0.9330088487229863</span><span class="p">,</span> <span class="mf">0.9291408722986247</span><span class="p">,</span>
+    <span class="mf">0.9445788290766208</span><span class="p">,</span> <span class="mf">0.9506338703339882</span><span class="p">,</span> <span class="mf">0.9252197721021611</span><span class="p">,</span> <span class="mf">0.9309677013752455</span><span class="p">,</span>
+    <span class="mf">0.929678648330059</span><span class="p">,</span> <span class="mf">0.9256490373280943</span><span class="p">,</span> <span class="mf">0.9378641100196463</span><span class="p">,</span> <span class="mf">0.9268323457760315</span><span class="p">,</span>
+    <span class="mf">0.9353581768172888</span><span class="p">,</span> <span class="mf">0.9265237878192535</span><span class="p">,</span> <span class="mf">0.9242050766208252</span><span class="p">,</span> <span class="mf">0.9274993163064833</span><span class="p">,</span>
+    <span class="mf">0.924646601178782</span><span class="p">,</span> <span class="mf">0.9242514106090374</span><span class="p">,</span> <span class="mf">0.9307412495088409</span><span class="p">,</span> <span class="mf">0.9244120392927309</span><span class="p">,</span>
+    <span class="mf">0.9209625776031434</span><span class="p">,</span> <span class="mf">0.941085184</span><span class="p">,</span> <span class="mf">0.9286979017681729</span><span class="p">,</span> <span class="mf">0.9229924086444008</span><span class="p">,</span>
+    <span class="mf">0.9197949233791749</span><span class="p">,</span> <span class="mf">0.9203867033398822</span><span class="p">,</span> <span class="mf">0.9217532730844794</span><span class="p">,</span> <span class="mf">0.9229551905697446</span><span class="p">,</span>
+    <span class="mf">0.9304816660117878</span><span class="p">,</span> <span class="mf">0.9210226168958743</span><span class="p">,</span> <span class="mf">0.9171427583497053</span><span class="p">,</span> <span class="mf">0.929186496</span><span class="p">,</span>
+    <span class="mf">0.9245868133595285</span><span class="p">,</span> <span class="mf">0.9192841807465619</span><span class="p">,</span> <span class="mf">0.9226500275049115</span><span class="p">,</span> <span class="mf">0.9204163772102161</span><span class="p">,</span>
+    <span class="mf">0.935395072</span><span class="p">,</span> <span class="mf">0.9199762986247544</span><span class="p">,</span> <span class="mf">0.9174358506876228</span><span class="p">,</span> <span class="mf">0.9207507740667976</span><span class="p">,</span>
+    <span class="mf">0.9191862946954813</span><span class="p">,</span> <span class="mf">0.9187897838899803</span><span class="p">,</span> <span class="mf">0.9173438742632612</span><span class="p">,</span> <span class="mf">0.9179240235756385</span><span class="p">,</span>
+    <span class="mf">0.916406208</span><span class="p">,</span> <span class="mf">0.931066368</span><span class="p">,</span> <span class="mf">0.93102176</span><span class="p">,</span> <span class="mf">0.9173784518664048</span><span class="p">,</span> <span class="mf">0.921966848</span><span class="p">,</span>
+    <span class="mf">0.9165387819253438</span><span class="p">,</span> <span class="mf">0.9182679764243615</span><span class="p">,</span> <span class="mf">0.9152844950884086</span><span class="p">,</span> <span class="mf">0.917331489194499</span><span class="p">,</span>
+    <span class="mf">0.92203392</span><span class="p">,</span> <span class="mf">0.9167768015717093</span><span class="p">,</span> <span class="mf">0.9151537917485265</span><span class="p">,</span> <span class="mf">0.9157055874263261</span><span class="p">,</span>
+    <span class="mf">0.9171648251473478</span><span class="p">,</span> <span class="mf">0.9157296031434184</span><span class="p">,</span> <span class="mf">0.9149538703339882</span><span class="p">,</span> <span class="mf">0.9153821925343811</span><span class="p">,</span>
+    <span class="mf">0.9155963222003929</span><span class="p">,</span> <span class="mf">0.9145536502946955</span><span class="p">,</span> <span class="mf">0.916151232</span><span class="p">,</span> <span class="mf">0.9177973438113949</span><span class="p">,</span>
+    <span class="mf">0.9146214223968566</span><span class="p">,</span> <span class="mf">0.9138568801571709</span><span class="p">,</span> <span class="mf">0.913027206286837</span><span class="p">,</span> <span class="mf">0.9152614223968566</span><span class="p">,</span>
+    <span class="mf">0.9132077642436149</span><span class="p">,</span> <span class="mf">0.9149754970530452</span><span class="p">,</span> <span class="mf">0.917136512</span><span class="p">,</span> <span class="mf">0.914141862475442</span><span class="p">,</span>
+    <span class="mf">0.914945068762279</span><span class="p">,</span> <span class="mf">0.914854978388998</span><span class="p">,</span> <span class="mf">0.914139536345776</span><span class="p">,</span> <span class="mf">0.9152915992141454</span><span class="p">,</span>
+    <span class="mf">0.91376678978389</span><span class="p">,</span> <span class="mf">0.9139345225933202</span><span class="p">,</span> <span class="mf">0.9140565500982318</span><span class="p">,</span> <span class="mf">0.9139955677799607</span><span class="p">,</span>
+    <span class="mf">0.9152624911591356</span><span class="p">,</span> <span class="mf">0.9134742632612967</span><span class="p">,</span> <span class="mf">0.914016704</span><span class="p">,</span> <span class="mf">0.9133683929273084</span><span class="p">,</span>
+    <span class="mf">0.9141857445972495</span><span class="p">,</span> <span class="mf">0.913588557956778</span><span class="p">,</span> <span class="mf">0.9134601178781925</span><span class="p">,</span> <span class="mf">0.9132596935166994</span><span class="p">,</span>
+    <span class="mf">0.9138769351669941</span><span class="p">,</span> <span class="mf">0.9133084793713163</span><span class="p">,</span> <span class="mf">0.9129640864440078</span><span class="p">,</span> <span class="mf">0.9130440550098232</span><span class="p">,</span>
+    <span class="mf">0.9138289666011787</span><span class="p">,</span> <span class="mf">0.9132928251473478</span>
+ <span class="p">]</span>
+<span class="c1"># fmt: on</span>
+</pre></div>
+</div>
+<p>Visualize the evolution of the maximum IRF during the optimization.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">results</span></a><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Function evaluation number&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Maximum IRF&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_01-optimizing-ply-angles_002.png" srcset="../../_images/sphx_glr_01-optimizing-ply-angles_002.png" alt="01 optimizing ply angles" class = "sphx-glr-single-img"/><p>Visualize the resulting fiber directions.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles_degree</span></a> <span class="o">=</span> <span class="p">[</span><span class="mf">7.826e01</span><span class="p">,</span> <span class="mf">1.777e00</span><span class="p">,</span> <span class="mf">1.042e02</span><span class="p">,</span> <span class="mf">8.848e01</span><span class="p">,</span> <span class="mf">1.083e01</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.288e01</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="mf">0.65</span><span class="p">)</span>
+
+<span class="n">circle</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+
+<span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle_deg</span></a> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angles_degree</span></a><span class="p">):</span>
+    <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">angle_rad</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle_deg</span></a><span class="p">)</span>
+    <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">x</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">cos</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">angle_rad</span></a><span class="p">)</span>
+    <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">y</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">sin</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">angle_rad</span></a><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="p">[</span><span class="o">-</span><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">x</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">x</span></a><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">y</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">y</span></a><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;C</span><span class="si">{</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Ply </span><span class="si">{</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">, direction 1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># plot also the orthogonal direction, since the ply material is woven</span>
+    <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">angle_ortho</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">angle_rad</span></a> <span class="o">+</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">pi</span></a> <span class="o">/</span> <span class="mf">2.0</span>
+    <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">x_ortho</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">cos</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">angle_ortho</span></a><span class="p">)</span>
+    <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">y_ortho</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">sin</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">angle_ortho</span></a><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="p">[</span><span class="o">-</span><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">x_ortho</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">x_ortho</span></a><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">y_ortho</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">y_ortho</span></a><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;C</span><span class="si">{</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Ply </span><span class="si">{</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">, direction 2&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">x</span></a> <span class="o">*</span> <span class="mf">1.15</span><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" title="numpy.float64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">y</span></a> <span class="o">*</span> <span class="mf">1.15</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">angle_deg</span></a><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">°&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;C</span><span class="si">{</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Fiber directions&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center left&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>  <span class="c1"># Hide the x and y axes</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Close MAPDL instance</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_01-optimizing-ply-angles_003.png" srcset="../../_images/sphx_glr_01-optimizing-ply-angles_003.png" alt="01 optimizing ply angles" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 41.181 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-use-cases-01-optimizing-ply-angles-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/1ba9993db10fefb6d38cccca1a91d1f8/01-optimizing-ply-angles.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">01-optimizing-ply-angles.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/16ed128c03b3a8ccc5bea0d07c95c308/01-optimizing-ply-angles.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">01-optimizing-ply-angles.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/c5ef05e12c25257469e6b7222b716b65/01-optimizing-ply-angles.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">01-optimizing-ply-angles.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../workflows/06-cdb-to-pymechanical-workflow.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">CDB to PyMechanical shell workflow</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../api/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">API reference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-modules-and-setup">Import modules and setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-acp-model">Prepare the ACP model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-functions-for-the-optimization">Create functions for the optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-the-ply-angles">Optimize the ply angles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/examples/use_cases/01-optimizing-ply-angles.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+<link rel="stylesheet" href="../../_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('{"keys": ["title", "text"], "limit": 10, "threshold": 0.2}');
+const SEARCH_FILE = "../../_static/search.json";
+</script>
+
+
+<script src="../../_static/js/search.js"></script>
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2025 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  1.2.4. <br />Last updated on
+  <span id="ast_build_date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var ast_lastModifiedDate = new Date(document.lastModified);
+  var ast_build_date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("ast_build_date").innerHTML = ast_build_date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

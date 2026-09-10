@@ -1,0 +1,13 @@
+.. vale off
+
+angle
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedProductionPly.angle
+
+.. minigallery::
+   :add-heading: Examples using ImportedProductionPly.angle
+
+   ansys.acp.core.ImportedProductionPly.angle

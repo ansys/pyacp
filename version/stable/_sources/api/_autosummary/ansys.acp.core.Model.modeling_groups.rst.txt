@@ -1,0 +1,13 @@
+.. vale off
+
+modeling\_groups
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.modeling_groups
+
+.. minigallery::
+   :add-heading: Examples using Model.modeling_groups
+
+   ansys.acp.core.Model.modeling_groups

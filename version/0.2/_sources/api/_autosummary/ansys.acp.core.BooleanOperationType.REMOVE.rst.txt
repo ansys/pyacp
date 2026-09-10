@@ -1,0 +1,13 @@
+.. vale off
+
+REMOVE
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: BooleanOperationType.REMOVE
+
+.. minigallery::
+   :add-heading: Examples using BooleanOperationType.REMOVE
+
+   ansys.acp.core.BooleanOperationType.REMOVE

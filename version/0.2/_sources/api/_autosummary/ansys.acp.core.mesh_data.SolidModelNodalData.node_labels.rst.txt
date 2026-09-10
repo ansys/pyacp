@@ -1,0 +1,13 @@
+.. vale off
+
+node\_labels
+============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: SolidModelNodalData.node_labels
+
+.. minigallery::
+   :add-heading: Examples using SolidModelNodalData.node_labels
+
+   ansys.acp.core.mesh_data.SolidModelNodalData.node_labels

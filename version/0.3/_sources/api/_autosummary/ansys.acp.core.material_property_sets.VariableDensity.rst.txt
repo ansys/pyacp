@@ -1,0 +1,38 @@
+﻿.. vale off
+
+VariableDensity
+===============
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: VariableDensity
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VariableDensity.field_variables
+      VariableDensity.interpolation_options
+      VariableDensity.rho
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VariableDensity
+
+   ansys.acp.core.material_property_sets.VariableDensity

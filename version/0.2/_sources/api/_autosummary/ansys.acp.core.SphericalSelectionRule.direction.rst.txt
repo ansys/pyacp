@@ -1,0 +1,13 @@
+.. vale off
+
+direction
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.direction
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.direction
+
+   ansys.acp.core.SphericalSelectionRule.direction

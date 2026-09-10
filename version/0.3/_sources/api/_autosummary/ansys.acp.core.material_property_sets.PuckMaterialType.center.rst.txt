@@ -1,0 +1,13 @@
+.. vale off
+
+center
+======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.center
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.center
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.center

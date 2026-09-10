@@ -1,0 +1,13 @@
+.. vale off
+
+larc\_constants
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.larc_constants
+
+.. minigallery::
+   :add-heading: Examples using Material.larc_constants
+
+   ansys.acp.core.Material.larc_constants

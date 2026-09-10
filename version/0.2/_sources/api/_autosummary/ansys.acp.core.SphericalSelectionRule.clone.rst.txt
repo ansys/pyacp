@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SphericalSelectionRule.clone
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.clone
+
+   ansys.acp.core.SphericalSelectionRule.clone

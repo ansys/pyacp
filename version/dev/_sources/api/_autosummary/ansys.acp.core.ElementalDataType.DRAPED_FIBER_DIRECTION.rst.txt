@@ -1,0 +1,13 @@
+.. vale off
+
+DRAPED\_FIBER\_DIRECTION
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.DRAPED_FIBER_DIRECTION
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.DRAPED_FIBER_DIRECTION
+
+   ansys.acp.core.ElementalDataType.DRAPED_FIBER_DIRECTION

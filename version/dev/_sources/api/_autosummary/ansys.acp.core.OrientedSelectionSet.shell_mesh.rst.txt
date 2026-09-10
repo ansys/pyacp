@@ -1,0 +1,13 @@
+.. vale off
+
+shell\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.shell_mesh
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.shell_mesh
+
+   ansys.acp.core.OrientedSelectionSet.shell_mesh

@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: InterfaceLayer.status
+
+.. minigallery::
+   :add-heading: Examples using InterfaceLayer.status
+
+   ansys.acp.core.InterfaceLayer.status

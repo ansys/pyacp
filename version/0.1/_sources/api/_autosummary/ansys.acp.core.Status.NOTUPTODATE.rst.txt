@@ -1,0 +1,13 @@
+.. vale off
+
+NOTUPTODATE
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: Status.NOTUPTODATE
+
+.. minigallery::
+   :add-heading: Examples using Status.NOTUPTODATE
+
+   ansys.acp.core.Status.NOTUPTODATE

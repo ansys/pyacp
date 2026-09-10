@@ -1,0 +1,13 @@
+.. vale off
+
+image\_name\_filetransfer
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DockerComposeLaunchConfig.image_name_filetransfer
+
+.. minigallery::
+   :add-heading: Examples using DockerComposeLaunchConfig.image_name_filetransfer
+
+   ansys.acp.core.DockerComposeLaunchConfig.image_name_filetransfer

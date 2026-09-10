@@ -1,0 +1,13 @@
+.. vale off
+
+NO\_SYMMETRY
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SymmetryType.NO_SYMMETRY
+
+.. minigallery::
+   :add-heading: Examples using SymmetryType.NO_SYMMETRY
+
+   ansys.acp.core.SymmetryType.NO_SYMMETRY

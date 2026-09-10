@@ -1,0 +1,13 @@
+.. vale off
+
+automatically\_added\_sequences
+===============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ButtJointSequence.automatically_added_sequences
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence.automatically_added_sequences
+
+   ansys.acp.core.ButtJointSequence.automatically_added_sequences

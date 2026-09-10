@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Fabric.clone
+
+.. minigallery::
+   :add-heading: Examples using Fabric.clone
+
+   ansys.acp.core.Fabric.clone

@@ -1,0 +1,47 @@
+﻿.. vale off
+
+ProductionPly
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ProductionPly
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ProductionPly.analysis_plies
+      ProductionPly.angle
+      ProductionPly.elemental_data
+      ProductionPly.id
+      ProductionPly.material
+      ProductionPly.mesh
+      ProductionPly.name
+      ProductionPly.nodal_data
+      ProductionPly.parent
+      ProductionPly.shell_mesh
+      ProductionPly.status
+      ProductionPly.thickness
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ProductionPly
+
+   ansys.acp.core.ProductionPly

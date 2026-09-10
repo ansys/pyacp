@@ -1,0 +1,13 @@
+.. vale off
+
+skip\_elements\_without\_plies
+==============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.skip_elements_without_plies
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.skip_elements_without_plies
+
+   ansys.acp.core.SolidModel.skip_elements_without_plies

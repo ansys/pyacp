@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.name
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.name
+
+   ansys.acp.core.OrientedSelectionSet.name

@@ -1,0 +1,13 @@
+.. vale off
+
+SCALAR
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LookUpTableColumnValueType.SCALAR
+
+.. minigallery::
+   :add-heading: Examples using LookUpTableColumnValueType.SCALAR
+
+   ansys.acp.core.LookUpTableColumnValueType.SCALAR

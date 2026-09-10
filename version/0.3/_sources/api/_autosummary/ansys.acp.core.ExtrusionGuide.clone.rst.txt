@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ExtrusionGuide.clone
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide.clone
+
+   ansys.acp.core.ExtrusionGuide.clone

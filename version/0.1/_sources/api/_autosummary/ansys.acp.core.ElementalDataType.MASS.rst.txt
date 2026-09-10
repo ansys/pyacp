@@ -1,0 +1,13 @@
+.. vale off
+
+MASS
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.MASS
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.MASS
+
+   ansys.acp.core.ElementalDataType.MASS

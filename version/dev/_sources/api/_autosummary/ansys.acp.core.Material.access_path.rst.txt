@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.access_path
+
+.. minigallery::
+   :add-heading: Examples using Material.access_path
+
+   ansys.acp.core.Material.access_path

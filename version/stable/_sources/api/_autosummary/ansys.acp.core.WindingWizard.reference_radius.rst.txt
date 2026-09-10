@@ -1,0 +1,13 @@
+.. vale off
+
+reference\_radius
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: WindingWizard.reference_radius
+
+.. minigallery::
+   :add-heading: Examples using WindingWizard.reference_radius
+
+   ansys.acp.core.WindingWizard.reference_radius

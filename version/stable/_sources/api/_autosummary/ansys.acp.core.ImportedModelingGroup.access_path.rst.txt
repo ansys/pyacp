@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingGroup.access_path
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingGroup.access_path
+
+   ansys.acp.core.ImportedModelingGroup.access_path

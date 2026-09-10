@@ -1,0 +1,13 @@
+.. vale off
+
+NO\_ARROW
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ArrowType.NO_ARROW
+
+.. minigallery::
+   :add-heading: Examples using ArrowType.NO_ARROW
+
+   ansys.acp.core.ArrowType.NO_ARROW

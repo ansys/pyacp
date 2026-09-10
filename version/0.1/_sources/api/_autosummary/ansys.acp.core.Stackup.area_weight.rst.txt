@@ -1,0 +1,13 @@
+.. vale off
+
+area\_weight
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.area_weight
+
+.. minigallery::
+   :add-heading: Examples using Stackup.area_weight
+
+   ansys.acp.core.Stackup.area_weight

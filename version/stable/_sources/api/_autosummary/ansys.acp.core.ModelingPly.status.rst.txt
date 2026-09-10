@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.status
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.status
+
+   ansys.acp.core.ModelingPly.status

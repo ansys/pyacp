@@ -1,0 +1,13 @@
+.. vale off
+
+area
+====
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ProductionPlyElementalData.area
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.area
+
+   ansys.acp.core.mesh_data.ProductionPlyElementalData.area

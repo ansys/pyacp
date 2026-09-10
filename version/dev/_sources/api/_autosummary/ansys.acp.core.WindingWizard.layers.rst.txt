@@ -1,0 +1,13 @@
+.. vale off
+
+layers
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: WindingWizard.layers
+
+.. minigallery::
+   :add-heading: Examples using WindingWizard.layers
+
+   ansys.acp.core.WindingWizard.layers

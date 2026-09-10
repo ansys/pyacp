@@ -1,0 +1,13 @@
+.. vale off
+
+casefold
+========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.casefold
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.casefold
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.casefold

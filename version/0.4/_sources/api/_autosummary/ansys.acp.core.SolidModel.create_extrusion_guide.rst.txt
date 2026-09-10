@@ -1,0 +1,13 @@
+.. vale off
+
+create\_extrusion\_guide
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SolidModel.create_extrusion_guide
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.create_extrusion_guide
+
+   ansys.acp.core.SolidModel.create_extrusion_guide

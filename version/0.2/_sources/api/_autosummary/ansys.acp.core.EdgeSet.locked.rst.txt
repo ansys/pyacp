@@ -1,0 +1,13 @@
+.. vale off
+
+locked
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: EdgeSet.locked
+
+.. minigallery::
+   :add-heading: Examples using EdgeSet.locked
+
+   ansys.acp.core.EdgeSet.locked

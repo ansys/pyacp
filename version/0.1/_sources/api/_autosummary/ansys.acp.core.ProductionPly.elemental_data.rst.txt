@@ -1,0 +1,13 @@
+.. vale off
+
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ProductionPly.elemental_data
+
+.. minigallery::
+   :add-heading: Examples using ProductionPly.elemental_data
+
+   ansys.acp.core.ProductionPly.elemental_data

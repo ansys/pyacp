@@ -1,0 +1,13 @@
+.. vale off
+
+tolerance
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.tolerance
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.tolerance
+
+   ansys.acp.core.SectionCut.tolerance

@@ -1,0 +1,13 @@
+.. vale off
+
+draping\_thickness\_correction
+==============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.draping_thickness_correction
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.draping_thickness_correction
+
+   ansys.acp.core.ModelingPly.draping_thickness_correction

@@ -1,0 +1,13 @@
+﻿.. vale off
+
+print\_model
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autofunction:: print_model
+
+.. minigallery::
+   :add-heading: Examples using print_model
+
+   ansys.acp.core.print_model

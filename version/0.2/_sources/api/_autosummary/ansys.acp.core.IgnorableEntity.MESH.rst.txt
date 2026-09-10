@@ -1,0 +1,13 @@
+.. vale off
+
+MESH
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: IgnorableEntity.MESH
+
+.. minigallery::
+   :add-heading: Examples using IgnorableEntity.MESH
+
+   ansys.acp.core.IgnorableEntity.MESH

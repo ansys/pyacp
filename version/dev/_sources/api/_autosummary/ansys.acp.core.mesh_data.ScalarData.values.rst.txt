@@ -1,0 +1,13 @@
+.. vale off
+
+values
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoproperty:: ScalarData.values
+
+.. minigallery::
+   :add-heading: Examples using ScalarData.values
+
+   ansys.acp.core.mesh_data.ScalarData.values

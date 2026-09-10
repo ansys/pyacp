@@ -1,0 +1,28 @@
+﻿PlyCutOffType
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: PlyCutOffType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        PlyCutOffType.PRODUCTION_PLY_CUTOFF
+      
+      
+        PlyCutOffType.ANALYSIS_PLY_CUTOFF
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using PlyCutOffType
+
+   ansys.acp.core.PlyCutOffType

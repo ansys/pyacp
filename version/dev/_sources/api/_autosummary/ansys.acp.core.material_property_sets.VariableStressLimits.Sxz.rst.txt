@@ -1,0 +1,13 @@
+.. vale off
+
+Sxz
+===
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableStressLimits.Sxz
+
+.. minigallery::
+   :add-heading: Examples using VariableStressLimits.Sxz
+
+   ansys.acp.core.material_property_sets.VariableStressLimits.Sxz

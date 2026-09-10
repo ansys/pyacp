@@ -1,0 +1,13 @@
+.. vale off
+
+definition\_type
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ButtJointSequence.definition_type
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence.definition_type
+
+   ansys.acp.core.ButtJointSequence.definition_type

@@ -1,0 +1,13 @@
+.. vale off
+
+thin\_ply\_thickness\_limit
+===========================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableLaRCConstants.thin_ply_thickness_limit
+
+.. minigallery::
+   :add-heading: Examples using VariableLaRCConstants.thin_ply_thickness_limit
+
+   ansys.acp.core.material_property_sets.VariableLaRCConstants.thin_ply_thickness_limit

@@ -1,0 +1,13 @@
+.. vale off
+
+islower
+=======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.islower
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.islower
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.islower

@@ -1,0 +1,13 @@
+.. vale off
+
+ANSYS\_CDB
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelExportFormat.ANSYS_CDB
+
+.. minigallery::
+   :add-heading: Examples using SolidModelExportFormat.ANSYS_CDB
+
+   ansys.acp.core.SolidModelExportFormat.ANSYS_CDB

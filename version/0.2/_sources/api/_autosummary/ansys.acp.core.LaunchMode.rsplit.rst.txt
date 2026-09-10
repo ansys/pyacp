@@ -1,0 +1,13 @@
+.. vale off
+
+rsplit
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.rsplit
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.rsplit
+
+   ansys.acp.core.LaunchMode.rsplit

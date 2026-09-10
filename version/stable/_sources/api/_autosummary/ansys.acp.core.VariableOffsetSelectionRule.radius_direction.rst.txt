@@ -1,0 +1,13 @@
+.. vale off
+
+radius\_direction
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.radius_direction
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule.radius_direction
+
+   ansys.acp.core.VariableOffsetSelectionRule.radius_direction

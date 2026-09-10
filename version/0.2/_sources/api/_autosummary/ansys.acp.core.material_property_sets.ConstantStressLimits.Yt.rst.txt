@@ -1,0 +1,13 @@
+.. vale off
+
+Yt
+==
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantStressLimits.Yt
+
+.. minigallery::
+   :add-heading: Examples using ConstantStressLimits.Yt
+
+   ansys.acp.core.material_property_sets.ConstantStressLimits.Yt

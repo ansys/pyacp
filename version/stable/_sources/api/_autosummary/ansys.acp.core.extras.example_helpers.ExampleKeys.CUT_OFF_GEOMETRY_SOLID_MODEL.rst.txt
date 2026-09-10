@@ -1,0 +1,13 @@
+.. vale off
+
+CUT\_OFF\_GEOMETRY\_SOLID\_MODEL
+================================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.CUT_OFF_GEOMETRY_SOLID_MODEL

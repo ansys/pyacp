@@ -1,0 +1,38 @@
+﻿.. vale off
+
+VariableFabricFiberAngle
+========================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: VariableFabricFiberAngle
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VariableFabricFiberAngle.fabric_fiber_angle
+      VariableFabricFiberAngle.field_variables
+      VariableFabricFiberAngle.interpolation_options
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VariableFabricFiberAngle
+
+   ansys.acp.core.material_property_sets.VariableFabricFiberAngle

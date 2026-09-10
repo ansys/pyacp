@@ -1,0 +1,34 @@
+﻿SensorType
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SensorType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        SensorType.SENSOR_BY_AREA
+      
+      
+        SensorType.SENSOR_BY_MATERIAL
+      
+      
+        SensorType.SENSOR_BY_PLIES
+      
+      
+        SensorType.SENSOR_BY_SOLID_MODEL
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using SensorType
+
+   ansys.acp.core.SensorType

@@ -1,0 +1,13 @@
+.. vale off
+
+mesh\_geometry
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.mesh_geometry
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.mesh_geometry
+
+   ansys.acp.core.ImportedModelingPly.mesh_geometry

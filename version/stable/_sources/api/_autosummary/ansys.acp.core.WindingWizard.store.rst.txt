@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: WindingWizard.store
+
+.. minigallery::
+   :add-heading: Examples using WindingWizard.store
+
+   ansys.acp.core.WindingWizard.store

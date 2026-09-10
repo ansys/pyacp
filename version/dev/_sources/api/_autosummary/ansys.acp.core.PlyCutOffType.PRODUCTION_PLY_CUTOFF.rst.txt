@@ -1,0 +1,13 @@
+.. vale off
+
+PRODUCTION\_PLY\_CUTOFF
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyCutOffType.PRODUCTION_PLY_CUTOFF
+
+.. minigallery::
+   :add-heading: Examples using PlyCutOffType.PRODUCTION_PLY_CUTOFF
+
+   ansys.acp.core.PlyCutOffType.PRODUCTION_PLY_CUTOFF

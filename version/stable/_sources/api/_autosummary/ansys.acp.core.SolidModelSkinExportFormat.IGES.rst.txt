@@ -1,0 +1,13 @@
+.. vale off
+
+IGES
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelSkinExportFormat.IGES
+
+.. minigallery::
+   :add-heading: Examples using SolidModelSkinExportFormat.IGES
+
+   ansys.acp.core.SolidModelSkinExportFormat.IGES

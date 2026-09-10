@@ -1,0 +1,13 @@
+.. vale off
+
+use\_default\_interpolation\_settings
+=====================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.use_default_interpolation_settings
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.use_default_interpolation_settings
+
+   ansys.acp.core.SectionCut.use_default_interpolation_settings

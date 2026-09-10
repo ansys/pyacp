@@ -1,0 +1,10 @@
+﻿CreatableFromResourcePath
+=========================
+
+.. currentmodule:: ansys.acp.core._tree_objects._grpc_helpers.polymorphic_from_pb
+
+.. warning::
+
+    This is an internal object. It should not be used directly, and subject to change without notice.
+
+.. autoclass:: CreatableFromResourcePath

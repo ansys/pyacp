@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SnapToGeometry.clone
+
+.. minigallery::
+   :add-heading: Examples using SnapToGeometry.clone
+
+   ansys.acp.core.SnapToGeometry.clone

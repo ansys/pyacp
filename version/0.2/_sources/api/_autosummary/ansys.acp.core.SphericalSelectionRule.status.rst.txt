@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.status
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.status
+
+   ansys.acp.core.SphericalSelectionRule.status

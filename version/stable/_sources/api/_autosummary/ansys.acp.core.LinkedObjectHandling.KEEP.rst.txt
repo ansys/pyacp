@@ -1,0 +1,13 @@
+.. vale off
+
+KEEP
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LinkedObjectHandling.KEEP
+
+.. minigallery::
+   :add-heading: Examples using LinkedObjectHandling.KEEP
+
+   ansys.acp.core.LinkedObjectHandling.KEEP

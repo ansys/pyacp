@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedModelingGroup.delete
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingGroup.delete
+
+   ansys.acp.core.ImportedModelingGroup.delete

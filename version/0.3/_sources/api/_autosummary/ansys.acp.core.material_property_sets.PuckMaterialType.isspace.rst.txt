@@ -1,0 +1,13 @@
+.. vale off
+
+isspace
+=======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.isspace
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.isspace
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.isspace

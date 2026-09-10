@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SubLaminate.parent
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.parent
+
+   ansys.acp.core.SubLaminate.parent

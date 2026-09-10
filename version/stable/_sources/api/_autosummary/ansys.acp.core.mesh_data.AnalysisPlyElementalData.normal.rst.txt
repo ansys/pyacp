@@ -1,0 +1,13 @@
+.. vale off
+
+normal
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: AnalysisPlyElementalData.normal
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPlyElementalData.normal
+
+   ansys.acp.core.mesh_data.AnalysisPlyElementalData.normal

@@ -1,0 +1,13 @@
+.. vale off
+
+woven\_stress\_limits\_2
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.woven_stress_limits_2
+
+.. minigallery::
+   :add-heading: Examples using Material.woven_stress_limits_2
+
+   ansys.acp.core.Material.woven_stress_limits_2

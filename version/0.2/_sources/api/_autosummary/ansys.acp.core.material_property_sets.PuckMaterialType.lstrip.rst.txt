@@ -1,0 +1,13 @@
+.. vale off
+
+lstrip
+======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.lstrip
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.lstrip
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.lstrip

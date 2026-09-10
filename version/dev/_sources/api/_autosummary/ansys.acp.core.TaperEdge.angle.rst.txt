@@ -1,0 +1,13 @@
+.. vale off
+
+angle
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TaperEdge.angle
+
+.. minigallery::
+   :add-heading: Examples using TaperEdge.angle
+
+   ansys.acp.core.TaperEdge.angle

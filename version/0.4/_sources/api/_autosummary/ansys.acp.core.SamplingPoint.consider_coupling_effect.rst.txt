@@ -1,0 +1,13 @@
+.. vale off
+
+consider\_coupling\_effect
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SamplingPoint.consider_coupling_effect
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint.consider_coupling_effect
+
+   ansys.acp.core.SamplingPoint.consider_coupling_effect

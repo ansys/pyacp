@@ -1,0 +1,13 @@
+.. vale off
+
+nodal\_data
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.nodal_data
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.nodal_data
+
+   ansys.acp.core.ParallelSelectionRule.nodal_data

@@ -1,0 +1,13 @@
+.. vale off
+
+MIDDLE\_OFFSET
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: OffsetType.MIDDLE_OFFSET
+
+.. minigallery::
+   :add-heading: Examples using OffsetType.MIDDLE_OFFSET
+
+   ansys.acp.core.OffsetType.MIDDLE_OFFSET

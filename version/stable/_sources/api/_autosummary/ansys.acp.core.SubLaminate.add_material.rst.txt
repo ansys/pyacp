@@ -1,0 +1,13 @@
+.. vale off
+
+add\_material
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SubLaminate.add_material
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.add_material
+
+   ansys.acp.core.SubLaminate.add_material

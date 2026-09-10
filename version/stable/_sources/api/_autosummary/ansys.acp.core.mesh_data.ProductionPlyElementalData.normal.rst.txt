@@ -1,0 +1,13 @@
+.. vale off
+
+normal
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ProductionPlyElementalData.normal
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.normal
+
+   ansys.acp.core.mesh_data.ProductionPlyElementalData.normal

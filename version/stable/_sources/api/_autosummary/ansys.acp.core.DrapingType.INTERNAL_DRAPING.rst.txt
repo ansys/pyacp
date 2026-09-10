@@ -1,0 +1,13 @@
+.. vale off
+
+INTERNAL\_DRAPING
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DrapingType.INTERNAL_DRAPING
+
+.. minigallery::
+   :add-heading: Examples using DrapingType.INTERNAL_DRAPING
+
+   ansys.acp.core.DrapingType.INTERNAL_DRAPING

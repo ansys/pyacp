@@ -1,0 +1,13 @@
+.. vale off
+
+extrusion\_guides
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.extrusion_guides
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.extrusion_guides
+
+   ansys.acp.core.SolidModel.extrusion_guides

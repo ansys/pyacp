@@ -1,0 +1,13 @@
+.. vale off
+
+cut\_off\_material
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.cut_off_material
+
+.. minigallery::
+   :add-heading: Examples using Stackup.cut_off_material
+
+   ansys.acp.core.Stackup.cut_off_material

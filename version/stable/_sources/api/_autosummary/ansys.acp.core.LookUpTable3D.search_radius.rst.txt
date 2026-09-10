@@ -1,0 +1,13 @@
+.. vale off
+
+search\_radius
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3D.search_radius
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3D.search_radius
+
+   ansys.acp.core.LookUpTable3D.search_radius

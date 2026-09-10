@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.name
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.name
+
+   ansys.acp.core.SolidModel.name

@@ -1,0 +1,13 @@
+.. vale off
+
+center
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.center
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.center
+
+   ansys.acp.core.LaunchMode.center

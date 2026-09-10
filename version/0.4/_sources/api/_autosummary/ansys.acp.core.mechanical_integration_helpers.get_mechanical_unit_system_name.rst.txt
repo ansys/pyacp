@@ -1,0 +1,10 @@
+﻿get\_mechanical\_unit\_system\_name
+===================================
+
+.. currentmodule:: ansys.acp.core.mechanical_integration_helpers
+
+.. warning::
+
+    This is an internal object. It should not be used directly, and subject to change without notice.
+
+.. autofunction:: get_mechanical_unit_system_name

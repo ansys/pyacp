@@ -1,0 +1,13 @@
+﻿.. vale off
+
+print\_feature\_tree
+====================
+
+.. currentmodule:: ansys.acp.core.extras.feature_tree
+
+.. autofunction:: print_feature_tree
+
+.. minigallery::
+   :add-heading: Examples using print_feature_tree
+
+   ansys.acp.core.extras.feature_tree.print_feature_tree

@@ -1,0 +1,13 @@
+.. vale off
+
+E1\_2
+=====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableWovenCharacterization.E1_2
+
+.. minigallery::
+   :add-heading: Examples using VariableWovenCharacterization.E1_2
+
+   ansys.acp.core.material_property_sets.VariableWovenCharacterization.E1_2

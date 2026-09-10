@@ -1,0 +1,13 @@
+.. vale off
+
+lower\_limit
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Layer.lower_limit
+
+.. minigallery::
+   :add-heading: Examples using Layer.lower_limit
+
+   ansys.acp.core.Layer.lower_limit

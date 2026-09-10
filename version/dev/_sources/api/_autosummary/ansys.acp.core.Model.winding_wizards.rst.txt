@@ -1,0 +1,13 @@
+.. vale off
+
+winding\_wizards
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.winding_wizards
+
+.. minigallery::
+   :add-heading: Examples using Model.winding_wizards
+
+   ansys.acp.core.Model.winding_wizards

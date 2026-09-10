@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: BooleanSelectionRule.store
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRule.store
+
+   ansys.acp.core.BooleanSelectionRule.store

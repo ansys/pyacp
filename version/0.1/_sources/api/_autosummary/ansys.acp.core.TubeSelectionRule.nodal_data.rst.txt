@@ -1,0 +1,13 @@
+.. vale off
+
+nodal\_data
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.nodal_data
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.nodal_data
+
+   ansys.acp.core.TubeSelectionRule.nodal_data

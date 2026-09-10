@@ -1,0 +1,13 @@
+.. vale off
+
+max\_element\_thickness
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.max_element_thickness
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.max_element_thickness
+
+   ansys.acp.core.SolidModel.max_element_thickness

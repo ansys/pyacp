@@ -1,0 +1,13 @@
+.. vale off
+
+radius
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CylindricalSelectionRule.radius
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule.radius
+
+   ansys.acp.core.CylindricalSelectionRule.radius

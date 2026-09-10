@@ -1,0 +1,13 @@
+.. vale off
+
+TEMPERATURE
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PhysicalDimension.TEMPERATURE
+
+.. minigallery::
+   :add-heading: Examples using PhysicalDimension.TEMPERATURE
+
+   ansys.acp.core.PhysicalDimension.TEMPERATURE

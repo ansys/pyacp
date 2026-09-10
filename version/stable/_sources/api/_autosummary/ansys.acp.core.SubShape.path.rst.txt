@@ -1,0 +1,13 @@
+.. vale off
+
+path
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SubShape.path
+
+.. minigallery::
+   :add-heading: Examples using SubShape.path
+
+   ansys.acp.core.SubShape.path

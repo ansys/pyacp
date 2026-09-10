@@ -1,0 +1,13 @@
+.. vale off
+
+ignore\_for\_postprocessing
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.ignore_for_postprocessing
+
+.. minigallery::
+   :add-heading: Examples using Stackup.ignore_for_postprocessing
+
+   ansys.acp.core.Stackup.ignore_for_postprocessing

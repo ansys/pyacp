@@ -1,0 +1,13 @@
+.. vale off
+
+imported\_analysis\_plies
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.imported_analysis_plies
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.imported_analysis_plies
+
+   ansys.acp.core.LayupMappingObject.imported_analysis_plies

@@ -1,0 +1,13 @@
+.. vale off
+
+ANSYS\_CLASSIC
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteSelectionMethod.ANSYS_CLASSIC
+
+.. minigallery::
+   :add-heading: Examples using RosetteSelectionMethod.ANSYS_CLASSIC
+
+   ansys.acp.core.RosetteSelectionMethod.ANSYS_CLASSIC

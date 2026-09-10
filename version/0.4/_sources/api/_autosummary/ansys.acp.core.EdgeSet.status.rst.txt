@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: EdgeSet.status
+
+.. minigallery::
+   :add-heading: Examples using EdgeSet.status
+
+   ansys.acp.core.EdgeSet.status

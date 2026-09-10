@@ -1,0 +1,13 @@
+.. vale off
+
+shell\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: InterfaceLayer.shell_mesh
+
+.. minigallery::
+   :add-heading: Examples using InterfaceLayer.shell_mesh
+
+   ansys.acp.core.InterfaceLayer.shell_mesh

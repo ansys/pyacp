@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffGeometry.name
+
+.. minigallery::
+   :add-heading: Examples using CutOffGeometry.name
+
+   ansys.acp.core.CutOffGeometry.name

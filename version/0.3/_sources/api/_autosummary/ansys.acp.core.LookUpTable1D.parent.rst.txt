@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable1D.parent
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable1D.parent
+
+   ansys.acp.core.LookUpTable1D.parent

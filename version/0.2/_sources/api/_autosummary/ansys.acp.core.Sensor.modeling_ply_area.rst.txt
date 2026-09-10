@@ -1,0 +1,13 @@
+.. vale off
+
+modeling\_ply\_area
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.modeling_ply_area
+
+.. minigallery::
+   :add-heading: Examples using Sensor.modeling_ply_area
+
+   ansys.acp.core.Sensor.modeling_ply_area

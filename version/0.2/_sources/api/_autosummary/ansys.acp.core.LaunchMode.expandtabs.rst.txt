@@ -1,0 +1,13 @@
+.. vale off
+
+expandtabs
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.expandtabs
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.expandtabs
+
+   ansys.acp.core.LaunchMode.expandtabs

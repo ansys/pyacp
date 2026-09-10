@@ -1,0 +1,13 @@
+.. vale off
+
+COPY
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LinkedObjectHandling.COPY
+
+.. minigallery::
+   :add-heading: Examples using LinkedObjectHandling.COPY
+
+   ansys.acp.core.LinkedObjectHandling.COPY

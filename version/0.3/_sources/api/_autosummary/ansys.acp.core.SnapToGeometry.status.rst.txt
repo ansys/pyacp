@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SnapToGeometry.status
+
+.. minigallery::
+   :add-heading: Examples using SnapToGeometry.status
+
+   ansys.acp.core.SnapToGeometry.status

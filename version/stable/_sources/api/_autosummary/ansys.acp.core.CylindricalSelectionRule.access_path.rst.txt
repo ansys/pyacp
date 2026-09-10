@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CylindricalSelectionRule.access_path
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule.access_path
+
+   ansys.acp.core.CylindricalSelectionRule.access_path

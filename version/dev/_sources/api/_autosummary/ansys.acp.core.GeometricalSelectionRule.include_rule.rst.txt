@@ -1,0 +1,13 @@
+.. vale off
+
+include\_rule
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.include_rule
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.include_rule
+
+   ansys.acp.core.GeometricalSelectionRule.include_rule

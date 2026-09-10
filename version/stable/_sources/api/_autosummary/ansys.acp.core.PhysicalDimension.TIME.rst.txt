@@ -1,0 +1,13 @@
+.. vale off
+
+TIME
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PhysicalDimension.TIME
+
+.. minigallery::
+   :add-heading: Examples using PhysicalDimension.TIME
+
+   ansys.acp.core.PhysicalDimension.TIME

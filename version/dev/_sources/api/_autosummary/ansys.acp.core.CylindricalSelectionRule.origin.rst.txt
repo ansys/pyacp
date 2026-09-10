@@ -1,0 +1,13 @@
+.. vale off
+
+origin
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CylindricalSelectionRule.origin
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule.origin
+
+   ansys.acp.core.CylindricalSelectionRule.origin

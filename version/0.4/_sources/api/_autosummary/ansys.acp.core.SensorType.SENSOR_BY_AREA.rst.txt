@@ -1,0 +1,13 @@
+.. vale off
+
+SENSOR\_BY\_AREA
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SensorType.SENSOR_BY_AREA
+
+.. minigallery::
+   :add-heading: Examples using SensorType.SENSOR_BY_AREA
+
+   ansys.acp.core.SensorType.SENSOR_BY_AREA

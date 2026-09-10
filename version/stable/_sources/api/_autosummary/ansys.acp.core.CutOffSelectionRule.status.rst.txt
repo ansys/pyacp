@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffSelectionRule.status
+
+.. minigallery::
+   :add-heading: Examples using CutOffSelectionRule.status
+
+   ansys.acp.core.CutOffSelectionRule.status

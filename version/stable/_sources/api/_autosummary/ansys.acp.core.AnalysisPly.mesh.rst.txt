@@ -1,0 +1,13 @@
+.. vale off
+
+mesh
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: AnalysisPly.mesh
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPly.mesh
+
+   ansys.acp.core.AnalysisPly.mesh

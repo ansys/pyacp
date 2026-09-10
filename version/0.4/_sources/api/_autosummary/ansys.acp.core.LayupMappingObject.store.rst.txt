@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LayupMappingObject.store
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.store
+
+   ansys.acp.core.LayupMappingObject.store

@@ -1,0 +1,13 @@
+.. vale off
+
+lookup\_tables\_3d
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.lookup_tables_3d
+
+.. minigallery::
+   :add-heading: Examples using Model.lookup_tables_3d
+
+   ansys.acp.core.Model.lookup_tables_3d

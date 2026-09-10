@@ -1,0 +1,13 @@
+.. vale off
+
+shear\_angle
+============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ProductionPlyElementalData.shear_angle
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.shear_angle
+
+   ansys.acp.core.mesh_data.ProductionPlyElementalData.shear_angle

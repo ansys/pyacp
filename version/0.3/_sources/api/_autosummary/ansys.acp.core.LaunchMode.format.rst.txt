@@ -1,0 +1,13 @@
+.. vale off
+
+format
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.format
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.format
+
+   ansys.acp.core.LaunchMode.format

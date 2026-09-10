@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.status
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.status
+
+   ansys.acp.core.CADGeometry.status

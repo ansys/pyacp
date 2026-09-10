@@ -1,0 +1,13 @@
+.. vale off
+
+offsets
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.offsets
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule.offsets
+
+   ansys.acp.core.VariableOffsetSelectionRule.offsets

@@ -1,0 +1,13 @@
+.. vale off
+
+scope\_entire\_model
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.scope_entire_model
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.scope_entire_model
+
+   ansys.acp.core.SectionCut.scope_entire_model

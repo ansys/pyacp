@@ -1,0 +1,80 @@
+﻿.. vale off
+
+ModelingPly
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ModelingPly
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ModelingPly.add_selection_rule
+      
+      
+      ModelingPly.add_taper_edge
+      
+      
+      ModelingPly.clone
+      
+      
+      ModelingPly.delete
+      
+      
+      ModelingPly.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ModelingPly.active
+      ModelingPly.auto_draping_direction
+      ModelingPly.draping_angle_1_field
+      ModelingPly.draping_angle_2_field
+      ModelingPly.draping_direction
+      ModelingPly.draping_mesh_size
+      ModelingPly.draping_seed_point
+      ModelingPly.draping_thickness_correction
+      ModelingPly.draping_type
+      ModelingPly.elemental_data
+      ModelingPly.global_ply_nr
+      ModelingPly.id
+      ModelingPly.mesh
+      ModelingPly.name
+      ModelingPly.nodal_data
+      ModelingPly.number_of_layers
+      ModelingPly.oriented_selection_sets
+      ModelingPly.parent
+      ModelingPly.ply_angle
+      ModelingPly.ply_material
+      ModelingPly.production_plies
+      ModelingPly.selection_rules
+      ModelingPly.shell_mesh
+      ModelingPly.status
+      ModelingPly.taper_edges
+      ModelingPly.thickness_field
+      ModelingPly.thickness_field_type
+      ModelingPly.thickness_geometry
+      ModelingPly.thickness_type
+      ModelingPly.use_default_draping_mesh_size
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly
+
+   ansys.acp.core.ModelingPly

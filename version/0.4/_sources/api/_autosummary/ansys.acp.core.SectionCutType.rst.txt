@@ -1,0 +1,31 @@
+﻿SectionCutType
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SectionCutType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        SectionCutType.MODELING_PLY_WISE
+      
+      
+        SectionCutType.PRODUCTION_PLY_WISE
+      
+      
+        SectionCutType.ANALYSIS_PLY_WISE
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using SectionCutType
+
+   ansys.acp.core.SectionCutType

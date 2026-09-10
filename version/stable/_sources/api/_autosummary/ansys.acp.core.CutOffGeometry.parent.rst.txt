@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffGeometry.parent
+
+.. minigallery::
+   :add-heading: Examples using CutOffGeometry.parent
+
+   ansys.acp.core.CutOffGeometry.parent

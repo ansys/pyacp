@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: FieldDefinition.store
+
+.. minigallery::
+   :add-heading: Examples using FieldDefinition.store
+
+   ansys.acp.core.FieldDefinition.store

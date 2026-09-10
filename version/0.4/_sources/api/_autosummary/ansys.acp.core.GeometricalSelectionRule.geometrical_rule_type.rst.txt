@@ -1,0 +1,13 @@
+.. vale off
+
+geometrical\_rule\_type
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.geometrical_rule_type
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.geometrical_rule_type
+
+   ansys.acp.core.GeometricalSelectionRule.geometrical_rule_type

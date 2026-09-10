@@ -1,0 +1,13 @@
+.. vale off
+
+eSxz
+====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantStrainLimits.eSxz
+
+.. minigallery::
+   :add-heading: Examples using ConstantStrainLimits.eSxz
+
+   ansys.acp.core.material_property_sets.ConstantStrainLimits.eSxz

@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: HDF5CompositeCAEImport.store
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport.store
+
+   ansys.acp.core.HDF5CompositeCAEImport.store

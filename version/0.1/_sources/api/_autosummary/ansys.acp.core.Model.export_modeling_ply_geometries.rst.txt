@@ -1,0 +1,13 @@
+.. vale off
+
+export\_modeling\_ply\_geometries
+=================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.export_modeling_ply_geometries
+
+.. minigallery::
+   :add-heading: Examples using Model.export_modeling_ply_geometries
+
+   ansys.acp.core.Model.export_modeling_ply_geometries

@@ -1,0 +1,13 @@
+.. vale off
+
+tsai\_wu\_constants
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.tsai_wu_constants
+
+.. minigallery::
+   :add-heading: Examples using Material.tsai_wu_constants
+
+   ansys.acp.core.Material.tsai_wu_constants

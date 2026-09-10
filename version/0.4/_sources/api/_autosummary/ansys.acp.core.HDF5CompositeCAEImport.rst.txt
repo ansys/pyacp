@@ -1,0 +1,65 @@
+﻿.. vale off
+
+HDF5CompositeCAEImport
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: HDF5CompositeCAEImport
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      HDF5CompositeCAEImport.clone
+      
+      
+      HDF5CompositeCAEImport.delete
+      
+      
+      HDF5CompositeCAEImport.delete_generated_objects
+      
+      
+      HDF5CompositeCAEImport.list_generated_objects
+      
+      
+      HDF5CompositeCAEImport.run
+      
+      
+      HDF5CompositeCAEImport.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      HDF5CompositeCAEImport.access_path
+      HDF5CompositeCAEImport.coordinate_transformation
+      HDF5CompositeCAEImport.has_run
+      HDF5CompositeCAEImport.id
+      HDF5CompositeCAEImport.minimum_angle_tolerance
+      HDF5CompositeCAEImport.name
+      HDF5CompositeCAEImport.parent
+      HDF5CompositeCAEImport.path
+      HDF5CompositeCAEImport.projection_mode
+      HDF5CompositeCAEImport.recompute_reference_directions
+      HDF5CompositeCAEImport.shell_mapping_properties
+      HDF5CompositeCAEImport.solid_mapping_properties
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport
+
+   ansys.acp.core.HDF5CompositeCAEImport

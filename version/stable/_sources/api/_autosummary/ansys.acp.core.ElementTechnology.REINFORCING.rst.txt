@@ -1,0 +1,13 @@
+.. vale off
+
+REINFORCING
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementTechnology.REINFORCING
+
+.. minigallery::
+   :add-heading: Examples using ElementTechnology.REINFORCING
+
+   ansys.acp.core.ElementTechnology.REINFORCING

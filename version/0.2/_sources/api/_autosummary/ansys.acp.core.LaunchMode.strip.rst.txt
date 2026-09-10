@@ -1,0 +1,13 @@
+.. vale off
+
+strip
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.strip
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.strip
+
+   ansys.acp.core.LaunchMode.strip

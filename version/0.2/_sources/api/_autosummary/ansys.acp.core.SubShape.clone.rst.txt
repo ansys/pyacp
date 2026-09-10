@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SubShape.clone
+
+.. minigallery::
+   :add-heading: Examples using SubShape.clone
+
+   ansys.acp.core.SubShape.clone

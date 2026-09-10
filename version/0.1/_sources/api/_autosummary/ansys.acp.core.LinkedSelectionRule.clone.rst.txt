@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LinkedSelectionRule.clone
+
+.. minigallery::
+   :add-heading: Examples using LinkedSelectionRule.clone
+
+   ansys.acp.core.LinkedSelectionRule.clone

@@ -1,0 +1,13 @@
+.. vale off
+
+sublaminates
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.sublaminates
+
+.. minigallery::
+   :add-heading: Examples using Model.sublaminates
+
+   ansys.acp.core.Model.sublaminates

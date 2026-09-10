@@ -1,0 +1,13 @@
+.. vale off
+
+offset
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffSelectionRule.offset
+
+.. minigallery::
+   :add-heading: Examples using CutOffSelectionRule.offset
+
+   ansys.acp.core.CutOffSelectionRule.offset

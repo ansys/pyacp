@@ -1,0 +1,13 @@
+.. vale off
+
+include\_rule
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.include_rule
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.include_rule
+
+   ansys.acp.core.ParallelSelectionRule.include_rule

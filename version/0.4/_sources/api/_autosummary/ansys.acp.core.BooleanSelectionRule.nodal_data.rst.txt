@@ -1,0 +1,13 @@
+.. vale off
+
+nodal\_data
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: BooleanSelectionRule.nodal_data
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRule.nodal_data
+
+   ansys.acp.core.BooleanSelectionRule.nodal_data

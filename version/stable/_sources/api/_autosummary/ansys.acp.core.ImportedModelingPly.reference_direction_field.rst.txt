@@ -1,0 +1,13 @@
+.. vale off
+
+reference\_direction\_field
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.reference_direction_field
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.reference_direction_field
+
+   ansys.acp.core.ImportedModelingPly.reference_direction_field
