@@ -34,7 +34,7 @@ jobs:
 
       - name: Create wheel
         run: |
-          uv build --wheel
+          uv build
 
       - name: Install library from wheel, test dependencies from uv.lock
         run: |
@@ -44,6 +44,10 @@ jobs:
           pip install $(echo dist/*.whl)[graphics]
           uv export --group test --no-emit-project --output-file requirements-test.txt
           pip install -r requirements-test.txt
+
+      - name: Remove source
+        run: |
+          rm -rf src
 
       - name: Login in Github Container registry
         uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
