@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: WindingWizard.delete
+
+.. minigallery::
+   :add-heading: Examples using WindingWizard.delete
+
+   ansys.acp.core.WindingWizard.delete

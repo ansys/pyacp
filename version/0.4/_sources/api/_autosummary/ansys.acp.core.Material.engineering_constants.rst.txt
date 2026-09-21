@@ -1,0 +1,13 @@
+.. vale off
+
+engineering\_constants
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.engineering_constants
+
+.. minigallery::
+   :add-heading: Examples using Material.engineering_constants
+
+   ansys.acp.core.Material.engineering_constants

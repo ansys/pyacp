@@ -1,0 +1,13 @@
+.. vale off
+
+G23\_2
+======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantWovenCharacterization.G23_2
+
+.. minigallery::
+   :add-heading: Examples using ConstantWovenCharacterization.G23_2
+
+   ansys.acp.core.material_property_sets.ConstantWovenCharacterization.G23_2

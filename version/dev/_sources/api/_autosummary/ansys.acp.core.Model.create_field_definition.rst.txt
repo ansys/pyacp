@@ -1,0 +1,13 @@
+.. vale off
+
+create\_field\_definition
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_field_definition
+
+.. minigallery::
+   :add-heading: Examples using Model.create_field_definition
+
+   ansys.acp.core.Model.create_field_definition

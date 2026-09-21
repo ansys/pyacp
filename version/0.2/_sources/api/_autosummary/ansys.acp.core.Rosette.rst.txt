@@ -1,0 +1,54 @@
+﻿.. vale off
+
+Rosette
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Rosette
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Rosette.clone
+      
+      
+      Rosette.delete
+      
+      
+      Rosette.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Rosette.dir1
+      Rosette.dir2
+      Rosette.edge_set
+      Rosette.id
+      Rosette.locked
+      Rosette.name
+      Rosette.origin
+      Rosette.parent
+      Rosette.rosette_type
+      Rosette.status
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using Rosette
+
+   ansys.acp.core.Rosette

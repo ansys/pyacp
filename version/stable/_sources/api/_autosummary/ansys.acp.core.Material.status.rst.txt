@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.status
+
+.. minigallery::
+   :add-heading: Examples using Material.status
+
+   ansys.acp.core.Material.status

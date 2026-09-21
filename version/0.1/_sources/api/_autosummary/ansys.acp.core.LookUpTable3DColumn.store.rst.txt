@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LookUpTable3DColumn.store
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3DColumn.store
+
+   ansys.acp.core.LookUpTable3DColumn.store

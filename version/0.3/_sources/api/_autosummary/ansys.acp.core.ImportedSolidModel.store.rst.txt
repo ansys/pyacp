@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedSolidModel.store
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.store
+
+   ansys.acp.core.ImportedSolidModel.store

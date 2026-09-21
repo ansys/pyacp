@@ -1,0 +1,13 @@
+.. vale off
+
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.elemental_data
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.elemental_data
+
+   ansys.acp.core.SphericalSelectionRule.elemental_data

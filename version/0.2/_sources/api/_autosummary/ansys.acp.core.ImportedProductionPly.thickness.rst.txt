@@ -1,0 +1,13 @@
+.. vale off
+
+thickness
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedProductionPly.thickness
+
+.. minigallery::
+   :add-heading: Examples using ImportedProductionPly.thickness
+
+   ansys.acp.core.ImportedProductionPly.thickness

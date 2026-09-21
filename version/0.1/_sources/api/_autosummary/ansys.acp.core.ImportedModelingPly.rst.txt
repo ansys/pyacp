@@ -1,0 +1,65 @@
+﻿.. vale off
+
+ImportedModelingPly
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ImportedModelingPly
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ImportedModelingPly.clone
+      
+      
+      ImportedModelingPly.delete
+      
+      
+      ImportedModelingPly.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ImportedModelingPly.active
+      ImportedModelingPly.draping_angle_1_field
+      ImportedModelingPly.draping_angle_2_field
+      ImportedModelingPly.draping_type
+      ImportedModelingPly.id
+      ImportedModelingPly.imported_production_plies
+      ImportedModelingPly.mesh_geometry
+      ImportedModelingPly.mesh_import_type
+      ImportedModelingPly.name
+      ImportedModelingPly.offset_type
+      ImportedModelingPly.parent
+      ImportedModelingPly.ply_angle
+      ImportedModelingPly.ply_material
+      ImportedModelingPly.reference_direction_field
+      ImportedModelingPly.rosette_selection_method
+      ImportedModelingPly.rosettes
+      ImportedModelingPly.rotation_angle
+      ImportedModelingPly.status
+      ImportedModelingPly.thickness_field
+      ImportedModelingPly.thickness_field_type
+      ImportedModelingPly.thickness_type
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly
+
+   ansys.acp.core.ImportedModelingPly

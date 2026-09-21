@@ -1,0 +1,13 @@
+.. vale off
+
+GLOBAL
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CutOffMaterialHandling.GLOBAL
+
+.. minigallery::
+   :add-heading: Examples using CutOffMaterialHandling.GLOBAL
+
+   ansys.acp.core.CutOffMaterialHandling.GLOBAL

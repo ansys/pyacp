@@ -1,0 +1,13 @@
+.. vale off
+
+license\_server
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DockerComposeLaunchConfig.license_server
+
+.. minigallery::
+   :add-heading: Examples using DockerComposeLaunchConfig.license_server
+
+   ansys.acp.core.DockerComposeLaunchConfig.license_server

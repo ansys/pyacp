@@ -1,0 +1,13 @@
+.. vale off
+
+MMKMS
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.MMKMS
+
+.. minigallery::
+   :add-heading: Examples using UnitSystemType.MMKMS
+
+   ansys.acp.core.UnitSystemType.MMKMS

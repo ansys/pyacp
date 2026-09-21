@@ -1,0 +1,13 @@
+.. vale off
+
+create\_cut\_off\_geometry
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedSolidModel.create_cut_off_geometry
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.create_cut_off_geometry
+
+   ansys.acp.core.ImportedSolidModel.create_cut_off_geometry

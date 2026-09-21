@@ -1,0 +1,13 @@
+.. vale off
+
+MATERIALS\_XML
+==============
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.MATERIALS_XML
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.MATERIALS_XML
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.MATERIALS_XML

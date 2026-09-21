@@ -1,0 +1,13 @@
+.. vale off
+
+isdigit
+=======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.isdigit
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.isdigit
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.isdigit

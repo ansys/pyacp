@@ -1,0 +1,13 @@
+.. vale off
+
+MPA
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.MPA
+
+.. minigallery::
+   :add-heading: Examples using UnitSystemType.MPA
+
+   ansys.acp.core.UnitSystemType.MPA

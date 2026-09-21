@@ -1,0 +1,13 @@
+.. vale off
+
+normal
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: CylindricalSelectionRuleElementalData.normal
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRuleElementalData.normal
+
+   ansys.acp.core.mesh_data.CylindricalSelectionRuleElementalData.normal

@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SolidModel.delete
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.delete
+
+   ansys.acp.core.SolidModel.delete

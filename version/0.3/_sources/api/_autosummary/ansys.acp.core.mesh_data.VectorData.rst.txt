@@ -1,0 +1,40 @@
+﻿.. vale off
+
+VectorData
+==========
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: VectorData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      VectorData.get_pyvista_glyphs
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VectorData.component_name
+      VectorData.values
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VectorData
+
+   ansys.acp.core.mesh_data.VectorData

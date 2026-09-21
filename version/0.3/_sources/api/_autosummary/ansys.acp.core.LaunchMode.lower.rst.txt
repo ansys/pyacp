@@ -1,0 +1,13 @@
+.. vale off
+
+lower
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.lower
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.lower
+
+   ansys.acp.core.LaunchMode.lower

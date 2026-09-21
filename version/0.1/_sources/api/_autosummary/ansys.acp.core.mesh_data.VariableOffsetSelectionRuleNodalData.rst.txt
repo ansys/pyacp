@@ -1,0 +1,39 @@
+﻿.. vale off
+
+VariableOffsetSelectionRuleNodalData
+====================================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: VariableOffsetSelectionRuleNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      VariableOffsetSelectionRuleNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VariableOffsetSelectionRuleNodalData.node_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRuleNodalData
+
+   ansys.acp.core.mesh_data.VariableOffsetSelectionRuleNodalData

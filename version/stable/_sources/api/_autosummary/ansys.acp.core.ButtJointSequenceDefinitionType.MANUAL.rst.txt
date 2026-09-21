@@ -1,0 +1,13 @@
+.. vale off
+
+MANUAL
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ButtJointSequenceDefinitionType.MANUAL
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequenceDefinitionType.MANUAL
+
+   ansys.acp.core.ButtJointSequenceDefinitionType.MANUAL

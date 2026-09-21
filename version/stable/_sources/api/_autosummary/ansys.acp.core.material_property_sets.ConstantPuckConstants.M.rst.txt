@@ -1,0 +1,13 @@
+.. vale off
+
+M
+=
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantPuckConstants.M
+
+.. minigallery::
+   :add-heading: Examples using ConstantPuckConstants.M
+
+   ansys.acp.core.material_property_sets.ConstantPuckConstants.M

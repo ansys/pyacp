@@ -1,0 +1,13 @@
+.. vale off
+
+taper\_edge\_set
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffSelectionRule.taper_edge_set
+
+.. minigallery::
+   :add-heading: Examples using CutOffSelectionRule.taper_edge_set
+
+   ansys.acp.core.CutOffSelectionRule.taper_edge_set

@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ProductionPly.access_path
+
+.. minigallery::
+   :add-heading: Examples using ProductionPly.access_path
+
+   ansys.acp.core.ProductionPly.access_path

@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: InterfaceLayer.access_path
+
+.. minigallery::
+   :add-heading: Examples using InterfaceLayer.access_path
+
+   ansys.acp.core.InterfaceLayer.access_path

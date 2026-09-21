@@ -1,0 +1,13 @@
+.. vale off
+
+filetransfer\_certs\_dir
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLaunchConfig.filetransfer_certs_dir
+
+.. minigallery::
+   :add-heading: Examples using ConnectLaunchConfig.filetransfer_certs_dir
+
+   ansys.acp.core.ConnectLaunchConfig.filetransfer_certs_dir

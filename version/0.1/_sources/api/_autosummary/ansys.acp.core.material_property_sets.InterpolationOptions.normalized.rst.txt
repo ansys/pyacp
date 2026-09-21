@@ -1,0 +1,13 @@
+.. vale off
+
+normalized
+==========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoattribute:: InterpolationOptions.normalized
+
+.. minigallery::
+   :add-heading: Examples using InterpolationOptions.normalized
+
+   ansys.acp.core.material_property_sets.InterpolationOptions.normalized

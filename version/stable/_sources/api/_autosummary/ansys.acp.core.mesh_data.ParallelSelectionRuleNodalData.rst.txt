@@ -1,0 +1,39 @@
+﻿.. vale off
+
+ParallelSelectionRuleNodalData
+==============================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: ParallelSelectionRuleNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ParallelSelectionRuleNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ParallelSelectionRuleNodalData.node_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRuleNodalData
+
+   ansys.acp.core.mesh_data.ParallelSelectionRuleNodalData

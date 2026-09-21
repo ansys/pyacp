@@ -1,0 +1,13 @@
+.. vale off
+
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffSelectionRule.elemental_data
+
+.. minigallery::
+   :add-heading: Examples using CutOffSelectionRule.elemental_data
+
+   ansys.acp.core.CutOffSelectionRule.elemental_data

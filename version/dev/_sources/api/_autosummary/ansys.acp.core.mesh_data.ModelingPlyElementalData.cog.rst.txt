@@ -1,0 +1,13 @@
+.. vale off
+
+cog
+===
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ModelingPlyElementalData.cog
+
+.. minigallery::
+   :add-heading: Examples using ModelingPlyElementalData.cog
+
+   ansys.acp.core.mesh_data.ModelingPlyElementalData.cog

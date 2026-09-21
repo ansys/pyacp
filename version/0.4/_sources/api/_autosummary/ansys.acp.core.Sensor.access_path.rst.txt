@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.access_path
+
+.. minigallery::
+   :add-heading: Examples using Sensor.access_path
+
+   ansys.acp.core.Sensor.access_path

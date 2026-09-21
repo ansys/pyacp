@@ -1,0 +1,13 @@
+.. vale off
+
+strain\_limits
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.strain_limits
+
+.. minigallery::
+   :add-heading: Examples using Material.strain_limits
+
+   ansys.acp.core.Material.strain_limits

@@ -1,0 +1,13 @@
+.. vale off
+
+draping\_ud\_coefficient
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.draping_ud_coefficient
+
+.. minigallery::
+   :add-heading: Examples using Fabric.draping_ud_coefficient
+
+   ansys.acp.core.Fabric.draping_ud_coefficient

@@ -1,0 +1,28 @@
+﻿SectionCutCDBExportType
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SectionCutCDBExportType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        SectionCutCDBExportType.MESH_ONLY
+      
+      
+        SectionCutCDBExportType.SOLID_MODEL
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using SectionCutCDBExportType
+
+   ansys.acp.core.SectionCutCDBExportType

@@ -1,0 +1,13 @@
+.. vale off
+
+covered\_area
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.covered_area
+
+.. minigallery::
+   :add-heading: Examples using Sensor.covered_area
+
+   ansys.acp.core.Sensor.covered_area

@@ -1,0 +1,13 @@
+.. vale off
+
+precision
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.precision
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.precision
+
+   ansys.acp.core.CADGeometry.precision

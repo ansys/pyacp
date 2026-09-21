@@ -1,0 +1,13 @@
+.. vale off
+
+has\_limits
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Layer.has_limits
+
+.. minigallery::
+   :add-heading: Examples using Layer.has_limits
+
+   ansys.acp.core.Layer.has_limits

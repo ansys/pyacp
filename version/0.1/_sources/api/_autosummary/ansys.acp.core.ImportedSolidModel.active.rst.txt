@@ -1,0 +1,13 @@
+.. vale off
+
+active
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.active
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.active
+
+   ansys.acp.core.ImportedSolidModel.active

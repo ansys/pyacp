@@ -1,0 +1,13 @@
+.. vale off
+
+MINIMUM\_DISTANCE\_SUPERPOSED
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED
+
+.. minigallery::
+   :add-heading: Examples using RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED
+
+   ansys.acp.core.RosetteSelectionMethod.MINIMUM_DISTANCE_SUPERPOSED

@@ -1,0 +1,13 @@
+.. vale off
+
+create\_virtual\_geometry
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_virtual_geometry
+
+.. minigallery::
+   :add-heading: Examples using Model.create_virtual_geometry
+
+   ansys.acp.core.Model.create_virtual_geometry

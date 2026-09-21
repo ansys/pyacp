@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Rosette.status
+
+.. minigallery::
+   :add-heading: Examples using Rosette.status
+
+   ansys.acp.core.Rosette.status

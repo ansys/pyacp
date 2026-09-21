@@ -1,0 +1,13 @@
+.. vale off
+
+drop\_off\_material
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.drop_off_material
+
+.. minigallery::
+   :add-heading: Examples using Fabric.drop_off_material
+
+   ansys.acp.core.Fabric.drop_off_material

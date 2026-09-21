@@ -1,0 +1,13 @@
+.. vale off
+
+root\_shapes
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.root_shapes
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.root_shapes
+
+   ansys.acp.core.CADGeometry.root_shapes

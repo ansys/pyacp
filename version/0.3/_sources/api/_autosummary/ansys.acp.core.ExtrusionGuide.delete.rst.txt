@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ExtrusionGuide.delete
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide.delete
+
+   ansys.acp.core.ExtrusionGuide.delete

@@ -1,0 +1,40 @@
+﻿.. vale off
+
+AnalysisPlyNodalData
+====================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: AnalysisPlyNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      AnalysisPlyNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      AnalysisPlyNodalData.ply_offset
+      AnalysisPlyNodalData.node_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPlyNodalData
+
+   ansys.acp.core.mesh_data.AnalysisPlyNodalData

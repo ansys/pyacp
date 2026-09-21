@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.access_path
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.access_path
+
+   ansys.acp.core.SectionCut.access_path

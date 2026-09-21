@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: TubeSelectionRule.store
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.store
+
+   ansys.acp.core.TubeSelectionRule.store

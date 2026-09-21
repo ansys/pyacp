@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.access_path
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.access_path
+
+   ansys.acp.core.SolidModel.access_path

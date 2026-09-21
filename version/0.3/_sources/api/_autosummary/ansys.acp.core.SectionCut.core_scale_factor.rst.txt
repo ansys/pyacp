@@ -1,0 +1,13 @@
+.. vale off
+
+core\_scale\_factor
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.core_scale_factor
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.core_scale_factor
+
+   ansys.acp.core.SectionCut.core_scale_factor

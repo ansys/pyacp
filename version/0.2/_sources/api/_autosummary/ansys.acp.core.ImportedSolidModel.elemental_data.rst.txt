@@ -1,0 +1,13 @@
+.. vale off
+
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.elemental_data
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.elemental_data
+
+   ansys.acp.core.ImportedSolidModel.elemental_data

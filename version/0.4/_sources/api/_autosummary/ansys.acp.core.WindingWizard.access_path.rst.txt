@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: WindingWizard.access_path
+
+.. minigallery::
+   :add-heading: Examples using WindingWizard.access_path
+
+   ansys.acp.core.WindingWizard.access_path

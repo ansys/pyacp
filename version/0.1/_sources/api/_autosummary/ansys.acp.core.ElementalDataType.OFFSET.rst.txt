@@ -1,0 +1,13 @@
+.. vale off
+
+OFFSET
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.OFFSET
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.OFFSET
+
+   ansys.acp.core.ElementalDataType.OFFSET

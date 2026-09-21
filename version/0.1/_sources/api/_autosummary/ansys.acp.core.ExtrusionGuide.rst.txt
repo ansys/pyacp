@@ -1,0 +1,56 @@
+﻿.. vale off
+
+ExtrusionGuide
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ExtrusionGuide
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ExtrusionGuide.clone
+      
+      
+      ExtrusionGuide.delete
+      
+      
+      ExtrusionGuide.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ExtrusionGuide.active
+      ExtrusionGuide.cad_geometry
+      ExtrusionGuide.depth
+      ExtrusionGuide.direction
+      ExtrusionGuide.edge_set
+      ExtrusionGuide.extrusion_guide_type
+      ExtrusionGuide.id
+      ExtrusionGuide.name
+      ExtrusionGuide.parent
+      ExtrusionGuide.radius
+      ExtrusionGuide.status
+      ExtrusionGuide.use_curvature_correction
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide
+
+   ansys.acp.core.ExtrusionGuide

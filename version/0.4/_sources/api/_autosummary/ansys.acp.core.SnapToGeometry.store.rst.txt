@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SnapToGeometry.store
+
+.. minigallery::
+   :add-heading: Examples using SnapToGeometry.store
+
+   ansys.acp.core.SnapToGeometry.store

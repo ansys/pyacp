@@ -1,0 +1,13 @@
+.. vale off
+
+DIMENSIONLESS
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PhysicalDimension.DIMENSIONLESS
+
+.. minigallery::
+   :add-heading: Examples using PhysicalDimension.DIMENSIONLESS
+
+   ansys.acp.core.PhysicalDimension.DIMENSIONLESS

@@ -1,0 +1,43 @@
+﻿PhysicalDimension
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: PhysicalDimension
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        PhysicalDimension.DIMENSIONLESS
+      
+      
+        PhysicalDimension.LENGTH
+      
+      
+        PhysicalDimension.MASS
+      
+      
+        PhysicalDimension.FORCE
+      
+      
+        PhysicalDimension.TIME
+      
+      
+        PhysicalDimension.TEMPERATURE
+      
+      
+        PhysicalDimension.CURRENCY
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using PhysicalDimension
+
+   ansys.acp.core.PhysicalDimension

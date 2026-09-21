@@ -1,0 +1,64 @@
+﻿.. vale off
+
+Material
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Material
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Material.clone
+      
+      
+      Material.delete
+      
+      
+      Material.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Material.density
+      Material.engineering_constants
+      Material.ext_id
+      Material.fabric_fiber_angle
+      Material.id
+      Material.larc_constants
+      Material.locked
+      Material.name
+      Material.parent
+      Material.ply_type
+      Material.puck_constants
+      Material.status
+      Material.strain_limits
+      Material.stress_limits
+      Material.tsai_wu_constants
+      Material.woven_characterization
+      Material.woven_puck_constants_1
+      Material.woven_puck_constants_2
+      Material.woven_stress_limits_1
+      Material.woven_stress_limits_2
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using Material
+
+   ansys.acp.core.Material

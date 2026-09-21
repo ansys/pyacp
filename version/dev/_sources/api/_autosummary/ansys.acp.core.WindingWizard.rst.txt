@@ -1,0 +1,66 @@
+﻿.. vale off
+
+WindingWizard
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: WindingWizard
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      WindingWizard.add_layer
+      
+      
+      WindingWizard.clone
+      
+      
+      WindingWizard.delete
+      
+      
+      WindingWizard.delete_generated_objects
+      
+      
+      WindingWizard.list_generated_objects
+      
+      
+      WindingWizard.run
+      
+      
+      WindingWizard.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      WindingWizard.access_path
+      WindingWizard.axial_direction
+      WindingWizard.has_run
+      WindingWizard.id
+      WindingWizard.layers
+      WindingWizard.max_angle_with_thickness_correction
+      WindingWizard.name
+      WindingWizard.origin
+      WindingWizard.parent
+      WindingWizard.reference_radius
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using WindingWizard
+
+   ansys.acp.core.WindingWizard

@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: WindingWizard.clone
+
+.. minigallery::
+   :add-heading: Examples using WindingWizard.clone
+
+   ansys.acp.core.WindingWizard.clone

@@ -1,0 +1,13 @@
+.. vale off
+
+stderr\_file
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DirectLaunchConfig.stderr_file
+
+.. minigallery::
+   :add-heading: Examples using DirectLaunchConfig.stderr_file
+
+   ansys.acp.core.DirectLaunchConfig.stderr_file

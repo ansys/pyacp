@@ -1,0 +1,13 @@
+.. vale off
+
+CGS
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.CGS
+
+.. minigallery::
+   :add-heading: Examples using UnitSystemType.CGS
+
+   ansys.acp.core.UnitSystemType.CGS

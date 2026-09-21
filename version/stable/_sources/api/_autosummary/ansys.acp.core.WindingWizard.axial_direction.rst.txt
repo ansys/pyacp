@@ -1,0 +1,13 @@
+.. vale off
+
+axial\_direction
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: WindingWizard.axial_direction
+
+.. minigallery::
+   :add-heading: Examples using WindingWizard.axial_direction
+
+   ansys.acp.core.WindingWizard.axial_direction

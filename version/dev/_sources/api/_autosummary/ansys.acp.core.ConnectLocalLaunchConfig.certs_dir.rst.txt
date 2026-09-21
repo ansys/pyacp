@@ -1,0 +1,13 @@
+.. vale off
+
+certs\_dir
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLocalLaunchConfig.certs_dir
+
+.. minigallery::
+   :add-heading: Examples using ConnectLocalLaunchConfig.certs_dir
+
+   ansys.acp.core.ConnectLocalLaunchConfig.certs_dir

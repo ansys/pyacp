@@ -1,0 +1,13 @@
+.. vale off
+
+RELATIVE\_SCALING\_FACTOR
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ThicknessFieldType.RELATIVE_SCALING_FACTOR
+
+.. minigallery::
+   :add-heading: Examples using ThicknessFieldType.RELATIVE_SCALING_FACTOR
+
+   ansys.acp.core.ThicknessFieldType.RELATIVE_SCALING_FACTOR

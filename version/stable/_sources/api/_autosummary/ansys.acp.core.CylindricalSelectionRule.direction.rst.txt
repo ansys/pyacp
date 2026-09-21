@@ -1,0 +1,13 @@
+.. vale off
+
+direction
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CylindricalSelectionRule.direction
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule.direction
+
+   ansys.acp.core.CylindricalSelectionRule.direction

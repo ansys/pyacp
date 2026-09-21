@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.status
+
+.. minigallery::
+   :add-heading: Examples using Stackup.status
+
+   ansys.acp.core.Stackup.status

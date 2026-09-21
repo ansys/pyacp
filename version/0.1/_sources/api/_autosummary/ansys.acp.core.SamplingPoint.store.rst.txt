@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SamplingPoint.store
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint.store
+
+   ansys.acp.core.SamplingPoint.store

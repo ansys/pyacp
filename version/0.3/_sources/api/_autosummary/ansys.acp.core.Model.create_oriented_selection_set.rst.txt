@@ -1,0 +1,13 @@
+.. vale off
+
+create\_oriented\_selection\_set
+================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_oriented_selection_set
+
+.. minigallery::
+   :add-heading: Examples using Model.create_oriented_selection_set
+
+   ansys.acp.core.Model.create_oriented_selection_set

@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Sensor.delete
+
+.. minigallery::
+   :add-heading: Examples using Sensor.delete
+
+   ansys.acp.core.Sensor.delete

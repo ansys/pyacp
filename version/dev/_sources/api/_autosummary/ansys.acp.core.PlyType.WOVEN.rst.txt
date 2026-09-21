@@ -1,0 +1,13 @@
+.. vale off
+
+WOVEN
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyType.WOVEN
+
+.. minigallery::
+   :add-heading: Examples using PlyType.WOVEN
+
+   ansys.acp.core.PlyType.WOVEN

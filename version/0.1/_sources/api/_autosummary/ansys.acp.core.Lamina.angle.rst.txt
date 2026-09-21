@@ -1,0 +1,13 @@
+.. vale off
+
+angle
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Lamina.angle
+
+.. minigallery::
+   :add-heading: Examples using Lamina.angle
+
+   ansys.acp.core.Lamina.angle

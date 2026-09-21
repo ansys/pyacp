@@ -1,0 +1,13 @@
+.. vale off
+
+create\_sampling\_point
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_sampling_point
+
+.. minigallery::
+   :add-heading: Examples using Model.create_sampling_point
+
+   ansys.acp.core.Model.create_sampling_point

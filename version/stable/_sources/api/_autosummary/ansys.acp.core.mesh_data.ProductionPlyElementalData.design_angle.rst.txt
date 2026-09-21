@@ -1,0 +1,13 @@
+.. vale off
+
+design\_angle
+=============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ProductionPlyElementalData.design_angle
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.design_angle
+
+   ansys.acp.core.mesh_data.ProductionPlyElementalData.design_angle

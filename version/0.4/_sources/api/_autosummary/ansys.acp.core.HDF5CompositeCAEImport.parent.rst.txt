@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: HDF5CompositeCAEImport.parent
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport.parent
+
+   ansys.acp.core.HDF5CompositeCAEImport.parent

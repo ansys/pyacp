@@ -1,0 +1,13 @@
+.. vale off
+
+export\_shell\_composite\_definitions
+=====================================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.export_shell_composite_definitions
+
+.. minigallery::
+   :add-heading: Examples using Model.export_shell_composite_definitions
+
+   ansys.acp.core.Model.export_shell_composite_definitions

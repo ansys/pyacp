@@ -1,0 +1,13 @@
+.. vale off
+
+thickness
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.thickness
+
+.. minigallery::
+   :add-heading: Examples using Fabric.thickness
+
+   ansys.acp.core.Fabric.thickness

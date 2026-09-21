@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.name
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.name
+
+   ansys.acp.core.ParallelSelectionRule.name

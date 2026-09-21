@@ -1,0 +1,13 @@
+.. vale off
+
+starting\_modeling\_plies
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ButtJointSequence.starting_modeling_plies
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence.starting_modeling_plies
+
+   ansys.acp.core.ButtJointSequence.starting_modeling_plies

@@ -1,0 +1,13 @@
+.. vale off
+
+fracture\_toughness\_ratio
+==========================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableLaRCConstants.fracture_toughness_ratio
+
+.. minigallery::
+   :add-heading: Examples using VariableLaRCConstants.fracture_toughness_ratio
+
+   ansys.acp.core.material_property_sets.VariableLaRCConstants.fracture_toughness_ratio

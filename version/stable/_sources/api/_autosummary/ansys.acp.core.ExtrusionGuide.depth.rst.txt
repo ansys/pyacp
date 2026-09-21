@@ -1,0 +1,13 @@
+.. vale off
+
+depth
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExtrusionGuide.depth
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide.depth
+
+   ansys.acp.core.ExtrusionGuide.depth

@@ -1,0 +1,13 @@
+.. vale off
+
+materials
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.materials
+
+.. minigallery::
+   :add-heading: Examples using Model.materials
+
+   ansys.acp.core.Model.materials

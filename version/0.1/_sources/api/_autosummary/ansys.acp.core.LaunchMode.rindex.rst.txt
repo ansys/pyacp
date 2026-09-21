@@ -1,0 +1,13 @@
+.. vale off
+
+rindex
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.rindex
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.rindex
+
+   ansys.acp.core.LaunchMode.rindex

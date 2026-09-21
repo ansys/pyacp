@@ -1,0 +1,13 @@
+.. vale off
+
+direction
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable1D.direction
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable1D.direction
+
+   ansys.acp.core.LookUpTable1D.direction

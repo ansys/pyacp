@@ -1,0 +1,13 @@
+.. vale off
+
+scale\_factor
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.scale_factor
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.scale_factor
+
+   ansys.acp.core.CADGeometry.scale_factor

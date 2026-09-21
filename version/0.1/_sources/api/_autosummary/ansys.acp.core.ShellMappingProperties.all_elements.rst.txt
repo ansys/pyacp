@@ -1,0 +1,13 @@
+.. vale off
+
+all\_elements
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ShellMappingProperties.all_elements
+
+.. minigallery::
+   :add-heading: Examples using ShellMappingProperties.all_elements
+
+   ansys.acp.core.ShellMappingProperties.all_elements

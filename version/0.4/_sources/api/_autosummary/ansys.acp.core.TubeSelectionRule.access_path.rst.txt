@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.access_path
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.access_path
+
+   ansys.acp.core.TubeSelectionRule.access_path

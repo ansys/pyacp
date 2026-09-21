@@ -1,0 +1,13 @@
+.. vale off
+
+p\_21\_neg
+==========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariablePuckConstants.p_21_neg
+
+.. minigallery::
+   :add-heading: Examples using VariablePuckConstants.p_21_neg
+
+   ansys.acp.core.material_property_sets.VariablePuckConstants.p_21_neg

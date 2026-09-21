@@ -1,0 +1,13 @@
+.. vale off
+
+url\_acp
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLocalLaunchConfig.url_acp
+
+.. minigallery::
+   :add-heading: Examples using ConnectLocalLaunchConfig.url_acp
+
+   ansys.acp.core.ConnectLocalLaunchConfig.url_acp

@@ -1,0 +1,13 @@
+.. vale off
+
+external\_path
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADGeometry.external_path
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry.external_path
+
+   ansys.acp.core.CADGeometry.external_path

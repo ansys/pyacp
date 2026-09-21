@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADComponent.parent
+
+.. minigallery::
+   :add-heading: Examples using CADComponent.parent
+
+   ansys.acp.core.CADComponent.parent

@@ -1,0 +1,13 @@
+.. vale off
+
+max\_angle\_with\_thickness\_correction
+=======================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: WindingWizard.max_angle_with_thickness_correction
+
+.. minigallery::
+   :add-heading: Examples using WindingWizard.max_angle_with_thickness_correction
+
+   ansys.acp.core.WindingWizard.max_angle_with_thickness_correction

@@ -1,0 +1,13 @@
+.. vale off
+
+SURFACE
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: VirtualGeometryDimension.SURFACE
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometryDimension.SURFACE
+
+   ansys.acp.core.VirtualGeometryDimension.SURFACE

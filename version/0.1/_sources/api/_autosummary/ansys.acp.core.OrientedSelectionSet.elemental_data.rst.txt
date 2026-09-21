@@ -1,0 +1,13 @@
+.. vale off
+
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.elemental_data
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.elemental_data
+
+   ansys.acp.core.OrientedSelectionSet.elemental_data

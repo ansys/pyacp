@@ -1,0 +1,13 @@
+.. vale off
+
+isupper
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.isupper
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.isupper
+
+   ansys.acp.core.LaunchMode.isupper

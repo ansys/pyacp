@@ -1,0 +1,13 @@
+.. vale off
+
+download\_file
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPInstance.download_file
+
+.. minigallery::
+   :add-heading: Examples using ACPInstance.download_file
+
+   ansys.acp.core.ACPInstance.download_file

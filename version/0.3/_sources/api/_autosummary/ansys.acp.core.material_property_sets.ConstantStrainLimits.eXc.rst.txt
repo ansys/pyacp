@@ -1,0 +1,13 @@
+.. vale off
+
+eXc
+===
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantStrainLimits.eXc
+
+.. minigallery::
+   :add-heading: Examples using ConstantStrainLimits.eXc
+
+   ansys.acp.core.material_property_sets.ConstantStrainLimits.eXc

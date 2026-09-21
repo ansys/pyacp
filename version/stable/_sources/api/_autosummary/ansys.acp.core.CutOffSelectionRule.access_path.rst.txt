@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffSelectionRule.access_path
+
+.. minigallery::
+   :add-heading: Examples using CutOffSelectionRule.access_path
+
+   ansys.acp.core.CutOffSelectionRule.access_path

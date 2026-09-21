@@ -1,0 +1,13 @@
+.. vale off
+
+GLASS
+=====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoattribute:: PuckMaterialType.GLASS
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.GLASS
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.GLASS

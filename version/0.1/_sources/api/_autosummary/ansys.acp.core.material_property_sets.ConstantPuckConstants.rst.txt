@@ -1,0 +1,43 @@
+﻿.. vale off
+
+ConstantPuckConstants
+=====================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: ConstantPuckConstants
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConstantPuckConstants.M
+      ConstantPuckConstants.interface_weakening_factor
+      ConstantPuckConstants.mat_type
+      ConstantPuckConstants.p_21_neg
+      ConstantPuckConstants.p_21_pos
+      ConstantPuckConstants.p_22_neg
+      ConstantPuckConstants.p_22_pos
+      ConstantPuckConstants.s
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ConstantPuckConstants
+
+   ansys.acp.core.material_property_sets.ConstantPuckConstants

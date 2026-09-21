@@ -1,0 +1,13 @@
+.. vale off
+
+rosettes
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.rosettes
+
+.. minigallery::
+   :add-heading: Examples using Model.rosettes
+
+   ansys.acp.core.Model.rosettes

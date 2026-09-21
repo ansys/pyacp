@@ -1,0 +1,13 @@
+.. vale off
+
+G23
+===
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableEngineeringConstants.G23
+
+.. minigallery::
+   :add-heading: Examples using VariableEngineeringConstants.G23
+
+   ansys.acp.core.material_property_sets.VariableEngineeringConstants.G23

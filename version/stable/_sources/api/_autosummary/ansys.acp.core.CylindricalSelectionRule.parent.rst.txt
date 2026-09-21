@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CylindricalSelectionRule.parent
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule.parent
+
+   ansys.acp.core.CylindricalSelectionRule.parent

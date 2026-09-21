@@ -1,0 +1,13 @@
+.. vale off
+
+SOLID\_MODEL
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SectionCutCDBExportType.SOLID_MODEL
+
+.. minigallery::
+   :add-heading: Examples using SectionCutCDBExportType.SOLID_MODEL
+
+   ansys.acp.core.SectionCutCDBExportType.SOLID_MODEL

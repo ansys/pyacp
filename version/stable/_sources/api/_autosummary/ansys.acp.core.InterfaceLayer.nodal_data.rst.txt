@@ -1,0 +1,13 @@
+.. vale off
+
+nodal\_data
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: InterfaceLayer.nodal_data
+
+.. minigallery::
+   :add-heading: Examples using InterfaceLayer.nodal_data
+
+   ansys.acp.core.InterfaceLayer.nodal_data

@@ -1,0 +1,13 @@
+.. vale off
+
+geometry
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.geometry
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.geometry
+
+   ansys.acp.core.GeometricalSelectionRule.geometry

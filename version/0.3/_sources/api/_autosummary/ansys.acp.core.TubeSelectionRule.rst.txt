@@ -1,0 +1,61 @@
+﻿.. vale off
+
+TubeSelectionRule
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: TubeSelectionRule
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      TubeSelectionRule.clone
+      
+      
+      TubeSelectionRule.delete
+      
+      
+      TubeSelectionRule.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      TubeSelectionRule.edge_set
+      TubeSelectionRule.elemental_data
+      TubeSelectionRule.extend_endings
+      TubeSelectionRule.head
+      TubeSelectionRule.head_extension
+      TubeSelectionRule.id
+      TubeSelectionRule.include_rule
+      TubeSelectionRule.inner_radius
+      TubeSelectionRule.mesh
+      TubeSelectionRule.name
+      TubeSelectionRule.nodal_data
+      TubeSelectionRule.outer_radius
+      TubeSelectionRule.parent
+      TubeSelectionRule.shell_mesh
+      TubeSelectionRule.status
+      TubeSelectionRule.symmetrical_extension
+      TubeSelectionRule.tail_extension
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule
+
+   ansys.acp.core.TubeSelectionRule

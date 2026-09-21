@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.name
+
+.. minigallery::
+   :add-heading: Examples using Stackup.name
+
+   ansys.acp.core.Stackup.name

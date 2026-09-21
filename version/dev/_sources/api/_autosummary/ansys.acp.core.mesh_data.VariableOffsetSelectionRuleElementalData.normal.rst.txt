@@ -1,0 +1,13 @@
+.. vale off
+
+normal
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: VariableOffsetSelectionRuleElementalData.normal
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRuleElementalData.normal
+
+   ansys.acp.core.mesh_data.VariableOffsetSelectionRuleElementalData.normal

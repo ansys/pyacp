@@ -1,0 +1,13 @@
+.. vale off
+
+include\_rule
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.include_rule
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.include_rule
+
+   ansys.acp.core.TubeSelectionRule.include_rule

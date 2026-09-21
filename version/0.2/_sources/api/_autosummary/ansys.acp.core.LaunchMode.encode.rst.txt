@@ -1,0 +1,13 @@
+.. vale off
+
+encode
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.encode
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.encode
+
+   ansys.acp.core.LaunchMode.encode

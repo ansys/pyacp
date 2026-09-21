@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ExtrusionGuide.status
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide.status
+
+   ansys.acp.core.ExtrusionGuide.status

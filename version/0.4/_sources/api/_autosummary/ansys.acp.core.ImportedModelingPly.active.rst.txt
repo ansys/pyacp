@@ -1,0 +1,13 @@
+.. vale off
+
+active
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.active
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.active
+
+   ansys.acp.core.ImportedModelingPly.active

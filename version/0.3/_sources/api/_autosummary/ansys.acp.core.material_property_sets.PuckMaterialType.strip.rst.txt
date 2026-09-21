@@ -1,0 +1,13 @@
+.. vale off
+
+strip
+=====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.strip
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.strip
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.strip

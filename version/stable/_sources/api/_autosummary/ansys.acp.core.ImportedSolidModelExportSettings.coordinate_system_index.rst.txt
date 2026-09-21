@@ -1,0 +1,13 @@
+.. vale off
+
+coordinate\_system\_index
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModelExportSettings.coordinate_system_index
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModelExportSettings.coordinate_system_index
+
+   ansys.acp.core.ImportedSolidModelExportSettings.coordinate_system_index

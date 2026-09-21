@@ -1,0 +1,13 @@
+.. vale off
+
+export\_skin
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedSolidModel.export_skin
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.export_skin
+
+   ansys.acp.core.ImportedSolidModel.export_skin

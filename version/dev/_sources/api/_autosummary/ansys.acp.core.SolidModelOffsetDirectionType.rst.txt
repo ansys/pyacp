@@ -1,0 +1,28 @@
+﻿SolidModelOffsetDirectionType
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SolidModelOffsetDirectionType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        SolidModelOffsetDirectionType.SHELL_NORMAL
+      
+      
+        SolidModelOffsetDirectionType.SURFACE_NORMAL
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using SolidModelOffsetDirectionType
+
+   ansys.acp.core.SolidModelOffsetDirectionType

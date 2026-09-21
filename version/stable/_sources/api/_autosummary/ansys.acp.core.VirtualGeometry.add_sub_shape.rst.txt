@@ -1,0 +1,13 @@
+.. vale off
+
+add\_sub\_shape
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: VirtualGeometry.add_sub_shape
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometry.add_sub_shape
+
+   ansys.acp.core.VirtualGeometry.add_sub_shape

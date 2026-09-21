@@ -1,0 +1,13 @@
+.. vale off
+
+TOP\_OFFSET
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: OffsetType.TOP_OFFSET
+
+.. minigallery::
+   :add-heading: Examples using OffsetType.TOP_OFFSET
+
+   ansys.acp.core.OffsetType.TOP_OFFSET

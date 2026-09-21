@@ -1,0 +1,13 @@
+.. vale off
+
+topdown
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.topdown
+
+.. minigallery::
+   :add-heading: Examples using Stackup.topdown
+
+   ansys.acp.core.Stackup.topdown

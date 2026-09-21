@@ -1,0 +1,13 @@
+.. vale off
+
+edge\_set\_type
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: EdgeSet.edge_set_type
+
+.. minigallery::
+   :add-heading: Examples using EdgeSet.edge_set_type
+
+   ansys.acp.core.EdgeSet.edge_set_type

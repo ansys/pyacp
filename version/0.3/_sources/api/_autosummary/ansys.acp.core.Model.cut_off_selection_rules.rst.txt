@@ -1,0 +1,13 @@
+.. vale off
+
+cut\_off\_selection\_rules
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.cut_off_selection_rules
+
+.. minigallery::
+   :add-heading: Examples using Model.cut_off_selection_rules
+
+   ansys.acp.core.Model.cut_off_selection_rules

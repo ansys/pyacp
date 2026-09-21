@@ -1,0 +1,13 @@
+.. vale off
+
+ANSYS\_CDB
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: FeFormat.ANSYS_CDB
+
+.. minigallery::
+   :add-heading: Examples using FeFormat.ANSYS_CDB
+
+   ansys.acp.core.FeFormat.ANSYS_CDB

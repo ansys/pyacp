@@ -1,0 +1,13 @@
+.. vale off
+
+intersection\_type
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.intersection_type
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.intersection_type
+
+   ansys.acp.core.SectionCut.intersection_type

@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LookUpTable3D.clone
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3D.clone
+
+   ansys.acp.core.LookUpTable3D.clone

@@ -1,0 +1,52 @@
+﻿.. vale off
+
+SolidModelExportSettings
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SolidModelExportSettings
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SolidModelExportSettings.coordinate_system_index
+      SolidModelExportSettings.drop_hanging_nodes
+      SolidModelExportSettings.element_index
+      SolidModelExportSettings.material_index
+      SolidModelExportSettings.node_index
+      SolidModelExportSettings.section_index
+      SolidModelExportSettings.transfer_all_sets
+      SolidModelExportSettings.transferred_edge_sets
+      SolidModelExportSettings.transferred_element_sets
+      SolidModelExportSettings.use_default_coordinate_system_index
+      SolidModelExportSettings.use_default_element_index
+      SolidModelExportSettings.use_default_material_index
+      SolidModelExportSettings.use_default_node_index
+      SolidModelExportSettings.use_default_section_index
+      SolidModelExportSettings.use_solid_model_prefix
+      SolidModelExportSettings.use_solsh_elements
+      SolidModelExportSettings.write_degenerated_elements
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using SolidModelExportSettings
+
+   ansys.acp.core.SolidModelExportSettings

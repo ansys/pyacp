@@ -1,0 +1,13 @@
+.. vale off
+
+element\_labels
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ElementSet.element_labels
+
+.. minigallery::
+   :add-heading: Examples using ElementSet.element_labels
+
+   ansys.acp.core.ElementSet.element_labels

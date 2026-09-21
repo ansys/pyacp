@@ -1,0 +1,13 @@
+.. vale off
+
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: InterfaceLayer.elemental_data
+
+.. minigallery::
+   :add-heading: Examples using InterfaceLayer.elemental_data
+
+   ansys.acp.core.InterfaceLayer.elemental_data

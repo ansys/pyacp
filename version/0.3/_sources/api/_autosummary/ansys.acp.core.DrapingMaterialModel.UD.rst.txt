@@ -1,0 +1,13 @@
+.. vale off
+
+UD
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DrapingMaterialModel.UD
+
+.. minigallery::
+   :add-heading: Examples using DrapingMaterialModel.UD
+
+   ansys.acp.core.DrapingMaterialModel.UD

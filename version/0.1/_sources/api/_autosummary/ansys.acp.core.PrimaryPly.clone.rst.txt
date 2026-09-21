@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: PrimaryPly.clone
+
+.. minigallery::
+   :add-heading: Examples using PrimaryPly.clone
+
+   ansys.acp.core.PrimaryPly.clone

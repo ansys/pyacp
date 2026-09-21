@@ -1,0 +1,13 @@
+.. vale off
+
+element\_sets
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.element_sets
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.element_sets
+
+   ansys.acp.core.OrientedSelectionSet.element_sets

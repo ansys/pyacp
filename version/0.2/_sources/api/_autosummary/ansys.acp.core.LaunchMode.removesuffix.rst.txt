@@ -1,0 +1,13 @@
+.. vale off
+
+removesuffix
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.removesuffix
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.removesuffix
+
+   ansys.acp.core.LaunchMode.removesuffix

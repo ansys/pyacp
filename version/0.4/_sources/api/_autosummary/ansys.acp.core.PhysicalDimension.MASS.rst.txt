@@ -1,0 +1,13 @@
+.. vale off
+
+MASS
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PhysicalDimension.MASS
+
+.. minigallery::
+   :add-heading: Examples using PhysicalDimension.MASS
+
+   ansys.acp.core.PhysicalDimension.MASS

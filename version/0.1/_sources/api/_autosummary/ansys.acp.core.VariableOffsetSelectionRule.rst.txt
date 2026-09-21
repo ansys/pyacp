@@ -1,0 +1,62 @@
+﻿.. vale off
+
+VariableOffsetSelectionRule
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: VariableOffsetSelectionRule
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      VariableOffsetSelectionRule.clone
+      
+      
+      VariableOffsetSelectionRule.delete
+      
+      
+      VariableOffsetSelectionRule.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VariableOffsetSelectionRule.angles
+      VariableOffsetSelectionRule.distance_along_edge
+      VariableOffsetSelectionRule.edge_set
+      VariableOffsetSelectionRule.element_set
+      VariableOffsetSelectionRule.elemental_data
+      VariableOffsetSelectionRule.id
+      VariableOffsetSelectionRule.include_rule
+      VariableOffsetSelectionRule.inherit_from_lookup_table
+      VariableOffsetSelectionRule.mesh
+      VariableOffsetSelectionRule.name
+      VariableOffsetSelectionRule.nodal_data
+      VariableOffsetSelectionRule.offsets
+      VariableOffsetSelectionRule.parent
+      VariableOffsetSelectionRule.radius_direction
+      VariableOffsetSelectionRule.radius_origin
+      VariableOffsetSelectionRule.shell_mesh
+      VariableOffsetSelectionRule.status
+      VariableOffsetSelectionRule.use_offset_correction
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule
+
+   ansys.acp.core.VariableOffsetSelectionRule

@@ -1,0 +1,13 @@
+.. vale off
+
+NOMINAL
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ImportedPlyThicknessType.NOMINAL
+
+.. minigallery::
+   :add-heading: Examples using ImportedPlyThicknessType.NOMINAL
+
+   ansys.acp.core.ImportedPlyThicknessType.NOMINAL

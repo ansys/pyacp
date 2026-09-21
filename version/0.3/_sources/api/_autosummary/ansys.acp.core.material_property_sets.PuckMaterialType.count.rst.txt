@@ -1,0 +1,13 @@
+.. vale off
+
+count
+=====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.count
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.count
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.count

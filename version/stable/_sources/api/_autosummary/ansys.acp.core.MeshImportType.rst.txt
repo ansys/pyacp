@@ -1,0 +1,28 @@
+﻿MeshImportType
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: MeshImportType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        MeshImportType.FROM_H5_COMPOSITE_CAE
+      
+      
+        MeshImportType.FROM_GEOMETRY
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using MeshImportType
+
+   ansys.acp.core.MeshImportType

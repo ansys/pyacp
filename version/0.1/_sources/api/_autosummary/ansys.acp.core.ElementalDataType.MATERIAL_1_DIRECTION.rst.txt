@@ -1,0 +1,13 @@
+.. vale off
+
+MATERIAL\_1\_DIRECTION
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.MATERIAL_1_DIRECTION
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.MATERIAL_1_DIRECTION
+
+   ansys.acp.core.ElementalDataType.MATERIAL_1_DIRECTION

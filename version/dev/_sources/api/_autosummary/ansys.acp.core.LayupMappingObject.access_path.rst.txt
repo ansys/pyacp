@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.access_path
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.access_path
+
+   ansys.acp.core.LayupMappingObject.access_path

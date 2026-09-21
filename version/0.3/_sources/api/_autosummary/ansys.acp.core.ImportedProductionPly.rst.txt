@@ -1,0 +1,43 @@
+﻿.. vale off
+
+ImportedProductionPly
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ImportedProductionPly
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ImportedProductionPly.angle
+      ImportedProductionPly.id
+      ImportedProductionPly.imported_analysis_plies
+      ImportedProductionPly.material
+      ImportedProductionPly.name
+      ImportedProductionPly.parent
+      ImportedProductionPly.status
+      ImportedProductionPly.thickness
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ImportedProductionPly
+
+   ansys.acp.core.ImportedProductionPly

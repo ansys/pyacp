@@ -1,0 +1,13 @@
+.. vale off
+
+isdecimal
+=========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.isdecimal
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.isdecimal
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.isdecimal

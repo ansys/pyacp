@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ButtJointSequence.clone
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence.clone
+
+   ansys.acp.core.ButtJointSequence.clone

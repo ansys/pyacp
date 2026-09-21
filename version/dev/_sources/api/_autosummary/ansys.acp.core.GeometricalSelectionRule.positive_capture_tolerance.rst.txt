@@ -1,0 +1,13 @@
+.. vale off
+
+positive\_capture\_tolerance
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.positive_capture_tolerance
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.positive_capture_tolerance
+
+   ansys.acp.core.GeometricalSelectionRule.positive_capture_tolerance

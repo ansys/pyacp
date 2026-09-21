@@ -1,0 +1,13 @@
+.. vale off
+
+lstrip
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.lstrip
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.lstrip
+
+   ansys.acp.core.LaunchMode.lstrip

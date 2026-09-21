@@ -1,0 +1,40 @@
+﻿.. vale off
+
+CADComponent
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: CADComponent
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CADComponent.id
+      CADComponent.name
+      CADComponent.parent
+      CADComponent.path
+      CADComponent.status
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using CADComponent
+
+   ansys.acp.core.CADComponent

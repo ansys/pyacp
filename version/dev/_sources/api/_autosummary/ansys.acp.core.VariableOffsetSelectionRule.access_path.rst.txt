@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.access_path
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule.access_path
+
+   ansys.acp.core.VariableOffsetSelectionRule.access_path

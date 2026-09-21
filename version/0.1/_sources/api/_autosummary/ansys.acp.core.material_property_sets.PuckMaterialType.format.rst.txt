@@ -1,0 +1,13 @@
+.. vale off
+
+format
+======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.format
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.format
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.format

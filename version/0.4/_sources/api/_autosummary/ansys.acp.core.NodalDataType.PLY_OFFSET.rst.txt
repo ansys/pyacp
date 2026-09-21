@@ -1,0 +1,13 @@
+.. vale off
+
+PLY\_OFFSET
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: NodalDataType.PLY_OFFSET
+
+.. minigallery::
+   :add-heading: Examples using NodalDataType.PLY_OFFSET
+
+   ansys.acp.core.NodalDataType.PLY_OFFSET

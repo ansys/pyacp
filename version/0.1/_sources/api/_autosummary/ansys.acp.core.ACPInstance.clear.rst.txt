@@ -1,0 +1,13 @@
+.. vale off
+
+clear
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPInstance.clear
+
+.. minigallery::
+   :add-heading: Examples using ACPInstance.clear
+
+   ansys.acp.core.ACPInstance.clear

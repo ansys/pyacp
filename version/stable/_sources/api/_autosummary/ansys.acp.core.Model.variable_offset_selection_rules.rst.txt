@@ -1,0 +1,13 @@
+.. vale off
+
+variable\_offset\_selection\_rules
+==================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.variable_offset_selection_rules
+
+.. minigallery::
+   :add-heading: Examples using Model.variable_offset_selection_rules
+
+   ansys.acp.core.Model.variable_offset_selection_rules

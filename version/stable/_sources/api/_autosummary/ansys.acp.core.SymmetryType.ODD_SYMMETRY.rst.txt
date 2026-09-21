@@ -1,0 +1,13 @@
+.. vale off
+
+ODD\_SYMMETRY
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SymmetryType.ODD_SYMMETRY
+
+.. minigallery::
+   :add-heading: Examples using SymmetryType.ODD_SYMMETRY
+
+   ansys.acp.core.SymmetryType.ODD_SYMMETRY

@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ExtrusionGuide.store
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuide.store
+
+   ansys.acp.core.ExtrusionGuide.store

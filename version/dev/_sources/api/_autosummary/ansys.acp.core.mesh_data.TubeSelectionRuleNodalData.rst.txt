@@ -1,0 +1,39 @@
+﻿.. vale off
+
+TubeSelectionRuleNodalData
+==========================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: TubeSelectionRuleNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      TubeSelectionRuleNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      TubeSelectionRuleNodalData.node_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRuleNodalData
+
+   ansys.acp.core.mesh_data.TubeSelectionRuleNodalData
