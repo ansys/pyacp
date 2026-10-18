@@ -28,11 +28,9 @@ These utilities can download the input files used in the PyACP examples.
 import dataclasses
 from enum import Enum, auto
 import pathlib
-import shutil
-import sys
 import tempfile
-import urllib.parse
-import urllib.request
+
+from ansys.tools.common.example_download import download_manager
 
 __all__ = [
     "ExampleKeys",
@@ -47,11 +45,6 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:  # pragma: no cover
     from ansys.acp.core import Model
-
-_EXAMPLE_REPO = "https://github.com/ansys/example-data/raw/main/pyacp/"
-
-
-# _EXAMPLE_REPO = "D:\\ANSYSDev\\pyansys-example-data\\pyacp\\"
 
 
 # Order of inputs: position, rotation point, orientation
@@ -174,30 +167,12 @@ def get_example_file(example_key: ExampleKeys, working_directory: pathlib.Path) 
         Working directory to download the example file to.
     """
     example_location = EXAMPLE_FILES[example_key]
-    _download_file(example_location, working_directory / example_location.filename)
-    return working_directory / example_location.filename
-
-
-def _is_url(path_url: str) -> bool:  # pragma: no cover
-    return urllib.parse.urlparse(path_url).scheme in ["http", "https"]
-
-
-def _get_file_url(example_location: _ExampleLocation) -> str:  # pragma: no cover
-    if sys.platform == "win32" and not _is_url(_EXAMPLE_REPO):
-        return _EXAMPLE_REPO + "\\".join([example_location.directory, example_location.filename])
-    else:
-        return _EXAMPLE_REPO + "/".join([example_location.directory, example_location.filename])
-
-
-def _download_file(
-    example_location: _ExampleLocation, local_path: pathlib.Path
-) -> None:  # pragma: no cover
-    file_url = _get_file_url(example_location)
-    # The URL is hard-coded to start with the example repository URL, so it is safe to use
-    if _is_url(file_url):
-        urllib.request.urlretrieve(file_url, local_path)  # nosec: B310
-    else:
-        shutil.copyfile(file_url, local_path)
+    local_path_str = download_manager.download_file(
+        filename=example_location.filename,
+        directory=f"pyacp/{example_location.directory}",
+        destination=working_directory,
+    )
+    return pathlib.Path(local_path_str)
 
 
 def _run_analysis(model: "Model") -> None:
