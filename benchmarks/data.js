@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1789973234292,
+  "lastUpdate": 1793002905347,
   "repoUrl": "https://github.com/ansys/pyacp",
   "entries": {
     "PyACP benchmarks": [
@@ -42978,6 +42978,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.0002168670886559769",
             "extra": "mean: 41.925014480002574 msec\nrounds: 25"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "acc8cad9d4b86e2897d213ee91fecf0e1faf4be6",
+          "message": "Bump the github-actions-dependencies group across 1 directory with 5 updates (#1040)\n\nBumps the github-actions-dependencies group with 5 updates in the / directory:\n\n| Package | From | To |\n| --- | --- | --- |\n| [astral-sh/setup-uv](https://github.com/astral-sh/setup-uv) | `10.1.0` | `10.3.0` |\n| [codecov/codecov-action](https://github.com/codecov/codecov-action) | `7.0.0` | `7.1.1` |\n| [actions/upload-artifact](https://github.com/actions/upload-artifact) | `7.0.1` | `7.0.2` |\n| [actions/download-artifact](https://github.com/actions/download-artifact) | `8.0.1` | `8.0.2` |\n| [benchmark-action/github-action-benchmark](https://github.com/benchmark-action/github-action-benchmark) | `1.22.1` | `1.22.2` |\n\n\n\nUpdates `astral-sh/setup-uv` from 10.1.0 to 10.3.0\n- [Release notes](https://github.com/astral-sh/setup-uv/releases)\n- [Commits](https://github.com/astral-sh/setup-uv/compare/bec219d24cd3e171d82865faccec33120bb574f4...1c37ad07a6a961277cf70c0d37d6f313000f5884)\n\nUpdates `codecov/codecov-action` from 7.0.0 to 7.1.1\n- [Release notes](https://github.com/codecov/codecov-action/releases)\n- [Changelog](https://github.com/codecov/codecov-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/codecov/codecov-action/compare/fb8b3582c8e4def4969c97caa2f19720cb33a72f...303a32d7a59b442fa8d48b6a1cc6825c09c847a5)\n\nUpdates `actions/upload-artifact` from 7.0.1 to 7.0.2\n- [Release notes](https://github.com/actions/upload-artifact/releases)\n- [Commits](https://github.com/actions/upload-artifact/compare/043fb46d1a93c77aae656e7c1c64a875d1fc6a0a...cf430e030ddbb5b0abf93d22962f4752f3646cd9)\n\nUpdates `actions/download-artifact` from 8.0.1 to 8.0.2\n- [Release notes](https://github.com/actions/download-artifact/releases)\n- [Commits](https://github.com/actions/download-artifact/compare/3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c...9000827ccba6bdab643e8b6fd33ac0654aef8333)\n\nUpdates `benchmark-action/github-action-benchmark` from 1.22.1 to 1.22.2\n- [Release notes](https://github.com/benchmark-action/github-action-benchmark/releases)\n- [Changelog](https://github.com/benchmark-action/github-action-benchmark/blob/master/CHANGELOG.md)\n- [Commits](https://github.com/benchmark-action/github-action-benchmark/compare/52576c92bccf6ac60c8223ec7eb2565637cae9ba...4322e5726e6334590d251fc4f92bec0efafc45dc)\n\n---\nupdated-dependencies:\n- dependency-name: astral-sh/setup-uv\n  dependency-version: 10.3.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: github-actions-dependencies\n- dependency-name: codecov/codecov-action\n  dependency-version: 7.1.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: github-actions-dependencies\n- dependency-name: actions/upload-artifact\n  dependency-version: 7.0.2\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n  dependency-group: github-actions-dependencies\n- dependency-name: actions/download-artifact\n  dependency-version: 8.0.2\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n  dependency-group: github-actions-dependencies\n- dependency-name: benchmark-action/github-action-benchmark\n  dependency-version: 1.22.2\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n  dependency-group: github-actions-dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-26T09:14:20+01:00",
+          "tree_id": "999ae511dd064d2b8f3565fccbc42b68f745eaf8",
+          "url": "https://github.com/ansys/pyacp/commit/acc8cad9d4b86e2897d213ee91fecf0e1faf4be6"
+        },
+        "date": 1793002893719,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000000.0kbit]",
+            "value": 9.00317233754791,
+            "unit": "iter/sec",
+            "range": "stddev: 0.015629416856237036",
+            "extra": "mean: 111.07196024999766 msec\nrounds: 8"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=1ms, rate=1000000.0kbit]",
+            "value": 2.8295941121171135,
+            "unit": "iter/sec",
+            "range": "stddev: 0.002874361969194235",
+            "extra": "mean: 353.4075773333427 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=10ms, rate=1000000.0kbit]",
+            "value": 0.38755754786316743,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 2.5802619650000054 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=100ms, rate=1000000.0kbit]",
+            "value": 0.04097439487528327,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 24.405485499999998 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=10000.0kbit]",
+            "value": 2.2358762664375367,
+            "unit": "iter/sec",
+            "range": "stddev: 0.004318704594945729",
+            "extra": "mean: 447.25194099999044 msec\nrounds: 3"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=1000.0kbit]",
+            "value": 0.28055859523804066,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 3.5643178180000064 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_class40.py::test_class40[delay=0ms, rate=100.0kbit]",
+            "value": 0.029180957546250885,
+            "unit": "iter/sec",
+            "range": "stddev: 0",
+            "extra": "mean: 34.268923438 sec\nrounds: 1"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000000.0kbit]",
+            "value": 1506.8148525891643,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018847337848675359",
+            "extra": "mean: 663.6515417150933 usec\nrounds: 1750"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=1ms, rate=1000000.0kbit]",
+            "value": 403.55360368344884,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00011367999206091545",
+            "extra": "mean: 2.4779855535236632 msec\nrounds: 383"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=10ms, rate=1000000.0kbit]",
+            "value": 47.603948855457055,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00018945979386732708",
+            "extra": "mean: 21.006660666667898 msec\nrounds: 48"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=100ms, rate=1000000.0kbit]",
+            "value": 4.9666133621246455,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0006040145910891103",
+            "extra": "mean: 201.3444427999957 msec\nrounds: 5"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=10000.0kbit]",
+            "value": 1046.6545757913711,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00013082820337528004",
+            "extra": "mean: 955.425049609996 usec\nrounds: 1028"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=1000.0kbit]",
+            "value": 217.2369354145604,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00010680188537990483",
+            "extra": "mean: 4.603268767770393 msec\nrounds: 211"
+          },
+          {
+            "name": "tests/benchmarks/test_create.py::test_create_modeling_group[delay=0ms, rate=100.0kbit]",
+            "value": 23.669066637046512,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00007033568953601601",
+            "extra": "mean: 42.24923674999559 msec\nrounds: 24"
           }
         ]
       }
