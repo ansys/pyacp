@@ -269,7 +269,10 @@ def _run_analysis(model: "Model") -> None:
         )
 
         output_all_elements = composite_model.evaluate_failure_criteria(cfc)
-        irf_field = output_all_elements.get_field({"failure_label": FailureOutput.FAILURE_VALUE})
+        # DPF's get_field method does not have type annotations.
+        irf_field = output_all_elements.get_field(  # type: ignore[no-untyped-call]
+            {"failure_label": FailureOutput.FAILURE_VALUE}
+        )
 
         # %%
         # Release composite model to close open streams to result file.
