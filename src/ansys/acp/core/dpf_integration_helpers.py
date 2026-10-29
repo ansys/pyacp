@@ -28,7 +28,7 @@ from ._tree_objects.enums import UnitSystemType
 
 # Avoid dependencies on pydpf-composites and dpf-core if it is not used
 if typing.TYPE_CHECKING:  # pragma: no cover
-    from ansys.dpf.core import UnitSystem
+    from ansys.dpf.core.unit_system import UnitSystem
 
 __all__ = ["get_dpf_unit_system"]
 
@@ -42,7 +42,7 @@ def get_dpf_unit_system(unit_system: UnitSystemType) -> "UnitSystem":
         The pyACP unit system.
     """
     try:
-        from ansys.dpf.core import unit_systems
+        from ansys.dpf.core.unit_system import unit_systems
     except ImportError as e:
         raise ImportError(
             "The pyACP unit system can only be converted to a DPF unit system if the "
@@ -66,7 +66,8 @@ def get_dpf_unit_system(unit_system: UnitSystemType) -> "UnitSystem":
 
     if unit_system not in unit_systems_map:
         raise ValueError(f"Unit system {unit_system} not supported.")
-    if unit_systems_map[unit_system] is None:
+    dpf_unit_system = unit_systems_map[unit_system]
+    if dpf_unit_system is None:
         raise ValueError(f"Unit system {unit_system} not supported. Use MKS instead of SI.")
 
-    return unit_systems_map[unit_system]
+    return dpf_unit_system
