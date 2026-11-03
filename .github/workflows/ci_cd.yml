@@ -216,6 +216,8 @@ jobs:
             server-version: "2025R2SP3"
           - python-version: "3.14"
             server-version: "2026R1"
+          - python-version: "3.14"
+            server-version: "2027R1"
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
