@@ -24,7 +24,6 @@ from packaging.version import parse as parse_version
 import pytest
 
 from ansys.acp.core import SamplingPoint
-from ansys.acp.core._server import acp_instance
 
 from .common.tree_object_tester import NoLockedMixin, ObjectPropertiesToTest, TreeObjectTester
 
