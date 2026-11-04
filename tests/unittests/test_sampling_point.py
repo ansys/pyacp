@@ -107,7 +107,6 @@ def test_get_layup(parent_object, acp_instance):
 
     analysis_entry = layup.analysis_plies[0]
     assert analysis_entry.order == 0
-    assert analysis_entry.ply is not None
     assert analysis_entry.ply.id == "P1L1__ModelingPly.1"
     assert analysis_entry.angle == 90.0
     assert analysis_entry.thickness == 0.0001
@@ -116,7 +115,6 @@ def test_get_layup(parent_object, acp_instance):
 
     production_entry = layup.production_plies[0]
     assert production_entry.order == 0
-    assert production_entry.ply is not None
     assert production_entry.ply.id == "ProductionPly"
     assert production_entry.angle == 0.0
     assert production_entry.thickness == 0.0001
@@ -125,7 +123,6 @@ def test_get_layup(parent_object, acp_instance):
 
     modeling_entry = layup.modeling_plies[0]
     assert modeling_entry.order == 0
-    assert modeling_entry.ply is not None
     assert modeling_entry.ply.id == "ModelingPly.1"
     assert modeling_entry.angle == 0.0
     assert modeling_entry.thickness == 0.0001
