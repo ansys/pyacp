@@ -19,6 +19,7 @@ API reference
         mesh_data
         linked_object_definitions
         material_property_sets
+        ui_objects
         enum_types
         other_types
         plot_utils
