@@ -116,21 +116,51 @@ packages = ["src/ansys"]
 line-length = 100
 target-version = ['py311']
 
-[tool.isort]
-profile = "black"
-force_sort_within_sections = true
-line_length = 100
-default_section = "THIRDPARTY"
-known_first_party = ["ansys"]
-src_paths = ["doc", "src", "tests"]
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["doc", "src", "tests"]
+extend-exclude = ["venv", "__init__.py", "doc/_build"]
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+default-section = "third-party"
+known-first-party = ["ansys"]
 
 [tool.ruff.lint]
-select = ["D"]
+preview = true
+# Keep preview-only rules explicit so the existing D selection does not expand.
+explicit-preview-rules = true
+# Es, Fs and Ws replace flake8
+# Ruff has no direct equivalents for Flake8's selected E122, E124, and E125 rules.
+select = [
+    "D",  # numpy-style doc string
+    "E115",
+    "E117",
+    "E225",
+    "E231",
+    "E301",
+    "E303",
+    "E501",
+    "F401",
+    "F403",
+    "I",  # replaces isort
+    "W191",
+    "W291",
+    "W293",
+    "W391",
+]
 ignore = ["D201", "D202", "D203", "D204", "D105"]
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 115
 
 [tool.ruff.lint.per-file-ignores]
 "src/ansys/acp/core/_tree_objects/_grpc_helpers/*.py" = ["D100"]
 "src/ansys/acp/core/_utils/*.py" = ["D100"]
+"tests/**/*.py" = ["D"]
+"type_checks/**/*.py" = ["D"]
+"examples/**/*.py" = ["D"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"

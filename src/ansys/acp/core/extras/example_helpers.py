@@ -291,7 +291,6 @@ def set_plot_theme() -> None:
     """
     # PyMAPDL and PyDPF override the default PyVista theme, so we need to import it
     # here to have a chance of re-setting it.
-    import ansys.mapdl.core  # isort:skip
     import ansys.dpf.core  # isort:skip # noqa: F401
     import pyvista
 

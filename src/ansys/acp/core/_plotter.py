@@ -25,9 +25,9 @@ from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:  # pragma: no cover
     import pyvista
+
     from ansys.acp.core import Model
-    from ansys.acp.core.mesh_data import MeshData
-    from ansys.acp.core.mesh_data import VectorData
+    from ansys.acp.core.mesh_data import MeshData, VectorData
 
 from ._utils.pyvista_import_check import requires_pyvista
 from ._utils.string_manipulation import replace_underscores_and_capitalize
