@@ -1,0 +1,13 @@
+﻿.. vale off
+
+get\_example\_file
+==================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autofunction:: get_example_file
+
+.. minigallery::
+   :add-heading: Examples using get_example_file
+
+   ansys.acp.core.extras.example_helpers.get_example_file

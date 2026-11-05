@@ -1,0 +1,13 @@
+.. vale off
+
+CURRENCY
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PhysicalDimension.CURRENCY
+
+.. minigallery::
+   :add-heading: Examples using PhysicalDimension.CURRENCY
+
+   ansys.acp.core.PhysicalDimension.CURRENCY

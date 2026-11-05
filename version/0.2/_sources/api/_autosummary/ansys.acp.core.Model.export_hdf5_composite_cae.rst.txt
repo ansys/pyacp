@@ -1,0 +1,13 @@
+.. vale off
+
+export\_hdf5\_composite\_cae
+============================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.export_hdf5_composite_cae
+
+.. minigallery::
+   :add-heading: Examples using Model.export_hdf5_composite_cae
+
+   ansys.acp.core.Model.export_hdf5_composite_cae

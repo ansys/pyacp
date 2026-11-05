@@ -1,0 +1,31 @@
+﻿LookUpTable3DInterpolationAlgorithm
+===================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: LookUpTable3DInterpolationAlgorithm
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        LookUpTable3DInterpolationAlgorithm.WEIGHTED_NEAREST_NEIGHBOR
+      
+      
+        LookUpTable3DInterpolationAlgorithm.NEAREST_NEIGHBOR
+      
+      
+        LookUpTable3DInterpolationAlgorithm.LINEAR_TRIANGULATION
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3DInterpolationAlgorithm
+
+   ansys.acp.core.LookUpTable3DInterpolationAlgorithm

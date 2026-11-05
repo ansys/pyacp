@@ -1,0 +1,13 @@
+.. vale off
+
+STANDARD\_ARROW
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ArrowType.STANDARD_ARROW
+
+.. minigallery::
+   :add-heading: Examples using ArrowType.STANDARD_ARROW
+
+   ansys.acp.core.ArrowType.STANDARD_ARROW

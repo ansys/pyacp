@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CutOffGeometry.clone
+
+.. minigallery::
+   :add-heading: Examples using CutOffGeometry.clone
+
+   ansys.acp.core.CutOffGeometry.clone

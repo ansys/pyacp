@@ -1,0 +1,13 @@
+.. vale off
+
+include\_rule
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: BooleanSelectionRule.include_rule
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRule.include_rule
+
+   ansys.acp.core.BooleanSelectionRule.include_rule

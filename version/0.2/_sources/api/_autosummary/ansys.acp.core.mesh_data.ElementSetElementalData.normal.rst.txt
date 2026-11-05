@@ -1,0 +1,13 @@
+.. vale off
+
+normal
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ElementSetElementalData.normal
+
+.. minigallery::
+   :add-heading: Examples using ElementSetElementalData.normal
+
+   ansys.acp.core.mesh_data.ElementSetElementalData.normal

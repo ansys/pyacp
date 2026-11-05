@@ -1,0 +1,13 @@
+.. vale off
+
+normal
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: OrientedSelectionSetElementalData.normal
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSetElementalData.normal
+
+   ansys.acp.core.mesh_data.OrientedSelectionSetElementalData.normal

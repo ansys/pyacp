@@ -1,0 +1,13 @@
+.. vale off
+
+mesh
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ProductionPly.mesh
+
+.. minigallery::
+   :add-heading: Examples using ProductionPly.mesh
+
+   ansys.acp.core.ProductionPly.mesh

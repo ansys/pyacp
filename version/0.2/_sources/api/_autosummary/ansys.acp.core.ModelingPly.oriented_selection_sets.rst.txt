@@ -1,0 +1,13 @@
+.. vale off
+
+oriented\_selection\_sets
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.oriented_selection_sets
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.oriented_selection_sets
+
+   ansys.acp.core.ModelingPly.oriented_selection_sets

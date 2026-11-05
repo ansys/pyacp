@@ -1,0 +1,13 @@
+.. vale off
+
+puck\_constants
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.puck_constants
+
+.. minigallery::
+   :add-heading: Examples using Material.puck_constants
+
+   ansys.acp.core.Material.puck_constants

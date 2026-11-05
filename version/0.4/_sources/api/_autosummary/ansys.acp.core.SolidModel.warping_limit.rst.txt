@@ -1,0 +1,13 @@
+.. vale off
+
+warping\_limit
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.warping_limit
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.warping_limit
+
+   ansys.acp.core.SolidModel.warping_limit

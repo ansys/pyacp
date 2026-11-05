@@ -1,0 +1,13 @@
+.. vale off
+
+sequences
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.sequences
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.sequences
+
+   ansys.acp.core.LayupMappingObject.sequences

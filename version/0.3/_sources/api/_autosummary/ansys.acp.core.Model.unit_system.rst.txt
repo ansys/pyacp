@@ -1,0 +1,13 @@
+.. vale off
+
+unit\_system
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.unit_system
+
+.. minigallery::
+   :add-heading: Examples using Model.unit_system
+
+   ansys.acp.core.Model.unit_system

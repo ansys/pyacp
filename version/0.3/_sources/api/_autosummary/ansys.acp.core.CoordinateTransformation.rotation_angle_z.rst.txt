@@ -1,0 +1,13 @@
+.. vale off
+
+rotation\_angle\_z
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CoordinateTransformation.rotation_angle_z
+
+.. minigallery::
+   :add-heading: Examples using CoordinateTransformation.rotation_angle_z
+
+   ansys.acp.core.CoordinateTransformation.rotation_angle_z

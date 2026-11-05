@@ -1,0 +1,47 @@
+﻿.. vale off
+
+ConstantWovenCharacterization
+=============================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: ConstantWovenCharacterization
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConstantWovenCharacterization.E1_1
+      ConstantWovenCharacterization.E1_2
+      ConstantWovenCharacterization.E2_1
+      ConstantWovenCharacterization.E2_2
+      ConstantWovenCharacterization.G12_1
+      ConstantWovenCharacterization.G12_2
+      ConstantWovenCharacterization.G23_1
+      ConstantWovenCharacterization.G23_2
+      ConstantWovenCharacterization.nu12_1
+      ConstantWovenCharacterization.nu12_2
+      ConstantWovenCharacterization.orientation_1
+      ConstantWovenCharacterization.orientation_2
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ConstantWovenCharacterization
+
+   ansys.acp.core.material_property_sets.ConstantWovenCharacterization

@@ -1,0 +1,13 @@
+.. vale off
+
+SOLID
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: VirtualGeometryDimension.SOLID
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometryDimension.SOLID
+
+   ansys.acp.core.VirtualGeometryDimension.SOLID

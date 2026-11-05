@@ -1,0 +1,13 @@
+.. vale off
+
+NORMAL
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.NORMAL
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.NORMAL
+
+   ansys.acp.core.ElementalDataType.NORMAL

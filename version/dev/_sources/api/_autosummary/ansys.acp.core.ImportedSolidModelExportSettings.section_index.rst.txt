@@ -1,0 +1,13 @@
+.. vale off
+
+section\_index
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModelExportSettings.section_index
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModelExportSettings.section_index
+
+   ansys.acp.core.ImportedSolidModelExportSettings.section_index

@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CutOffGeometry.store
+
+.. minigallery::
+   :add-heading: Examples using CutOffGeometry.store
+
+   ansys.acp.core.CutOffGeometry.store

@@ -1,0 +1,13 @@
+.. vale off
+
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CylindricalSelectionRule.elemental_data
+
+.. minigallery::
+   :add-heading: Examples using CylindricalSelectionRule.elemental_data
+
+   ansys.acp.core.CylindricalSelectionRule.elemental_data

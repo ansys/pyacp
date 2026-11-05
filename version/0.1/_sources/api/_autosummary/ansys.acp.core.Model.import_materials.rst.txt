@@ -1,0 +1,13 @@
+.. vale off
+
+import\_materials
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.import_materials
+
+.. minigallery::
+   :add-heading: Examples using Model.import_materials
+
+   ansys.acp.core.Model.import_materials

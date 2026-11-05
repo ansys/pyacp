@@ -1,0 +1,13 @@
+.. vale off
+
+LOCATION
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: LookUpTableColumnValueType.LOCATION
+
+.. minigallery::
+   :add-heading: Examples using LookUpTableColumnValueType.LOCATION
+
+   ansys.acp.core.LookUpTableColumnValueType.LOCATION

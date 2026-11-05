@@ -1,0 +1,34 @@
+﻿OffsetType
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: OffsetType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        OffsetType.NO_OFFSET
+      
+      
+        OffsetType.BOTTOM_OFFSET
+      
+      
+        OffsetType.MIDDLE_OFFSET
+      
+      
+        OffsetType.TOP_OFFSET
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using OffsetType
+
+   ansys.acp.core.OffsetType

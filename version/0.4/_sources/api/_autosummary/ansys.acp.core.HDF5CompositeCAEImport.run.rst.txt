@@ -1,0 +1,13 @@
+.. vale off
+
+run
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: HDF5CompositeCAEImport.run
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport.run
+
+   ansys.acp.core.HDF5CompositeCAEImport.run

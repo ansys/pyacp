@@ -1,0 +1,13 @@
+.. vale off
+
+area\_price
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.area_price
+
+.. minigallery::
+   :add-heading: Examples using Fabric.area_price
+
+   ansys.acp.core.Fabric.area_price

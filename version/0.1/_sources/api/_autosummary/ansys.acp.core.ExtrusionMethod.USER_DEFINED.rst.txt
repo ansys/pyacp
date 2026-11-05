@@ -1,0 +1,13 @@
+.. vale off
+
+USER\_DEFINED
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethod.USER_DEFINED
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionMethod.USER_DEFINED
+
+   ansys.acp.core.ExtrusionMethod.USER_DEFINED

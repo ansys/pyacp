@@ -1,0 +1,13 @@
+.. vale off
+
+TOP
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SnapToGeometryOrientationType.TOP
+
+.. minigallery::
+   :add-heading: Examples using SnapToGeometryOrientationType.TOP
+
+   ansys.acp.core.SnapToGeometryOrientationType.TOP

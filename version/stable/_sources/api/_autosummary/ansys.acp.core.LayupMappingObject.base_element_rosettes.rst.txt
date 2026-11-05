@@ -1,0 +1,13 @@
+.. vale off
+
+base\_element\_rosettes
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.base_element_rosettes
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.base_element_rosettes
+
+   ansys.acp.core.LayupMappingObject.base_element_rosettes

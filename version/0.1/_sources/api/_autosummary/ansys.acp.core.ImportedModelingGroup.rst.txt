@@ -1,0 +1,51 @@
+﻿.. vale off
+
+ImportedModelingGroup
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ImportedModelingGroup
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ImportedModelingGroup.clone
+      
+      
+      ImportedModelingGroup.create_imported_modeling_ply
+      
+      
+      ImportedModelingGroup.delete
+      
+      
+      ImportedModelingGroup.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ImportedModelingGroup.id
+      ImportedModelingGroup.imported_modeling_plies
+      ImportedModelingGroup.name
+      ImportedModelingGroup.parent
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingGroup
+
+   ansys.acp.core.ImportedModelingGroup

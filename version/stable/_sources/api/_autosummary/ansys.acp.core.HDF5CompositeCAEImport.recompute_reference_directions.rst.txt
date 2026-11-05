@@ -1,0 +1,13 @@
+.. vale off
+
+recompute\_reference\_directions
+================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: HDF5CompositeCAEImport.recompute_reference_directions
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport.recompute_reference_directions
+
+   ansys.acp.core.HDF5CompositeCAEImport.recompute_reference_directions

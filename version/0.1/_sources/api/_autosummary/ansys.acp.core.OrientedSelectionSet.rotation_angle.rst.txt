@@ -1,0 +1,13 @@
+.. vale off
+
+rotation\_angle
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.rotation_angle
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.rotation_angle
+
+   ansys.acp.core.OrientedSelectionSet.rotation_angle

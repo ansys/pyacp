@@ -1,0 +1,13 @@
+.. vale off
+
+export\_becas\_input
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SectionCut.export_becas_input
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.export_becas_input
+
+   ansys.acp.core.SectionCut.export_becas_input

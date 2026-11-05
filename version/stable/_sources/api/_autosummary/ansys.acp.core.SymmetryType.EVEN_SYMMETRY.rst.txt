@@ -1,0 +1,13 @@
+.. vale off
+
+EVEN\_SYMMETRY
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SymmetryType.EVEN_SYMMETRY
+
+.. minigallery::
+   :add-heading: Examples using SymmetryType.EVEN_SYMMETRY
+
+   ansys.acp.core.SymmetryType.EVEN_SYMMETRY

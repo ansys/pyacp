@@ -1,0 +1,56 @@
+﻿.. vale off
+
+VirtualGeometry
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: VirtualGeometry
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      VirtualGeometry.add_sub_shape
+      
+      
+      VirtualGeometry.clone
+      
+      
+      VirtualGeometry.delete
+      
+      
+      VirtualGeometry.set_cad_components
+      
+      
+      VirtualGeometry.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VirtualGeometry.dimension
+      VirtualGeometry.id
+      VirtualGeometry.name
+      VirtualGeometry.parent
+      VirtualGeometry.status
+      VirtualGeometry.sub_shapes
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometry
+
+   ansys.acp.core.VirtualGeometry

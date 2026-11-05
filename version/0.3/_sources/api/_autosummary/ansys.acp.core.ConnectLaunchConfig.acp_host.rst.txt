@@ -1,0 +1,13 @@
+.. vale off
+
+acp\_host
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLaunchConfig.acp_host
+
+.. minigallery::
+   :add-heading: Examples using ConnectLaunchConfig.acp_host
+
+   ansys.acp.core.ConnectLaunchConfig.acp_host

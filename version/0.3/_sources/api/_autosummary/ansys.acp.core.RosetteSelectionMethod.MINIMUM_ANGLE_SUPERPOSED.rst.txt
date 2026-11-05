@@ -1,0 +1,13 @@
+.. vale off
+
+MINIMUM\_ANGLE\_SUPERPOSED
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteSelectionMethod.MINIMUM_ANGLE_SUPERPOSED
+
+.. minigallery::
+   :add-heading: Examples using RosetteSelectionMethod.MINIMUM_ANGLE_SUPERPOSED
+
+   ansys.acp.core.RosetteSelectionMethod.MINIMUM_ANGLE_SUPERPOSED

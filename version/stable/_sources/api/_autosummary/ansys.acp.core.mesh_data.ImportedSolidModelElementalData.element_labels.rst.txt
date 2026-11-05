@@ -1,0 +1,13 @@
+.. vale off
+
+element\_labels
+===============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ImportedSolidModelElementalData.element_labels
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModelElementalData.element_labels
+
+   ansys.acp.core.mesh_data.ImportedSolidModelElementalData.element_labels

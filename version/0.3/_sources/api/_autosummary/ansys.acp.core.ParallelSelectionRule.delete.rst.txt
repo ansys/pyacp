@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ParallelSelectionRule.delete
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.delete
+
+   ansys.acp.core.ParallelSelectionRule.delete

@@ -1,0 +1,31 @@
+﻿ImportedPlyOffsetType
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ImportedPlyOffsetType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        ImportedPlyOffsetType.BOTTOM_OFFSET
+      
+      
+        ImportedPlyOffsetType.MIDDLE_OFFSET
+      
+      
+        ImportedPlyOffsetType.TOP_OFFSET
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using ImportedPlyOffsetType
+
+   ansys.acp.core.ImportedPlyOffsetType

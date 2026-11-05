@@ -1,0 +1,13 @@
+.. vale off
+
+COMPRESSION\_ONLY
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ReinforcingBehavior.COMPRESSION_ONLY
+
+.. minigallery::
+   :add-heading: Examples using ReinforcingBehavior.COMPRESSION_ONLY
+
+   ansys.acp.core.ReinforcingBehavior.COMPRESSION_ONLY

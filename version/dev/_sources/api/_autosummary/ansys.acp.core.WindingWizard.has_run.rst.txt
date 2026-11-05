@@ -1,0 +1,13 @@
+.. vale off
+
+has\_run
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: WindingWizard.has_run
+
+.. minigallery::
+   :add-heading: Examples using WindingWizard.has_run
+
+   ansys.acp.core.WindingWizard.has_run

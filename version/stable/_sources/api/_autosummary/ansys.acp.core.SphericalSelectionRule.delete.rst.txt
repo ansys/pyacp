@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SphericalSelectionRule.delete
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.delete
+
+   ansys.acp.core.SphericalSelectionRule.delete

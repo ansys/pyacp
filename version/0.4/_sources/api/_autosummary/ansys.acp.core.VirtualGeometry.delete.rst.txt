@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: VirtualGeometry.delete
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometry.delete
+
+   ansys.acp.core.VirtualGeometry.delete

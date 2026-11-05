@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SubLaminate.access_path
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.access_path
+
+   ansys.acp.core.SubLaminate.access_path

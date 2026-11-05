@@ -1,0 +1,13 @@
+.. vale off
+
+active
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SnapToGeometry.active
+
+.. minigallery::
+   :add-heading: Examples using SnapToGeometry.active
+
+   ansys.acp.core.SnapToGeometry.active

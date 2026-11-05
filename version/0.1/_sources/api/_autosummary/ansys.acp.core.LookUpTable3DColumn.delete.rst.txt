@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LookUpTable3DColumn.delete
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3DColumn.delete
+
+   ansys.acp.core.LookUpTable3DColumn.delete

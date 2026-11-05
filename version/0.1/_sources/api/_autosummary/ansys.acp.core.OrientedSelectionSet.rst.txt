@@ -1,0 +1,68 @@
+﻿.. vale off
+
+OrientedSelectionSet
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: OrientedSelectionSet
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      OrientedSelectionSet.clone
+      
+      
+      OrientedSelectionSet.delete
+      
+      
+      OrientedSelectionSet.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      OrientedSelectionSet.auto_draping_direction
+      OrientedSelectionSet.draping
+      OrientedSelectionSet.draping_direction
+      OrientedSelectionSet.draping_material_model
+      OrientedSelectionSet.draping_mesh_size
+      OrientedSelectionSet.draping_seed_point
+      OrientedSelectionSet.draping_ud_coefficient
+      OrientedSelectionSet.element_sets
+      OrientedSelectionSet.elemental_data
+      OrientedSelectionSet.id
+      OrientedSelectionSet.mesh
+      OrientedSelectionSet.name
+      OrientedSelectionSet.nodal_data
+      OrientedSelectionSet.orientation_direction
+      OrientedSelectionSet.orientation_point
+      OrientedSelectionSet.parent
+      OrientedSelectionSet.reference_direction_field
+      OrientedSelectionSet.rosette_selection_method
+      OrientedSelectionSet.rosettes
+      OrientedSelectionSet.rotation_angle
+      OrientedSelectionSet.selection_rules
+      OrientedSelectionSet.shell_mesh
+      OrientedSelectionSet.status
+      OrientedSelectionSet.use_default_draping_mesh_size
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet
+
+   ansys.acp.core.OrientedSelectionSet

@@ -1,0 +1,13 @@
+.. vale off
+
+AUTOMATIC\_ALL\_PLY\_TYPES
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES
+
+   ansys.acp.core.ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES

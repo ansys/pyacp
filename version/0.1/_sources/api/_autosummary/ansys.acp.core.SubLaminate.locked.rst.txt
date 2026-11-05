@@ -1,0 +1,13 @@
+.. vale off
+
+locked
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SubLaminate.locked
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.locked
+
+   ansys.acp.core.SubLaminate.locked

@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedProductionPly.status
+
+.. minigallery::
+   :add-heading: Examples using ImportedProductionPly.status
+
+   ansys.acp.core.ImportedProductionPly.status

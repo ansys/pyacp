@@ -1,0 +1,13 @@
+.. vale off
+
+cut\_off\_material
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.cut_off_material
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.cut_off_material
+
+   ansys.acp.core.SolidModel.cut_off_material

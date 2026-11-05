@@ -1,0 +1,13 @@
+.. vale off
+
+MAXIMUM\_ANGLE
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteSelectionMethod.MAXIMUM_ANGLE
+
+.. minigallery::
+   :add-heading: Examples using RosetteSelectionMethod.MAXIMUM_ANGLE
+
+   ansys.acp.core.RosetteSelectionMethod.MAXIMUM_ANGLE

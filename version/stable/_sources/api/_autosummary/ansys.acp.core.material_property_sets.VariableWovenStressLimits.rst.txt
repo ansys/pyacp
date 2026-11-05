@@ -1,0 +1,46 @@
+﻿.. vale off
+
+VariableWovenStressLimits
+=========================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: VariableWovenStressLimits
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      VariableWovenStressLimits.Sxy
+      VariableWovenStressLimits.Sxz
+      VariableWovenStressLimits.Syz
+      VariableWovenStressLimits.Xc
+      VariableWovenStressLimits.Xt
+      VariableWovenStressLimits.Yc
+      VariableWovenStressLimits.Yt
+      VariableWovenStressLimits.Zc
+      VariableWovenStressLimits.Zt
+      VariableWovenStressLimits.field_variables
+      VariableWovenStressLimits.interpolation_options
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using VariableWovenStressLimits
+
+   ansys.acp.core.material_property_sets.VariableWovenStressLimits

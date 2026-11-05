@@ -1,0 +1,13 @@
+.. vale off
+
+select\_all\_plies
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.select_all_plies
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.select_all_plies
+
+   ansys.acp.core.LayupMappingObject.select_all_plies

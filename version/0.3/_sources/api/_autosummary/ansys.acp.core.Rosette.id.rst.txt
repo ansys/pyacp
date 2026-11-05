@@ -1,0 +1,13 @@
+.. vale off
+
+id
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Rosette.id
+
+.. minigallery::
+   :add-heading: Examples using Rosette.id
+
+   ansys.acp.core.Rosette.id

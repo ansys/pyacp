@@ -1,0 +1,13 @@
+.. vale off
+
+drop\_off\_material
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.drop_off_material
+
+.. minigallery::
+   :add-heading: Examples using Stackup.drop_off_material
+
+   ansys.acp.core.Stackup.drop_off_material

@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ModelingGroup.store
+
+.. minigallery::
+   :add-heading: Examples using ModelingGroup.store
+
+   ansys.acp.core.ModelingGroup.store

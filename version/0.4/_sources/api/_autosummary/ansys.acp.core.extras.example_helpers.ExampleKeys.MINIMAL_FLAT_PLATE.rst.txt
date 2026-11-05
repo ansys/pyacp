@@ -1,0 +1,13 @@
+.. vale off
+
+MINIMAL\_FLAT\_PLATE
+====================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.MINIMAL_FLAT_PLATE
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.MINIMAL_FLAT_PLATE
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.MINIMAL_FLAT_PLATE

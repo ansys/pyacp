@@ -1,0 +1,13 @@
+.. vale off
+
+replace
+=======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.replace
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.replace
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.replace

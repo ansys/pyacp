@@ -1,0 +1,13 @@
+.. vale off
+
+mat\_type
+=========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariablePuckConstants.mat_type
+
+.. minigallery::
+   :add-heading: Examples using VariablePuckConstants.mat_type
+
+   ansys.acp.core.material_property_sets.VariablePuckConstants.mat_type

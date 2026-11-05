@@ -1,0 +1,13 @@
+.. vale off
+
+MONOLITHIC
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethod.MONOLITHIC
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionMethod.MONOLITHIC
+
+   ansys.acp.core.ExtrusionMethod.MONOLITHIC

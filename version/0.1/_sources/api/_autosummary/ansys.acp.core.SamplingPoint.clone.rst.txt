@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SamplingPoint.clone
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint.clone
+
+   ansys.acp.core.SamplingPoint.clone

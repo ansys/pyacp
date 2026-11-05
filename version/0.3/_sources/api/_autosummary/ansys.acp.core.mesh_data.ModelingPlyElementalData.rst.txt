@@ -1,0 +1,58 @@
+﻿.. vale off
+
+ModelingPlyElementalData
+========================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: ModelingPlyElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ModelingPlyElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ModelingPlyElementalData.area
+      ModelingPlyElementalData.cog
+      ModelingPlyElementalData.design_angle
+      ModelingPlyElementalData.draped_fiber_angle
+      ModelingPlyElementalData.draped_fiber_direction
+      ModelingPlyElementalData.draped_transverse_angle
+      ModelingPlyElementalData.draped_transverse_direction
+      ModelingPlyElementalData.fiber_direction
+      ModelingPlyElementalData.mass
+      ModelingPlyElementalData.normal
+      ModelingPlyElementalData.offset
+      ModelingPlyElementalData.orientation
+      ModelingPlyElementalData.price
+      ModelingPlyElementalData.reference_direction
+      ModelingPlyElementalData.relative_thickness_correction
+      ModelingPlyElementalData.shear_angle
+      ModelingPlyElementalData.thickness
+      ModelingPlyElementalData.transverse_direction
+      ModelingPlyElementalData.volume
+      ModelingPlyElementalData.element_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ModelingPlyElementalData
+
+   ansys.acp.core.mesh_data.ModelingPlyElementalData

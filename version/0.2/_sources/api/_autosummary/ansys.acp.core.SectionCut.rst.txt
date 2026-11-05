@@ -1,0 +1,71 @@
+﻿.. vale off
+
+SectionCut
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SectionCut
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SectionCut.clone
+      
+      
+      SectionCut.delete
+      
+      
+      SectionCut.export
+      
+      
+      SectionCut.export_becas_input
+      
+      
+      SectionCut.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SectionCut.active
+      SectionCut.core_scale_factor
+      SectionCut.extrusion_type
+      SectionCut.id
+      SectionCut.in_plane_reference_direction1
+      SectionCut.intersection_type
+      SectionCut.locked
+      SectionCut.name
+      SectionCut.normal
+      SectionCut.number_of_interpolation_points
+      SectionCut.origin
+      SectionCut.parent
+      SectionCut.scale_factor
+      SectionCut.scope_element_sets
+      SectionCut.scope_entire_model
+      SectionCut.search_radius
+      SectionCut.section_cut_type
+      SectionCut.status
+      SectionCut.tolerance
+      SectionCut.use_default_interpolation_settings
+      SectionCut.use_default_tolerance
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using SectionCut
+
+   ansys.acp.core.SectionCut

@@ -1,0 +1,13 @@
+.. vale off
+
+translate
+=========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.translate
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.translate
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.translate

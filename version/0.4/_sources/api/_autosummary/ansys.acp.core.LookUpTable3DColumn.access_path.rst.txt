@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3DColumn.access_path
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3DColumn.access_path
+
+   ansys.acp.core.LookUpTable3DColumn.access_path

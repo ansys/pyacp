@@ -1,0 +1,13 @@
+.. vale off
+
+MESH\_ONLY
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SectionCutCDBExportType.MESH_ONLY
+
+.. minigallery::
+   :add-heading: Examples using SectionCutCDBExportType.MESH_ONLY
+
+   ansys.acp.core.SectionCutCDBExportType.MESH_ONLY

@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: OrientedSelectionSet.store
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.store
+
+   ansys.acp.core.OrientedSelectionSet.store

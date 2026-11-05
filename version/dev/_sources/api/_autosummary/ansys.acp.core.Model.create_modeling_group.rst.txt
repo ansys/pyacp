@@ -1,0 +1,13 @@
+.. vale off
+
+create\_modeling\_group
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_modeling_group
+
+.. minigallery::
+   :add-heading: Examples using Model.create_modeling_group
+
+   ansys.acp.core.Model.create_modeling_group

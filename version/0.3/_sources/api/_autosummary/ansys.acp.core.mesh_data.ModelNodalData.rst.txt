@@ -1,0 +1,39 @@
+﻿.. vale off
+
+ModelNodalData
+==============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: ModelNodalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ModelNodalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ModelNodalData.node_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ModelNodalData
+
+   ansys.acp.core.mesh_data.ModelNodalData

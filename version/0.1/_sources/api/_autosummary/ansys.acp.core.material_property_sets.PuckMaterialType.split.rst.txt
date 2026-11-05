@@ -1,0 +1,13 @@
+.. vale off
+
+split
+=====
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.split
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.split
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.split

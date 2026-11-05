@@ -1,0 +1,13 @@
+.. vale off
+
+minimum\_angle\_tolerance
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: HDF5CompositeCAEImport.minimum_angle_tolerance
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport.minimum_angle_tolerance
+
+   ansys.acp.core.HDF5CompositeCAEImport.minimum_angle_tolerance

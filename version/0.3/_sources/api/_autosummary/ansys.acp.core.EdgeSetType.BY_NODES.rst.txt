@@ -1,0 +1,13 @@
+.. vale off
+
+BY\_NODES
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: EdgeSetType.BY_NODES
+
+.. minigallery::
+   :add-heading: Examples using EdgeSetType.BY_NODES
+
+   ansys.acp.core.EdgeSetType.BY_NODES
