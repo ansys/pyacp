@@ -23,11 +23,22 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
+from dataclasses import dataclass
+from typing import Generic, TypeAlias, TypeVar
 
-from ansys.api.acp.v0 import sampling_point_pb2, sampling_point_pb2_grpc
+from ansys.acp.core._tree_objects._grpc_helpers.supported_since import supported_since
+from ansys.acp.core._tree_objects.analysis_ply import AnalysisPly
+from ansys.acp.core._tree_objects.modeling_ply import ModelingPly
+from ansys.acp.core._tree_objects.production_ply import ProductionPly
+from ansys.api.acp.v0 import (
+    sampling_point_pb2,
+    sampling_point_pb2_grpc,
+)
 
 from .._utils.array_conversions import to_1D_double_array, to_tuple_from_1D_array
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
+from ._grpc_helpers.exceptions import wrap_grpc_errors
+from ._grpc_helpers.polymorphic_from_pb import tree_object_from_resource_path
 from ._grpc_helpers.property_helper import (
     grpc_data_property,
     grpc_data_property_read_only,
@@ -39,7 +50,90 @@ from .enums import status_type_from_pb
 from .object_registry import register
 from .rosette import Rosette
 
-__all__ = ["SamplingPoint"]
+__all__ = [
+    "SamplingPoint",
+    "Layup",
+    "LayupEntry",
+    "AnalysisPlyLayupEntry",
+    "ProductionPlyLayupEntry",
+    "ModelingPlyLayupEntry",
+]
+
+
+PlyT = TypeVar("PlyT", AnalysisPly, ProductionPly, ModelingPly)
+
+
+@dataclass(frozen=True)
+class LayupEntry(Generic[PlyT]):
+    """Single ply in the layup of a sampling point.
+
+    Attributes
+    ----------
+    order : int
+        Zero-based position in the sampling direction within this ply-level list.
+    ply : PlyT
+        The ply object associated with this entry.
+    angle : float
+        Design angle in degrees. In case of an analysis ply,
+        this is the layer angle between the fiber direction and the element coordinate system.
+    thickness : float
+        Effective thickness of the ply.
+    design_thickness : float
+        Design thickness of the ply.
+    offset : float
+        Offset of the ply's bottom surface in the sampling direction.
+    """
+
+    order: int
+    ply: PlyT
+    angle: float = 0.0
+    thickness: float = 0.0
+    design_thickness: float = 0.0
+    offset: float = 0.0
+
+
+AnalysisPlyLayupEntry: TypeAlias = LayupEntry[AnalysisPly]
+ProductionPlyLayupEntry: TypeAlias = LayupEntry[ProductionPly]
+ModelingPlyLayupEntry: TypeAlias = LayupEntry[ModelingPly]
+
+
+@dataclass(frozen=True)
+class Layup:
+    """Layup information for a sampling point.
+
+    It provides details about the plies in the layup, their order, thickness, and other properties.
+    The plies are ordered in the sampling direction. If aligned is True, the sampling direction is
+    aligned with the element normal. Otherwise, it is aligned with the reference direction.
+
+    Note that the angle of the analysis plies is the layer angle between the fiber direction
+    and the element coordinate system. The other angles are the design angles of the plies.
+
+    Attributes
+    ----------
+    offset : float
+        Distance between the reference surface and the bottom face of the laminate.
+    analysis_plies : tuple[AnalysisPlyLayupEntry, ...]
+        Analysis ply entries in the layup.
+    production_plies : tuple[ProductionPlyLayupEntry, ...]
+        Production ply entries in the layup.
+    modeling_plies : tuple[ModelingPlyLayupEntry, ...]
+        Modeling ply entries in the layup.
+
+    element_label : int
+        Element label associated with the layup.
+    aligned : bool
+        Whether the layup is aligned with the element normal.
+    """
+
+    # Distance between the reference surface and the bottom face of the laminate
+    offset: float = 0.0
+
+    analysis_plies: tuple[AnalysisPlyLayupEntry, ...] = ()
+    production_plies: tuple[ProductionPlyLayupEntry, ...] = ()
+    modeling_plies: tuple[ModelingPlyLayupEntry, ...] = ()
+
+    element_label: int = 0
+    aligned: bool = True
 
 
 @mark_grpc_properties
@@ -124,3 +218,73 @@ class SamplingPoint(CreatableTreeObject, IdTreeObject):
     consider_coupling_effect: ReadWriteProperty[bool, bool] = grpc_data_property(
         "properties.consider_coupling_effect"
     )
+
+    @supported_since("27.2")
+    def get_layup(self) -> Layup:
+        """Get the layup information for this sampling point.
+
+        Returns
+        -------
+        Layup
+            The layup information for this sampling point.
+        """
+        request = sampling_point_pb2.GetLayupRequest(resource_path=self._resource_path)
+        with wrap_grpc_errors():
+            response = self._get_stub().GetLayup(request)  # type: ignore
+
+        analysis_plies: list[AnalysisPlyLayupEntry] = []
+        for entry in response.analysis_plies:
+            ply = tree_object_from_resource_path(entry.ply, server_wrapper=self._server_wrapper)
+            if not isinstance(ply, AnalysisPly):
+                raise TypeError("Analysis ply resource path did not resolve to an AnalysisPly.")
+            analysis_plies.append(
+                LayupEntry(
+                    order=entry.order,
+                    ply=ply,
+                    angle=entry.angle_degrees,
+                    thickness=entry.thickness,
+                    design_thickness=entry.design_thickness,
+                    offset=entry.offset,
+                )
+            )
+
+        production_plies: list[ProductionPlyLayupEntry] = []
+        for entry in response.production_plies:
+            ply = tree_object_from_resource_path(entry.ply, server_wrapper=self._server_wrapper)
+            if not isinstance(ply, ProductionPly):
+                raise TypeError("Production ply resource path did not resolve to a ProductionPly.")
+            production_plies.append(
+                LayupEntry(
+                    order=entry.order,
+                    ply=ply,
+                    angle=entry.angle_degrees,
+                    thickness=entry.thickness,
+                    design_thickness=entry.design_thickness,
+                    offset=entry.offset,
+                )
+            )
+
+        modeling_plies: list[ModelingPlyLayupEntry] = []
+        for entry in response.modeling_plies:
+            ply = tree_object_from_resource_path(entry.ply, server_wrapper=self._server_wrapper)
+            if not isinstance(ply, ModelingPly):
+                raise TypeError("Modeling ply resource path did not resolve to a ModelingPly.")
+            modeling_plies.append(
+                LayupEntry(
+                    order=entry.order,
+                    ply=ply,
+                    angle=entry.angle_degrees,
+                    thickness=entry.thickness,
+                    design_thickness=entry.design_thickness,
+                    offset=entry.offset,
+                )
+            )
+
+        return Layup(
+            offset=response.offset,
+            analysis_plies=tuple(analysis_plies),
+            production_plies=tuple(production_plies),
+            modeling_plies=tuple(modeling_plies),
+            element_label=response.element_label,
+            aligned=response.aligned,
+        )

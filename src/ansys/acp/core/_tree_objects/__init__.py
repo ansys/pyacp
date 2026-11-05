@@ -151,7 +151,14 @@ from .parallel_selection_rule import (
 )
 from .production_ply import ProductionPly, ProductionPlyElementalData, ProductionPlyNodalData
 from .rosette import Rosette
-from .sampling_point import SamplingPoint
+from .sampling_point import (
+    AnalysisPlyLayupEntry,
+    Layup,
+    LayupEntry,
+    ModelingPlyLayupEntry,
+    ProductionPlyLayupEntry,
+    SamplingPoint,
+)
 from .section_cut import SectionCut
 from .sensor import Sensor
 from .snap_to_geometry import SnapToGeometry
@@ -343,4 +350,9 @@ __all__ = [
     "VirtualGeometry",
     "VirtualGeometryDimension",
     "WindingWizard",
+    "Layup",
+    "LayupEntry",
+    "AnalysisPlyLayupEntry",
+    "ProductionPlyLayupEntry",
+    "ModelingPlyLayupEntry",
 ]

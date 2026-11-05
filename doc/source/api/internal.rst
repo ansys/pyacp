@@ -36,3 +36,4 @@ Internal objects
     _tree_objects.base.TreeObjectBase
     _tree_objects.material.property_sets.wrapper.TC
     _tree_objects.material.property_sets.wrapper.TV
+    _tree_objects.sampling_point.PlyT
