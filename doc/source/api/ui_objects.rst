@@ -1,6 +1,6 @@
 
-Layup entry aliases
--------------------
+User-interface classes
+----------------------
 
 .. currentmodule:: ansys.acp.core
 
@@ -13,4 +13,3 @@ Layup entry aliases
 .. autoclass:: ansys.acp.core._tree_objects.sampling_point.ProductionPlyLayupEntry
     
 .. autoclass:: ansys.acp.core._tree_objects.sampling_point.ModelingPlyLayupEntry
-    

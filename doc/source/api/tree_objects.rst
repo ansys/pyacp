@@ -53,3 +53,12 @@ ACP objects
     VariableOffsetSelectionRule
     VirtualGeometry
     WindingWizard
+
+
+User-interface objects
+----------------------
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Layup
+    :no-index:

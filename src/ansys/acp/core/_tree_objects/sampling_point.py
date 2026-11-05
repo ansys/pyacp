@@ -50,7 +50,14 @@ from .enums import status_type_from_pb
 from .object_registry import register
 from .rosette import Rosette
 
-__all__ = ["SamplingPoint"]
+__all__ = [
+    "SamplingPoint",
+    "Layup",
+    "LayupEntry",
+    "AnalysisPlyLayupEntry",
+    "ProductionPlyLayupEntry",
+    "ModelingPlyLayupEntry",
+]
 
 
 PlyT = TypeVar("PlyT", AnalysisPly, ProductionPly, ModelingPly)
