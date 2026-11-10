@@ -136,7 +136,7 @@ Deprecated features:
 - The SectionCut ``tolerance`` attribute was renamed to ``minimum_segment_length``,
   and ``use_default_tolerance`` was renamed to ``use_default_minimum_segment_length``.
   Using the old attribute names will emit a deprecation warning, and will raise an
-  exception from PyACP version 0.5.0 onwards.
+  exception in PyACP version 0.5.0 and later.
 - The :meth:`.Model.import_hdf5_composite_cae` method is deprecated in favor of the
   :class:`.HDF5CompositeCAEImport` tree object (available since server version 2027R1).
   Using the old method will emit a deprecation warning when used with server version 2027R1
