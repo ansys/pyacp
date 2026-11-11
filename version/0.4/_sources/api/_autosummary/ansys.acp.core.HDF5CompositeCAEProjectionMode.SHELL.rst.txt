@@ -1,0 +1,13 @@
+.. vale off
+
+SHELL
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: HDF5CompositeCAEProjectionMode.SHELL
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEProjectionMode.SHELL
+
+   ansys.acp.core.HDF5CompositeCAEProjectionMode.SHELL

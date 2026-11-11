@@ -1,0 +1,13 @@
+.. vale off
+
+add\_mirrored\_ply
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Layer.add_mirrored_ply
+
+.. minigallery::
+   :add-heading: Examples using Layer.add_mirrored_ply
+
+   ansys.acp.core.Layer.add_mirrored_ply

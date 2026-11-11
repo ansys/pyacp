@@ -1,0 +1,13 @@
+.. vale off
+
+find
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.find
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.find
+
+   ansys.acp.core.LaunchMode.find

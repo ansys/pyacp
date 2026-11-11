@@ -1,0 +1,13 @@
+.. vale off
+
+isdigit
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.isdigit
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.isdigit
+
+   ansys.acp.core.LaunchMode.isdigit

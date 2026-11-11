@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedModelingPly.delete
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.delete
+
+   ansys.acp.core.ImportedModelingPly.delete

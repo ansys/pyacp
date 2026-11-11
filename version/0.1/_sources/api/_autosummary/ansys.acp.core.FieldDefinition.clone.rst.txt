@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: FieldDefinition.clone
+
+.. minigallery::
+   :add-heading: Examples using FieldDefinition.clone
+
+   ansys.acp.core.FieldDefinition.clone

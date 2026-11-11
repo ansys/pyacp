@@ -1,0 +1,13 @@
+.. vale off
+
+use\_nodal\_thicknesses
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.use_nodal_thicknesses
+
+.. minigallery::
+   :add-heading: Examples using Model.use_nodal_thicknesses
+
+   ansys.acp.core.Model.use_nodal_thicknesses

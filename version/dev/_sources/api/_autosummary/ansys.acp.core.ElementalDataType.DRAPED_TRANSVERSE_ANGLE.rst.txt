@@ -1,0 +1,13 @@
+.. vale off
+
+DRAPED\_TRANSVERSE\_ANGLE
+=========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.DRAPED_TRANSVERSE_ANGLE
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.DRAPED_TRANSVERSE_ANGLE
+
+   ansys.acp.core.ElementalDataType.DRAPED_TRANSVERSE_ANGLE

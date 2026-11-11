@@ -1,0 +1,13 @@
+.. vale off
+
+PRICE
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.PRICE
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.PRICE
+
+   ansys.acp.core.ElementalDataType.PRICE

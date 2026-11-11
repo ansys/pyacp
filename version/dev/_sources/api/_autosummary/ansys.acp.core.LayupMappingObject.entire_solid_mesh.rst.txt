@@ -1,0 +1,13 @@
+.. vale off
+
+entire\_solid\_mesh
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.entire_solid_mesh
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.entire_solid_mesh
+
+   ansys.acp.core.LayupMappingObject.entire_solid_mesh

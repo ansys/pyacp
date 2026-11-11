@@ -1,0 +1,13 @@
+.. vale off
+
+AUTOMATIC\_CORE\_MATERIALS
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ButtJointSequenceDefinitionType.AUTOMATIC_CORE_MATERIALS
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequenceDefinitionType.AUTOMATIC_CORE_MATERIALS
+
+   ansys.acp.core.ButtJointSequenceDefinitionType.AUTOMATIC_CORE_MATERIALS

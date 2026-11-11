@@ -1,0 +1,10 @@
+﻿PlyT
+====
+
+.. currentmodule:: ansys.acp.core._tree_objects.sampling_point
+
+.. warning::
+
+    This is an internal object. It should not be used directly, and subject to change without notice.
+
+.. autodata:: PlyT

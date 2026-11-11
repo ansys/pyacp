@@ -1,0 +1,13 @@
+.. vale off
+
+ELEMENT\_SETS
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: GeometricalRuleType.ELEMENT_SETS
+
+.. minigallery::
+   :add-heading: Examples using GeometricalRuleType.ELEMENT_SETS
+
+   ansys.acp.core.GeometricalRuleType.ELEMENT_SETS

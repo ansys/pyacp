@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.status
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.status
+
+   ansys.acp.core.LayupMappingObject.status

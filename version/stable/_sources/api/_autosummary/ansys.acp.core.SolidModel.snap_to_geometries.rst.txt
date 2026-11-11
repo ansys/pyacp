@@ -1,0 +1,13 @@
+.. vale off
+
+snap\_to\_geometries
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.snap_to_geometries
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.snap_to_geometries
+
+   ansys.acp.core.SolidModel.snap_to_geometries

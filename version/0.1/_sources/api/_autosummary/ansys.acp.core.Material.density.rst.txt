@@ -1,0 +1,13 @@
+.. vale off
+
+density
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.density
+
+.. minigallery::
+   :add-heading: Examples using Material.density
+
+   ansys.acp.core.Material.density

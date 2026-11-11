@@ -1,0 +1,13 @@
+.. vale off
+
+reference\_direction\_field
+===========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.reference_direction_field
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.reference_direction_field
+
+   ansys.acp.core.OrientedSelectionSet.reference_direction_field

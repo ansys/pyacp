@@ -1,0 +1,42 @@
+﻿.. vale off
+
+ConnectLocalLaunchConfig
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ConnectLocalLaunchConfig
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConnectLocalLaunchConfig.allow_remote_host
+      ConnectLocalLaunchConfig.certs_dir
+      ConnectLocalLaunchConfig.host
+      ConnectLocalLaunchConfig.port
+      ConnectLocalLaunchConfig.transport_mode
+      ConnectLocalLaunchConfig.uds_dir
+      ConnectLocalLaunchConfig.uds_id
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ConnectLocalLaunchConfig
+
+   ansys.acp.core.ConnectLocalLaunchConfig

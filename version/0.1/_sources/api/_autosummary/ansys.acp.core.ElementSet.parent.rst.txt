@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ElementSet.parent
+
+.. minigallery::
+   :add-heading: Examples using ElementSet.parent
+
+   ansys.acp.core.ElementSet.parent

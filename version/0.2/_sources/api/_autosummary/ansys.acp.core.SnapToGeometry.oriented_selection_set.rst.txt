@@ -1,0 +1,13 @@
+.. vale off
+
+oriented\_selection\_set
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SnapToGeometry.oriented_selection_set
+
+.. minigallery::
+   :add-heading: Examples using SnapToGeometry.oriented_selection_set
+
+   ansys.acp.core.SnapToGeometry.oriented_selection_set

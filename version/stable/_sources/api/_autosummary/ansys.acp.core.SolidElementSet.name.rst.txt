@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidElementSet.name
+
+.. minigallery::
+   :add-heading: Examples using SolidElementSet.name
+
+   ansys.acp.core.SolidElementSet.name

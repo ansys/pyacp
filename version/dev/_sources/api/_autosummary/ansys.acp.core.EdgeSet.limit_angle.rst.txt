@@ -1,0 +1,13 @@
+.. vale off
+
+limit\_angle
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: EdgeSet.limit_angle
+
+.. minigallery::
+   :add-heading: Examples using EdgeSet.limit_angle
+
+   ansys.acp.core.EdgeSet.limit_angle

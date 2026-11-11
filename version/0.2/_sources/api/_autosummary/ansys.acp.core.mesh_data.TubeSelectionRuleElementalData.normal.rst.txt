@@ -1,0 +1,13 @@
+.. vale off
+
+normal
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: TubeSelectionRuleElementalData.normal
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRuleElementalData.normal
+
+   ansys.acp.core.mesh_data.TubeSelectionRuleElementalData.normal

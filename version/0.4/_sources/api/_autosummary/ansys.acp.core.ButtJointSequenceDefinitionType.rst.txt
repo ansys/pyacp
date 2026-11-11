@@ -1,0 +1,46 @@
+﻿ButtJointSequenceDefinitionType
+===============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ButtJointSequenceDefinitionType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        ButtJointSequenceDefinitionType.MANUAL
+      
+      
+        ButtJointSequenceDefinitionType.AUTOMATIC_ALL_PLY_TYPES
+      
+      
+        ButtJointSequenceDefinitionType.AUTOMATIC_CORE_MATERIALS
+      
+      
+        ButtJointSequenceDefinitionType.AUTOMATIC_IDENTICAL_PLY_TYPE
+      
+      
+        ButtJointSequenceDefinitionType.AUTOMATIC_SIMILAR_PLY_TYPES
+      
+      
+        ButtJointSequenceDefinitionType.AUTOMATIC_ISOTROPIC_MATERIALS
+      
+      
+        ButtJointSequenceDefinitionType.AUTOMATIC_REINFORCED_MATERIALS
+      
+      
+        ButtJointSequenceDefinitionType.AUTOMATIC_IDENTICAL_MODELING_PLY_MATERIAL
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequenceDefinitionType
+
+   ansys.acp.core.ButtJointSequenceDefinitionType

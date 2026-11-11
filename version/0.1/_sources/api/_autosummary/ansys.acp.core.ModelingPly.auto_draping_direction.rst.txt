@@ -1,0 +1,13 @@
+.. vale off
+
+auto\_draping\_direction
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.auto_draping_direction
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.auto_draping_direction
+
+   ansys.acp.core.ModelingPly.auto_draping_direction

@@ -1,0 +1,13 @@
+.. vale off
+
+template\_rule
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LinkedSelectionRule.template_rule
+
+.. minigallery::
+   :add-heading: Examples using LinkedSelectionRule.template_rule
+
+   ansys.acp.core.LinkedSelectionRule.template_rule

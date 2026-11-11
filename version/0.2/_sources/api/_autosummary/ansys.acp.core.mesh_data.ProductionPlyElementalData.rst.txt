@@ -1,0 +1,58 @@
+﻿.. vale off
+
+ProductionPlyElementalData
+==========================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: ProductionPlyElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ProductionPlyElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ProductionPlyElementalData.area
+      ProductionPlyElementalData.cog
+      ProductionPlyElementalData.design_angle
+      ProductionPlyElementalData.draped_fiber_angle
+      ProductionPlyElementalData.draped_fiber_direction
+      ProductionPlyElementalData.draped_transverse_angle
+      ProductionPlyElementalData.draped_transverse_direction
+      ProductionPlyElementalData.fiber_direction
+      ProductionPlyElementalData.mass
+      ProductionPlyElementalData.normal
+      ProductionPlyElementalData.offset
+      ProductionPlyElementalData.orientation
+      ProductionPlyElementalData.price
+      ProductionPlyElementalData.reference_direction
+      ProductionPlyElementalData.relative_thickness_correction
+      ProductionPlyElementalData.shear_angle
+      ProductionPlyElementalData.thickness
+      ProductionPlyElementalData.transverse_direction
+      ProductionPlyElementalData.volume
+      ProductionPlyElementalData.element_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData
+
+   ansys.acp.core.mesh_data.ProductionPlyElementalData

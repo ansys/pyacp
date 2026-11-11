@@ -1,0 +1,13 @@
+.. vale off
+
+Xt
+==
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableStressLimits.Xt
+
+.. minigallery::
+   :add-heading: Examples using VariableStressLimits.Xt
+
+   ansys.acp.core.material_property_sets.VariableStressLimits.Xt

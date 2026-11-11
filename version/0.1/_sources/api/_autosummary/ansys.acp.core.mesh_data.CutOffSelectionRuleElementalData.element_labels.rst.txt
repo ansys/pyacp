@@ -1,0 +1,13 @@
+.. vale off
+
+element\_labels
+===============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: CutOffSelectionRuleElementalData.element_labels
+
+.. minigallery::
+   :add-heading: Examples using CutOffSelectionRuleElementalData.element_labels
+
+   ansys.acp.core.mesh_data.CutOffSelectionRuleElementalData.element_labels

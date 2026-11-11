@@ -1,0 +1,13 @@
+.. vale off
+
+offset\_is\_middle
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SamplingPoint.offset_is_middle
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint.offset_is_middle
+
+   ansys.acp.core.SamplingPoint.offset_is_middle

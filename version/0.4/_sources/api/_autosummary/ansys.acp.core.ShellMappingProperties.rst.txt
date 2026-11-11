@@ -1,0 +1,41 @@
+﻿.. vale off
+
+ShellMappingProperties
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ShellMappingProperties
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ShellMappingProperties.all_elements
+      ShellMappingProperties.angle_tolerance
+      ShellMappingProperties.element_sets
+      ShellMappingProperties.relative_in_plane_tolerance
+      ShellMappingProperties.relative_thickness_tolerance
+      ShellMappingProperties.small_hole_threshold
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ShellMappingProperties
+
+   ansys.acp.core.ShellMappingProperties

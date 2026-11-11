@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: AnalysisPly.access_path
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPly.access_path
+
+   ansys.acp.core.AnalysisPly.access_path

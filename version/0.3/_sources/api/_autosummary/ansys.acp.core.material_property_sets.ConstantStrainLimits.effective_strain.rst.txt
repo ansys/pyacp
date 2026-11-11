@@ -1,0 +1,13 @@
+.. vale off
+
+effective\_strain
+=================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantStrainLimits.effective_strain
+
+.. minigallery::
+   :add-heading: Examples using ConstantStrainLimits.effective_strain
+
+   ansys.acp.core.material_property_sets.ConstantStrainLimits.effective_strain

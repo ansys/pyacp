@@ -1,0 +1,36 @@
+﻿.. vale off
+
+SolidMappingProperties
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SolidMappingProperties
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SolidMappingProperties.offset_type
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using SolidMappingProperties
+
+   ansys.acp.core.SolidMappingProperties

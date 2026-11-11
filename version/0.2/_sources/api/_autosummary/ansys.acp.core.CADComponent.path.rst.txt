@@ -1,0 +1,13 @@
+.. vale off
+
+path
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADComponent.path
+
+.. minigallery::
+   :add-heading: Examples using CADComponent.path
+
+   ansys.acp.core.CADComponent.path

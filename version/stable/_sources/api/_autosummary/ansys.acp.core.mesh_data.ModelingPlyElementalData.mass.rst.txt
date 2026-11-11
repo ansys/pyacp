@@ -1,0 +1,13 @@
+.. vale off
+
+mass
+====
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ModelingPlyElementalData.mass
+
+.. minigallery::
+   :add-heading: Examples using ModelingPlyElementalData.mass
+
+   ansys.acp.core.mesh_data.ModelingPlyElementalData.mass

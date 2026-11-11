@@ -1,0 +1,34 @@
+﻿StressStateType
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: StressStateType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        StressStateType.UNIAXIAL_STRESS_STATE
+      
+      
+        StressStateType.PLANE_STRESS_STATE
+      
+      
+        StressStateType.PLANE_STRESS_STATE_WITH_TRANSVERSE_SHEAR_STIFFNESS
+      
+      
+        StressStateType.PLANE_STRESS_STATE_WITH_TRANSVERSE_SHEAR_AND_BENDING_STIFFNESS
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using StressStateType
+
+   ansys.acp.core.StressStateType

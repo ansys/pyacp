@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LayupMappingObject.clone
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.clone
+
+   ansys.acp.core.LayupMappingObject.clone

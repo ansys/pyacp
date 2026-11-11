@@ -1,0 +1,13 @@
+.. vale off
+
+shell\_element\_sets
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.shell_element_sets
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.shell_element_sets
+
+   ansys.acp.core.LayupMappingObject.shell_element_sets

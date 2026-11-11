@@ -1,0 +1,13 @@
+.. vale off
+
+create\_edge\_set
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_edge_set
+
+.. minigallery::
+   :add-heading: Examples using Model.create_edge_set
+
+   ansys.acp.core.Model.create_edge_set

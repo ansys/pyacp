@@ -1,0 +1,13 @@
+.. vale off
+
+taper\_edges
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.taper_edges
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.taper_edges
+
+   ansys.acp.core.ModelingPly.taper_edges

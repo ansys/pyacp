@@ -1,0 +1,13 @@
+.. vale off
+
+cad\_geometry
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SnapToGeometry.cad_geometry
+
+.. minigallery::
+   :add-heading: Examples using SnapToGeometry.cad_geometry
+
+   ansys.acp.core.SnapToGeometry.cad_geometry

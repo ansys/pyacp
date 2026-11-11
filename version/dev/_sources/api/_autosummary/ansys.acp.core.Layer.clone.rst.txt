@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Layer.clone
+
+.. minigallery::
+   :add-heading: Examples using Layer.clone
+
+   ansys.acp.core.Layer.clone

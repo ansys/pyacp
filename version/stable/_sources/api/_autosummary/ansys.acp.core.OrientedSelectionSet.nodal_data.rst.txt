@@ -1,0 +1,13 @@
+.. vale off
+
+nodal\_data
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.nodal_data
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.nodal_data
+
+   ansys.acp.core.OrientedSelectionSet.nodal_data

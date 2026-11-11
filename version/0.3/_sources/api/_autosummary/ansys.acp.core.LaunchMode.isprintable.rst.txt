@@ -1,0 +1,13 @@
+.. vale off
+
+isprintable
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.isprintable
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.isprintable
+
+   ansys.acp.core.LaunchMode.isprintable

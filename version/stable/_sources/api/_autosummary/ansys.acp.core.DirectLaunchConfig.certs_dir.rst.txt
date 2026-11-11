@@ -1,0 +1,13 @@
+.. vale off
+
+certs\_dir
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DirectLaunchConfig.certs_dir
+
+.. minigallery::
+   :add-heading: Examples using DirectLaunchConfig.certs_dir
+
+   ansys.acp.core.DirectLaunchConfig.certs_dir

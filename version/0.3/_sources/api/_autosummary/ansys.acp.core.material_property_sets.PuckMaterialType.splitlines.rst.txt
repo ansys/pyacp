@@ -1,0 +1,13 @@
+.. vale off
+
+splitlines
+==========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.splitlines
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.splitlines
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.splitlines

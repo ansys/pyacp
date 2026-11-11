@@ -1,0 +1,13 @@
+.. vale off
+
+shell\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: BooleanSelectionRule.shell_mesh
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRule.shell_mesh
+
+   ansys.acp.core.BooleanSelectionRule.shell_mesh

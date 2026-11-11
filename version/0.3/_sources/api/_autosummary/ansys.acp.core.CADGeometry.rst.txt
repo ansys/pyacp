@@ -1,0 +1,60 @@
+﻿.. vale off
+
+CADGeometry
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: CADGeometry
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      CADGeometry.clone
+      
+      
+      CADGeometry.delete
+      
+      
+      CADGeometry.refresh
+      
+      
+      CADGeometry.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      CADGeometry.external_path
+      CADGeometry.id
+      CADGeometry.locked
+      CADGeometry.name
+      CADGeometry.offset
+      CADGeometry.parent
+      CADGeometry.precision
+      CADGeometry.root_shapes
+      CADGeometry.scale_factor
+      CADGeometry.status
+      CADGeometry.use_default_offset
+      CADGeometry.use_default_precision
+      CADGeometry.visualization_mesh
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using CADGeometry
+
+   ansys.acp.core.CADGeometry

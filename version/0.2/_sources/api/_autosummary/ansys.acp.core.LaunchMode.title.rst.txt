@@ -1,0 +1,13 @@
+.. vale off
+
+title
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.title
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.title
+
+   ansys.acp.core.LaunchMode.title

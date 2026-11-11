@@ -1,0 +1,13 @@
+.. vale off
+
+draping\_ud\_coefficient
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Stackup.draping_ud_coefficient
+
+.. minigallery::
+   :add-heading: Examples using Stackup.draping_ud_coefficient
+
+   ansys.acp.core.Stackup.draping_ud_coefficient

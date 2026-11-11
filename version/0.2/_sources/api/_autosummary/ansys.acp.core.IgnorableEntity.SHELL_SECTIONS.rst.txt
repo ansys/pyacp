@@ -1,0 +1,13 @@
+.. vale off
+
+SHELL\_SECTIONS
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: IgnorableEntity.SHELL_SECTIONS
+
+.. minigallery::
+   :add-heading: Examples using IgnorableEntity.SHELL_SECTIONS
+
+   ansys.acp.core.IgnorableEntity.SHELL_SECTIONS

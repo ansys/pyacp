@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: TaperEdge.clone
+
+.. minigallery::
+   :add-heading: Examples using TaperEdge.clone
+
+   ansys.acp.core.TaperEdge.clone

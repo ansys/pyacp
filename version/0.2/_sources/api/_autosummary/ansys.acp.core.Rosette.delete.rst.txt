@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Rosette.delete
+
+.. minigallery::
+   :add-heading: Examples using Rosette.delete
+
+   ansys.acp.core.Rosette.delete

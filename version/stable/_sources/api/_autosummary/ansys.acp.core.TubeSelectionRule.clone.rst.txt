@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: TubeSelectionRule.clone
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.clone
+
+   ansys.acp.core.TubeSelectionRule.clone

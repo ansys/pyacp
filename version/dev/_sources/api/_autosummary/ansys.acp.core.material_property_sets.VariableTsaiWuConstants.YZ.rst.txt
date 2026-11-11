@@ -1,0 +1,13 @@
+.. vale off
+
+YZ
+==
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableTsaiWuConstants.YZ
+
+.. minigallery::
+   :add-heading: Examples using VariableTsaiWuConstants.YZ
+
+   ansys.acp.core.material_property_sets.VariableTsaiWuConstants.YZ

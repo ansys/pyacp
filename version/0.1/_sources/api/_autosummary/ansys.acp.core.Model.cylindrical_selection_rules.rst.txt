@@ -1,0 +1,13 @@
+.. vale off
+
+cylindrical\_selection\_rules
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.cylindrical_selection_rules
+
+.. minigallery::
+   :add-heading: Examples using Model.cylindrical_selection_rules
+
+   ansys.acp.core.Model.cylindrical_selection_rules

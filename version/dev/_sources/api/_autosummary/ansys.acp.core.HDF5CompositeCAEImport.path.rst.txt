@@ -1,0 +1,13 @@
+.. vale off
+
+path
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: HDF5CompositeCAEImport.path
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport.path
+
+   ansys.acp.core.HDF5CompositeCAEImport.path

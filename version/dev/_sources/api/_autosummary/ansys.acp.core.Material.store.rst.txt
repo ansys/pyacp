@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Material.store
+
+.. minigallery::
+   :add-heading: Examples using Material.store
+
+   ansys.acp.core.Material.store

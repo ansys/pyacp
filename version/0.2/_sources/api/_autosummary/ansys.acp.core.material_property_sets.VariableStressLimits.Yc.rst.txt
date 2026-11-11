@@ -1,0 +1,13 @@
+.. vale off
+
+Yc
+==
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableStressLimits.Yc
+
+.. minigallery::
+   :add-heading: Examples using VariableStressLimits.Yc
+
+   ansys.acp.core.material_property_sets.VariableStressLimits.Yc

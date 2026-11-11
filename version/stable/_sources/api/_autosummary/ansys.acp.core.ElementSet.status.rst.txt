@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ElementSet.status
+
+.. minigallery::
+   :add-heading: Examples using ElementSet.status
+
+   ansys.acp.core.ElementSet.status

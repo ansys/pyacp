@@ -1,0 +1,13 @@
+.. vale off
+
+FROM\_TABLE
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ThicknessType.FROM_TABLE
+
+.. minigallery::
+   :add-heading: Examples using ThicknessType.FROM_TABLE
+
+   ansys.acp.core.ThicknessType.FROM_TABLE

@@ -1,0 +1,13 @@
+.. vale off
+
+fabric\_fiber\_angle
+====================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantFabricFiberAngle.fabric_fiber_angle
+
+.. minigallery::
+   :add-heading: Examples using ConstantFabricFiberAngle.fabric_fiber_angle
+
+   ansys.acp.core.material_property_sets.ConstantFabricFiberAngle.fabric_fiber_angle

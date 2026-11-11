@@ -1,0 +1,13 @@
+.. vale off
+
+refresh
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedSolidModel.refresh
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.refresh
+
+   ansys.acp.core.ImportedSolidModel.refresh

@@ -1,0 +1,13 @@
+.. vale off
+
+add\_layer
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: WindingWizard.add_layer
+
+.. minigallery::
+   :add-heading: Examples using WindingWizard.add_layer
+
+   ansys.acp.core.WindingWizard.add_layer

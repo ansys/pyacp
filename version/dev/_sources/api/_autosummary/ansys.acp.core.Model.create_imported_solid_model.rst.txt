@@ -1,0 +1,13 @@
+.. vale off
+
+create\_imported\_solid\_model
+==============================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_imported_solid_model
+
+.. minigallery::
+   :add-heading: Examples using Model.create_imported_solid_model
+
+   ansys.acp.core.Model.create_imported_solid_model

@@ -1,0 +1,13 @@
+.. vale off
+
+run
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: WindingWizard.run
+
+.. minigallery::
+   :add-heading: Examples using WindingWizard.run
+
+   ansys.acp.core.WindingWizard.run

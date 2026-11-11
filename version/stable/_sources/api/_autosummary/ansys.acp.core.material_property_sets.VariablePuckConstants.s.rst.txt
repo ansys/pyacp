@@ -1,0 +1,13 @@
+.. vale off
+
+s
+=
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariablePuckConstants.s
+
+.. minigallery::
+   :add-heading: Examples using VariablePuckConstants.s
+
+   ansys.acp.core.material_property_sets.VariablePuckConstants.s
