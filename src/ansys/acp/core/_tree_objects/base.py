@@ -47,9 +47,8 @@ from ansys.api.acp.v0.base_pb2 import (
 from .._server.acp_instance import ACPInstance, FileTransferHandler
 from .._utils.path_to_str import path_to_str_checked
 from .._utils.property_protocols import ReadOnlyProperty, ReadWriteProperty
-from .._utils.resource_paths import common_path
+from .._utils.resource_paths import common_path, to_parts
 from .._utils.resource_paths import join as _rp_join
-from .._utils.resource_paths import to_parts
 from .._utils.typing_helper import PATH
 from ._grpc_helpers.exceptions import wrap_grpc_errors
 from ._grpc_helpers.linked_object_helpers import get_linked_paths, unlink_objects

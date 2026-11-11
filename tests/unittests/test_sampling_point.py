@@ -82,3 +82,49 @@ class TestSamplingPoint(NoLockedMixin, TreeObjectTester):
                 ("reference_direction", (0.1, 0.2, 0.3)),
             ],
         )
+
+
+def test_get_layup(parent_object, acp_instance):
+
+    if parse_version(acp_instance.server_version) < parse_version("27.2"):
+        pytest.skip(
+            "Get_layup is not supported on this version of the server. Requires 27.2 or later."
+        )
+
+    sampling_point = parent_object.create_sampling_point(
+        name="SP", point=(0.0, 0.0, 0.0), direction=(0.0, 0.0, 1.0)
+    )
+    parent_object.update()
+    layup = sampling_point.get_layup()
+    assert layup is not None
+    assert layup.offset == 0.0
+    assert layup.aligned is True
+    assert layup.element_label == 1
+
+    assert len(layup.analysis_plies) == 1
+    assert len(layup.production_plies) == 1
+    assert len(layup.modeling_plies) == 1
+
+    analysis_entry = layup.analysis_plies[0]
+    assert analysis_entry.order == 0
+    assert analysis_entry.ply.id == "P1L1__ModelingPly.1"
+    assert analysis_entry.angle == 90.0
+    assert analysis_entry.thickness == 0.0001
+    assert analysis_entry.design_thickness == 0.0001
+    assert analysis_entry.offset == 0.0
+
+    production_entry = layup.production_plies[0]
+    assert production_entry.order == 0
+    assert production_entry.ply.id == "ProductionPly"
+    assert production_entry.angle == 0.0
+    assert production_entry.thickness == 0.0001
+    assert production_entry.design_thickness == 0.0001
+    assert production_entry.offset == 0.0
+
+    modeling_entry = layup.modeling_plies[0]
+    assert modeling_entry.order == 0
+    assert modeling_entry.ply.id == "ModelingPly.1"
+    assert modeling_entry.angle == 0.0
+    assert modeling_entry.thickness == 0.0001
+    assert modeling_entry.design_thickness == 0.0001
+    assert modeling_entry.offset == 0.0

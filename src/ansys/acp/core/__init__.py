@@ -100,6 +100,7 @@ from ._tree_objects import (
     IntersectionType,
     Lamina,
     Layer,
+    Layup,
     LayupMappingObject,
     LayupMappingRosetteSelectionMethod,
     LinkedSelectionRule,
@@ -299,4 +300,5 @@ __all__ = [
     "VirtualGeometry",
     "VirtualGeometryDimension",
     "WindingWizard",
+    "Layup",
 ]
