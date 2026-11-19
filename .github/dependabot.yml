@@ -44,6 +44,5 @@ updates:
         patterns:
           - "*"
     assignees:
-      - "SRaimondi"
       - "greschd"
       - "roosre"
