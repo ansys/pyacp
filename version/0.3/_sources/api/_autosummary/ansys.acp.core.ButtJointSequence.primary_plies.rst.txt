@@ -1,0 +1,13 @@
+.. vale off
+
+primary\_plies
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ButtJointSequence.primary_plies
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence.primary_plies
+
+   ansys.acp.core.ButtJointSequence.primary_plies

@@ -1,0 +1,13 @@
+.. vale off
+
+projection\_mode
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: HDF5CompositeCAEImport.projection_mode
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport.projection_mode
+
+   ansys.acp.core.HDF5CompositeCAEImport.projection_mode

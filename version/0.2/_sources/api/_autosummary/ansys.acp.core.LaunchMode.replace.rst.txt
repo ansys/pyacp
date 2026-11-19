@@ -1,0 +1,13 @@
+.. vale off
+
+replace
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.replace
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.replace
+
+   ansys.acp.core.LaunchMode.replace

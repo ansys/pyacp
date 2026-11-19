@@ -1,0 +1,13 @@
+.. vale off
+
+uds\_dir
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DirectLaunchConfig.uds_dir
+
+.. minigallery::
+   :add-heading: Examples using DirectLaunchConfig.uds_dir
+
+   ansys.acp.core.DirectLaunchConfig.uds_dir

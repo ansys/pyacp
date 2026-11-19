@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: CutOffGeometry.delete
+
+.. minigallery::
+   :add-heading: Examples using CutOffGeometry.delete
+
+   ansys.acp.core.CutOffGeometry.delete

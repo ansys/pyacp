@@ -1,0 +1,13 @@
+.. vale off
+
+component\_name
+===============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoproperty:: VectorData.component_name
+
+.. minigallery::
+   :add-heading: Examples using VectorData.component_name
+
+   ansys.acp.core.mesh_data.VectorData.component_name

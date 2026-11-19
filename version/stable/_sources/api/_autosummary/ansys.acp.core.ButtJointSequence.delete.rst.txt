@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ButtJointSequence.delete
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence.delete
+
+   ansys.acp.core.ButtJointSequence.delete

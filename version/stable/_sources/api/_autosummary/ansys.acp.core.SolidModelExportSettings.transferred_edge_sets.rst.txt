@@ -1,0 +1,13 @@
+.. vale off
+
+transferred\_edge\_sets
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModelExportSettings.transferred_edge_sets
+
+.. minigallery::
+   :add-heading: Examples using SolidModelExportSettings.transferred_edge_sets
+
+   ansys.acp.core.SolidModelExportSettings.transferred_edge_sets

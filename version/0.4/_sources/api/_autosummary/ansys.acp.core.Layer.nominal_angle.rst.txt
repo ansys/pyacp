@@ -1,0 +1,13 @@
+.. vale off
+
+nominal\_angle
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Layer.nominal_angle
+
+.. minigallery::
+   :add-heading: Examples using Layer.nominal_angle
+
+   ansys.acp.core.Layer.nominal_angle

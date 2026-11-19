@@ -1,0 +1,13 @@
+.. vale off
+
+shell\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ElementSet.shell_mesh
+
+.. minigallery::
+   :add-heading: Examples using ElementSet.shell_mesh
+
+   ansys.acp.core.ElementSet.shell_mesh

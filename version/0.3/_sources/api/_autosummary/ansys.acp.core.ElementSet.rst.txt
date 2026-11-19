@@ -1,0 +1,55 @@
+﻿.. vale off
+
+ElementSet
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ElementSet
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ElementSet.clone
+      
+      
+      ElementSet.delete
+      
+      
+      ElementSet.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ElementSet.element_labels
+      ElementSet.elemental_data
+      ElementSet.id
+      ElementSet.locked
+      ElementSet.mesh
+      ElementSet.middle_offset
+      ElementSet.name
+      ElementSet.nodal_data
+      ElementSet.parent
+      ElementSet.shell_mesh
+      ElementSet.status
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ElementSet
+
+   ansys.acp.core.ElementSet

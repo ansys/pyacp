@@ -1,0 +1,13 @@
+.. vale off
+
+fiber\_direction
+================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ModelingPlyElementalData.fiber_direction
+
+.. minigallery::
+   :add-heading: Examples using ModelingPlyElementalData.fiber_direction
+
+   ansys.acp.core.mesh_data.ModelingPlyElementalData.fiber_direction

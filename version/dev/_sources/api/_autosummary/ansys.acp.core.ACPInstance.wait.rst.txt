@@ -1,0 +1,13 @@
+.. vale off
+
+wait
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPInstance.wait
+
+.. minigallery::
+   :add-heading: Examples using ACPInstance.wait
+
+   ansys.acp.core.ACPInstance.wait

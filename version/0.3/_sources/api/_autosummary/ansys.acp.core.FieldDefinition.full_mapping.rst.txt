@@ -1,0 +1,13 @@
+.. vale off
+
+full\_mapping
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: FieldDefinition.full_mapping
+
+.. minigallery::
+   :add-heading: Examples using FieldDefinition.full_mapping
+
+   ansys.acp.core.FieldDefinition.full_mapping

@@ -1,0 +1,13 @@
+.. vale off
+
+MATERIALS
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: IgnorableEntity.MATERIALS
+
+.. minigallery::
+   :add-heading: Examples using IgnorableEntity.MATERIALS
+
+   ansys.acp.core.IgnorableEntity.MATERIALS

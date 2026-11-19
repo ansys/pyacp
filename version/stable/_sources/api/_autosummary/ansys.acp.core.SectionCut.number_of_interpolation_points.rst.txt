@@ -1,0 +1,13 @@
+.. vale off
+
+number\_of\_interpolation\_points
+=================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.number_of_interpolation_points
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.number_of_interpolation_points
+
+   ansys.acp.core.SectionCut.number_of_interpolation_points

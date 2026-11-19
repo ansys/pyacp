@@ -1,0 +1,58 @@
+﻿.. vale off
+
+LookUpTable3D
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: LookUpTable3D
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      LookUpTable3D.clone
+      
+      
+      LookUpTable3D.create_column
+      
+      
+      LookUpTable3D.delete
+      
+      
+      LookUpTable3D.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      LookUpTable3D.columns
+      LookUpTable3D.id
+      LookUpTable3D.interpolation_algorithm
+      LookUpTable3D.name
+      LookUpTable3D.num_min_neighbors
+      LookUpTable3D.parent
+      LookUpTable3D.rosette
+      LookUpTable3D.search_radius
+      LookUpTable3D.status
+      LookUpTable3D.use_default_search_radius
+      LookUpTable3D.use_global_coordinate_system
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3D
+
+   ansys.acp.core.LookUpTable3D

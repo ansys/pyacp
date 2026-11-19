@@ -1,0 +1,40 @@
+﻿.. vale off
+
+ParallelSelectionRuleElementalData
+==================================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: ParallelSelectionRuleElementalData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ParallelSelectionRuleElementalData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ParallelSelectionRuleElementalData.normal
+      ParallelSelectionRuleElementalData.element_labels
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRuleElementalData
+
+   ansys.acp.core.mesh_data.ParallelSelectionRuleElementalData

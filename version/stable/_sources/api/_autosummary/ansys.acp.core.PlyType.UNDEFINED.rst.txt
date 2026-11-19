@@ -1,0 +1,13 @@
+.. vale off
+
+UNDEFINED
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyType.UNDEFINED
+
+.. minigallery::
+   :add-heading: Examples using PlyType.UNDEFINED
+
+   ansys.acp.core.PlyType.UNDEFINED

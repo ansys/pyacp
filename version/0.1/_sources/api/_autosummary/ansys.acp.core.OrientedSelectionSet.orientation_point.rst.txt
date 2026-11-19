@@ -1,0 +1,13 @@
+.. vale off
+
+orientation\_point
+==================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.orientation_point
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.orientation_point
+
+   ansys.acp.core.OrientedSelectionSet.orientation_point

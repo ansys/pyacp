@@ -1,0 +1,13 @@
+.. vale off
+
+OVERWRITE
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: HDF5CompositeCAEImportMode.OVERWRITE
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImportMode.OVERWRITE
+
+   ansys.acp.core.HDF5CompositeCAEImportMode.OVERWRITE

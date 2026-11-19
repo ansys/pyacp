@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.access_path
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.access_path
+
+   ansys.acp.core.ParallelSelectionRule.access_path

@@ -1,0 +1,13 @@
+.. vale off
+
+delete\_generated\_objects
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: HDF5CompositeCAEImport.delete_generated_objects
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport.delete_generated_objects
+
+   ansys.acp.core.HDF5CompositeCAEImport.delete_generated_objects

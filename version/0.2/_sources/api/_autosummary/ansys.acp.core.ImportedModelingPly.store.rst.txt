@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedModelingPly.store
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.store
+
+   ansys.acp.core.ImportedModelingPly.store

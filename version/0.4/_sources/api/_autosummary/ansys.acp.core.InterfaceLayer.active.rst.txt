@@ -1,0 +1,13 @@
+.. vale off
+
+active
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: InterfaceLayer.active
+
+.. minigallery::
+   :add-heading: Examples using InterfaceLayer.active
+
+   ansys.acp.core.InterfaceLayer.active

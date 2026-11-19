@@ -1,0 +1,13 @@
+.. vale off
+
+fabric
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Layer.fabric
+
+.. minigallery::
+   :add-heading: Examples using Layer.fabric
+
+   ansys.acp.core.Layer.fabric

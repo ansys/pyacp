@@ -1,0 +1,13 @@
+.. vale off
+
+in\_plane\_capture\_tolerance
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.in_plane_capture_tolerance
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.in_plane_capture_tolerance
+
+   ansys.acp.core.GeometricalSelectionRule.in_plane_capture_tolerance

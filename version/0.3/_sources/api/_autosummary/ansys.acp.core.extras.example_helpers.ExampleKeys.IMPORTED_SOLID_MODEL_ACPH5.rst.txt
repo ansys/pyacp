@@ -1,0 +1,13 @@
+.. vale off
+
+IMPORTED\_SOLID\_MODEL\_ACPH5
+=============================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.IMPORTED_SOLID_MODEL_ACPH5
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.IMPORTED_SOLID_MODEL_ACPH5
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.IMPORTED_SOLID_MODEL_ACPH5

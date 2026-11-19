@@ -1,0 +1,13 @@
+.. vale off
+
+rjust
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.rjust
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.rjust
+
+   ansys.acp.core.LaunchMode.rjust

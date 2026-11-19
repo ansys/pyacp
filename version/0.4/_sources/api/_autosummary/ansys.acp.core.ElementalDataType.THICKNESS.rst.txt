@@ -1,0 +1,13 @@
+.. vale off
+
+THICKNESS
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.THICKNESS
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.THICKNESS
+
+   ansys.acp.core.ElementalDataType.THICKNESS

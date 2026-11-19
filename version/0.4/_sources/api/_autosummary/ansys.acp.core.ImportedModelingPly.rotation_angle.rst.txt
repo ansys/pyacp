@@ -1,0 +1,13 @@
+.. vale off
+
+rotation\_angle
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedModelingPly.rotation_angle
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingPly.rotation_angle
+
+   ansys.acp.core.ImportedModelingPly.rotation_angle

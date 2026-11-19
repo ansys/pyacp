@@ -1,0 +1,13 @@
+.. vale off
+
+from\_orthotropic\_constants
+============================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: ConstantEngineeringConstants.from_orthotropic_constants
+
+.. minigallery::
+   :add-heading: Examples using ConstantEngineeringConstants.from_orthotropic_constants
+
+   ansys.acp.core.material_property_sets.ConstantEngineeringConstants.from_orthotropic_constants

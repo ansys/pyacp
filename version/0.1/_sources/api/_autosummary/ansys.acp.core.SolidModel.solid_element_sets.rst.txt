@@ -1,0 +1,13 @@
+.. vale off
+
+solid\_element\_sets
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModel.solid_element_sets
+
+.. minigallery::
+   :add-heading: Examples using SolidModel.solid_element_sets
+
+   ansys.acp.core.SolidModel.solid_element_sets

@@ -1,0 +1,13 @@
+.. vale off
+
+transport\_mode
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DockerComposeLaunchConfig.transport_mode
+
+.. minigallery::
+   :add-heading: Examples using DockerComposeLaunchConfig.transport_mode
+
+   ansys.acp.core.DockerComposeLaunchConfig.transport_mode

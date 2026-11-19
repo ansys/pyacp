@@ -1,0 +1,179 @@
+﻿.. vale off
+
+LaunchMode
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: LaunchMode
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      LaunchMode.encode
+      
+      
+      LaunchMode.replace
+      
+      
+      LaunchMode.split
+      
+      
+      LaunchMode.rsplit
+      
+      
+      LaunchMode.join
+      
+      
+      LaunchMode.capitalize
+      
+      
+      LaunchMode.casefold
+      
+      
+      LaunchMode.title
+      
+      
+      LaunchMode.center
+      
+      
+      LaunchMode.count
+      
+      
+      LaunchMode.expandtabs
+      
+      
+      LaunchMode.find
+      
+      
+      LaunchMode.partition
+      
+      
+      LaunchMode.index
+      
+      
+      LaunchMode.ljust
+      
+      
+      LaunchMode.lower
+      
+      
+      LaunchMode.lstrip
+      
+      
+      LaunchMode.rfind
+      
+      
+      LaunchMode.rindex
+      
+      
+      LaunchMode.rjust
+      
+      
+      LaunchMode.rstrip
+      
+      
+      LaunchMode.rpartition
+      
+      
+      LaunchMode.splitlines
+      
+      
+      LaunchMode.strip
+      
+      
+      LaunchMode.swapcase
+      
+      
+      LaunchMode.translate
+      
+      
+      LaunchMode.upper
+      
+      
+      LaunchMode.startswith
+      
+      
+      LaunchMode.endswith
+      
+      
+      LaunchMode.removeprefix
+      
+      
+      LaunchMode.removesuffix
+      
+      
+      LaunchMode.isascii
+      
+      
+      LaunchMode.islower
+      
+      
+      LaunchMode.isupper
+      
+      
+      LaunchMode.istitle
+      
+      
+      LaunchMode.isspace
+      
+      
+      LaunchMode.isdecimal
+      
+      
+      LaunchMode.isdigit
+      
+      
+      LaunchMode.isnumeric
+      
+      
+      LaunchMode.isalpha
+      
+      
+      LaunchMode.isalnum
+      
+      
+      LaunchMode.isidentifier
+      
+      
+      LaunchMode.isprintable
+      
+      
+      LaunchMode.zfill
+      
+      
+      LaunchMode.format
+      
+      
+      LaunchMode.format_map
+      
+      
+      LaunchMode.maketrans
+      
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      LaunchMode.DIRECT
+      LaunchMode.DOCKER_COMPOSE
+      LaunchMode.CONNECT
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode
+
+   ansys.acp.core.LaunchMode

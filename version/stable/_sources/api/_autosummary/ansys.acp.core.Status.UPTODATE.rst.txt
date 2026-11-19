@@ -1,0 +1,13 @@
+.. vale off
+
+UPTODATE
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: Status.UPTODATE
+
+.. minigallery::
+   :add-heading: Examples using Status.UPTODATE
+
+   ansys.acp.core.Status.UPTODATE

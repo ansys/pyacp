@@ -1,0 +1,13 @@
+.. vale off
+
+AUTOMATIC\_REINFORCED\_MATERIALS
+================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ButtJointSequenceDefinitionType.AUTOMATIC_REINFORCED_MATERIALS
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequenceDefinitionType.AUTOMATIC_REINFORCED_MATERIALS
+
+   ansys.acp.core.ButtJointSequenceDefinitionType.AUTOMATIC_REINFORCED_MATERIALS

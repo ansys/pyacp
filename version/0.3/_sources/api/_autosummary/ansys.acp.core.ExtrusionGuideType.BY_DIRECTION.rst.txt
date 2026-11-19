@@ -1,0 +1,13 @@
+.. vale off
+
+BY\_DIRECTION
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionGuideType.BY_DIRECTION
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionGuideType.BY_DIRECTION
+
+   ansys.acp.core.ExtrusionGuideType.BY_DIRECTION

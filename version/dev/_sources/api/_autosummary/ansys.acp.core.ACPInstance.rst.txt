@@ -1,0 +1,65 @@
+﻿.. vale off
+
+ACPInstance
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ACPInstance
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ACPInstance.check
+      
+      
+      ACPInstance.clear
+      
+      
+      ACPInstance.download_file
+      
+      
+      ACPInstance.import_model
+      
+      
+      ACPInstance.restart
+      
+      
+      ACPInstance.start
+      
+      
+      ACPInstance.stop
+      
+      
+      ACPInstance.upload_file
+      
+      
+      ACPInstance.wait
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ACPInstance.is_remote
+      ACPInstance.models
+      ACPInstance.server_version
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ACPInstance
+
+   ansys.acp.core.ACPInstance

@@ -1,0 +1,13 @@
+.. vale off
+
+origin
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ParallelSelectionRule.origin
+
+.. minigallery::
+   :add-heading: Examples using ParallelSelectionRule.origin
+
+   ansys.acp.core.ParallelSelectionRule.origin

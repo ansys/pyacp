@@ -1,0 +1,13 @@
+.. vale off
+
+image\_name\_acp
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DockerComposeLaunchConfig.image_name_acp
+
+.. minigallery::
+   :add-heading: Examples using DockerComposeLaunchConfig.image_name_acp
+
+   ansys.acp.core.DockerComposeLaunchConfig.image_name_acp

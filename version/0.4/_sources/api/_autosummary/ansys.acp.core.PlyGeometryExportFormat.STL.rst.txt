@@ -1,0 +1,13 @@
+.. vale off
+
+STL
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyGeometryExportFormat.STL
+
+.. minigallery::
+   :add-heading: Examples using PlyGeometryExportFormat.STL
+
+   ansys.acp.core.PlyGeometryExportFormat.STL

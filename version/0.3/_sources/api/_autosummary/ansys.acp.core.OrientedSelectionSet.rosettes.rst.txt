@@ -1,0 +1,13 @@
+.. vale off
+
+rosettes
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.rosettes
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.rosettes
+
+   ansys.acp.core.OrientedSelectionSet.rosettes

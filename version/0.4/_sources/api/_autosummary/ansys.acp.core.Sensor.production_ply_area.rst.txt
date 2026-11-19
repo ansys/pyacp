@@ -1,0 +1,13 @@
+.. vale off
+
+production\_ply\_area
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.production_ply_area
+
+.. minigallery::
+   :add-heading: Examples using Sensor.production_ply_area
+
+   ansys.acp.core.Sensor.production_ply_area

@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: AnalysisPly.name
+
+.. minigallery::
+   :add-heading: Examples using AnalysisPly.name
+
+   ansys.acp.core.AnalysisPly.name

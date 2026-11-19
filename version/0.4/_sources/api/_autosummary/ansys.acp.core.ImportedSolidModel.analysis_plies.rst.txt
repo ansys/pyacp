@@ -1,0 +1,13 @@
+.. vale off
+
+analysis\_plies
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.analysis_plies
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.analysis_plies
+
+   ansys.acp.core.ImportedSolidModel.analysis_plies

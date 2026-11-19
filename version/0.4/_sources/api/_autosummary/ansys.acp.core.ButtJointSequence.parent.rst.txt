@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ButtJointSequence.parent
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence.parent
+
+   ansys.acp.core.ButtJointSequence.parent

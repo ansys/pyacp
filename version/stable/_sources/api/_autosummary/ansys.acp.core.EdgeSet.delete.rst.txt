@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: EdgeSet.delete
+
+.. minigallery::
+   :add-heading: Examples using EdgeSet.delete
+
+   ansys.acp.core.EdgeSet.delete

@@ -1,0 +1,13 @@
+.. vale off
+
+sequence
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: PrimaryPly.sequence
+
+.. minigallery::
+   :add-heading: Examples using PrimaryPly.sequence
+
+   ansys.acp.core.PrimaryPly.sequence

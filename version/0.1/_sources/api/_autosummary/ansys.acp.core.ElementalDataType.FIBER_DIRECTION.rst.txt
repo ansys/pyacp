@@ -1,0 +1,13 @@
+.. vale off
+
+FIBER\_DIRECTION
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ElementalDataType.FIBER_DIRECTION
+
+.. minigallery::
+   :add-heading: Examples using ElementalDataType.FIBER_DIRECTION
+
+   ansys.acp.core.ElementalDataType.FIBER_DIRECTION

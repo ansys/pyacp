@@ -1,0 +1,13 @@
+.. vale off
+
+scope\_element\_sets
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.scope_element_sets
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.scope_element_sets
+
+   ansys.acp.core.SectionCut.scope_element_sets

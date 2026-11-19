@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: BooleanSelectionRule.delete
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRule.delete
+
+   ansys.acp.core.BooleanSelectionRule.delete

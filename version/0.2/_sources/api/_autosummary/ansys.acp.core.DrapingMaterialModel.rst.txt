@@ -1,0 +1,28 @@
+﻿DrapingMaterialModel
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: DrapingMaterialModel
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        DrapingMaterialModel.WOVEN
+      
+      
+        DrapingMaterialModel.UD
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using DrapingMaterialModel
+
+   ansys.acp.core.DrapingMaterialModel

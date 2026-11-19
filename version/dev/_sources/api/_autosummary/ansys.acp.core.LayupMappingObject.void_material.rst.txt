@@ -1,0 +1,13 @@
+.. vale off
+
+void\_material
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LayupMappingObject.void_material
+
+.. minigallery::
+   :add-heading: Examples using LayupMappingObject.void_material
+
+   ansys.acp.core.LayupMappingObject.void_material

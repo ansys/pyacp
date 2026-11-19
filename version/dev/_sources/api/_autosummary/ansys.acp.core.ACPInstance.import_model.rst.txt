@@ -1,0 +1,13 @@
+.. vale off
+
+import\_model
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ACPInstance.import_model
+
+.. minigallery::
+   :add-heading: Examples using ACPInstance.import_model
+
+   ansys.acp.core.ACPInstance.import_model

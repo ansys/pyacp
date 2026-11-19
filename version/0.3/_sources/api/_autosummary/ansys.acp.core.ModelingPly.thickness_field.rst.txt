@@ -1,0 +1,13 @@
+.. vale off
+
+thickness\_field
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.thickness_field
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.thickness_field
+
+   ansys.acp.core.ModelingPly.thickness_field

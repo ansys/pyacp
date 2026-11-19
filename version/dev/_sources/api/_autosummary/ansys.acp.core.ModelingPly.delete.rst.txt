@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ModelingPly.delete
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.delete
+
+   ansys.acp.core.ModelingPly.delete

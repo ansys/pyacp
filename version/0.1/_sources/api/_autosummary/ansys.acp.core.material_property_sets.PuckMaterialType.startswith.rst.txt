@@ -1,0 +1,13 @@
+.. vale off
+
+startswith
+==========
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.startswith
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.startswith
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.startswith

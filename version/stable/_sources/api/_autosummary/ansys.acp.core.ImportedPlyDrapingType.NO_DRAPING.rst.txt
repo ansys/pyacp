@@ -1,0 +1,13 @@
+.. vale off
+
+NO\_DRAPING
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ImportedPlyDrapingType.NO_DRAPING
+
+.. minigallery::
+   :add-heading: Examples using ImportedPlyDrapingType.NO_DRAPING
+
+   ansys.acp.core.ImportedPlyDrapingType.NO_DRAPING

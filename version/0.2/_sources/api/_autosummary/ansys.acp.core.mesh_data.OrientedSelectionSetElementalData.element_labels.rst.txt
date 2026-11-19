@@ -1,0 +1,13 @@
+.. vale off
+
+element\_labels
+===============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: OrientedSelectionSetElementalData.element_labels
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSetElementalData.element_labels
+
+   ansys.acp.core.mesh_data.OrientedSelectionSetElementalData.element_labels

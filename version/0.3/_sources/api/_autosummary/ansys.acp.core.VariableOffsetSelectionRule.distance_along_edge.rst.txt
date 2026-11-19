@@ -1,0 +1,13 @@
+.. vale off
+
+distance\_along\_edge
+=====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.distance_along_edge
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule.distance_along_edge
+
+   ansys.acp.core.VariableOffsetSelectionRule.distance_along_edge

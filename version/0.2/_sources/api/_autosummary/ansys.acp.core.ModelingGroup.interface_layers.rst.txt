@@ -1,0 +1,13 @@
+.. vale off
+
+interface\_layers
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingGroup.interface_layers
+
+.. minigallery::
+   :add-heading: Examples using ModelingGroup.interface_layers
+
+   ansys.acp.core.ModelingGroup.interface_layers

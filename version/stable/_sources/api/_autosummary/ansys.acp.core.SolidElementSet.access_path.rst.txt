@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidElementSet.access_path
+
+.. minigallery::
+   :add-heading: Examples using SolidElementSet.access_path
+
+   ansys.acp.core.SolidElementSet.access_path

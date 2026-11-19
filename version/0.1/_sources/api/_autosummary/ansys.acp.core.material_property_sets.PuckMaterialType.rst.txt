@@ -1,0 +1,180 @@
+﻿.. vale off
+
+PuckMaterialType
+================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: PuckMaterialType
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      PuckMaterialType.encode
+      
+      
+      PuckMaterialType.replace
+      
+      
+      PuckMaterialType.split
+      
+      
+      PuckMaterialType.rsplit
+      
+      
+      PuckMaterialType.join
+      
+      
+      PuckMaterialType.capitalize
+      
+      
+      PuckMaterialType.casefold
+      
+      
+      PuckMaterialType.title
+      
+      
+      PuckMaterialType.center
+      
+      
+      PuckMaterialType.count
+      
+      
+      PuckMaterialType.expandtabs
+      
+      
+      PuckMaterialType.find
+      
+      
+      PuckMaterialType.partition
+      
+      
+      PuckMaterialType.index
+      
+      
+      PuckMaterialType.ljust
+      
+      
+      PuckMaterialType.lower
+      
+      
+      PuckMaterialType.lstrip
+      
+      
+      PuckMaterialType.rfind
+      
+      
+      PuckMaterialType.rindex
+      
+      
+      PuckMaterialType.rjust
+      
+      
+      PuckMaterialType.rstrip
+      
+      
+      PuckMaterialType.rpartition
+      
+      
+      PuckMaterialType.splitlines
+      
+      
+      PuckMaterialType.strip
+      
+      
+      PuckMaterialType.swapcase
+      
+      
+      PuckMaterialType.translate
+      
+      
+      PuckMaterialType.upper
+      
+      
+      PuckMaterialType.startswith
+      
+      
+      PuckMaterialType.endswith
+      
+      
+      PuckMaterialType.removeprefix
+      
+      
+      PuckMaterialType.removesuffix
+      
+      
+      PuckMaterialType.isascii
+      
+      
+      PuckMaterialType.islower
+      
+      
+      PuckMaterialType.isupper
+      
+      
+      PuckMaterialType.istitle
+      
+      
+      PuckMaterialType.isspace
+      
+      
+      PuckMaterialType.isdecimal
+      
+      
+      PuckMaterialType.isdigit
+      
+      
+      PuckMaterialType.isnumeric
+      
+      
+      PuckMaterialType.isalpha
+      
+      
+      PuckMaterialType.isalnum
+      
+      
+      PuckMaterialType.isidentifier
+      
+      
+      PuckMaterialType.isprintable
+      
+      
+      PuckMaterialType.zfill
+      
+      
+      PuckMaterialType.format
+      
+      
+      PuckMaterialType.format_map
+      
+      
+      PuckMaterialType.maketrans
+      
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      PuckMaterialType.IGNORED
+      PuckMaterialType.CARBON
+      PuckMaterialType.GLASS
+      PuckMaterialType.MATERIAL_SPECIFIC
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType
+
+   ansys.acp.core.material_property_sets.PuckMaterialType

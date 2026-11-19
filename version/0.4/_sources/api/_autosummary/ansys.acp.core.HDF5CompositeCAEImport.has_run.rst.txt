@@ -1,0 +1,13 @@
+.. vale off
+
+has\_run
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: HDF5CompositeCAEImport.has_run
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport.has_run
+
+   ansys.acp.core.HDF5CompositeCAEImport.has_run

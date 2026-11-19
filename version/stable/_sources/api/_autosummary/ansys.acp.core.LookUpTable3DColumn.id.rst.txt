@@ -1,0 +1,13 @@
+.. vale off
+
+id
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LookUpTable3DColumn.id
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable3DColumn.id
+
+   ansys.acp.core.LookUpTable3DColumn.id

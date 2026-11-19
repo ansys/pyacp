@@ -1,0 +1,13 @@
+.. vale off
+
+nu12\_2
+=======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableWovenCharacterization.nu12_2
+
+.. minigallery::
+   :add-heading: Examples using VariableWovenCharacterization.nu12_2
+
+   ansys.acp.core.material_property_sets.VariableWovenCharacterization.nu12_2

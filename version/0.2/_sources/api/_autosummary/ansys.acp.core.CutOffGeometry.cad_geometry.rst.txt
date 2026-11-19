@@ -1,0 +1,13 @@
+.. vale off
+
+cad\_geometry
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CutOffGeometry.cad_geometry
+
+.. minigallery::
+   :add-heading: Examples using CutOffGeometry.cad_geometry
+
+   ansys.acp.core.CutOffGeometry.cad_geometry

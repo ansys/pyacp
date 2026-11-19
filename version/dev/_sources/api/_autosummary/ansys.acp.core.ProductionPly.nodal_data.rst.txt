@@ -1,0 +1,13 @@
+.. vale off
+
+nodal\_data
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ProductionPly.nodal_data
+
+.. minigallery::
+   :add-heading: Examples using ProductionPly.nodal_data
+
+   ansys.acp.core.ProductionPly.nodal_data

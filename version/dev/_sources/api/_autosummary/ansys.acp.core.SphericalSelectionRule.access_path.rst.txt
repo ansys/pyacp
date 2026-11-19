@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SphericalSelectionRule.access_path
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.access_path
+
+   ansys.acp.core.SphericalSelectionRule.access_path

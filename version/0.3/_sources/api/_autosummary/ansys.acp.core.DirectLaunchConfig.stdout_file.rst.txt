@@ -1,0 +1,13 @@
+.. vale off
+
+stdout\_file
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DirectLaunchConfig.stdout_file
+
+.. minigallery::
+   :add-heading: Examples using DirectLaunchConfig.stdout_file
+
+   ansys.acp.core.DirectLaunchConfig.stdout_file

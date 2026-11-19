@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: FieldDefinition.name
+
+.. minigallery::
+   :add-heading: Examples using FieldDefinition.name
+
+   ansys.acp.core.FieldDefinition.name

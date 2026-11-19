@@ -1,0 +1,13 @@
+.. vale off
+
+keep\_volume
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: DockerComposeLaunchConfig.keep_volume
+
+.. minigallery::
+   :add-heading: Examples using DockerComposeLaunchConfig.keep_volume
+
+   ansys.acp.core.DockerComposeLaunchConfig.keep_volume

@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SectionCut.store
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.store
+
+   ansys.acp.core.SectionCut.store

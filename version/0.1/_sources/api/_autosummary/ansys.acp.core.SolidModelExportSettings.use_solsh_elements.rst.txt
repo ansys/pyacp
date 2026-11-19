@@ -1,0 +1,13 @@
+.. vale off
+
+use\_solsh\_elements
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SolidModelExportSettings.use_solsh_elements
+
+.. minigallery::
+   :add-heading: Examples using SolidModelExportSettings.use_solsh_elements
+
+   ansys.acp.core.SolidModelExportSettings.use_solsh_elements

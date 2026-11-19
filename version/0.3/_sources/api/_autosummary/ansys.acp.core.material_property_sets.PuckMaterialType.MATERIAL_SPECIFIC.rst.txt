@@ -1,0 +1,13 @@
+.. vale off
+
+MATERIAL\_SPECIFIC
+==================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoattribute:: PuckMaterialType.MATERIAL_SPECIFIC
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.MATERIAL_SPECIFIC
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.MATERIAL_SPECIFIC

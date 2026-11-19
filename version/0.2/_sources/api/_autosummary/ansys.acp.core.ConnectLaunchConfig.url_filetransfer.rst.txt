@@ -1,0 +1,13 @@
+.. vale off
+
+url\_filetransfer
+=================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLaunchConfig.url_filetransfer
+
+.. minigallery::
+   :add-heading: Examples using ConnectLaunchConfig.url_filetransfer
+
+   ansys.acp.core.ConnectLaunchConfig.url_filetransfer

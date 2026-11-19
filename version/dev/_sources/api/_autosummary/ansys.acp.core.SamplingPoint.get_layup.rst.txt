@@ -1,0 +1,13 @@
+.. vale off
+
+get\_layup
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SamplingPoint.get_layup
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint.get_layup
+
+   ansys.acp.core.SamplingPoint.get_layup

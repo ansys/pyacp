@@ -1,0 +1,13 @@
+.. vale off
+
+SHELL\_NORMAL
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelOffsetDirectionType.SHELL_NORMAL
+
+.. minigallery::
+   :add-heading: Examples using SolidModelOffsetDirectionType.SHELL_NORMAL
+
+   ansys.acp.core.SolidModelOffsetDirectionType.SHELL_NORMAL

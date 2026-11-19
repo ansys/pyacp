@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SectionCut.clone
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.clone
+
+   ansys.acp.core.SectionCut.clone

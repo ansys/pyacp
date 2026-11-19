@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LookUpTable1D.delete
+
+.. minigallery::
+   :add-heading: Examples using LookUpTable1D.delete
+
+   ansys.acp.core.LookUpTable1D.delete

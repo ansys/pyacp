@@ -1,0 +1,13 @@
+.. vale off
+
+relative\_thickness\_correction
+===============================
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ProductionPlyElementalData.relative_thickness_correction
+
+.. minigallery::
+   :add-heading: Examples using ProductionPlyElementalData.relative_thickness_correction
+
+   ansys.acp.core.mesh_data.ProductionPlyElementalData.relative_thickness_correction

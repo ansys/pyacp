@@ -1,0 +1,13 @@
+.. vale off
+
+angle\_tolerance
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.angle_tolerance
+
+.. minigallery::
+   :add-heading: Examples using Model.angle_tolerance
+
+   ansys.acp.core.Model.angle_tolerance

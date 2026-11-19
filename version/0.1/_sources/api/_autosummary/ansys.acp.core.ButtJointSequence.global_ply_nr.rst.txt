@@ -1,0 +1,13 @@
+.. vale off
+
+global\_ply\_nr
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ButtJointSequence.global_ply_nr
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence.global_ply_nr
+
+   ansys.acp.core.ButtJointSequence.global_ply_nr

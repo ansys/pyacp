@@ -1,0 +1,13 @@
+.. vale off
+
+NO\_OFFSET
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: OffsetType.NO_OFFSET
+
+.. minigallery::
+   :add-heading: Examples using OffsetType.NO_OFFSET
+
+   ansys.acp.core.OffsetType.NO_OFFSET

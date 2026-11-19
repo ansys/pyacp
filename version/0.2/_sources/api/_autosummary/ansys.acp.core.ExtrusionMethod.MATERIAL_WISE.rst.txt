@@ -1,0 +1,13 @@
+.. vale off
+
+MATERIAL\_WISE
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ExtrusionMethod.MATERIAL_WISE
+
+.. minigallery::
+   :add-heading: Examples using ExtrusionMethod.MATERIAL_WISE
+
+   ansys.acp.core.ExtrusionMethod.MATERIAL_WISE

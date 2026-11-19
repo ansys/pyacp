@@ -1,0 +1,13 @@
+.. vale off
+
+orientation\_2
+==============
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantWovenCharacterization.orientation_2
+
+.. minigallery::
+   :add-heading: Examples using ConstantWovenCharacterization.orientation_2
+
+   ansys.acp.core.material_property_sets.ConstantWovenCharacterization.orientation_2

@@ -1,0 +1,13 @@
+.. vale off
+
+eYc
+===
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableStrainLimits.eYc
+
+.. minigallery::
+   :add-heading: Examples using VariableStrainLimits.eYc
+
+   ansys.acp.core.material_property_sets.VariableStrainLimits.eYc

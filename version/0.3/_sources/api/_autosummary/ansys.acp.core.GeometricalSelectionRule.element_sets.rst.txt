@@ -1,0 +1,13 @@
+.. vale off
+
+element\_sets
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: GeometricalSelectionRule.element_sets
+
+.. minigallery::
+   :add-heading: Examples using GeometricalSelectionRule.element_sets
+
+   ansys.acp.core.GeometricalSelectionRule.element_sets

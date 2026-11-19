@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.status
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.status
+
+   ansys.acp.core.SectionCut.status

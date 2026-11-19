@@ -1,0 +1,13 @@
+.. vale off
+
+hdf5\_composite\_cae\_imports
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.hdf5_composite_cae_imports
+
+.. minigallery::
+   :add-heading: Examples using Model.hdf5_composite_cae_imports
+
+   ansys.acp.core.Model.hdf5_composite_cae_imports

@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ImportedModelingGroup.clone
+
+.. minigallery::
+   :add-heading: Examples using ImportedModelingGroup.clone
+
+   ansys.acp.core.ImportedModelingGroup.clone

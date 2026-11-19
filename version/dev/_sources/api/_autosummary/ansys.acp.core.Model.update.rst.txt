@@ -1,0 +1,13 @@
+.. vale off
+
+update
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.update
+
+.. minigallery::
+   :add-heading: Examples using Model.update
+
+   ansys.acp.core.Model.update

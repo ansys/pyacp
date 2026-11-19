@@ -1,0 +1,44 @@
+﻿.. vale off
+
+Layer
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Layer
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Layer.clone
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Layer.add_mirrored_ply
+      Layer.fabric
+      Layer.has_limits
+      Layer.lower_limit
+      Layer.nominal_angle
+      Layer.upper_limit
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using Layer
+
+   ansys.acp.core.Layer

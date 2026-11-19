@@ -1,0 +1,52 @@
+﻿.. vale off
+
+SnapToGeometry
+==============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SnapToGeometry
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      SnapToGeometry.clone
+      
+      
+      SnapToGeometry.delete
+      
+      
+      SnapToGeometry.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SnapToGeometry.active
+      SnapToGeometry.cad_geometry
+      SnapToGeometry.id
+      SnapToGeometry.name
+      SnapToGeometry.orientation_type
+      SnapToGeometry.oriented_selection_set
+      SnapToGeometry.parent
+      SnapToGeometry.status
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using SnapToGeometry
+
+   ansys.acp.core.SnapToGeometry

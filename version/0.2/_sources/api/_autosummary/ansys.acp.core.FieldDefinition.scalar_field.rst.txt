@@ -1,0 +1,13 @@
+.. vale off
+
+scalar\_field
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: FieldDefinition.scalar_field
+
+.. minigallery::
+   :add-heading: Examples using FieldDefinition.scalar_field
+
+   ansys.acp.core.FieldDefinition.scalar_field

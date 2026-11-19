@@ -1,0 +1,13 @@
+.. vale off
+
+RACE\_CAR\_NOSE\_STEP
+=====================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.RACE_CAR_NOSE_STEP
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.RACE_CAR_NOSE_STEP
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.RACE_CAR_NOSE_STEP

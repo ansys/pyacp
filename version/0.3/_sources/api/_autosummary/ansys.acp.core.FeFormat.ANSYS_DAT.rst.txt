@@ -1,0 +1,13 @@
+.. vale off
+
+ANSYS\_DAT
+==========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: FeFormat.ANSYS_DAT
+
+.. minigallery::
+   :add-heading: Examples using FeFormat.ANSYS_DAT
+
+   ansys.acp.core.FeFormat.ANSYS_DAT

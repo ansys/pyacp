@@ -1,0 +1,13 @@
+.. vale off
+
+minimum\_analysis\_ply\_thickness
+=================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.minimum_analysis_ply_thickness
+
+.. minigallery::
+   :add-heading: Examples using Model.minimum_analysis_ply_thickness
+
+   ansys.acp.core.Model.minimum_analysis_ply_thickness

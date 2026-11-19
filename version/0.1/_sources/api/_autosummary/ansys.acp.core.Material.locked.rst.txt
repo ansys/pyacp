@@ -1,0 +1,13 @@
+.. vale off
+
+locked
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Material.locked
+
+.. minigallery::
+   :add-heading: Examples using Material.locked
+
+   ansys.acp.core.Material.locked

@@ -1,0 +1,13 @@
+.. vale off
+
+GEOMETRY
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: CutOffRuleType.GEOMETRY
+
+.. minigallery::
+   :add-heading: Examples using CutOffRuleType.GEOMETRY
+
+   ansys.acp.core.CutOffRuleType.GEOMETRY

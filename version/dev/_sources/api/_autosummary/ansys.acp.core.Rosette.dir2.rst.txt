@@ -1,0 +1,13 @@
+.. vale off
+
+dir2
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Rosette.dir2
+
+.. minigallery::
+   :add-heading: Examples using Rosette.dir2
+
+   ansys.acp.core.Rosette.dir2

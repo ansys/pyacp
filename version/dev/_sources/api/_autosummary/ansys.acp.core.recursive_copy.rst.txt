@@ -1,0 +1,13 @@
+﻿.. vale off
+
+recursive\_copy
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autofunction:: recursive_copy
+
+.. minigallery::
+   :add-heading: Examples using recursive_copy
+
+   ansys.acp.core.recursive_copy

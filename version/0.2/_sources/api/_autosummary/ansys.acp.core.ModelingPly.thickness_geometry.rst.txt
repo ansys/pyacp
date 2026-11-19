@@ -1,0 +1,13 @@
+.. vale off
+
+thickness\_geometry
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.thickness_geometry
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.thickness_geometry
+
+   ansys.acp.core.ModelingPly.thickness_geometry

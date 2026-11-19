@@ -1,0 +1,13 @@
+.. vale off
+
+offset
+======
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: ModelingPlyElementalData.offset
+
+.. minigallery::
+   :add-heading: Examples using ModelingPlyElementalData.offset
+
+   ansys.acp.core.mesh_data.ModelingPlyElementalData.offset

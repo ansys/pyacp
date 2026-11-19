@@ -1,0 +1,31 @@
+﻿LookUpTableColumnValueType
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: LookUpTableColumnValueType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        LookUpTableColumnValueType.SCALAR
+      
+      
+        LookUpTableColumnValueType.DIRECTION
+      
+      
+        LookUpTableColumnValueType.LOCATION
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using LookUpTableColumnValueType
+
+   ansys.acp.core.LookUpTableColumnValueType

@@ -1,0 +1,49 @@
+﻿.. vale off
+
+ConnectLaunchConfig
+===================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: ConnectLaunchConfig
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConnectLaunchConfig.acp_allow_remote_host
+      ConnectLaunchConfig.acp_certs_dir
+      ConnectLaunchConfig.acp_host
+      ConnectLaunchConfig.acp_port
+      ConnectLaunchConfig.acp_transport_mode
+      ConnectLaunchConfig.acp_uds_dir
+      ConnectLaunchConfig.acp_uds_id
+      ConnectLaunchConfig.filetransfer_allow_remote_host
+      ConnectLaunchConfig.filetransfer_certs_dir
+      ConnectLaunchConfig.filetransfer_host
+      ConnectLaunchConfig.filetransfer_port
+      ConnectLaunchConfig.filetransfer_transport_mode
+      ConnectLaunchConfig.filetransfer_uds_dir
+      ConnectLaunchConfig.filetransfer_uds_id
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ConnectLaunchConfig
+
+   ansys.acp.core.ConnectLaunchConfig

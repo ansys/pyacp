@@ -1,0 +1,13 @@
+.. vale off
+
+element\_labels
+===============
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoattribute:: SphericalSelectionRuleElementalData.element_labels
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRuleElementalData.element_labels
+
+   ansys.acp.core.mesh_data.SphericalSelectionRuleElementalData.element_labels

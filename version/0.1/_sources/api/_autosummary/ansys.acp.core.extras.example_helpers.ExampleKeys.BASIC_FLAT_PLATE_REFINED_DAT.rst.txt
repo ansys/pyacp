@@ -1,0 +1,13 @@
+.. vale off
+
+BASIC\_FLAT\_PLATE\_REFINED\_DAT
+================================
+
+.. currentmodule:: ansys.acp.core.extras.example_helpers
+
+.. autoattribute:: ExampleKeys.BASIC_FLAT_PLATE_REFINED_DAT
+
+.. minigallery::
+   :add-heading: Examples using ExampleKeys.BASIC_FLAT_PLATE_REFINED_DAT
+
+   ansys.acp.core.extras.example_helpers.ExampleKeys.BASIC_FLAT_PLATE_REFINED_DAT

@@ -1,0 +1,13 @@
+.. vale off
+
+shell\_mesh
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.shell_mesh
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule.shell_mesh
+
+   ansys.acp.core.VariableOffsetSelectionRule.shell_mesh

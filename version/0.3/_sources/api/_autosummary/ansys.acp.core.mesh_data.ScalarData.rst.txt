@@ -1,0 +1,40 @@
+﻿.. vale off
+
+ScalarData
+==========
+
+.. currentmodule:: ansys.acp.core.mesh_data
+
+.. autoclass:: ScalarData
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ScalarData.get_pyvista_mesh
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ScalarData.component_name
+      ScalarData.values
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ScalarData
+
+   ansys.acp.core.mesh_data.ScalarData

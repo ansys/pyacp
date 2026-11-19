@@ -1,0 +1,13 @@
+.. vale off
+
+orientation\_direction
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: OrientedSelectionSet.orientation_direction
+
+.. minigallery::
+   :add-heading: Examples using OrientedSelectionSet.orientation_direction
+
+   ansys.acp.core.OrientedSelectionSet.orientation_direction

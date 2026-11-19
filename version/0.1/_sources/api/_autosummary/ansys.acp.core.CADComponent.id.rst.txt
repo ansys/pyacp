@@ -1,0 +1,13 @@
+.. vale off
+
+id
+==
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: CADComponent.id
+
+.. minigallery::
+   :add-heading: Examples using CADComponent.id
+
+   ansys.acp.core.CADComponent.id

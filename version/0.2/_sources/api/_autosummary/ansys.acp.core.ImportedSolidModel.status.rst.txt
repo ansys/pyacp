@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ImportedSolidModel.status
+
+.. minigallery::
+   :add-heading: Examples using ImportedSolidModel.status
+
+   ansys.acp.core.ImportedSolidModel.status

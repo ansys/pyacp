@@ -1,0 +1,13 @@
+.. vale off
+
+locked
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Sensor.locked
+
+.. minigallery::
+   :add-heading: Examples using Sensor.locked
+
+   ansys.acp.core.Sensor.locked

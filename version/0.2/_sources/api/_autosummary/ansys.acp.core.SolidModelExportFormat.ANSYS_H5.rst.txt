@@ -1,0 +1,13 @@
+.. vale off
+
+ANSYS\_H5
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: SolidModelExportFormat.ANSYS_H5
+
+.. minigallery::
+   :add-heading: Examples using SolidModelExportFormat.ANSYS_H5
+
+   ansys.acp.core.SolidModelExportFormat.ANSYS_H5

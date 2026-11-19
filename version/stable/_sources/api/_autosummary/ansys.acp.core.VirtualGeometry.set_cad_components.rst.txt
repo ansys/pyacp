@@ -1,0 +1,13 @@
+.. vale off
+
+set\_cad\_components
+====================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: VirtualGeometry.set_cad_components
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometry.set_cad_components
+
+   ansys.acp.core.VirtualGeometry.set_cad_components

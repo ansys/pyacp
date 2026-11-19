@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SubLaminate.store
+
+.. minigallery::
+   :add-heading: Examples using SubLaminate.store
+
+   ansys.acp.core.SubLaminate.store

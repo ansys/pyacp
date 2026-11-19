@@ -1,0 +1,13 @@
+.. vale off
+
+status
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SamplingPoint.status
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint.status
+
+   ansys.acp.core.SamplingPoint.status

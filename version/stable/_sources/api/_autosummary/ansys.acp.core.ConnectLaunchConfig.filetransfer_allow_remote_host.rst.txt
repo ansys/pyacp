@@ -1,0 +1,13 @@
+.. vale off
+
+filetransfer\_allow\_remote\_host
+=================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ConnectLaunchConfig.filetransfer_allow_remote_host
+
+.. minigallery::
+   :add-heading: Examples using ConnectLaunchConfig.filetransfer_allow_remote_host
+
+   ansys.acp.core.ConnectLaunchConfig.filetransfer_allow_remote_host

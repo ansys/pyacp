@@ -1,0 +1,13 @@
+.. vale off
+
+NOMINAL
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ThicknessType.NOMINAL
+
+.. minigallery::
+   :add-heading: Examples using ThicknessType.NOMINAL
+
+   ansys.acp.core.ThicknessType.NOMINAL

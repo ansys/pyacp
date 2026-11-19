@@ -1,0 +1,13 @@
+.. vale off
+
+name
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: WindingWizard.name
+
+.. minigallery::
+   :add-heading: Examples using WindingWizard.name
+
+   ansys.acp.core.WindingWizard.name

@@ -1,0 +1,13 @@
+.. vale off
+
+average\_element\_size
+======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.average_element_size
+
+.. minigallery::
+   :add-heading: Examples using Model.average_element_size
+
+   ansys.acp.core.Model.average_element_size

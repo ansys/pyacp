@@ -1,0 +1,13 @@
+.. vale off
+
+field\_variables
+================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableFabricFiberAngle.field_variables
+
+.. minigallery::
+   :add-heading: Examples using VariableFabricFiberAngle.field_variables
+
+   ansys.acp.core.material_property_sets.VariableFabricFiberAngle.field_variables

@@ -1,0 +1,13 @@
+.. vale off
+
+angle
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: FabricWithAngle.angle
+
+.. minigallery::
+   :add-heading: Examples using FabricWithAngle.angle
+
+   ansys.acp.core.FabricWithAngle.angle

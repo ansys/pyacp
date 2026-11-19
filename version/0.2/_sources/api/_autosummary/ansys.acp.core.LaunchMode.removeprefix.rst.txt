@@ -1,0 +1,13 @@
+.. vale off
+
+removeprefix
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: LaunchMode.removeprefix
+
+.. minigallery::
+   :add-heading: Examples using LaunchMode.removeprefix
+
+   ansys.acp.core.LaunchMode.removeprefix

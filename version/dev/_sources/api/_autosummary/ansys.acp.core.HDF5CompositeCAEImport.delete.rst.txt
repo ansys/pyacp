@@ -1,0 +1,13 @@
+.. vale off
+
+delete
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: HDF5CompositeCAEImport.delete
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport.delete
+
+   ansys.acp.core.HDF5CompositeCAEImport.delete

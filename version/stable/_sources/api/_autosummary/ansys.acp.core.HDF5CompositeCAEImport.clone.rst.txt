@@ -1,0 +1,13 @@
+.. vale off
+
+clone
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: HDF5CompositeCAEImport.clone
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport.clone
+
+   ansys.acp.core.HDF5CompositeCAEImport.clone

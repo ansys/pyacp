@@ -1,0 +1,13 @@
+.. vale off
+
+imported\_solid\_models
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.imported_solid_models
+
+.. minigallery::
+   :add-heading: Examples using Model.imported_solid_models
+
+   ansys.acp.core.Model.imported_solid_models

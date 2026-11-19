@@ -1,0 +1,13 @@
+.. vale off
+
+GEOMETRY
+========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: GeometricalRuleType.GEOMETRY
+
+.. minigallery::
+   :add-heading: Examples using GeometricalRuleType.GEOMETRY
+
+   ansys.acp.core.GeometricalRuleType.GEOMETRY

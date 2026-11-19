@@ -1,0 +1,13 @@
+.. vale off
+
+sensors
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Model.sensors
+
+.. minigallery::
+   :add-heading: Examples using Model.sensors
+
+   ansys.acp.core.Model.sensors

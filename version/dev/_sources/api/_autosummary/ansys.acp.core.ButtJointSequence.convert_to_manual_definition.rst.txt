@@ -1,0 +1,13 @@
+.. vale off
+
+convert\_to\_manual\_definition
+===============================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: ButtJointSequence.convert_to_manual_definition
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequence.convert_to_manual_definition
+
+   ansys.acp.core.ButtJointSequence.convert_to_manual_definition

@@ -1,0 +1,13 @@
+.. vale off
+
+AUTOMATIC\_IDENTICAL\_MODELING\_PLY\_MATERIAL
+=============================================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: ButtJointSequenceDefinitionType.AUTOMATIC_IDENTICAL_MODELING_PLY_MATERIAL
+
+.. minigallery::
+   :add-heading: Examples using ButtJointSequenceDefinitionType.AUTOMATIC_IDENTICAL_MODELING_PLY_MATERIAL
+
+   ansys.acp.core.ButtJointSequenceDefinitionType.AUTOMATIC_IDENTICAL_MODELING_PLY_MATERIAL

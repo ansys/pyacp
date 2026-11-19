@@ -1,0 +1,13 @@
+.. vale off
+
+area\_weight
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: Fabric.area_weight
+
+.. minigallery::
+   :add-heading: Examples using Fabric.area_weight
+
+   ansys.acp.core.Fabric.area_weight

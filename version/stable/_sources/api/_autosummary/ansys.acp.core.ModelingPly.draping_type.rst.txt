@@ -1,0 +1,13 @@
+.. vale off
+
+draping\_type
+=============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ModelingPly.draping_type
+
+.. minigallery::
+   :add-heading: Examples using ModelingPly.draping_type
+
+   ansys.acp.core.ModelingPly.draping_type

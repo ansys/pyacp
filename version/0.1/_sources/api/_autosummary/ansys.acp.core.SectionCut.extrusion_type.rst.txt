@@ -1,0 +1,13 @@
+.. vale off
+
+extrusion\_type
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.extrusion_type
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.extrusion_type
+
+   ansys.acp.core.SectionCut.extrusion_type

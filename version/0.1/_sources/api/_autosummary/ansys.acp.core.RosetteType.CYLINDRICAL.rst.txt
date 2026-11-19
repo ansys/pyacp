@@ -1,0 +1,13 @@
+.. vale off
+
+CYLINDRICAL
+===========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: RosetteType.CYLINDRICAL
+
+.. minigallery::
+   :add-heading: Examples using RosetteType.CYLINDRICAL
+
+   ansys.acp.core.RosetteType.CYLINDRICAL

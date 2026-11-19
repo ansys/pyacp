@@ -1,0 +1,13 @@
+.. vale off
+
+access\_path
+============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SamplingPoint.access_path
+
+.. minigallery::
+   :add-heading: Examples using SamplingPoint.access_path
+
+   ansys.acp.core.SamplingPoint.access_path

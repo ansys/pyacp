@@ -1,0 +1,42 @@
+﻿.. vale off
+
+SolidElementSet
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SolidElementSet
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      SolidElementSet.element_labels
+      SolidElementSet.id
+      SolidElementSet.locked
+      SolidElementSet.name
+      SolidElementSet.parent
+      SolidElementSet.solid_mesh
+      SolidElementSet.status
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using SolidElementSet
+
+   ansys.acp.core.SolidElementSet

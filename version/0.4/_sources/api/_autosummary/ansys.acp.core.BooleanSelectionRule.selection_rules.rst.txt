@@ -1,0 +1,13 @@
+.. vale off
+
+selection\_rules
+================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: BooleanSelectionRule.selection_rules
+
+.. minigallery::
+   :add-heading: Examples using BooleanSelectionRule.selection_rules
+
+   ansys.acp.core.BooleanSelectionRule.selection_rules

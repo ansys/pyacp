@@ -1,0 +1,13 @@
+.. vale off
+
+rsplit
+======
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. automethod:: PuckMaterialType.rsplit
+
+.. minigallery::
+   :add-heading: Examples using PuckMaterialType.rsplit
+
+   ansys.acp.core.material_property_sets.PuckMaterialType.rsplit

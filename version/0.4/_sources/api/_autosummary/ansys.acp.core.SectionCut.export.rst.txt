@@ -1,0 +1,13 @@
+.. vale off
+
+export
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SectionCut.export
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.export
+
+   ansys.acp.core.SectionCut.export

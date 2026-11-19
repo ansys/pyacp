@@ -1,0 +1,13 @@
+.. vale off
+
+MKS
+===
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: UnitSystemType.MKS
+
+.. minigallery::
+   :add-heading: Examples using UnitSystemType.MKS
+
+   ansys.acp.core.UnitSystemType.MKS

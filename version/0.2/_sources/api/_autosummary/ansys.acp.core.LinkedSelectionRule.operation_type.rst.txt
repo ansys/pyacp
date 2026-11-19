@@ -1,0 +1,13 @@
+.. vale off
+
+operation\_type
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: LinkedSelectionRule.operation_type
+
+.. minigallery::
+   :add-heading: Examples using LinkedSelectionRule.operation_type
+
+   ansys.acp.core.LinkedSelectionRule.operation_type

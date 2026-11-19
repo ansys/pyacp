@@ -1,0 +1,13 @@
+.. vale off
+
+ORTHOTROPIC\_HOMOGENEOUS\_CORE
+==============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoattribute:: PlyType.ORTHOTROPIC_HOMOGENEOUS_CORE
+
+.. minigallery::
+   :add-heading: Examples using PlyType.ORTHOTROPIC_HOMOGENEOUS_CORE
+
+   ansys.acp.core.PlyType.ORTHOTROPIC_HOMOGENEOUS_CORE

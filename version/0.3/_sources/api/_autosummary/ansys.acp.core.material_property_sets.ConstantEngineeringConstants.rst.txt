@@ -1,0 +1,52 @@
+﻿.. vale off
+
+ConstantEngineeringConstants
+============================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoclass:: ConstantEngineeringConstants
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ConstantEngineeringConstants.from_isotropic_constants
+      
+      
+      ConstantEngineeringConstants.from_orthotropic_constants
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ConstantEngineeringConstants.E
+      ConstantEngineeringConstants.E1
+      ConstantEngineeringConstants.E2
+      ConstantEngineeringConstants.E3
+      ConstantEngineeringConstants.G12
+      ConstantEngineeringConstants.G23
+      ConstantEngineeringConstants.G31
+      ConstantEngineeringConstants.nu
+      ConstantEngineeringConstants.nu12
+      ConstantEngineeringConstants.nu13
+      ConstantEngineeringConstants.nu23
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using ConstantEngineeringConstants
+
+   ansys.acp.core.material_property_sets.ConstantEngineeringConstants

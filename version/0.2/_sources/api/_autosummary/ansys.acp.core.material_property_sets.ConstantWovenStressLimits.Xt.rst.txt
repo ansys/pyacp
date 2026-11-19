@@ -1,0 +1,13 @@
+.. vale off
+
+Xt
+==
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: ConstantWovenStressLimits.Xt
+
+.. minigallery::
+   :add-heading: Examples using ConstantWovenStressLimits.Xt
+
+   ansys.acp.core.material_property_sets.ConstantWovenStressLimits.Xt

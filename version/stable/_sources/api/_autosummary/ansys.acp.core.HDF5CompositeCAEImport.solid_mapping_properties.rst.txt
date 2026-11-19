@@ -1,0 +1,13 @@
+.. vale off
+
+solid\_mapping\_properties
+==========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: HDF5CompositeCAEImport.solid_mapping_properties
+
+.. minigallery::
+   :add-heading: Examples using HDF5CompositeCAEImport.solid_mapping_properties
+
+   ansys.acp.core.HDF5CompositeCAEImport.solid_mapping_properties

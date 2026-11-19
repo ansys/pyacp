@@ -1,0 +1,13 @@
+.. vale off
+
+minimum\_segment\_length
+========================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: SectionCut.minimum_segment_length
+
+.. minigallery::
+   :add-heading: Examples using SectionCut.minimum_segment_length
+
+   ansys.acp.core.SectionCut.minimum_segment_length

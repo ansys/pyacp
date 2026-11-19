@@ -1,0 +1,13 @@
+.. vale off
+
+mesh
+====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: ElementSet.mesh
+
+.. minigallery::
+   :add-heading: Examples using ElementSet.mesh
+
+   ansys.acp.core.ElementSet.mesh

@@ -1,0 +1,192 @@
+﻿.. vale off
+
+Model
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Model
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Model.create_boolean_selection_rule
+      
+      
+      Model.create_cad_geometry
+      
+      
+      Model.create_cut_off_selection_rule
+      
+      
+      Model.create_cylindrical_selection_rule
+      
+      
+      Model.create_edge_set
+      
+      
+      Model.create_element_set
+      
+      
+      Model.create_fabric
+      
+      
+      Model.create_field_definition
+      
+      
+      Model.create_geometrical_selection_rule
+      
+      
+      Model.create_imported_modeling_group
+      
+      
+      Model.create_imported_solid_model
+      
+      
+      Model.create_lookup_table_1d
+      
+      
+      Model.create_lookup_table_3d
+      
+      
+      Model.create_material
+      
+      
+      Model.create_modeling_group
+      
+      
+      Model.create_oriented_selection_set
+      
+      
+      Model.create_parallel_selection_rule
+      
+      
+      Model.create_rosette
+      
+      
+      Model.create_sampling_point
+      
+      
+      Model.create_section_cut
+      
+      
+      Model.create_sensor
+      
+      
+      Model.create_solid_model
+      
+      
+      Model.create_spherical_selection_rule
+      
+      
+      Model.create_stackup
+      
+      
+      Model.create_sublaminate
+      
+      
+      Model.create_tube_selection_rule
+      
+      
+      Model.create_variable_offset_selection_rule
+      
+      
+      Model.create_virtual_geometry
+      
+      
+      Model.delete
+      
+      
+      Model.export_analysis_model
+      
+      
+      Model.export_hdf5_composite_cae
+      
+      
+      Model.export_materials
+      
+      
+      Model.export_modeling_ply_geometries
+      
+      
+      Model.export_shell_composite_definitions
+      
+      
+      Model.import_hdf5_composite_cae
+      
+      
+      Model.import_materials
+      
+      
+      Model.save
+      
+      
+      Model.update
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Model.angle_tolerance
+      Model.average_element_size
+      Model.boolean_selection_rules
+      Model.cad_geometries
+      Model.cut_off_selection_rules
+      Model.cylindrical_selection_rules
+      Model.draping_offset_correction
+      Model.edge_sets
+      Model.element_sets
+      Model.elemental_data
+      Model.fabrics
+      Model.field_definitions
+      Model.force_disable_result_extrapolation
+      Model.geometrical_selection_rules
+      Model.imported_modeling_groups
+      Model.imported_solid_models
+      Model.lookup_tables_1d
+      Model.lookup_tables_3d
+      Model.materials
+      Model.mesh
+      Model.minimum_analysis_ply_thickness
+      Model.modeling_groups
+      Model.name
+      Model.nodal_data
+      Model.oriented_selection_sets
+      Model.parallel_selection_rules
+      Model.parent
+      Model.relative_thickness_tolerance
+      Model.rosettes
+      Model.sampling_points
+      Model.section_cuts
+      Model.sensors
+      Model.shell_mesh
+      Model.solid_mesh
+      Model.solid_models
+      Model.spherical_selection_rules
+      Model.stackups
+      Model.sublaminates
+      Model.tube_selection_rules
+      Model.unit_system
+      Model.use_nodal_thicknesses
+      Model.variable_offset_selection_rules
+      Model.virtual_geometries
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using Model
+
+   ansys.acp.core.Model

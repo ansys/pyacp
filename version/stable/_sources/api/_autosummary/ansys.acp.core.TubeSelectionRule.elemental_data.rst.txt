@@ -1,0 +1,13 @@
+.. vale off
+
+elemental\_data
+===============
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: TubeSelectionRule.elemental_data
+
+.. minigallery::
+   :add-heading: Examples using TubeSelectionRule.elemental_data
+
+   ansys.acp.core.TubeSelectionRule.elemental_data

@@ -1,0 +1,13 @@
+.. vale off
+
+fracture\_angle\_under\_compression
+===================================
+
+.. currentmodule:: ansys.acp.core.material_property_sets
+
+.. autoproperty:: VariableLaRCConstants.fracture_angle_under_compression
+
+.. minigallery::
+   :add-heading: Examples using VariableLaRCConstants.fracture_angle_under_compression
+
+   ansys.acp.core.material_property_sets.VariableLaRCConstants.fracture_angle_under_compression

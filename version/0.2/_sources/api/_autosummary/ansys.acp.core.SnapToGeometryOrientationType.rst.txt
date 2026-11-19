@@ -1,0 +1,28 @@
+﻿SnapToGeometryOrientationType
+=============================
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: SnapToGeometryOrientationType
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+        SnapToGeometryOrientationType.BOTTOM
+      
+      
+        SnapToGeometryOrientationType.TOP
+      
+   
+   
+
+
+.. minigallery::
+   :add-heading: Examples using SnapToGeometryOrientationType
+
+   ansys.acp.core.SnapToGeometryOrientationType

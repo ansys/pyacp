@@ -1,0 +1,65 @@
+﻿.. vale off
+
+Stackup
+=======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoclass:: Stackup
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Stackup.add_fabric
+      
+      
+      Stackup.clone
+      
+      
+      Stackup.delete
+      
+      
+      Stackup.store
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Stackup.area_price
+      Stackup.area_weight
+      Stackup.cut_off_material
+      Stackup.cut_off_material_handling
+      Stackup.draping_material_model
+      Stackup.draping_ud_coefficient
+      Stackup.drop_off_material
+      Stackup.drop_off_material_handling
+      Stackup.fabrics
+      Stackup.id
+      Stackup.ignore_for_postprocessing
+      Stackup.locked
+      Stackup.name
+      Stackup.parent
+      Stackup.status
+      Stackup.symmetry
+      Stackup.thickness
+      Stackup.topdown
+   
+   
+
+.. minigallery::
+   :add-heading: Examples using Stackup
+
+   ansys.acp.core.Stackup

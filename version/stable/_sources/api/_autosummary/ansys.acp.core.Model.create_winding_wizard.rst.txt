@@ -1,0 +1,13 @@
+.. vale off
+
+create\_winding\_wizard
+=======================
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: Model.create_winding_wizard
+
+.. minigallery::
+   :add-heading: Examples using Model.create_winding_wizard
+
+   ansys.acp.core.Model.create_winding_wizard

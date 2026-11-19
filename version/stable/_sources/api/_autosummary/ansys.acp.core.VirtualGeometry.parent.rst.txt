@@ -1,0 +1,13 @@
+.. vale off
+
+parent
+======
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VirtualGeometry.parent
+
+.. minigallery::
+   :add-heading: Examples using VirtualGeometry.parent
+
+   ansys.acp.core.VirtualGeometry.parent

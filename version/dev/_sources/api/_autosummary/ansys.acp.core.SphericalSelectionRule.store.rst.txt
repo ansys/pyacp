@@ -1,0 +1,13 @@
+.. vale off
+
+store
+=====
+
+.. currentmodule:: ansys.acp.core
+
+.. automethod:: SphericalSelectionRule.store
+
+.. minigallery::
+   :add-heading: Examples using SphericalSelectionRule.store
+
+   ansys.acp.core.SphericalSelectionRule.store

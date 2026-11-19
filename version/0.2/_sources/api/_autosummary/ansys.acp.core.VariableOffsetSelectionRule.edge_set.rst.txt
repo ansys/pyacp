@@ -1,0 +1,13 @@
+.. vale off
+
+edge\_set
+=========
+
+.. currentmodule:: ansys.acp.core
+
+.. autoproperty:: VariableOffsetSelectionRule.edge_set
+
+.. minigallery::
+   :add-heading: Examples using VariableOffsetSelectionRule.edge_set
+
+   ansys.acp.core.VariableOffsetSelectionRule.edge_set
