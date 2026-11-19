@@ -233,7 +233,7 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
         if not isinstance(obj_list, list):
             assert isinstance(obj_list, self._object_type)
             return obj_list
-        return [item for item in obj_list]
+        return [*obj_list]
 
     @overload
     def __setitem__(self, key: int, value: ValueT) -> None: ...
@@ -247,7 +247,7 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
         if isinstance(value, Iterable):
             if not isinstance(key, slice):
                 raise TypeError("Cannot assign to a single index with an iterable.")
-            obj_list[key] = [item for item in value]
+            obj_list[key] = [*value]
         else:
             if not isinstance(key, int):
                 raise TypeError("Cannot assign to a slice with a single object.")
@@ -315,7 +315,7 @@ class EdgePropertyList(ObjectCacheMixin, MutableSequence[ValueT]):
             The iterable to append.
         """
         obj_list = self._object_list
-        obj_list.extend([it for it in iterable])
+        obj_list.extend([*iterable])
         self._set_object_list(obj_list)
 
     def insert(self, index: int, value: ValueT) -> None:
