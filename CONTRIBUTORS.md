@@ -4,7 +4,6 @@
 
 * [Dominik Gresch](https://github.com/greschd)
 * [René Roos](https://github.com/roosre)
-* [Simone Raimondi](https://github.com/SRaimondi)
 
 ## Individual Contributors
 
@@ -13,4 +12,5 @@
 * [Kathy Pippert](https://github.com/PipKat)
 * [Revathy Venugopal](https://github.com/Revathyvenugopal162)
 * [Roberto Pastor Muela](https://github.com/RobPasMue)
+* [Simone Raimondi](https://github.com/SRaimondi)
 * [Zack Shum](https://github.com/zshum4)
