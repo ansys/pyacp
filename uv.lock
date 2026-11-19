@@ -657,7 +657,7 @@ wheels = [
 
 [[package]]
 name = "ansys-tools-common"
-version = "0.5.3"
+version = "0.5.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -666,9 +666,9 @@ dependencies = [
     { name = "scooby" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/04/0a/1291f8c5167c68a920361d214c6be8516f3452392dccbb72fb9f41a825ac/ansys_tools_common-0.5.3.tar.gz", hash = "sha256:f922fe151d76d94b42658c2f1a23111c9d05147a35aac0c88cba3155462bacae", size = 327064, upload-time = "2026-08-31T09:36:51.907Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/19/1d/ef8463cb01c03de816dc9939eb5740775796856664983820793a662d7d99/ansys_tools_common-0.5.4.tar.gz", hash = "sha256:ab460096ecf14341ba3fb3497083681c38359a3e7455d674659a346d8095a7f8", size = 327096, upload-time = "2026-11-12T07:47:56.364Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/62/fc/30cee1f72d0add309f45503255040087f65458b446b47743c550aa2ff707/ansys_tools_common-0.5.3-py3-none-any.whl", hash = "sha256:f1f70e424ba5f5ead6925b7d9471b0df691d80f8371f36997dcca63bdd11af85", size = 88760, upload-time = "2026-08-31T09:36:50.268Z" },
+    { url = "https://files.pythonhosted.org/packages/89/d2/42c7603d0943c0c2da41212525dc4905f556a9518a73cdb23d874b3297d2/ansys_tools_common-0.5.4-py3-none-any.whl", hash = "sha256:fb0d1eea20546483967a27a146f8393cfe9fe43aaaf73a70c37ea0c0a60c80ec", size = 88765, upload-time = "2026-11-12T07:47:54.863Z" },
 ]
 
 [[package]]
@@ -4494,16 +4494,16 @@ wheels = [
 
 [[package]]
 name = "sphinx-design"
-version = "0.7.0"
+version = "0.8.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "sphinx", version = "9.0.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "sphinx", version = "9.1.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.12.*'" },
     { name = "sphinx", version = "9.2.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.13'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/13/7b/804f311da4663a4aecc6cf7abd83443f3d4ded970826d0c958edc77d4527/sphinx_design-0.7.0.tar.gz", hash = "sha256:d2a3f5b19c24b916adb52f97c5f00efab4009ca337812001109084a740ec9b7a", size = 2203582, upload-time = "2026-01-19T13:12:53.297Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b0/c3/5d0f3aff52337edea9fe1d3f35ecba8a235b0490afb185544299a03a97d0/sphinx_design-0.8.0.tar.gz", hash = "sha256:57fa4d96378525122947ab6109c6e490190e3119dc10f3e3adf6b71444bf3bb4", size = 2254778, upload-time = "2026-11-10T17:16:39.673Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/30/cf/45dd359f6ca0c3762ce0490f681da242f0530c49c81050c035c016bfdd3a/sphinx_design-0.7.0-py3-none-any.whl", hash = "sha256:f82bf179951d58f55dca78ab3706aeafa496b741a91b1911d371441127d64282", size = 2220350, upload-time = "2026-01-19T13:12:51.077Z" },
+    { url = "https://files.pythonhosted.org/packages/b9/9a/e929b7fb9497d8e12bcda1777a7076f7c38d644216e91665bcfff6cab90d/sphinx_design-0.8.0-py3-none-any.whl", hash = "sha256:861fecb064c3da5ff48031a237692ccb7c2e671f8c4aa84d4b9eef3cb8fd9c91", size = 2288922, upload-time = "2026-11-10T17:16:37.538Z" },
 ]
 
 [[package]]
